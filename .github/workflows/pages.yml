@@ -19,27 +19,29 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
+# One job, not two. As separate jobs this needed two hosted runners, and two
+# consecutive deploys failed with "job was not acquired by Runner of type
+# hosted" — runner starvation on GitHub's side, nothing to do with the site.
+# The gate is just as blocking as a step: if it exits non-zero the job stops
+# before the upload, so nothing unlinted can reach the live site.
 jobs:
-  quality-gate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      # The gate runs against the COMMITTED html, not a fresh build. What ships
-      # is what is in the repo, so that is what has to pass.
-      - name: Voice, thin and duplicate gate
-        run: python3 scripts/lint.py site
-
   deploy:
-    needs: quality-gate
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # The gate runs against the COMMITTED html, not a fresh build. What ships
+      # is what is in the repo, so that is what has to pass.
+      - name: Voice, thin and duplicate gate
+        run: python3 scripts/lint.py site
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
