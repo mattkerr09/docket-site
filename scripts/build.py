@@ -19,6 +19,7 @@ sys.path.insert(0, str(HERE / "articles"))
 from render import BASE, SITE, render  # noqa: E402
 
 import comparisons  # noqa: E402
+import entity  # noqa: E402
 import home  # noqa: E402
 import index_page  # noqa: E402
 import learn  # noqa: E402
@@ -79,6 +80,9 @@ def build_hubs() -> list[Path]:
             ("/learn/seo-audit/", "What an SEO audit covers",
              "Every area, in the order they should be worked, and the three tests a report has "
              "to pass to be worth acting on."),
+            ("/learn/sameas-entity-signals/", "sameAs and entity signals",
+             "The cheapest entity signal there is, and the share of major sites that skip "
+             "it — measured, with the dataset attached."),
             ("/learn/internal-link-equity/", "Internal link equity",
              "The ranking signal your pages pass to each other, measured on our own site — "
              "where the download page held a fifth of what an average page did."),
@@ -240,6 +244,7 @@ def main() -> int:
     pages += comparisons.build_all()
     pages += learn.build_all()
     pages += link_equity.build_all()
+    pages += entity.build_all()
     pages += __import__('pages').build_all()
     pages += build_hubs()
 
