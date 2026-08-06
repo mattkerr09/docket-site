@@ -22,6 +22,7 @@ import comparisons  # noqa: E402
 import home  # noqa: E402
 import index_page  # noqa: E402
 import learn  # noqa: E402
+import link_equity  # noqa: E402
 import pages  # noqa: E402
 
 
@@ -78,6 +79,9 @@ def build_hubs() -> list[Path]:
             ("/learn/seo-audit/", "What an SEO audit covers",
              "Every area, in the order they should be worked, and the three tests a report has "
              "to pass to be worth acting on."),
+            ("/learn/internal-link-equity/", "Internal link equity",
+             "The ranking signal your pages pass to each other, measured on our own site — "
+             "where the download page held a fifth of what an average page did."),
             ("/learn/what-scout-checks/", "What Scout checks",
              "All the checks, by area, with what each one actually looks at."),
         ],
@@ -235,6 +239,7 @@ def main() -> int:
     pages: list[Path] = [home.build(), index_page.build(), checks_page()]
     pages += comparisons.build_all()
     pages += learn.build_all()
+    pages += link_equity.build_all()
     pages += __import__('pages').build_all()
     pages += build_hubs()
 

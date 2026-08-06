@@ -53,10 +53,18 @@ def main() -> int:
 
     live = _live()
     if live:
-        if fresh.get("compiled", "") <= live.get("compiled", ""):
+        # An unchanged feed is the normal case: most deploys touch the site and
+        # not the knowledge file. Requiring a bumped date every time blocked an
+        # ordinary article deploy, which is the gate misfiring rather than
+        # catching anything. Only a feed whose CONTENT changed needs a new date.
+        unchanged = {k: v for k, v in fresh.items() if k != "compiled"} == \
+                    {k: v for k, v in live.items() if k != "compiled"}
+        if unchanged:
+            print(f"note — knowledge feed unchanged since {live.get('compiled')}")
+        elif fresh.get("compiled", "") <= live.get("compiled", ""):
             problems.append(
-                f"compiled {fresh.get('compiled')} is not newer than the live "
-                f"{live.get('compiled')} — clients ignore it"
+                f"content changed but compiled is still {fresh.get('compiled')}, "
+                f"not newer than the live {live.get('compiled')} — clients ignore it"
             )
         lost = set(live.get("ai_crawlers") or {}) - set(fresh.get("ai_crawlers") or {})
         if lost:
