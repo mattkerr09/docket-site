@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# Build, gate, and publish scoutseo.app.
+#
+# Deploys by pushing site/ to the `gh-pages` branch, which GitHub Pages serves
+# directly. This replaced an Actions workflow that failed three times in a row
+# with "The job was not acquired by Runner of type hosted" — runner starvation
+# on GitHub's side, unrelated to anything in this repo, and each failure sat in
+# the queue for 15+ minutes before giving up. `timeout-minutes` does not help:
+# it bounds execution, not queue wait.
+#
+# A hosted runner was never needed here. The site is static, and the build and
+# the quality gate both run locally in under a second. The workflow remains in
+# .github/workflows/ as a fallback and no longer sits on the critical path.
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+PY="${PYTHON:-python3}"
+
+echo "==> build"
+"$PY" scripts/build.py >/dev/null
+
+echo "==> quality gate"
+# Runs against the built HTML. A failure here must stop the deploy: this is the
+# only thing standing between a bad edit and the live site.
+"$PY" scripts/lint.py site
+
+if [ -f scripts/publish_knowledge.py ]; then
+  echo "==> knowledge feed gate"
+  "$PY" scripts/publish_knowledge.py
+fi
+
+# CNAME lives in site/ so it survives into the deployed branch root. Without it
+# GitHub drops the custom domain on the next deploy and scoutseo.app 404s.
+if [ ! -f site/CNAME ]; then
+  echo "FAIL — site/CNAME is missing; deploying would drop the custom domain" >&2
+  exit 1
+fi
+
+if [ -n "$(git status --porcelain site)" ]; then
+  echo "==> committing rebuilt site"
+  git add site
+  git commit -qm "${1:-site: rebuild}"
+fi
+
+echo "==> push main"
+git push -q origin main
+
+echo "==> publish site/ to gh-pages"
+git branch -D gh-pages-tmp >/dev/null 2>&1 || true
+git subtree split --prefix site -b gh-pages-tmp >/dev/null
+git push -qf origin gh-pages-tmp:gh-pages
+git branch -D gh-pages-tmp >/dev/null
+
+echo "==> done — https://scoutseo.app (propagation takes a minute)"
