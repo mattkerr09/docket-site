@@ -1,0 +1,653 @@
+{
+  "collected": "2026-08-06",
+  "method": "Homepage fetched once over HTTPS, JSON-LD blocks extracted, checked for an Organization-family @type and for a sameAs property. Homepage only \u2014 a site declaring sameAs on an About page but not the homepage counts as absent here, which is also how a crawler resolving the site's primary entity would see it.",
+  "summary": {
+    "attempted": 110,
+    "reachable": 85,
+    "org_schema": 50,
+    "same_as": 41,
+    "org_with_same_as": 41,
+    "org_without_same_as": 9,
+    "by_category": {
+      "ecommerce": {
+        "n": 14,
+        "same_as": 5,
+        "org": 6,
+        "pct_same_as": 35.7
+      },
+      "local": {
+        "n": 11,
+        "same_as": 5,
+        "org": 5,
+        "pct_same_as": 45.5
+      },
+      "news": {
+        "n": 14,
+        "same_as": 9,
+        "org": 12,
+        "pct_same_as": 64.3
+      },
+      "nonprofit": {
+        "n": 7,
+        "same_as": 1,
+        "org": 2,
+        "pct_same_as": 14.3
+      },
+      "reference": {
+        "n": 9,
+        "same_as": 2,
+        "org": 2,
+        "pct_same_as": 22.2
+      },
+      "saas": {
+        "n": 20,
+        "same_as": 12,
+        "org": 14,
+        "pct_same_as": 60.0
+      },
+      "seo-tools": {
+        "n": 10,
+        "same_as": 7,
+        "org": 9,
+        "pct_same_as": 70.0
+      }
+    }
+  },
+  "sites": [
+    {
+      "domain": "allbirds.com",
+      "category": "ecommerce",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "amazon.com",
+      "category": "ecommerce",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "chewy.com",
+      "category": "ecommerce",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "ebay.com",
+      "category": "ecommerce",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "glossier.com",
+      "category": "ecommerce",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "gymshark.com",
+      "category": "ecommerce",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "ikea.com",
+      "category": "ecommerce",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "lush.com",
+      "category": "ecommerce",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "madewell.com",
+      "category": "ecommerce",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "nike.com",
+      "category": "ecommerce",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "target.com",
+      "category": "ecommerce",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "walmart.com",
+      "category": "ecommerce",
+      "org_schema": true,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "warbyparker.com",
+      "category": "ecommerce",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "wayfair.com",
+      "category": "ecommerce",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "chipotle.com",
+      "category": "local",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "jiffylube.com",
+      "category": "local",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "katzsdelicatessen.com",
+      "category": "local",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "midas.com",
+      "category": "local",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "mrhandyman.com",
+      "category": "local",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "rotorooter.com",
+      "category": "local",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "servicemaster.com",
+      "category": "local",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "shakeshack.com",
+      "category": "local",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "supercuts.com",
+      "category": "local",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "sweetgreen.com",
+      "category": "local",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "terminix.com",
+      "category": "local",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "apnews.com",
+      "category": "news",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "arstechnica.com",
+      "category": "news",
+      "org_schema": true,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "bbc.co.uk",
+      "category": "news",
+      "org_schema": true,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "cnn.com",
+      "category": "news",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "forbes.com",
+      "category": "news",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "ft.com",
+      "category": "news",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "nytimes.com",
+      "category": "news",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "techcrunch.com",
+      "category": "news",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "theatlantic.com",
+      "category": "news",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "theguardian.com",
+      "category": "news",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "theverge.com",
+      "category": "news",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "time.com",
+      "category": "news",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "vox.com",
+      "category": "news",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "wired.com",
+      "category": "news",
+      "org_schema": true,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "coursera.org",
+      "category": "nonprofit",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "edx.org",
+      "category": "nonprofit",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "habitat.org",
+      "category": "nonprofit",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "khanacademy.org",
+      "category": "nonprofit",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "mit.edu",
+      "category": "nonprofit",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "stanford.edu",
+      "category": "nonprofit",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "wwf.org.uk",
+      "category": "nonprofit",
+      "org_schema": true,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "github.com",
+      "category": "reference",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "healthline.com",
+      "category": "reference",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "imdb.com",
+      "category": "reference",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "investopedia.com",
+      "category": "reference",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "nerdwallet.com",
+      "category": "reference",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "reddit.com",
+      "category": "reference",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "substack.com",
+      "category": "reference",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "webmd.com",
+      "category": "reference",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "wikipedia.org",
+      "category": "reference",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "airtable.com",
+      "category": "saas",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "asana.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "calendly.com",
+      "category": "saas",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "canva.com",
+      "category": "saas",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "figma.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "hubspot.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "intercom.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "linear.app",
+      "category": "saas",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "mailchimp.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "monday.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "notion.so",
+      "category": "saas",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "shopify.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "slack.com",
+      "category": "saas",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "squarespace.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "stripe.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "vercel.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "webflow.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "wix.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "zendesk.com",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "zoom.us",
+      "category": "saas",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "ahrefs.com",
+      "category": "seo-tools",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "backlinko.com",
+      "category": "seo-tools",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "moz.com",
+      "category": "seo-tools",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "neilpatel.com",
+      "category": "seo-tools",
+      "org_schema": true,
+      "same_as": false,
+      "has_jsonld": true
+    },
+    {
+      "domain": "screamingfrog.co.uk",
+      "category": "seo-tools",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "searchenginejournal.com",
+      "category": "seo-tools",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "searchengineland.com",
+      "category": "seo-tools",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "semrush.com",
+      "category": "seo-tools",
+      "org_schema": true,
+      "same_as": true,
+      "has_jsonld": true
+    },
+    {
+      "domain": "seroundtable.com",
+      "category": "seo-tools",
+      "org_schema": false,
+      "same_as": false,
+      "has_jsonld": false
+    },
+    {
+      "domain": "sitebulb.com",
+      "category": "seo-tools",
+      "org_schema": true,
+      "same_as": false,
+      "has_jsonld": true
+    }
+  ]
+}
