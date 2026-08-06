@@ -205,6 +205,19 @@ def write_sitemap(pages: list[Path]) -> None:
 
 def write_static() -> None:
     (SITE / "CNAME").write_text("scoutseo.app\n")
+
+    # Copy the Index datasets into the served tree. They live in /data at the
+    # repo root so the collection script and its inputs sit together, but only
+    # /site is deployed — the Index page links to the dataset, and publishing
+    # the method without the data would undercut the whole point of it.
+    import shutil
+    src = SITE.parent / "data"
+    if src.exists():
+        dst = SITE / "data"
+        dst.mkdir(parents=True, exist_ok=True)
+        for f in src.glob("*.json"):
+            shutil.copy2(f, dst / f.name)
+        shutil.copy2(src / "sites.txt", dst / "sites.txt")
     # Favicon as inline SVG: one file, scales everywhere, no binary in git.
     (SITE / "favicon.svg").write_text(
         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">'
