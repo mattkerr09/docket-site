@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learn: SEO audits, AI search visibility and technical SEO — Scout</title>
-<meta name="description" content="Plain explanations of what an SEO audit covers, how AI search visibility works, and what Scout checks.">
+<title>sameAs: the entity signal 52% of major sites skip</title>
+<meta name="description" content="sameAs tells search engines and language models that your site, your LinkedIn and your Wikipedia entry are one organisation. We measured 85 major sites: 48% declare it. What it does and how to add it.">
 <meta name="theme-color" content="#0b0c0f">
-<link rel="canonical" href="https://scoutseo.app/learn/">
+<link rel="canonical" href="https://scoutseo.app/learn/sameas-entity-signals/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Learn">
-<meta property="og:description" content="Plain explanations of what an SEO audit covers, how AI search visibility works, and what Scout checks.">
-<meta property="og:url" content="https://scoutseo.app/learn/">
+<meta property="og:title" content="sameAs, and why half the web skips it">
+<meta property="og:description" content="sameAs tells search engines and language models that your site, your LinkedIn and your Wikipedia entry are one organisation. We measured 85 major sites: 48% declare it. What it does and how to add it.">
+<meta property="og:url" content="https://scoutseo.app/learn/sameas-entity-signals/">
 <meta property="og:site_name" content="Scout">
 <meta property="og:image" content="https://scoutseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Learn">
-<meta name="twitter:description" content="Plain explanations of what an SEO audit covers, how AI search visibility works, and what Scout checks.">
+<meta name="twitter:title" content="sameAs, and why half the web skips it">
+<meta name="twitter:description" content="sameAs tells search engines and language models that your site, your LinkedIn and your Wikipedia entry are one organisation. We measured 85 major sites: 48% declare it. What it does and how to add it.">
 <meta name="twitter:image" content="https://scoutseo.app/og.png">
 <style>
 :root{
@@ -216,7 +216,8 @@ body.landing article{padding:0}
 .faq-item p{font-size:.93rem;margin:0}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 86 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"86 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","headline":"Learn","description":"Plain explanations of what an SEO audit covers, how AI search visibility works, and what Scout checks.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"sameAs, and why half the web skips it","description":"sameAs tells search engines and language models that your site, your LinkedIn and your Wikipedia entry are one organisation. We measured 85 major sites: 48% declare it. What it does and how to add it.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/sameas-entity-signals/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does sameAs do in schema.org?","acceptedAnswer":{"@type":"Answer","text":"It lists other URLs that represent the same entity — your LinkedIn page, your Wikipedia article, your Google Business Profile. It lets a search engine or language model confirm that those accounts and your website are one organisation rather than several unrelated ones."}},{"@type":"Question","name":"Where should sameAs go?","acceptedAnswer":{"@type":"Answer","text":"On the homepage, inside your Organization node. The homepage is what resolves a site's primary entity, so markup on an About page alone is largely wasted."}},{"@type":"Question","name":"Should I list news articles about my company in sameAs?","acceptedAnswer":{"@type":"Answer","text":"No. sameAs means 'this is also me'. An article about you is not you — that is subjectOf. Padding the array with press mentions weakens the signal."}}]}</script>
 </head>
 <body>
 <nav><div class="wrap-wide nav-inner">
@@ -230,8 +231,116 @@ body.landing article{padding:0}
 </div>
 <a class="btn" href="/#download">Download</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Scout</a> / Learn</div><h1>Learn</h1>
-<p class="lede">Reference pages, written to be read rather than skimmed for keywords.</p><h3 style="margin-top:1.5rem"><a href="/learn/ai-search-visibility/">AI search visibility</a></h3><p>The three gates a model has to clear before it can cite you — access, rendering and entity clarity — with measured data on who is blocking what.</p><h3 style="margin-top:1.5rem"><a href="/learn/seo-audit/">What an SEO audit covers</a></h3><p>Every area, in the order they should be worked, and the three tests a report has to pass to be worth acting on.</p><h3 style="margin-top:1.5rem"><a href="/learn/sameas-entity-signals/">sameAs and entity signals</a></h3><p>The cheapest entity signal there is, and the share of major sites that skip it — measured, with the dataset attached.</p><h3 style="margin-top:1.5rem"><a href="/learn/internal-link-equity/">Internal link equity</a></h3><p>The ranking signal your pages pass to each other, measured on our own site — where the download page held a fifth of what an average page did.</p><h3 style="margin-top:1.5rem"><a href="/learn/what-scout-checks/">What Scout checks</a></h3><p>All the checks, by area, with what each one actually looks at.</p>
+<article><div class="wrap"><div class="crumb"><a href="/">Scout</a> / <a href="/learn/">Learn</a> / sameAs and entities</div><h1>sameAs, and why half the web skips it</h1>
+
+<p class="lede"><code>sameAs</code> is the schema.org property that tells a search engine or
+a language model that this website, that LinkedIn page and that Wikipedia entry are all the
+same organisation. It is the cheapest entity signal available — a list of URLs you already
+own — and <strong>52% of the 85 major sites we measured do not have
+it.</strong></p>
+
+<p>We fetched the homepage of every site in the Scout Index on 2026-08-06, pulled out
+the JSON-LD, and looked for two things: an Organization-family type, and a
+<code>sameAs</code> property. 50 sites (59%) declare an organisation.
+Only 41 (48%) declare <code>sameAs</code>.</p>
+
+<p>The gap between those numbers is the interesting part. 9 sites —
+18% of everyone who bothered with Organization schema at all — went to
+the trouble of describing themselves as an organisation and then omitted the one property
+that connects that description to anything else.</p>
+
+<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Category</th><th>Declaring <code>sameAs</code></th><th>Share</th></tr></thead><tbody><tr><td>SEO tools</td><td>7 / 10</td><td>70%</td></tr><tr><td>News &amp; media</td><td>9 / 14</td><td>64%</td></tr><tr><td>SaaS</td><td>12 / 20</td><td>60%</td></tr><tr><td>Local business</td><td>5 / 11</td><td>46%</td></tr><tr><td>Ecommerce</td><td>5 / 14</td><td>36%</td></tr><tr><td>Nonprofit</td><td>1 / 7</td><td>14%</td></tr><tr><td>Reference</td><td>2 / 9</td><td>22%</td></tr></tbody></table></div>
+
+<h2>What the property actually does</h2>
+
+<p>A search engine reading your homepage knows a company exists at your domain. It does not
+know whether that company is the one with 40,000 LinkedIn followers, the one in a Wikipedia
+article, or the one with a Google Business Profile two miles away. Those are four separate
+entities until something joins them.</p>
+
+<p><code>sameAs</code> is that something. It is an array of URLs that are you, elsewhere:</p>
+
+<pre><code>{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Acme Roofing",
+  "url": "https://acmeroofing.com",
+  "sameAs": [
+    "https://www.linkedin.com/company/acme-roofing",
+    "https://www.facebook.com/acmeroofing",
+    "https://en.wikipedia.org/wiki/Acme_Roofing"
+  ]
+}</code></pre>
+
+<p>Two things follow. Knowledge panels get their social links from resolved entity data, and
+a language model asked to name a supplier is more likely to reach a business it can pin to a
+real organisation than one that is only a domain.</p>
+
+<h2>Why the reference category is at the bottom</h2>
+
+<p>Reference sites came last at 22%,
+which looks wrong until you think about who they are. Wikipedia and its peers <em>are</em>
+the entity graph — they are what everyone else's <code>sameAs</code> points at. They have
+less to gain by pointing outward.</p>
+
+<p>SEO tools came top at 70%, which
+is the least surprising number in the table and worth stating anyway: the people who sell
+advice about this take it.</p>
+
+<h2>Getting it wrong</h2>
+
+<p>Three failure modes, in rough order of frequency.</p>
+
+<p><strong>Linking profiles in the footer and never declaring them.</strong> The commonest by
+far. The site links Facebook and Instagram from every page, and the schema mentions neither,
+so the evidence is sitting there unused. Scout reports this specifically because the fix is
+copying URLs you already have into an array.</p>
+
+<p><strong>Listing pages you do not control.</strong> <code>sameAs</code> means "this is also
+me". A news article about you is not you; that is <code>subjectOf</code>. Padding the array
+with press mentions weakens the signal rather than strengthening it.</p>
+
+<p><strong>Burying it where nothing looks.</strong> Entity markup belongs on the homepage,
+which is what resolves the site's primary entity. Our measurement only read homepages for
+exactly this reason — a site declaring <code>sameAs</code> on an About page and nowhere else
+counts as absent here, and that is also roughly how it looks to something trying to work out
+who owns the domain.</p>
+
+<h2>The other half of the problem</h2>
+
+<p>Machines also learn your name from your title tags, your <code>og:site_name</code> and your
+logo's alt text. When those disagree — and they disagree more often than anyone expects,
+usually because a tagline crept into one of them — a knowledge panel, a shared link preview
+and an AI citation can each show a different name for the same company. <code>sameAs</code>
+connects your entity to the world; consistent naming is what makes the entity coherent in the
+first place. Scout checks both.</p>
+
+<h2>Where another tool is better</h2>
+
+<p>For validating that one page's markup parses and is eligible for rich results, use
+Google's own Rich Results Test. It is authoritative in a way no third-party tool can be,
+because it is the parser that actually decides. Scout tells you which pages across a whole
+site are missing the markup and what it costs you; it does not adjudicate eligibility, and
+anything claiming to is guessing at someone else's parser.</p>
+
+<p>For finding <em>which</em> external profiles and mentions exist to point at in the first
+place, <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs</a> has a web-scale index and
+Scout does not. That is a genuine difference in kind, not a feature gap we intend to close.</p>
+
+<h2>Checking yours</h2>
+
+<ol>
+<li>Open your homepage source and search for <code>sameAs</code>. Absent is the common case.</li>
+<li>List every official profile you actually control.</li>
+<li>Put them in the array, on the homepage, inside your Organization node.</li>
+</ol>
+
+<p>It takes about ten minutes and it is the highest ratio of entity signal to effort available
+to a small site. <a href="/data/entity-2026-08.json">The dataset behind this page</a> lists
+every site measured, so you can check our arithmetic.</p>
+
+<p><a class="btn" href="/#download">Download Scout</a></p>
+
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
