@@ -1,0 +1,132 @@
+# Scout Index — measurement sample.
+#
+# Selection rule, stated so the sample can be judged: well-known, high-traffic
+# sites across categories where an AI assistant would plausibly be asked to
+# recommend one. Not a random sample of the web, and not claimed to be — the
+# published figures describe THIS population and say so.
+#
+# Format: host,category
+
+# --- news & reference (the category with the loudest AI-blocking story) ---
+nytimes.com,news
+theguardian.com,news
+bbc.co.uk,news
+reuters.com,news
+apnews.com,news
+washingtonpost.com,news
+wsj.com,news
+bloomberg.com,news
+ft.com,news
+economist.com,news
+cnn.com,news
+forbes.com,news
+theatlantic.com,news
+wired.com,news
+arstechnica.com,news
+techcrunch.com,news
+theverge.com,news
+vox.com,news
+npr.org,news
+time.com,news
+
+# --- e-commerce ---
+amazon.com,ecommerce
+etsy.com,ecommerce
+ebay.com,ecommerce
+walmart.com,ecommerce
+target.com,ecommerce
+wayfair.com,ecommerce
+chewy.com,ecommerce
+allbirds.com,ecommerce
+gymshark.com,ecommerce
+warbyparker.com,ecommerce
+glossier.com,ecommerce
+patagonia.com,ecommerce
+rei.com,ecommerce
+nike.com,ecommerce
+ikea.com,ecommerce
+zara.com,ecommerce
+asos.com,ecommerce
+lush.com,ecommerce
+madewell.com,ecommerce
+bombas.com,ecommerce
+
+# --- SaaS & software ---
+stripe.com,saas
+notion.so,saas
+figma.com,saas
+slack.com,saas
+zoom.us,saas
+hubspot.com,saas
+mailchimp.com,saas
+shopify.com,saas
+squarespace.com,saas
+wix.com,saas
+webflow.com,saas
+canva.com,saas
+airtable.com,saas
+asana.com,saas
+monday.com,saas
+intercom.com,saas
+zendesk.com,saas
+calendly.com,saas
+linear.app,saas
+vercel.com,saas
+
+# --- SEO / marketing tools (our own category — publish it even if it flatters us less) ---
+ahrefs.com,seo-tools
+semrush.com,seo-tools
+moz.com,seo-tools
+screamingfrog.co.uk,seo-tools
+sitebulb.com,seo-tools
+searchenginejournal.com,seo-tools
+searchengineland.com,seo-tools
+backlinko.com,seo-tools
+neilpatel.com,seo-tools
+seroundtable.com,seo-tools
+
+# --- local & service businesses ---
+rotorooter.com,local
+servicemaster.com,local
+terminix.com,local
+mrhandyman.com,local
+molymaid.com,local
+kumon.com,local
+massageenvy.com,local
+supercuts.com,local
+jiffylube.com,local
+midas.com,local
+hrblock.com,local
+katzsdelicatessen.com,local
+shakeshack.com,local
+chipotle.com,local
+sweetgreen.com,local
+
+# --- publishers & knowledge ---
+wikipedia.org,reference
+stackoverflow.com,reference
+github.com,reference
+medium.com,reference
+substack.com,reference
+quora.com,reference
+reddit.com,reference
+imdb.com,reference
+webmd.com,reference
+mayoclinic.org,reference
+healthline.com,reference
+investopedia.com,reference
+nerdwallet.com,reference
+tripadvisor.com,reference
+yelp.com,reference
+
+# --- education & nonprofit ---
+khanacademy.org,nonprofit
+coursera.org,nonprofit
+edx.org,nonprofit
+redcross.org,nonprofit
+wwf.org.uk,nonprofit
+unicef.org,nonprofit
+doctorswithoutborders.org,nonprofit
+habitat.org,nonprofit
+mit.edu,nonprofit
+stanford.edu,nonprofit

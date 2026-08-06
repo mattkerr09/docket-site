@@ -1,0 +1,11 @@
+slug,name,price_note,model,runs,weakness_we_beat,where_they_win
+screaming-frog,Screaming Frog,£199/yr,subscription,local,gives raw data and no interpretation,JavaScript rendering and custom XPath extraction
+sitebulb,Sitebulb,$13.50-$34/mo,subscription,local + cloud,no marketing or conversion auditing,site architecture visualisation
+ahrefs-site-audit,Ahrefs Site Audit,$129-$499/mo,subscription,cloud,crawl-credit metered and seat-priced,keyword and backlink data from a web-scale index
+semrush-site-audit,Semrush Site Audit,$139-$499/mo,subscription,cloud,140+ checkpoints with no ordering,keyword gaps and competitive content analysis
+seoptimer,SEOptimer,$19-$59/mo,subscription,cloud,scorecard depth is shallow,white-label lead-gen reports
+lighthouse,Google Lighthouse,free,free,local,only measures one page and no SEO strategy,real rendered Core Web Vitals
+sitechecker,Sitechecker,$49-$199/mo,subscription,cloud,no local business or AI visibility lanes,rank tracking
+ubersuggest,Ubersuggest,$29-$99/mo,subscription,cloud,audit is a secondary feature,cheap keyword data
+profound,Profound,$82-$332/mo,subscription,cloud,tracks citations but never audits why you are not cited,enterprise AI citation tracking
+otterly,Otterly.AI,$25+/mo,subscription,cloud,AI visibility only — no technical audit,affordable prompt tracking
