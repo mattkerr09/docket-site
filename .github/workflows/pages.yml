@@ -1,0 +1,48 @@
+name: Deploy site
+
+# GitHub Pages' built-in "deploy from a folder" only accepts / or /docs, and the
+# site lives in /site so the scripts and datasets stay out of the served tree.
+# The Actions deployment can publish any directory, which is why this exists.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race. `cancel-in-progress: false` because a half-finished
+# deploy that gets cancelled can leave the live site mid-update.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      # The gate runs against the COMMITTED html, not a fresh build. What ships
+      # is what is in the repo, so that is what has to pass.
+      - name: Voice, thin and duplicate gate
+        run: python3 scripts/lint.py site
+
+  deploy:
+    needs: quality-gate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
