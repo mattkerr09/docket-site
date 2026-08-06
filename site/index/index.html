@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Scout Index — 30% of major sites block an AI search crawler (2026)</title>
+<meta name="description" content="We measured the robots.txt of 110 well-known websites with Scout's own parser. 30% block at least one AI search crawler, and 76% of sites blocking any AI crawler also blocked the ones that decide whether they appear in ChatGPT. Full method and dataset included.">
+<meta name="theme-color" content="#0b0c0f">
+<link rel="canonical" href="https://scoutseo.app/index/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Scout Index: who is blocking AI search crawlers">
+<meta property="og:description" content="We measured the robots.txt of 110 well-known websites with Scout's own parser. 30% block at least one AI search crawler, and 76% of sites blocking any AI crawler also blocked the ones that decide whether they appear in ChatGPT. Full method and dataset included.">
+<meta property="og:url" content="https://scoutseo.app/index/">
+<meta property="og:site_name" content="Scout">
+<meta property="og:image" content="https://scoutseo.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Scout Index: who is blocking AI search crawlers">
+<meta name="twitter:description" content="We measured the robots.txt of 110 well-known websites with Scout's own parser. 30% block at least one AI search crawler, and 76% of sites blocking any AI crawler also blocked the ones that decide whether they appear in ChatGPT. Full method and dataset included.">
+<meta name="twitter:image" content="https://scoutseo.app/og.png">
+<style>
+:root{
+  --bg:#0b0c0f;--surface:#12141a;--surface-2:#181b23;--surface-3:#1f232d;
+  --text:#eef0f4;--text-mid:#a7aeba;--text-dim:#767d8b;
+  --amber:#F0800F;--amber-light:#FFB528;--amber-soft:rgba(240,128,15,.12);
+  --ok:#4ade80;--warn:#fbbf24;--bad:#ff7a6e;
+  --border:rgba(255,255,255,.10);--border-strong:rgba(255,255,255,.18);
+  --radius:14px;--radius-sm:9px;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;
+  line-height:1.68;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--amber-light);text-decoration:none;transition:color .16s}
+a:hover{color:var(--text);text-decoration:underline}
+.wrap{width:min(820px,calc(100% - 2rem));margin:0 auto}
+.wrap-wide{width:min(1080px,calc(100% - 2rem));margin:0 auto}
+
+nav{position:sticky;top:0;z-index:20;background:rgba(11,12,15,.88);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem}
+.nav-brand{display:flex;align-items:center;gap:.55rem;font-weight:750;color:var(--text);
+  font-size:1.1rem;letter-spacing:-.02em}
+.nav-brand:hover{text-decoration:none;color:var(--amber-light)}
+.nav-links{display:flex;gap:1.35rem;font-size:.94rem}
+.nav-links a{color:var(--text-mid)}
+.nav-links a:hover{color:var(--text);text-decoration:none}
+@media(max-width:780px){.nav-links{display:none}}
+.btn{display:inline-block;background:var(--amber);color:#17181C;font-weight:700;
+  padding:.62rem 1.2rem;border-radius:10px;font-size:.95rem;border:0;cursor:pointer}
+.btn:hover{background:var(--amber-light);color:#17181C;text-decoration:none}
+.btn-ghost{display:inline-block;border:1px solid var(--border-strong);color:var(--text-mid);
+  padding:.6rem 1.15rem;border-radius:10px;font-size:.95rem;font-weight:600}
+.btn-ghost:hover{background:var(--surface-2);color:var(--text);text-decoration:none}
+
+article{padding:2.8rem 0 4.5rem}
+.crumb{font-family:var(--mono);font-size:.75rem;color:var(--text-dim);
+  text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem}
+.crumb a{color:var(--text-dim)}
+h1{font-size:2.3rem;line-height:1.14;letter-spacing:-.03em;margin-bottom:1rem}
+h2{font-size:1.5rem;letter-spacing:-.02em;margin:2.6rem 0 .9rem}
+h3{font-size:1.13rem;margin:1.7rem 0 .5rem}
+p{color:var(--text-mid);margin-bottom:1rem}
+strong{color:var(--text);font-weight:650}
+.lede{font-size:1.17rem;color:var(--text);margin-bottom:1.4rem}
+ul,ol{color:var(--text-mid);margin:0 0 1.1rem 1.25rem}
+li{margin-bottom:.42rem}
+blockquote{border-left:3px solid var(--amber);padding:.2rem 0 .2rem 1.1rem;
+  margin:1.3rem 0;color:var(--text)}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);
+  padding:.14em .4em;border-radius:5px;color:var(--amber-light)}
+pre{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:1rem 1.1rem;overflow-x:auto;margin:1.2rem 0;font-size:.86rem;line-height:1.6}
+pre code{background:0;padding:0;color:var(--text-mid)}
+
+table.cmp{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:.94rem}
+table.cmp th,table.cmp td{text-align:left;padding:.66rem .72rem;
+  border-bottom:1px solid var(--border);vertical-align:top}
+table.cmp th{color:var(--text-dim);font-size:.78rem;text-transform:uppercase;
+  letter-spacing:.06em;font-weight:650}
+table.cmp td:first-child{color:var(--text);font-weight:600}
+.yes{color:var(--ok);font-weight:650}
+.no{color:var(--bad)}
+.wrap-tbl{overflow-x:auto;margin:1.4rem 0}
+
+.callout{background:var(--surface);border:1px solid var(--border);
+  border-left:3px solid var(--amber);border-radius:var(--radius-sm);
+  padding:1.05rem 1.2rem;margin:1.5rem 0}
+.callout p:last-child{margin-bottom:0}
+.callout-title{color:var(--amber-light);font-weight:700;font-size:.8rem;
+  text-transform:uppercase;letter-spacing:.07em;margin-bottom:.4rem}
+
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:.8rem;margin:1.6rem 0}
+.stat{background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:1rem 1.1rem}
+.stat b{display:block;font-size:1.85rem;letter-spacing:-.03em;color:var(--text);
+  line-height:1.1;font-weight:700}
+.stat span{font-size:.82rem;color:var(--text-dim)}
+
+footer{border-top:1px solid var(--border);padding:2.6rem 0 3rem;margin-top:3rem;
+  font-size:.9rem;color:var(--text-dim)}
+.foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:1.6rem;margin-bottom:2rem}
+.foot-grid h4{font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--text-dim);margin-bottom:.6rem;font-weight:650}
+.foot-grid a{display:block;color:var(--text-mid);padding:.17rem 0;font-size:.92rem}
+.foot-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  border-top:1px solid var(--border);padding-top:1.3rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 80 checks across SEO, content, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"80 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Scout Index: who is blocking AI search crawlers","description":"We measured the robots.txt of 110 well-known websites with Scout's own parser. 30% block at least one AI search crawler, and 76% of sites blocking any AI crawler also blocked the ones that decide whether they appear in ChatGPT. Full method and dataset included.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/index/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What percentage of websites block AI crawlers?","acceptedAnswer":{"@type":"Answer","text":"In Scout's August 2026 sample of 98 well-known sites with a robots.txt, 30% blocked at least one AI search crawler and 38% blocked at least one training crawler. News and media sites were the outlier at 94.7%; SaaS companies were at 5.0%."}},{"@type":"Question","name":"What is the difference between GPTBot and OAI-SearchBot?","acceptedAnswer":{"@type":"Answer","text":"GPTBot collects data used to train OpenAI's models. OAI-SearchBot builds the index ChatGPT searches when a user asks a question. Blocking GPTBot keeps your content out of training data. Blocking OAI-SearchBot removes you from ChatGPT's answers. They are separate decisions and require separate robots.txt rules."}},{"@type":"Question","name":"Should I block AI crawlers?","acceptedAnswer":{"@type":"Answer","text":"It depends on whether your content is the product. Publishers who sell access to writing have a clear reason to block training crawlers. A business that wants to be recommended to customers generally does not — blocking the search crawlers removes you from the answers where those recommendations happen."}},{"@type":"Question","name":"Does blocking Google-Extended affect my Google rankings?","acceptedAnswer":{"@type":"Answer","text":"No. Google-Extended controls whether your content is used for Gemini and AI Overviews grounding. It does not affect classic Google Search ranking, which is governed by Googlebot."}}]}</script>
+</head>
+<body>
+<nav><div class="wrap-wide nav-inner">
+<a class="nav-brand" href="/"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--amber)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Scout</span></a>
+<div class="nav-links">
+<a href="/index/">The Index</a>
+<a href="/learn/">Learn</a>
+<a href="/vs/">Compare</a>
+<a href="/how-to/">Fix it</a>
+<a href="/for/">For you</a>
+</div>
+<a class="btn" href="/#download">Download</a>
+</div></nav>
+<article><div class="wrap">
+<div class="crumb"><a href="/">Scout</a> / The Index</div>
+<h1>The Scout Index: who is blocking AI search crawlers</h1>
+
+<p class="lede">We fetched the robots.txt of 110 well-known websites and parsed
+each one with Scout's own crawler-rules engine. <strong>30% of them block at least one
+AI <em>search</em> crawler</strong> — the crawlers that decide whether a site can appear in
+ChatGPT, Perplexity, Claude or Google's AI Overviews at all. Most of them did not appear to
+mean to.</p>
+
+<div class="stat-row">
+<div class="stat"><b>98</b><span>sites with a robots.txt</span></div>
+<div class="stat"><b>30%</b><span>block an AI search crawler</span></div>
+<div class="stat"><b>38%</b><span>block a training crawler</span></div>
+<div class="stat"><b>43%</b><span>name any AI bot at all</span></div>
+</div>
+
+<h2>The finding: almost nobody separates training from search</h2>
+<p>AI crawlers are not one thing. <code>GPTBot</code> collects data to train OpenAI's models.
+<code>OAI-SearchBot</code> builds the index ChatGPT searches when a user asks a question.
+Blocking the first is a defensible business decision about your content being used as training
+material. Blocking the second removes you from the answer.</p>
+
+<p>Of the 37 sites in our sample that block any AI crawler, only <strong>9
+blocked training crawlers while leaving the search crawlers alone</strong>. The other
+28 — <strong>76%</strong> — blocked both.</p>
+
+<div class="callout">
+<div class="callout-title">What this means</div>
+<p>Roughly three quarters of the sites that took a position on AI crawling ended up removing
+themselves from AI search results as well. Some of those are deliberate. Many are a
+copy-pasted robots.txt block that treated every user-agent with "AI" in the name as the same
+decision.</p>
+</div>
+
+<h2>Perplexity is blocked 2.3× more often than OpenAI's search crawler</h2>
+<p><code>PerplexityBot</code> was disallowed by 25 sites. <code>OAI-SearchBot</code>
+was disallowed by 11. That gap is not a rounding artefact — 14 sites block
+Perplexity specifically while allowing OpenAI's search crawler through, which is a deliberate
+editorial position rather than a misconfiguration.</p>
+<p>Among them: theguardian.com, reuters.com, apnews.com, washingtonpost.com, wsj.com, ft.com, forbes.com, theatlantic.com….</p>
+
+<h2>Every crawler we measured</h2>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Crawler</th><th>Operator</th><th>Purpose</th><th>Sites blocking</th><th>%</th></tr></thead>
+<tbody><tr><td>CCBot</td><td>Common Crawl</td><td>open corpus</td><td>33</td><td>33.7%</td></tr><tr><td>ClaudeBot</td><td>Anthropic</td><td>training</td><td>32</td><td>32.7%</td></tr><tr><td>Bytespider</td><td>ByteDance</td><td>training</td><td>31</td><td>31.6%</td></tr><tr><td>Applebot-Extended</td><td>Apple</td><td>training</td><td>27</td><td>27.6%</td></tr><tr><td>meta-externalagent</td><td>Meta</td><td>training</td><td>27</td><td>27.6%</td></tr><tr><td>PerplexityBot</td><td>Perplexity</td><td>search index</td><td>25</td><td>25.5%</td></tr><tr><td>GPTBot</td><td>OpenAI</td><td>training</td><td>24</td><td>24.5%</td></tr><tr><td>Google-Extended</td><td>Google</td><td>Gemini grounding</td><td>23</td><td>23.5%</td></tr><tr><td>Amazonbot</td><td>Amazon</td><td>search index</td><td>23</td><td>23.5%</td></tr><tr><td>Claude-SearchBot</td><td>Anthropic</td><td>search index</td><td>20</td><td>20.4%</td></tr><tr><td>Claude-User</td><td>Anthropic</td><td>live fetch</td><td>20</td><td>20.4%</td></tr><tr><td>Perplexity-User</td><td>Perplexity</td><td>live fetch</td><td>18</td><td>18.4%</td></tr><tr><td>ChatGPT-User</td><td>OpenAI</td><td>live fetch</td><td>15</td><td>15.3%</td></tr><tr><td>OAI-SearchBot</td><td>OpenAI</td><td>search index</td><td>11</td><td>11.2%</td></tr></tbody></table></div>
+
+<h2>By category</h2>
+<p>The spread is the story. News publishers have overwhelmingly decided to shut AI search out.
+Almost nobody else has.</p>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Category</th><th>Sites</th><th>Blocking AI search</th><th>%</th></tr></thead>
+<tbody><tr><td>News &amp; media</td><td>19</td><td>18</td><td>94.7%</td></tr><tr><td>Reference &amp; knowledge</td><td>14</td><td>7</td><td>50.0%</td></tr><tr><td>Ecommerce</td><td>15</td><td>2</td><td>13.3%</td></tr><tr><td>Local &amp; service businesses</td><td>11</td><td>1</td><td>9.1%</td></tr><tr><td>SaaS &amp; software</td><td>20</td><td>1</td><td>5.0%</td></tr><tr><td>SEO &amp; marketing</td><td>10</td><td>0</td><td>0.0%</td></tr><tr><td>Education &amp; nonprofit</td><td>9</td><td>0</td><td>0.0%</td></tr></tbody></table></div>
+
+<p>For a business that competes for customers rather than readers — a shop, a SaaS product, a
+local service — the practical read is that the field is wide open. Your competitors are almost
+certainly not blocking these crawlers, so being visible to them is not an advantage you can
+win by default. It is table stakes you can lose by accident.</p>
+
+<h2>Two things we did not expect</h2>
+
+<h3>8 sites use Content-signal</h3>
+<p><code>Content-signal</code> is a newer, Cloudflare-backed convention for stating intent
+declaratively — Stack Overflow's reads
+<code>Content-signal: search=no, ai-train=no</code>. No crawler is obliged to honour it. It is
+worth watching because it separates <em>what you permit</em> from <em>which user-agent
+happens to be asking</em>, which is exactly the distinction robots.txt handles badly.</p>
+
+<h3>4 sites block a conventional search engine</h3>
+<p>Not AI crawlers — Googlebot, Bingbot, DuckDuckBot or Applebot. In the cases we looked at
+this is intentional: Reddit's robots.txt is a blanket <code>Disallow: /</code> with search
+access negotiated commercially instead. It is a reminder that robots.txt describes policy,
+not always practice.</p>
+
+<h2>Method</h2>
+<p>One <code>GET</code> to <code>https://&lt;host&gt;/robots.txt</code> per site, serialised
+with a delay — a smaller footprint than one person visiting the homepage. Rules were parsed
+with Scout's RFC 9309 implementation, which does longest-match resolution, <code>*</code>
+wildcards and <code>$</code> anchors. A site counts as blocking a crawler when that crawler
+is disallowed from <code>/</code>.</p>
+
+<p>Whether a response is a real robots.txt is decided by its <em>content</em>, not its status
+code. Stack Overflow serves a genuine, restrictive robots.txt with an HTTP 418; a status-code
+test would have miscounted it. Sites returning no <code>User-agent:</code> directive at all
+(9 of them) are excluded from every percentage, because a site with no
+robots.txt has no policy — counting it as "allows everything" would overstate how open the
+web is.</p>
+
+<h2>Limits of this sample</h2>
+<p>Stated plainly, because the Index is only useful if you can judge it:</p>
+<ul>
+<li><strong>It is not a random sample of the web.</strong> It is 110 well-known,
+high-traffic sites chosen across categories where an AI assistant might plausibly be asked for
+a recommendation. Percentages describe this population and nothing wider.</li>
+<li><strong>3 sites were unreachable</strong> at collection time and are
+excluded.</li>
+<li><strong>robots.txt is a request, not a wall.</strong> It records what a site asks
+crawlers to do. Well-behaved crawlers comply; compliance is not measured here and we make no
+claim about it.</li>
+<li><strong>This measures access, not citation.</strong> Being crawlable is necessary for
+appearing in AI answers. It is not sufficient — rendering, structure and entity clarity all
+matter, and none of them are in this dataset.</li>
+<li><strong>It is a snapshot.</strong> Collected 2026-08-06. robots.txt files
+change; this one will be re-run and the figures will move.</li>
+</ul>
+
+<h2>Get the data</h2>
+<p>The full dataset, the collection script and the exact site list are in the repository.
+Re-run it yourself and you should get the same answer — that is the point of publishing the
+method alongside the numbers.</p>
+<p><a class="btn-ghost" href="/data/index-2026-08.json">Download the dataset (JSON)</a></p>
+
+<div class="callout">
+<div class="callout-title">Check your own site</div>
+<p>Scout runs this same audit against your site, plus 79 other checks, on your Mac.
+It tells you which crawlers you are blocking, whether it looks deliberate, and what the
+practical consequence is for each one. <a href="/#download">Download Scout →</a></p>
+</div>
+
+</div></article>
+<footer><div class="wrap-wide">
+<div class="foot-grid">
+<div><h4>Scout</h4>
+<a href="/">Overview</a><a href="/#download">Download</a>
+<a href="/index/">The Scout Index</a><a href="/learn/what-scout-checks/">What it checks</a></div>
+<div><h4>Compare</h4>
+<a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
+<a href="/vs/sitebulb-alternative/">vs Sitebulb</a>
+<a href="/vs/ahrefs-site-audit-alternative/">vs Ahrefs</a>
+<a href="/vs/">All comparisons</a></div>
+<div><h4>Learn</h4>
+<a href="/learn/ai-search-visibility/">AI search visibility</a>
+<a href="/learn/seo-audit/">What an SEO audit is</a>
+<a href="/learn/">All guides</a></div>
+<div><h4>Contact</h4>
+<a href="mailto:hello@scoutseo.app">hello@scoutseo.app</a>
+<a href="https://github.com/mattkerr09/scout-site">GitHub</a>
+<a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a></div>
+</div>
+<div class="foot-bottom">
+<span>© 2026 Scout · Audits run on your Mac. Nothing is uploaded.</span>
+<span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
+</div></div></footer>
+</body>
+</html>

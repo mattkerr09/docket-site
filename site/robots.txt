@@ -1,0 +1,35 @@
+# Scout — scoutseo.app
+# Everything is open, including AI search and training crawlers.
+# Named individually so the next person to edit this file can see the
+# difference between a search crawler and a training crawler.
+
+User-agent: *
+Allow: /
+
+# AI search crawlers — these decide whether we appear in AI answers.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Training crawlers — allowed here; blocking these is a valid choice for others.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://scoutseo.app/sitemap.xml
