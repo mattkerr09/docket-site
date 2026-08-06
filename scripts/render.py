@@ -112,6 +112,108 @@ footer{border-top:1px solid var(--border);padding:2.6rem 0 3rem;margin-top:3rem;
 .foot-grid a{display:block;color:var(--text-mid);padding:.17rem 0;font-size:.92rem}
 .foot-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   border-top:1px solid var(--border);padding-top:1.3rem}
+
+/* ============ Landing page only ============
+   The article shell is a single 820px column, which is right for reading and
+   wrong for a homepage. These rules only apply on pages that opt in via
+   body.landing, so the article template is untouched. */
+body.landing article{padding:0}
+.hero-sec{padding:4.5rem 0 3.5rem;position:relative;overflow:hidden}
+.hero-sec::before{content:"";position:absolute;inset:-40% 0 auto 50%;width:900px;height:600px;
+  transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(240,128,15,.13),transparent 62%);
+  pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:3.2rem;
+  align-items:center;position:relative}
+@media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:2.4rem}}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.74rem;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--amber-light);
+  background:var(--amber-soft);border:1px solid rgba(240,128,15,.25);
+  padding:.34rem .74rem;border-radius:99px;margin-bottom:1.15rem}
+.hero-h1{font-size:clamp(2.15rem,4.2vw,3.3rem);line-height:1.08;letter-spacing:-.037em;
+  margin-bottom:1.05rem;font-weight:760;max-width:15ch}
+@media(min-width:941px){.hero-h1{max-width:none}}
+.hero-h1 em{font-style:normal;background:linear-gradient(100deg,var(--amber-light),var(--amber));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1.14rem;color:var(--text-mid);max-width:34rem;margin-bottom:1.7rem}
+.hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+.btn-lg{padding:.82rem 1.6rem;font-size:1rem;border-radius:11px}
+.hero-note{font-size:.86rem;color:var(--text-dim)}
+
+/* Product mockup — an HTML replica of the app, not a screenshot. Stays sharp at
+   any density, weighs nothing, and follows the page theme. */
+.mock{background:var(--surface);border:1px solid var(--border-strong);border-radius:16px;
+  box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.03);overflow:hidden}
+.mock-bar{display:flex;align-items:center;gap:.45rem;padding:.62rem .85rem;
+  background:var(--surface-2);border-bottom:1px solid var(--border)}
+.mock-dot{width:10px;height:10px;border-radius:99px;background:#3a3f4b}
+.mock-title{margin-left:.5rem;font-size:.74rem;color:var(--text-dim);font-family:var(--mono)}
+.mock-body{padding:1.05rem}
+.mock-top{display:flex;gap:1.05rem;align-items:center;margin-bottom:1rem}
+.mock-score{font-size:1.95rem;font-weight:720;letter-spacing:-.03em;line-height:1}
+.mock-verdict{font-size:.86rem;color:var(--text-mid);line-height:1.45}
+.mock-chips{display:flex;gap:.32rem;margin-top:.45rem;flex-wrap:wrap}
+.mock-chip{font-size:.66rem;font-weight:680;padding:.13rem .48rem;border-radius:99px}
+.mock-lanes{display:grid;grid-template-columns:1fr 1fr;gap:.42rem}
+.mock-lane{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:.5rem .62rem}
+.mock-lane-top{display:flex;justify-content:space-between;align-items:baseline;gap:.4rem}
+.mock-lane-name{font-size:.7rem;color:var(--text-mid)}
+.mock-lane-score{font-size:.86rem;font-weight:700}
+.mock-lane-bar{height:3px;border-radius:99px;background:rgba(255,255,255,.09);margin-top:.36rem;overflow:hidden}
+.mock-lane-bar i{display:block;height:100%;border-radius:99px}
+.mock-find{background:var(--surface-2);border:1px solid var(--border);border-left:2px solid var(--bad);
+  border-radius:8px;padding:.6rem .7rem;margin-top:.55rem}
+.mock-find-h{display:flex;gap:.45rem;align-items:center;font-size:.76rem;font-weight:640;color:var(--text)}
+.mock-rank{background:var(--amber-soft);color:var(--amber-light);font-size:.62rem;font-weight:720;
+  width:16px;height:16px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.mock-find-p{font-size:.68rem;color:var(--text-dim);margin:.3rem 0 0 1.35rem;line-height:1.45}
+
+/* Sections */
+.sec{padding:4rem 0;border-top:1px solid var(--border)}
+.sec-head{text-align:center;max-width:41rem;margin:0 auto 2.6rem}
+.sec-head h2{font-size:clamp(1.65rem,3vw,2.15rem);letter-spacing:-.028em;margin:0 0 .7rem}
+.sec-head p{font-size:1.04rem;color:var(--text-mid);margin:0}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.4rem 1.5rem;
+  transition:border-color .18s,transform .18s}
+.card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+.card-ico{width:36px;height:36px;border-radius:9px;background:var(--amber-soft);color:var(--amber-light);
+  display:flex;align-items:center;justify-content:center;margin-bottom:.85rem}
+.card h3{font-size:1.03rem;margin:0 0 .45rem}
+.card p{font-size:.92rem;margin:0;color:var(--text-mid)}
+.card.wide{grid-column:1/-1}
+
+/* Before/after: a list vs a sequence */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:760px){.split{grid-template-columns:1fr}}
+.split-col{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.3rem 1.4rem}
+.split-col.good{border-color:rgba(240,128,15,.32)}
+.split-tag{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:.8rem}
+.split-col.good .split-tag{color:var(--amber-light)}
+.split-list{list-style:none;margin:0;padding:0;font-size:.88rem}
+.split-list li{padding:.42rem 0;border-bottom:1px solid var(--border);color:var(--text-mid);
+  display:flex;gap:.55rem;align-items:flex-start}
+.split-list li:last-child{border-bottom:0}
+.split-list .n{color:var(--amber-light);font-weight:700;font-family:var(--mono);font-size:.78rem;flex:0 0 auto}
+.split-phase{font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--amber-light);
+  font-weight:700;padding-top:.6rem}
+
+/* Index chart, drawn from the measured dataset */
+.chart{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.5rem 1.6rem}
+.bar-row{display:grid;grid-template-columns:130px 1fr 46px;gap:.85rem;align-items:center;margin-bottom:.62rem}
+.bar-lbl{font-size:.83rem;color:var(--text-mid);text-align:right}
+.bar-track{height:9px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden}
+.bar-fill{display:block;height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--amber),var(--amber-light))}
+.bar-val{font-size:.82rem;font-weight:680;color:var(--text);font-variant-numeric:tabular-nums}
+.chart-note{font-size:.8rem;color:var(--text-dim);margin:1.1rem 0 0}
+
+.cta-band{text-align:center;padding:4.2rem 0}
+.cta-band h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.028em;margin-bottom:.7rem}
+.cta-band p{font-size:1.05rem;color:var(--text-mid);max-width:34rem;margin:0 auto 1.6rem}
+.faq-item{border-top:1px solid var(--border);padding:1.15rem 0}
+.faq-item h3{font-size:1rem;margin:0 0 .4rem}
+.faq-item p{font-size:.93rem;margin:0}
 </style>"""
 
 
@@ -209,6 +311,7 @@ def render(
     schema_type: str = "Article",
     faq: list[tuple[str, str]] | None = None,
     wide: bool = False,
+    landing: bool = False,
 ) -> Path:
     """Write one page. `body` is the caller's authored HTML — never generated here."""
     # A hub page is a cat with no slug. Joining blindly gives "/vs//", which
@@ -244,6 +347,18 @@ def render(
     )
     wrap_class = "wrap-wide" if wide else "wrap"
 
+    # A landing page supplies its own full-bleed sections; an article gets the
+    # single reading column with a breadcrumb and an H1 above it.
+    if landing:
+        body_class = ' class="landing"'
+        opening = "<article>"
+        closing = "</article>"
+    else:
+        body_class = ""
+        opening = (f'<article><div class="{wrap_class}">'
+                   f'<div class="crumb">{crumb}</div><h1>{h1}</h1>')
+        closing = "</div></article>"
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -270,13 +385,11 @@ def render(
 {STYLE}
 {schema}
 </head>
-<body>
+<body{body_class}>
 {NAV}
-<article><div class="{wrap_class}">
-<div class="crumb">{crumb}</div>
-<h1>{h1}</h1>
+{opening}
 {body}
-</div></article>
+{closing}
 {FOOTER}
 </body>
 </html>
