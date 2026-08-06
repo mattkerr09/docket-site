@@ -22,7 +22,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import render  # noqa: E402
+from render import N_CHECKS, N_LANES, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
@@ -62,6 +62,8 @@ ICONS = {
     "clock": _ico('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/>'),
     "doc": _ico('<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/>'
                 '<path d="M14 3v5h5M9 13h6M9 17h4"/>'),
+    "brand": _ico('<path d="M12 2.6l7.4 3.1v5.4c0 4.5-3.1 8.5-7.4 9.9'
+                  '-4.3-1.4-7.4-5.4-7.4-9.9V5.7z"/><path d="M9.3 12l1.9 1.9 3.6-3.9"/>'),
     "eye": _ico('<path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/>'
                 '<circle cx="12" cy="12" r="2.8"/>'),
 }
@@ -71,8 +73,8 @@ def _mockup() -> str:
     """An HTML replica of the results view. Numbers are from a real audit."""
     lanes = [
         ("Crawlability", 100, "var(--ok)"), ("On-page SEO", 93, "var(--ok)"),
-        ("Content", 71, "var(--warn)"), ("Speed", 100, "var(--ok)"),
-        ("AI visibility", 85, "var(--ok)"), ("Tracking", 63, "var(--amber)"),
+        ("Copy & content", 71, "var(--warn)"), ("Conversion", 78, "var(--warn)"),
+        ("Brand", 84, "var(--ok)"), ("Tracking", 63, "var(--amber)"),
     ]
     lane_html = "".join(
         f'<div class="mock-lane"><div class="mock-lane-top">'
@@ -84,7 +86,7 @@ def _mockup() -> str:
     circ = 2 * 3.14159 * 26
     filled = circ * 0.892
     return f"""
-<div class="mock" role="img" aria-label="Scout showing an audit scoring 89 out of 100 with twelve area scores and a ranked fix list">
+<div class="mock" role="img" aria-label="Scout showing an audit scoring 89 out of 100 with per-area scores and a ranked fix list">
 <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span>
 <span class="mock-dot"></span><span class="mock-title">Scout</span></div>
 <div class="mock-body">
@@ -157,12 +159,13 @@ def body() -> str:
 <!-- ================= HERO ================= -->
 <section class="hero-sec"><div class="wrap-wide hero-grid">
 <div>
-  <span class="eyebrow">80 checks · runs on your Mac</span>
-  <h1 class="hero-h1">SEO audits that tell you
-  <em style="display:block">what to fix, in order</em></h1>
-  <p class="hero-sub">Point Scout at any website. It crawls, runs 80 checks across SEO,
-  speed, AI search visibility and marketing conversion, then hands you a ranked plan with the
-  exact markup to paste. One download. Nothing leaves your machine.</p>
+  <span class="eyebrow">{N_CHECKS} checks · {N_LANES} areas · runs on your Mac</span>
+  <h1 class="hero-h1">Audit your SEO, copy, conversion and brand
+  <em style="display:block">then fix it in the right order</em></h1>
+  <p class="hero-sub">Point Scout at any website. It crawls, then runs {N_CHECKS} checks across
+  technical SEO, content and copy, conversion, brand consistency, AI search visibility and
+  campaign tracking — and hands you one ranked plan with the exact markup to paste. It is not
+  four tools. One download, and nothing leaves your machine.</p>
   <div class="hero-cta">
     <a class="btn btn-lg" href="/download/">Download for Mac</a>
     <a class="btn-ghost btn-lg" href="/index/">See the Index →</a>
@@ -213,8 +216,9 @@ def body() -> str:
 <!-- ================= THREE LANES ================= -->
 <section class="sec"><div class="wrap-wide">
 <div class="sec-head">
-  <h2>Three things crawler tools don't audit</h2>
-  <p>Technical SEO is table stakes. These are where the money actually leaks.</p>
+  <h2>Four things crawler tools don't audit</h2>
+  <p>Technical SEO is table stakes, and it is all most tools do. These four are where the
+  money actually leaks — and each one is a separate subscription anywhere else.</p>
 </div>
 <div class="grid-3">
   <div class="card"><div class="card-ico">{ICONS['ai']}</div>
@@ -226,6 +230,12 @@ def body() -> str:
     <h3>Conversion &amp; landing pages</h3>
     <p>Calls to action, the above-the-fold promise, form friction, social proof, whether the
     price is findable, and whether the headline matches what the search result promised.</p></div>
+  <div class="card"><div class="card-ico">{ICONS['brand']}</div>
+    <h3>Brand consistency</h3>
+    <p>Whether your company name is spelled the same way in your title tags, your schema, your
+    og:site_name and your logo alt text — because that is where a knowledge panel and an AI
+    citation get it from. Plus typeface and palette sprawl, and whether every page makes the
+    same promise or a different one.</p></div>
   <div class="card"><div class="card-ico">{ICONS['pin']}</div>
     <h3>Local business SEO</h3>
     <p>NAP consistency, LocalBusiness schema and its subtypes, opening hours, geo signals,
@@ -370,8 +380,8 @@ FAQ = [
 def build() -> Path:
     return render(
         cat="", slug="",
-        title="Scout — SEO & marketing audits that tell you what to fix, in order",
-        desc=("Scout audits any website on your Mac: 80 checks across SEO, speed, structured "
+        title="Scout — SEO, copy, conversion and brand audits for Mac",
+        desc=(f"Scout audits any website on your Mac: {N_CHECKS} checks across SEO, copy, brand, "
               "data, local visibility, AI search visibility and marketing conversion. Ranked "
               "fix plan, client-ready PDF, one-time price, nothing uploaded."),
         h1="SEO audits that tell you what to fix, in order",

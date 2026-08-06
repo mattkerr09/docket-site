@@ -79,7 +79,7 @@ def build_hubs() -> list[Path]:
              "Every area, in the order they should be worked, and the three tests a report has "
              "to pass to be worth acting on."),
             ("/learn/what-scout-checks/", "What Scout checks",
-             "All 80 checks, by area, with what each one actually looks at."),
+             "All the checks, by area, with what each one actually looks at."),
         ],
     ))
     return out
