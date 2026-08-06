@@ -1,0 +1,7 @@
+slug,name,common_issue
+wordpress,WordPress,plugin-generated duplicate canonicals and tag archives
+shopify,Shopify,faceted collection URLs and duplicate product pages
+wix,Wix,JS-rendered content invisible to AI crawlers
+squarespace,Squarespace,limited control over schema and canonicals
+webflow,Webflow,missing structured data by default
+nextjs,Next.js,client-side rendering leaving pages blank to non-JS crawlers
