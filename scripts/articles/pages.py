@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import render  # noqa: E402
+from render import N_CHECKS, render  # noqa: E402
 
 
 def download() -> Path:
@@ -72,8 +72,8 @@ is gone.</p>
 
 
 def for_hub() -> Path:
-    body = """
-<p class="lede">The same 80 checks run on every site, but which findings matter most changes a
+    body = f"""
+<p class="lede">The same {N_CHECKS} checks run on every site, but which findings matter most changes a
 lot by who you are. These pages cover what to look at first.</p>
 
 <h3><a href="/for/agencies/">For SEO agencies</a></h3>

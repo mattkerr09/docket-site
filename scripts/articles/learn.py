@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import render  # noqa: E402
+from render import N_CHECKS, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
@@ -102,7 +102,7 @@ only see <code>User-agent: *</code>, whatever it says applies to all of them.</l
 <li>Load a key page with JavaScript disabled. If the content vanishes, AI crawlers see nothing.</li>
 <li>Check that your homepage has Organization schema with a <code>sameAs</code> array.</li>
 </ol>
-<p>Or run Scout, which does all three plus 77 other checks and tells you which crawler you are
+<p>Or run Scout, which does all three plus {N_CHECKS - 3} other checks and tells you which crawler you are
 blocking and what it costs you. It runs on your Mac and sends nothing anywhere.</p>
 
 <p><a class="btn" href="/#download">Download Scout</a></p>
@@ -134,7 +134,7 @@ blocking and what it costs you. It runs on your Mac and sends nothing anywhere.<
 
 
 def seo_audit() -> Path:
-    body = """
+    body = f"""
 <p class="lede">An SEO audit is a systematic check of everything about a website that
 determines whether search engines can find it, understand it, and choose to show it. A useful
 audit ends with a short ordered list of things to change. An unhelpful one ends with a
@@ -197,7 +197,7 @@ checked nothing or is hiding something. If a crawl was blocked or only reached p
 that has to be on the page.</li>
 </ol>
 
-<p>Scout is built around those three. It runs 80 checks on your Mac, ranks everything by impact
+<p>Scout is built around those three. It runs {N_CHECKS} checks on your Mac, ranks everything by impact
 against effort, and marks areas it could not assess as unknown rather than passing.</p>
 <p><a class="btn" href="/#download">Download Scout</a></p>
 """

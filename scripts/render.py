@@ -14,9 +14,27 @@ found months after launch — no reason to repeat that here.
 from __future__ import annotations
 
 from pathlib import Path
+import pathlib
 
 SITE = Path(__file__).resolve().parent.parent / "site"
 BASE = "https://scoutseo.app"
+
+
+def _check_counts() -> tuple:
+    """`(checks, lanes)` read from the exported dataset.
+
+    The count was hardcoded in nine places and went stale the moment the engine
+    gained a lane. It is a fact about the product, so it is read from the
+    product's own exported data and interpolated everywhere.
+    """
+    import csv
+    path = pathlib.Path(__file__).resolve().parent.parent / "site" / "_data" / "checks.csv"
+    with path.open() as fh:
+        rows = list(csv.DictReader(fh))
+    return len(rows), len({r["lane"] for r in rows})
+
+
+N_CHECKS, N_LANES = _check_counts()
 
 # --------------------------------------------------------------------------
 # Design system. Dark, high-contrast, amber accent carried from the app icon.
@@ -287,11 +305,11 @@ def _entity_schema() -> str:
         '"name":"Scout","applicationCategory":"BusinessApplication",'
         '"applicationSubCategory":"SEO audit software",'
         '"operatingSystem":"macOS 12 or later, Apple Silicon",'
-        '"description":"Scout crawls a website, runs 80 checks across SEO, content, '
+        '"description":"Scout crawls a website, runs ' + str(N_CHECKS) + ' checks across SEO, copy, '
         'speed, structured data, local visibility, AI search visibility and marketing '
         'conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.",'
         '"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},'
-        '"featureList":"80 checks, ranked action plan, PDF report, scheduled monitoring, '
+        '"featureList":"' + str(N_CHECKS) + ' checks, ranked action plan, PDF report, scheduled monitoring, '
         'competitor comparison, AI crawler access audit",'
         '"publisher":{"@id":"' + BASE + '/#org"}}]}'
     )

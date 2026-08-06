@@ -1,81 +1,87 @@
 id,lane,lane_label,title
-ai.crawler_access,ai,AI search visibility,AI crawler access
-ai.rendering,ai,AI search visibility,Content reachable without JavaScript
-ai.extractability,ai,AI search visibility,Answer extractability
-ai.entity,ai,AI search visibility,Entity definition and sameAs
 ai.citable_facts,ai,AI search visibility,"Citable, specific claims"
-ai.llms_txt,ai,AI search visibility,llms.txt
+ai.crawler_access,ai,AI search visibility,AI crawler access
+ai.entity,ai,AI search visibility,Entity definition and sameAs
+ai.extractability,ai,AI search visibility,Answer extractability
 ai.freshness_signal,ai,AI search visibility,Dates AI engines can read
-content.language_scope,content,Content quality,Language coverage
-content.thin,content,Content quality,Thin content
-content.placeholder,content,Content quality,Placeholder content
-content.readability,content,Content quality,Readability
+ai.llms_txt,ai,AI search visibility,llms.txt
+ai.rendering,ai,AI search visibility,Content reachable without JavaScript
+brand.logo,brand,Brand consistency,Logo presence and markup
+brand.name_consistency,brand,Brand consistency,Brand name consistency
+brand.positioning,brand,Brand consistency,Consistent positioning statement
+brand.social_consistency,brand,Brand consistency,Social profile consistency
+brand.visual_consistency,brand,Brand consistency,Typography and colour consistency
+brand.voice_consistency,brand,Brand consistency,Writing voice consistency
 content.ai_slop,content,Content quality,Generic AI-sounding copy
 content.dates,content,Content quality,Freshness signals
 content.eeat,content,Content quality,Trust and authorship signals
 content.js_rendering,content,Content quality,JavaScript-dependent content
-cvr.no_cta,conversion,Conversion & landing pages,Calls to action
-cvr.value_prop,conversion,Conversion & landing pages,Above-the-fold value proposition
+content.language_scope,content,Content quality,Language coverage
+content.placeholder,content,Content quality,Placeholder content
+content.readability,content,Content quality,Readability
+content.thin,content,Content quality,Thin content
 cvr.form_friction,conversion,Conversion & landing pages,Form friction
-cvr.social_proof,conversion,Conversion & landing pages,Social proof
-cvr.pricing,conversion,Conversion & landing pages,Pricing transparency
 cvr.funnel,conversion,Conversion & landing pages,Funnel coverage
 cvr.message_match,conversion,Conversion & landing pages,Title / headline consistency
-index.robots_blocks_all,indexability,Crawlability & indexing,robots.txt blocks the whole site
-index.noindex,indexability,Crawlability & indexing,Pages blocked from indexing
+cvr.no_cta,conversion,Conversion & landing pages,Calls to action
+cvr.pricing,conversion,Conversion & landing pages,Pricing transparency
+cvr.social_proof,conversion,Conversion & landing pages,Social proof
+cvr.value_prop,conversion,Conversion & landing pages,Above-the-fold value proposition
 index.broken,indexability,Crawlability & indexing,Broken pages (4xx/5xx)
-index.redirects,indexability,Crawlability & indexing,Redirect problems
 index.canonical,indexability,Crawlability & indexing,Canonical tags
-index.sitemap,indexability,Crawlability & indexing,XML sitemap
+index.canonical_conflict,indexability,Crawlability & indexing,Conflicting canonical tags
+index.depth,indexability,Crawlability & indexing,Click depth and orphans
 index.duplicate_content,indexability,Crawlability & indexing,Duplicate pages
+index.noindex,indexability,Crawlability & indexing,Pages blocked from indexing
+index.redirects,indexability,Crawlability & indexing,Redirect problems
+index.robots_blocks_all,indexability,Crawlability & indexing,robots.txt blocks the whole site
+index.sitemap,indexability,Crawlability & indexing,XML sitemap
 index.soft_404,indexability,Crawlability & indexing,Soft 404 handling
 index.soft_404_pages,indexability,Crawlability & indexing,Soft 404 pages in the crawl
-index.www,indexability,Crawlability & indexing,www / apex canonicalisation
-index.depth,indexability,Crawlability & indexing,Click depth and orphans
 index.url_hygiene,indexability,Crawlability & indexing,URL structure
-index.canonical_conflict,indexability,Crawlability & indexing,Conflicting canonical tags
-intl.hreflang_self,indexability,Crawlability & indexing,hreflang self-reference
-intl.hreflang_return,indexability,Crawlability & indexing,hreflang return tags
+index.www,indexability,Crawlability & indexing,www / apex canonicalisation
 intl.hreflang_codes,indexability,Crawlability & indexing,hreflang language codes
+intl.hreflang_return,indexability,Crawlability & indexing,hreflang return tags
+intl.hreflang_self,indexability,Crawlability & indexing,hreflang self-reference
 intl.hreflang_targets,indexability,Crawlability & indexing,hreflang target health
-links.internal_volume,links,Links,Internal linking
 links.broken_external,links,Links,Broken outbound links
-links.outbound_quality,links,Links,Outbound link handling
 links.http_on_https,links,Links,Insecure internal links
+links.internal_volume,links,Links,Internal linking
+links.outbound_quality,links,Links,Outbound link handling
 links.pagination,links,Links,Pagination handling
 local.applicable,local,Local business SEO,Local business detection
-local.schema,local,Local business SEO,LocalBusiness schema
-local.nap,local,Local business SEO,NAP consistency
 local.contact_signals,local,Local business SEO,Contact and conversion signals
 local.geo_targeting,local,Local business SEO,Location targeting in content
+local.nap,local,Local business SEO,NAP consistency
 local.reviews,local,Local business SEO,Review signals
-mar.analytics,martech,Tracking & campaign readiness,Analytics installed
+local.schema,local,Local business SEO,LocalBusiness schema
 mar.ad_pixels,martech,Tracking & campaign readiness,Advertising pixels
+mar.analytics,martech,Tracking & campaign readiness,Analytics installed
 mar.consent,martech,Tracking & campaign readiness,Consent and privacy compliance
-mar.utm_hygiene,martech,Tracking & campaign readiness,UTM tagging hygiene
 mar.email_capture,martech,Tracking & campaign readiness,Email list building
 mar.stack,martech,Tracking & campaign readiness,Marketing stack inventory
-onpage.title,onpage,On-page SEO,Title tags
+mar.utm_hygiene,martech,Tracking & campaign readiness,UTM tagging hygiene
+onpage.anchors,onpage,On-page SEO,Internal link anchor text
 onpage.description,onpage,On-page SEO,Meta descriptions
 onpage.headings,onpage,On-page SEO,Heading structure
 onpage.images,onpage,On-page SEO,Image optimisation
-onpage.anchors,onpage,On-page SEO,Internal link anchor text
 onpage.lang,onpage,On-page SEO,Language and viewport declarations
-perf.ttfb,performance,Speed & Core Web Vitals,Server response time
-perf.page_weight,performance,Speed & Core Web Vitals,Page weight
-perf.render_blocking,performance,Speed & Core Web Vitals,Render-blocking resources
-perf.compression,performance,Speed & Core Web Vitals,Compression and caching headers
+onpage.title,onpage,On-page SEO,Title tags
 perf.cls_risk,performance,Speed & Core Web Vitals,Layout shift risk
-perf.redirect_cost,performance,Speed & Core Web Vitals,Redirect latency
+perf.compression,performance,Speed & Core Web Vitals,Compression and caching headers
 perf.modern_images,performance,Speed & Core Web Vitals,Image formats
+perf.page_weight,performance,Speed & Core Web Vitals,Page weight
+perf.redirect_cost,performance,Speed & Core Web Vitals,Redirect latency
+perf.render_blocking,performance,Speed & Core Web Vitals,Render-blocking resources
+perf.ttfb,performance,Speed & Core Web Vitals,Server response time
+security.headers,security,Security & trust,Security headers
 security.https,security,Security & trust,HTTPS
 security.mixed_content,security,Security & trust,Mixed content
-security.headers,security,Security & trust,Security headers
+social.favicon,social,Social & sharing,Favicon
 social.open_graph,social,Social & sharing,Open Graph tags
 social.twitter,social,Social & sharing,Twitter/X card
-social.favicon,social,Social & sharing,Favicon
-schema.invalid,structured,Structured data,Invalid JSON-LD
-schema.missing,structured,Structured data,Missing structured data
 schema.incomplete,structured,Structured data,Incomplete structured data
+schema.invalid,structured,Structured data,Invalid JSON-LD
 schema.mismatch,structured,Structured data,Structured data vs visible content
+schema.missing,structured,Structured data,Missing structured data
 schema.opportunity,structured,Structured data,Rich result opportunities
