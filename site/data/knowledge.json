@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "compiled": "2026-08-06",
+  "ai_crawlers": {
+    "GPTBot": {
+      "owner": "OpenAI",
+      "purpose": "training",
+      "impact": "Blocks OpenAI from training on your content. Does not affect whether ChatGPT can cite you live."
+    },
+    "OAI-SearchBot": {
+      "owner": "OpenAI",
+      "purpose": "search index",
+      "impact": "Blocks your pages from ChatGPT Search results entirely."
+    },
+    "ChatGPT-User": {
+      "owner": "OpenAI",
+      "purpose": "live fetch",
+      "impact": "Stops ChatGPT fetching your page when a user asks about you."
+    },
+    "ClaudeBot": {
+      "owner": "Anthropic",
+      "purpose": "training",
+      "impact": "Blocks Anthropic from training on your content."
+    },
+    "Claude-SearchBot": {
+      "owner": "Anthropic",
+      "purpose": "search index",
+      "impact": "Blocks your pages from Claude's search results."
+    },
+    "Claude-User": {
+      "owner": "Anthropic",
+      "purpose": "live fetch",
+      "impact": "Stops Claude fetching your page on a user's behalf."
+    },
+    "PerplexityBot": {
+      "owner": "Perplexity",
+      "purpose": "search index",
+      "impact": "Removes you from Perplexity's index and citations."
+    },
+    "Perplexity-User": {
+      "owner": "Perplexity",
+      "purpose": "live fetch",
+      "impact": "Stops Perplexity fetching your page on a user's behalf."
+    },
+    "Google-Extended": {
+      "owner": "Google",
+      "purpose": "Gemini grounding",
+      "impact": "Removes you from Gemini and AI Overviews grounding. Does NOT affect classic Google Search ranking."
+    },
+    "Applebot-Extended": {
+      "owner": "Apple",
+      "purpose": "training",
+      "impact": "Blocks Apple Intelligence training. Applebot (search) is separate."
+    },
+    "Amazonbot": {
+      "owner": "Amazon",
+      "purpose": "search index",
+      "impact": "Blocks Alexa and Amazon's answer surfaces."
+    },
+    "Bytespider": {
+      "owner": "ByteDance",
+      "purpose": "training",
+      "impact": "Blocks ByteDance/TikTok AI crawling."
+    },
+    "meta-externalagent": {
+      "owner": "Meta",
+      "purpose": "training",
+      "impact": "Blocks Meta AI training and grounding."
+    },
+    "CCBot": {
+      "owner": "Common Crawl",
+      "purpose": "open corpus",
+      "impact": "Removes you from Common Crawl, an input to many open models."
+    }
+  },
+  "web_vitals": {
+    "LCP": {
+      "good": 2500,
+      "poor": 4000,
+      "unit": "ms",
+      "note": "Largest Contentful Paint. Field data only \u2014 a lab run is not this."
+    },
+    "INP": {
+      "good": 200,
+      "poor": 500,
+      "unit": "ms",
+      "note": "Interaction to Next Paint. Replaced First Input Delay as a Core Web Vital in March 2024."
+    },
+    "CLS": {
+      "good": 0.1,
+      "poor": 0.25,
+      "unit": "",
+      "note": "Cumulative Layout Shift. CrUX transmits this multiplied by 100."
+    },
+    "FCP": {
+      "good": 1800,
+      "poor": 3000,
+      "unit": "ms",
+      "note": "First Contentful Paint. Diagnostic, not a Core Web Vital."
+    },
+    "TTFB": {
+      "good": 800,
+      "poor": 1800,
+      "unit": "ms",
+      "note": "Time to First Byte. Diagnostic; a slow TTFB makes a good LCP unreachable."
+    }
+  },
+  "algorithm_notes": [
+    {
+      "date": "2024-03-12",
+      "title": "INP replaced FID as a Core Web Vital",
+      "detail": "First Input Delay was retired. Interaction to Next Paint measures the full latency of the worst interaction rather than only the first, so pages that felt sluggish after load stopped passing by default."
+    }
+  ],
+  "superseded": [
+    {
+      "advice": "Optimise for First Input Delay",
+      "why": "FID was retired in March 2024. Measure INP instead.",
+      "since": "2024-03-12"
+    },
+    {
+      "advice": "Blocking GPTBot keeps you out of ChatGPT",
+      "why": "OpenAI split its crawlers: GPTBot collects training data, OAI-SearchBot builds the index ChatGPT Search answers from. Blocking GPTBot does not affect citation.",
+      "since": "2024-08-01"
+    }
+  ],
+  "sources": {
+    "ai_crawlers": "Each operator's published crawler documentation, cross-checked against robots.txt directives observed in the Scout Index.",
+    "web_vitals": "Google's published Core Web Vitals thresholds (web.dev).",
+    "algorithm_notes": "Google Search Status Dashboard and Search Central announcements."
+  }
+}
