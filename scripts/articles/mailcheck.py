@@ -96,8 +96,72 @@ likely to have moved to a static host in the last few years without thinking abo
 population most exposed to this is the population we could not sample by taking the top of a
 popularity list.</p>
 
-<p>So we are publishing the finding we got, and saying what it does not cover. A survey of
-small business sites would answer the question properly. We have not run one.</p>
+<h2>So we went and sampled it</h2>
+
+<p>Taking the top of a ranking cannot reach small businesses, so the second survey does not
+use a ranking at all. The frame, in one sentence: <strong>every shop in
+<a href="https://www.openstreetmap.org/">OpenStreetMap</a> inside the boundaries of
+{F.small_cities()} named UK cities that also carries a <code>website</code> tag</strong>,
+one entry per domain. Nothing selects individual businesses and nothing weights by size or
+traffic; the whole frame is used, so there is no slice to defend. The Overpass query is in
+the dataset if you want to re-run it.</p>
+
+<p>{F.small_frame()} distinct domains, {F.small_answered()} of which answered a request. And
+the first number is the one that matters:</p>
+
+<div class="wrap-tbl"><table class="cmp"><thead><tr>
+<th></th><th>Tranco top {F.mail_attempted()}</th><th>UK shops in OpenStreetMap</th>
+</tr></thead><tbody>
+<tr><td>Answered</td><td>{F.mail_answered()}</td><td>{F.small_answered()}</td></tr>
+<tr><td>Publish an address in a <code>mailto:</code></td>
+<td>{F.mail_publishing()} ({F.mail_publishing_pct()}%)</td>
+<td>{F.small_publishing()} ({F.small_publishing_pct()}%)</td></tr>
+<tr><td>… and the domain conclusively cannot receive mail</td>
+<td>{F.mail_dead()}</td><td>{F.small_dead()}</td></tr>
+</tbody></table></div>
+
+<p>Small businesses publish an email address <strong>{F.small_publishing_ratio()} times as
+often</strong> — {F.small_publishing_pct()}% against {F.mail_publishing_pct()}%. And unlike
+the large sites, some of theirs do not work: <strong>{F.small_dead()} of
+{F.small_publishing()}</strong>, or {F.small_dead_pct()}%, with a 95% interval of
+{F.small_dead_interval()}. Seven is a small number and the interval says so; what it is not
+is zero.</p>
+
+<p>All seven are businesses with a single mapped location — the independents, not the chains.
+That split comes from the data rather than from an opinion about which brands count as
+chains: a domain appearing at one mapped shop is one business, and at nine is not.</p>
+
+<h2>The two ways they break</h2>
+
+<p>We are not naming them. These are corner shops and locksmiths that never asked to be
+audited, and "this named business cannot receive email" is not a thing this site has any
+business publishing about them. The failure shapes are the useful part, and there are only
+two:</p>
+
+<ul>
+<li><strong>The domain in the address does not exist.</strong> Six of the seven. The site is
+on one domain and the email address is at another — a near-miss spelling, or a domain that
+lapsed — and that second domain has no MX record and no address record at all. Nothing about
+the website looks wrong, because nothing about the website <em>is</em> wrong.</li>
+<li><strong>An MX record naming a host that does not resolve.</strong> One of the seven, and
+the more interesting one. The domain publishes a mail exchanger, so every "do you have an MX
+record" test passes. The host it names has no address record — in this case a hosting panel
+had pasted the domain into the middle of a template value and left it there. The record looks
+completely correct in the zone file and there is nowhere for the mail to go.</li>
+</ul>
+
+<p>That second shape is why Scout resolves the exchanger rather than stopping at the record.
+An MX-exists check would have called that domain healthy.</p>
+
+<h2>What this does not cover</h2>
+
+<p>Said plainly, because a frame with unstated limits is worse than no frame. OpenStreetMap
+coverage is uneven and who gets mapped is not random — a shop nobody added is not in this
+survey. A <code>website</code> tag sometimes points at a social page or a chain's national
+site rather than the business's own domain; those are excluded, and the exclusion is a
+judgement we made. {F.small_cities()} UK cities is not the world, and shops are not every kind
+of small business. The number to take from this is the contrast in the table, not
+{F.small_dead_pct()}% as a rate for small businesses everywhere.</p>
 
 <h2>Where another tool is better</h2>
 
@@ -135,9 +199,10 @@ but a working mail server on its address record is legal and fine.</p>
     return render(
         cat="learn", slug="dead-contact-address",
         title="The contact address that bounces every message",
-        desc=(f"An address on a domain with no MX record bounces silently. We "
-              f"measured {F.mail_answered()} of the Tranco top "
-              f"{F.mail_attempted()}: only {F.mail_publishing()} publish one at all."),
+        desc=(f"An address on a domain with no MX record bounces silently. Two "
+              f"measured surveys: {F.mail_publishing_pct()}% of the Tranco top publish "
+              f"one, {F.small_publishing_pct()}% of UK shops do, and "
+              f"{F.small_dead()} of those are dead."),
         h1="The contact address that cannot receive mail",
         crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / Dead contact addresses',
         body=body,
@@ -153,11 +218,13 @@ but a working mail server on its address record is legal and fine.</p>
              "and nothing records the attempt, so an inbox with no messages looks identical "
              "to an audience with nothing to say."),
             ("Is it common for a published address to be dead?",
-             f"Not among large sites. Of the {F.mail_answered()} sites in the Tranco top "
+             f"Not among large sites: of the {F.mail_answered()} in the Tranco top "
              f"{F.mail_attempted()} that answered, {F.mail_publishing()} publish an address "
-             f"at all and every one we could resolve accepts mail. The risk sits with "
-             f"smaller sites, which are both far more likely to publish an address and far "
-             f"less likely to have anyone watching DNS."),
+             f"and every one we could resolve accepts mail. Among {F.small_answered()} UK "
+             f"shop websites sampled from OpenStreetMap, {F.small_publishing_pct()}% publish "
+             f"an address and {F.small_dead()} of {F.small_publishing()} cannot receive mail "
+             f"— about {F.small_dead_pct()}%, with a 95% interval of "
+             f"{F.small_dead_interval()}."),
             ("Can a domain receive mail without an MX record?",
              "Yes. RFC 5321 section 5.1 says a sender that finds no MX falls back to the "
              "domain's address record, so a domain whose web server also runs SMTP works "

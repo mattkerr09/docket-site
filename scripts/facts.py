@@ -371,3 +371,76 @@ def mail_upper_bound_pct() -> float:
 
 def mail_measured() -> str:
     return mail()["measured"]
+
+
+# -- the small-business half of the same question ----------------------------
+#
+# /learn/dead-contact-address/ said in print that the population most exposed
+# to a dead contact address is the one a popularity-ranked list cannot reach.
+# This is that population, sampled from OpenStreetMap rather than from a
+# traffic ranking. See scripts/collect_mail_small.py for the frame.
+
+
+@lru_cache(maxsize=None)
+def mail_small() -> dict:
+    return json.loads(
+        (ROOT / "site" / "_data" / "mail-small-2026-08.json").read_text())
+
+
+def small_frame() -> int:
+    return mail_small()["frame_size"]
+
+
+def small_answered() -> int:
+    return mail_small()["answered"]
+
+
+def small_publishing() -> int:
+    return mail_small()["publishing_mailto"]
+
+
+def small_publishing_pct() -> float:
+    return round(100 * small_publishing() / small_answered(), 1)
+
+
+def small_dead() -> int:
+    return mail_small()["dead_conclusive"]
+
+
+def small_dead_pct() -> float:
+    return round(100 * small_dead() / small_publishing(), 1)
+
+
+def small_undetermined() -> int:
+    return mail_small()["undetermined"]
+
+
+def small_publishing_ratio() -> float:
+    """How many times more often a small site publishes an address at all."""
+    return round(small_publishing_pct() / mail_publishing_pct(), 1)
+
+
+def small_dead_interval() -> str:
+    """Wilson 95% interval for the dead rate, as a formatted range.
+
+    A bare 1.7% invites the reader to treat seven observations as a precise
+    rate. Wilson rather than the normal approximation because the count is
+    small and the proportion is near zero, where the normal interval runs
+    below zero and stops meaning anything.
+    """
+    import math
+
+    n, k, z = small_publishing(), small_dead(), 1.96
+    p = k / n
+    denom = 1 + z * z / n
+    centre = (p + z * z / (2 * n)) / denom
+    half = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / denom
+    return f"{100 * (centre - half):.1f}% to {100 * (centre + half):.1f}%"
+
+
+def small_single_location() -> dict:
+    return mail_small()["single_location"]
+
+
+def small_cities() -> int:
+    return len(mail_small()["cities"])
