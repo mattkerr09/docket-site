@@ -160,25 +160,24 @@ def body() -> str:
 <section class="hero-sec"><div class="wrap-wide hero-grid">
 <div>
   <span class="eyebrow">{N_CHECKS} checks · {N_LANES} areas · runs on your Mac</span>
-  <h1 class="hero-h1">Audit your SEO, copy, conversion and brand
-  <em style="display:block">then fix it in the right order</em></h1>
-  <p class="hero-sub">Point Scout at any website. It crawls, then runs {N_CHECKS} checks across
-  technical SEO, content and copy, conversion, brand consistency, AI search visibility and
-  campaign tracking — and hands you one ranked plan with the exact markup to paste. It is not
-  four tools. One download, and nothing leaves your machine.</p>
+  <h1 class="hero-h1">Everything that's wrong.
+  <em>In the order to fix&nbsp;it.</em></h1>
+  <p class="hero-sub">Point Scout at any site. {N_CHECKS} checks across technical SEO, copy,
+  conversion, brand, AI search visibility and campaign tracking — then one ranked plan with the
+  markup to paste. Not four tools. One download.</p>
   <div class="hero-cta">
     <a class="btn btn-lg" href="{DMG}">Download for Mac</a>
     <a class="btn-ghost btn-lg" href="/index/">See the Index →</a>
   </div>
-  <p class="hero-note">macOS 12+ · Apple Silicon · ~16&nbsp;MB · no account, no subscription</p>
+  <p class="hero-note">macOS 12+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account</p>
 </div>
 {_mockup()}
 </div></section>
 
 <!-- ================= THE DIFFERENCE ================= -->
-<section class="sec"><div class="wrap-wide">
+<section class="sec reveal"><div class="wrap-wide">
 <div class="sec-head">
-  <h2>Every other tool hands you a list</h2>
+  <h2>Every other tool hands you a list.<br><em>This one hands you an order.</em></h2>
   <p>Semrush publishes 140+ checkpoints. Ahrefs lists 170+. Neither tells you what to do
   first — and ordering is the hard part.</p>
 </div>
@@ -214,9 +213,9 @@ def body() -> str:
 </div></section>
 
 <!-- ================= THREE LANES ================= -->
-<section class="sec"><div class="wrap-wide">
+<section class="sec reveal"><div class="wrap-wide">
 <div class="sec-head">
-  <h2>Four things crawler tools don't audit</h2>
+  <h2>Four things crawler tools ignore.</h2>
   <p>Technical SEO is table stakes, and it is all most tools do. These four are where the
   money actually leaks — and each one is a separate subscription anywhere else.</p>
 </div>
@@ -244,9 +243,9 @@ def body() -> str:
 </div></section>
 
 <!-- ================= THE INDEX ================= -->
-<section class="sec"><div class="wrap-wide">
+<section class="sec reveal"><div class="wrap-wide">
 <div class="sec-head">
-  <h2>We measured who is blocking AI search</h2>
+  <h2>We measured who's blocking AI search.</h2>
   <p>{index_line}</p>
 </div>
 {chart}
@@ -255,8 +254,8 @@ def body() -> str:
 </div></section>
 
 <!-- ================= FEATURES ================= -->
-<section class="sec"><div class="wrap-wide">
-<div class="sec-head"><h2>What you get</h2></div>
+<section class="sec reveal"><div class="wrap-wide">
+<div class="sec-head"><h2>What you actually get.</h2></div>
 <div class="grid-3">
   <div class="card"><div class="card-ico">{ICONS['order']}</div>
     <h3>A sequence, not a pile</h3>
@@ -288,8 +287,8 @@ def body() -> str:
 </div></section>
 
 <!-- ================= COMPARISON ================= -->
-<section class="sec"><div class="wrap-wide">
-<div class="sec-head"><h2>What it costs to run</h2>
+<section class="sec reveal"><div class="wrap-wide">
+<div class="sec-head"><h2>One price. Yours forever.</h2>
 <p>Cloud tools meter crawls, which quietly makes you ration audits.</p></div>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Tool</th><th>Price</th><th>Runs</th><th>Output</th></tr></thead>
@@ -305,7 +304,7 @@ comparisons →</a></p>
 </div></section>
 
 <!-- ================= LIMITS ================= -->
-<section class="sec"><div class="wrap-wide" style="max-width:44rem">
+<section class="sec reveal"><div class="wrap-wide" style="max-width:44rem">
 <div class="sec-head"><h2>What Scout cannot do</h2>
 <p>Because finding out later is worse, and a tool that claims everything is worth less than
 one that draws a line.</p></div>
@@ -334,8 +333,8 @@ computed from free public data rather than a bought index.</p>
 </div></section>
 
 <!-- ================= FAQ ================= -->
-<section class="sec"><div class="wrap" style="max-width:44rem">
-<div class="sec-head"><h2>Questions</h2></div>
+<section class="sec reveal"><div class="wrap" style="max-width:44rem">
+<div class="sec-head"><h2>Clear answers.</h2></div>
 <div class="faq-item"><h3>Is Scout free?</h3>
 <p>It is a one-time download. No subscription, no crawl credits, no per-seat pricing — audit
 as many sites as you like.</p></div>
