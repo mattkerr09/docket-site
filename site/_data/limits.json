@@ -1,0 +1,8 @@
+{
+  "max_pages_ceiling": 20000,
+  "ui_default_pages": 150,
+  "cli_default_pages": 200,
+  "max_depth_default": 5,
+  "wall_clock_minutes": 15,
+  "note": "Generated from seo_engine.crawler.CrawlConfig and the clamp in ui/src/app.js so the published ceiling cannot drift from the shipped one."
+}
