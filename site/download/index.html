@@ -22,11 +22,19 @@
 <meta name="twitter:description" content="Scout for macOS 12+ on Apple Silicon. About 16MB, no account, no telemetry. Includes the CLI, which exits non-zero on a critical issue so it can gate a deploy.">
 <meta name="twitter:image" content="https://scoutseo.app/og.png">
 <style>
-/* Typefaces self-hosted rather than pulled from a CDN. Scout flags
-   render-blocking third-party resources in its audits, and shipping one on its
-   own site would be the kind of inconsistency it exists to catch. 97 KB total. */
-@font-face{font-family:'Clash Display';src:url('/fonts/ClashDisplay-600.woff2') format('woff2');
+/* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
+   display faces this category defaults to: Scout is a measuring instrument that
+   produces reports, and the type should read as precise rather than friendly.
+   Self-hosted because Scout flags render-blocking third-party resources in its
+   own audits, and shipping one would be the inconsistency it exists to catch. */
+@font-face{font-family:'Switzer';src:url('/fonts/Switzer-400.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Switzer';src:url('/fonts/Switzer-500.woff2') format('woff2');
+  font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Switzer';src:url('/fonts/Switzer-600.woff2') format('woff2');
   font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:'Switzer';src:url('/fonts/Switzer-700.woff2') format('woff2');
+  font-weight:700;font-style:normal;font-display:swap}
 @font-face{font-family:'Clash Display';src:url('/fonts/ClashDisplay-700.woff2') format('woff2');
   font-weight:700;font-style:normal;font-display:swap}
 @font-face{font-family:'General Sans';src:url('/fonts/GeneralSans-400.woff2') format('woff2');
@@ -45,8 +53,8 @@
   --ok:#4ade80;--warn:#fbbf24;--bad:#ff7a6e;
   --border:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.16);
   --radius:16px;--radius-sm:10px;
-  --display:'Clash Display','General Sans',-apple-system,sans-serif;
-  --sans:'General Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,sans-serif;
+  --display:'Switzer',-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+  --sans:'Switzer',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,sans-serif;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   /* One vertical rhythm for every section. Space is most of what separates a
      considered page from a cramped one. */
@@ -57,7 +65,7 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17.5px;
   line-height:1.66;-webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
-  font-feature-settings:"ss01","cv01"}
+  font-feature-settings:"ss03"}
 
 /* Sections fade up as they arrive. Held to a small translate and a short
    duration — the effect should register as polish, not as animation. Anyone
@@ -165,10 +173,10 @@ body.landing article{padding:0}
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(74,222,128,.18)}
-.hero-h1{font-family:var(--display);font-weight:600;
+.hero-h1{font-family:var(--display);font-weight:700;
   /* 84px at the top end, matching the scale premium product sites settle on.
      Tight tracking is what stops large type reading as merely big. */
-  font-size:clamp(2.5rem,5.6vw,4.15rem);line-height:1.04;letter-spacing:-.04em;
+  font-size:clamp(2.5rem,5.6vw,4.3rem);line-height:1.02;letter-spacing:-.035em;
   margin:0 0 1.35rem;max-width:15ch}
 .hero-h1 em{font-style:normal;color:var(--amber-light);display:block}
 .hero-h1 em{font-style:normal;background:linear-gradient(100deg,var(--amber-light),var(--amber));
@@ -212,9 +220,9 @@ body.landing article{padding:0}
    Space separates them now; a rule is used only where one is doing work. */
 .sec + .sec{border-top:1px solid rgba(255,255,255,.045)}
 .sec-head{text-align:center;max-width:41rem;margin:0 auto 2.6rem}
-.sec-head h2{font-family:var(--display);font-weight:600;
-  font-size:clamp(1.95rem,4.2vw,3.05rem);line-height:1.08;
-  letter-spacing:-.035em;margin:0 0 .85rem}
+.sec-head h2{font-family:var(--display);font-weight:700;
+  font-size:clamp(1.9rem,4vw,2.85rem);line-height:1.1;
+  letter-spacing:-.03em;margin:0 0 .85rem}
 .sec-head h2 em{font-style:normal;color:var(--amber-light)}
 .sec-head p{font-size:1.04rem;color:var(--text-mid);margin:0}
 .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1rem}
