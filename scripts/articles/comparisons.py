@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import render  # noqa: E402
+from render import price, render  # noqa: E402
 
 CTA = """
 <div class="callout">
@@ -33,10 +33,12 @@ want to do yourself.</p>
 <h2>What Screaming Frog does that Scout does not</h2>
 <p>Three things, and they are real:</p>
 <ul>
-<li><strong>JavaScript rendering.</strong> Screaming Frog runs a headless Chrome and can audit
-a page after its scripts have executed. Scout renders a sample rather than every page and
-reports which pages are JS-dependent. For a React or Vue site where content only exists after
-hydration, Screaming Frog sees the real page and Scout sees an empty one.</li>
+<li><strong>Rendering at scale, in the right engine.</strong> Screaming Frog runs headless
+Chrome across an entire crawl, with configurable wait strategies and JavaScript error
+capture. Scout renders in WebKit — the engine macOS already ships — and renders a sample, ten
+pages by default, enough to answer whether the site is client-rendered and what that costs.
+On a large React or Vue site, or for a bug that only appears in Chrome's renderer, Screaming
+Frog is the tool.</li>
 <li><strong>Custom extraction.</strong> XPath, CSS and regex extraction pulls arbitrary fields
 out of a crawl — product prices, author names, whatever you define. Scout has no equivalent.</li>
 <li><strong>Scale.</strong> Screaming Frog will crawl millions of URLs given the memory. Scout
@@ -69,7 +71,7 @@ and UTM parameters on internal links.</li>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th></th><th>Scout</th><th>Screaming Frog</th></tr></thead>
 <tbody>
-<tr><td>Price</td><td>One-time</td><td>Free to 500 URLs, then £199/yr</td></tr>
+<tr><td>Price</td><td>One-time</td><td>Free to 500 URLs, then {price("screaming-frog")}</td></tr>
 <tr><td>Runs on</td><td>Your Mac</td><td>Your machine</td></tr>
 <tr><td>Output</td><td>Ranked plan with fixes</td><td>Spreadsheet of crawl data</td></tr>
 <tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>
@@ -110,10 +112,10 @@ client-ready PDF without building one.</p>
 
     return render(
         cat="vs", slug="screaming-frog-alternative",
-        title="Scout vs Screaming Frog: which SEO crawler should you use? (2026)",
-        desc=("Screaming Frog gives you raw crawl data; Scout gives you a ranked fix plan. "
-              "An honest comparison including what Screaming Frog does better — JavaScript "
-              "rendering, custom extraction and scale."),
+        title="Scout vs Screaming Frog: which SEO crawler should you use?",
+        desc=("Screaming Frog gives you raw crawl data; Scout gives a ranked fix plan. "
+              "Including what Screaming Frog does better — rendering at scale, custom "
+              "extraction."),
         h1="Scout vs Screaming Frog",
         crumb='<a href="/">Scout</a> / <a href="/vs/">Compare</a> / Screaming Frog',
         body=body,
@@ -169,7 +171,7 @@ reporting every English phrase as absent.</li>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th></th><th>Scout</th><th>Sitebulb</th></tr></thead>
 <tbody>
-<tr><td>Price</td><td>One-time</td><td>$13.50–$34/mo</td></tr>
+<tr><td>Price</td><td>One-time</td><td>{price("sitebulb")}</td></tr>
 <tr><td>Runs on</td><td>Your Mac</td><td>Desktop or cloud</td></tr>
 <tr><td>Site architecture visualisation</td><td class="yes">Rings by depth, sized by equity</td><td class="yes">Interactive force-directed map</td></tr>
 <tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>
@@ -199,9 +201,8 @@ check".</p>
     return render(
         cat="vs", slug="sitebulb-alternative",
         title="Scout vs Sitebulb: visual reports or a ranked plan? (2026)",
-        desc=("Sitebulb draws your site architecture and Scout does not — that is a real "
-              "reason to pick it. Where Scout wins: AI search visibility, conversion "
-              "auditing, and being explicit about what it could not check."),
+        desc=("Sitebulb draws your site architecture and Scout does not — a real reason to "
+              "pick it. Where Scout wins: AI visibility, conversion, and stated limits."),
         h1="Scout vs Sitebulb",
         crumb='<a href="/">Scout</a> / <a href="/vs/">Compare</a> / Sitebulb',
         body=body,
@@ -211,7 +212,7 @@ check".</p>
              "by link equity. Sitebulb's "
              "architecture map is its strongest feature and a legitimate reason to choose it."),
             ("Is Scout cheaper than Sitebulb?",
-             "Scout is a one-time download; Sitebulb is $13.50–$34 per month. Over a year the "
+             "Scout is a one-time download; Sitebulb is " + price("sitebulb") + ". Over a year the "
              "difference is substantial, but Sitebulb's cloud tier offers team collaboration "
              "that Scout, being single-machine by design, does not."),
         ],
@@ -223,7 +224,7 @@ def ahrefs() -> Path:
 <p class="lede">Ahrefs Site Audit is one module of a keyword and backlink platform. Scout is
 only an auditor. If you need keyword volumes and a backlink index, Scout cannot replace Ahrefs
 and does not try — that data has to be bought, not built. If the site audit is the part you
-actually use, you are paying $129 to $499 a month for it.</p>
+actually use, you are paying {price("ahrefs-site-audit")} for it.</p>
 
 <h2>What Ahrefs has that Scout can never have</h2>
 <p>A crawled index of the web. That is what powers keyword difficulty, search volume, backlink
@@ -250,7 +251,7 @@ landing-page conversion, and marketing tracking coverage.</p>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th></th><th>Scout</th><th>Ahrefs</th></tr></thead>
 <tbody>
-<tr><td>Price</td><td>One-time</td><td>$129–$499/mo</td></tr>
+<tr><td>Price</td><td>One-time</td><td>{price("ahrefs-site-audit")}</td></tr>
 <tr><td>Keyword &amp; backlink data</td><td class="no">None</td><td class="yes">Its main product</td></tr>
 <tr><td>Rank tracking</td><td class="no">No</td><td class="yes">Yes</td></tr>
 <tr><td>Crawl limits</td><td class="yes">Your machine, your limits</td><td>Credit-metered by plan</td></tr>
@@ -286,10 +287,9 @@ your data anywhere.</p>
 
     return render(
         cat="vs", slug="ahrefs-site-audit-alternative",
-        title="Scout vs Ahrefs Site Audit: what you actually get for $129/mo (2026)",
+        title="Scout vs Ahrefs Site Audit: what you get for $129/mo (2026)",
         desc=("Ahrefs Site Audit is one module of a keyword and backlink platform. Scout is a "
-              "one-time local auditor with a ranked fix plan. What each does, and why keyword "
-              "data is not something Scout can build."),
+              "one-time local auditor with a ranked fix plan. What each actually does."),
         h1="Scout vs Ahrefs Site Audit",
         crumb='<a href="/">Scout</a> / <a href="/vs/">Compare</a> / Ahrefs',
         body=body,

@@ -103,14 +103,17 @@ material. Blocking the second removes you from the answer.</p>
 
 <p>Of the {any_ai} sites in our sample that block any AI crawler, only <strong>{len(training_only)}
 blocked training crawlers while leaving the search crawlers alone</strong>. The other
-{len(both)} — <strong>{conflated_pct}%</strong> — blocked both.</p>
+{hit_citation} — <strong>{conflated_pct}%</strong> — hit a citation crawler too.</p>
 
 <div class="callout">
-<div class="callout-title">What this means</div>
-<p>Roughly three quarters of the sites that took a position on AI crawling ended up removing
-themselves from AI search results as well. Some of those are deliberate. Many are a
-copy-pasted robots.txt block that treated every user-agent with "AI" in the name as the same
-decision.</p>
+<div class="callout-title">This does not generalise, and we checked</div>
+<p>{conflated_pct}% is true of this sample, which is news-heavy by construction. We later read
+the robots.txt of the <a href="/index/ai-directives/">Tranco top 10,000</a> and found the
+opposite: of 1,381 sites there blocking any AI crawler, 53.2% blocked training crawlers and
+left the search crawlers alone — the informed split, and the majority.</p>
+<p>Both numbers are real. The difference between them is the finding: large sites with someone
+responsible for the robots.txt mostly get this right, and the conflation risk is concentrated
+in publishers and in whoever copied a block list from one.</p>
 </div>
 
 <h2>Perplexity is blocked {gap}× more often than OpenAI's search crawler</h2>
@@ -225,11 +228,10 @@ practical consequence is for each one. <a href="/download/">Download Scout →</
 
     return render(
         cat="index", slug="",
-        title=f"The Scout Index — {cit_pct}% of major sites block an AI search crawler (2026)",
-        desc=(f"We measured the robots.txt of {s['attempted']} well-known websites with Scout's "
-              f"own parser. {cit_pct}% block at least one AI search crawler, and {conflated_pct}% "
-              f"of sites blocking any AI crawler also blocked the ones that decide whether they "
-              f"appear in ChatGPT. Full method and dataset included."),
+        title=f"Scout Index: {cit_pct}% of major sites block an AI search crawler",
+        desc=(f"We measured the robots.txt of {s['attempted']} well-known sites with Scout's "
+              f"own parser. {cit_pct}% block at least one AI search crawler. Full method "
+              f"and dataset included."),
         h1="The Scout Index: who is blocking AI search crawlers",
         crumb='<a href="/">Scout</a> / The Index',
         body=body,

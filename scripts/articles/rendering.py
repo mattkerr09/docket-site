@@ -101,9 +101,9 @@ to a static crawl and letting you believe otherwise.</p>
     return render(
         cat="learn", slug="javascript-rendering",
         title="JavaScript rendering: auditing what a browser actually sees",
-        desc=("A crawler that does not run JavaScript sees what your server sent — often an "
-              "empty shell. notion.so returns 0 characters of text statically and 2,068 "
-              "rendered. What rendering changes, and what it still cannot tell you."),
+        desc=("A crawler that does not run JavaScript sees what your server sent. notion.so "
+              "returns 0 characters of text statically and 2,068 rendered. What rendering "
+              "changes."),
         h1="Auditing what a browser actually sees",
         crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / JavaScript rendering',
         body=body,

@@ -36,6 +36,28 @@ def _check_counts() -> tuple:
 
 N_CHECKS, N_LANES = _check_counts()
 
+
+def _competitors() -> dict:
+    """Every competitor row, keyed by slug.
+
+    Same reason as the check count. Competitor prices were written into the
+    prose of six pages, and an August 2026 check found four of them stale — one
+    quoting a tier that no longer exists. A price is a fact about someone
+    else's product, so it lives in one file and is interpolated.
+    """
+    import csv
+    path = pathlib.Path(__file__).resolve().parent.parent / "site" / "_data" / "competitors.csv"
+    with path.open() as fh:
+        return {r["slug"]: r for r in csv.DictReader(fh)}
+
+
+COMPETITORS = _competitors()
+
+
+def price(slug: str) -> str:
+    """The published price for a competitor, with en dashes for ranges."""
+    return COMPETITORS[slug]["price_note"].replace("-", "–")
+
 #: The current build. One place, because a download link that 404s is the
 #: single worst bug a product site can have.
 RELEASE = "v0.1.0"
@@ -433,6 +455,11 @@ def _entity_schema() -> str:
     `sameAs` is what lets a language model resolve "Scout" to this specific
     product rather than the dozen other things called Scout — the single
     highest-leverage piece of markup for being cited by name.
+
+    Only two entries, both verified to resolve, because /learn/sameas-entity-signals/
+    says on this same site that padding the array with URLs you do not control
+    weakens the signal. There is no social presence yet; when there is, it goes
+    here and nowhere else.
     """
     return (
         '{"@context":"https://schema.org","@graph":['
@@ -440,7 +467,8 @@ def _entity_schema() -> str:
         '"name":"Scout","url":"' + BASE + '/",'
         '"logo":"' + BASE + '/icon.png",'
         '"description":"Scout makes local SEO and marketing audit software for Mac.",'
-        '"sameAs":["https://github.com/mattkerr09"]},'
+        '"sameAs":["https://github.com/mattkerr09",'
+        '"https://github.com/mattkerr09/scout-site"]},'
         '{"@type":"WebSite","@id":"' + BASE + '/#site",'
         '"url":"' + BASE + '/","name":"Scout",'
         '"publisher":{"@id":"' + BASE + '/#org"}},'
@@ -474,6 +502,8 @@ def render(
     faq: list[tuple[str, str]] | None = None,
     wide: bool = False,
     landing: bool = False,
+    filename: str = "index.html",
+    noindex: bool = False,
 ) -> Path:
     """Write one page. `body` is the caller's authored HTML — never generated here."""
     # A hub page is a cat with no slug. Joining blindly gives "/vs//", which
@@ -532,7 +562,7 @@ def render(
 <title>{title}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="theme-color" content="#0b0c0f">
-<link rel="canonical" href="{url}">
+{'<meta name="robots" content="noindex">' if noindex else f'<link rel="canonical" href="{url}">'}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="{'website' if schema_type == 'WebPage' else 'article'}">
@@ -562,6 +592,6 @@ def render(
 
     out_dir = SITE.joinpath(*path_parts) if path_parts else SITE
     out_dir.mkdir(parents=True, exist_ok=True)
-    out = out_dir / "index.html"
+    out = out_dir / filename
     out.write_text(html, encoding="utf-8")
     return out
