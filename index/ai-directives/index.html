@@ -353,7 +353,7 @@ own.</p>
 The old name is inert — the crawler now identifies itself as something else, so a
 <code>Disallow</code> under the old heading applies to nobody.</p>
 
-<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Token written</th><th>Vendor</th><th>What the vendor uses now</th><th>Sites naming it</th></tr></thead><tbody><tr><td><code>anthropic-ai</code></td><td>Anthropic</td><td><code>ClaudeBot</code></td><td>563</td></tr><tr><td><code>cohere-ai</code></td><td>Cohere</td><td><code>cohere-training-data-crawler</code></td><td>519</td></tr><tr><td><code>claude-web</code></td><td>Anthropic</td><td><code>ClaudeBot</code></td><td>461</td></tr><tr><td><code>omgili</code></td><td>Webz.io</td><td><code>Webzio</code></td><td>452</td></tr><tr><td><code>omgilibot</code></td><td>Webz.io</td><td><code>Webzio</code></td><td>389</td></tr><tr><td><code>google-notebooklm</code></td><td>Google</td><td><code>Google-GeminiNotebook</code></td><td>67</td></tr></tbody></table></div>
+<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Token written</th><th>Vendor</th><th>What the vendor uses now</th><th>Sites naming it</th></tr></thead><tbody><tr><td><code>anthropic-ai</code></td><td>Anthropic</td><td><code>ClaudeBot</code></td><td>563</td></tr><tr><td><code>cohere-ai</code></td><td>Cohere</td><td><code>Coherebot</code></td><td>519</td></tr><tr><td><code>claude-web</code></td><td>Anthropic</td><td><code>ClaudeBot</code></td><td>461</td></tr><tr><td><code>omgili</code></td><td>Webz.io</td><td><code>Webzio</code></td><td>452</td></tr><tr><td><code>omgilibot</code></td><td>Webz.io</td><td><code>Webzio</code></td><td>389</td></tr><tr><td><code>google-notebooklm</code></td><td>Google</td><td><code>Google-GeminiNotebook</code></td><td>67</td></tr></tbody></table></div>
 
 <p>Anthropic's current documentation lists exactly three tokens: <code>ClaudeBot</code>,
 <code>Claude-User</code> and <code>Claude-SearchBot</code>. <code>anthropic-ai</code> and
@@ -605,7 +605,7 @@ robots.txt read once is a snapshot, and none of this says what any crawler actua
 against the community
 <a href="https://github.com/ai-robots-txt/ai.robots.txt">ai.robots.txt</a> set, and that set
 is itself behind vendor documentation. We read six vendor pages on 2026-08-07 and found
-<code>kagibot</code>, <code>meta-externalads</code>, <code>meta-webindexer</code>, <code>mistralai-index</code>, <code>mistralai-training</code>, <code>webzio</code> all currently documented and all missing
+<code>coherebot</code>, <code>kagibot</code>, <code>meta-externalads</code>, <code>meta-webindexer</code>, <code>mistralai-index</code>, <code>mistralai-training</code>, <code>webzio</code> all currently documented and all missing
 from it. Naming one of those is correct behaviour, so we excluded them rather than count them
 as dead. We also removed Awario's crawlers from the population — they are real, and our own
 pattern for "AI-intent" had swept them in, which would have inflated this page's headline by
@@ -629,11 +629,18 @@ documented replacement, or cut short by the parser into something no crawler is 
 two we can prove. "Absent from the community list" we cannot, so the product does not say
 it.</p>
 
-<p>The same principle keeps <code>cohere-ai</code> out of the check entirely, on
-519 sites in this sample. Cohere plainly
-retired it — nobody documents it — but we could not find a current Cohere crawler page saying
-what replaced it, and telling 519 sites their rule is dead on an
-assumption is the error this check exists to catch.</p>
+<p><code>cohere-ai</code>, on 519 sites here, spent a day outside
+the check for that reason. It was obviously stale — nobody documents it — but we could not
+find a page saying what replaced it, and telling 519 sites their
+rule is dead on an assumption is the error the whole check exists to catch.</p>
+
+<p>Their own sitemap had it.
+<a href="https://docs.cohere.com/docs/cohere-web-crawlers">docs.cohere.com/docs/cohere-web-crawlers</a>
+says more than we expected: Cohere's bot table reads <strong>"N/A"</strong> — they operate no
+crawler at all — and the blocking example they publish names <code>Coherebot</code>, which is
+the token to write if they ever do. This page previously showed
+<code>cohere-training-data-crawler</code> as the replacement, which came from a table of ours
+rather than from Cohere, and is corrected above. The two tables are now one file.</p>
 
 <p>Severity follows the consequence rather than the tidiness. A dead heading above a
 <code>Disallow</code> means a restriction you wrote is not in force, and the crawler is
