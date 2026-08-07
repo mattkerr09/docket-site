@@ -169,9 +169,9 @@ is not.</p>
     return render(
         cat="learn", slug="ai-substitution",
         title="Which of your pages can an AI answer replace?",
-        desc=("The AI risk is keeping your rankings and losing the visit. Measured: "
-              "A delicatessen scored 0% substitutable. What defends a page against "
-              "an answer, and six ways we measured it wrong first."),
+        desc=("The AI risk is keeping your rankings and losing the visit. What "
+              "defends a page against an answer, measured on two live sites — "
+              "and six ways we measured it wrong."),
         h1="Which of your pages an AI answer replaces",
         crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / AI substitution',
         body=body,
