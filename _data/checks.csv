@@ -47,6 +47,7 @@ intl.hreflang_targets,indexability,Crawlability & indexing,hreflang target healt
 links.broken_external,links,Links,Broken outbound links
 links.http_on_https,links,Links,Insecure internal links
 links.internal_volume,links,Links,Internal linking
+links.nav_not_in_html,links,Links,Navigation reachable without JavaScript
 links.outbound_quality,links,Links,Outbound link handling
 links.pagination,links,Links,Pagination handling
 local.applicable,local,Local business SEO,Local business detection
