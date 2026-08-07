@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All 92 checks Scout runs, by area (2026)</title>
-<meta name="description" content="The complete list of 92 checks Scout runs across 13 areas, generated from the shipped build so it cannot drift from the product.">
+<title>The contact address that bounces every message</title>
+<meta name="description" content="An address on a domain with no MX record bounces silently. We checked 1233 of the Tranco top 1500: only 80 publish one at all.">
 <meta name="theme-color" content="#0b0c0f">
-<link rel="canonical" href="https://scoutseo.app/learn/what-scout-checks/">
+<link rel="canonical" href="https://scoutseo.app/learn/dead-contact-address/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="All 92 checks, by area">
-<meta property="og:description" content="The complete list of 92 checks Scout runs across 13 areas, generated from the shipped build so it cannot drift from the product.">
-<meta property="og:url" content="https://scoutseo.app/learn/what-scout-checks/">
+<meta property="og:title" content="The contact address that cannot receive mail">
+<meta property="og:description" content="An address on a domain with no MX record bounces silently. We checked 1233 of the Tranco top 1500: only 80 publish one at all.">
+<meta property="og:url" content="https://scoutseo.app/learn/dead-contact-address/">
 <meta property="og:site_name" content="Scout">
 <meta property="og:image" content="https://scoutseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="All 92 checks, by area">
-<meta name="twitter:description" content="The complete list of 92 checks Scout runs across 13 areas, generated from the shipped build so it cannot drift from the product.">
+<meta name="twitter:title" content="The contact address that cannot receive mail">
+<meta name="twitter:description" content="An address on a domain with no MX record bounces silently. We checked 1233 of the Tranco top 1500: only 80 publish one at all.">
 <meta name="twitter:image" content="https://scoutseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -336,7 +336,8 @@ body.landing article{padding:0}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/scout-site"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 92 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"92 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scout","item":"https://scoutseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://scoutseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"All 92 checks, by area","description":"The complete list of 92 checks Scout runs across 13 areas, generated from the shipped build so it cannot drift from the product.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/what-scout-checks/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The contact address that cannot receive mail","description":"An address on a domain with no MX record bounces silently. We checked 1233 of the Tranco top 1500: only 80 publish one at all.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/dead-contact-address/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I know if my contact email works?","acceptedAnswer":{"@type":"Answer","text":"Run dig +short MX yourdomain.com. Any output means a mail exchanger is published and mail has somewhere to go. Empty output means there is none, and senders fall back to your address record — which on a static host such as GitHub Pages or Netlify does not run a mail server, so every message bounces."}},{"@type":"Question","name":"Why does mail bounce silently?","acceptedAnswer":{"@type":"Answer","text":"The bounce is delivered to the sender, not to you. Nothing reaches the address and nothing records the attempt, so an inbox with no messages looks identical to an audience with nothing to say."}},{"@type":"Question","name":"Is it common for a published address to be dead?","acceptedAnswer":{"@type":"Answer","text":"Not among large sites. Of the 1233 sites in the Tranco top 1500 that answered, 80 publish an address at all and every one we could resolve accepts mail. The risk sits with smaller sites, which are both far more likely to publish an address and far less likely to have anyone watching DNS."}},{"@type":"Question","name":"Can a domain receive mail without an MX record?","acceptedAnswer":{"@type":"Answer","text":"Yes. RFC 5321 section 5.1 says a sender that finds no MX falls back to the domain's address record, so a domain whose web server also runs SMTP works fine. That is why the absence of an MX record is the start of the question rather than the answer to it."}}]}</script>
 </head>
 <body>
 <nav><div class="wrap-wide nav-inner">
@@ -351,45 +352,118 @@ body.landing article{padding:0}
 </div>
 <a class="btn" href="/download/">Download</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Scout</a> / <a href="/learn/">Learn</a> / What Scout checks</div><h1>All 92 checks, by area</h1>
+<article><div class="wrap"><div class="crumb"><a href="/">Scout</a> / <a href="/learn/">Learn</a> / Dead contact addresses</div><h1>The contact address that cannot receive mail</h1>
 
-<p class="lede">Scout runs 92 checks across 13 areas. This list is
-generated from the shipped build, so it cannot drift from what the tool actually does — run
-<code>scout checks</code> and you will get the same list.</p>
+<p class="lede">A contact address on a domain with no MX record does not fail loudly — it
+bounces, to the sender, and you never learn anyone wrote. We checked the
+1233 sites in the Tranco top 1500 that answered a request, and
+found <strong>80 still publish an email address at all</strong>: every one
+of them we could resolve accepts mail.</p>
 
-<p>Each check produces a finding only when there is something to report, and each finding
-carries what it costs you, how much work the fix is, and the markup to paste. Areas that do
-not apply to a site — local business checks on a pure SaaS product, for instance — are marked
-not applicable rather than scored as passing.</p>
+<p>So this is not an epidemic among large sites. It is the failure we shipped on our own site,
+and the more useful finding turned out to be the denominator rather than the numerator.</p>
 
-<h2>AI search visibility <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(10)</span></h2><ul><li><strong>Citable, specific claims</strong> <code>ai.citable_facts</code></li><li><strong>AI crawler access</strong> <code>ai.crawler_access</code></li><li><strong>Dead AI crawler directives</strong> <code>ai.dead_crawler_directive</code></li><li><strong>Server access for AI crawlers</strong> <code>ai.edge_access</code></li><li><strong>Entity definition and sameAs</strong> <code>ai.entity</code></li><li><strong>Answer extractability</strong> <code>ai.extractability</code></li><li><strong>Dates AI engines can read</strong> <code>ai.freshness_signal</code></li><li><strong>llms.txt</strong> <code>ai.llms_txt</code></li><li><strong>Content reachable without JavaScript</strong> <code>ai.rendering</code></li><li><strong>The AI control nothing can detect</strong> <code>ai.unmeasurable_optout</code></li></ul><h2>Brand consistency <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(6)</span></h2><ul><li><strong>Logo presence and markup</strong> <code>brand.logo</code></li><li><strong>Brand name consistency</strong> <code>brand.name_consistency</code></li><li><strong>Consistent positioning statement</strong> <code>brand.positioning</code></li><li><strong>Social profile consistency</strong> <code>brand.social_consistency</code></li><li><strong>Typography and colour consistency</strong> <code>brand.visual_consistency</code></li><li><strong>Writing voice consistency</strong> <code>brand.voice_consistency</code></li></ul><h2>Content quality <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(8)</span></h2><ul><li><strong>Generic AI-sounding copy</strong> <code>content.ai_slop</code></li><li><strong>Freshness signals</strong> <code>content.dates</code></li><li><strong>Trust and authorship signals</strong> <code>content.eeat</code></li><li><strong>JavaScript-dependent content</strong> <code>content.js_rendering</code></li><li><strong>Language coverage</strong> <code>content.language_scope</code></li><li><strong>Placeholder content</strong> <code>content.placeholder</code></li><li><strong>Readability</strong> <code>content.readability</code></li><li><strong>Thin content</strong> <code>content.thin</code></li></ul><h2>Conversion & landing pages <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(8)</span></h2><ul><li><strong>Published email addresses that cannot receive mail</strong> <code>cvr.dead_contact</code></li><li><strong>Form friction</strong> <code>cvr.form_friction</code></li><li><strong>Funnel coverage</strong> <code>cvr.funnel</code></li><li><strong>Title / headline consistency</strong> <code>cvr.message_match</code></li><li><strong>Calls to action</strong> <code>cvr.no_cta</code></li><li><strong>Pricing transparency</strong> <code>cvr.pricing</code></li><li><strong>Social proof</strong> <code>cvr.social_proof</code></li><li><strong>Above-the-fold value proposition</strong> <code>cvr.value_prop</code></li></ul><h2>Crawlability & indexing <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(18)</span></h2><ul><li><strong>Broken pages (4xx/5xx)</strong> <code>index.broken</code></li><li><strong>Googlebot's 2MB fetch limit</strong> <code>index.byte_cap</code></li><li><strong>Canonical tags</strong> <code>index.canonical</code></li><li><strong>Conflicting canonical tags</strong> <code>index.canonical_conflict</code></li><li><strong>Click depth and orphans</strong> <code>index.depth</code></li><li><strong>Duplicate pages</strong> <code>index.duplicate_content</code></li><li><strong>Pages blocked from indexing</strong> <code>index.noindex</code></li><li><strong>Redirect problems</strong> <code>index.redirects</code></li><li><strong>robots.txt blocks the whole site</strong> <code>index.robots_blocks_all</code></li><li><strong>XML sitemap</strong> <code>index.sitemap</code></li><li><strong>Soft 404 handling</strong> <code>index.soft_404</code></li><li><strong>Soft 404 pages in the crawl</strong> <code>index.soft_404_pages</code></li><li><strong>URL structure</strong> <code>index.url_hygiene</code></li><li><strong>www / apex canonicalisation</strong> <code>index.www</code></li><li><strong>hreflang language codes</strong> <code>intl.hreflang_codes</code></li><li><strong>hreflang return tags</strong> <code>intl.hreflang_return</code></li><li><strong>hreflang self-reference</strong> <code>intl.hreflang_self</code></li><li><strong>hreflang target health</strong> <code>intl.hreflang_targets</code></li></ul><h2>Links <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(6)</span></h2><ul><li><strong>Broken outbound links</strong> <code>links.broken_external</code></li><li><strong>Insecure internal links</strong> <code>links.http_on_https</code></li><li><strong>Internal linking</strong> <code>links.internal_volume</code></li><li><strong>Navigation reachable without JavaScript</strong> <code>links.nav_not_in_html</code></li><li><strong>Outbound link handling</strong> <code>links.outbound_quality</code></li><li><strong>Pagination handling</strong> <code>links.pagination</code></li></ul><h2>Local business SEO <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(6)</span></h2><ul><li><strong>Local business detection</strong> <code>local.applicable</code></li><li><strong>Contact and conversion signals</strong> <code>local.contact_signals</code></li><li><strong>Location targeting in content</strong> <code>local.geo_targeting</code></li><li><strong>NAP consistency</strong> <code>local.nap</code></li><li><strong>Review signals</strong> <code>local.reviews</code></li><li><strong>LocalBusiness schema</strong> <code>local.schema</code></li></ul><h2>Tracking & campaign readiness <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(6)</span></h2><ul><li><strong>Advertising pixels</strong> <code>mar.ad_pixels</code></li><li><strong>Analytics installed</strong> <code>mar.analytics</code></li><li><strong>Consent and privacy compliance</strong> <code>mar.consent</code></li><li><strong>Email list building</strong> <code>mar.email_capture</code></li><li><strong>Marketing stack inventory</strong> <code>mar.stack</code></li><li><strong>UTM tagging hygiene</strong> <code>mar.utm_hygiene</code></li></ul><h2>On-page SEO <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(6)</span></h2><ul><li><strong>Internal link anchor text</strong> <code>onpage.anchors</code></li><li><strong>Meta descriptions</strong> <code>onpage.description</code></li><li><strong>Heading structure</strong> <code>onpage.headings</code></li><li><strong>Image optimisation</strong> <code>onpage.images</code></li><li><strong>Language and viewport declarations</strong> <code>onpage.lang</code></li><li><strong>Title tags</strong> <code>onpage.title</code></li></ul><h2>Speed & Core Web Vitals <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(7)</span></h2><ul><li><strong>Layout shift risk</strong> <code>perf.cls_risk</code></li><li><strong>Compression and caching headers</strong> <code>perf.compression</code></li><li><strong>Image formats</strong> <code>perf.modern_images</code></li><li><strong>Page weight</strong> <code>perf.page_weight</code></li><li><strong>Redirect latency</strong> <code>perf.redirect_cost</code></li><li><strong>Render-blocking resources</strong> <code>perf.render_blocking</code></li><li><strong>Server response time</strong> <code>perf.ttfb</code></li></ul><h2>Structured data <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(5)</span></h2><ul><li><strong>Incomplete structured data</strong> <code>schema.incomplete</code></li><li><strong>Invalid JSON-LD</strong> <code>schema.invalid</code></li><li><strong>Structured data vs visible content</strong> <code>schema.mismatch</code></li><li><strong>Missing structured data</strong> <code>schema.missing</code></li><li><strong>Rich result opportunities</strong> <code>schema.opportunity</code></li></ul><h2>Security & trust <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(3)</span></h2><ul><li><strong>Security headers</strong> <code>security.headers</code></li><li><strong>HTTPS</strong> <code>security.https</code></li><li><strong>Mixed content</strong> <code>security.mixed_content</code></li></ul><h2>Social & sharing <span style='color:var(--text-dim);font-size:1rem;font-weight:400'>(3)</span></h2><ul><li><strong>Favicon</strong> <code>social.favicon</code></li><li><strong>Open Graph tags</strong> <code>social.open_graph</code></li><li><strong>Twitter/X card</strong> <code>social.twitter</code></li></ul>
+<h2>What actually breaks</h2>
 
-<h2>How a finding is put together</h2>
-<p>A check that fires produces more than a label. Each finding carries four things, and they
-are what separate a plan from a list:</p>
-<ul>
-<li><strong>What it costs you</strong>, in plain language. Not "missing meta description" but
-what happens as a result — Google writing your search snippet from whatever text it finds,
-often a cookie notice.</li>
-<li><strong>Severity</strong>, where critical is reserved for things that stop the page
-ranking at all. If everything is critical, nothing is, so the bar is deliberately high.</li>
-<li><strong>Effort</strong>, from minutes to a project. Combined with impact, this is what
-produces the ordering — a trivial fix on an important page outranks a large fix on
-a marginal one.</li>
-<li><strong>The change itself</strong>, as markup you can copy. For structured data that means
-a complete, valid JSON-LD block with your own business details already in the right fields.</li>
-</ul>
-<p>Findings are also capped in reach. An issue affecting every page of a large site does not automatically
-outrank one affecting the homepage, because reach is compressed logarithmically — without
-that, one trivial nit on a large site drowns out everything that matters.</p>
+<p>Delivering mail to a domain means asking DNS for its MX record.
+<a href="https://www.rfc-editor.org/rfc/rfc5321#section-5.1">RFC 5321 §5.1</a> says that when there is no MX, the sender falls back to the
+domain's address record and tries SMTP there. On a site hosted by GitHub Pages, Netlify,
+Vercel or Cloudflare Pages, that address record points at a machine which serves files and
+does not answer on port 25. The message is attempted, refused, and bounced.</p>
 
-<h2>What is deliberately not here</h2>
-<p>Per-page backlinks and anchor text. Domain authority and the list of referring domains
-come from Common Crawl's hyperlink graph, but which individual page links to you, and with
-what anchor text, lives in archive files far too large to fetch from a laptop. Search volumes. Scout finds the
-queries people actually type, from Google's public autocomplete, and refuses to print a
-monthly volume it does not have. Each is a real limitation and each is stated in the report
-rather than papered over.</p>
+<p>The bounce goes to the person who wrote to you. Nothing arrives at your end — not the
+message, not a warning, not a record that anyone tried. Your analytics show the contact page
+being read. Your inbox shows nothing, which looks exactly like nobody having anything to
+say.</p>
+
+<p>This is why it is worse than a broken link, and worth stating plainly: <strong>a 404 tells
+the visitor it failed. A dead mailbox tells the visitor it worked.</strong></p>
+
+<h2>We did this</h2>
+
+<p>scoutseo.app carried <code>hello@scoutseo.app</code> in the footer of all 25 of its pages.
+The domain has no MX record; it is on GitHub Pages; port 25 is closed there. Every message
+anyone sent bounced, and we found out by writing a contact page and checking our own
+advertised channel before publishing it.</p>
+
+<p>An SEO audit tool shipping a dead contact address is embarrassing in a specific and useful
+way: it is exactly the class of defect that only shows up if something asks the question, and
+nothing did, because no tool asks it. That is now check 92 —
+<code>cvr.dead_contact</code>.</p>
+
+<h2>What the survey found</h2>
+
+<p>We fetched the homepage of the top 1500 sites in the Tranco list;
+1233 answered. An address counts as published only where it appears in a
+<code>mailto:</code> href — text in prose might be an example, a screenshot caption or
+somebody else's. Free-provider addresses and
+<a href="https://www.rfc-editor.org/rfc/rfc2606">RFC 2606</a> reserved names are excluded,
+because whether gmail.com accepts mail is not a fact about the site quoting it.</p>
+
+<div class="wrap-tbl"><table class="cmp"><thead><tr>
+<th>Result</th><th>Sites</th></tr></thead><tbody>
+<tr><td>Answered a homepage request</td><td>1233</td></tr>
+<tr><td>Publish an email address in a <code>mailto:</code></td>
+<td>80 (6.5%)</td></tr>
+<tr><td>… and the domain accepts mail</td><td>78</td></tr>
+<tr><td>… and the domain conclusively does not</td><td>0</td></tr>
+<tr><td>… could not be determined from here</td><td>2</td></tr>
+</tbody></table></div>
+
+<p>Zero is a real result and it deserves an honest reading rather than a triumphant one. Zero
+out of 80 is not evidence that the true rate is zero; it is consistent with
+anything up to about <strong>3.8%</strong>, which is what a 95%
+interval allows when you observe no events in 80 trials. What it does rule
+out is the version of this article we expected to write.</p>
+
+<h2>The number we did not go looking for</h2>
+
+<p>Only <strong>6.5% of the sites that answered publish an email address
+at all</strong>. Among the largest sites on the web, the contact address has very nearly
+disappeared — replaced by a form, a help centre, or nothing.</p>
+
+<p>That reframes the risk rather than removing it. A dead address is a failure available only
+to sites that still publish one, and the sites that still publish one are small: the
+independent shop, the two-person consultancy, the practice whose owner wants people to be able
+to just write. Those are also the sites least likely to have anyone watching DNS, and most
+likely to have moved to a static host in the last few years without thinking about mail. The
+population most exposed to this is the population we could not sample by taking the top of a
+popularity list.</p>
+
+<p>So we are publishing the finding we got, and saying what it does not cover. A survey of
+small business sites would answer the question properly. We have not run one.</p>
+
+<h2>Where another tool is better</h2>
+
+<p>Any mail-focused service does deliverability far more thoroughly than this. <a
+href="https://mxtoolbox.com/">MXToolbox</a> and its equivalents will check SPF, DKIM, DMARC,
+blacklist status and whether your outbound mail will land in spam — none of which Scout looks
+at, and all of which matter more than this check if you are actually sending mail.</p>
+
+<p>The difference is what starts the question. Those tools begin with a domain you already
+suspect. This begins with your website, finds the address you are publishing, and asks whether
+it works — which is a question nobody thinks to ask about an address they have had for
+years.</p>
+
+<h2>Checking your own</h2>
+
+<p>One command, and no tool required:</p>
+
+<pre><code>dig +short MX yourdomain.com</code></pre>
+
+<p>Output means a mail exchanger is published and mail has somewhere to go. Empty output means
+there is none, and the next question is whether your address record runs a mail server —
+almost certainly not, if your site is on a static host. The fix is to add MX records at your
+DNS provider, pointing at whatever mailbox or forwarding service you use.</p>
+
+<p>If you are not going to fix it, delete the address. A visitor who sees no email address
+looks for another way to reach you. A visitor who emails a dead one believes they already
+have.</p>
+
+<p>Scout runs this as <code>cvr.dead_contact</code> on every audit, and it will not report a
+domain it could not resolve — a lookup that failed is not a finding, and a domain with no MX
+but a working mail server on its address record is legal and fine.</p>
+
 <p><a class="btn" href="/download/">Download Scout</a></p>
 
 </div></article>

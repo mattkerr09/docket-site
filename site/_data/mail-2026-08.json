@@ -1,0 +1,1347 @@
+{
+  "measured": "2026-08-07",
+  "population": "Tranco top 1500 by rank, from the same list as the AI directives survey (PYG5J)",
+  "method": "One homepage request per host. An address counts as published only when it appears in a mailto: href. Consumer providers and RFC 2606 reserved names are excluded. A domain is dead in the headline figure only where DNS alone establishes it: no MX plus an address record on a static host that does not run SMTP, or no MX and no address record. Verdicts resting on a port-25 probe are reported separately because outbound 25 is widely blocked.",
+  "attempted": 1500,
+  "answered": 1233,
+  "publishing_mailto": 80,
+  "dead_conclusive": 0,
+  "dead_probe_only": 0,
+  "undetermined": 2,
+  "accepts_mail": 78,
+  "duration_s": 114.2,
+  "dead_examples": [],
+  "rows": [
+    {
+      "host": "creativecommons.org",
+      "rank": 198,
+      "status": 200,
+      "addresses": [
+        "info@creativecommons.org"
+      ],
+      "domains": {
+        "creativecommons.org": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "8 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "forbes.com",
+      "rank": 200,
+      "status": 200,
+      "addresses": [
+        "corrections@forbes.com",
+        "feedback@forbes.com",
+        "readers@forbes.com",
+        "security@forbes.com"
+      ],
+      "domains": {
+        "forbes.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "oxylabs.io",
+      "rank": 234,
+      "status": 200,
+      "addresses": [
+        "career@oxylabs.io",
+        "hello@oxylabs.io",
+        "support@oxylabs.io"
+      ],
+      "domains": {
+        "oxylabs.io": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "hcaptcha.com",
+      "rank": 269,
+      "status": 200,
+      "addresses": [
+        "sales+vpat@hcaptcha.com"
+      ],
+      "domains": {
+        "hcaptcha.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "3 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "trueconf.net",
+      "rank": 368,
+      "status": 200,
+      "addresses": [
+        "info@trueconf.com"
+      ],
+      "domains": {
+        "trueconf.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "selectel.ru",
+      "rank": 372,
+      "status": 200,
+      "addresses": [
+        "pr@selectel.ru",
+        "sales@selectel.ru",
+        "support@selectel.ru"
+      ],
+      "domains": {
+        "selectel.ru": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "ezvizlife.com",
+      "rank": 376,
+      "status": 200,
+      "addresses": [
+        "jubao@ezviz.com",
+        "yingshi@ezviz.com"
+      ],
+      "domains": {
+        "ezviz.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "3 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "ip-api.com",
+      "rank": 379,
+      "status": 200,
+      "addresses": [
+        "contact@ip-api.com"
+      ],
+      "domains": {
+        "ip-api.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "ivi.ru",
+      "rank": 409,
+      "status": 200,
+      "addresses": [
+        "support@ivi.ru"
+      ],
+      "domains": {
+        "ivi.ru": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "163.com",
+      "rank": 410,
+      "status": 200,
+      "addresses": [
+        "jubao@vip.163.com"
+      ],
+      "domains": {
+        "vip.163.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "brave.com",
+      "rank": 421,
+      "status": 200,
+      "addresses": [
+        "adsales@brave.com",
+        "bizdev@brave.com",
+        "legal@brave.com",
+        "press@brave.com",
+        "user-support@brave.com"
+      ],
+      "domains": {
+        "brave.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "sina.com.cn",
+      "rank": 442,
+      "status": 200,
+      "addresses": [
+        "jubao@vip.sina.com"
+      ],
+      "domains": {
+        "vip.sina.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "4 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "mikrotik.com",
+      "rank": 456,
+      "status": 200,
+      "addresses": [
+        "sales@mikrotik.com"
+      ],
+      "domains": {
+        "mikrotik.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "time.com",
+      "rank": 535,
+      "status": 200,
+      "addresses": [
+        "feedback@time.com"
+      ],
+      "domains": {
+        "time.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "trendmicro.com",
+      "rank": 536,
+      "status": 200,
+      "addresses": [
+        "ir@trendmicro.com"
+      ],
+      "domains": {
+        "trendmicro.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "ipify.org",
+      "rank": 623,
+      "status": 200,
+      "addresses": [
+        "service.desk@ipify.org"
+      ],
+      "domains": {
+        "ipify.org": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "cdnvideo.ru",
+      "rank": 635,
+      "status": 200,
+      "addresses": [
+        "info@cdnvideo.ru"
+      ],
+      "domains": {
+        "cdnvideo.ru": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "7 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "cnet.com",
+      "rank": 655,
+      "status": 200,
+      "addresses": [
+        "brand_licensing@ziffdavis.com"
+      ],
+      "domains": {
+        "ziffdavis.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "intercom.io",
+      "rank": 665,
+      "status": 200,
+      "addresses": [
+        "press@intercom.com"
+      ],
+      "domains": {
+        "intercom.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "consultant.ru",
+      "rank": 684,
+      "status": 200,
+      "addresses": [
+        "contact@consultant.ru"
+      ],
+      "domains": {
+        "consultant.ru": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "globalsign.com",
+      "rank": 733,
+      "status": 200,
+      "addresses": [
+        "sales-us@globalsign.com"
+      ],
+      "domains": {
+        "globalsign.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "moe.video",
+      "rank": 820,
+      "status": 200,
+      "addresses": [
+        "support@moe.video"
+      ],
+      "domains": {
+        "moe.video": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "no-ip.com",
+      "rank": 848,
+      "status": 200,
+      "addresses": [
+        "support@noip.com"
+      ],
+      "domains": {
+        "noip.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "pornhub.com",
+      "rank": 854,
+      "status": 200,
+      "addresses": [
+        "support@pornhub.com"
+      ],
+      "domains": {
+        "pornhub.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "biblegateway.com",
+      "rank": 878,
+      "status": 200,
+      "addresses": [
+        "privacy@biblegateway.com"
+      ],
+      "domains": {
+        "biblegateway.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "fwmrm.net",
+      "rank": 881,
+      "status": 200,
+      "addresses": [
+        "sslrenewals@freewheel.com"
+      ],
+      "domains": {
+        "freewheel.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "otto.de",
+      "rank": 886,
+      "status": 200,
+      "addresses": [
+        "barrierefrei@otto.de"
+      ],
+      "domains": {
+        "otto.de": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "genius.com",
+      "rank": 930,
+      "status": 200,
+      "addresses": [
+        "inquiry@genius.com"
+      ],
+      "domains": {
+        "genius.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "ys7.com",
+      "rank": 931,
+      "status": 200,
+      "addresses": [
+        "yingshi@ezviz.com"
+      ],
+      "domains": {
+        "ezviz.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "3 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "repubblica.it",
+      "rank": 949,
+      "status": 200,
+      "addresses": [
+        "visualdesk@kataweb.it"
+      ],
+      "domains": {
+        "kataweb.it": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "netlify.app",
+      "rank": 960,
+      "status": 200,
+      "addresses": [
+        "fraud@netlify.com"
+      ],
+      "domains": {
+        "netlify.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "kwai.com",
+      "rank": 974,
+      "status": 200,
+      "addresses": [
+        "customer-service@kwai.com"
+      ],
+      "domains": {
+        "kwai.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "infobae.com",
+      "rank": 1048,
+      "status": 200,
+      "addresses": [
+        "redaccion@infobae.com"
+      ],
+      "domains": {
+        "infobae.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "alphonso.tv",
+      "rank": 1070,
+      "status": 200,
+      "addresses": [
+        "info@alphonso.tv"
+      ],
+      "domains": {
+        "alphonso.tv": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "he.net",
+      "rank": 1149,
+      "status": 200,
+      "addresses": [
+        "info@he.net"
+      ],
+      "domains": {
+        "he.net": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "wetter.com",
+      "rank": 1170,
+      "status": 200,
+      "addresses": [
+        "support@wetter.com"
+      ],
+      "domains": {
+        "wetter.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "vinted.fr",
+      "rank": 1190,
+      "status": 200,
+      "addresses": [
+        "vinted@vinted.fr"
+      ],
+      "domains": {
+        "vinted.fr": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "vg.no",
+      "rank": 1194,
+      "status": 200,
+      "addresses": [
+        "anders.sooth.knutsen@vg.no",
+        "froy.gudbrandsen@vg.no",
+        "gard.steiro@vg.no",
+        "oyvind.brenne@vg.no"
+      ],
+      "domains": {
+        "vg.no": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "huggingface.co",
+      "rank": 1247,
+      "status": 200,
+      "addresses": [
+        "press@huggingface.co"
+      ],
+      "domains": {
+        "huggingface.co": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "wisc.edu",
+      "rank": 1307,
+      "status": 200,
+      "addresses": [
+        "web.strategiccommunication@wisc.edu"
+      ],
+      "domains": {
+        "wisc.edu": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "pornhub.org",
+      "rank": 1376,
+      "status": 200,
+      "addresses": [
+        "support@pornhub.com"
+      ],
+      "domains": {
+        "pornhub.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "e-hentai.org",
+      "rank": 1377,
+      "status": 200,
+      "addresses": [
+        "sales@juicyads.com"
+      ],
+      "domains": {
+        "juicyads.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "cardgames.io",
+      "rank": 1395,
+      "status": 200,
+      "addresses": [
+        "support@cardgames.io"
+      ],
+      "domains": {
+        "cardgames.io": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "ilmeteo.it",
+      "rank": 1407,
+      "status": 200,
+      "addresses": [
+        "info@ilmeteo.it"
+      ],
+      "domains": {
+        "ilmeteo.it": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "eenadu.net",
+      "rank": 1463,
+      "status": 200,
+      "addresses": [
+        "infonet@eenadu.net",
+        "marketing@eenadu.in"
+      ],
+      "domains": {
+        "eenadu.net": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        },
+        "eenadu.in": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "ekstrabladet.dk",
+      "rank": 1470,
+      "status": 200,
+      "addresses": [
+        "1224@eb.dk",
+        "kd@eb.dk",
+        "knud.brix@eb.dk",
+        "post@eb.dk",
+        "redaktionen@eb.dk"
+      ],
+      "domains": {
+        "eb.dk": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "3 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "ppomppu.co.kr",
+      "rank": 1537,
+      "status": 200,
+      "addresses": [
+        "webmaster@ppomppu.co.kr"
+      ],
+      "domains": {
+        "ppomppu.co.kr": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "8 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "moviebox.ph",
+      "rank": 1557,
+      "status": 200,
+      "addresses": [
+        "moviebox.ng@mbox.ng"
+      ],
+      "domains": {
+        "mbox.ng": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "serviporno.com",
+      "rank": 1560,
+      "status": 200,
+      "addresses": [
+        "contact@servitubes.com"
+      ],
+      "domains": {
+        "servitubes.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "spaggiari.eu",
+      "rank": 1629,
+      "status": 200,
+      "addresses": [
+        "info@pinkommunication.it",
+        "info@spaggiari.eu",
+        "spaggiari@legalmail.it"
+      ],
+      "domains": {
+        "pinkommunication.it": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        },
+        "spaggiari.eu": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        },
+        "legalmail.it": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "auvik.com",
+      "rank": 1630,
+      "status": 200,
+      "addresses": [
+        "sales@auvik.com"
+      ],
+      "domains": {
+        "auvik.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "rkv1.com",
+      "rank": 1691,
+      "status": 200,
+      "addresses": [
+        "info@adsdone.com"
+      ],
+      "domains": {
+        "adsdone.com": {
+          "accepts": null,
+          "conclusive": false,
+          "static_host": null,
+          "reason": "no MX record; whether the address record accepts SMTP could not be determined from here"
+        }
+      }
+    },
+    {
+      "host": "dpbossss.boston",
+      "rank": 1719,
+      "status": 200,
+      "addresses": [
+        "support@dpboss.net"
+      ],
+      "domains": {
+        "dpboss.net": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "sattamatkadpboss.mobi",
+      "rank": 1722,
+      "status": 200,
+      "addresses": [
+        "support@sattamatkadpboss.mobi"
+      ],
+      "domains": {
+        "sattamatkadpboss.mobi": {
+          "accepts": null,
+          "conclusive": false,
+          "static_host": null,
+          "reason": "no MX record; whether the address record accepts SMTP could not be determined from here"
+        }
+      }
+    },
+    {
+      "host": "archive.is",
+      "rank": 1805,
+      "status": 200,
+      "addresses": [
+        "webmaster@archive.is"
+      ],
+      "domains": {
+        "archive.is": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "zdnet.com",
+      "rank": 1814,
+      "status": 200,
+      "addresses": [
+        "brand_licensing@ziffdavis.com"
+      ],
+      "domains": {
+        "ziffdavis.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "archive.ph",
+      "rank": 1834,
+      "status": 200,
+      "addresses": [
+        "webmaster@archive.ph"
+      ],
+      "domains": {
+        "archive.ph": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "gdemoideti.ru",
+      "rank": 1841,
+      "status": 200,
+      "addresses": [
+        "info@gdemoideti.ru"
+      ],
+      "domains": {
+        "gdemoideti.ru": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "arstechnica.com",
+      "rank": 1849,
+      "status": 200,
+      "addresses": [
+        "adinquiries@condenast.com"
+      ],
+      "domains": {
+        "condenast.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "beeline.ru",
+      "rank": 1886,
+      "status": 200,
+      "addresses": [
+        "otvet@beeline.ru"
+      ],
+      "domains": {
+        "beeline.ru": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "3 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "intercom.com",
+      "rank": 1899,
+      "status": 200,
+      "addresses": [
+        "press@intercom.com"
+      ],
+      "domains": {
+        "intercom.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "deepintent.com",
+      "rank": 1911,
+      "status": 200,
+      "addresses": [
+        "updates@deepintent.com"
+      ],
+      "domains": {
+        "deepintent.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "rspamd.com",
+      "rank": 1928,
+      "status": 200,
+      "addresses": [
+        "hi@rspamd.com"
+      ],
+      "domains": {
+        "rspamd.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "people.com.cn",
+      "rank": 1929,
+      "status": 200,
+      "addresses": [
+        "jubao@people.cn",
+        "kf@people.cn",
+        "rmwjubao@people.cn"
+      ],
+      "domains": {
+        "people.cn": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "richaudience.com",
+      "rank": 1951,
+      "status": 200,
+      "addresses": [
+        "info.argentina@exte.com",
+        "info.brasil@exte.com",
+        "info.chicago@exte.com",
+        "info.chile@exte.com",
+        "info.colombia@exte.com",
+        "info.france@exte.com"
+      ],
+      "domains": {
+        "exte.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "wb.gov.in",
+      "rank": 1954,
+      "status": 200,
+      "addresses": [
+        "ica-dept@wb.gov.in"
+      ],
+      "domains": {
+        "wb.gov.in": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "tiktokio.com",
+      "rank": 1984,
+      "status": 200,
+      "addresses": [
+        "service@tiktokio.com"
+      ],
+      "domains": {
+        "tiktokio.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "hostpoint.ch",
+      "rank": 2027,
+      "status": 200,
+      "addresses": [
+        "support@hostpoint.ch"
+      ],
+      "domains": {
+        "hostpoint.ch": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "sweb.ru",
+      "rank": 2031,
+      "status": 200,
+      "addresses": [
+        "abuse@sweb.ru"
+      ],
+      "domains": {
+        "sweb.ru": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "sapphireonline.pk",
+      "rank": 2036,
+      "status": 200,
+      "addresses": [
+        "wecare@sapphireonline.pk"
+      ],
+      "domains": {
+        "sapphireonline.pk": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "1 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "beget.com",
+      "rank": 2042,
+      "status": 200,
+      "addresses": [
+        "sales@beget.com"
+      ],
+      "domains": {
+        "beget.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "aniview.com",
+      "rank": 2190,
+      "status": 200,
+      "addresses": [
+        "info@aniview.com"
+      ],
+      "domains": {
+        "aniview.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "shodan.io",
+      "rank": 2214,
+      "status": 200,
+      "addresses": [
+        "support@shodan.io"
+      ],
+      "domains": {
+        "shodan.io": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "3 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "simpli.fi",
+      "rank": 2217,
+      "status": 200,
+      "addresses": [
+        "hi@simpli.fi"
+      ],
+      "domains": {
+        "simpli.fi": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "bytedance.com",
+      "rank": 2219,
+      "status": 200,
+      "addresses": [
+        "advertise@bytedance.com",
+        "hr@bytedance.com",
+        "press@bytedance.com"
+      ],
+      "domains": {
+        "bytedance.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "3 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "polymarket.com",
+      "rank": 2249,
+      "status": 200,
+      "addresses": [
+        "hello@polymarket.com",
+        "press@polymarket.com"
+      ],
+      "domains": {
+        "polymarket.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "adswizz.com",
+      "rank": 2307,
+      "status": 200,
+      "addresses": [
+        "%20info@www.adswizz.com"
+      ],
+      "domains": {
+        "www.adswizz.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "beget.ru",
+      "rank": 2309,
+      "status": 200,
+      "addresses": [
+        "sales@beget.com"
+      ],
+      "domains": {
+        "beget.com": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "ria.ru",
+      "rank": 2316,
+      "status": 200,
+      "addresses": [
+        "moderator@rian.ru"
+      ],
+      "domains": {
+        "rian.ru": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "2 MX record(s)"
+        }
+      }
+    },
+    {
+      "host": "bunny.net",
+      "rank": 2408,
+      "status": 200,
+      "addresses": [
+        "hello@bunny.net",
+        "sales@bunny.net"
+      ],
+      "domains": {
+        "bunny.net": {
+          "accepts": true,
+          "conclusive": true,
+          "static_host": null,
+          "reason": "5 MX record(s)"
+        }
+      }
+    }
+  ]
+}
