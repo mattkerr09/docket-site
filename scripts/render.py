@@ -61,7 +61,14 @@ def price(slug: str) -> str:
 #: The current build. One place, because a download link that 404s is the
 #: single worst bug a product site can have.
 RELEASE = "v0.1.0"
-DMG = f"https://github.com/mattkerr09/scout-site/releases/download/{RELEASE}/Scout-0.1.0-arm64.dmg"
+REPO = "https://github.com/mattkerr09/scout-site"
+#: The contact channel, and the only one verified to receive anything. The
+#: footer advertised hello@scoutseo.app on all 25 pages; the domain has no MX
+#: record and its address record is GitHub Pages, port 25 closed, so every
+#: message bounced to a sender we never heard from. lint.py now resolves the
+#: domain of any mailto: on the site and fails when it cannot accept mail.
+ISSUES = f"{REPO}/issues"
+DMG = f"{REPO}/releases/download/{RELEASE}/Scout-0.1.0-arm64.dmg"
 #: Rounded DOWN from the real 17,432,048 bytes of the notarised DMG, measured
 #: 2026-08-07. Rounding down is deliberate: a download is allowed to be smaller
 #: than promised and never larger, and "18 MB" was already overstating it.
@@ -411,6 +418,7 @@ NAV = f"""<nav><div class="wrap-wide nav-inner">
 <a href="/vs/">Compare</a>
 <a href="/how-to/">Fix it</a>
 <a href="/for/">For you</a>
+<a href="/about/">About</a>
 </div>
 <a class="btn" href="/download/">Download</a>
 </div></nav>"""
@@ -430,8 +438,9 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <a href="/learn/seo-audit/">What an SEO audit is</a>
 <a href="/learn/">All guides</a></div>
 <div><h2 class="foot-h">Contact</h2>
-<a href="mailto:hello@scoutseo.app">hello@scoutseo.app</a>
-<a href="https://github.com/mattkerr09/scout-site">GitHub</a>
+<a href="/about/">About Scout</a>
+<a href="/contact/">Get in touch</a>
+<a href="{REPO}/issues">Issue tracker</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a></div>
 </div>
 <div class="foot-bottom">

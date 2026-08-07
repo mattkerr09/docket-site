@@ -42,17 +42,30 @@ def path_of(page: Path) -> str:
     return "/" if rel == "." else f"/{rel}/"
 
 
-def measure() -> dict:
+def measure() -> tuple[dict, dict[str, set[str]]]:
+    """The graph, and any internal href that points at nothing.
+
+    Both come from the same walk. An earlier version filtered non-resolving
+    hrefs out silently on its way to counting edges, which is how /about/ went
+    live linking to /learn/entity-schema/ — a page that has never existed, at a
+    guessed path, past every gate. Scout found it on the deployed site.
+    """
     pages = sorted(SITE.rglob("index.html"))
     paths = {path_of(p) for p in pages}
     pairs: set[tuple[str, str]] = set()
+    broken: dict[str, set[str]] = {}
     for page in pages:
         src = path_of(page)
         for href in HREF.findall(page.read_text()):
-            if not href.endswith("/"):
-                href += "/"
-            if href in paths and href != src:
-                pairs.add((src, href))
+            target = href if href.endswith("/") else href + "/"
+            if target not in paths:
+                # A direct file reference (/sitemap.xml, /robots.txt) is a link
+                # to a thing on disk rather than to a page in the graph.
+                if not (SITE / href.lstrip("/")).exists():
+                    broken.setdefault(href, set()).add(src)
+                continue
+            if target != src:
+                pairs.add((src, target))
 
     inlinks = {p: 0 for p in paths}
     for _, target in pairs:
@@ -68,10 +81,10 @@ def measure() -> dict:
     for node in nodes:
         node["index"] = round(node["share_pct"] / average, 2) if average else 0.0
 
-    return {"site": "scoutseo.app", "pages": len(paths), "edges": total,
-            "average_share_pct": average,
-            "below_half": sum(1 for x in nodes if x["index"] < 0.5),
-            "nodes": nodes}
+    return ({"site": "scoutseo.app", "pages": len(paths), "edges": total,
+             "average_share_pct": average,
+             "below_half": sum(1 for x in nodes if x["index"] < 0.5),
+             "nodes": nodes}, broken)
 
 
 def main() -> int:
@@ -79,7 +92,13 @@ def main() -> int:
         print(f"LINKS: {DATASET} is missing")
         return 1
     stored = json.loads(DATASET.read_text())
-    live = measure()
+    live, broken = measure()
+
+    if broken:
+        print(f"LINKS: {len(broken)} internal link(s) point at nothing")
+        for href, sources in sorted(broken.items()):
+            print(f"  {href} <- {', '.join(sorted(sources)[:3])}")
+        return 1
 
     problems = []
     for key in ("pages", "edges", "average_share_pct", "below_half"):
@@ -99,13 +118,23 @@ def main() -> int:
               f"({len(problems)} difference(s))")
         for p in problems[:12]:
             print(f"  {p}")
-        if "--write" in sys.argv:
-            live["measured"] = stored.get("measured", "")
-            print("  pass --write with a date to refresh; edit `measured` too")
-        else:
-            print("  re-run with --write once you have confirmed the change is "
-                  "intended, and update the `measured` date")
-        return 1
+        if "--write" not in sys.argv:
+            print("  re-run with --write --date YYYY-MM-DD once you have "
+                  "confirmed the change is intended")
+            return 1
+        try:
+            date = sys.argv[sys.argv.index("--date") + 1]
+        except (ValueError, IndexError):
+            print("  --write needs --date YYYY-MM-DD. The `measured` field is "
+                  "what tells a reader how old the figure is; refreshing the "
+                  "numbers and leaving the date is the stale-number bug with "
+                  "extra steps.")
+            return 1
+        live["measured"] = date
+        DATASET.write_text(json.dumps(live, indent=2) + "\n")
+        print(f"  written: {live['pages']} pages, {live['edges']} routes, "
+              f"measured {date}")
+        return 0
 
     if "--write" in sys.argv:
         print("LINKS: already current, nothing to write")
