@@ -16,9 +16,6 @@ Allow: /
 User-agent: Claude-SearchBot
 Allow: /
 
-User-agent: Google-Extended
-Allow: /
-
 # Training crawlers — allowed here; blocking these is a valid choice for others.
 User-agent: GPTBot
 Allow: /

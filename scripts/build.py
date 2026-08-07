@@ -190,7 +190,7 @@ def write_robots() -> None:
         "",
         "# AI search crawlers — these decide whether we appear in AI answers.",
     ]
-    for bot in ("OAI-SearchBot", "PerplexityBot", "Claude-SearchBot", "Google-Extended"):
+    for bot in ("OAI-SearchBot", "PerplexityBot", "Claude-SearchBot", ):
         lines += [f"User-agent: {bot}", "Allow: /", ""]
     lines.append("# Training crawlers — allowed here; blocking these is a valid choice for others.")
     for bot in ("GPTBot", "ClaudeBot", "Applebot-Extended", "CCBot"):

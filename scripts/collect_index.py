@@ -36,7 +36,7 @@ from seo_engine.robots import AI_USER_AGENTS, SEARCH_USER_AGENTS, RobotsTxt  # n
 #: Crawlers whose access decides whether you can appear in an AI answer at all,
 #: as opposed to whether you are used for model training. Blocking the second is
 #: a legitimate policy choice and is reported separately, never as a failure.
-CITATION_BOTS = ("OAI-SearchBot", "PerplexityBot", "Claude-SearchBot", "Google-Extended")
+CITATION_BOTS = ("OAI-SearchBot", "PerplexityBot", "Claude-SearchBot", )
 TRAINING_BOTS = ("GPTBot", "ClaudeBot", "Applebot-Extended", "CCBot", "Bytespider",
                  "meta-externalagent")
 

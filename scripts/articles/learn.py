@@ -52,8 +52,8 @@ point working on the third while the first is broken.</p>
 <tr><td><code>GPTBot</code></td><td>OpenAI</td><td>Your content is not used for training. Citation is unaffected</td></tr>
 <tr><td><code>PerplexityBot</code></td><td>Perplexity</td><td>You are removed from Perplexity's index</td></tr>
 <tr><td><code>Claude-SearchBot</code></td><td>Anthropic</td><td>You are absent from Claude's search results</td></tr>
-<tr><td><code>ClaudeBot</code></td><td>Anthropic</td><td>Not used for training. Citation is unaffected</td></tr>
-<tr><td><code>Google-Extended</code></td><td>Google</td><td>Out of Gemini and AI Overviews grounding. Classic Google ranking is unaffected</td></tr>
+<tr><td><code>ClaudeBot</code></td><td>Anthropic</td><td>Your content is not used to train Anthropic's models. Citation is unaffected</td></tr>
+<tr><td><code>Google-Extended</code></td><td>Google</td><td>Out of Gemini training and Vertex grounding. <strong>Not</strong> AI Overviews — those follow your Googlebot rules</td></tr>
 </tbody></table></div>
 
 <p>The distinction between a <em>training</em> crawler and a <em>search</em> crawler is the
