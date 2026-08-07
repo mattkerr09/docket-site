@@ -135,6 +135,25 @@ nothing was served, because there was no site. A DNS blip in a pipeline would ha
 build with two invented criticals and sent somebody hunting for a robots.txt problem that
 never existed. When nothing at all can be read, Scout now reports that and stops.</p>
 
+<h3><code>scout diff</code> — what this deploy broke</h3>
+<pre><code>scout diff https://example.com https://staging.example.com
+scout diff https://example.com https://staging.example.com --fail-on medium</code></pre>
+
+<p>Audits both with identical settings and reports what the second one changed. This is the
+better deploy gate, and the reason is arithmetic: every real site carries standing findings, so
+a severity threshold tight enough to catch a regression fails every build, and one loose enough
+to pass catches nothing. A deploy is only answerable for what it changed.</p>
+
+<p>Regressions are new findings <em>and</em> ones that got worse — a check that was MEDIUM
+before and is HIGH now did not appear or disappear, and it is exactly what you want to know.
+Improvements never fail a build, however many there are. The default threshold is
+<code>high</code> rather than <code>critical</code>, deliberately: a standing HIGH finding is
+somebody's backlog, and a HIGH finding that arrived with this deploy is this deploy's fault.</p>
+
+<p>If the two crawls reach very different numbers of pages, Scout refuses to compare them and
+exits <code>1</code> — not <code>0</code>. A build that goes green because the comparison was
+impossible is worse than one that fails, because the team believes the gate ran.</p>
+
 <h3><code>scout attack</code> — where a competitor's authority does not protect them</h3>
 <pre><code>scout attack yoursite.com theircompetitor.com
 scout attack yoursite.com theirs.com --demand "emergency plumber"</code></pre>
