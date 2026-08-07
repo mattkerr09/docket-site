@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "compiled": "2026-08-06",
+  "compiled": "2026-08-07",
   "ai_crawlers": {
     "GPTBot": {
       "owner": "OpenAI",
@@ -44,8 +44,8 @@
     },
     "Google-Extended": {
       "owner": "Google",
-      "purpose": "Gemini grounding",
-      "impact": "Removes you from Gemini and AI Overviews grounding. Does NOT affect classic Google Search ranking."
+      "purpose": "training / Gemini Apps grounding",
+      "impact": "Blocks Gemini model training and grounding in Gemini Apps and Vertex AI. Does NOT affect AI Overviews, AI Mode or classic Google Search \u2014 those follow your Googlebot rules."
     },
     "Applebot-Extended": {
       "owner": "Apple",
@@ -107,12 +107,27 @@
   },
   "algorithm_notes": [
     {
+      "date": "2026-05-07",
+      "title": "FAQ and HowTo rich results retired",
+      "detail": "Google stopped showing FAQ and HowTo rich results in Search. The markup remains valid schema.org and is still useful for entity clarity, but it no longer produces a result feature."
+    },
+    {
       "date": "2024-03-12",
       "title": "INP replaced FID as a Core Web Vital",
       "detail": "First Input Delay was retired. Interaction to Next Paint measures the full latency of the worst interaction rather than only the first, so pages that felt sluggish after load stopped passing by default."
     }
   ],
   "superseded": [
+    {
+      "advice": "Block Google-Extended to stay out of AI Overviews",
+      "why": "Google-Extended governs Gemini training and Vertex grounding. AI features in Google Search follow the Googlebot directives, so blocking Google-Extended does not remove you from AI Overviews.",
+      "since": "2026-08-07"
+    },
+    {
+      "advice": "Add FAQPage markup to win FAQ rich results",
+      "why": "Google retired FAQ rich results on 2026-05-07 and removed the documentation. The markup is still valid schema.org; the result feature no longer exists.",
+      "since": "2026-05-07"
+    },
     {
       "advice": "Optimise for First Input Delay",
       "why": "FID was retired in March 2024. Measure INP instead.",

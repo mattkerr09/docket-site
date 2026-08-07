@@ -21,7 +21,7 @@ from render import N_CHECKS, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
-CITATION = ("OAI-SearchBot", "PerplexityBot", "Claude-SearchBot", "Google-Extended")
+CITATION = ("OAI-SearchBot", "PerplexityBot", "Claude-SearchBot", )
 TRAINING = ("GPTBot", "ClaudeBot", "Applebot-Extended", "CCBot", "Bytespider",
             "meta-externalagent")
 
@@ -215,10 +215,12 @@ practical consequence is for each one. <a href="/download/">Download Scout →</
          "writing have a clear reason to block training crawlers. A business that wants to be "
          "recommended to customers generally does not — blocking the search crawlers removes "
          "you from the answers where those recommendations happen."),
-        ("Does blocking Google-Extended affect my Google rankings?",
-         "No. Google-Extended controls whether your content is used for Gemini and AI Overviews "
-         "grounding. It does not affect classic Google Search ranking, which is governed by "
-         "Googlebot."),
+        ("Does blocking Google-Extended affect my Google rankings or AI Overviews?",
+         "Neither. Google-Extended controls Gemini model training and grounding in Gemini "
+         "Apps and Vertex AI. Google documents the Googlebot directives as the control for "
+         "AI features in Search, so blocking Google-Extended leaves both AI Overviews and "
+         "classic ranking untouched. We had this wrong until August 2026 and counted it as "
+         "a citation crawler; the figures on this page have been recomputed without it."),
     ]
 
     return render(
