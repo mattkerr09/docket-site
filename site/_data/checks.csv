@@ -23,6 +23,7 @@ content.language_scope,content,Content quality,Language coverage
 content.placeholder,content,Content quality,Placeholder content
 content.readability,content,Content quality,Readability
 content.thin,content,Content quality,Thin content
+cvr.dead_contact,conversion,Conversion & landing pages,Published email addresses that cannot receive mail
 cvr.form_friction,conversion,Conversion & landing pages,Form friction
 cvr.funnel,conversion,Conversion & landing pages,Funnel coverage
 cvr.message_match,conversion,Conversion & landing pages,Title / headline consistency
@@ -79,14 +80,14 @@ perf.page_weight,performance,Speed & Core Web Vitals,Page weight
 perf.redirect_cost,performance,Speed & Core Web Vitals,Redirect latency
 perf.render_blocking,performance,Speed & Core Web Vitals,Render-blocking resources
 perf.ttfb,performance,Speed & Core Web Vitals,Server response time
+schema.incomplete,structured,Structured data,Incomplete structured data
+schema.invalid,structured,Structured data,Invalid JSON-LD
+schema.mismatch,structured,Structured data,Structured data vs visible content
+schema.missing,structured,Structured data,Missing structured data
+schema.opportunity,structured,Structured data,Rich result opportunities
 security.headers,security,Security & trust,Security headers
 security.https,security,Security & trust,HTTPS
 security.mixed_content,security,Security & trust,Mixed content
 social.favicon,social,Social & sharing,Favicon
 social.open_graph,social,Social & sharing,Open Graph tags
 social.twitter,social,Social & sharing,Twitter/X card
-schema.incomplete,structured,Structured data,Incomplete structured data
-schema.invalid,structured,Structured data,Invalid JSON-LD
-schema.mismatch,structured,Structured data,Structured data vs visible content
-schema.missing,structured,Structured data,Missing structured data
-schema.opportunity,structured,Structured data,Rich result opportunities
