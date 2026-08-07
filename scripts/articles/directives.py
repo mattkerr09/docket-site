@@ -437,11 +437,18 @@ documented replacement, or cut short by the parser into something no crawler is 
 two we can prove. "Absent from the community list" we cannot, so the product does not say
 it.</p>
 
-<p>The same principle keeps <code>cohere-ai</code> out of the check entirely, on
-{_token_sites(d, 'cohere-ai')} sites in this sample. Cohere plainly
-retired it — nobody documents it — but we could not find a current Cohere crawler page saying
-what replaced it, and telling {_token_sites(d, 'cohere-ai')} sites their rule is dead on an
-assumption is the error this check exists to catch.</p>
+<p><code>cohere-ai</code>, on {_token_sites(d, 'cohere-ai')} sites here, spent a day outside
+the check for that reason. It was obviously stale — nobody documents it — but we could not
+find a page saying what replaced it, and telling {_token_sites(d, 'cohere-ai')} sites their
+rule is dead on an assumption is the error the whole check exists to catch.</p>
+
+<p>Their own sitemap had it.
+<a href="https://docs.cohere.com/docs/cohere-web-crawlers">docs.cohere.com/docs/cohere-web-crawlers</a>
+says more than we expected: Cohere's bot table reads <strong>"N/A"</strong> — they operate no
+crawler at all — and the blocking example they publish names <code>Coherebot</code>, which is
+the token to write if they ever do. This page previously showed
+<code>cohere-training-data-crawler</code> as the replacement, which came from a table of ours
+rather than from Cohere, and is corrected above. The two tables are now one file.</p>
 
 <p>Severity follows the consequence rather than the tidiness. A dead heading above a
 <code>Disallow</code> means a restriction you wrote is not in force, and the crawler is
