@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
   "compiled": "2026-08-07",
+  "revision": 1,
   "ai_crawlers": {
     "GPTBot": {
       "owner": "OpenAI",

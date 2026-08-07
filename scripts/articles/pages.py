@@ -97,7 +97,7 @@ is gone.</p>
     return render(
         cat="download", slug="",
         title=f"Download Scout for Mac — {PRICE_STR}, paid once",
-        desc=("Scout for macOS 12+ on Apple Silicon. 18 MB, no account, no telemetry. "
+        desc=(f"Scout for macOS 12+ on Apple Silicon. {DMG_SIZE}, no account, no telemetry. "
               "Includes the CLI, which exits non-zero on a critical issue so it can gate a "
               "deploy."),
         h1="Download Scout for Mac",
