@@ -18,6 +18,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import facts as F  # noqa: E402
 from render import render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "site" / "data" / "ai-directives-2026-08.json"
@@ -190,8 +191,8 @@ backwards, and the correction is more useful than the section it replaced.</p>
 <p>RFC 9309 is exact about what a crawler name may contain. Section 2.2.1: <em>"The product
 token MUST contain only uppercase and lowercase letters ('a-z' and 'A-Z'), underscores ('_'),
 and hyphens ('-')."</em> No digits, no dots, no spaces. So we wrote a rule that flagged any
-token carrying one — which caught <code>ChatGPT-User/2.0</code>, written by 20 sites in this
-sample, and called it dead.</p>
+token carrying one — which caught <code>ChatGPT-User/2.0</code>, written by
+{F.token_sites('chatgpt-user/2.0')} sites in this sample, and called it dead.</p>
 
 <p>It is not dead. We read Google's open-source robots.txt parser rather than reasoning
 about it further, and <code>RobotsMatcher::ExtractUserAgent</code> answers the question in one
@@ -203,7 +204,8 @@ while (absl::ascii_isalpha(*end) || *end == '-' || *end == '_') ++end;</code></p
 <p>That runs against the value written in <em>your file</em>, not only against the crawler's
 own string. <code>ChatGPT-User/2.0</code> is therefore cut to <code>ChatGPT-User</code> and
 matches exactly what its author intended. Our rule would have told
-<strong>89 sites in this sample that a working configuration was broken</strong> — the same
+<strong>{F.benign_truncations()} sites in this sample that a working configuration was
+broken</strong> — the same
 error the whole page is about, made by us, one step from shipping.</p>
 
 <div class="callout">
@@ -269,11 +271,14 @@ publishers and in sites that copied a block list from one.</p>
 <h2>The asymmetry that does hold, and it is sharper</h2>
 
 <p>Blocking a citation crawler is almost never a standalone decision. {s['blocks_citation']:,}
-sites block at least one; when we look at OpenAI specifically, <strong>425 sites block
-<code>OAI-SearchBot</code> and 414 of them — 97.4% — also block <code>GPTBot</code>.</strong>
-Eleven sites in the entire top 10,000 block OpenAI's search crawler while allowing its
-training crawler. Anthropic is starker: 411 block <code>Claude-SearchBot</code> and 409 also
-block <code>ClaudeBot</code>, leaving two.</p>
+sites block at least one; when we look at OpenAI specifically,
+<strong>{F.oai_search_blocked()} sites block <code>OAI-SearchBot</code> and
+{F.oai_search_and_gptbot()} of them — {F.oai_overlap_pct()}% — also block
+<code>GPTBot</code>.</strong> {F.oai_search_only()} sites in the entire top 10,000 block
+OpenAI's search crawler while allowing its training crawler. Anthropic is starker:
+{F.claude_search_blocked()} block <code>Claude-SearchBot</code> and
+{F.claude_search_and_claudebot()} also block <code>ClaudeBot</code>, leaving
+{F.claude_search_only()}.</p>
 
 <p>Losing your place in ChatGPT's answers is, at this scale, a side effect of a training
 decision taken by about two sites in a thousand on purpose. That is the finding worth acting

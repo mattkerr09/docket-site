@@ -296,6 +296,21 @@ def build() -> Path:
         "cit_rate_no_llms": rate(no_llms, CITATION),
         "train_rate_llms": rate(llms, TRAINING),
         "train_rate_no_llms": rate(no_llms, TRAINING),
+        # Pair asymmetry, so the article stops typing these by hand.
+        "oai_search_blocked": sum(1 for h in hosts if "OAI-SearchBot" in h["blk"]),
+        "oai_search_and_gptbot": sum(1 for h in hosts if "OAI-SearchBot" in h["blk"]
+                                     and "GPTBot" in h["blk"]),
+        "claude_search_blocked": sum(1 for h in hosts if "Claude-SearchBot" in h["blk"]),
+        "claude_search_and_claudebot": sum(1 for h in hosts
+                                           if "Claude-SearchBot" in h["blk"]
+                                           and "ClaudeBot" in h["blk"]),
+        # Tokens the parser truncates to a documented name, i.e. the ones an
+        # earlier version of this check would have flagged wrongly.
+        "benign_truncations": sum(
+            1 for h in hosts
+            if any(truncate_user_agent(t).lower() != t.lower()
+                   and truncate_user_agent(t).lower() in (known | LIST_GAP)
+                   for t in h["ai"])),
         "rr_citation_llms": risk_ratio(llms, no_llms, CITATION),
         "rr_training_llms": risk_ratio(llms, no_llms, TRAINING),
     }

@@ -67,6 +67,11 @@ _BANNED_RE = [
     for phrase in BANNED
 ]
 
+#: An f-string hole that reached the page. `/how-to/fix-ai-crawler-access/`
+#: shipped a body containing `{F.index_n()}` because the string it lived in was
+#: not an f-string — the interpolation was correct, the quote mark was not, and
+#: nothing else would have noticed.
+_UNRENDERED = re.compile(r"\{[A-Za-z_][A-Za-z0-9_.\[\]'\"()]*\}")
 _HEADING = re.compile(r"<h([1-6])[^>]*>", re.I)
 _TITLE = re.compile(r"<title>(.*?)</title>", re.S | re.I)
 _DESC = re.compile(r'<meta name="description" content="(.*?)"', re.S | re.I)
@@ -113,6 +118,9 @@ def main(root: str) -> int:
             fails.append(f"TITLE  {p}: {len(title)} chars (max {MAX_TITLE})")
         if not desc or len(desc) > MAX_DESC:
             fails.append(f"DESC   {p}: {len(desc)} chars (max {MAX_DESC})")
+
+        for hole in set(_UNRENDERED.findall(text)):
+            fails.append(f"HOLE   {p}: unrendered placeholder {hole}")
 
         # A skipped heading level breaks the outline a screen reader announces
         # and the one a search engine reads. Four hub pages jumped h1 straight
@@ -163,7 +171,8 @@ def main(root: str) -> int:
 
     print(f"checked {len(pages)} pages")
     if not fails:
-        print("PASS — voice, length, headings, thin and duplicate checks clean")
+        print("PASS — voice, length, headings, placeholders, thin and "
+              "duplicate checks clean")
         return 0
     print(f"\nFAIL ({len(fails)}):")
     for f in sorted(fails):
