@@ -218,11 +218,16 @@ body.landing article{padding:0}
    static ranked list makes the same point without one.
 
    Second orphaned brace of the same kind, found by the same look. This one was
-   dropping `.hero-sec::before` — the amber glow behind the homepage hero — so
-   that effect was designed, shipped, and never once rendered. */
-.hero-sec::before{content:"";position:absolute;inset:-40% 0 auto 50%;width:900px;height:600px;
-  transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(240,128,15,.13),transparent 62%);
-  pointer-events:none}
+   dropping `.hero-sec::before` — the glow behind the homepage hero — so that
+   effect was designed, shipped, and never once rendered.
+
+   That repair then went wrong in a quieter way: it wrote a *replacement*
+   `.hero-sec::before` here instead of removing the brace that was eating the
+   original one above. Both fixes landed, so the page carried two rules for the
+   same pseudo-element and the later one won — a single centred amber ellipse,
+   where the rule at the top of this sheet asks for two pools, amber and blue.
+   The glow rendered, the brace gate passed, and the design still was not the
+   one anybody wrote. The duplicate is gone; the original is the live rule. */
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:3.2rem;
   align-items:center;position:relative}
 @media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:2.4rem}}
