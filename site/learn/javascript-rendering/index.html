@@ -394,6 +394,11 @@ useful and is not measurement.</p>
 renderer, and while the two agree on nearly everything, a bug that only appears in Blink is a
 bug Scout will not see.</p>
 
+<p>Rendering also says nothing about how much of the page Google read in the first
+place. It fetches at most 2MB of any URL and indexes that as though it were the whole file, so
+a heavy page can be truncated before the renderer is ever involved —
+<a href="/learn/googlebot-2mb-limit/">measured here</a>.</p>
+
 <p>Nor does rendering give you Core Web Vitals. LCP, INP and CLS are <em>field</em> metrics —
 they come from real users on real connections, not from one machine on a fast desk. Scout can
 pull that data from the Chrome UX Report when you turn it on, which is the same source Search
