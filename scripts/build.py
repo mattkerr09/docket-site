@@ -18,6 +18,7 @@ sys.path.insert(0, str(HERE / "articles"))
 
 from render import BASE, SITE, render  # noqa: E402
 
+import bytecap  # noqa: E402
 import comparisons  # noqa: E402
 import directives  # noqa: E402
 import entity  # noqa: E402
@@ -85,6 +86,9 @@ def build_hubs() -> list[Path]:
         "Learn",
         "Reference pages, written to be read rather than skimmed for keywords.",
         [
+            ("/learn/googlebot-2mb-limit/", "Googlebot's 2MB cutoff",
+             "It reads the first 2MB and indexes that as the whole page. We measured "
+             "well-known homepages and found five already past it."),
             ("/learn/ai-substitution/", "Which pages an AI answer replaces",
              "Ranking and not being visited. Measured on two live sites — this one at 5% "
              "fully substitutable, a delicatessen at 0% — and three ways we measured it "
@@ -306,6 +310,7 @@ Ahrefs Site Audit, each naming what the other does better.</li>
 def main() -> int:
     pages: list[Path] = [home.build(), index_page.build(), checks_page()]
     pages += comparisons.build_all()
+    pages += bytecap.build_all()
     pages += learn.build_all()
     pages += link_equity.build_all()
     pages += entity.build_all()
