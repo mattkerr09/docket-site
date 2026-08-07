@@ -31,9 +31,16 @@ import pages  # noqa: E402
 
 def hub(cat: str, title: str, desc: str, h1: str, lede: str,
         entries: list[tuple[str, str, str]]) -> Path:
-    """A section index. Entries are (href, name, one-line summary)."""
+    """A section index. Entries are (href, name, one-line summary).
+
+    Entry titles are h2, not h3. Every hub jumped h1 straight to h3, which
+    breaks the outline a screen reader announces and the one a search engine
+    reads — and it was purely visual, because the h3 carried an inline style
+    anyway. Nothing about a hub needs a level skipped.
+    """
     items = "".join(
-        f'<h3 style="margin-top:1.5rem"><a href="{href}">{name}</a></h3>'
+        f'<h2 style="margin-top:1.5rem;font-size:1.35rem">'
+        f'<a href="{href}">{name}</a></h2>'
         f"<p>{summary}</p>"
         for href, name, summary in entries
     )

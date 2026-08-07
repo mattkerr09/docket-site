@@ -85,6 +85,24 @@ RETIRED = {
 #: The crawlers that decide whether a site can appear in an AI answer, and the
 #: ones that only decide whether it becomes training data. Keeping these apart
 #: is the whole point; the survey exists because most robots.txt files do not.
+#: Mirrors `RobotsMatcher::ExtractUserAgent` in Google's open-source robots.txt
+#: parser (google/robotstxt, read 2026-08-07):
+#:
+#:     // Allowed characters in user-agent are [a-zA-Z_-].
+#:     while (absl::ascii_isalpha(*end) || *end == '-' || *end == '_') ++end;
+#:
+#: and `HandleUserAgent` applies it to the value written in the FILE, not only
+#: to the crawler's own string. So a written token is silently cut short, and
+#: the group addresses whatever survives. This one line is the difference
+#: between `ChatGPT-User/2.0` being broken and being fine — it truncates to
+#: `ChatGPT-User` and works. An earlier version of this page said otherwise.
+_TOKEN_CHARS = re.compile(r"[A-Za-z_-]*")
+
+
+def truncate_user_agent(token: str) -> str:
+    return _TOKEN_CHARS.match((token or "").strip()).group(0)
+
+
 CITATION = ("OAI-SearchBot", "PerplexityBot", "Claude-SearchBot")
 TRAINING = ("GPTBot", "ClaudeBot", "Applebot-Extended", "Bytespider",
             "meta-externalagent", "CCBot")
@@ -140,12 +158,25 @@ def build() -> Path:
     def blocked(r, bot):
         return (r.get("access") or {}).get(bot) is False
 
-    hosts, unk_c, ret_c = [], Counter(), Counter()
-    sites_ai = sites_unk = sites_ret = sites_dead = 0
+    # Every token anyone documents: the community list plus the six vendor
+    # tokens it is missing. A truncation that lands on one of these is fine.
+    documented = known | LIST_GAP
+
+    def is_truncated(tok):
+        """Provably broken: what the parser keeps is not a crawler name."""
+        kept = truncate_user_agent(tok).lower()
+        return kept != tok.lower() and kept not in documented
+
+    hosts, unk_c, ret_c, tr_c = [], Counter(), Counter(), Counter()
+    sites_ai = sites_unk = sites_ret = sites_dead = sites_tr = sites_prov = 0
     for r in ok:
         ai = ai_tokens(r)
-        unk = [t for t in ai if t not in known and t not in LIST_GAP]
         ret = [t for t in ai if t in RETIRED]
+        tr = [t for t in ai if t not in RETIRED and is_truncated(t)]
+        # Not in the community list and not provably broken. Reported as its own
+        # tier because we cannot show these do nothing — only that nobody has
+        # documented them where site owners look.
+        unk = [t for t in ai if t not in known and t not in LIST_GAP]
         if ai:
             sites_ai += 1
             if unk:
@@ -154,8 +185,14 @@ def build() -> Path:
             if ret:
                 sites_ret += 1
                 ret_c.update(ret)
+            if tr:
+                sites_tr += 1
+                tr_c.update(tr)
             if unk or ret:
                 sites_dead += 1
+            # What Scout's shipped check flags: only what we can prove.
+            if ret or tr:
+                sites_prov += 1
         hosts.append({
             "h": r["host"], "r": r["rank"], "ai": ai,
             "dead": sorted(set(unk) | set(ret)),
@@ -214,6 +251,9 @@ def build() -> Path:
         "sites_with_unmatchable": sites_unk,
         "sites_with_retired": sites_ret,
         "sites_with_dead_directive": sites_dead,
+        "sites_with_truncated": sites_tr,
+        "sites_provably_broken": sites_prov,
+        "pct_provably_broken_of_ai": round(100 * sites_prov / sites_ai, 1),
         "pct_ai_directive": round(100 * sites_ai / n, 1),
         "pct_dead_of_ai": round(100 * sites_dead / sites_ai, 1),
         "blocks_citation": len(any_cit),
@@ -278,6 +318,8 @@ def build() -> Path:
                                "replaced_by": RETIRED[t][1]}
                            for t, c in ret_c.most_common()},
         "unmatchable_tokens": dict(unk_c.most_common(60)),
+        "truncated_tokens": {t: {"count": c, "kept": truncate_user_agent(t)}
+                             for t, c in tr_c.most_common(40)},
         "hosts": hosts,
     }, separators=(",", ":")))
     return OUT

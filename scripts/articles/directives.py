@@ -54,10 +54,34 @@ _UNMATCHABLE_ROWS = [
     (("perplexity-ai",),
      "The company. The crawlers are <code>PerplexityBot</code> and "
      "<code>Perplexity-User</code>"),
-    (("chatgpt-user/2.0",),
-     "A version number inside the token, so it matches no user-agent"),
     (("claude", "chatgpt"), "Product names rather than crawler names"),
 ]
+
+#: Tokens that break on the parser rather than on the vendor's name — a
+#: character RFC 9309 does not allow in a product token, so the value is cut
+#: short and the group addresses whatever survives.
+_TRUNCATED_ROWS = [
+    ("img2dataset", "the digit stops it"),
+    ("chatgpt agent", "the space stops it"),
+    ("bigsur.ai", "the dot stops it"),
+    ("mistral.ai", "the dot stops it"),
+    ("perplexity\u2011user", "a U+2011 non-breaking hyphen stops it"),
+]
+
+
+def _truncated_table(d: dict) -> str:
+    tr = d["truncated_tokens"]
+    rows = ""
+    for tok, note in _TRUNCATED_ROWS:
+        e = tr.get(tok)
+        if not e:
+            continue
+        rows += (f"<tr><td><code>{tok}</code></td><td>{e['count']}</td>"
+                 f"<td><code>{e['kept']}</code></td><td>{note}</td></tr>")
+    return ('<div class="wrap-tbl"><table class="cmp"><thead><tr>'
+            "<th>Written</th><th>Sites</th><th>Read as</th><th>Why</th>"
+            "</tr></thead>"
+            f"<tbody>{rows}</tbody></table></div>")
 
 
 def _unmatchable_table(d: dict) -> str:
@@ -80,6 +104,11 @@ def _unmatchable_table(d: dict) -> str:
 #: we tried, survives copy-paste out of a styled document, and can never match
 #: a user-agent string.
 _NBSP_HYPHEN = "perplexity‑user"
+
+
+def _token_sites(d: dict, token: str) -> int:
+    """How many surveyed hosts name this token. Read from the host records."""
+    return sum(1 for h in d["hosts"] if token in h["ai"])
 
 
 def _nbsp_hosts(d: dict) -> list:
@@ -126,7 +155,7 @@ block them, wrote the rule, and got no rule. The file parses, the syntax is vali
 warns, and the crawler walks past the directive because the name in it does not match its
 own.</p>
 
-<h2>Two ways a directive dies</h2>
+<h2>Three ways a directive dies</h2>
 
 <p><strong>Retired.</strong> The vendor documented the token once and has since replaced it.
 The old name is inert — the crawler now identifies itself as something else, so a
@@ -147,16 +176,63 @@ this month. {d['retired_tokens']['google-notebooklm']['count']} sites in our sam
 old token, including amazon.com, pinterest.com and tiktok.com.
 <strong>Zero name the new one.</strong></p>
 
-<p><strong>Unmatchable.</strong> The token was never a crawler. Someone wrote the company
-name, the product name, a version string, or a plausible-looking guess.</p>
+<p><strong>Undocumented.</strong> The token appears on no vendor page and in no community
+list. Someone wrote the company name, the product name, or a plausible-looking guess. We
+report these separately and Scout's own check leaves them alone, because "nobody documents
+it" is weaker evidence than "the vendor replaced it" — a token could be real and simply
+undocumented where we looked.</p>
 
 {_unmatchable_table(d)}
 
-<p>Our favourite is not in the table. {len(_nbsp_hosts(d))} sites — including
-<strong>chatgpt.com itself</strong> — write <code>perplexity&#8209;user</code> with a U+2011
-non-breaking hyphen where the ASCII one belongs. It renders identically in every editor, it
-survives copy-paste out of a styled document, and it can never match a user-agent string. The
-others: {', '.join(h for h in _nbsp_hosts(d) if h != 'chatgpt.com')}.</p>
+<p><strong>Cut short by the parser.</strong> The third way is the one we nearly published
+backwards, and the correction is more useful than the section it replaced.</p>
+
+<p>RFC 9309 is exact about what a crawler name may contain. Section 2.2.1: <em>"The product
+token MUST contain only uppercase and lowercase letters ('a-z' and 'A-Z'), underscores ('_'),
+and hyphens ('-')."</em> No digits, no dots, no spaces. So we wrote a rule that flagged any
+token carrying one — which caught <code>ChatGPT-User/2.0</code>, written by 20 sites in this
+sample, and called it dead.</p>
+
+<p>It is not dead. We read Google's open-source robots.txt parser rather than reasoning
+about it further, and <code>RobotsMatcher::ExtractUserAgent</code> answers the question in one
+line:</p>
+
+<pre><code>// Allowed characters in user-agent are [a-zA-Z_-].
+while (absl::ascii_isalpha(*end) || *end == '-' || *end == '_') ++end;</code></pre>
+
+<p>That runs against the value written in <em>your file</em>, not only against the crawler's
+own string. <code>ChatGPT-User/2.0</code> is therefore cut to <code>ChatGPT-User</code> and
+matches exactly what its author intended. Our rule would have told
+<strong>89 sites in this sample that a working configuration was broken</strong> — the same
+error the whole page is about, made by us, one step from shipping.</p>
+
+<div class="callout">
+<div class="callout-title">What the correction leaves</div>
+<p>The truncation is real; the conclusion was wrong. A token is broken when the parser cuts it
+and <em>what survives is not a crawler name</em>. That is a narrower rule, it is decidable
+from two sources rather than one, and it is what Scout ships.</p>
+</div>
+
+{_truncated_table(d)}
+
+<p><code>img2dataset</code> is the one worth staring at. It is in the community
+<a href="https://github.com/ai-robots-txt/ai.robots.txt">ai.robots.txt</a> list that people
+copy their block rules from, and it cannot work as written: the digit is not a legal product
+token character, so the directive is read as <code>img</code>.
+{_token_sites(d, 'img2dataset')} sites in this sample copied it, and
+<code>bigsur.ai</code> — also on that list, also broken, this time by the dot — accounts for
+another {_token_sites(d, 'bigsur.ai')}.</p>
+
+<p>Our favourite is still {len(_nbsp_hosts(d))} sites — including
+<strong>chatgpt.com itself</strong> — writing <code>perplexity&#8209;user</code> with a U+2011
+non-breaking hyphen where the ASCII one belongs. It renders identically in every editor we
+tried and survives copy-paste out of a styled document, so the rule reads as
+<code>perplexity</code> and nobody can see why. The others:
+{', '.join(h for h in _nbsp_hosts(d) if h != 'chatgpt.com')}.</p>
+
+<p>One honest limit. Not every crawler runs Google's parser, and one doing naive substring
+matching might behave differently. That is the point rather than a caveat: a rule whose
+meaning depends on whose parser reads it is not a rule you can rely on.</p>
 
 <h2>The site that wrote the rules everyone else copies</h2>
 
@@ -315,20 +391,43 @@ directions at once.</p>
 AI tokens, which of them are dead, which crawlers it blocks, and whether it has a confirmed
 llms.txt. Recompute it and disagree.</p>
 
+<h2>The check this became</h2>
+
+<p>Scout ships this as <code>ai.dead_crawler_directive</code>, and it flags a deliberately
+smaller number than the {pct_dead}% at the top of this page.
+<strong>{s['sites_provably_broken']} sites — {s['pct_provably_broken_of_ai']}% of everyone
+writing an AI crawler rule</strong> — carry a token that is either vendor-retired with a
+documented replacement, or cut short by the parser into something no crawler is called. Those
+two we can prove. "Absent from the community list" we cannot, so the product does not say
+it.</p>
+
+<p>The same principle keeps <code>cohere-ai</code> out of the check entirely, on
+{_token_sites(d, 'cohere-ai')} sites in this sample. Cohere plainly
+retired it — nobody documents it — but we could not find a current Cohere crawler page saying
+what replaced it, and telling {_token_sites(d, 'cohere-ai')} sites their rule is dead on an
+assumption is the error this check exists to catch.</p>
+
+<p>Severity follows the consequence rather than the tidiness. A dead heading above a
+<code>Disallow</code> means a restriction you wrote is not in force, and the crawler is
+reading what you meant to withhold. A dead heading above nothing but <code>Allow</code> costs
+nothing and is reported as a note.</p>
+
 <h2>What to do with your own robots.txt</h2>
 
 <ol>
 <li>Open it and list every <code>User-agent:</code> line that mentions an AI product.</li>
 <li>Check each token against the vendor's own crawler documentation, not against a blog post
 or a copied gist. If it is not on the vendor's page, the rule does nothing.</li>
+<li>Look for anything that is not a letter, a hyphen or an underscore. A digit, a dot, a space
+or an invisible character cuts the token short at that point.</li>
 <li>Decide training and citation separately. They are different crawlers and different
 business decisions.</li>
 <li>Then test access from outside the file — fetch your own homepage with the crawler's
 user-agent and confirm the server agrees with what you wrote.</li>
 </ol>
 
-<p>Scout does steps two through four on every audit, names the dead tokens it finds, and says
-which replacement to use.</p>
+<p>Scout does steps two through five on every audit, names the dead tokens it finds, and
+prints the replacement rules to paste.</p>
 
 <p><a class="btn" href="/download/">Download Scout</a></p>
 """
