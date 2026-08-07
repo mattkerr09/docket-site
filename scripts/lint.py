@@ -58,6 +58,15 @@ BANNED = [
 # "It's not just X, it's Y" / "isn't just X — it's Y"
 NOT_JUST = re.compile(r"\b(it'?s|is|isn'?t|not)\s+just\s+\w+[,—-]\s*it'?s\b", re.I)
 
+# Substring matching fired on "track whether you are actually cited", because
+# the banned opener "whether you are a" is a prefix of "…you are actually".
+# Every entry is a phrase, so every entry gets word boundaries. A linter that
+# flags correct prose is one somebody eventually disables wholesale.
+_BANNED_RE = [
+    (phrase, re.compile(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", re.I))
+    for phrase in BANNED
+]
+
 _HEADING = re.compile(r"<h([1-6])[^>]*>", re.I)
 _TITLE = re.compile(r"<title>(.*?)</title>", re.S | re.I)
 _DESC = re.compile(r'<meta name="description" content="(.*?)"', re.S | re.I)
@@ -118,7 +127,7 @@ def main(root: str) -> int:
         words = len(text.split())
         low = text.lower()
 
-        hits = [b for b in BANNED if b in low]
+        hits = [phrase for phrase, rx in _BANNED_RE if rx.search(low)]
         if NOT_JUST.search(text):
             hits.append("not-just-X-its-Y")
         if hits:
