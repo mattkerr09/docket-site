@@ -188,7 +188,7 @@ undocumented where we looked.</p>
 <p><strong>Cut short by the parser.</strong> The third way is the one we nearly published
 backwards, and the correction is more useful than the section it replaced.</p>
 
-<p>RFC 9309 is exact about what a crawler name may contain. Section 2.2.1: <em>"The product
+<p><a href="https://www.rfc-editor.org/rfc/rfc9309">RFC 9309</a> is exact about what a crawler name may contain. Section 2.2.1: <em>"The product
 token MUST contain only uppercase and lowercase letters ('a-z' and 'A-Z'), underscores ('_'),
 and hyphens ('-')."</em> No digits, no dots, no spaces. So we wrote a rule that flagged any
 token carrying one — which caught <code>ChatGPT-User/2.0</code>, written by
@@ -398,7 +398,7 @@ two agree in direction.</p>
 
 <h2>Method, and what it cannot tell you</h2>
 
-<p>Population: the Tranco top 10,000 (list PYG5J), which is a rank-aggregated list built to be
+<p>Population: the <a href="https://tranco-list.eu/">Tranco top 10,000</a> (list PYG5J), which is a rank-aggregated list built to be
 harder to manipulate than a single provider's. One request for <code>/robots.txt</code> per
 host. A second request for <code>/llms.txt</code> only where the robots.txt we had just read
 permitted our own user-agent, plus one control request for a path that cannot exist. A
@@ -482,7 +482,7 @@ prints the replacement rules to paste.</p>
     return render(
         cat="index", slug="ai-directives",
         title=f"{pct_dead}% of AI robots.txt rules name a token no crawler uses",
-        desc=(f"We parsed {n:,} robots.txt files from the Tranco top 10,000. Of the {ai:,} "
+        desc=(f"We measured {n:,} robots.txt files from the Tranco top 10,000. Of the {ai:,} "
               f"sites writing AI crawler rules, {dead:,} name a retired or unmatchable "
               f"token."),
         h1="The AI rules in robots.txt that do nothing",

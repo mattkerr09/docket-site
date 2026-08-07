@@ -151,7 +151,8 @@ say — near-duplicate pages are the actual flag risk in a programmatic set, not
     return render(
         cat="for", slug="",
         title="Scout for agencies, local businesses and marketers",
-        desc="Which findings matter most depending on who you are — agencies, local businesses, and more.",
+        desc=("Which audit findings matter most depending on who you are — "
+              "agencies, local businesses, and more."),
         h1="Scout for your situation",
         crumb='<a href="/">Scout</a> / For you',
         body=body,
@@ -364,7 +365,8 @@ variations on a template.</p>
     return render(
         cat="how-to", slug="",
         title="How to fix common SEO problems — Scout",
-        desc="Fix guides for the specific issues Scout reports, with the exact change to make.",
+        desc=("Fix guides for the specific issues an audit reports, in the order "
+              "worth doing them, with the exact change to make."),
         h1="Fix guides",
         crumb='<a href="/">Scout</a> / Fix it',
         body=body,

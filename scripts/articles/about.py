@@ -116,8 +116,8 @@ authors do.</p>
     return render(
         cat="about", slug="",
         title="About Scout — who builds it and what it cannot do",
-        desc=(f"Scout is built by one person in the UK: a Mac SEO and copy auditor "
-              f"with {N_CHECKS} checks that runs on your own machine. What it is bad "
+        desc=(f"Scout is a Mac SEO and copy audit tool with {N_CHECKS} checks, built "
+              f"by one person in the UK and run on your own machine. What it is bad "
               f"at, and how to verify the download."),
         h1="About Scout",
         crumb='<a href="/">Scout</a> / About',
@@ -217,8 +217,8 @@ the correction gets written down where the mistake was made.</p>
     return render(
         cat="contact", slug="",
         title="Contact Scout — report a bug or a wrong finding",
-        desc=("Reach Scout through the GitHub issue tracker: bug reports, wrong "
-              "findings, feature requests — and why the address this site used "
+        desc=("Reach Scout through the GitHub issue tracker: bugs, a wrong audit "
+              "finding, feature requests — and why the address this site used "
               "to advertise could not receive mail."),
         h1="Contact",
         crumb='<a href="/">Scout</a> / Contact',

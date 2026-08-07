@@ -186,7 +186,7 @@ limit: Core Web Vitals are field measurements and need a real browser under real
 Any tool claiming to measure your LCP from a static crawl is estimating.</p>
 
 <h3>Structured data</h3>
-<p>Schema.org markup that tells a search engine what the page <em>is</em>. Most real-world
+<p><a href="https://schema.org/">Schema.org</a> markup that tells a search engine what the page <em>is</em>. Most real-world
 business schema sits inside an <code>@graph</code> array, which naive validators miss entirely
 and then report as absent.</p>
 <p>We read the homepage JSON-LD of {F.entity_n()} well-known sites: {F.entity_org()} declare
