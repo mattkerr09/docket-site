@@ -1,0 +1,62 @@
+{
+  "measured": "2026-08-07",
+  "frame": "Every element tagged shop in OpenStreetMap inside the boundaries of ten named UK cities that also carries a website tag, deduplicated to one entry per domain",
+  "cities": [
+    "Bristol",
+    "Sheffield",
+    "Leeds",
+    "Nottingham",
+    "Norwich",
+    "Brighton and Hove",
+    "Cardiff",
+    "Edinburgh",
+    "Manchester",
+    "Liverpool"
+  ],
+  "overpass_query": "[out:json][timeout:180];(area[\"name\"~\"^(Bristol|Sheffield|Leeds|Nottingham|Norwich|Brighton and Hove|Cardiff|Edinburgh|Manchester|Liverpool)$\"][\"admin_level\"~\"^(6|8)$\"];)->.a;nwr(area.a)[\"website\"][\"shop\"];out tags;",
+  "source": "OpenStreetMap, ODbL",
+  "method": "One homepage request per domain. An address counts as published only when it appears in a mailto: href. Consumer providers, RFC 2606 reserved names and websites pointing at a social or marketplace platform are excluded. A domain counts as dead only where DNS alone establishes it \u2014 no MX plus an address record on a static host that does not run SMTP, or no MX and no address record. Verdicts resting on a port-25 probe are reported separately because outbound 25 is widely blocked.",
+  "frame_size": 2551,
+  "answered": 1975,
+  "publishing_mailto": 413,
+  "accepts_mail": 405,
+  "dead_conclusive": 7,
+  "dead_probe_only": 0,
+  "undetermined": 3,
+  "duration_s": 201.0,
+  "single_location": {
+    "publishing": 388,
+    "dead": 7,
+    "accepts": 380
+  },
+  "dead_shapes": [
+    [
+      "greengrocer",
+      "publishes an MX record naming a host that does not resolve"
+    ],
+    [
+      "locksmith",
+      "the domain in the address has no MX and no address record"
+    ],
+    [
+      "mall",
+      "the domain in the address has no MX and no address record"
+    ],
+    [
+      "mobile_phone",
+      "the domain in the address has no MX and no address record"
+    ],
+    [
+      "music",
+      "the domain in the address has no MX and no address record"
+    ],
+    [
+      "printer_ink",
+      "the domain in the address has no MX and no address record"
+    ],
+    [
+      "supermarket",
+      "the domain in the address has no MX and no address record"
+    ]
+  ]
+}
