@@ -268,7 +268,7 @@ def body() -> str:
     <h3>Go on the offensive</h3>
     <p>Against a rival with years and links you cannot match, Scout finds where none of that
     helps them — crawlers they have blocked, rich results they cannot win, searches neither of
-    you answers. It reads their domain authority from Common Crawl so the size of the gap is a
+    you answers. It reads their domain authority from <a href="https://commoncrawl.org/">Common Crawl</a> so the size of the gap is a
     number, not a guess.</p></div>
   <div class="card"><div class="card-ico">{ICONS['lock']}</div>
     <h3>Nothing is uploaded</h3>

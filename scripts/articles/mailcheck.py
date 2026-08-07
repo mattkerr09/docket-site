@@ -22,7 +22,7 @@ def dead_contact() -> Path:
     body = f"""
 <p class="lede">A contact address on a domain with no MX record does not fail loudly — it
 bounces, to the sender, and you never learn anyone wrote. We checked the
-{F.mail_answered()} sites in the Tranco top {F.mail_attempted()} that answered a request, and
+{F.mail_answered()} sites in the <a href="https://tranco-list.eu/">Tranco top</a> {F.mail_attempted()} that answered a request, and
 found <strong>{F.mail_publishing()} still publish an email address at all</strong>: every one
 of them we could resolve accepts mail.</p>
 
@@ -135,9 +135,9 @@ but a working mail server on its address record is legal and fine.</p>
     return render(
         cat="learn", slug="dead-contact-address",
         title="The contact address that bounces every message",
-        desc=(f"An address on a domain with no MX record bounces silently. We checked "
-              f"{F.mail_answered()} of the Tranco top {F.mail_attempted()}: only "
-              f"{F.mail_publishing()} publish one at all."),
+        desc=(f"An address on a domain with no MX record bounces silently. We "
+              f"measured {F.mail_answered()} of the Tranco top "
+              f"{F.mail_attempted()}: only {F.mail_publishing()} publish one at all."),
         h1="The contact address that cannot receive mail",
         crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / Dead contact addresses',
         body=body,

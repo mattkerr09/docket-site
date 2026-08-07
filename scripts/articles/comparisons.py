@@ -113,7 +113,7 @@ client-ready PDF without building one.</p>
     return render(
         cat="vs", slug="screaming-frog-alternative",
         title="Scout vs Screaming Frog: which SEO crawler should you use?",
-        desc=("Screaming Frog gives you raw crawl data; Scout gives a ranked fix plan. "
+        desc=("Screaming Frog gives you raw crawl data; a Scout audit gives a ranked fix plan. "
               "Including what Screaming Frog does better — rendering at scale, custom "
               "extraction."),
         h1="Scout vs Screaming Frog",
