@@ -459,7 +459,7 @@ cutoff is losing indexation. They are not the same problem and they do not deser
 urgency.</p>
 
 <p><a class="btn" href="/download/">Download Scout</a></p>
-
+<section class="faq"><h2>Common questions</h2><div class="faq-item"><h3>How much of a page does Googlebot fetch?</h3><p>Up to 2MB of any individual URL, including the HTTP headers. PDFs get 64MB, and any crawler that sets no limit of its own defaults to 15MB. Referenced resources like CSS and images have their own separate budgets and do not count against the page that links them.</p></div><div class="faq-item"><h3>What happens to the rest of the page?</h3><p>Nothing. In Google's words the bytes past the threshold are not fetched, not rendered and not indexed, and the portion that was fetched is passed to indexing as if it were the complete file. There is no error and no Search Console report.</p></div><div class="faq-item"><h3>Is 2MB of HTML a realistic problem?</h3><p>For most sites, no — the median homepage in our sample was 468 KB. But 5 of 82 well-known sites we measured were already past it, and the 90th percentile was 1532 KB, so one in ten is closer than its owners probably think.</p></div><div class="faq-item"><h3>How do I make a page smaller?</h3><p>Move inline CSS, JavaScript and base64 images into linked files. That removes them from the page's budget completely, because every referenced resource has its own. Navigation that renders thousands of links before the content is the other common cause.</p></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
