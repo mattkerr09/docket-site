@@ -316,3 +316,58 @@ def size_over_list(limit: int = 5) -> list:
     return [{"host": r["host"], "mb": round(r["bytes"] / 1024 / 1024, 1),
              "critical_kb": round(r["last_critical"] / 1024)}
             for r in page_size()["results"] if r["bytes"] > cap][:limit]
+
+
+# -- can a published contact address receive anything? -----------------------
+#
+# Written after scoutseo.app spent weeks advertising an address on a domain
+# with no MX record. The survey exists because the obvious follow-up question —
+# is that unusual? — had no published answer, and guessing was not available.
+
+
+@lru_cache(maxsize=None)
+def mail() -> dict:
+    return json.loads((ROOT / "site" / "_data" / "mail-2026-08.json").read_text())
+
+
+def mail_attempted() -> int:
+    return mail()["attempted"]
+
+
+def mail_answered() -> int:
+    return mail()["answered"]
+
+
+def mail_publishing() -> int:
+    return mail()["publishing_mailto"]
+
+
+def mail_publishing_pct() -> float:
+    return round(100 * mail_publishing() / mail_answered(), 1)
+
+
+def mail_accepts() -> int:
+    return mail()["accepts_mail"]
+
+
+def mail_dead() -> int:
+    return mail()["dead_conclusive"]
+
+
+def mail_undetermined() -> int:
+    return mail()["undetermined"]
+
+
+def mail_upper_bound_pct() -> float:
+    """95% upper bound on the dead rate, from a zero count.
+
+    The rule of three: with no events in n trials the 95% confidence interval
+    runs from 0 to about 3/n. Quoted instead of "0%" because zero out of 80 is
+    not evidence that the true rate is zero, and saying so is the difference
+    between a measurement and a claim.
+    """
+    return round(300.0 / mail_publishing(), 1)
+
+
+def mail_measured() -> str:
+    return mail()["measured"]

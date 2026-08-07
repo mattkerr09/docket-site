@@ -29,11 +29,12 @@ import home  # noqa: E402
 import index_page  # noqa: E402
 import learn  # noqa: E402
 import link_equity  # noqa: E402
+import mailcheck  # noqa: E402
 import pages  # noqa: E402
 
 
 def hub(cat: str, title: str, desc: str, h1: str, lede: str,
-        entries: list[tuple[str, str, str]]) -> Path:
+        entries: list[tuple[str, str, str]], intro: str = "") -> Path:
     """A section index. Entries are (href, name, one-line summary).
 
     Entry titles are h2, not h3. Every hub jumped h1 straight to h3, which
@@ -51,7 +52,11 @@ def hub(cat: str, title: str, desc: str, h1: str, lede: str,
         cat=cat, slug="",
         title=title, desc=desc, h1=h1,
         crumb=f'<a href="/">Scout</a> / {h1}',
-        body=f'<p class="lede">{lede}</p>{items}',
+        # `intro` is the hub's own argument, between the lede and the list.
+        # A hub that only lists its children is a page Google has no reason to
+        # rank and a reader has no reason to stay on — Scout flagged all three
+        # of ours as thin, correctly.
+        body=f'<p class="lede">{lede}</p>{intro}{items}',
         schema_type="CollectionPage",
     )
 
@@ -78,6 +83,37 @@ def build_hubs() -> list[Path]:
              "Ahrefs has a web-scale index and Scout never will. What you get for $129 a month "
              "if the audit is the part you use."),
         ],
+        intro="""
+<h2>The three kinds of tool, and which question each answers</h2>
+
+<p>Most comparisons between SEO tools are unhelpful because they compare things built to
+answer different questions. There are broadly three:</p>
+
+<ul>
+<li><strong>Crawlers</strong> — Screaming Frog, Sitebulb. You point them at a site and they
+return everything, at scale, sortable. The question they answer is "what is on my site". They
+are very good at it and Scout does not attempt that scale.</li>
+<li><strong>Platforms</strong> — Ahrefs, Semrush. A web-scale index of links and keywords,
+with a site audit attached. The question is "where do I stand against everyone else", and
+nothing on a desktop can answer it, because the answer requires having crawled the web.</li>
+<li><strong>Auditors</strong> — where Scout sits. The question is "what should I change, in
+what order", which is a judgement rather than a dataset, and it is the one that needs no
+subscription because the data it needs is your own site.</li>
+</ul>
+
+<p>The practical consequence: if you already pay for a platform, Scout does not replace it.
+It replaces the part of it you open once a month and then export to a spreadsheet.</p>
+
+<h2>When not to use Scout</h2>
+
+<p>If you need keyword positions or a backlink profile, none of these pages will help — Scout
+has neither and is not building either. If your crawl is hundreds of thousands of URLs, use a
+crawler built for it. If you are not on a Mac, Scout will not run at all.</p>
+
+<p>Each comparison below names at least one thing the other tool does better. That is not
+modesty; a comparison page that concedes nothing tells you only that its author wanted your
+money.</p>
+""",
     ))
     out.append(hub(
         "learn",
@@ -90,6 +126,9 @@ def build_hubs() -> list[Path]:
             ("/learn/googlebot-2mb-limit/", "Googlebot's 2MB cutoff",
              "It reads the first 2MB and indexes that as the whole page. We measured "
              "well-known homepages and found five already past it."),
+            ("/learn/dead-contact-address/", "The contact address that cannot receive mail",
+             "An address on a domain with no MX record bounces to the sender and never "
+             "reaches you, and no tool asks whether yours works."),
             ("/learn/ai-substitution/", "Which pages an AI answer replaces",
              "Ranking and not being visited. Measured on two live sites — this one at 5% "
              "fully substitutable, a delicatessen at 0% — and three ways we measured it "
@@ -162,18 +201,19 @@ often a cookie notice.</li>
 <li><strong>Severity</strong>, where critical is reserved for things that stop the page
 ranking at all. If everything is critical, nothing is, so the bar is deliberately high.</li>
 <li><strong>Effort</strong>, from minutes to a project. Combined with impact, this is what
-produces the ordering — a trivial fix worth 8 outranks a large fix worth 9.</li>
+produces the ordering — a trivial fix on an important page outranks a large fix on
+a marginal one.</li>
 <li><strong>The change itself</strong>, as markup you can copy. For structured data that means
 a complete, valid JSON-LD block with your own business details already in the right fields.</li>
 </ul>
-<p>Findings are also capped in reach. An issue affecting 5,000 pages does not automatically
+<p>Findings are also capped in reach. An issue affecting every page of a large site does not automatically
 outrank one affecting the homepage, because reach is compressed logarithmically — without
 that, one trivial nit on a large site drowns out everything that matters.</p>
 
 <h2>What is deliberately not here</h2>
 <p>Per-page backlinks and anchor text. Domain authority and the list of referring domains
 come from Common Crawl's hyperlink graph, but which individual page links to you, and with
-what anchor text, lives in 14&nbsp;TiB of archive files. Search volumes. Scout finds the
+what anchor text, lives in archive files far too large to fetch from a laptop. Search volumes. Scout finds the
 queries people actually type, from Google's public autocomplete, and refuses to print a
 monthly volume it does not have. Each is a real limitation and each is stated in the report
 rather than papered over.</p>
@@ -320,6 +360,7 @@ def main() -> int:
     pages += substitution.build_all()
     pages += __import__('pages').build_all()
     pages += about.build_all()
+    pages += mailcheck.build_all()
     pages += build_hubs()
 
     # NOT appended to `pages`: the sitemap is derived from that list, and

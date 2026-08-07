@@ -44,6 +44,7 @@ ALLOWED = {
     "9309": "RFC 9309, the robots.txt standard",
     "2.2.1": "RFC 9309 section number",
     "5321": "RFC 5321, the SMTP standard — cited for the implicit-MX fallback",
+    "2606": "RFC 2606, which reserves .example/.invalid/.test",
     "5.1": "RFC 5321 section number",
     "25": "TCP port 25, where SMTP is not answering on our address record",
     "0.85": "PageRank damping factor from the original paper",
@@ -160,7 +161,11 @@ def _literals(path: Path) -> Iterator[Tuple[int, str, str]]:
 
 def main() -> int:
     problems: List[str] = []
-    for path in sorted(ARTICLES.glob("*.py")):
+    # build.py carries the hub entry summaries, which are article prose on a
+    # published page and were not being scanned. "Tranco top 1,500" was typed
+    # into one and sailed through, which is the exact bug this file exists for.
+    scanned = sorted(ARTICLES.glob("*.py")) + [ARTICLES.parent / "build.py"]
+    for path in scanned:
         for line_no, number, context in _literals(path):
             problems.append(
                 f"  {path.name}:{line_no}  {number!r}\n      {context}")
