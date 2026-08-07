@@ -22,11 +22,12 @@ them and losing the visit, because the answer now appears in the result — so t
 worth asking about a page is not how it ranks but whether an answer somewhere else delivers
 what it offers.</p>
 
-<p>Scout puts a number on that. Run against <strong>scoutseo.app</strong> it assessed 19
-pages and found <strong>5.3% fully substitutable</strong>, and the single most substitutable
-page on the site is our own explainer titled "What is an SEO audit?" — 0.85 out of 1. Run
-against <strong>zingermansdeli.com</strong>, a delicatessen in Ann Arbor, it assessed 33
-pages and found <strong>0%</strong>, because 31 of them let the visitor do something.</p>
+<p>Scout puts a number on that. Run against <strong>zingermansdeli.com</strong>, a
+delicatessen in Ann Arbor, it assessed 33 pages and found <strong>0% fully
+substitutable</strong>, because 32 of them let the visitor do something and 31 carry something
+to operate. Run against <strong>scoutseo.app</strong> it assessed 19 pages and found 0% too —
+but the worst page on this site scored 0.85 out of 1 a few hours before this was written, and
+what changed was mostly the measurement rather than the page.</p>
 
 <h2>The two questions</h2>
 
@@ -94,9 +95,30 @@ list — accurate, and useless. A privacy policy's reason to exist is not that p
 Legal and utility pages are now left out of the portfolio, which is why the figure above is
 5.3% of 19 pages rather than 5% of 20.</p>
 
-<p>Two of those three made a site look safer than it was, which is the failure mode that
-matters here. We are writing them down because a page arguing that you should measure this
-should say what measuring it badly looks like.</p>
+<p>Then three more, all the same shape. This article scored as having a login and a
+calculator, because it contains a table explaining that logins and calculators are defences.
+And the SEO-audit explainer scored as having <em>no</em> data of its own while reporting that
+we read the JSON-LD of 85 sites — the verb list did not include "we read".</p>
+
+<p>Two others came from the opposite direction. "Download" was not counted as a transaction
+while "sign up" was, which is an inconsistency rather than a principle. Fixing it then made
+this site 100% defended on the strength of one button in the header, so calls to action whose
+text appears on every page are treated as navigation now.</p>
+
+<p>Most of those made a site look safer than it was, which is the failure mode that matters
+here. We are writing them down because a page arguing that you should measure this should say
+what measuring it badly looks like — and because the scores on this page moved while it was
+being written, which a reader deserves to know.</p>
+
+<div class="callout">
+<div class="callout-title">The weakest of the six, stated plainly</div>
+<p>Scout cannot tell a button in your site header from one that is a page's whole purpose. It
+drops calls to action whose exact text repeats on every page, which catches a plain
+"Download" in the navigation — and not four spellings of the same closing button. Tightening
+it further means guessing at page structure, and tuning a scorer against your own site is how
+a measurement quietly becomes the answer you wanted. Read the transaction count as "pages that
+ask for an action", not "pages whose reason to exist is that action".</p>
+</div>
 
 <h2>Where another tool is better</h2>
 
@@ -148,7 +170,8 @@ is not.</p>
         cat="learn", slug="ai-substitution",
         title="Which of your pages can an AI answer replace?",
         desc=("The AI risk is keeping your rankings and losing the visit. Measured: "
-              "scoutseo.app 5.3% substitutable, a delicatessen 0%. What defends a page."),
+              "A delicatessen scored 0% substitutable. What defends a page against "
+              "an answer, and six ways we measured it wrong first."),
         h1="Which of your pages an AI answer replaces",
         crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / AI substitution',
         body=body,
