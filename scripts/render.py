@@ -184,6 +184,43 @@ footer{border-top:1px solid var(--border);padding:2.6rem 0 3rem;margin-top:3rem;
    body.landing, so the article template is untouched. */
 body.landing article{padding:0}
 .hero-sec{padding:3.2rem 0 4.5rem;position:relative;overflow:hidden}
+/* Ambient light. A flat dark page reads as unlit; two soft pools give the
+   canvas depth without anything on it looking decorated. */
+.hero-sec::before{content:"";position:absolute;inset:-40% -10% auto -10%;height:120%;
+  background:radial-gradient(58% 46% at 22% 30%,rgba(240,128,15,.13),transparent 68%),
+             radial-gradient(46% 40% at 82% 18%,rgba(88,132,255,.10),transparent 70%);
+  pointer-events:none;z-index:0}
+.hero-grid{position:relative;z-index:1}
+
+/* The product sits on light rather than beside it. */
+.mock{position:relative;transform:perspective(1600px) rotateY(-3.5deg) rotateX(1.5deg);
+  transform-origin:left center;
+  box-shadow:0 2px 0 rgba(255,255,255,.06) inset,
+             0 40px 90px -30px rgba(0,0,0,.9),
+             0 0 120px -40px rgba(240,128,15,.30);
+  transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.mock:hover{transform:perspective(1600px) rotateY(-1.5deg) rotateX(.5deg)}
+@media(max-width:940px){.mock{transform:none}.mock:hover{transform:none}}
+
+/* ---- the signature: a list becoming an order ------------------------------
+   Scout's whole claim is that it ranks. Saying so is weaker than showing it, so
+   the rows arrive unordered and settle into sequence as the section enters. One
+   move, once, on the one idea the product is actually about. */
+.rank-demo{display:grid;gap:.6rem;margin:2rem 0 0}
+.rank-row{display:flex;align-items:center;gap:.9rem;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:11px;padding:.85rem 1.05rem;
+  font-size:.95rem;color:var(--text-mid)}
+.rank-row .n{flex:none;width:26px;height:26px;border-radius:8px;display:grid;
+  place-items:center;font-family:var(--mono);font-size:.78rem;font-weight:600;
+  background:rgba(255,255,255,.06);color:var(--text-dim)}
+.rank-row.hot .n{background:var(--amber);color:#17181C}
+.rank-row.hot{color:var(--text);border-color:rgba(240,128,15,.34)}
+/* No entrance animation here. It was built, and IntersectionObserver turned out
+   not to fire at all in the webview used to verify it — so the effect could not
+   be confirmed working, only confirmed shipped. A motion effect that cannot be
+   verified is a liability on a page whose whole argument is rigour, and a
+   static ranked list makes the same point without one. */
+}
 .hero-sec::before{content:"";position:absolute;inset:-40% 0 auto 50%;width:900px;height:600px;
   transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(240,128,15,.13),transparent 62%);
   pointer-events:none}
@@ -307,6 +344,8 @@ addEventListener('DOMContentLoaded',function(){
     });
   },{rootMargin:'0px 0px -12% 0px'});
   els.forEach(function(e){io.observe(e)});
+
+  // The ranking demo settles once, when it is properly in view.
 });
 </script>"""
 
