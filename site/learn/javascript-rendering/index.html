@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>sameAs: the entity signal 52% of major sites skip</title>
-<meta name="description" content="sameAs tells search engines and language models that your site, your LinkedIn and your Wikipedia entry are one organisation. We measured 85 major sites: 48% declare it. What it does and how to add it.">
+<title>JavaScript rendering: auditing what a browser actually sees</title>
+<meta name="description" content="A crawler that does not run JavaScript sees what your server sent — often an empty shell. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes, and what it still cannot tell you.">
 <meta name="theme-color" content="#0b0c0f">
-<link rel="canonical" href="https://scoutseo.app/learn/sameas-entity-signals/">
+<link rel="canonical" href="https://scoutseo.app/learn/javascript-rendering/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sameAs, and why half the web skips it">
-<meta property="og:description" content="sameAs tells search engines and language models that your site, your LinkedIn and your Wikipedia entry are one organisation. We measured 85 major sites: 48% declare it. What it does and how to add it.">
-<meta property="og:url" content="https://scoutseo.app/learn/sameas-entity-signals/">
+<meta property="og:title" content="Auditing what a browser actually sees">
+<meta property="og:description" content="A crawler that does not run JavaScript sees what your server sent — often an empty shell. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes, and what it still cannot tell you.">
+<meta property="og:url" content="https://scoutseo.app/learn/javascript-rendering/">
 <meta property="og:site_name" content="Scout">
 <meta property="og:image" content="https://scoutseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="sameAs, and why half the web skips it">
-<meta name="twitter:description" content="sameAs tells search engines and language models that your site, your LinkedIn and your Wikipedia entry are one organisation. We measured 85 major sites: 48% declare it. What it does and how to add it.">
+<meta name="twitter:title" content="Auditing what a browser actually sees">
+<meta name="twitter:description" content="A crawler that does not run JavaScript sees what your server sent — often an empty shell. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes, and what it still cannot tell you.">
 <meta name="twitter:image" content="https://scoutseo.app/og.png">
 <style>
 :root{
@@ -216,8 +216,8 @@ body.landing article{padding:0}
 .faq-item p{font-size:.93rem;margin:0}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 86 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"86 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"sameAs, and why half the web skips it","description":"sameAs tells search engines and language models that your site, your LinkedIn and your Wikipedia entry are one organisation. We measured 85 major sites: 48% declare it. What it does and how to add it.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/sameas-entity-signals/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does sameAs do in schema.org?","acceptedAnswer":{"@type":"Answer","text":"It lists other URLs that represent the same entity — your LinkedIn page, your Wikipedia article, your Google Business Profile. It lets a search engine or language model confirm that those accounts and your website are one organisation rather than several unrelated ones."}},{"@type":"Question","name":"Where should sameAs go?","acceptedAnswer":{"@type":"Answer","text":"On the homepage, inside your Organization node. The homepage is what resolves a site's primary entity, so markup on an About page alone is largely wasted."}},{"@type":"Question","name":"Should I list news articles about my company in sameAs?","acceptedAnswer":{"@type":"Answer","text":"No. sameAs means 'this is also me'. An article about you is not you — that is subjectOf. Padding the array with press mentions weakens the signal."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Auditing what a browser actually sees","description":"A crawler that does not run JavaScript sees what your server sent — often an empty shell. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes, and what it still cannot tell you.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/javascript-rendering/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do search engines run JavaScript?","acceptedAnswer":{"@type":"Answer","text":"Google does, on a second pass that can lag the first crawl by days. Most AI crawlers do not render at all, so a client-rendered page is blank to the crawlers behind ChatGPT and Perplexity."}},{"@type":"Question","name":"Does Scout bundle a browser?","acceptedAnswer":{"@type":"Answer","text":"No. macOS ships WebKit as a system framework, so rendering is a 112 KB helper built against it. The download is 17 MB and nothing is fetched at install."}},{"@type":"Question","name":"Why is rendering off by default?","acceptedAnswer":{"@type":"Answer","text":"It executes the page's JavaScript, so analytics fire and ad pixels load — requests to servers you did not intend to contact by asking for an audit. It is also ten to thirty times slower than fetching."}},{"@type":"Question","name":"Can rendering measure Core Web Vitals?","acceptedAnswer":{"@type":"Answer","text":"No, and nothing that runs on one machine can. LCP, INP and CLS are field metrics from real users on real connections. Scout reads them from the Chrome UX Report, the same source Search Console uses."}}]}</script>
 </head>
 <body>
 <nav><div class="wrap-wide nav-inner">
@@ -231,115 +231,90 @@ body.landing article{padding:0}
 </div>
 <a class="btn" href="/download/">Download</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Scout</a> / <a href="/learn/">Learn</a> / sameAs and entities</div><h1>sameAs, and why half the web skips it</h1>
+<article><div class="wrap"><div class="crumb"><a href="/">Scout</a> / <a href="/learn/">Learn</a> / JavaScript rendering</div><h1>Auditing what a browser actually sees</h1>
 
-<p class="lede"><code>sameAs</code> is the schema.org property that tells a search engine or
-a language model that this website, that LinkedIn page and that Wikipedia entry are all the
-same organisation. It is the cheapest entity signal available — a list of URLs you already
-own — and <strong>52% of the 85 major sites we measured do not have
-it.</strong></p>
+<p class="lede">A crawler that does not run JavaScript sees the HTML your server sent, which
+on a modern site is often an empty shell. We fetched notion.so twice: the served HTML
+contained <strong>0 characters of text and 0 links</strong>, and the same page rendered in a
+browser contained <strong>2,068 characters and 106 links</strong>.</p>
 
-<p>We fetched the homepage of every site in the Scout Index on 2026-08-06, pulled out
-the JSON-LD, and looked for two things: an Organization-family type, and a
-<code>sameAs</code> property. 50 sites (59%) declare an organisation.
-Only 41 (48%) declare <code>sameAs</code>.</p>
+<p>Everything an audit would say about that page from the static fetch is wrong. Thin
+content, no internal links, no structured data — all artefacts of not running the code.</p>
 
-<p>The gap between those numbers is the interesting part. 9 sites —
-18% of everyone who bothered with Organization schema at all — went to
-the trouble of describing themselves as an organisation and then omitted the one property
-that connects that description to anything else.</p>
+<h2>Who renders and who does not</h2>
 
-<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Category</th><th>Declaring <code>sameAs</code></th><th>Share</th></tr></thead><tbody><tr><td>SEO tools</td><td>7 / 10</td><td>70%</td></tr><tr><td>News &amp; media</td><td>9 / 14</td><td>64%</td></tr><tr><td>SaaS</td><td>12 / 20</td><td>60%</td></tr><tr><td>Local business</td><td>5 / 11</td><td>46%</td></tr><tr><td>Ecommerce</td><td>5 / 14</td><td>36%</td></tr><tr><td>Nonprofit</td><td>1 / 7</td><td>14%</td></tr><tr><td>Reference</td><td>2 / 9</td><td>22%</td></tr></tbody></table></div>
+<p>Google renders JavaScript, on a second pass that can lag the first by days. That delay is
+the whole problem: new pages are discovered late, and internal link signal arrives late or
+not at all.</p>
 
-<h2>What the property actually does</h2>
+<p>Most AI crawlers do not render at any point. To the crawlers behind ChatGPT and Perplexity,
+a client-rendered page is blank. If being cited in AI answers matters to you, server-side
+rendering is not an optimisation, it is the entry fee. We measured
+<a href="/index/">who is blocked from where</a> separately.</p>
 
-<p>A search engine reading your homepage knows a company exists at your domain. It does not
-know whether that company is the one with 40,000 LinkedIn followers, the one in a Wikipedia
-article, or the one with a Google Business Profile two miles away. Those are four separate
-entities until something joins them.</p>
+<h2>How Scout does it</h2>
 
-<p><code>sameAs</code> is that something. It is an array of URLs that are you, elsewhere:</p>
+<p>macOS ships a browser engine. WebKit is a system framework, so Scout renders through a
+112 KB helper built against it rather than bundling a browser — the download is still 17 MB,
+and nothing is fetched at install time. The audit engine stays what it was: dependency-free
+Python that never needed a browser to do most of its job.</p>
 
-<pre><code>{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Acme Roofing",
-  "url": "https://acmeroofing.com",
-  "sameAs": [
-    "https://www.linkedin.com/company/acme-roofing",
-    "https://www.facebook.com/acmeroofing",
-    "https://en.wikipedia.org/wiki/Acme_Roofing"
-  ]
-}</code></pre>
+<p>Rendering is <strong>off by default</strong>, for two reasons worth stating plainly.
+It executes the page's JavaScript, so analytics fire and advertising pixels load — requests
+to servers you did not intend to contact when you asked for an audit. And it is roughly ten
+to thirty times slower than fetching. Both are decisions for you to make rather than
+surprises to discover.</p>
 
-<p>Two things follow. Knowledge panels get their social links from resolved entity data, and
-a language model asked to name a supplier is more likely to reach a business it can pin to a
-real organisation than one that is only a domain.</p>
+<h2>What it unlocked</h2>
 
-<h2>Why the reference category is at the bottom</h2>
+<h3>Pages that only exist after hydration</h3>
+<p>The notion.so case. Scout now compares the served HTML against the rendered DOM and
+reports the difference as a measurement rather than a suspicion — 0 characters versus 2,068
+is a fact you can take to whoever owns the front end.</p>
 
-<p>Reference sites came last at 22%,
-which looks wrong until you think about who they are. Wikipedia and its peers <em>are</em>
-the entity graph — they are what everyone else's <code>sameAs</code> points at. They have
-less to gain by pointing outward.</p>
+<h3>What your tag manager actually loaded</h3>
+<p>GTM injects tags at runtime, so a static fetch sees the container and nothing else. Scout
+used to say "GTM is present, so your analytics may be configured inside it" and stop. Rendering
+notion.so surfaced <strong>54 scripts that were not in the served HTML</strong>, among them
+Marketo, the LinkedIn Insight Tag and the X advertising pixel.</p>
+<p>That matters beyond curiosity. Tags you cannot enumerate are tags nobody is auditing, and
+every one of them is a third party receiving your visitors' data.</p>
 
-<p>SEO tools came top at 70%, which
-is the least surprising number in the table and worth stating anyway: the people who sell
-advice about this take it.</p>
+<h3>Timings from a browser rather than from markup</h3>
+<p>First Contentful Paint and DOM Content Loaded now come from the browser's own performance
+API. Scout previously inferred layout-shift and paint risk from markup patterns, which is
+useful and is not measurement.</p>
 
-<h2>Getting it wrong</h2>
+<h2>Where this stops, and where another tool is better</h2>
 
-<p>Three failure modes, in rough order of frequency.</p>
+<p>Rendering in WebKit is not rendering in Chrome. Google evaluates your site in a Chromium
+renderer, and while the two agree on nearly everything, a bug that only appears in Blink is a
+bug Scout will not see.</p>
 
-<p><strong>Linking profiles in the footer and never declaring them.</strong> The commonest by
-far. The site links Facebook and Instagram from every page, and the schema mentions neither,
-so the evidence is sitting there unused. Scout reports this specifically because the fix is
-copying URLs you already have into an array.</p>
+<p>Nor does rendering give you Core Web Vitals. LCP, INP and CLS are <em>field</em> metrics —
+they come from real users on real connections, not from one machine on a fast desk. Scout can
+pull that data from the Chrome UX Report when you turn it on, which is the same source Search
+Console uses. Any tool presenting a single synthetic run as "your Core Web Vitals" is
+misrepresenting what the number is.</p>
 
-<p><strong>Listing pages you do not control.</strong> <code>sameAs</code> means "this is also
-me". A news article about you is not you; that is <code>subjectOf</code>. Padding the array
-with press mentions weakens the signal rather than strengthening it.</p>
+<p>And if you want to crawl a large site with rendering at volume, <a
+href="/vs/screaming-frog-alternative/">Screaming Frog</a> has been doing it for years with
+configurable wait strategies, JavaScript error capture and a rendered-versus-raw diff view
+built for exactly this. Scout renders a sample — the shallowest pages, ten by default —
+because that answers "is this site client-rendered and what is it costing me" without turning
+a five-minute audit into an hour.</p>
 
-<p><strong>Burying it where nothing looks.</strong> Entity markup belongs on the homepage,
-which is what resolves the site's primary entity. Our measurement only read homepages for
-exactly this reason — a site declaring <code>sameAs</code> on an About page and nowhere else
-counts as absent here, and that is also roughly how it looks to something trying to work out
-who owns the domain.</p>
+<h2>Trying it</h2>
 
-<h2>The other half of the problem</h2>
+<p>In the app, turn on rendering before you audit. From the command line:</p>
 
-<p>Machines also learn your name from your title tags, your <code>og:site_name</code> and your
-logo's alt text. When those disagree — and they disagree more often than anyone expects,
-usually because a tagline crept into one of them — a knowledge panel, a shared link preview
-and an AI citation can each show a different name for the same company. <code>sameAs</code>
-connects your entity to the world; consistent naming is what makes the entity coherent in the
-first place. Scout checks both.</p>
+<pre><code>scout audit https://example.com --render 10</code></pre>
 
-<h2>Where another tool is better</h2>
+<p>The report says how many pages were rendered, which ones needed it, and what the tag
+manager loaded. If the helper is missing it says that too, rather than quietly falling back
+to a static crawl and letting you believe otherwise.</p>
 
-<p>For validating that one page's markup parses and is eligible for rich results, use
-Google's own Rich Results Test. It is authoritative in a way no third-party tool can be,
-because it is the parser that actually decides. Scout tells you which pages across a whole
-site are missing the markup and what it costs you; it does not adjudicate eligibility, and
-anything claiming to is guessing at someone else's parser.</p>
-
-<p>For finding <em>which</em> external profiles and mentions exist to point at in the first
-place, <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs</a> has a web-scale index and
-Scout does not. That is a genuine difference in kind, not a feature gap we intend to close.</p>
-
-<h2>Checking yours</h2>
-
-<ol>
-<li>Open your homepage source and search for <code>sameAs</code>. Absent is the common case.</li>
-<li>List every official profile you actually control.</li>
-<li>Put them in the array, on the homepage, inside your Organization node.</li>
-</ol>
-
-<p>It takes about ten minutes and it is the highest ratio of entity signal to effort available
-to a small site. <a href="/data/entity-2026-08.json">The dataset behind this page</a> lists
-every site measured, so you can check our arithmetic.</p>
-
-<p><a class="btn" href="/#download">Download Scout</a></p>
+<p><a class="btn" href="https://github.com/mattkerr09/scout-site/releases/download/v0.1.0/Scout-0.1.0-arm64.dmg">Download Scout for Mac</a></p>
 
 </div></article>
 <footer><div class="wrap-wide">

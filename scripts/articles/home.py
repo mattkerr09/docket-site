@@ -22,7 +22,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import N_CHECKS, N_LANES, render  # noqa: E402
+from render import DMG, DMG_SIZE, N_CHECKS, N_LANES, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
@@ -167,7 +167,7 @@ def body() -> str:
   campaign tracking — and hands you one ranked plan with the exact markup to paste. It is not
   four tools. One download, and nothing leaves your machine.</p>
   <div class="hero-cta">
-    <a class="btn btn-lg" href="/download/">Download for Mac</a>
+    <a class="btn btn-lg" href="{DMG}">Download for Mac</a>
     <a class="btn-ghost btn-lg" href="/index/">See the Index →</a>
   </div>
   <p class="hero-note">macOS 12+ · Apple Silicon · ~16&nbsp;MB · no account, no subscription</p>
@@ -308,21 +308,19 @@ comparisons →</a></p>
 <p>Because finding out later is worse, and a tool that claims everything is worth less than
 one that draws a line.</p></div>
 <div class="grid-3">
-  <div class="card"><h3>Core Web Vitals</h3><p>Not measured directly — that needs a real
-  browser. Scout finds the markup and server patterns that cause them and tells you to confirm
-  in Search Console.</p></div>
-  <div class="card"><h3>JavaScript rendering</h3><p>Scout reads HTML as delivered. It reports
-  which pages depend on JavaScript rather than executing it. Screaming Frog and Sitebulb do
-  render.</p></div>
   <div class="card"><h3>Keywords and backlinks</h3><p>That needs a crawled index of the web —
-  bought, not built. Use Ahrefs or Semrush for research.</p></div>
-  <div class="card"><h3>Inside a tag manager</h3><p>GTM injects tags at runtime. Where GTM is
-  present Scout says so instead of reporting that your analytics is missing.</p></div>
+  bought, not built. Use Ahrefs or Semrush for research; they are the right tool and we are
+  not going to pretend otherwise.</p></div>
   <div class="card"><h3>Non-English copy checks</h3><p>Copy-quality checks are English-only.
-  On other languages they stand down and the report says so.</p></div>
-  <div class="card"><h3>Windows and Intel</h3><p>Apple Silicon, macOS 12 or later. There is no
-  other build.</p></div>
+  On other languages they stand down and the report says which ones did. Everything
+  technical works in any language.</p></div>
+  <div class="card"><h3>Windows and Intel</h3><p>Apple Silicon, macOS 12 or later. There is
+  no other build.</p></div>
 </div>
+<p style="text-align:center;margin-top:1.5rem;font-size:.95rem;color:var(--text-dim)">
+Three things that used to be on this list are not any more —
+<a href="/learn/javascript-rendering/">JavaScript rendering, tag manager contents and
+browser-measured timings</a>.</p>
 </div></section>
 
 <!-- ================= FAQ ================= -->
@@ -350,7 +348,7 @@ on your site and how it is configured.</p></div>
 <section class="cta-band"><div class="wrap">
 <h2>Audit your site in about a minute</h2>
 <p>Download it, type a domain, press Run. There is no onboarding because none is needed.</p>
-<a class="btn btn-lg" href="/download/">Download Scout for Mac</a>
+<a class="btn btn-lg" href="{DMG}">Download Scout for Mac</a>
 </div></section>
 """
 
