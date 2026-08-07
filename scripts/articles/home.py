@@ -177,13 +177,14 @@ def body() -> str:
 <!-- ================= THE DIFFERENCE ================= -->
 <section class="sec"><div class="wrap-wide">
 <div class="sec-head">
-  <h2>Every other tool hands you a list.<br><em>This one hands you an order.</em></h2>
+  <h2>Most tools hand you a list.<br><em>This one hands you an order.</em></h2>
   <p>Semrush publishes 140+ checkpoints. Ahrefs lists 170+. Neither tells you what to do
-  first — and ordering is the hard part.</p>
+  first — and ordering is the hard part. <a href="/vs/sitebulb-alternative/">Sitebulb</a> is
+  the exception worth naming: it prioritises too.</p>
 </div>
 <div class="split">
   <div class="split-col">
-    <div class="split-tag">What every other tool gives you</div>
+    <div class="split-tag">What a crawler gives you</div>
     <ul class="split-list">
       <li><span class="n">—</span> 412 pages have a short title</li>
       <li><span class="n">—</span> 38 pages missing meta description</li>

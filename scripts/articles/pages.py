@@ -12,7 +12,25 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import DMG, DMG_SIZE, N_CHECKS, PRICE_STR, RELEASE, render  # noqa: E402
+from render import (  # noqa: E402
+    COMPETITORS, DMG, DMG_SIZE, N_CHECKS, PRICE_STR, RELEASE, render,
+)
+
+
+#: Slugs in the order a buyer meets them, cheapest first. Built from the same
+#: competitors.csv the comparison pages use, so a price correction there moves
+#: this table too.
+_COST_SLUGS = ("sitebulb", "screaming-frog", "ahrefs-site-audit",
+               "semrush-site-audit")
+
+
+def _cost_rows() -> str:
+    rows = sorted(((F.rival_annual_low(s), s) for s in _COST_SLUGS))
+    return "".join(
+        f"<tr><td>{COMPETITORS[slug]['name']}</td>"
+        f"<td>${low:,}/yr</td><td>${F.three_year_cost(slug):,}</td></tr>"
+        for low, slug in rows
+    )
 
 
 def download() -> Path:
@@ -29,6 +47,35 @@ charges nothing is the kind of thing this tool exists to flag.</p>
 <p><a class="btn btn-lg" href="{DMG}">Download Scout {RELEASE} for Mac</a></p>
 <p style="font-size:.92rem;color:var(--text-dim)">Apple Silicon · macOS 12+ · {DMG_SIZE} ·
 <a href="https://github.com/mattkerr09/scout-site/releases">all releases</a></p>
+
+<h2>What it will crawl</h2>
+
+<p>Up to <strong>{F.crawl_ceiling_str()} pages per crawl</strong>, {F.crawl_default()} by
+default, to a depth of {F.crawl_depth()} clicks. There is also a {F.crawl_minutes()}-minute
+wall clock: a crawl that hits it stops and tells you it stopped, with everything it found so
+far, rather than pretending it finished.</p>
+
+<p>If your site is larger than that, say so plainly to yourself and use
+<a href="/vs/screaming-frog-alternative/">Screaming Frog</a> — it crawls without a ceiling and
+that is a real reason to pick it. Scout is built to read a site closely rather than to survey
+one at that scale. These numbers are generated from the shipped build, not typed here, so they
+cannot drift from what the app does.</p>
+
+<h2>What it costs over three years</h2>
+
+<p>{PRICE_STR} once, against a subscription. The arithmetic, from the prices on
+<a href="/vs/">the comparison pages</a>:</p>
+
+<div class="wrap-tbl"><table class="cmp"><thead><tr>
+<th>Tool</th><th>Cheapest tier</th><th>Three years</th></tr></thead><tbody>
+<tr><td><strong>Scout</strong></td><td><strong>{PRICE_STR} once</strong></td>
+<td><strong>{PRICE_STR}</strong></td></tr>
+{_cost_rows()}
+</tbody></table></div>
+
+<p>Scout costs less than a year of the cheapest alternative and nothing after that. That is
+the whole pricing argument and it does not need help: the tools above are not overpriced for
+what they do, they are simply rented rather than owned.</p>
 
 <h2>Opening it</h2>
 <p>Double-click it. Scout is signed with a Developer&nbsp;ID and notarised by Apple, so

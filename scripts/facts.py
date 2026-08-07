@@ -496,3 +496,80 @@ def mx_top_two() -> int:
 
 def mx_measured() -> str:
     return mx()["measured"]
+
+
+# -- what Scout will actually crawl ------------------------------------------
+#
+# The site never stated a page limit, and silence reads as a small number.
+# Generated from the app (seo_engine.crawler.CrawlConfig and the clamp in
+# ui/src/app.js) rather than typed here, so the published ceiling cannot drift
+# from the shipped one — exporting it immediately exposed the UI defaulting to
+# 150 while the CLI defaulted to 200.
+
+
+@lru_cache(maxsize=None)
+def limits() -> dict:
+    return json.loads((ROOT / "site" / "_data" / "limits.json").read_text())
+
+
+def crawl_ceiling() -> int:
+    return limits()["max_pages_ceiling"]
+
+
+def crawl_ceiling_str() -> str:
+    return f"{crawl_ceiling():,}"
+
+
+def crawl_default() -> int:
+    return limits()["cli_default_pages"]
+
+
+def crawl_minutes() -> int:
+    return limits()["wall_clock_minutes"]
+
+
+def crawl_depth() -> int:
+    return limits()["max_depth_default"]
+
+
+# -- what the alternatives cost over time ------------------------------------
+#
+# Scout is a one-time price against subscriptions, and the page never did the
+# arithmetic for the reader. Derived from competitors.csv so a price change
+# there moves the published comparison.
+
+
+def _annual(slug: str) -> tuple:
+    """(low, high) annual USD for a competitor, parsed from its price note."""
+    import re as _re
+    import sys as _sys
+
+    _sys.path.insert(0, str(ROOT / "scripts"))
+    from render import COMPETITORS  # noqa: PLC0415 — avoids an import cycle
+
+    note = COMPETITORS[slug]["price_note"]
+    nums = [int(n.replace(",", "")) for n in _re.findall(r"\$([\d,]+)", note)]
+    if not nums:
+        return (0, 0)
+    if "/mo" in note:
+        return (min(nums) * 12, max(nums) * 12)
+    return (min(nums), max(nums))
+
+
+def rival_annual_low(slug: str) -> int:
+    return _annual(slug)[0]
+
+
+def years_to_match(slug: str) -> float:
+    """Years of the cheapest tier of `slug` before it costs more than Scout."""
+    import sys as _sys
+
+    _sys.path.insert(0, str(ROOT / "scripts"))
+    from render import PRICE  # noqa: PLC0415
+
+    low = rival_annual_low(slug)
+    return round(PRICE / low, 1) if low else 0.0
+
+
+def three_year_cost(slug: str) -> int:
+    return rival_annual_low(slug) * 3

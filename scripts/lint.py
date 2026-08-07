@@ -100,6 +100,40 @@ def shingles(text: str, n: int = SHINGLE_N) -> set[str]:
     return {" ".join(w[i:i + n]) for i in range(max(0, len(w) - n + 1))}
 
 
+#: A universal claim about tools other than this one.
+#:
+#: The homepage led with "Every other tool hands you a list" for months. It is
+#: false of Sitebulb, whose own feature page advertises "Prioritized Hints" and
+#: "a list of prioritized and categorized issues up-front". A buyer who has
+#: used Sitebulb reads that headline and stops believing the rest of the page.
+#:
+#: The engine has had a structural gate against absolutes in finding titles for
+#: several iterations — an absolute is a claim about the arithmetic, not a turn
+#: of phrase. The marketing copy never got one, which is exactly how it shipped.
+#: Claims about our own site ("every page", "every audit") are unaffected; this
+#: only fires on a universal quantifier aimed at the competition.
+_COMPETITOR_ABSOLUTE = re.compile(
+    r"\b(every|all|no|none of the|nobody|the only|nothing)\b"
+    r"[^.<>]{0,40}?"
+    # Three words were tried and removed, because a gate that cries wolf gets
+    # switched off in a week:
+    #
+    #   "crawler"    — used generically here ("nothing a crawler would flag"),
+    #                  and it fired on a comparison table whose cells strip
+    #                  down to "No Yes hreflang reciprocity Yes Yes AI crawler".
+    #   "competitor" — in this product it means the *user's* market rivals, as
+    #                  in "the issues every competitor has already fixed". That
+    #                  is a feature description, not a claim about software.
+    #   "alternative"— every /vs/ page is titled "<tool> alternative".
+    #
+    # The residual gap is real and worth stating: "no competing product does X"
+    # would slip through. What is caught is the shape that actually shipped.
+    r"\b(other tool|other tools|other product|other products|"
+    r"competing tool|competing tools|else does)\b",
+    re.I,
+)
+
+
 def main(root: str) -> int:
     pages = sorted(Path(root).rglob("index.html"))
     if not pages:
@@ -122,6 +156,12 @@ def main(root: str) -> int:
             fails.append(f"TITLE  {p}: {len(title)} chars (max {MAX_TITLE})")
         if not desc or len(desc) > MAX_DESC:
             fails.append(f"DESC   {p}: {len(desc)} chars (max {MAX_DESC})")
+
+        for match in _COMPETITOR_ABSOLUTE.finditer(text):
+            fails.append(
+                f"ABSOLUTE {p}: {match.group(0)!r} — a universal claim about "
+                f"other tools. Name the ones it is true of, or name the "
+                f"exception.")
 
         for hole in set(_UNRENDERED.findall(text)):
             fails.append(f"HOLE   {p}: unrendered placeholder {hole}")
