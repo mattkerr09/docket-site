@@ -264,3 +264,55 @@ def exposure_worst(slug: str) -> dict:
 
 def exposure_measured(slug: str) -> str:
     return exposure(slug)["measured"]
+
+
+# -- how close the web sits to Googlebot's 2MB cutoff ------------------------
+
+
+@lru_cache(maxsize=None)
+def page_size() -> dict:
+    return json.loads(
+        (ROOT / "site" / "_data" / "page-size-2026-08.json").read_text())
+
+
+def size_fetched() -> int:
+    return page_size()["fetched"]
+
+
+def size_attempted() -> int:
+    return page_size()["attempted"]
+
+
+def size_over_cap() -> int:
+    return page_size()["over_cap"]
+
+
+def size_losing_markup() -> int:
+    return page_size()["losing_markup"]
+
+
+def size_median_kb() -> int:
+    return round(page_size()["median_bytes"] / 1024)
+
+
+def size_p90_kb() -> int:
+    return round(page_size()["p90_bytes"] / 1024)
+
+
+def size_cap_mb() -> int:
+    return page_size()["cap_bytes"] // 1024 // 1024
+
+
+def size_largest() -> dict:
+    biggest = page_size()["results"][0]
+    return {"host": biggest["host"],
+            "mb": round(biggest["bytes"] / 1024 / 1024, 1),
+            "times_cap": round(biggest["bytes"] / page_size()["cap_bytes"], 1),
+            "critical_kb": round(biggest["last_critical"] / 1024)}
+
+
+def size_over_list(limit: int = 5) -> list:
+    cap = page_size()["cap_bytes"]
+    return [{"host": r["host"], "mb": round(r["bytes"] / 1024 / 1024, 1),
+             "critical_kb": round(r["last_critical"] / 1024)}
+            for r in page_size()["results"] if r["bytes"] > cap][:limit]

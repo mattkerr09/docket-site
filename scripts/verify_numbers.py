@@ -20,6 +20,12 @@ stays that way.
 Every literal it finds is either a real drift risk or belongs in ALLOWED with a
 reason. Nothing here is clever: the value is that the list is short enough to
 read, and that adding to it is a deliberate act.
+
+**Known gap.** It matches digits, so a figure spelled out in words — "none of
+those five" next to a derived count of 5 — walks straight past it. That was
+caught by eye on the 2MB article and the sentence now interpolates. Closing it
+properly means a number-word list and a lot of false positives on "one",
+"two" and "second", which is a worse trade than reading the prose.
 """
 from __future__ import annotations
 
@@ -78,6 +84,12 @@ ALLOWED = {
     "117,963,409": "domains in the Common Crawl release; the app reads this "
                    "live, the prose quotes the release we measured against",
     "418": "HTTP 418, quoted because Stack Overflow really serves one",
+    "2.4": "'structured data sits at 2.4 MB' — an invented example of a page "
+           "past the cutoff, chosen to be just over it",
+    "2.48": "where cnn.com's inline SVG <title> sits. Measured, and preserved "
+            "as the reading our own bug produced — the current figure beside "
+            "it is derived",
+    "400,000": "'which of my 400,000 URLs are heavy' — an invented crawl size",
     "127.0.0.1": "the loopback address",
     "0.0125": "an illustrative raw PageRank value, chosen to be awkward",
     "0.5": "the 0.5x equity threshold this site recommends — a rule of thumb "
