@@ -78,10 +78,23 @@ rate-limited crawl read a single error page and announced "no analytics installe
 the site" about a site that had analytics, and once for the page caps above. Three roads to
 the same wrong sentence, and a guard built for one of them covered neither of the others.</p>
 
+<p>A fourth road opened later, and it is the one worth watching for in any tool. Scout warns when
+a page carries star-rating markup but shows no rating to visitors, because Google treats that as
+grounds for a manual action that removes every rich result a site has. It was deciding this from
+the served HTML. Point it at a shop that draws its star widget in JavaScript and it accused two
+perfectly compliant product pages of the most serious thing the tool can say. Re-running with
+rendering turned on cleared them completely.</p>
+
+<p>Notice the shape: nothing was broken, nothing was degraded, the crawl was clean. The tool
+simply answered a question about the rendered page using a document that was not the rendered
+page. Now it will not make that accusation without rendered evidence, and where it has none it
+says so and stays at a notice.</p>
+
 <p><strong>What to do with it:</strong> when a tool reports an absence, ask what it saw. If the
 crawl was blocked, rate-limited, or returned nothing, every "missing" finding in that report is
-unsupported — not wrong necessarily, just unevidenced. A good tool says so itself. Look for a
-line telling you the crawl was degraded; if there is not one, that silence is not reassurance.</p>
+unsupported — not wrong necessarily, just unevidenced. And if a finding is about what a visitor
+sees, ask whether the tool rendered the page or read the HTML. Those are different documents on
+most modern sites, and only one of them is what Google judges.</p>
 
 <h2>Would the tool have caught it, or did a person have to notice?</h2>
 
@@ -159,6 +172,13 @@ site.</p>
              "has no evidence about analytics, phone numbers or anything else, but a naive "
              "check reports all of them as missing. Look for a line saying the crawl was "
              "degraded; if the report does not mention it, the silence is not reassurance."),
+            ("Why does an SEO tool flag things that look fine in my browser?",
+             "Usually because it read the HTML your server sent and you are looking at the "
+             "page after JavaScript ran. On most modern sites those are different documents. "
+             "Anything a tool says about what a visitor sees — visible prices, review stars, "
+             "headings, body copy — is only trustworthy if it rendered the page. Ask whether "
+             "the tool rendered, and if it did not, treat those findings as unconfirmed "
+             "rather than wrong."),
             ("Should I run an SEO audit in CI?",
              "It is the strongest use of one, because it catches a noindex before it ships "
              "rather than weeks later on a traffic graph. Test it first against a hostname "
