@@ -556,6 +556,25 @@ def render(
             '"publisher":{"@id":"' + BASE + '/#org"},'
             f'"mainEntityOfPage":"{url}","inLanguage":"en"}}'
         )
+    # The questions go on the page, not only into the schema.
+    #
+    # `faq` built a FAQPage block and nothing else. The Q&A existed in JSON-LD
+    # and appeared nowhere a reader or a model reading the rendered page could
+    # see it — and the `.faq-item` rules in the stylesheet had been styling
+    # markup nothing emitted. Scout's own ai.no_question_headings finding was
+    # the symptom: zero question-form headings across the article set, on a
+    # site whose every article ships four good questions.
+    #
+    # Google retired the FAQ rich result in June 2026, so the schema wins
+    # nothing there now. The visible version is the whole point: it answers the
+    # reader, and it gives an answer engine a self-contained passage to lift.
+    faq_html = ""
+    if faq:
+        items = "".join(
+            f'<div class="faq-item"><h3>{q}</h3><p>{a}</p></div>' for q, a in faq
+        )
+        faq_html = f'<section class="faq"><h2>Common questions</h2>{items}</section>'
+
     if faq:
         qa = ",".join(
             '{"@type":"Question","name":"' + esc(q) + '",'
@@ -612,7 +631,7 @@ def render(
 <body{body_class}>
 {NAV}
 {opening}
-{body}
+{body}{faq_html}
 {closing}
 {FOOTER}
 </body>
