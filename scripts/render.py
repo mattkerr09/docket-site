@@ -91,16 +91,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17
   -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
   font-feature-settings:"ss03"}
 
-/* Sections fade up as they arrive. Held to a small translate and a short
-   duration — the effect should register as polish, not as animation. Anyone
-   who has asked their OS for less motion gets none. */
-@media (prefers-reduced-motion:no-preference){
-  .reveal{opacity:0;transform:translateY(18px);
-    transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-  .reveal.in{opacity:1;transform:none}
+/* No scroll-reveal. It was built twice — once hiding content by default, once
+   arming from JavaScript with a timed backstop — and neither could be shown to
+   work: IntersectionObserver does not fire in the webview used to verify this
+   site, and nor did the setTimeout fallback.
+
+   Shipping an effect that cannot be verified, on a page whose entire argument
+   is that Scout reports only what it can prove, is the wrong trade. The type,
+   spacing and depth carry the page; content renders immediately and is never
+   contingent on a script. */
 }
 a{color:var(--amber-light);text-decoration:none;transition:color .16s}
-a:hover{color:var(--text);text-decoration:underline}
+@media(hover:hover){a:hover{color:var(--text);text-decoration:underline}}
 .wrap{width:min(820px,calc(100% - 2rem));margin:0 auto}
 .wrap-wide{width:min(1080px,calc(100% - 2rem));margin:0 auto}
 
@@ -112,8 +114,15 @@ nav{position:sticky;top:0;z-index:20;background:rgba(11,12,15,.88);
 .nav-brand:hover{text-decoration:none;color:var(--amber-light)}
 .nav-links{display:flex;gap:1.35rem;font-size:.94rem}
 .nav-links a{color:var(--text-mid)}
-.nav-links a:hover{color:var(--text);text-decoration:none}
-@media(max-width:780px){.nav-links{display:none}}
+@media(hover:hover){.nav-links a:hover{color:var(--text);text-decoration:none}}
+@media(max-width:780px){
+  .nav-inner{flex-wrap:wrap;row-gap:.55rem}
+  .nav-links{order:3;width:100%;gap:1.15rem;font-size:.88rem;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.15rem;
+    scrollbar-width:none}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{white-space:nowrap}
+}
 .btn{display:inline-block;background:linear-gradient(180deg,var(--amber-light),var(--amber));
   color:#17181C;font-weight:600;box-shadow:0 1px 0 rgba(255,255,255,.22) inset,
   0 12px 30px -12px rgba(240,128,15,.75);
@@ -199,7 +208,7 @@ body.landing article{padding:0}
              0 40px 90px -30px rgba(0,0,0,.9),
              0 0 120px -40px rgba(240,128,15,.30);
   transition:transform .6s cubic-bezier(.16,1,.3,1)}
-.mock:hover{transform:perspective(1600px) rotateY(-1.5deg) rotateX(.5deg)}
+@media(hover:hover){.mock:hover{transform:perspective(1600px) rotateY(-1.5deg) rotateX(.5deg)}}
 @media(max-width:940px){.mock{transform:none}.mock:hover{transform:none}}
 
 /* ---- the signature: a list becoming an order ------------------------------
@@ -329,25 +338,7 @@ body.landing article{padding:0}
 .faq-item h3{font-size:1rem;margin:0 0 .4rem}
 .faq-item p{font-size:.93rem;margin:0}
 </style>
-<script>
-// Reveal on first entry only — re-animating on scroll-up is the tell of a
-// template. Anything already in view when the page loads is shown immediately
-// so nothing above the fold depends on JavaScript.
-addEventListener('DOMContentLoaded',function(){
-  var els=document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches){
-    els.forEach(function(e){e.classList.add('in')});return;
-  }
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
-    });
-  },{rootMargin:'0px 0px -12% 0px'});
-  els.forEach(function(e){io.observe(e)});
-
-  // The ranking demo settles once, when it is properly in view.
-});
-</script>"""
+"""
 
 
 def _mark(size: int = 22, color: str = "var(--amber)") -> str:
