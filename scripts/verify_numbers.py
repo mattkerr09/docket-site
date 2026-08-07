@@ -45,6 +45,7 @@ ALLOWED = {
     "2.2.1": "RFC 9309 section number",
     "5321": "RFC 5321, the SMTP standard — cited for the implicit-MX fallback",
     "2606": "RFC 2606, which reserves .example/.invalid/.test",
+    "365": "Microsoft 365, a product name rather than a measurement",
     "5.1": "RFC 5321 section number",
     "25": "TCP port 25, where SMTP is not answering on our address record",
     "0.85": "PageRank damping factor from the original paper",

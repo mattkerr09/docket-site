@@ -444,3 +444,55 @@ def small_single_location() -> dict:
 
 def small_cities() -> int:
     return len(mail_small()["cities"])
+
+
+# -- exchangers that do not exist --------------------------------------------
+#
+# The nastier sibling of the address survey, over the same OpenStreetMap frame:
+# of the domains that publish an MX record at all, how many name a host that
+# does not resolve? That case passes every "does this domain have an MX record"
+# test ever written.
+
+
+@lru_cache(maxsize=None)
+def mx() -> dict:
+    return json.loads((ROOT / "site" / "_data" / "mx-2026-08.json").read_text())
+
+
+def mx_publishing() -> int:
+    return mx()["publishing_mx"]
+
+
+def mx_dead() -> int:
+    return mx()["all_exchangers_dead"]
+
+
+def mx_dead_pct() -> float:
+    return round(100 * mx_dead() / mx_publishing(), 1)
+
+
+def mx_partial() -> int:
+    return mx()["partial_failure"]
+
+
+def mx_shapes() -> dict:
+    return mx()["dead_shapes"]
+
+
+def mx_shape_rows() -> list:
+    """(count, shape) worst first, for a table."""
+    return [(n, shape) for shape, n in mx_shapes().items()]
+
+
+def mx_top_two() -> int:
+    """How many of the dead fall into the two commonest provider shapes.
+
+    Derived rather than typed: if the distribution changes, so does the claim
+    in the article that two providers account for most of them.
+    """
+    counts = sorted(mx_shapes().values(), reverse=True)
+    return sum(counts[:2])
+
+
+def mx_measured() -> str:
+    return mx()["measured"]

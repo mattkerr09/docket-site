@@ -15,6 +15,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import ISSUES, N_CHECKS, render  # noqa: E402
 
+
+def _shape_table() -> str:
+    """Rows built from the dataset, so the table cannot disagree with the text."""
+    return "".join(
+        f"<tr><td>{n}</td><td>{shape}</td></tr>" for n, shape in F.mx_shape_rows()
+    )
+
 RFC = "https://www.rfc-editor.org/rfc/rfc5321#section-5.1"
 
 
@@ -153,6 +160,43 @@ completely correct in the zone file and there is nowhere for the mail to go.</li
 <p>That second shape is why Scout resolves the exchanger rather than stopping at the record.
 An MX-exists check would have called that domain healthy.</p>
 
+<h2>The record that exists and the host that does not</h2>
+
+<p>Everything above is about a domain with no MX record. There is a second
+failure underneath it that is harder to see, and we measured that too — same
+frame, DNS only, no pages fetched.</p>
+
+<p>Of the {F.mx_publishing()} domains in the frame that publish an MX record at all,
+<strong>{F.mx_dead()} name a mail exchanger that does not resolve</strong> — every one of
+them, so there is nowhere for the message to go. That is {F.mx_dead_pct()}% of the domains
+that look correctly configured. Another {F.mx_partial()} have one dead exchanger and a
+working one, so their mail arrives; the finding only speaks when all of them fail.</p>
+
+<p>This is the case that defeats checking. Every "does this domain have an MX record" test
+passes. The zone file looks right, the record has a sensible priority, and the hostname reads
+like a mail server. It just names a machine that is not there.</p>
+
+<div class="wrap-tbl"><table class="cmp"><thead><tr>
+<th>Domains</th><th>What the dead exchanger is</th></tr></thead><tbody>
+{_shape_table()}
+</tbody></table></div>
+
+<p><strong>{F.mx_top_two()} of the {F.mx_dead()} fall into two shapes.</strong> That is what
+makes it worth naming rather than reporting as "the host does not resolve": telling someone
+their Microsoft 365 exchanger is missing sends them to the right console, and telling them the
+host is unreachable sends them to their DNS panel to look at a record that is fine.</p>
+
+<p>We are not saying <em>why</em>. A tenant hostname that stops resolving could be a lapsed
+subscription, a migration someone started and did not finish, or a record left behind after a
+move years ago. From outside the domain those look identical, so Scout names the shape and
+stops. Guessing the cause would be the kind of confident wrongness that costs more than the
+finding is worth.</p>
+
+<p>One of the {F.mx_dead()} is an exchanger under <code>.invalid</code>, which
+<a href="https://www.rfc-editor.org/rfc/rfc2606">RFC 2606</a> reserves precisely so that it
+can never resolve. As a placeholder in a setup wizard that is correct. As a live MX record it
+is a guarantee of failure.</p>
+
 <h2>What this does not cover</h2>
 
 <p>Said plainly, because a frame with unstated limits is worse than no frame. OpenStreetMap
@@ -225,6 +269,13 @@ but a working mail server on its address record is legal and fine.</p>
              f"an address and {F.small_dead()} of {F.small_publishing()} cannot receive mail "
              f"— about {F.small_dead_pct()}%, with a 95% interval of "
              f"{F.small_dead_interval()}."),
+            ("My domain has an MX record — is that enough?",
+             f"No. An MX record names a host, and the host has to exist. Of the "
+             f"{F.mx_publishing()} domains in our OpenStreetMap sample that publish an MX "
+             f"record, {F.mx_dead()} name an exchanger that does not resolve at all, so "
+             f"mail bounces while every record-presence check passes. Resolve the hostname "
+             f"in the record, not just the record: dig +short A "
+             f"the-name-your-mx-points-at."),
             ("Can a domain receive mail without an MX record?",
              "Yes. RFC 5321 section 5.1 says a sender that finds no MX falls back to the "
              "domain's address record, so a domain whose web server also runs SMTP works "
