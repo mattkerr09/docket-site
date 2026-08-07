@@ -57,14 +57,23 @@ def main() -> int:
         # not the knowledge file. Requiring a bumped date every time blocked an
         # ordinary article deploy, which is the gate misfiring rather than
         # catching anything. Only a feed whose CONTENT changed needs a new date.
-        unchanged = {k: v for k, v in fresh.items() if k != "compiled"} == \
-                    {k: v for k, v in live.items() if k != "compiled"}
+        # Ordering is (compiled, revision). A bare date cannot express two
+        # publishes in one day, and this gate caught precisely that on
+        # 2026-08-07: the content had changed, the date had not, and every
+        # client would have skipped the update. `revision` is the tiebreak.
+        def _key(d):
+            return (str(d.get("compiled", "")), int(d.get("revision", 0) or 0))
+
+        ignore = {"compiled", "revision"}
+        unchanged = {k: v for k, v in fresh.items() if k not in ignore} == \
+                    {k: v for k, v in live.items() if k not in ignore}
         if unchanged:
             print(f"note — knowledge feed unchanged since {live.get('compiled')}")
-        elif fresh.get("compiled", "") <= live.get("compiled", ""):
+        elif _key(fresh) <= _key(live):
             problems.append(
-                f"content changed but compiled is still {fresh.get('compiled')}, "
-                f"not newer than the live {live.get('compiled')} — clients ignore it"
+                f"content changed but its version is {_key(fresh)}, not newer "
+                f"than the live {_key(live)} — clients ignore it. Bump "
+                f"`revision` for a same-day republish, or `compiled` for a new day"
             )
         lost = set(live.get("ai_crawlers") or {}) - set(fresh.get("ai_crawlers") or {})
         if lost:

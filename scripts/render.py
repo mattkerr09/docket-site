@@ -62,7 +62,10 @@ def price(slug: str) -> str:
 #: single worst bug a product site can have.
 RELEASE = "v0.1.0"
 DMG = f"https://github.com/mattkerr09/scout-site/releases/download/{RELEASE}/Scout-0.1.0-arm64.dmg"
-DMG_SIZE = "18 MB"
+#: Rounded DOWN from the real 17,432,048 bytes of the notarised DMG, measured
+#: 2026-08-07. Rounding down is deliberate: a download is allowed to be smaller
+#: than promised and never larger, and "18 MB" was already overstating it.
+DMG_SIZE = "17 MB"
 
 #: One-time price, in USD. Declared once so the schema, the comparison table and
 #: the download page cannot drift apart — which is exactly what happened to the
