@@ -48,6 +48,7 @@ PAGES = [
     ("legal/privacy/index.html", "legal"),
     ("about/index.html", "about"),
     ("contact/index.html", "contact"),
+    ("learn/dead-contact-address/index.html", "survey"),
 ]
 
 PROBE = """

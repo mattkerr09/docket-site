@@ -113,6 +113,28 @@ def for_hub() -> Path:
 <p class="lede">The same {N_CHECKS} checks run on every site, but which findings matter most changes a
 lot by who you are. These pages cover what to look at first.</p>
 
+<p>That is not a marketing framing. Scout scores every lane on every site, and the same
+finding genuinely carries different weight depending on how the business gets found.</p>
+
+<h2>Why the same finding lands differently</h2>
+
+<p>Missing <code>LocalBusiness</code> schema is close to fatal for a business that lives on
+"near me" searches and completely irrelevant to a SaaS company selling to another country. A
+slow product page costs an ecommerce site money on every session and costs a reference site
+almost nothing. Neither of those is a judgement about how good the site is; they are facts
+about which door customers come through.</p>
+
+<p>The place this matters most is the middle of the list. Critical findings are critical for
+everyone — a page nobody can index cannot help anybody. It is the twenty MEDIUM findings
+underneath where knowing your own situation turns a report into a plan, and where a tool that
+only knows how to sort by severity leaves you to guess.</p>
+
+<p>Two things are worth reading whoever you are, because they now apply to every kind of
+site: whether AI answer engines can
+<a href="/learn/ai-search-visibility/">reach and cite you</a>, and which of your pages an AI
+answer <a href="/learn/ai-substitution/">replaces outright</a>. Those were niche two years
+ago.</p>
+
 <h2><a href="/for/agencies/">For SEO agencies</a></h2>
 <p>Unlimited client audits with no per-seat or per-crawl cost, and a client-ready PDF that does
 not need rebuilding in a deck.</p>
@@ -292,13 +314,47 @@ missing. <a href="/download/">Download it</a> and run one audit — it takes a f
 
 
 def howto_hub() -> Path:
-    body = """
+    body = f"""
 <p class="lede">Fix guides for the specific problems Scout reports. Each one explains what the
 issue costs you, then gives the change to make.</p>
 
+<p>Before any individual guide, the question that decides whether an audit is worth
+anything: <strong>what do you do first?</strong> A list of {N_CHECKS} checks against a real
+site produces dozens of findings, and the order you work them in matters more than any single
+fix.</p>
+
+<h2>The order to fix things in</h2>
+
+<p>Scout ranks every finding by the same formula, and it is worth knowing because you can
+apply it by hand to any tool's output:</p>
+
+<pre><code>priority = severity x impact x reach / effort</code></pre>
+
+<p>Three of those are obvious. The fourth is where most tools go wrong: <strong>reach grows
+sub-linearly</strong> in the number of pages affected — a capped square root rather than a raw
+count. Without that damping, a trivial nit on every page of a large site outranks a
+<code>noindex</code> on your homepage, and the report becomes a list you scroll past. Sorting
+by "number of pages affected", which is the default in several crawlers, is exactly that
+failure.</p>
+
+<p>In practice this collapses to a short rule. Fix anything that stops a page being indexed at
+all, first and immediately — those are rare and they are absolute. Then work down by
+priority, which naturally puts small changes on important pages above large changes on
+unimportant ones. A finding marked TRIVIAL or SMALL effort with HIGH severity is almost always
+the best hour you will spend.</p>
+
+<h2>What a fix guide here will not do</h2>
+
+<p>None of these say "improve your content" or "build quality links". If a guide cannot name
+the exact element to change, it has not earned the page. Where a change depends on something
+only you know — whether you want AI engines training on your writing, for instance — the
+guide sets out the decision rather than making it for you.</p>
+
 <h2><a href="/how-to/fix-ai-crawler-access/">Fix AI crawler access in robots.txt</a></h2>
 <p>How to let ChatGPT, Perplexity and Claude read your site without giving away training data —
-they are separate decisions and need separate rules.</p>
+they are separate decisions and need separate rules. Measured against
+{F.directives_hosts()} sites' robots.txt files, most people who block AI crawlers get this
+wrong in the same direction.</p>
 
 <h2>More coming</h2>
 <p>Guides for hreflang return tags, conflicting canonicals, soft 404s and structured data
@@ -469,7 +525,7 @@ is public and GitHub's privacy policy applies to it; we hold nothing separately.
 """
     return render(
         cat="legal", slug="privacy",
-        title="Privacy policy — Scout",
+        title="Privacy policy — what Scout collects, and what it does not",
         desc="Scout collects nothing. No account, no telemetry, no analytics on this site.",
         h1="Privacy policy",
         crumb='<a href="/">Scout</a> / Privacy',
@@ -508,7 +564,7 @@ Scout, including lost traffic, revenue or rankings.</p>
 """
     return render(
         cat="legal", slug="terms",
-        title="Terms of use — Scout",
+        title="Terms of use for Scout and scoutseo.app",
         desc="Licence, responsible crawling, and the limits of what an audit can promise.",
         h1="Terms of use",
         crumb='<a href="/">Scout</a> / Terms',

@@ -216,7 +216,7 @@ the correction gets written down where the mistake was made.</p>
 """
     return render(
         cat="contact", slug="",
-        title="Contact Scout",
+        title="Contact Scout — report a bug or a wrong finding",
         desc=("Reach Scout through the GitHub issue tracker: bug reports, wrong "
               "findings, feature requests — and why the address this site used "
               "to advertise could not receive mail."),
