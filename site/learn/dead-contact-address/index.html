@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The contact address that bounces every message</title>
-<meta name="description" content="An address on a domain with no MX record bounces silently. We checked 1233 of the Tranco top 1500: only 80 publish one at all.">
+<meta name="description" content="An address on a domain with no MX record bounces silently. We measured 1233 of the Tranco top 1500: only 80 publish one at all.">
 <meta name="theme-color" content="#0b0c0f">
 <link rel="canonical" href="https://scoutseo.app/learn/dead-contact-address/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The contact address that cannot receive mail">
-<meta property="og:description" content="An address on a domain with no MX record bounces silently. We checked 1233 of the Tranco top 1500: only 80 publish one at all.">
+<meta property="og:description" content="An address on a domain with no MX record bounces silently. We measured 1233 of the Tranco top 1500: only 80 publish one at all.">
 <meta property="og:url" content="https://scoutseo.app/learn/dead-contact-address/">
 <meta property="og:site_name" content="Scout">
 <meta property="og:image" content="https://scoutseo.app/og.png">
@@ -19,7 +19,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The contact address that cannot receive mail">
-<meta name="twitter:description" content="An address on a domain with no MX record bounces silently. We checked 1233 of the Tranco top 1500: only 80 publish one at all.">
+<meta name="twitter:description" content="An address on a domain with no MX record bounces silently. We measured 1233 of the Tranco top 1500: only 80 publish one at all.">
 <meta name="twitter:image" content="https://scoutseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -336,7 +336,7 @@ body.landing article{padding:0}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/scout-site"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 93 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"93 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scout","item":"https://scoutseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://scoutseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The contact address that cannot receive mail","description":"An address on a domain with no MX record bounces silently. We checked 1233 of the Tranco top 1500: only 80 publish one at all.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/dead-contact-address/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The contact address that cannot receive mail","description":"An address on a domain with no MX record bounces silently. We measured 1233 of the Tranco top 1500: only 80 publish one at all.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/dead-contact-address/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I know if my contact email works?","acceptedAnswer":{"@type":"Answer","text":"Run dig +short MX yourdomain.com. Any output means a mail exchanger is published and mail has somewhere to go. Empty output means there is none, and senders fall back to your address record — which on a static host such as GitHub Pages or Netlify does not run a mail server, so every message bounces."}},{"@type":"Question","name":"Why does mail bounce silently?","acceptedAnswer":{"@type":"Answer","text":"The bounce is delivered to the sender, not to you. Nothing reaches the address and nothing records the attempt, so an inbox with no messages looks identical to an audience with nothing to say."}},{"@type":"Question","name":"Is it common for a published address to be dead?","acceptedAnswer":{"@type":"Answer","text":"Not among large sites. Of the 1233 sites in the Tranco top 1500 that answered, 80 publish an address at all and every one we could resolve accepts mail. The risk sits with smaller sites, which are both far more likely to publish an address and far less likely to have anyone watching DNS."}},{"@type":"Question","name":"Can a domain receive mail without an MX record?","acceptedAnswer":{"@type":"Answer","text":"Yes. RFC 5321 section 5.1 says a sender that finds no MX falls back to the domain's address record, so a domain whose web server also runs SMTP works fine. That is why the absence of an MX record is the start of the question rather than the answer to it."}}]}</script>
 </head>
 <body>
@@ -356,7 +356,7 @@ body.landing article{padding:0}
 
 <p class="lede">A contact address on a domain with no MX record does not fail loudly — it
 bounces, to the sender, and you never learn anyone wrote. We checked the
-1233 sites in the Tranco top 1500 that answered a request, and
+1233 sites in the <a href="https://tranco-list.eu/">Tranco top</a> 1500 that answered a request, and
 found <strong>80 still publish an email address at all</strong>: every one
 of them we could resolve accepts mail.</p>
 
