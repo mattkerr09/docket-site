@@ -22,7 +22,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import DMG, DMG_SIZE, N_CHECKS, N_LANES, render  # noqa: E402
+from render import DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
@@ -159,7 +159,7 @@ def body() -> str:
 <!-- ================= HERO ================= -->
 <section class="hero-sec"><div class="wrap-wide hero-grid">
 <div>
-  <span class="eyebrow">{N_CHECKS} checks · {N_LANES} areas · runs on your Mac</span>
+  <span class="eyebrow">{N_CHECKS} checks · {PRICE_STR} once · no subscription</span>
   <h1 class="hero-h1">Everything that's wrong.
   <em>In the order to fix&nbsp;it.</em></h1>
   <p class="hero-sub">Point Scout at any site. {N_CHECKS} checks across technical SEO, copy,
@@ -283,12 +283,12 @@ def body() -> str:
 
 <!-- ================= COMPARISON ================= -->
 <section class="sec"><div class="wrap-wide">
-<div class="sec-head"><h2>One price. Yours forever.</h2>
-<p>Cloud tools meter crawls, which quietly makes you ration audits.</p></div>
+<div class="sec-head"><h2>{PRICE_STR}. Once.</h2>
+<p>Every tool below is a subscription. Scout is a one-time purchase, and the audit runs on your Mac, so there are no crawl credits to ration.</p></div>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Tool</th><th>Price</th><th>Runs</th><th>Output</th></tr></thead>
 <tbody>
-<tr><td>Scout</td><td>One-time</td><td class="yes">Your Mac</td><td>Ranked fix plan</td></tr>
+<tr><td>Scout</td><td class="yes">{PRICE_STR} once</td><td class="yes">Your Mac</td><td>Ranked fix plan</td></tr>
 <tr><td>Ahrefs Site Audit</td><td>$129–$499/mo</td><td>Cloud, metered</td><td>170+ issues</td></tr>
 <tr><td>Semrush Site Audit</td><td>$139–$499/mo</td><td>Cloud, metered</td><td>140+ checkpoints</td></tr>
 <tr><td>Sitebulb</td><td>$13.50–$34/mo</td><td>Local + cloud</td><td>Visual issue report</td></tr>
