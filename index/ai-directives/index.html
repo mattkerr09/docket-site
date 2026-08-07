@@ -317,7 +317,7 @@ body.landing article{padding:0}
 .faq-item p{font-size:.93rem;margin:0}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/scout-site"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 88 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"88 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/scout-site"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 89 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"89 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scout","item":"https://scoutseo.app/"},{"@type":"ListItem","position":2,"name":"The Index","item":"https://scoutseo.app/index/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The AI rules in robots.txt that do nothing","description":"We parsed 6,236 robots.txt files from the Tranco top 10,000. Of the 1,616 sites writing AI crawler rules, 838 name a retired or unmatchable token.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/index/ai-directives/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a dead robots.txt directive?","acceptedAnswer":{"@type":"Answer","text":"A User-agent rule naming a token that no crawler identifies itself with — either because the vendor retired that name, or because it was never a crawler name. The file parses and nothing warns you, but the rule applies to nobody. We found one on 51.9% of the sites writing AI rules at all."}},{"@type":"Question","name":"Does anthropic-ai still work in robots.txt?","acceptedAnswer":{"@type":"Answer","text":"No. Anthropic's current documentation lists ClaudeBot, Claude-User and Claude-SearchBot. A rule under anthropic-ai or Claude-Web matches none of them, and 563 and 461 sites respectively still use those names."}},{"@type":"Question","name":"Do I need an llms.txt file?","acceptedAnswer":{"@type":"Answer","text":"There is no measured evidence that it helps. Google stated in June 2026 that llms.txt is not needed for Google Search and does not affect visibility either way, and Ahrefs measured 97% of llms.txt files receiving no requests at all. Adoption is 11.45% of the top 10,000 and correlates with sites that maintain their robots.txt rather than with any outcome."}},{"@type":"Question","name":"Is blocking GPTBot the same as blocking ChatGPT search?","acceptedAnswer":{"@type":"Answer","text":"No. GPTBot collects training data; OAI-SearchBot builds the index ChatGPT searches. Of 425 sites blocking OAI-SearchBot, 414 also block GPTBot — losing citation is nearly always a side effect of a training decision rather than a decision of its own."}}]}</script>
@@ -533,9 +533,45 @@ us to fetch <code>/llms.txt</code>, <strong>283
 
 <p>A site can allow every AI crawler in robots.txt and still be invisible to all of them
 because a WAF rule three layers up drops unknown user-agents. No robots.txt audit — ours
-included — can see that from the outside. It has to be tested against your own site with the
-crawler's own user-agent, which is exactly what a tool running on your machine can do and a
-cloud crawler cannot do on your behalf.</p>
+included — can see that from the outside. It has to be tested against the site itself, with
+the crawler's own user-agent.</p>
+
+<h3>nature.com, which gets this more right than almost anyone and still has a hole</h3>
+
+<p>Nature's robots.txt blocks <code>GPTBot</code>, <code>PerplexityBot</code> and
+<code>ClaudeBot</code>. We asked their server for the homepage as each of seven documented AI
+crawlers on 2026-08-07 and compared the answers to an ordinary browser request, which
+returned 200. All three of those crawlers got <strong>406</strong> — the file and the edge
+agreeing, policy enforced twice, exactly as intended.</p>
+
+<p>One did not fit. <code>Perplexity-User</code> — the agent that fetches a page when a person
+asks Perplexity about it — is <strong>allowed in their robots.txt and refused 406 by their
+server</strong>. Nothing in the file says so. It is not a robots.txt decision at all; it is a
+rule in front of it, and the only way to find it is to ask.</p>
+
+<p>We are naming Nature because they are among the most careful publishers we measured, not
+because they are careless. If a site that separates training from citation correctly, in the
+file, still has one crawler blocked somewhere they cannot see, the odds on a site that has
+never thought about it are not good.</p>
+
+<h3>What we did not measure, and why</h3>
+
+<p>We could have run those seven probes against all 10,000 hosts and published a per-crawler
+edge-blocking table. It would have been the most quotable thing on this page. We did not
+collect it.</p>
+
+<p>Sending an <code>OAI-SearchBot</code> user-agent to ten thousand strangers to see what
+their servers do is unsolicited scanning, whatever the header says underneath. One request
+inside an audit somebody asked for is a different act. So the survey figure above is
+<strong>643 hosts refusing <em>our own</em> self-identifying bot</strong>, which
+is what we were entitled to learn, and the per-crawler answer is something Scout works out
+for one site at a time — the site in front of it.</p>
+
+<p>That is check 89, <code>ai.edge_access</code>. It probes the audited origin only, appends
+<code>Scout-SEO-Audit</code> to every vendor string so nobody's log shows a forged crawler,
+and reports the contradictions rather than the refusals: a crawler your file blocks and your
+server also blocks is your policy working twice, and saying so would train you to ignore the
+check. On Nature it reports one finding, not four.</p>
 
 <h2>Where someone else's data is better</h2>
 
