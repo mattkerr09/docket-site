@@ -465,7 +465,7 @@ domain it could not resolve — a lookup that failed is not a finding, and a dom
 but a working mail server on its address record is legal and fine.</p>
 
 <p><a class="btn" href="/download/">Download Scout</a></p>
-
+<section class="faq"><h2>Common questions</h2><div class="faq-item"><h3>How do I know if my contact email works?</h3><p>Run dig +short MX yourdomain.com. Any output means a mail exchanger is published and mail has somewhere to go. Empty output means there is none, and senders fall back to your address record — which on a static host such as GitHub Pages or Netlify does not run a mail server, so every message bounces.</p></div><div class="faq-item"><h3>Why does mail bounce silently?</h3><p>The bounce is delivered to the sender, not to you. Nothing reaches the address and nothing records the attempt, so an inbox with no messages looks identical to an audience with nothing to say.</p></div><div class="faq-item"><h3>Is it common for a published address to be dead?</h3><p>Not among large sites. Of the 1233 sites in the Tranco top 1500 that answered, 80 publish an address at all and every one we could resolve accepts mail. The risk sits with smaller sites, which are both far more likely to publish an address and far less likely to have anyone watching DNS.</p></div><div class="faq-item"><h3>Can a domain receive mail without an MX record?</h3><p>Yes. RFC 5321 section 5.1 says a sender that finds no MX falls back to the domain's address record, so a domain whose web server also runs SMTP works fine. That is why the absence of an MX record is the start of the question rather than the answer to it.</p></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
