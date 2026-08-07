@@ -104,6 +104,37 @@ scout audit example.com -f json --no-pages | jq '.score.overall'</code></pre>
 it in CI against a staging URL fails the build if someone ships a <code>noindex</code>, which
 is a mistake that otherwise gets found weeks later by a traffic graph.</p>
 
+<p><code>--fail-on</code> sets the bar. The default is <code>critical</code>, deliberately:
+almost every real site has HIGH findings, and a gate that fails on ordinary work gets wrapped
+in <code>|| true</code> within a month.</p>
+
+<pre><code>scout audit https://staging.example.com --fail-on critical   # default
+scout audit https://staging.example.com --fail-on high
+scout audit https://staging.example.com --fail-on never      # report, never fail</code></pre>
+
+<p>Three exit codes, and they are a contract — a pipeline depends on them not moving:</p>
+
+<div class="wrap-tbl"><table class="cmp"><thead><tr>
+<th>Code</th><th>Meaning</th></tr></thead><tbody>
+<tr><td><code>0</code></td><td>The audit ran and found nothing at or above the threshold</td></tr>
+<tr><td><code>1</code></td><td>Scout could not run — bad arguments or a crash. A defect in the
+tool, not in your site</td></tr>
+<tr><td><code>2</code></td><td>The audit ran and the result is bad</td></tr>
+</tbody></table></div>
+
+<p>A site that does not answer is <code>2</code>, not <code>1</code>: Scout ran fine, the site
+was not there, and a staging URL that does not respond should stop a deploy. Keeping those
+two apart matters more than it sounds — "your site is broken" and "the tool is broken" need
+opposite responses from whoever reads the log, and a gate that confuses them stops being
+trusted.</p>
+
+<p>That case took a real fix. Auditing a domain that does not resolve used to report three
+critical issues: that robots.txt blocked Googlebot, that the site was not served over HTTPS,
+and that no pages could be crawled. Only the last was true — there was no robots.txt and
+nothing was served, because there was no site. A DNS blip in a pipeline would have failed the
+build with two invented criticals and sent somebody hunting for a robots.txt problem that
+never existed. When nothing at all can be read, Scout now reports that and stops.</p>
+
 <h3><code>scout attack</code> — where a competitor's authority does not protect them</h3>
 <pre><code>scout attack yoursite.com theircompetitor.com
 scout attack yoursite.com theirs.com --demand "emergency plumber"</code></pre>
