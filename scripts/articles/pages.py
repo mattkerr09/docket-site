@@ -430,7 +430,25 @@ and this website.</p>
 
 <h2>The application</h2>
 <p>Scout collects nothing. There is no account, no telemetry, no crash reporting and no licence
-check. The only network requests the app makes are to the website you ask it to audit.</p>
+check.</p>
+<p>An earlier version of this policy said the only network requests the app makes are to the
+website you ask it to audit. That was not accurate, and a privacy policy is the last document
+that should be approximately true. Scout makes requests to three kinds of destination:</p>
+<ul>
+<li><strong>The site you asked it to audit.</strong> The crawl itself, from your machine, and
+the edge-access checks that re-request your pages while identifying as each AI crawler.</li>
+<li><strong>scoutseo.app, for one public file.</strong> The knowledge refresh connector is on
+by default and fetches <code>/data/knowledge.json</code> — the current AI crawler list, Core
+Web Vitals thresholds and ranking notes. It is a GET with no body and no query string. It
+carries no identifier and tells the server nothing about what you are auditing; the request
+is indistinguishable from someone opening that file in a browser.</li>
+<li><strong>Google, only if you configure it.</strong> The PageSpeed Insights connector needs
+your own Google API key and does nothing without one. When enabled it necessarily sends
+Google the URL you asked it to measure, because that is what the API takes. Leave it off and
+no request is made.</li>
+</ul>
+<p>Every connector can be turned off individually, and an offline switch disables all of them
+at once, leaving only the crawl of your own site.</p>
 <p>Audit results and your saved-site list are stored on your machine in <code>~/.scout/</code>
 as plain JSON files. They are never transmitted. Deleting that folder removes them permanently.</p>
 
@@ -440,13 +458,14 @@ scripts or fonts. Standard server logs may record IP addresses and requested URL
 used only to keep the site running.</p>
 
 <h2>Data you give us</h2>
-<p>If you email us, we hold that email in order to reply to it. Nothing else.</p>
+<p>There is no contact form and no mailing list. If you open an issue on GitHub, that issue
+is public and GitHub's privacy policy applies to it; we hold nothing separately.</p>
 
 <h2>Changes</h2>
 <p>If this policy changes, the updated version appears on this page.</p>
 
 <h2>Contact</h2>
-<p>Questions about privacy or anything else: <a href="mailto:hello@scoutseo.app">hello@scoutseo.app</a>.</p>
+<p>Questions about privacy or anything else: <a href="/contact/">get in touch</a>.</p>
 """
     return render(
         cat="legal", slug="privacy",
@@ -485,7 +504,7 @@ relying on an audit for a decision that matters.</p>
 Scout, including lost traffic, revenue or rankings.</p>
 
 <h2>Contact</h2>
-<p><a href="mailto:hello@scoutseo.app">hello@scoutseo.app</a></p>
+<p><a href="/contact/">Get in touch</a></p>
 """
     return render(
         cat="legal", slug="terms",

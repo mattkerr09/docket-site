@@ -46,6 +46,8 @@ PAGES = [
     ("vs/screaming-frog-alternative/index.html", "comparison"),
     ("index/ai-directives/index.html", "dataset"),
     ("legal/privacy/index.html", "legal"),
+    ("about/index.html", "about"),
+    ("contact/index.html", "contact"),
 ]
 
 PROBE = """

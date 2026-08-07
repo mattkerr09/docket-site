@@ -18,6 +18,7 @@ sys.path.insert(0, str(HERE / "articles"))
 
 from render import BASE, SITE, render  # noqa: E402
 
+import about  # noqa: E402
 import bytecap  # noqa: E402
 import comparisons  # noqa: E402
 import directives  # noqa: E402
@@ -318,6 +319,7 @@ def main() -> int:
     pages += rendering.build_all()
     pages += substitution.build_all()
     pages += __import__('pages').build_all()
+    pages += about.build_all()
     pages += build_hubs()
 
     # NOT appended to `pages`: the sitemap is derived from that list, and
