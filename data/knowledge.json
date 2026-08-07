@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "compiled": "2026-08-07",
-  "revision": 2,
+  "revision": 3,
   "ai_crawlers": {
     "GPTBot": {
       "owner": "OpenAI",
@@ -133,6 +133,11 @@
   },
   "algorithm_notes": [
     {
+      "date": "2026-07-01",
+      "title": "AMP viewer and AMP Cache no longer used by Search",
+      "detail": "Google Search now links users directly to the publisher's AMP host pages instead of routing through the AMP viewer or AMP Cache, and the documentation for the viewer, the cache and signed exchanges was removed. Publishers no longer need to update the AMP cache or configure signed exchanges. Google states AMP content continues to rank like any other web page, so this is a delivery change rather than a ranking one."
+    },
+    {
       "date": "2026-06-24",
       "title": "June 2026 spam update",
       "detail": "Rolled out over 2 days and 1 hour from 24 June 2026."
@@ -151,6 +156,16 @@
       "date": "2026-05-07",
       "title": "FAQ and HowTo rich results retired",
       "detail": "Google stopped showing FAQ and HowTo rich results in Search. The markup remains valid schema.org and is still useful for entity clarity, but it no longer produces a result feature."
+    },
+    {
+      "date": "2026-04-13",
+      "title": "Back-button hijacking added to the spam policies",
+      "detail": "A new section of the malicious-practices spam policy covers 'back button hijacking' — manipulating history so a visitor pressing back cannot leave. It is a policy violation and can attract manual action."
+    },
+    {
+      "date": "2026-03-31",
+      "title": "Googlebot fetches at most 2MB of a page",
+      "detail": "Googlebot fetches up to 2MB of any individual URL, including the HTTP headers, and passes that portion to indexing and to the Web Rendering Service as if it were the complete file. Bytes past the threshold are never fetched, rendered or indexed, and nothing reports it. PDFs get 64MB; a crawler that sets no limit defaults to 15MB. Referenced resources each have their own separate per-URL budget and do not count towards the parent page."
     },
     {
       "date": "2026-03-27",
