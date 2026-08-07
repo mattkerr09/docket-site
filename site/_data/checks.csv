@@ -31,6 +31,7 @@ cvr.pricing,conversion,Conversion & landing pages,Pricing transparency
 cvr.social_proof,conversion,Conversion & landing pages,Social proof
 cvr.value_prop,conversion,Conversion & landing pages,Above-the-fold value proposition
 index.broken,indexability,Crawlability & indexing,Broken pages (4xx/5xx)
+index.byte_cap,indexability,Crawlability & indexing,Googlebot's 2MB fetch limit
 index.canonical,indexability,Crawlability & indexing,Canonical tags
 index.canonical_conflict,indexability,Crawlability & indexing,Conflicting canonical tags
 index.depth,indexability,Crawlability & indexing,Click depth and orphans
