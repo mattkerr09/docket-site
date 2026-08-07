@@ -341,9 +341,45 @@ us to fetch <code>/llms.txt</code>, <strong>{s['llms_edge_denied']}
 
 <p>A site can allow every AI crawler in robots.txt and still be invisible to all of them
 because a WAF rule three layers up drops unknown user-agents. No robots.txt audit — ours
-included — can see that from the outside. It has to be tested against your own site with the
-crawler's own user-agent, which is exactly what a tool running on your machine can do and a
-cloud crawler cannot do on your behalf.</p>
+included — can see that from the outside. It has to be tested against the site itself, with
+the crawler's own user-agent.</p>
+
+<h3>nature.com, which gets this more right than almost anyone and still has a hole</h3>
+
+<p>Nature's robots.txt blocks <code>GPTBot</code>, <code>PerplexityBot</code> and
+<code>ClaudeBot</code>. We asked their server for the homepage as each of seven documented AI
+crawlers on {collected} and compared the answers to an ordinary browser request, which
+returned 200. All three of those crawlers got <strong>406</strong> — the file and the edge
+agreeing, policy enforced twice, exactly as intended.</p>
+
+<p>One did not fit. <code>Perplexity-User</code> — the agent that fetches a page when a person
+asks Perplexity about it — is <strong>allowed in their robots.txt and refused 406 by their
+server</strong>. Nothing in the file says so. It is not a robots.txt decision at all; it is a
+rule in front of it, and the only way to find it is to ask.</p>
+
+<p>We are naming Nature because they are among the most careful publishers we measured, not
+because they are careless. If a site that separates training from citation correctly, in the
+file, still has one crawler blocked somewhere they cannot see, the odds on a site that has
+never thought about it are not good.</p>
+
+<h3>What we did not measure, and why</h3>
+
+<p>We could have run those seven probes against all 10,000 hosts and published a per-crawler
+edge-blocking table. It would have been the most quotable thing on this page. We did not
+collect it.</p>
+
+<p>Sending an <code>OAI-SearchBot</code> user-agent to ten thousand strangers to see what
+their servers do is unsolicited scanning, whatever the header says underneath. One request
+inside an audit somebody asked for is a different act. So the survey figure above is
+<strong>{s['edge_denied']} hosts refusing <em>our own</em> self-identifying bot</strong>, which
+is what we were entitled to learn, and the per-crawler answer is something Scout works out
+for one site at a time — the site in front of it.</p>
+
+<p>That is check 89, <code>ai.edge_access</code>. It probes the audited origin only, appends
+<code>Scout-SEO-Audit</code> to every vendor string so nobody's log shows a forged crawler,
+and reports the contradictions rather than the refusals: a crawler your file blocks and your
+server also blocks is your policy working twice, and saying so would train you to ignore the
+check. On Nature it reports one finding, not four.</p>
 
 <h2>Where someone else's data is better</h2>
 
