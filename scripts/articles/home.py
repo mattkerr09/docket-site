@@ -22,6 +22,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import facts as F  # noqa: E402
 from render import DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR, price, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
@@ -307,10 +308,12 @@ comparisons →</a></p>
 one that draws a line.</p></div>
 <div class="grid-3">
   <div class="card"><h3>Per-page backlinks and anchor text</h3><p>Scout reads Common Crawl's
-  hyperlink graph — 117.9&nbsp;million domains — so it gives you a domain's authority rank in
+  hyperlink graph — {F.graph_domains_m()}&nbsp;million domains — so it gives you a domain's authority rank in
   about a second, and the full list of domains linking to it in about ten minutes. We measured
-  12,411 domains linking to screamingfrog.co.uk that way. Which individual <em>page</em>
-  links to you, and with what anchor text, lives in 14&nbsp;TiB of archive files. Ahrefs and
+  {F.graph_example_referring():,} domains linking to {F.graph_example_host()} that way. Which
+  individual <em>page</em>
+  links to you, and with what anchor text, lives in archive files far too large to stream from a
+  laptop. Ahrefs and
   Semrush sell that, and it is worth paying for if you need it.</p></div>
   <div class="card"><h3>Search volumes</h3><p>Scout finds the queries people actually type,
   from Google's own autocomplete, ordered by how common they are. It will not print a monthly

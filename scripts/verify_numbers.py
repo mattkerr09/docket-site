@@ -46,6 +46,9 @@ ALLOWED = {
     "5321": "RFC 5321, the SMTP standard — cited for the implicit-MX fallback",
     "2606": "RFC 2606, which reserves .example/.invalid/.test",
     "365": "Microsoft 365, a product name rather than a measurement",
+    # The homepage's results mock is a picture of the interface, not a claim
+    # about anyone's site. Its severity chips are part of the illustration.
+    "9": "severity chip in the homepage's UI replica, not a measurement",
     "2010": ("Screaming Frog's founding year, quoted from their own about page: "
              "'a UK search marketing agency founded in 2010'. Linked in the prose."),
     "5.1": "RFC 5321 section number",
@@ -131,7 +134,25 @@ _SKIP_LINE = re.compile(
     r"^\s*(?:<(?:/?(?:h[1-6]|div|table|thead|tbody|tr|th|td|ul|ol|li|pre)\b)"
     r"|#|@|\"\"\")", re.I)
 
-_TRIPLE = re.compile(r'(?:body|BODY)\s*=\s*(f?)"""(.*?)"""', re.S)
+#: Prose lives in a triple-quoted string that is either assigned or returned.
+#:
+#: This matched only `body = """..."""` for months, and home.py returns its
+#: sections directly — `return f"""..."""` — so THE ENTIRE HOMEPAGE was never
+#: scanned. It was the one page guaranteed to be read by everybody. An
+#: unverified "14 TiB" claim about Common Crawl's archives survived there for
+#: weeks after being deleted from build.py for being unverifiable, because the
+#: sweep that removed it could not see the file.
+#:
+#: A docstring is also triple-quoted, and is deliberately not matched: it is
+#: neither assigned nor returned, so the anchors below exclude it.
+_TRIPLE = re.compile(
+    r'(?:(?:body|BODY|intro|CTA)\s*=|return)\s*(f?)"""(.*?)"""', re.S)
+#: An HTML attribute value. Coordinates, font sizes and rgba() colours are
+#: markup, not claims about the world — the homepage's inline SVG alone put
+#: eight of them in front of a reader, and a list you skim is a list you stop
+#: reading. Masked for the same reason <code> is.
+_ATTR = re.compile(r'\b[a-zA-Z-]+="[^"]*"')
+
 #: Inside <code> is a literal being quoted — a token, a version, a snippet.
 #: `ChatGPT-User/2.0` is the subject of a sentence, not a claim about the world.
 _CODE = re.compile(r"<code>.*?</code>", re.S)
@@ -152,7 +173,7 @@ def _literals(path: Path) -> Iterator[Tuple[int, str, str]]:
         body = match.group(2)
         # Blank out every interpolation before looking for numbers: a figure
         # inside {} is derived by construction and is exactly what we want.
-        masked = _CODE.sub(" ", _HOLE.sub(" ", body))
+        masked = _ATTR.sub(" ", _CODE.sub(" ", _HOLE.sub(" ", body)))
         for offset, line in enumerate(masked.splitlines()):
             if _SKIP_LINE.match(line):
                 continue

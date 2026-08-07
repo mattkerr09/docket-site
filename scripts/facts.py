@@ -602,3 +602,50 @@ def regression_pct() -> float:
 
 def tests_total() -> int:
     return regressions()["tests_total"]
+
+
+# -- the Common Crawl hyperlink graph ----------------------------------------
+#
+# The homepage published "117.9 million domains" for 117,963,409, which
+# truncates rather than rounds. It also carried "14 TiB of archive files" — a
+# claim about Common Crawl's storage that nobody here measured, and that was
+# deleted from build.py two iterations earlier for exactly that reason without
+# anyone sweeping for the second copy.
+#
+# Both survived because verify_numbers.py only scanned `body = """..."""` and
+# home.py returns its sections directly, so the homepage had never been read by
+# the gate at all.
+
+
+@lru_cache(maxsize=None)
+def authority() -> dict:
+    return json.loads((ROOT / "site" / "_data" / "authority.json").read_text())
+
+
+def graph_domains() -> int:
+    return authority()["domains"]
+
+
+def graph_domains_m() -> str:
+    """Rounded, not truncated."""
+    return f"{graph_domains() / 1e6:.1f}"
+
+
+def graph_release() -> str:
+    return authority()["release"]
+
+
+def graph_example_host() -> str:
+    return authority()["example_host"]
+
+
+def graph_example_referring() -> int:
+    """Referring domains for the example host.
+
+    Only written when `complete` is true — a capped scan of the edge file
+    undercounts, and an undercount published as a measurement is worse than no
+    figure at all. The full read takes about eleven minutes.
+    """
+    if not authority().get("complete"):
+        raise ValueError("authority.json holds an incomplete scan; do not publish it")
+    return authority()["example_referring_domains"]
