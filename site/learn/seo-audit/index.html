@@ -343,13 +343,21 @@ spreadsheet of 400 rows.</p>
 
 <h2>What an audit actually covers</h2>
 <p>The areas below are ordered the way they should be worked, because they fail in sequence: a
-page that cannot be crawled scores zero on everything downstream, however good its content.</p>
+page that cannot be crawled scores zero on everything downstream, however good its content.
+Each one carries a number from our own surveys, because "check this" is advice and "this is
+broken on half the sites we read" is a reason.</p>
 
 <h3>Crawlability and indexing — the gate</h3>
 <p>Can search engines reach the page, and are you telling them to index it? This is where the
 site-killing mistakes live: a <code>noindex</code> left on after a redesign, a robots.txt
 <code>Disallow: /</code> carried over from staging, canonicals pointing at another domain,
 redirect loops. Every one of these is invisible to a visitor and fatal to rankings.</p>
+<p>Two numbers from reading the robots.txt of the Tranco top 10,000. Of the 1,616 sites
+writing a rule aimed at an AI crawler, <strong>838 — 51.9% — name a user-agent token no
+crawler answers to</strong>, so the rule they wrote does nothing. And 643 of the 10,000
+refused a self-identifying bot at the server before robots.txt was even consulted, which no
+amount of editing that file will fix. <a href="/index/ai-directives/">Both are measured
+here.</a></p>
 
 <h3>On-page</h3>
 <p>Titles, meta descriptions, heading structure, image alt text, internal anchor text. Mostly
@@ -370,6 +378,10 @@ Any tool claiming to measure your LCP from a static crawl is estimating.</p>
 <p>Schema.org markup that tells a search engine what the page <em>is</em>. Most real-world
 business schema sits inside an <code>@graph</code> array, which naive validators miss entirely
 and then report as absent.</p>
+<p>We read the homepage JSON-LD of 85 well-known sites: 50 declare an organisation and only
+41 declare <code>sameAs</code>, the property that links that organisation to anything else.
+Nine sites went to the trouble of describing themselves and then connected it to nothing.
+<a href="/learn/sameas-entity-signals/">The dataset is here.</a></p>
 
 <h3>The three most audits skip</h3>
 <ul>

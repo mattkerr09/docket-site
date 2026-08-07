@@ -52,12 +52,28 @@ def build() -> Path:
     hit_citation = len(both) + len(citation_only)
     conflated_pct = round(100 * hit_citation / any_ai) if any_ai else 0
 
-    cit_pct = round(100 * s["blocking_any_citation_bot"] / n)
-    train_pct = round(100 * s["blocking_any_training_bot"] / n)
+    # Everything below is recomputed from `records`, never read from
+    # `summary`. The summary was written by collect_index.py when CITATION
+    # still included Google-Extended, and iteration 26's correction rewrote the
+    # prose that derives from records while leaving the summary alone — so this
+    # page published a 30% headline over a 26% dataset, and a category table
+    # claiming 94.7% news / 5% SaaS / 9.1% local against a real 89.5 / 0 / 0,
+    # for a week. A stored aggregate and a live one will disagree eventually;
+    # there is one of them now.
+    cit_blocked = [r for r in live if blocked(r, CITATION)]
+    train_blocked = [r for r in live if blocked(r, TRAINING)]
+    named = [r for r in live
+             if any(v is not None for v in (r.get("ai_access") or {}).values())
+             and r.get("mentions_any_ai_bot", True)]
+    cit_pct = round(100 * len(cit_blocked) / n)
+    train_pct = round(100 * len(train_blocked) / n)
     named_pct = round(100 * s["mentions_any_ai_bot"] / n)
 
-    perplexity = s["by_bot"]["PerplexityBot"]["blocked"]
-    oai = s["by_bot"]["OAI-SearchBot"]["blocked"]
+    def blocked_count(bot):
+        return sum(1 for r in live if r["ai_access"].get(bot) is False)
+
+    perplexity = blocked_count("PerplexityBot")
+    oai = blocked_count("OAI-SearchBot")
     gap = round(perplexity / oai, 1) if oai else 0
 
     # Sites drawing the Perplexity/OpenAI distinction deliberately — a real
@@ -69,24 +85,33 @@ def build() -> Path:
     ]
 
     bot_rows = "".join(
-        f"<tr><td>{b}</td><td>{v['owner']}</td>"
-        f"<td>{'search index' if v['purpose'] == 'search index' else v['purpose']}</td>"
-        f"<td>{v['blocked']}</td><td>{v['pct']}%</td></tr>"
-        for b, v in sorted(s["by_bot"].items(), key=lambda kv: -kv[1]["blocked"])
+        f"<tr><td>{b}</td><td>{v['owner']}</td><td>{v['purpose']}</td>"
+        f"<td>{blocked_count(b)}</td>"
+        f"<td>{100 * blocked_count(b) / n:.1f}%</td></tr>"
+        for b, v in sorted(s["by_bot"].items(), key=lambda kv: -blocked_count(kv[0]))
     )
 
+    def category_stats(cat):
+        group = [r for r in live if r.get("category") == cat]
+        hit = [r for r in group if blocked(r, CITATION)]
+        return len(group), len(hit), (100 * len(hit) / len(group)) if group else 0.0
+
     cat_rows = "".join(
-        f"<tr><td>{CATEGORY_LABEL.get(c, c)}</td><td>{v['n']}</td>"
-        f"<td>{v['blocking_citation']}</td><td>{v['pct']}%</td></tr>"
-        for c, v in sorted(s["by_category"].items(), key=lambda kv: -kv[1]["pct"])
+        f"<tr><td>{CATEGORY_LABEL.get(c, c)}</td><td>{cn}</td>"
+        f"<td>{ch}</td><td>{cp:.1f}%</td></tr>"
+        for c, cn, ch, cp in sorted(
+            ((c,) + category_stats(c) for c in s["by_category"]),
+            key=lambda row: -row[3])
     )
 
     body = f"""
 <p class="lede">We fetched the robots.txt of {s['attempted']} well-known websites and parsed
 each one with Scout's own crawler-rules engine. <strong>{cit_pct}% of them block at least one
 AI <em>search</em> crawler</strong> — the crawlers that decide whether a site can appear in
-ChatGPT, Perplexity, Claude or Google's AI Overviews at all. Most of them did not appear to
-mean to.</p>
+ChatGPT, Perplexity or Claude at all. Google's AI Overviews are deliberately not in that list:
+they follow your Googlebot rules, not Google-Extended, and treating the two as the same thing
+was our own largest source of false positives until August 2026. Most of these sites did not
+appear to mean to.</p>
 
 <div class="stat-row">
 <div class="stat"><b>{n}</b><span>sites with a robots.txt</span></div>
