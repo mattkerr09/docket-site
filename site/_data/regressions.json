@@ -1,9 +1,9 @@
 {
-  "test_files": 28,
-  "files_pinning_a_past_mistake": 12,
-  "pct": 42.9,
-  "tests_total": 541,
-  "rule": "A test file counts only if it names a specific thing Scout got wrong \u2014 'false positive', 'false accusation', 'invented', 'used to produce/say/report', or 'would have gone/been/called/reported'. Counting the word 'test' would prove nothing.",
+  "test_files": 30,
+  "files_pinning_a_past_mistake": 14,
+  "pct": 46.7,
+  "tests_total": 561,
+  "rule": "A test file counts only if it names a specific thing Scout got wrong \u2014 'false positive', 'false accusation', 'invented', 'was false', 'the bug', 'used to produce/say/report/be/call/claim/fire/accuse', 'would have gone/been/called/reported/shipped/failed/accused', or 'nearly published/shipped/deleted'. Counting the word 'test' would prove nothing, and every test file describes a contract \u2014 only some record a mistake. The total is what `pytest --collect-only -q` reports, not a count of `def test_`: parametrised tests are many tests from one function.",
   "files": [
     "test_aiproof.py",
     "test_authority.py",
@@ -14,8 +14,11 @@
     "test_dead_directives.py",
     "test_finding_urls.py",
     "test_i18n.py",
+    "test_knowledge_consistency.py",
     "test_mailcheck.py",
+    "test_rating_visibility.py",
     "test_regressions.py",
     "test_renderer.py"
-  ]
+  ],
+  "note": "The rule was widened on 2026-08-07, when this collector was written and the figure stopped being maintained by hand. The earlier rule matched 12 of the same 30 files (40.0%); the two it missed were test_rating_visibility.py, which exists because Scout told a real ecommerce site its rich results were at risk when they were not, and test_knowledge_consistency.py. Both plainly record mistakes and the earlier phrasing simply did not name the words they used. Recorded here because the rule changed in the same edit as the count did, and a percentage that rises for two different reasons at once should say so."
 }
