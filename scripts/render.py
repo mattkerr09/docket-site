@@ -40,7 +40,7 @@ N_CHECKS, N_LANES = _check_counts()
 #: single worst bug a product site can have.
 RELEASE = "v0.1.0"
 DMG = f"https://github.com/mattkerr09/scout-site/releases/download/{RELEASE}/Scout-0.1.0-arm64.dmg"
-DMG_SIZE = "17 MB"
+DMG_SIZE = "18 MB"
 
 # --------------------------------------------------------------------------
 # Design system. Dark, high-contrast, amber accent carried from the app icon.

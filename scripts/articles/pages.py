@@ -23,30 +23,10 @@ def download() -> Path:
 <p style="font-size:.92rem;color:var(--text-dim)">Apple Silicon · macOS 12+ · {DMG_SIZE} ·
 <a href="https://github.com/mattkerr09/scout-site/releases">all releases</a></p>
 
-<h2>Opening it the first time</h2>
-<p>This build is not yet notarised by Apple, so macOS blocks it on first launch with
-&ldquo;Apple could not verify Scout is free of malware&rdquo; and offers only
-<b>Move to Trash</b> or <b>Done</b>. That warning is doing its job, and you should not wave
-it away for software from strangers.</p>
-
-<p><b>The old advice no longer works.</b> Right-clicking and choosing Open stopped bypassing
-this in macOS 15; if you read that anywhere, including on this page before today, it is out
-of date. On macOS 15 and later:</p>
-
-<ol>
-<li>Try to open Scout once and press <b>Done</b> on the warning.</li>
-<li>Open <b>System&nbsp;Settings &rsaquo; Privacy&nbsp;&amp;&nbsp;Security</b> and scroll to
-the <b>Security</b> section.</li>
-<li>You will see &ldquo;Scout was blocked to protect your Mac&rdquo; with an
-<b>Open Anyway</b> button. Click it and authenticate.</li>
-</ol>
-
-<p>The button only appears after a blocked attempt, which is why step 1 is not optional.</p>
-
-<p>The equivalent from a terminal, if you prefer:</p>
-<pre><code>xattr -d com.apple.quarantine /Applications/Scout.app</code></pre>
-
-<p>Notarisation is in progress and will remove this step entirely.</p>
+<h2>Opening it</h2>
+<p>Double-click it. Scout is signed with a Developer&nbsp;ID and notarised by Apple, so
+macOS opens it without a security warning and without any of the right-click or Terminal
+workarounds that unsigned software needs.</p>
 
 <h2>What happens on first launch</h2>
 <p>Scout opens, starts its local audit engine, and shows a single field. Type a domain, press
