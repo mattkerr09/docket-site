@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scout compared with other SEO audit tools (2026)</title>
-<meta name="description" content="Honest comparisons of Scout against Screaming Frog, Sitebulb and Ahrefs Site Audit — including what each of them does better.">
+<title>About Scout — who builds it and what it cannot do</title>
+<meta name="description" content="Scout is built by one person in the UK: a Mac SEO and copy auditor with 91 checks that runs on your own machine. What it is bad at, and how to verify the download.">
 <meta name="theme-color" content="#0b0c0f">
-<link rel="canonical" href="https://scoutseo.app/vs/">
+<link rel="canonical" href="https://scoutseo.app/about/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How Scout compares">
-<meta property="og:description" content="Honest comparisons of Scout against Screaming Frog, Sitebulb and Ahrefs Site Audit — including what each of them does better.">
-<meta property="og:url" content="https://scoutseo.app/vs/">
+<meta property="og:title" content="About Scout">
+<meta property="og:description" content="Scout is built by one person in the UK: a Mac SEO and copy auditor with 91 checks that runs on your own machine. What it is bad at, and how to verify the download.">
+<meta property="og:url" content="https://scoutseo.app/about/">
 <meta property="og:site_name" content="Scout">
 <meta property="og:image" content="https://scoutseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How Scout compares">
-<meta name="twitter:description" content="Honest comparisons of Scout against Screaming Frog, Sitebulb and Ahrefs Site Audit — including what each of them does better.">
+<meta name="twitter:title" content="About Scout">
+<meta name="twitter:description" content="Scout is built by one person in the UK: a Mac SEO and copy auditor with 91 checks that runs on your own machine. What it is bad at, and how to verify the download.">
 <meta name="twitter:image" content="https://scoutseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -335,7 +335,8 @@ body.landing article{padding:0}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/scout-site"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 91 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"91 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","headline":"How Scout compares","description":"Honest comparisons of Scout against Screaming Frog, Sitebulb and Ahrefs Site Audit — including what each of them does better.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/vs/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","headline":"About Scout","description":"Scout is built by one person in the UK: a Mac SEO and copy auditor with 91 checks that runs on your own machine. What it is bad at, and how to verify the download.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/about/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Who makes Scout?","acceptedAnswer":{"@type":"Answer","text":"Matt Kerr, one person, in the UK. There is no team and no company office. The macOS download is signed with an Apple Developer ID and notarised, so the legal name on the certificate can be checked with codesign before you install anything."}},{"@type":"Question","name":"Does Scout send my site data anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The crawl runs on your Mac and results are stored in ~/.scout/ as plain JSON. Two optional connectors do reach outside: the knowledge refresh fetches one public file from scoutseo.app and tells it nothing about what you are auditing, and PageSpeed Insights — off unless you add your own Google API key — necessarily sends Google the URL you asked it to measure."}},{"@type":"Question","name":"What can Scout not do?","acceptedAnswer":{"@type":"Answer","text":"It is macOS only on Apple Silicon, it does not track keyword rankings or backlinks, and it is not built for crawling hundreds of thousands of URLs. The application source is not public, though the website's datasets are."}}]}</script>
 </head>
 <body>
 <nav><div class="wrap-wide nav-inner">
@@ -350,8 +351,90 @@ body.landing article{padding:0}
 </div>
 <a class="btn" href="/download/">Download</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Scout</a> / How Scout compares</div><h1>How Scout compares</h1>
-<p class="lede">Each of these names at least one thing the other tool does better, because a comparison that never concedes anything is an advertisement.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/vs/screaming-frog-alternative/">Scout vs Screaming Frog</a></h2><p>Raw crawl data versus a ranked plan. Screaming Frog supports custom extraction and crawls at far greater scale; Scout does not.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/vs/sitebulb-alternative/">Scout vs Sitebulb</a></h2><p>Both draw your site architecture — Sitebulb interactively, Scout as rings by depth sized by link equity. Scout covers AI visibility, conversion and tracking, which Sitebulb does not.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/vs/ahrefs-site-audit-alternative/">Scout vs Ahrefs Site Audit</a></h2><p>Ahrefs has a web-scale index and Scout never will. What you get for $129 a month if the audit is the part you use.</p>
+<article><div class="wrap"><div class="crumb"><a href="/">Scout</a> / About</div><h1>About Scout</h1>
+
+<p class="lede">Scout is built by Matt Kerr, one person, in the UK. It is a Mac app that
+audits a site's SEO, copy and branding against 91 checks across 13 lanes,
+runs the crawl on your own machine, and costs $149 once — v0.1.0 is free while it
+is in beta.</p>
+
+<p>That is the whole company. There is no team page because there is no team, no office
+address because there is no office, and no support desk because there is one person reading
+<a href="https://github.com/mattkerr09/scout-site/issues">the issue tracker</a>. Saying so is more useful than a stock photo.</p>
+
+<h2>Why it exists</h2>
+
+<p>Every SEO tool worth using is a subscription to somebody's crawler farm. You paste in a
+domain, a queue somewhere fetches it, and you pay monthly for the privilege of being told
+what your own HTML says. The crawl is the cheap part. The recurring bill is for the servers,
+and the servers exist because the tool was built as a service rather than as software.</p>
+
+<p>Scout is the other shape. The audit engine is Python with no third-party dependencies at
+all, frozen into the app, and it runs on your Mac. There is no account, no crawl credit, no
+per-seat price and no queue. Audit the same site forty times in an afternoon; nobody is
+counting, because there is nobody to count.</p>
+
+<h2>What that changes about the findings</h2>
+
+<p>Running locally is not only a pricing decision. A crawler farm sees your site as an
+anonymous datacentre IP; your Mac sees it the way a person does, and can be told to
+introduce itself as any crawler you like. That is how Scout can tell you what your CDN
+returns to <code>GPTBot</code> specifically, rather than what your robots.txt claims it
+should.</p>
+
+<p>It is also why the awkward findings are possible. Scout will tell you your AI opt-out is
+unenforceable, that your directive names a crawler that has been retired, or that the
+markup Google needs sits past the 2MB it will actually read. We publish those measurements
+as datasets rather than as marketing: 6236 sites' robots.txt files in
+<a href="/index/ai-directives/">the directives survey</a>, 85 homepages in
+<a href="/learn/entity-schema/">the entity survey</a>, 82 in
+<a href="/learn/googlebot-2mb-limit/">the page-weight survey</a>. The raw JSON for each is
+in <a href="https://github.com/mattkerr09/scout-site">the site's repository</a>, next to the scripts that check every figure
+on this site is derived from it rather than typed into a sentence.</p>
+
+<h2>What Scout is not good at</h2>
+
+<p>The honest list, because you will find it out in the first hour anyway:</p>
+
+<ul>
+<li><strong>It is Mac only.</strong> Apple Silicon, macOS 12 or later. There is no Windows
+build, no Linux build and no web version, and none is planned while it is one person.</li>
+<li><strong>It is not a rank tracker.</strong> No keyword positions, no search volume, no
+backlink index. <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs</a> and Semrush have
+spent years and a great deal of money building those, and Scout has no answer to them.</li>
+<li><strong>It is not built for enormous sites.</strong>
+<a href="/vs/screaming-frog-alternative/">Screaming Frog</a> will crawl 400,000 URLs and let
+you sort them; Scout is built to read a site closely, not to survey one at that scale.</li>
+<li><strong>The app's source is not public.</strong> The website and its datasets are; the
+application is not. If your policy requires reading the code, Scout will not pass it.</li>
+<li><strong>It is version v0.1.0.</strong> There are things it should connect to and does
+not yet — Search Console for your own impressions is the biggest.</li>
+</ul>
+
+<h2>How you can check any of this</h2>
+
+<p>The download is signed with an Apple Developer ID and notarised, which means the
+certificate carries a legal name and Apple has checked it. You do not have to take that on
+faith. After downloading the 17 MB disk image:</p>
+
+<pre><code>codesign -dv --verbose=4 /Volumes/Scout/Scout.app
+spctl -a -t open --context context:primary-signature -v Scout-0.1.0-arm64.dmg</code></pre>
+
+<p>The first prints the authority chain, ending at Apple's root. The second should say
+<code>accepted</code> and <code>source=Notarized Developer ID</code>. Any Mac app worth
+installing will survive both; a surprising number will not.</p>
+
+<h2>What to do if a finding is wrong</h2>
+
+<p>Tell us, with the URL. Scout has shipped false positives — the byte-cap check once
+reported a major news site's title tag as past Googlebot's cutoff, when what it had found
+was an inline SVG icon label reading "Close icon" and the real title was fine. That is
+written up in full on <a href="/learn/googlebot-2mb-limit/">the page about the check</a>,
+because a tool that hides its mistakes is asking you to trust its output more than its
+authors do.</p>
+
+<p><a class="btn" href="/contact/">How to get in touch</a></p>
+
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
