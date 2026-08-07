@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How to tell whether an audit tool is lying to you</title>
-<meta name="description" content="Four questions to ask of any SEO finding, each learned by getting it wrong. 12 of Scout's 28 test files exist because Scout said something untrue.">
+<meta name="description" content="Four questions to ask of any SEO finding, each learned by getting it wrong. 14 of Scout's 30 test files exist because Scout said something untrue.">
 <meta name="theme-color" content="#0b0c0f">
 <link rel="canonical" href="https://scoutseo.app/learn/audit-tool-accuracy/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to tell whether an audit tool is lying to you">
-<meta property="og:description" content="Four questions to ask of any SEO finding, each learned by getting it wrong. 12 of Scout's 28 test files exist because Scout said something untrue.">
+<meta property="og:description" content="Four questions to ask of any SEO finding, each learned by getting it wrong. 14 of Scout's 30 test files exist because Scout said something untrue.">
 <meta property="og:url" content="https://scoutseo.app/learn/audit-tool-accuracy/">
 <meta property="og:site_name" content="Scout">
 <meta property="og:image" content="https://scoutseo.app/og.png">
@@ -19,7 +19,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="How to tell whether an audit tool is lying to you">
-<meta name="twitter:description" content="Four questions to ask of any SEO finding, each learned by getting it wrong. 12 of Scout's 28 test files exist because Scout said something untrue.">
+<meta name="twitter:description" content="Four questions to ask of any SEO finding, each learned by getting it wrong. 14 of Scout's 30 test files exist because Scout said something untrue.">
 <meta name="twitter:image" content="https://scoutseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -336,8 +336,8 @@ body.landing article{padding:0}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/scout-site"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 93 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"93 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scout","item":"https://scoutseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://scoutseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to tell whether an audit tool is lying to you","description":"Four questions to ask of any SEO finding, each learned by getting it wrong. 12 of Scout's 28 test files exist because Scout said something untrue.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/audit-tool-accuracy/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I know if an SEO tool's findings are accurate?","acceptedAnswer":{"@type":"Answer","text":"Ask four things of any finding: how many pages it actually read before claiming something is missing site-wide, whether its headline and its detail report the same number, whether anything was observed at all when it reports an absence, and whether the vendor keeps a regression test when they fix a false positive."}},{"@type":"Question","name":"What is a false positive in an SEO audit?","acceptedAnswer":{"@type":"Answer","text":"A finding that is confidently stated and not true. The common causes are a tool sampling part of a site and reporting about all of it, a crawl that was blocked or returned nothing being read as evidence of absence, and pattern matches that fire on the wrong thing — an inline SVG label counted as the page title, for instance."}},{"@type":"Question","name":"Why does a failed crawl produce false findings?","acceptedAnswer":{"@type":"Answer","text":"Because 'we did not see it' and 'it is not there' are the same observation to a tool that is not careful. A rate-limited crawl that reads one error page has no evidence about analytics, phone numbers or anything else, but a naive check reports all of them as missing. Look for a line saying the crawl was degraded; if the report does not mention it, the silence is not reassurance."}},{"@type":"Question","name":"Should I run an SEO audit in CI?","acceptedAnswer":{"@type":"Answer","text":"It is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Test it first against a hostname that does not resolve: a tool that invents findings about a site it never reached will fail your build with advice about a problem you do not have."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to tell whether an audit tool is lying to you","description":"Four questions to ask of any SEO finding, each learned by getting it wrong. 14 of Scout's 30 test files exist because Scout said something untrue.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/audit-tool-accuracy/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I know if an SEO tool's findings are accurate?","acceptedAnswer":{"@type":"Answer","text":"Ask four things of any finding: how many pages it actually read before claiming something is missing site-wide, whether its headline and its detail report the same number, whether anything was observed at all when it reports an absence, and whether the vendor keeps a regression test when they fix a false positive."}},{"@type":"Question","name":"What is a false positive in an SEO audit?","acceptedAnswer":{"@type":"Answer","text":"A finding that is confidently stated and not true. The common causes are a tool sampling part of a site and reporting about all of it, a crawl that was blocked or returned nothing being read as evidence of absence, and pattern matches that fire on the wrong thing — an inline SVG label counted as the page title, for instance."}},{"@type":"Question","name":"Why does a failed crawl produce false findings?","acceptedAnswer":{"@type":"Answer","text":"Because 'we did not see it' and 'it is not there' are the same observation to a tool that is not careful. A rate-limited crawl that reads one error page has no evidence about analytics, phone numbers or anything else, but a naive check reports all of them as missing. Look for a line saying the crawl was degraded; if the report does not mention it, the silence is not reassurance."}},{"@type":"Question","name":"Why does an SEO tool flag things that look fine in my browser?","acceptedAnswer":{"@type":"Answer","text":"Usually because it read the HTML your server sent and you are looking at the page after JavaScript ran. On most modern sites those are different documents. Anything a tool says about what a visitor sees — visible prices, review stars, headings, body copy — is only trustworthy if it rendered the page. Ask whether the tool rendered, and if it did not, treat those findings as unconfirmed rather than wrong."}},{"@type":"Question","name":"Should I run an SEO audit in CI?","acceptedAnswer":{"@type":"Answer","text":"It is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Test it first against a hostname that does not resolve: a tool that invents findings about a site it never reached will fail your build with advice about a problem you do not have."}}]}</script>
 </head>
 <body>
 <nav><div class="wrap-wide nav-inner">
@@ -355,8 +355,8 @@ body.landing article{padding:0}
 <article><div class="wrap"><div class="crumb"><a href="/">Scout</a> / <a href="/learn/">Learn</a> / Audit accuracy</div><h1>How to tell whether an audit tool is lying to you</h1>
 
 <p class="lede">An SEO audit is a pile of confident sentences about your site, and the useful
-question is which of them the tool actually checked. <strong>12 of Scout's
-28 test files</strong> — 42.9% — exist because Scout said
+question is which of them the tool actually checked. <strong>14 of Scout's
+30 test files</strong> — 46.7% — exist because Scout said
 something that was not true, and every one of those mistakes belongs to a family you can look
 for in any tool's report.</p>
 
@@ -411,10 +411,23 @@ rate-limited crawl read a single error page and announced "no analytics installe
 the site" about a site that had analytics, and once for the page caps above. Three roads to
 the same wrong sentence, and a guard built for one of them covered neither of the others.</p>
 
+<p>A fourth road opened later, and it is the one worth watching for in any tool. Scout warns when
+a page carries star-rating markup but shows no rating to visitors, because Google treats that as
+grounds for a manual action that removes every rich result a site has. It was deciding this from
+the served HTML. Point it at a shop that draws its star widget in JavaScript and it accused two
+perfectly compliant product pages of the most serious thing the tool can say. Re-running with
+rendering turned on cleared them completely.</p>
+
+<p>Notice the shape: nothing was broken, nothing was degraded, the crawl was clean. The tool
+simply answered a question about the rendered page using a document that was not the rendered
+page. Now it will not make that accusation without rendered evidence, and where it has none it
+says so and stays at a notice.</p>
+
 <p><strong>What to do with it:</strong> when a tool reports an absence, ask what it saw. If the
 crawl was blocked, rate-limited, or returned nothing, every "missing" finding in that report is
-unsupported — not wrong necessarily, just unevidenced. A good tool says so itself. Look for a
-line telling you the crawl was degraded; if there is not one, that silence is not reassurance.</p>
+unsupported — not wrong necessarily, just unevidenced. And if a finding is about what a visitor
+sees, ask whether the tool rendered the page or read the HTML. Those are different documents on
+most modern sites, and only one of them is what Google judges.</p>
 
 <h2>Would the tool have caught it, or did a person have to notice?</h2>
 
@@ -445,7 +458,7 @@ they have had far more of those than Scout has.</p>
 newer, which means it has more undiscovered false positives than they do, and the only useful
 response to that is to publish the ones we find and make them fail the build. Every mistake in
 this article is written up in the code that fixes it, with the site it happened to, and
-12 of the 28 test files exist for no other reason.</p>
+14 of the 30 test files exist for no other reason.</p>
 
 <h2>The version of this that matters most</h2>
 
@@ -462,7 +475,7 @@ tells you. You will learn more about the tool in that one run than in ten agains
 site.</p>
 
 <p><a class="btn" href="/download/">Download Scout</a></p>
-<section class="faq"><h2>Common questions</h2><div class="faq-item"><h3>How do I know if an SEO tool's findings are accurate?</h3><p>Ask four things of any finding: how many pages it actually read before claiming something is missing site-wide, whether its headline and its detail report the same number, whether anything was observed at all when it reports an absence, and whether the vendor keeps a regression test when they fix a false positive.</p></div><div class="faq-item"><h3>What is a false positive in an SEO audit?</h3><p>A finding that is confidently stated and not true. The common causes are a tool sampling part of a site and reporting about all of it, a crawl that was blocked or returned nothing being read as evidence of absence, and pattern matches that fire on the wrong thing — an inline SVG label counted as the page title, for instance.</p></div><div class="faq-item"><h3>Why does a failed crawl produce false findings?</h3><p>Because 'we did not see it' and 'it is not there' are the same observation to a tool that is not careful. A rate-limited crawl that reads one error page has no evidence about analytics, phone numbers or anything else, but a naive check reports all of them as missing. Look for a line saying the crawl was degraded; if the report does not mention it, the silence is not reassurance.</p></div><div class="faq-item"><h3>Should I run an SEO audit in CI?</h3><p>It is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Test it first against a hostname that does not resolve: a tool that invents findings about a site it never reached will fail your build with advice about a problem you do not have.</p></div></section>
+<section class="faq"><h2>Common questions</h2><div class="faq-item"><h3>How do I know if an SEO tool's findings are accurate?</h3><p>Ask four things of any finding: how many pages it actually read before claiming something is missing site-wide, whether its headline and its detail report the same number, whether anything was observed at all when it reports an absence, and whether the vendor keeps a regression test when they fix a false positive.</p></div><div class="faq-item"><h3>What is a false positive in an SEO audit?</h3><p>A finding that is confidently stated and not true. The common causes are a tool sampling part of a site and reporting about all of it, a crawl that was blocked or returned nothing being read as evidence of absence, and pattern matches that fire on the wrong thing — an inline SVG label counted as the page title, for instance.</p></div><div class="faq-item"><h3>Why does a failed crawl produce false findings?</h3><p>Because 'we did not see it' and 'it is not there' are the same observation to a tool that is not careful. A rate-limited crawl that reads one error page has no evidence about analytics, phone numbers or anything else, but a naive check reports all of them as missing. Look for a line saying the crawl was degraded; if the report does not mention it, the silence is not reassurance.</p></div><div class="faq-item"><h3>Why does an SEO tool flag things that look fine in my browser?</h3><p>Usually because it read the HTML your server sent and you are looking at the page after JavaScript ran. On most modern sites those are different documents. Anything a tool says about what a visitor sees — visible prices, review stars, headings, body copy — is only trustworthy if it rendered the page. Ask whether the tool rendered, and if it did not, treat those findings as unconfirmed rather than wrong.</p></div><div class="faq-item"><h3>Should I run an SEO audit in CI?</h3><p>It is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Test it first against a hostname that does not resolve: a tool that invents findings about a site it never reached will fail your build with advice about a problem you do not have.</p></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
