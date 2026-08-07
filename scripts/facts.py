@@ -215,3 +215,52 @@ def equity_node(path: str) -> dict:
 
 def equity_weakest(limit: int = 3) -> list:
     return sorted(equity()["nodes"], key=lambda n: n["index"])[:limit]
+
+
+# -- AI-substitution portfolios, exported from real audits -------------------
+#
+# /learn/ai-substitution/ typed these: 33 pages, 32 with a transaction, 19 of
+# ours, 5.3%. They are measurements of two live sites and they move when those
+# sites do — the deli redesigns, we publish. Typed, they would have gone stale
+# the way the link-equity graph did, silently and for weeks.
+
+
+@lru_cache(maxsize=None)
+def exposure(slug: str) -> dict:
+    return json.loads(
+        (ROOT / "site" / "_data" / f"exposure-{slug}.json").read_text())
+
+
+def exposure_assessed(slug: str) -> int:
+    return exposure(slug)["pages_assessed"]
+
+
+def exposure_substitutable_pct(slug: str) -> str:
+    """Formatted, because "0.0%" reads like a rounding artefact and "0%" reads
+    like a finding — and the finding is what it is."""
+    pct = exposure(slug)["substitutable_pct"]
+    return f"{pct:.0f}" if pct == int(pct) else f"{pct:.1f}"
+
+
+def exposure_band(slug: str, band: str) -> int:
+    return exposure(slug)["bands"].get(band, 0)
+
+
+def exposure_defence(slug: str, fragment: str) -> int:
+    """How many pages carry the defence whose description contains `fragment`.
+
+    Matched on a fragment rather than the full sentence so rewording the
+    defence text in the app does not silently zero a number on the site.
+    """
+    for description, count in exposure(slug)["defence_counts"].items():
+        if fragment in description:
+            return count
+    return 0
+
+
+def exposure_worst(slug: str) -> dict:
+    return exposure(slug)["pages"][0]
+
+
+def exposure_measured(slug: str) -> str:
+    return exposure(slug)["measured"]

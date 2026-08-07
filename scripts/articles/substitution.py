@@ -12,22 +12,26 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import facts as F  # noqa: E402
 from render import render  # noqa: E402
 
 
 def ai_substitution() -> Path:
-    body = """
+    body = f"""
 <p class="lede">The AI-search risk to most businesses is not losing rankings. It is keeping
 them and losing the visit, because the answer now appears in the result — so the question
 worth asking about a page is not how it ranks but whether an answer somewhere else delivers
 what it offers.</p>
 
 <p>Scout puts a number on that. Run against <strong>zingermansdeli.com</strong>, a
-delicatessen in Ann Arbor, it assessed 33 pages and found <strong>0% fully
-substitutable</strong>, because 32 of them let the visitor do something and 31 carry something
-to operate. Run against <strong>scoutseo.app</strong> it assessed 19 pages and found 0% too —
-but the worst page on this site scored 0.85 out of 1 a few hours before this was written, and
-what changed was mostly the measurement rather than the page.</p>
+delicatessen in Ann Arbor, it assessed {F.exposure_assessed('zingermansdeli')} pages and found
+<strong>{F.exposure_substitutable_pct('zingermansdeli')}% fully substitutable</strong>, because
+{F.exposure_defence('zingermansdeli', 'transact')} of them let the visitor do something and
+{F.exposure_defence('zingermansdeli', 'operate')} carry something to operate. Run against
+<strong>scoutseo.app</strong> it assessed {F.exposure_assessed('scoutseo')} pages and found
+{F.exposure_substitutable_pct('scoutseo')}% too — but the worst page on this site scored 0.85
+out of 1 a few hours before this was written, and what changed was mostly the measurement
+rather than the page.</p>
 
 <h2>The two questions</h2>
 
@@ -54,8 +58,10 @@ summarised into having been used</td></tr>
 
 <h2>What the two sites show</h2>
 
-<p>The deli is the instructive one. Thirty-one of its 33 assessed pages carry a transaction,
-eleven put something behind a login, two are anchored to the shop itself. It has no AI
+<p>The deli is the instructive one. {F.exposure_defence('zingermansdeli', 'transact')} of its
+{F.exposure_assessed('zingermansdeli')} assessed pages carry a transaction,
+{F.exposure_defence('zingermansdeli', 'login')} put something behind a login,
+{F.exposure_defence('zingermansdeli', 'physically')} are anchored to the shop itself. It has no AI
 strategy that we can see and does not need one, because almost every page asks the visitor to
 do a thing that has to happen on the page. A model can describe a Reuben. It cannot hand you
 one.</p>
@@ -84,21 +90,23 @@ writes "our hours".</p>
 your own site" matched a pattern looking for "try it". That is a download button, not a
 calculator.</p>
 
-<p><strong>The deli scored "media" on 32 of its 33 pages</strong>, and every single hit was
-the Google Tag Manager noscript iframe. A defence that fires on every site running GTM
-defends nothing. It now counts a <code>&lt;video&gt;</code> or <code>&lt;audio&gt;</code>
-element, or an iframe on a known media host. That number went from 32 to 1.</p>
+<p><strong>The deli scored "media" on 32 of its
+{F.exposure_assessed('zingermansdeli')} pages</strong>, and every single hit was the Google
+Tag Manager noscript iframe. A defence that fires on every site running GTM defends nothing.
+It now counts a <code>&lt;video&gt;</code> or <code>&lt;audio&gt;</code> element, or an iframe
+on a known media host. That number is
+{F.exposure_defence('zingermansdeli', 'media')} today.</p>
 
 <p>A fourth turned up when the analysis was finally rendered into a PDF and looked at rather
 than read as code. Our privacy policy and terms of use were sitting in the "most exposed"
 list — accurate, and useless. A privacy policy's reason to exist is not that people read it.
-Legal and utility pages are now left out of the portfolio, which is why the figure above is
-5.3% of 19 pages rather than 5% of 20.</p>
+Legal and utility pages are now left out of the portfolio, which is why the figure above
+covers {F.exposure_assessed('scoutseo')} of our pages rather than all of them.</p>
 
 <p>Then three more, all the same shape. This article scored as having a login and a
 calculator, because it contains a table explaining that logins and calculators are defences.
 And the SEO-audit explainer scored as having <em>no</em> data of its own while reporting that
-we read the JSON-LD of 85 sites — the verb list did not include "we read".</p>
+we read the JSON-LD of {F.entity_n()} sites — the verb list did not include "we read".</p>
 
 <p>Two others came from the opposite direction. "Download" was not counted as a transaction
 while "sign up" was, which is an inconsistency rather than a principle. Fixing it then made
@@ -160,9 +168,11 @@ gets cited rather than the page that gets read: question-shaped headings, the an
 first two sentences, a named author.</li>
 </ol>
 
-<p>Scout reports this on every audit, as a portfolio rather than a grade. "Five per cent of
-your pages are fully substitutable and here they are" is something you can act on. A letter
-is not.</p>
+<p>Scout reports this on every audit, as a portfolio rather than a grade. "These four pages
+are fully substitutable and here they are" is something you can act on. A letter is not. The
+figures on this page come from auditing both sites on
+{F.exposure_measured('scoutseo')} and are read from those runs rather than typed, because a
+number in a sentence cannot tell you when it has stopped being true.</p>
 
 <p><a class="btn" href="/download/">Download Scout</a></p>
 """

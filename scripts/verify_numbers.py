@@ -97,16 +97,10 @@ ALLOWED = {
     "23": "'the site had 23 pages' — the moment the stale figure was caught",
     "30": "a law firm crawl that reached 30 of 935 pages, a one-off anecdote",
     "935": "pages that law firm actually had", "25": "attorney pages in it",
-    # -- exposure runs, measured by auditing two sites, not from a shipped
-    #    dataset. The article names the date and both sites, and the numbers
-    #    move when the sites do — the honest fix is to ship the portfolio,
-    #    which is worth doing and is not worth doing today.
-    "33": "pages assessed on zingermansdeli.com, 2026-08-07",
-    "32": "deli pages with a transaction, and the GTM false-positive count",
-    "31": "deli pages carrying something to operate",
-    "19": "pages assessed on scoutseo.app, 2026-08-07",
-    "20": "pages assessed before legal pages were excluded",
-    "5.3": "our substitutable share before legal pages were excluded",
+    # The exposure portfolios are shipped as datasets now and read through
+    # facts.py, so none of their figures need to live here.
+    "32": "'the deli scored media on 32 pages' — the count BEFORE the fix, "
+          "stated as history next to the current figure, which is derived",
     "85": "'0.85 does not mean 85% fewer visits' — explaining the scale, and "
           "the 85 sites in the entity survey where it is interpolated",
     "50": "sites declaring an organisation, interpolated where it matters",
