@@ -42,6 +42,12 @@ RELEASE = "v0.1.0"
 DMG = f"https://github.com/mattkerr09/scout-site/releases/download/{RELEASE}/Scout-0.1.0-arm64.dmg"
 DMG_SIZE = "18 MB"
 
+#: One-time price, in USD. Declared once so the schema, the comparison table and
+#: the download page cannot drift apart — which is exactly what happened to the
+#: check count and the download size before they were centralised.
+PRICE = 149
+PRICE_STR = f"${PRICE}"
+
 # --------------------------------------------------------------------------
 # Design system. Dark, high-contrast, amber accent carried from the app icon.
 # --------------------------------------------------------------------------
@@ -414,7 +420,8 @@ def _entity_schema() -> str:
         '"description":"Scout crawls a website, runs ' + str(N_CHECKS) + ' checks across SEO, copy, '
         'speed, structured data, local visibility, AI search visibility and marketing '
         'conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.",'
-        '"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},'
+        '"offers":{"@type":"Offer","price":"' + str(PRICE) + '","priceCurrency":"USD",'
+        '"availability":"https://schema.org/InStock"},'
         '"featureList":"' + str(N_CHECKS) + ' checks, ranked action plan, PDF report, scheduled monitoring, '
         'competitor comparison, AI crawler access audit",'
         '"publisher":{"@id":"' + BASE + '/#org"}}]}'

@@ -11,13 +11,19 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import DMG, DMG_SIZE, N_CHECKS, RELEASE, render  # noqa: E402
+from render import DMG, DMG_SIZE, N_CHECKS, PRICE_STR, RELEASE, render  # noqa: E402
 
 
 def download() -> Path:
     body = f"""
-<p class="lede">Scout is a single download for macOS 12 or later on Apple Silicon.
-{DMG_SIZE}. There is no account to create, no licence server to phone, and no telemetry.</p>
+<p class="lede">Scout is {PRICE_STR}, paid once, for macOS 12 or later on Apple Silicon.
+{DMG_SIZE}. No subscription, no crawl credits, no per-seat pricing — audit as many sites as
+you like, for as long as you like. There is no account to create, no licence server to phone,
+and no telemetry.</p>
+
+<p><strong>v0.1.0 is free.</strong> The beta downloads without payment and keeps working; the
+{PRICE_STR} applies from v1.0. Said plainly because a price on a page beside a button that
+charges nothing is the kind of thing this tool exists to flag.</p>
 
 <p><a class="btn btn-lg" href="{DMG}">Download Scout {RELEASE} for Mac</a></p>
 <p style="font-size:.92rem;color:var(--text-dim)">Apple Silicon · macOS 12+ · {DMG_SIZE} ·
@@ -66,7 +72,7 @@ is gone.</p>
 """
     return render(
         cat="download", slug="",
-        title="Download Scout for Mac — SEO & marketing audits, one-time",
+        title=f"Download Scout for Mac — {PRICE_STR}, paid once",
         desc=("Scout for macOS 12+ on Apple Silicon. 18 MB, no account, no telemetry. "
               "Includes the CLI, which exits non-zero on a critical issue so it can gate a "
               "deploy."),
@@ -164,7 +170,7 @@ claims everything invites the client to test the claim.</p>
 """
     return render(
         cat="for", slug="agencies",
-        title="Scout for SEO agencies: unlimited client audits, one-time cost (2026)",
+        title=f"Scout for SEO agencies: unlimited client audits for {PRICE_STR}",
         desc=("Per-crawl metering makes agencies ration audits. Scout runs locally with no "
               "per-seat or per-crawl cost, produces a client-ready PDF, and turns scheduled "
               "re-audits into a retainer conversation."),
@@ -173,7 +179,7 @@ claims everything invites the client to test the claim.</p>
         body=body,
         faq=[
             ("Can I use Scout for client work?",
-             "Yes. Scout is a one-time download with no per-seat or per-crawl limits, so you "
+             "Yes. Scout is " + PRICE_STR + " once, with no per-seat or per-crawl limits, so you "
              "can audit as many client and prospect sites as you like."),
             ("Can I white-label the report?",
              "The PDF is Scout-branded. The CSV and JSON exports carry no branding and can be "
