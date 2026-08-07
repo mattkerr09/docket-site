@@ -1,6 +1,7 @@
 id,lane,lane_label,title
 ai.citable_facts,ai,AI search visibility,"Citable, specific claims"
 ai.crawler_access,ai,AI search visibility,AI crawler access
+ai.dead_crawler_directive,ai,AI search visibility,Dead AI crawler directives
 ai.entity,ai,AI search visibility,Entity definition and sameAs
 ai.extractability,ai,AI search visibility,Answer extractability
 ai.freshness_signal,ai,AI search visibility,Dates AI engines can read
