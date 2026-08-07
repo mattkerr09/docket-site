@@ -1,0 +1,8 @@
+{
+  "release": "cc-main-2026-may-jun-jul",
+  "domains": 117963409,
+  "example_host": "screamingfrog.co.uk",
+  "example_referring_domains": 12411,
+  "complete": true,
+  "note": "Generated from seo_engine.authority. `complete` must be true: a capped scan of the edge file undercounts, and an undercount published as a measurement is worse than no figure. The site had truncated 117,963,409 to '117.9 million' rather than rounding it."
+}
