@@ -11,16 +11,24 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import N_CHECKS, render  # noqa: E402
+from render import DMG, DMG_SIZE, N_CHECKS, RELEASE, render  # noqa: E402
 
 
 def download() -> Path:
-    body = """
-<p class="lede">Scout is a single download for macOS 12 or later on Apple Silicon. About
-16&nbsp;MB. There is no account to create, no licence server to phone, and no telemetry.</p>
+    body = f"""
+<p class="lede">Scout is a single download for macOS 12 or later on Apple Silicon.
+{DMG_SIZE}. There is no account to create, no licence server to phone, and no telemetry.</p>
 
-<p><a class="btn" href="https://github.com/mattkerr09/scout-site/releases">Get the latest
-release</a></p>
+<p><a class="btn btn-lg" href="{DMG}">Download Scout {RELEASE} for Mac</a></p>
+<p style="font-size:.92rem;color:var(--text-dim)">Apple Silicon · macOS 12+ · {DMG_SIZE} ·
+<a href="https://github.com/mattkerr09/scout-site/releases">all releases</a></p>
+
+<h2>Opening it the first time</h2>
+<p>This build is ad-hoc signed rather than notarised, so macOS will say the developer cannot
+be verified. That warning is accurate and you should not ignore it lightly for software from
+strangers. To open it anyway: right-click Scout in Applications and choose <b>Open</b>, then
+confirm — or allow it under System&nbsp;Settings&nbsp;&rsaquo;
+Privacy&nbsp;&amp;&nbsp;Security after the first attempt.</p>
 
 <h2>What happens on first launch</h2>
 <p>Scout opens, starts its local audit engine, and shows a single field. Type a domain, press

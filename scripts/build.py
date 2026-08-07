@@ -20,6 +20,7 @@ from render import BASE, SITE, render  # noqa: E402
 
 import comparisons  # noqa: E402
 import entity  # noqa: E402
+import rendering  # noqa: E402
 import home  # noqa: E402
 import index_page  # noqa: E402
 import learn  # noqa: E402
@@ -80,6 +81,9 @@ def build_hubs() -> list[Path]:
             ("/learn/seo-audit/", "What an SEO audit covers",
              "Every area, in the order they should be worked, and the three tests a report has "
              "to pass to be worth acting on."),
+            ("/learn/javascript-rendering/", "JavaScript rendering",
+             "What a crawler that does not run JavaScript misses — measured on a page that "
+             "serves 0 characters of text and renders 2,068."),
             ("/learn/sameas-entity-signals/", "sameAs and entity signals",
              "The cheapest entity signal there is, and the share of major sites that skip "
              "it — measured, with the dataset attached."),
@@ -245,6 +249,7 @@ def main() -> int:
     pages += learn.build_all()
     pages += link_equity.build_all()
     pages += entity.build_all()
+    pages += rendering.build_all()
     pages += __import__('pages').build_all()
     pages += build_hubs()
 

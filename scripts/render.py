@@ -36,6 +36,12 @@ def _check_counts() -> tuple:
 
 N_CHECKS, N_LANES = _check_counts()
 
+#: The current build. One place, because a download link that 404s is the
+#: single worst bug a product site can have.
+RELEASE = "v0.1.0"
+DMG = f"https://github.com/mattkerr09/scout-site/releases/download/{RELEASE}/Scout-0.1.0-arm64.dmg"
+DMG_SIZE = "17 MB"
+
 # --------------------------------------------------------------------------
 # Design system. Dark, high-contrast, amber accent carried from the app icon.
 # --------------------------------------------------------------------------
@@ -256,13 +262,13 @@ NAV = f"""<nav><div class="wrap-wide nav-inner">
 <a href="/how-to/">Fix it</a>
 <a href="/for/">For you</a>
 </div>
-<a class="btn" href="/#download">Download</a>
+<a class="btn" href="/download/">Download</a>
 </div></nav>"""
 
 FOOTER = f"""<footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h4>Scout</h4>
-<a href="/">Overview</a><a href="/#download">Download</a>
+<a href="/">Overview</a><a href="/download/">Download</a>
 <a href="/index/">The Scout Index</a><a href="/learn/what-scout-checks/">What it checks</a></div>
 <div><h4>Compare</h4>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
