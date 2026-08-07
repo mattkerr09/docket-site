@@ -1,0 +1,21 @@
+{
+  "test_files": 28,
+  "files_pinning_a_past_mistake": 12,
+  "pct": 42.9,
+  "tests_total": 541,
+  "rule": "A test file counts only if it names a specific thing Scout got wrong \u2014 'false positive', 'false accusation', 'invented', 'used to produce/say/report', or 'would have gone/been/called/reported'. Counting the word 'test' would prove nothing.",
+  "files": [
+    "test_aiproof.py",
+    "test_authority.py",
+    "test_brand.py",
+    "test_byte_cap.py",
+    "test_checks.py",
+    "test_cli_gate.py",
+    "test_dead_directives.py",
+    "test_finding_urls.py",
+    "test_i18n.py",
+    "test_mailcheck.py",
+    "test_regressions.py",
+    "test_renderer.py"
+  ]
+}
