@@ -22,6 +22,7 @@ import comparisons  # noqa: E402
 import directives  # noqa: E402
 import entity  # noqa: E402
 import rendering  # noqa: E402
+import substitution  # noqa: E402
 import home  # noqa: E402
 import index_page  # noqa: E402
 import learn  # noqa: E402
@@ -84,6 +85,10 @@ def build_hubs() -> list[Path]:
         "Learn",
         "Reference pages, written to be read rather than skimmed for keywords.",
         [
+            ("/learn/ai-substitution/", "Which pages an AI answer replaces",
+             "Ranking and not being visited. Measured on two live sites — this one at 5% "
+             "fully substitutable, a delicatessen at 0% — and three ways we measured it "
+             "wrong first."),
             ("/learn/ai-search-visibility/", "AI search visibility",
              "The three gates a model has to clear before it can cite you — access, rendering "
              "and entity clarity — with measured data on who is blocking what."),
@@ -306,6 +311,7 @@ def main() -> int:
     pages += entity.build_all()
     pages += directives.build_all()
     pages += rendering.build_all()
+    pages += substitution.build_all()
     pages += __import__('pages').build_all()
     pages += build_hubs()
 
