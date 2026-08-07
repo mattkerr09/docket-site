@@ -310,11 +310,12 @@ comparisons →</a></p>
 <p>Because finding out later is worse, and a tool that claims everything is worth less than
 one that draws a line.</p></div>
 <div class="grid-3">
-  <div class="card"><h3>Per-page backlinks and anchor text</h3><p>Scout measures link
-  authority at the domain level from Common Crawl's hyperlink graph — 117.9&nbsp;million
-  domains, free, no index bought. Which individual <em>page</em> links to you, with what
-  anchor text, lives in 14&nbsp;TiB of archive files. Ahrefs and Semrush sell that and it is
-  worth paying for if you need it.</p></div>
+  <div class="card"><h3>Per-page backlinks and anchor text</h3><p>Scout reads Common Crawl's
+  hyperlink graph — 117.9&nbsp;million domains — so it gives you a domain's authority rank in
+  about a second, and the full list of domains linking to it in a few minutes. We measured
+  12,411 domains linking to screamingfrog.co.uk that way. Which individual <em>page</em>
+  links to you, and with what anchor text, lives in 14&nbsp;TiB of archive files. Ahrefs and
+  Semrush sell that, and it is worth paying for if you need it.</p></div>
   <div class="card"><h3>Search volumes</h3><p>Scout finds the queries people actually type,
   from Google's own autocomplete, ordered by how common they are. It will not print a monthly
   volume, because it does not have one. Anyone showing you a volume bought a clickstream
