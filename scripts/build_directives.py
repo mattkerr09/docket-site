@@ -68,19 +68,33 @@ CONVENTIONAL = {
 #:   meta-*          developers.facebook.com/docs/sharing/webmasters/web-crawlers/
 LIST_GAP = {
     "kagibot", "webzio", "mistralai-index", "mistralai-training",
-    "meta-externalads", "meta-webindexer",
+    "meta-externalads", "meta-webindexer", "coherebot",
 }
 
 #: Documented once by the vendor, since superseded. A rule under one of these
 #: headings applies to nobody, because the crawler now sends a different name.
-RETIRED = {
-    "anthropic-ai": ("Anthropic", "ClaudeBot"),
-    "claude-web": ("Anthropic", "ClaudeBot"),
-    "cohere-ai": ("Cohere", "cohere-training-data-crawler"),
-    "omgili": ("Webz.io", "Webzio"),
-    "omgilibot": ("Webz.io", "Webzio"),
-    "google-notebooklm": ("Google", "Google-GeminiNotebook"),
-}
+#:
+#: Read from site/_data/retired-crawlers.csv, exported from the app's
+#: `RETIRED_AI_TOKENS`. It used to be a dict literal here, and the app and the
+#: site drifted: this file claimed `cohere-ai` was replaced by
+#: `cohere-training-data-crawler` — a name nobody had read anywhere — and
+#: published it, while the app deliberately refused to flag `cohere-ai` at all
+#: for exactly that lack of a source. Two tables, two answers, and the wrong
+#: one was the public one. There is one table now.
+def _retired() -> dict:
+    import csv
+    path = ROOT / "site" / "_data" / "retired-crawlers.csv"
+    with path.open() as fh:
+        rows = list(csv.DictReader(fh))
+    out = {}
+    for r in rows:
+        token = r["token"].strip().lower()
+        assert token not in out, f"duplicate retired token: {token}"
+        out[token] = (r["owner"], r["replaced_by"])
+    return out
+
+
+RETIRED = _retired()
 
 #: The crawlers that decide whether a site can appear in an AI answer, and the
 #: ones that only decide whether it becomes training data. Keeping these apart

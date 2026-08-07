@@ -22,8 +22,8 @@ them and losing the visit, because the answer now appears in the result — so t
 worth asking about a page is not how it ranks but whether an answer somewhere else delivers
 what it offers.</p>
 
-<p>Scout puts a number on that. Run against <strong>scoutseo.app</strong> it assessed 20
-pages and found <strong>5% fully substitutable</strong>, and the single most substitutable
+<p>Scout puts a number on that. Run against <strong>scoutseo.app</strong> it assessed 19
+pages and found <strong>5.3% fully substitutable</strong>, and the single most substitutable
 page on the site is our own explainer titled "What is an SEO audit?" — 0.85 out of 1. Run
 against <strong>zingermansdeli.com</strong>, a delicatessen in Ann Arbor, it assessed 33
 pages and found <strong>0%</strong>, because 31 of them let the visitor do something.</p>
@@ -61,7 +61,7 @@ one.</p>
 
 <p>Our site scores worse, and that is the honest position rather than a modest one. Scout's
 site is mostly explanation — that is what a site selling an audit tool tends to be — and the
-one defence holding it up is original data, on six pages. The page most at risk is the one
+defence holding most of it up is original data. The page most at risk is the one
 explaining what an SEO audit is, which is exactly the shape an assistant answers without a
 click. We know what to do about it and it is not an SEO fix.</p>
 
@@ -87,6 +87,12 @@ calculator.</p>
 the Google Tag Manager noscript iframe. A defence that fires on every site running GTM
 defends nothing. It now counts a <code>&lt;video&gt;</code> or <code>&lt;audio&gt;</code>
 element, or an iframe on a known media host. That number went from 32 to 1.</p>
+
+<p>A fourth turned up when the analysis was finally rendered into a PDF and looked at rather
+than read as code. Our privacy policy and terms of use were sitting in the "most exposed"
+list — accurate, and useless. A privacy policy's reason to exist is not that people read it.
+Legal and utility pages are now left out of the portfolio, which is why the figure above is
+5.3% of 19 pages rather than 5% of 20.</p>
 
 <p>Two of those three made a site look safer than it was, which is the failure mode that
 matters here. We are writing them down because a page arguing that you should measure this
@@ -142,7 +148,7 @@ is not.</p>
         cat="learn", slug="ai-substitution",
         title="Which of your pages can an AI answer replace?",
         desc=("The AI risk is keeping your rankings and losing the visit. Measured: "
-              "scoutseo.app 5% substitutable, a delicatessen 0%. What defends a page."),
+              "scoutseo.app 5.3% substitutable, a delicatessen 0%. What defends a page."),
         h1="Which of your pages an AI answer replaces",
         crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / AI substitution',
         body=body,
@@ -161,8 +167,8 @@ is not.</p>
             ("What is the strongest defence against AI substitution?",
              "Data of your own. An assistant answering from your numbers has to name you, "
              "which turns a lost click into a citation — a better outcome than the visit "
-             "you were going to lose. On scoutseo.app it is the only defence holding six "
-             "of 20 pages up."),
+             "you were going to lose. On scoutseo.app it is the defence holding most "
+             "of the site up."),
             ("Will writing better content help?",
              "Not for this. A brilliantly written explainer and a mediocre one are equally "
              "substitutable, because an assistant reads both and answers the question "
