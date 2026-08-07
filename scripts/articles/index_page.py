@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import render  # noqa: E402
+from render import N_CHECKS, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
@@ -44,8 +44,13 @@ def build() -> Path:
 
     both = [r for r in live if blocked(r, CITATION) and blocked(r, TRAINING)]
     training_only = [r for r in live if blocked(r, TRAINING) and not blocked(r, CITATION)]
-    any_ai = len(both) + len(training_only)
-    conflated_pct = round(100 * len(both) / any_ai) if any_ai else 0
+    # A site can block a citation crawler and no training crawler — nerdwallet.com
+    # does. Omitting that case undercounted "blocks any AI crawler" by one and
+    # made the two published integers disagree with the dataset.
+    citation_only = [r for r in live if blocked(r, CITATION) and not blocked(r, TRAINING)]
+    any_ai = len(both) + len(training_only) + len(citation_only)
+    hit_citation = len(both) + len(citation_only)
+    conflated_pct = round(100 * hit_citation / any_ai) if any_ai else 0
 
     cit_pct = round(100 * s["blocking_any_citation_bot"] / n)
     train_pct = round(100 * s["blocking_any_training_bot"] / n)
@@ -187,9 +192,9 @@ method alongside the numbers.</p>
 
 <div class="callout">
 <div class="callout-title">Check your own site</div>
-<p>Scout runs this same audit against your site, plus 79 other checks, on your Mac.
+<p>Scout runs this same audit against your site, plus {N_CHECKS - 1} other checks, on your Mac.
 It tells you which crawlers you are blocking, whether it looks deliberate, and what the
-practical consequence is for each one. <a href="/#download">Download Scout →</a></p>
+practical consequence is for each one. <a href="/download/">Download Scout →</a></p>
 </div>
 """
 

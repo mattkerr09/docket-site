@@ -120,7 +120,7 @@ the footer.</li>
 <p>You can do this by hand on a small site in about twenty minutes. Scout does it across
 every page, ranks the results, and shows you the map.</p>
 
-<p><a class="btn" href="/#download">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Scout</a></p>
 """
     return render(
         cat="learn", slug="internal-link-equity",

@@ -67,7 +67,7 @@ is gone.</p>
     return render(
         cat="download", slug="",
         title="Download Scout for Mac — SEO & marketing audits, one-time",
-        desc=("Scout for macOS 12+ on Apple Silicon. About 16MB, no account, no telemetry. "
+        desc=("Scout for macOS 12+ on Apple Silicon. 18 MB, no account, no telemetry. "
               "Includes the CLI, which exits non-zero on a critical issue so it can gate a "
               "deploy."),
         h1="Download Scout for Mac",
@@ -153,13 +153,14 @@ already in the right fields will paste it in the same afternoon.</p>
 export exists: it drops straight into a Jira or Linear import without anyone retyping it.</p>
 
 <h2>What to tell clients it cannot do</h2>
-<p>Say it early rather than being asked. Scout has no keyword or backlink data — you will
-still need an index tool for research. It does not render JavaScript, so a React site needs a
-crawler that does. And Core Web Vitals come from Search Console, not from Scout.</p>
+<p>Say it early rather than being asked. Scout has no per-page backlink or anchor-text data
+and no search volumes — you will still need an index tool for keyword research. Rendering is
+available but off by default and samples the shallowest pages, so a very large single-page
+application still wants a dedicated rendering crawl.</p>
 <p>Being straight about the boundary is also, in practice, a good sales posture. A tool that
 claims everything invites the client to test the claim.</p>
 
-<p><a class="btn" href="/#download">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Scout</a></p>
 """
     return render(
         cat="for", slug="agencies",
@@ -237,7 +238,7 @@ address, opening hours and a <code>sameAs</code> link to your Google Business Pr
 <li>Does any page title name your city?</li>
 </ol>
 <p>Scout checks all of these and tells you which of your business's specific signals are
-missing. <a href="/#download">Download it</a> and run one audit — it takes a few minutes.</p>
+missing. <a href="/download/">Download it</a> and run one audit — it takes a few minutes.</p>
 """
     return render(
         cat="for", slug="local-business",
@@ -365,9 +366,9 @@ weeks rather than days.</p>
 <code>User-agent: *</code> does not override an earlier specific <code>Allow</code> — but a
 longer path pattern does. This is where hand-checking gets unreliable.</p>
 <p>Scout parses robots.txt the way Google does and tells you, per crawler, whether it can
-reach your site and what blocking it actually costs. That check is one of 80 and runs in the
+reach your site and what blocking it actually costs. That check is one of {N_CHECKS} and runs in the
 first few seconds of any audit.</p>
-<p><a class="btn" href="/#download">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Scout</a></p>
 """
     return render(
         cat="how-to", slug="fix-ai-crawler-access",

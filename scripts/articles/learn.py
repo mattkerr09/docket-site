@@ -105,7 +105,7 @@ only see <code>User-agent: *</code>, whatever it says applies to all of them.</l
 <p>Or run Scout, which does all three plus {N_CHECKS - 3} other checks and tells you which crawler you are
 blocking and what it costs you. It runs on your Mac and sends nothing anywhere.</p>
 
-<p><a class="btn" href="/#download">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Scout</a></p>
 """
     return render(
         cat="learn", slug="ai-search-visibility",
@@ -199,7 +199,7 @@ that has to be on the page.</li>
 
 <p>Scout is built around those three. It runs {N_CHECKS} checks on your Mac, ranks everything by impact
 against effort, and marks areas it could not assess as unknown rather than passing.</p>
-<p><a class="btn" href="/#download">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Scout</a></p>
 """
     return render(
         cat="learn", slug="seo-audit",
