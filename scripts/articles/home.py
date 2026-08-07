@@ -183,7 +183,7 @@ def body() -> str:
 </div>
 <div class="split">
   <div class="split-col">
-    <div class="split-tag">What you usually get</div>
+    <div class="split-tag">What every other tool gives you</div>
     <ul class="split-list">
       <li><span class="n">—</span> 412 pages have a short title</li>
       <li><span class="n">—</span> 38 pages missing meta description</li>
@@ -195,21 +195,16 @@ def body() -> str:
   </div>
   <div class="split-col good">
     <div class="split-tag">What Scout gives you</div>
-    <div class="split-phase">Stop the bleeding</div>
-    <ul class="split-list">
-      <li><span class="n">1</span> The homepage is set to noindex — remove it today</li>
-    </ul>
-    <div class="split-phase">Quick wins · under an hour</div>
-    <ul class="split-list">
-      <li><span class="n">2</span> Analytics missing from 39 of 40 pages</li>
-      <li><span class="n">3</span> OAI-SearchBot blocked in robots.txt</li>
-    </ul>
-    <div class="split-phase">Build</div>
-    <ul class="split-list">
-      <li><span class="n">4</span> Add LocalBusiness schema to service pages</li>
-    </ul>
+    <div class="rank-demo">
+      <div class="rank-row hot"><span class="n">1</span>The homepage is set to noindex</div>
+      <div class="rank-row"><span class="n">2</span>Analytics missing from 39 of 40 pages</div>
+      <div class="rank-row"><span class="n">3</span>OAI-SearchBot blocked in robots.txt</div>
+      <div class="rank-row"><span class="n">4</span>No LocalBusiness schema on service pages</div>
+      <div class="rank-row"><span class="n">5</span>96 images without alt text</div>
+    </div>
+    <p style="font-size:.9rem;color:var(--text-dim);margin-top:1rem">
+    Ranked by what each one costs you, not by category.</p>
   </div>
-</div>
 </div></section>
 
 <!-- ================= THREE LANES ================= -->
