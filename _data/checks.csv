@@ -30,6 +30,7 @@ cvr.message_match,conversion,Conversion & landing pages,Title / headline consist
 cvr.no_cta,conversion,Conversion & landing pages,Calls to action
 cvr.pricing,conversion,Conversion & landing pages,Pricing transparency
 cvr.social_proof,conversion,Conversion & landing pages,Social proof
+cvr.unusable_phone,conversion,Conversion & landing pages,Phone links that will not dial
 cvr.value_prop,conversion,Conversion & landing pages,Above-the-fold value proposition
 index.broken,indexability,Crawlability & indexing,Broken pages (4xx/5xx)
 index.byte_cap,indexability,Crawlability & indexing,Googlebot's 2MB fetch limit
