@@ -67,16 +67,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17
   -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
   font-feature-settings:"ss03"}
 
-/* Sections fade up as they arrive. Held to a small translate and a short
-   duration — the effect should register as polish, not as animation. Anyone
-   who has asked their OS for less motion gets none. */
-@media (prefers-reduced-motion:no-preference){
-  .reveal{opacity:0;transform:translateY(18px);
-    transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-  .reveal.in{opacity:1;transform:none}
+/* No scroll-reveal. It was built twice — once hiding content by default, once
+   arming from JavaScript with a timed backstop — and neither could be shown to
+   work: IntersectionObserver does not fire in the webview used to verify this
+   site, and nor did the setTimeout fallback.
+
+   Shipping an effect that cannot be verified, on a page whose entire argument
+   is that Scout reports only what it can prove, is the wrong trade. The type,
+   spacing and depth carry the page; content renders immediately and is never
+   contingent on a script. */
 }
 a{color:var(--amber-light);text-decoration:none;transition:color .16s}
-a:hover{color:var(--text);text-decoration:underline}
+@media(hover:hover){a:hover{color:var(--text);text-decoration:underline}}
 .wrap{width:min(820px,calc(100% - 2rem));margin:0 auto}
 .wrap-wide{width:min(1080px,calc(100% - 2rem));margin:0 auto}
 
@@ -88,8 +90,15 @@ nav{position:sticky;top:0;z-index:20;background:rgba(11,12,15,.88);
 .nav-brand:hover{text-decoration:none;color:var(--amber-light)}
 .nav-links{display:flex;gap:1.35rem;font-size:.94rem}
 .nav-links a{color:var(--text-mid)}
-.nav-links a:hover{color:var(--text);text-decoration:none}
-@media(max-width:780px){.nav-links{display:none}}
+@media(hover:hover){.nav-links a:hover{color:var(--text);text-decoration:none}}
+@media(max-width:780px){
+  .nav-inner{flex-wrap:wrap;row-gap:.55rem}
+  .nav-links{order:3;width:100%;gap:1.15rem;font-size:.88rem;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.15rem;
+    scrollbar-width:none}
+  .nav-links::-webkit-scrollbar{display:none}
+  .nav-links a{white-space:nowrap}
+}
 .btn{display:inline-block;background:linear-gradient(180deg,var(--amber-light),var(--amber));
   color:#17181C;font-weight:600;box-shadow:0 1px 0 rgba(255,255,255,.22) inset,
   0 12px 30px -12px rgba(240,128,15,.75);
@@ -175,7 +184,7 @@ body.landing article{padding:0}
              0 40px 90px -30px rgba(0,0,0,.9),
              0 0 120px -40px rgba(240,128,15,.30);
   transition:transform .6s cubic-bezier(.16,1,.3,1)}
-.mock:hover{transform:perspective(1600px) rotateY(-1.5deg) rotateX(.5deg)}
+@media(hover:hover){.mock:hover{transform:perspective(1600px) rotateY(-1.5deg) rotateX(.5deg)}}
 @media(max-width:940px){.mock{transform:none}.mock:hover{transform:none}}
 
 /* ---- the signature: a list becoming an order ------------------------------
@@ -305,25 +314,7 @@ body.landing article{padding:0}
 .faq-item h3{font-size:1rem;margin:0 0 .4rem}
 .faq-item p{font-size:.93rem;margin:0}
 </style>
-<script>
-// Reveal on first entry only — re-animating on scroll-up is the tell of a
-// template. Anything already in view when the page loads is shown immediately
-// so nothing above the fold depends on JavaScript.
-addEventListener('DOMContentLoaded',function(){
-  var els=document.querySelectorAll('.reveal');
-  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches){
-    els.forEach(function(e){e.classList.add('in')});return;
-  }
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
-    });
-  },{rootMargin:'0px 0px -12% 0px'});
-  els.forEach(function(e){io.observe(e)});
 
-  // The ranking demo settles once, when it is properly in view.
-});
-</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 87 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":"87 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","headline":"SEO audits that tell you what to fix, in order","description":"Scout audits any website on your Mac: 87 checks across SEO, copy, brand, data, local visibility, AI search visibility and marketing conversion. Ranked fix plan, client-ready PDF, one-time price, nothing uploaded.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Scout free?","acceptedAnswer":{"@type":"Answer","text":"Scout is a one-time download for macOS. There is no subscription, no crawl credits and no per-seat pricing — you can audit as many sites as you like."}},{"@type":"Question","name":"Does Scout send my site data anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The audit runs entirely on your Mac. The only network requests Scout makes are to the site you are auditing. There is no telemetry and no account."}},{"@type":"Question","name":"How is Scout different from Screaming Frog?","acceptedAnswer":{"@type":"Answer","text":"Screaming Frog gives you raw crawl data and leaves the interpretation to you. Scout ranks every finding by impact against effort and gives you an ordered plan with the exact markup to paste. Screaming Frog renders JavaScript and supports custom XPath extraction; Scout does not."}},{"@type":"Question","name":"Can Scout tell me if ChatGPT can see my website?","acceptedAnswer":{"@type":"Answer","text":"Yes. Scout checks each AI crawler separately — OAI-SearchBot for ChatGPT Search, PerplexityBot, Claude-SearchBot and Google-Extended — and distinguishes them from training crawlers like GPTBot, which many sites block deliberately."}},{"@type":"Question","name":"Does Scout track keyword rankings?","acceptedAnswer":{"@type":"Answer","text":"No. Ranking and backlink data require a crawled index of the entire web, which is bought rather than built. Scout audits what is on your site and how it is configured."}}]}</script>
@@ -391,7 +382,7 @@ addEventListener('DOMContentLoaded',function(){
 </div></section>
 
 <!-- ================= THE DIFFERENCE ================= -->
-<section class="sec reveal"><div class="wrap-wide">
+<section class="sec"><div class="wrap-wide">
 <div class="sec-head">
   <h2>Every other tool hands you a list.<br><em>This one hands you an order.</em></h2>
   <p>Semrush publishes 140+ checkpoints. Ahrefs lists 170+. Neither tells you what to do
@@ -424,7 +415,7 @@ addEventListener('DOMContentLoaded',function(){
 </div></section>
 
 <!-- ================= THREE LANES ================= -->
-<section class="sec reveal"><div class="wrap-wide">
+<section class="sec"><div class="wrap-wide">
 <div class="sec-head">
   <h2>Four things crawler tools ignore.</h2>
   <p>Technical SEO is table stakes, and it is all most tools do. These four are where the
@@ -454,7 +445,7 @@ addEventListener('DOMContentLoaded',function(){
 </div></section>
 
 <!-- ================= THE INDEX ================= -->
-<section class="sec reveal"><div class="wrap-wide">
+<section class="sec"><div class="wrap-wide">
 <div class="sec-head">
   <h2>We measured who's blocking AI search.</h2>
   <p><strong>30% of the 98 major sites we measured block at least one AI search crawler.</strong> Among those blocking any AI crawler, roughly three quarters also blocked the ones that decide whether they appear in ChatGPT — almost certainly without meaning to.</p>
@@ -471,7 +462,7 @@ The script and the site list ship with the dataset — re-run it and check.</p>
 </div></section>
 
 <!-- ================= FEATURES ================= -->
-<section class="sec reveal"><div class="wrap-wide">
+<section class="sec"><div class="wrap-wide">
 <div class="sec-head"><h2>What you actually get.</h2></div>
 <div class="grid-3">
   <div class="card"><div class="card-ico"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h13M3 12h9M3 18h5"/><path d="M17 14l3 3 4-5"/></svg></div>
@@ -504,7 +495,7 @@ The script and the site list ship with the dataset — re-run it and check.</p>
 </div></section>
 
 <!-- ================= COMPARISON ================= -->
-<section class="sec reveal"><div class="wrap-wide">
+<section class="sec"><div class="wrap-wide">
 <div class="sec-head"><h2>One price. Yours forever.</h2>
 <p>Cloud tools meter crawls, which quietly makes you ration audits.</p></div>
 <div class="wrap-tbl"><table class="cmp">
@@ -521,7 +512,7 @@ comparisons →</a></p>
 </div></section>
 
 <!-- ================= LIMITS ================= -->
-<section class="sec reveal"><div class="wrap-wide" style="max-width:44rem">
+<section class="sec"><div class="wrap-wide" style="max-width:44rem">
 <div class="sec-head"><h2>What Scout cannot do</h2>
 <p>Because finding out later is worse, and a tool that claims everything is worth less than
 one that draws a line.</p></div>
@@ -550,7 +541,7 @@ computed from free public data rather than a bought index.</p>
 </div></section>
 
 <!-- ================= FAQ ================= -->
-<section class="sec reveal"><div class="wrap" style="max-width:44rem">
+<section class="sec"><div class="wrap" style="max-width:44rem">
 <div class="sec-head"><h2>Clear answers.</h2></div>
 <div class="faq-item"><h3>Is Scout free?</h3>
 <p>It is a one-time download. No subscription, no crawl credits, no per-seat pricing — audit
