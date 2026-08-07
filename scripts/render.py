@@ -139,6 +139,8 @@ nav{position:sticky;top:0;z-index:20;background:rgba(11,12,15,.88);
 .btn-ghost:hover{background:var(--surface-2);color:var(--text);text-decoration:none}
 
 article{padding:2.8rem 0 4.5rem}
+.foot-h{font-size:.82rem;font-weight:600;letter-spacing:.02em;text-transform:none;
+  color:var(--text);margin:0 0 .55rem;font-family:var(--sans)}
 .crumb{font-family:var(--mono);font-size:.75rem;color:var(--text-dim);
   text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem}
 .crumb a{color:var(--text-dim)}
@@ -373,19 +375,19 @@ NAV = f"""<nav><div class="wrap-wide nav-inner">
 
 FOOTER = f"""<footer><div class="wrap-wide">
 <div class="foot-grid">
-<div><h4>Scout</h4>
+<div><h2 class="foot-h">Scout</h2>
 <a href="/">Overview</a><a href="/download/">Download</a>
 <a href="/index/">The Scout Index</a><a href="/learn/what-scout-checks/">What it checks</a></div>
-<div><h4>Compare</h4>
+<div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/sitebulb-alternative/">vs Sitebulb</a>
 <a href="/vs/ahrefs-site-audit-alternative/">vs Ahrefs</a>
 <a href="/vs/">All comparisons</a></div>
-<div><h4>Learn</h4>
+<div><h2 class="foot-h">Learn</h2>
 <a href="/learn/ai-search-visibility/">AI search visibility</a>
 <a href="/learn/seo-audit/">What an SEO audit is</a>
 <a href="/learn/">All guides</a></div>
-<div><h4>Contact</h4>
+<div><h2 class="foot-h">Contact</h2>
 <a href="mailto:hello@scoutseo.app">hello@scoutseo.app</a>
 <a href="https://github.com/mattkerr09/scout-site">GitHub</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a></div>
@@ -394,6 +396,35 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <span>© 2026 Scout · Audits run on your Mac. Nothing is uploaded.</span>
 <span>{_mark(15, "var(--text-dim)")}</span>
 </div></div></footer>"""
+
+
+def _breadcrumb_schema(crumb: str) -> str:
+    """BreadcrumbList built from the crumb already on the page.
+
+    Derived from the visible trail rather than declared separately, so the
+    markup and what a reader sees cannot drift. Without it a result shows the
+    raw URL where it could show the path.
+    """
+    import re as _re
+
+    parts = _re.findall(r'<a href="([^"]+)">([^<]+)</a>|>\s*([^<>]+?)\s*$', crumb)
+    items, position = [], 0
+    for href, label, tail in parts:
+        name = (label or tail or "").strip()
+        if not name:
+            continue
+        position += 1
+        entry = ('{"@type":"ListItem","position":' + str(position)
+                 + ',"name":"' + name.replace('"', "'") + '"')
+        if href:
+            entry += ',"item":"' + BASE + href + '"'
+        items.append(entry + "}")
+    if len(items) < 2:
+        return ""
+    # Bare JSON — the caller wraps every block in its own <script> tag, and
+    # returning one here nested them and produced a block that would not parse.
+    return ('{"@context":"https://schema.org","@type":"BreadcrumbList",'
+            '"itemListElement":[' + ",".join(items) + "]}")
 
 
 def _entity_schema() -> str:
@@ -453,6 +484,9 @@ def render(
     esc = lambda s: s.replace('"', "&quot;")  # noqa: E731
 
     blocks = [_entity_schema()]
+    crumb_schema = _breadcrumb_schema(crumb)
+    if crumb_schema:
+        blocks.append(crumb_schema)
     if schema_type:
         blocks.append(
             '{"@context":"https://schema.org","@type":"' + schema_type + '",'
