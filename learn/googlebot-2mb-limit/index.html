@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learn: SEO audits, AI search visibility and technical SEO</title>
-<meta name="description" content="Plain explanations of what an SEO audit covers, how AI search visibility works, and what Scout checks.">
+<title>Googlebot stops reading at 2MB and never tells you</title>
+<meta name="description" content="Googlebot fetches 2MB of a page and indexes that as the whole file. We measured 82 homepages: 5 are already past it.">
 <meta name="theme-color" content="#0b0c0f">
-<link rel="canonical" href="https://scoutseo.app/learn/">
+<link rel="canonical" href="https://scoutseo.app/learn/googlebot-2mb-limit/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Learn">
-<meta property="og:description" content="Plain explanations of what an SEO audit covers, how AI search visibility works, and what Scout checks.">
-<meta property="og:url" content="https://scoutseo.app/learn/">
+<meta property="og:title" content="Googlebot stops reading at 2MB">
+<meta property="og:description" content="Googlebot fetches 2MB of a page and indexes that as the whole file. We measured 82 homepages: 5 are already past it.">
+<meta property="og:url" content="https://scoutseo.app/learn/googlebot-2mb-limit/">
 <meta property="og:site_name" content="Scout">
 <meta property="og:image" content="https://scoutseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Learn">
-<meta name="twitter:description" content="Plain explanations of what an SEO audit covers, how AI search visibility works, and what Scout checks.">
+<meta name="twitter:title" content="Googlebot stops reading at 2MB">
+<meta name="twitter:description" content="Googlebot fetches 2MB of a page and indexes that as the whole file. We measured 82 homepages: 5 are already past it.">
 <meta name="twitter:image" content="https://scoutseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -318,7 +318,9 @@ body.landing article{padding:0}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/scout-site"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 91 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"91 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","headline":"Learn","description":"Plain explanations of what an SEO audit covers, how AI search visibility works, and what Scout checks.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scout","item":"https://scoutseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://scoutseo.app/learn/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Googlebot stops reading at 2MB","description":"Googlebot fetches 2MB of a page and indexes that as the whole file. We measured 82 homepages: 5 are already past it.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/googlebot-2mb-limit/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much of a page does Googlebot fetch?","acceptedAnswer":{"@type":"Answer","text":"Up to 2MB of any individual URL, including the HTTP headers. PDFs get 64MB, and any crawler that sets no limit of its own defaults to 15MB. Referenced resources like CSS and images have their own separate budgets and do not count against the page that links them."}},{"@type":"Question","name":"What happens to the rest of the page?","acceptedAnswer":{"@type":"Answer","text":"Nothing. In Google's words the bytes past the threshold are not fetched, not rendered and not indexed, and the portion that was fetched is passed to indexing as if it were the complete file. There is no error and no Search Console report."}},{"@type":"Question","name":"Is 2MB of HTML a realistic problem?","acceptedAnswer":{"@type":"Answer","text":"For most sites, no — the median homepage in our sample was 468 KB. But 5 of 82 well-known sites we measured were already past it, and the 90th percentile was 1532 KB, so one in ten is closer than its owners probably think."}},{"@type":"Question","name":"How do I make a page smaller?","acceptedAnswer":{"@type":"Answer","text":"Move inline CSS, JavaScript and base64 images into linked files. That removes them from the page's budget completely, because every referenced resource has its own. Navigation that renders thousands of links before the content is the other common cause."}}]}</script>
 </head>
 <body>
 <nav><div class="wrap-wide nav-inner">
@@ -332,8 +334,111 @@ body.landing article{padding:0}
 </div>
 <a class="btn" href="/download/">Download</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Scout</a> / Learn</div><h1>Learn</h1>
-<p class="lede">Reference pages, written to be read rather than skimmed for keywords.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/googlebot-2mb-limit/">Googlebot's 2MB cutoff</a></h2><p>It reads the first 2MB and indexes that as the whole page. We measured well-known homepages and found five already past it.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/ai-substitution/">Which pages an AI answer replaces</a></h2><p>Ranking and not being visited. Measured on two live sites — this one at 5% fully substitutable, a delicatessen at 0% — and three ways we measured it wrong first.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/ai-search-visibility/">AI search visibility</a></h2><p>The three gates a model has to clear before it can cite you — access, rendering and entity clarity — with measured data on who is blocking what.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/seo-audit/">What an SEO audit covers</a></h2><p>Every area, in the order they should be worked, and the three tests a report has to pass to be worth acting on.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/javascript-rendering/">JavaScript rendering</a></h2><p>What a crawler that does not run JavaScript misses — measured on a page that serves 0 characters of text and renders 2,068.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/sameas-entity-signals/">sameAs and entity signals</a></h2><p>The cheapest entity signal there is, and the share of major sites that skip it — measured, with the dataset attached.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/internal-link-equity/">Internal link equity</a></h2><p>The ranking signal your pages pass to each other, measured on our own site — where the download page held a fifth of what an average page did.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/what-scout-checks/">What Scout checks</a></h2><p>All the checks, by area, with what each one actually looks at.</p>
+<article><div class="wrap"><div class="crumb"><a href="/">Scout</a> / <a href="/learn/">Learn</a> / The 2MB limit</div><h1>Googlebot stops reading at 2MB</h1>
+
+<p class="lede">Googlebot reads at most 2MB of any HTML page, headers included, and hands
+that fragment to indexing as if it were the whole file. We measured the homepages of
+82 well-known sites and found <strong>5 already past the
+cutoff</strong> — the largest, cnn.com, serving 5.3 MB, which is
+2.7 times the limit.</p>
+
+<p>None of those 5 is losing markup Google requires. That is the honest headline and it is
+the less alarming one: the title, canonical and structured data on every over-sized page we
+measured sit comfortably inside the first 2MB. What they are losing is content, silently, with
+nothing anywhere to say so.</p>
+
+<h2>What Google actually says</h2>
+
+<p>From <a href="https://developers.google.com/search/blog/2026/03/crawler-blog-post">the Search Central crawler post</a>, and the exact wording is the
+whole point:</p>
+
+<ul>
+<li>Googlebot "crawls only the first 2MB of a resource, <strong>including the HTTP
+header</strong>".</li>
+<li>The portion it did get "is passed along to our indexing systems and the Web Rendering
+Service <strong>as if it were the complete file</strong>".</li>
+<li>Bytes past the threshold "aren't fetched, they aren't rendered, and they aren't
+indexed".</li>
+</ul>
+
+<p>Read those together and the failure mode is specific. Google does not reject an oversized
+page, does not report an error, and does not tell you in Search Console. It reads the first
+2MB, treats it as the document, and moves on. A page whose structured data sits at 2.4 MB does
+not have late structured data — <strong>it has none</strong>, from Google's point of view,
+while every tool that reads that page from disk sees it perfectly.</p>
+
+<p>Two limits people conflate with this one: PDFs get 64MB, and any crawler that sets no limit
+of its own gets 15MB. Referenced files — your CSS, your JavaScript, your images — each have
+their own separate budget and do not count against the parent page. Moving an inline block
+into a linked file removes it from this problem outright.</p>
+
+<h2>What we measured</h2>
+
+<p>We fetched the homepage of every site in the Scout Index sample list on 2026-08-07 and
+recorded two things: how many bytes came back, and how far into those bytes the last title,
+canonical, meta robots directive and JSON-LD block sat. 82 of
+110 answered.</p>
+
+<p>The median homepage is <strong>468 KB</strong>, comfortably inside the
+limit. The 90th percentile is <strong>1532 KB</strong> — which is the number
+worth sitting with, because it means one homepage in ten is already within a third of a cutoff
+nobody mentions.</p>
+
+<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Site</th><th>HTML served</th><th>Last required markup at</th></tr></thead><tbody><tr><td>cnn.com</td><td>5.3 MB</td><td>470 KB</td></tr><tr><td>wix.com</td><td>3.0 MB</td><td>316 KB</td></tr><tr><td>madewell.com</td><td>2.7 MB</td><td>690 KB</td></tr><tr><td>edx.org</td><td>2.4 MB</td><td>21 KB</td></tr><tr><td>apnews.com</td><td>2.1 MB</td><td>33 KB</td></tr></tbody></table></div>
+
+<p>cnn.com is the striking one: 5.3 MB served, with everything Google
+needs inside the first 470 KB. More than half of that page is fetched by
+nobody. It costs them nothing measurable today, and it is a large amount of work being done
+for an audience that does not exist.</p>
+
+<h2>The false positive we caught on the way</h2>
+
+<p>The first version of this measurement reported that cnn.com's
+<strong>title tag</strong> sat at 2.48 MB, past the cutoff. That would have been the headline
+of this page.</p>
+
+<p>It was wrong. Inline SVG icons carry <code>&lt;title&gt;</code> elements as accessibility
+labels, and the one at 2.48 MB reads "Close icon". Our rule took the <em>last</em> match for
+every element, which is right for JSON-LD — each block is separate content, so a block past
+the cutoff is data Google never gets — and wrong for a document title, which is the first one
+and lives in the head. cnn.com's real title is at 470 KB.</p>
+
+<p>We are writing that down because it is the same mistake in both directions. The check
+exists because tools read pages from disk and see things Google never received; the bug was
+our tool reading a page from disk and seeing something that was not what it thought.</p>
+
+<h2>Where another tool is better</h2>
+
+<p><a href="/vs/screaming-frog-alternative/">Screaming Frog</a> reports page size across a
+whole crawl and lets you sort and filter on it, at a scale Scout is not built for. If the
+question is "which of my 400,000 URLs are heavy", that is the tool, and it has been doing it
+for years.</p>
+
+<p>What it will not tell you is which required markup falls past 2MB on the pages that are,
+because that needs the byte offset of each element rather than the size of the file. That is
+the part Scout adds, and it only matters on the pages Screaming Frog would have found for
+you first.</p>
+
+<h2>What to do if a page is over</h2>
+
+<ol>
+<li><strong>Find the weight.</strong> It is almost always one of three things: base64 images
+inlined into the HTML, large inline CSS or JavaScript blocks, or navigation that renders
+thousands of links before the content starts.</li>
+<li><strong>Move inline blocks into linked files.</strong> They stop counting against the page
+entirely — referenced resources each get their own budget.</li>
+<li><strong>Put required markup in the head</strong> and keep it there. Structured data
+injected at the end of the body is the common way to lose it.</li>
+<li><strong>Check again after a redesign.</strong> Page weight grows; the limit does not.</li>
+</ol>
+
+<p>Scout runs this as <code>index.byte_cap</code> on every audit, and reports the two cases separately: a page
+merely over the limit is losing content, and a page whose required markup falls past the
+cutoff is losing indexation. They are not the same problem and they do not deserve the same
+urgency.</p>
+
+<p><a class="btn" href="/download/">Download Scout</a></p>
+
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

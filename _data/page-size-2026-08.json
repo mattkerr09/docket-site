@@ -1,0 +1,1001 @@
+{
+ "measured": "2026-08-07",
+ "cap_bytes": 2097152,
+ "population": "the Scout Index sample list (data/sites.txt)",
+ "attempted": 110,
+ "fetched": 82,
+ "over_cap": 5,
+ "losing_markup": 0,
+ "median_bytes": 479640,
+ "p90_bytes": 1568862,
+ "largest": "cnn.com",
+ "largest_bytes": 5598723,
+ "results": [
+  {
+   "host": "cnn.com",
+   "category": "news",
+   "status": 200,
+   "bytes": 5598723,
+   "offsets": {
+    "title": 311957,
+    "canonical": 331351,
+    "structured data": 481361
+   },
+   "last_critical": 481361
+  },
+  {
+   "host": "wix.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 3148564,
+   "offsets": {
+    "title": 319722,
+    "canonical": 320011,
+    "structured data": 323983
+   },
+   "last_critical": 323983
+  },
+  {
+   "host": "madewell.com",
+   "category": "ecommerce",
+   "status": 200,
+   "bytes": 2784803,
+   "offsets": {
+    "title": 9670,
+    "canonical": 9766,
+    "meta robots": 9876,
+    "structured data": 706655
+   },
+   "last_critical": 706655
+  },
+  {
+   "host": "edx.org",
+   "category": "nonprofit",
+   "status": 200,
+   "bytes": 2507155,
+   "offsets": {
+    "title": 12027,
+    "canonical": 12282,
+    "structured data": 21844
+   },
+   "last_critical": 21844
+  },
+  {
+   "host": "apnews.com",
+   "category": "news",
+   "status": 200,
+   "bytes": 2186967,
+   "offsets": {
+    "title": 25183,
+    "canonical": 25489,
+    "meta robots": 2632,
+    "structured data": 34012
+   },
+   "last_critical": 34012
+  },
+  {
+   "host": "chewy.com",
+   "category": "ecommerce",
+   "status": 200,
+   "bytes": 1763601,
+   "offsets": {
+    "title": 7206,
+    "canonical": 6953,
+    "structured data": 9754
+   },
+   "last_critical": 9754
+  },
+  {
+   "host": "wired.com",
+   "category": "news",
+   "status": 200,
+   "bytes": 1665371,
+   "offsets": {
+    "title": 57,
+    "canonical": 4161,
+    "meta robots": 777,
+    "structured data": 405559
+   },
+   "last_critical": 405559
+  },
+  {
+   "host": "figma.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 1632718,
+   "offsets": {
+    "title": 7702,
+    "canonical": 8037,
+    "structured data": 276589
+   },
+   "last_critical": 276589
+  },
+  {
+   "host": "intercom.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 1568862,
+   "offsets": {
+    "title": 278299,
+    "canonical": 278651,
+    "structured data": 295262
+   },
+   "last_critical": 295262
+  },
+  {
+   "host": "terminix.com",
+   "category": "local",
+   "status": 200,
+   "bytes": 1559500,
+   "offsets": {
+    "title": 1235653,
+    "canonical": 1235738,
+    "structured data": 1248719
+   },
+   "last_critical": 1248719
+  },
+  {
+   "host": "nytimes.com",
+   "category": "news",
+   "status": 200,
+   "bytes": 1496130,
+   "offsets": {
+    "title": 188,
+    "canonical": 1339,
+    "structured data": 9367
+   },
+   "last_critical": 9367
+  },
+  {
+   "host": "theguardian.com",
+   "category": "news",
+   "status": 200,
+   "bytes": 1411554,
+   "offsets": {
+    "title": 202,
+    "canonical": 498,
+    "meta robots": 3279
+   },
+   "last_critical": 3279
+  },
+  {
+   "host": "linear.app",
+   "category": "saas",
+   "status": 200,
+   "bytes": 1265997,
+   "offsets": {
+    "title": 43753,
+    "canonical": 45029
+   },
+   "last_critical": 45029
+  },
+  {
+   "host": "ahrefs.com",
+   "category": "seo-tools",
+   "status": 200,
+   "bytes": 1254354,
+   "offsets": {
+    "title": 68,
+    "canonical": 314,
+    "structured data": 2339
+   },
+   "last_critical": 2339
+  },
+  {
+   "host": "calendly.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 1235959,
+   "offsets": {
+    "title": 7848,
+    "canonical": 8392,
+    "meta robots": 8296,
+    "structured data": 572266
+   },
+   "last_critical": 572266
+  },
+  {
+   "host": "time.com",
+   "category": "news",
+   "status": 200,
+   "bytes": 1231234,
+   "offsets": {
+    "title": 9125,
+    "canonical": 9646,
+    "meta robots": 9494,
+    "structured data": 50517
+   },
+   "last_critical": 50517
+  },
+  {
+   "host": "mrhandyman.com",
+   "category": "local",
+   "status": 200,
+   "bytes": 1132985,
+   "offsets": {
+    "title": 776273,
+    "canonical": 2526,
+    "meta robots": 2590,
+    "structured data": 778292
+   },
+   "last_critical": 778292
+  },
+  {
+   "host": "nerdwallet.com",
+   "category": "reference",
+   "status": 200,
+   "bytes": 1075712,
+   "offsets": {
+    "title": 211,
+    "canonical": 1636,
+    "meta robots": 168,
+    "structured data": 2391
+   },
+   "last_critical": 2391
+  },
+  {
+   "host": "nike.com",
+   "category": "ecommerce",
+   "status": 200,
+   "bytes": 1058890,
+   "offsets": {
+    "title": 3707,
+    "canonical": 3679,
+    "meta robots": 263,
+    "structured data": 283108
+   },
+   "last_critical": 283108
+  },
+  {
+   "host": "warbyparker.com",
+   "category": "ecommerce",
+   "status": 200,
+   "bytes": 1036659,
+   "offsets": {
+    "title": 39325,
+    "canonical": 39649,
+    "meta robots": 39602,
+    "structured data": 272971
+   },
+   "last_critical": 272971
+  },
+  {
+   "host": "vox.com",
+   "category": "news",
+   "status": 200,
+   "bytes": 1024573,
+   "offsets": {
+    "title": 7308,
+    "canonical": 7424,
+    "meta robots": 7337,
+    "structured data": 6275
+   },
+   "last_critical": 7424
+  },
+  {
+   "host": "wayfair.com",
+   "category": "ecommerce",
+   "status": 200,
+   "bytes": 991412,
+   "offsets": {
+    "title": 17479,
+    "canonical": 17772,
+    "structured data": 19276
+   },
+   "last_critical": 19276
+  },
+  {
+   "host": "theverge.com",
+   "category": "news",
+   "status": 200,
+   "bytes": 969344,
+   "offsets": {
+    "title": 110,
+    "canonical": 5467,
+    "meta robots": 5421,
+    "structured data": 4361
+   },
+   "last_critical": 5467
+  },
+  {
+   "host": "zendesk.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 865011,
+   "offsets": {
+    "title": 122,
+    "canonical": 2236,
+    "meta robots": 2130,
+    "structured data": 331782
+   },
+   "last_critical": 331782
+  },
+  {
+   "host": "asana.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 817617,
+   "offsets": {
+    "title": 1274,
+    "canonical": 1915,
+    "structured data": 35855
+   },
+   "last_critical": 35855
+  },
+  {
+   "host": "forbes.com",
+   "category": "news",
+   "status": 200,
+   "bytes": 816403,
+   "offsets": {
+    "title": 251,
+    "canonical": 5723,
+    "meta robots": 750,
+    "structured data": 5823
+   },
+   "last_critical": 5823
+  },
+  {
+   "host": "coursera.org",
+   "category": "nonprofit",
+   "status": 200,
+   "bytes": 786203,
+   "offsets": {
+    "title": 77227,
+    "canonical": 79072,
+    "structured data": 648038
+   },
+   "last_critical": 648038
+  },
+  {
+   "host": "stanford.edu",
+   "category": "nonprofit",
+   "status": 200,
+   "bytes": 779389,
+   "offsets": {
+    "title": 5633,
+    "canonical": 6085
+   },
+   "last_critical": 6085
+  },
+  {
+   "host": "webflow.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 754020,
+   "offsets": {
+    "title": 514,
+    "canonical": 4217,
+    "structured data": 4253
+   },
+   "last_critical": 4253
+  },
+  {
+   "host": "allbirds.com",
+   "category": "ecommerce",
+   "status": 200,
+   "bytes": 723610,
+   "offsets": {
+    "title": 646,
+    "canonical": 409
+   },
+   "last_critical": 646
+  },
+  {
+   "host": "searchengineland.com",
+   "category": "seo-tools",
+   "status": 200,
+   "bytes": 675111,
+   "offsets": {
+    "title": 392,
+    "canonical": 7130,
+    "meta robots": 6668,
+    "structured data": 8592
+   },
+   "last_critical": 8592
+  },
+  {
+   "host": "bbc.co.uk",
+   "category": "news",
+   "status": 200,
+   "bytes": 669277,
+   "offsets": {
+    "title": 155,
+    "canonical": 2410,
+    "meta robots": 2338,
+    "structured data": 5967
+   },
+   "last_critical": 5967
+  },
+  {
+   "host": "stripe.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 646254,
+   "offsets": {
+    "title": 1433,
+    "canonical": 2132,
+    "structured data": 24486
+   },
+   "last_critical": 24486
+  },
+  {
+   "host": "squarespace.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 624659,
+   "offsets": {
+    "title": 2090,
+    "canonical": 2647,
+    "structured data": 515762
+   },
+   "last_critical": 515762
+  },
+  {
+   "host": "hubspot.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 623109,
+   "offsets": {
+    "title": 76,
+    "canonical": 164339,
+    "structured data": 165968
+   },
+   "last_critical": 165968
+  },
+  {
+   "host": "vercel.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 618961,
+   "offsets": {
+    "title": 8565,
+    "canonical": 8891,
+    "meta robots": 8755,
+    "structured data": 93851
+   },
+   "last_critical": 93851
+  },
+  {
+   "host": "ikea.com",
+   "category": "ecommerce",
+   "status": 200,
+   "bytes": 582312,
+   "offsets": {
+    "title": 1223,
+    "canonical": 1451,
+    "meta robots": 1276,
+    "structured data": 363
+   },
+   "last_critical": 1451
+  },
+  {
+   "host": "mailchimp.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 578451,
+   "offsets": {
+    "title": 3394,
+    "canonical": 2555,
+    "meta robots": 2449,
+    "structured data": 5208
+   },
+   "last_critical": 5208
+  },
+  {
+   "host": "github.com",
+   "category": "reference",
+   "status": 200,
+   "bytes": 572726,
+   "offsets": {
+    "title": 22663,
+    "canonical": 28097
+   },
+   "last_critical": 28097
+  },
+  {
+   "host": "monday.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 557057,
+   "offsets": {
+    "title": 365,
+    "canonical": 2471,
+    "structured data": 2507
+   },
+   "last_critical": 2507
+  },
+  {
+   "host": "ebay.com",
+   "category": "ecommerce",
+   "status": 200,
+   "bytes": 479640,
+   "offsets": {
+    "title": 52415,
+    "canonical": 52883
+   },
+   "last_critical": 52883
+  },
+  {
+   "host": "techcrunch.com",
+   "category": "news",
+   "status": 200,
+   "bytes": 457048,
+   "offsets": {
+    "title": 821,
+    "canonical": 1038,
+    "meta robots": 586,
+    "structured data": 1849
+   },
+   "last_critical": 1849
+  },
+  {
+   "host": "midas.com",
+   "category": "local",
+   "status": 200,
+   "bytes": 444653,
+   "offsets": {
+    "title": 47,
+    "canonical": 1580,
+    "meta robots": 233616,
+    "structured data": 442481
+   },
+   "last_critical": 442481
+  },
+  {
+   "host": "airtable.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 441901,
+   "offsets": {
+    "title": 7929,
+    "canonical": 8339,
+    "meta robots": 8292
+   },
+   "last_critical": 8339
+  },
+  {
+   "host": "searchenginejournal.com",
+   "category": "seo-tools",
+   "status": 200,
+   "bytes": 435620,
+   "offsets": {
+    "title": 921,
+    "canonical": 1190,
+    "meta robots": 302,
+    "structured data": 430802
+   },
+   "last_critical": 430802
+  },
+  {
+   "host": "canva.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 434967,
+   "offsets": {
+    "title": 121,
+    "canonical": 4842,
+    "structured data": 2672
+   },
+   "last_critical": 4842
+  },
+  {
+   "host": "webmd.com",
+   "category": "reference",
+   "status": 200,
+   "bytes": 421896,
+   "offsets": {
+    "title": 1119,
+    "canonical": 2918
+   },
+   "last_critical": 2918
+  },
+  {
+   "host": "shopify.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 420771,
+   "offsets": {
+    "title": 1912,
+    "canonical": 7417,
+    "structured data": 5244
+   },
+   "last_critical": 7417
+  },
+  {
+   "host": "walmart.com",
+   "category": "ecommerce",
+   "status": 200,
+   "bytes": 408249,
+   "offsets": {
+    "title": 1091,
+    "canonical": 1823,
+    "meta robots": 15394,
+    "structured data": 16366
+   },
+   "last_critical": 16366
+  },
+  {
+   "host": "glossier.com",
+   "category": "ecommerce",
+   "status": 200,
+   "bytes": 403829,
+   "offsets": {
+    "title": 271,
+    "canonical": 222
+   },
+   "last_critical": 271
+  },
+  {
+   "host": "target.com",
+   "category": "ecommerce",
+   "status": 200,
+   "bytes": 395811,
+   "offsets": {
+    "title": 583,
+    "canonical": 691,
+    "meta robots": 1019,
+    "structured data": 93051
+   },
+   "last_critical": 93051
+  },
+  {
+   "host": "theatlantic.com",
+   "category": "news",
+   "status": 200,
+   "bytes": 385365,
+   "offsets": {
+    "title": 54,
+    "structured data": 3379
+   },
+   "last_critical": 3379
+  },
+  {
+   "host": "arstechnica.com",
+   "category": "news",
+   "status": 200,
+   "bytes": 358614,
+   "offsets": {
+    "title": 164,
+    "canonical": 6576,
+    "meta robots": 6481,
+    "structured data": 7930
+   },
+   "last_critical": 7930
+  },
+  {
+   "host": "healthline.com",
+   "category": "reference",
+   "status": 200,
+   "bytes": 354158,
+   "offsets": {
+    "title": 1792,
+    "canonical": 1884,
+    "meta robots": 98060,
+    "structured data": 353627
+   },
+   "last_critical": 353627
+  },
+  {
+   "host": "rotorooter.com",
+   "category": "local",
+   "status": 200,
+   "bytes": 305888,
+   "offsets": {
+    "title": 2757,
+    "canonical": 128088,
+    "structured data": 126301
+   },
+   "last_critical": 128088
+  },
+  {
+   "host": "katzsdelicatessen.com",
+   "category": "local",
+   "status": 200,
+   "bytes": 276148,
+   "offsets": {
+    "title": 738,
+    "meta robots": 561
+   },
+   "last_critical": 738
+  },
+  {
+   "host": "substack.com",
+   "category": "reference",
+   "status": 200,
+   "bytes": 264354,
+   "offsets": {
+    "title": 395,
+    "canonical": 4612
+   },
+   "last_critical": 4612
+  },
+  {
+   "host": "zoom.us",
+   "category": "saas",
+   "status": 200,
+   "bytes": 263562,
+   "offsets": {
+    "title": 200,
+    "canonical": 4005,
+    "meta robots": 624,
+    "structured data": 6477
+   },
+   "last_critical": 6477
+  },
+  {
+   "host": "slack.com",
+   "category": "saas",
+   "status": 200,
+   "bytes": 256734,
+   "offsets": {
+    "title": 9844,
+    "canonical": 1890
+   },
+   "last_critical": 9844
+  },
+  {
+   "host": "backlinko.com",
+   "category": "seo-tools",
+   "status": 200,
+   "bytes": 252505,
+   "offsets": {
+    "title": 1206,
+    "canonical": 2479,
+    "meta robots": 1315,
+    "structured data": 9286
+   },
+   "last_critical": 9286
+  },
+  {
+   "host": "notion.so",
+   "category": "saas",
+   "status": 200,
+   "bytes": 249718,
+   "offsets": {
+    "title": 201,
+    "canonical": 2221
+   },
+   "last_critical": 2221
+  },
+  {
+   "host": "unicef.org",
+   "category": "nonprofit",
+   "status": 200,
+   "bytes": 227969,
+   "offsets": {
+    "title": 2279,
+    "canonical": 366
+   },
+   "last_critical": 2279
+  },
+  {
+   "host": "khanacademy.org",
+   "category": "nonprofit",
+   "status": 200,
+   "bytes": 223776,
+   "offsets": {
+    "title": 468,
+    "canonical": 589
+   },
+   "last_critical": 589
+  },
+  {
+   "host": "semrush.com",
+   "category": "seo-tools",
+   "status": 200,
+   "bytes": 196342,
+   "offsets": {
+    "title": 126,
+    "canonical": 12148,
+    "structured data": 11316
+   },
+   "last_critical": 12148
+  },
+  {
+   "host": "massageenvy.com",
+   "category": "local",
+   "status": 200,
+   "bytes": 193695,
+   "offsets": {
+    "title": 298,
+    "structured data": 23672
+   },
+   "last_critical": 23672
+  },
+  {
+   "host": "screamingfrog.co.uk",
+   "category": "seo-tools",
+   "status": 200,
+   "bytes": 186570,
+   "offsets": {
+    "title": 2032,
+    "canonical": 2281,
+    "meta robots": 1368,
+    "structured data": 3860
+   },
+   "last_critical": 3860
+  },
+  {
+   "host": "moz.com",
+   "category": "seo-tools",
+   "status": 200,
+   "bytes": 167841,
+   "offsets": {
+    "title": 2222,
+    "canonical": 4713,
+    "meta robots": 2572,
+    "structured data": 163765
+   },
+   "last_critical": 163765
+  },
+  {
+   "host": "neilpatel.com",
+   "category": "seo-tools",
+   "status": 200,
+   "bytes": 160505,
+   "offsets": {
+    "title": 2997,
+    "canonical": 3616,
+    "meta robots": 162,
+    "structured data": 4917
+   },
+   "last_critical": 4917
+  },
+  {
+   "host": "wikipedia.org",
+   "category": "reference",
+   "status": 200,
+   "bytes": 120361,
+   "offsets": {
+    "title": 84
+   },
+   "last_critical": 84
+  },
+  {
+   "host": "habitat.org",
+   "category": "nonprofit",
+   "status": 200,
+   "bytes": 115773,
+   "offsets": {
+    "title": 1418,
+    "canonical": 554
+   },
+   "last_critical": 1418
+  },
+  {
+   "host": "seroundtable.com",
+   "category": "seo-tools",
+   "status": 200,
+   "bytes": 96668,
+   "offsets": {
+    "title": 1821,
+    "canonical": 2231,
+    "meta robots": 1714
+   },
+   "last_critical": 2231
+  },
+  {
+   "host": "sitebulb.com",
+   "category": "seo-tools",
+   "status": 200,
+   "bytes": 94491,
+   "offsets": {
+    "title": 76,
+    "canonical": 383,
+    "structured data": 5888
+   },
+   "last_critical": 5888
+  },
+  {
+   "host": "jiffylube.com",
+   "category": "local",
+   "status": 200,
+   "bytes": 88978,
+   "offsets": {
+    "title": 7454,
+    "canonical": 7720
+   },
+   "last_critical": 7720
+  },
+  {
+   "host": "servicemaster.com",
+   "category": "local",
+   "status": 200,
+   "bytes": 84956,
+   "offsets": {
+    "title": 2008,
+    "canonical": 2308,
+    "meta robots": 1659,
+    "structured data": 3070
+   },
+   "last_critical": 3070
+  },
+  {
+   "host": "shakeshack.com",
+   "category": "local",
+   "status": 200,
+   "bytes": 78572,
+   "offsets": {
+    "title": 1929,
+    "canonical": 376,
+    "structured data": 961
+   },
+   "last_critical": 1929
+  },
+  {
+   "host": "wwf.org.uk",
+   "category": "nonprofit",
+   "status": 200,
+   "bytes": 73595,
+   "offsets": {
+    "title": 3235,
+    "canonical": 598,
+    "structured data": 1786
+   },
+   "last_critical": 3235
+  },
+  {
+   "host": "chipotle.com",
+   "category": "local",
+   "status": 200,
+   "bytes": 69813,
+   "offsets": {
+    "title": 80,
+    "canonical": 644
+   },
+   "last_critical": 644
+  },
+  {
+   "host": "sweetgreen.com",
+   "category": "local",
+   "status": 200,
+   "bytes": 69692,
+   "offsets": {
+    "title": 303,
+    "structured data": 1553
+   },
+   "last_critical": 1553
+  },
+  {
+   "host": "gymshark.com",
+   "category": "ecommerce",
+   "status": 200,
+   "bytes": 48627,
+   "offsets": {
+    "canonical": 877,
+    "meta robots": 828
+   },
+   "last_critical": 877
+  },
+  {
+   "host": "mit.edu",
+   "category": "nonprofit",
+   "status": 200,
+   "bytes": 48072,
+   "offsets": {
+    "title": 1506,
+    "canonical": 110
+   },
+   "last_critical": 1506
+  },
+  {
+   "host": "reddit.com",
+   "category": "reference",
+   "status": 200,
+   "bytes": 8393,
+   "offsets": {
+    "title": 291
+   },
+   "last_critical": 291
+  },
+  {
+   "host": "supercuts.com",
+   "category": "local",
+   "status": 200,
+   "bytes": 3498,
+   "offsets": {},
+   "last_critical": 0
+  }
+ ]
+}
