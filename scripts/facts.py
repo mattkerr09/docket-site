@@ -573,3 +573,32 @@ def years_to_match(slug: str) -> float:
 
 def three_year_cost(slug: str) -> int:
     return rival_annual_low(slug) * 3
+
+
+# -- how much of the test suite exists because Scout was wrong ---------------
+#
+# Generated from the app's own tests. The counting rule is deliberately
+# conservative and stated in the dataset: a file counts only if it names a
+# specific thing Scout got wrong, not merely because it is a test.
+
+
+@lru_cache(maxsize=None)
+def regressions() -> dict:
+    return json.loads(
+        (ROOT / "site" / "_data" / "regressions.json").read_text())
+
+
+def test_files() -> int:
+    return regressions()["test_files"]
+
+
+def regression_files() -> int:
+    return regressions()["files_pinning_a_past_mistake"]
+
+
+def regression_pct() -> float:
+    return regressions()["pct"]
+
+
+def tests_total() -> int:
+    return regressions()["tests_total"]

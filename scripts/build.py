@@ -19,6 +19,7 @@ sys.path.insert(0, str(HERE / "articles"))
 from render import BASE, SITE, render  # noqa: E402
 
 import about  # noqa: E402
+import audit_quality  # noqa: E402
 import bytecap  # noqa: E402
 import comparisons  # noqa: E402
 import directives  # noqa: E402
@@ -126,6 +127,9 @@ money.</p>
             ("/learn/googlebot-2mb-limit/", "Googlebot's 2MB cutoff",
              "It reads the first 2MB and indexes that as the whole page. We measured "
              "well-known homepages and found five already past it."),
+            ("/learn/audit-tool-accuracy/", "How to tell whether an audit tool is lying to you",
+             "Four questions to ask of any SEO finding, each of them learned here by "
+             "getting it wrong first."),
             ("/learn/dead-contact-address/", "The contact address that cannot receive mail",
              "An address on a domain with no MX record bounces to the sender and never "
              "reaches you, and no tool asks whether yours works."),
@@ -360,6 +364,7 @@ def main() -> int:
     pages += substitution.build_all()
     pages += __import__('pages').build_all()
     pages += about.build_all()
+    pages += audit_quality.build_all()
     pages += mailcheck.build_all()
     pages += build_hubs()
 
