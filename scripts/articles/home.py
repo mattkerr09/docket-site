@@ -308,22 +308,26 @@ comparisons →</a></p>
 <p>Because finding out later is worse, and a tool that claims everything is worth less than
 one that draws a line.</p></div>
 <div class="grid-3">
-  <div class="card"><h3>Keywords and backlinks</h3><p>That needs a crawled index of the web —
-  bought, not built. Use Ahrefs or Semrush for research; they are the right tool and we are
-  not going to pretend otherwise.</p></div>
+  <div class="card"><h3>Per-page backlinks and anchor text</h3><p>Scout measures link
+  authority at the domain level from Common Crawl's hyperlink graph — 117.9&nbsp;million
+  domains, free, no index bought. Which individual <em>page</em> links to you, with what
+  anchor text, lives in 14&nbsp;TiB of archive files. Ahrefs and Semrush sell that and it is
+  worth paying for if you need it.</p></div>
+  <div class="card"><h3>Search volumes</h3><p>Scout finds the queries people actually type,
+  from Google's own autocomplete, ordered by how common they are. It will not print a monthly
+  volume, because it does not have one. Anyone showing you a volume bought a clickstream
+  panel.</p></div>
   <div class="card"><h3>Non-English copy checks</h3><p>Copy-quality checks are English-only.
-  On other languages they stand down and the report says which ones did. Everything
-  technical works in any language.</p></div>
+  On other languages they stand down and the report says which ones did. Everything technical
+  works in any language.</p></div>
   <div class="card"><h3>Windows and Intel</h3><p>Apple Silicon, macOS 12 or later. There is
   no other build.</p></div>
 </div>
 <p style="text-align:center;margin-top:1.5rem;font-size:.95rem;color:var(--text-dim)">
-Three things that used to be on this list are not any more —
-<a href="/learn/javascript-rendering/">JavaScript rendering, tag manager contents and
-browser-measured timings</a>. Core Web Vitals left it too, with a condition worth stating:
-Scout reads real LCP, INP and CLS from the Chrome UX Report, which is opt-in and wants a
-free Google API key, because the keyless quota is shared with the whole internet and is
-usually spent. No tool measures those from your machine — they are field metrics.</p>
+This list keeps getting shorter. <a href="/learn/javascript-rendering/">JavaScript rendering,
+tag manager contents and browser-measured timings</a> came off it; so did Core Web Vitals,
+read from the Chrome UX Report; and so did keyword research and domain authority, both
+computed from free public data rather than a bought index.</p>
 </div></section>
 
 <!-- ================= FAQ ================= -->
