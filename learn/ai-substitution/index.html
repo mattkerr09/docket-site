@@ -75,8 +75,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17
    Shipping an effect that cannot be verified, on a page whose entire argument
    is that Scout reports only what it can prove, is the wrong trade. The type,
    spacing and depth carry the page; content renders immediately and is never
-   contingent on a script. */
-}
+   contingent on a script.
+
+   The rule that used to be here left its closing brace behind when it was
+   deleted, and a stray `}` at the top level made the browser discard the very
+   next rule — which was the one giving every link its colour. Every body link
+   on every article rendered in default browser blue on a near-black page for
+   as long as that brace survived, and no gate on this site looks at colour. */
 a{color:var(--amber-light);text-decoration:none;transition:color .16s}
 @media(hover:hover){a:hover{color:var(--text);text-decoration:underline}}
 .wrap{width:min(820px,calc(100% - 2rem));margin:0 auto}
@@ -92,7 +97,11 @@ nav{position:sticky;top:0;z-index:20;background:rgba(11,12,15,.88);
 .nav-links a{color:var(--text-mid)}
 @media(hover:hover){.nav-links a:hover{color:var(--text);text-decoration:none}}
 @media(max-width:780px){
-  .nav-inner{flex-wrap:wrap;row-gap:.55rem}
+  /* `height` cannot contain a wrapped row, so the links overflowed the sticky
+     bar by 19px and floated over the page with no background behind them once
+     scrolled. Measured at 375px: nav box ended at 61, links ended at 80. */
+  .nav-inner{flex-wrap:wrap;row-gap:.55rem;height:auto;min-height:60px;
+    padding-bottom:.5rem}
   .nav-links{order:3;width:100%;gap:1.15rem;font-size:.88rem;
     overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.15rem;
     scrollbar-width:none}
@@ -206,8 +215,11 @@ body.landing article{padding:0}
    not to fire at all in the webview used to verify it — so the effect could not
    be confirmed working, only confirmed shipped. A motion effect that cannot be
    verified is a liability on a page whose whole argument is rigour, and a
-   static ranked list makes the same point without one. */
-}
+   static ranked list makes the same point without one.
+
+   Second orphaned brace of the same kind, found by the same look. This one was
+   dropping `.hero-sec::before` — the amber glow behind the homepage hero — so
+   that effect was designed, shipped, and never once rendered. */
 .hero-sec::before{content:"";position:absolute;inset:-40% 0 auto 50%;width:900px;height:600px;
   transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(240,128,15,.13),transparent 62%);
   pointer-events:none}
