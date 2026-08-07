@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "compiled": "2026-08-07",
-  "revision": 1,
+  "revision": 2,
   "ai_crawlers": {
     "GPTBot": {
       "owner": "OpenAI",
@@ -133,9 +133,59 @@
   },
   "algorithm_notes": [
     {
+      "date": "2026-06-24",
+      "title": "June 2026 spam update",
+      "detail": "Rolled out over 2 days and 1 hour from 24 June 2026."
+    },
+    {
+      "date": "2026-06-03",
+      "title": "Search Console generative-AI control and reports",
+      "detail": "Google began testing a Search Console toggle that decides whether a site appears in and helps ground AI Overviews, AI Mode and AI Overviews in Discover. Opting out forfeits traffic and impressions from those features and is not used as a ranking signal elsewhere. It leaves no external signal, so no third-party tool can detect it. Rolling out first to a subset of site owners in the UK."
+    },
+    {
+      "date": "2026-05-21",
+      "title": "May 2026 core update",
+      "detail": "Rolled out over 11 days and 21 hours from 21 May 2026."
+    },
+    {
       "date": "2026-05-07",
       "title": "FAQ and HowTo rich results retired",
       "detail": "Google stopped showing FAQ and HowTo rich results in Search. The markup remains valid schema.org and is still useful for entity clarity, but it no longer produces a result feature."
+    },
+    {
+      "date": "2026-03-27",
+      "title": "March 2026 core update",
+      "detail": "Rolled out over 12 days and 4 hours from 27 March 2026."
+    },
+    {
+      "date": "2026-03-24",
+      "title": "March 2026 spam update",
+      "detail": "Rolled out over 19 hours and 30 minutes from 24 March 2026."
+    },
+    {
+      "date": "2026-02-05",
+      "title": "February 2026 Discover update",
+      "detail": "Rolled out over 21 days and 17 hours from 5 February 2026 — the longest rollout on the dashboard for either year."
+    },
+    {
+      "date": "2025-12-11",
+      "title": "December 2025 core update",
+      "detail": "Rolled out over 18 days and 2 hours from 11 December 2025."
+    },
+    {
+      "date": "2025-08-26",
+      "title": "August 2025 spam update",
+      "detail": "Rolled out over 26 days and 15 hours from 26 August 2025."
+    },
+    {
+      "date": "2025-06-30",
+      "title": "June 2025 core update",
+      "detail": "Rolled out over 16 days and 18 hours from 30 June 2025."
+    },
+    {
+      "date": "2025-03-13",
+      "title": "March 2025 core update",
+      "detail": "Rolled out over 13 days and 21 hours from 13 March 2025."
     },
     {
       "date": "2024-03-12",
@@ -188,6 +238,6 @@
   "sources": {
     "ai_crawlers": "Each operator's published crawler documentation, cross-checked against robots.txt directives observed in the Scout Index.",
     "web_vitals": "Google's published Core Web Vitals thresholds (web.dev).",
-    "algorithm_notes": "Google Search Status Dashboard and Search Central announcements."
+    "algorithm_notes": "Google Search Status Dashboard (developers.google.com/search/updates/ranking) and Search Central / blog.google announcements, each read on the date in the entry. Durations are Google's own."
   }
 }
