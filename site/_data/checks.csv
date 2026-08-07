@@ -8,6 +8,7 @@ ai.extractability,ai,AI search visibility,Answer extractability
 ai.freshness_signal,ai,AI search visibility,Dates AI engines can read
 ai.llms_txt,ai,AI search visibility,llms.txt
 ai.rendering,ai,AI search visibility,Content reachable without JavaScript
+ai.unmeasurable_optout,ai,AI search visibility,The AI control nothing can detect
 brand.logo,brand,Brand consistency,Logo presence and markup
 brand.name_consistency,brand,Brand consistency,Brand name consistency
 brand.positioning,brand,Brand consistency,Consistent positioning statement
