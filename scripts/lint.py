@@ -58,6 +58,7 @@ BANNED = [
 # "It's not just X, it's Y" / "isn't just X — it's Y"
 NOT_JUST = re.compile(r"\b(it'?s|is|isn'?t|not)\s+just\s+\w+[,—-]\s*it'?s\b", re.I)
 
+_HEADING = re.compile(r"<h([1-6])[^>]*>", re.I)
 _TITLE = re.compile(r"<title>(.*?)</title>", re.S | re.I)
 _DESC = re.compile(r'<meta name="description" content="(.*?)"', re.S | re.I)
 _TAG = re.compile(r"<(script|style)[^>]*>.*?</\1>", re.S | re.I)
@@ -103,6 +104,17 @@ def main(root: str) -> int:
             fails.append(f"TITLE  {p}: {len(title)} chars (max {MAX_TITLE})")
         if not desc or len(desc) > MAX_DESC:
             fails.append(f"DESC   {p}: {len(desc)} chars (max {MAX_DESC})")
+
+        # A skipped heading level breaks the outline a screen reader announces
+        # and the one a search engine reads. Four hub pages jumped h1 straight
+        # to h3 purely for the smaller type, which a font-size handles.
+        levels = [int(m) for m in _HEADING.findall(_CHROME.sub(" ", raw))]
+        prev = 0
+        for level in levels:
+            if prev and level > prev + 1:
+                fails.append(f"HEADS  {p}: h{prev} -> h{level}")
+                break
+            prev = level
         words = len(text.split())
         low = text.lower()
 
@@ -142,7 +154,7 @@ def main(root: str) -> int:
 
     print(f"checked {len(pages)} pages")
     if not fails:
-        print("PASS — voice, length, thin and duplicate checks clean")
+        print("PASS — voice, length, headings, thin and duplicate checks clean")
         return 0
     print(f"\nFAIL ({len(fails)}):")
     for f in sorted(fails):

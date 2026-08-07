@@ -112,15 +112,15 @@ def for_hub() -> Path:
 <p class="lede">The same {N_CHECKS} checks run on every site, but which findings matter most changes a
 lot by who you are. These pages cover what to look at first.</p>
 
-<h3><a href="/for/agencies/">For SEO agencies</a></h3>
+<h2><a href="/for/agencies/">For SEO agencies</a></h2>
 <p>Unlimited client audits with no per-seat or per-crawl cost, and a client-ready PDF that does
 not need rebuilding in a deck.</p>
 
-<h3><a href="/for/local-business/">For local businesses</a></h3>
+<h2><a href="/for/local-business/">For local businesses</a></h2>
 <p>Why you are not in the map pack — LocalBusiness schema, NAP consistency, and the geo
 signals that decide "near me" results.</p>
 
-<h3>More coming</h3>
+<h2>More coming</h2>
 <p>Ecommerce, SaaS and in-house marketing pages are being written. Rather than publish three
 thin variations of the same article now, they will appear when each has something specific to
 say — near-duplicate pages are the actual flag risk in a programmatic set, not thin ones.</p>
@@ -295,11 +295,11 @@ def howto_hub() -> Path:
 <p class="lede">Fix guides for the specific problems Scout reports. Each one explains what the
 issue costs you, then gives the change to make.</p>
 
-<h3><a href="/how-to/fix-ai-crawler-access/">Fix AI crawler access in robots.txt</a></h3>
+<h2><a href="/how-to/fix-ai-crawler-access/">Fix AI crawler access in robots.txt</a></h2>
 <p>How to let ChatGPT, Perplexity and Claude read your site without giving away training data —
 they are separate decisions and need separate rules.</p>
 
-<h3>More coming</h3>
+<h2>More coming</h2>
 <p>Guides for hreflang return tags, conflicting canonicals, soft 404s and structured data
 errors are being written. They will appear as each is written properly rather than as
 variations on a template.</p>
