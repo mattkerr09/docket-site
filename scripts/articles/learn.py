@@ -60,10 +60,13 @@ point working on the third while the first is broken.</p>
 single most consequential thing on this page. Blocking training is a defensible decision about
 whether your writing becomes model weights. Blocking search removes you from the answer.</p>
 
-<p>We measured this. Of {m['n']} well-known sites with a robots.txt, {m['cit_pct']}% block at
-least one AI search crawler — and among the sites that block any AI crawler at all, roughly
-three quarters blocked the search crawlers too. <a href="/index/">The full dataset is
-here</a>.</p>
+<p>We measured this twice. Of {m['n']} well-known sites with a robots.txt, {m['cit_pct']}% block
+at least one AI search crawler (<a href="/index/">the dataset</a>). Then we read the
+robots.txt of the <a href="/index/ai-directives/">Tranco top 10,000</a>, where the picture is
+better: of the 1,381 sites blocking any AI crawler, 53.2% blocked training and left search
+alone. Large sites mostly separate the two. What almost nobody catches is the third case —
+51.9% of sites writing AI rules at all name a user-agent token that no crawler uses, so the
+rule they wrote does nothing.</p>
 
 <h3>2. Rendering — is there anything in the HTML?</h3>
 <p>Google renders JavaScript, eventually. Most AI crawlers do not run it at all. A React or Vue
@@ -109,10 +112,10 @@ blocking and what it costs you. It runs on your Mac and sends nothing anywhere.<
 """
     return render(
         cat="learn", slug="ai-search-visibility",
-        title="AI search visibility: how to be cited by ChatGPT, Perplexity and Claude (2026)",
-        desc=("AI search visibility is whether a model can reach, read and quote your site. "
-              "The three gates — crawler access, server-side rendering and entity clarity — "
-              "with measured data on who is currently blocking what."),
+        title="AI search visibility: how to get cited by ChatGPT and Claude",
+        desc=("Whether a model can reach, read and quote your site. The three gates — "
+              "crawler access, server-side rendering, entity clarity — with measured "
+              "data."),
         h1="AI search visibility, explained",
         crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / AI search visibility',
         body=body,
@@ -203,10 +206,9 @@ against effort, and marks areas it could not assess as unknown rather than passi
 """
     return render(
         cat="learn", slug="seo-audit",
-        title="What is an SEO audit? What it covers and how to read one (2026)",
+        title="What is an SEO audit? What it covers and how to read one",
         desc=("An SEO audit checks whether search engines can find, understand and choose to "
-              "show your site. What each area covers, why they fail in order, and the three "
-              "tests a report has to pass to be worth acting on."),
+              "show your site. What each area covers, and why they fail in order."),
         h1="What an SEO audit actually covers",
         crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / SEO audits',
         body=body,

@@ -165,9 +165,9 @@ every site measured, so you can check our arithmetic.</p>
     return render(
         cat="learn", slug="sameas-entity-signals",
         title=f"sameAs: the entity signal {100 - m['pct_same']}% of major sites skip",
-        desc=(f"sameAs tells search engines and language models that your site, your LinkedIn "
-              f"and your Wikipedia entry are one organisation. We measured {m['n']} major "
-              f"sites: {m['pct_same']}% declare it. What it does and how to add it."),
+        desc=(f"sameAs tells search engines that your site, your LinkedIn and your Wikipedia "
+              f"entry are one organisation. We measured {m['n']} major sites: "
+              f"{m['pct_same']}% declare it."),
         h1="sameAs, and why half the web skips it",
         crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / sameAs and entities',
         body=body,

@@ -124,10 +124,9 @@ every page, ranks the results, and shows you the map.</p>
 """
     return render(
         cat="learn", slug="internal-link-equity",
-        title="Internal link equity: how to find the pages your site is starving",
-        desc=("Internal link equity is the ranking signal your pages pass to each other. "
-              "Measured on our own site, where the download page — the whole point of it "
-              "— held 1.25% against a 5.56% average. How to find yours."),
+        title="Internal link equity: find the pages your site is starving",
+        desc=("The ranking signal your pages pass to each other. Measured on our own site, "
+              "where the download page held 1.25% of it against a 5.56% average."),
         h1="Internal link equity, measured",
         crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / Internal link equity',
         body=body,

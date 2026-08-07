@@ -22,7 +22,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR, render  # noqa: E402
+from render import DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR, price, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
@@ -275,9 +275,10 @@ def body() -> str:
     <p>No account, no telemetry, no licence server. The only requests Scout makes are to the
     site you are auditing.</p></div>
   <div class="card"><div class="card-ico">{ICONS['order']}</div>
-    <h3>A CLI that gates deploys</h3>
-    <p><code>scout audit</code> exits non-zero on a critical issue, so CI fails the build if
-    someone ships a noindex.</p></div>
+    <h3>A CLI, including <code>scout attack</code></h3>
+    <p><code>scout audit</code> exits non-zero on a critical issue, so CI fails the build on a
+    stray noindex. <code>scout attack</code> ranks a competitor's weak points by how winnable
+    they are.</p></div>
 </div>
 </div></section>
 
@@ -289,10 +290,10 @@ def body() -> str:
 <thead><tr><th>Tool</th><th>Price</th><th>Runs</th><th>Output</th></tr></thead>
 <tbody>
 <tr><td>Scout</td><td class="yes">{PRICE_STR} once</td><td class="yes">Your Mac</td><td>Ranked fix plan</td></tr>
-<tr><td>Ahrefs Site Audit</td><td>$129–$499/mo</td><td>Cloud, metered</td><td>170+ issues</td></tr>
-<tr><td>Semrush Site Audit</td><td>$139–$499/mo</td><td>Cloud, metered</td><td>140+ checkpoints</td></tr>
-<tr><td>Sitebulb</td><td>$13.50–$34/mo</td><td>Local + cloud</td><td>Visual issue report</td></tr>
-<tr><td>Screaming Frog</td><td>£199/yr</td><td>Your machine</td><td>Raw crawl data</td></tr>
+<tr><td>Ahrefs Site Audit</td><td>{price("ahrefs-site-audit")}</td><td>Cloud, metered</td><td>170+ issues</td></tr>
+<tr><td>Semrush Site Audit</td><td>{price("semrush-site-audit")}</td><td>Cloud, metered</td><td>140+ checkpoints</td></tr>
+<tr><td>Sitebulb</td><td>{price("sitebulb")}</td><td>Local + cloud</td><td>Visual issue report</td></tr>
+<tr><td>Screaming Frog</td><td>{price("screaming-frog")}</td><td>Your machine</td><td>Raw crawl data</td></tr>
 </tbody></table></div>
 <p style="text-align:center;margin-top:1.4rem"><a class="btn-ghost" href="/vs/">See the honest
 comparisons →</a></p>
@@ -384,8 +385,8 @@ def build() -> Path:
         cat="", slug="",
         title="Scout — SEO, copy, conversion and brand audits for Mac",
         desc=(f"Scout audits any website on your Mac: {N_CHECKS} checks across SEO, copy, brand, "
-              "data, local visibility, AI search visibility and marketing conversion. Ranked "
-              "fix plan, client-ready PDF, one-time price, nothing uploaded."),
+              "local and AI search visibility. Ranked fix plan, client-ready PDF, nothing "
+              "uploaded."),
         h1="SEO audits that tell you what to fix, in order",
         crumb="Scout for Mac",
         body=body(),

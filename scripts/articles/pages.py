@@ -44,15 +44,39 @@ with Apple and opens it.</p>
 
 <h2>The command line</h2>
 <p>The same engine ships as a CLI inside the app bundle. It is the whole product, not a
-cut-down version:</p>
+cut-down version, and it has five subcommands.</p>
+
+<h3><code>scout audit</code> — the full audit</h3>
 <pre><code>scout audit example.com
 scout audit example.com -o audit.pdf -n 500
-scout audit example.com -f json --no-pages | jq '.score.overall'
-scout checks</code></pre>
-<p><code>scout audit</code> exits with status 2 when it finds a critical issue, so it can gate
-a deployment. Running it in CI against a staging URL will fail the build if someone ships a
-<code>noindex</code>, which is a mistake that otherwise gets found weeks later by a traffic
-graph.</p>
+scout audit example.com --render 10        # run each page's JavaScript first
+scout audit example.com --offline          # no third-party calls at all
+scout audit example.com -f json --no-pages | jq '.score.overall'</code></pre>
+<p>It exits with status 2 when it finds a critical issue, so it can gate a deployment. Running
+it in CI against a staging URL fails the build if someone ships a <code>noindex</code>, which
+is a mistake that otherwise gets found weeks later by a traffic graph.</p>
+
+<h3><code>scout attack</code> — where a competitor's authority does not protect them</h3>
+<pre><code>scout attack yoursite.com theircompetitor.com
+scout attack yoursite.com theirs.com --demand "emergency plumber"</code></pre>
+<p>Audits both sites, compares their link-graph authority, and returns the openings ranked by
+how winnable they are rather than how large they are. An older, better-linked competitor is
+unbeatable on the pages it has held for years and beatable on the ones it never wrote — and
+that distinction is the only part of a competitive analysis that changes what you do on
+Monday. Add <code>--demand</code> and it pulls what people actually search for from Google's
+public autocomplete, then reports which of those questions neither site answers.</p>
+
+<h3><code>scout backlinks</code> — authority without a subscription</h3>
+<pre><code>scout backlinks yoursite.com competitor.com
+scout backlinks yoursite.com --referring</code></pre>
+<p>Domain authority from Common Crawl's public hyperlink graph, which covers 117,963,409
+domains. <code>--referring</code> streams the 9.8 GB graph to list the domains linking in;
+it takes minutes and writes nothing to disk.</p>
+
+<h3><code>scout checks</code> and <code>scout serve</code></h3>
+<p><code>checks</code> prints every check the engine runs with its lane and severity.
+<code>serve</code> runs the local API the desktop app talks to, on 127.0.0.1, which is also
+how you would drive Scout from your own scripts.</p>
 
 <h2>Requirements and limits</h2>
 <ul>
@@ -172,8 +196,7 @@ claims everything invites the client to test the claim.</p>
         cat="for", slug="agencies",
         title=f"Scout for SEO agencies: unlimited client audits for {PRICE_STR}",
         desc=("Per-crawl metering makes agencies ration audits. Scout runs locally with no "
-              "per-seat or per-crawl cost, produces a client-ready PDF, and turns scheduled "
-              "re-audits into a retainer conversation."),
+              "per-seat or per-crawl cost, and turns scheduled re-audits into a retainer."),
         h1="Scout for SEO agencies",
         crumb='<a href="/">Scout</a> / <a href="/for/">For you</a> / Agencies',
         body=body,
@@ -249,9 +272,8 @@ missing. <a href="/download/">Download it</a> and run one audit — it takes a f
     return render(
         cat="for", slug="local-business",
         title="Local SEO audit: why you are not in the map pack (2026)",
-        desc=("The four signals that decide local visibility — LocalBusiness schema and its "
-              "subtypes, NAP consistency, geo targeting and review markup — and the one-word "
-              "schema mistake we find on national franchises."),
+        desc=("The four signals that decide map-pack visibility — LocalBusiness schema, NAP "
+              "consistency, geo targeting and review markup — and the mistake franchises make."),
         h1="Why your business is not in the map pack",
         crumb='<a href="/">Scout</a> / <a href="/for/">For you</a> / Local business',
         body=body,
@@ -378,10 +400,10 @@ first few seconds of any audit.</p>
 """
     return render(
         cat="how-to", slug="fix-ai-crawler-access",
-        title="How to let ChatGPT and Perplexity read your site (robots.txt, 2026)",
-        desc=("Search crawlers and training crawlers are separate decisions needing separate "
-              "robots.txt rules. The copy-paste configuration that allows citation while "
-              "opting out of training, and the widely-shared snippet that gets it wrong."),
+        title="Let ChatGPT and Perplexity read your site (robots.txt, 2026)",
+        desc=("Search and training crawlers are separate decisions. The robots.txt that allows "
+              "citation while opting out of training, and the shared snippet that gets it "
+              "wrong."),
         h1="How to fix AI crawler access",
         crumb='<a href="/">Scout</a> / <a href="/how-to/">Fix it</a> / AI crawler access',
         body=body,

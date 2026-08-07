@@ -19,6 +19,7 @@ sys.path.insert(0, str(HERE / "articles"))
 from render import BASE, SITE, render  # noqa: E402
 
 import comparisons  # noqa: E402
+import directives  # noqa: E402
 import entity  # noqa: E402
 import rendering  # noqa: E402
 import home  # noqa: E402
@@ -70,7 +71,7 @@ def build_hubs() -> list[Path]:
     ))
     out.append(hub(
         "learn",
-        "Learn: SEO audits, AI search visibility and technical SEO — Scout",
+        "Learn: SEO audits, AI search visibility and technical SEO",
         "Plain explanations of what an SEO audit covers, how AI search visibility works, and "
         "what Scout checks.",
         "Learn",
@@ -246,15 +247,66 @@ def write_static() -> None:
     (SITE / ".nojekyll").write_text("")
 
 
+def not_found() -> Path:
+    """/404.html — GitHub Pages serves this for any path that does not exist.
+
+    Written because the default is GitHub's own page: their branding, their
+    404 graphic, no way back into the site. A site whose whole argument is that
+    it checks the things nobody checks should not leak someone else's error
+    page to its own visitors.
+
+    Noindexed and without a canonical, because a soft 404 that search engines
+    can index is worse than no page — it is the failure mode this site measured
+    in llms.txt handlers.
+    """
+    body = """
+<p class="lede">That page does not exist. The likeliest reason is a link that pointed at a
+draft, or a URL that moved when the section was reorganised.</p>
+
+<p>Everything on the site is one of five things:</p>
+
+<ul>
+<li><a href="/index/">The Index</a> — first-party measurements. Who blocks which AI crawlers,
+and <a href="/index/ai-directives/">which robots.txt rules do nothing</a>.</li>
+<li><a href="/learn/">Learn</a> — what an audit covers, AI search visibility, link equity,
+JavaScript rendering, entity signals.</li>
+<li><a href="/vs/">Compare</a> — honest comparisons against Screaming Frog, Sitebulb and
+Ahrefs Site Audit, each naming what the other does better.</li>
+<li><a href="/how-to/">Fix it</a> — the exact change to make for a specific finding.</li>
+<li><a href="/download/">Download</a> — the app itself, and the command line inside it.</li>
+</ul>
+
+<p><a class="btn" href="/">Back to the start</a></p>
+"""
+    return render(
+        cat="", slug="",
+        title="Page not found — Scout",
+        desc="That page does not exist. Where everything on scoutseo.app lives.",
+        h1="Page not found",
+        crumb='<a href="/">Scout</a> / Not found',
+        body=body,
+        schema_type="",
+        filename="404.html",
+        noindex=True,
+    )
+
+
 def main() -> int:
     pages: list[Path] = [home.build(), index_page.build(), checks_page()]
     pages += comparisons.build_all()
     pages += learn.build_all()
     pages += link_equity.build_all()
     pages += entity.build_all()
+    pages += directives.build_all()
     pages += rendering.build_all()
     pages += __import__('pages').build_all()
     pages += build_hubs()
+
+    # NOT appended to `pages`: the sitemap is derived from that list, and
+    # render() resolves an empty cat+slug to the site root, so including the
+    # 404 emitted a second <loc>https://scoutseo.app/</loc> — a duplicate entry
+    # is an invalid sitemap. It is also a page that must never be indexed.
+    not_found()
 
     write_robots()
     write_sitemap(pages)

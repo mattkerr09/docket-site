@@ -25,6 +25,7 @@ Exit 1 if anything fails, so it can gate a build.
 """
 from __future__ import annotations
 
+import html
 import re
 import sys
 from collections import defaultdict
@@ -32,6 +33,13 @@ from pathlib import Path
 
 MIN_WORDS = 600
 SHINGLE_N = 8
+# Google truncates a title around 580px — roughly 60 characters — and a meta
+# description around 160 on desktop. Past that the tail is not shown to anyone,
+# so it is copy nobody reads occupying the only two lines of a result you
+# control. An August 2026 check found 9 titles and 13 descriptions over, all
+# written by us, all trimmable without losing anything. Gated so it stays fixed.
+MAX_TITLE = 60
+MAX_DESC = 165
 DUP_RATIO = 0.28          # >28% shared shingles between two pages = too close
 
 # The tells. Lowercased substring match against visible text.
@@ -50,6 +58,8 @@ BANNED = [
 # "It's not just X, it's Y" / "isn't just X — it's Y"
 NOT_JUST = re.compile(r"\b(it'?s|is|isn'?t|not)\s+just\s+\w+[,—-]\s*it'?s\b", re.I)
 
+_TITLE = re.compile(r"<title>(.*?)</title>", re.S | re.I)
+_DESC = re.compile(r'<meta name="description" content="(.*?)"', re.S | re.I)
 _TAG = re.compile(r"<(script|style)[^>]*>.*?</\1>", re.S | re.I)
 # Nav and footer are IDENTICAL on every page by design. Counting them as shared prose makes
 # any well-templated site look like a duplicate farm — the first run of this linter flagged
@@ -82,9 +92,17 @@ def main(root: str) -> int:
 
     for p in pages:
         try:
-            text = visible_text(p.read_text(encoding="utf-8", errors="ignore"))
+            raw = p.read_text(encoding="utf-8", errors="ignore")
+            text = visible_text(raw)
         except OSError:
             continue
+
+        title = html.unescape(m.group(1).strip()) if (m := _TITLE.search(raw)) else ""
+        desc = html.unescape(m.group(1).strip()) if (m := _DESC.search(raw)) else ""
+        if not title or len(title) > MAX_TITLE:
+            fails.append(f"TITLE  {p}: {len(title)} chars (max {MAX_TITLE})")
+        if not desc or len(desc) > MAX_DESC:
+            fails.append(f"DESC   {p}: {len(desc)} chars (max {MAX_DESC})")
         words = len(text.split())
         low = text.lower()
 
@@ -124,7 +142,7 @@ def main(root: str) -> int:
 
     print(f"checked {len(pages)} pages")
     if not fails:
-        print("PASS — no voice, thin, or duplicate failures")
+        print("PASS — voice, length, thin and duplicate checks clean")
         return 0
     print(f"\nFAIL ({len(fails)}):")
     for f in sorted(fails):

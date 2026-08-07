@@ -317,7 +317,7 @@ body.landing article{padding:0}
 .faq-item p{font-size:.93rem;margin:0}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 87 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"87 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/scout-site"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 87 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"87 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","headline":"Download Scout for Mac","description":"Scout for macOS 12+ on Apple Silicon. 18 MB, no account, no telemetry. Includes the CLI, which exits non-zero on a critical issue so it can gate a deploy.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/download/","inLanguage":"en"}</script>
 </head>
 <body>
@@ -362,15 +362,39 @@ with Apple and opens it.</p>
 
 <h2>The command line</h2>
 <p>The same engine ships as a CLI inside the app bundle. It is the whole product, not a
-cut-down version:</p>
+cut-down version, and it has five subcommands.</p>
+
+<h3><code>scout audit</code> — the full audit</h3>
 <pre><code>scout audit example.com
 scout audit example.com -o audit.pdf -n 500
-scout audit example.com -f json --no-pages | jq '.score.overall'
-scout checks</code></pre>
-<p><code>scout audit</code> exits with status 2 when it finds a critical issue, so it can gate
-a deployment. Running it in CI against a staging URL will fail the build if someone ships a
-<code>noindex</code>, which is a mistake that otherwise gets found weeks later by a traffic
-graph.</p>
+scout audit example.com --render 10        # run each page's JavaScript first
+scout audit example.com --offline          # no third-party calls at all
+scout audit example.com -f json --no-pages | jq '.score.overall'</code></pre>
+<p>It exits with status 2 when it finds a critical issue, so it can gate a deployment. Running
+it in CI against a staging URL fails the build if someone ships a <code>noindex</code>, which
+is a mistake that otherwise gets found weeks later by a traffic graph.</p>
+
+<h3><code>scout attack</code> — where a competitor's authority does not protect them</h3>
+<pre><code>scout attack yoursite.com theircompetitor.com
+scout attack yoursite.com theirs.com --demand "emergency plumber"</code></pre>
+<p>Audits both sites, compares their link-graph authority, and returns the openings ranked by
+how winnable they are rather than how large they are. An older, better-linked competitor is
+unbeatable on the pages it has held for years and beatable on the ones it never wrote — and
+that distinction is the only part of a competitive analysis that changes what you do on
+Monday. Add <code>--demand</code> and it pulls what people actually search for from Google's
+public autocomplete, then reports which of those questions neither site answers.</p>
+
+<h3><code>scout backlinks</code> — authority without a subscription</h3>
+<pre><code>scout backlinks yoursite.com competitor.com
+scout backlinks yoursite.com --referring</code></pre>
+<p>Domain authority from Common Crawl's public hyperlink graph, which covers 117,963,409
+domains. <code>--referring</code> streams the 9.8 GB graph to list the domains linking in;
+it takes minutes and writes nothing to disk.</p>
+
+<h3><code>scout checks</code> and <code>scout serve</code></h3>
+<p><code>checks</code> prints every check the engine runs with its lane and severity.
+<code>serve</code> runs the local API the desktop app talks to, on 127.0.0.1, which is also
+how you would drive Scout from your own scripts.</p>
 
 <h2>Requirements and limits</h2>
 <ul>
