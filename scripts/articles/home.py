@@ -271,9 +271,11 @@ def body() -> str:
     <p>Re-audits on a cadence and tells you what changed. Regressions first — a site that was
     clean and broke is the thing you need to know.</p></div>
   <div class="card"><div class="card-ico">{ICONS['eye']}</div>
-    <h3>Competitor comparison</h3>
-    <p>Where you lead and trail area by area, plus the issues <em>every</em> rival has already
-    fixed. That list sells the work for you.</p></div>
+    <h3>Go on the offensive</h3>
+    <p>Against a rival with years and links you cannot match, Scout finds where none of that
+    helps them — crawlers they have blocked, rich results they cannot win, searches neither of
+    you answers. It reads their domain authority from Common Crawl so the size of the gap is a
+    number, not a guess.</p></div>
   <div class="card"><div class="card-ico">{ICONS['lock']}</div>
     <h3>Nothing is uploaded</h3>
     <p>No account, no telemetry, no licence server. The only requests Scout makes are to the
