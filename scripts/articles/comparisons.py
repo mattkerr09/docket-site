@@ -19,7 +19,7 @@ CTA = """
 <div class="callout">
 <div class="callout-title">Try it against your own site</div>
 <p>Scout is a one-time download for macOS. No account, no crawl credits, and the audit runs
-entirely on your machine. <a href="/#download">Download Scout →</a></p>
+entirely on your machine. <a href="/download/">Download Scout →</a></p>
 </div>"""
 
 
@@ -34,7 +34,7 @@ want to do yourself.</p>
 <p>Three things, and they are real:</p>
 <ul>
 <li><strong>JavaScript rendering.</strong> Screaming Frog runs a headless Chrome and can audit
-a page after its scripts have executed. Scout does not — it reads the HTML as delivered and
+a page after its scripts have executed. Scout renders a sample rather than every page and
 reports which pages are JS-dependent. For a React or Vue site where content only exists after
 hydration, Screaming Frog sees the real page and Scout sees an empty one.</li>
 <li><strong>Custom extraction.</strong> XPath, CSS and regex extraction pulls arbitrary fields
@@ -72,7 +72,7 @@ and UTM parameters on internal links.</li>
 <tr><td>Price</td><td>One-time</td><td>Free to 500 URLs, then £199/yr</td></tr>
 <tr><td>Runs on</td><td>Your Mac</td><td>Your machine</td></tr>
 <tr><td>Output</td><td>Ranked plan with fixes</td><td>Spreadsheet of crawl data</td></tr>
-<tr><td>JavaScript rendering</td><td class="no">No</td><td class="yes">Yes</td></tr>
+<tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>
 <tr><td>Custom XPath extraction</td><td class="no">No</td><td class="yes">Yes</td></tr>
 <tr><td>hreflang reciprocity</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
 <tr><td>AI crawler audit</td><td class="yes">Yes</td><td class="no">No</td></tr>
@@ -120,12 +120,13 @@ client-ready PDF without building one.</p>
         faq=[
             ("Is Scout a Screaming Frog alternative?",
              "For prioritisation, reporting and non-technical users, yes. For JavaScript "
-             "rendering, custom XPath extraction and very large crawls, no — Screaming Frog "
-             "does those and Scout does not."),
+             "custom XPath extraction, rendering at scale and very large crawls, no — "
+             "Screaming Frog does those better and Scout does not try to."),
             ("Does Scout render JavaScript like Screaming Frog?",
-             "No. Scout reads HTML as delivered and reports which pages depend on JavaScript. "
-             "That is deliberate — rendering would mean shipping a browser engine — but it is "
-             "a genuine limitation on single-page applications."),
+             "Yes, through a WebKit helper, though it is off by default and renders a "
+             "sample — ten pages by default. Screaming Frog renders every page in headless "
+             "Chrome with configurable wait strategies, which is the better tool for a large "
+             "single-page application."),
         ],
     )
 
@@ -170,8 +171,8 @@ reporting every English phrase as absent.</li>
 <tbody>
 <tr><td>Price</td><td>One-time</td><td>$13.50–$34/mo</td></tr>
 <tr><td>Runs on</td><td>Your Mac</td><td>Desktop or cloud</td></tr>
-<tr><td>Site architecture visualisation</td><td class="no">Not yet</td><td class="yes">Yes — its best feature</td></tr>
-<tr><td>JavaScript rendering</td><td class="no">No</td><td class="yes">Yes</td></tr>
+<tr><td>Site architecture visualisation</td><td class="yes">Rings by depth, sized by equity</td><td class="yes">Interactive force-directed map</td></tr>
+<tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>
 <tr><td>Team collaboration</td><td class="no">Single machine</td><td class="yes">Cloud tier</td></tr>
 <tr><td>Ranked action plan</td><td class="yes">Four phases</td><td>Prioritised hints</td></tr>
 <tr><td>AI search visibility</td><td class="yes">Yes</td><td class="no">No</td></tr>
@@ -206,7 +207,8 @@ check".</p>
         body=body,
         faq=[
             ("Does Scout have site architecture visualisation like Sitebulb?",
-             "Not yet. Scout computes the internal link graph but does not draw it. Sitebulb's "
+             "Both do. Scout draws a deterministic picture — pages in rings by click depth, sized "
+             "by link equity. Sitebulb's "
              "architecture map is its strongest feature and a legitimate reason to choose it."),
             ("Is Scout cheaper than Sitebulb?",
              "Scout is a one-time download; Sitebulb is $13.50–$34 per month. Over a year the "

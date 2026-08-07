@@ -57,10 +57,11 @@ def build_hubs() -> list[Path]:
         "comparison that never concedes anything is an advertisement.",
         [
             ("/vs/screaming-frog-alternative/", "Scout vs Screaming Frog",
-             "Raw crawl data versus a ranked plan. Screaming Frog renders JavaScript and "
-             "supports custom extraction; Scout does not."),
+             "Raw crawl data versus a ranked plan. Screaming Frog supports custom "
+             "extraction and crawls at far greater scale; Scout does not."),
             ("/vs/sitebulb-alternative/", "Scout vs Sitebulb",
-             "Sitebulb draws your site architecture, which Scout cannot yet do. Scout covers "
+             "Both draw your site architecture — Sitebulb interactively, Scout as rings by "
+             "depth sized by link equity. Scout covers "
              "AI visibility, conversion and tracking, which Sitebulb does not."),
             ("/vs/ahrefs-site-audit-alternative/", "Scout vs Ahrefs Site Audit",
              "Ahrefs has a web-scale index and Scout never will. What you get for $129 a month "
@@ -152,11 +153,13 @@ outrank one affecting the homepage, because reach is compressed logarithmically 
 that, one trivial nit on a large site drowns out everything that matters.</p>
 
 <h2>What is deliberately not here</h2>
-<p>Keyword rankings, search volume and backlink profiles. Those require a crawled index of the
-web, which is bought rather than built. Core Web Vitals field values, which need a real
-browser. JavaScript rendering. Each is a real limitation and each is stated in the report
+<p>Per-page backlinks and anchor text. Domain authority and the list of referring domains
+come from Common Crawl's hyperlink graph, but which individual page links to you, and with
+what anchor text, lives in 14&nbsp;TiB of archive files. Search volumes. Scout finds the
+queries people actually type, from Google's public autocomplete, and refuses to print a
+monthly volume it does not have. Each is a real limitation and each is stated in the report
 rather than papered over.</p>
-<p><a class="btn" href="/#download">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Scout</a></p>
 """
     return render(
         cat="learn", slug="what-scout-checks",

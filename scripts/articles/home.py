@@ -306,7 +306,7 @@ one that draws a line.</p></div>
 <div class="grid-3">
   <div class="card"><h3>Per-page backlinks and anchor text</h3><p>Scout reads Common Crawl's
   hyperlink graph — 117.9&nbsp;million domains — so it gives you a domain's authority rank in
-  about a second, and the full list of domains linking to it in a few minutes. We measured
+  about a second, and the full list of domains linking to it in about ten minutes. We measured
   12,411 domains linking to screamingfrog.co.uk that way. Which individual <em>page</em>
   links to you, and with what anchor text, lives in 14&nbsp;TiB of archive files. Ahrefs and
   Semrush sell that, and it is worth paying for if you need it.</p></div>
@@ -338,8 +338,8 @@ as many sites as you like.</p></div>
 auditing. No account, no telemetry.</p></div>
 <div class="faq-item"><h3>How is it different from Screaming Frog?</h3>
 <p>Screaming Frog gives raw crawl data and leaves interpretation to you. Scout ranks findings
-and gives you an ordered plan with markup to paste. Screaming Frog renders JavaScript and
-supports custom XPath extraction; Scout does not.</p></div>
+and gives you an ordered plan with markup to paste. Screaming Frog supports custom XPath extraction and crawls at far greater scale;
+Scout does not.</p></div>
 <div class="faq-item"><h3>Can it tell me whether ChatGPT can see my site?</h3>
 <p>Yes — per crawler, distinguishing search crawlers from training crawlers, plus whether your
 pages render server-side, since most AI crawlers do not run JavaScript.</p></div>

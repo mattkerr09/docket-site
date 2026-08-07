@@ -97,9 +97,9 @@ entities until something joins them.</p>
 a language model asked to name a supplier is more likely to reach a business it can pin to a
 real organisation than one that is only a domain.</p>
 
-<h2>Why the reference category is at the bottom</h2>
+<h2>Why reference sites are near the bottom</h2>
 
-<p>Reference sites came last at {m['cats'].get('reference', {}).get('pct_same_as', 0):.0f}%,
+<p>Reference sites came second from bottom at {m['cats'].get('reference', {}).get('pct_same_as', 0):.0f}%,
 which looks wrong until you think about who they are. Wikipedia and its peers <em>are</em>
 the entity graph — they are what everyone else's <code>sameAs</code> points at. They have
 less to gain by pointing outward.</p>
@@ -160,7 +160,7 @@ Scout does not. That is a genuine difference in kind, not a feature gap we inten
 to a small site. <a href="/data/entity-2026-08.json">The dataset behind this page</a> lists
 every site measured, so you can check our arithmetic.</p>
 
-<p><a class="btn" href="/#download">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Scout</a></p>
 """
     return render(
         cat="learn", slug="sameas-entity-signals",

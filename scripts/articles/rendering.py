@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import DMG, render  # noqa: E402
+from render import DMG, DMG_SIZE, render  # noqa: E402
 
 
 def javascript_rendering() -> Path:
@@ -37,7 +37,7 @@ rendering is not an optimisation, it is the entry fee. We measured
 <h2>How Scout does it</h2>
 
 <p>macOS ships a browser engine. WebKit is a system framework, so Scout renders through a
-112 KB helper built against it rather than bundling a browser — the download is still 17 MB,
+112 KB helper built against it rather than bundling a browser — the download is still {DMG_SIZE},
 and nothing is fetched at install time. The audit engine stays what it was: dependency-free
 Python that never needed a browser to do most of its job.</p>
 
@@ -114,7 +114,7 @@ to a static crawl and letting you believe otherwise.</p>
              "crawlers behind ChatGPT and Perplexity."),
             ("Does Scout bundle a browser?",
              "No. macOS ships WebKit as a system framework, so rendering is a 112 KB helper "
-             "built against it. The download is 17 MB and nothing is fetched at install."),
+             "built against it. The download is " + DMG_SIZE + " and nothing is fetched at install."),
             ("Why is rendering off by default?",
              "It executes the page's JavaScript, so analytics fire and ad pixels load — "
              "requests to servers you did not intend to contact by asking for an audit. It "
