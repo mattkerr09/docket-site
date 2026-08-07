@@ -72,6 +72,10 @@ _BANNED_RE = [
 #: not an f-string — the interpolation was correct, the quote mark was not, and
 #: nothing else would have noticed.
 _UNRENDERED = re.compile(r"\{[A-Za-z_][A-Za-z0-9_.\[\]'\"()]*\}")
+#: CSS comments, stripped before counting braces so prose inside them cannot
+#: be mistaken for syntax.
+_CSS_COMMENT = re.compile(r"/\*.*?\*/", re.S)
+_STYLE_BLOCK = re.compile(r"<style>(.*?)</style>", re.S | re.I)
 _HEADING = re.compile(r"<h([1-6])[^>]*>", re.I)
 _TITLE = re.compile(r"<title>(.*?)</title>", re.S | re.I)
 _DESC = re.compile(r'<meta name="description" content="(.*?)"', re.S | re.I)
@@ -122,6 +126,20 @@ def main(root: str) -> int:
         for hole in set(_UNRENDERED.findall(text)):
             fails.append(f"HOLE   {p}: unrendered placeholder {hole}")
 
+        # A stray `}` at the top level makes a browser discard the next rule
+        # and say nothing. Deleting a scroll-reveal rule left its closing brace
+        # behind, which killed `a{color:var(--amber-light)}`, and every body
+        # link on every article rendered in default browser blue on a near-black
+        # page until someone looked at one. Counting braces is crude and it
+        # catches exactly that.
+        for css in _STYLE_BLOCK.findall(raw):
+            clean = _CSS_COMMENT.sub("", css)
+            opens, closes = clean.count("{"), clean.count("}")
+            if opens != closes:
+                fails.append(
+                    f"CSS    {p}: {opens} '{{' vs {closes} '}}' — a stray brace "
+                    f"silently drops the rule after it")
+
         # A skipped heading level breaks the outline a screen reader announces
         # and the one a search engine reads. Four hub pages jumped h1 straight
         # to h3 purely for the smaller type, which a font-size handles.
@@ -171,8 +189,8 @@ def main(root: str) -> int:
 
     print(f"checked {len(pages)} pages")
     if not fails:
-        print("PASS — voice, length, headings, placeholders, thin and "
-              "duplicate checks clean")
+        print("PASS — voice, length, headings, placeholders, CSS, thin "
+              "and duplicate checks clean")
         return 0
     print(f"\nFAIL ({len(fails)}):")
     for f in sorted(fails):
