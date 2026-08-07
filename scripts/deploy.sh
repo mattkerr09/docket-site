@@ -19,6 +19,13 @@ PY="${PYTHON:-python3}"
 echo "==> build"
 "$PY" scripts/build.py >/dev/null
 
+echo "==> derived-number gate"
+# The Index published 30% over a 26% dataset because a correction updated the
+# prose and not the stored aggregate. This refuses to ship a measurement that
+# was typed rather than derived, which is the only version of that bug that
+# cannot be caught by reading.
+"$PY" scripts/verify_numbers.py
+
 echo "==> quality gate"
 # Runs against the built HTML. A failure here must stop the deploy: this is the
 # only thing standing between a bad edit and the live site.

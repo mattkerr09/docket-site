@@ -393,8 +393,11 @@ Disallow: /</code></pre>
 <p>Consecutive <code>User-agent</code> lines form one group, so the <code>Disallow</code>
 applies to all four. This snippet circulated widely in 2024 as "block AI crawlers" and it
 removes you from ChatGPT and Perplexity results as well as from training.</p>
-<p>In our measurement of 98 major sites, roughly three quarters of those blocking any AI
-crawler had also blocked the search crawlers. <a href="/index/">The data is here</a>.</p>
+<p>In our measurement of 98 major sites, 68% of those
+blocking any AI crawler had also blocked the search crawlers — but reading the robots.txt of
+the Tranco top 10,000 later showed the opposite at scale: of 1,381
+sites blocking any AI crawler there, 53.2% blocked training and
+left search alone. <a href="/index/">The data is here</a>.</p>
 
 <h2>What allowing them does not do</h2>
 <p>Allowing a crawler is necessary for citation. It is not sufficient, and it is worth setting
@@ -413,7 +416,7 @@ weeks rather than days.</p>
 <code>User-agent: *</code> does not override an earlier specific <code>Allow</code> — but a
 longer path pattern does. This is where hand-checking gets unreliable.</p>
 <p>Scout parses robots.txt the way Google does and tells you, per crawler, whether it can
-reach your site and what blocking it actually costs. That check is one of {N_CHECKS} and runs in the
+reach your site and what blocking it actually costs. That check is one of 90 and runs in the
 first few seconds of any audit.</p>
 <p><a class="btn" href="/download/">Download Scout</a></p>
 

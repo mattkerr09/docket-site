@@ -11,6 +11,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import facts as F  # noqa: E402
 from render import DMG, DMG_SIZE, N_CHECKS, PRICE_STR, RELEASE, render  # noqa: E402
 
 
@@ -316,7 +317,7 @@ variations on a template.</p>
 
 
 def howto_ai_access() -> Path:
-    body = """
+    body = f"""
 <p class="lede">To let AI assistants cite you while keeping your content out of model training,
 you need separate robots.txt rules for the search crawlers and the training crawlers. Most
 sites that try this end up blocking both, because the user-agent names do not make the
@@ -374,8 +375,11 @@ Disallow: /</code></pre>
 <p>Consecutive <code>User-agent</code> lines form one group, so the <code>Disallow</code>
 applies to all four. This snippet circulated widely in 2024 as "block AI crawlers" and it
 removes you from ChatGPT and Perplexity results as well as from training.</p>
-<p>In our measurement of 98 major sites, roughly three quarters of those blocking any AI
-crawler had also blocked the search crawlers. <a href="/index/">The data is here</a>.</p>
+<p>In our measurement of {F.index_n()} major sites, {F.index_conflated_pct()}% of those
+blocking any AI crawler had also blocked the search crawlers — but reading the robots.txt of
+the Tranco top 10,000 later showed the opposite at scale: of {F.directives_blocks_any():,}
+sites blocking any AI crawler there, {F.directives_training_only_pct()}% blocked training and
+left search alone. <a href="/index/">The data is here</a>.</p>
 
 <h2>What allowing them does not do</h2>
 <p>Allowing a crawler is necessary for citation. It is not sufficient, and it is worth setting

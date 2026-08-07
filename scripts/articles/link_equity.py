@@ -12,25 +12,32 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import facts as F  # noqa: E402
 from render import render  # noqa: E402
 
 
 def internal_link_equity() -> Path:
-    body = """
+    body = f"""
 <p class="lede">Internal link equity is the ranking signal your own pages pass to each
 other, and it is distributed by where you link — not by what you think matters. Google
 treats a link from your homepage as a vote, so a page nothing links to reads as a page
 you do not care about, however important it is to your business.</p>
 
-<p>We found this on our own site. Scout crawled scoutseo.app, built the internal link
-graph — 18 pages, 242 links between them — and ran PageRank across it. The download page,
-which is the entire commercial point of the site, receives <strong>one internal
-link</strong> and holds <strong>1.25% of the site's internal link equity</strong>. The
-average page holds 5.56%. Our most important page was getting a fifth of what a typical
-page got.</p>
+<p>We found this on our own site. Scout crawled scoutseo.app, built the internal link graph,
+and ran PageRank across it. The download page — the entire commercial point of the site —
+received <strong>one internal link</strong> and held <strong>1.25% of the internal link
+equity</strong> against a 5.56% average. Our most important page was getting a fifth of what
+a typical page got.</p>
 
-<p>Nothing was broken. No error, no warning, nothing a crawler would flag. The page was
-in the footer and reachable in one click, and by every conventional check it was fine.</p>
+<p>Nothing was broken. No error, no warning, nothing a crawler would flag. The page was in
+the footer and reachable in one click, and by every conventional check it was fine.</p>
+
+<p>Then we fixed it, and the interesting part is what happened next. The same measurement
+today: <strong>{F.equity_pages()} pages and {F.equity_edges()} links</strong>, and the
+download page holds <strong>{F.equity_node('/download/')['share_pct']}%</strong> from
+{F.equity_node('/download/')['inlinks']} internal links — {F.equity_node('/download/')['index']}×
+the {F.equity_average_pct()}% average, rather than 0.22×. The problem did not go away. It
+moved.</p>
 
 <h2>Why counting links is not enough</h2>
 
@@ -50,10 +57,12 @@ link from your homepage. A raw count says the first is better.</p>
 
 <h2>Reading the numbers</h2>
 
-<p>Raw PageRank values are awkward — 0.0125 means nothing on its own. Divide by the
-average and you get something you can act on. Our download page scores 0.22×. Our
-audience hub scores 1.23×. Anything under about 0.5× on a page you actually care about
-is worth an afternoon.</p>
+<p>Raw PageRank values are awkward — 0.0125 means nothing on its own. Divide by the average
+and you get something you can act on. Anything under about 0.5× on a page you actually care
+about is worth an afternoon. On this site today,
+<strong>{F.equity_below_half()} pages sit under it</strong>, and they are the newest ones:
+{", ".join(f"<code>{n['path']}</code> at {n['index']}×" for n in F.equity_weakest(3))}. Every
+article arrives starved, because nothing links to it until something does.</p>
 
 <p>Three patterns account for most of what goes wrong:</p>
 
@@ -72,15 +81,21 @@ Scout reports sections that link to nothing outside themselves for this reason.<
 template that lost its related-content block during a redesign — and it is invisible
 unless you are looking at the graph rather than the page.</p>
 
-<h2>What we changed</h2>
+<h2>What we changed, and what it cost</h2>
 
-<p>The fix for a starved page is not more links. It is links from pages that have
-something to pass: the ones already holding equity, in body copy where the surrounding
-text gives the link meaning, with anchor text that says what the destination is rather
-than "click here".</p>
+<p>The fix for a starved page is not more links. It is links from pages that have something
+to pass: the ones already holding equity, in body copy where the surrounding text gives the
+link meaning, with anchor text that says what the destination is rather than "click here".</p>
 
 <p>For us that meant linking the download page from inside the articles people actually
-arrive on, not just from the footer.</p>
+arrive on, not just from the footer. It worked — 0.22× to
+{F.equity_node('/download/')['index']}×.</p>
+
+<p>It also concentrated equity on the pages already in the navigation, which is why
+{F.equity_below_half()} of {F.equity_pages()} pages now sit under 0.5×. There is no version
+of this where every page is above average. The question is never "are any pages starved" —
+some always are — but "are the starved ones the ones that matter", and on a site that keeps
+publishing, the answer needs revisiting every time it does.</p>
 
 <h2>Where another tool is the better choice</h2>
 
@@ -118,15 +133,18 @@ the footer.</li>
 </ol>
 
 <p>You can do this by hand on a small site in about twenty minutes. Scout does it across
-every page, ranks the results, and shows you the map.</p>
+every page, ranks the results, and shows you the map. The figures on this page come from
+running it against this site on {F.equity()["measured"]}, and they are read from that
+measurement rather than typed — this article quoted an 18-page graph for a while after the
+site had 23 pages, which is exactly the failure it warns about.</p>
 
 <p><a class="btn" href="/download/">Download Scout</a></p>
 """
     return render(
         cat="learn", slug="internal-link-equity",
         title="Internal link equity: find the pages your site is starving",
-        desc=("The ranking signal your pages pass to each other. Measured on our own site, "
-              "where the download page held 1.25% of it against a 5.56% average."),
+        desc=("The ranking signal your pages pass to each other. Measured on our own "
+              "site, where fixing a starved page moved the problem rather than ending it."),
         h1="Internal link equity, measured",
         crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / Internal link equity',
         body=body,

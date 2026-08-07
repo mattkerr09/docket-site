@@ -17,6 +17,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import facts as F  # noqa: E402
 from render import N_CHECKS, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
@@ -134,8 +135,9 @@ blocked training crawlers while leaving the search crawlers alone</strong>. The 
 <div class="callout-title">This does not generalise, and we checked</div>
 <p>{conflated_pct}% is true of this sample, which is news-heavy by construction. We later read
 the robots.txt of the <a href="/index/ai-directives/">Tranco top 10,000</a> and found the
-opposite: of 1,381 sites there blocking any AI crawler, 53.2% blocked training crawlers and
-left the search crawlers alone — the informed split, and the majority.</p>
+opposite: of {F.directives_blocks_any():,} sites there blocking any AI crawler,
+{F.directives_training_only_pct()}% blocked training crawlers and left the search crawlers
+alone — the informed split, and the majority.</p>
 <p>Both numbers are real. The difference between them is the finding: large sites with someone
 responsible for the robots.txt mostly get this right, and the conflation risk is concentrated
 in publishers and in whoever copied a block list from one.</p>

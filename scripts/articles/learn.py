@@ -13,6 +13,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import facts as F  # noqa: E402
 from render import N_CHECKS, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
@@ -63,10 +64,11 @@ whether your writing becomes model weights. Blocking search removes you from the
 <p>We measured this twice. Of {m['n']} well-known sites with a robots.txt, {m['cit_pct']}% block
 at least one AI search crawler (<a href="/index/">the dataset</a>). Then we read the
 robots.txt of the <a href="/index/ai-directives/">Tranco top 10,000</a>, where the picture is
-better: of the 1,381 sites blocking any AI crawler, 53.2% blocked training and left search
-alone. Large sites mostly separate the two. What almost nobody catches is the third case —
-51.9% of sites writing AI rules at all name a user-agent token that no crawler uses, so the
-rule they wrote does nothing.</p>
+better: of the {F.directives_blocks_any():,} sites blocking any AI crawler,
+{F.directives_training_only_pct()}% blocked training and left search alone. Large sites mostly
+separate the two. What almost nobody catches is the third case —
+{F.directives_dead_pct()}% of sites writing AI rules at all name a user-agent token that no
+crawler uses, so the rule they wrote does nothing.</p>
 
 <h3>2. Rendering — is there anything in the HTML?</h3>
 <p>Google renders JavaScript, eventually. Most AI crawlers do not run it at all. A React or Vue
@@ -154,10 +156,12 @@ broken on half the sites we read" is a reason.</p>
 site-killing mistakes live: a <code>noindex</code> left on after a redesign, a robots.txt
 <code>Disallow: /</code> carried over from staging, canonicals pointing at another domain,
 redirect loops. Every one of these is invisible to a visitor and fatal to rankings.</p>
-<p>Two numbers from reading the robots.txt of the Tranco top 10,000. Of the 1,616 sites
-writing a rule aimed at an AI crawler, <strong>838 — 51.9% — name a user-agent token no
-crawler answers to</strong>, so the rule they wrote does nothing. And 643 of the 10,000
-refused a self-identifying bot at the server before robots.txt was even consulted, which no
+<p>Two numbers from reading the robots.txt of the Tranco top 10,000. Of the
+{F.directives_ai_sites():,} sites writing a rule aimed at an AI crawler,
+<strong>{F.directives_dead_sites()} — {F.directives_dead_pct()}% — name a user-agent token no
+crawler answers to</strong>, so the rule they wrote does nothing. And
+{F.directives_edge_denied()} of the 10,000 refused a self-identifying bot at the server before
+robots.txt was even consulted, which no
 amount of editing that file will fix. <a href="/index/ai-directives/">Both are measured
 here.</a></p>
 
@@ -180,9 +184,10 @@ Any tool claiming to measure your LCP from a static crawl is estimating.</p>
 <p>Schema.org markup that tells a search engine what the page <em>is</em>. Most real-world
 business schema sits inside an <code>@graph</code> array, which naive validators miss entirely
 and then report as absent.</p>
-<p>We read the homepage JSON-LD of 85 well-known sites: 50 declare an organisation and only
-41 declare <code>sameAs</code>, the property that links that organisation to anything else.
-Nine sites went to the trouble of describing themselves and then connected it to nothing.
+<p>We read the homepage JSON-LD of {F.entity_n()} well-known sites: {F.entity_org()} declare
+an organisation and only {F.entity_same_as()} declare <code>sameAs</code>, the property that
+links that organisation to anything else. {F.entity_org() - F.entity_same_as()} went to the
+trouble of describing themselves and then connected it to nothing.
 <a href="/learn/sameas-entity-signals/">The dataset is here.</a></p>
 
 <h3>The three most audits skip</h3>
