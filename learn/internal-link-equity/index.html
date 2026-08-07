@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Internal link equity: find the pages your site is starving</title>
-<meta name="description" content="The ranking signal your pages pass to each other. Measured on our own site, where the download page held 1.25% of it against a 5.56% average.">
+<meta name="description" content="The ranking signal your pages pass to each other. Measured on our own site, where fixing a starved page moved the problem rather than ending it.">
 <meta name="theme-color" content="#0b0c0f">
 <link rel="canonical" href="https://scoutseo.app/learn/internal-link-equity/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Internal link equity, measured">
-<meta property="og:description" content="The ranking signal your pages pass to each other. Measured on our own site, where the download page held 1.25% of it against a 5.56% average.">
+<meta property="og:description" content="The ranking signal your pages pass to each other. Measured on our own site, where fixing a starved page moved the problem rather than ending it.">
 <meta property="og:url" content="https://scoutseo.app/learn/internal-link-equity/">
 <meta property="og:site_name" content="Scout">
 <meta property="og:image" content="https://scoutseo.app/og.png">
@@ -19,7 +19,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Internal link equity, measured">
-<meta name="twitter:description" content="The ranking signal your pages pass to each other. Measured on our own site, where the download page held 1.25% of it against a 5.56% average.">
+<meta name="twitter:description" content="The ranking signal your pages pass to each other. Measured on our own site, where fixing a starved page moved the problem rather than ending it.">
 <meta name="twitter:image" content="https://scoutseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -319,7 +319,7 @@ body.landing article{padding:0}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/scout-site"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 90 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"90 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scout","item":"https://scoutseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://scoutseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Internal link equity, measured","description":"The ranking signal your pages pass to each other. Measured on our own site, where the download page held 1.25% of it against a 5.56% average.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/internal-link-equity/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Internal link equity, measured","description":"The ranking signal your pages pass to each other. Measured on our own site, where fixing a starved page moved the problem rather than ending it.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/internal-link-equity/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is internal link equity?","acceptedAnswer":{"@type":"Answer","text":"The ranking signal your own pages pass to each other through internal links. It is distributed by where you link, so a page nothing links to reads to a search engine as a page you do not consider important."}},{"@type":"Question","name":"How is it different from counting internal links?","acceptedAnswer":{"@type":"Answer","text":"Counting treats every link as equal. Link equity is recursive — a link from a page that itself receives no links passes almost nothing, so ten links from orphaned pages can be worth less than one from your homepage."}},{"@type":"Question","name":"How many internal links should an important page have?","acceptedAnswer":{"@type":"Answer","text":"There is no fixed number; it depends on where they come from. A useful test is relative: if a page receives less than half the internal equity of an average page on your site, and it matters commercially, it is starved."}}]}</script>
 </head>
 <body>
@@ -341,15 +341,21 @@ other, and it is distributed by where you link — not by what you think matters
 treats a link from your homepage as a vote, so a page nothing links to reads as a page
 you do not care about, however important it is to your business.</p>
 
-<p>We found this on our own site. Scout crawled scoutseo.app, built the internal link
-graph — 18 pages, 242 links between them — and ran PageRank across it. The download page,
-which is the entire commercial point of the site, receives <strong>one internal
-link</strong> and holds <strong>1.25% of the site's internal link equity</strong>. The
-average page holds 5.56%. Our most important page was getting a fifth of what a typical
-page got.</p>
+<p>We found this on our own site. Scout crawled scoutseo.app, built the internal link graph,
+and ran PageRank across it. The download page — the entire commercial point of the site —
+received <strong>one internal link</strong> and held <strong>1.25% of the internal link
+equity</strong> against a 5.56% average. Our most important page was getting a fifth of what
+a typical page got.</p>
 
-<p>Nothing was broken. No error, no warning, nothing a crawler would flag. The page was
-in the footer and reachable in one click, and by every conventional check it was fine.</p>
+<p>Nothing was broken. No error, no warning, nothing a crawler would flag. The page was in
+the footer and reachable in one click, and by every conventional check it was fine.</p>
+
+<p>Then we fixed it, and the interesting part is what happened next. The same measurement
+today: <strong>23 pages and 342 links</strong>, and the
+download page holds <strong>6.05%</strong> from
+22 internal links — 1.39×
+the 4.35% average, rather than 0.22×. The problem did not go away. It
+moved.</p>
 
 <h2>Why counting links is not enough</h2>
 
@@ -369,10 +375,12 @@ link from your homepage. A raw count says the first is better.</p>
 
 <h2>Reading the numbers</h2>
 
-<p>Raw PageRank values are awkward — 0.0125 means nothing on its own. Divide by the
-average and you get something you can act on. Our download page scores 0.22×. Our
-audience hub scores 1.23×. Anything under about 0.5× on a page you actually care about
-is worth an afternoon.</p>
+<p>Raw PageRank values are awkward — 0.0125 means nothing on its own. Divide by the average
+and you get something you can act on. Anything under about 0.5× on a page you actually care
+about is worth an afternoon. On this site today,
+<strong>8 pages sit under it</strong>, and they are the newest ones:
+<code>/for/agencies/</code> at 0.22×, <code>/for/local-business/</code> at 0.22×, <code>/learn/ai-substitution/</code> at 0.22×. Every
+article arrives starved, because nothing links to it until something does.</p>
 
 <p>Three patterns account for most of what goes wrong:</p>
 
@@ -391,15 +399,21 @@ Scout reports sections that link to nothing outside themselves for this reason.<
 template that lost its related-content block during a redesign — and it is invisible
 unless you are looking at the graph rather than the page.</p>
 
-<h2>What we changed</h2>
+<h2>What we changed, and what it cost</h2>
 
-<p>The fix for a starved page is not more links. It is links from pages that have
-something to pass: the ones already holding equity, in body copy where the surrounding
-text gives the link meaning, with anchor text that says what the destination is rather
-than "click here".</p>
+<p>The fix for a starved page is not more links. It is links from pages that have something
+to pass: the ones already holding equity, in body copy where the surrounding text gives the
+link meaning, with anchor text that says what the destination is rather than "click here".</p>
 
 <p>For us that meant linking the download page from inside the articles people actually
-arrive on, not just from the footer.</p>
+arrive on, not just from the footer. It worked — 0.22× to
+1.39×.</p>
+
+<p>It also concentrated equity on the pages already in the navigation, which is why
+8 of 23 pages now sit under 0.5×. There is no version
+of this where every page is above average. The question is never "are any pages starved" —
+some always are — but "are the starved ones the ones that matter", and on a site that keeps
+publishing, the answer needs revisiting every time it does.</p>
 
 <h2>Where another tool is the better choice</h2>
 
@@ -437,7 +451,10 @@ the footer.</li>
 </ol>
 
 <p>You can do this by hand on a small site in about twenty minutes. Scout does it across
-every page, ranks the results, and shows you the map.</p>
+every page, ranks the results, and shows you the map. The figures on this page come from
+running it against this site on 2026-08-07, and they are read from that
+measurement rather than typed — this article quoted an 18-page graph for a while after the
+site had 23 pages, which is exactly the failure it warns about.</p>
 
 <p><a class="btn" href="/download/">Download Scout</a></p>
 
