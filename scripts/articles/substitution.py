@@ -157,7 +157,9 @@ way. That is the uncomfortable part and it is why the fix is structural.</p>
 <ol>
 <li><strong>Publish something only you can measure.</strong> The one defence that converts a
 lost click into a citation. It does not have to be big — a survey of 40 customers is data
-nobody else has.</li>
+nobody else has. Ours are <a href="/index/ai-directives/">a robots.txt survey</a> and
+<a href="/learn/sameas-entity-signals/">an entity one</a>, and they are the reason most of
+this site is defended at all.</li>
 <li><strong>Give explainers something to do.</strong> A quote form, a checker, a booking
 step. An explainer with a tool in it stops being a page an answer replaces and becomes one it
 points at.</li>

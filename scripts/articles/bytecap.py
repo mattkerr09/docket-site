@@ -127,6 +127,9 @@ entirely — referenced resources each get their own budget.</li>
 <li><strong>Put required markup in the head</strong> and keep it there. Structured data
 injected at the end of the body is the common way to lose it.</li>
 <li><strong>Check again after a redesign.</strong> Page weight grows; the limit does not.</li>
+<li><strong>Remember this happens before rendering.</strong> If the page is also
+<a href="/learn/javascript-rendering/">built by JavaScript</a>, the renderer only ever sees
+the fragment that was fetched.</li>
 </ol>
 
 <p>Scout runs this as <code>index.byte_cap</code> on every audit, and reports the two cases separately: a page
