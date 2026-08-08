@@ -22,6 +22,7 @@ from render import BASE, SITE, render  # noqa: E402
 import about  # noqa: E402
 import audit_quality  # noqa: E402
 import brand as brand_article  # noqa: E402
+import logs as logs_article  # noqa: E402
 import bytecap  # noqa: E402
 import comparisons  # noqa: E402
 import directives  # noqa: E402
@@ -132,6 +133,10 @@ money.</p>
             ("/learn/audit-tool-accuracy/", "How to tell whether an audit tool is lying to you",
              "Four questions to ask of any SEO finding, each of them learned here by "
              "getting it wrong first."),
+            ("/learn/log-file-analysis/", "Log file analysis: what Googlebot actually fetched",
+             f"A user-agent proves nothing, which is why Google publishes "
+             f"{F.gbot_total_prefixes():,} crawler IP prefixes. Reading a log honestly, "
+             f"and where the dedicated tool wins."),
             ("/learn/brand-consistency/", "Brand consistency: the question no crawler asks",
              f"Of {F.brand_social_frame()} company sites linking social profiles, "
              f"{F.brand_social_undeclared()} declared none of them in schema. What the "
@@ -372,6 +377,7 @@ def main() -> int:
     pages += about.build_all()
     pages += audit_quality.build_all()
     pages += brand_article.build_all()
+    pages += logs_article.build_all()
     pages += mailcheck.build_all()
     pages += build_hubs()
 
