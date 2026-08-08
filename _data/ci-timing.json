@@ -6,63 +6,63 @@
   "sites_attempted": 6,
   "sites_timed": 6,
   "startup_runs_seconds": [
+    0.8,
     0.11,
-    0.12,
-    0.11
+    0.12
   ],
-  "startup_seconds": 0.11,
+  "startup_seconds": 0.12,
   "process_overhead_seconds": 0.2,
-  "median_seconds": 23.1,
-  "slowest_seconds": 28.2,
-  "fastest_seconds": 16.4,
-  "median_seconds_per_page": 0.92,
+  "median_seconds": 24.9,
+  "slowest_seconds": 36.1,
+  "fastest_seconds": 17.0,
+  "median_seconds_per_page": 1.0,
   "results": [
     {
       "url": "https://scoutseo.app",
       "pages_crawled": 25,
-      "seconds": 16.4,
-      "engine_seconds": 16.13,
-      "seconds_per_page": 0.66,
+      "seconds": 17.0,
+      "engine_seconds": 16.62,
+      "seconds_per_page": 0.68,
       "exit": 0
     },
     {
       "url": "https://www.allbirds.com",
       "pages_crawled": 25,
-      "seconds": 28.0,
-      "engine_seconds": 27.81,
-      "seconds_per_page": 1.12,
+      "seconds": 28.6,
+      "engine_seconds": 28.39,
+      "seconds_per_page": 1.14,
       "exit": 0
     },
     {
       "url": "https://www.thefarmersdog.com",
       "pages_crawled": 25,
-      "seconds": 18.5,
-      "engine_seconds": 18.24,
-      "seconds_per_page": 0.74,
+      "seconds": 21.5,
+      "engine_seconds": 21.26,
+      "seconds_per_page": 0.86,
       "exit": 2
     },
     {
       "url": "https://pizzapilgrims.co.uk",
       "pages_crawled": 25,
-      "seconds": 22.8,
-      "engine_seconds": 22.62,
-      "seconds_per_page": 0.91,
+      "seconds": 21.8,
+      "engine_seconds": 21.59,
+      "seconds_per_page": 0.87,
       "exit": 0
     },
     {
       "url": "https://www.basecamp.com",
       "pages_crawled": 25,
-      "seconds": 28.2,
-      "engine_seconds": 27.93,
-      "seconds_per_page": 1.13,
+      "seconds": 36.1,
+      "engine_seconds": 35.78,
+      "seconds_per_page": 1.44,
       "exit": 0
     },
     {
       "url": "https://www.gov.uk",
       "pages_crawled": 25,
-      "seconds": 23.3,
-      "engine_seconds": 23.14,
-      "seconds_per_page": 0.93,
+      "seconds": 27.9,
+      "engine_seconds": 27.74,
+      "seconds_per_page": 1.12,
       "exit": 0
     }
   ],
