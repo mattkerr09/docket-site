@@ -337,7 +337,7 @@ body.landing article{padding:0}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/scout-site"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 93 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"93 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scout","item":"https://scoutseo.app/"},{"@type":"ListItem","position":2,"name":"For you","item":"https://scoutseo.app/for/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"SEO checks in your deploy pipeline","description":"Scout's CLI exits 2 on a critical finding, so it gates a deploy in one line. 25 pages in a median 23.1s across 6 sites. Apple Silicon only.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/for/developers/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I run an SEO audit in CI?","acceptedAnswer":{"@type":"Answer","text":"Yes, and it is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Scout's CLI exits 0 when clean, 2 when it finds something at or above your threshold, and 1 only when the tool itself could not run."}},{"@type":"Question","name":"Does Scout run on GitHub Actions?","acceptedAnswer":{"@type":"Answer","text":"On macos-latest, which is arm64. Scout is Apple Silicon only, so it will not run on ubuntu-latest. If your pipeline is Linux-only, Screaming Frog's CLI runs on Windows, Mac and Ubuntu Linux and is the better fit."}},{"@type":"Question","name":"How long does a Scout audit take in a pipeline?","acceptedAnswer":{"@type":"Answer","text":"A median of 23.1 seconds for 25 pages across 6 real sites measured on 2026-08-07, or roughly 0.92 seconds per page. Process startup was 0.2s, so almost all of it is the crawl. Rendering with --render is considerably slower and was not included."}},{"@type":"Question","name":"Should the build fail on the SEO score?","acceptedAnswer":{"@type":"Answer","text":"No. The score is a weighted composite and moves when the weighting changes. Gate on severities with --fail-on, or better, use scout diff to fail only on findings this deploy introduced or made worse — every real site carries standing findings, so an absolute threshold either fails every build or none of them."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I run an SEO audit in CI?","acceptedAnswer":{"@type":"Answer","text":"Yes, and it is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Scout's CLI exits 0 when clean, 2 when it finds something at or above your threshold, and 1 only when the tool itself could not run."}},{"@type":"Question","name":"Does Scout run on GitHub Actions?","acceptedAnswer":{"@type":"Answer","text":"On macos-latest, which is arm64. Scout is Apple Silicon only, so it will not run on ubuntu-latest. If your pipeline is Linux-only, Screaming Frog's CLI runs on Windows, Mac and Ubuntu Linux and is the better fit."}},{"@type":"Question","name":"How long does a Scout audit take in a pipeline?","acceptedAnswer":{"@type":"Answer","text":"A median of 23.1 seconds for 25 pages across 6 real sites measured on 2026-08-07, or roughly 0.92 seconds per page. Process startup was 0.2s, so almost all of it is the crawl. Rendering with --render is considerably slower and was not included."}},{"@type":"Question","name":"Can Scout output SARIF for GitHub code scanning?","acceptedAnswer":{"@type":"Answer","text":"Yes — scout audit -f sarif writes SARIF 2.1.0, which you can hand to github/codeql-action/upload-sarif. The findings appear as alerts on the Security tab with their severity and fix. They do not annotate the pull request diff: SARIF locations are files and lines, and an SEO finding is about a URL, which cannot generally be mapped back to a source file."}},{"@type":"Question","name":"Should the build fail on the SEO score?","acceptedAnswer":{"@type":"Answer","text":"No. The score is a weighted composite and moves when the weighting changes. Gate on severities with --fail-on, or better, use scout diff to fail only on findings this deploy introduced or made worse — every real site carries standing findings, so an absolute threshold either fails every build or none of them."}}]}</script>
 </head>
 <body>
 <nav><div class="wrap-wide nav-inner">
@@ -455,6 +455,34 @@ comparison misses it entirely. Improvements never fail a build, however many the
 exits <code>1</code> rather than <code>0</code>. A build that goes green because the comparison
 was impossible is worse than one that fails, because the team believes the gate ran.</p>
 
+<h2>Findings on the Security tab instead of in the log</h2>
+
+<p>An exit code tells a build to stop and nothing else, so whoever sees red opens the log and
+reads text. <code>-f sarif</code> writes SARIF 2.1.0, the format GitHub, GitLab and Azure all
+ingest, and the findings become listed alerts with their severity, their description and the
+fix attached:</p>
+
+<pre><code>      - name: Audit staging
+        run: scout audit https://staging.example.com -n 100 -f sarif &gt; scout.sarif
+
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: scout.sarif</code></pre>
+
+<p><strong>Be clear about what that gets you.</strong> SARIF was designed for static analysis,
+where a result points at a file and a line. Scout's findings are about URLs, and there is no
+general way to know which source file produced a given URL — a template, a CMS record and a
+static file all look identical from outside. So the alerts land on the Security tab, correctly
+titled and linked to the affected pages, and they do <em>not</em> annotate the lines of a pull
+request the way a linter's SARIF does. If inline diff annotations are what you are after, this
+will disappoint you.</p>
+
+<p>Two details worth knowing. CRITICAL and HIGH both map to SARIF's <code>error</code>, because
+SARIF has no rank above it — each finding keeps its real severity in <code>properties</code>.
+And a finding's location is always a page of your own site: a few checks list a third-party URL
+as where you go to fix something, and pointing an alert at Google's settings page would be
+nonsense, so those travel as the rule's <code>helpUri</code> instead.</p>
+
 <h2>What it costs to run</h2>
 
 <p>macOS minutes are the expensive ones. GitHub
@@ -485,14 +513,14 @@ Turn it on for the pages that need it, or on a nightly job rather than a per-PR 
 
 <h2>Where this is thin</h2>
 
-<p>There is no GitHub Action, so the install is four lines of shell you maintain yourself. There
-is no JUnit or SARIF output yet, which means findings show up in the log rather than annotated
-on the diff. And the timings above are one machine on home broadband on a single day, across
-6 sites — one of them swung fifteen seconds between two consecutive runs. Treat
-them as an order of magnitude, not a benchmark, and measure your own.</p>
+<p>There is no GitHub Action, so the install is four lines of shell you maintain yourself. SARIF
+gets findings onto the Security tab but not onto the diff, for the reason above, and there is no
+JUnit output for the test-report panel. And the timings above are one machine on home broadband
+on a single day, across 6 sites — one of them swung fifteen seconds between two
+consecutive runs. Treat them as an order of magnitude, not a benchmark, and measure your own.</p>
 
 <p><a class="btn" href="/download/">Download Scout</a></p>
-<section class="faq"><h2>Common questions</h2><div class="faq-item"><h3>Can I run an SEO audit in CI?</h3><p>Yes, and it is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Scout's CLI exits 0 when clean, 2 when it finds something at or above your threshold, and 1 only when the tool itself could not run.</p></div><div class="faq-item"><h3>Does Scout run on GitHub Actions?</h3><p>On macos-latest, which is arm64. Scout is Apple Silicon only, so it will not run on ubuntu-latest. If your pipeline is Linux-only, Screaming Frog's CLI runs on Windows, Mac and Ubuntu Linux and is the better fit.</p></div><div class="faq-item"><h3>How long does a Scout audit take in a pipeline?</h3><p>A median of 23.1 seconds for 25 pages across 6 real sites measured on 2026-08-07, or roughly 0.92 seconds per page. Process startup was 0.2s, so almost all of it is the crawl. Rendering with --render is considerably slower and was not included.</p></div><div class="faq-item"><h3>Should the build fail on the SEO score?</h3><p>No. The score is a weighted composite and moves when the weighting changes. Gate on severities with --fail-on, or better, use scout diff to fail only on findings this deploy introduced or made worse — every real site carries standing findings, so an absolute threshold either fails every build or none of them.</p></div></section>
+<section class="faq"><h2>Common questions</h2><div class="faq-item"><h3>Can I run an SEO audit in CI?</h3><p>Yes, and it is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Scout's CLI exits 0 when clean, 2 when it finds something at or above your threshold, and 1 only when the tool itself could not run.</p></div><div class="faq-item"><h3>Does Scout run on GitHub Actions?</h3><p>On macos-latest, which is arm64. Scout is Apple Silicon only, so it will not run on ubuntu-latest. If your pipeline is Linux-only, Screaming Frog's CLI runs on Windows, Mac and Ubuntu Linux and is the better fit.</p></div><div class="faq-item"><h3>How long does a Scout audit take in a pipeline?</h3><p>A median of 23.1 seconds for 25 pages across 6 real sites measured on 2026-08-07, or roughly 0.92 seconds per page. Process startup was 0.2s, so almost all of it is the crawl. Rendering with --render is considerably slower and was not included.</p></div><div class="faq-item"><h3>Can Scout output SARIF for GitHub code scanning?</h3><p>Yes — scout audit -f sarif writes SARIF 2.1.0, which you can hand to github/codeql-action/upload-sarif. The findings appear as alerts on the Security tab with their severity and fix. They do not annotate the pull request diff: SARIF locations are files and lines, and an SEO finding is about a URL, which cannot generally be mapped back to a source file.</p></div><div class="faq-item"><h3>Should the build fail on the SEO score?</h3><p>No. The score is a weighted composite and moves when the weighting changes. Gate on severities with --fail-on, or better, use scout diff to fail only on findings this deploy introduced or made worse — every real site carries standing findings, so an absolute threshold either fails every build or none of them.</p></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
