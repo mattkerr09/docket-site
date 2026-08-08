@@ -1,0 +1,263 @@
+{
+  "measured": "2026-08-07",
+  "page_cap": 15,
+  "sites_attempted": 21,
+  "sites_measured": 16,
+  "css_readable": 7,
+  "median_typefaces": 0.0,
+  "max_typefaces": 6,
+  "min_typefaces": 0,
+  "over_four_typefaces": 1,
+  "median_colours": 0.0,
+  "max_colours": 158,
+  "social_frame": 11,
+  "social_undeclared": 9,
+  "naming_inconsistent": 1,
+  "logo_unnamed": 2,
+  "results": [
+    {
+      "url": "https://stripe.com",
+      "pages": 15,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {},
+      "social_linked": null,
+      "social_declared": null,
+      "score": 73.2
+    },
+    {
+      "url": "https://www.ikea.com/gb/en/",
+      "pages": 15,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {},
+      "social_linked": null,
+      "social_declared": null,
+      "score": 93.9
+    },
+    {
+      "url": "https://www.johnlewis.com",
+      "pages": 15,
+      "typefaces": 0,
+      "colours": 19,
+      "brand_findings": {
+        "brand.social_consistency": "low"
+      },
+      "social_linked": 7,
+      "social_declared": 6,
+      "score": 91.0
+    },
+    {
+      "url": "https://www.bbc.co.uk",
+      "pages": 15,
+      "typefaces": 4,
+      "colours": 12,
+      "brand_findings": {
+        "brand.social_consistency": "medium"
+      },
+      "social_linked": 2,
+      "social_declared": 0,
+      "score": 55.0
+    },
+    {
+      "url": "https://www.airbnb.co.uk",
+      "pages": 15,
+      "typefaces": 1,
+      "colours": 158,
+      "brand_findings": {
+        "brand.visual_consistency": "low",
+        "brand.social_consistency": "medium"
+      },
+      "social_linked": 3,
+      "social_declared": 0,
+      "score": 55.0
+    },
+    {
+      "url": "https://www.deliveroo.co.uk",
+      "pages": 15,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {
+        "brand.social_consistency": "medium"
+      },
+      "social_linked": 3,
+      "social_declared": 0,
+      "score": 94.5
+    },
+    {
+      "url": "https://www.gymshark.com",
+      "pages": 15,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {
+        "brand.social_consistency": "low"
+      },
+      "social_linked": 7,
+      "social_declared": 6,
+      "score": 80.5
+    },
+    {
+      "url": "https://www.lush.com/uk/en/",
+      "pages": 0,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {},
+      "social_linked": null,
+      "social_declared": null,
+      "score": 55.0
+    },
+    {
+      "url": "https://www.brewdog.com",
+      "pages": 15,
+      "typefaces": 3,
+      "colours": 38,
+      "brand_findings": {
+        "brand.visual_consistency": "low",
+        "brand.social_consistency": "medium"
+      },
+      "social_linked": 2,
+      "social_declared": 0,
+      "score": 90.6
+    },
+    {
+      "url": "https://www.pret.co.uk",
+      "pages": 15,
+      "typefaces": 1,
+      "colours": 34,
+      "brand_findings": {
+        "brand.visual_consistency": "low",
+        "brand.social_consistency": "medium"
+      },
+      "social_linked": 2,
+      "social_declared": 0,
+      "score": 80.4
+    },
+    {
+      "url": "https://www.allbirds.com",
+      "pages": 15,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {
+        "brand.logo": "low",
+        "brand.social_consistency": "medium"
+      },
+      "social_linked": 6,
+      "social_declared": 0,
+      "score": 87.6
+    },
+    {
+      "url": "https://www.thefarmersdog.com",
+      "pages": 0,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {},
+      "social_linked": null,
+      "social_declared": null,
+      "score": 55.0
+    },
+    {
+      "url": "https://pizzapilgrims.co.uk",
+      "pages": 15,
+      "typefaces": 6,
+      "colours": 34,
+      "brand_findings": {
+        "brand.logo": "low",
+        "brand.visual_consistency": "low",
+        "brand.social_consistency": "medium"
+      },
+      "social_linked": 3,
+      "social_declared": 0,
+      "score": 86.3
+    },
+    {
+      "url": "https://basecamp.com",
+      "pages": 15,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {
+        "brand.positioning": "medium",
+        "brand.social_consistency": "medium"
+      },
+      "social_linked": 1,
+      "social_declared": 0,
+      "score": 85.3
+    },
+    {
+      "url": "https://www.gov.uk",
+      "pages": 15,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {
+        "brand.name_consistency": "medium"
+      },
+      "social_linked": null,
+      "social_declared": null,
+      "score": 85.3
+    },
+    {
+      "url": "https://www.patagonia.com",
+      "pages": 0,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {},
+      "social_linked": null,
+      "social_declared": null,
+      "score": 55.0
+    },
+    {
+      "url": "https://monzo.com",
+      "pages": 15,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {},
+      "social_linked": null,
+      "social_declared": null,
+      "score": 88.9
+    },
+    {
+      "url": "https://www.notion.com",
+      "pages": 15,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {
+        "brand.social_consistency": "medium"
+      },
+      "social_linked": 5,
+      "social_declared": 0,
+      "score": 93.6
+    },
+    {
+      "url": "https://www.warbyparker.com",
+      "pages": 0,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {},
+      "social_linked": null,
+      "social_declared": null,
+      "score": 55.0
+    },
+    {
+      "url": "https://www.tesco.com",
+      "pages": 0,
+      "typefaces": 0,
+      "colours": 0,
+      "brand_findings": {},
+      "social_linked": null,
+      "social_declared": null,
+      "score": 55.0
+    },
+    {
+      "url": "https://scoutseo.app",
+      "pages": 15,
+      "typefaces": 3,
+      "colours": 26,
+      "brand_findings": {
+        "brand.visual_consistency": "low"
+      },
+      "social_linked": null,
+      "social_declared": null,
+      "score": 91.9
+    }
+  ],
+  "note": "16 public commercial sites, 15-page cap, measured on 2026-08-07. A sample of the visible web, not a census \u2014 the frame is small and chosen, and every host is listed so it can be re-run. Typeface and colour counts come from the CSS the pages ship and are a proxy for design-system discipline, stated as one: five typefaces may be deliberate. The social figure is not a proxy \u2014 sameAs is either declared or it is not \u2014 and its denominator excludes sites that link no profiles at all, since they cannot fail to declare them."
+}
