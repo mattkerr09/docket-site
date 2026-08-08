@@ -1,0 +1,1274 @@
+{
+  "measured": "2026-08-07",
+  "page_cap": 20,
+  "shops_attempted": 12,
+  "shops_measured": 10,
+  "shops_unreachable": 2,
+  "median_score": 88.2,
+  "best_score": 91.4,
+  "worst_score": 55.0,
+  "with_schema_problem": 0,
+  "with_rating_unconfirmed": 3,
+  "with_thin_pages": 0,
+  "with_indexing_problem": 1,
+  "with_contact_problem": 0,
+  "results": [
+    {
+      "url": "https://www.allbirds.com",
+      "pages": 20,
+      "score": 87.2,
+      "grade": "B",
+      "findings": {
+        "ai.edge_matches_robots": {
+          "severity": "pass",
+          "count": 7
+        },
+        "ai.unmeasurable_optout": {
+          "severity": "notice",
+          "count": 1
+        },
+        "brand.logo": {
+          "severity": "low",
+          "count": 19
+        },
+        "brand.colour_drift": {
+          "severity": "low",
+          "count": 1
+        },
+        "brand.social_consistency": {
+          "severity": "medium",
+          "count": 6
+        },
+        "content.thin": {
+          "severity": "medium",
+          "count": 1
+        },
+        "index.duplicate_body": {
+          "severity": "high",
+          "count": 11
+        },
+        "index.duplicate_descriptions": {
+          "severity": "low",
+          "count": 7
+        },
+        "intl.hreflang_bad_code": {
+          "severity": "medium",
+          "count": 1
+        },
+        "links.http_links": {
+          "severity": "low",
+          "count": 19
+        },
+        "local.not_applicable": {
+          "severity": "pass",
+          "count": 1
+        },
+        "mar.gtm_opaque": {
+          "severity": "notice",
+          "count": 1
+        },
+        "mar.stack": {
+          "severity": "notice",
+          "count": 1
+        },
+        "onpage.title_long": {
+          "severity": "low",
+          "count": 9
+        },
+        "onpage.description_long": {
+          "severity": "low",
+          "count": 16
+        },
+        "onpage.h1_multiple": {
+          "severity": "low",
+          "count": 18
+        },
+        "onpage.anchor_vague": {
+          "severity": "low",
+          "count": 18
+        },
+        "onpage.anchor_empty": {
+          "severity": "low",
+          "count": 190
+        },
+        "perf.html_very_heavy": {
+          "severity": "medium",
+          "count": 19
+        },
+        "perf.legacy_image_format": {
+          "severity": "low",
+          "count": 711
+        },
+        "security.missing_headers": {
+          "severity": "notice",
+          "count": 1
+        },
+        "schema.incomplete.product": {
+          "severity": "medium",
+          "count": 18
+        },
+        "schema.rating_visibility_unknown": {
+          "severity": "notice",
+          "count": 18
+        },
+        "audit.unreliable_crawl": {
+          "severity": "notice",
+          "count": 1
+        }
+      },
+      "groups": {
+        "schema": [],
+        "rating_unconfirmed": [
+          "schema.rating_visibility_unknown"
+        ],
+        "thin": [],
+        "indexing": [],
+        "contact": []
+      }
+    },
+    {
+      "url": "https://www.gymshark.com",
+      "pages": 19,
+      "score": 55.0,
+      "grade": "D",
+      "findings": {
+        "ai.edge_matches_robots": {
+          "severity": "pass",
+          "count": 7
+        },
+        "ai.unmeasurable_optout": {
+          "severity": "notice",
+          "count": 1
+        },
+        "ai.no_llms_txt": {
+          "severity": "notice",
+          "count": 1
+        },
+        "brand.social_consistency": {
+          "severity": "low",
+          "count": 1
+        },
+        "content.thin": {
+          "severity": "medium",
+          "count": 2
+        },
+        "content.readability": {
+          "severity": "low",
+          "count": 5
+        },
+        "index.noindex": {
+          "severity": "medium",
+          "count": 2
+        },
+        "index.redirect_loop": {
+          "severity": "critical",
+          "count": 1
+        },
+        "index.redirect_chain": {
+          "severity": "medium",
+          "count": 1
+        },
+        "index.sitemap_noindex": {
+          "severity": "low",
+          "count": 2
+        },
+        "index.duplicate_body": {
+          "severity": "high",
+          "count": 2
+        },
+        "index.duplicate_titles": {
+          "severity": "medium",
+          "count": 2
+        },
+        "index.duplicate_descriptions": {
+          "severity": "low",
+          "count": 2
+        },
+        "index.www_duplicate": {
+          "severity": "high",
+          "count": 1
+        },
+        "intl.hreflang_bad_code": {
+          "severity": "medium",
+          "count": 3
+        },
+        "intl.hreflang_bad_target": {
+          "severity": "medium",
+          "count": 2
+        },
+        "local.address_inconsistent": {
+          "severity": "low",
+          "count": 6
+        },
+        "mar.internal_utm": {
+          "severity": "medium",
+          "count": 2
+        },
+        "onpage.title_short": {
+          "severity": "medium",
+          "count": 3
+        },
+        "onpage.description_short": {
+          "severity": "low",
+          "count": 3
+        },
+        "onpage.h1_missing": {
+          "severity": "medium",
+          "count": 11
+        },
+        "onpage.img_alt_missing": {
+          "severity": "medium",
+          "count": 726
+        },
+        "onpage.img_no_dimensions": {
+          "severity": "medium",
+          "count": 17
+        },
+        "onpage.anchor_vague": {
+          "severity": "low",
+          "count": 3
+        },
+        "onpage.anchor_empty": {
+          "severity": "low",
+          "count": 170
+        },
+        "perf.html_very_heavy": {
+          "severity": "medium",
+          "count": 19
+        },
+        "perf.cls_risk": {
+          "severity": "medium",
+          "count": 19
+        },
+        "perf.legacy_image_format": {
+          "severity": "low",
+          "count": 648
+        },
+        "schema.faq_opportunity": {
+          "severity": "low",
+          "count": 1
+        },
+        "audit.unreliable_crawl": {
+          "severity": "notice",
+          "count": 1
+        }
+      },
+      "groups": {
+        "schema": [],
+        "rating_unconfirmed": [],
+        "thin": [],
+        "indexing": [
+          "index.noindex"
+        ],
+        "contact": []
+      }
+    },
+    {
+      "url": "https://www.brewdog.com",
+      "pages": 20,
+      "score": 90.4,
+      "grade": "A",
+      "findings": {
+        "ai.edge_matches_robots": {
+          "severity": "pass",
+          "count": 7
+        },
+        "ai.unmeasurable_optout": {
+          "severity": "notice",
+          "count": 1
+        },
+        "brand.colour_drift": {
+          "severity": "low",
+          "count": 6
+        },
+        "brand.social_consistency": {
+          "severity": "medium",
+          "count": 2
+        },
+        "content.readability": {
+          "severity": "low",
+          "count": 8
+        },
+        "cvr.long_forms": {
+          "severity": "medium",
+          "count": 19
+        },
+        "cvr.message_mismatch": {
+          "severity": "low",
+          "count": 1
+        },
+        "local.not_applicable": {
+          "severity": "pass",
+          "count": 1
+        },
+        "mar.gtm_opaque": {
+          "severity": "notice",
+          "count": 1
+        },
+        "mar.stack": {
+          "severity": "notice",
+          "count": 1
+        },
+        "onpage.title_long": {
+          "severity": "low",
+          "count": 1
+        },
+        "onpage.description_long": {
+          "severity": "low",
+          "count": 8
+        },
+        "onpage.description_short": {
+          "severity": "low",
+          "count": 4
+        },
+        "onpage.h1_multiple": {
+          "severity": "low",
+          "count": 1
+        },
+        "onpage.img_alt_missing": {
+          "severity": "medium",
+          "count": 19
+        },
+        "onpage.img_no_dimensions": {
+          "severity": "medium",
+          "count": 19
+        },
+        "onpage.anchor_vague": {
+          "severity": "low",
+          "count": 80
+        },
+        "perf.html_very_heavy": {
+          "severity": "medium",
+          "count": 19
+        },
+        "perf.render_blocking": {
+          "severity": "medium",
+          "count": 19
+        },
+        "perf.legacy_image_format": {
+          "severity": "low",
+          "count": 307
+        },
+        "security.missing_headers": {
+          "severity": "notice",
+          "count": 1
+        },
+        "social.og_missing": {
+          "severity": "low",
+          "count": 19
+        },
+        "audit.unreliable_crawl": {
+          "severity": "notice",
+          "count": 1
+        }
+      },
+      "groups": {
+        "schema": [],
+        "rating_unconfirmed": [],
+        "thin": [],
+        "indexing": [],
+        "contact": []
+      }
+    },
+    {
+      "url": "https://www.everlane.com",
+      "pages": 20,
+      "score": 89.1,
+      "grade": "B",
+      "findings": {
+        "ai.edge_matches_robots": {
+          "severity": "pass",
+          "count": 7
+        },
+        "ai.unmeasurable_optout": {
+          "severity": "notice",
+          "count": 1
+        },
+        "ai.weak_sameas": {
+          "severity": "low",
+          "count": 18
+        },
+        "brand.visual_consistency": {
+          "severity": "low",
+          "count": 32
+        },
+        "brand.colour_drift": {
+          "severity": "low",
+          "count": 4
+        },
+        "brand.social_consistency": {
+          "severity": "low",
+          "count": 3
+        },
+        "content.readability": {
+          "severity": "low",
+          "count": 5
+        },
+        "index.robots_syntax": {
+          "severity": "low",
+          "count": 42
+        },
+        "index.duplicate_descriptions": {
+          "severity": "low",
+          "count": 14
+        },
+        "local.not_applicable": {
+          "severity": "pass",
+          "count": 1
+        },
+        "mar.gtm_opaque": {
+          "severity": "notice",
+          "count": 1
+        },
+        "mar.stack": {
+          "severity": "notice",
+          "count": 2
+        },
+        "onpage.title_long": {
+          "severity": "low",
+          "count": 1
+        },
+        "onpage.title_short": {
+          "severity": "medium",
+          "count": 1
+        },
+        "onpage.description_long": {
+          "severity": "low",
+          "count": 13
+        },
+        "onpage.h2_missing": {
+          "severity": "low",
+          "count": 13
+        },
+        "onpage.heading_skip": {
+          "severity": "notice",
+          "count": 12
+        },
+        "onpage.img_alt_missing": {
+          "severity": "medium",
+          "count": 80
+        },
+        "onpage.img_no_dimensions": {
+          "severity": "medium",
+          "count": 19
+        },
+        "onpage.anchor_empty": {
+          "severity": "low",
+          "count": 7
+        },
+        "perf.html_very_heavy": {
+          "severity": "medium",
+          "count": 19
+        },
+        "perf.render_blocking": {
+          "severity": "medium",
+          "count": 19
+        },
+        "perf.cls_risk": {
+          "severity": "medium",
+          "count": 5
+        },
+        "perf.legacy_image_format": {
+          "severity": "low",
+          "count": 556
+        },
+        "security.missing_headers": {
+          "severity": "notice",
+          "count": 1
+        },
+        "social.og_image_missing": {
+          "severity": "low",
+          "count": 1
+        },
+        "audit.unreliable_crawl": {
+          "severity": "notice",
+          "count": 1
+        }
+      },
+      "groups": {
+        "schema": [],
+        "rating_unconfirmed": [],
+        "thin": [],
+        "indexing": [],
+        "contact": []
+      }
+    },
+    {
+      "url": "https://bombas.com",
+      "pages": 0,
+      "score": 55.0,
+      "grade": "D",
+      "findings": {
+        "audit.no_pages": {
+          "severity": "critical",
+          "count": 1
+        }
+      },
+      "groups": {
+        "schema": [],
+        "rating_unconfirmed": [],
+        "thin": [],
+        "indexing": [],
+        "contact": []
+      }
+    },
+    {
+      "url": "https://ruggable.com",
+      "pages": 20,
+      "score": 91.4,
+      "grade": "A",
+      "findings": {
+        "ai.edge_matches_robots": {
+          "severity": "pass",
+          "count": 7
+        },
+        "ai.unmeasurable_optout": {
+          "severity": "notice",
+          "count": 1
+        },
+        "ai.no_llms_txt": {
+          "severity": "notice",
+          "count": 1
+        },
+        "brand.logo": {
+          "severity": "low",
+          "count": 20
+        },
+        "brand.visual_consistency": {
+          "severity": "low",
+          "count": 5
+        },
+        "brand.colour_drift": {
+          "severity": "low",
+          "count": 6
+        },
+        "content.readability": {
+          "severity": "low",
+          "count": 1
+        },
+        "index.canonical_non_self": {
+          "severity": "low",
+          "count": 3
+        },
+        "intl.hreflang_no_self": {
+          "severity": "medium",
+          "count": 3
+        },
+        "intl.hreflang_bad_code": {
+          "severity": "medium",
+          "count": 1
+        },
+        "mar.gtm_opaque": {
+          "severity": "notice",
+          "count": 1
+        },
+        "mar.stack": {
+          "severity": "notice",
+          "count": 1
+        },
+        "onpage.img_no_dimensions": {
+          "severity": "medium",
+          "count": 20
+        },
+        "onpage.anchor_empty": {
+          "severity": "low",
+          "count": 220
+        },
+        "perf.ttfb_moderate": {
+          "severity": "medium",
+          "count": 20
+        },
+        "perf.html_very_heavy": {
+          "severity": "medium",
+          "count": 19
+        },
+        "perf.render_blocking": {
+          "severity": "medium",
+          "count": 20
+        },
+        "perf.legacy_image_format": {
+          "severity": "low",
+          "count": 614
+        },
+        "security.missing_headers": {
+          "severity": "notice",
+          "count": 2
+        },
+        "schema.rating_visibility_unknown": {
+          "severity": "notice",
+          "count": 19
+        },
+        "audit.unreliable_crawl": {
+          "severity": "notice",
+          "count": 1
+        }
+      },
+      "groups": {
+        "schema": [],
+        "rating_unconfirmed": [
+          "schema.rating_visibility_unknown"
+        ],
+        "thin": [],
+        "indexing": [],
+        "contact": []
+      }
+    },
+    {
+      "url": "https://www.glossier.com",
+      "pages": 20,
+      "score": 86.2,
+      "grade": "B",
+      "findings": {
+        "ai.edge_matches_robots": {
+          "severity": "pass",
+          "count": 7
+        },
+        "ai.unmeasurable_optout": {
+          "severity": "notice",
+          "count": 1
+        },
+        "brand.social_consistency": {
+          "severity": "medium",
+          "count": 4
+        },
+        "content.placeholder": {
+          "severity": "high",
+          "count": 19
+        },
+        "content.readability": {
+          "severity": "low",
+          "count": 19
+        },
+        "index.robots_syntax": {
+          "severity": "low",
+          "count": 42
+        },
+        "index.canonical_non_self": {
+          "severity": "low",
+          "count": 2
+        },
+        "intl.hreflang_bad_code": {
+          "severity": "medium",
+          "count": 1
+        },
+        "local.not_applicable": {
+          "severity": "pass",
+          "count": 1
+        },
+        "mar.stack": {
+          "severity": "notice",
+          "count": 1
+        },
+        "onpage.title_short": {
+          "severity": "medium",
+          "count": 9
+        },
+        "onpage.description_long": {
+          "severity": "low",
+          "count": 2
+        },
+        "onpage.description_short": {
+          "severity": "low",
+          "count": 1
+        },
+        "onpage.h1_missing": {
+          "severity": "medium",
+          "count": 1
+        },
+        "onpage.img_no_dimensions": {
+          "severity": "medium",
+          "count": 19
+        },
+        "onpage.anchor_vague": {
+          "severity": "low",
+          "count": 14
+        },
+        "perf.html_very_heavy": {
+          "severity": "medium",
+          "count": 19
+        },
+        "perf.render_blocking": {
+          "severity": "medium",
+          "count": 19
+        },
+        "perf.cls_risk": {
+          "severity": "medium",
+          "count": 19
+        },
+        "perf.legacy_image_format": {
+          "severity": "low",
+          "count": 1986
+        },
+        "security.missing_headers": {
+          "severity": "notice",
+          "count": 1
+        },
+        "audit.unreliable_crawl": {
+          "severity": "notice",
+          "count": 1
+        }
+      },
+      "groups": {
+        "schema": [],
+        "rating_unconfirmed": [],
+        "thin": [],
+        "indexing": [],
+        "contact": []
+      }
+    },
+    {
+      "url": "https://us.oatly.com",
+      "pages": 20,
+      "score": 85.6,
+      "grade": "B",
+      "findings": {
+        "ai.edge_matches_robots": {
+          "severity": "pass",
+          "count": 7
+        },
+        "ai.unmeasurable_optout": {
+          "severity": "notice",
+          "count": 1
+        },
+        "ai.no_llms_txt": {
+          "severity": "notice",
+          "count": 1
+        },
+        "brand.visual_consistency": {
+          "severity": "low",
+          "count": 18
+        },
+        "brand.colour_drift": {
+          "severity": "low",
+          "count": 16
+        },
+        "content.thin": {
+          "severity": "medium",
+          "count": 1
+        },
+        "index.canonical_missing": {
+          "severity": "medium",
+          "count": 1
+        },
+        "index.canonical_non_self": {
+          "severity": "low",
+          "count": 19
+        },
+        "index.duplicate_titles": {
+          "severity": "medium",
+          "count": 4
+        },
+        "index.duplicate_descriptions": {
+          "severity": "low",
+          "count": 5
+        },
+        "intl.hreflang_no_self": {
+          "severity": "medium",
+          "count": 20
+        },
+        "intl.hreflang_bad_code": {
+          "severity": "medium",
+          "count": 1
+        },
+        "links.http_links": {
+          "severity": "low",
+          "count": 20
+        },
+        "mar.stack": {
+          "severity": "notice",
+          "count": 1
+        },
+        "onpage.title_long": {
+          "severity": "low",
+          "count": 11
+        },
+        "onpage.description_short": {
+          "severity": "low",
+          "count": 1
+        },
+        "onpage.img_no_dimensions": {
+          "severity": "medium",
+          "count": 10
+        },
+        "onpage.anchor_vague": {
+          "severity": "low",
+          "count": 10
+        },
+        "onpage.anchor_empty": {
+          "severity": "low",
+          "count": 120
+        },
+        "perf.html_heavy": {
+          "severity": "low",
+          "count": 20
+        },
+        "perf.render_blocking": {
+          "severity": "medium",
+          "count": 20
+        },
+        "perf.cls_risk": {
+          "severity": "medium",
+          "count": 10
+        },
+        "perf.redirect_volume": {
+          "severity": "low",
+          "count": 19
+        },
+        "perf.legacy_image_format": {
+          "severity": "low",
+          "count": 49
+        },
+        "security.no_hsts": {
+          "severity": "low",
+          "count": 1
+        },
+        "security.missing_headers": {
+          "severity": "notice",
+          "count": 2
+        },
+        "schema.incomplete.product": {
+          "severity": "medium",
+          "count": 40
+        },
+        "schema.incomplete.organization": {
+          "severity": "medium",
+          "count": 20
+        },
+        "schema.faq_opportunity": {
+          "severity": "low",
+          "count": 9
+        },
+        "audit.unreliable_crawl": {
+          "severity": "notice",
+          "count": 1
+        }
+      },
+      "groups": {
+        "schema": [],
+        "rating_unconfirmed": [],
+        "thin": [],
+        "indexing": [],
+        "contact": []
+      }
+    },
+    {
+      "url": "https://www.thereformation.com",
+      "pages": 20,
+      "score": 91.1,
+      "grade": "A",
+      "findings": {
+        "ai.edge_matches_robots": {
+          "severity": "pass",
+          "count": 7
+        },
+        "ai.unmeasurable_optout": {
+          "severity": "notice",
+          "count": 1
+        },
+        "ai.no_llms_txt": {
+          "severity": "notice",
+          "count": 1
+        },
+        "brand.logo": {
+          "severity": "low",
+          "count": 20
+        },
+        "brand.visual_consistency": {
+          "severity": "low",
+          "count": 12
+        },
+        "brand.colour_drift": {
+          "severity": "low",
+          "count": 3
+        },
+        "cvr.message_mismatch": {
+          "severity": "low",
+          "count": 1
+        },
+        "intl.hreflang_bad_code": {
+          "severity": "medium",
+          "count": 1
+        },
+        "links.http_links": {
+          "severity": "low",
+          "count": 20
+        },
+        "mar.gtm_opaque": {
+          "severity": "notice",
+          "count": 1
+        },
+        "mar.stack": {
+          "severity": "notice",
+          "count": 2
+        },
+        "onpage.title_short": {
+          "severity": "medium",
+          "count": 16
+        },
+        "onpage.description_short": {
+          "severity": "low",
+          "count": 1
+        },
+        "onpage.h2_missing": {
+          "severity": "low",
+          "count": 5
+        },
+        "onpage.img_no_dimensions": {
+          "severity": "medium",
+          "count": 20
+        },
+        "onpage.anchor_vague": {
+          "severity": "low",
+          "count": 6
+        },
+        "onpage.anchor_empty": {
+          "severity": "low",
+          "count": 65
+        },
+        "perf.html_very_heavy": {
+          "severity": "medium",
+          "count": 20
+        },
+        "perf.render_blocking": {
+          "severity": "medium",
+          "count": 20
+        },
+        "perf.cls_risk": {
+          "severity": "medium",
+          "count": 20
+        },
+        "security.missing_headers": {
+          "severity": "notice",
+          "count": 1
+        },
+        "social.og_description_missing": {
+          "severity": "notice",
+          "count": 1
+        },
+        "audit.unreliable_crawl": {
+          "severity": "notice",
+          "count": 1
+        }
+      },
+      "groups": {
+        "schema": [],
+        "rating_unconfirmed": [],
+        "thin": [],
+        "indexing": [],
+        "contact": []
+      }
+    },
+    {
+      "url": "https://mejuri.com",
+      "pages": 20,
+      "score": 83.9,
+      "grade": "B",
+      "findings": {
+        "ai.edge_matches_robots": {
+          "severity": "pass",
+          "count": 7
+        },
+        "ai.unmeasurable_optout": {
+          "severity": "notice",
+          "count": 1
+        },
+        "ai.no_llms_txt": {
+          "severity": "notice",
+          "count": 1
+        },
+        "brand.visual_consistency": {
+          "severity": "low",
+          "count": 8
+        },
+        "brand.colour_drift": {
+          "severity": "low",
+          "count": 29
+        },
+        "brand.social_consistency": {
+          "severity": "medium",
+          "count": 3
+        },
+        "content.thin": {
+          "severity": "medium",
+          "count": 6
+        },
+        "content.readability": {
+          "severity": "low",
+          "count": 2
+        },
+        "cvr.message_mismatch": {
+          "severity": "low",
+          "count": 2
+        },
+        "index.robots_syntax": {
+          "severity": "low",
+          "count": 91
+        },
+        "index.byte_cap_near": {
+          "severity": "medium",
+          "count": 2
+        },
+        "intl.hreflang_no_self": {
+          "severity": "medium",
+          "count": 20
+        },
+        "intl.hreflang_bad_code": {
+          "severity": "medium",
+          "count": 3
+        },
+        "mar.gtm_opaque": {
+          "severity": "notice",
+          "count": 1
+        },
+        "mar.stack": {
+          "severity": "notice",
+          "count": 1
+        },
+        "onpage.title_long": {
+          "severity": "low",
+          "count": 4
+        },
+        "onpage.title_short": {
+          "severity": "medium",
+          "count": 1
+        },
+        "onpage.description_long": {
+          "severity": "low",
+          "count": 13
+        },
+        "onpage.h1_multiple": {
+          "severity": "low",
+          "count": 20
+        },
+        "onpage.heading_skip": {
+          "severity": "notice",
+          "count": 19
+        },
+        "onpage.img_no_dimensions": {
+          "severity": "medium",
+          "count": 11
+        },
+        "onpage.anchor_vague": {
+          "severity": "low",
+          "count": 1
+        },
+        "onpage.anchor_empty": {
+          "severity": "low",
+          "count": 120
+        },
+        "perf.ttfb_moderate": {
+          "severity": "medium",
+          "count": 20
+        },
+        "perf.html_very_heavy": {
+          "severity": "medium",
+          "count": 20
+        },
+        "perf.render_blocking": {
+          "severity": "medium",
+          "count": 20
+        },
+        "perf.cls_risk": {
+          "severity": "medium",
+          "count": 11
+        },
+        "perf.legacy_image_format": {
+          "severity": "low",
+          "count": 249
+        },
+        "security.missing_headers": {
+          "severity": "notice",
+          "count": 1
+        },
+        "social.twitter_card_missing": {
+          "severity": "notice",
+          "count": 20
+        },
+        "schema.incomplete.product": {
+          "severity": "medium",
+          "count": 6
+        },
+        "schema.incomplete.offer": {
+          "severity": "medium",
+          "count": 6
+        },
+        "schema.rating_visibility_unknown": {
+          "severity": "notice",
+          "count": 19
+        },
+        "audit.unreliable_crawl": {
+          "severity": "notice",
+          "count": 1
+        }
+      },
+      "groups": {
+        "schema": [],
+        "rating_unconfirmed": [
+          "schema.rating_visibility_unknown"
+        ],
+        "thin": [],
+        "indexing": [],
+        "contact": []
+      }
+    },
+    {
+      "url": "https://www.johnlewis.com",
+      "pages": 20,
+      "score": 90.4,
+      "grade": "A",
+      "findings": {
+        "ai.edge_matches_robots": {
+          "severity": "pass",
+          "count": 7
+        },
+        "ai.unmeasurable_optout": {
+          "severity": "notice",
+          "count": 1
+        },
+        "ai.no_llms_txt": {
+          "severity": "notice",
+          "count": 1
+        },
+        "brand.colour_drift": {
+          "severity": "low",
+          "count": 4
+        },
+        "brand.social_consistency": {
+          "severity": "low",
+          "count": 1
+        },
+        "content.thin": {
+          "severity": "medium",
+          "count": 3
+        },
+        "content.readability": {
+          "severity": "low",
+          "count": 6
+        },
+        "cvr.message_mismatch": {
+          "severity": "low",
+          "count": 1
+        },
+        "index.robots_syntax": {
+          "severity": "low",
+          "count": 38
+        },
+        "local.reviews_not_marked_up": {
+          "severity": "low",
+          "count": 10
+        },
+        "onpage.title_long": {
+          "severity": "low",
+          "count": 1
+        },
+        "onpage.description_missing": {
+          "severity": "medium",
+          "count": 13
+        },
+        "onpage.description_long": {
+          "severity": "low",
+          "count": 1
+        },
+        "onpage.img_no_dimensions": {
+          "severity": "medium",
+          "count": 20
+        },
+        "onpage.img_no_lazy": {
+          "severity": "low",
+          "count": 3
+        },
+        "onpage.anchor_vague": {
+          "severity": "low",
+          "count": 8
+        },
+        "onpage.anchor_empty": {
+          "severity": "low",
+          "count": 20
+        },
+        "perf.html_very_heavy": {
+          "severity": "medium",
+          "count": 7
+        },
+        "perf.render_blocking": {
+          "severity": "medium",
+          "count": 20
+        },
+        "perf.cls_risk": {
+          "severity": "medium",
+          "count": 12
+        },
+        "security.missing_headers": {
+          "severity": "notice",
+          "count": 1
+        },
+        "social.og_missing": {
+          "severity": "low",
+          "count": 19
+        },
+        "social.twitter_card_missing": {
+          "severity": "notice",
+          "count": 19
+        },
+        "schema.faq_opportunity": {
+          "severity": "low",
+          "count": 1
+        },
+        "audit.unreliable_crawl": {
+          "severity": "notice",
+          "count": 1
+        }
+      },
+      "groups": {
+        "schema": [],
+        "rating_unconfirmed": [],
+        "thin": [],
+        "indexing": [],
+        "contact": []
+      }
+    },
+    {
+      "url": "https://www.lush.com/uk/en/",
+      "pages": 0,
+      "score": 55.0,
+      "grade": "D",
+      "findings": {
+        "ai.edge_untestable": {
+          "severity": "notice",
+          "count": 1
+        },
+        "ai.unmeasurable_optout": {
+          "severity": "notice",
+          "count": 1
+        },
+        "ai.no_llms_txt": {
+          "severity": "notice",
+          "count": 1
+        },
+        "index.403": {
+          "severity": "medium",
+          "count": 1
+        },
+        "local.not_applicable": {
+          "severity": "pass",
+          "count": 1
+        },
+        "social.no_favicon": {
+          "severity": "low",
+          "count": 1
+        },
+        "audit.unreliable_crawl": {
+          "severity": "critical",
+          "count": 1
+        }
+      },
+      "groups": {
+        "schema": [],
+        "rating_unconfirmed": [],
+        "thin": [],
+        "indexing": [],
+        "contact": []
+      }
+    }
+  ],
+  "note": "10 large online retailers, 20-page cap, measured on 2026-08-07 without JavaScript rendering unless a check demanded it. These are well-resourced companies with teams, not a random sample of the web and not a sample of small shops \u2014 if anything they are the easy case, so a problem that shows up here is not a story about carelessness. Shops that refused the crawler or timed out are recorded and excluded from every denominator: a site that could not be read cannot fail a check, and counting it as a pass would flatter the numbers."
+}
