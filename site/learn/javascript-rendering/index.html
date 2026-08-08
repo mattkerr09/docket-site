@@ -6,26 +6,26 @@
 <title>JavaScript rendering: auditing what a browser actually sees</title>
 <meta name="description" content="A crawler that does not run JavaScript sees what your server sent. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes.">
 <meta name="theme-color" content="#0b0c0f">
-<link rel="canonical" href="https://scoutseo.app/learn/javascript-rendering/">
+<link rel="canonical" href="https://docketseo.app/learn/javascript-rendering/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Auditing what a browser actually sees">
 <meta property="og:description" content="A crawler that does not run JavaScript sees what your server sent. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes.">
-<meta property="og:url" content="https://scoutseo.app/learn/javascript-rendering/">
-<meta property="og:site_name" content="Scout">
-<meta property="og:image" content="https://scoutseo.app/og.png">
+<meta property="og:url" content="https://docketseo.app/learn/javascript-rendering/">
+<meta property="og:site_name" content="Docket">
+<meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Auditing what a browser actually sees">
 <meta name="twitter:description" content="A crawler that does not run JavaScript sees what your server sent. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes.">
-<meta name="twitter:image" content="https://scoutseo.app/og.png">
+<meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
-   display faces this category defaults to: Scout is a measuring instrument that
+   display faces this category defaults to: Docket is a measuring instrument that
    produces reports, and the type should read as precise rather than friendly.
-   Self-hosted because Scout flags render-blocking third-party resources in its
+   Self-hosted because Docket flags render-blocking third-party resources in its
    own audits, and shipping one would be the inconsistency it exists to catch. */
 @font-face{font-family:'Switzer';src:url('/fonts/Switzer-400.woff2') format('woff2');
   font-weight:400;font-style:normal;font-display:swap}
@@ -73,7 +73,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17
    site, and nor did the setTimeout fallback.
 
    Shipping an effect that cannot be verified, on a page whose entire argument
-   is that Scout reports only what it can prove, is the wrong trade. The type,
+   is that Docket reports only what it can prove, is the wrong trade. The type,
    spacing and depth carry the page; content renders immediately and is never
    contingent on a script.
 
@@ -199,7 +199,7 @@ body.landing article{padding:0}
 @media(max-width:940px){.mock{transform:none}.mock:hover{transform:none}}
 
 /* ---- the signature: a list becoming an order ------------------------------
-   Scout's whole claim is that it ranks. Saying so is weaker than showing it, so
+   Docket's whole claim is that it ranks. Saying so is weaker than showing it, so
    the rows arrive unordered and settle into sequence as the section enters. One
    move, once, on the one idea the product is actually about. */
 .rank-demo{display:grid;gap:.6rem;margin:2rem 0 0}
@@ -334,14 +334,14 @@ body.landing article{padding:0}
 .faq-item p{font-size:.93rem;margin:0}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/scout-site"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 93 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"93 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scout","item":"https://scoutseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://scoutseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Auditing what a browser actually sees","description":"A crawler that does not run JavaScript sees what your server sent. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/javascript-rendering/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do search engines run JavaScript?","acceptedAnswer":{"@type":"Answer","text":"Google does, on a second pass that can lag the first crawl by days. Most AI crawlers do not render at all, so a client-rendered page is blank to the crawlers behind ChatGPT and Perplexity."}},{"@type":"Question","name":"Does Scout bundle a browser?","acceptedAnswer":{"@type":"Answer","text":"No. macOS ships WebKit as a system framework, so rendering is a 112 KB helper built against it. The download is 17 MB and nothing is fetched at install."}},{"@type":"Question","name":"Why is rendering off by default?","acceptedAnswer":{"@type":"Answer","text":"It executes the page's JavaScript, so analytics fire and ad pixels load — requests to servers you did not intend to contact by asking for an audit. It is also ten to thirty times slower than fetching."}},{"@type":"Question","name":"Can rendering measure Core Web Vitals?","acceptedAnswer":{"@type":"Answer","text":"No, and nothing that runs on one machine can. LCP, INP and CLS are field metrics from real users on real connections. Scout reads them from the Chrome UX Report, the same source Search Console uses."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 93 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"93 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Auditing what a browser actually sees","description":"A crawler that does not run JavaScript sees what your server sent. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/javascript-rendering/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do search engines run JavaScript?","acceptedAnswer":{"@type":"Answer","text":"Google does, on a second pass that can lag the first crawl by days. Most AI crawlers do not render at all, so a client-rendered page is blank to the crawlers behind ChatGPT and Perplexity."}},{"@type":"Question","name":"Does Docket bundle a browser?","acceptedAnswer":{"@type":"Answer","text":"No. macOS ships WebKit as a system framework, so rendering is a 112 KB helper built against it. The download is 17 MB and nothing is fetched at install."}},{"@type":"Question","name":"Why is rendering off by default?","acceptedAnswer":{"@type":"Answer","text":"It executes the page's JavaScript, so analytics fire and ad pixels load — requests to servers you did not intend to contact by asking for an audit. It is also ten to thirty times slower than fetching."}},{"@type":"Question","name":"Can rendering measure Core Web Vitals?","acceptedAnswer":{"@type":"Answer","text":"No, and nothing that runs on one machine can. LCP, INP and CLS are field metrics from real users on real connections. Docket reads them from the Chrome UX Report, the same source Search Console uses."}}]}</script>
 </head>
 <body>
 <nav><div class="wrap-wide nav-inner">
-<a class="nav-brand" href="/"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--amber)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Scout</span></a>
+<a class="nav-brand" href="/"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--amber)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Docket</span></a>
 <div class="nav-links">
 <a href="/index/">The Index</a>
 <a href="/learn/">Learn</a>
@@ -352,7 +352,7 @@ body.landing article{padding:0}
 </div>
 <a class="btn" href="/download/">Download</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Scout</a> / <a href="/learn/">Learn</a> / JavaScript rendering</div><h1>Auditing what a browser actually sees</h1>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / JavaScript rendering</div><h1>Auditing what a browser actually sees</h1>
 
 <p class="lede">A crawler that does not run JavaScript sees the HTML your server sent, which
 on a modern site is often an empty shell. We fetched notion.so twice: the served HTML
@@ -373,9 +373,9 @@ a client-rendered page is blank. If being cited in AI answers matters to you, se
 rendering is not an optimisation, it is the entry fee. We measured
 <a href="/index/">who is blocked from where</a> separately.</p>
 
-<h2>How Scout does it</h2>
+<h2>How Docket does it</h2>
 
-<p>macOS ships a browser engine. WebKit is a system framework, so Scout renders through a
+<p>macOS ships a browser engine. WebKit is a system framework, so Docket renders through a
 112 KB helper built against it rather than bundling a browser — the download is still 17 MB,
 and nothing is fetched at install time. The audit engine stays what it was: dependency-free
 Python that never needed a browser to do most of its job.</p>
@@ -389,12 +389,12 @@ surprises to discover.</p>
 <h2>What it unlocked</h2>
 
 <h3>Pages that only exist after hydration</h3>
-<p>The notion.so case. Scout now compares the served HTML against the rendered DOM and
+<p>The notion.so case. Docket now compares the served HTML against the rendered DOM and
 reports the difference as a measurement rather than a suspicion — 0 characters versus 2,068
 is a fact you can take to whoever owns the front end.</p>
 
 <h3>What your tag manager actually loaded</h3>
-<p>GTM injects tags at runtime, so a static fetch sees the container and nothing else. Scout
+<p>GTM injects tags at runtime, so a static fetch sees the container and nothing else. Docket
 used to say "GTM is present, so your analytics may be configured inside it" and stop. Rendering
 notion.so surfaced <strong>54 scripts that were not in the served HTML</strong>, among them
 Marketo, the LinkedIn Insight Tag and the X advertising pixel.</p>
@@ -403,14 +403,14 @@ every one of them is a third party receiving your visitors' data.</p>
 
 <h3>Timings from a browser rather than from markup</h3>
 <p>First Contentful Paint and DOM Content Loaded now come from the browser's own performance
-API. Scout previously inferred layout-shift and paint risk from markup patterns, which is
+API. Docket previously inferred layout-shift and paint risk from markup patterns, which is
 useful and is not measurement.</p>
 
 <h2>Where this stops, and where another tool is better</h2>
 
 <p>Rendering in WebKit is not rendering in Chrome. Google evaluates your site in a Chromium
 renderer, and while the two agree on nearly everything, a bug that only appears in Blink is a
-bug Scout will not see.</p>
+bug Docket will not see.</p>
 
 <p>Rendering also says nothing about how much of the page Google read in the first
 place. It fetches at most 2MB of any URL and indexes that as though it were the whole file, so
@@ -418,7 +418,7 @@ a heavy page can be truncated before the renderer is ever involved —
 <a href="/learn/googlebot-2mb-limit/">measured here</a>.</p>
 
 <p>Nor does rendering give you Core Web Vitals. LCP, INP and CLS are <em>field</em> metrics —
-they come from real users on real connections, not from one machine on a fast desk. Scout can
+they come from real users on real connections, not from one machine on a fast desk. Docket can
 pull that data from the Chrome UX Report when you turn it on, which is the same source Search
 Console uses. Any tool presenting a single synthetic run as "your Core Web Vitals" is
 misrepresenting what the number is.</p>
@@ -426,7 +426,7 @@ misrepresenting what the number is.</p>
 <p>And if you want to crawl a large site with rendering at volume, <a
 href="/vs/screaming-frog-alternative/">Screaming Frog</a> has been doing it for years with
 configurable wait strategies, JavaScript error capture and a rendered-versus-raw diff view
-built for exactly this. Scout renders a sample — the shallowest pages, ten by default —
+built for exactly this. Docket renders a sample — the shallowest pages, ten by default —
 because that answers "is this site client-rendered and what is it costing me" without turning
 a five-minute audit into an hour.</p>
 
@@ -434,20 +434,20 @@ a five-minute audit into an hour.</p>
 
 <p>In the app, turn on rendering before you audit. From the command line:</p>
 
-<pre><code>scout audit https://example.com --render 10</code></pre>
+<pre><code>docket audit https://example.com --render 10</code></pre>
 
 <p>The report says how many pages were rendered, which ones needed it, and what the tag
 manager loaded. If the helper is missing it says that too, rather than quietly falling back
 to a static crawl and letting you believe otherwise.</p>
 
-<p><a class="btn" href="https://github.com/mattkerr09/scout-site/releases/download/v0.1.0/Scout-0.1.0-arm64.dmg">Download Scout for Mac</a></p>
-<section class="faq"><h2>Common questions</h2><div class="faq-item"><h3>Do search engines run JavaScript?</h3><p>Google does, on a second pass that can lag the first crawl by days. Most AI crawlers do not render at all, so a client-rendered page is blank to the crawlers behind ChatGPT and Perplexity.</p></div><div class="faq-item"><h3>Does Scout bundle a browser?</h3><p>No. macOS ships WebKit as a system framework, so rendering is a 112 KB helper built against it. The download is 17 MB and nothing is fetched at install.</p></div><div class="faq-item"><h3>Why is rendering off by default?</h3><p>It executes the page's JavaScript, so analytics fire and ad pixels load — requests to servers you did not intend to contact by asking for an audit. It is also ten to thirty times slower than fetching.</p></div><div class="faq-item"><h3>Can rendering measure Core Web Vitals?</h3><p>No, and nothing that runs on one machine can. LCP, INP and CLS are field metrics from real users on real connections. Scout reads them from the Chrome UX Report, the same source Search Console uses.</p></div></section>
+<p><a class="btn" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.0/Docket-0.1.0-arm64.dmg">Download Docket for Mac</a></p>
+<section class="faq"><h2>Common questions</h2><div class="faq-item"><h3>Do search engines run JavaScript?</h3><p>Google does, on a second pass that can lag the first crawl by days. Most AI crawlers do not render at all, so a client-rendered page is blank to the crawlers behind ChatGPT and Perplexity.</p></div><div class="faq-item"><h3>Does Docket bundle a browser?</h3><p>No. macOS ships WebKit as a system framework, so rendering is a 112 KB helper built against it. The download is 17 MB and nothing is fetched at install.</p></div><div class="faq-item"><h3>Why is rendering off by default?</h3><p>It executes the page's JavaScript, so analytics fire and ad pixels load — requests to servers you did not intend to contact by asking for an audit. It is also ten to thirty times slower than fetching.</p></div><div class="faq-item"><h3>Can rendering measure Core Web Vitals?</h3><p>No, and nothing that runs on one machine can. LCP, INP and CLS are field metrics from real users on real connections. Docket reads them from the Chrome UX Report, the same source Search Console uses.</p></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
-<div><h2 class="foot-h">Scout</h2>
+<div><h2 class="foot-h">Docket</h2>
 <a href="/">Overview</a><a href="/download/">Download</a>
-<a href="/index/">The Scout Index</a><a href="/learn/what-scout-checks/">What it checks</a></div>
+<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/sitebulb-alternative/">vs Sitebulb</a>
@@ -458,13 +458,13 @@ to a static crawl and letting you believe otherwise.</p>
 <a href="/learn/seo-audit/">What an SEO audit is</a>
 <a href="/learn/">All guides</a></div>
 <div><h2 class="foot-h">Contact</h2>
-<a href="/about/">About Scout</a>
+<a href="/about/">About Docket</a>
 <a href="/contact/">Get in touch</a>
-<a href="https://github.com/mattkerr09/scout-site/issues">Issue tracker</a>
+<a href="https://github.com/mattkerr09/docket-site/issues">Issue tracker</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a></div>
 </div>
 <div class="foot-bottom">
-<span>© 2026 Scout · Audits run on your Mac. Nothing is uploaded.</span>
+<span>© 2026 Docket · Audits run on your Mac. Nothing is uploaded.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
 </body>
