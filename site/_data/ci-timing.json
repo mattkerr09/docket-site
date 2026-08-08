@@ -1,0 +1,70 @@
+{
+  "measured": "2026-08-07",
+  "machine": "arm64 macOS 26.3.1",
+  "page_cap": 25,
+  "binary": "frozen CLI from the shipped app bundle",
+  "sites_attempted": 6,
+  "sites_timed": 6,
+  "startup_runs_seconds": [
+    0.11,
+    0.12,
+    0.11
+  ],
+  "startup_seconds": 0.11,
+  "process_overhead_seconds": 0.2,
+  "median_seconds": 23.1,
+  "slowest_seconds": 28.2,
+  "fastest_seconds": 16.4,
+  "median_seconds_per_page": 0.92,
+  "results": [
+    {
+      "url": "https://scoutseo.app",
+      "pages_crawled": 25,
+      "seconds": 16.4,
+      "engine_seconds": 16.13,
+      "seconds_per_page": 0.66,
+      "exit": 0
+    },
+    {
+      "url": "https://www.allbirds.com",
+      "pages_crawled": 25,
+      "seconds": 28.0,
+      "engine_seconds": 27.81,
+      "seconds_per_page": 1.12,
+      "exit": 0
+    },
+    {
+      "url": "https://www.thefarmersdog.com",
+      "pages_crawled": 25,
+      "seconds": 18.5,
+      "engine_seconds": 18.24,
+      "seconds_per_page": 0.74,
+      "exit": 2
+    },
+    {
+      "url": "https://pizzapilgrims.co.uk",
+      "pages_crawled": 25,
+      "seconds": 22.8,
+      "engine_seconds": 22.62,
+      "seconds_per_page": 0.91,
+      "exit": 0
+    },
+    {
+      "url": "https://www.basecamp.com",
+      "pages_crawled": 25,
+      "seconds": 28.2,
+      "engine_seconds": 27.93,
+      "seconds_per_page": 1.13,
+      "exit": 0
+    },
+    {
+      "url": "https://www.gov.uk",
+      "pages_crawled": 25,
+      "seconds": 23.3,
+      "engine_seconds": 23.14,
+      "seconds_per_page": 0.93,
+      "exit": 0
+    }
+  ],
+  "note": "Wall-clock over a home broadband connection on one machine, capped at 25 pages, on 6 sites. It transfers as an order of magnitude and nothing more: a CI runner's network, the audited site's response time and the page count all move it. Nearly all of the wall-clock is the crawl \u2014 process overhead is the difference between wall-clock and the engine's own reported duration, and it is small. This file previously claimed the binary unpacks itself on every run, which measuring it disproved. Not measured: a genuinely cold CI runner with an empty file cache, so the startup figure is a floor rather than the number a pipeline will see."
+}
