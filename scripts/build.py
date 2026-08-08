@@ -16,10 +16,12 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE / "articles"))
 
+import facts as F  # noqa: E402
 from render import BASE, SITE, render  # noqa: E402
 
 import about  # noqa: E402
 import audit_quality  # noqa: E402
+import brand as brand_article  # noqa: E402
 import bytecap  # noqa: E402
 import comparisons  # noqa: E402
 import directives  # noqa: E402
@@ -130,6 +132,10 @@ money.</p>
             ("/learn/audit-tool-accuracy/", "How to tell whether an audit tool is lying to you",
              "Four questions to ask of any SEO finding, each of them learned here by "
              "getting it wrong first."),
+            ("/learn/brand-consistency/", "Brand consistency: the question no crawler asks",
+             f"Of {F.brand_social_frame()} company sites linking social profiles, "
+             f"{F.brand_social_undeclared()} declared none of them in schema. What the "
+             f"brand lane checks, and where design tools beat it."),
             ("/learn/dead-contact-address/", "The contact address that cannot receive mail",
              "An address on a domain with no MX record bounces to the sender and never "
              "reaches you, and no tool asks whether yours works."),
@@ -365,6 +371,7 @@ def main() -> int:
     pages += __import__('pages').build_all()
     pages += about.build_all()
     pages += audit_quality.build_all()
+    pages += brand_article.build_all()
     pages += mailcheck.build_all()
     pages += build_hubs()
 
