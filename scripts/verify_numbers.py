@@ -42,6 +42,13 @@ ARTICLES = ROOT / "articles"
 ALLOWED = {
     # -- standards, specs and versions ------------------------------------
     "9309": "RFC 9309, the robots.txt standard",
+    "139": ("Screaming Frog's Log File Analyser licence, $139 per year, read "
+            "from their own pricing page on 2026-08-07 and linked in the "
+            "prose. A competitor's price for a SEPARATE product from the SEO "
+            "Spider, so it does not belong in competitors.csv, which is keyed "
+            "on the main products."),
+    "1,000": ("The free tier of that same Log File Analyser: 1,000 log events. "
+              "Quoted from their pricing page and linked beside it."),
     "24": ("The threshold of the DELETED palette-size rule — brand.visual_"
            "consistency fired above 24 distinct colours. /learn/brand-"
            "consistency/ explains why that rule died when Scout could finally "
