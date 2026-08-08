@@ -42,6 +42,17 @@ ARTICLES = ROOT / "articles"
 ALLOWED = {
     # -- standards, specs and versions ------------------------------------
     "9309": "RFC 9309, the robots.txt standard",
+    "24": ("The threshold of the DELETED palette-size rule — brand.visual_"
+           "consistency fired above 24 distinct colours. /learn/brand-"
+           "consistency/ explains why that rule died when Scout could finally "
+           "read real stylesheets. A historical fact about a rule that no "
+           "longer exists cannot be derived from a dataset, and it must not "
+           "silently become a current figure either."),
+    "49": ("Near-identical colour PAIRS reported on this site's own 26-colour "
+           "palette while the alpha channel was being ignored — the bug that "
+           "made every opacity variant look like drift. An observation from a "
+           "debugging run that no longer reproduces, quoted in the article as "
+           "the size of the mistake."),
     "2.1.0": ("SARIF 2.1.0 — the OASIS spec version Scout emits and GitHub "
               "ingests. A version number in a format name, not a measurement; "
               "it changes when OASIS publishes a new spec, not when we "

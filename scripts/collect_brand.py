@@ -67,6 +67,7 @@ SITES = [
 ]
 
 BRAND_CHECKS = ("brand.name_consistency", "brand.logo", "brand.visual_consistency",
+                "brand.visual_unreadable", "brand.colour_drift",
                 "brand.positioning", "brand.voice_consistency",
                 "brand.social_consistency")
 
@@ -98,9 +99,12 @@ def _measure(url: str) -> dict:
             linked = len(ev.get("undeclared", [])) + len(ev.get("declared", []))
             declared = len(ev.get("declared", []))
 
+    drift = next((f.count for f in result.findings
+                  if f.check_id == "brand.colour_drift"), 0)
     return {
         "url": url,
         "pages": len(pages),
+        "colour_drift_groups": drift,
         "typefaces": len(fonts),
         "colours": len(colors),
         "brand_findings": fired,
@@ -146,6 +150,8 @@ def main() -> None:
         # this signal is structurally absent. Publishing a median across sites
         # where it was never measurable would report blindness as tidiness.
         "css_readable": sum(1 for r in ok if r["typefaces"] or r["colours"]),
+        "drift_frame": sum(1 for r in ok if r["typefaces"] or r["colours"]),
+        "with_colour_drift": sum(1 for r in ok if r.get("colour_drift_groups")),
         "median_typefaces": median(typefaces),
         "max_typefaces": max(typefaces),
         "min_typefaces": min(typefaces),
