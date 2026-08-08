@@ -522,6 +522,36 @@ And a finding's location is always a page of your own site: a few checks list a 
 as where you go to fix something, and pointing an alert at Google's settings page would be
 nonsense, so those travel as the rule's <code>helpUri</code> instead.</p>
 
+<h2>Findings in the test-report panel</h2>
+
+<p><code>-f junit</code> writes JUnit XML, which is the report widget every CI system already
+has — GitLab, Jenkins, Azure, Buildkite, CircleCI. The shape is one testcase per check, so the
+panel reads like a test run — {N_CHECKS} tests, four failed — rather than handing
+you a wall of text.</p>
+
+<p>Two decisions in that shape matter more than the format. A check that ran and found nothing
+is a <strong>pass</strong>; a check that could not run is <strong>skipped</strong>, never
+passed. And if the crawl reached no pages at all, every check is skipped and none is green —
+a passing test report gets read as a guarantee, and an audit that read nothing has not earned
+one. Failures use the same threshold as the exit code, so a build cannot go green while showing
+red tests.</p>
+
+<h2>A GitHub Action, so you do not maintain the shell</h2>
+
+<p>The four lines above work and will keep working. If you would rather not own them:</p>
+
+<pre><code>      - uses: mattkerr09/scout-site@{RELEASE}
+        with:
+          url: https://staging.example.com
+          fail-on: critical
+          format: junit          # or sarif, or text</code></pre>
+
+<p>It checks the runner first and fails with a sentence you can act on if it is not Apple
+Silicon macOS, rather than letting you find out inside an <code>hdiutil</code> error. Full
+inputs and exit codes are in
+<a href="https://github.com/mattkerr09/scout-site/blob/main/ACTION.md">ACTION.md</a>. It is
+not published to the GitHub Marketplace — reference it by repository as shown.</p>
+
 <h2>What it costs to run</h2>
 
 <p>macOS minutes are the expensive ones. GitHub
@@ -552,11 +582,13 @@ Turn it on for the pages that need it, or on a nightly job rather than a per-PR 
 
 <h2>Where this is thin</h2>
 
-<p>There is no GitHub Action, so the install is four lines of shell you maintain yourself. SARIF
-gets findings onto the Security tab but not onto the diff, for the reason above, and there is no
-JUnit output for the test-report panel. And the timings above are one machine on home broadband
-on a single day, across {F.ci_sites()} sites — one of them swung fifteen seconds between two
-consecutive runs. Treat them as an order of magnitude, not a benchmark, and measure your own.</p>
+<p>SARIF gets findings onto the Security tab but not onto the pull request diff, for the
+reason above — that one is structural rather than unfinished. `scout diff` is not wired into
+the action yet, so gating on what a deploy broke means running it as a plain step. Nothing
+is cached between runs, so every job re-downloads {DMG_SIZE}. And the timings above are one
+machine on home broadband on a single day, across {F.ci_sites()} sites — one of them swung
+fifteen seconds between two consecutive runs. Treat them as an order of magnitude, not a
+benchmark, and measure your own.</p>
 
 <p><a class="btn" href="/download/">Download Scout</a></p>
 """
@@ -592,6 +624,17 @@ consecutive runs. Treat them as an order of magnitude, not a benchmark, and meas
              "Security tab with their severity and fix. They do not annotate the pull "
              "request diff: SARIF locations are files and lines, and an SEO finding is "
              "about a URL, which cannot generally be mapped back to a source file."),
+            ("Does Scout have a GitHub Action?",
+             "Yes — reference mattkerr09/scout-site in a `uses:` step. It installs Scout, "
+             "runs the audit and exits with the same codes as the CLI, and it checks the "
+             "runner first so a Linux job fails with a sentence you can act on rather than a "
+             "confusing disk-image error. It is not on the GitHub Marketplace; reference it "
+             "by repository."),
+            ("Can Scout write JUnit output for my CI test panel?",
+             "Yes, with -f junit. One testcase per check, so the panel reads as a test run. A "
+             "check that ran and found nothing passes; one that could not run is skipped, "
+             "never passed; and if the crawl reached no pages, every check is skipped and "
+             "none is green — a passing test report is read as a guarantee."),
             ("Should the build fail on the SEO score?",
              "No. The score is a weighted composite and moves when the weighting changes. "
              "Gate on severities with --fail-on, or better, use scout diff to fail only on "
