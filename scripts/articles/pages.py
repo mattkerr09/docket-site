@@ -86,9 +86,13 @@ workarounds that unsigned software needs.</p>
 <p>Scout opens, starts its local audit engine, and shows a single field. Type a domain, press
 Run audit, and watch it crawl. There is no onboarding, no project setup and no plan selection,
 because none of those are necessary for the thing you came to do.</p>
-<p>The first launch takes a few seconds longer than later ones while the engine unpacks
-itself. There is no security prompt to get past: the app is notarised, so macOS verifies it
-with Apple and opens it.</p>
+<p>The first launch takes a few seconds longer than later ones. It used to say "while the
+engine unpacks itself" — that was an explanation nobody had measured, and timing the CLI out of
+the shipped bundle put its startup at a fifth of a second with no unpacking step to be found.
+The delay is real and the reason given for it was invented, so the reason is gone.</p>
+
+<p>There is no security prompt to get past: the app is notarised, so macOS verifies it with
+Apple and opens it.</p>
 
 <h2>The command line</h2>
 <p>The same engine ships as a CLI inside the app bundle. It is the whole product, not a
@@ -103,6 +107,11 @@ scout audit example.com -f json --no-pages | jq '.score.overall'</code></pre>
 <p>It exits with status 2 when it finds a critical issue, so it can gate a deployment. Running
 it in CI against a staging URL fails the build if someone ships a <code>noindex</code>, which
 is a mistake that otherwise gets found weeks later by a traffic graph.</p>
+
+<p>There is a full walkthrough for that on
+<a href="/for/developers/">running Scout in a deploy pipeline</a> — where the binary lives
+inside the bundle, a working GitHub Actions job, how long an audit actually takes, and what a
+macOS runner costs you per pull request.</p>
 
 <p><code>--fail-on</code> sets the bar. The default is <code>critical</code>, deliberately:
 almost every real site has HIGH findings, and a gate that fails on ordinary work gets wrapped
@@ -236,6 +245,10 @@ ago.</p>
 <p>Unlimited client audits with no per-seat or per-crawl cost, and a client-ready PDF that does
 not need rebuilding in a deck.</p>
 
+<h2><a href="/for/developers/">For developers</a></h2>
+<p>The CLI as a deploy gate — exit codes, a working GitHub Actions job, and what it costs to
+run on a macOS runner.</p>
+
 <h2><a href="/for/local-business/">For local businesses</a></h2>
 <p>Why you are not in the map pack — LocalBusiness schema, NAP consistency, and the geo
 signals that decide "near me" results.</p>
@@ -328,6 +341,190 @@ claims everything invites the client to test the claim.</p>
             ("Can I white-label the report?",
              "The PDF is Scout-branded. The CSV and JSON exports carry no branding and can be "
              "dropped into your own template."),
+        ],
+    )
+
+
+def for_developers() -> Path:
+    """The deploy gate, for the people who own the pipeline.
+
+    Every figure here is measured or quoted, and the platform limitation leads
+    rather than hides at the bottom: a developer whose runners are Ubuntu needs
+    to know in the first paragraph that this will not work, because the only
+    thing worse than losing that reader is wasting twenty minutes of their time
+    first.
+    """
+    body = f"""
+<p class="lede">Scout's CLI exits <code>2</code> when it finds a critical issue, so
+<code>scout audit https://staging.example.com</code> is a complete deploy gate in one line and
+nothing else has to be installed. Auditing {F.ci_page_cap()} pages took a median of
+<strong>{F.ci_median_seconds()} seconds</strong> across {F.ci_sites()} real sites
+({F.ci_fastest_seconds()}s to {F.ci_slowest_seconds()}s, measured {F.ci_measured()}), which is
+short enough to sit on every pull request without anyone noticing the build got slower.</p>
+
+<h2>Read this first: your runners are probably Linux</h2>
+
+<p>Scout is Apple Silicon only. It runs on GitHub Actions'
+<a href="https://docs.github.com/en/actions/reference/runners/github-hosted-runners"><code>macos-latest</code></a>,
+which is arm64, and it does not run on <code>ubuntu-latest</code> at all. If your pipeline is
+Linux and you are not willing to add a macOS job to it, stop reading and use
+<a href="https://www.screamingfrog.co.uk/seo-spider/user-guide/general/">Screaming Frog's
+command line interface</a> instead: it is available for Windows, Mac and Ubuntu Linux, it runs
+headless, and for a Linux-only pipeline it is simply the right tool. That is a real advantage
+and there is no version of this page where it is not.</p>
+
+<p>Everything below assumes you are willing to run one macOS job. It costs more than a Linux
+one — see the arithmetic further down — and it is the whole of the catch.</p>
+
+<h2>Where the binary actually is</h2>
+
+<p>The CLI ships inside the app bundle, and until now this site told you it existed without
+telling you where. It is here:</p>
+
+<pre><code>/Applications/Scout.app/Contents/Resources/scout/scout</code></pre>
+
+<p>Put that directory on your <code>PATH</code> rather than symlinking the binary somewhere
+else. The WebKit rendering helper lives beside it as a sibling, and keeping the directory
+intact is what lets <code>--render</code> find it.</p>
+
+<h2>A workflow that works</h2>
+
+<pre><code>name: SEO gate
+on: [pull_request]
+
+jobs:
+  seo:
+    runs-on: macos-latest          # arm64. ubuntu-latest will not work.
+    steps:
+      - name: Install Scout
+        run: |
+          curl -sL -o scout.dmg {DMG}
+          hdiutil attach -nobrowse -quiet scout.dmg -mountpoint /Volumes/Scout
+          cp -R /Volumes/Scout/Scout.app /Applications/
+          echo "/Applications/Scout.app/Contents/Resources/scout" &gt;&gt; "$GITHUB_PATH"
+
+      - name: Audit staging
+        run: scout audit https://staging.example.com -n 100 --fail-on critical</code></pre>
+
+<p>No runtime to install, no <code>pip install</code>, no lockfile to resolve — the download is
+{DMG_SIZE} and it is notarised by Apple, so nothing has to be talked past Gatekeeper. Process
+overhead was {F.ci_overhead_seconds()}s of the wall-clock in every run measured; effectively all
+of the time is the crawl itself, at about {F.ci_seconds_per_page()} seconds per page.</p>
+
+<h2>The exit codes are a contract</h2>
+
+<p>A pipeline depends on these not moving, so they are part of the public interface more than
+anything printed is:</p>
+
+<table>
+<thead><tr><th>Code</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>0</code></td><td>The audit ran and found nothing at or above the threshold</td></tr>
+<tr><td><code>1</code></td><td>Scout could not run. A defect in the tool, not in your site</td></tr>
+<tr><td><code>2</code></td><td>The audit ran and the result is bad</td></tr>
+</tbody>
+</table>
+
+<p><code>1</code> and <code>2</code> are deliberately distinct, because "your site is broken" and
+"the tool is broken" demand opposite responses from whoever reads the log at six on a Friday,
+and a gate that conflates them gets wrapped in <code>|| true</code> within a month.</p>
+
+<p>A staging URL that does not answer is <code>2</code>, not <code>1</code>: Scout ran
+correctly, the site was not there, and that should stop a deploy. This distinction has teeth —
+pointing Scout at a hostname that does not resolve used to report three critical issues, of
+which two were invented. A DNS blip would have failed a build with a confident story about a
+robots.txt file that did not exist. If you are wiring <em>any</em> audit tool into CI, run it
+once against a hostname that does not resolve and read what it says. You will learn more in
+that run than in ten against a healthy site.</p>
+
+<h2>Gate on what this deploy broke, not on what was already broken</h2>
+
+<p><code>--fail-on</code> defaults to <code>critical</code>, deliberately: almost every real site
+carries HIGH findings, and a default that fails on ordinary work gets disabled. But an absolute
+threshold is the wrong question for a pipeline, and the reason is arithmetic. Every real site
+has standing findings, so a bar tight enough to catch a regression fails every build, and one
+loose enough to pass catches nothing. The deploy is only answerable for what it changed.</p>
+
+<pre><code>scout diff https://example.com https://staging.example.com --fail-on medium</code></pre>
+
+<p>That audits both on identical settings and fails only on findings that are new or
+<em>worse</em> than production. A check that was MEDIUM before and is HIGH now never appeared or
+disappeared — it got worse, which is exactly what the gate is for, and a naive new-versus-old set
+comparison misses it entirely. Improvements never fail a build, however many there are.</p>
+
+<p>If the two crawls reach very different numbers of pages, Scout refuses to compare them and
+exits <code>1</code> rather than <code>0</code>. A build that goes green because the comparison
+was impossible is worse than one that fails, because the team believes the gate ran.</p>
+
+<h2>What it costs to run</h2>
+
+<p>macOS minutes are the expensive ones. GitHub
+<a href="https://docs.github.com/en/billing/reference/actions-minute-multipliers">publishes</a>
+{F.gh_macos_per_min()} per minute for a standard macOS runner against {F.gh_linux_per_min()}
+for Linux — about {F.gh_macos_multiple()} times — and billed minutes round up. The measured
+audit is well under a minute, so a run bills as one: roughly
+<strong>{F.gh_gate_cost_cents()} cents per gate</strong>, or {F.gh_monthly_cost(200)} for two
+hundred pull requests in a month.</p>
+
+<p>Worth saying plainly: that is a recurring cost on a tool sold as a one-time
+{PRICE_STR}, and it is GitHub's, not ours. If it bothers you, gate on merges to main rather
+than every push, or run the job on a Mac you already own — Scout has no licence server and no
+seat count, so a self-hosted runner is free.</p>
+
+<h2>Three things not to do</h2>
+
+<p><strong>Do not gate on the score.</strong> It is a weighted composite and it moves when the
+weighting changes. Gate on severities, which are defined per check and do not drift.</p>
+
+<p><strong>Do not run it against production on every push.</strong> Point it at staging. Scout
+backs off on 429 and 503 rather than hammering, but a crawl on every commit is still traffic
+your own analytics has to explain.</p>
+
+<p><strong>Do not turn on <code>--render</code> and leave it.</strong> Rendering runs each page
+through WebKit and it is much slower than the numbers above, which were measured without it.
+Turn it on for the pages that need it, or on a nightly job rather than a per-PR one.</p>
+
+<h2>Where this is thin</h2>
+
+<p>There is no GitHub Action, so the install is four lines of shell you maintain yourself. There
+is no JUnit or SARIF output yet, which means findings show up in the log rather than annotated
+on the diff. And the timings above are one machine on home broadband on a single day, across
+{F.ci_sites()} sites — one of them swung fifteen seconds between two consecutive runs. Treat
+them as an order of magnitude, not a benchmark, and measure your own.</p>
+
+<p><a class="btn" href="/download/">Download Scout</a></p>
+"""
+    return render(
+        cat="for", slug="developers",
+        title="SEO checks in your deploy pipeline: Scout's CLI as a gate",
+        desc=(f"Scout's CLI exits 2 on a critical finding, so it gates a deploy in one "
+              f"line. {F.ci_page_cap()} pages in a median {F.ci_median_seconds()}s across "
+              f"{F.ci_sites()} sites. Apple Silicon only."),
+        h1="SEO checks in your deploy pipeline",
+        crumb='<a href="/">Scout</a> / <a href="/for/">For you</a> / Developers',
+        body=body,
+        published="2026-08-07",
+        faq=[
+            ("Can I run an SEO audit in CI?",
+             "Yes, and it is the strongest use of one, because it catches a noindex before it "
+             "ships rather than weeks later on a traffic graph. Scout's CLI exits 0 when "
+             "clean, 2 when it finds something at or above your threshold, and 1 only when "
+             "the tool itself could not run."),
+            ("Does Scout run on GitHub Actions?",
+             "On macos-latest, which is arm64. Scout is Apple Silicon only, so it will not "
+             "run on ubuntu-latest. If your pipeline is Linux-only, Screaming Frog's CLI runs "
+             "on Windows, Mac and Ubuntu Linux and is the better fit."),
+            ("How long does a Scout audit take in a pipeline?",
+             f"A median of {F.ci_median_seconds()} seconds for {F.ci_page_cap()} pages across "
+             f"{F.ci_sites()} real sites measured on {F.ci_measured()}, or roughly "
+             f"{F.ci_seconds_per_page()} seconds per page. Process startup was "
+             f"{F.ci_overhead_seconds()}s, so almost all of it is the crawl. Rendering with "
+             f"--render is considerably slower and was not included."),
+            ("Should the build fail on the SEO score?",
+             "No. The score is a weighted composite and moves when the weighting changes. "
+             "Gate on severities with --fail-on, or better, use scout diff to fail only on "
+             "findings this deploy introduced or made worse — every real site carries standing "
+             "findings, so an absolute threshold either fails every build or none of them."),
         ],
     )
 
@@ -672,7 +869,8 @@ Scout, including lost traffic, revenue or rankings.</p>
     )
 
 
-BUILDERS = [download, for_hub, for_agencies, for_local, howto_hub, howto_ai_access,
+BUILDERS = [download, for_hub, for_agencies, for_developers, for_local, howto_hub,
+            howto_ai_access,
             privacy, terms]
 
 
