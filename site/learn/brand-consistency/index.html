@@ -337,7 +337,7 @@ body.landing article{padding:0}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://scoutseo.app/#org","name":"Scout","url":"https://scoutseo.app/","logo":"https://scoutseo.app/icon.png","description":"Scout makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/scout-site"]},{"@type":"WebSite","@id":"https://scoutseo.app/#site","url":"https://scoutseo.app/","name":"Scout","publisher":{"@id":"https://scoutseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://scoutseo.app/#app","name":"Scout","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Scout crawls a website, runs 93 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"149","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"93 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://scoutseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Scout","item":"https://scoutseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://scoutseo.app/learn/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Brand consistency: the question no crawler asks","description":"Of 11 company sites linking social profiles, 9 declared none in schema. What a brand consistency audit checks, and where design tools do it better.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Scout. Every number on this site comes from running it."},"publisher":{"@id":"https://scoutseo.app/#org"},"mainEntityOfPage":"https://scoutseo.app/learn/brand-consistency/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a brand consistency audit?","acceptedAnswer":{"@type":"Answer","text":"A check of whether a site presents one company rather than several: the same name in its titles, its Organization schema, its og:site_name and its logo alt text; a consistent claim about what the business does; and social profiles declared in schema rather than only linked in the footer. It is a different question from whether a crawler can read the page, which is what SEO tools normally check."}},{"@type":"Question","name":"What is sameAs in schema markup?","acceptedAnswer":{"@type":"Answer","text":"A property of Organization schema listing the other places on the web that are the same entity — your LinkedIn, Instagram, Wikipedia entry. It is how a search engine knows those accounts and your website are one organisation, and it is an input to knowledge panels. Linking a profile in your footer tells a human; sameAs tells the machine."}},{"@type":"Question","name":"Do SEO tools check brand consistency?","acceptedAnswer":{"@type":"Answer","text":"Crawlers generally do not — they answer whether a machine can read and index the page. Scout runs six brand checks as one of its lanes. If typography and colour governance is your real problem, though, a design-system tool reads your tokens directly and will beat any crawler at it."}},{"@type":"Question","name":"Why does my audit say typefaces were not measured?","acceptedAnswer":{"@type":"Answer","text":"Because Scout reads typefaces from CSS written inline in the page and does not fetch linked stylesheets, so on most sites it has nothing to look at. That notice exists so a silent check is not mistaken for a clean one — it is a gap in the tool, not a finding about your site."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a brand consistency audit?","acceptedAnswer":{"@type":"Answer","text":"A check of whether a site presents one company rather than several: the same name in its titles, its Organization schema, its og:site_name and its logo alt text; a consistent claim about what the business does; and social profiles declared in schema rather than only linked in the footer. It is a different question from whether a crawler can read the page, which is what SEO tools normally check."}},{"@type":"Question","name":"What is sameAs in schema markup?","acceptedAnswer":{"@type":"Answer","text":"A property of Organization schema listing the other places on the web that are the same entity — your LinkedIn, Instagram, Wikipedia entry. It is how a search engine knows those accounts and your website are one organisation, and it is an input to knowledge panels. Linking a profile in your footer tells a human; sameAs tells the machine."}},{"@type":"Question","name":"Do SEO tools check brand consistency?","acceptedAnswer":{"@type":"Answer","text":"Crawlers generally do not — they answer whether a machine can read and index the page. Scout runs six brand checks as one of its lanes. If typography and colour governance is your real problem, though, a design-system tool reads your tokens directly and will beat any crawler at it."}},{"@type":"Question","name":"Why does my audit say typefaces were not measured?","acceptedAnswer":{"@type":"Answer","text":"Scout fetches the stylesheets your pages link, so this is now uncommon. It happens when the sheets could not be fetched, or when you ran with --offline, which deliberately makes no third-party calls and so skips styles served from an asset domain. The notice says which, and exists so a silent check is not mistaken for a clean one — it is a gap in the tool, not a finding about you."}},{"@type":"Question","name":"What is brand colour drift?","acceptedAnswer":{"@type":"Answer","text":"Two colours close enough that nobody could tell them apart, defined separately in your CSS — #005fcc and #0066cc, say. It happens when a value is copied and nudged rather than referenced from a shared custom property, and it compounds. Palette size is not the issue: a design system legitimately defines hundreds of values, and two of them being the same colour is still a mistake."}}]}</script>
 </head>
 <body>
 <nav><div class="wrap-wide nav-inner">
@@ -398,8 +398,8 @@ inconsistent" is something you can only agree or disagree with.</p>
 <code>Organization</code> schema and logo alt text call the company the same thing.</li>
 <li><strong>Logo</strong> — whether the logo's alt text names the company.
 2 of the sites we measured had a logo whose alt text did not.</li>
-<li><strong>Typography and colour</strong> — how many typefaces and brand colours the pages
-ship. See the limitation below; it is a real one.</li>
+<li><strong>Typography and colour</strong> — how many typefaces the pages ship, and which
+colours in your CSS are indistinguishable from each other.</li>
 <li><strong>Positioning</strong> — whether the pages make a consistent claim about what the
 company does, or a different one each time.</li>
 <li><strong>Voice</strong> — whether the reading level and sentence length hold steady across
@@ -410,23 +410,34 @@ the site or lurch between pages written years apart.</li>
 <p>The lane is weighted lightly in the score on purpose. An inconsistent wordmark is a real
 problem and it is not a <code>noindex</code>; it should never dominate a grade.</p>
 
-<h2>Where this is weak, and it is weak</h2>
+<h2>Two colours nobody can tell apart</h2>
 
-<p>Scout counts typefaces and colours from CSS written inline in the page. It does not fetch
-linked stylesheets. On 16 real companies it could read the CSS on
-<strong>7</strong> of them — the rest serve their styles from
-<code>.css</code> files, which is the normal and correct way to build a site, and Scout
-therefore has nothing at all to look at.</p>
+<p>Scout fetches the stylesheets your pages link, deduplicated across the crawl, and counts
+the typefaces and colours they actually declare. The median site in this sample ships
+3 typefaces; the widest ships 9.</p>
 
-<p>That was worse than it sounds until recently, because the check simply said nothing in that
-case, and a silent check reads exactly like a clean one. It now reports that the count could
-not be taken, at NOTICE, and says the gap is the tool's rather than the site's. Fetching
-stylesheets properly is the actual fix and it is not built yet.</p>
+<p>What it reports about colour is not palette size. It used to be — anything over 24 distinct
+values — and that rule died the moment Scout could see real stylesheets, because one very
+well-run site came back with 485. Every shade ramp, every semantic token, every dark-mode
+pair. The old finding claimed a wide palette meant colours were being written as literals
+instead of referenced from a shared set, and the data says the reverse: a centralised design
+system declares <em>more</em> values precisely because it is centralised.</p>
 
-<p>So the numbers that survive from that check are only about the sites where it could see:
-the widest was 6 typefaces, and one site shipped
-158 distinct colour values. Both are counts of what was served, not
-verdicts — a site with six typefaces may have meant every one of them.</p>
+<p>So the count is gone rather than re-tuned, because raising a threshold until the false
+positives stop is fitting the rule to the sample. What Scout reports instead is groups of
+colours no visitor could tell apart, defined separately — <code>#005fcc</code> and
+<code>#0066cc</code> in the same stylesheet. That is what drift actually looks like: a value
+gets copied and nudged rather than referenced, and a year later the brand blue has four
+spellings. It does not care how big your palette is.
+13 of the 16 sites had at least one such group.</p>
+
+<p>Getting that right took two corrections worth repeating, because both produced confident
+nonsense first. Ignoring the alpha channel made every opacity variant of one colour look like
+drift — <code>rgba(0,0,0,.1)</code> is a hairline and <code>rgba(0,0,0,.5)</code> is a scrim,
+and treating them as the same put 49 "near-identical pairs" on a 26-colour palette. And
+grouping colours by chaining — A is close to B, B to C — walked from a pale lavender to a grey
+one indistinguishable step at a time and called them one colour. Every member of a group now
+has to be indistinguishable from every other member.</p>
 
 <h2>Where other tools are better than this</h2>
 
@@ -468,7 +479,7 @@ most of an afternoon's worth of the findings above, and both are the kind of thi
 broken for years because no tool was looking.</p>
 
 <p><a class="btn" href="/download/">Download Scout</a></p>
-<section class="faq"><h2>Common questions</h2><div class="faq-item"><h3>What is a brand consistency audit?</h3><p>A check of whether a site presents one company rather than several: the same name in its titles, its Organization schema, its og:site_name and its logo alt text; a consistent claim about what the business does; and social profiles declared in schema rather than only linked in the footer. It is a different question from whether a crawler can read the page, which is what SEO tools normally check.</p></div><div class="faq-item"><h3>What is sameAs in schema markup?</h3><p>A property of Organization schema listing the other places on the web that are the same entity — your LinkedIn, Instagram, Wikipedia entry. It is how a search engine knows those accounts and your website are one organisation, and it is an input to knowledge panels. Linking a profile in your footer tells a human; sameAs tells the machine.</p></div><div class="faq-item"><h3>Do SEO tools check brand consistency?</h3><p>Crawlers generally do not — they answer whether a machine can read and index the page. Scout runs six brand checks as one of its lanes. If typography and colour governance is your real problem, though, a design-system tool reads your tokens directly and will beat any crawler at it.</p></div><div class="faq-item"><h3>Why does my audit say typefaces were not measured?</h3><p>Because Scout reads typefaces from CSS written inline in the page and does not fetch linked stylesheets, so on most sites it has nothing to look at. That notice exists so a silent check is not mistaken for a clean one — it is a gap in the tool, not a finding about your site.</p></div></section>
+<section class="faq"><h2>Common questions</h2><div class="faq-item"><h3>What is a brand consistency audit?</h3><p>A check of whether a site presents one company rather than several: the same name in its titles, its Organization schema, its og:site_name and its logo alt text; a consistent claim about what the business does; and social profiles declared in schema rather than only linked in the footer. It is a different question from whether a crawler can read the page, which is what SEO tools normally check.</p></div><div class="faq-item"><h3>What is sameAs in schema markup?</h3><p>A property of Organization schema listing the other places on the web that are the same entity — your LinkedIn, Instagram, Wikipedia entry. It is how a search engine knows those accounts and your website are one organisation, and it is an input to knowledge panels. Linking a profile in your footer tells a human; sameAs tells the machine.</p></div><div class="faq-item"><h3>Do SEO tools check brand consistency?</h3><p>Crawlers generally do not — they answer whether a machine can read and index the page. Scout runs six brand checks as one of its lanes. If typography and colour governance is your real problem, though, a design-system tool reads your tokens directly and will beat any crawler at it.</p></div><div class="faq-item"><h3>Why does my audit say typefaces were not measured?</h3><p>Scout fetches the stylesheets your pages link, so this is now uncommon. It happens when the sheets could not be fetched, or when you ran with --offline, which deliberately makes no third-party calls and so skips styles served from an asset domain. The notice says which, and exists so a silent check is not mistaken for a clean one — it is a gap in the tool, not a finding about you.</p></div><div class="faq-item"><h3>What is brand colour drift?</h3><p>Two colours close enough that nobody could tell them apart, defined separately in your CSS — #005fcc and #0066cc, say. It happens when a value is copied and nudged rather than referenced from a shared custom property, and it compounds. Palette size is not the issue: a design system legitimately defines hundreds of values, and two of them being the same colour is still a mistake.</p></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
