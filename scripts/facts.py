@@ -813,3 +813,16 @@ def brand_max_colours() -> int:
 
 def brand_logo_unnamed() -> int:
     return brand()["logo_unnamed"]
+
+
+def brand_median_typefaces() -> float:
+    return brand()["median_typefaces"]
+
+
+def brand_drift_frame() -> int:
+    """Sites where the CSS could be read — the only ones drift can be seen on."""
+    return brand()["drift_frame"]
+
+
+def brand_with_drift() -> int:
+    return brand()["with_colour_drift"]

@@ -5,11 +5,12 @@ The brand lane is the most differentiated thing in the product and had no page
 at all. Every figure comes from site/_data/brand.json via facts.py, generated
 by scripts/collect_brand.py against real companies.
 
-One figure is deliberately absent. Scout reads typefaces from inline `<style>`
-only, so on a site serving linked stylesheets the count is structurally zero
-rather than genuinely low. A median across a sample where the question could
-not be asked would report blindness as tidiness, so the article publishes how
-often it could be asked instead, and says why.
+This page previously withheld the typeface median, because Scout read inline
+`<style>` only and the count was structurally zero on 9 of 16 sites — a median
+across a sample where the question could not be asked reports blindness as
+tidiness. Scout now fetches linked stylesheets and the CSS is readable on all
+16, so the figure is published and the section says what replaced the old
+colour-count rule and why it died.
 """
 from __future__ import annotations
 
@@ -67,8 +68,8 @@ inconsistent" is something you can only agree or disagree with.</p>
 <code>Organization</code> schema and logo alt text call the company the same thing.</li>
 <li><strong>Logo</strong> — whether the logo's alt text names the company.
 {F.brand_logo_unnamed()} of the sites we measured had a logo whose alt text did not.</li>
-<li><strong>Typography and colour</strong> — how many typefaces and brand colours the pages
-ship. See the limitation below; it is a real one.</li>
+<li><strong>Typography and colour</strong> — how many typefaces the pages ship, and which
+colours in your CSS are indistinguishable from each other.</li>
 <li><strong>Positioning</strong> — whether the pages make a consistent claim about what the
 company does, or a different one each time.</li>
 <li><strong>Voice</strong> — whether the reading level and sentence length hold steady across
@@ -79,23 +80,34 @@ the site or lurch between pages written years apart.</li>
 <p>The lane is weighted lightly in the score on purpose. An inconsistent wordmark is a real
 problem and it is not a <code>noindex</code>; it should never dominate a grade.</p>
 
-<h2>Where this is weak, and it is weak</h2>
+<h2>Two colours nobody can tell apart</h2>
 
-<p>Scout counts typefaces and colours from CSS written inline in the page. It does not fetch
-linked stylesheets. On {F.brand_sites()} real companies it could read the CSS on
-<strong>{F.brand_css_readable()}</strong> of them — the rest serve their styles from
-<code>.css</code> files, which is the normal and correct way to build a site, and Scout
-therefore has nothing at all to look at.</p>
+<p>Scout fetches the stylesheets your pages link, deduplicated across the crawl, and counts
+the typefaces and colours they actually declare. The median site in this sample ships
+{F.brand_median_typefaces():.0f} typefaces; the widest ships {F.brand_max_typefaces()}.</p>
 
-<p>That was worse than it sounds until recently, because the check simply said nothing in that
-case, and a silent check reads exactly like a clean one. It now reports that the count could
-not be taken, at NOTICE, and says the gap is the tool's rather than the site's. Fetching
-stylesheets properly is the actual fix and it is not built yet.</p>
+<p>What it reports about colour is not palette size. It used to be — anything over 24 distinct
+values — and that rule died the moment Scout could see real stylesheets, because one very
+well-run site came back with 485. Every shade ramp, every semantic token, every dark-mode
+pair. The old finding claimed a wide palette meant colours were being written as literals
+instead of referenced from a shared set, and the data says the reverse: a centralised design
+system declares <em>more</em> values precisely because it is centralised.</p>
 
-<p>So the numbers that survive from that check are only about the sites where it could see:
-the widest was {F.brand_max_typefaces()} typefaces, and one site shipped
-{F.brand_max_colours()} distinct colour values. Both are counts of what was served, not
-verdicts — a site with six typefaces may have meant every one of them.</p>
+<p>So the count is gone rather than re-tuned, because raising a threshold until the false
+positives stop is fitting the rule to the sample. What Scout reports instead is groups of
+colours no visitor could tell apart, defined separately — <code>#005fcc</code> and
+<code>#0066cc</code> in the same stylesheet. That is what drift actually looks like: a value
+gets copied and nudged rather than referenced, and a year later the brand blue has four
+spellings. It does not care how big your palette is.
+{F.brand_with_drift()} of the {F.brand_drift_frame()} sites had at least one such group.</p>
+
+<p>Getting that right took two corrections worth repeating, because both produced confident
+nonsense first. Ignoring the alpha channel made every opacity variant of one colour look like
+drift — <code>rgba(0,0,0,.1)</code> is a hairline and <code>rgba(0,0,0,.5)</code> is a scrim,
+and treating them as the same put 49 "near-identical pairs" on a 26-colour palette. And
+grouping colours by chaining — A is close to B, B to C — walked from a pale lavender to a grey
+one indistinguishable step at a time and called them one colour. Every member of a group now
+has to be indistinguishable from every other member.</p>
 
 <h2>Where other tools are better than this</h2>
 
@@ -168,10 +180,17 @@ broken for years because no tool was looking.</p>
              "colour governance is your real problem, though, a design-system tool reads your "
              "tokens directly and will beat any crawler at it."),
             ("Why does my audit say typefaces were not measured?",
-             "Because Scout reads typefaces from CSS written inline in the page and does not "
-             "fetch linked stylesheets, so on most sites it has nothing to look at. That "
-             "notice exists so a silent check is not mistaken for a clean one — it is a gap "
-             "in the tool, not a finding about your site."),
+             "Scout fetches the stylesheets your pages link, so this is now uncommon. It "
+             "happens when the sheets could not be fetched, or when you ran with --offline, "
+             "which deliberately makes no third-party calls and so skips styles served from "
+             "an asset domain. The notice says which, and exists so a silent check is not "
+             "mistaken for a clean one — it is a gap in the tool, not a finding about you."),
+            ("What is brand colour drift?",
+             "Two colours close enough that nobody could tell them apart, defined separately "
+             "in your CSS — #005fcc and #0066cc, say. It happens when a value is copied and "
+             "nudged rather than referenced from a shared custom property, and it compounds. "
+             "Palette size is not the issue: a design system legitimately defines hundreds of "
+             "values, and two of them being the same colour is still a mistake."),
         ],
     )
 
