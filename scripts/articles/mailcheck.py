@@ -54,7 +54,7 @@ the visitor it failed. A dead mailbox tells the visitor it worked.</strong></p>
 
 <h2>We did this</h2>
 
-<p>scoutseo.app carried <code>hello@scoutseo.app</code> in the footer of all 25 of its pages.
+<p>docketseo.app carried <code>hello@docketseo.app</code> in the footer of all 25 of its pages.
 The domain has no MX record; it is on GitHub Pages; port 25 is closed there. Every message
 anyone sent bounced, and we found out by writing a contact page and checking our own
 advertised channel before publishing it.</p>
@@ -157,7 +157,7 @@ had pasted the domain into the middle of a template value and left it there. The
 completely correct in the zone file and there is nowhere for the mail to go.</li>
 </ul>
 
-<p>That second shape is why Scout resolves the exchanger rather than stopping at the record.
+<p>That second shape is why Docket resolves the exchanger rather than stopping at the record.
 An MX-exists check would have called that domain healthy.</p>
 
 <h2>The record that exists and the host that does not</h2>
@@ -188,7 +188,7 @@ host is unreachable sends them to their DNS panel to look at a record that is fi
 
 <p>We are not saying <em>why</em>. A tenant hostname that stops resolving could be a lapsed
 subscription, a migration someone started and did not finish, or a record left behind after a
-move years ago. From outside the domain those look identical, so Scout names the shape and
+move years ago. From outside the domain those look identical, so Docket names the shape and
 stops. Guessing the cause would be the kind of confident wrongness that costs more than the
 finding is worth.</p>
 
@@ -211,7 +211,7 @@ of small business. The number to take from this is the contrast in the table, no
 
 <p>Any mail-focused service does deliverability far more thoroughly than this. <a
 href="https://mxtoolbox.com/">MXToolbox</a> and its equivalents will check SPF, DKIM, DMARC,
-blacklist status and whether your outbound mail will land in spam — none of which Scout looks
+blacklist status and whether your outbound mail will land in spam — none of which Docket looks
 at, and all of which matter more than this check if you are actually sending mail.</p>
 
 <p>The difference is what starts the question. Those tools begin with a domain you already
@@ -234,11 +234,11 @@ DNS provider, pointing at whatever mailbox or forwarding service you use.</p>
 looks for another way to reach you. A visitor who emails a dead one believes they already
 have.</p>
 
-<p>Scout runs this as <code>cvr.dead_contact</code> on every audit, and it will not report a
+<p>Docket runs this as <code>cvr.dead_contact</code> on every audit, and it will not report a
 domain it could not resolve — a lookup that failed is not a finding, and a domain with no MX
 but a working mail server on its address record is legal and fine.</p>
 
-<p><a class="btn" href="/download/">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="learn", slug="dead-contact-address",
@@ -248,7 +248,7 @@ but a working mail server on its address record is legal and fine.</p>
               f"one, {F.small_publishing_pct()}% of UK shops do, and "
               f"{F.small_dead()} of those are dead."),
         h1="The contact address that cannot receive mail",
-        crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / Dead contact addresses',
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Dead contact addresses',
         body=body,
         published="2026-08-07",
         faq=[

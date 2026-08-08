@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render a Scout page into the site shell.
+"""Render a Docket page into the site shell.
 
 Same split as Crisp: this file owns the *chrome* — head, styles, nav, footer,
 schema — and never generates prose. Every article's body is authored by hand in
@@ -17,7 +17,7 @@ from pathlib import Path
 import pathlib
 
 SITE = Path(__file__).resolve().parent.parent / "site"
-BASE = "https://scoutseo.app"
+BASE = "https://docketseo.app"
 
 
 def _check_counts() -> tuple:
@@ -61,14 +61,14 @@ def price(slug: str) -> str:
 #: The current build. One place, because a download link that 404s is the
 #: single worst bug a product site can have.
 RELEASE = "v0.1.0"
-REPO = "https://github.com/mattkerr09/scout-site"
+REPO = "https://github.com/mattkerr09/docket-site"
 #: The contact channel, and the only one verified to receive anything. The
-#: footer advertised hello@scoutseo.app on all 25 pages; the domain has no MX
+#: footer advertised hello@docketseo.app on all 25 pages; the domain has no MX
 #: record and its address record is GitHub Pages, port 25 closed, so every
 #: message bounced to a sender we never heard from. lint.py now resolves the
 #: domain of any mailto: on the site and fails when it cannot accept mail.
 ISSUES = f"{REPO}/issues"
-DMG = f"{REPO}/releases/download/{RELEASE}/Scout-0.1.0-arm64.dmg"
+DMG = f"{REPO}/releases/download/{RELEASE}/Docket-0.1.0-arm64.dmg"
 #: Rounded DOWN from the real 17,432,048 bytes of the notarised DMG, measured
 #: 2026-08-07. Rounding down is deliberate: a download is allowed to be smaller
 #: than promised and never larger, and "18 MB" was already overstating it.
@@ -85,9 +85,9 @@ PRICE_STR = f"${PRICE}"
 # --------------------------------------------------------------------------
 STYLE = """<style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
-   display faces this category defaults to: Scout is a measuring instrument that
+   display faces this category defaults to: Docket is a measuring instrument that
    produces reports, and the type should read as precise rather than friendly.
-   Self-hosted because Scout flags render-blocking third-party resources in its
+   Self-hosted because Docket flags render-blocking third-party resources in its
    own audits, and shipping one would be the inconsistency it exists to catch. */
 @font-face{font-family:'Switzer';src:url('/fonts/Switzer-400.woff2') format('woff2');
   font-weight:400;font-style:normal;font-display:swap}
@@ -135,7 +135,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17
    site, and nor did the setTimeout fallback.
 
    Shipping an effect that cannot be verified, on a page whose entire argument
-   is that Scout reports only what it can prove, is the wrong trade. The type,
+   is that Docket reports only what it can prove, is the wrong trade. The type,
    spacing and depth carry the page; content renders immediately and is never
    contingent on a script.
 
@@ -261,7 +261,7 @@ body.landing article{padding:0}
 @media(max-width:940px){.mock{transform:none}.mock:hover{transform:none}}
 
 /* ---- the signature: a list becoming an order ------------------------------
-   Scout's whole claim is that it ranks. Saying so is weaker than showing it, so
+   Docket's whole claim is that it ranks. Saying so is weaker than showing it, so
    the rows arrive unordered and settle into sequence as the section enters. One
    move, once, on the one idea the product is actually about. */
 .rank-demo{display:grid;gap:.6rem;margin:2rem 0 0}
@@ -399,7 +399,7 @@ body.landing article{padding:0}
 
 
 def _mark(size: int = 22, color: str = "var(--amber)") -> str:
-    """The Scout shield, inline so there is no extra request and no flash."""
+    """The Docket shield, inline so there is no extra request and no flash."""
     return (
         f'<svg viewBox="0 0 1024 1024" width="{size}" height="{size}" aria-hidden="true">'
         f'<path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 '
@@ -411,7 +411,7 @@ def _mark(size: int = 22, color: str = "var(--amber)") -> str:
 
 
 NAV = f"""<nav><div class="wrap-wide nav-inner">
-<a class="nav-brand" href="/">{_mark(23)}<span>Scout</span></a>
+<a class="nav-brand" href="/">{_mark(23)}<span>Docket</span></a>
 <div class="nav-links">
 <a href="/index/">The Index</a>
 <a href="/learn/">Learn</a>
@@ -425,9 +425,9 @@ NAV = f"""<nav><div class="wrap-wide nav-inner">
 
 FOOTER = f"""<footer><div class="wrap-wide">
 <div class="foot-grid">
-<div><h2 class="foot-h">Scout</h2>
+<div><h2 class="foot-h">Docket</h2>
 <a href="/">Overview</a><a href="/download/">Download</a>
-<a href="/index/">The Scout Index</a><a href="/learn/what-scout-checks/">What it checks</a></div>
+<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/sitebulb-alternative/">vs Sitebulb</a>
@@ -438,13 +438,13 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <a href="/learn/seo-audit/">What an SEO audit is</a>
 <a href="/learn/">All guides</a></div>
 <div><h2 class="foot-h">Contact</h2>
-<a href="/about/">About Scout</a>
+<a href="/about/">About Docket</a>
 <a href="/contact/">Get in touch</a>
 <a href="{REPO}/issues">Issue tracker</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a></div>
 </div>
 <div class="foot-bottom">
-<span>© 2026 Scout · Audits run on your Mac. Nothing is uploaded.</span>
+<span>© 2026 Docket · Audits run on your Mac. Nothing is uploaded.</span>
 <span>{_mark(15, "var(--text-dim)")}</span>
 </div></div></footer>"""
 
@@ -481,8 +481,8 @@ def _breadcrumb_schema(crumb: str) -> str:
 def _entity_schema() -> str:
     """Organization + SoftwareApplication + sameAs, on every page.
 
-    `sameAs` is what lets a language model resolve "Scout" to this specific
-    product rather than the dozen other things called Scout — the single
+    `sameAs` is what lets a language model resolve "Docket" to this specific
+    product rather than the dozen other things called Docket — the single
     highest-leverage piece of markup for being cited by name.
 
     Only two entries, both verified to resolve, because /learn/sameas-entity-signals/
@@ -493,19 +493,19 @@ def _entity_schema() -> str:
     return (
         '{"@context":"https://schema.org","@graph":['
         '{"@type":"Organization","@id":"' + BASE + '/#org",'
-        '"name":"Scout","url":"' + BASE + '/",'
+        '"name":"Docket","url":"' + BASE + '/",'
         '"logo":"' + BASE + '/icon.png",'
-        '"description":"Scout makes local SEO and marketing audit software for Mac.",'
+        '"description":"Docket makes local SEO and marketing audit software for Mac.",'
         '"sameAs":["https://github.com/mattkerr09",'
-        '"https://github.com/mattkerr09/scout-site"]},'
+        '"https://github.com/mattkerr09/docket-site"]},'
         '{"@type":"WebSite","@id":"' + BASE + '/#site",'
-        '"url":"' + BASE + '/","name":"Scout",'
+        '"url":"' + BASE + '/","name":"Docket",'
         '"publisher":{"@id":"' + BASE + '/#org"}},'
         '{"@type":"SoftwareApplication","@id":"' + BASE + '/#app",'
-        '"name":"Scout","applicationCategory":"BusinessApplication",'
+        '"name":"Docket","applicationCategory":"BusinessApplication",'
         '"applicationSubCategory":"SEO audit software",'
         '"operatingSystem":"macOS 12 or later, Apple Silicon",'
-        '"description":"Scout crawls a website, runs ' + str(N_CHECKS) + ' checks across SEO, copy, '
+        '"description":"Docket crawls a website, runs ' + str(N_CHECKS) + ' checks across SEO, copy, '
         'speed, structured data, local visibility, AI search visibility and marketing '
         'conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.",'
         '"offers":{"@type":"Offer","price":"' + str(PRICE) + '","priceCurrency":"USD",'
@@ -552,7 +552,7 @@ def render(
             f'"headline":"{esc(h1)}","description":"{esc(desc)}",'
             f'"datePublished":"{published}","dateModified":"{modified or published}",'
             '"author":{"@type":"Person","name":"Matt Kerr",'
-            '"description":"Builds Scout. Every number on this site comes from running it."},'
+            '"description":"Builds Docket. Every number on this site comes from running it."},'
             '"publisher":{"@id":"' + BASE + '/#org"},'
             f'"mainEntityOfPage":"{url}","inLanguage":"en"}}'
         )
@@ -561,7 +561,7 @@ def render(
     # `faq` built a FAQPage block and nothing else. The Q&A existed in JSON-LD
     # and appeared nowhere a reader or a model reading the rendered page could
     # see it — and the `.faq-item` rules in the stylesheet had been styling
-    # markup nothing emitted. Scout's own ai.no_question_headings finding was
+    # markup nothing emitted. Docket's own ai.no_question_headings finding was
     # the symptom: zero question-form headings across the article set, on a
     # site whose every article ships four good questions.
     #
@@ -617,7 +617,7 @@ def render(
 <meta property="og:title" content="{esc(h1)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{url}">
-<meta property="og:site_name" content="Scout">
+<meta property="og:site_name" content="Docket">
 <meta property="og:image" content="{BASE}/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">

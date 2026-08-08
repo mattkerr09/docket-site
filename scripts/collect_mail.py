@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """How many sites publish a contact address that cannot receive mail?
 
-scoutseo.app did, on all 25 of its pages, for weeks. The question this answers
+docketseo.app did, on all 25 of its pages, for weeks. The question this answers
 is whether that was an unusual mistake or an ordinary one, and no published
 figure exists either way — so it gets measured rather than guessed.
 
@@ -15,7 +15,7 @@ Method, stated because the number is only worth as much as it:
     somebody wrote meaning "write to this".
   * Consumer providers and RFC 2606 reserved names are excluded. Whether
     gmail.com accepts mail is not a fact about the site publishing it.
-  * A domain is counted dead only where Scout's own `mailcheck` says so
+  * A domain is counted dead only where Docket's own `mailcheck` says so
     conclusively — no MX and an address record on a static host that does not
     run SMTP, or no MX and no address record at all. Anything resting on a
     port-25 probe is recorded separately and excluded from the headline,
@@ -43,7 +43,7 @@ from seo_engine import mailcheck as M  # noqa: E402
 
 MAILTO = re.compile(rb'href=["\']mailto:([^"\'?>]+)', re.I)
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 "
-      "(KHTML, like Gecko) Version/17.0 Safari/605.1.15 Scout/1.0")
+      "(KHTML, like Gecko) Version/17.0 Safari/605.1.15 Docket/1.0")
 #: Homepages are the target and some are enormous. Every mailto worth finding
 #: is in the markup long before this.
 MAX_BYTES = 900_000

@@ -48,7 +48,7 @@ def measure() -> tuple[dict, dict[str, set[str]]]:
     Both come from the same walk. An earlier version filtered non-resolving
     hrefs out silently on its way to counting edges, which is how /about/ went
     live linking to /learn/entity-schema/ — a page that has never existed, at a
-    guessed path, past every gate. Scout found it on the deployed site.
+    guessed path, past every gate. Docket found it on the deployed site.
     """
     pages = sorted(SITE.rglob("index.html"))
     paths = {path_of(p) for p in pages}
@@ -81,7 +81,7 @@ def measure() -> tuple[dict, dict[str, set[str]]]:
     for node in nodes:
         node["index"] = round(node["share_pct"] / average, 2) if average else 0.0
 
-    return ({"site": "scoutseo.app", "pages": len(paths), "edges": total,
+    return ({"site": "docketseo.app", "pages": len(paths), "edges": total,
              "average_share_pct": average,
              "below_half": sum(1 for x in nodes if x["index"] < 0.5),
              "nodes": nodes}, broken)

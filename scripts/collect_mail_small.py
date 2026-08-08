@@ -58,7 +58,7 @@ OVERPASS = "https://overpass-api.de/api/interpreter"
 #: Overpass answers 406 to a browser user-agent. Identifying the tool and a
 #: contact is what its usage policy asks for anyway — a shared free API is
 #: owed an honest introduction.
-OVERPASS_UA = ("scoutseo.app survey (github.com/mattkerr09/scout-site) "
+OVERPASS_UA = ("docketseo.app survey (github.com/mattkerr09/docket-site) "
                "one query, contact via the repository issue tracker")
 QUERY = (
     '[out:json][timeout:180];'
@@ -69,7 +69,7 @@ QUERY = (
 
 MAILTO = re.compile(rb'href=["\']mailto:([^"\'?>]+)', re.I)
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 "
-      "(KHTML, like Gecko) Version/17.0 Safari/605.1.15 Scout/1.0")
+      "(KHTML, like Gecko) Version/17.0 Safari/605.1.15 Docket/1.0")
 MAX_BYTES = 700_000
 
 #: A `website` tag pointing at somebody else's platform is not the shop's own

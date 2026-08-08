@@ -60,7 +60,7 @@ same organisation. It is the cheapest entity signal available — a list of URLs
 own — and <strong>{100 - m['pct_same']}% of the {m['n']} major sites we measured do not have
 it.</strong></p>
 
-<p>We fetched the homepage of every site in the Scout Index on {m['collected']}, pulled out
+<p>We fetched the homepage of every site in the Docket Index on {m['collected']}, pulled out
 the JSON-LD, and looked for two things: an Organization-family type, and a
 <code>sameAs</code> property. {m['org']} sites ({m['pct_org']}%) declare an organisation.
 Only {m['same']} ({m['pct_same']}%) declare <code>sameAs</code>.</p>
@@ -114,7 +114,7 @@ advice about this take it.</p>
 
 <p><strong>Linking profiles in the footer and never declaring them.</strong> The commonest by
 far. The site links Facebook and Instagram from every page, and the schema mentions neither,
-so the evidence is sitting there unused. Scout reports this specifically because the fix is
+so the evidence is sitting there unused. Docket reports this specifically because the fix is
 copying URLs you already have into an array.</p>
 
 <p><strong>Listing pages you do not control.</strong> <code>sameAs</code> means "this is also
@@ -134,19 +134,19 @@ logo's alt text. When those disagree — and they disagree more often than anyon
 usually because a tagline crept into one of them — a knowledge panel, a shared link preview
 and an AI citation can each show a different name for the same company. <code>sameAs</code>
 connects your entity to the world; consistent naming is what makes the entity coherent in the
-first place. Scout checks both.</p>
+first place. Docket checks both.</p>
 
 <h2>Where another tool is better</h2>
 
 <p>For validating that one page's markup parses and is eligible for rich results, use
 Google's own Rich Results Test. It is authoritative in a way no third-party tool can be,
-because it is the parser that actually decides. Scout tells you which pages across a whole
+because it is the parser that actually decides. Docket tells you which pages across a whole
 site are missing the markup and what it costs you; it does not adjudicate eligibility, and
 anything claiming to is guessing at someone else's parser.</p>
 
 <p>For finding <em>which</em> external profiles and mentions exist to point at in the first
 place, <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs</a> has a web-scale index and
-Scout does not. That is a genuine difference in kind, not a feature gap we intend to close.</p>
+Docket does not. That is a genuine difference in kind, not a feature gap we intend to close.</p>
 
 <h2>Checking yours</h2>
 
@@ -160,7 +160,7 @@ Scout does not. That is a genuine difference in kind, not a feature gap we inten
 to a small site. <a href="/data/entity-2026-08.json">The dataset behind this page</a> lists
 every site measured, so you can check our arithmetic.</p>
 
-<p><a class="btn" href="/download/">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="learn", slug="sameas-entity-signals",
@@ -169,7 +169,7 @@ every site measured, so you can check our arithmetic.</p>
               f"entry are one organisation. We measured {m['n']} major sites: "
               f"{m['pct_same']}% declare it."),
         h1="sameAs, and why half the web skips it",
-        crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / sameAs and entities',
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / sameAs and entities',
         body=body,
         faq=[
             ("What does sameAs do in schema.org?",

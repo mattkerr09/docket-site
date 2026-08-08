@@ -11,7 +11,7 @@ It refuses to publish a file that:
   * is not valid JSON, or is a schema version the shipped app cannot read
   * carries no compiled date, or one older than what is already live
   * has lost crawlers without saying so (a silent deletion is how a site ends
-    up blocking a bot Scout stopped mentioning)
+    up blocking a bot Docket stopped mentioning)
   * cites no source for a section that has entries
 """
 from __future__ import annotations
@@ -22,7 +22,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-LIVE = "https://scoutseo.app/data/knowledge.json"
+LIVE = "https://docketseo.app/data/knowledge.json"
 LOCAL = ROOT / "site" / "data" / "knowledge.json"
 SCHEMA_VERSION = 1
 

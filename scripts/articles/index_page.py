@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The Scout Index — the data moat.
+"""The Docket Index — the data moat.
 
 Every figure comes from `data/index-*.json`, produced by
 `scripts/collect_index.py`, which ships alongside its input list so anyone can
@@ -107,7 +107,7 @@ def build() -> Path:
 
     body = f"""
 <p class="lede">We fetched the robots.txt of {s['attempted']} well-known websites and parsed
-each one with Scout's own crawler-rules engine. <strong>{cit_pct}% of them block at least one
+each one with Docket's own crawler-rules engine. <strong>{cit_pct}% of them block at least one
 AI <em>search</em> crawler</strong> — the crawlers that decide whether a site can appear in
 ChatGPT, Perplexity or Claude at all. Google's AI Overviews are deliberately not in that list:
 they follow your Googlebot rules, not Google-Extended, and treating the two as the same thing
@@ -185,7 +185,7 @@ not always practice.</p>
 <h2>Method</h2>
 <p>One <code>GET</code> to <code>https://&lt;host&gt;/robots.txt</code> per site, serialised
 with a delay — a smaller footprint than one person visiting the homepage. Rules were parsed
-with Scout's <a href="https://www.rfc-editor.org/rfc/rfc9309">RFC 9309</a> implementation, which does longest-match resolution, <code>*</code>
+with Docket's <a href="https://www.rfc-editor.org/rfc/rfc9309">RFC 9309</a> implementation, which does longest-match resolution, <code>*</code>
 wildcards and <code>$</code> anchors. A site counts as blocking a crawler when that crawler
 is disallowed from <code>/</code>.</p>
 
@@ -222,15 +222,15 @@ method alongside the numbers.</p>
 
 <div class="callout">
 <div class="callout-title">Check your own site</div>
-<p>Scout runs this same audit against your site, plus {N_CHECKS - 1} other checks, on your Mac.
+<p>Docket runs this same audit against your site, plus {N_CHECKS - 1} other checks, on your Mac.
 It tells you which crawlers you are blocking, whether it looks deliberate, and what the
-practical consequence is for each one. <a href="/download/">Download Scout →</a></p>
+practical consequence is for each one. <a href="/download/">Download Docket →</a></p>
 </div>
 """
 
     faq = [
         ("What percentage of websites block AI crawlers?",
-         f"In Scout's August 2026 sample of {n} well-known sites with a robots.txt, "
+         f"In Docket's August 2026 sample of {n} well-known sites with a robots.txt, "
          f"{cit_pct}% blocked at least one AI search crawler and {train_pct}% blocked at "
          f"least one training crawler. News and media sites were the outlier at "
          f"{s['by_category'].get('news', {}).get('pct', 0)}%; SaaS companies were at "
@@ -255,12 +255,12 @@ practical consequence is for each one. <a href="/download/">Download Scout →</
 
     return render(
         cat="index", slug="",
-        title=f"Scout Index: {cit_pct}% of major sites block an AI search crawler",
-        desc=(f"We measured the robots.txt of {s['attempted']} well-known sites with Scout's "
+        title=f"Docket Index: {cit_pct}% of major sites block an AI search crawler",
+        desc=(f"We measured the robots.txt of {s['attempted']} well-known sites with Docket's "
               f"own parser. {cit_pct}% block at least one AI search crawler. Full method "
               f"and dataset included."),
-        h1="The Scout Index: who is blocking AI search crawlers",
-        crumb='<a href="/">Scout</a> / The Index',
+        h1="The Docket Index: who is blocking AI search crawlers",
+        crumb='<a href="/">Docket</a> / The Index',
         body=body,
         schema_type="Article",
         faq=faq,

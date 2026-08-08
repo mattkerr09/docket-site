@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Count the test files that exist because Scout said something untrue.
+"""Count the test files that exist because Docket said something untrue.
 
 /learn/audit-tool-accuracy/ publishes this as a proportion, and a flattering
 number needs its counting rule published beside it. Until now the rule was
@@ -17,7 +17,7 @@ Two deliberate choices:
     and the regex undercounts them by a lot. The number published is the
     number pytest reports.
 
-  * A file counts only when its own prose names a specific thing Scout got
+  * A file counts only when its own prose names a specific thing Docket got
     wrong. Every test file in the repo describes a contract; that is not the
     claim. The phrases below are the ones that only appear when somebody is
     writing down a mistake that actually happened.
@@ -50,7 +50,7 @@ PAST_MISTAKE = re.compile(
 )
 
 RULE = (
-    "A test file counts only if it names a specific thing Scout got wrong — "
+    "A test file counts only if it names a specific thing Docket got wrong — "
     "'false positive', 'false accusation', 'invented', 'was false', 'the bug', "
     "'used to produce/say/report/be/call/claim/fire/accuse', 'would have "
     "gone/been/called/reported/shipped/failed/accused', or 'nearly "
@@ -113,7 +113,7 @@ def main() -> None:
             "The rule was widened on 2026-08-07, when this collector was "
             "written and the figure stopped being maintained by hand. The "
             "earlier rule matched 12 of the same 30 files (40.0%); the two it "
-            "missed were test_rating_visibility.py, which exists because Scout "
+            "missed were test_rating_visibility.py, which exists because Docket "
             "told a real ecommerce site its rich results were at risk when "
             "they were not, and test_knowledge_consistency.py. Both plainly "
             "record mistakes and the earlier phrasing simply did not name the "

@@ -1,6 +1,6 @@
-name: 'Scout SEO audit'
+name: 'Docket SEO audit'
 description: 'Crawl a site and fail the build on SEO regressions. Apple Silicon macOS runners only.'
-author: 'scoutseo.app'
+author: 'docketseo.app'
 
 branding:
   icon: 'search'
@@ -32,7 +32,7 @@ inputs:
   output-file:
     description: 'Where to write the report when format is sarif or junit.'
     required: false
-    default: 'scout-report'
+    default: 'docket-report'
   render:
     description: >-
       Run this many pages through WebKit before checking them. Considerably
@@ -40,43 +40,43 @@ inputs:
     required: false
     default: '0'
   version:
-    description: 'Scout release tag to install.'
+    description: 'Docket release tag to install.'
     required: false
     default: 'v0.1.0'
 
 outputs:
   exit-code:
-    description: '0 clean, 2 findings at or above the threshold, 1 Scout could not run.'
+    description: '0 clean, 2 findings at or above the threshold, 1 Docket could not run.'
     value: ${{ steps.audit.outputs.exit-code }}
 
 runs:
   using: composite
   steps:
-    # Scout is Apple Silicon only. Failing here with a sentence someone can act
+    # Docket is Apple Silicon only. Failing here with a sentence someone can act
     # on beats failing later inside hdiutil with a message about a corrupt
     # image, which is what an ubuntu-latest run would otherwise produce.
     - name: Check the runner
       shell: bash
       run: |
         if [ "$(uname -s)" != "Darwin" ] || [ "$(uname -m)" != "arm64" ]; then
-          echo "::error::Scout runs on Apple Silicon macOS only. This runner is $(uname -s)/$(uname -m)."
+          echo "::error::Docket runs on Apple Silicon macOS only. This runner is $(uname -s)/$(uname -m)."
           echo "::error::Use 'runs-on: macos-latest'. For a Linux-only pipeline, Screaming Frog's CLI is the right tool."
           exit 1
         fi
 
-    - name: Install Scout
+    - name: Install Docket
       shell: bash
       run: |
         set -euo pipefail
-        curl -fsSL -o "$RUNNER_TEMP/scout.dmg" \
-          "https://github.com/mattkerr09/scout-site/releases/download/${{ inputs.version }}/Scout-0.1.0-arm64.dmg"
-        hdiutil attach -nobrowse -quiet "$RUNNER_TEMP/scout.dmg" -mountpoint "$RUNNER_TEMP/scout-vol"
-        cp -R "$RUNNER_TEMP/scout-vol/Scout.app" "$RUNNER_TEMP/Scout.app"
-        hdiutil detach "$RUNNER_TEMP/scout-vol" -quiet
+        curl -fsSL -o "$RUNNER_TEMP/docket.dmg" \
+          "https://github.com/mattkerr09/docket-site/releases/download/${{ inputs.version }}/Docket-0.1.0-arm64.dmg"
+        hdiutil attach -nobrowse -quiet "$RUNNER_TEMP/docket.dmg" -mountpoint "$RUNNER_TEMP/docket-vol"
+        cp -R "$RUNNER_TEMP/docket-vol/Docket.app" "$RUNNER_TEMP/Docket.app"
+        hdiutil detach "$RUNNER_TEMP/docket-vol" -quiet
         # The DIRECTORY goes on PATH, not a symlink to the binary: the WebKit
         # render helper is its sibling and moving the executable away from it
         # is how --render stops working.
-        echo "$RUNNER_TEMP/Scout.app/Contents/Resources/scout" >> "$GITHUB_PATH"
+        echo "$RUNNER_TEMP/Docket.app/Contents/Resources/docket" >> "$GITHUB_PATH"
 
     - name: Audit
       id: audit
@@ -88,15 +88,15 @@ runs:
           args+=(--render "${{ inputs.render }}")
         fi
         case "${{ inputs.format }}" in
-          sarif) scout "${args[@]}" -f sarif > "${{ inputs.output-file }}.sarif" ;;
-          junit) scout "${args[@]}" -f junit > "${{ inputs.output-file }}.xml" ;;
-          *)     scout "${args[@]}" ;;
+          sarif) docket "${args[@]}" -f sarif > "${{ inputs.output-file }}.sarif" ;;
+          junit) docket "${args[@]}" -f junit > "${{ inputs.output-file }}.xml" ;;
+          *)     docket "${args[@]}" ;;
         esac
         code=$?
         echo "exit-code=$code" >> "$GITHUB_OUTPUT"
-        # 1 means Scout itself could not run, which is a different problem from
+        # 1 means Docket itself could not run, which is a different problem from
         # a site with findings and must not be reported as one.
         if [ "$code" = "1" ]; then
-          echo "::error::Scout could not run. This is a tool failure, not a finding about the site."
+          echo "::error::Docket could not run. This is a tool failure, not a finding about the site."
         fi
         exit $code

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""JavaScript rendering — what it is for, and what it changed for Scout.
+"""JavaScript rendering — what it is for, and what it changed for Docket.
 
 Numbers here were measured while building the feature: notion.so fetched
 statically versus rendered in WebKit, on 2026-08-06.
@@ -34,9 +34,9 @@ a client-rendered page is blank. If being cited in AI answers matters to you, se
 rendering is not an optimisation, it is the entry fee. We measured
 <a href="/index/">who is blocked from where</a> separately.</p>
 
-<h2>How Scout does it</h2>
+<h2>How Docket does it</h2>
 
-<p>macOS ships a browser engine. WebKit is a system framework, so Scout renders through a
+<p>macOS ships a browser engine. WebKit is a system framework, so Docket renders through a
 112 KB helper built against it rather than bundling a browser — the download is still {DMG_SIZE},
 and nothing is fetched at install time. The audit engine stays what it was: dependency-free
 Python that never needed a browser to do most of its job.</p>
@@ -50,12 +50,12 @@ surprises to discover.</p>
 <h2>What it unlocked</h2>
 
 <h3>Pages that only exist after hydration</h3>
-<p>The notion.so case. Scout now compares the served HTML against the rendered DOM and
+<p>The notion.so case. Docket now compares the served HTML against the rendered DOM and
 reports the difference as a measurement rather than a suspicion — 0 characters versus 2,068
 is a fact you can take to whoever owns the front end.</p>
 
 <h3>What your tag manager actually loaded</h3>
-<p>GTM injects tags at runtime, so a static fetch sees the container and nothing else. Scout
+<p>GTM injects tags at runtime, so a static fetch sees the container and nothing else. Docket
 used to say "GTM is present, so your analytics may be configured inside it" and stop. Rendering
 notion.so surfaced <strong>54 scripts that were not in the served HTML</strong>, among them
 Marketo, the LinkedIn Insight Tag and the X advertising pixel.</p>
@@ -64,14 +64,14 @@ every one of them is a third party receiving your visitors' data.</p>
 
 <h3>Timings from a browser rather than from markup</h3>
 <p>First Contentful Paint and DOM Content Loaded now come from the browser's own performance
-API. Scout previously inferred layout-shift and paint risk from markup patterns, which is
+API. Docket previously inferred layout-shift and paint risk from markup patterns, which is
 useful and is not measurement.</p>
 
 <h2>Where this stops, and where another tool is better</h2>
 
 <p>Rendering in WebKit is not rendering in Chrome. Google evaluates your site in a Chromium
 renderer, and while the two agree on nearly everything, a bug that only appears in Blink is a
-bug Scout will not see.</p>
+bug Docket will not see.</p>
 
 <p>Rendering also says nothing about how much of the page Google read in the first
 place. It fetches at most 2MB of any URL and indexes that as though it were the whole file, so
@@ -79,7 +79,7 @@ a heavy page can be truncated before the renderer is ever involved —
 <a href="/learn/googlebot-2mb-limit/">measured here</a>.</p>
 
 <p>Nor does rendering give you Core Web Vitals. LCP, INP and CLS are <em>field</em> metrics —
-they come from real users on real connections, not from one machine on a fast desk. Scout can
+they come from real users on real connections, not from one machine on a fast desk. Docket can
 pull that data from the Chrome UX Report when you turn it on, which is the same source Search
 Console uses. Any tool presenting a single synthetic run as "your Core Web Vitals" is
 misrepresenting what the number is.</p>
@@ -87,7 +87,7 @@ misrepresenting what the number is.</p>
 <p>And if you want to crawl a large site with rendering at volume, <a
 href="/vs/screaming-frog-alternative/">Screaming Frog</a> has been doing it for years with
 configurable wait strategies, JavaScript error capture and a rendered-versus-raw diff view
-built for exactly this. Scout renders a sample — the shallowest pages, ten by default —
+built for exactly this. Docket renders a sample — the shallowest pages, ten by default —
 because that answers "is this site client-rendered and what is it costing me" without turning
 a five-minute audit into an hour.</p>
 
@@ -95,13 +95,13 @@ a five-minute audit into an hour.</p>
 
 <p>In the app, turn on rendering before you audit. From the command line:</p>
 
-<pre><code>scout audit https://example.com --render 10</code></pre>
+<pre><code>docket audit https://example.com --render 10</code></pre>
 
 <p>The report says how many pages were rendered, which ones needed it, and what the tag
 manager loaded. If the helper is missing it says that too, rather than quietly falling back
 to a static crawl and letting you believe otherwise.</p>
 
-<p><a class="btn" href="{DMG}">Download Scout for Mac</a></p>
+<p><a class="btn" href="{DMG}">Download Docket for Mac</a></p>
 """
     return render(
         cat="learn", slug="javascript-rendering",
@@ -110,14 +110,14 @@ to a static crawl and letting you believe otherwise.</p>
               "returns 0 characters of text statically and 2,068 rendered. What rendering "
               "changes."),
         h1="Auditing what a browser actually sees",
-        crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / JavaScript rendering',
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / JavaScript rendering',
         body=body,
         faq=[
             ("Do search engines run JavaScript?",
              "Google does, on a second pass that can lag the first crawl by days. Most AI "
              "crawlers do not render at all, so a client-rendered page is blank to the "
              "crawlers behind ChatGPT and Perplexity."),
-            ("Does Scout bundle a browser?",
+            ("Does Docket bundle a browser?",
              "No. macOS ships WebKit as a system framework, so rendering is a 112 KB helper "
              "built against it. The download is " + DMG_SIZE + " and nothing is fetched at install."),
             ("Why is rendering off by default?",
@@ -126,7 +126,7 @@ to a static crawl and letting you believe otherwise.</p>
              "is also ten to thirty times slower than fetching."),
             ("Can rendering measure Core Web Vitals?",
              "No, and nothing that runs on one machine can. LCP, INP and CLS are field "
-             "metrics from real users on real connections. Scout reads them from the Chrome "
+             "metrics from real users on real connections. Docket reads them from the Chrome "
              "UX Report, the same source Search Console uses."),
         ],
     )

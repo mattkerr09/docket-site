@@ -71,7 +71,7 @@ into a linked file removes it from this problem outright.</p>
 
 <h2>What we measured</h2>
 
-<p>We fetched the homepage of every site in the Scout Index sample list on 2026-08-07 and
+<p>We fetched the homepage of every site in the Docket Index sample list on 2026-08-07 and
 recorded two things: how many bytes came back, and how far into those bytes the last title,
 canonical, meta robots directive and JSON-LD block sat. {F.size_fetched()} of
 {F.size_attempted()} answered.</p>
@@ -107,13 +107,13 @@ our tool reading a page from disk and seeing something that was not what it thou
 <h2>Where another tool is better</h2>
 
 <p><a href="/vs/screaming-frog-alternative/">Screaming Frog</a> reports page size across a
-whole crawl and lets you sort and filter on it, at a scale Scout is not built for. If the
+whole crawl and lets you sort and filter on it, at a scale Docket is not built for. If the
 question is "which of my 400,000 URLs are heavy", that is the tool, and it has been doing it
 for years.</p>
 
 <p>What it will not tell you is which required markup falls past 2MB on the pages that are,
 because that needs the byte offset of each element rather than the size of the file. That is
-the part Scout adds, and it only matters on the pages Screaming Frog would have found for
+the part Docket adds, and it only matters on the pages Screaming Frog would have found for
 you first.</p>
 
 <h2>What to do if a page is over</h2>
@@ -132,12 +132,12 @@ injected at the end of the body is the common way to lose it.</li>
 the fragment that was fetched.</li>
 </ol>
 
-<p>Scout runs this as <code>index.byte_cap</code> on every audit, and reports the two cases separately: a page
+<p>Docket runs this as <code>index.byte_cap</code> on every audit, and reports the two cases separately: a page
 merely over the limit is losing content, and a page whose required markup falls past the
 cutoff is losing indexation. They are not the same problem and they do not deserve the same
 urgency.</p>
 
-<p><a class="btn" href="/download/">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="learn", slug="googlebot-2mb-limit",
@@ -146,7 +146,7 @@ urgency.</p>
               f"measured {F.size_fetched()} homepages: {F.size_over_cap()} are already "
               f"past it."),
         h1="Googlebot stops reading at 2MB",
-        crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / The 2MB limit',
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / The 2MB limit',
         body=body,
         published="2026-08-07",
         faq=[

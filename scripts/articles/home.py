@@ -12,7 +12,7 @@ PNG of last month's UI does. It is a faithful replica of the real results view,
 including the numbers, which come from an actual audit.
 
 Two things are kept from the first version because they are the differentiator,
-not decoration: the section on what Scout cannot do, and the Index numbers. A
+not decoration: the section on what Docket cannot do, and the Index numbers. A
 homepage that concedes nothing reads as marketing.
 """
 from __future__ import annotations
@@ -87,9 +87,9 @@ def _mockup() -> str:
     circ = 2 * 3.14159 * 26
     filled = circ * 0.892
     return f"""
-<div class="mock" role="img" aria-label="Scout showing an audit scoring 89 out of 100 with per-area scores and a ranked fix list">
+<div class="mock" role="img" aria-label="Docket showing an audit scoring 89 out of 100 with per-area scores and a ranked fix list">
 <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span>
-<span class="mock-dot"></span><span class="mock-title">Scout</span></div>
+<span class="mock-dot"></span><span class="mock-title">Docket</span></div>
 <div class="mock-body">
   <div class="mock-top">
     <svg width="66" height="66" viewBox="0 0 66 66" aria-hidden="true">
@@ -138,7 +138,7 @@ def _index_chart(m: dict) -> str:
 <div class="chart">
 {rows}
 <p class="chart-note">Share of sites in each category blocking at least one AI <em>search</em>
-crawler. {m['n']} sites with a robots.txt, measured {m['collected']} with Scout's own parser.
+crawler. {m['n']} sites with a robots.txt, measured {m['collected']} with Docket's own parser.
 The script and the site list ship with the dataset — re-run it and check.</p>
 </div>"""
 
@@ -163,7 +163,7 @@ def body() -> str:
   <span class="eyebrow">{N_CHECKS} checks · {PRICE_STR} once · no subscription</span>
   <h1 class="hero-h1">Everything that's wrong.
   <em>In the order to fix&nbsp;it.</em></h1>
-  <p class="hero-sub">Point Scout at any site. {N_CHECKS} checks across technical SEO, copy,
+  <p class="hero-sub">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
   conversion, brand, AI search visibility and campaign tracking — then one ranked plan with the
   markup to paste. Not four tools. One download.</p>
   <div class="hero-cta">
@@ -196,7 +196,7 @@ def body() -> str:
     </ul>
   </div>
   <div class="split-col good">
-    <div class="split-tag">What Scout gives you</div>
+    <div class="split-tag">What Docket gives you</div>
     <div class="rank-demo">
       <div class="rank-row hot"><span class="n">1</span>The homepage is set to noindex</div>
       <div class="rank-row"><span class="n">2</span>Analytics missing from 39 of 40 pages</div>
@@ -268,18 +268,18 @@ def body() -> str:
     clean and broke is the thing you need to know.</p></div>
   <div class="card"><div class="card-ico">{ICONS['eye']}</div>
     <h3>Go on the offensive</h3>
-    <p>Against a rival with years and links you cannot match, Scout finds where none of that
+    <p>Against a rival with years and links you cannot match, Docket finds where none of that
     helps them — crawlers they have blocked, rich results they cannot win, searches neither of
     you answers. It reads their domain authority from <a href="https://commoncrawl.org/">Common Crawl</a> so the size of the gap is a
     number, not a guess.</p></div>
   <div class="card"><div class="card-ico">{ICONS['lock']}</div>
     <h3>Nothing is uploaded</h3>
-    <p>No account, no telemetry, no licence server. The only requests Scout makes are to the
+    <p>No account, no telemetry, no licence server. The only requests Docket makes are to the
     site you are auditing.</p></div>
   <div class="card"><div class="card-ico">{ICONS['order']}</div>
-    <h3>A CLI, including <code>scout attack</code></h3>
-    <p><code>scout audit</code> exits non-zero on a critical issue, so CI fails the build on a
-    stray noindex. <code>scout attack</code> ranks a competitor's weak points by how winnable
+    <h3>A CLI, including <code>docket attack</code></h3>
+    <p><code>docket audit</code> exits non-zero on a critical issue, so CI fails the build on a
+    stray noindex. <code>docket attack</code> ranks a competitor's weak points by how winnable
     they are.</p></div>
 </div>
 </div></section>
@@ -287,11 +287,11 @@ def body() -> str:
 <!-- ================= COMPARISON ================= -->
 <section class="sec"><div class="wrap-wide">
 <div class="sec-head"><h2>{PRICE_STR}. Once.</h2>
-<p>Every tool below is a subscription. Scout is a one-time purchase, and the audit runs on your Mac, so there are no crawl credits to ration.</p></div>
+<p>Every tool below is a subscription. Docket is a one-time purchase, and the audit runs on your Mac, so there are no crawl credits to ration.</p></div>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Tool</th><th>Price</th><th>Runs</th><th>Output</th></tr></thead>
 <tbody>
-<tr><td>Scout</td><td class="yes">{PRICE_STR} once</td><td class="yes">Your Mac</td><td>Ranked fix plan</td></tr>
+<tr><td>Docket</td><td class="yes">{PRICE_STR} once</td><td class="yes">Your Mac</td><td>Ranked fix plan</td></tr>
 <tr><td>Ahrefs Site Audit</td><td>{price("ahrefs-site-audit")}</td><td>Cloud, metered</td><td>170+ issues</td></tr>
 <tr><td>Semrush Site Audit</td><td>{price("semrush-site-audit")}</td><td>Cloud, metered</td><td>140+ checkpoints</td></tr>
 <tr><td>Sitebulb</td><td>{price("sitebulb")}</td><td>Local + cloud</td><td>Visual issue report</td></tr>
@@ -303,11 +303,11 @@ comparisons →</a></p>
 
 <!-- ================= LIMITS ================= -->
 <section class="sec"><div class="wrap-wide" style="max-width:44rem">
-<div class="sec-head"><h2>What Scout cannot do</h2>
+<div class="sec-head"><h2>What Docket cannot do</h2>
 <p>Because finding out later is worse, and a tool that claims everything is worth less than
 one that draws a line.</p></div>
 <div class="grid-3">
-  <div class="card"><h3>Per-page backlinks and anchor text</h3><p>Scout reads Common Crawl's
+  <div class="card"><h3>Per-page backlinks and anchor text</h3><p>Docket reads Common Crawl's
   hyperlink graph — {F.graph_domains_m()}&nbsp;million domains — so it gives you a domain's authority rank in
   about a second, and the full list of domains linking to it in about ten minutes. We measured
   {F.graph_example_referring():,} domains linking to {F.graph_example_host()} that way. Which
@@ -315,7 +315,7 @@ one that draws a line.</p></div>
   links to you, and with what anchor text, lives in archive files far too large to stream from a
   laptop. Ahrefs and
   Semrush sell that, and it is worth paying for if you need it.</p></div>
-  <div class="card"><h3>Search volumes</h3><p>Scout finds the queries people actually type,
+  <div class="card"><h3>Search volumes</h3><p>Docket finds the queries people actually type,
   from Google's own autocomplete, ordered by how common they are. It will not print a monthly
   volume, because it does not have one. Anyone showing you a volume bought a clickstream
   panel.</p></div>
@@ -335,21 +335,21 @@ computed from free public data rather than a bought index.</p>
 <!-- ================= FAQ ================= -->
 <section class="sec"><div class="wrap" style="max-width:44rem">
 <div class="sec-head"><h2>Clear answers.</h2></div>
-<div class="faq-item"><h3>Is Scout free?</h3>
+<div class="faq-item"><h3>Is Docket free?</h3>
 <p>It is a one-time download. No subscription, no crawl credits, no per-seat pricing — audit
 as many sites as you like.</p></div>
 <div class="faq-item"><h3>Does it send my site data anywhere?</h3>
 <p>No. The audit runs on your Mac and the only network requests are to the site you are
 auditing. No account, no telemetry.</p></div>
 <div class="faq-item"><h3>How is it different from Screaming Frog?</h3>
-<p>Screaming Frog gives raw crawl data and leaves interpretation to you. Scout ranks findings
+<p>Screaming Frog gives raw crawl data and leaves interpretation to you. Docket ranks findings
 and gives you an ordered plan with markup to paste. Screaming Frog supports custom XPath extraction and crawls at far greater scale;
-Scout does not.</p></div>
+Docket does not.</p></div>
 <div class="faq-item"><h3>Can it tell me whether ChatGPT can see my site?</h3>
 <p>Yes — per crawler, distinguishing search crawlers from training crawlers, plus whether your
 pages render server-side, since most AI crawlers do not run JavaScript.</p></div>
 <div class="faq-item"><h3>Does it track keyword rankings?</h3>
-<p>No. Ranking and backlink data need a crawled index of the whole web. Scout audits what is
+<p>No. Ranking and backlink data need a crawled index of the whole web. Docket audits what is
 on your site and how it is configured.</p></div>
 </div></section>
 
@@ -357,42 +357,42 @@ on your site and how it is configured.</p></div>
 <section class="cta-band"><div class="wrap">
 <h2>Audit your site in about a minute</h2>
 <p>Download it, type a domain, press Run. There is no onboarding because none is needed.</p>
-<a class="btn btn-lg" href="{DMG}">Download Scout for Mac</a>
+<a class="btn btn-lg" href="{DMG}">Download Docket for Mac</a>
 </div></section>
 """
 
 
 FAQ = [
-    ("Is Scout free?",
-     "Scout is a one-time download for macOS. There is no subscription, no crawl credits and "
+    ("Is Docket free?",
+     "Docket is a one-time download for macOS. There is no subscription, no crawl credits and "
      "no per-seat pricing — you can audit as many sites as you like."),
-    ("Does Scout send my site data anywhere?",
-     "No. The audit runs entirely on your Mac. The only network requests Scout makes are to "
+    ("Does Docket send my site data anywhere?",
+     "No. The audit runs entirely on your Mac. The only network requests Docket makes are to "
      "the site you are auditing. There is no telemetry and no account."),
-    ("How is Scout different from Screaming Frog?",
-     "Screaming Frog gives you raw crawl data and leaves the interpretation to you. Scout "
+    ("How is Docket different from Screaming Frog?",
+     "Screaming Frog gives you raw crawl data and leaves the interpretation to you. Docket "
      "ranks every finding by impact against effort and gives you an ordered plan with the "
      "exact markup to paste. Screaming Frog renders JavaScript and supports custom XPath "
-     "extraction; Scout does not."),
-    ("Can Scout tell me if ChatGPT can see my website?",
-     "Yes. Scout checks each AI crawler separately — OAI-SearchBot for ChatGPT Search, "
+     "extraction; Docket does not."),
+    ("Can Docket tell me if ChatGPT can see my website?",
+     "Yes. Docket checks each AI crawler separately — OAI-SearchBot for ChatGPT Search, "
      "PerplexityBot, Claude-SearchBot and Google-Extended — and distinguishes them from "
      "training crawlers like GPTBot, which many sites block deliberately."),
-    ("Does Scout track keyword rankings?",
+    ("Does Docket track keyword rankings?",
      "No. Ranking and backlink data require a crawled index of the entire web, which is bought "
-     "rather than built. Scout audits what is on your site and how it is configured."),
+     "rather than built. Docket audits what is on your site and how it is configured."),
 ]
 
 
 def build() -> Path:
     return render(
         cat="", slug="",
-        title="Scout — SEO, copy, conversion and brand audits for Mac",
-        desc=(f"Scout audits any website on your Mac: {N_CHECKS} checks across SEO, copy, brand, "
+        title="Docket — SEO, copy, conversion and brand audits for Mac",
+        desc=(f"Docket audits any website on your Mac: {N_CHECKS} checks across SEO, copy, brand, "
               "local and AI search visibility. Ranked fix plan, client-ready PDF, nothing "
               "uploaded."),
         h1="SEO audits that tell you what to fix, in order",
-        crumb="Scout for Mac",
+        crumb="Docket for Mac",
         body=body(),
         schema_type="WebPage",
         faq=FAQ,
