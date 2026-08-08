@@ -249,14 +249,24 @@ not need rebuilding in a deck.</p>
 <p>The CLI as a deploy gate — exit codes, a working GitHub Actions job, and what it costs to
 run on a macOS runner.</p>
 
+<h2><a href="/for/ecommerce/">For online shops</a></h2>
+<p>We audited ten large retailers before writing this one, and the result contradicted the
+pitch: none had broken product markup. What did show up, and where Screaming Frog is the
+better tool for a catalogue.</p>
+
 <h2><a href="/for/local-business/">For local businesses</a></h2>
 <p>Why you are not in the map pack — LocalBusiness schema, NAP consistency, and the geo
 signals that decide "near me" results.</p>
 
-<h2>More coming</h2>
-<p>Ecommerce, SaaS and in-house marketing pages are being written. Rather than publish three
-thin variations of the same article now, they will appear when each has something specific to
-say — near-duplicate pages are the actual flag risk in a programmatic set, not thin ones.</p>
+<h2>More coming, and one that is not</h2>
+<p>SaaS and in-house marketing pages will appear when each has something specific to say.
+Near-duplicate pages are the real flag risk in a programmatic set, not thin ones, so a page
+gets written when there is a measurement behind it rather than to fill a gap in a list.</p>
+
+<p>That standard is why the ecommerce page took as long as it did: the honest version could
+only be written after auditing real shops, and what came back disagreed with what the page was
+going to say. If the other two never produce a finding worth publishing, they will not be
+written, and this paragraph will say so rather than promising them indefinitely.</p>
 """
     return render(
         cat="for", slug="",
@@ -559,6 +569,120 @@ consecutive runs. Treat them as an order of magnitude, not a benchmark, and meas
              "Gate on severities with --fail-on, or better, use scout diff to fail only on "
              "findings this deploy introduced or made worse — every real site carries standing "
              "findings, so an absolute threshold either fails every build or none of them."),
+        ],
+    )
+
+
+def for_ecommerce() -> Path:
+    """The audience page the /for/ hub had been promising.
+
+    Written after measuring, not before, and the measurement contradicted the
+    obvious pitch: large shops are mostly clean. The page leads with that.
+    """
+    body = f"""
+<p class="lede">We audited {F.ecom_shops()} large online shops expecting to find broken product
+markup, and did not find it — <strong>zero</strong> had missing or invalid Product schema and
+zero had thin product pages, at a median score of {F.ecom_median_score()}. The problems that
+did show up are narrower and more dangerous than the ones an SEO pitch usually promises, and
+one of them can remove every rich result you have.</p>
+
+<h2>What we actually found</h2>
+
+<p>{F.ecom_shops()} of {F.ecom_attempted()} shops crawled cleanly on {F.ecom_measured()},
+{F.ecom_page_cap()} pages each, mostly product pages. {F.ecom_unreachable()} refused the
+crawler or timed out and are excluded from every count below — a site that could not be read
+cannot fail a check, and counting it as a pass would flatter these numbers.</p>
+
+<div class="wrap-tbl"><table class="cmp"><thead><tr>
+<th>Checked</th><th>Shops affected</th></tr></thead><tbody>
+<tr><td>Missing, invalid or incomplete Product schema</td>
+<td><strong>{F.ecom_schema_problems()} of {F.ecom_shops()}</strong></td></tr>
+<tr><td>Product pages with almost no content</td>
+<td><strong>{F.ecom_thin()} of {F.ecom_shops()}</strong></td></tr>
+<tr><td>Indexing problems (noindex, canonical conflicts)</td>
+<td><strong>{F.ecom_indexing()} of {F.ecom_shops()}</strong></td></tr>
+<tr><td>Star ratings Scout could not confirm were visible</td>
+<td><strong>{F.ecom_rating_unconfirmed()} of {F.ecom_shops()}</strong></td></tr>
+</tbody></table></div>
+
+<p>Scores ran from {F.ecom_worst_score()} to {F.ecom_best_score()}. These are well-resourced
+retailers with teams, so this is the easy case rather than a random sample of the web — but it
+is worth saying plainly that the standard pitch, that your product markup is quietly broken,
+did not survive contact with ten real shops.</p>
+
+<h2>The one that carries real risk</h2>
+
+<p>{F.ecom_rating_unconfirmed()} shops carry <code>AggregateRating</code> markup on pages where
+Scout could not confirm, from the HTML alone, that a rating is actually shown to a visitor.
+That is not an accusation — it is the check declining to make one. Google's
+<a href="https://developers.google.com/search/docs/appearance/structured-data/review-snippet">review
+snippet guidance</a> requires the rating to be visible on the page carrying the markup, and the
+consequence of getting it wrong is a manual action that removes every rich result across the
+whole site, not just the offending page.</p>
+
+<p>Star widgets are very often drawn in JavaScript, so the served HTML has markup and no
+visible rating while the rendered page is perfectly compliant. Scout used to call that a
+violation and was wrong about a real shop; it now demands rendered evidence before it accuses,
+and says "unconfirmed" otherwise. Run <code>--render</code> and the question is settled either
+way.</p>
+
+<h2>Where a competitor is better for this</h2>
+
+<p>If what you need is to pull the price, the availability and the SKU off every product page
+and diff them against your feed, <a href="/vs/screaming-frog-alternative/">Screaming Frog</a>
+does that properly with custom extraction and Scout does not do it at all. We
+<a href="/learn/audit-tool-accuracy/">decided against building it</a> rather than shipping a
+worse version of a mature feature, and for inventory-scale auditing that decision means
+Screaming Frog is the right tool. Its crawl has no page ceiling either, which matters when a
+catalogue runs to six figures.</p>
+
+<p>For keyword and competitor product research, Ahrefs and Semrush own search-volume indexes
+that Scout has no equivalent of and is not trying to build.</p>
+
+<h2>What Scout is for, on a shop</h2>
+
+<p>The four lanes a crawler does not cover, which on an ecommerce site are: whether an AI
+answer <a href="/learn/ai-substitution/">replaces the page</a> a customer would have visited;
+whether your <a href="/learn/brand-consistency/">brand is consistent</a> across a catalogue
+built by several teams over several years; whether the checkout path's copy actually converts;
+and whether your <a href="/learn/dead-contact-address/">contact address can receive mail</a>,
+which for a shop taking returns is not a small thing.</p>
+
+<p>Plus the deploy gate. A catalogue site ships constantly, and
+<a href="/for/developers/">a noindex reaching production</a> is the mistake that costs the most
+and is noticed the latest.</p>
+
+<p><a class="btn" href="/download/">Download Scout</a></p>
+"""
+    return render(
+        cat="for", slug="ecommerce",
+        title="Scout for ecommerce: what 10 real shops actually got wrong",
+        desc=(f"We audited {F.ecom_shops()} large online shops. Zero had broken Product "
+              f"schema and zero had thin product pages. What did show up, and where "
+              f"Screaming Frog is the better tool."),
+        h1="Scout for online shops",
+        crumb='<a href="/">Scout</a> / <a href="/for/">For you</a> / Ecommerce',
+        body=body,
+        published="2026-08-07",
+        faq=[
+            ("Do online shops usually have broken product schema?",
+             f"Not in our sample. We audited {F.ecom_shops()} large retailers and none had "
+             f"missing, invalid or incomplete Product schema, and none had thin product "
+             f"pages. These are well-resourced companies rather than a random sample, but "
+             f"the common claim that your product markup is quietly broken did not survive "
+             f"contact with them."),
+            ("What happens if my star ratings are not visible?",
+             "Google requires the rating to be visible on the page carrying the "
+             "AggregateRating markup, and a manual action for breaking that removes rich "
+             "results across the entire site rather than just the page at fault. The common "
+             "false alarm is a star widget drawn in JavaScript: the served HTML has no "
+             "visible rating and the rendered page is fine. Check the rendered page before "
+             "believing any tool that accuses you of this."),
+            ("Can Scout extract prices from every product page?",
+             "No. Screaming Frog does that with custom extraction and it is the right tool "
+             "for auditing a catalogue against a feed. Scout deliberately does not compete "
+             "there — it also has a page ceiling per crawl, which matters for a large "
+             "catalogue."),
         ],
     )
 
@@ -903,7 +1027,8 @@ Scout, including lost traffic, revenue or rankings.</p>
     )
 
 
-BUILDERS = [download, for_hub, for_agencies, for_developers, for_local, howto_hub,
+BUILDERS = [download, for_hub, for_agencies, for_developers, for_ecommerce,
+            for_local, howto_hub,
             howto_ai_access,
             privacy, terms]
 
