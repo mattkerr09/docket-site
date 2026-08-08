@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""How long a Scout audit adds to a build, measured against real sites.
+"""How long a Docket audit adds to a build, measured against real sites.
 
 The CI page makes a claim a pipeline owner will check against their own clock,
 so it has to be measured rather than estimated, and it has to be measured the
@@ -9,7 +9,7 @@ the same program — the frozen one unpacks itself before it does anything.
 
 Three things get recorded separately, because they behave differently:
 
-  * startup — `scout checks` touches no network, so it measures the process
+  * startup — `docket checks` touches no network, so it measures the process
     and nothing else.
   * audit wall-clock at a fixed page cap, per site, alongside the engine's own
     reported duration. The difference between them is the process overhead,
@@ -39,14 +39,14 @@ from pathlib import Path
 from statistics import median
 
 OUT = Path(__file__).resolve().parent.parent / "site" / "_data" / "ci-timing.json"
-BIN = Path("/tmp/scoutdmg/Scout.app/Contents/Resources/scout/scout")
+BIN = Path("/tmp/scoutdmg/Docket.app/Contents/Resources/docket/docket")
 CAP = 25
 
 # Public commercial sites, deliberately spread across sizes and stacks. The
 # frame is small and the point of the figure is an order of magnitude, not a
 # benchmark — the dataset says so and the page must not claim more.
 SITES = [
-    "https://scoutseo.app",
+    "https://docketseo.app",
     "https://www.allbirds.com",
     "https://www.thefarmersdog.com",
     "https://pizzapilgrims.co.uk",
@@ -66,7 +66,7 @@ def main() -> None:
     if not BIN.exists():
         raise SystemExit(
             f"{BIN} not found — mount the shipped DMG first:\n"
-            f"  hdiutil attach -nobrowse dist/Scout-0.1.0-arm64.dmg "
+            f"  hdiutil attach -nobrowse dist/Docket-0.1.0-arm64.dmg "
             f"-mountpoint /tmp/scoutdmg\n"
             f"Timing the Python source instead would publish a number no user "
             f"can reproduce: the frozen binary unpacks itself on every run.")
@@ -77,7 +77,7 @@ def main() -> None:
     for _ in range(3):
         code, _, secs = _run(["checks"], timeout=180)
         if code != 0:
-            raise SystemExit(f"`scout checks` exited {code}; refusing to time a broken binary")
+            raise SystemExit(f"`docket checks` exited {code}; refusing to time a broken binary")
         starts.append(round(secs, 2))
 
     results = []

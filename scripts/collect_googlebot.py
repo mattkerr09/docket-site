@@ -6,7 +6,7 @@ user-agent string, and that argument needs a number rather than an assertion.
 Google publishes its crawler address ranges as three JSON files, so this counts
 them from the primary source and records the date, because the lists change.
 
-It also spot-checks Scout's own verification: take one address out of each of
+It also spot-checks Docket's own verification: take one address out of each of
 the first few published Googlebot ranges and run the reverse-then-forward DNS
 check on it. Those addresses are Googlebot by Google's own definition, so
 anything that fails is a bug in us.
@@ -41,7 +41,7 @@ SPOT_CHECK = 6
 def _fetch(name: str) -> dict:
     req = urllib.request.Request(
         f"{BASE}/{name}.json",
-        headers={"User-Agent": "scoutseo.app dataset collector"})
+        headers={"User-Agent": "docketseo.app dataset collector"})
     with urllib.request.urlopen(req, timeout=30) as resp:
         return json.loads(resp.read().decode("utf-8"))
 
@@ -88,7 +88,7 @@ def main() -> None:
             "Counted from Google's own published JSON at "
             f"{BASE}/, which carries its own creationTime — the lists change, "
             "so the date matters. The spot check resolves one address from "
-            "each of the first few published Googlebot ranges through Scout's "
+            "each of the first few published Googlebot ranges through Docket's "
             "reverse-then-forward DNS check; those addresses are Googlebot by "
             "Google's definition, so a failure would be our bug. It is a smoke "
             "test against real DNS and NOT a rate: six addresses cannot be "

@@ -5,10 +5,10 @@ The brand lane is the most differentiated thing in the product and had no page
 at all. Every figure comes from site/_data/brand.json via facts.py, generated
 by scripts/collect_brand.py against real companies.
 
-This page previously withheld the typeface median, because Scout read inline
+This page previously withheld the typeface median, because Docket read inline
 `<style>` only and the count was structurally zero on 9 of 16 sites — a median
 across a sample where the question could not be asked reports blindness as
-tidiness. Scout now fetches linked stylesheets and the CSS is readable on all
+tidiness. Docket now fetches linked stylesheets and the CSS is readable on all
 16, so the figure is published and the section says what replaced the old
 colour-count rule and why it died.
 """
@@ -27,7 +27,7 @@ def brand_consistency() -> Path:
 <p class="lede">A crawler asks whether a machine can read your page. None of them ask whether
 a person moving between your pages sees the same company each time — which is the question a
 brand owner actually has, and it falls straight down the gap between the SEO tool and the
-design review. Scout has a whole lane for it, and on
+design review. Docket has a whole lane for it, and on
 <strong>{F.brand_social_undeclared()} of {F.brand_social_frame()}</strong> real company sites
 we measured, the machine-readable version of "this is us" was simply missing.</p>
 
@@ -82,19 +82,19 @@ problem and it is not a <code>noindex</code>; it should never dominate a grade.<
 
 <h2>Two colours nobody can tell apart</h2>
 
-<p>Scout fetches the stylesheets your pages link, deduplicated across the crawl, and counts
+<p>Docket fetches the stylesheets your pages link, deduplicated across the crawl, and counts
 the typefaces and colours they actually declare. The median site in this sample ships
 {F.brand_median_typefaces():.0f} typefaces; the widest ships {F.brand_max_typefaces()}.</p>
 
 <p>What it reports about colour is not palette size. It used to be — anything over 24 distinct
-values — and that rule died the moment Scout could see real stylesheets, because one very
+values — and that rule died the moment Docket could see real stylesheets, because one very
 well-run site came back with 485. Every shade ramp, every semantic token, every dark-mode
 pair. The old finding claimed a wide palette meant colours were being written as literals
 instead of referenced from a shared set, and the data says the reverse: a centralised design
 system declares <em>more</em> values precisely because it is centralised.</p>
 
 <p>So the count is gone rather than re-tuned, because raising a threshold until the false
-positives stop is fitting the rule to the sample. What Scout reports instead is groups of
+positives stop is fitting the rule to the sample. What Docket reports instead is groups of
 colours no visitor could tell apart, defined separately — <code>#005fcc</code> and
 <code>#0066cc</code> in the same stylesheet. That is what drift actually looks like: a value
 gets copied and nudged rather than referenced, and a year later the brand blue has four
@@ -115,15 +115,15 @@ has to be indistinguishable from every other member.</p>
 beats an SEO crawler at it and it is not close. Figma's published libraries, a token pipeline,
 or a linter running against your own stylesheets all read the source of truth rather than
 inferring it from shipped pages, and they catch a drifting value before it is deployed rather
-than after. Scout is looking at the outside of the building.</p>
+than after. Docket is looking at the outside of the building.</p>
 
 <p>Equally, if you want to know what people are <em>saying</em> about your brand, this is the
-wrong category of tool entirely — Scout reads your site and nothing else. It has no mention
+wrong category of tool entirely — Docket reads your site and nothing else. It has no mention
 tracking, no share-of-voice, no sentiment.</p>
 
 <p>What is genuinely unusual here is only that a technical SEO audit asks the question at all.
 <a href="/vs/screaming-frog-alternative/">Screaming Frog</a> and
-<a href="/vs/sitebulb-alternative/">Sitebulb</a> are both better crawlers than Scout by several
+<a href="/vs/sitebulb-alternative/">Sitebulb</a> are both better crawlers than Docket by several
 measures, and neither will tell you your logo alt text does not name your company.</p>
 
 <h2>The one to fix this afternoon</h2>
@@ -148,7 +148,7 @@ measures, and neither will tell you your logo alt text does not name your compan
 most of an afternoon's worth of the findings above, and both are the kind of thing that stays
 broken for years because no tool was looking.</p>
 
-<p><a class="btn" href="/download/">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="learn", slug="brand-consistency",
@@ -157,7 +157,7 @@ broken for years because no tool was looking.</p>
               f"{F.brand_social_undeclared()} declared none in schema. What a brand "
               f"consistency audit checks, and where design tools do it better."),
         h1="Brand consistency: the question no crawler asks",
-        crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / Brand consistency',
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Brand consistency',
         body=body,
         published="2026-08-07",
         faq=[
@@ -176,11 +176,11 @@ broken for years because no tool was looking.</p>
              "sameAs tells the machine."),
             ("Do SEO tools check brand consistency?",
              "Crawlers generally do not — they answer whether a machine can read and index "
-             "the page. Scout runs six brand checks as one of its lanes. If typography and "
+             "the page. Docket runs six brand checks as one of its lanes. If typography and "
              "colour governance is your real problem, though, a design-system tool reads your "
              "tokens directly and will beat any crawler at it."),
             ("Why does my audit say typefaces were not measured?",
-             "Scout fetches the stylesheets your pages link, so this is now uncommon. It "
+             "Docket fetches the stylesheets your pages link, so this is now uncommon. It "
              "happens when the sheets could not be fetched, or when you ran with --offline, "
              "which deliberately makes no third-party calls and so skips styles served from "
              "an asset domain. The notice says which, and exists so a silent check is not "

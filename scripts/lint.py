@@ -40,6 +40,22 @@ SHINGLE_N = 8
 # written by us, all trimmable without losing anything. Gated so it stays fixed.
 MAX_TITLE = 60
 MAX_DESC = 165
+
+#: A redirect stub left behind when a URL moves is not content and must not be
+#: judged as content. It is deliberately near-empty, deliberately noindexed,
+#: and it exists so an old URL keeps working instead of 404ing — which is what
+#: this product tells everybody else to do.
+#:
+#: The exemption is narrow on purpose: BOTH a noindex robots meta AND a refresh
+#: to another page. A page that is merely thin, or merely noindexed, still gets
+#: judged. Widening this any further would turn "thin" into a rule anyone can
+#: opt out of, and a gate nobody can fail is not a gate.
+_NOINDEX = re.compile(r'<meta[^>]+name=["\']?robots["\']?[^>]+noindex', re.I)
+_REFRESH = re.compile(r'<meta[^>]+http-equiv=["\']?refresh', re.I)
+
+
+def is_redirect_stub(raw: str) -> bool:
+    return bool(_NOINDEX.search(raw) and _REFRESH.search(raw))
 DUP_RATIO = 0.28          # >28% shared shingles between two pages = too close
 
 # The tells. Lowercased substring match against visible text.
@@ -148,6 +164,11 @@ def main(root: str) -> int:
             raw = p.read_text(encoding="utf-8", errors="ignore")
             text = visible_text(raw)
         except OSError:
+            continue
+
+        if is_redirect_stub(raw):
+            # Not content. See is_redirect_stub for why this exemption is this
+            # narrow and must stay that way.
             continue
 
         title = html.unescape(m.group(1).strip()) if (m := _TITLE.search(raw)) else ""

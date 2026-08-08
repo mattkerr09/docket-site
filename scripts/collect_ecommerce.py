@@ -2,7 +2,7 @@
 """What is actually broken on real online shops.
 
 /for/ecommerce/ needs measured findings rather than a list of things an audit
-could theoretically check. This audits real shops and records what Scout finds,
+could theoretically check. This audits real shops and records what Docket finds,
 so the page can say "this many of these shops have this problem" and be
 checkable.
 
@@ -19,7 +19,7 @@ Two things about the frame, both of which the page has to carry:
 The rating finding is the one worth the page's lead. Google's policy on
 `AggregateRating` is that the rating has to be visible on the page carrying the
 markup, and the penalty for getting it wrong is a manual action that removes
-every rich result the site has. Scout only makes that accusation with rendered
+every rich result the site has. Docket only makes that accusation with rendered
 evidence — see the rating-visibility work — so the count here is conservative
 by construction.
 """

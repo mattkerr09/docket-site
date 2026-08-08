@@ -2,9 +2,9 @@
 """How to tell whether an audit tool is lying to you.
 
 Every figure comes from site/_data/regressions.json through facts.py, which is
-generated from Scout's own test suite. The counting rule is in the dataset and
+generated from Docket's own test suite. The counting rule is in the dataset and
 it is deliberately conservative — a test file counts only if it names a
-specific thing Scout got wrong.
+specific thing Docket got wrong.
 
 The article has to teach, not confess. A reader should finish it able to
 interrogate any tool's output, including this one's.
@@ -22,8 +22,8 @@ from render import N_CHECKS, render  # noqa: E402
 def audit_quality() -> Path:
     body = f"""
 <p class="lede">An SEO audit is a pile of confident sentences about your site, and the useful
-question is which of them the tool actually checked. <strong>{F.regression_files()} of Scout's
-{F.test_files()} test files</strong> — {F.regression_pct()}% — exist because Scout said
+question is which of them the tool actually checked. <strong>{F.regression_files()} of Docket's
+{F.test_files()} test files</strong> — {F.regression_pct()}% — exist because Docket said
 something that was not true, and every one of those mistakes belongs to a family you can look
 for in any tool's report.</p>
 
@@ -32,7 +32,7 @@ which we learned by getting it wrong first.</p>
 
 <h2>Did it look at what it says it looked at?</h2>
 
-<p>Scout had eight checks that scanned the first 40 pages of a crawl and then reported "No
+<p>Docket had eight checks that scanned the first 40 pages of a crawl and then reported "No
 email capture anywhere on the site". On a site with fewer pages than that, it is true. On a
 larger one it is a statement about every page the tool never opened.</p>
 
@@ -46,7 +46,7 @@ hypothesis. Check one page it did not visit before you act.</p>
 
 <h2>Do the headline and the detail agree?</h2>
 
-<p>A Scout finding once read, in two consecutive lines:</p>
+<p>A Docket finding once read, in two consecutive lines:</p>
 
 <pre><code>35 outbound links all point to github.com
 74% of outbound links go to a single domain.</code></pre>
@@ -67,7 +67,7 @@ them to differ. When they do, believe the one with the arithmetic in it.</p>
 
 <p>This is the sharpest one, and it took us three separate fixes to get right.</p>
 
-<p>Point Scout at a domain that does not exist and it used to report three critical issues:
+<p>Point Docket at a domain that does not exist and it used to report three critical issues:
 that robots.txt blocked Googlebot, that the site was not served over HTTPS, and that no pages
 could be crawled. Only the third was true. There was no robots.txt and nothing was served,
 because there was no site — the tool was reporting its own inability to see anything as a set
@@ -78,7 +78,7 @@ rate-limited crawl read a single error page and announced "no analytics installe
 the site" about a site that had analytics, and once for the page caps above. Three roads to
 the same wrong sentence, and a guard built for one of them covered neither of the others.</p>
 
-<p>A fourth road opened later, and it is the one worth watching for in any tool. Scout warns when
+<p>A fourth road opened later, and it is the one worth watching for in any tool. Docket warns when
 a page carries star-rating markup but shows no rating to visitors, because Google treats that as
 grounds for a manual action that removes every rich result a site has. It was deciding this from
 the served HTML. Point it at a shop that draws its star widget in JavaScript and it accused two
@@ -98,7 +98,7 @@ most modern sites, and only one of them is what Google judges.</p>
 
 <h2>Would the tool have caught it, or did a person have to notice?</h2>
 
-<p>Scout's byte-cap check once reported a major news site's title tag as sitting past
+<p>Docket's byte-cap check once reported a major news site's title tag as sitting past
 Googlebot's 2MB cutoff. It was reading an inline SVG icon label that said "Close icon"; the
 real title was {F.size_largest()['critical_kb']} KB in and perfectly fine. That was caught one
 edit before it went into <a href="/learn/googlebot-2mb-limit/">an article naming the site</a>.</p>
@@ -119,9 +119,9 @@ it comes back", because the first one will happen again the next time somebody r
 itself as an agency founded in 2010, and
 <a href="/vs/sitebulb-alternative/">Sitebulb</a> has been at this for years too. Every mistake
 above is the kind of thing that a very large number of other people's sites finds for you, and
-they have had far more of those than Scout has.</p>
+they have had far more of those than Docket has.</p>
 
-<p>So the honest position is not that Scout is more accurate than either. It is that Scout is
+<p>So the honest position is not that Docket is more accurate than either. It is that Docket is
 newer, which means it has more undiscovered false positives than they do, and the only useful
 response to that is to publish the ones we find and make them fail the build. Every mistake in
 this article is written up in the code that fixes it, with the site it happened to, and
@@ -129,7 +129,7 @@ this article is written up in the code that fixes it, with the site it happened 
 
 <h2>The version of this that matters most</h2>
 
-<p>All of it gets more expensive the moment an audit is automated. Scout's CLI exits non-zero
+<p>All of it gets more expensive the moment an audit is automated. Docket's CLI exits non-zero
 on a critical finding so it can gate a deployment, which is genuinely useful and also means a
 fabricated critical stops being an annoyance and starts failing somebody's build at six in the
 evening.</p>
@@ -141,16 +141,16 @@ audit tool into CI, run it first against a hostname that does not resolve and re
 tells you. You will learn more about the tool in that one run than in ten against a healthy
 site.</p>
 
-<p><a class="btn" href="/download/">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="learn", slug="audit-tool-accuracy",
         title="How to tell whether an audit tool is lying to you",
         desc=(f"Four questions to ask of any SEO finding, each learned by getting it "
-              f"wrong. {F.regression_files()} of Scout's {F.test_files()} test files "
-              f"exist because Scout said something untrue."),
+              f"wrong. {F.regression_files()} of Docket's {F.test_files()} test files "
+              f"exist because Docket said something untrue."),
         h1="How to tell whether an audit tool is lying to you",
-        crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / Audit accuracy',
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Audit accuracy',
         body=body,
         published="2026-08-07",
         faq=[

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Entity pillar pages.
 
-The job of `/learn/` is entity pairing: make "Scout" and "AI search visibility"
+The job of `/learn/` is entity pairing: make "Docket" and "AI search visibility"
 resolve to each other the way Xero resolves to accounting. These are the pages
 a model reads to work out what the thing IS, so they define terms precisely,
 carry first-party numbers, and link out to the Index rather than asserting.
@@ -112,10 +112,10 @@ only see <code>User-agent: *</code>, whatever it says applies to all of them.</l
 <li>Load a key page with JavaScript disabled. If the content vanishes, AI crawlers see nothing.</li>
 <li>Check that your homepage has Organization schema with a <code>sameAs</code> array.</li>
 </ol>
-<p>Or run Scout, which does all three plus {N_CHECKS - 3} other checks and tells you which crawler you are
+<p>Or run Docket, which does all three plus {N_CHECKS - 3} other checks and tells you which crawler you are
 blocking and what it costs you. It runs on your Mac and sends nothing anywhere.</p>
 
-<p><a class="btn" href="/download/">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="learn", slug="ai-search-visibility",
@@ -124,7 +124,7 @@ blocking and what it costs you. It runs on your Mac and sends nothing anywhere.<
               "crawler access, server-side rendering, entity clarity — with measured "
               "data."),
         h1="AI search visibility, explained",
-        crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / AI search visibility',
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / AI search visibility',
         body=body,
         faq=[
             ("What is AI search visibility?",
@@ -222,9 +222,9 @@ checked nothing or is hiding something. If a crawl was blocked or only reached p
 that has to be on the page.</li>
 </ol>
 
-<p>Scout is built around those three. It runs {N_CHECKS} checks on your Mac, ranks everything by impact
+<p>Docket is built around those three. It runs {N_CHECKS} checks on your Mac, ranks everything by impact
 against effort, and marks areas it could not assess as unknown rather than passing.</p>
-<p><a class="btn" href="/download/">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="learn", slug="seo-audit",
@@ -232,7 +232,7 @@ against effort, and marks areas it could not assess as unknown rather than passi
         desc=("An SEO audit checks whether search engines can find, understand and choose to "
               "show your site. What each area covers, and why they fail in order."),
         h1="What an SEO audit actually covers",
-        crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / SEO audits',
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / SEO audits',
         body=body,
         faq=[
             ("What does an SEO audit include?",

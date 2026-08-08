@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Collect the Scout Index dataset: AI-crawler access across real websites.
+"""Collect the Docket Index dataset: AI-crawler access across real websites.
 
 The moat. Nobody publishes large-N, reproducible measurement of which sites let
-AI search engines read them — and Scout's robots.txt parser already answers it
+AI search engines read them — and Docket's robots.txt parser already answers it
 exactly. Every number the site publishes comes from this script, and the script
 plus its input list ship with the dataset so anyone can re-run it and get the
 same answer.
@@ -23,7 +23,7 @@ import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-# Scout's own engine — the published numbers must come from the same parser the
+# Docket's own engine — the published numbers must come from the same parser the
 # product ships, or the Index is measuring something the tool does not.
 ENGINE = Path(__file__).resolve().parents[2] / "SEO audit app" / "backend"
 if not ENGINE.exists():
@@ -178,7 +178,7 @@ def main() -> int:
         "collected": datetime.datetime.now(datetime.timezone.utc)
         .isoformat(timespec="seconds"),
         "method": (
-            "One GET to https://<host>/robots.txt per site. Parsed with Scout's own "
+            "One GET to https://<host>/robots.txt per site. Parsed with Docket's own "
             "RFC 9309 robots parser (longest-match, wildcard and $-anchor support). "
             "A site is counted as blocking a crawler when that crawler is disallowed "
             "from '/'. Sites whose robots.txt is unreachable are excluded from "

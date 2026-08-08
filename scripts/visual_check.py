@@ -12,7 +12,7 @@ still resolve a rule to nothing, and a stylesheet is not the only way to lose a
 colour. The question "what colour is this link, finally" has one honest answer
 and only a layout engine can give it.
 
-So this renders the built pages in WebKit through Scout's own `scout-render`
+So this renders the built pages in WebKit through Docket's own `docket-render`
 helper and asserts computed values. Every expected value is derived from the
 page — the amber assertion compares a link against `var(--amber-light)` as that
 page resolves it, rather than against a hex typed here, because a hex typed
@@ -121,29 +121,29 @@ UA_DEFAULT_LINK = "rgb(0, 0, 238)"
 
 
 def find_helper() -> Path:
-    """Locate `scout-render`, in the order it will actually be found."""
-    env = os.environ.get("SCOUT_RENDER")
+    """Locate `docket-render`, in the order it will actually be found."""
+    env = os.environ.get("DOCKET_RENDER")
     if env and Path(env).exists():
         return Path(env)
     candidates = [
-        ROOT / "scripts" / "scout-render",
-        Path("/Applications/Scout.app/Contents/Resources/scout-render"),
-        Path.home() / "Downloads" / "SEO audit app" / "dist" / "Scout.app"
-        / "Contents" / "Resources" / "scout-render",
+        ROOT / "scripts" / "docket-render",
+        Path("/Applications/Docket.app/Contents/Resources/docket-render"),
+        Path.home() / "Downloads" / "SEO audit app" / "dist" / "Docket.app"
+        / "Contents" / "Resources" / "docket-render",
     ]
     for c in candidates:
         if c.exists():
             return c
-    found = shutil.which("scout-render")
+    found = shutil.which("docket-render")
     if found:
         return Path(found)
     sys.exit(
-        "visual_check: scout-render not found.\n"
+        "visual_check: docket-render not found.\n"
         "  It is one file. Build it with:\n"
         "    swiftc -O -framework WebKit -framework AppKit \\\n"
-        "      '<app repo>/packaging/render/ScoutRender.swift' \\\n"
-        f"      -o {ROOT / 'scripts' / 'scout-render'}\n"
-        "  or point SCOUT_RENDER at an existing copy.\n"
+        "      '<app repo>/packaging/render/DocketRender.swift' \\\n"
+        f"      -o {ROOT / 'scripts' / 'docket-render'}\n"
+        "  or point DOCKET_RENDER at an existing copy.\n"
         "  This gate fails rather than skips: a check that quietly does\n"
         "  nothing is how the stray braces shipped in the first place."
     )
@@ -163,7 +163,7 @@ def require_probe_support(helper: Path) -> None:
     if proc.returncode != 0 or proc.stdout.strip() != "2":
         sys.exit(f"visual_check: {helper} does not support --probe.\n"
                  f"  Rebuild it from the app repo's packaging/render/"
-                 f"ScoutRender.swift.")
+                 f"DocketRender.swift.")
 
 
 def probe(helper: Path, page: Path, width: int) -> dict:

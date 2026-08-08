@@ -55,10 +55,10 @@ def hub(cat: str, title: str, desc: str, h1: str, lede: str,
     return render(
         cat=cat, slug="",
         title=title, desc=desc, h1=h1,
-        crumb=f'<a href="/">Scout</a> / {h1}',
+        crumb=f'<a href="/">Docket</a> / {h1}',
         # `intro` is the hub's own argument, between the lede and the list.
         # A hub that only lists its children is a page Google has no reason to
-        # rank and a reader has no reason to stay on — Scout flagged all three
+        # rank and a reader has no reason to stay on — Docket flagged all three
         # of ours as thin, correctly.
         body=f'<p class="lede">{lede}</p>{intro}{items}',
         schema_type="CollectionPage",
@@ -69,22 +69,22 @@ def build_hubs() -> list[Path]:
     out = []
     out.append(hub(
         "vs",
-        "Scout compared with other SEO audit tools (2026)",
-        "Honest comparisons of Scout against Screaming Frog, Sitebulb and Ahrefs Site Audit — "
+        "Docket compared with other SEO audit tools (2026)",
+        "Honest comparisons of Docket against Screaming Frog, Sitebulb and Ahrefs Site Audit — "
         "including what each of them does better.",
-        "How Scout compares",
+        "How Docket compares",
         "Each of these names at least one thing the other tool does better, because a "
         "comparison that never concedes anything is an advertisement.",
         [
-            ("/vs/screaming-frog-alternative/", "Scout vs Screaming Frog",
+            ("/vs/screaming-frog-alternative/", "Docket vs Screaming Frog",
              "Raw crawl data versus a ranked plan. Screaming Frog supports custom "
-             "extraction and crawls at far greater scale; Scout does not."),
-            ("/vs/sitebulb-alternative/", "Scout vs Sitebulb",
-             "Both draw your site architecture — Sitebulb interactively, Scout as rings by "
-             "depth sized by link equity. Scout covers "
+             "extraction and crawls at far greater scale; Docket does not."),
+            ("/vs/sitebulb-alternative/", "Docket vs Sitebulb",
+             "Both draw your site architecture — Sitebulb interactively, Docket as rings by "
+             "depth sized by link equity. Docket covers "
              "AI visibility, conversion and tracking, which Sitebulb does not."),
-            ("/vs/ahrefs-site-audit-alternative/", "Scout vs Ahrefs Site Audit",
-             "Ahrefs has a web-scale index and Scout never will. What you get for $129 a month "
+            ("/vs/ahrefs-site-audit-alternative/", "Docket vs Ahrefs Site Audit",
+             "Ahrefs has a web-scale index and Docket never will. What you get for $129 a month "
              "if the audit is the part you use."),
         ],
         intro="""
@@ -96,23 +96,23 @@ answer different questions. There are broadly three:</p>
 <ul>
 <li><strong>Crawlers</strong> — Screaming Frog, Sitebulb. You point them at a site and they
 return everything, at scale, sortable. The question they answer is "what is on my site". They
-are very good at it and Scout does not attempt that scale.</li>
+are very good at it and Docket does not attempt that scale.</li>
 <li><strong>Platforms</strong> — Ahrefs, Semrush. A web-scale index of links and keywords,
 with a site audit attached. The question is "where do I stand against everyone else", and
 nothing on a desktop can answer it, because the answer requires having crawled the web.</li>
-<li><strong>Auditors</strong> — where Scout sits. The question is "what should I change, in
+<li><strong>Auditors</strong> — where Docket sits. The question is "what should I change, in
 what order", which is a judgement rather than a dataset, and it is the one that needs no
 subscription because the data it needs is your own site.</li>
 </ul>
 
-<p>The practical consequence: if you already pay for a platform, Scout does not replace it.
+<p>The practical consequence: if you already pay for a platform, Docket does not replace it.
 It replaces the part of it you open once a month and then export to a spreadsheet.</p>
 
-<h2>When not to use Scout</h2>
+<h2>When not to use Docket</h2>
 
-<p>If you need keyword positions or a backlink profile, none of these pages will help — Scout
+<p>If you need keyword positions or a backlink profile, none of these pages will help — Docket
 has neither and is not building either. If your crawl is hundreds of thousands of URLs, use a
-crawler built for it. If you are not on a Mac, Scout will not run at all.</p>
+crawler built for it. If you are not on a Mac, Docket will not run at all.</p>
 
 <p>Each comparison below names at least one thing the other tool does better. That is not
 modesty; a comparison page that concedes nothing tells you only that its author wanted your
@@ -123,7 +123,7 @@ money.</p>
         "learn",
         "Learn: SEO audits, AI search visibility and technical SEO",
         "Plain explanations of what an SEO audit covers, how AI search visibility works, and "
-        "what Scout checks.",
+        "what Docket checks.",
         "Learn",
         "Reference pages, written to be read rather than skimmed for keywords.",
         [
@@ -163,7 +163,7 @@ money.</p>
             ("/learn/internal-link-equity/", "Internal link equity",
              "The ranking signal your pages pass to each other, measured on our own site — "
              "where the download page held a fifth of what an average page did."),
-            ("/learn/what-scout-checks/", "What Scout checks",
+            ("/learn/what-docket-checks/", "What Docket checks",
              "All the checks, by area, with what each one actually looks at."),
         ],
     ))
@@ -195,9 +195,9 @@ def checks_page() -> Path:
                         f"<ul>{li}</ul>")
 
     body = f"""
-<p class="lede">Scout runs {len(rows)} checks across {len(by_lane)} areas. This list is
+<p class="lede">Docket runs {len(rows)} checks across {len(by_lane)} areas. This list is
 generated from the shipped build, so it cannot drift from what the tool actually does — run
-<code>scout checks</code> and you will get the same list.</p>
+<code>docket checks</code> and you will get the same list.</p>
 
 <p>Each check produces a finding only when there is something to report, and each finding
 carries what it costs you, how much work the fix is, and the markup to paste. Areas that do
@@ -228,19 +228,19 @@ that, one trivial nit on a large site drowns out everything that matters.</p>
 <h2>What is deliberately not here</h2>
 <p>Per-page backlinks and anchor text. Domain authority and the list of referring domains
 come from Common Crawl's hyperlink graph, but which individual page links to you, and with
-what anchor text, lives in archive files far too large to fetch from a laptop. Search volumes. Scout finds the
+what anchor text, lives in archive files far too large to fetch from a laptop. Search volumes. Docket finds the
 queries people actually type, from Google's public autocomplete, and refuses to print a
 monthly volume it does not have. Each is a real limitation and each is stated in the report
 rather than papered over.</p>
-<p><a class="btn" href="/download/">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
-        cat="learn", slug="what-scout-checks",
-        title=f"All {len(rows)} checks Scout runs, by area (2026)",
-        desc=(f"The complete list of {len(rows)} checks Scout runs across {len(by_lane)} areas, "
+        cat="learn", slug="what-docket-checks",
+        title=f"All {len(rows)} checks Docket runs, by area (2026)",
+        desc=(f"The complete list of {len(rows)} checks Docket runs across {len(by_lane)} areas, "
               "generated from the shipped build so it cannot drift from the product."),
         h1=f"All {len(rows)} checks, by area",
-        crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / What Scout checks',
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What Docket checks',
         body=body,
     )
 
@@ -253,7 +253,7 @@ def write_robots() -> None:
     sites did it by accident, is the entire point.
     """
     lines = [
-        "# Scout — scoutseo.app",
+        "# Docket — docketseo.app",
         "# Everything is open, including AI search and training crawlers.",
         "# Named individually so the next person to edit this file can see the",
         "# difference between a search crawler and a training crawler.",
@@ -292,7 +292,7 @@ def write_sitemap(pages: list[Path]) -> None:
 
 
 def write_static() -> None:
-    (SITE / "CNAME").write_text("scoutseo.app\n")
+    (SITE / "CNAME").write_text("docketseo.app\n")
 
     # Copy the Index datasets into the served tree. They live in /data at the
     # repo root so the collection script and its inputs sit together, but only
@@ -352,10 +352,10 @@ Ahrefs Site Audit, each naming what the other does better.</li>
 """
     return render(
         cat="", slug="",
-        title="Page not found — Scout",
-        desc="That page does not exist. Where everything on scoutseo.app lives.",
+        title="Page not found — Docket",
+        desc="That page does not exist. Where everything on docketseo.app lives.",
         h1="Page not found",
-        crumb='<a href="/">Scout</a> / Not found',
+        crumb='<a href="/">Docket</a> / Not found',
         body=body,
         schema_type="",
         filename="404.html",
@@ -383,7 +383,7 @@ def main() -> int:
 
     # NOT appended to `pages`: the sitemap is derived from that list, and
     # render() resolves an empty cat+slug to the site root, so including the
-    # 404 emitted a second <loc>https://scoutseo.app/</loc> — a duplicate entry
+    # 404 emitted a second <loc>https://docketseo.app/</loc> — a duplicate entry
     # is an invalid sitemap. It is also a page that must never be indexed.
     not_found()
 

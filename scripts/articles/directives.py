@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The dead-directive measurement — Scout's second first-party dataset.
+"""The dead-directive measurement — Docket's second first-party dataset.
 
 Every number is read out of site/data/ai-directives-2026-08.json, which is
 built from the raw survey by scripts/build_directives.py and ships with the
@@ -147,7 +147,7 @@ def dead_directives() -> Path:
     body = f"""
 <p class="lede">More than half the websites that write a robots.txt rule aimed at an AI
 crawler are addressing something that will never read it. We read the robots.txt of the
-Tranco top 10,000 on {collected}, parsed all {n:,} that returned one with Scout's own parser,
+Tranco top 10,000 on {collected}, parsed all {n:,} that returned one with Docket's own parser,
 and found that of the <strong>{ai:,} sites naming at least one AI user-agent</strong>,
 <strong>{dead:,} — {pct_dead}% — name a token that no crawler uses.</strong></p>
 
@@ -179,7 +179,7 @@ old token, including amazon.com, pinterest.com and tiktok.com.
 
 <p><strong>Undocumented.</strong> The token appears on no vendor page and in no community
 list. Someone wrote the company name, the product name, or a plausible-looking guess. We
-report these separately and Scout's own check leaves them alone, because "nobody documents
+report these separately and Docket's own check leaves them alone, because "nobody documents
 it" is weaker evidence than "the vendor replaced it" — a token could be real and simply
 undocumented where we looked.</p>
 
@@ -212,7 +212,7 @@ error the whole page is about, made by us, one step from shipping.</p>
 <div class="callout-title">What the correction leaves</div>
 <p>The truncation is real; the conclusion was wrong. A token is broken when the parser cuts it
 and <em>what survives is not a crawler name</em>. That is a narrower rule, it is decidable
-from two sources rather than one, and it is what Scout ships.</p>
+from two sources rather than one, and it is what Docket ships.</p>
 </div>
 
 {_truncated_table(d)}
@@ -282,7 +282,7 @@ OpenAI's search crawler while allowing its training crawler. Anthropic is starke
 
 <p>Losing your place in ChatGPT's answers is, at this scale, a side effect of a training
 decision taken by about two sites in a thousand on purpose. That is the finding worth acting
-on, and it is the reason Scout separates the two crawler classes in every report instead of
+on, and it is the reason Docket separates the two crawler classes in every report instead of
 counting "AI bots blocked".</p>
 
 <h2>llms.txt: adoption is real, and the obvious check is wrong 17% of the time</h2>
@@ -314,7 +314,7 @@ count.</p>
 <p>{s['llms_false_positive']} of {s['llms_candidates']} apparent llms.txt files —
 <strong>{s['pct_llms_false_positive']}%</strong> — were not one. Semrush's Site Audit flags a
 missing llms.txt as an issue; any "does this file exist" test without a control fetch inherits
-that error rate, because a soft-404 handler answers yes to every question. Scout issues the
+that error rate, because a soft-404 handler answers yes to every question. Docket issues the
 control request and reads the first bytes, and reports the file as unconfirmed rather than
 present when either test fails.</p>
 </div>
@@ -377,11 +377,11 @@ collect it.</p>
 their servers do is unsolicited scanning, whatever the header says underneath. One request
 inside an audit somebody asked for is a different act. So the survey figure above is
 <strong>{s['edge_denied']} hosts refusing <em>our own</em> self-identifying bot</strong>, which
-is what we were entitled to learn, and the per-crawler answer is something Scout works out
+is what we were entitled to learn, and the per-crawler answer is something Docket works out
 for one site at a time — the site in front of it.</p>
 
 <p>That is check 89, <code>ai.edge_access</code>. It probes the audited origin only, appends
-<code>Scout-SEO-Audit</code> to every vendor string so nobody's log shows a forged crawler,
+<code>Docket-SEO-Audit</code> to every vendor string so nobody's log shows a forged crawler,
 and reports the contradictions rather than the refusals: a crawler your file blocks and your
 server also blocks is your policy working twice, and saying so would train you to ignore the
 check. On Nature it reports one finding, not four.</p>
@@ -407,7 +407,7 @@ Collected in {int(d['duration_s'] / 60)} minutes on {collected}.</p>
 
 <p><strong>We did not impersonate any vendor's crawler.</strong> Sending a forged
 <code>OAI-SearchBot</code> header to 10,000 third-party servers to see what they return is
-deception, and it would have produced better data. Scout runs the same test inside the
+deception, and it would have produced better data. Docket runs the same test inside the
 product, against a site the person running it owns, where it is not deception.</p>
 
 <p>Limits worth stating. {s['attempted'] - n:,} of the 10,000 hosts did not return a parseable
@@ -434,7 +434,7 @@ llms.txt. Recompute it and disagree.</p>
 
 <h2>The check this became</h2>
 
-<p>Scout ships this as <code>ai.dead_crawler_directive</code>, and it flags a deliberately
+<p>Docket ships this as <code>ai.dead_crawler_directive</code>, and it flags a deliberately
 smaller number than the {pct_dead}% at the top of this page.
 <strong>{s['sites_provably_broken']} sites — {s['pct_provably_broken_of_ai']}% of everyone
 writing an AI crawler rule</strong> — carry a token that is either vendor-retired with a
@@ -474,10 +474,10 @@ business decisions.</li>
 user-agent and confirm the server agrees with what you wrote.</li>
 </ol>
 
-<p>Scout does steps two through five on every audit, names the dead tokens it finds, and
+<p>Docket does steps two through five on every audit, names the dead tokens it finds, and
 prints the replacement rules to paste.</p>
 
-<p><a class="btn" href="/download/">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="index", slug="ai-directives",
@@ -486,7 +486,7 @@ prints the replacement rules to paste.</p>
               f"sites writing AI crawler rules, {dead:,} name a retired or unmatchable "
               f"token."),
         h1="The AI rules in robots.txt that do nothing",
-        crumb='<a href="/">Scout</a> / <a href="/index/">The Index</a> / Dead AI directives',
+        crumb='<a href="/">Docket</a> / <a href="/index/">The Index</a> / Dead AI directives',
         body=body,
         published="2026-08-07",
         faq=[

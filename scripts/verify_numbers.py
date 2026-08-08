@@ -51,7 +51,7 @@ ALLOWED = {
               "Quoted from their pricing page and linked beside it."),
     "24": ("The threshold of the DELETED palette-size rule — brand.visual_"
            "consistency fired above 24 distinct colours. /learn/brand-"
-           "consistency/ explains why that rule died when Scout could finally "
+           "consistency/ explains why that rule died when Docket could finally "
            "read real stylesheets. A historical fact about a rule that no "
            "longer exists cannot be derived from a dataset, and it must not "
            "silently become a current figure either."),
@@ -60,7 +60,7 @@ ALLOWED = {
            "made every opacity variant look like drift. An observation from a "
            "debugging run that no longer reproduces, quoted in the article as "
            "the size of the mistake."),
-    "2.1.0": ("SARIF 2.1.0 — the OASIS spec version Scout emits and GitHub "
+    "2.1.0": ("SARIF 2.1.0 — the OASIS spec version Docket emits and GitHub "
               "ingests. A version number in a format name, not a measurement; "
               "it changes when OASIS publishes a new spec, not when we "
               "measure anything."),
@@ -78,7 +78,7 @@ ALLOWED = {
     "0.85": "PageRank damping factor from the original paper",
     "5.0": "Mozilla/5.0, part of every user-agent string ever written",
     "537.36": "AppleWebKit build in the user-agent strings we quote",
-    "12": "macOS 12, the minimum version Scout supports",
+    "12": "macOS 12, the minimum version Docket supports",
     "2": "'the first two sentences', '.2MB', ordinals",
     "3": "ordinals and list counts in prose",
     "1": "ordinals",

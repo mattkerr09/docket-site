@@ -204,7 +204,7 @@ def build() -> Path:
                 tr_c.update(tr)
             if unk or ret:
                 sites_dead += 1
-            # What Scout's shipped check flags: only what we can prove.
+            # What Docket's shipped check flags: only what we can prove.
             if ret or tr:
                 sites_prov += 1
         hosts.append({
@@ -329,7 +329,7 @@ def build() -> Path:
         "population": survey["population"],
         "duration_s": survey["duration_s"],
         "method": (
-            "One request for /robots.txt per host, parsed with Scout's own "
+            "One request for /robots.txt per host, parsed with Docket's own "
             "RobotsTxt class. A second request for /llms.txt only where the "
             "robots.txt we had just read permitted our own user-agent, plus a "
             "control request for a path that cannot exist, to catch handlers "

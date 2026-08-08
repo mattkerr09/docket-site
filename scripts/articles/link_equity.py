@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Internal link equity — measured on our own site, including where it fails.
 
-Written from real numbers produced by Scout's architecture analyser against
-scoutseo.app. Every figure here was measured; the embarrassing one is included
+Written from real numbers produced by Docket's architecture analyser against
+docketseo.app. Every figure here was measured; the embarrassing one is included
 because a piece about internal linking that only shows sites getting it right
 is an advertisement, not an explanation.
 """
@@ -23,7 +23,7 @@ other, and it is distributed by where you link — not by what you think matters
 treats a link from your homepage as a vote, so a page nothing links to reads as a page
 you do not care about, however important it is to your business.</p>
 
-<p>We found this on our own site. Scout crawled scoutseo.app, built the internal link graph,
+<p>We found this on our own site. Docket crawled docketseo.app, built the internal link graph,
 and ran PageRank across it. The download page — the entire commercial point of the site —
 received <strong>one internal link</strong> and held <strong>1.25% of the internal link
 equity</strong> against a 5.56% average. Our most important page was getting a fifth of what
@@ -48,7 +48,7 @@ a page that itself receives no links passes almost nothing.</p>
 
 <p>PageRank handles this by being recursive: a page's value depends on the value of the
 pages linking to it, which depends on the pages linking to <em>those</em>. Run it to
-convergence and you get a distribution across the whole site. Scout uses the standard
+convergence and you get a distribution across the whole site. Docket uses the standard
 0.85 damping factor from the original paper, so the numbers are comparable to what other
 tools report.</p>
 
@@ -74,7 +74,7 @@ because navigation links carry far less weight than a link inside relevant body 
 <h3>The isolated cluster</h3>
 <p>A blog that links to itself four hundred times and to the product twice. Equity flows
 in from the rest of the site, circulates inside the section, and never comes back out.
-Scout reports sections that link to nothing outside themselves for this reason.</p>
+Docket reports sections that link to nothing outside themselves for this reason.</p>
 
 <h3>The dead end</h3>
 <p>Pages that receive links and contain none. Equity arrives and stops. Usually a
@@ -105,7 +105,7 @@ href="/vs/sitebulb-alternative/">Sitebulb</a> is genuinely better at this and it
 strongest feature. Their force-directed crawl maps are built for that kind of
 investigation.</p>
 
-<p>Scout draws a deliberately simpler picture: pages in rings by click depth, sized by
+<p>Docket draws a deliberately simpler picture: pages in rings by click depth, sized by
 equity. That is a considered trade. Force-directed layouts become unreadable past a few
 hundred nodes, and they are non-deterministic, so two audits of the same site produce
 different-looking maps and you cannot compare them. We would rather the same crawl always
@@ -114,11 +114,11 @@ drew the same map. If interactive exploration is what you want, use Sitebulb.</p
 <h2>The caveat that matters</h2>
 
 <p>A link graph is only as good as the crawl behind it. Auditing a law firm's site
-recently, Scout crawled 30 pages and found 935 — and in that fragment, 25 attorney pages
+recently, Docket crawled 30 pages and found 935 — and in that fragment, 25 attorney pages
 appeared to have no inbound links at all. They were not orphans. The pages that link to
 them, starting with the attorney index, had simply not been fetched yet.</p>
 
-<p>That is why Scout will not show you architecture findings from a crawl that saw a
+<p>That is why Docket will not show you architecture findings from a crawl that saw a
 small fraction of a site. A structure diagram looks authoritative whether or not it is
 right, which is exactly why it has to say when it is a sample. If you see the caveat,
 raise the page limit and run it again.</p>
@@ -132,13 +132,13 @@ the footer.</li>
 <li>If the answer is zero or one, that page is running on nothing.</li>
 </ol>
 
-<p>You can do this by hand on a small site in about twenty minutes. Scout does it across
+<p>You can do this by hand on a small site in about twenty minutes. Docket does it across
 every page, ranks the results, and shows you the map. The figures on this page come from
 running it against this site on {F.equity()["measured"]}, and they are read from that
 measurement rather than typed — this article quoted an 18-page graph for a while after the
 site had 23 pages, which is exactly the failure it warns about.</p>
 
-<p><a class="btn" href="/download/">Download Scout</a></p>
+<p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="learn", slug="internal-link-equity",
@@ -146,7 +146,7 @@ site had 23 pages, which is exactly the failure it warns about.</p>
         desc=("The ranking signal your pages pass to each other. Measured on our own "
               "site, where fixing a starved page moved the problem rather than ending it."),
         h1="Internal link equity, measured",
-        crumb='<a href="/">Scout</a> / <a href="/learn/">Learn</a> / Internal link equity',
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Internal link equity',
         body=body,
         faq=[
             ("What is internal link equity?",

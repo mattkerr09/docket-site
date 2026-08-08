@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """How consistent real companies actually are about their own brand.
 
-Scout has a brand lane — six checks asking whether a site looks and sounds
+Docket has a brand lane — six checks asking whether a site looks and sounds
 like one company — and no competitor's crawler asks the question at all. That
 makes it the most differentiated thing in the product and, until now, the least
 evidenced: the site claimed the lane existed and never showed what it finds.
@@ -23,7 +23,7 @@ Frame: public commercial sites across several sectors, small by design. The
 dataset records every host so anybody can re-run it, and the article must
 present this as what it is — a sample of the visible web, not a census.
 
-Run from the site repo; it imports Scout's engine from the app checkout.
+Run from the site repo; it imports Docket's engine from the app checkout.
 """
 from __future__ import annotations
 
@@ -63,7 +63,7 @@ SITES = [
     "https://www.notion.com",
     "https://www.warbyparker.com",
     "https://www.tesco.com",
-    "https://scoutseo.app",
+    "https://docketseo.app",
 ]
 
 BRAND_CHECKS = ("brand.name_consistency", "brand.logo", "brand.visual_consistency",
@@ -145,7 +145,7 @@ def main() -> None:
         "page_cap": PAGES,
         "sites_attempted": len(SITES),
         "sites_measured": len(ok),
-        # How often the typeface question could be answered AT ALL. Scout
+        # How often the typeface question could be answered AT ALL. Docket
         # reads inline <style> only, so on a site serving linked stylesheets
         # this signal is structurally absent. Publishing a median across sites
         # where it was never measurable would report blindness as tidiness.

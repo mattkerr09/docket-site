@@ -32,7 +32,7 @@ def directives() -> dict:
 
 @lru_cache(maxsize=None)
 def index() -> dict:
-    """The 110-site Scout Index."""
+    """The 110-site Docket Index."""
     return json.loads((ROOT / "data" / "index-2026-08.json").read_text())
 
 
@@ -320,7 +320,7 @@ def size_over_list(limit: int = 5) -> list:
 
 # -- can a published contact address receive anything? -----------------------
 #
-# Written after scoutseo.app spent weeks advertising an address on a domain
+# Written after docketseo.app spent weeks advertising an address on a domain
 # with no MX record. The survey exists because the obvious follow-up question —
 # is that unusual? — had no published answer, and guessing was not available.
 
@@ -498,7 +498,7 @@ def mx_measured() -> str:
     return mx()["measured"]
 
 
-# -- what Scout will actually crawl ------------------------------------------
+# -- what Docket will actually crawl ------------------------------------------
 #
 # The site never stated a page limit, and silence reads as a small number.
 # Generated from the app (seo_engine.crawler.CrawlConfig and the clamp in
@@ -534,7 +534,7 @@ def crawl_depth() -> int:
 
 # -- what the alternatives cost over time ------------------------------------
 #
-# Scout is a one-time price against subscriptions, and the page never did the
+# Docket is a one-time price against subscriptions, and the page never did the
 # arithmetic for the reader. Derived from competitors.csv so a price change
 # there moves the published comparison.
 
@@ -561,7 +561,7 @@ def rival_annual_low(slug: str) -> int:
 
 
 def years_to_match(slug: str) -> float:
-    """Years of the cheapest tier of `slug` before it costs more than Scout."""
+    """Years of the cheapest tier of `slug` before it costs more than Docket."""
     import sys as _sys
 
     _sys.path.insert(0, str(ROOT / "scripts"))
@@ -575,11 +575,11 @@ def three_year_cost(slug: str) -> int:
     return rival_annual_low(slug) * 3
 
 
-# -- how much of the test suite exists because Scout was wrong ---------------
+# -- how much of the test suite exists because Docket was wrong ---------------
 #
 # Generated from the app's own tests. The counting rule is deliberately
 # conservative and stated in the dataset: a file counts only if it names a
-# specific thing Scout got wrong, not merely because it is a test.
+# specific thing Docket got wrong, not merely because it is a test.
 
 
 @lru_cache(maxsize=None)
@@ -746,7 +746,7 @@ def gh_monthly_cost(runs: int) -> str:
 # competitor's crawler asks it, which made it the most differentiated thing in
 # the product and, for a long time, the least evidenced.
 #
-# One figure here is deliberately NOT published as a rate. Scout reads
+# One figure here is deliberately NOT published as a rate. Docket reads
 # typefaces from inline <style> only and does not fetch linked stylesheets, so
 # on most sites the count is structurally absent rather than low. Publishing a
 # median across sites where the question was never answerable would report

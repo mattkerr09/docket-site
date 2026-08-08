@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Every contact channel this site advertises must actually accept a message.
 
-The footer of all 25 pages offered `hello@scoutseo.app`. The domain has no MX
+The footer of all 25 pages offered `hello@docketseo.app`. The domain has no MX
 record. Under RFC 5321 §5.1 a sender that finds none falls back to the domain's
 address record, which for this site is GitHub Pages, and nothing answers there
 on port 25. So every message anyone sent bounced — to them, silently, with
