@@ -1,4 +1,4 @@
-# Scout — scoutseo.app
+# Docket — docketseo.app
 # Everything is open, including AI search and training crawlers.
 # Named individually so the next person to edit this file can see the
 # difference between a search crawler and a training crawler.
@@ -29,4 +29,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://scoutseo.app/sitemap.xml
+Sitemap: https://docketseo.app/sitemap.xml
