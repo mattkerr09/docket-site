@@ -42,6 +42,10 @@ ARTICLES = ROOT / "articles"
 ALLOWED = {
     # -- standards, specs and versions ------------------------------------
     "9309": "RFC 9309, the robots.txt standard",
+    "2.1.0": ("SARIF 2.1.0 — the OASIS spec version Scout emits and GitHub "
+              "ingests. A version number in a format name, not a measurement; "
+              "it changes when OASIS publishes a new spec, not when we "
+              "measure anything."),
     "2.2.1": "RFC 9309 section number",
     "5321": "RFC 5321, the SMTP standard — cited for the implicit-MX fallback",
     "2606": "RFC 2606, which reserves .example/.invalid/.test",

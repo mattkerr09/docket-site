@@ -456,6 +456,34 @@ comparison misses it entirely. Improvements never fail a build, however many the
 exits <code>1</code> rather than <code>0</code>. A build that goes green because the comparison
 was impossible is worse than one that fails, because the team believes the gate ran.</p>
 
+<h2>Findings on the Security tab instead of in the log</h2>
+
+<p>An exit code tells a build to stop and nothing else, so whoever sees red opens the log and
+reads text. <code>-f sarif</code> writes SARIF 2.1.0, the format GitHub, GitLab and Azure all
+ingest, and the findings become listed alerts with their severity, their description and the
+fix attached:</p>
+
+<pre><code>      - name: Audit staging
+        run: scout audit https://staging.example.com -n 100 -f sarif &gt; scout.sarif
+
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: scout.sarif</code></pre>
+
+<p><strong>Be clear about what that gets you.</strong> SARIF was designed for static analysis,
+where a result points at a file and a line. Scout's findings are about URLs, and there is no
+general way to know which source file produced a given URL — a template, a CMS record and a
+static file all look identical from outside. So the alerts land on the Security tab, correctly
+titled and linked to the affected pages, and they do <em>not</em> annotate the lines of a pull
+request the way a linter's SARIF does. If inline diff annotations are what you are after, this
+will disappoint you.</p>
+
+<p>Two details worth knowing. CRITICAL and HIGH both map to SARIF's <code>error</code>, because
+SARIF has no rank above it — each finding keeps its real severity in <code>properties</code>.
+And a finding's location is always a page of your own site: a few checks list a third-party URL
+as where you go to fix something, and pointing an alert at Google's settings page would be
+nonsense, so those travel as the rule's <code>helpUri</code> instead.</p>
+
 <h2>What it costs to run</h2>
 
 <p>macOS minutes are the expensive ones. GitHub
@@ -486,11 +514,11 @@ Turn it on for the pages that need it, or on a nightly job rather than a per-PR 
 
 <h2>Where this is thin</h2>
 
-<p>There is no GitHub Action, so the install is four lines of shell you maintain yourself. There
-is no JUnit or SARIF output yet, which means findings show up in the log rather than annotated
-on the diff. And the timings above are one machine on home broadband on a single day, across
-{F.ci_sites()} sites — one of them swung fifteen seconds between two consecutive runs. Treat
-them as an order of magnitude, not a benchmark, and measure your own.</p>
+<p>There is no GitHub Action, so the install is four lines of shell you maintain yourself. SARIF
+gets findings onto the Security tab but not onto the diff, for the reason above, and there is no
+JUnit output for the test-report panel. And the timings above are one machine on home broadband
+on a single day, across {F.ci_sites()} sites — one of them swung fifteen seconds between two
+consecutive runs. Treat them as an order of magnitude, not a benchmark, and measure your own.</p>
 
 <p><a class="btn" href="/download/">Download Scout</a></p>
 """
@@ -520,6 +548,12 @@ them as an order of magnitude, not a benchmark, and measure your own.</p>
              f"{F.ci_seconds_per_page()} seconds per page. Process startup was "
              f"{F.ci_overhead_seconds()}s, so almost all of it is the crawl. Rendering with "
              f"--render is considerably slower and was not included."),
+            ("Can Scout output SARIF for GitHub code scanning?",
+             "Yes — scout audit -f sarif writes SARIF 2.1.0, which you can hand to "
+             "github/codeql-action/upload-sarif. The findings appear as alerts on the "
+             "Security tab with their severity and fix. They do not annotate the pull "
+             "request diff: SARIF locations are files and lines, and an SEO finding is "
+             "about a URL, which cannot generally be mapped back to a source file."),
             ("Should the build fail on the SEO score?",
              "No. The score is a weighted composite and moves when the weighting changes. "
              "Gate on severities with --fail-on, or better, use scout diff to fail only on "
