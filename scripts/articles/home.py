@@ -75,7 +75,7 @@ def _mockup() -> str:
     lanes = [
         ("Crawlability", 100, "var(--ok)"), ("On-page SEO", 93, "var(--ok)"),
         ("Copy & content", 71, "var(--warn)"), ("Conversion", 78, "var(--warn)"),
-        ("Brand", 84, "var(--ok)"), ("Tracking", 63, "var(--amber)"),
+        ("Brand", 84, "var(--ok)"), ("Tracking", 63, "var(--brand)"),
     ]
     lane_html = "".join(
         f'<div class="mock-lane"><div class="mock-lane-top">'
@@ -113,7 +113,7 @@ def _mockup() -> str:
   <div class="mock-find">
     <div class="mock-find-h"><span class="mock-rank">1</span>Analytics is missing from 39 of 40 pages</div>
     <p class="mock-find-p">Sessions break when a visitor crosses an untagged page, so traffic
-    gets misattributed to direct. <strong style="color:var(--amber-light)">Fix:</strong> move the
+    gets misattributed to direct. <strong style="color:var(--brand-light)">Fix:</strong> move the
     tag into the shared template.</p>
   </div>
 </div></div>"""

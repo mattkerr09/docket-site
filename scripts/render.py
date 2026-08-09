@@ -81,7 +81,11 @@ PRICE = 149
 PRICE_STR = f"${PRICE}"
 
 # --------------------------------------------------------------------------
-# Design system. Dark, high-contrast, amber accent carried from the app icon.
+# Design system. Dark, high-contrast, indigo accent carried from the app icon.
+# Indigo by measurement: the old amber sat 4 degrees of hue from the
+# HIGH-severity colour, so brand chrome was indistinguishable from alarm.
+# --warn stays amber, which is the semantic that colour should have had
+# all along.
 # --------------------------------------------------------------------------
 STYLE = """<style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -111,7 +115,7 @@ STYLE = """<style>
      reads as considered where pure #000 reads as unstyled. */
   --bg:#07080d;--surface:#0e1017;--surface-2:#141822;--surface-3:#1b2030;
   --text:#f4f6fa;--text-mid:#a9b1c0;--text-dim:#6f7889;
-  --amber:#F0800F;--amber-light:#FFB528;--amber-soft:rgba(240,128,15,.12);
+  --brand:#818CF8;--brand-light:#A5B4FC;--brand-soft:rgba(129,140,248,.14);
   --ok:#4ade80;--warn:#fbbf24;--bad:#ff7a6e;
   --border:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.16);
   --radius:16px;--radius-sm:10px;
@@ -144,7 +148,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17
    next rule — which was the one giving every link its colour. Every body link
    on every article rendered in default browser blue on a near-black page for
    as long as that brace survived, and no gate on this site looks at colour. */
-a{color:var(--amber-light);text-decoration:none;transition:color .16s}
+a{color:var(--brand-light);text-decoration:none;transition:color .16s}
 @media(hover:hover){a:hover{color:var(--text);text-decoration:underline}}
 .wrap{width:min(820px,calc(100% - 2rem));margin:0 auto}
 .wrap-wide{width:min(1080px,calc(100% - 2rem));margin:0 auto}
@@ -154,7 +158,7 @@ nav{position:sticky;top:0;z-index:20;background:rgba(11,12,15,.88);
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem}
 .nav-brand{display:flex;align-items:center;gap:.55rem;font-weight:750;color:var(--text);
   font-size:1.1rem;letter-spacing:-.02em}
-.nav-brand:hover{text-decoration:none;color:var(--amber-light)}
+.nav-brand:hover{text-decoration:none;color:var(--brand-light)}
 .nav-links{display:flex;gap:1.35rem;font-size:.94rem}
 .nav-links a{color:var(--text-mid)}
 @media(hover:hover){.nav-links a:hover{color:var(--text);text-decoration:none}}
@@ -185,11 +189,11 @@ nav{position:sticky;top:0;z-index:20;background:rgba(11,12,15,.88);
   .hero-cta{gap:.6rem}
   .hero-cta>*{width:100%;text-align:center}
 }
-.btn{display:inline-block;background:linear-gradient(180deg,var(--amber-light),var(--amber));
+.btn{display:inline-block;background:linear-gradient(180deg,var(--brand-light),var(--brand));
   color:#17181C;font-weight:600;box-shadow:0 1px 0 rgba(255,255,255,.22) inset,
-  0 12px 30px -12px rgba(240,128,15,.75);
+  0 12px 30px -12px rgba(129,140,248,.75);
   padding:.62rem 1.2rem;border-radius:10px;font-size:.95rem;border:0;cursor:pointer}
-.btn:hover{background:var(--amber-light);color:#17181C;text-decoration:none}
+.btn:hover{background:var(--brand-light);color:#17181C;text-decoration:none}
 .btn-ghost{display:inline-block;border:1px solid var(--border-strong);color:var(--text-mid);
   padding:.6rem 1.15rem;border-radius:10px;font-size:.95rem;font-weight:600}
 .btn-ghost:hover{background:var(--surface-2);color:var(--text);text-decoration:none}
@@ -208,10 +212,10 @@ strong{color:var(--text);font-weight:650}
 .lede{font-size:1.17rem;color:var(--text);margin-bottom:1.4rem}
 ul,ol{color:var(--text-mid);margin:0 0 1.1rem 1.25rem}
 li{margin-bottom:.42rem}
-blockquote{border-left:3px solid var(--amber);padding:.2rem 0 .2rem 1.1rem;
+blockquote{border-left:3px solid var(--brand);padding:.2rem 0 .2rem 1.1rem;
   margin:1.3rem 0;color:var(--text)}
 code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);
-  padding:.14em .4em;border-radius:5px;color:var(--amber-light)}
+  padding:.14em .4em;border-radius:5px;color:var(--brand-light)}
 pre{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
   padding:1rem 1.1rem;overflow-x:auto;margin:1.2rem 0;font-size:.86rem;line-height:1.6}
 pre code{background:0;padding:0;color:var(--text-mid)}
@@ -227,10 +231,10 @@ table.cmp td:first-child{color:var(--text);font-weight:600}
 .wrap-tbl{overflow-x:auto;margin:1.4rem 0}
 
 .callout{background:var(--surface);border:1px solid var(--border);
-  border-left:3px solid var(--amber);border-radius:var(--radius-sm);
+  border-left:3px solid var(--brand);border-radius:var(--radius-sm);
   padding:1.05rem 1.2rem;margin:1.5rem 0}
 .callout p:last-child{margin-bottom:0}
-.callout-title{color:var(--amber-light);font-weight:700;font-size:.8rem;
+.callout-title{color:var(--brand-light);font-weight:700;font-size:.8rem;
   text-transform:uppercase;letter-spacing:.07em;margin-bottom:.4rem}
 
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
@@ -260,7 +264,7 @@ body.landing article{padding:0}
 /* Ambient light. A flat dark page reads as unlit; two soft pools give the
    canvas depth without anything on it looking decorated. */
 .hero-sec::before{content:"";position:absolute;inset:-40% -10% auto -10%;height:120%;
-  background:radial-gradient(58% 46% at 22% 30%,rgba(240,128,15,.13),transparent 68%),
+  background:radial-gradient(58% 46% at 22% 30%,rgba(129,140,248,.13),transparent 68%),
              radial-gradient(46% 40% at 82% 18%,rgba(88,132,255,.10),transparent 70%);
   pointer-events:none;z-index:0}
 .hero-grid{position:relative;z-index:1}
@@ -270,7 +274,7 @@ body.landing article{padding:0}
   transform-origin:left center;
   box-shadow:0 2px 0 rgba(255,255,255,.06) inset,
              0 40px 90px -30px rgba(0,0,0,.9),
-             0 0 120px -40px rgba(240,128,15,.30);
+             0 0 120px -40px rgba(129,140,248,.30);
   transition:transform .6s cubic-bezier(.16,1,.3,1)}
 @media(hover:hover){.mock:hover{transform:perspective(1600px) rotateY(-1.5deg) rotateX(.5deg)}}
 @media(max-width:940px){.mock{transform:none}.mock:hover{transform:none}}
@@ -286,8 +290,8 @@ body.landing article{padding:0}
 .rank-row .n{flex:none;width:26px;height:26px;border-radius:8px;display:grid;
   place-items:center;font-family:var(--mono);font-size:.78rem;font-weight:600;
   background:rgba(255,255,255,.06);color:var(--text-dim)}
-.rank-row.hot .n{background:var(--amber);color:#17181C}
-.rank-row.hot{color:var(--text);border-color:rgba(240,128,15,.34)}
+.rank-row.hot .n{background:var(--brand);color:#17181C}
+.rank-row.hot{color:var(--text);border-color:rgba(129,140,248,.34)}
 /* No entrance animation here. It was built, and IntersectionObserver turned out
    not to fire at all in the webview used to verify it — so the effect could not
    be confirmed working, only confirmed shipped. A motion effect that cannot be
@@ -301,17 +305,17 @@ body.landing article{padding:0}
    That repair then went wrong in a quieter way: it wrote a *replacement*
    `.hero-sec::before` here instead of removing the brace that was eating the
    original one above. Both fixes landed, so the page carried two rules for the
-   same pseudo-element and the later one won — a single centred amber ellipse,
-   where the rule at the top of this sheet asks for two pools, amber and blue.
+   same pseudo-element and the later one won — a single centred brand ellipse,
+   where the rule at the top of this sheet asks for two pools.
    The glow rendered, the brace gate passed, and the design still was not the
    one anybody wrote. The duplicate is gone; the original is the live rule. */
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:3.2rem;
   align-items:center;position:relative}
 @media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:2.4rem}}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
-  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-light);
-  background:linear-gradient(180deg,rgba(240,128,15,.14),rgba(240,128,15,.06));
-  border:1px solid rgba(240,128,15,.26);border-radius:999px;padding:.5rem 1.05rem;
+  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
+  background:linear-gradient(180deg,rgba(129,140,248,.14),rgba(129,140,248,.06));
+  border:1px solid rgba(129,140,248,.26);border-radius:999px;padding:.5rem 1.05rem;
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(74,222,128,.18)}
@@ -320,8 +324,8 @@ body.landing article{padding:0}
      Tight tracking is what stops large type reading as merely big. */
   font-size:clamp(2.5rem,5.6vw,4.3rem);line-height:1.02;letter-spacing:-.035em;
   margin:0 0 1.35rem;max-width:15ch}
-.hero-h1 em{font-style:normal;color:var(--amber-light);display:block}
-.hero-h1 em{font-style:normal;background:linear-gradient(100deg,var(--amber-light),var(--amber));
+.hero-h1 em{font-style:normal;color:var(--brand-light);display:block}
+.hero-h1 em{font-style:normal;background:linear-gradient(100deg,var(--brand-light),var(--brand));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hero-sub{font-size:1.11rem;color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
@@ -352,7 +356,7 @@ body.landing article{padding:0}
 .mock-find{background:var(--surface-2);border:1px solid var(--border);border-left:2px solid var(--bad);
   border-radius:8px;padding:.6rem .7rem;margin-top:.55rem}
 .mock-find-h{display:flex;gap:.45rem;align-items:center;font-size:.76rem;font-weight:640;color:var(--text)}
-.mock-rank{background:var(--amber-soft);color:var(--amber-light);font-size:.62rem;font-weight:720;
+.mock-rank{background:var(--brand-soft);color:var(--brand-light);font-size:.62rem;font-weight:720;
   width:16px;height:16px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .mock-find-p{font-size:.68rem;color:var(--text-dim);margin:.3rem 0 0 1.35rem;line-height:1.45}
 
@@ -365,13 +369,13 @@ body.landing article{padding:0}
 .sec-head h2{font-family:var(--display);font-weight:700;
   font-size:clamp(1.9rem,4vw,2.85rem);line-height:1.1;
   letter-spacing:-.03em;margin:0 0 .85rem}
-.sec-head h2 em{font-style:normal;color:var(--amber-light)}
+.sec-head h2 em{font-style:normal;color:var(--brand-light)}
 .sec-head p{font-size:1.04rem;color:var(--text-mid);margin:0}
 .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1rem}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.4rem 1.5rem;
   transition:border-color .18s,transform .18s}
 .card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
-.card-ico{width:36px;height:36px;border-radius:9px;background:var(--amber-soft);color:var(--amber-light);
+.card-ico{width:36px;height:36px;border-radius:9px;background:var(--brand-soft);color:var(--brand-light);
   display:flex;align-items:center;justify-content:center;margin-bottom:.85rem}
 .card h3{font-size:1.03rem;margin:0 0 .45rem}
 .card p{font-size:.92rem;margin:0;color:var(--text-mid)}
@@ -381,16 +385,16 @@ body.landing article{padding:0}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:760px){.split{grid-template-columns:1fr}}
 .split-col{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.3rem 1.4rem}
-.split-col.good{border-color:rgba(240,128,15,.32)}
+.split-col.good{border-color:rgba(129,140,248,.32)}
 .split-tag{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   color:var(--text-dim);margin-bottom:.8rem}
-.split-col.good .split-tag{color:var(--amber-light)}
+.split-col.good .split-tag{color:var(--brand-light)}
 .split-list{list-style:none;margin:0;padding:0;font-size:.88rem}
 .split-list li{padding:.42rem 0;border-bottom:1px solid var(--border);color:var(--text-mid);
   display:flex;gap:.55rem;align-items:flex-start}
 .split-list li:last-child{border-bottom:0}
-.split-list .n{color:var(--amber-light);font-weight:700;font-family:var(--mono);font-size:.78rem;flex:0 0 auto}
-.split-phase{font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--amber-light);
+.split-list .n{color:var(--brand-light);font-weight:700;font-family:var(--mono);font-size:.78rem;flex:0 0 auto}
+.split-phase{font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--brand-light);
   font-weight:700;padding-top:.6rem}
 
 /* Index chart, drawn from the measured dataset */
@@ -399,13 +403,15 @@ body.landing article{padding:0}
 .bar-lbl{font-size:.83rem;color:var(--text-mid);text-align:right}
 .bar-track{height:9px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden}
 .bar-fill{display:block;height:100%;border-radius:99px;
-  background:linear-gradient(90deg,var(--amber),var(--amber-light))}
+  background:linear-gradient(90deg,var(--brand),var(--brand-light))}
 .bar-val{font-size:.82rem;font-weight:680;color:var(--text);font-variant-numeric:tabular-nums}
 .chart-note{font-size:.8rem;color:var(--text-dim);margin:1.1rem 0 0}
 
 .cta-band{text-align:center;padding:4.2rem 0}
 .cta-band h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.028em;margin-bottom:.7rem}
 .cta-band p{font-size:1.05rem;color:var(--text-mid);max-width:34rem;margin:0 auto 1.6rem}
+.faq{padding:var(--sec-y) 0}
+.faq h2{margin:0 0 1.2rem}
 .faq-item{border-top:1px solid var(--border);padding:1.15rem 0}
 .faq-item h3{font-size:1rem;margin:0 0 .4rem}
 .faq-item p{font-size:.93rem;margin:0}
@@ -413,7 +419,7 @@ body.landing article{padding:0}
 """
 
 
-def _mark(size: int = 22, color: str = "var(--amber)") -> str:
+def _mark(size: int = 22, color: str = "var(--brand)") -> str:
     """The Docket shield, inline so there is no extra request and no flash."""
     return (
         f'<svg viewBox="0 0 1024 1024" width="{size}" height="{size}" aria-hidden="true">'
@@ -588,7 +594,13 @@ def render(
         items = "".join(
             f'<div class="faq-item"><h3>{q}</h3><p>{a}</p></div>' for q, a in faq
         )
-        faq_html = f'<section class="faq"><h2>Common questions</h2>{items}</section>'
+        # `.wrap` matters here: every other block on the page is inside one, and
+        # the FAQ was emitted bare. On a wide window it ran flush to both edges
+        # of the viewport with zero left padding while the nav and footer above
+        # and below it stayed centred — visible immediately in a screenshot and
+        # invisible to every gate, because nothing overflowed and no link broke.
+        faq_html = (f'<section class="faq"><div class="wrap">'
+                    f'<h2>Common questions</h2>{items}</div></section>')
 
     if faq:
         qa = ",".join(

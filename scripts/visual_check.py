@@ -14,7 +14,7 @@ and only a layout engine can give it.
 
 So this renders the built pages in WebKit through Docket's own `docket-render`
 helper and asserts computed values. Every expected value is derived from the
-page — the amber assertion compares a link against `var(--amber-light)` as that
+page — the brand assertion compares a link against `var(--brand-light)` as that
 page resolves it, rather than against a hex typed here, because a hex typed
 here is a second copy of a fact and the two will disagree.
 
@@ -97,7 +97,7 @@ PROBE = """
 
   return {
     width: window.innerWidth,
-    amber: varColor('--amber-light'),
+    brand: varColor('--brand-light'),
     linkColors: colors,
     linkCount: links.length,
     navLinks: nav ? nav.querySelectorAll('a').length : 0,
@@ -190,9 +190,9 @@ def check(name: str, width: int, r: dict) -> list[str]:
         bad.append(f"{name}: {len(colors[UA_DEFAULT_LINK])} link(s) are "
                    f"user-agent default blue — a colour rule is not "
                    f"resolving: {hrefs}")
-    if r["amber"] not in colors:
-        bad.append(f"{name}: no link resolves to --amber-light "
-                   f"({r['amber']}); link colours present are "
+    if r["brand"] not in colors:
+        bad.append(f"{name}: no link resolves to --brand-light "
+                   f"({r['brand']}); link colours present are "
                    f"{sorted(colors)}")
 
     # 2. The mobile nav wrapped out of its own box once.
@@ -241,7 +241,7 @@ INJECTIONS = [
     ("index.html", "homepage", "hero glow",
      ".hero-sec::before{content", ".hero-sec::befores{content"),
     ("learn/googlebot-2mb-limit/index.html", "article", "link colour",
-     "a{color:var(--amber-light)", "a}{color:var(--amber-light)"),
+     "a{color:var(--brand-light)", "a}{color:var(--brand-light)"),
 ]
 
 
