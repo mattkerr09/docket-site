@@ -309,10 +309,10 @@ def write_static() -> None:
     # Favicon as inline SVG: one file, scales everywhere, no binary in git.
     (SITE / "favicon.svg").write_text(
         '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">'
-        '<rect width="1024" height="1024" rx="228" fill="#F0800F"/>'
+        '<rect width="1024" height="1024" rx="228" fill="#818CF8"/>'
         '<path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 '
         'C310 838 158 706 158 522 L158 242 Z" fill="#17181C"/>'
-        '<g fill="none" stroke="#F0800F" stroke-width="104" stroke-linecap="round" '
+        '<g fill="none" stroke="#818CF8" stroke-width="104" stroke-linecap="round" '
         'stroke-linejoin="round"><path d="M348 636 L676 396"/>'
         '<path d="M540 388 L688 388 L688 536"/></g></svg>\n'
     )
