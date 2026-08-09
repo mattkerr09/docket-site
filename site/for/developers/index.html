@@ -378,7 +378,8 @@ short enough to sit on every pull request without anyone noticing the build got 
 
 <h2>Read this first: your runners are probably Linux</h2>
 
-<p>Docket is Apple Silicon only. It runs on GitHub Actions'
+<p>The desktop app is Apple Silicon only, and the Linux CLI is x86_64 — so the action
+installs the macOS build. It runs on GitHub Actions'
 <a href="https://docs.github.com/en/actions/reference/runners/github-hosted-runners"><code>macos-latest</code></a>,
 which is arm64, and it does not run on <code>ubuntu-latest</code> at all. If your pipeline is
 Linux and you are not willing to add a macOS job to it, stop reading and use
