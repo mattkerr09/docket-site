@@ -41,6 +41,11 @@ ARTICLES = ROOT / "articles"
 #: A reason is required for every entry, and "it looked fine" is not one.
 ALLOWED = {
     # -- standards, specs and versions ------------------------------------
+    "2.30": ("the glibc floor of the Linux build, measured with objdump over "
+             "the shipped binary and its bundled libpython — the highest "
+             "GLIBC_ symbol version either requires"),
+    "2.14": ("what the Linux launcher alone requires; quoted beside 2.30 to "
+             "show which half of the bundle sets the floor"),
     "9309": "RFC 9309, the robots.txt standard",
     "139": ("Screaming Frog's Log File Analyser licence, $139 per year, read "
             "from their own pricing page on 2026-08-07 and linked in the "
