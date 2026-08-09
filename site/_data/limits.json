@@ -1,8 +1,13 @@
 {
-  "max_pages_ceiling": 20000,
-  "ui_default_pages": 150,
+  "page_cap_removed": true,
+  "ui_default_pages": 200,
   "cli_default_pages": 200,
+  "ui_min_pages": 0,
+  "ui_max_pages": 1000000,
   "max_depth_default": 5,
+  "wall_clock_seconds": 900,
   "wall_clock_minutes": 15,
-  "note": "Generated from seo_engine.crawler.CrawlConfig and the clamp in ui/src/app.js so the published ceiling cannot drift from the shipped one."
+  "delay_seconds": 0.25,
+  "concurrency": 4,
+  "note": "Read from seo_engine.crawler.CrawlConfig and the clamp in ui/src/app.js by scripts/collect_limits.py, so the published figures cannot drift from the shipped ones. There is no page ceiling: 0 means the page count does not stop the crawl. It is still bounded \u2014 by the wall clock, by the frontier running dry, and in practice by memory, because every page is held in a list. Publishing 'unlimited' without those three would be a promise the program cannot keep."
 }
