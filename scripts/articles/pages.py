@@ -219,7 +219,16 @@ how you would drive Docket from your own scripts.</p>
 
 <h2>Requirements and limits</h2>
 <ul>
-<li><strong>macOS 12 or later, Apple Silicon.</strong> There is no Intel or Windows build.</li>
+<li><strong>macOS 12 or later, Apple Silicon</strong> for the desktop app. There is no
+Intel or Windows build.</li>
+<li><strong>Linux x86_64 for the command line.</strong> A 12 MB tarball needing
+<strong>glibc 2.30</strong> or newer — check yours with <code>ldd --version</code>. That floor
+is measured from the shipped binary rather than assumed from the machine that built it: the
+launcher itself only needs 2.14, and the bundled Python runtime is what raises it to 2.30.
+It is the same engine and the same checks, verified running in a clean container. Two things
+it is not: there is no Linux desktop app, only the CLI, and <code>--render</code> does not work
+there — the renderer is a WebKit helper that exists only on macOS, so on Linux Docket reports
+that rendering was requested and did not happen rather than quietly skipping it.</li>
 <li><strong>An internet connection to the site you are auditing.</strong> Nothing else.</li>
 <li><strong>Crawls are bounded</strong> by page count, depth, wall-clock time and response
 size. The defaults are deliberately polite; you can raise them.</li>
@@ -406,7 +415,8 @@ short enough to sit on every pull request without anyone noticing the build got 
 
 <h2>Read this first: your runners are probably Linux</h2>
 
-<p>Docket is Apple Silicon only. It runs on GitHub Actions'
+<p>The desktop app is Apple Silicon only, and the Linux CLI is x86_64 — so the action
+installs the macOS build. It runs on GitHub Actions'
 <a href="https://docs.github.com/en/actions/reference/runners/github-hosted-runners"><code>macos-latest</code></a>,
 which is arm64, and it does not run on <code>ubuntu-latest</code> at all. If your pipeline is
 Linux and you are not willing to add a macOS job to it, stop reading and use

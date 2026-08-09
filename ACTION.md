@@ -4,13 +4,26 @@ Crawl a site and fail the build on SEO regressions. Wraps the CLI that ships
 inside [Docket](https://docketseo.app), so the four lines of shell you would
 otherwise maintain live here instead.
 
-**Read this first: Docket is Apple Silicon only.** It runs on
-`runs-on: macos-latest`, which is arm64, and it does not run on
-`ubuntu-latest`. The action checks the runner and fails with that sentence
-rather than letting you discover it inside a confusing `hdiutil` error. If your
-pipeline is Linux and you will not add a macOS job,
+**Read this first: this action installs the macOS build**, so it needs
+`runs-on: macos-latest` (arm64) and fails on `ubuntu-latest` with a sentence
+saying so, rather than letting you find out inside a confusing `hdiutil` error.
+
+There **is** a Linux CLI — `docket-0.1.0-linux-x86_64.tar.gz` on the release,
+glibc 2.31+ — and on a Linux runner you can use it directly today:
+
+```yaml
+      - run: |
+          curl -sSL -o docket.tgz https://github.com/mattkerr09/docket-site/releases/download/v0.1.0/docket-0.1.0-linux-x86_64.tar.gz
+          mkdir -p docket && tar -xzf docket.tgz -C docket
+          ./docket/docket audit https://staging.example.com --fail-on critical
+```
+
+Two limits on that path, both deliberate: `--render` does not work on Linux
+(the renderer is a WebKit helper that exists only on macOS, and Docket says so
+rather than skipping quietly), and this action does not wrap it yet. If you
+need rendering in CI, use a macOS job. If you need Windows,
 [Screaming Frog's CLI](https://www.screamingfrog.co.uk/seo-spider/user-guide/general/)
-runs on Windows, Mac and Ubuntu Linux and is the right tool for you.
+runs there and Docket does not.
 
 macOS runner minutes also cost about ten times Linux ones. See
 [the cost arithmetic](https://docketseo.app/for/developers/).
