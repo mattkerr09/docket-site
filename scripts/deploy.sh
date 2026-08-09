@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build, gate, and publish scoutseo.app.
+# Build, gate, and publish docketseo.app.
 #
 # Deploys by pushing site/ to the `gh-pages` branch, which GitHub Pages serves
 # directly. This replaced an Actions workflow that failed three times in a row
@@ -64,7 +64,7 @@ if [ -f scripts/publish_knowledge.py ]; then
 fi
 
 # CNAME lives in site/ so it survives into the deployed branch root. Without it
-# GitHub drops the custom domain on the next deploy and scoutseo.app 404s.
+# GitHub drops the custom domain on the next deploy and docketseo.app 404s.
 if [ ! -f site/CNAME ]; then
   echo "FAIL — site/CNAME is missing; deploying would drop the custom domain" >&2
   exit 1
@@ -85,4 +85,4 @@ git subtree split --prefix site -b gh-pages-tmp >/dev/null
 git push -qf origin gh-pages-tmp:gh-pages
 git branch -D gh-pages-tmp >/dev/null
 
-echo "==> done — https://scoutseo.app (propagation takes a minute)"
+echo "==> done — https://docketseo.app (propagation takes a minute)"

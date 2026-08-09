@@ -50,10 +50,14 @@ charges nothing is the kind of thing this tool exists to flag.</p>
 
 <h2>What it will crawl</h2>
 
-<p>Up to <strong>{F.crawl_ceiling_str()} pages per crawl</strong>, {F.crawl_default()} by
-default, to a depth of {F.crawl_depth()} clicks. There is also a {F.crawl_minutes()}-minute
-wall clock: a crawl that hits it stops and tells you it stopped, with everything it found so
-far, rather than pretending it finished.</p>
+<p><strong>No page ceiling.</strong> The default is {F.crawl_default()} pages to a depth of
+{F.crawl_depth()} clicks, and setting the page count to 0 removes the limit entirely.</p>
+
+<p>That is worth stating precisely, because "unlimited" on its own is a promise no program
+keeps. What still stops a crawl is the {F.crawl_minutes()}-minute wall clock, the frontier
+running dry, and — on a genuinely enormous site — your machine's memory, because every page is
+held in one list. A crawl that hits the clock stops and tells you it stopped, with everything
+it found so far, rather than pretending it finished.</p>
 
 <p>If your site is larger than that, say so plainly to yourself and use
 <a href="/vs/screaming-frog-alternative/">Screaming Frog</a> — it crawls without a ceiling and

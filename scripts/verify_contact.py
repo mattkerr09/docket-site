@@ -86,7 +86,7 @@ def has_mx(domain: str) -> tuple[bool, str]:
 
 def reachable(url: str) -> tuple[bool, str]:
     req = urllib.request.Request(url, method="HEAD",
-                                 headers={"User-Agent": "scoutseo-deploy-gate/1.0"})
+                                 headers={"User-Agent": "docketseo-deploy-gate/1.0"})
     try:
         with urllib.request.urlopen(req, timeout=15) as resp:
             code = resp.status
