@@ -58,6 +58,9 @@ echo "==> visual gate"
 "$PY" scripts/visual_check.py --self-test
 "$PY" scripts/visual_check.py
 
+echo "==> updater gate"
+"$PY" scripts/verify_updater.py || exit 1
+
 if [ -f scripts/publish_knowledge.py ]; then
   echo "==> knowledge feed gate"
   "$PY" scripts/publish_knowledge.py
