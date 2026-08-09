@@ -102,11 +102,26 @@ nav{position:sticky;top:0;z-index:20;background:rgba(11,12,15,.88);
      scrolled. Measured at 375px: nav box ended at 61, links ended at 80. */
   .nav-inner{flex-wrap:wrap;row-gap:.55rem;height:auto;min-height:60px;
     padding-bottom:.5rem}
-  .nav-links{order:3;width:100%;gap:1.15rem;font-size:.88rem;
+  /* The six links total 273px of text at this size. At a 1.15rem gap they
+     needed 365px in a 343px rail, so "About" was clipped to "Ab" at 375px —
+     it scrolled, but nothing said so, and a cut-off word reads as broken
+     rather than swipeable. Measured: they fit at any gap up to 14px. */
+  .nav-links{order:3;width:100%;gap:.8rem;font-size:.88rem;
     overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.15rem;
     scrollbar-width:none}
   .nav-links::-webkit-scrollbar{display:none}
   .nav-links a{white-space:nowrap}
+  /* Below ~360px they genuinely cannot fit, so the rail still scrolls. Fade
+     the right edge there so the cut is legible as "there is more" instead of
+     as a rendering fault. */
+  @media(max-width:359px){
+    .nav-links{-webkit-mask-image:linear-gradient(to right,#000 88%,transparent);
+      mask-image:linear-gradient(to right,#000 88%,transparent)}
+  }
+  /* Stacked CTAs were 200px and 185px against a 343px column — a ragged right
+     edge on the most-looked-at element of the page. Full width once they wrap. */
+  .hero-cta{gap:.6rem}
+  .hero-cta>*{width:100%;text-align:center}
 }
 .btn{display:inline-block;background:linear-gradient(180deg,var(--amber-light),var(--amber));
   color:#17181C;font-weight:600;box-shadow:0 1px 0 rgba(255,255,255,.22) inset,
