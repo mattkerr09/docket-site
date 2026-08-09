@@ -512,12 +512,14 @@ def limits() -> dict:
     return json.loads((ROOT / "site" / "_data" / "limits.json").read_text())
 
 
-def crawl_ceiling() -> int:
-    return limits()["max_pages_ceiling"]
+def crawl_uncapped() -> bool:
+    """True when the page count is not what stops a crawl.
 
-
-def crawl_ceiling_str() -> str:
-    return f"{crawl_ceiling():,}"
+    The old `crawl_ceiling()` returned 20,000 and is deliberately gone rather
+    than returning a sentinel: a page that asks for a ceiling should fail to
+    build now that there isn't one, instead of quietly printing "0 pages".
+    """
+    return limits()["page_cap_removed"]
 
 
 def crawl_default() -> int:
