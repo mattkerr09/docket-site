@@ -30,9 +30,25 @@ BASE = "https://docketseo.app"
 PAGES = ["/", "/download/", "/learn/", "/for/", "/for/developers/",
          "/for/ecommerce/", "/vs/", "/index/", "/about/", "/how-to/"]
 
-#: Claims that must be true on the live homepage. Each is a fact that has been
-#: wrong at least once, which is why it is pinned rather than assumed.
-HOMEPAGE_MUST_SAY = ["93 checks", "$149"]
+def _homepage_must_say() -> list[str]:
+    """Claims that must be true on the live homepage.
+
+    Derived, not typed. The check count was pinned here as the literal string
+    "93 checks" — this gate existed to catch a fact that had drifted, and was
+    itself a second copy of one. Adding a check would have failed it while the
+    site was perfectly correct, which is the failure mode that gets a gate
+    switched off rather than fixed.
+    """
+    import csv
+    path = pathlib.Path(__file__).resolve().parent.parent / "site" / "_data" / "checks.csv"
+    with path.open() as fh:
+        n = sum(1 for _ in csv.DictReader(fh))
+    if not n:
+        raise SystemExit("checks.csv is empty — refusing to verify against nothing")
+    return [f"{n} checks", "$149"]
+
+
+HOMEPAGE_MUST_SAY = _homepage_must_say()
 
 #: Text that must NOT appear anywhere. The old brand and the old accent are
 #: both things a stale deploy would resurrect silently.

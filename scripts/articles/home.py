@@ -23,7 +23,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR, price, render  # noqa: E402
+from render import (BETA_NOTE, DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR,
+                    price, render)  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
@@ -160,7 +161,7 @@ def body() -> str:
 <!-- ================= HERO ================= -->
 <section class="hero-sec"><div class="wrap-wide hero-grid">
 <div>
-  <span class="eyebrow">{N_CHECKS} checks · {PRICE_STR} once · no subscription</span>
+  <span class="eyebrow">{N_CHECKS} checks · free in beta · {PRICE_STR} once from v1.0</span>
   <h1 class="hero-h1">Everything that's wrong.
   <em>In the order to fix&nbsp;it.</em></h1>
   <p class="hero-sub">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
@@ -287,7 +288,7 @@ def body() -> str:
 <!-- ================= COMPARISON ================= -->
 <section class="sec"><div class="wrap-wide">
 <div class="sec-head"><h2>{PRICE_STR}. Once.</h2>
-<p>Every tool below is a subscription. Docket is a one-time purchase, and the audit runs on your Mac, so there are no crawl credits to ration.</p></div>
+<p>Every tool below is a subscription. Docket is a one-time purchase, and the audit runs on your Mac, so there are no crawl credits to ration. {BETA_NOTE}</p></div>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Tool</th><th>Price</th><th>Runs</th><th>Output</th></tr></thead>
 <tbody>

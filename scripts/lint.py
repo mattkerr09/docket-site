@@ -31,6 +31,13 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from render import BETA_FREE, PRICE_STR, RELEASE  # noqa: E402
+
+#: Any phrasing that tells the reader the current build costs nothing.
+_BETA_QUALIFIER = re.compile(r"\bfree (?:in|while|during|forever)\b"
+                             r"|\bis free\b|\bfree beta\b", re.I)
+
 MIN_WORDS = 600
 SHINGLE_N = 8
 # Google truncates a title around 580px — roughly 60 characters — and a meta
@@ -186,6 +193,16 @@ def main(root: str) -> int:
 
         for hole in set(_UNRENDERED.findall(text)):
             fails.append(f"HOLE   {p}: unrendered placeholder {hole}")
+
+        # The download page says it best: "a price on a page beside a button
+        # that charges nothing is the kind of thing this tool exists to flag."
+        # It was true of that page and false of twenty-three others, which is
+        # how a fact in two places behaves. While the beta is free, a page may
+        # state the price only if it says so in the same breath.
+        if BETA_FREE and PRICE_STR in text and not _BETA_QUALIFIER.search(text):
+            fails.append(
+                f"PRICE  {p}: states {PRICE_STR} without saying {RELEASE} is "
+                f"free. A reader of this page alone would expect to pay.")
 
         # A stray `}` at the top level makes a browser discard the next rule
         # and say nothing. Deleting a scroll-reveal rule left its closing brace
