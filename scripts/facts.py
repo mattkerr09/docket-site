@@ -546,8 +546,11 @@ def _annual(slug: str) -> tuple:
 
     This used to regex every `$N` out of the human-written price note and
     multiply them all by 12 if `/mo` appeared anywhere in the string. A note
-    that names both units — and three of ten do — was therefore parsed with the
-    wrong unit for half its numbers:
+    that names both units was therefore parsed with the wrong unit for half its
+    numbers. Three of ten notes did when this was written; one does now, after
+    the 2026-08-10 re-reading dropped an unpublished lifetime figure from
+    Ubersuggest's and moved Otterly's parenthetical. The examples below are
+    those older notes, kept because they are what the parser got wrong:
 
         "$18-$42/mo ($180-$425/yr)"        -> $216-$5,100/yr   (the yearly
                                               figures multiplied again)

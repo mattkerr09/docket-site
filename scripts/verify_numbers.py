@@ -264,10 +264,13 @@ def _competitor_annual_sanity() -> List[str]:
 
     `_annual` used to regex every dollar amount out of a human-written price
     note and multiply them all by 12 whenever `/mo` appeared anywhere in the
-    string. Three of ten notes name both units, so half their numbers got the
+    string. Three of ten notes named both units, so half their numbers got the
     wrong one — Sitebulb's cheapest tier was published at $216/yr when their
-    own note says the yearly plan is $180, in the table that exists to argue
-    Docket is cheaper.
+    own note put the yearly plan at $180, in the table that exists to argue
+    Docket is cheaper. (That $180 was itself undated. Re-read on 2026-08-10 the
+    monthly rates are $18 and $42 and the yearly totals are not in the page at
+    all, so the row now carries $184–$428 derived from the 15% those pages
+    advertise. One note names both units today.)
 
     **The first version of this gate did not catch that**, which is the reason
     it is written this way. It allowed "any number in the note, or that number
@@ -322,8 +325,95 @@ def _competitor_annual_sanity() -> List[str]:
     return out
 
 
+def _price_stamp_integrity() -> List[str]:
+    """A date and a source are one fact, and half of it renders as a lie.
+
+    `price_note_html` prints `Name (source)` as a link per stamped competitor.
+    A row stamped with a date but no URL renders an anchor to `""` — which is
+    the current page — so the reader clicks "source" and is told the price
+    sources itself. A row with a URL and no date is worse: it is dropped from
+    the caveat entirely and counted among the ones "last confirmed earlier",
+    while carrying the very evidence that says otherwise.
+
+    Neither is hypothetical bookkeeping. Seven rows were stamped in one pass on
+    2026-08-10, by a script, from a dict of slugs to URLs; a slug typo'd in one
+    dict and not the other produces exactly these halves.
+    """
+    import csv as _csv
+
+    out: List[str] = []
+    path = pathlib.Path(__file__).resolve().parent.parent / "site" / "_data" / "competitors.csv"
+    for row in _csv.DictReader(path.open()):
+        slug, when, src = row["slug"], row["price_checked"], row["price_source"]
+        if when and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", when):
+            out.append(f"PRICE  {slug}: price_checked {when!r} is not YYYY-MM-DD")
+        if when and not src.startswith("https://"):
+            out.append(f"PRICE  {slug}: dated {when} but price_source is "
+                       f"{src!r}; the caveat renders a link to nowhere")
+        if src and not when:
+            out.append(f"PRICE  {slug}: has a source but no date, so it is "
+                       f"counted as unchecked while holding the evidence")
+    return out
+
+
+def _caveat_branches() -> List[str]:
+    """Exercise the caveat's dead branches, because dead is where the bugs sit.
+
+    With ten of ten prices dated, the "some were not checked" sentence never
+    renders. It rendered "The other 1 were last confirmed earlier" — found by
+    calling the function with stubbed data rather than by reading the site,
+    because the site cannot currently produce it. It becomes reachable the day
+    an eleventh competitor is added, which is the day nobody is looking at this
+    line.
+
+    Same defect as the "Only 0%" in the audit engine's exposure summary: a
+    template that was never run with the awkward number in it.
+    """
+    import importlib  # noqa: PLC0415
+
+    out: List[str] = []
+    render = importlib.import_module("render")
+    saved = render.COMPETITORS
+
+    def caveat(rows) -> str:
+        render.COMPETITORS = rows
+        return re.sub(r"<[^>]+>", "", render.price_note_html())
+
+    def row(name, when, src="https://example.test/pricing"):
+        return {"name": name, "price_checked": when,
+                "price_source": src if when else ""}
+
+    try:
+        one = caveat({"a": row("Alpha", "2026-08-10"), "b": row("Beta", "")})
+        if "other 1 were" in one or "One other was" not in one:
+            out.append(f"CAVEAT one unchecked competitor reads: {one.strip()!r}")
+
+        two = caveat({"a": row("Alpha", "2026-08-10"), "b": row("Beta", ""),
+                      "c": row("Gamma", "")})
+        if "The other 2 were" not in two:
+            out.append(f"CAVEAT two unchecked competitors reads: {two.strip()!r}")
+
+        same = caveat({"a": row("Alpha", "2026-08-10"),
+                       "b": row("Beta", "2026-08-10")})
+        if same.count("2026-08-10") != 1:
+            out.append("CAVEAT one shared date is printed more than once")
+
+        mixed = caveat({"a": row("Alpha", "2026-08-10"),
+                        "b": row("Beta", "2026-07-01")})
+        if "2026-07-01" not in mixed or "2026-08-10" not in mixed:
+            out.append("CAVEAT differing dates are not both shown")
+
+        none = caveat({"a": row("Alpha", "")})
+        if "none checked recently" not in none:
+            out.append(f"CAVEAT nothing checked reads: {none.strip()!r}")
+    finally:
+        render.COMPETITORS = saved
+    return out
+
+
 def main() -> int:
-    problems: List[str] = _score_band_drift() + _competitor_annual_sanity()
+    problems: List[str] = (_score_band_drift() + _competitor_annual_sanity()
+                           + _price_stamp_integrity() + _caveat_branches())
     # build.py carries the hub entry summaries, which are article prose on a
     # published page and were not being scanned. "Tranco top 1,500" was typed
     # into one and sailed through, which is the exact bug this file exists for.
