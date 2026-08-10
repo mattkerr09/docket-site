@@ -84,6 +84,12 @@ LINUX_SIZE = _facts.linux_size_str()
 #: has something to check. The Mac build has Apple's notarisation; this is
 #: weaker and the page says so rather than implying parity.
 SUMS = f"{REPO}/releases/download/{RELEASE}/SHA256SUMS"
+#: What the DMG actually mounts as. build_docket.sh creates it with
+#: `hdiutil create -volname "Docket ${VER}"`, and the about page documented
+#: a bare /Volumes/Docket — so the codesign command it told every reader to
+#: run returned "No such file or directory", on the page whose whole point
+#: is that you should not have to take the signature on faith.
+VOLUME = f"Docket {_facts.app_version()}"
 #: Rounded DOWN from the real 17,432,048 bytes of the notarised DMG, measured
 #: 2026-08-07. Rounding down is deliberate: a download is allowed to be smaller
 #: than promised and never larger, and "18 MB" was already overstating it.

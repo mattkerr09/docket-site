@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (  # noqa: E402
     DMG_NAME, DMG_SIZE, ISSUES, N_CHECKS, N_LANES, PRICE_STR, RELEASE, REPO,
-    render,
+    VOLUME, render,
 )
 
 
@@ -99,7 +99,7 @@ not yet — Search Console for your own impressions is the biggest.</li>
 certificate carries a legal name and Apple has checked it. You do not have to take that on
 faith. After downloading the {DMG_SIZE} disk image:</p>
 
-<pre><code>codesign -dv --verbose=4 /Volumes/Docket/Docket.app
+<pre><code>codesign -dv --verbose=4 "/Volumes/{VOLUME}/Docket.app"
 spctl -a -t open --context context:primary-signature -v {DMG_NAME}</code></pre>
 
 <p>The first prints the authority chain, ending at Apple's root. The second should say
