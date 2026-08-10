@@ -95,8 +95,25 @@ PROBE = """
     .filter(e => !scrollableAncestor(e))
     .map(e => e.tagName.toLowerCase() + (e.className ? '.' + String(e.className).split(' ')[0] : ''));
 
+  // The gutter. `.wrap` is width:min(820px, calc(100% - 2rem)), and the 2rem
+  // is the only thing holding body text off the glass. When that rule broke,
+  // the FAQ ran flush to the viewport edge on a phone: no overflow, no
+  // horizontal scroll, no clipping — every assertion stayed green, and the bug
+  // was found by looking at a screenshot.
+  const textish = [...document.querySelectorAll('p, h1, h2, h3, li')]
+    .filter(e => (e.innerText || '').trim().length > 20)
+    .filter(e => e.getBoundingClientRect().width > 0);
+  const lefts = textish.map(e => Math.round(e.getBoundingClientRect().left));
+  const minLeft = lefts.length ? Math.min(...lefts) : -1;
+  const tightest = textish[lefts.indexOf(minLeft)];
+
   return {
     width: window.innerWidth,
+    minGutter: minLeft,
+    gutterAt: tightest
+      ? tightest.tagName.toLowerCase() +
+        (tightest.className ? '.' + String(tightest.className).split(' ')[0] : '')
+      : '',
     brand: varColor('--brand-light'),
     linkColors: colors,
     linkCount: links.length,
@@ -208,6 +225,15 @@ def check(name: str, width: int, r: dict) -> list[str]:
     if r["overflowing"]:
         bad.append(f"{name}: elements past the viewport edge: {r['overflowing']}")
 
+    # 3b. Text flush to the glass — the opposite failure to overflow, and
+    # invisible to every rule above: nothing scrolls, nothing is clipped, the
+    # copy simply starts at x=0. Only meaningful on a phone; at 1600px the wrap
+    # is centred and the margin is enormous.
+    if width <= 480 and 0 <= r.get("minGutter", -1) < MIN_GUTTER:
+        bad.append(f"{name}: text starts {r['minGutter']}px from the edge "
+                   f"({r.get('gutterAt') or 'unknown element'}) in a {width}px "
+                   f"viewport — the .wrap gutter is gone")
+
     # 4. Structure, so a page that renders blank cannot pass the colour test.
     if r["h1"] != 1:
         bad.append(f"{name}: {r['h1']} h1 elements")
@@ -237,11 +263,18 @@ def check(name: str, width: int, r: dict) -> list[str]:
 #: A gate that passes the first time it is run has proved nothing. Both of
 #: these shipped past a green build, so "green" is the state that needs
 #: evidence, not the red one.
+#: The real gutter is 16px a side. 8 catches a collapse to zero while
+#: leaving room for a deliberate design change that tightens it.
+MIN_GUTTER = 8
+
 INJECTIONS = [
     ("index.html", "homepage", "hero glow",
      ".hero-sec::before{content", ".hero-sec::befores{content"),
     ("learn/googlebot-2mb-limit/index.html", "article", "link colour",
      "a{color:var(--brand-light)", "a}{color:var(--brand-light)"),
+    ("index.html", "homepage", "gutter",
+     ".wrap{width:min(820px,calc(100% - 2rem))",
+     ".wrap{width:min(820px,calc(100% - 0rem))"),
 ]
 
 
