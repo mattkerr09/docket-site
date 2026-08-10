@@ -415,7 +415,7 @@ jobs:
     steps:
       - name: Install Docket
         run: |
-          curl -sL -o docket.dmg https://github.com/mattkerr09/docket-site/releases/download/v0.1.23/Docket-0.1.23-arm64.dmg
+          curl -sL -o docket.dmg https://github.com/mattkerr09/docket-site/releases/download/v0.1.24/Docket-0.1.24-arm64.dmg
           hdiutil attach -nobrowse -quiet docket.dmg -mountpoint /Volumes/Docket
           cp -R /Volumes/Docket/Docket.app /Applications/
           echo "/Applications/Docket.app/Contents/Resources/docket" &gt;&gt; "$GITHUB_PATH"
@@ -424,7 +424,7 @@ jobs:
         run: docket audit https://staging.example.com -n 100 --fail-on critical</code></pre>
 
 <p>No runtime to install, no <code>pip install</code>, no lockfile to resolve — the download is
-22.2 MB and it is notarised by Apple, so nothing has to be talked past Gatekeeper. Process
+22.1 MB and it is notarised by Apple, so nothing has to be talked past Gatekeeper. Process
 overhead was 0.2s of the wall-clock in every run measured; effectively all
 of the time is the crawl itself, at about 1.0 seconds per page.</p>
 
@@ -519,7 +519,7 @@ red tests.</p>
 
 <p>The four lines above work and will keep working. If you would rather not own them:</p>
 
-<pre><code>      - uses: mattkerr09/docket-site@v0.1.23
+<pre><code>      - uses: mattkerr09/docket-site@v0.1.24
         with:
           url: https://staging.example.com
           fail-on: critical
@@ -564,7 +564,7 @@ Turn it on for the pages that need it, or on a nightly job rather than a per-PR 
 <p>SARIF gets findings onto the Security tab but not onto the pull request diff, for the
 reason above — that one is structural rather than unfinished. `docket diff` is not wired into
 the action yet, so gating on what a deploy broke means running it as a plain step. Nothing
-is cached between runs, so every job re-downloads 22.2 MB. And the timings above are one
+is cached between runs, so every job re-downloads 22.1 MB. And the timings above are one
 machine on home broadband on a single day, across 6 sites — one of them swung
 fifteen seconds between two consecutive runs. Treat them as an order of magnitude, not a
 benchmark, and measure your own.</p>
