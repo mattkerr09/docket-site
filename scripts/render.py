@@ -71,28 +71,58 @@ def price_note_html() -> str:
     price sits next to Docket's own price and reads as current forever.
 
     Only what was actually read from a vendor's page on a given day is dated
-    here. Sitebulb's desktop pricing is behind a client-side currency selector
-    and came back as placeholders, so it is listed as unread rather than
-    quietly stamped — a fetch that returns nothing is blindness, not a price.
+    here. Sitebulb's desktop pricing defeated every HTTP fetch — the prices are
+    written in by script, so the markup carries placeholders — and it was
+    listed as unread rather than quietly stamped, because a fetch that returns
+    nothing is blindness, not a price. It was read on 2026-08-10 through
+    `docket-render`, the WebKit helper Docket ships for JavaScript crawling:
+    the tool built to see client-rendered pages can see this one.
+
+    All ten are dated now, which is why the shared-date branch below exists —
+    ten separate "checked on" stamps of the same date is a paragraph nobody
+    finishes reading.
+
+    **One figure here is derived, not read.** Sitebulb's yearly totals are not
+    in the DOM at all; a billing toggle rewrites them client-side and the
+    pre-toggle markup holds only the monthly rates. The annual pair is their
+    monthly price less the 15% their own page advertises for yearly plans, and
+    the note says so in the same breath rather than presenting arithmetic as a
+    quotation.
     """
     checked = [(c["name"], c["price_checked"], c["price_source"])
                for c in COMPETITORS.values() if c.get("price_checked")]
     unchecked = [c["name"] for c in COMPETITORS.values() if not c.get("price_checked")]
-    parts = []
-    for name, when, url in sorted(checked):
-        parts.append(f'{name} checked {when} '
-                     f'(<a href="{url}" rel="nofollow noopener">source</a>)')
-    body = "; ".join(parts) if parts else "none checked recently"
+    dates = {when for _, when, _ in checked}
+    if checked and len(dates) == 1:
+        links = "; ".join(f'<a href="{url}" rel="nofollow noopener">{name}</a>'
+                          for name, _, url in sorted(checked))
+        head = (f'<strong>Read from each vendor\'s own pricing page on '
+                f'{dates.pop()}:</strong> {links}.')
+    else:
+        parts = [f'{name} checked {when} '
+                 f'(<a href="{url}" rel="nofollow noopener">source</a>)'
+                 for name, when, url in sorted(checked)]
+        body = "; ".join(parts) if parts else "none checked recently"
+        head = (f'<strong>Checked against the vendor\'s own pricing page:'
+                f'</strong> {body}.')
     tail = ""
     if unchecked:
-        # A count, not nine names. The names are the wrong nine words to put
+        # A count, not a list of names. The names are the wrong words to put
         # beside a price table, and the honest content is the number and the
         # instruction — the reader needs to know how much of this to trust and
         # what to do about it, not which vendors we ran out of time on.
-        tail = (f' The other {len(unchecked)} were last confirmed earlier and '
+        #
+        # Singular is not decoration here. At len == 1 the plural read "The
+        # other 1 were last confirmed earlier", which is the same defect as the
+        # "Only 0%" this codebase already fixed once: a template that nobody
+        # ran with the awkward number in it. It is unreachable at ten of ten
+        # checked, and reachable the day an eleventh competitor is added —
+        # which is exactly when nobody will be reading this line.
+        tail = (' One other was last confirmed earlier and may have moved.'
+                if len(unchecked) == 1 else
+                f' The other {len(unchecked)} were last confirmed earlier and '
                 f'may have moved.')
-    return (f'<p class="price-caveat"><strong>Checked against the vendor\'s own '
-            f'pricing page:</strong> {body}.{tail} '
+    return (f'<p class="price-caveat">{head}{tail} '
             f'Prices change; check before you buy, and tell us if one here is '
             f'wrong.</p>')
 
