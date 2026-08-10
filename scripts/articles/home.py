@@ -71,13 +71,41 @@ ICONS = {
 }
 
 
+#: The product's own bands — `seo_engine.scoring.SCORE_BANDS` — restated because
+#: the site cannot import the engine, and pinned by a check in verify_numbers so
+#: a change there fails the build here.
+#:
+#: The site's palette has three severity colours where the product has four, so
+#: `high` and `crit` both land on --bad. That collapse is deliberately toward the
+#: *more* severe colour: a mockup that rounded the other way could show a lane
+#: looking better than the product would draw it, which is the failure this
+#: replaced.
+_BANDS = ((85, "--ok"), (70, "--warn"), (50, "--bad"))
+_BAND_FLOOR = "--bad"
+
+
+def _lane_colour(score: float) -> str:
+    """What the product would draw this lane, computed rather than chosen.
+
+    These six colours were hand-picked and two were wrong: Brand 84 was drawn
+    green when the boundary is 85, and Tracking 63 was drawn in the brand indigo
+    — not a severity colour at all, so a lane the product flags read as an
+    accent. Both mistakes flattered the product, three paragraphs below copy
+    calling this a faithful replica of the real results view.
+    """
+    for floor, token in _BANDS:
+        if score >= floor:
+            return f"var({token})"
+    return f"var({_BAND_FLOOR})"
+
+
 def _mockup() -> str:
     """An HTML replica of the results view. Numbers are from a real audit."""
-    lanes = [
-        ("Crawlability", 100, "var(--ok)"), ("On-page SEO", 93, "var(--ok)"),
-        ("Copy & content", 71, "var(--warn)"), ("Conversion", 78, "var(--warn)"),
-        ("Brand", 84, "var(--ok)"), ("Tracking", 63, "var(--brand)"),
-    ]
+    lanes = [(name, score, _lane_colour(score)) for name, score in (
+        ("Crawlability", 100), ("On-page SEO", 93),
+        ("Copy & content", 71), ("Conversion", 78),
+        ("Brand", 84), ("Tracking", 63),
+    )]
     lane_html = "".join(
         f'<div class="mock-lane"><div class="mock-lane-top">'
         f'<span class="mock-lane-name">{name}</span>'
