@@ -235,10 +235,20 @@ size. The defaults are deliberately polite; you can raise them.</li>
 </ul>
 
 <h2>What happens to your data</h2>
-<p>Nothing leaves the machine. The only network requests Docket makes are to the site being
-audited, and it identifies itself honestly in its user-agent rather than impersonating
-Googlebot — a spoofed user-agent gets a different, sometimes cloaked response, which would
-make every finding a lie.</p>
+<p>The crawl and every check run on your machine, and Docket identifies itself honestly in
+its user-agent rather than impersonating Googlebot — a spoofed user-agent gets a different,
+sometimes cloaked response, which would make every finding a lie.</p>
+
+<p>Four optional checks do reach out, and it is worth being exact rather than reassuring:
+Docket asks your own server what it tells AI crawlers, refreshes its crawler knowledge file
+from this site, checks whether the email addresses you publish can actually receive mail, and
+fetches Core Web Vitals from Google PageSpeed Insights. <code>--offline</code>, or the offline
+tick in the desktop app, turns all four off and the audit still completes — the report then
+says which checks did not run rather than quietly scoring them.</p>
+
+<p>What never happens: no telemetry, no account, no analytics on you, and nothing about your
+site is sent anywhere for us to see. This page said "nothing leaves the machine" until
+2026-08-10, which was not true while those four checks were on by default.</p>
 <p>Audit history is stored in <code>~/.docket/</code> as plain JSON. Delete the folder and it
 is gone.</p>
 """
