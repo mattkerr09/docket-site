@@ -255,7 +255,7 @@ landing-page conversion, and marketing tracking coverage.</p>
 <tr><td>Keyword &amp; backlink data</td><td class="no">None</td><td class="yes">Its main product</td></tr>
 <tr><td>Rank tracking</td><td class="no">No</td><td class="yes">Yes</td></tr>
 <tr><td>Crawl limits</td><td class="yes">Your machine, your limits</td><td>Credit-metered by plan</td></tr>
-<tr><td>Data location</td><td class="yes">Never leaves your Mac</td><td>Cloud</td></tr>
+<tr><td>Data location</td><td class="yes">Crawl runs on your Mac; four optional checks fetch data unless <code>--offline</code></td><td>Cloud</td></tr>
 <tr><td>Ranked action plan</td><td class="yes">Yes</td><td>Issues by severity</td></tr>
 <tr><td>AI crawler audit</td><td class="yes">Per-crawler</td><td>Partial</td></tr>
 <tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">No</td></tr>
