@@ -62,6 +62,40 @@ def price(slug: str) -> str:
     """The published price for a competitor, with en dashes for ranges."""
     return COMPETITORS[slug]["price_note"].replace("-", "–")
 
+
+def price_note_html() -> str:
+    """The dated caveat that must appear wherever competitor prices are shown.
+
+    Ten competitor prices fed the homepage, the download page's three-year cost
+    table and every comparison page, and not one carried a date. An undated
+    price sits next to Docket's own price and reads as current forever.
+
+    Only what was actually read from a vendor's page on a given day is dated
+    here. Sitebulb's desktop pricing is behind a client-side currency selector
+    and came back as placeholders, so it is listed as unread rather than
+    quietly stamped — a fetch that returns nothing is blindness, not a price.
+    """
+    checked = [(c["name"], c["price_checked"], c["price_source"])
+               for c in COMPETITORS.values() if c.get("price_checked")]
+    unchecked = [c["name"] for c in COMPETITORS.values() if not c.get("price_checked")]
+    parts = []
+    for name, when, url in sorted(checked):
+        parts.append(f'{name} checked {when} '
+                     f'(<a href="{url}" rel="nofollow noopener">source</a>)')
+    body = "; ".join(parts) if parts else "none checked recently"
+    tail = ""
+    if unchecked:
+        # A count, not nine names. The names are the wrong nine words to put
+        # beside a price table, and the honest content is the number and the
+        # instruction — the reader needs to know how much of this to trust and
+        # what to do about it, not which vendors we ran out of time on.
+        tail = (f' The other {len(unchecked)} were last confirmed earlier and '
+                f'may have moved.')
+    return (f'<p class="price-caveat"><strong>Checked against the vendor\'s own '
+            f'pricing page:</strong> {body}.{tail} '
+            f'Prices change; check before you buy, and tell us if one here is '
+            f'wrong.</p>')
+
 #: The current build. One place, because a download link that 404s is the
 #: single worst bug a product site can have.
 RELEASE = _facts.release_tag()

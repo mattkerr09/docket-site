@@ -354,7 +354,7 @@ body.landing article{padding:0}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 94 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"94 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Compare","item":"https://docketseo.app/vs/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Docket vs Screaming Frog","description":"Screaming Frog gives you raw crawl data; a Docket audit gives a ranked fix plan. Including what Screaming Frog does better — rendering at scale, custom extraction.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/vs/screaming-frog-alternative/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Docket a Screaming Frog alternative?","acceptedAnswer":{"@type":"Answer","text":"For prioritisation, reporting and non-technical users, yes. For JavaScript custom XPath extraction, rendering at scale and very large crawls, no — Screaming Frog does those better and Docket does not try to."}},{"@type":"Question","name":"Does Docket render JavaScript like Screaming Frog?","acceptedAnswer":{"@type":"Answer","text":"Yes, through a WebKit helper, though it is off by default and renders a sample — ten pages by default. Screaming Frog renders every page in headless Chrome with configurable wait strategies, which is the better tool for a large single-page application."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Docket a Screaming Frog alternative?","acceptedAnswer":{"@type":"Answer","text":"For prioritisation, reporting and non-technical users, yes. For JavaScript custom XPath extraction, rendering at scale and very large crawls, no — Screaming Frog does those better and Docket does not try to."}},{"@type":"Question","name":"Does Docket render JavaScript like Screaming Frog?","acceptedAnswer":{"@type":"Answer","text":"Yes, through a WebKit helper, though it is off by default and renders a sample — ten pages by default. Screaming Frog renders across the whole crawl in its integrated Chromium engine, which is the better tool for a large single-page application."}}]}</script>
 </head>
 <body>
 <nav><div class="wrap-wide nav-inner">
@@ -379,16 +379,17 @@ want to do yourself.</p>
 <h2>What Screaming Frog does that Docket does not</h2>
 <p>Three things, and they are real:</p>
 <ul>
-<li><strong>Rendering at scale, in the right engine.</strong> Screaming Frog runs headless
-Chrome across an entire crawl, with configurable wait strategies and JavaScript error
-capture. Docket renders in WebKit — the engine macOS already ships — and renders a sample, ten
+<li><strong>Rendering at scale, in the right engine.</strong> Screaming Frog renders with an
+integrated Chromium engine across an entire crawl — their page calls it the "integrated
+Chromium WRS". Docket renders in WebKit — the engine macOS already ships — and renders a sample, ten
 pages by default, enough to answer whether the site is client-rendered and what that costs.
 On a large React or Vue site, or for a bug that only appears in Chrome's renderer, Screaming
 Frog is the tool.</li>
 <li><strong>Custom extraction.</strong> XPath, CSS and regex extraction pulls arbitrary fields
 out of a crawl — product prices, author names, whatever you define. Docket has no equivalent.</li>
-<li><strong>Scale.</strong> Screaming Frog will crawl millions of URLs given the memory. Docket
-is bounded by design.</li>
+<li><strong>Scale.</strong> Screaming Frog's paid licence lists no crawl limit; their page says
+the maximum "is dependent on allocated memory and storage", with a hybrid engine that spills to
+disk for large sites. Docket is bounded by design.</li>
 </ul>
 
 <h2>What Docket does that Screaming Frog does not</h2>
@@ -401,7 +402,10 @@ most expensive characteristic — the power is proportional to your own skill an
 stop the bleeding, quick wins, build, polish. Each finding states what it costs you in plain
 language and carries the exact markup to paste.</p>
 
-<p>Beyond the ordering, Docket audits three areas Screaming Frog has no coverage of at all:</p>
+<p>Beyond the ordering, Docket audits three areas that Screaming Frog's own feature list does
+not cover. That is what their page advertises, not proof the tool cannot be made to do it —
+their custom extraction is powerful enough that a determined user could build some of this by
+hand:</p>
 <ul>
 <li><strong>AI search visibility.</strong> Per-crawler access for ChatGPT, Perplexity, Claude
 and Gemini, separating search crawlers from training crawlers. Whether pages are
@@ -417,15 +421,15 @@ and UTM parameters on internal links.</li>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th></th><th>Docket</th><th>Screaming Frog</th></tr></thead>
 <tbody>
-<tr><td>Price</td><td>One-time</td><td>Free to 500 URLs, then $279/yr USD (£199/yr GBP)</td></tr>
+<tr><td>Price</td><td>One-time</td><td>Free to 500 URLs, then $279/yr USD</td></tr>
 <tr><td>Runs on</td><td>Your Mac</td><td>Your machine</td></tr>
 <tr><td>Output</td><td>Ranked plan with fixes</td><td>Spreadsheet of crawl data</td></tr>
 <tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>
 <tr><td>Custom XPath extraction</td><td class="no">No</td><td class="yes">Yes</td></tr>
 <tr><td>hreflang reciprocity</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-<tr><td>AI crawler audit</td><td class="yes">Yes</td><td class="no">No</td></tr>
-<tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">No</td></tr>
-<tr><td>Local business SEO</td><td class="yes">Yes</td><td class="no">No</td></tr>
+<tr><td>AI crawler audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
+<tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
+<tr><td>Local business SEO</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
 <tr><td>Client-ready PDF</td><td class="yes">Built in</td><td>Export and build it yourself</td></tr>
 <tr><td>Scheduled re-audits</td><td class="yes">Yes</td><td>Scheduling in the paid tier</td></tr>
 </tbody></table></div>
@@ -455,11 +459,17 @@ you care about AI search visibility or whether your landing pages convert, or if
 client-ready PDF without building one.</p>
 <p>They are not mutually exclusive, and plenty of people will want both.</p>
 
+<p class="verified-note"><strong>Checked 10 August 2026.</strong> The factual
+claims about this product were read from its own pages on that date: renders with the "integrated Chromium WRS" (<a href="https://www.screamingfrog.co.uk/seo-spider/" rel="nofollow noopener">source</a>); free tier limited to 500 URLs; paid crawl limit "Unlimited", with the maximum "dependent on allocated memory and storage" (<a href="https://www.screamingfrog.co.uk/seo-spider/" rel="nofollow noopener">source</a>).
+Products change and pricing changes; if something here has gone out of date,
+<a href="/about/">tell us</a> and it will be corrected. Everything else on this
+page is a comparison of approach, not a claim about their roadmap.</p>
+
 <div class="callout">
 <div class="callout-title">Try it against your own site</div>
 <p>Docket is a one-time download for macOS. No account, no crawl credits, and the audit runs
 entirely on your machine. <a href="/download/">Download Docket →</a></p>
-</div><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is Docket a Screaming Frog alternative?</h3><p>For prioritisation, reporting and non-technical users, yes. For JavaScript custom XPath extraction, rendering at scale and very large crawls, no — Screaming Frog does those better and Docket does not try to.</p></div><div class="faq-item"><h3>Does Docket render JavaScript like Screaming Frog?</h3><p>Yes, through a WebKit helper, though it is off by default and renders a sample — ten pages by default. Screaming Frog renders every page in headless Chrome with configurable wait strategies, which is the better tool for a large single-page application.</p></div></div></section>
+</div><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is Docket a Screaming Frog alternative?</h3><p>For prioritisation, reporting and non-technical users, yes. For JavaScript custom XPath extraction, rendering at scale and very large crawls, no — Screaming Frog does those better and Docket does not try to.</p></div><div class="faq-item"><h3>Does Docket render JavaScript like Screaming Frog?</h3><p>Yes, through a WebKit helper, though it is off by default and renders a sample — ten pages by default. Screaming Frog renders across the whole crawl in its integrated Chromium engine, which is the better tool for a large single-page application.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

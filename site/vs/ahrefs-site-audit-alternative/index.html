@@ -387,15 +387,19 @@ guessing.</p>
 your laptop is closed, or a team looking at the same data.</p>
 
 <h2>Where the audit itself differs</h2>
-<p>Ahrefs lists 170+ checks. More checks with no ordering is a bigger pile, and the practical
+<p>Ahrefs' Site Audit page says it "scans for 170+ issues". More checks with no ordering is a
+bigger pile, and the practical
 question is what you do first. Docket ranks by impact against effort and gives you a sequence.</p>
 
-<p>The cloud model also brings metering. Ahrefs crawls are credit-limited by plan, which means
-the audit you run is shaped partly by what you can afford to spend on it. Docket runs on your
-machine with no per-crawl cost, so auditing a client site twice in a day costs nothing.</p>
+<p>The cloud model also brings metering. Ahrefs' pricing page lists a monthly crawl-credit
+allowance per plan — 100,000 on Lite, 500,000 on Standard, 1,500,000 on Advanced — so the audit
+you run is shaped partly by what you can afford to spend on it. Docket runs on your machine with
+no per-crawl cost, so auditing a client site twice in a day costs nothing.</p>
 
-<p>And three areas are simply absent from Ahrefs' audit: per-crawler AI search access,
-landing-page conversion, and marketing tracking coverage.</p>
+<p>And three areas are not listed among the checks on Ahrefs' Site Audit page: per-crawler AI
+search access, landing-page conversion, and marketing tracking coverage. That is what their page
+does and does not advertise, which is not the same as proof the product cannot do it — if you
+need one of these, ask them rather than taking this page's word for it.</p>
 
 <h2>Side by side</h2>
 <div class="wrap-tbl"><table class="cmp">
@@ -407,16 +411,17 @@ landing-page conversion, and marketing tracking coverage.</p>
 <tr><td>Crawl limits</td><td class="yes">Your machine, your limits</td><td>Credit-metered by plan</td></tr>
 <tr><td>Data location</td><td class="yes">Crawl runs on your Mac; four optional checks fetch data unless <code>--offline</code></td><td>Cloud</td></tr>
 <tr><td>Ranked action plan</td><td class="yes">Yes</td><td>Issues by severity</td></tr>
-<tr><td>AI crawler audit</td><td class="yes">Per-crawler</td><td>Partial</td></tr>
-<tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">No</td></tr>
+<tr><td>AI crawler audit</td><td class="yes">Per-crawler</td><td>Not listed as per-crawler</td></tr>
+<tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
 <tr><td>Team access</td><td class="no">Single machine</td><td class="yes">Yes</td></tr>
 </tbody></table></div>
 
 <h2>The metering problem, concretely</h2>
 <p>Cloud auditing is priced per crawled URL, and that changes how you work in a way that is
-easy to miss until you hit it. On Ahrefs' entry plan the monthly crawl allowance is consumed
-by every audit you run — so re-auditing a client site after a fix, then again after the next
-fix, costs you budget that a larger client might need.</p>
+easy to miss until you hit it. Ahrefs' entry plan lists 100,000 crawl credits a month. Their
+pricing page does not spell out what spends a credit, so the exact arithmetic is theirs to
+state, not ours — but a monthly allowance means re-auditing a client site after a fix, then
+again after the next fix, draws down a budget that a larger client might need.</p>
 <p>The practical effect is that people run fewer audits than they should. You verify a change
 once rather than iterating, and you hesitate before crawling a prospect's site to win the
 work. Docket has no equivalent constraint: the crawl happens on your laptop, so running it
@@ -433,6 +438,12 @@ you need an index, and Ahrefs or Semrush is how you get one. If what you need is
 and marketing audit with a plan attached, Docket does that for a one-time cost and never sends
 your data anywhere.</p>
 <p>Plenty of people run both: an index tool for research, and a local auditor for the work.</p>
+
+<p class="verified-note"><strong>Checked 10 August 2026.</strong> The factual
+claims about this product were read from its own pages on that date: Site Audit "scans for 170+ issues" (<a href="https://ahrefs.com/site-audit" rel="nofollow noopener">source</a>); crawl credits are listed per plan — Lite 100,000, Standard 500,000, Advanced 1,500,000 per month (<a href="https://ahrefs.com/pricing" rel="nofollow noopener">source</a>).
+Products change and pricing changes; if something here has gone out of date,
+<a href="/about/">tell us</a> and it will be corrected. Everything else on this
+page is a comparison of approach, not a claim about their roadmap.</p>
 
 <div class="callout">
 <div class="callout-title">Try it against your own site</div>

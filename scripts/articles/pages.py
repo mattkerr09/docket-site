@@ -14,7 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (  # noqa: E402
     COMPETITORS, DMG, DMG_SIZE, LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS,
-    PRICE_STR, RELEASE, SUMS, render,
+    PRICE_STR, RELEASE, SUMS, price_note_html, render,
 )
 
 
@@ -77,6 +77,7 @@ cannot drift from what the app does.</p>
 <td><strong>{PRICE_STR}</strong></td></tr>
 {_cost_rows()}
 </tbody></table></div>
+{price_note_html()}
 
 <p>Docket costs less than a year of the cheapest alternative and nothing after that. That is
 the whole pricing argument and it does not need help: the tools above are not overpriced for

@@ -390,12 +390,56 @@ def main() -> int:
     write_robots()
     write_sitemap(pages)
     write_static()
+    stamp_competitor_claims(pages)
 
     print(f"built {len(pages)} pages")
     for p in sorted(pages):
         print("  " + p.relative_to(SITE.parent).as_posix())
     return 0
 
+
+
+#: Pages that discuss another product must let the reader age the claim.
+#:
+#: The comparison pages and the two pricing tables carry a real date and a
+#: source. Seven other pages describe competitors in prose — their rendering
+#: engine, their log analyser's price, what they do not cover — with nothing to
+#: age it by. Checking every one of those properly is real work and is not done
+#: yet; what is not acceptable is silence, which reads as "true now" forever.
+#:
+#: So an undated page says it is undated, and points at the pages that are
+#: dated. lint.py accepts either form and fails on neither present, because the
+#: reader's question — how old is this? — has an answer in both.
+UNDATED_CLAIMS_NOTE = (
+    '<p class="claims-note">Other products here are described from their own '
+    'public pages and are <strong>not dated on this page</strong>. The dated '
+    'checks, with sources, are on the '
+    '<a href="/vs/">comparison pages</a>. Products change — if something here '
+    'about another tool has gone stale, tell us and it will be corrected.</p>'
+)
+
+
+def stamp_competitor_claims(pages) -> None:
+    """Add the undated-claims note to any page that needs one."""
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from lint import _names_a_competitor, visible_text
+
+    stamped = 0
+    for page in pages:
+        raw = page.read_text(encoding="utf-8")
+        if "Checked " in raw or "claims-note" in raw:
+            continue
+        if not _names_a_competitor(visible_text(raw, body_only=True)):
+            continue
+        if "</article>" not in raw:
+            continue
+        page.write_text(raw.replace("</article>",
+                                    UNDATED_CLAIMS_NOTE + "\n</article>", 1),
+                        encoding="utf-8")
+        stamped += 1
+    if stamped:
+        print(f"stamped {stamped} page(s) as carrying undated competitor claims")
 
 if __name__ == "__main__":
     raise SystemExit(main())

@@ -22,6 +22,67 @@ CTA = """
 entirely on your machine. <a href="/download/">Download Docket →</a></p>
 </div>"""
 
+#: When the factual claims about competitors on these pages were last checked
+#: against the competitor's own pages.
+#:
+#: These pages made seventeen statements about three named companies with no
+#: date and no source anywhere on them. Most were concessions, which is the
+#: point of the format, but several were falsifiable and two were negative
+#: claims about what a competitor does *not* do — the kind most likely to become
+#: untrue when they ship something, and the kind a reader has no way to age.
+#:
+#: A comparison page is the most exposed thing on a marketing site. Undated is
+#: not neutral: it silently claims "true now", forever.
+CHECKED_ON = "2026-08-10"
+CHECKED_ON_HUMAN = "10 August 2026"
+
+#: What was actually read, and where. Anything not sourced here is not stated as
+#: a fact about a competitor on these pages — it is either a concession, or
+#: written as a limit of what could be checked.
+VERIFIED: dict[str, list[tuple[str, str]]] = {
+    "screaming-frog": [
+        ('renders with the "integrated Chromium WRS"',
+         "https://www.screamingfrog.co.uk/seo-spider/"),
+        ('free tier limited to 500 URLs; paid crawl limit "Unlimited", with the maximum '
+         '"dependent on allocated memory and storage"',
+         "https://www.screamingfrog.co.uk/seo-spider/"),
+    ],
+    "sitebulb": [
+        ('"crawl maps" as an interactive visualisation',
+         "https://sitebulb.com/features/"),
+        ('"Prioritized Hints" — a prioritised, categorised issue list where each '
+         "entry explains the issue and why it matters",
+         "https://sitebulb.com/features/"),
+    ],
+    "ahrefs": [
+        ('Site Audit "scans for 170+ issues"', "https://ahrefs.com/site-audit"),
+        ("crawl credits are listed per plan — Lite 100,000, Standard 500,000, "
+         "Advanced 1,500,000 per month", "https://ahrefs.com/pricing"),
+    ],
+}
+
+
+def _verified_note(key: str) -> str:
+    """A dated, sourced footer for any page making claims about a competitor.
+
+    Rendered rather than remembered, so a claim cannot outlive its check
+    quietly. `lint.py` fails the build if a comparison page names a competitor
+    and does not carry one of these.
+    """
+    items = VERIFIED.get(key) or []
+    if not items:
+        return ""
+    checks = "; ".join(
+        f'{what} (<a href="{url}" rel="nofollow noopener">source</a>)'
+        for what, url in items
+    )
+    return f"""
+<p class="verified-note"><strong>Checked {CHECKED_ON_HUMAN}.</strong> The factual
+claims about this product were read from its own pages on that date: {checks}.
+Products change and pricing changes; if something here has gone out of date,
+<a href="/about/">tell us</a> and it will be corrected. Everything else on this
+page is a comparison of approach, not a claim about their roadmap.</p>"""
+
 
 def screaming_frog() -> Path:
     body = f"""
@@ -33,16 +94,17 @@ want to do yourself.</p>
 <h2>What Screaming Frog does that Docket does not</h2>
 <p>Three things, and they are real:</p>
 <ul>
-<li><strong>Rendering at scale, in the right engine.</strong> Screaming Frog runs headless
-Chrome across an entire crawl, with configurable wait strategies and JavaScript error
-capture. Docket renders in WebKit — the engine macOS already ships — and renders a sample, ten
+<li><strong>Rendering at scale, in the right engine.</strong> Screaming Frog renders with an
+integrated Chromium engine across an entire crawl — their page calls it the "integrated
+Chromium WRS". Docket renders in WebKit — the engine macOS already ships — and renders a sample, ten
 pages by default, enough to answer whether the site is client-rendered and what that costs.
 On a large React or Vue site, or for a bug that only appears in Chrome's renderer, Screaming
 Frog is the tool.</li>
 <li><strong>Custom extraction.</strong> XPath, CSS and regex extraction pulls arbitrary fields
 out of a crawl — product prices, author names, whatever you define. Docket has no equivalent.</li>
-<li><strong>Scale.</strong> Screaming Frog will crawl millions of URLs given the memory. Docket
-is bounded by design.</li>
+<li><strong>Scale.</strong> Screaming Frog's paid licence lists no crawl limit; their page says
+the maximum "is dependent on allocated memory and storage", with a hybrid engine that spills to
+disk for large sites. Docket is bounded by design.</li>
 </ul>
 
 <h2>What Docket does that Screaming Frog does not</h2>
@@ -55,7 +117,10 @@ most expensive characteristic — the power is proportional to your own skill an
 stop the bleeding, quick wins, build, polish. Each finding states what it costs you in plain
 language and carries the exact markup to paste.</p>
 
-<p>Beyond the ordering, Docket audits three areas Screaming Frog has no coverage of at all:</p>
+<p>Beyond the ordering, Docket audits three areas that Screaming Frog's own feature list does
+not cover. That is what their page advertises, not proof the tool cannot be made to do it —
+their custom extraction is powerful enough that a determined user could build some of this by
+hand:</p>
 <ul>
 <li><strong>AI search visibility.</strong> Per-crawler access for ChatGPT, Perplexity, Claude
 and Gemini, separating search crawlers from training crawlers. Whether pages are
@@ -77,9 +142,9 @@ and UTM parameters on internal links.</li>
 <tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>
 <tr><td>Custom XPath extraction</td><td class="no">No</td><td class="yes">Yes</td></tr>
 <tr><td>hreflang reciprocity</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-<tr><td>AI crawler audit</td><td class="yes">Yes</td><td class="no">No</td></tr>
-<tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">No</td></tr>
-<tr><td>Local business SEO</td><td class="yes">Yes</td><td class="no">No</td></tr>
+<tr><td>AI crawler audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
+<tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
+<tr><td>Local business SEO</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
 <tr><td>Client-ready PDF</td><td class="yes">Built in</td><td>Export and build it yourself</td></tr>
 <tr><td>Scheduled re-audits</td><td class="yes">Yes</td><td>Scheduling in the paid tier</td></tr>
 </tbody></table></div>
@@ -108,6 +173,7 @@ URLs. It is the deeper instrument and its price-to-power ratio is unmatched.</p>
 you care about AI search visibility or whether your landing pages convert, or if you want a
 client-ready PDF without building one.</p>
 <p>They are not mutually exclusive, and plenty of people will want both.</p>
+{_verified_note("screaming-frog")}
 {CTA}"""
 
     return render(
@@ -126,8 +192,8 @@ client-ready PDF without building one.</p>
              "Screaming Frog does those better and Docket does not try to."),
             ("Does Docket render JavaScript like Screaming Frog?",
              "Yes, through a WebKit helper, though it is off by default and renders a "
-             "sample — ten pages by default. Screaming Frog renders every page in headless "
-             "Chrome with configurable wait strategies, which is the better tool for a large "
+             "sample — ten pages by default. Screaming Frog renders across the whole crawl "
+             "in its integrated Chromium engine, which is the better tool for a large "
              "single-page application."),
         ],
     )
@@ -183,10 +249,11 @@ reporting every English phrase as absent.</li>
 <tr><td>Section-by-section scoring</td><td class="yes">Inferred automatically</td><td>Segments you define</td></tr>
 </tbody></table></div>
 
-<p>One difference worth drawing out: both tools score sections of a site separately, but
-Sitebulb has you define the segments. Docket infers them from URL structure, on the theory that
-the people who most need the feature will not sit down and write segment rules. That is a
-trade — inferred sections are less precise than defined ones, and the report says so.</p>
+<p>One difference worth drawing out: Docket splits a site into sections itself, inferring them
+from URL structure, on the theory that the people who most need the feature will not sit down
+and write rules. Sitebulb's features page describes a Custom URL explorer where you choose the
+columns, filters and sort — configuring the view rather than having it inferred. That is a
+trade, and the report says so: inferred sections are less precise than ones you define.</p>
 
 <h2>Which one to pick</h2>
 <p><strong>Choose Sitebulb</strong> if visual reporting is how you sell work, if you need the
@@ -196,6 +263,7 @@ access.</p>
 well as technical SEO, if you would rather own the tool than rent it, or if you want a report
 that is careful about the difference between "we checked and it is fine" and "we could not
 check".</p>
+{_verified_note("sitebulb")}
 {CTA}"""
 
     return render(
@@ -237,15 +305,19 @@ guessing.</p>
 your laptop is closed, or a team looking at the same data.</p>
 
 <h2>Where the audit itself differs</h2>
-<p>Ahrefs lists 170+ checks. More checks with no ordering is a bigger pile, and the practical
+<p>Ahrefs' Site Audit page says it "scans for 170+ issues". More checks with no ordering is a
+bigger pile, and the practical
 question is what you do first. Docket ranks by impact against effort and gives you a sequence.</p>
 
-<p>The cloud model also brings metering. Ahrefs crawls are credit-limited by plan, which means
-the audit you run is shaped partly by what you can afford to spend on it. Docket runs on your
-machine with no per-crawl cost, so auditing a client site twice in a day costs nothing.</p>
+<p>The cloud model also brings metering. Ahrefs' pricing page lists a monthly crawl-credit
+allowance per plan — 100,000 on Lite, 500,000 on Standard, 1,500,000 on Advanced — so the audit
+you run is shaped partly by what you can afford to spend on it. Docket runs on your machine with
+no per-crawl cost, so auditing a client site twice in a day costs nothing.</p>
 
-<p>And three areas are simply absent from Ahrefs' audit: per-crawler AI search access,
-landing-page conversion, and marketing tracking coverage.</p>
+<p>And three areas are not listed among the checks on Ahrefs' Site Audit page: per-crawler AI
+search access, landing-page conversion, and marketing tracking coverage. That is what their page
+does and does not advertise, which is not the same as proof the product cannot do it — if you
+need one of these, ask them rather than taking this page's word for it.</p>
 
 <h2>Side by side</h2>
 <div class="wrap-tbl"><table class="cmp">
@@ -257,16 +329,17 @@ landing-page conversion, and marketing tracking coverage.</p>
 <tr><td>Crawl limits</td><td class="yes">Your machine, your limits</td><td>Credit-metered by plan</td></tr>
 <tr><td>Data location</td><td class="yes">Crawl runs on your Mac; four optional checks fetch data unless <code>--offline</code></td><td>Cloud</td></tr>
 <tr><td>Ranked action plan</td><td class="yes">Yes</td><td>Issues by severity</td></tr>
-<tr><td>AI crawler audit</td><td class="yes">Per-crawler</td><td>Partial</td></tr>
-<tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">No</td></tr>
+<tr><td>AI crawler audit</td><td class="yes">Per-crawler</td><td>Not listed as per-crawler</td></tr>
+<tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
 <tr><td>Team access</td><td class="no">Single machine</td><td class="yes">Yes</td></tr>
 </tbody></table></div>
 
 <h2>The metering problem, concretely</h2>
 <p>Cloud auditing is priced per crawled URL, and that changes how you work in a way that is
-easy to miss until you hit it. On Ahrefs' entry plan the monthly crawl allowance is consumed
-by every audit you run — so re-auditing a client site after a fix, then again after the next
-fix, costs you budget that a larger client might need.</p>
+easy to miss until you hit it. Ahrefs' entry plan lists 100,000 crawl credits a month. Their
+pricing page does not spell out what spends a credit, so the exact arithmetic is theirs to
+state, not ours — but a monthly allowance means re-auditing a client site after a fix, then
+again after the next fix, draws down a budget that a larger client might need.</p>
 <p>The practical effect is that people run fewer audits than they should. You verify a change
 once rather than iterating, and you hesitate before crawling a prospect's site to win the
 work. Docket has no equivalent constraint: the crawl happens on your laptop, so running it
@@ -283,6 +356,7 @@ you need an index, and Ahrefs or Semrush is how you get one. If what you need is
 and marketing audit with a plan attached, Docket does that for a one-time cost and never sends
 your data anywhere.</p>
 <p>Plenty of people run both: an index tool for research, and a local auditor for the work.</p>
+{_verified_note("ahrefs")}
 {CTA}"""
 
     return render(

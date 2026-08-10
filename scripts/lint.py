@@ -157,6 +157,17 @@ _COMPETITOR_ABSOLUTE = re.compile(
 )
 
 
+#: Companies named on this site. A page that mentions one in passing on a list
+#: is not making a claim; a page that discusses one is. The threshold is
+#: deliberately low — two mentions — because the pages that discuss a competitor
+#: name it constantly and the ones that merely list it name it once.
+_COMPETITORS = ("Ahrefs", "Semrush", "Screaming Frog", "Sitebulb", "Moz", "Lumar")
+
+
+def _names_a_competitor(text: str) -> bool:
+    return any(text.count(name) >= 2 for name in _COMPETITORS)
+
+
 def main(root: str) -> int:
     pages = sorted(Path(root).rglob("index.html"))
     if not pages:
@@ -177,6 +188,31 @@ def main(root: str) -> int:
             # Not content. See is_redirect_stub for why this exemption is this
             # narrow and must stay that way.
             continue
+
+        # A factual claim about a named competitor must carry a date and a
+        # source. The comparison pages made seventeen statements about three
+        # companies with neither, and checking them found four that overstated
+        # what the competitor's own pages say — including two hard "No" cells
+        # in a table for features nobody had verified were absent.
+        #
+        # Undated is not neutral. It silently claims "true now", forever, and
+        # the reader has no way to age it. This fails the build rather than
+        # relying on whoever edits the page next to remember.
+        # Body text only. The first version counted the whole page and every
+        # page carries "vs Screaming Frog / vs Sitebulb / vs Ahrefs" in the
+        # nav, so it flagged pages that never mention a competitor outside the
+        # navigation — including one where the only occurrence of "Ahrefs" was
+        # a menu item. The gate was reading site chrome as an argument.
+        #
+        # Two acceptable answers, because the reader's question is "how old is
+        # this?" and both answer it: a real date with a source, or an explicit
+        # statement that this page is not dated and a link to the pages that
+        # are. What fails is silence.
+        if _names_a_competitor(visible_text(raw, body_only=True)) \
+                and "Checked " not in text and "claims-note" not in raw:
+            fails.append(f"UNDATED {p}: names a competitor with neither a dated "
+                         f"verification note nor the undated-claims note "
+                         f"(see comparisons.VERIFIED and build.stamp_competitor_claims)")
 
         title = html.unescape(m.group(1).strip()) if (m := _TITLE.search(raw)) else ""
         desc = html.unescape(m.group(1).strip()) if (m := _DESC.search(raw)) else ""
