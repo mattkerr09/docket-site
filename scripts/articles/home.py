@@ -303,13 +303,14 @@ def body() -> str:
     number, not a guess.</p></div>
   <div class="card"><div class="card-ico">{ICONS['lock']}</div>
     <h3>Nothing is uploaded</h3>
-    <p>No account, no telemetry, no licence server. The only requests Docket makes are to the
-    site you are auditing.</p></div>
+    <p>No account, no telemetry, no licence server. The crawl only ever touches the site you
+    are auditing; four optional checks also fetch data Docket cannot produce alone, and
+    <code>--offline</code> turns all four off.</p></div>
   <div class="card"><div class="card-ico">{ICONS['order']}</div>
     <h3>A CLI, including <code>docket attack</code></h3>
-    <p><code>docket audit</code> exits non-zero on a critical issue, so CI fails the build on a
-    stray noindex. <code>docket attack</code> ranks a competitor's weak points by how winnable
-    they are.</p></div>
+    <p><code>docket audit</code> exits non-zero on a critical issue — a noindexed homepage, a
+    5xx — so CI can fail the build before it ships. <code>--fail-on high</code> lowers the bar.
+    <code>docket attack</code> ranks a competitor's weak points by how winnable they are.</p></div>
 </div>
 </div></section>
 
