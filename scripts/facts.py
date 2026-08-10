@@ -63,6 +63,16 @@ def index_attempted() -> int:
     return index()["summary"]["attempted"]
 
 
+def index_measured() -> str:
+    """The date the Index was collected, without the time of day.
+
+    A robots.txt reading is true of a morning. Pages that quote one had been
+    dating it by hand from the dataset's ISO timestamp, which is a date typed
+    into prose — the exact shape this file exists to prevent.
+    """
+    return index()["collected"][:10]
+
+
 def index_citation_pct() -> int:
     live = index_live()
     return round(100 * sum(1 for r in live if _blocked(r, CITATION)) / len(live))
@@ -82,6 +92,56 @@ def index_conflated_pct() -> int:
     live = index_live()
     hit = sum(1 for r in live if _blocked(r, CITATION))
     return round(100 * hit / index_any_ai()) if index_any_ai() else 0
+
+
+# -- the Index, sliced by the category it already records --------------------
+#
+# An audience page argues about one kind of business, and every record in the
+# Index already carries the category it was sampled under. A per-audience
+# figure is therefore a filter over a dataset that is already published, not a
+# new measurement — and doing the filtering here rather than in prose is what
+# stops "one of twenty" surviving a rebuild that makes it two.
+#
+# Same live-only rule as the whole-Index figures: a host whose robots.txt could
+# not be read cannot be counted as permitting anything.
+
+def index_category(category: str) -> list:
+    return [r for r in index_live() if r.get("category") == category]
+
+
+def category_n(category: str) -> int:
+    return len(index_category(category))
+
+
+def category_hosts(category: str) -> list:
+    return [r["host"] for r in index_category(category)]
+
+
+def category_blocked(category: str, bot: str) -> int:
+    """Hosts in `category` that disallow one named crawler from '/'."""
+    return sum(1 for r in index_category(category)
+               if r["ai_access"].get(bot) is False)
+
+
+def category_citation_hosts(category: str) -> list:
+    """Hosts blocking a crawler that feeds answers rather than training."""
+    return sorted(r["host"] for r in index_category(category)
+                  if _blocked(r, CITATION))
+
+
+def category_mentions_ai(category: str) -> int:
+    return sum(1 for r in index_category(category)
+               if r.get("mentions_any_ai_bot"))
+
+
+def category_sitemap(category: str) -> int:
+    return sum(1 for r in index_category(category)
+               if r.get("has_sitemap_directive"))
+
+
+def category_content_signal_hosts(category: str) -> list:
+    return sorted(r["host"] for r in index_category(category)
+                  if r.get("content_signal"))
 
 
 # -- the directives survey ---------------------------------------------------

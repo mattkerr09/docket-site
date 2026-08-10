@@ -161,7 +161,8 @@ _COMPETITOR_ABSOLUTE = re.compile(
 #: is not making a claim; a page that discusses one is. The threshold is
 #: deliberately low — two mentions — because the pages that discuss a competitor
 #: name it constantly and the ones that merely list it name it once.
-_COMPETITORS = ("Ahrefs", "Semrush", "Screaming Frog", "Sitebulb", "Moz", "Lumar")
+_COMPETITORS = ("Ahrefs", "Semrush", "Screaming Frog", "Sitebulb", "Moz", "Lumar",
+                "Lighthouse")
 
 
 def _names_a_competitor(text: str) -> bool:
