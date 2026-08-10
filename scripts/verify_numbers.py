@@ -48,6 +48,12 @@ ALLOWED = {
     "2.14": ("what the Linux launcher alone requires; quoted beside 2.30 to "
              "show which half of the bundle sets the floor"),
     "9309": "RFC 9309, the robots.txt standard",
+    "100,000": ("Ahrefs' Lite plan crawl-credit allowance, read from "
+                "ahrefs.com/pricing on 2026-08-10 and linked on the page"),
+    "500,000": ("Ahrefs' Standard plan crawl-credit allowance, same source "
+                "and date"),
+    "1,500,000": ("Ahrefs' Advanced plan crawl-credit allowance, same source "
+                  "and date"),
     "139": ("Screaming Frog's Log File Analyser licence, $139 per year, read "
             "from their own pricing page on 2026-08-07 and linked in the "
             "prose. A competitor's price for a SEPARATE product from the SEO "
