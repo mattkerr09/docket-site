@@ -15,20 +15,80 @@ to be sitting in dist/.
 """
 from __future__ import annotations
 
+import base64
 import json
 import pathlib
+import plistlib
+import shutil
+import subprocess
 import sys
+import tarfile
+import tempfile
 
 SITE = pathlib.Path(__file__).resolve().parent.parent / "site"
 APP = pathlib.Path("/Users/matthewkerr/Downloads/SEO audit app")
 MANIFEST = SITE / "updater.json"
 TGZ = APP / "dist" / "Docket.app.tar.gz"
 SIG = APP / "dist" / "Docket.app.tar.gz.sig"
+TAURI_CONF = APP / "ui" / "src-tauri" / "tauri.conf.json"
 
 
 def fail(message: str) -> None:
     print(f"UPDATER FAIL — {message}")
     sys.exit(1)
+
+
+def _tarball_version() -> str | None:
+    """`CFBundleShortVersionString` from the app inside the tarball.
+
+    The manifest's `version` is what the updater compares against the *running*
+    binary. If it claims a version the tarball does not contain, the update is
+    offered, downloaded, installed, and then offered again on the next launch,
+    for ever — no error, no end, and nothing in any log saying why.
+    """
+    if not TGZ.is_file():
+        return None
+    with tarfile.open(TGZ) as archive:
+        for member in archive.getmembers():
+            if member.name.endswith("Docket.app/Contents/Info.plist"):
+                handle = archive.extractfile(member)
+                if handle is None:
+                    return None
+                return plistlib.load(handle).get("CFBundleShortVersionString")
+    return None
+
+
+def _signature_verifies(published: str):
+    """Does the published signature actually verify, under the app's own key?
+
+    The string comparison below proves the manifest carries the same text as
+    dist/Docket.app.tar.gz.sig. It does not prove that text is a valid signature
+    for that tarball under the public key compiled into the binary — and that is
+    the failure this whole file exists to prevent. Sign with a key that is not
+    the one in tauri.conf.json and both strings still agree with each other
+    while every client rejects the update in silence.
+
+    Returns None when minisign is absent: a check that could not run is reported
+    as not run, never as a pass.
+    """
+    exe = shutil.which("minisign")
+    if not exe or not TGZ.is_file():
+        return None, "minisign not installed" if not exe else "no local tarball"
+    try:
+        pubkey = json.loads(TAURI_CONF.read_text())["plugins"]["updater"]["pubkey"]
+    except (OSError, KeyError, json.JSONDecodeError) as exc:
+        return None, f"could not read the updater pubkey from tauri.conf.json ({exc})"
+
+    with tempfile.TemporaryDirectory() as tmp:
+        pub = pathlib.Path(tmp) / "docket.pub"
+        sig = pathlib.Path(tmp) / "Docket.app.tar.gz.sig"
+        pub.write_bytes(base64.b64decode(pubkey))
+        sig.write_bytes(base64.b64decode(published))
+        result = subprocess.run(
+            [exe, "-V", "-p", str(pub), "-x", str(sig), "-m", str(TGZ)],
+            capture_output=True, text=True)
+    detail = (result.stdout + result.stderr).strip().splitlines()
+    return result.returncode == 0, detail[-1] if detail else ""
 
 
 def main() -> None:
@@ -76,9 +136,26 @@ def main() -> None:
              "rejected and users would never be told. Re-run "
              "scripts/collect_updater.py after the build.")
 
+    inside = _tarball_version()
+    if inside and inside != data["version"]:
+        fail(f"updater.json says {data['version']} but the tarball contains "
+             f"{inside}. The updater compares the manifest against the running "
+             f"binary, so this update would be offered, installed, and offered "
+             f"again on every launch for ever, with no error anywhere.")
+
+    verified, detail = _signature_verifies(published)
+    if verified is False:
+        fail(f"the published signature does not verify against the updater "
+             f"pubkey in tauri.conf.json ({detail}). The manifest and the .sig "
+             f"agree with each other, so the check above passed — but every "
+             f"client would reject this update in silence. The tarball was "
+             f"signed with a different key than the one compiled into the app.")
+
     size = TGZ.stat().st_size // 1024 if TGZ.is_file() else 0
-    print(f"UPDATER ok — {data['version']}, signature matches this build's "
-          f".sig ({size} KB tarball), {len(platforms)} platform(s)")
+    crypto = ("signature verifies against the app's pubkey" if verified
+              else f"SIGNATURE NOT CRYPTOGRAPHICALLY CHECKED — {detail}")
+    print(f"UPDATER ok — {data['version']} (tarball agrees), {crypto} "
+          f"({size} KB tarball), {len(platforms)} platform(s)")
 
 
 if __name__ == "__main__":
