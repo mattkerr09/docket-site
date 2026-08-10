@@ -369,8 +369,11 @@ computed from free public data rather than a bought index.</p>
 <p>It is a one-time download. No subscription, no crawl credits, no per-seat pricing — audit
 as many sites as you like.</p></div>
 <div class="faq-item"><h3>Does it send my site data anywhere?</h3>
-<p>No. The audit runs on your Mac and the only network requests are to the site you are
-auditing. No account, no telemetry.</p></div>
+<p>Docket collects nothing about you — no account, no telemetry, no licence check. The
+crawl runs on your Mac. Four checks do reach outside it by default: Core Web Vitals from
+Google PageSpeed, a deliverability test on the addresses your site publishes, what your
+server tells AI crawlers, and a knowledge refresh from this site. Offline mode turns all
+four off, and every report names the ones that ran.</p></div>
 <div class="faq-item"><h3>How is it different from Screaming Frog?</h3>
 <p>Screaming Frog gives raw crawl data and leaves interpretation to you. Docket ranks findings
 and gives you an ordered plan with markup to paste. Screaming Frog supports custom XPath extraction and crawls at far greater scale;
@@ -397,8 +400,11 @@ FAQ = [
      "Docket is a one-time download for macOS. There is no subscription, no crawl credits and "
      "no per-seat pricing — you can audit as many sites as you like."),
     ("Does Docket send my site data anywhere?",
-     "No. The audit runs entirely on your Mac. The only network requests Docket makes are to "
-     "the site you are auditing. There is no telemetry and no account."),
+     "Docket collects nothing about you: no account, no telemetry, no licence check. The "
+     "crawl runs on your Mac. Four checks reach outside it by default — Core Web Vitals "
+     "from Google PageSpeed, a deliverability test on the addresses your site publishes, "
+     "what your server tells AI crawlers, and a knowledge refresh from this site. Offline "
+     "mode turns all four off, and every report names the ones that ran."),
     ("How is Docket different from Screaming Frog?",
      "Screaming Frog gives you raw crawl data and leaves the interpretation to you. Docket "
      "ranks every finding by impact against effort and gives you an ordered plan with the "
