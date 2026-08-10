@@ -7,6 +7,6 @@
   "measured": "2026-08-10",
   "note": "Decimal MB, matching what a browser download panel and the Finder report. Written by collect_updater.py from the artifact actually published.",
   "linux_name": "docket-0.1.7-linux-x86_64.tar.gz",
-  "linux_bytes": 12936089,
+  "linux_bytes": 12937183,
   "linux_mb": 12.9
 }
