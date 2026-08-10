@@ -374,11 +374,11 @@ body.landing article{padding:0}
 you like, for as long as you like. There is no account to create, no licence server to phone,
 and no telemetry.</p>
 
-<p><strong>v0.1.19 is free.</strong> The beta downloads without payment and keeps working; the
+<p><strong>v0.1.20 is free.</strong> The beta downloads without payment and keeps working; the
 $149 applies from v1.0. Said plainly because a price on a page beside a button that
 charges nothing is the kind of thing this tool exists to flag.</p>
 
-<p><a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.19/Docket-0.1.19-arm64.dmg">Download Docket v0.1.19 for Mac</a></p>
+<p><a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.20/Docket-0.1.20-arm64.dmg">Download Docket v0.1.20 for Mac</a></p>
 <p style="font-size:.92rem;color:var(--text-dim)">Apple Silicon · macOS 12+ · 22.2 MB ·
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
 
@@ -420,10 +420,10 @@ what they do, they are simply rented rather than owned.</p>
 <p>The Mac app is signed with a Developer&nbsp;ID and notarised by Apple, so macOS verifies it
 with Apple before it opens and you need do nothing. The Linux tarball has no equivalent — it is
 a plain archive from a URL — so every release publishes
-<a href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.19/SHA256SUMS">SHA256SUMS</a> covering all of its artifacts:</p>
+<a href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.20/SHA256SUMS">SHA256SUMS</a> covering all of its artifacts:</p>
 
-<pre><code>curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.19/docket-0.1.19-linux-x86_64.tar.gz
-curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.19/SHA256SUMS
+<pre><code>curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.20/docket-0.1.20-linux-x86_64.tar.gz
+curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.20/SHA256SUMS
 grep linux SHA256SUMS | shasum -a 256 -c -</code></pre>
 
 <p>Be clear about what that proves and what it does not. It proves the file arrived intact and
@@ -573,7 +573,7 @@ how you would drive Docket from your own scripts.</p>
 <li><strong>macOS 12 or later, Apple Silicon</strong> for the desktop app. There is no
 Intel or Windows build.</li>
 <li><strong>Linux x86_64 for the command line.</strong>
-<a href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.19/docket-0.1.19-linux-x86_64.tar.gz">Download the 15.1 MB tarball</a> — needs
+<a href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.20/docket-0.1.20-linux-x86_64.tar.gz">Download the 15.1 MB tarball</a> — needs
 <strong>glibc 2.30</strong> or newer — check yours with <code>ldd --version</code>. That floor
 is measured from the shipped binary rather than assumed from the machine that built it: the
 launcher itself only needs 2.14, and the bundled Python runtime is what raises it to 2.30.
