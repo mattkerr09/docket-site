@@ -33,6 +33,7 @@ import home  # noqa: E402
 import howto_canonicals  # noqa: E402
 import howto_hreflang  # noqa: E402
 import howto_https  # noqa: E402
+import howto_schema  # noqa: E402
 import howto_soft404  # noqa: E402
 import index_page  # noqa: E402
 import learn  # noqa: E402
@@ -373,7 +374,8 @@ def main() -> int:
     pages += [howto_https.http_to_https(),
               howto_hreflang.hreflang_return_tags(),
               howto_canonicals.conflicting_canonicals(),
-              howto_soft404.soft_404s()]
+              howto_soft404.soft_404s(),
+              howto_schema.structured_data_errors()]
     pages += bytecap.build_all()
     pages += learn.build_all()
     pages += link_equity.build_all()
