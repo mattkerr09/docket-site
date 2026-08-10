@@ -89,3 +89,6 @@ git push -qf origin gh-pages-tmp:gh-pages
 git branch -D gh-pages-tmp >/dev/null
 
 echo "==> done — https://docketseo.app (propagation takes a minute)"
+echo
+echo "    verify what the CDN is actually serving, once it has propagated:"
+echo "      python3 scripts/verify_live.py"
