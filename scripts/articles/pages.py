@@ -958,6 +958,11 @@ markup and one trailing comma is treated like a page with none. The five ways sc
 and why a single-URL validator misses most of them.
 <a href="/how-to/fix-structured-data-errors/">How to fix structured data errors →</a></p>
 
+<h2>Layout shift (CLS)</h2>
+<p>Almost always images with no width and height: the browser cannot reserve the space, so
+content jumps as they load. The fix, the four other causes, and why a crawler can report the
+risk but never the score. <a href="/how-to/fix-layout-shift/">How to fix layout shift →</a></p>
+
 <h2>More coming</h2>
 <p>Further guides are being written, one per issue Docket reports. They will appear as each is written properly rather than as
 variations on a template.</p>

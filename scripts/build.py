@@ -31,6 +31,7 @@ import rendering  # noqa: E402
 import substitution  # noqa: E402
 import home  # noqa: E402
 import howto_canonicals  # noqa: E402
+import howto_cls  # noqa: E402
 import howto_hreflang  # noqa: E402
 import howto_https  # noqa: E402
 import howto_schema  # noqa: E402
@@ -375,7 +376,8 @@ def main() -> int:
               howto_hreflang.hreflang_return_tags(),
               howto_canonicals.conflicting_canonicals(),
               howto_soft404.soft_404s(),
-              howto_schema.structured_data_errors()]
+              howto_schema.structured_data_errors(),
+              howto_cls.layout_shift()]
     pages += bytecap.build_all()
     pages += learn.build_all()
     pages += link_equity.build_all()
