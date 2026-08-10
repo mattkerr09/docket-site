@@ -56,7 +56,15 @@ HOMEPAGE_MUST_SAY = _homepage_must_say()
 #: Regexes, not literals. The list held the exact string "Nothing leaves"
 #: and the comparison pages shipped "Never leaves your Mac" for weeks — the
 #: same false claim, one word away from the gate.
-MUST_NOT_SAY = [r"Scout", r"F0800F", r"(?i)\b(nothing|no data|never)\s+leaves\b"]
+MUST_NOT_SAY = [
+    r"Scout", r"F0800F",
+    r"(?i)\b(nothing|no data|never)\s+leaves\b",
+    # "The only requests Docket makes are to the site you are auditing"
+    # was the same false claim in a wording with no "leaves" in it, so the
+    # rule above walked straight past it. Four connectors reach
+    # docketseo.app, Google and DNS on a default run.
+    r"(?i)only requests?\s+(?:Docket|it)\s+makes",
+]
 
 #: A width where layout breaks, and one where it does not. Both, because a
 #: page can be clean at one and broken at the other.
