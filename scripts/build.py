@@ -30,6 +30,7 @@ import entity  # noqa: E402
 import rendering  # noqa: E402
 import substitution  # noqa: E402
 import home  # noqa: E402
+import howto_https  # noqa: E402
 import index_page  # noqa: E402
 import learn  # noqa: E402
 import link_equity  # noqa: E402
@@ -366,6 +367,7 @@ Ahrefs Site Audit, each naming what the other does better.</li>
 def main() -> int:
     pages: list[Path] = [home.build(), index_page.build(), checks_page()]
     pages += comparisons.build_all()
+    pages += [howto_https.http_to_https()]
     pages += bytecap.build_all()
     pages += learn.build_all()
     pages += link_equity.build_all()

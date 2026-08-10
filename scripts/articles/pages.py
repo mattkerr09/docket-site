@@ -932,6 +932,11 @@ they are separate decisions and need separate rules. Measured against
 {F.directives_hosts()} sites' robots.txt files, most people who block AI crawlers get this
 wrong in the same direction.</p>
 
+<h2>Redirecting http:// to https://</h2>
+<p>The 301 every host configures differently, and the certificate state that makes the
+"Enforce HTTPS" setting refuse to turn on — written from our own site failing this exact
+check. <a href="/how-to/redirect-http-to-https/">How to redirect http:// to https:// →</a></p>
+
 <h2>More coming</h2>
 <p>Guides for hreflang return tags, conflicting canonicals, soft 404s and structured data
 errors are being written. They will appear as each is written properly rather than as
