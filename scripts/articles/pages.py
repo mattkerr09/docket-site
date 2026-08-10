@@ -14,7 +14,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (  # noqa: E402
     COMPETITORS, DMG, DMG_SIZE, LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS,
-    PRICE_STR, RELEASE, SUMS, price_note_html, render,
+    N_LANES, PRICE_STR, RELEASE, SUMS, price_note_html, render,
 )
 
 
@@ -336,15 +336,21 @@ better tool for a catalogue.</p>
 <p>Why you are not in the map pack — LocalBusiness schema, NAP consistency, and the geo
 signals that decide "near me" results.</p>
 
-<h2>More coming, and one that is not</h2>
-<p>SaaS and in-house marketing pages will appear when each has something specific to say.
+<h2><a href="/for/saas/">For SaaS companies</a></h2>
+<p>{len(F.category_citation_hosts('saas'))} of the {F.category_n('saas')} SaaS sites in the
+Index block an answer engine, so the blocking scare is not the story. The story is a marketing
+page that is empty until JavaScript runs, and a docs subdomain competing with it.</p>
+
+<h2>One more coming</h2>
+<p>An in-house marketing page will appear when it has something specific to say.
 Near-duplicate pages are the real flag risk in a programmatic set, not thin ones, so a page
 gets written when there is a measurement behind it rather than to fill a gap in a list.</p>
 
 <p>That standard is why the ecommerce page took as long as it did: the honest version could
 only be written after auditing real shops, and what came back disagreed with what the page was
-going to say. If the other two never produce a finding worth publishing, they will not be
-written, and this paragraph will say so rather than promising them indefinitely.</p>
+going to say. The SaaS page went the same way — the pitch it was going to make is the one its
+own data contradicts. If the last one never produces a finding worth publishing, it will not
+be written, and this paragraph will say so rather than promising it indefinitely.</p>
 """
     return render(
         cat="for", slug="",
@@ -889,6 +895,266 @@ missing. <a href="/download/">Download it</a> and run one audit — it takes a f
     )
 
 
+#: Somebody else's measurement, dated and linked, because we cannot reproduce
+#: it. Docket sees what a crawler *would* be able to read on one site; Vercel
+#: sees what crawlers actually did across its network. The SaaS page needs both
+#: halves and they can only come from different places.
+#:
+#: Same rule as comparisons.VERIFIED: the figures live here with their source
+#: rather than being typed into a sentence, so a correction is one edit and the
+#: prose cannot drift away from what was read.
+VERCEL_CRAWLER = {
+    "url": "https://vercel.com/blog/the-rise-of-the-ai-crawler",
+    "read_on": "10 August 2026",
+    "chatgpt_js": "11.50",
+    "claude_js": "23.84",
+}
+
+
+def for_saas() -> Path:
+    """The SaaS audience page the /for/ hub had been holding open.
+
+    Written from the Index's own SaaS slice rather than from the pitch, and the
+    slice contradicts the pitch: essentially nobody in it blocks an answer
+    engine. So the page spends its length on the failure that is invisible in
+    robots.txt — a marketing site that is empty until JavaScript runs — and
+    says plainly that the scary version of the story is not what the data says.
+
+    Deliberately shares no heading with the other /for/ pages. A SaaS site's
+    problems are its own: rendering, a docs subdomain competing with marketing,
+    and pages nobody links to any more.
+    """
+    v = VERCEL_CRAWLER
+    saas_hosts = ", ".join(F.category_hosts("saas"))
+    signal_hosts = ", ".join(F.category_content_signal_hosts("saas"))
+    body = f"""
+<p class="lede">The story sold to SaaS marketers is that AI crawlers are being shut out of the
+web and you are probably shut out too. Measured, that is not what is happening:
+<a href="/index/">the Docket Index</a> holds {F.category_n('saas')} SaaS sites and
+{len(F.category_citation_hosts('saas'))} of them block a crawler that feeds an answer engine.
+The failure that actually costs you a citation is not in <code>robots.txt</code> at all. The
+crawler is let in, it arrives, and the page is empty when it gets there.</p>
+
+<h2>The blocking story, measured</h2>
+
+<p>On {F.index_measured()} we read <code>robots.txt</code> for {F.category_n('saas')} SaaS
+hosts as part of the Index. All {F.category_n('saas')} answered with a file our parser could
+read. Named so you can judge the sample: {saas_hosts}.</p>
+
+<div class="wrap-tbl"><table class="cmp"><thead><tr>
+<th>Crawler</th><th>What it feeds</th><th>Disallowed by</th></tr></thead><tbody>
+<tr><td>OAI-SearchBot</td><td>ChatGPT's index</td>
+<td><strong>{F.category_blocked('saas', 'OAI-SearchBot')} of
+{F.category_n('saas')}</strong></td></tr>
+<tr><td>Claude-SearchBot</td><td>Claude's index</td>
+<td><strong>{F.category_blocked('saas', 'Claude-SearchBot')} of
+{F.category_n('saas')}</strong></td></tr>
+<tr><td>PerplexityBot</td><td>Perplexity's index</td>
+<td><strong>{F.category_blocked('saas', 'PerplexityBot')} of
+{F.category_n('saas')}</strong></td></tr>
+<tr><td>Google-Extended</td><td>Gemini grounding</td>
+<td>{F.category_blocked('saas', 'Google-Extended')} of {F.category_n('saas')}</td></tr>
+<tr><td>GPTBot</td><td>OpenAI training</td>
+<td>{F.category_blocked('saas', 'GPTBot')} of {F.category_n('saas')}</td></tr>
+<tr><td>ClaudeBot</td><td>Anthropic training</td>
+<td>{F.category_blocked('saas', 'ClaudeBot')} of {F.category_n('saas')}</td></tr>
+<tr><td>CCBot</td><td>Common Crawl</td>
+<td>{F.category_blocked('saas', 'CCBot')} of {F.category_n('saas')}</td></tr>
+</tbody></table></div>
+
+<p>{F.category_mentions_ai('saas')} of the {F.category_n('saas')} name an AI crawler at all,
+{F.category_sitemap('saas')} declare a sitemap, and four publish Content-Signal preferences:
+{signal_hosts}. These are large companies with people whose job this is, so it is the easy
+case rather than a random sample of SaaS — a seed-stage site that inherited its
+<code>robots.txt</code> from a boilerplate repo is a different risk, and that is the site
+worth checking. But the pitch that everyone is pulling up the drawbridge, or that you are shut
+out by accident, did not survive contact with these {F.category_n('saas')}.</p>
+
+<p>The related failure is a rule aimed at a crawler retired years ago:
+{F.directives_dead_pct()}% of the sites writing AI rules at all across the Tranco top 10,000
+carry one, <code>anthropic-ai</code> alone sitting on {F.token_sites('anthropic-ai')} of them.
+Docket reads both in the same pass as everything else — one check, not a strategy.</p>
+
+<h2>What actually costs you the citation</h2>
+
+<p>Vercel measured the other half on its own network:
+<a href="{v['url']}" rel="nofollow noopener">none of the major AI crawlers render
+JavaScript</a>. ChatGPT's crawler fetched JavaScript files in {v['chatgpt_js']}% of requests
+and Claude's in {v['claude_js']}%, and neither executed them. Applebot and Gemini are the
+exceptions, because both sit on infrastructure that already renders. That is their
+measurement, read on {v['read_on']}; we cannot reproduce it, and if crawler behaviour has
+moved since, the argument below moves with it.</p>
+
+<p>What Docket shows you is your own side of that. It fetched notion.so twice, once as a
+crawler and once through WebKit: the served HTML held 0 characters of text and 0 links, the
+rendered page held 2,068 characters and 106 links —
+<a href="/learn/javascript-rendering/">the full measurement is here</a>. Notion is not a badly
+built site. It is a normally built one, and to a crawler that does not execute code it is a
+blank sheet.</p>
+
+<p>So if your marketing site is a React or Next.js app without server rendering on every
+route: your <code>robots.txt</code> says yes and your framework says nothing. Docket reports
+how much of each page's text and links exist before hydration, which is the number to take to
+whoever owns the front end.</p>
+
+<h2>What a first audit surfaces on a SaaS site</h2>
+
+<p>A caveat, because the alternative is inventing a statistic: we have not audited a
+representative sample of SaaS sites and cannot tell you how often each of these fires. What
+follows is what the SaaS <em>shape</em> produces — a marketing site, a docs subdomain, a
+changelog and a pricing page — roughly in the order the ranking puts them.</p>
+
+<div class="wrap-tbl"><table class="cmp"><thead><tr>
+<th>#</th><th>What turns up</th><th>Why it bites here</th></tr></thead><tbody>
+<tr><td>1</td><td>Marketing copy absent from the served HTML</td>
+<td>Your homepage and feature pages read as blank to everything that does not
+render</td></tr>
+<tr><td>2</td><td>Navigation that only exists after hydration</td>
+<td>No links in the HTML means no discovery path, so everything below the nav goes
+undiscovered</td></tr>
+<tr><td>3</td><td>A pricing page with no structured data</td>
+<td>Plan names and prices drawn client-side are invisible twice over — to the crawler, and to
+any rich result</td></tr>
+<tr><td>4</td><td>Docs and marketing aimed at one query</td>
+<td>Two hosts, two titles, one intent. Google picks, and it is usually not the page with the
+trial button</td></tr>
+<tr><td>5</td><td>Orphaned feature pages</td>
+<td>Shipped for a launch, linked from one blog post, now at depth five or reachable from
+nothing</td></tr>
+<tr><td>6</td><td>Changelog and blog rot</td>
+<td>Dead outbound links, 404s from renamed features, and no machine-readable date on
+anything</td></tr>
+<tr><td>7</td><td>Near-duplicate comparison pages</td>
+<td>Forty pages off one template read as one page. Thinness is survivable; sameness is the
+part that gets a set flagged</td></tr>
+<tr><td>8</td><td>No entity definition</td>
+<td>Nothing in the markup says which company you are. Organization plus
+<code>sameAs</code> is the cheapest item on this list to fix</td></tr>
+</tbody></table></div>
+
+<p>Each finding arrives with the change rather than the category — the JSON-LD block, the tag,
+the header — because a ranked plan you still have to translate into a ticket is not a plan.
+The CSV export drops into Linear or Jira without anyone retyping it.</p>
+
+<h2>Two hosts, one query</h2>
+
+<p>The most common structural problem on a SaaS site is not technical. It is that two teams
+wrote a page about the same thing. Marketing owns <code>/pricing</code>, docs owns
+<code>docs.example.com/billing</code>, and both answer "what does this cost". You do not get
+to choose which one a search engine shows.</p>
+
+<p>Docket audits one host per crawl, so this is two runs and a comparison you make yourself.
+The duplicate check works inside a single crawl and not across two, and saying otherwise would
+describe a feature that does not exist. What you get is every title and description in one
+place per host, which is enough to see the collisions in a few minutes — and the docs run
+usually turns up auto-generated API pages nobody meant to index.</p>
+
+<h2>What this will not do</h2>
+
+<ul>
+<li><strong>No search volumes, no backlinks, no rank tracking.</strong> There is no index
+behind Docket and there will not be one.</li>
+<li><strong>It does not measure Core Web Vitals.</strong> LCP, INP and CLS are field metrics
+from real users on real connections, and one machine on a fast desk cannot produce them.
+Docket flags the patterns that cause them — render-blocking resources, layout-shift risk, page
+weight, slow server response — and you confirm the numbers in Search Console. With your own
+Google API key it will read Chrome UX Report data, which is Google measuring, not us.</li>
+<li><strong>It does not see behind your login.</strong> The product is not audited. The
+marketing site, docs, blog and pricing page are.</li>
+<li><strong>It does not run prompts against models,</strong> so it cannot tell you whether
+ChatGPT named you this morning. <a href="/vs/">Profound, Otterly and Peec</a> do that.</li>
+<li><strong>Rendering is a sample</strong> — ten of the shallowest pages by default, which
+answers "is this client-rendered and what is it costing me" without turning a five-minute
+audit into an hour. It is not a full rendered crawl of a large application.</li>
+<li><strong>It is macOS on Apple Silicon.</strong> No Windows, no Linux desktop, no web
+version. The CLI inside the bundle runs on <a href="/for/developers/">macOS CI runners</a>.</li>
+</ul>
+
+<h2>When Docket is the wrong tool for you</h2>
+
+<p>Four cases, and it is cheaper for both of us if you find yours here.</p>
+
+<p><strong>You need keyword research, backlink data or rank tracking.</strong> Those need an
+index of the whole web and Docket has none. Buy the subscription; this does not replace
+it.</p>
+
+<p><strong>You need a multi-seat dashboard.</strong> There is no server, no account and no
+shared workspace — audit history sits in <code>~/.docket/</code> as plain JSON on one Mac.
+That is the point when a founder is auditing their own site, and a genuine problem for a
+growth team of six who want one live view. Exports travel; state does not.</p>
+
+<p><strong>Your site is one static landing page.</strong> Running {N_CHECKS} checks across
+{N_LANES} areas against six pages is overkill, and a free single-page checker will tell you
+the same three things in thirty seconds.</p>
+
+<p><strong>You need rendered crawling at volume.</strong> A six-figure URL count with
+JavaScript execution on every page is
+<a href="/vs/screaming-frog-alternative/">Screaming Frog's</a> territory and has been for
+years.</p>
+
+<h2>Why the price is a number rather than a plan</h2>
+
+<p>{PRICE_STR}, once, from v1.0 — and {RELEASE} is free while it is in beta. No seats, no
+crawl credits, no renewal date. You price a SaaS product yourself, so you know what a
+recurring line item does to a buying decision at a company that already has eleven of
+them.</p>
+
+<p>The rest follows from running on your own machine: no upload, no telemetry, no account, and
+results that stay in <code>~/.docket/</code> as JSON you can read with <code>cat</code>. Save
+the site and scheduled re-audits report what changed, regressions first — which is how you
+learn a <code>noindex</code> reached production on Tuesday rather than from a traffic graph
+three weeks later.</p>
+
+<p><a class="btn" href="/download/">Download Docket</a></p>
+"""
+    return render(
+        cat="for", slug="saas",
+        title="Docket for SaaS: audit your marketing site and docs",
+        desc=(f"The blocking scare is not the SaaS story: "
+              f"{len(F.category_citation_hosts('saas'))} of {F.category_n('saas')} SaaS "
+              f"sites in our Index shut an answer engine out. The real problem is a page "
+              f"that is blank until JavaScript runs."),
+        h1="Docket for SaaS companies",
+        crumb='<a href="/">Docket</a> / <a href="/for/">For you</a> / SaaS',
+        body=body,
+        published="2026-08-10",
+        faq=[
+            ("Will Docket tell me if ChatGPT mentions my product?",
+             "No. Docket does not run prompts against any model, so it cannot see what an "
+             "assistant told someone yesterday. It measures what decides whether you are "
+             "eligible to be cited at all: whether AI crawlers are allowed in, whether your "
+             "pages carry their content in the served HTML, and whether your entity markup "
+             "makes it clear which company you are. Profound, Otterly and Peec track "
+             "citations themselves."),
+            ("Do AI crawlers read JavaScript-rendered pages?",
+             f"Mostly not. Vercel measured this across its own network and found that none of "
+             f"the major AI crawlers render JavaScript: ChatGPT's crawler fetched JavaScript "
+             f"files in {v['chatgpt_js']}% of requests and Claude's in {v['claude_js']}%, and "
+             f"neither executed them. Applebot and Gemini are the exceptions, because both "
+             f"run on infrastructure that already renders. If your marketing pages are "
+             f"client-rendered, the rest of them see whatever your server sent."),
+            ("Can Docket audit my docs subdomain and my marketing site together?",
+             "Not in one crawl. Point it at each host separately and read the two title lists "
+             "side by side, because the duplicate check works inside a single crawl rather "
+             "than across two. That comparison takes a few minutes by hand, and describing it "
+             "as automatic would mean describing a feature that does not exist."),
+            ("Does Docket measure Core Web Vitals?",
+             "No. LCP, INP and CLS are field metrics that come from real users on real "
+             "connections, and nothing running on one machine can produce them. Docket flags "
+             "the markup and server patterns that cause bad vitals - render-blocking "
+             "resources, layout-shift risk, page weight, slow server response - and you "
+             "confirm the actual numbers in Search Console. It will read Chrome UX Report "
+             "field data if you add your own Google API key, which is Google measuring rather "
+             "than Docket measuring."),
+            ("Is Docket really a one-time purchase?",
+             f"Yes. {PRICE_STR} once from v1.0, and the current build is free while "
+             f"{RELEASE} is in beta. There are no seats, no crawl credits, no account and no "
+             f"telemetry, and audit history is stored on your Mac in ~/.docket/ as plain "
+             f"JSON."),
+        ],
+    )
+
+
 def howto_hub() -> Path:
     body = f"""
 <p class="lede">Fix guides for the specific problems Docket reports. Each one explains what the
@@ -962,6 +1228,12 @@ and why a single-URL validator misses most of them.
 <p>Almost always images with no width and height: the browser cannot reserve the space, so
 content jumps as they load. The fix, the four other causes, and why a crawler can report the
 risk but never the score. <a href="/how-to/fix-layout-shift/">How to fix layout shift →</a></p>
+
+<h2>Duplicate title tags</h2>
+<p>Rarely a penalty and routinely misdiagnosed: what duplicate titles actually cost you, the
+character limit that does not exist, and the fix by what caused them — pagination, facets,
+product variants, near-identical location pages.
+<a href="/how-to/fix-duplicate-title-tags/">How to fix duplicate title tags →</a></p>
 
 <h2>More coming</h2>
 <p>Further guides are being written, one per issue Docket reports. They will appear as each is written properly rather than as
@@ -1181,7 +1453,7 @@ Docket, including lost traffic, revenue or rankings.</p>
 
 
 BUILDERS = [download, for_hub, for_agencies, for_developers, for_ecommerce,
-            for_local, howto_hub,
+            for_local, for_saas, howto_hub,
             howto_ai_access,
             privacy, terms]
 

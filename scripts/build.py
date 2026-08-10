@@ -24,6 +24,7 @@ import audit_quality  # noqa: E402
 import brand as brand_article  # noqa: E402
 import logs as logs_article  # noqa: E402
 import bytecap  # noqa: E402
+import canonicals  # noqa: E402
 import comparisons  # noqa: E402
 import directives  # noqa: E402
 import entity  # noqa: E402
@@ -36,6 +37,7 @@ import howto_hreflang  # noqa: E402
 import howto_https  # noqa: E402
 import howto_schema  # noqa: E402
 import howto_soft404  # noqa: E402
+import howto_titles  # noqa: E402
 import index_page  # noqa: E402
 import learn  # noqa: E402
 import link_equity  # noqa: E402
@@ -76,8 +78,8 @@ def build_hubs() -> list[Path]:
     out.append(hub(
         "vs",
         "Docket compared with other SEO audit tools (2026)",
-        "Honest comparisons of Docket against Screaming Frog, Sitebulb and Ahrefs Site Audit — "
-        "including what each of them does better.",
+        "Honest comparisons of Docket against Screaming Frog, Sitebulb, Ahrefs and Semrush "
+        "Site Audit — including what each of them does better.",
         "How Docket compares",
         "Each of these names at least one thing the other tool does better, because a "
         "comparison that never concedes anything is an advertisement.",
@@ -92,6 +94,17 @@ def build_hubs() -> list[Path]:
             ("/vs/ahrefs-site-audit-alternative/", "Docket vs Ahrefs Site Audit",
              "Ahrefs has a web-scale index and Docket never will. What you get for $129 a month "
              "if the audit is the part you use."),
+            ("/vs/semrush-site-audit-alternative/", "Docket vs Semrush Site Audit",
+             "Semrush now checks AI crawler access per bot, tracks issue trends over time and "
+             "runs 140+ checks. Where a one-time local auditor still makes sense."),
+            ("/vs/lighthouse-alternative/", "Docket vs Google Lighthouse",
+             "The one here that is not an alternative. Lighthouse is free, it is Google's, "
+             "and you should keep running it — its SEO category is ten scored checks on one "
+             "URL, and a crawl is what sits outside that."),
+            ("/vs/google-search-console/", "Docket vs Google Search Console",
+             "A division of labour rather than a comparison. Search Console holds your real "
+             "queries, index status and field Core Web Vitals, and nothing replaces it. What "
+             "it cannot answer is what is wrong with a page today."),
         ],
         intro="""
 <h2>The three kinds of tool, and which question each answers</h2>
@@ -166,6 +179,10 @@ money.</p>
             ("/learn/sameas-entity-signals/", "sameAs and entity signals",
              "The cheapest entity signal there is, and the share of major sites that skip "
              "it — measured, with the dataset attached."),
+            ("/learn/canonical-tags/", "Canonical tags",
+             "Google calls rel=canonical a hint and overrules it routinely. The seven "
+             "ways it gets set wrong, and what each Search Console status is actually "
+             "telling you."),
             ("/learn/internal-link-equity/", "Internal link equity",
              "The ranking signal your pages pass to each other, measured on our own site — "
              "where the download page held a fifth of what an average page did."),
@@ -348,8 +365,8 @@ draft, or a URL that moved when the section was reorganised.</p>
 and <a href="/index/ai-directives/">which robots.txt rules do nothing</a>.</li>
 <li><a href="/learn/">Learn</a> — what an audit covers, AI search visibility, link equity,
 JavaScript rendering, entity signals.</li>
-<li><a href="/vs/">Compare</a> — honest comparisons against Screaming Frog, Sitebulb and
-Ahrefs Site Audit, each naming what the other does better.</li>
+<li><a href="/vs/">Compare</a> — honest comparisons against Screaming Frog, Sitebulb, Ahrefs
+and Semrush Site Audit, each naming what the other does better.</li>
 <li><a href="/how-to/">Fix it</a> — the exact change to make for a specific finding.</li>
 <li><a href="/download/">Download</a> — the app itself, and the command line inside it.</li>
 </ul>
@@ -377,8 +394,10 @@ def main() -> int:
               howto_canonicals.conflicting_canonicals(),
               howto_soft404.soft_404s(),
               howto_schema.structured_data_errors(),
-              howto_cls.layout_shift()]
+              howto_cls.layout_shift(),
+              howto_titles.duplicate_titles()]
     pages += bytecap.build_all()
+    pages += canonicals.build_all()
     pages += learn.build_all()
     pages += link_equity.build_all()
     pages += entity.build_all()
