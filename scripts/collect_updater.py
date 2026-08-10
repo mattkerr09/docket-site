@@ -74,10 +74,18 @@ def main() -> None:
     # the Finder show a user — the binary MiB figure reads ~1 MB smaller and
     # would make the page understate the download. It was hardcoded "17 MB"
     # against an 18.3 MB file.
-    dmg = APP / "dist" / "Docket-0.1.0-arm64.dmg"
+    # Named from the version being published, not typed. It was
+    # "Docket-0.1.0-arm64.dmg" hardcoded here and again in render.py, so the
+    # first version bump would have pointed the site's download button at a
+    # file that does not exist — and a download link that 404s is the single
+    # worst bug a product site can have.
+    dmg = APP / "dist" / f"Docket-{args.version}-arm64.dmg"
     if dmg.is_file():
         size_path = OUT.parent / "_data" / "download.json"
         size_path.write_text(json.dumps({
+            "version": args.version,
+            "tag": args.tag,
+            "dmg_name": dmg.name,
             "dmg_bytes": dmg.stat().st_size,
             "dmg_mb": round(dmg.stat().st_size / 1_000_000, 1),
             "measured": datetime.datetime.now(datetime.timezone.utc)

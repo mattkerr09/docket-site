@@ -66,7 +66,7 @@ def main() -> None:
     if not BIN.exists():
         raise SystemExit(
             f"{BIN} not found — mount the shipped DMG first:\n"
-            f"  hdiutil attach -nobrowse dist/Docket-0.1.0-arm64.dmg "
+            f"  hdiutil attach -nobrowse dist/{_facts.dmg_name()} "
             f"-mountpoint /tmp/scoutdmg\n"
             f"Timing the Python source instead would publish a number no user "
             f"can reproduce: the frozen binary unpacks itself on every run.")

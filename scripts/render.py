@@ -64,7 +64,7 @@ def price(slug: str) -> str:
 
 #: The current build. One place, because a download link that 404s is the
 #: single worst bug a product site can have.
-RELEASE = "v0.1.0"
+RELEASE = _facts.release_tag()
 REPO = "https://github.com/mattkerr09/docket-site"
 #: The contact channel, and the only one verified to receive anything. The
 #: footer advertised hello@docketseo.app on all 25 pages; the domain has no MX
@@ -72,7 +72,8 @@ REPO = "https://github.com/mattkerr09/docket-site"
 #: message bounced to a sender we never heard from. lint.py now resolves the
 #: domain of any mailto: on the site and fails when it cannot accept mail.
 ISSUES = f"{REPO}/issues"
-DMG = f"{REPO}/releases/download/{RELEASE}/Docket-0.1.0-arm64.dmg"
+DMG_NAME = _facts.dmg_name()
+DMG = f"{REPO}/releases/download/{RELEASE}/{DMG_NAME}"
 #: Rounded DOWN from the real 17,432,048 bytes of the notarised DMG, measured
 #: 2026-08-07. Rounding down is deliberate: a download is allowed to be smaller
 #: than promised and never larger, and "18 MB" was already overstating it.
@@ -86,7 +87,7 @@ DMG_SIZE = _facts.dmg_size_str()
 PRICE = 149
 PRICE_STR = f"${PRICE}"
 
-#: What the download costs *today*, which is not PRICE. v0.1.0 is free, keeps
+#: What the download costs *today*, which is not PRICE. The beta is free, keeps
 #: working, and has no checkout to pay through even if you wanted to.
 #:
 #: This is a fact rather than prose because it was prose, on two pages out of

@@ -40,7 +40,7 @@ def download() -> Path:
 you like, for as long as you like. There is no account to create, no licence server to phone,
 and no telemetry.</p>
 
-<p><strong>v0.1.0 is free.</strong> The beta downloads without payment and keeps working; the
+<p><strong>{RELEASE} is free.</strong> The beta downloads without payment and keeps working; the
 {PRICE_STR} applies from v1.0. Said plainly because a price on a page beside a button that
 charges nothing is the kind of thing this tool exists to flag.</p>
 
