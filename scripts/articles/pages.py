@@ -952,8 +952,14 @@ mistake that can cost a site its entire long tail while every page still returns
 check it in one command, and the fix for each cause.
 <a href="/how-to/fix-soft-404s/">How to fix soft 404s →</a></p>
 
+<h2>Structured data errors</h2>
+<p>Invalid JSON-LD is discarded whole rather than partially read, so a page with complete
+markup and one trailing comma is treated like a page with none. The five ways schema breaks,
+and why a single-URL validator misses most of them.
+<a href="/how-to/fix-structured-data-errors/">How to fix structured data errors →</a></p>
+
 <h2>More coming</h2>
-<p>A guide to structured data errors is being written. They will appear as each is written properly rather than as
+<p>Further guides are being written, one per issue Docket reports. They will appear as each is written properly rather than as
 variations on a template.</p>
 """
     return render(
