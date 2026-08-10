@@ -542,20 +542,37 @@ def crawl_depth() -> int:
 
 
 def _annual(slug: str) -> tuple:
-    """(low, high) annual USD for a competitor, parsed from its price note."""
-    import re as _re
+    """(low, high) annual USD for a competitor, read from the dataset.
+
+    This used to regex every `$N` out of the human-written price note and
+    multiply them all by 12 if `/mo` appeared anywhere in the string. A note
+    that names both units — and three of ten do — was therefore parsed with the
+    wrong unit for half its numbers:
+
+        "$18-$42/mo ($180-$425/yr)"        -> $216-$5,100/yr   (the yearly
+                                              figures multiplied again)
+        "$29-$99/mo or $290-$990 lifetime" -> $348-$11,880/yr  (a lifetime
+                                              licence, annualised)
+        "$29-$489/mo ($25-$422 annual)"    -> $300-$5,868/yr
+
+    The first of those is published: the download page's three-year cost table
+    quoted Sitebulb's cheapest tier at $216/yr when their own note says the
+    yearly plan is $180 — a competitor overstated by 20% in the table that
+    exists to argue Docket is cheaper.
+
+    A regex over prose cannot tell which number carries which unit, so it does
+    not try any more. `annual_low` and `annual_high` are columns, read off each
+    note by hand, with `annual_basis` recording how. Where a note gives two ways
+    to buy a year the cheaper one is used — it is the competitor's real price
+    and the less flattering number for us.
+    """
     import sys as _sys
 
     _sys.path.insert(0, str(ROOT / "scripts"))
     from render import COMPETITORS  # noqa: PLC0415 — avoids an import cycle
 
-    note = COMPETITORS[slug]["price_note"]
-    nums = [int(n.replace(",", "")) for n in _re.findall(r"\$([\d,]+)", note)]
-    if not nums:
-        return (0, 0)
-    if "/mo" in note:
-        return (min(nums) * 12, max(nums) * 12)
-    return (min(nums), max(nums))
+    row = COMPETITORS[slug]
+    return (int(row["annual_low"] or 0), int(row["annual_high"] or 0))
 
 
 def rival_annual_low(slug: str) -> int:

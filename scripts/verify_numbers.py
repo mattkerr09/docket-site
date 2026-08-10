@@ -259,8 +259,71 @@ def _score_band_drift() -> List[str]:
     return []
 
 
+def _competitor_annual_sanity() -> List[str]:
+    """The annual figures must come from the note's ANNUAL numbers, if it has any.
+
+    `_annual` used to regex every dollar amount out of a human-written price
+    note and multiply them all by 12 whenever `/mo` appeared anywhere in the
+    string. Three of ten notes name both units, so half their numbers got the
+    wrong one — Sitebulb's cheapest tier was published at $216/yr when their
+    own note says the yearly plan is $180, in the table that exists to argue
+    Docket is cheaper.
+
+    **The first version of this gate did not catch that**, which is the reason
+    it is written this way. It allowed "any number in the note, or that number
+    x12" — and $216 is $18 x 12, so the wrong value passed. Magnitude is not
+    the test; the unit is. Each amount is read with the unit that follows it,
+    and a note that states annual prices must have its annual columns taken
+    from those, not from the monthly ones multiplied up.
+    """
+    import csv as _csv
+
+    out: List[str] = []
+    path = pathlib.Path(__file__).resolve().parent.parent / "site" / "_data" / "competitors.csv"
+    # $N followed by its unit: /mo, /yr, "annual", "lifetime", or nothing.
+    amount = re.compile(r"\$([\d,]+)\s*(?:-\s*\$?[\d,]+)?\s*(/mo|/yr|annual|lifetime)?",
+                        re.I)
+    for row in _csv.DictReader(path.open()):
+        note, slug = row["price_note"], row["slug"]
+        annual, monthly = set(), set()
+        for m in re.finditer(r"\$([\d,]+)", note):
+            tail = note[m.end():m.end() + 24].lower()
+            n = int(m.group(1).replace(",", ""))
+            # Whichever unit token comes FIRST wins. Fixed precedence read
+            # "$422/mo billed annually" as an annual figure, because the tail
+            # contains both tokens — the unit is the one attached to the
+            # number, which is the nearer one.
+            pos = {tok: tail.find(tok) for tok in ("/mo", "/yr", "annual", "lifetime")}
+            present = {t: i for t, i in pos.items() if i >= 0}
+            unit = min(present, key=present.get) if present else ""
+            if unit == "lifetime":
+                continue                      # a one-time price is not annual
+            if unit in ("/yr", "annual"):
+                annual.add(n)
+            elif unit == "/mo":
+                monthly.add(n)
+            else:
+                # part of a range: takes the unit of the amount after it
+                annual.add(n); monthly.add(n)
+        allowed = (annual if annual else {n * 12 for n in monthly}) | {0}
+        if annual and monthly:
+            allowed |= {0}                    # a mixed note must use the annual side
+        for field in ("annual_low", "annual_high"):
+            value = int(row.get(field) or 0)
+            if value not in allowed:
+                out.append(
+                    f"PRICE  {slug}.{field} = {value:,} does not come from the "
+                    f"{'annual' if annual else 'monthly x12'} figures in "
+                    f"\"{note}\" (expected one of {sorted(allowed)})")
+        if int(row.get("annual_low") or 0) > int(row.get("annual_high") or 0):
+            out.append(f"PRICE  {slug}: annual_low exceeds annual_high")
+        if not row.get("annual_basis"):
+            out.append(f"PRICE  {slug}: no annual_basis recorded")
+    return out
+
+
 def main() -> int:
-    problems: List[str] = _score_band_drift()
+    problems: List[str] = _score_band_drift() + _competitor_annual_sanity()
     # build.py carries the hub entry summaries, which are article prose on a
     # published page and were not being scanned. "Tranco top 1,500" was typed
     # into one and sailed through, which is the exact bug this file exists for.

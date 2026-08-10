@@ -1,11 +1,11 @@
-slug,name,price_note,model,runs,weakness_we_beat,where_they_win,price_checked,price_source
-screaming-frog,Screaming Frog,$279/yr USD,subscription,local,gives raw data and no interpretation,JavaScript rendering and local LLM analysis via Ollama or LM Studio,2026-08-10,https://www.screamingfrog.co.uk/seo-spider/pricing/
-sitebulb,Sitebulb,$18-$42/mo ($180-$425/yr),subscription,local + cloud,no AI visibility conversion or brand lanes,site architecture visualisation,,
-ahrefs-site-audit,Ahrefs Site Audit,$129-$449/mo,subscription,cloud,no AI-crawler or llms.txt checks in Site Audit,keyword and backlink data from a web-scale index,2026-08-10,https://ahrefs.com/pricing
-semrush-site-audit,Semrush Site Audit,$139-$549/mo,subscription,cloud,AI crawler check does not separate training from citation,keyword gaps and bundled AI visibility tracking,2026-08-10,https://www.semrush.com/prices/
-seoptimer,SEOptimer,$29-$59/mo,subscription,cloud,scorecard depth is shallow,white-label lead-gen reports,,
-lighthouse,Google Lighthouse,free,free,local,only measures one page and no SEO strategy,real rendered Core Web Vitals,,
-sitechecker,Sitechecker,$99-$449/mo,subscription,cloud,no conversion or brand lanes,rank tracking and AI visibility across five models,,
-ubersuggest,Ubersuggest,$29-$99/mo or $290-$990 lifetime,subscription + lifetime,cloud,audit is a secondary feature,cheap keyword data,,
-profound,Profound,$99-$399/mo billed yearly,subscription,cloud,tracks citations but never audits why you are not cited,enterprise AI citation tracking,,
-otterly,Otterly.AI,$29-$489/mo ($25-$422 annual),subscription,cloud,AI visibility only — no technical audit,affordable prompt tracking,,
+slug,name,price_note,model,runs,weakness_we_beat,where_they_win,price_checked,price_source,annual_low,annual_high,annual_basis
+screaming-frog,Screaming Frog,$279/yr USD,subscription,local,gives raw data and no interpretation,JavaScript rendering and local LLM analysis via Ollama or LM Studio,2026-08-10,https://www.screamingfrog.co.uk/seo-spider/pricing/,279,279,"$279/yr, one tier"
+sitebulb,Sitebulb,$18-$42/mo ($180-$425/yr),subscription,local + cloud,no AI visibility conversion or brand lanes,site architecture visualisation,,,180,425,"the yearly plan, which is what their note's ($180-$425/yr) means; monthly x12 would be $216-$504"
+ahrefs-site-audit,Ahrefs Site Audit,$129-$449/mo,subscription,cloud,no AI-crawler or llms.txt checks in Site Audit,keyword and backlink data from a web-scale index,2026-08-10,https://ahrefs.com/pricing,1548,5388,monthly x12
+semrush-site-audit,Semrush Site Audit,$139-$549/mo,subscription,cloud,AI crawler check does not separate training from citation,keyword gaps and bundled AI visibility tracking,2026-08-10,https://www.semrush.com/prices/,1668,6588,monthly x12
+seoptimer,SEOptimer,$29-$59/mo,subscription,cloud,scorecard depth is shallow,white-label lead-gen reports,,,348,708,monthly x12
+lighthouse,Google Lighthouse,free,free,local,only measures one page and no SEO strategy,real rendered Core Web Vitals,,,0,0,free
+sitechecker,Sitechecker,$99-$449/mo,subscription,cloud,no conversion or brand lanes,rank tracking and AI visibility across five models,,,1188,5388,monthly x12
+ubersuggest,Ubersuggest,$29-$99/mo or $290-$990 lifetime,subscription + lifetime,cloud,audit is a secondary feature,cheap keyword data,,,348,1188,monthly x12; the $290-$990 lifetime option is a one-time purchase and is not an annual figure
+profound,Profound,$99-$399/mo billed yearly,subscription,cloud,tracks citations but never audits why you are not cited,enterprise AI citation tracking,,,1188,4788,"monthly x12, billed yearly"
+otterly,Otterly.AI,$29-$489/mo ($25-$422/mo billed annually),subscription,cloud,AI visibility only — no technical audit,affordable prompt tracking,,,300,5064,"the annual-billed rate their note gives in parentheses, x12"
