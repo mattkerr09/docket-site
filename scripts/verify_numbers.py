@@ -31,6 +31,7 @@ from __future__ import annotations
 
 import re
 import sys
+import pathlib
 from pathlib import Path
 from typing import Iterator, List, Tuple
 
@@ -210,8 +211,50 @@ def _literals(path: Path) -> Iterator[Tuple[int, str, str]]:
                 yield start_line + offset, number, line.strip()[:96]
 
 
+#: The engine, for facts the site restates because it cannot import it.
+ENGINE = pathlib.Path("/Users/matthewkerr/Downloads/SEO audit app/backend/seo_engine")
+
+
+def _score_band_drift() -> List[str]:
+    """The site's mockup bands against the engine's SCORE_BANDS.
+
+    The homepage draws a product mockup whose lane colours must be the ones the
+    product would draw. They were hand-picked and two were wrong — a lane at 84
+    drawn green when the boundary is 85, and a lane at 63 drawn in the brand
+    indigo rather than a severity colour. Both flattered the product.
+
+    They are computed now, but the thresholds are still a second copy of the
+    engine's, so this fails the build when the two disagree.
+
+    Imports the engine rather than pattern-matching its source. The first
+    version used a regex and read two of the three bands, reporting a drift that
+    did not exist — a gate whose failures cannot be trusted is worse than none.
+    Silently skips when the engine is absent: the site must stay buildable on
+    its own, and a check that cannot run says so rather than passing.
+    """
+    backend = ENGINE.parent
+    if not (ENGINE / "scoring.py").is_file():
+        print(f"  note: engine not present at {ENGINE}, score bands unchecked")
+        return []
+    sys.path.insert(0, str(backend))
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent / "articles"))
+    try:
+        from seo_engine.scoring import SCORE_BANDS
+    except Exception as exc:                                  # noqa: BLE001
+        return [f"  cannot import the engine's SCORE_BANDS ({exc}) — the site "
+                f"restates them and can no longer check itself"]
+    from home import _BANDS
+
+    engine = [(float(f), n) for f, n in SCORE_BANDS]
+    site = [(float(f), n) for f, n in _BANDS]
+    if [f for f, _ in engine] != [f for f, _ in site]:
+        return [f"  score bands drifted: engine {[f for f, _ in engine]}, "
+                f"home.py {[f for f, _ in site]}"]
+    return []
+
+
 def main() -> int:
-    problems: List[str] = []
+    problems: List[str] = _score_band_drift()
     # build.py carries the hub entry summaries, which are article prose on a
     # published page and were not being scanned. "Tranco top 1,500" was typed
     # into one and sailed through, which is the exact bug this file exists for.
