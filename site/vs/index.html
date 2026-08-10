@@ -340,6 +340,13 @@ body.landing article{padding:0}
   background:linear-gradient(90deg,var(--brand),var(--brand-light))}
 .bar-val{font-size:.82rem;font-weight:680;color:var(--text);font-variant-numeric:tabular-nums}
 .chart-note{font-size:.8rem;color:var(--text-dim);margin:1.1rem 0 0}
+/* Prose inside a wide container. `.wrap-wide` is 1080px so a comparison
+   table is not cramped; a table wants that width and a sentence does not.
+   Measured on the live homepage at 1600px: the pricing caveat ran 1080px
+   wide across 316 characters, about 140 characters a line, and the chart
+   note 1027px. Ordinary paragraphs sit at 820px because .wrap caps them.
+   Found by probing a width the visual gate had never rendered. */
+.price-caveat,.chart-note,.claims-note{max-width:68ch}
 
 .cta-band{text-align:center;padding:4.2rem 0}
 .cta-band h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.028em;margin-bottom:.7rem}
@@ -399,8 +406,7 @@ crawler built for it. If you are not on a Mac, Docket will not run at all.</p>
 modesty; a comparison page that concedes nothing tells you only that its author wanted your
 money.</p>
 <h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/vs/screaming-frog-alternative/">Docket vs Screaming Frog</a></h2><p>Raw crawl data versus a ranked plan. Screaming Frog supports custom extraction and crawls at far greater scale; Docket does not.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/vs/sitebulb-alternative/">Docket vs Sitebulb</a></h2><p>Both draw your site architecture — Sitebulb interactively, Docket as rings by depth sized by link equity. Docket covers AI visibility, conversion and tracking, which Sitebulb does not.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/vs/ahrefs-site-audit-alternative/">Docket vs Ahrefs Site Audit</a></h2><p>Ahrefs has a web-scale index and Docket never will. What you get for $129 a month if the audit is the part you use.</p>
-</div><section><div class="wrap"><p class="claims-note">Other products here are described from their own public pages and are <strong>not dated on this page</strong>. The dated checks, with sources, are on the <a href="/vs/">comparison pages</a>. Products change — if something here about another tool has gone stale, tell us and it will be corrected.</p></div></section>
-</article>
+</div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket</h2>

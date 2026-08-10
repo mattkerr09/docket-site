@@ -340,6 +340,13 @@ body.landing article{padding:0}
   background:linear-gradient(90deg,var(--brand),var(--brand-light))}
 .bar-val{font-size:.82rem;font-weight:680;color:var(--text);font-variant-numeric:tabular-nums}
 .chart-note{font-size:.8rem;color:var(--text-dim);margin:1.1rem 0 0}
+/* Prose inside a wide container. `.wrap-wide` is 1080px so a comparison
+   table is not cramped; a table wants that width and a sentence does not.
+   Measured on the live homepage at 1600px: the pricing caveat ran 1080px
+   wide across 316 characters, about 140 characters a line, and the chart
+   note 1027px. Ordinary paragraphs sit at 820px because .wrap caps them.
+   Found by probing a width the visual gate had never rendered. */
+.price-caveat,.chart-note,.claims-note{max-width:68ch}
 
 .cta-band{text-align:center;padding:4.2rem 0}
 .cta-band h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.028em;margin-bottom:.7rem}
@@ -445,8 +452,7 @@ and is noticed the latest.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Do online shops usually have broken product schema?</h3><p>Not in our sample. We audited 10 large retailers and none had missing, invalid or incomplete Product schema, and none had thin product pages. These are well-resourced companies rather than a random sample, but the common claim that your product markup is quietly broken did not survive contact with them.</p></div><div class="faq-item"><h3>What happens if my star ratings are not visible?</h3><p>Google requires the rating to be visible on the page carrying the AggregateRating markup, and a manual action for breaking that removes rich results across the entire site rather than just the page at fault. The common false alarm is a star widget drawn in JavaScript: the served HTML has no visible rating and the rendered page is fine. Check the rendered page before believing any tool that accuses you of this.</p></div><div class="faq-item"><h3>Can Docket extract prices from every product page?</h3><p>No. Screaming Frog does that with custom extraction and it is the right tool for auditing a catalogue against a feed. Docket deliberately does not compete there — it also has a page ceiling per crawl, which matters for a large catalogue.</p></div></div></section>
-</div><section><div class="wrap"><p class="claims-note">Other products here are described from their own public pages and are <strong>not dated on this page</strong>. The dated checks, with sources, are on the <a href="/vs/">comparison pages</a>. Products change — if something here about another tool has gone stale, tell us and it will be corrected.</p></div></section>
-</article>
+</div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket</h2>
