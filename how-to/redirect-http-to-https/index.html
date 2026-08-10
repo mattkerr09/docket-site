@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Docket for ecommerce: what 10 real shops actually got wrong</title>
-<meta name="description" content="We audited 10 large online shops. Zero had broken Product schema and zero had thin product pages. What did show up, and where Screaming Frog is the better tool.">
+<title>How to redirect http:// to https:// — and when it won't</title>
+<meta name="description" content="A 301 from http:// to https://, host by host — plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.">
 <meta name="theme-color" content="#0b0c0f">
-<link rel="canonical" href="https://docketseo.app/for/ecommerce/">
+<link rel="canonical" href="https://docketseo.app/how-to/redirect-http-to-https/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docket for online shops">
-<meta property="og:description" content="We audited 10 large online shops. Zero had broken Product schema and zero had thin product pages. What did show up, and where Screaming Frog is the better tool.">
-<meta property="og:url" content="https://docketseo.app/for/ecommerce/">
+<meta property="og:title" content="How to redirect http:// to https://">
+<meta property="og:description" content="A 301 from http:// to https://, host by host — plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.">
+<meta property="og:url" content="https://docketseo.app/how-to/redirect-http-to-https/">
 <meta property="og:site_name" content="Docket">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Docket for online shops">
-<meta name="twitter:description" content="We audited 10 large online shops. Zero had broken Product schema and zero had thin product pages. What did show up, and where Screaming Frog is the better tool.">
+<meta name="twitter:title" content="How to redirect http:// to https://">
+<meta name="twitter:description" content="A 301 from http:// to https://, host by host — plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -359,9 +359,9 @@ body.landing article{padding:0}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 94 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"94 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"For you","item":"https://docketseo.app/for/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Docket for online shops","description":"We audited 10 large online shops. Zero had broken Product schema and zero had thin product pages. What did show up, and where Screaming Frog is the better tool.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/for/ecommerce/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do online shops usually have broken product schema?","acceptedAnswer":{"@type":"Answer","text":"Not in our sample. We audited 10 large retailers and none had missing, invalid or incomplete Product schema, and none had thin product pages. These are well-resourced companies rather than a random sample, but the common claim that your product markup is quietly broken did not survive contact with them."}},{"@type":"Question","name":"What happens if my star ratings are not visible?","acceptedAnswer":{"@type":"Answer","text":"Google requires the rating to be visible on the page carrying the AggregateRating markup, and a manual action for breaking that removes rich results across the entire site rather than just the page at fault. The common false alarm is a star widget drawn in JavaScript: the served HTML has no visible rating and the rendered page is fine. Check the rendered page before believing any tool that accuses you of this."}},{"@type":"Question","name":"Can Docket extract prices from every product page?","acceptedAnswer":{"@type":"Answer","text":"No. Screaming Frog does that with custom extraction and it is the right tool for auditing a catalogue against a feed. Docket deliberately does not compete there — it also has a page ceiling per crawl, which matters for a large catalogue."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to redirect http:// to https://","description":"A 301 from http:// to https://, host by host — plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/redirect-http-to-https/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does a missing HTTPS redirect actually affect ranking?","acceptedAnswer":{"@type":"Answer","text":"HTTPS has been a Google ranking signal since 2014, but the redirect matters more for duplication and trust than for the signal itself: without it the same page is reachable at two addresses, and browsers label the insecure one 'Not secure' in the address bar."}},{"@type":"Question","name":"Should I use a 301 or a 302?","acceptedAnswer":{"@type":"Answer","text":"301. A 302 is a temporary redirect and tells a search engine to keep indexing the http:// URL, which is the opposite of what you want."}},{"@type":"Question","name":"Why does 'Enforce HTTPS' refuse to turn on?","acceptedAnswer":{"@type":"Answer","text":"Usually because the certificate has not finished being issued. On GitHub Pages the API reports a certificate state such as dns_changed. The common cause is a DNS record that does not point at the host — often a www subdomain still pointing at a registrar parking page — because the certificate covers both the apex and www."}},{"@type":"Question","name":"Should I add HSTS at the same time?","acceptedAnswer":{"@type":"Answer","text":"No. Get the redirect working first. HSTS tells browsers to refuse plain HTTP for your domain for the whole max-age, so if HTTPS is broken when they act on it there is no fallback. Add it afterwards with a short max-age and raise it once you are confident."}}]}</script>
 </head>
 <body>
 <nav><div class="wrap-wide nav-inner">
@@ -376,82 +376,107 @@ body.landing article{padding:0}
 </div>
 <a class="btn" href="/download/">Download Docket</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/for/">For you</a> / Ecommerce</div><h1>Docket for online shops</h1>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / http to https</div><h1>How to redirect http:// to https://</h1>
 
-<p class="lede">We audited 10 large online shops expecting to find broken product
-markup, and did not find it — <strong>zero</strong> had missing or invalid Product schema and
-zero had thin product pages, at a median score of 88.2. The problems that
-did show up are narrower and more dangerous than the ones an SEO pitch usually promises, and
-one of them can remove every rich result you have.</p>
+<p class="lede">If your site answers on <code>http://</code> without sending the visitor to
+<code>https://</code>, you have two problems and only one of them is about ranking. The
+ranking one is old news. The other is that a browser now writes "Not secure" next to your
+address, and the person reading it has no idea whether that means you are careless or
+compromised.</p>
 
-<h2>What we actually found</h2>
+<p>We found this on our own site. Docket audited <code>docketseo.app</code>, returned
+<strong>http:// does not redirect to https://</strong> at HIGH, and it was right — the plain
+HTTP address answered normally with no redirect at all. A tool that ships this check was
+shipping the fault. That is embarrassing in a useful way, because fixing it turned up the part
+of this problem nobody writes down.</p>
 
-<p>10 of 12 shops crawled cleanly on 2026-08-07,
-20 pages each, mostly product pages. 2 refused the
-crawler or timed out and are excluded from every count below — a site that could not be read
-cannot fail a check, and counting it as a pass would flatter these numbers.</p>
+<h2>First, confirm it rather than assume it</h2>
 
-<div class="wrap-tbl"><table class="cmp"><thead><tr>
-<th>Checked</th><th>Shops affected</th></tr></thead><tbody>
-<tr><td>Missing, invalid or incomplete Product schema</td>
-<td><strong>0 of 10</strong></td></tr>
-<tr><td>Product pages with almost no content</td>
-<td><strong>0 of 10</strong></td></tr>
-<tr><td>Indexing problems (noindex, canonical conflicts)</td>
-<td><strong>1 of 10</strong></td></tr>
-<tr><td>Star ratings Docket could not confirm were visible</td>
-<td><strong>3 of 10</strong></td></tr>
-</tbody></table></div>
+<p>Type your domain into a browser and you will almost certainly end up on HTTPS, because the
+browser upgraded it for you. That tells you nothing about what your server does. Ask the server
+directly:</p>
 
-<p>Scores ran from 55.0 to 91.4. These are well-resourced
-retailers with teams, so this is the easy case rather than a random sample of the web — but it
-is worth saying plainly that the standard pitch, that your product markup is quietly broken,
-did not survive contact with ten real shops.</p>
+<pre><code>curl -sI http://yourdomain.com/ | head -1</code></pre>
 
-<h2>The one that carries real risk</h2>
+<p>You want a <code>301</code> and a <code>Location:</code> header pointing at the
+<code>https://</code> version of the same path. If you get <code>200 OK</code>, your server is
+happily serving the insecure version to anyone who asks for it — including any crawler that
+does not upgrade, and any visitor following an old link.</p>
 
-<p>3 shops carry <code>AggregateRating</code> markup on pages where
-Docket could not confirm, from the HTML alone, that a rating is actually shown to a visitor.
-That is not an accusation — it is the check declining to make one. Google's
-<a href="https://developers.google.com/search/docs/appearance/structured-data/review-snippet">review
-snippet guidance</a> requires the rating to be visible on the page carrying the markup, and the
-consequence of getting it wrong is a manual action that removes every rich result across the
-whole site, not just the offending page.</p>
+<h2>The fix, by where the site is hosted</h2>
 
-<p>Star widgets are very often drawn in JavaScript, so the served HTML has markup and no
-visible rating while the rendered page is perfectly compliant. Docket used to call that a
-violation and was wrong about a real shop; it now demands rendered evidence before it accuses,
-and says "unconfirmed" otherwise. Run <code>--render</code> and the question is settled either
-way.</p>
+<p>On most managed hosts this is one setting, and the setting is usually already there:</p>
 
-<h2>Where a competitor is better for this</h2>
+<ul>
+<li><strong>GitHub Pages</strong> — Settings → Pages → <em>Enforce HTTPS</em>.</li>
+<li><strong>Netlify, Vercel, Cloudflare Pages</strong> — on by default; look for "Force HTTPS"
+or "Always Use HTTPS" if it is not.</li>
+<li><strong>Cloudflare in front of your own server</strong> — SSL/TLS → Edge Certificates →
+<em>Always Use HTTPS</em>. Set the encryption mode to Full (strict), not Flexible; Flexible
+re-encrypts to your origin over plain HTTP and quietly reintroduces the problem you are
+fixing.</li>
+<li><strong>Nginx</strong> — a server block on port 80 whose only job is
+<code>return 301 https://$host$request_uri;</code>. Return the redirect, do not rewrite: a
+rewrite can drop the path and land everyone on the homepage.</li>
+<li><strong>Apache</strong> — <code>Redirect permanent / https://yourdomain.com/</code> in the
+port-80 virtual host, or the mod_rewrite equivalent if you already use it.</li>
+</ul>
 
-<p>If what you need is to pull the price, the availability and the SKU off every product page
-and diff them against your feed, <a href="/vs/screaming-frog-alternative/">Screaming Frog</a>
-does that properly with custom extraction and Docket does not do it at all. We
-<a href="/learn/audit-tool-accuracy/">decided against building it</a> rather than shipping a
-worse version of a mature feature, and for inventory-scale auditing that decision means
-Screaming Frog is the right tool. Its crawl has no page ceiling either, which matters when a
-catalogue runs to six figures.</p>
+<p>Two details that cost people a morning. Use <strong>301</strong>, not 302 — a temporary
+redirect tells a search engine to keep the old URL. And preserve the path: a redirect that
+sends <code>/pricing</code> to the homepage loses every deep link you have ever earned, which
+is a worse outcome than the problem.</p>
 
-<p>For keyword and competitor product research, Ahrefs and Semrush own search-volume indexes
-that Docket has no equivalent of and is not trying to build.</p>
+<h2>When the setting refuses — the part nobody documents</h2>
 
-<h2>What Docket is for, on a shop</h2>
+<p>This is what actually happened to us. The API refused:</p>
 
-<p>The four lanes a crawler does not cover, which on an ecommerce site are: whether an AI
-answer <a href="/learn/ai-substitution/">replaces the page</a> a customer would have visited;
-whether your <a href="/learn/brand-consistency/">brand is consistent</a> across a catalogue
-built by several teams over several years; whether the checkout path's copy actually converts;
-and whether your <a href="/learn/dead-contact-address/">contact address can receive mail</a>,
-which for a shop taking returns is not a small thing.</p>
+<pre><code>PUT /repos/OWNER/REPO/pages   https_enforced=true
+404 — "The certificate has not finished being issued"</code></pre>
 
-<p>Plus the deploy gate. A catalogue site ships constantly, and
-<a href="/for/developers/">a noindex reaching production</a> is the mistake that costs the most
-and is noticed the latest.</p>
+<p>HTTPS itself was working. A valid certificate was being served, every page loaded over TLS,
+nothing looked broken. What was stuck was the certificate <em>state</em>: GitHub reported
+<code>dns_changed</code>, and it will not let you enforce HTTPS while it is re-validating.</p>
+
+<p>The cause was one DNS record we had stopped thinking about. The apex domain was configured
+correctly — the right A records, the right CNAME file in the repository. The
+<code>www</code> subdomain was not: it still pointed at the registrar's parking service from
+before the site existed. A host that issues a certificate covering both the apex and
+<code>www</code> cannot finish validating while half of that pair answers to somebody else.</p>
+
+<p>So the check that unblocks the tick box is not on the page you are looking at:</p>
+
+<pre><code>dig +short yourdomain.com A
+dig +short www.yourdomain.com CNAME</code></pre>
+
+<p>The apex should return your host's addresses. The <code>www</code> record should point at
+your host too — not at a registrar landing page, not at an old server, and not at nothing.
+Fix that, and the certificate finishes issuing on its own; the setting then takes normally.</p>
+
+<h2>HSTS is the follow-up, and it is not the same thing</h2>
+
+<p>A redirect fixes the request after it happens. <code>Strict-Transport-Security</code> stops
+the insecure request being made at all: once a browser has seen the header, it goes straight to
+HTTPS for that domain without asking. Add it after the redirect works, never before — the
+header tells browsers to refuse plain HTTP for your domain for its whole
+<code>max-age</code>, and if HTTPS is broken when they act on that, they cannot fall back.</p>
+
+<p>Start with a short <code>max-age</code>, confirm nothing broke, then raise it. Treat
+<code>preload</code> as close to irreversible: removal from the browser preload lists takes
+months.</p>
+
+<h2>What Docket does about it</h2>
+
+<p>It probes the plain-HTTP address directly rather than trusting the browser's upgrade, so it
+sees what a crawler sees. It reports the missing redirect and the missing HSTS header as
+separate findings, because they are separate jobs and doing the second one first is how sites
+break. Both name the change to make.</p>
+
+<p>It found this on the site that sells it. That is the argument for running an audit against
+your own work rather than reading about one.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Do online shops usually have broken product schema?</h3><p>Not in our sample. We audited 10 large retailers and none had missing, invalid or incomplete Product schema, and none had thin product pages. These are well-resourced companies rather than a random sample, but the common claim that your product markup is quietly broken did not survive contact with them.</p></div><div class="faq-item"><h3>What happens if my star ratings are not visible?</h3><p>Google requires the rating to be visible on the page carrying the AggregateRating markup, and a manual action for breaking that removes rich results across the entire site rather than just the page at fault. The common false alarm is a star widget drawn in JavaScript: the served HTML has no visible rating and the rendered page is fine. Check the rendered page before believing any tool that accuses you of this.</p></div><div class="faq-item"><h3>Can Docket extract prices from every product page?</h3><p>No. Screaming Frog does that with custom extraction and it is the right tool for auditing a catalogue against a feed. Docket deliberately does not compete there — it also has a page ceiling per crawl, which matters for a large catalogue.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does a missing HTTPS redirect actually affect ranking?</h3><p>HTTPS has been a Google ranking signal since 2014, but the redirect matters more for duplication and trust than for the signal itself: without it the same page is reachable at two addresses, and browsers label the insecure one 'Not secure' in the address bar.</p></div><div class="faq-item"><h3>Should I use a 301 or a 302?</h3><p>301. A 302 is a temporary redirect and tells a search engine to keep indexing the http:// URL, which is the opposite of what you want.</p></div><div class="faq-item"><h3>Why does 'Enforce HTTPS' refuse to turn on?</h3><p>Usually because the certificate has not finished being issued. On GitHub Pages the API reports a certificate state such as dns_changed. The common cause is a DNS record that does not point at the host — often a www subdomain still pointing at a registrar parking page — because the certificate covers both the apex and www.</p></div><div class="faq-item"><h3>Should I add HSTS at the same time?</h3><p>No. Get the redirect working first. HSTS tells browsers to refuse plain HTTP for your domain for the whole max-age, so if HTTPS is broken when they act on it there is no fallback. Add it afterwards with a short max-age and raise it once you are confident.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
