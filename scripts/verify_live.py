@@ -63,8 +63,26 @@ MUST_NOT_SAY = [
     # was the same false claim in a wording with no "leaves" in it, so the
     # rule above walked straight past it. Four connectors reach
     # docketseo.app, Google and DNS on a default run.
-    r"(?i)only requests?\s+(?:Docket|it)\s+makes",
+    #
+    # And then the homepage said "the only **network** requests Docket makes",
+    # one word inside the phrase this rule was written for, and it walked past
+    # that too — in the FAQ and in the FAQPage schema, which is the copy search
+    # engines can lift into a result. So the rule now tolerates a couple of
+    # words in the middle, and covers the passive form as well.
+    r"(?i)only\s+(?:\w+\s+){0,2}requests?\s+(?:Docket|it|the app)\s+makes",
+    r"(?i)only\s+(?:\w+\s+){0,2}requests?\s+are\s+to\s+the\s+site",
 ]
+
+#: Pages allowed to contain a banned phrase, and why.
+#:
+#: The privacy policy quotes the old sentence in order to correct it — "An
+#: earlier version of this policy said the only network requests the app makes
+#: are to the website you ask it to audit. That was not accurate" — and a gate
+#: that forbade the quotation would force the correction to be deleted to pass,
+#: which is the opposite of what it is for.
+QUOTED_TO_CORRECT_IT = {
+    "/legal/privacy/": (r"(?i)only\s+(?:\w+\s+){0,2}requests?\s+(?:Docket|it|the app)\s+makes",),
+}
 
 #: A width where layout breaks, and one where it does not. Both, because a
 #: page can be clean at one and broken at the other.
@@ -181,6 +199,8 @@ def main() -> None:
             failures.append(f"{path} returned {status or body[:60]}")
             continue
         for bad in MUST_NOT_SAY:
+            if bad in QUOTED_TO_CORRECT_IT.get(path, ()):
+                continue
             # re.search, not `in`. These became regexes and the substring test
             # was left behind, which would have matched nothing at all — a gate
             # that cannot fail, added in the act of widening it.
