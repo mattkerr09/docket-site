@@ -13,8 +13,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (  # noqa: E402
-    COMPETITORS, DMG, DMG_SIZE, LINUX, LINUX_SIZE, N_CHECKS, PRICE_STR,
-    RELEASE, render,
+    COMPETITORS, DMG, DMG_SIZE, LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS,
+    PRICE_STR, RELEASE, SUMS, render,
 )
 
 
@@ -81,6 +81,23 @@ cannot drift from what the app does.</p>
 <p>Docket costs less than a year of the cheapest alternative and nothing after that. That is
 the whole pricing argument and it does not need help: the tools above are not overpriced for
 what they do, they are simply rented rather than owned.</p>
+
+<h2>Checking what you downloaded</h2>
+
+<p>The Mac app is signed with a Developer&nbsp;ID and notarised by Apple, so macOS verifies it
+with Apple before it opens and you need do nothing. The Linux tarball has no equivalent — it is
+a plain archive from a URL — so every release publishes
+<a href="{SUMS}">SHA256SUMS</a> covering all of its artifacts:</p>
+
+<pre><code>curl -LO {LINUX}
+curl -LO {SUMS}
+grep linux SHA256SUMS | shasum -a 256 -c -</code></pre>
+
+<p>Be clear about what that proves and what it does not. It proves the file arrived intact and
+is the one this release published. It does <strong>not</strong> prove authorship: the checksums
+sit on the same release as the tarball, so anyone able to replace one could replace the other.
+Apple's notarisation of the Mac build is a genuinely stronger guarantee, and pretending the two
+are equivalent would be exactly the kind of claim this tool exists to catch.</p>
 
 <h2>Opening it</h2>
 <p>Double-click it. Docket is signed with a Developer&nbsp;ID and notarised by Apple, so

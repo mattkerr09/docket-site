@@ -131,6 +131,32 @@ def _check_downloads(body: str) -> list:
     links = _download_links(body)
     if not links:
         return ["the download page offers no release asset at all"]
+
+    # The page documents `shasum -a 256 -c` against a published SHA256SUMS.
+    # That command fails for every reader the moment an artifact is published
+    # without refreshing the file, so the coverage is checked rather than the
+    # file's mere existence. Hashing the artifacts themselves would mean pulling
+    # ~31 MB on every deploy; publish_checksums.sh verifies them against dist/
+    # at publish time, which is where a mismatch can still be fixed.
+    sums_url = next((u for u in links if u.endswith("/SHA256SUMS")), "")
+    if not sums_url:
+        problems.append("no SHA256SUMS is offered, but the page tells the "
+                        "reader to check one")
+    else:
+        try:
+            with urllib.request.urlopen(urllib.request.Request(
+                    sums_url, headers={"User-Agent": "docketseo-live-gate/1.0"}),
+                    timeout=25) as response:
+                sums = response.read().decode("utf-8", "replace")
+        except Exception as exc:                              # noqa: BLE001
+            sums = ""
+            problems.append(f"SHA256SUMS could not be read: {exc}")
+        for url in links:
+            name = url.rsplit("/", 1)[-1]
+            if name != "SHA256SUMS" and sums and name not in sums:
+                problems.append(f"{name} is offered for download but is not in "
+                                f"SHA256SUMS, so the verification command the "
+                                f"page prints fails for it")
     for url in links:
         request = urllib.request.Request(url, method="HEAD", headers={
             "User-Agent": "docketseo-live-gate/1.0"})
