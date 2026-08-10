@@ -18,8 +18,9 @@ from render import price, render  # noqa: E402
 CTA = """
 <div class="callout">
 <div class="callout-title">Try it against your own site</div>
-<p>Docket is a one-time download for macOS. No account, no crawl credits, and the audit runs
-entirely on your machine. <a href="/download/">Download Docket →</a></p>
+<p>Docket is a one-time download for macOS. No account, no crawl credits, and the crawl runs
+on your machine. Four optional checks fetch data it cannot produce alone; <code>--offline</code>
+turns all four off. <a href="/download/">Download Docket →</a></p>
 </div>"""
 
 #: When the factual claims about competitors on these pages were last checked
