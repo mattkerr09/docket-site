@@ -111,6 +111,40 @@ def _fetch(path: str) -> tuple[int, str]:
         return 0, f"{type(exc).__name__}: {exc}"
 
 
+def _download_links(body: str) -> list:
+    """Every release-asset URL the page offers."""
+    return sorted(set(re.findall(
+        r'href="(https://github\.com/[^"]+/releases/download/[^"]+)"', body)))
+
+
+def _check_downloads(body: str) -> list:
+    """Every advertised download must actually be there.
+
+    This project calls a 404 download link the single worst bug a product site
+    can have, and nothing checked them. The Linux CLI was described in detail on
+    the download page while no Linux asset had been published since 0.1.0 —
+    seven releases — because the publish step only ever named the DMG and the
+    updater tarball. Nothing failed; the page simply offered a platform that had
+    quietly stopped shipping.
+    """
+    problems = []
+    links = _download_links(body)
+    if not links:
+        return ["the download page offers no release asset at all"]
+    for url in links:
+        request = urllib.request.Request(url, method="HEAD", headers={
+            "User-Agent": "docketseo-live-gate/1.0"})
+        try:
+            with urllib.request.urlopen(request, timeout=25) as response:
+                if response.status != 200:
+                    problems.append(f"{url} returned {response.status}")
+                elif not int(response.headers.get("Content-Length") or 0):
+                    problems.append(f"{url} is zero bytes")
+        except Exception as exc:                              # noqa: BLE001
+            problems.append(f"{url} → {type(exc).__name__}: {exc}")
+    return problems
+
+
 def main() -> None:
     renderer = _renderer()
     failures: list[str] = []
@@ -131,6 +165,8 @@ def main() -> None:
             for claim in HOMEPAGE_MUST_SAY:
                 if claim not in body:
                     failures.append(f"homepage no longer says {claim!r}")
+        if path == "/download/":
+            failures.extend(_check_downloads(body))
 
     # Rendering is slow, so it runs over a representative few rather than all
     # ten — and says which, because a gate that quietly samples reads as a gate

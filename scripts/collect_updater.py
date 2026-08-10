@@ -97,6 +97,26 @@ def main() -> None:
         print(f"  dmg       : {dmg.stat().st_size / 1_000_000:.1f} MB "
               f"({dmg.stat().st_size:,} bytes)")
 
+        # The Linux CLI, measured the same way and for the same reason. The
+        # download page described "a 12 MB tarball" from memory while no Linux
+        # asset had been published since 0.1.0 — seven releases of the desktop
+        # app went out without it, because the publish step only ever named the
+        # DMG and the updater tarball.
+        linux = APP / "dist" / f"docket-{args.version}-linux-x86_64.tar.gz"
+        sizes = json.loads(size_path.read_text())
+        if linux.is_file():
+            sizes.update({
+                "linux_name": linux.name,
+                "linux_bytes": linux.stat().st_size,
+                "linux_mb": round(linux.stat().st_size / 1_000_000, 1),
+            })
+            print(f"  linux     : {linux.stat().st_size / 1_000_000:.1f} MB "
+                  f"({linux.name})")
+        else:
+            print(f"  linux     : MISSING — {linux.name} was not built, so the "
+                  f"site cannot offer it")
+        size_path.write_text(json.dumps(sizes, indent=2) + "\n")
+
     digest = hashlib.sha256(TGZ.read_bytes()).hexdigest()[:16]
     print(f"  version   : {args.version}")
     print(f"  tarball   : {TGZ.name} ({TGZ.stat().st_size // 1024} KB, sha {digest})")

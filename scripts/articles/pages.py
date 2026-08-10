@@ -13,7 +13,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (  # noqa: E402
-    COMPETITORS, DMG, DMG_SIZE, N_CHECKS, PRICE_STR, RELEASE, render,
+    COMPETITORS, DMG, DMG_SIZE, LINUX, LINUX_SIZE, N_CHECKS, PRICE_STR,
+    RELEASE, render,
 )
 
 
@@ -221,7 +222,8 @@ how you would drive Docket from your own scripts.</p>
 <ul>
 <li><strong>macOS 12 or later, Apple Silicon</strong> for the desktop app. There is no
 Intel or Windows build.</li>
-<li><strong>Linux x86_64 for the command line.</strong> A 12 MB tarball needing
+<li><strong>Linux x86_64 for the command line.</strong>
+{'<a href="' + LINUX + '">Download the ' + LINUX_SIZE + ' tarball</a> — needs' if LINUX else 'A tarball needing'}
 <strong>glibc 2.30</strong> or newer — check yours with <code>ldd --version</code>. That floor
 is measured from the shipped binary rather than assumed from the machine that built it: the
 launcher itself only needs 2.14, and the bundled Python runtime is what raises it to 2.30.
