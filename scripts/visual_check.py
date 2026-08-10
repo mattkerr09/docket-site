@@ -37,6 +37,34 @@ SITE = ROOT / "site"
 NARROW = 375
 WIDE = 1280
 
+#: A width this gate had never rendered, and the reason it now does.
+#:
+#: Probing the live homepage at 1600px found prose sitting in a container built
+#: for a table: `.wrap-wide` is 1080px so a comparison table is not cramped, and
+#: the pricing caveat inherited it — 1080px across 316 characters, roughly 140
+#: characters a line. Ordinary paragraphs were 820px because `.wrap` caps them,
+#: so nothing at 375 or 1280 showed it.
+#:
+#: A measure only goes wrong above the container's own cap, which is why two
+#: widths below it saw nothing.
+VERY_WIDE = 1600
+
+#: Prose must not exceed the site's OWN body measure. `.wrap` is
+#: `width:min(820px, …)` in render.py, and that 820 is a deliberate, long-
+#: standing choice — this gate is not here to relitigate it.
+#:
+#: The first version of this assertion estimated characters per line and
+#: tripped at 90, which flagged every ordinary essay paragraph: 820px works out
+#: near 100 characters, so the gate was calling the site's own design a bug.
+#: The real defect is prose in a container built for something else —
+#: `.wrap-wide` is 1080px so a comparison table is not cramped, and a caveat
+#: sitting in it ran the full 1080.
+#:
+#: Measuring against the cap catches that and leaves the design alone. The
+#: slack absorbs padding and sub-pixel rounding.
+WRAP_PX = 820
+MAX_PROSE_PX = WRAP_PX + 40
+
 #: One page per template, not one page per URL. Templates are what break.
 PAGES = [
     ("index.html", "homepage"),
@@ -107,8 +135,29 @@ PROBE = """
   const minLeft = lefts.length ? Math.min(...lefts) : -1;
   const tightest = textish[lefts.indexOf(minLeft)];
 
+  // Prose measure. A paragraph in a container built for a table inherits the
+  // table's width: `.wrap-wide` is 1080px, and a 316-character caveat sat in
+  // it at roughly 140 characters a line. Reported in characters rather than
+  // pixels because that is what readability is about, estimated from the
+  // element's own font size at the usual ~0.5em average glyph width.
+  var widestProse = 0, widestProseAt = '';
+  for (var pi = 0, ps = document.querySelectorAll('p'); pi < ps.length; pi++) {
+    var el = ps[pi];
+    if (el.textContent.trim().length < 120) continue;
+    var px = el.getBoundingClientRect().width;
+    if (!px) continue;
+    px = Math.round(px);
+    if (px > widestProse) {
+      widestProse = px;
+      widestProseAt = el.tagName.toLowerCase() +
+        (el.className ? '.' + String(el.className).split(' ')[0] : '');
+    }
+  }
+
   return {
     width: window.innerWidth,
+    widestProsePx: widestProse,
+    widestProseAt: widestProseAt,
     minGutter: minLeft,
     gutterAt: tightest
       ? tightest.tagName.toLowerCase() +
@@ -201,6 +250,16 @@ def check(name: str, width: int, r: dict) -> list[str]:
 
     # 1. The bug this file was written for. Two halves: nothing fell back to
     #    the browser default, and the brand colour is actually reaching links.
+    # 0. Line length against the site's own measure. Only meaningful above the
+    #    container caps — at 375 and
+    #    1280 every paragraph is already bounded by `.wrap`, which is why two
+    #    widths saw nothing and 1600 found it.
+    prose = r.get("widestProsePx") or 0
+    if prose > MAX_PROSE_PX:
+        bad.append(f"{name}: a paragraph is {prose}px wide "
+                   f"({r.get('widestProseAt') or 'unknown'}) against a {WRAP_PX}px "
+                   f"body measure — prose in a container sized for a table")
+
     colors = r["linkColors"]
     if UA_DEFAULT_LINK in colors:
         hrefs = colors[UA_DEFAULT_LINK][:4]
@@ -333,7 +392,7 @@ def main() -> int:
         if not page.exists():
             failures.append(f"{label}: {rel} was not built")
             continue
-        for width in (NARROW, WIDE):
+        for width in (NARROW, WIDE, VERY_WIDE):
             name = f"{label}@{width}"
             try:
                 r = probe(helper, page, width)
@@ -354,7 +413,7 @@ def main() -> int:
             print(f"  {f}")
         return 1
     print(f"VISUAL ok — {checked} renders, "
-          f"{len(PAGES)} templates at {NARROW}px and {WIDE}px")
+          f"{len(PAGES)} templates at {NARROW}px, {WIDE}px and {VERY_WIDE}px")
     return 0
 
 

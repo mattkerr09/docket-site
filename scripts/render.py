@@ -478,6 +478,13 @@ body.landing article{padding:0}
   background:linear-gradient(90deg,var(--brand),var(--brand-light))}
 .bar-val{font-size:.82rem;font-weight:680;color:var(--text);font-variant-numeric:tabular-nums}
 .chart-note{font-size:.8rem;color:var(--text-dim);margin:1.1rem 0 0}
+/* Prose inside a wide container. `.wrap-wide` is 1080px so a comparison
+   table is not cramped; a table wants that width and a sentence does not.
+   Measured on the live homepage at 1600px: the pricing caveat ran 1080px
+   wide across 316 characters, about 140 characters a line, and the chart
+   note 1027px. Ordinary paragraphs sit at 820px because .wrap caps them.
+   Found by probing a width the visual gate had never rendered. */
+.price-caveat,.chart-note,.claims-note{max-width:68ch}
 
 .cta-band{text-align:center;padding:4.2rem 0}
 .cta-band h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.028em;margin-bottom:.7rem}
