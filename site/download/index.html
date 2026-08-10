@@ -374,11 +374,11 @@ body.landing article{padding:0}
 you like, for as long as you like. There is no account to create, no licence server to phone,
 and no telemetry.</p>
 
-<p><strong>v0.1.21 is free.</strong> The beta downloads without payment and keeps working; the
+<p><strong>v0.1.22 is free.</strong> The beta downloads without payment and keeps working; the
 $149 applies from v1.0. Said plainly because a price on a page beside a button that
 charges nothing is the kind of thing this tool exists to flag.</p>
 
-<p><a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.21/Docket-0.1.21-arm64.dmg">Download Docket v0.1.21 for Mac</a></p>
+<p><a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.22/Docket-0.1.22-arm64.dmg">Download Docket v0.1.22 for Mac</a></p>
 <p style="font-size:.92rem;color:var(--text-dim)">Apple Silicon · macOS 12+ · 22.1 MB ·
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
 
@@ -410,7 +410,7 @@ cannot drift from what the app does.</p>
 <td><strong>$149</strong></td></tr>
 <tr><td>Sitebulb</td><td>$216/yr</td><td>$648</td></tr><tr><td>Screaming Frog</td><td>$279/yr</td><td>$837</td></tr><tr><td>Ahrefs Site Audit</td><td>$1,548/yr</td><td>$4,644</td></tr><tr><td>Semrush Site Audit</td><td>$1,668/yr</td><td>$5,004</td></tr>
 </tbody></table></div>
-<p class="price-caveat"><strong>Checked against the vendor's own pricing page:</strong> Screaming Frog checked 2026-08-10 (<a href="https://www.screamingfrog.co.uk/seo-spider/pricing/" rel="nofollow noopener">source</a>). The other 9 were last confirmed earlier and may have moved. Prices change; check before you buy, and tell us if one here is wrong.</p>
+<p class="price-caveat"><strong>Checked against the vendor's own pricing page:</strong> Ahrefs Site Audit checked 2026-08-10 (<a href="https://ahrefs.com/pricing" rel="nofollow noopener">source</a>); Screaming Frog checked 2026-08-10 (<a href="https://www.screamingfrog.co.uk/seo-spider/pricing/" rel="nofollow noopener">source</a>); Semrush Site Audit checked 2026-08-10 (<a href="https://www.semrush.com/prices/" rel="nofollow noopener">source</a>). The other 7 were last confirmed earlier and may have moved. Prices change; check before you buy, and tell us if one here is wrong.</p>
 
 <p>Docket costs less than a year of the cheapest alternative and nothing after that. That is
 the whole pricing argument and it does not need help: the tools above are not overpriced for
@@ -421,10 +421,10 @@ what they do, they are simply rented rather than owned.</p>
 <p>The Mac app is signed with a Developer&nbsp;ID and notarised by Apple, so macOS verifies it
 with Apple before it opens and you need do nothing. The Linux tarball has no equivalent — it is
 a plain archive from a URL — so every release publishes
-<a href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.21/SHA256SUMS">SHA256SUMS</a> covering all of its artifacts:</p>
+<a href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.22/SHA256SUMS">SHA256SUMS</a> covering all of its artifacts:</p>
 
-<pre><code>curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.21/docket-0.1.21-linux-x86_64.tar.gz
-curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.21/SHA256SUMS
+<pre><code>curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.22/docket-0.1.22-linux-x86_64.tar.gz
+curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.22/SHA256SUMS
 grep linux SHA256SUMS | shasum -a 256 -c -</code></pre>
 
 <p>Be clear about what that proves and what it does not. It proves the file arrived intact and
@@ -574,7 +574,7 @@ how you would drive Docket from your own scripts.</p>
 <li><strong>macOS 12 or later, Apple Silicon</strong> for the desktop app. There is no
 Intel or Windows build.</li>
 <li><strong>Linux x86_64 for the command line.</strong>
-<a href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.21/docket-0.1.21-linux-x86_64.tar.gz">Download the 15.1 MB tarball</a> — needs
+<a href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.22/docket-0.1.22-linux-x86_64.tar.gz">Download the 15.1 MB tarball</a> — needs
 <strong>glibc 2.30</strong> or newer — check yours with <code>ldd --version</code>. That floor
 is measured from the shipped binary rather than assumed from the machine that built it: the
 launcher itself only needs 2.14, and the bundled Python runtime is what raises it to 2.30.
