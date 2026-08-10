@@ -942,9 +942,18 @@ check. <a href="/how-to/redirect-http-to-https/">How to redirect http:// to http
 declaration that goes one way is ignored entirely, and every tag looks correct in isolation.
 <a href="/how-to/fix-hreflang-return-tags/">How to fix hreflang return tags →</a></p>
 
+<h2>Conflicting canonical tags</h2>
+<p>Two canonicals on one page, a canonical pointing at a noindex page, and the section-wide
+mistake that can cost a site its entire long tail while every page still returns 200.
+<a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
+
+<h2>Soft 404s</h2>
+<p>A missing page that answers 200 turns every mistyped URL into an indexable page. How to
+check it in one command, and the fix for each cause.
+<a href="/how-to/fix-soft-404s/">How to fix soft 404s →</a></p>
+
 <h2>More coming</h2>
-<p>Guides for conflicting canonicals, soft 404s and structured data
-errors are being written. They will appear as each is written properly rather than as
+<p>A guide to structured data errors is being written. They will appear as each is written properly rather than as
 variations on a template.</p>
 """
     return render(
