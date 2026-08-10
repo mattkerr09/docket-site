@@ -69,6 +69,26 @@ def main() -> None:
     }
     OUT.write_text(json.dumps(data, indent=2) + "\n")
 
+    # The download size, recorded so the site cannot claim one and ship
+    # another. Decimal MB, because that is what a browser's download panel and
+    # the Finder show a user — the binary MiB figure reads ~1 MB smaller and
+    # would make the page understate the download. It was hardcoded "17 MB"
+    # against an 18.3 MB file.
+    dmg = APP / "dist" / "Docket-0.1.0-arm64.dmg"
+    if dmg.is_file():
+        size_path = OUT.parent / "_data" / "download.json"
+        size_path.write_text(json.dumps({
+            "dmg_bytes": dmg.stat().st_size,
+            "dmg_mb": round(dmg.stat().st_size / 1_000_000, 1),
+            "measured": datetime.datetime.now(datetime.timezone.utc)
+                        .strftime("%Y-%m-%d"),
+            "note": ("Decimal MB, matching what a browser download panel and "
+                     "the Finder report. Written by collect_updater.py from "
+                     "the artifact actually published."),
+        }, indent=2) + "\n")
+        print(f"  dmg       : {dmg.stat().st_size / 1_000_000:.1f} MB "
+              f"({dmg.stat().st_size:,} bytes)")
+
     digest = hashlib.sha256(TGZ.read_bytes()).hexdigest()[:16]
     print(f"  version   : {args.version}")
     print(f"  tarball   : {TGZ.name} ({TGZ.stat().st_size // 1024} KB, sha {digest})")
