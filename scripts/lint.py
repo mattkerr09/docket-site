@@ -194,6 +194,23 @@ def main(root: str) -> int:
         for hole in set(_UNRENDERED.findall(text)):
             fails.append(f"HOLE   {p}: unrendered placeholder {hole}")
 
+        # A /Volumes path a reader copy-pastes. The DMG is created with
+        # `hdiutil create -volname "Docket <version>"`, so a bare
+        # /Volumes/Docket does not exist and the codesign command the about
+        # page printed returned "No such file or directory" for everybody who
+        # tried it. Either name the real volume or force the path with
+        # -mountpoint, which overrides the volume name (verified, not assumed).
+        for match in re.finditer(r"/Volumes/([A-Za-z0-9 .%-]+)", text):
+            volume = match.group(1).split("/")[0].strip()
+            window = text[max(0, match.start() - 200):match.start() + 120]
+            if "-mountpoint" in window:
+                continue
+            if not re.search(r"\d+\.\d+", volume):
+                fails.append(
+                    f"VOLUME {p}: /Volumes/{volume} is not the name the DMG "
+                    f"mounts under and no -mountpoint forces it, so the command "
+                    f"fails for the reader")
+
         # The download page says it best: "a price on a page beside a button
         # that charges nothing is the kind of thing this tool exists to flag."
         # It was true of that page and false of twenty-three others, which is
