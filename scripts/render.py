@@ -550,13 +550,13 @@ NAV = f"""<nav><div class="wrap-wide nav-inner">
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div>
-<a class="btn" href="/download/">Download</a>
+<a class="btn" href="/download/">Download Docket</a>
 </div></nav>"""
 
 FOOTER = f"""<footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket</h2>
-<a href="/">Overview</a><a href="/download/">Download</a>
+<a href="/">Overview</a><a href="/download/">Download Docket for Mac</a>
 <a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>

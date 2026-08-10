@@ -48,6 +48,11 @@ ALLOWED = {
     "2.14": ("what the Linux launcher alone requires; quoted beside 2.30 to "
              "show which half of the bundle sets the floor"),
     "9309": "RFC 9309, the robots.txt standard",
+    "301": ("the HTTP status code for a permanent redirect, RFC 9110. A "
+            "constant of the protocol, not a measurement of anything"),
+    "302": ("the HTTP status code for a temporary redirect, RFC 9110. Named "
+            "beside 301 because using it here is the mistake being warned "
+            "about"),
     "100,000": ("Ahrefs' Lite plan crawl-credit allowance, read from "
                 "ahrefs.com/pricing on 2026-08-10 and linked on the page"),
     "500,000": ("Ahrefs' Standard plan crawl-credit allowance, same source "
