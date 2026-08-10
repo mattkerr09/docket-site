@@ -23,6 +23,7 @@ import json
 import pathlib
 import re
 import subprocess
+import time
 import sys
 import urllib.request
 
@@ -116,6 +117,26 @@ def _renderer() -> pathlib.Path:
         if candidate.is_file():
             return candidate
     raise SystemExit("docket-render not found — build the app first")
+
+
+def _built_paths() -> list[str]:
+    """Every page this build produced, as the URL path that should serve it.
+
+    `PAGES` above is a hand-written list of ten, and every one of them predates
+    most of the site. That is why this gate printed "LIVE ok" through three
+    failed deploys in one day while newly added pages returned 404: it was
+    asked whether ten known-old pages were healthy, and they were.
+
+    Worse, the failure message has always read "what the CDN is serving does
+    not match what was built" — a comparison the script never actually made.
+    This is the function that makes that sentence true.
+    """
+    root = pathlib.Path(__file__).resolve().parent.parent / "site"
+    paths = []
+    for page in sorted(root.rglob("index.html")):
+        rel = page.relative_to(root).parent.as_posix()
+        paths.append("/" if rel == "." else f"/{rel}/")
+    return paths
 
 
 def _fetch(path: str) -> tuple[int, str]:
@@ -239,13 +260,47 @@ def main() -> None:
             if data.get("squashed"):
                 failures.append(f"{path}@{width} unscrollable wide content: {data['squashed']}")
 
+    # Coverage. The deep checks above run over a fixed list; this asks the
+    # only question that catches a failed deploy — is every page this build
+    # produced actually being served? Run after propagation, which is what
+    # deploy.sh's closing line tells you to wait for.
+    built = _built_paths()
+    unserved = []
+    for path in built:
+        if path in PAGES:
+            continue                      # already fetched in full above
+        # Paced, and retried on anything that is not a clean 404.
+        #
+        # The first run of this sweep reported a page as unserved on a 503 —
+        # and the page was fine, three times over, when asked again. Firing
+        # several dozen unpaced requests at the CDN is what produced the 503,
+        # so the gate manufactured its own failure and then believed it. A 404
+        # means missing; a 5xx means ask again more slowly.
+        status, body = 0, ""
+        for attempt in range(3):
+            if attempt:
+                time.sleep(1.5 * attempt)
+            status, body = _fetch(path)
+            if status == 200 or status == 404:
+                break
+        time.sleep(0.15)                  # be a good guest, even to our own CDN
+        if status != 200:
+            why = "404 — missing" if status == 404 else f"{status or body[:40]} after 3 tries"
+            unserved.append(f"{path} was built but the CDN returns {why}")
+    if unserved:
+        failures.append(f"{len(unserved)} built page(s) are not being served "
+                        f"— rule out propagation first, then check whether the "
+                        f"deploy actually pushed")
+        failures.extend(f"  {u}" for u in unserved[:10])
+
     if failures:
         print("LIVE FAIL — what the CDN is serving does not match what was built:")
         for failure in failures:
             print(f"  {failure}")
         sys.exit(1)
 
-    print(f"LIVE ok — {len(PAGES)} pages 200 and clean, "
+    print(f"LIVE ok — all {len(built)} built pages served; "
+          f"{len(PAGES)} checked in full and clean, "
           f"{len(rendered)} rendered at {WIDTHS[0]}px and {WIDTHS[1]}px "
           f"({', '.join(rendered)})")
 
