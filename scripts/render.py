@@ -216,7 +216,7 @@ STYLE = """<style>
   /* Deeper and slightly cooler than before. A near-black with a trace of blue
      reads as considered where pure #000 reads as unstyled. */
   --bg:#07080d;--surface:#0e1017;--surface-2:#141822;--surface-3:#1b2030;
-  --text:#f4f6fa;--text-mid:#a9b1c0;--text-dim:#6f7889;
+  --text:#f4f6fa;--text-mid:#a9b1c0;--text-dim:#848da0;
   --brand:#818CF8;--brand-light:#A5B4FC;--brand-soft:rgba(129,140,248,.14);
   --ok:#4ade80;--warn:#fbbf24;--bad:#ff7a6e;
   --border:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.16);
