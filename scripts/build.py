@@ -410,12 +410,20 @@ def main() -> int:
 #: So an undated page says it is undated, and points at the pages that are
 #: dated. lint.py accepts either form and fails on neither present, because the
 #: reader's question — how old is this? — has an answer in both.
+#
+# Wrapped in a section > .wrap, not dropped bare before </article>. The first
+# version sat outside every container and the visual gate caught it at 375px:
+# "text starts 0px from the edge (p.claims-note)". Same shape as the FAQ that
+# ran flush to the viewport edge — the gutter comes from .wrap, and anything
+# injected past its closing tag has none.
 UNDATED_CLAIMS_NOTE = (
+    '<section><div class="wrap">'
     '<p class="claims-note">Other products here are described from their own '
     'public pages and are <strong>not dated on this page</strong>. The dated '
     'checks, with sources, are on the '
     '<a href="/vs/">comparison pages</a>. Products change — if something here '
     'about another tool has gone stale, tell us and it will be corrected.</p>'
+    '</div></section>'
 )
 
 
