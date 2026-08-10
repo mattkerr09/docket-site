@@ -437,7 +437,7 @@ not yet — Search Console for your own impressions is the biggest.</li>
 certificate carries a legal name and Apple has checked it. You do not have to take that on
 faith. After downloading the 18.3 MB disk image:</p>
 
-<pre><code>codesign -dv --verbose=4 /Volumes/Docket/Docket.app
+<pre><code>codesign -dv --verbose=4 "/Volumes/Docket 0.1.7/Docket.app"
 spctl -a -t open --context context:primary-signature -v Docket-0.1.7-arm64.dmg</code></pre>
 
 <p>The first prints the authority chain, ending at Apple's root. The second should say
