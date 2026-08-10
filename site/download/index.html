@@ -415,6 +415,23 @@ cannot drift from what the app does.</p>
 the whole pricing argument and it does not need help: the tools above are not overpriced for
 what they do, they are simply rented rather than owned.</p>
 
+<h2>Checking what you downloaded</h2>
+
+<p>The Mac app is signed with a Developer&nbsp;ID and notarised by Apple, so macOS verifies it
+with Apple before it opens and you need do nothing. The Linux tarball has no equivalent — it is
+a plain archive from a URL — so every release publishes
+<a href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.7/SHA256SUMS">SHA256SUMS</a> covering all of its artifacts:</p>
+
+<pre><code>curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.7/docket-0.1.7-linux-x86_64.tar.gz
+curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.7/SHA256SUMS
+grep linux SHA256SUMS | shasum -a 256 -c -</code></pre>
+
+<p>Be clear about what that proves and what it does not. It proves the file arrived intact and
+is the one this release published. It does <strong>not</strong> prove authorship: the checksums
+sit on the same release as the tarball, so anyone able to replace one could replace the other.
+Apple's notarisation of the Mac build is a genuinely stronger guarantee, and pretending the two
+are equivalent would be exactly the kind of claim this tool exists to catch.</p>
+
 <h2>Opening it</h2>
 <p>Double-click it. Docket is signed with a Developer&nbsp;ID and notarised by Apple, so
 macOS opens it without a security warning and without any of the right-click or Terminal
