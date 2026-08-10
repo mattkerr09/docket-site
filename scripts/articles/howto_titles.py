@@ -125,16 +125,15 @@ should go and look at, not a rule anything is enforcing.</p>
 
 <h3>That the title you write is the title that shows</h3>
 
-<p>Often it is not, and the two best figures available disagree about how often. Google put its
-own use of the HTML title element at about <strong>87%</strong> of the time following a
-September 2021 revision, up from the "over 80%" it gave when that system launched. An
-independent study of <strong>80,959 titles across 2,370 sites</strong> found the title Google
-displayed differed from the one written on the page <strong>61.6%</strong> of the time.</p>
+<p>Often it is not. Google's own documentation says it "uses a number of different sources to
+automatically determine the title link" and does not publish how often each source wins —
+checked 2026-08-10. The best independent measurement is a study of <strong>80,959 titles across
+2,370 sites</strong>, which found the title Google displayed differed from the one written on
+the page <strong>61.6%</strong> of the time.</p>
 
-<p>Both can be right, because they count different things. Google counts titles <em>based
-on</em> yours, including ones it trimmed or reordered. The study counted titles <em>identical
-to</em> yours. Read together they say Google nearly always starts from your title and often does
-not finish there — and in March 2026 it confirmed a limited test that generates headlines with
+<p>Read that number carefully: it counts titles <em>identical to</em> yours, so one Google
+merely trimmed or reordered counts as changed even though it started from what you wrote. What
+it says is that Google usually begins with your title and frequently does not finish there — and in March 2026 it confirmed a limited test that generates headlines with
 AI in ordinary web results, which is a different act from shortening one.</p>
 
 <p>None of that argues for skipping the work. Google asks for distinct descriptive text in the
