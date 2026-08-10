@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to fix common SEO problems — Docket</title>
-<meta name="description" content="Fix guides for the specific issues an audit reports, in the order worth doing them, with the exact change to make.">
+<title>How to fix layout shift (CLS) on your site</title>
+<meta name="description" content="Layout shift is almost always images with no width and height. The fix, the four other causes, and why a crawler can report the risk but not the score.">
 <meta name="theme-color" content="#0b0c0f">
-<link rel="canonical" href="https://docketseo.app/how-to/">
+<link rel="canonical" href="https://docketseo.app/how-to/fix-layout-shift/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fix guides">
-<meta property="og:description" content="Fix guides for the specific issues an audit reports, in the order worth doing them, with the exact change to make.">
-<meta property="og:url" content="https://docketseo.app/how-to/">
+<meta property="og:title" content="How to fix layout shift">
+<meta property="og:description" content="Layout shift is almost always images with no width and height. The fix, the four other causes, and why a crawler can report the risk but not the score.">
+<meta property="og:url" content="https://docketseo.app/how-to/fix-layout-shift/">
 <meta property="og:site_name" content="Docket">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Fix guides">
-<meta name="twitter:description" content="Fix guides for the specific issues an audit reports, in the order worth doing them, with the exact change to make.">
+<meta name="twitter:title" content="How to fix layout shift">
+<meta name="twitter:description" content="Layout shift is almost always images with no width and height. The fix, the four other causes, and why a crawler can report the risk but not the score.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -359,7 +359,9 @@ body.landing article{padding:0}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 94 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"94 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","headline":"Fix guides","description":"Fix guides for the specific issues an audit reports, in the order worth doing them, with the exact change to make.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix layout shift","description":"Layout shift is almost always images with no width and height. The fix, the four other causes, and why a crawler can report the risk but not the score.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-layout-shift/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What causes layout shift?","acceptedAnswer":{"@type":"Answer","text":"Most often an image with no width and height attributes: the browser cannot reserve space before the file arrives, so content flows into the gap and is pushed down when it lands. Ads, font swaps and injected banners cause the rest."}},{"@type":"Question","name":"Do width and height attributes override my CSS?","acceptedAnswer":{"@type":"Answer","text":"No. Modern browsers use them to compute an aspect ratio and reserve space; your stylesheet still controls the rendered size. Adding them changes nothing visually."}},{"@type":"Question","name":"What if I don't know the image dimensions?","acceptedAnswer":{"@type":"Answer","text":"Reserve the space in CSS with aspect-ratio on the container. Any known ratio is better than none, and it works for user-uploaded or third-party images."}},{"@type":"Question","name":"Does an accordion opening count as layout shift?","acceptedAnswer":{"@type":"Answer","text":"No. Shifts within half a second of a user interaction are excluded, because the user caused them."}},{"@type":"Question","name":"Can a crawler measure CLS?","acceptedAnswer":{"@type":"Answer","text":"No. CLS needs a real browser under real network conditions. A crawler can identify the markup that causes shift and report it as a risk — anything presenting a CLS score from a crawl is reporting a guess as a measurement."}}]}</script>
 </head>
 <body>
 <nav><div class="wrap-wide nav-inner">
@@ -374,84 +376,77 @@ body.landing article{padding:0}
 </div>
 <a class="btn" href="/download/">Download Docket</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / Fix it</div><h1>Fix guides</h1>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / layout shift</div><h1>How to fix layout shift</h1>
 
-<p class="lede">Fix guides for the specific problems Docket reports. Each one explains what the
-issue costs you, then gives the change to make.</p>
+<p class="lede">Layout shift is the page moving under someone's finger. They go to tap a link,
+an image finishes loading above it, everything jumps, and they tap an ad instead. Google
+measures it as Cumulative Layout Shift, but the reason to fix it is that it is the most
+irritating thing a page can do.</p>
 
-<p>Before any individual guide, the question that decides whether an audit is worth
-anything: <strong>what do you do first?</strong> A list of 94 checks against a real
-site produces dozens of findings, and the order you work them in matters more than any single
-fix.</p>
+<h2>The cause is almost always one thing</h2>
 
-<h2>The order to fix things in</h2>
+<p>An image with no declared width and height. The browser cannot know how much space to
+reserve until the file arrives, so it reserves none — text flows up into the gap, then gets
+shoved down when the image lands.</p>
 
-<p>Docket ranks every finding by the same formula, and it is worth knowing because you can
-apply it by hand to any tool's output:</p>
+<p>This got worse when responsive images arrived. People removed <code>width</code> and
+<code>height</code> because CSS was handling sizing, which was reasonable at the time and is
+wrong now: modern browsers use the attributes purely to compute an aspect ratio and reserve
+the right space, then let your CSS resize it. Putting them back costs nothing and changes
+nothing visually.</p>
 
-<pre><code>priority = severity x impact x reach / effort</code></pre>
+<pre><code>&lt;img src="/photo.jpg" alt="…" width="1200" height="800"&gt;</code></pre>
 
-<p>Three of those are obvious. The fourth is where most tools go wrong: <strong>reach grows
-sub-linearly</strong> in the number of pages affected — a capped square root rather than a raw
-count. Without that damping, a trivial nit on every page of a large site outranks a
-<code>noindex</code> on your homepage, and the report becomes a list you scroll past. Sorting
-by "number of pages affected", which is the default in several crawlers, is exactly that
-failure.</p>
+<p>Use the file's real pixel dimensions. They are not a display size — the browser takes the
+ratio from them and your stylesheet still decides how big it renders.</p>
 
-<p>In practice this collapses to a short rule. Fix anything that stops a page being indexed at
-all, first and immediately — those are rare and they are absolute. Then work down by
-priority, which naturally puts small changes on important pages above large changes on
-unimportant ones. A finding marked TRIVIAL or SMALL effort with HIGH severity is almost always
-the best hour you will spend.</p>
+<h2>When you cannot know the dimensions</h2>
 
-<h2>What a fix guide here will not do</h2>
+<p>User-uploaded images, a CMS that does not store sizes, a third-party feed. Reserve the space
+in CSS instead:</p>
 
-<p>None of these say "improve your content" or "build quality links". If a guide cannot name
-the exact element to change, it has not earned the page. Where a change depends on something
-only you know — whether you want AI engines training on your writing, for instance — the
-guide sets out the decision rather than making it for you.</p>
+<pre><code>img { aspect-ratio: 3 / 2; width: 100%; height: auto; }</code></pre>
 
-<h2><a href="/how-to/fix-ai-crawler-access/">Fix AI crawler access in robots.txt</a></h2>
-<p>How to let ChatGPT, Perplexity and Claude read your site without giving away training data —
-they are separate decisions and need separate rules. Measured against
-6236 sites' robots.txt files, most people who block AI crawlers get this
-wrong in the same direction.</p>
+<p>The container holds its shape before anything loads. Any known ratio beats no ratio.</p>
 
-<h2>Redirecting http:// to https://</h2>
-<p>The 301 every host configures differently, and the certificate state that makes the
-"Enforce HTTPS" setting refuse to turn on — written from our own site failing this exact
-check. <a href="/how-to/redirect-http-to-https/">How to redirect http:// to https:// →</a></p>
+<h2>The other four causes, in the order they bite</h2>
 
-<h2>hreflang return tags</h2>
-<p>The only common SEO tag that cannot be checked by reading the page it sits on: a
-declaration that goes one way is ignored entirely, and every tag looks correct in isolation.
-<a href="/how-to/fix-hreflang-return-tags/">How to fix hreflang return tags →</a></p>
+<ul>
+<li><strong>Ads and embeds injected into the flow.</strong> Anything inserted after first
+paint pushes content down. Give the slot a fixed minimum height even when empty — an
+occasional gap is a far smaller cost than the whole page jumping.</li>
+<li><strong>Web fonts swapping.</strong> Text renders in a fallback, the real font arrives, and
+every line reflows because the metrics differ. <code>font-display: optional</code> avoids the
+swap entirely; matching the fallback's metrics with <code>size-adjust</code> narrows it.</li>
+<li><strong>Banners inserted at the top.</strong> Cookie notices, promo bars and "you have
+items in your basket" strips added by script after load shift everything below them. Reserve
+the space, or overlay rather than insert.</li>
+<li><strong>Content that expands on interaction.</strong> Accordions and "read more" are fine:
+shifts within half a second of a click or tap are not counted, because the user caused
+them.</li>
+</ul>
 
-<h2>Conflicting canonical tags</h2>
-<p>Two canonicals on one page, a canonical pointing at a noindex page, and the section-wide
-mistake that can cost a site its entire long tail while every page still returns 200.
-<a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
+<h2>Where to look first</h2>
 
-<h2>Soft 404s</h2>
-<p>A missing page that answers 200 turns every mistyped URL into an indexable page. How to
-check it in one command, and the fix for each cause.
-<a href="/how-to/fix-soft-404s/">How to fix soft 404s →</a></p>
+<p>Above the fold, on mobile, on a slow connection. A shift only counts when it moves content
+that was visible, so an image far down the page that jumps before anyone scrolls to it costs
+nothing. Your hero image, your logo, and any banner near the top are worth more attention than
+everything below them combined.</p>
 
-<h2>Structured data errors</h2>
-<p>Invalid JSON-LD is discarded whole rather than partially read, so a page with complete
-markup and one trailing comma is treated like a page with none. The five ways schema breaks,
-and why a single-URL validator misses most of them.
-<a href="/how-to/fix-structured-data-errors/">How to fix structured data errors →</a></p>
+<h2>What Docket can and cannot tell you</h2>
 
-<h2>Layout shift (CLS)</h2>
-<p>Almost always images with no width and height: the browser cannot reserve the space, so
-content jumps as they load. The fix, the four other causes, and why a crawler can report the
-risk but never the score. <a href="/how-to/fix-layout-shift/">How to fix layout shift →</a></p>
+<p>It reads the markup and reports pages where most images have no declared size — the
+condition that causes shift. <strong>It does not measure CLS.</strong> That needs a real
+browser under real network conditions, and any tool claiming a CLS score from a crawl is
+reporting a guess as a measurement.</p>
 
-<h2>More coming</h2>
-<p>Further guides are being written, one per issue Docket reports. They will appear as each is written properly rather than as
-variations on a template.</p>
+<p>So the finding is a risk, stated as one, with the instruction to confirm the field value in
+PageSpeed Insights or Search Console. The two findings you may see — one about images without
+dimensions, one about layout-shift risk — are the same defect from two sides, and Docket links
+them so the action plan asks for the work once.</p>
 
+<p><a class="btn" href="/download/">Download Docket</a></p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What causes layout shift?</h3><p>Most often an image with no width and height attributes: the browser cannot reserve space before the file arrives, so content flows into the gap and is pushed down when it lands. Ads, font swaps and injected banners cause the rest.</p></div><div class="faq-item"><h3>Do width and height attributes override my CSS?</h3><p>No. Modern browsers use them to compute an aspect ratio and reserve space; your stylesheet still controls the rendered size. Adding them changes nothing visually.</p></div><div class="faq-item"><h3>What if I don't know the image dimensions?</h3><p>Reserve the space in CSS with aspect-ratio on the container. Any known ratio is better than none, and it works for user-uploaded or third-party images.</p></div><div class="faq-item"><h3>Does an accordion opening count as layout shift?</h3><p>No. Shifts within half a second of a user interaction are excluded, because the user caused them.</p></div><div class="faq-item"><h3>Can a crawler measure CLS?</h3><p>No. CLS needs a real browser under real network conditions. A crawler can identify the markup that causes shift and report it as a risk — anything presenting a CLS score from a crawl is reporting a guess as a measurement.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
