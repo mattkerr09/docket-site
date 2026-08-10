@@ -937,8 +937,13 @@ wrong in the same direction.</p>
 "Enforce HTTPS" setting refuse to turn on — written from our own site failing this exact
 check. <a href="/how-to/redirect-http-to-https/">How to redirect http:// to https:// →</a></p>
 
+<h2>hreflang return tags</h2>
+<p>The only common SEO tag that cannot be checked by reading the page it sits on: a
+declaration that goes one way is ignored entirely, and every tag looks correct in isolation.
+<a href="/how-to/fix-hreflang-return-tags/">How to fix hreflang return tags →</a></p>
+
 <h2>More coming</h2>
-<p>Guides for hreflang return tags, conflicting canonicals, soft 404s and structured data
+<p>Guides for conflicting canonicals, soft 404s and structured data
 errors are being written. They will appear as each is written properly rather than as
 variations on a template.</p>
 """
