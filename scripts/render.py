@@ -15,6 +15,10 @@ from __future__ import annotations
 
 from pathlib import Path
 import pathlib
+import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import facts as _facts  # noqa: E402
 
 SITE = Path(__file__).resolve().parent.parent / "site"
 BASE = "https://docketseo.app"
@@ -72,7 +76,9 @@ DMG = f"{REPO}/releases/download/{RELEASE}/Docket-0.1.0-arm64.dmg"
 #: Rounded DOWN from the real 17,432,048 bytes of the notarised DMG, measured
 #: 2026-08-07. Rounding down is deliberate: a download is allowed to be smaller
 #: than promised and never larger, and "18 MB" was already overstating it.
-DMG_SIZE = "17 MB"
+# Measured from the published artifact by collect_updater.py, not typed.
+# It was "17 MB" against an 18.3 MB download.
+DMG_SIZE = _facts.dmg_size_str()
 
 #: One-time price, in USD. Declared once so the schema, the comparison table and
 #: the download page cannot drift apart — which is exactly what happened to the
