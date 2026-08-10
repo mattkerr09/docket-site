@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 import subprocess
 import sys
 import urllib.request
@@ -52,7 +53,10 @@ HOMEPAGE_MUST_SAY = _homepage_must_say()
 
 #: Text that must NOT appear anywhere. The old brand and the old accent are
 #: both things a stale deploy would resurrect silently.
-MUST_NOT_SAY = ["Scout", "F0800F", "Nothing leaves"]
+#: Regexes, not literals. The list held the exact string "Nothing leaves"
+#: and the comparison pages shipped "Never leaves your Mac" for weeks — the
+#: same false claim, one word away from the gate.
+MUST_NOT_SAY = [r"Scout", r"F0800F", r"(?i)\b(nothing|no data|never)\s+leaves\b"]
 
 #: A width where layout breaks, and one where it does not. Both, because a
 #: page can be clean at one and broken at the other.
@@ -109,8 +113,12 @@ def main() -> None:
             failures.append(f"{path} returned {status or body[:60]}")
             continue
         for bad in MUST_NOT_SAY:
-            if bad in body:
-                failures.append(f"{path} still contains {bad!r}")
+            # re.search, not `in`. These became regexes and the substring test
+            # was left behind, which would have matched nothing at all — a gate
+            # that cannot fail, added in the act of widening it.
+            hit = re.search(bad, body)
+            if hit:
+                failures.append(f"{path} still contains {hit.group(0)!r}")
         if path == "/":
             for claim in HOMEPAGE_MUST_SAY:
                 if claim not in body:
