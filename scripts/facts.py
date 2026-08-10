@@ -974,6 +974,16 @@ def dmg_name() -> str:
     return download()["dmg_name"]
 
 
+def linux_name() -> str:
+    """The published Linux CLI tarball, or empty when none was built."""
+    return download().get("linux_name", "")
+
+
+def linux_size_str() -> str:
+    mb = download().get("linux_mb")
+    return f"{mb:.1f} MB" if mb else ""
+
+
 def dmg_mb() -> float:
     return download()["dmg_mb"]
 

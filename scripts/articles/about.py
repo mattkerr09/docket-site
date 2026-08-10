@@ -76,8 +76,11 @@ on this site is derived from it rather than typed into a sentence.</p>
 <p>The honest list, because you will find it out in the first hour anyway:</p>
 
 <ul>
-<li><strong>It is Mac only.</strong> Apple Silicon, macOS 12 or later. There is no Windows
-build, no Linux build and no web version, and none is planned while it is one person.</li>
+<li><strong>The desktop app is Mac only.</strong> Apple Silicon, macOS 12 or later. There is
+no Windows build and no web version, and neither is planned while it is one person. The same
+engine ships as a <a href="/download/">Linux x86_64 command line build</a>, without the
+desktop app and without <code>--render</code>. This page denied that entirely until
+2026-08-10, when the download page had been describing it for weeks.</li>
 <li><strong>It is not a rank tracker.</strong> No keyword positions, no search volume, no
 backlink index. <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs</a> and Semrush have
 spent years and a great deal of money building those, and Docket has no answer to them.</li>

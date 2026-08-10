@@ -74,6 +74,12 @@ REPO = "https://github.com/mattkerr09/docket-site"
 ISSUES = f"{REPO}/issues"
 DMG_NAME = _facts.dmg_name()
 DMG = f"{REPO}/releases/download/{RELEASE}/{DMG_NAME}"
+#: The Linux CLI. Empty when the release carries none, so a page can ask
+#: rather than promise — the download page described a Linux tarball in
+#: detail for seven releases during which none was published.
+LINUX_NAME = _facts.linux_name()
+LINUX = f"{REPO}/releases/download/{RELEASE}/{LINUX_NAME}" if LINUX_NAME else ""
+LINUX_SIZE = _facts.linux_size_str()
 #: Rounded DOWN from the real 17,432,048 bytes of the notarised DMG, measured
 #: 2026-08-07. Rounding down is deliberate: a download is allowed to be smaller
 #: than promised and never larger, and "18 MB" was already overstating it.
