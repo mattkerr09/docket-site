@@ -265,6 +265,12 @@ fetches Core Web Vitals from Google PageSpeed Insights. <code>--offline</code>, 
 tick in the desktop app, turns all four off and the audit still completes — the report then
 says which checks did not run rather than quietly scoring them.</p>
 
+<p>Docket also asks docketseo.app once at launch whether a newer version exists, and tells you
+if there is one. It sends nothing but the request itself, it never installs anything without
+you saying yes, and <code>Check for Updates…</code> in the Docket menu does the same thing on
+demand. Said here because a product that sells not phoning home should list the one call it
+makes on its own.</p>
+
 <p>What never happens: no telemetry, no account, no analytics on you, and nothing about your
 site is sent anywhere for us to see. This page made a stronger, absolute claim until
 2026-08-10; it was not true while those four checks were on by default, and it has been
