@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import PRICE_STR, render  # noqa: E402
+from render import PRICE_STR, RELEASE, render  # noqa: E402
 
 
 def log_file_analysis() -> Path:
@@ -90,8 +90,9 @@ handle far more formats, and analysis over time rather than a single comparison.
 analysis is a regular part of your work, buy it — it is built for that and Docket is not.</p>
 
 <p>What Docket gives you is the one comparison that answers "is Google spending its time on my
-important pages", included in the {PRICE_STR} one-time price rather than as a second annual
-subscription. That is the whole claim, and it is deliberately narrow.</p>
+important pages", included in the {PRICE_STR} one-time price — free while {RELEASE} is in
+beta — rather than as a second annual subscription. That is the whole claim, and it is
+deliberately narrow.</p>
 
 <h2>What Docket deliberately does not do here</h2>
 

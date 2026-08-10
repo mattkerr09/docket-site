@@ -86,6 +86,7 @@ schema.invalid,structured,Structured data,Invalid JSON-LD
 schema.mismatch,structured,Structured data,Structured data vs visible content
 schema.missing,structured,Structured data,Missing structured data
 schema.opportunity,structured,Structured data,Rich result opportunities
+schema.price,structured,Structured data,Schema price vs visible price
 security.headers,security,Security & trust,Security headers
 security.https,security,Security & trust,HTTPS
 security.mixed_content,security,Security & trust,Mixed content

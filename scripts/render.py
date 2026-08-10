@@ -86,6 +86,21 @@ DMG_SIZE = _facts.dmg_size_str()
 PRICE = 149
 PRICE_STR = f"${PRICE}"
 
+#: What the download costs *today*, which is not PRICE. v0.1.0 is free, keeps
+#: working, and has no checkout to pay through even if you wanted to.
+#:
+#: This is a fact rather than prose because it was prose, on two pages out of
+#: twenty-five, while the other twenty-three said "$149 once" flatly and the
+#: JSON-LD on all of them declared `price: 149, availability: InStock` — a
+#: machine-readable claim to Google that a price existed to be paid. Docket's
+#: own schema.price_not_visible check found it, which is the strongest argument
+#: for the check that exists.
+BETA_FREE = True
+PRICE_TODAY = 0 if BETA_FREE else PRICE
+#: The qualifier that travels with every mention of the price.
+BETA_NOTE = (f"{RELEASE} is free while it is in beta; {PRICE_STR} applies "
+             f"from v1.0." if BETA_FREE else "")
+
 # --------------------------------------------------------------------------
 # Design system. Dark, high-contrast, indigo accent carried from the app icon.
 # Indigo by measurement: the old amber sat 4 degrees of hue from the
@@ -535,7 +550,11 @@ def _entity_schema() -> str:
         '"description":"Docket crawls a website, runs ' + str(N_CHECKS) + ' checks across SEO, copy, '
         'speed, structured data, local visibility, AI search visibility and marketing '
         'conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.",'
-        '"offers":{"@type":"Offer","price":"' + str(PRICE) + '","priceCurrency":"USD",'
+        # PRICE_TODAY, not PRICE. Structured data states what a visitor would
+        # pay now; the future price is prose, not an Offer. Declaring 149 while
+        # the beta is free let Google advertise a number with no checkout
+        # behind it.
+        '"offers":{"@type":"Offer","price":"' + str(PRICE_TODAY) + '","priceCurrency":"USD",'
         '"availability":"https://schema.org/InStock"},'
         '"featureList":"' + str(N_CHECKS) + ' checks, ranked action plan, PDF report, scheduled monitoring, '
         'competitor comparison, AI crawler access audit",'

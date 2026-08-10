@@ -397,8 +397,9 @@ claims everything invites the client to test the claim.</p>
         body=body,
         faq=[
             ("Can I use Docket for client work?",
-             "Yes. Docket is " + PRICE_STR + " once, with no per-seat or per-crawl limits, so you "
-             "can audit as many client and prospect sites as you like."),
+             "Yes. Docket is " + PRICE_STR + " once — free while " + RELEASE + " is in "
+             "beta — with no per-seat or per-crawl limits, so you can audit as many client "
+             "and prospect sites as you like."),
             ("Can I white-label the report?",
              "The PDF is Docket-branded. The CSV and JSON exports carry no branding and can be "
              "dropped into your own template."),
