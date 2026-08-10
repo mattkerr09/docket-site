@@ -24,7 +24,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (BETA_NOTE, DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR,
-                    price, render)  # noqa: E402
+                    price, price_note_html, render)  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
@@ -327,6 +327,7 @@ def body() -> str:
 <tr><td>Sitebulb</td><td>{price("sitebulb")}</td><td>Local + cloud</td><td>Visual issue report</td></tr>
 <tr><td>Screaming Frog</td><td>{price("screaming-frog")}</td><td>Your machine</td><td>Raw crawl data</td></tr>
 </tbody></table></div>
+{price_note_html()}
 <p style="text-align:center;margin-top:1.4rem"><a class="btn-ghost" href="/vs/">See the honest
 comparisons →</a></p>
 </div></section>
