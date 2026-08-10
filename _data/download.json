@@ -1,9 +1,12 @@
 {
   "version": "0.1.33",
-  "tag": "v0.1.0",
+  "tag": "v0.1.33",
   "dmg_name": "Docket-0.1.33-arm64.dmg",
   "dmg_bytes": 22161808,
   "dmg_mb": 22.2,
   "measured": "2026-08-10",
-  "note": "Decimal MB, matching what a browser download panel and the Finder report. Written by collect_updater.py from the artifact actually published."
+  "note": "Decimal MB, matching what a browser download panel and the Finder report. Written by collect_updater.py from the artifact actually published.",
+  "linux_name": "docket-0.1.33-linux-x86_64.tar.gz",
+  "linux_bytes": 15126157,
+  "linux_mb": 15.1
 }
