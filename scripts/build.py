@@ -37,6 +37,7 @@ import howto_hreflang  # noqa: E402
 import howto_https  # noqa: E402
 import howto_schema  # noqa: E402
 import howto_soft404  # noqa: E402
+import howto_title_width  # noqa: E402
 import howto_titles  # noqa: E402
 import index_page  # noqa: E402
 import learn  # noqa: E402
@@ -395,7 +396,8 @@ def main() -> int:
               howto_soft404.soft_404s(),
               howto_schema.structured_data_errors(),
               howto_cls.layout_shift(),
-              howto_titles.duplicate_titles()]
+              howto_titles.duplicate_titles(),
+              howto_title_width.title_tags()]
     pages += bytecap.build_all()
     pages += canonicals.build_all()
     pages += learn.build_all()

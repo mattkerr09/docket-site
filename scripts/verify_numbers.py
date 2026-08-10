@@ -48,6 +48,38 @@ ALLOWED = {
     "2.14": ("what the Linux launcher alone requires; quoted beside 2.30 to "
              "show which half of the bundle sets the floor"),
     "9309": "RFC 9309, the robots.txt standard",
+    # -- the title-rewrite study, re-verified 2026-08-10 -------------------
+    # Read from zyppy.com/seo/google-title-rewrites/ on 2026-08-10: "80,959
+    # title tags across 2370 sites in early 2022 from across the globe", and
+    # "Google rewrote 61.6% of the titles". Their numbers, not ours.
+    "80,959": "titles in the Zyppy title-rewrite study, read 2026-08-10",
+    "2,370": "sites in that same study, same reading",
+    "61.6": "the share of titles it found rewritten, same reading",
+    # -- Semrush, read from their own pages and quoted in VERIFIED ----------
+    "20,000": ("Semrush's per-audit crawl allowance on Pro and Guru, from "
+               "their KB article 338, quoted and linked in comparisons.VERIFIED"),
+    "300,000": ("Semrush's monthly page allowance on Guru, same KB article and "
+                "the same VERIFIED entry"),
+    "1,000,000": ("Semrush's monthly page allowance on Business, same source"),
+    "117.33": ("Semrush's entry plan billed annually, $117.33/mo, from their "
+               "pricing page as quoted in VERIFIED"),
+    "1,668": ("$139 x 12 — arithmetic on the monthly price above, shown in the "
+              "prose so a reader can check the multiplication"),
+    # -- Google Search Console's published API limits ----------------------
+    "2,000": ('the URL Inspection API quota, "2000 QPD", from Google\'s '
+              "published limits page and quoted in VERIFIED"),
+    "600": ('the same page\'s "600 QPM" per-property limit'),
+    # -- hypotheticals in prose, not measurements of anything --------------
+    "4,000": ("a hypothetical page count in an explanation of reach "
+              "compression — 'a trivial issue that happens to appear on 4,000 "
+              "pages'. Not a measurement of any site"),
+    "5,000": ("a hypothetical site size used to show that a 2,000-a-day API "
+              "quota cannot inspect it in a day. Arithmetic on a published "
+              "quota, not a measurement"),
+    "7": ("'page 7 of the archive' — an example of a paginated URL winning the "
+          "wrong query. An illustration, not a count"),
+    "60": ("the 'about sixty characters' rule of thumb these pages exist to "
+           "correct; quoted as the received advice, not asserted as a limit"),
     "301": ("the HTTP status code for a permanent redirect, RFC 9110. A "
             "constant of the protocol, not a measurement of anything"),
     "302": ("the HTTP status code for a temporary redirect, RFC 9110. Named "
