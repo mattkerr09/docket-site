@@ -232,6 +232,39 @@ def require_probe_support(helper: Path) -> None:
                  f"DocketRender.swift.")
 
 
+def require_width_support(helper: Path) -> None:
+    """`--width` must actually resize the viewport, not just be accepted.
+
+    Everything below is width-specific: the gutter at 375, the prose measure at
+    1600, `scrollWidth > width + 1`. All of it compares against the width this
+    script *asked for*. A helper that accepted `--width` and ignored it would
+    render eleven templates three times at one default size and pass, and the
+    output would still say "33 renders, 375px / 1280px / 1600px".
+
+    This is not hypothetical. The copy in this repo was a pre-rename build that
+    still announced itself as `scout-render` and whose usage line lists neither
+    `--width` nor `--probe`. It honours both — checked, at two widths, which is
+    the only reason that sentence is "it honours both" rather than a guess. A
+    binary is committed here so the gate runs standalone, and a committed
+    binary is exactly the kind of thing that drifts silently from the source it
+    was built from.
+    """
+    for want in (375, 1600):
+        proc = subprocess.run(
+            [str(helper), "about:blank", "--timeout", "10",
+             "--width", str(want), "--probe", "window.innerWidth"],
+            capture_output=True, text=True, timeout=30,
+        )
+        got = proc.stdout.strip()
+        if proc.returncode != 0 or got != str(want):
+            sys.exit(
+                f"visual_check: {helper} does not honour --width.\n"
+                f"  Asked for {want}px, the page reported {got or '(nothing)'}.\n"
+                f"  Every width-specific assertion below would be testing one\n"
+                f"  size while reporting three. Rebuild it from the app repo's\n"
+                f"  packaging/render/DocketRender.swift.")
+
+
 def probe(helper: Path, page: Path, width: int) -> dict:
     proc = subprocess.run(
         [str(helper), f"file://{page}", "--width", str(width),
@@ -382,6 +415,7 @@ def main() -> int:
     verbose = "--verbose" in sys.argv
     helper = find_helper()
     require_probe_support(helper)
+    require_width_support(helper)
     if "--self-test" in sys.argv:
         return self_test(helper)
     failures: list[str] = []
