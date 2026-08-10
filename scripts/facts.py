@@ -960,6 +960,20 @@ def download() -> dict:
     return json.loads((ROOT / "site" / "_data" / "download.json").read_text())
 
 
+def app_version() -> str:
+    """The version actually published, from the artifact the build produced."""
+    return download()["version"]
+
+
+def release_tag() -> str:
+    """The release the download is served from."""
+    return download()["tag"]
+
+
+def dmg_name() -> str:
+    return download()["dmg_name"]
+
+
 def dmg_mb() -> float:
     return download()["dmg_mb"]
 
