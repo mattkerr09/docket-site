@@ -80,6 +80,10 @@ DMG = f"{REPO}/releases/download/{RELEASE}/{DMG_NAME}"
 LINUX_NAME = _facts.linux_name()
 LINUX = f"{REPO}/releases/download/{RELEASE}/{LINUX_NAME}" if LINUX_NAME else ""
 LINUX_SIZE = _facts.linux_size_str()
+#: Checksums for every artifact on the release, published so a Linux reader
+#: has something to check. The Mac build has Apple's notarisation; this is
+#: weaker and the page says so rather than implying parity.
+SUMS = f"{REPO}/releases/download/{RELEASE}/SHA256SUMS"
 #: Rounded DOWN from the real 17,432,048 bytes of the notarised DMG, measured
 #: 2026-08-07. Rounding down is deliberate: a download is allowed to be smaller
 #: than promised and never larger, and "18 MB" was already overstating it.
