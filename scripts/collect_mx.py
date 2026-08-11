@@ -22,6 +22,11 @@ Usage:  python3 scripts/collect_mx.py --date YYYY-MM-DD
 """
 from __future__ import annotations
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+import app_path  # noqa: E402
+
 import argparse
 import json
 import sys
@@ -31,7 +36,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(Path.home() / "Downloads" / "SEO audit app" / "backend"))
+sys.path.insert(0, str(app_path.backend()))
 
 from seo_engine import mailcheck as M  # noqa: E402
 

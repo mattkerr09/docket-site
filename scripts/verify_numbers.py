@@ -29,6 +29,11 @@ properly means a number-word list and a lot of false positives on "one",
 """
 from __future__ import annotations
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+import app_path  # noqa: E402
+
 import re
 import sys
 import pathlib
@@ -258,7 +263,7 @@ def _literals(path: Path) -> Iterator[Tuple[int, str, str]]:
 
 
 #: The engine, for facts the site restates because it cannot import it.
-ENGINE = pathlib.Path("/Users/matthewkerr/Downloads/SEO audit app/backend/seo_engine")
+ENGINE = app_path.engine()
 
 
 def _score_band_drift() -> List[str]:

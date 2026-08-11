@@ -15,6 +15,11 @@ Usage:
 """
 from __future__ import annotations
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+import app_path  # noqa: E402
+
 import argparse
 import datetime
 import json
@@ -25,9 +30,7 @@ from pathlib import Path
 
 # Docket's own engine — the published numbers must come from the same parser the
 # product ships, or the Index is measuring something the tool does not.
-ENGINE = Path(__file__).resolve().parents[2] / "SEO audit app" / "backend"
-if not ENGINE.exists():
-    ENGINE = Path.home() / "Downloads" / "SEO audit app" / "backend"
+ENGINE = app_path.backend()
 sys.path.insert(0, str(ENGINE))
 
 from seo_engine.fetcher import Fetcher  # noqa: E402
