@@ -91,7 +91,56 @@ def _signature_verifies(published: str):
     return result.returncode == 0, detail[-1] if detail else ""
 
 
+def _download_links_point_at_this_release() -> None:
+    """Every filename in download.json must belong to the release it names.
+
+    render.py builds each download link as `{REPO}/releases/download/{tag}/
+    {filename}` — the tag from this release, the filename from this file. So a
+    filename left over from the previous release produces a URL that is
+    well-formed, looks right in the HTML, passes the link-graph gate (which
+    does not fetch GitHub) and 404s for the user.
+
+    `collect_updater.py` used to leave exactly that behind: it overwrote the
+    Linux keys when the tarball was present and wrote the dict back untouched
+    when it was not, so a release built without one inherited the last one's
+    filename. That is now fixed at the source, and this is the gate for it —
+    because the source fix only helps when collect_updater.py is the thing that
+    wrote the file, and download.json is a small JSON file that anyone can edit.
+
+    Checked against the version string rather than the tag, since the artifacts
+    are named for the version (`docket-0.1.37-linux-x86_64.tar.gz`) while the
+    URL uses the tag (`v0.1.37`).
+    """
+    path = SITE / "_data" / "download.json"
+    if not path.is_file():
+        return
+    try:
+        data = json.loads(path.read_text())
+    except json.JSONDecodeError as exc:
+        fail(f"download.json is not valid JSON ({exc}); the download page "
+             f"cannot be built and every download link would be wrong")
+
+    version = data.get("version")
+    if not version:
+        fail("download.json names no version, so nothing can be checked "
+             "against it")
+
+    for key in ("dmg_name", "linux_name"):
+        name = data.get(key)
+        if not name:
+            continue
+        if version not in name:
+            fail(f"download.json is publishing {version} but its {key} is "
+                 f"{name!r}, which is a different release. The link is built "
+                 f"from this release's tag and that filename, so it would "
+                 f"404 — rebuild the artifact for {version}, or remove the "
+                 f"key so the page offers nothing rather than something "
+                 f"broken.")
+
+
 def main() -> None:
+    _download_links_point_at_this_release()
+
     if not MANIFEST.is_file():
         print("UPDATER skipped — no updater.json yet")
         return
