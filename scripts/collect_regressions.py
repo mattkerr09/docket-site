@@ -24,13 +24,18 @@ Two deliberate choices:
 """
 from __future__ import annotations
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+import app_path  # noqa: E402
+
 import json
 import re
 import subprocess
 import sys
 from pathlib import Path
 
-APP = Path("/Users/matthewkerr/Downloads/SEO audit app")
+APP = app_path.find()
 OUT = Path(__file__).resolve().parent.parent / "site" / "_data" / "regressions.json"
 
 # The published rule, as a regex. Each alternative describes a mistake in the

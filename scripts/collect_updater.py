@@ -16,6 +16,11 @@ Run after ./scripts/build_docket.sh --ship, before deploying the site.
 """
 from __future__ import annotations
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+import app_path  # noqa: E402
+
 import argparse
 import datetime
 import hashlib
@@ -23,7 +28,7 @@ import json
 import pathlib
 import sys
 
-APP = pathlib.Path("/Users/matthewkerr/Downloads/SEO audit app")
+APP = app_path.find()
 OUT = pathlib.Path(__file__).resolve().parent.parent / "site" / "updater.json"
 
 TGZ = APP / "dist" / "Docket.app.tar.gz"

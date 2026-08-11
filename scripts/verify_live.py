@@ -19,6 +19,11 @@ product uses — so the site is verified with the tool it sells.
 """
 from __future__ import annotations
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+import app_path  # noqa: E402
+
 import json
 import pathlib
 import re
@@ -111,7 +116,7 @@ PROBE = """(function(){
 
 def _renderer() -> pathlib.Path:
     for candidate in (
-        pathlib.Path("/Users/matthewkerr/Downloads/SEO audit app/packaging/render/docket-render"),
+        app_path.find() / "packaging" / "render" / "docket-render",
         pathlib.Path("/Applications/Docket.app/Contents/Resources/docket/docket-render"),
     ):
         if candidate.is_file():

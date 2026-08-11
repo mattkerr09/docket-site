@@ -15,6 +15,11 @@ to be sitting in dist/.
 """
 from __future__ import annotations
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+import app_path  # noqa: E402
+
 import base64
 import json
 import pathlib
@@ -26,7 +31,7 @@ import tarfile
 import tempfile
 
 SITE = pathlib.Path(__file__).resolve().parent.parent / "site"
-APP = pathlib.Path("/Users/matthewkerr/Downloads/SEO audit app")
+APP = app_path.find()
 MANIFEST = SITE / "updater.json"
 TGZ = APP / "dist" / "Docket.app.tar.gz"
 SIG = APP / "dist" / "Docket.app.tar.gz.sig"

@@ -18,6 +18,11 @@ purpose: every address costs two lookups against somebody else's resolver.
 """
 from __future__ import annotations
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+import app_path  # noqa: E402
+
 import ipaddress
 import json
 import time
@@ -48,7 +53,7 @@ def _fetch(name: str) -> dict:
 
 def main() -> None:
     import sys
-    sys.path.insert(0, "/Users/matthewkerr/Downloads/SEO audit app/backend")
+    sys.path.insert(0, str(app_path.backend()))
     from seo_engine.logfile import verify_ip
 
     lists = {}

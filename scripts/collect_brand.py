@@ -27,13 +27,18 @@ Run from the site repo; it imports Docket's engine from the app checkout.
 """
 from __future__ import annotations
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+import app_path  # noqa: E402
+
 import json
 import sys
 import time
 from pathlib import Path
 from statistics import median
 
-APP = Path("/Users/matthewkerr/Downloads/SEO audit app")
+APP = app_path.find()
 sys.path.insert(0, str(APP / "backend"))
 
 OUT = Path(__file__).resolve().parent.parent / "site" / "_data" / "brand.json"

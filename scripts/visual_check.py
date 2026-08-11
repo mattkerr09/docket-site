@@ -22,6 +22,11 @@ Usage:  python3 scripts/visual_check.py [--verbose]
 """
 from __future__ import annotations
 
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+import app_path  # noqa: E402
+
 import json
 import os
 import shutil
@@ -219,7 +224,7 @@ def find_helper() -> Path:
     candidates = [
         ROOT / "scripts" / "docket-render",
         Path("/Applications/Docket.app/Contents/Resources/docket-render"),
-        Path.home() / "Downloads" / "SEO audit app" / "dist" / "Docket.app"
+        app_path.find() / "dist" / "Docket.app"
         / "Contents" / "Resources" / "docket-render",
     ]
     for c in candidates:
