@@ -50,7 +50,25 @@
   --bg:#07080d;--surface:#0e1017;--surface-2:#141822;--surface-3:#1b2030;
   --text:#f4f6fa;--text-mid:#a9b1c0;--text-dim:#848da0;
   --brand:#818CF8;--brand-light:#A5B4FC;--brand-soft:rgba(129,140,248,.14);
-  --ok:#4ade80;--warn:#fbbf24;--bad:#ff7a6e;
+  /* Severity, defined ONCE as a channel triple and derived from there.
+     Every tinted background in this stylesheet is the severity colour at low
+     alpha, and each one used to be a hand-copied `rgba(74,222,128,.18)` sitting
+     next to `var(--ok)` on the same line — so a token change moved the fill and
+     left the glow behind. That already happened once with amber: eight glows
+     survived a token swap because no gate reads colour.
+     `rgba(var(--ok-rgb),.18)` cannot drift; there is nothing to forget. */
+  --ok-rgb:74,222,128;--warn-rgb:251,191,36;--bad-rgb:255,122,110;
+  --ok:rgb(var(--ok-rgb));--warn:rgb(var(--warn-rgb));--bad:rgb(var(--bad-rgb));
+  /* A hand-tuned lighter tint of --bad, for small text on a --bad tinted pill.
+     Measured on #0e1017 under a 16% --bad wash: this reads 7.47:1, while --bad
+     itself reads 5.92:1. Both pass AA for the 10.5px/680 chips that use it;
+     the lighter one is kept because it was chosen deliberately.
+     **This one does NOT follow --bad-rgb.** Setting --bad-rgb to 0,255,0 and
+     rendering leaves this salmon — checked, because the comment here first
+     claimed it moved, and it does not. It is a separate colour that has to be
+     re-tuned and re-measured by hand. It sits on this line so that whoever
+     changes --bad-rgb reads that sentence in the same breath. */
+  --bad-text:#ff9c92;
   --border:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.16);
   --radius:16px;--radius-sm:10px;
   --display:'Switzer',-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
@@ -252,7 +270,7 @@ body.landing article{padding:0}
   border:1px solid rgba(129,140,248,.26);border-radius:999px;padding:.5rem 1.05rem;
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
-  background:var(--ok);box-shadow:0 0 0 3px rgba(74,222,128,.18)}
+  background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
 .hero-h1{font-family:var(--display);font-weight:700;
   /* 84px at the top end, matching the scale premium product sites settle on.
      Tight tracking is what stops large type reading as merely big. */
@@ -423,7 +441,7 @@ jobs:
     steps:
       - name: Install Docket
         run: |
-          curl -sL -o docket.dmg https://github.com/mattkerr09/docket-site/releases/download/v0.1.36/Docket-0.1.36-arm64.dmg
+          curl -sL -o docket.dmg https://github.com/mattkerr09/docket-site/releases/download/v0.1.37/Docket-0.1.37-arm64.dmg
           hdiutil attach -nobrowse -quiet docket.dmg -mountpoint /Volumes/Docket
           cp -R /Volumes/Docket/Docket.app /Applications/
           echo "/Applications/Docket.app/Contents/Resources/docket" &gt;&gt; "$GITHUB_PATH"
@@ -527,7 +545,7 @@ red tests.</p>
 
 <p>The four lines above work and will keep working. If you would rather not own them:</p>
 
-<pre><code>      - uses: mattkerr09/docket-site@v0.1.36
+<pre><code>      - uses: mattkerr09/docket-site@v0.1.37
         with:
           url: https://staging.example.com
           fail-on: critical
