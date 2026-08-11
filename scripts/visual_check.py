@@ -168,6 +168,31 @@ PROBE = """
     linkCount: links.length,
     navLinks: nav ? nav.querySelectorAll('a').length : 0,
     navHeight: nav ? Math.round(nav.getBoundingClientRect().height) : 0,
+
+    // Nav links pushed outside their own rail. A scroll container hides its
+    // overflow silently: no page-level horizontal scroll, no clipping anywhere
+    // this file already looks, every other assertion green. "About" sat at
+    // x=360-399 in a 375px viewport for a whole release, reachable only by a
+    // sideways swipe with nothing on screen to suggest one — because the gap
+    // had been tuned to the exact width of six links and a seventh was added.
+    //
+    // Compared against the rail rather than the viewport: the rail is what
+    // clips, and a link can be off the rail while still inside the window.
+    navClipped: (function () {
+      if (!nav) return [];
+      var rail = nav.querySelector('.nav-links');
+      if (!rail) return [];
+      var edge = rail.getBoundingClientRect().right;
+      var out = [];
+      var as = rail.querySelectorAll('a');
+      for (var ni = 0; ni < as.length; ni++) {
+        // 1px of tolerance for subpixel layout; a real clip is tens of px.
+        if (as[ni].getBoundingClientRect().right > edge + 1) {
+          out.push((as[ni].textContent || '').trim());
+        }
+      }
+      return out;
+    })(),
     footerLinks: document.querySelectorAll('footer a').length,
     h1: document.querySelectorAll('h1').length,
     bodyText: (document.body.innerText || '').trim().length,
@@ -326,6 +351,15 @@ def check(name: str, width: int, r: dict) -> list[str]:
                    f"({r.get('gutterAt') or 'unknown element'}) in a {width}px "
                    f"viewport — the .wrap gutter is gone")
 
+    # 3c. Navigation pushed off its own rail. Checked at every width, not just
+    # phones: a nav that outgrows its container is a layout fault at any size,
+    # and this one reached production because the pre-deploy gate had no
+    # opinion about it while verify_live.py did — the wrong order to find out.
+    if r.get("navClipped"):
+        bad.append(f"{name}: nav link(s) past the edge of the nav rail: "
+                   f"{r['navClipped']} — they are only reachable by a sideways "
+                   f"swipe, with nothing on screen to suggest one")
+
     # 4. Structure, so a page that renders blank cannot pass the colour test.
     if r["h1"] != 1:
         bad.append(f"{name}: {r['h1']} h1 elements")
@@ -367,6 +401,14 @@ INJECTIONS = [
     ("index.html", "homepage", "gutter",
      ".wrap{width:min(820px,calc(100% - 2rem))",
      ".wrap{width:min(820px,calc(100% - 0rem))"),
+    # The real regression, replayed: take the wrap off the nav rail and put the
+    # scroll behaviour back, which is exactly the state that shipped "About"
+    # off the right edge at 375px.
+    ("index.html", "homepage", "nav clipping",
+     ".nav-links{order:3;width:100%;gap:.55rem .8rem;font-size:.88rem;\n"
+     "    flex-wrap:wrap;padding-bottom:.15rem}",
+     ".nav-links{order:3;width:100%;gap:.55rem .8rem;font-size:.88rem;\n"
+     "    flex-wrap:nowrap;overflow-x:auto;padding-bottom:.15rem}"),
 ]
 
 

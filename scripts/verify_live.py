@@ -239,10 +239,28 @@ def main() -> None:
     # ten — and says which, because a gate that quietly samples reads as a gate
     # that checked everything.
     rendered = PAGES[:4]
+    # A cache-buster per run, because half this file already defeated caching
+    # and half did not. The HTML fetches above send `Cache-Control: no-cache`;
+    # these renders sent nothing, and WebKit keeps its own URL cache in front of
+    # a CDN that serves the previous version until it expires.
+    #
+    # That is not theoretical. This gate reported `About` clipped at 375px on
+    # four pages, correctly — reproduced against the local build. It then
+    # reported the identical failure after the fix was deployed, while the live
+    # CSS fetched in the same minute contained `flex-wrap:wrap` and a render of
+    # the same URL with a query string showed zero overflow. Right once, wrong
+    # once, same sentence: a gate that fails immediately after every deploy is
+    # one you learn to deploy past.
+    #
+    # A query string is safe here. Nothing in PROBE reads `location`, the site
+    # is static so the query is ignored by the server, and the canonical and
+    # trailing-slash assertions run over the fetched HTML above, not this render.
+    bust = f"cb={time.time_ns()}"
     for path in rendered:
         for width in WIDTHS:
+            url = f"{BASE}{path}{'&' if '?' in path else '?'}{bust}"
             proc = subprocess.run(
-                [str(renderer), BASE + path, "--width", str(width),
+                [str(renderer), url, "--width", str(width),
                  "--height", "900", "--settle", "1.5", "--probe", PROBE],
                 capture_output=True, text=True, timeout=90)
             if proc.returncode != 0:
