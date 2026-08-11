@@ -38,6 +38,7 @@ index.canonical,indexability,Crawlability & indexing,Canonical tags
 index.canonical_conflict,indexability,Crawlability & indexing,Conflicting canonical tags
 index.depth,indexability,Crawlability & indexing,Click depth and orphans
 index.duplicate_content,indexability,Crawlability & indexing,Duplicate pages
+index.meta_refresh,indexability,Crawlability & indexing,Client-side redirects
 index.noindex,indexability,Crawlability & indexing,Pages blocked from indexing
 index.redirects,indexability,Crawlability & indexing,Redirect problems
 index.robots_blocks_all,indexability,Crawlability & indexing,robots.txt blocks the whole site
