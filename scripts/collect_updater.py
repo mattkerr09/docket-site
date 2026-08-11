@@ -113,8 +113,34 @@ def main() -> None:
             print(f"  linux     : {linux.stat().st_size / 1_000_000:.1f} MB "
                   f"({linux.name})")
         else:
+            # Drop the previous release's keys rather than leaving them.
+            #
+            # The `if` above overwrites them; this branch used to write `sizes`
+            # back untouched, so the OLD version's filename survived into the
+            # NEW version's download.json. render.py builds the link as
+            # `{REPO}/releases/download/{RELEASE}/{LINUX_NAME}` — current tag,
+            # stale filename — so the page would have offered
+            # `v0.1.37/docket-0.1.36-linux-x86_64.tar.gz`: a 404, on the one
+            # link a Linux visitor came for.
+            #
+            # It is a live trap, not a hypothetical. build_docket.sh wipes
+            # dist/ on purpose (a Linux CLI built before a source correction
+            # carries the same version number as the Mac app built after it),
+            # so building Linux and then Mac in that order — the order the
+            # release mechanics list them — leaves exactly this state.
+            #
+            # Offering nothing is worse than offering a working tarball and
+            # better than offering a broken link, so the keys go and the page
+            # renders no Linux link at all. The word MISSING is the signal to
+            # rebuild it; verify_updater.py refuses the deploy either way.
+            dropped = [k for k in ("linux_name", "linux_bytes", "linux_mb")
+                       if sizes.pop(k, None) is not None]
             print(f"  linux     : MISSING — {linux.name} was not built, so the "
                   f"site cannot offer it")
+            if dropped:
+                print(f"              dropped {', '.join(dropped)} from "
+                      f"download.json; they described an older release and "
+                      f"would have rendered a link that 404s")
         size_path.write_text(json.dumps(sizes, indent=2) + "\n")
 
     digest = hashlib.sha256(TGZ.read_bytes()).hexdigest()[:16]

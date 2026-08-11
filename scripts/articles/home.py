@@ -132,8 +132,8 @@ def _mockup() -> str:
     <div>
       <div class="mock-verdict">Solid foundations with a handful of meaningful gaps worth closing.</div>
       <div class="mock-chips">
-        <span class="mock-chip" style="background:rgba(255,122,110,.16);color:#ff9c92">2 high</span>
-        <span class="mock-chip" style="background:rgba(251,191,36,.16);color:#fbbf24">5 medium</span>
+        <span class="mock-chip" style="background:rgba(var(--bad-rgb),.16);color:var(--bad-text)">2 high</span>
+        <span class="mock-chip" style="background:rgba(var(--warn-rgb),.16);color:var(--warn)">5 medium</span>
         <span class="mock-chip" style="background:rgba(255,255,255,.07);color:var(--text-dim)">9 low</span>
       </div>
     </div>
