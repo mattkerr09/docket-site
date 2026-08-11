@@ -1,0 +1,21 @@
+{
+  "bands": {
+    "defended": 32,
+    "partly exposed": 1
+  },
+  "defence_counts": {
+    "the visitor can act here \u2014 an answer cannot transact": 32,
+    "something to operate, which has to be visited": 31,
+    "physically bound to a place a model cannot go": 2,
+    "value behind a login, so it is not in a training set": 11,
+    "media that loses its value as text": 1
+  },
+  "measured": "2026-08-07",
+  "pages_assessed": 33,
+  "pages_crawled": 40,
+  "substitutable_pct": 0.0,
+  "summary": "Only 0% of your pages are fully substitutable. Most give a visitor something an answer cannot: a transaction, a tool, data of your own, or a place to go. That is a durable position.",
+  "caveat": "This is not a traffic forecast. Docket cannot see your analytics and nobody knows how far AI answers will erode any particular site. What it separates is the pages with a reason to be visited from the ones without, which is the decision underneath every mitigation.",
+  "site": "an independent food retailer (not named \u2014 did not ask to be audited)",
+  "note": "Per-page URLs and titles were removed on 2026-08-11. They identified a business that never requested an audit, and the article interpolates only the aggregate figures below."
+}
