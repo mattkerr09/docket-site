@@ -1235,6 +1235,11 @@ character limit that does not exist, and the fix by what caused them — paginat
 product variants, near-identical location pages.
 <a href="/how-to/fix-duplicate-title-tags/">How to fix duplicate title tags →</a></p>
 
+<h2>Title tags that fit</h2>
+<p>Search engines truncate by pixel width, not character count — which makes the usual "under
+sixty characters" advice wrong on any site that is not entirely English.
+<a href="/how-to/write-title-tags-that-fit/">How to write title tags that fit →</a></p>
+
 <h2>More coming</h2>
 <p>Further guides are being written, one per issue Docket reports. They will appear as each is written properly rather than as
 variations on a template.</p>
