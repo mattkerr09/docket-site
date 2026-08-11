@@ -23,15 +23,20 @@ them and losing the visit, because the answer now appears in the result — so t
 worth asking about a page is not how it ranks but whether an answer somewhere else delivers
 what it offers.</p>
 
-<p>Docket puts a number on that. Run against <strong>zingermansdeli.com</strong>, a
-delicatessen in Ann Arbor, it assessed {F.exposure_assessed('zingermansdeli')} pages and found
-<strong>{F.exposure_substitutable_pct('zingermansdeli')}% fully substitutable</strong>, because
-{F.exposure_defence('zingermansdeli', 'transact')} of them let the visitor do something and
-{F.exposure_defence('zingermansdeli', 'operate')} carry something to operate. Run against
-<strong>docketseo.app</strong> it assessed {F.exposure_assessed('scoutseo')} pages and found
-{F.exposure_substitutable_pct('scoutseo')}% too — but the worst page on this site scored 0.85
+<p>Docket puts a number on that. Run against an independent food retailer's website, it
+assessed {F.exposure_assessed('retailer')} pages and found
+<strong>{F.exposure_substitutable_pct('retailer')}% fully substitutable</strong>, because
+{F.exposure_defence('retailer', 'transact')} of them let the visitor do something and
+{F.exposure_defence('retailer', 'operate')} carry something to operate. Run against
+<strong>docketseo.app</strong> it assessed {F.exposure_assessed('docket')} pages and found
+{F.exposure_substitutable_pct('docket')}% too — but the worst page on this site scored 0.85
 out of 1 a few hours before this was written, and what changed was mostly the measurement
 rather than the page.</p>
+
+<p class="note">The retailer is not named, and nor is any other site measured here that did
+not ask to be. The numbers are real and were produced by the tool this page describes; the
+identity adds nothing to the argument and publishing an audit of a business that never
+requested one is not ours to do. Docket's own site is named because it is ours.</p>
 
 <h2>The two questions</h2>
 
@@ -58,12 +63,12 @@ summarised into having been used</td></tr>
 
 <h2>What the two sites show</h2>
 
-<p>The deli is the instructive one. {F.exposure_defence('zingermansdeli', 'transact')} of its
-{F.exposure_assessed('zingermansdeli')} assessed pages carry a transaction,
-{F.exposure_defence('zingermansdeli', 'login')} put something behind a login,
-{F.exposure_defence('zingermansdeli', 'physically')} are anchored to the shop itself. It has no AI
+<p>The retailer is the instructive one. {F.exposure_defence('retailer', 'transact')} of its
+{F.exposure_assessed('retailer')} assessed pages carry a transaction,
+{F.exposure_defence('retailer', 'login')} put something behind a login,
+{F.exposure_defence('retailer', 'physically')} are anchored to the shop itself. It has no AI
 strategy that we can see and does not need one, because almost every page asks the visitor to
-do a thing that has to happen on the page. A model can describe a Reuben. It cannot hand you
+do a thing that has to happen on the page. A model can describe a sandwich. It cannot hand you
 one.</p>
 
 <p>Our site scores worse, and that is the honest position rather than a modest one. Docket's
@@ -80,7 +85,7 @@ live sites produced three false positives in an afternoon, all of them the same 
 
 <p><strong>Our own site scored as a physical business, three times.</strong> The matcher
 looked for phrases like "opening hours" — and Docket's copy explains, at length, that local
-businesses need opening-hours markup. Meanwhile the actual delicatessen scored zero. The test
+businesses need opening-hours markup. Meanwhile the actual retailer scored zero. The test
 was backwards in both directions at once. It now wants schema.org place markup, or
 first-person prose corroborated by a phone number, and the distinction that fixed it is
 small and exact: a page about local SEO writes "opening hours", and a business with a counter
@@ -90,18 +95,18 @@ writes "our hours".</p>
 your own site" matched a pattern looking for "try it". That is a download button, not a
 calculator.</p>
 
-<p><strong>The deli scored "media" on 32 of its
-{F.exposure_assessed('zingermansdeli')} pages</strong>, and every single hit was the Google
+<p><strong>The retailer scored "media" on 32 of its
+{F.exposure_assessed('retailer')} pages</strong>, and every single hit was the Google
 Tag Manager noscript iframe. A defence that fires on every site running GTM defends nothing.
 It now counts a <code>&lt;video&gt;</code> or <code>&lt;audio&gt;</code> element, or an iframe
 on a known media host. That number is
-{F.exposure_defence('zingermansdeli', 'media')} today.</p>
+{F.exposure_defence('retailer', 'media')} today.</p>
 
 <p>A fourth turned up when the analysis was finally rendered into a PDF and looked at rather
 than read as code. Our privacy policy and terms of use were sitting in the "most exposed"
 list — accurate, and useless. A privacy policy's reason to exist is not that people read it.
 Legal and utility pages are now left out of the portfolio, which is why the figure above
-covers {F.exposure_assessed('scoutseo')} of our pages rather than all of them.</p>
+covers {F.exposure_assessed('docket')} of our pages rather than all of them.</p>
 
 <p>Then three more, all the same shape. This article scored as having a login and a
 calculator, because it contains a table explaining that logins and calculators are defences.
@@ -173,7 +178,7 @@ first two sentences, a named author.</li>
 <p>Docket reports this on every audit, as a portfolio rather than a grade. "These four pages
 are fully substitutable and here they are" is something you can act on. A letter is not. The
 figures on this page come from auditing both sites on
-{F.exposure_measured('scoutseo')} and are read from those runs rather than typed, because a
+{F.exposure_measured('docket')} and are read from those runs rather than typed, because a
 number in a sentence cannot tell you when it has stopped being true.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
