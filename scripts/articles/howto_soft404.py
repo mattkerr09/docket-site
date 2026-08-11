@@ -65,7 +65,8 @@ ordinary content. The page can stay exactly as it is; the response code has to c
 path. Give it an explicit not-found branch that sets the status.</p>
 
 <p><strong>Deleted content.</strong> If the URL earned links, <code>301</code> to the closest
-genuine replacement — not the homepage. If there is no replacement, <code>404</code> is the
+genuine replacement (the mechanics, host by host, are in
+<a href="/how-to/redirect-http-to-https/">how to redirect http:// to https://</a>) — not the homepage. If there is no replacement, <code>404</code> is the
 honest answer, and <code>410</code> is better still when the removal is permanent: it tells
 crawlers not to come back.</p>
 

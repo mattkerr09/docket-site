@@ -61,7 +61,8 @@ emergency plumbing services in Leeds and surrounding areas" does not.</li>
 <li><strong>Every page needs its own.</strong> Duplicate titles across a site are a signal
 that the pages are interchangeable, and search engines will pick one and drop the rest.
 Template-generated titles that differ only by a hidden ID are duplicates as far as a reader is
-concerned.</li>
+concerned — <a href="/how-to/fix-duplicate-title-tags/">how to fix duplicate title tags</a>
+covers what that costs and what it does not.</li>
 </ul>
 
 <h2>Keyword stuffing is a real check, not a legacy one</h2>
