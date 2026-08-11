@@ -546,6 +546,7 @@ NAV = f"""<nav><div class="wrap-wide nav-inner">
 <a href="/index/">The Index</a>
 <a href="/learn/">Learn</a>
 <a href="/vs/">Compare</a>
+<a href="/best/">Best</a>
 <a href="/how-to/">Fix it</a>
 <a href="/for/">For you</a>
 <a href="/about/">About</a>

@@ -48,6 +48,9 @@ ALLOWED = {
     "2.14": ("what the Linux launcher alone requires; quoted beside 2.30 to "
              "show which half of the bundle sets the floor"),
     "9309": "RFC 9309, the robots.txt standard",
+    "2000": ('Google\'s published URL Inspection API quota, quoted verbatim as '
+             '"2000 QPD" — their string, without the thousands separator, so it '
+             "is a different literal from the 2,000 above"),
     # -- the title-rewrite study, re-verified 2026-08-10 -------------------
     # Read from zyppy.com/seo/google-title-rewrites/ on 2026-08-10: "80,959
     # title tags across 2370 sites in early 2022 from across the globe", and
