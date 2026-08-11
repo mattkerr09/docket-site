@@ -120,22 +120,28 @@ nav{position:sticky;top:0;z-index:20;background:rgba(11,12,15,.88);
      scrolled. Measured at 375px: nav box ended at 61, links ended at 80. */
   .nav-inner{flex-wrap:wrap;row-gap:.55rem;height:auto;min-height:60px;
     padding-bottom:.5rem}
-  /* The six links total 273px of text at this size. At a 1.15rem gap they
-     needed 365px in a 343px rail, so "About" was clipped to "Ab" at 375px —
-     it scrolled, but nothing said so, and a cut-off word reads as broken
-     rather than swipeable. Measured: they fit at any gap up to 14px. */
-  .nav-links{order:3;width:100%;gap:.8rem;font-size:.88rem;
-    overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:.15rem;
-    scrollbar-width:none}
-  .nav-links::-webkit-scrollbar{display:none}
+  /* These wrap. They used to be a scroll rail with the gap tuned to the exact
+     width of the links, and that is why this comment is longer than the rule.
+
+     The first version noted: "The six links total 273px of text at this size.
+     At a 1.15rem gap they needed 365px in a 343px rail, so About was clipped
+     to Ab at 375px. Measured: they fit at any gap up to 14px" — and set the gap
+     to 12.8px. Correct, measured, and true of *six* links.
+
+     A seventh (Best) was added later. Seven total 307px, which at that same gap
+     needs 383px in the same 343px rail, so About went back off the edge — sitting
+     at x=360-399 in a 375px viewport, reachable only by a horizontal swipe with
+     nothing on screen suggesting one. The fade that would have hinted at it was
+     behind `max-width:359px`, so at 375px there was no affordance at all. The
+     live gate caught it; the pre-deploy gate did not, which is fixed too.
+
+     A constant tuned to today's link count is a fix with an expiry date nobody
+     writes down. Wrapping has no such number in it: the nav grows a second row
+     instead of hiding its last item, at any count and any width. It costs ~26px
+     of vertical space on phones when it wraps, and that is the whole trade. */
+  .nav-links{order:3;width:100%;gap:.55rem .8rem;font-size:.88rem;
+    flex-wrap:wrap;padding-bottom:.15rem}
   .nav-links a{white-space:nowrap}
-  /* Below ~360px they genuinely cannot fit, so the rail still scrolls. Fade
-     the right edge there so the cut is legible as "there is more" instead of
-     as a rendering fault. */
-  @media(max-width:359px){
-    .nav-links{-webkit-mask-image:linear-gradient(to right,#000 88%,transparent);
-      mask-image:linear-gradient(to right,#000 88%,transparent)}
-  }
   /* Stacked CTAs were 200px and 185px against a 343px column — a ragged right
      edge on the most-looked-at element of the page. Full width once they wrap. */
   .hero-cta{gap:.6rem}
