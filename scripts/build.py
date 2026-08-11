@@ -25,6 +25,7 @@ import brand as brand_article  # noqa: E402
 import logs as logs_article  # noqa: E402
 import bytecap  # noqa: E402
 import canonicals  # noqa: E402
+import best_free  # noqa: E402
 import comparisons  # noqa: E402
 import directives  # noqa: E402
 import entity  # noqa: E402
@@ -390,6 +391,7 @@ and Semrush Site Audit, each naming what the other does better.</li>
 def main() -> int:
     pages: list[Path] = [home.build(), index_page.build(), checks_page()]
     pages += comparisons.build_all()
+    pages += [best_free.best_hub(), best_free.free_seo_audit_tools()]
     pages += [howto_https.http_to_https(),
               howto_hreflang.hreflang_return_tags(),
               howto_canonicals.conflicting_canonicals(),
