@@ -50,7 +50,25 @@
   --bg:#07080d;--surface:#0e1017;--surface-2:#141822;--surface-3:#1b2030;
   --text:#f4f6fa;--text-mid:#a9b1c0;--text-dim:#848da0;
   --brand:#818CF8;--brand-light:#A5B4FC;--brand-soft:rgba(129,140,248,.14);
-  --ok:#4ade80;--warn:#fbbf24;--bad:#ff7a6e;
+  /* Severity, defined ONCE as a channel triple and derived from there.
+     Every tinted background in this stylesheet is the severity colour at low
+     alpha, and each one used to be a hand-copied `rgba(74,222,128,.18)` sitting
+     next to `var(--ok)` on the same line — so a token change moved the fill and
+     left the glow behind. That already happened once with amber: eight glows
+     survived a token swap because no gate reads colour.
+     `rgba(var(--ok-rgb),.18)` cannot drift; there is nothing to forget. */
+  --ok-rgb:74,222,128;--warn-rgb:251,191,36;--bad-rgb:255,122,110;
+  --ok:rgb(var(--ok-rgb));--warn:rgb(var(--warn-rgb));--bad:rgb(var(--bad-rgb));
+  /* A hand-tuned lighter tint of --bad, for small text on a --bad tinted pill.
+     Measured on #0e1017 under a 16% --bad wash: this reads 7.47:1, while --bad
+     itself reads 5.92:1. Both pass AA for the 10.5px/680 chips that use it;
+     the lighter one is kept because it was chosen deliberately.
+     **This one does NOT follow --bad-rgb.** Setting --bad-rgb to 0,255,0 and
+     rendering leaves this salmon — checked, because the comment here first
+     claimed it moved, and it does not. It is a separate colour that has to be
+     re-tuned and re-measured by hand. It sits on this line so that whoever
+     changes --bad-rgb reads that sentence in the same breath. */
+  --bad-text:#ff9c92;
   --border:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.16);
   --radius:16px;--radius-sm:10px;
   --display:'Switzer',-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
@@ -252,7 +270,7 @@ body.landing article{padding:0}
   border:1px solid rgba(129,140,248,.26);border-radius:999px;padding:.5rem 1.05rem;
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
-  background:var(--ok);box-shadow:0 0 0 3px rgba(74,222,128,.18)}
+  background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
 .hero-h1{font-family:var(--display);font-weight:700;
   /* 84px at the top end, matching the scale premium product sites settle on.
      Tight tracking is what stops large type reading as merely big. */
@@ -380,7 +398,7 @@ body.landing article{padding:0}
 
 <p class="lede">Docket is built by Matt Kerr, one person, in the UK. It is a Mac app that
 audits a site's SEO, copy and branding against 94 checks across 13 lanes,
-runs the crawl on your own machine, and costs $149 once — v0.1.36 is free while it
+runs the crawl on your own machine, and costs $149 once — v0.1.37 is free while it
 is in beta.</p>
 
 <p>That is the whole company. There is no team page because there is no team, no office
@@ -435,7 +453,7 @@ spent years and a great deal of money building those, and Docket has no answer t
 you sort them; Docket is built to read a site closely, not to survey one at that scale.</li>
 <li><strong>The app's source is not public.</strong> The website and its datasets are; the
 application is not. If your policy requires reading the code, Docket will not pass it.</li>
-<li><strong>It is version v0.1.36.</strong> There are things it should connect to and does
+<li><strong>It is version v0.1.37.</strong> There are things it should connect to and does
 not yet — Search Console for your own impressions is the biggest.</li>
 </ul>
 
@@ -445,8 +463,8 @@ not yet — Search Console for your own impressions is the biggest.</li>
 certificate carries a legal name and Apple has checked it. You do not have to take that on
 faith. After downloading the 22.2 MB disk image:</p>
 
-<pre><code>codesign -dv --verbose=4 "/Volumes/Docket 0.1.36/Docket.app"
-spctl -a -t open --context context:primary-signature -v Docket-0.1.36-arm64.dmg</code></pre>
+<pre><code>codesign -dv --verbose=4 "/Volumes/Docket 0.1.37/Docket.app"
+spctl -a -t open --context context:primary-signature -v Docket-0.1.37-arm64.dmg</code></pre>
 
 <p>The first prints the authority chain, ending at Apple's root. The second should say
 <code>accepted</code> and <code>source=Notarized Developer ID</code>. Any Mac app worth

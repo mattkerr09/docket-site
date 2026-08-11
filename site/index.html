@@ -50,7 +50,25 @@
   --bg:#07080d;--surface:#0e1017;--surface-2:#141822;--surface-3:#1b2030;
   --text:#f4f6fa;--text-mid:#a9b1c0;--text-dim:#848da0;
   --brand:#818CF8;--brand-light:#A5B4FC;--brand-soft:rgba(129,140,248,.14);
-  --ok:#4ade80;--warn:#fbbf24;--bad:#ff7a6e;
+  /* Severity, defined ONCE as a channel triple and derived from there.
+     Every tinted background in this stylesheet is the severity colour at low
+     alpha, and each one used to be a hand-copied `rgba(74,222,128,.18)` sitting
+     next to `var(--ok)` on the same line — so a token change moved the fill and
+     left the glow behind. That already happened once with amber: eight glows
+     survived a token swap because no gate reads colour.
+     `rgba(var(--ok-rgb),.18)` cannot drift; there is nothing to forget. */
+  --ok-rgb:74,222,128;--warn-rgb:251,191,36;--bad-rgb:255,122,110;
+  --ok:rgb(var(--ok-rgb));--warn:rgb(var(--warn-rgb));--bad:rgb(var(--bad-rgb));
+  /* A hand-tuned lighter tint of --bad, for small text on a --bad tinted pill.
+     Measured on #0e1017 under a 16% --bad wash: this reads 7.47:1, while --bad
+     itself reads 5.92:1. Both pass AA for the 10.5px/680 chips that use it;
+     the lighter one is kept because it was chosen deliberately.
+     **This one does NOT follow --bad-rgb.** Setting --bad-rgb to 0,255,0 and
+     rendering leaves this salmon — checked, because the comment here first
+     claimed it moved, and it does not. It is a separate colour that has to be
+     re-tuned and re-measured by hand. It sits on this line so that whoever
+     changes --bad-rgb reads that sentence in the same breath. */
+  --bad-text:#ff9c92;
   --border:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.16);
   --radius:16px;--radius-sm:10px;
   --display:'Switzer',-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
@@ -252,7 +270,7 @@ body.landing article{padding:0}
   border:1px solid rgba(129,140,248,.26);border-radius:999px;padding:.5rem 1.05rem;
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
-  background:var(--ok);box-shadow:0 0 0 3px rgba(74,222,128,.18)}
+  background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
 .hero-h1{font-family:var(--display);font-weight:700;
   /* 84px at the top end, matching the scale premium product sites settle on.
      Tight tracking is what stops large type reading as merely big. */
@@ -388,7 +406,7 @@ body.landing article{padding:0}
   conversion, brand, AI search visibility and campaign tracking — then one ranked plan with the
   markup to paste. Not four tools. One download.</p>
   <div class="hero-cta">
-    <a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.36/Docket-0.1.36-arm64.dmg">Download for Mac</a>
+    <a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.37/Docket-0.1.37-arm64.dmg">Download for Mac</a>
     <a class="btn-ghost btn-lg" href="/index/">See the Index →</a>
   </div>
   <p class="hero-note">macOS 12+ · Apple Silicon · 22.2 MB · notarised by Apple · no account</p>
@@ -410,8 +428,8 @@ body.landing article{padding:0}
     <div>
       <div class="mock-verdict">Solid foundations with a handful of meaningful gaps worth closing.</div>
       <div class="mock-chips">
-        <span class="mock-chip" style="background:rgba(255,122,110,.16);color:#ff9c92">2 high</span>
-        <span class="mock-chip" style="background:rgba(251,191,36,.16);color:#fbbf24">5 medium</span>
+        <span class="mock-chip" style="background:rgba(var(--bad-rgb),.16);color:var(--bad-text)">2 high</span>
+        <span class="mock-chip" style="background:rgba(var(--warn-rgb),.16);color:var(--warn)">5 medium</span>
         <span class="mock-chip" style="background:rgba(255,255,255,.07);color:var(--text-dim)">9 low</span>
       </div>
     </div>
@@ -545,7 +563,7 @@ The script and the site list ship with the dataset — re-run it and check.</p>
 <!-- ================= COMPARISON ================= -->
 <section class="sec"><div class="wrap-wide">
 <div class="sec-head"><h2>$149. Once.</h2>
-<p>Every tool below is a subscription. Docket is a one-time purchase, and the audit runs on your Mac, so there are no crawl credits to ration. v0.1.36 is free while it is in beta; $149 applies from v1.0.</p></div>
+<p>Every tool below is a subscription. Docket is a one-time purchase, and the audit runs on your Mac, so there are no crawl credits to ration. v0.1.37 is free while it is in beta; $149 applies from v1.0.</p></div>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Tool</th><th>Price</th><th>Runs</th><th>Output</th></tr></thead>
 <tbody>
@@ -619,7 +637,7 @@ on your site and how it is configured.</p></div>
 <section class="cta-band"><div class="wrap">
 <h2>Audit your site in about a minute</h2>
 <p>Download it, type a domain, press Run. There is no onboarding because none is needed.</p>
-<a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.36/Docket-0.1.36-arm64.dmg">Download Docket for Mac</a>
+<a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.37/Docket-0.1.37-arm64.dmg">Download Docket for Mac</a>
 </div></section>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is Docket free?</h3><p>Docket is a one-time download for macOS. There is no subscription, no crawl credits and no per-seat pricing — you can audit as many sites as you like.</p></div><div class="faq-item"><h3>Does Docket send my site data anywhere?</h3><p>Docket collects nothing about you: no account, no telemetry, no licence check. The crawl runs on your Mac. Four checks reach outside it by default — Core Web Vitals from Google PageSpeed, a deliverability test on the addresses your site publishes, what your server tells AI crawlers, and a knowledge refresh from this site. Offline mode turns all four off, and every report names the ones that ran.</p></div><div class="faq-item"><h3>How is Docket different from Screaming Frog?</h3><p>Screaming Frog gives you raw crawl data and leaves the interpretation to you. Docket ranks every finding by impact against effort and gives you an ordered plan with the exact markup to paste. Screaming Frog renders JavaScript and supports custom XPath extraction; Docket does not.</p></div><div class="faq-item"><h3>Can Docket tell me if ChatGPT can see my website?</h3><p>Yes. Docket checks each AI crawler separately — OAI-SearchBot for ChatGPT Search, PerplexityBot, Claude-SearchBot and Google-Extended — and distinguishes them from training crawlers like GPTBot, which many sites block deliberately.</p></div><div class="faq-item"><h3>Does Docket track keyword rankings?</h3><p>No. Ranking and backlink data require a crawled index of the entire web, which is bought rather than built. Docket audits what is on your site and how it is configured.</p></div></div></section>
 </article>
