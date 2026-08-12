@@ -40,9 +40,11 @@ inputs:
     required: false
     default: '0'
   version:
-    description: 'Docket release tag to install.'
+    description: >-
+      Docket release tag to install, e.g. v0.1.45. The DMG filename is derived
+      from it, so any published tag works.
     required: false
-    default: 'v0.1.0'
+    default: 'v0.1.45'
 
 outputs:
   exit-code:
@@ -68,8 +70,20 @@ runs:
       shell: bash
       run: |
         set -euo pipefail
+        # The DMG is named for the version, so the filename has to be derived
+        # from the tag rather than written next to it.
+        #
+        # It was hardcoded to Docket-0.1.0-arm64.dmg while `version` was passed
+        # into the URL path, which made the input decorative: the default
+        # worked, and every other value 404'd on an asset that does not exist
+        # in that release. Anyone who set `version:` as the description told
+        # them to got a failed step. Verified 2026-08-12 —
+        # v0.1.45/Docket-0.1.0-arm64.dmg returns 404 and
+        # v0.1.45/Docket-0.1.45-arm64.dmg returns 200.
+        TAG="${{ inputs.version }}"
+        DMG="Docket-${TAG#v}-arm64.dmg"
         curl -fsSL -o "$RUNNER_TEMP/docket.dmg" \
-          "https://github.com/mattkerr09/docket-site/releases/download/${{ inputs.version }}/Docket-0.1.0-arm64.dmg"
+          "https://github.com/mattkerr09/docket-site/releases/download/${TAG}/${DMG}"
         hdiutil attach -nobrowse -quiet "$RUNNER_TEMP/docket.dmg" -mountpoint "$RUNNER_TEMP/docket-vol"
         cp -R "$RUNNER_TEMP/docket-vol/Docket.app" "$RUNNER_TEMP/Docket.app"
         hdiutil detach "$RUNNER_TEMP/docket-vol" -quiet
