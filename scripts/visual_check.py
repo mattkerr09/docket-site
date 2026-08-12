@@ -159,6 +159,67 @@ PROBE = """
     }
   }
 
+  // ---- rendered contrast -------------------------------------------------
+  // Every colour pair on this page, measured where it actually lands rather
+  // than where the token says it should. Two failures this session came from
+  // exactly the gap between those: eight amber glows survived a token swap
+  // because no gate read colour, and when the site moved from a dark ground
+  // to paper the nav kept a hardcoded `rgba(11,12,15,.88)` — ink text on
+  // near-black, 1.1:1, invisible, and every existing gate passed.
+  //
+  // Walking up for the background matters: most text sits on a transparent
+  // parent, so `getComputedStyle(el).backgroundColor` is `rgba(0,0,0,0)` and
+  // comparing against it scores every element as perfect black-on-black.
+  function _lum(c) {
+    const m = (c || '').match(/[\d.]+/g);
+    if (!m) return null;
+    const f = m.slice(0, 3).map(v => {
+      v = Number(v) / 255;
+      return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * f[0] + 0.7152 * f[1] + 0.0722 * f[2];
+  }
+  function _bgOf(el) {
+    for (let n = el; n && n !== document.documentElement; n = n.parentElement) {
+      const b = getComputedStyle(n).backgroundColor;
+      const a = (b || '').match(/[\d.]+/g);
+      // Anything below 85% alpha is a wash over what is behind it; keep
+      // climbing rather than treating the wash as the ground.
+      if (a && (a.length < 4 || Number(a[3]) > 0.85)) return b;
+    }
+    return getComputedStyle(document.body).backgroundColor;
+  }
+  const contrast = [];
+  let contrastExamined = 0;
+  for (const el of document.querySelectorAll(
+      'p,span,li,a,h1,h2,h3,h4,h5,td,th,small,b,em,strong,div,label,button')) {
+    // Only the element's OWN text. A wrapper inherits its children's text and
+    // would be scored against a colour it never paints.
+    const own = [...el.childNodes].filter(n => n.nodeType === 3)
+      .map(n => n.textContent).join('').trim();
+    if (!own) continue;
+    const r = el.getBoundingClientRect();
+    if (r.width < 4 || r.height < 4) continue;
+    const cs = getComputedStyle(el);
+    if (cs.visibility === 'hidden' || Number(cs.opacity) < 0.5) continue;
+    contrastExamined++;
+    const l1 = _lum(cs.color), l2 = _lum(_bgOf(el));
+    if (l1 === null || l2 === null) continue;
+    const ratio = (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+    const px = parseFloat(cs.fontSize);
+    const large = px >= 24 || (px >= 18.66 && parseInt(cs.fontWeight) >= 700);
+    const need = large ? 3 : 4.5;
+    if (ratio < need) {
+      contrast.push({
+        text: own.slice(0, 40), fg: cs.color, bg: _bgOf(el),
+        ratio: Math.round(ratio * 100) / 100, need: need,
+        px: Math.round(px * 10) / 10,
+        sel: el.tagName.toLowerCase() +
+             (el.className ? '.' + String(el.className).split(' ')[0] : ''),
+      });
+    }
+  }
+
   return {
     width: window.innerWidth,
     widestProsePx: widestProse,
@@ -171,6 +232,8 @@ PROBE = """
     brand: varColor('--brand-light'),
     linkColors: colors,
     linkCount: links.length,
+    contrast: contrast,
+    contrastExamined: contrastExamined,
     navLinks: nav ? nav.querySelectorAll('a').length : 0,
     navHeight: nav ? Math.round(nav.getBoundingClientRect().height) : 0,
 
@@ -373,7 +436,21 @@ def check(name: str, width: int, r: dict) -> list[str]:
     if r["footerLinks"] < 3:
         bad.append(f"{name}: footer has {r['footerLinks']} links")
 
-    # 5. The second stray brace. Only the homepage has a hero.
+    # 5. Rendered contrast, measured where the colour lands.
+    #
+    # A zero here can mean clean or blind, so the count is checked too: if the
+    # probe examined almost nothing — a selector change, a page that failed to
+    # render — an empty failure list is not evidence and must not read as one.
+    if r.get("contrastExamined", 0) < 25:
+        bad.append(f"{name}: contrast probe examined "
+                   f"{r.get('contrastExamined', 0)} elements — too few to mean "
+                   f"anything, so its silence is not a pass")
+    for c in r.get("contrast", [])[:6]:
+        bad.append(f"{name}: {c['ratio']}:1 needs {c['need']}:1 — "
+                   f"{c['sel']} {c['fg']} on {c['bg']} at {c['px']}px "
+                   f"({c['text']!r})")
+
+    # 6. The second stray brace. Only the homepage has a hero.
     if r["heroGlow"] is not None:
         g = r["heroGlow"]
         if g["content"] == "none":

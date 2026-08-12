@@ -300,7 +300,7 @@ def body() -> str:
     <p>Against a rival with years and links you cannot match, Docket finds where none of that
     helps them — crawlers they have blocked, rich results they cannot win, searches neither of
     you answers. It reads their domain authority from <a href="https://commoncrawl.org/">Common Crawl</a> so the size of the gap is a
-    number, not a guess.</p></div>
+    number, not a guess. <a href="/how-to/outrank-a-bigger-competitor/">See what it finds</a>.</p></div>
   <div class="card"><div class="card-ico">{ICONS['lock']}</div>
     <h3>Nothing is uploaded</h3>
     <p>No account, no telemetry, no licence server. The crawl only ever touches the site you
@@ -424,8 +424,8 @@ FAQ = [
 def build() -> Path:
     return render(
         cat="", slug="",
-        title="Docket — SEO, copy, conversion and brand audits for Mac",
-        desc=(f"Docket audits any website on your Mac: {N_CHECKS} checks across SEO, copy, brand, "
+        title="Docket SEO — SEO, copy, conversion and brand audits for Mac",
+        desc=(f"Docket SEO audits any website on your Mac: {N_CHECKS} checks across SEO, copy, brand, "
               "local and AI search visibility. Ranked fix plan, client-ready PDF, nothing "
               "uploaded."),
         h1="SEO audits that tell you what to fix, in order",
