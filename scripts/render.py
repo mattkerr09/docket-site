@@ -183,6 +183,57 @@ BETA_NOTE = (f"{RELEASE} is free while it is in beta; {PRICE_STR} applies "
              f"from v1.0." if BETA_FREE else "")
 
 # --------------------------------------------------------------------------
+# Who the money is paid to.
+#
+# DRAFT — none of the identity, tax or governing-law facts below have been
+# reviewed by a lawyer. They are written from what the code and the company
+# registration say, which is the right starting point and not a substitute for
+# the review.
+#
+# The about page says "one person, in the UK". That is true about who writes
+# the code and it is not the seller. A card processor's KYC, a merchant of
+# record's customer-facing disclosure and a buyer asking "who am I paying" all
+# want the entity. Declared here for the same reason PRICE is: three pages will
+# state it and they must not drift apart.
+# --------------------------------------------------------------------------
+SELLER = "Kerr & Company LLC"
+SELLER_CITY = "Grand Rapids, Michigan"
+SELLER_COUNTRY = "United States"
+#: The registered street address. EMPTY ON PURPOSE.
+#:
+#: Same shape as LINUX above — a page prints this line only when it is set, so
+#: it asks rather than promises. A processor's onboarding review wants the full
+#: postal address, and typing a plausible-looking street here to make the page
+#: look finished would be the same defect as hello@docketseo.app: a detail that
+#: reads as verified and is not.
+SELLER_STREET = ""
+#: The company number, once there is one to publish. Empty for the same reason.
+SELLER_REG_NO = ""
+#: Which law governs a dispute. Michigan, where the seller is.
+GOVERNING_LAW = "the State of Michigan, United States"
+#: Where a billing question goes. Empty until an address exists that can
+#: receive one.
+#:
+#: docketseo.app publishes no MX record, so every address at it bounces —
+#: verify_contact.py fails the build over exactly that, and it is right to. A
+#: refund question is also the one message that must not go into a public issue
+#: tracker, because it carries an order reference and a name. Until a mailbox
+#: exists, the refund page routes people to the receipt the payment processor
+#: sends them and says plainly that this is why.
+BILLING_EMAIL = ""
+#: The company that will take the payment and appear on the card statement.
+#: Not chosen. The pages say "not chosen" rather than naming a likely candidate,
+#: because a buyer who reads a name here and sees a different one on their
+#: statement has been told something false by us.
+PROCESSOR = ""
+
+
+def seller_address() -> str:
+    """The seller's address, printing only the parts that are filled in."""
+    return ", ".join(p for p in (SELLER_STREET, SELLER_CITY, SELLER_COUNTRY) if p)
+
+
+# --------------------------------------------------------------------------
 # Design system. Dark, high-contrast, indigo accent carried from the app icon.
 # Indigo by measurement: the old amber sat 4 degrees of hue from the
 # HIGH-severity colour, so brand chrome was indistinguishable from alarm.
@@ -213,32 +264,45 @@ STYLE = """<style>
   font-weight:600;font-style:normal;font-display:swap}
 
 :root{
-  /* Deeper and slightly cooler than before. A near-black with a trace of blue
-     reads as considered where pure #000 reads as unstyled. */
-  --bg:#07080d;--surface:#0e1017;--surface-2:#141822;--surface-3:#1b2030;
-  --text:#f4f6fa;--text-mid:#a9b1c0;--text-dim:#848da0;
-  --brand:#818CF8;--brand-light:#A5B4FC;--brand-soft:rgba(129,140,248,.14);
+  /* Paper, not a dashboard.
+     Every SEO tool ships a dark neon dashboard, and Docket SEO is not a
+     dashboard — it is a report about a website, read once and worked through.
+     So: paper ground, hard 1px rules, no gradients, no glows, monospace for
+     anything measured. It looks like an instrument, which is what it is, and
+     it does not look like the eight other tools a buyer opened this week.
+     The warmth in --bg is deliberate; pure #fff reads as an unstyled document. */
+  --bg:#FBFAF7;--surface:#FFFFFF;--surface-2:#F2F1EC;--surface-3:#E6E4DC;
+  --text:#16171A;--text-mid:#4A4D55;--text-dim:#5F636B;
+  /* Indigo, in its light-ground values. #4338CA is the press colour in the
+     desktop app and the only one dark enough to be link text on paper:
+     #818CF8, the dark-mode fill, reads 1.9:1 here and is unusable. */
+  --brand:#4338CA;--brand-light:#312E81;--brand-soft:rgba(67,56,202,.09);
+  --on-accent:#FFFFFF;
   /* Severity, defined ONCE as a channel triple and derived from there.
      Every tinted background in this stylesheet is the severity colour at low
      alpha, and each one used to be a hand-copied `rgba(74,222,128,.18)` sitting
      next to `var(--ok)` on the same line — so a token change moved the fill and
      left the glow behind. That already happened once with amber: eight glows
      survived a token swap because no gate reads colour.
-     `rgba(var(--ok-rgb),.18)` cannot drift; there is nothing to forget. */
-  --ok-rgb:74,222,128;--warn-rgb:251,191,36;--bad-rgb:255,122,110;
+     `rgba(var(--ok-rgb),.18)` cannot drift; there is nothing to forget.
+
+     These are the PAPER values, darkened from the dark-mode set until each one
+     clears 4.5:1 as text. #FBBF24 amber is 1.7:1 on this ground — it is a fill
+     colour on black and nothing else. Amber remains the warning semantic; that
+     is exactly why the brand is not amber, and why a "safety orange" brand
+     accent was rejected: it would make the brand colour and "this is a warning"
+     the same colour. Measured on --bg / --surface-2 / --surface-3:
+     ok 6.24/5.76/-, warn 5.81/5.36/4.76, bad 6.30/5.81/5.16. */
+  --ok-rgb:19,108,52;--warn-rgb:122,95,0;--bad-rgb:180,35,24;
   --ok:rgb(var(--ok-rgb));--warn:rgb(var(--warn-rgb));--bad:rgb(var(--bad-rgb));
-  /* A hand-tuned lighter tint of --bad, for small text on a --bad tinted pill.
-     Measured on #0e1017 under a 16% --bad wash: this reads 7.47:1, while --bad
-     itself reads 5.92:1. Both pass AA for the 10.5px/680 chips that use it;
-     the lighter one is kept because it was chosen deliberately.
-     **This one does NOT follow --bad-rgb.** Setting --bad-rgb to 0,255,0 and
-     rendering leaves this salmon — checked, because the comment here first
-     claimed it moved, and it does not. It is a separate colour that has to be
-     re-tuned and re-measured by hand. It sits on this line so that whoever
-     changes --bad-rgb reads that sentence in the same breath. */
-  --bad-text:#ff9c92;
-  --border:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.16);
-  --radius:16px;--radius-sm:10px;
+  /* On paper --bad is already 6.30:1, so the separate lighter tint the dark
+     theme needed is gone: --bad-text is --bad. The dark theme's #ff9c92 existed
+     because salmon-on-near-black needed hand-tuning; nothing here does. */
+  --bad-text:var(--bad);
+  --border:rgba(22,23,26,.14);--border-strong:rgba(22,23,26,.30);
+  /* Hard corners. A 16px radius is the house style of every SaaS dashboard;
+     4px reads as a printed rule, and 0 on the data surfaces reads as a table. */
+  --radius:5px;--radius-sm:3px;
   --display:'Switzer',-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
   --sans:'Switzer',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,sans-serif;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
@@ -269,15 +333,32 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17
    on every article rendered in default browser blue on a near-black page for
    as long as that brace survived, and no gate on this site looks at colour. */
 a{color:var(--brand-light);text-decoration:none;transition:color .16s}
+/* --- instrument, not dashboard -------------------------------------------
+   Monospace carries every label, eyebrow and measured value. Prose stays in
+   the sans, because a whole page of mono is a pose rather than a choice. The
+   hard rules replace the soft panel fills the dark theme leaned on: on paper a
+   1px line separates better than a 4% wash, and it survives being printed,
+   which a report about a website eventually is. */
+.eyebrow,.split-phase,.mock-rank,.rank-row .n,.split-list .n{font-family:var(--mono)}
+.eyebrow{font-weight:600}
+table{border-collapse:collapse}
+th,td{border-bottom:1px solid var(--border)}
+th{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-mid);font-weight:600}
+code,kbd,samp{background:var(--surface-2);border:1px solid var(--border)}
+::selection{background:var(--brand);color:var(--on-accent)}
 @media(hover:hover){a:hover{color:var(--text);text-decoration:underline}}
 .wrap{width:min(820px,calc(100% - 2rem));margin:0 auto}
 .wrap-wide{width:min(1080px,calc(100% - 2rem));margin:0 auto}
 
-nav{position:sticky;top:0;z-index:20;background:rgba(11,12,15,.88);
+nav{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.90);
   backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem}
 .nav-brand{display:flex;align-items:center;gap:.55rem;font-weight:750;color:var(--text);
   font-size:1.1rem;letter-spacing:-.02em}
+.nav-brand i{font-style:normal;font-family:var(--mono);font-weight:600;font-size:.74em;
+  letter-spacing:.04em;color:var(--brand);margin-left:.28em;
+  border:1px solid var(--brand);border-radius:2px;padding:.02em .3em}
 .nav-brand:hover{text-decoration:none;color:var(--brand-light)}
 .nav-links{display:flex;gap:1.35rem;font-size:.94rem}
 .nav-links a{color:var(--text-mid)}
@@ -315,11 +396,11 @@ nav{position:sticky;top:0;z-index:20;background:rgba(11,12,15,.88);
   .hero-cta{gap:.6rem}
   .hero-cta>*{width:100%;text-align:center}
 }
-.btn{display:inline-block;background:linear-gradient(180deg,var(--brand-light),var(--brand));
-  color:#17181C;font-weight:600;box-shadow:0 1px 0 rgba(255,255,255,.22) inset,
-  0 12px 30px -12px rgba(129,140,248,.75);
+.btn{display:inline-block;background:var(--brand);
+  color:var(--on-accent);font-weight:600;box-shadow:none;
+  none;
   padding:.62rem 1.2rem;border-radius:10px;font-size:.95rem;border:0;cursor:pointer}
-.btn:hover{background:var(--brand-light);color:#17181C;text-decoration:none}
+.btn:hover{background:var(--brand-light);color:var(--on-accent);text-decoration:none}
 .btn-ghost{display:inline-block;border:1px solid var(--border-strong);color:var(--text-mid);
   padding:.6rem 1.15rem;border-radius:10px;font-size:.95rem;font-weight:600}
 .btn-ghost:hover{background:var(--surface-2);color:var(--text);text-decoration:none}
@@ -389,18 +470,30 @@ body.landing article{padding:0}
 .hero-sec{padding:3.2rem 0 4.5rem;position:relative;overflow:hidden}
 /* Ambient light. A flat dark page reads as unlit; two soft pools give the
    canvas depth without anything on it looking decorated. */
-.hero-sec::before{content:"";position:absolute;inset:-40% -10% auto -10%;height:120%;
-  background:radial-gradient(58% 46% at 22% 30%,rgba(129,140,248,.13),transparent 68%),
-             radial-gradient(46% 40% at 82% 18%,rgba(88,132,255,.10),transparent 70%);
+/* The substrate the hero sits on. This used to be two indigo radial glows —
+   the exact device every dark SaaS homepage uses, and the reason this site was
+   indistinguishable from eight others a buyer had already opened. A ruled grid
+   says instrument instead: graph paper under a measurement.
+   Kept faint on purpose. It reads at the edges of the type and disappears
+   behind it; a grid you notice is a grid competing with the headline.
+   The pseudo-element itself is load-bearing beyond decoration — visual_check
+   asserts it generates, because a stray brace once ate this rule silently. */
+.hero-sec::before{content:"";position:absolute;inset:0 -10% auto -10%;height:100%;
+  background:
+    repeating-linear-gradient(90deg,rgba(22,23,26,.055) 0 1px,transparent 1px 72px),
+    repeating-linear-gradient(0deg,rgba(22,23,26,.055) 0 1px,transparent 1px 72px);
+  background-position:center top;
+  -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);
+  mask-image:linear-gradient(180deg,#000 55%,transparent);
   pointer-events:none;z-index:0}
 .hero-grid{position:relative;z-index:1}
 
 /* The product sits on light rather than beside it. */
 .mock{position:relative;transform:perspective(1600px) rotateY(-3.5deg) rotateX(1.5deg);
   transform-origin:left center;
-  box-shadow:0 2px 0 rgba(255,255,255,.06) inset,
-             0 40px 90px -30px rgba(0,0,0,.9),
-             0 0 120px -40px rgba(129,140,248,.30);
+  box-shadow:none;
+             0 1px 0 var(--border-strong),
+             0 0 0 1px var(--border);
   transition:transform .6s cubic-bezier(.16,1,.3,1)}
 @media(hover:hover){.mock:hover{transform:perspective(1600px) rotateY(-1.5deg) rotateX(.5deg)}}
 @media(max-width:940px){.mock{transform:none}.mock:hover{transform:none}}
@@ -415,9 +508,9 @@ body.landing article{padding:0}
   font-size:.95rem;color:var(--text-mid)}
 .rank-row .n{flex:none;width:26px;height:26px;border-radius:8px;display:grid;
   place-items:center;font-family:var(--mono);font-size:.78rem;font-weight:600;
-  background:rgba(255,255,255,.06);color:var(--text-dim)}
-.rank-row.hot .n{background:var(--brand);color:#17181C}
-.rank-row.hot{color:var(--text);border-color:rgba(129,140,248,.34)}
+  background:var(--surface-3);color:var(--text-dim)}
+.rank-row.hot .n{background:var(--brand);color:var(--on-accent)}
+.rank-row.hot{color:var(--text);border-color:var(--brand)}
 /* No entrance animation here. It was built, and IntersectionObserver turned out
    not to fire at all in the webview used to verify it — so the effect could not
    be confirmed working, only confirmed shipped. A motion effect that cannot be
@@ -440,8 +533,8 @@ body.landing article{padding:0}
 @media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:2.4rem}}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
   font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
-  background:linear-gradient(180deg,rgba(129,140,248,.14),rgba(129,140,248,.06));
-  border:1px solid rgba(129,140,248,.26);border-radius:999px;padding:.5rem 1.05rem;
+  background:var(--brand-soft);
+  border:1px solid var(--border-strong);border-radius:2px;padding:.5rem 1.05rem;
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
@@ -451,8 +544,8 @@ body.landing article{padding:0}
   font-size:clamp(2.5rem,5.6vw,4.3rem);line-height:1.02;letter-spacing:-.035em;
   margin:0 0 1.35rem;max-width:15ch}
 .hero-h1 em{font-style:normal;color:var(--brand-light);display:block}
-.hero-h1 em{font-style:normal;background:linear-gradient(100deg,var(--brand-light),var(--brand));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-h1 em{font-style:normal;color:var(--brand);display:block;
+  -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:1.11rem;color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
 .btn-lg{padding:1rem 2.05rem;font-size:1.02rem;border-radius:13px;letter-spacing:-.01em}
@@ -461,10 +554,10 @@ body.landing article{padding:0}
 /* Product mockup — an HTML replica of the app, not a screenshot. Stays sharp at
    any density, weighs nothing, and follows the page theme. */
 .mock{background:var(--surface);border:1px solid var(--border-strong);border-radius:16px;
-  box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.03);overflow:hidden}
+  box-shadow:0 1px 0 var(--border-strong);border:1px solid var(--border-strong);overflow:hidden}
 .mock-bar{display:flex;align-items:center;gap:.45rem;padding:.62rem .85rem;
   background:var(--surface-2);border-bottom:1px solid var(--border)}
-.mock-dot{width:10px;height:10px;border-radius:99px;background:#3a3f4b}
+.mock-dot{width:10px;height:10px;border-radius:99px;background:var(--surface-3)}
 .mock-title{margin-left:.5rem;font-size:.74rem;color:var(--text-dim);font-family:var(--mono)}
 .mock-body{padding:1.05rem}
 .mock-top{display:flex;gap:1.05rem;align-items:center;margin-bottom:1rem}
@@ -477,7 +570,7 @@ body.landing article{padding:0}
 .mock-lane-top{display:flex;justify-content:space-between;align-items:baseline;gap:.4rem}
 .mock-lane-name{font-size:.7rem;color:var(--text-mid)}
 .mock-lane-score{font-size:.86rem;font-weight:700}
-.mock-lane-bar{height:3px;border-radius:99px;background:rgba(255,255,255,.09);margin-top:.36rem;overflow:hidden}
+.mock-lane-bar{height:3px;border-radius:0;background:var(--surface-3);margin-top:.36rem;overflow:hidden}
 .mock-lane-bar i{display:block;height:100%;border-radius:99px}
 .mock-find{background:var(--surface-2);border:1px solid var(--border);border-left:2px solid var(--bad);
   border-radius:8px;padding:.6rem .7rem;margin-top:.55rem}
@@ -490,7 +583,7 @@ body.landing article{padding:0}
 .sec{padding:var(--sec-y) 0}
 /* Hairlines between every section made the page read as a stack of boxes.
    Space separates them now; a rule is used only where one is doing work. */
-.sec + .sec{border-top:1px solid rgba(255,255,255,.045)}
+.sec + .sec{border-top:1px solid var(--border)}
 .sec-head{text-align:center;max-width:41rem;margin:0 auto 2.6rem}
 .sec-head h2{font-family:var(--display);font-weight:700;
   font-size:clamp(1.9rem,4vw,2.85rem);line-height:1.1;
@@ -511,7 +604,7 @@ body.landing article{padding:0}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:760px){.split{grid-template-columns:1fr}}
 .split-col{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.3rem 1.4rem}
-.split-col.good{border-color:rgba(129,140,248,.32)}
+.split-col.good{border-color:var(--brand)}
 .split-tag{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   color:var(--text-dim);margin-bottom:.8rem}
 .split-col.good .split-tag{color:var(--brand-light)}
@@ -527,9 +620,9 @@ body.landing article{padding:0}
 .chart{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.5rem 1.6rem}
 .bar-row{display:grid;grid-template-columns:130px 1fr 46px;gap:.85rem;align-items:center;margin-bottom:.62rem}
 .bar-lbl{font-size:.83rem;color:var(--text-mid);text-align:right}
-.bar-track{height:9px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden}
+.bar-track{height:9px;background:var(--surface-3);border-radius:0;overflow:hidden}
 .bar-fill{display:block;height:100%;border-radius:99px;
-  background:linear-gradient(90deg,var(--brand),var(--brand-light))}
+  background:var(--brand)}
 .bar-val{font-size:.82rem;font-weight:680;color:var(--text);font-variant-numeric:tabular-nums}
 .chart-note{font-size:.8rem;color:var(--text-dim);margin:1.1rem 0 0}
 /* Prose inside a wide container. `.wrap-wide` is 1080px so a comparison
@@ -565,7 +658,7 @@ def _mark(size: int = 22, color: str = "var(--brand)") -> str:
 
 
 NAV = f"""<nav><div class="wrap-wide nav-inner">
-<a class="nav-brand" href="/">{_mark(23)}<span>Docket</span></a>
+<a class="nav-brand" href="/">{_mark(23)}<span>Docket<i>SEO</i></span></a>
 <div class="nav-links">
 <a href="/index/">The Index</a>
 <a href="/learn/">Learn</a>
@@ -597,7 +690,8 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <a href="/about/">About Docket</a>
 <a href="/contact/">Get in touch</a>
 <a href="{REPO}/issues">Issue tracker</a>
-<a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a></div>
+<a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a>
+<a href="/legal/refunds/">Refunds</a></div>
 </div>
 <div class="foot-bottom">
 <span>© 2026 Docket · Audits run on your Mac. Nothing is uploaded.</span>
@@ -649,16 +743,16 @@ def _entity_schema() -> str:
     return (
         '{"@context":"https://schema.org","@graph":['
         '{"@type":"Organization","@id":"' + BASE + '/#org",'
-        '"name":"Docket","url":"' + BASE + '/",'
+        '"name":"Docket SEO","url":"' + BASE + '/",'
         '"logo":"' + BASE + '/icon.png",'
         '"description":"Docket makes local SEO and marketing audit software for Mac.",'
         '"sameAs":["https://github.com/mattkerr09",'
         '"https://github.com/mattkerr09/docket-site"]},'
         '{"@type":"WebSite","@id":"' + BASE + '/#site",'
-        '"url":"' + BASE + '/","name":"Docket",'
+        '"url":"' + BASE + '/","name":"Docket SEO",'
         '"publisher":{"@id":"' + BASE + '/#org"}},'
         '{"@type":"SoftwareApplication","@id":"' + BASE + '/#app",'
-        '"name":"Docket","applicationCategory":"BusinessApplication",'
+        '"name":"Docket SEO","applicationCategory":"BusinessApplication",'
         '"applicationSubCategory":"SEO audit software",'
         '"operatingSystem":"macOS 12 or later, Apple Silicon",'
         '"description":"Docket crawls a website, runs ' + str(N_CHECKS) + ' checks across SEO, copy, '
@@ -775,7 +869,7 @@ def render(
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title}</title>
 <meta name="description" content="{esc(desc)}">
-<meta name="theme-color" content="#0b0c0f">
+<meta name="theme-color" content="#FBFAF7">
 {'<meta name="robots" content="noindex">' if noindex else f'<link rel="canonical" href="{url}">'}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -783,7 +877,7 @@ def render(
 <meta property="og:title" content="{esc(h1)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{url}">
-<meta property="og:site_name" content="Docket">
+<meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="{BASE}/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
