@@ -294,7 +294,8 @@ def body() -> str:
   <div class="card"><div class="card-ico">{ICONS['clock']}</div>
     <h3>Scheduled monitoring</h3>
     <p>Re-audits on a cadence and tells you what changed. Regressions first — a site that was
-    clean and broke is the thing you need to know.</p></div>
+    clean and broke is the thing you need to know. It runs while Docket is open: the schedule is
+    a thread inside the app, not a background daemon, so quitting it stops the clock.</p></div>
   <div class="card"><div class="card-ico">{ICONS['eye']}</div>
     <h3>Go on the offensive</h3>
     <p>Against a rival with years and links you cannot match, Docket finds where none of that

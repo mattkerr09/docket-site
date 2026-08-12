@@ -252,7 +252,7 @@ and UTM parameters on internal links.</li>
 <tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
 <tr><td>Local business SEO</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
 <tr><td>Client-ready PDF</td><td class="yes">Built in</td><td>Export and build it yourself</td></tr>
-<tr><td>Scheduled re-audits</td><td class="yes">Yes</td><td>Scheduling in the paid tier</td></tr>
+<tr><td>Scheduled re-audits</td><td class="yes">Yes, while the app is open</td><td>Scheduling in the paid tier, and it runs headless</td></tr>
 </tbody></table></div>
 
 <h2>Where the technical depth is genuinely equal</h2>
