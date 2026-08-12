@@ -24,6 +24,7 @@ import re
 import subprocess
 import sys
 import urllib.error
+import time
 import urllib.request
 from pathlib import Path
 
@@ -84,17 +85,44 @@ def has_mx(domain: str) -> tuple[bool, str]:
                    "answer SMTP, so mail bounces")
 
 
-def reachable(url: str) -> tuple[bool, str]:
-    req = urllib.request.Request(url, method="HEAD",
-                                 headers={"User-Agent": "docketseo-deploy-gate/1.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            code = resp.status
-    except urllib.error.HTTPError as exc:
-        code = exc.code
-    except Exception as exc:  # noqa: BLE001 — network trouble is not a pass
-        return False, f"{type(exc).__name__}: {exc}"
-    return (200 <= code < 300), f"HTTP {code}"
+#: Errors that mean "the network hiccuped", not "this channel is dead". GitHub
+#: closes connections under a burst of HEADs, and a single one blocked a deploy
+#: twice in a row here - naming three DIFFERENT dead URLs across two runs, which
+#: is the signature of flakiness rather than breakage. Every URL it accused
+#: returned 200 when checked by hand seconds later.
+#:
+#: A gate that fails on a transient error is worse than no gate: it gets
+#: overridden, and then it is not a gate at all.
+_TRANSIENT = (
+    "RemoteDisconnected", "IncompleteRead", "ConnectionResetError",
+    "TimeoutError", "socket.timeout", "URLError", "BadStatusLine",
+)
+
+
+def reachable(url: str, attempts: int = 3) -> tuple[bool, str]:
+    """HEAD the URL, retrying transient failures with a growing pause.
+
+    A real 404 or 410 is returned immediately - those are not flaky and
+    retrying them only slows the deploy down.
+    """
+    last = ""
+    for attempt in range(attempts):
+        req = urllib.request.Request(url, method="HEAD",
+                                     headers={"User-Agent": "docketseo-deploy-gate/1.0"})
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                code = resp.status
+        except urllib.error.HTTPError as exc:
+            # An HTTP status is a real answer from a live server. Believe it.
+            return (200 <= exc.code < 300), f"HTTP {exc.code}"
+        except Exception as exc:  # noqa: BLE001
+            last = f"{type(exc).__name__}: {exc}"
+            if not any(t in last for t in _TRANSIENT) or attempt == attempts - 1:
+                break
+            time.sleep(1.5 * (attempt + 1))
+            continue
+        return (200 <= code < 300), f"HTTP {code}"
+    return False, f"{last} (after {attempts} attempts)"
 
 
 def main() -> int:

@@ -53,6 +53,12 @@ ALLOWED = {
     "2.14": ("what the Linux launcher alone requires; quoted beside 2.30 to "
              "show which half of the bundle sets the floor"),
     "9309": "RFC 9309, the robots.txt standard",
+    "2.0": ("a hypothetical future major version of Docket, in the sentence "
+            "explaining that 1.x upgrades are free and whether a 2.0 would be "
+            "paid has not been decided. A version number in prose, not a "
+            "measurement — there is no dataset it could be interpolated from, "
+            "and it cannot go stale because it refers to something that does "
+            "not exist yet"),
     "2000": ('Google\'s published URL Inspection API quota, quoted verbatim as '
              '"2000 QPD" — their string, without the thousands separator, so it '
              "is a different literal from the 2,000 above"),
