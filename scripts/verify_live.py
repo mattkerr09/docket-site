@@ -30,6 +30,7 @@ import re
 import subprocess
 import time
 import sys
+import time as _time
 import urllib.request
 
 BASE = "https://docketseo.app"
@@ -144,12 +145,45 @@ def _built_paths() -> list[str]:
     return paths
 
 
+#: GitHub closes connections under a burst of requests, and this gate issues
+#: several to the same release in quick succession. Twice in a row it reported
+#: three DIFFERENT release assets as unreachable - a different three each run,
+#: which is the signature of flakiness, not breakage. Every URL it named
+#: returned 200 when checked by hand seconds later.
+#:
+#: A gate that cries wolf gets overridden, and an overridden gate is not a gate.
+_TRANSIENT = ("RemoteDisconnected", "IncompleteRead", "ConnectionResetError",
+              "TimeoutError", "socket.timeout", "URLError", "BadStatusLine")
+
+
+def _open_with_retry(request, timeout=25, attempts=3):
+    """urlopen, retrying only errors that mean the network hiccuped.
+
+    An HTTPError is a real answer from a live server and is re-raised straight
+    away - retrying a 404 just makes the deploy slower.
+    """
+    last = None
+    for attempt in range(attempts):
+        try:
+            return urllib.request.urlopen(request, timeout=timeout)
+        except urllib.error.HTTPError:
+            raise
+        except Exception as exc:  # noqa: BLE001
+            last = exc
+            if not any(t in type(exc).__name__ or t in str(exc) for t in _TRANSIENT):
+                raise
+            if attempt == attempts - 1:
+                raise
+            _time.sleep(1.5 * (attempt + 1))
+    raise last  # unreachable, but explicit
+
+
 def _fetch(path: str) -> tuple[int, str]:
     request = urllib.request.Request(
         BASE + path, headers={"User-Agent": "docketseo-live-gate/1.0",
                               "Cache-Control": "no-cache"})
     try:
-        with urllib.request.urlopen(request, timeout=25) as response:
+        with _open_with_retry(request, timeout=25) as response:
             return response.status, response.read().decode("utf-8", "replace")
     except Exception as exc:                              # noqa: BLE001
         return 0, f"{type(exc).__name__}: {exc}"
@@ -188,7 +222,7 @@ def _check_downloads(body: str) -> list:
                         "reader to check one")
     else:
         try:
-            with urllib.request.urlopen(urllib.request.Request(
+            with _open_with_retry(urllib.request.Request(
                     sums_url, headers={"User-Agent": "docketseo-live-gate/1.0"}),
                     timeout=25) as response:
                 sums = response.read().decode("utf-8", "replace")
@@ -205,7 +239,7 @@ def _check_downloads(body: str) -> list:
         request = urllib.request.Request(url, method="HEAD", headers={
             "User-Agent": "docketseo-live-gate/1.0"})
         try:
-            with urllib.request.urlopen(request, timeout=25) as response:
+            with _open_with_retry(request, timeout=25) as response:
                 if response.status != 200:
                     problems.append(f"{url} returned {response.status}")
                 elif not int(response.headers.get("Content-Length") or 0):
