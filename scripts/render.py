@@ -664,13 +664,13 @@ NAV = f"""<nav><div class="wrap-wide nav-inner">
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div>
-<a class="btn" href="/download/">Download Docket</a>
+<a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>"""
 
 FOOTER = f"""<footer><div class="wrap-wide">
 <div class="foot-grid">
-<div><h2 class="foot-h">Docket</h2>
-<a href="/">Overview</a><a href="/download/">Download Docket for Mac</a>
+<div><h2 class="foot-h">Docket SEO</h2>
+<a href="/">Overview</a><a href="/download/">Download Docket SEO for Mac</a>
 <a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
@@ -690,7 +690,7 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <a href="/legal/refunds/">Refunds</a></div>
 </div>
 <div class="foot-bottom">
-<span>© 2026 Docket · Audits run on your Mac. Nothing is uploaded.</span>
+<span>© 2026 Docket SEO · Audits run on your Mac. Nothing is uploaded.</span>
 <span>{_mark(15, "var(--text-dim)")}</span>
 </div></div></footer>"""
 
