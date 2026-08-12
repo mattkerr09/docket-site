@@ -435,7 +435,7 @@ body.landing article{padding:0}
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div>
-<a class="btn" href="/download/">Download Docket</a>
+<a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / Download</div><h1>Download Docket for Mac</h1>
 
@@ -444,11 +444,11 @@ body.landing article{padding:0}
 you like, for as long as you like. There is no account to create, no licence server to phone,
 and no telemetry.</p>
 
-<p><strong>v0.1.45 is free.</strong> The beta downloads without payment and keeps working; the
+<p><strong>v0.1.46 is free.</strong> The beta downloads without payment and keeps working; the
 $149 applies from v1.0. Said plainly because a price on a page beside a button that
 charges nothing is the kind of thing this tool exists to flag.</p>
 
-<p><a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.45/Docket-0.1.45-arm64.dmg">Download Docket v0.1.45 for Mac</a></p>
+<p><a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.46/Docket-0.1.46-arm64.dmg">Download Docket v0.1.46 for Mac</a></p>
 <p style="font-size:.92rem;color:var(--text-dim)">Apple Silicon · macOS 12+ · 22.6 MB ·
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
 
@@ -491,10 +491,10 @@ what they do, they are simply rented rather than owned.</p>
 <p>The Mac app is signed with a Developer&nbsp;ID and notarised by Apple, so macOS verifies it
 with Apple before it opens and you need do nothing. The Linux tarball has no equivalent — it is
 a plain archive from a URL — so every release publishes
-<a href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.45/SHA256SUMS">SHA256SUMS</a> covering all of its artifacts:</p>
+<a href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.46/SHA256SUMS">SHA256SUMS</a> covering all of its artifacts:</p>
 
-<pre><code>curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.45/docket-0.1.45-linux-x86_64.tar.gz
-curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.45/SHA256SUMS
+<pre><code>curl -LO 
+curl -LO https://github.com/mattkerr09/docket-site/releases/download/v0.1.46/SHA256SUMS
 grep linux SHA256SUMS | shasum -a 256 -c -</code></pre>
 
 <p>Be clear about what that proves and what it does not. It proves the file arrived intact and
@@ -644,7 +644,7 @@ how you would drive Docket from your own scripts.</p>
 <li><strong>macOS 12 or later, Apple Silicon</strong> for the desktop app. There is no
 Intel or Windows build.</li>
 <li><strong>Linux x86_64 for the command line.</strong>
-<a href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.45/docket-0.1.45-linux-x86_64.tar.gz">Download the 16.6 MB tarball</a> — needs
+A tarball needing
 <strong>glibc 2.30</strong> or newer — check yours with <code>ldd --version</code>. That floor
 is measured from the shipped binary rather than assumed from the machine that built it: the
 launcher itself only needs 2.14, and the bundled Python runtime is what raises it to 2.30.
@@ -685,8 +685,8 @@ is gone.</p>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
-<div><h2 class="foot-h">Docket</h2>
-<a href="/">Overview</a><a href="/download/">Download Docket for Mac</a>
+<div><h2 class="foot-h">Docket SEO</h2>
+<a href="/">Overview</a><a href="/download/">Download Docket SEO for Mac</a>
 <a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
@@ -706,7 +706,7 @@ is gone.</p>
 <a href="/legal/refunds/">Refunds</a></div>
 </div>
 <div class="foot-bottom">
-<span>© 2026 Docket · Audits run on your Mac. Nothing is uploaded.</span>
+<span>© 2026 Docket SEO · Audits run on your Mac. Nothing is uploaded.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
 </body>
