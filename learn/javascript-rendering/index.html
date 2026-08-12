@@ -437,7 +437,7 @@ body.landing article{padding:0}
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div>
-<a class="btn" href="/download/">Download Docket</a>
+<a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / JavaScript rendering</div><h1>Auditing what a browser actually sees</h1>
 
@@ -527,13 +527,13 @@ a five-minute audit into an hour.</p>
 manager loaded. If the helper is missing it says that too, rather than quietly falling back
 to a static crawl and letting you believe otherwise.</p>
 
-<p><a class="btn" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.45/Docket-0.1.45-arm64.dmg">Download Docket for Mac</a></p>
+<p><a class="btn" href="https://github.com/mattkerr09/docket-site/releases/download/v0.1.46/Docket-0.1.46-arm64.dmg">Download Docket for Mac</a></p>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Do search engines run JavaScript?</h3><p>Google does, on a second pass that can lag the first crawl by days. Most AI crawlers do not render at all, so a client-rendered page is blank to the crawlers behind ChatGPT and Perplexity.</p></div><div class="faq-item"><h3>Does Docket bundle a browser?</h3><p>No. macOS ships WebKit as a system framework, so rendering is a 112 KB helper built against it. The download is 22.6 MB and nothing is fetched at install.</p></div><div class="faq-item"><h3>Why is rendering off by default?</h3><p>It executes the page's JavaScript, so analytics fire and ad pixels load — requests to servers you did not intend to contact by asking for an audit. It is also ten to thirty times slower than fetching.</p></div><div class="faq-item"><h3>Can rendering measure Core Web Vitals?</h3><p>No, and nothing that runs on one machine can. LCP, INP and CLS are field metrics from real users on real connections. Docket reads them from the Chrome UX Report, the same source Search Console uses.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
-<div><h2 class="foot-h">Docket</h2>
-<a href="/">Overview</a><a href="/download/">Download Docket for Mac</a>
+<div><h2 class="foot-h">Docket SEO</h2>
+<a href="/">Overview</a><a href="/download/">Download Docket SEO for Mac</a>
 <a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
@@ -553,7 +553,7 @@ to a static crawl and letting you believe otherwise.</p>
 <a href="/legal/refunds/">Refunds</a></div>
 </div>
 <div class="foot-bottom">
-<span>© 2026 Docket · Audits run on your Mac. Nothing is uploaded.</span>
+<span>© 2026 Docket SEO · Audits run on your Mac. Nothing is uploaded.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
 </body>
