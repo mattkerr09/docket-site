@@ -13,8 +13,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (  # noqa: E402
-    COMPETITORS, DMG, DMG_SIZE, LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS,
-    N_LANES, PRICE_STR, RELEASE, SUMS, price_note_html, render,
+    BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, GOVERNING_LAW, ISSUES,
+    LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
+    RELEASE, SELLER, SELLER_REG_NO, SUMS, price_note_html, render,
+    seller_address,
 )
 
 
@@ -396,6 +398,14 @@ know about — a check that has been failing for six months is not news.</p>
 <p>That changes the conversation from "here is another audit" to "your developer shipped a
 noindex on the pricing page on Tuesday", which is a materially different meeting.</p>
 
+<p><strong>Say what this does not do, because a retainer is a promise.</strong> The schedule is
+a thread inside Docket, not a background daemon and not a cron job. It runs while the app is
+open on a machine that is awake; quit Docket, or close the laptop, and the clock stops until
+you open it again. It catches up on the next launch rather than silently skipping, but if you
+need a crawl to land at 3am on a machine nobody is sitting at, a hosted crawler is the right
+architecture and that is what the subscription buys. Docket suits an agency that opens it
+during the working week, not one that needs unattended overnight runs.</p>
+
 <h2>Competitor comparison for pitches</h2>
 <p>Attach competitor URLs to a client site and Docket audits them on the same settings, then
 shows where the client leads and trails area by area — plus the issues <em>every</em>
@@ -424,7 +434,7 @@ claims everything invites the client to test the claim.</p>
         cat="for", slug="agencies",
         title=f"Docket for SEO agencies: unlimited client audits for {PRICE_STR}",
         desc=("Per-crawl metering makes agencies ration audits. Docket runs locally with no "
-              "per-seat or per-crawl cost, and turns scheduled re-audits into a retainer."),
+              "per-seat or per-crawl cost, and re-audits on a schedule while the app is open."),
         h1="Docket for SEO agencies",
         crumb='<a href="/">Docket</a> / <a href="/for/">For you</a> / Agencies',
         body=body,
@@ -1103,7 +1113,9 @@ them.</p>
 results that stay in <code>~/.docket/</code> as JSON you can read with <code>cat</code>. Save
 the site and scheduled re-audits report what changed, regressions first — which is how you
 learn a <code>noindex</code> reached production on Tuesday rather than from a traffic graph
-three weeks later.</p>
+three weeks later. The schedule lives inside the app rather than in launchd, so it runs while
+Docket is open and picks up anything overdue the next time you launch it; if you need the crawl
+to happen whether or not anyone is at the machine, that is what a hosted crawler is for.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
@@ -1419,12 +1431,92 @@ is public and GitHub's privacy policy applies to it; we hold nothing separately.
 
 
 def terms() -> Path:
-    body = """
-<p>By downloading or using Docket you agree to these terms.</p>
+    """Terms of use, including the commercial terms of the sale.
 
-<h2>Licence</h2>
-<p>Docket is licensed to you for use on machines you own or control. You may audit any number of
-websites, including on behalf of clients.</p>
+    DRAFT — NOT REVIEWED BY A LAWYER. The product facts in it were read out of
+    docket-app and out of this repository; the legal shape of it has had no
+    professional eye on it, and the tax section is an open question rather than
+    an answer.
+
+    Before this rewrite the page described a free download and nothing else.
+    A grep of the built file returned zero occurrences of refund, cancel,
+    payment, VAT, tax, consumer, governing law, jurisdiction and termination,
+    on the terms page of a product with a price on eleven other pages of the
+    same site.
+
+    The liability clause was one sentence excluding everything. That is
+    unenforceable against a consumer almost everywhere it would be read, and an
+    exclusion a court strikes out protects nobody — so it is now a cap at the
+    amount paid with the usual carve-outs, which is both smaller and likely to
+    survive.
+    """
+    if BETA_FREE:
+        price_para = f"""
+<p><strong>Today the price is nothing.</strong> {RELEASE} is a free beta. It downloads without
+payment, it does not expire, and this site has no checkout, so no sale has taken place and the
+commercial sections below describe terms that take effect when one can.</p>
+<p>From v1.0 Docket costs {PRICE_STR} in US dollars, paid once. Not a subscription: there is no
+renewal date, no seat count and nothing to cancel, because nothing recurs.</p>"""
+    else:
+        price_para = f"""
+<p>Docket costs {PRICE_STR} in US dollars, paid once. Not a subscription: there is no renewal
+date, no seat count and nothing to cancel, because nothing recurs.</p>"""
+
+    # Same escape as on the refunds page, and the same reason.
+    seller = SELLER.replace("&", "&amp;")
+    # The Linux tarball is promised only when the release actually carries one.
+    # The download page described one in detail for seven releases during which
+    # none was published; a terms page is a worse place to repeat that.
+    linux_clause = (", plus a Linux command-line tarball"
+                    if LINUX_NAME else "")
+
+    tax_para = f"""
+<p>Prices are shown in US dollars. Whether sales tax or VAT is added at checkout, and which
+party is responsible for remitting it, depends on {PROCESSOR or 'the payment processor'} and on
+where you are buying from. That is not settled yet and this paragraph will say which it is
+before a checkout opens, rather than leaving you to discover it on the payment
+screen.</p>""" if not PROCESSOR else f"""
+<p>Prices are shown in US dollars. Any sales tax or VAT due is calculated and shown by
+{PROCESSOR} at checkout, before you pay.</p>"""
+
+    body = f"""
+<p>By downloading or using Docket you agree to these terms. If you buy a licence, the sections
+on price, delivery and refunds are part of that agreement.</p>
+
+<h2>Who you are dealing with</h2>
+<p>Docket is published and sold by {seller}, of {seller_address()}. The software is written by
+Matt Kerr. Correspondence goes through <a href="/contact/">the channels on the contact
+page</a>.</p>
+
+<h2>What it costs</h2>
+{price_para}
+<p>One purchase covers you, the person or company that paid, on any machine you own or control.
+You may audit any number of websites with it, including on behalf of clients, and you may
+charge those clients for the work. There is no per-seat price and no crawl allowance.</p>
+
+<h2>What you may not do with it</h2>
+<p>Do not resell, sublicense or redistribute the application itself, and do not offer it as a
+hosted service to people who have not bought it. Reports it produces are yours: send them,
+rebrand the CSV and JSON exports, bill for them.</p>
+
+<h2>Delivery</h2>
+<p>Delivery is a download. Docket ships as a notarised macOS disk image of {DMG_SIZE} from
+<a href="https://github.com/mattkerr09/docket-site/releases">the releases page</a>{linux_clause}.
+There is nothing to post and no activation email to wait for.</p>
+<p>Two consequences of there being no licence server, both stated because a buyer will meet
+them. The download link is public, so payment is not the thing that makes the file reachable —
+what payment buys is the right to use it. And updates are published to every copy: while Docket
+is on version 1.x, upgrades cost nothing and install through the app's own updater. Whether a
+future 2.0 is a paid upgrade has not been decided; if it ever is, the copy you paid for keeps
+working.</p>
+
+<h2>Refunds</h2>
+<p>Thirty days, no conditions. The full policy, including how to ask and what happens to your
+copy afterwards, is on <a href="/legal/refunds/">the refund page</a> and forms part of these
+terms.</p>
+
+<h2>Tax</h2>
+{tax_para}
 
 <h2>Responsible use</h2>
 <p>Docket crawls websites. You are responsible for the sites you point it at. Its defaults are
@@ -1440,8 +1532,32 @@ are advice rather than a certification. Search engines change their behaviour wi
 relying on an audit for a decision that matters.</p>
 
 <h2>Liability</h2>
-<p>To the maximum extent permitted by law, we are not liable for any loss arising from use of
-Docket, including lost traffic, revenue or rankings.</p>
+<p>If you are a consumer, nothing in these terms removes or reduces a right you have under the
+law where you live, and the rest of this section applies only as far as that law allows.</p>
+<p>Subject to that, and to the extent the law permits: the total liability of {seller} arising
+out of Docket or these terms is limited to the amount you paid for the licence, and neither
+lost traffic, lost revenue, lost rankings, lost profits nor loss of data is recoverable.
+Liability for fraud, for fraudulent misrepresentation, and for death or personal injury caused
+by negligence is not excluded, because it cannot be.</p>
+
+<h2>Ending the licence</h2>
+<p>Your licence ends if you take a refund — on the day it is issued — or if you break these
+terms in a way you do not put right after being asked. In either case, delete the application.
+Docket has no licence server and no remote switch, so this is a duty on you rather than an
+action taken from here, and saying so is more honest than implying a capability that was
+deliberately never built.</p>
+<p>Your audit history in <code>~/.docket/</code> is yours in every case. It was never uploaded,
+so there is nothing on our side to delete or withhold.</p>
+
+<h2>Governing law</h2>
+<p>These terms are governed by the law of {GOVERNING_LAW}, and any dispute goes to the courts
+located there. If you are a consumer resident somewhere else, this does not deprive you of the
+protection of any mandatory consumer law of the country you live in, or of the right to bring a
+claim in your local courts where that law gives you one.</p>
+
+<h2>Changes to these terms</h2>
+<p>The version in force for a purchase is the one published on the day it was made. Changes
+appear on this page and apply from the day they appear, not before.</p>
 
 <h2>Contact</h2>
 <p><a href="/contact/">Get in touch</a></p>
@@ -1449,10 +1565,216 @@ Docket, including lost traffic, revenue or rankings.</p>
     return render(
         cat="legal", slug="terms",
         title="Terms of use for Docket and docketseo.app",
-        desc="Licence, responsible crawling, and the limits of what an audit can promise.",
+        desc=("Licence, price, delivery, refunds, liability and governing law — plus "
+              "responsible crawling and the limits of what an audit can promise."),
         h1="Terms of use",
         crumb='<a href="/">Docket</a> / Terms',
         body=body,
+        modified="2026-08-11",
+        schema_type="WebPage",
+    )
+
+
+def refunds() -> Path:
+    """The refund and cancellation policy.
+
+    DRAFT — NOT REVIEWED BY A LAWYER. Every fact in it was read out of this
+    repository or out of docket-app rather than taken from a template, but that
+    makes it accurate about the product, not compliant. It needs a lawyer's eye
+    on the consumer-law paragraph in particular before it is published.
+
+    Written because the page did not exist. `lint.py` has carried the sentence
+    "a refund policy should be as short as it can be while staying complete"
+    since legal pages were exempted from the word floor — the exemption was
+    written for a page nobody had built, which is how a gap survives a year of
+    linting.
+
+    Three things in here are unusual and all three are deliberate:
+
+    * **The window is derived, not chosen.** Thirty days is four runs of the
+      default weekly cadence in `store.CADENCES`, which is the shortest span
+      over which the monitoring feature can demonstrate the thing it is sold
+      for. A fourteen-day window would expire before the product had shown its
+      own headline capability.
+    * **It states that the copy keeps working after a refund.** There is no
+      licence server (`home.py`, `pages.py` and `about.py` all promise there is
+      not), so no revocation is possible. A policy that implied otherwise would
+      be describing software that does not exist.
+    * **It carries no conditions.** Docket collects no telemetry, so "unused",
+      "fewer than N audits" and "within reason" are all unverifiable. A
+      condition the seller cannot check is one applied by mood.
+    """
+    if PROCESSOR:
+        processor_name = PROCESSOR
+        processor_ref = f"<strong>{PROCESSOR}</strong>"
+    else:
+        processor_name = "the payment processor"
+        processor_ref = "the payment processor"
+
+    reg_no = f", company number {SELLER_REG_NO}" if SELLER_REG_NO else ""
+    # The legal name has an ampersand in it. SELLER stays plain text because it
+    # is a name, not markup; the escape happens where it is written into HTML.
+    seller = SELLER.replace("&", "&amp;")
+
+    if BETA_FREE:
+        beta = f"""
+<div class="callout">
+<div class="callout-title">There is nothing to refund today</div>
+<p>{RELEASE} is free. It downloads without payment, it keeps working, and this site has no
+checkout to pay through. This policy is published before there is a transaction behind it
+because the {PRICE_STR} is already written on this site, and a price with no refund terms
+beside it is half a sentence.</p>
+<p>If you have paid money for a copy of Docket, it did not reach us. Say so on
+<a href="{ISSUES}">the issue tracker</a> and where it went will be written up in public.</p>
+</div>"""
+    else:
+        beta = ""
+
+    if BILLING_EMAIL:
+        channel = f"""
+<p>Refund requests go to <a href="mailto:{BILLING_EMAIL}">{BILLING_EMAIL}</a>, or as a reply to
+the receipt {processor_name} sends you. Either arrives.</p>"""
+    else:
+        channel = f"""
+<p>Reply to the receipt {processor_name} sends when you buy. That message comes from an address
+that accepts replies and it quotes the order reference, which is the one detail needed to find
+a payment.</p>
+
+<p>There is no billing address at <code>docketseo.app</code>, and the reason is worth having
+rather than hiding: the domain publishes no MX record, so mail sent to it does not bounce back
+to us — it bounces to you, silently, and we never learn you wrote.
+<a href="/learn/dead-contact-address/">That already happened here once</a>, to
+<code>hello@docketseo.app</code>, on every page of this site. A build check now resolves the
+MX of any address this site prints and refuses to publish one that cannot receive mail. It is
+why you are not reading an invented address on this page.</p>"""
+
+    body = f"""
+<p class="lede">Thirty days from the date of purchase, no conditions and no questions asked, on
+any paid copy of Docket. What follows is how to ask, what happens to the copy on your Mac
+afterwards, and why the window is thirty days rather than a number picked because it sounded
+generous.</p>
+{beta}
+<h2>The policy</h2>
+
+<p>Ask within 30 days of the date on your receipt and the full purchase price goes back to the
+payment method it came from, along with any tax charged on top of it. Docket is sold as one
+item at one price, so there is no partial refund to calculate and none is offered.</p>
+
+<p>You do not have to have stopped using it, give a reason, or send evidence of anything.</p>
+
+<h2>Why thirty days</h2>
+
+<p>Three reasons, and each is a fact about this product rather than a convention:</p>
+
+<ul>
+<li><strong>You can run the whole thing before paying.</strong> The beta is free and keeps
+working, so the evaluation happens before the money does. A refund window is therefore a second
+look rather than the first one, and it does not have to carry the whole weight of the
+decision.</li>
+<li><strong>Monitoring needs weeks to say anything.</strong> The default re-audit cadence is
+weekly, and the thing being sold — what changed on your site since last time — is empty on the
+first run and thin on the second. Thirty days is four of them. A fourteen-day window would end
+before the feature had demonstrated itself, which would make it a policy that quietly excluded
+the reason some people bought.</li>
+<li><strong>It can be honoured by one person.</strong> Issuing a refund is one action in
+{processor_ref}'s dashboard. Nothing has to be reclaimed, deactivated, closed or
+chased, so the length of the window costs nothing but the money.</li>
+</ul>
+
+<h2>How to ask</h2>
+{channel}
+<p>Please do not open a GitHub issue about a refund. The tracker is the contact channel for
+everything else here and it is deliberately public, which is right for a wrong finding and
+wrong for a payment: a refund request carries your name, an order reference and sometimes the
+reason you are unhappy, and none of the three belong on a page anyone can read.</p>
+
+<h2>What happens to your copy</h2>
+
+<p>Nothing happens to it. Docket has no licence server, no account and no activation check —
+that is stated on the homepage, the download page and <a href="/about/">the about page</a> as a
+feature, and it is one, but it has a consequence this page has to own. After a refund the copy
+on your Mac keeps working, and there is no mechanism by which it could be made to stop.</p>
+
+<p>What is asked is that you delete the application and stop using it. What that rests on is
+that you will. The licence granted by <a href="/legal/terms/">the terms of use</a> ends the day
+the refund is issued; the enforcement of it is a sentence rather than a switch, and pretending
+otherwise would describe software that was not built.</p>
+
+<p>Your audit history is yours and stays yours. It lives on your machine in
+<code>~/.docket/</code> as plain JSON — <code>sites.json</code> for the watchlist and
+<code>history/</code> for the snapshots. Nothing there was ever uploaded, so nothing there is
+deleted from our side, because there is no our side. Removing that folder removes it.</p>
+
+<h2>Conditions that are deliberately absent</h2>
+
+<p>None of these will be asked, because none of them could be checked. Docket has no account
+and no telemetry, so nothing ties a payment to a copy of the application, and the seller has no
+way to know:</p>
+
+<ul>
+<li>how many sites you audited, or whether you opened the app at all;</li>
+<li>how many PDF or CSV reports you exported, or who you sent them to;</li>
+<li>whether you are asking for the first time or the fourth;</li>
+<li>which machines you installed it on.</li>
+</ul>
+
+<p>A refund policy conditioned on facts the seller cannot verify is one applied by mood, and
+that is worse than having no condition at all. So there are none, and this paragraph exists so
+that the absence reads as a decision rather than an oversight.</p>
+
+<p>One correction to make in the same breath, because a page claiming perfect ignorance would
+be exactly the sort of claim this tool exists to check. Docket does make one request of its
+own accord: on launch it asks <code>docketseo.app/updater.json</code> whether a newer build
+exists, and stays silent if there is none or there is no network. That file is static and
+served by GitHub Pages. The log behind it records an address and a time, the way any page
+fetch does, and it carries no identifier that could be matched against an order — but it is
+named here rather than left out.</p>
+
+<h2>When the money arrives</h2>
+
+<p>The refund is issued to the original payment method, because that is what card rules
+require and it is also the only route that reliably works. How long it takes to appear on your
+statement sits between {processor_name} and your bank, and neither answers to us. No
+number of days is promised here for the same reason no response time is promised on
+<a href="/contact/">the contact page</a>: an invented figure is worse than an admitted
+unknown.</p>
+
+<h2>Chargebacks</h2>
+
+<p>A chargeback and a refund move the same money in the same direction. Ask first — it is
+faster for you, and a disputed charge is answered with the same refund plus a copy of this
+page, several weeks later, after a fee. If a refund has been asked for and not answered, raise
+the chargeback; that is what the mechanism is for.</p>
+
+<h2>If you are buying from outside the United States</h2>
+
+<p>Consumer law where you live may give you rights this policy cannot shorten, and nothing on
+this page attempts to. In the UK and across the EU a distance sale of digital content carries a
+14-day right to cancel, and a seller is allowed to ask you to give it up in exchange for an
+immediate download. Docket does not ask you to give it up. The 30 days above are longer and
+carry fewer conditions, so the waiver would buy the buyer nothing and cost the seller a
+paragraph of small print.</p>
+
+<h2>Changes to this page</h2>
+
+<p>The version of this policy in force for a purchase is the one published on the day the
+purchase was made. If it changes, the new version appears here and applies from that day
+forward, not backwards.</p>
+
+<h2>Who you are paying</h2>
+
+<p>Docket is sold by {seller}{reg_no}, of {seller_address()}. The terms of the sale, including
+the governing law, are on <a href="/legal/terms/">the terms of use page</a>.</p>
+"""
+    return render(
+        cat="legal", slug="refunds",
+        title="Refund policy — 30 days, no conditions",
+        desc=("Thirty days from purchase, no conditions — Docket collects no usage data it "
+              "could condition one on. How to ask, and what happens to your copy after."),
+        h1="Refund and cancellation policy",
+        crumb='<a href="/">Docket</a> / Refunds',
+        body=body,
+        published="2026-08-11",
         schema_type="WebPage",
     )
 
@@ -1460,7 +1782,7 @@ Docket, including lost traffic, revenue or rankings.</p>
 BUILDERS = [download, for_hub, for_agencies, for_developers, for_ecommerce,
             for_local, for_saas, howto_hub,
             howto_ai_access,
-            privacy, terms]
+            privacy, terms, refunds]
 
 
 def build_all() -> list[Path]:
