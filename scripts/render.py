@@ -254,14 +254,10 @@ STYLE = """<style>
   font-weight:600;font-style:normal;font-display:swap}
 @font-face{font-family:'Switzer';src:url('/fonts/Switzer-700.woff2') format('woff2');
   font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:'Clash Display';src:url('/fonts/ClashDisplay-700.woff2') format('woff2');
-  font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:'General Sans';src:url('/fonts/GeneralSans-400.woff2') format('woff2');
-  font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'General Sans';src:url('/fonts/GeneralSans-500.woff2') format('woff2');
-  font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:'General Sans';src:url('/fonts/GeneralSans-600.woff2') format('woff2');
-  font-weight:600;font-style:normal;font-display:swap}
+/* Clash Display and General Sans were declared here and never applied to a single
+   element, and neither .woff2 is in site/fonts - only Switzer 400/500/600/700 are.
+   Four @font-face blocks pointing at four 404s, styling nothing. Removed rather
+   than fixed: the retheme uses Switzer throughout, so the files were never needed. */
 
 :root{
   /* Paper, not a dashboard.
