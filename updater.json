@@ -1,11 +1,11 @@
 {
-  "version": "0.1.70",
-  "notes": "A sitemap or llms.txt that refuses the request is no longer reported as missing.",
-  "pub_date": "2026-08-13T21:41:23Z",
+  "version": "0.1.71",
+  "notes": "A robots.txt server error is no longer reported as a rule your file does not contain.",
+  "pub_date": "2026-08-13T22:11:31Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTdxRGUxOWkvOWtwRjR0aC9LZ2F1dmNBdkNFbFhjczdpZXRaR0pUaVExVVBESGpOdEVXQ3FEQVM2VVBCZ1IvUFE1S0RiblZvRk10MDZQYXk0Y0hMZVFRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjU3MTg5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKYnVoUGhwSWxtZ2JYMTRhUXZQUm9pVXpYb2ZhQUJxbHJZeThNOWtuY2lGaEJYaHlLUXRJbDlDTGxQR052S3ZrOWRqVDlJb2tTSVcyM0NjbExtR2VXQ0E9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.70/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTczSFRLVjRZczdZNktqTlNMdXFTMmJ0cThVU1BQUUp4UmZlYmpvSjNSc0t2OVN1T2lUN3Jpc0Nzc09qZWgvcWRvaXhQYjZxbnlVOWVucjQvQjJrNUFnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjU4OTkzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZ1BjaDFoUllEblVSU0M5SE5uNTkvWXNGMVMyNFZSZEhDcVVldERoSzN4dmY1RVV0SlV1cm9mM05EU096SmJVdWFvbGFGQUI2aWwrTkdNRysxY1h2RGc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.71/Docket.app.tar.gz"
     }
   }
 }
