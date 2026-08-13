@@ -245,10 +245,13 @@ the correction gets written down where the mistake was made.</p>
              "beside the finding. Those two things let the same crawl be reproduced, which "
              "is the difference between a report that can be fixed and one that cannot."),
             ("Is there a support email address?",
-             "No. The site previously listed hello@docketseo.app, which could not receive "
-             "mail: the domain has no MX record, so senders fell back to the GitHub Pages "
-             "address record, where nothing answers on port 25. Every message bounced. The "
-             "issue tracker is used instead because messages sent there arrive."),
+             "Not yet. The site once listed hello@docketseo.app, which could not receive "
+             "mail: the domain published no MX record at the time, so senders fell back to "
+             "the GitHub Pages address record, where nothing answers on port 25. Every "
+             "message bounced. The domain does publish an MX record now and accepts mail, "
+             "but an address is only worth printing once someone has sent a real message to "
+             "it and read it, and that has not happened yet. The issue tracker is used in "
+             "the meantime because messages sent there demonstrably arrive."),
             ("How do I report a security issue?",
              "Not in a public issue. Use GitHub's private security advisory form on the "
              "repository so the problem can be fixed before it is described publicly."),
