@@ -164,7 +164,7 @@ DMG_SIZE = _facts.dmg_size_str()
 #: One-time price, in USD. Declared once so the schema, the comparison table and
 #: the download page cannot drift apart — which is exactly what happened to the
 #: check count and the download size before they were centralised.
-PRICE = 149
+PRICE = 79
 PRICE_STR = f"${PRICE}"
 
 #: What the download costs *today*, which is not PRICE. The beta is free, keeps

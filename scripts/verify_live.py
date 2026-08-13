@@ -53,7 +53,12 @@ def _homepage_must_say() -> list[str]:
         n = sum(1 for _ in csv.DictReader(fh))
     if not n:
         raise SystemExit("checks.csv is empty — refusing to verify against nothing")
-    return [f"{n} checks", "$149"]
+    # Derived, not typed. This line said "$149" while render.PRICE was the
+    # actual source of truth, so a price change would have left the live
+    # verifier asserting the OLD number and passing a page that no longer
+    # said it — a gate confirming a fact it was the last to know.
+    from render import PRICE_STR
+    return [f"{n} checks", PRICE_STR]
 
 
 HOMEPAGE_MUST_SAY = _homepage_must_say()
