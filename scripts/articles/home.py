@@ -23,6 +23,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
+from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
 from render import (BETA_NOTE, DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR,
                     price, price_note_html, render)  # noqa: E402
 
@@ -241,16 +242,22 @@ def body() -> str:
 <!-- ================= THREE LANES ================= -->
 <section class="sec"><div class="wrap-wide">
 <div class="sec-head">
-  <h2>Four things crawler tools ignore.</h2>
-  <p>Technical SEO is table stakes, and it is all most tools do. These four are where the
-  money actually leaks — and each one is a separate subscription anywhere else.</p>
+  <h2>Four things a crawler will not tell you.</h2>
+  <p>Technical SEO is table stakes, and it is most of what a crawler is built to return.
+  These four are where the money actually leaks. None of them appears in the feature list
+  Screaming Frog or Sitebulb publishes, and elsewhere each is a separate subscription —
+  <a href="/vs/">checked against their own documentation</a>, {HOME_CLAIM_CHECKED_HUMAN}.</p>
 </div>
 <div class="grid-3">
   <div class="card"><div class="card-ico">{ICONS['ai']}</div>
     <h3>AI search visibility</h3>
-    <p>Whether ChatGPT, Perplexity and Claude can reach and cite you — checked per crawler,
-    because <code>GPTBot</code> trains models and <code>OAI-SearchBot</code> builds the index
-    ChatGPT answers from. Blocking them is not the same decision.</p></div>
+    <p>Every AI crawler in one pass, because <code>GPTBot</code> trains models and
+    <code>OAI-SearchBot</code> builds the index ChatGPT answers from — blocking them is not
+    the same decision. A crawler can answer this one a user-agent at a time: Screaming Frog
+    lets you switch agent and follow that agent's <code>robots.txt</code> directives. What it
+    reads is the file. Docket also asks the server, as each bot, and tells you when the two
+    disagree — a CDN rule blocking <code>GPTBot</code> is invisible in a
+    <code>robots.txt</code> that permits it.</p></div>
   <div class="card"><div class="card-ico">{ICONS['cart']}</div>
     <h3>Conversion &amp; landing pages</h3>
     <p>Calls to action, the above-the-fold promise, form friction, social proof, whether the
