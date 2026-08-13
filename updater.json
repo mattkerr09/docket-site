@@ -1,11 +1,11 @@
 {
-  "version": "0.1.64",
-  "notes": "A canonical tag is an answer, not a symptom \u2014 and a verdict on one page is not a verdict on a site.",
-  "pub_date": "2026-08-13T17:02:41Z",
+  "version": "0.1.65",
+  "notes": "The name on the file you hand to a client, when Docket could not read the site.",
+  "pub_date": "2026-08-13T17:43:20Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTV2WWF5S0pqTDhUd1k0em8yb3FrSVN3bzBFYitua0wrM0d5bGlLOTFlS2ZxaWZpSGZ0RkVuY0pYeVFGeUtONVpMYWtDMnh4eEV1MDhmK1N0N0oxdlFjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjQwMzYzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZDJSQlN5V2pIaFgzd0FmdDBaR3hwOFMxR2UvVEF1MnkwQWFxM25NdVBxMk8xN3llQjloSXdvOVlRM2dLSzNkSWJrTFp1MXNtU3ZGYXBsUGlWMGNRQ3c9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.64/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTE0bk5MVmo5MDZKK3ZVbndmLy9yVTJuR3p0bTZwL0tXR3lYSmJyekZwYWpzTGY3cVRTUE9NU2E5eUJkd1cxNk9WVkE3YTluZ3ZxVTZSaHpBYmZVQ3dBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjQyODk5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKdElCUkxPVXk4OTZiSmkxSVVnbC9vaHk4RnNEQ05oZGEwWDVPK3I5YmZOeEh2WWhleGYyMFprQTV0NTAxK3dQaFJUOVN5QVFCeEpzNHo3SmltU20rRGc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.65/Docket.app.tar.gz"
     }
   }
 }
