@@ -1,11 +1,11 @@
 {
-  "version": "0.1.68",
-  "notes": "A contact link counts when the page it points at was never crawled.",
-  "pub_date": "2026-08-13T20:11:36Z",
+  "version": "0.1.69",
+  "notes": "Duplicate titles and descriptions no longer report groups that already agree on a canonical.",
+  "pub_date": "2026-08-13T20:55:42Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStkUDNPMlNPaDdVWlZSUnJhTkplQ256MGpGczlCSVY0S2F4aHNNd1lZWlVaRXU5YS9Dem9WRFVOSVhhS09jOGNBK1Jqa3VMZFhsVEJzQmdQRy9KeHdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjUxNzkyCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKc1hta0FiblIvTDFBV3ppZUN2U2ZTUVVXdmxRbnhhY3EzN1B2bVpYMzVxVDJaVHV5K2E0T1o2NlF4UExWVTZ6bHV3ZmxsMEZJK0k0eHl6L2U2aVFzQlE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.68/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaS9QcE10dzQ2TExXUU9yY05obWxYeUwvQWJxNTFTUVFnL1ZOZnJFOHVQa2REdUk3cDZIYS9LR0Y2aG9GekZSeStvT1BYSUtzK3l3b3FiQXhnUk9WMGdZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjU0NDgyCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKMFgyOUhZbFVELzFUbXlSaWNkQzRMTERDK0NoNmhzTEo0Nlk2N2NjWTNBSkNyNTVFaWRuKzJkd2h4VzlpK041U2tnekFWSkpPaGtEZDA3OXg0UGhMRGc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.69/Docket.app.tar.gz"
     }
   }
 }
