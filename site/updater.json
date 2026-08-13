@@ -1,11 +1,11 @@
 {
-  "version": "0.1.67",
-  "notes": "A count you could disprove at a glance, a lane that passed in silence, and an address Docket could not see.",
-  "pub_date": "2026-08-13T19:17:19Z",
+  "version": "0.1.68",
+  "notes": "A contact link counts when the page it points at was never crawled.",
+  "pub_date": "2026-08-13T20:11:36Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTQzdlM0YUwvTnliYUVvRE5aN1FWMzFNUWhFdWRrU3hnVFkrR0NWNUtWR2ZkUFhCamIzUUJoQmZicjVpSjlLeEN3Y3Q4VTZZcEQ2MUNhVlUvTityMGcwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjQ4NTUwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZnlLM2F0c0JBNkRRTktMYnByUCtQRllldUFKR09jMEVEeHkyeXlJM1NwUEVVOGdWdFdWOTE1RUt4YTdobUxDZTFZWlo2c1JURkNuWWQ5bGlsYkZPRGc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.67/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStkUDNPMlNPaDdVWlZSUnJhTkplQ256MGpGczlCSVY0S2F4aHNNd1lZWlVaRXU5YS9Dem9WRFVOSVhhS09jOGNBK1Jqa3VMZFhsVEJzQmdQRy9KeHdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjUxNzkyCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKc1hta0FiblIvTDFBV3ppZUN2U2ZTUVVXdmxRbnhhY3EzN1B2bVpYMzVxVDJaVHV5K2E0T1o2NlF4UExWVTZ6bHV3ZmxsMEZJK0k0eHl6L2U2aVFzQlE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.68/Docket.app.tar.gz"
     }
   }
 }
