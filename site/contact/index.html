@@ -450,14 +450,24 @@ the reason is the more useful half of this page.</p>
 
 <h2>The address that did not work</h2>
 
-<p>Until today the footer of all 25 pages of this site offered
+<p>The footer of all 25 pages of this site used to offer
 <code>hello@docketseo.app</code>. That address could not receive mail, and never had.</p>
 
-<p>Delivering mail to a domain means looking up its MX record. <code>docketseo.app</code> has
-none. <a href="https://www.rfc-editor.org/rfc/rfc5321#section-5.1">RFC 5321 §5.1</a> says a
+<p>Delivering mail to a domain means looking up its MX record. When that address was
+advertised, <code>docketseo.app</code> had none.
+<a href="https://www.rfc-editor.org/rfc/rfc5321#section-5.1">RFC 5321 §5.1</a> says a
 sender that finds no MX record falls back to the domain's address record — which for this
 site is GitHub Pages, whose servers do not answer on port 25. So every message went out,
 found nowhere to go, and bounced.</p>
+
+<p><strong>That part has since changed, and this page will state only the half of it that can
+be proved.</strong> <code>docketseo.app</code> now has MX records — forwarding, at
+<code>fwd1.porkbun.com</code> and <code>fwd2.porkbun.com</code>. What has <em>not</em> been
+established is whether a message to an address on this domain reaches a mailbox anyone reads:
+an MX record is necessary for delivery, not sufficient, and forwarding is configured per
+address. So no support address goes back on this site until a message has been sent to one
+and answered. Re-advertising it on the strength of a DNS lookup would repeat the original
+mistake with better paperwork.</p>
 
 <p>Nobody noticed because a bounce goes to the sender, not to us. This is the exact failure
 Docket is built to catch and did not: a channel that is advertised, believed, and dead. It is

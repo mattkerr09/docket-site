@@ -469,9 +469,15 @@ the visitor it failed. A dead mailbox tells the visitor it worked.</strong></p>
 <h2>We did this</h2>
 
 <p>docketseo.app carried <code>hello@docketseo.app</code> in the footer of all 25 of its pages.
-The domain has no MX record; it is on GitHub Pages; port 25 is closed there. Every message
+The domain had no MX record; it is on GitHub Pages; port 25 is closed there. Every message
 anyone sent bounced, and we found out by writing a contact page and checking our own
 advertised channel before publishing it.</p>
+
+<p>The domain now publishes MX records, and the address is still not back — which is the
+honest end of this story rather than a loose end. An MX record is necessary for delivery and
+not sufficient: forwarding is configured per address, and nobody has yet sent a message to one
+and had it answered. Re-advertising an address because DNS looks right would be the same
+failure this check exists to catch, one layer further in.</p>
 
 <p>An SEO audit tool shipping a dead contact address is embarrassing in a specific and useful
 way: it is exactly the class of defect that only shows up if something asks the question, and
