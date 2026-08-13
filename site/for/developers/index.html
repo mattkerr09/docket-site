@@ -485,7 +485,7 @@ jobs:
     steps:
       - name: Install Docket
         run: |
-          curl -sL -o docket.dmg https://github.com/mattkerr09/docket-site/releases/download/v0.1.51/Docket-0.1.51-arm64.dmg
+          curl -sL -o docket.dmg https://github.com/mattkerr09/docket-site/releases/download/v0.1.52/Docket-0.1.52-arm64.dmg
           hdiutil attach -nobrowse -quiet docket.dmg -mountpoint /Volumes/Docket
           cp -R /Volumes/Docket/Docket.app /Applications/
           echo "/Applications/Docket.app/Contents/Resources/docket" &gt;&gt; "$GITHUB_PATH"
@@ -589,7 +589,7 @@ red tests.</p>
 
 <p>The four lines above work and will keep working. If you would rather not own them:</p>
 
-<pre><code>      - uses: mattkerr09/docket-site@v0.1.51
+<pre><code>      - uses: mattkerr09/docket-site@v0.1.52
         with:
           url: https://staging.example.com
           fail-on: critical
