@@ -25,6 +25,7 @@ import argparse
 import datetime
 import hashlib
 import json
+import re
 import pathlib
 import sys
 
@@ -153,6 +154,25 @@ def main() -> None:
     print(f"  tarball   : {TGZ.name} ({TGZ.stat().st_size // 1024} KB, sha {digest})")
     print(f"  signature : {len(signature)} chars, read from {SIG.name}")
     print(f"  written   : {OUT}")
+
+    # The GitHub Action installs a pinned tag, and that pin is a second place
+    # the current version lives. It drifted the moment 0.1.47 was published:
+    # the deploy gate caught it and stopped the release, which is the gate
+    # working — but a gate that requires a human to remember an edit every time
+    # is a chore, and chores get skipped. The release step that already knows
+    # the version writes it.
+    action = pathlib.Path(__file__).resolve().parent.parent / "action.yml"
+    if action.exists():
+        text = action.read_text()
+        bumped, n = re.subn(r"(version:.*?default: ')v[\d.]+(')",
+                            rf"\g<1>v{args.version}\g<2>", text, count=1, flags=re.S)
+        if n and bumped != text:
+            action.write_text(bumped)
+            print(f"  action.yml: default pinned to v{args.version}")
+        elif n:
+            print(f"  action.yml: already v{args.version}")
+        else:
+            print("  action.yml: could not find the version default to update")
 
 
 if __name__ == "__main__":
