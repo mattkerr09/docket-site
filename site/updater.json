@@ -1,11 +1,11 @@
 {
-  "version": "0.1.63",
-  "notes": "Docket 0.1.63",
-  "pub_date": "2026-08-13T16:11:23Z",
+  "version": "0.1.64",
+  "notes": "A canonical tag is an answer, not a symptom \u2014 and a verdict on one page is not a verdict on a site.",
+  "pub_date": "2026-08-13T17:02:41Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTNaNXNEVmI2SUhjaEVkaWNEdzhlSWpyRzd0WDRWeXJxa2ZsaStrd1hhblhGLy9YbDFDZE5KNHgrNlMyKzRSVE5ldnZxWnZPT0JRZnRBTTFlVGJCYXc0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjM3MzkwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKbWdKUVVEYUFSb0YweDRKbUNPbWhxYU1qK1hHL2gyZ0NqL0gwOEdLTkczUkxXUHV2ZWs1UTJyZG4xY3d0TC9CQ21BYVFYZysvaTZ4eE1WSHZZVlRJQWc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.63/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTV2WWF5S0pqTDhUd1k0em8yb3FrSVN3bzBFYitua0wrM0d5bGlLOTFlS2ZxaWZpSGZ0RkVuY0pYeVFGeUtONVpMYWtDMnh4eEV1MDhmK1N0N0oxdlFjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjQwMzYzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZDJSQlN5V2pIaFgzd0FmdDBaR3hwOFMxR2UvVEF1MnkwQWFxM25NdVBxMk8xN3llQjloSXdvOVlRM2dLSzNkSWJrTFp1MXNtU3ZGYXBsUGlWMGNRQ3c9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.64/Docket.app.tar.gz"
     }
   }
 }
