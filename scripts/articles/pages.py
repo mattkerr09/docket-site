@@ -1640,13 +1640,20 @@ the receipt {processor_name} sends you. Either arrives.</p>"""
 that accepts replies and it quotes the order reference, which is the one detail needed to find
 a payment.</p>
 
-<p>There is no billing address at <code>docketseo.app</code>, and the reason is worth having
-rather than hiding: the domain publishes no MX record, so mail sent to it does not bounce back
-to us — it bounces to you, silently, and we never learn you wrote.
+<p>There is no billing address at <code>docketseo.app</code> yet, and the reason is worth having
+rather than hiding. Mail to a domain with no MX record does not bounce back to us — it bounces
+to you, silently, and we never learn you wrote.
 <a href="/learn/dead-contact-address/">That already happened here once</a>, to
 <code>hello@docketseo.app</code>, on every page of this site. A build check now resolves the
 MX of any address this site prints and refuses to publish one that cannot receive mail. It is
-why you are not reading an invented address on this page.</p>"""
+why you are not reading an invented address on this page.</p>
+
+<p>What has changed since that was written: <code>docketseo.app</code> now publishes an MX
+record and does accept mail. So the original obstacle is gone, and only a smaller one is left —
+delivery to the domain is not the same as a mailbox existing behind a particular name, and the
+address we intend to publish has not yet had a real message sent to it and read. The moment it
+has, it goes on this page. We would rather show you this sentence than an address nobody has
+tested.</p>"""
 
     body = f"""
 <p class="lede">Thirty days from the date of purchase, no conditions and no questions asked, on

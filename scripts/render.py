@@ -214,12 +214,25 @@ GOVERNING_LAW = "the State of Michigan, United States"
 #: Where a billing question goes. Empty until an address exists that can
 #: receive one.
 #:
-#: docketseo.app publishes no MX record, so every address at it bounces —
-#: verify_contact.py fails the build over exactly that, and it is right to. A
-#: refund question is also the one message that must not go into a public issue
-#: tracker, because it carries an order reference and a name. Until a mailbox
-#: exists, the refund page routes people to the receipt the payment processor
-#: sends them and says plainly that this is why.
+#: This used to read "docketseo.app publishes no MX record, so every address at
+#: it bounces". That was true when written and is no longer: resolved against
+#: 8.8.8.8, 1.1.1.1 and 9.9.9.9 on 2026-08-13, the domain returns
+#: `10 fwd1.porkbun.com` and `20 fwd2.porkbun.com`. Forwarding was configured at
+#: some point and no check noticed, so the justification for this field being
+#: empty had quietly expired while the field stayed empty.
+#:
+#: It stays empty anyway, for a narrower and still-honest reason. MX proves mail
+#: reaches the DOMAIN. It does not prove a mailbox or forwarding row exists
+#: behind a particular name, and at Porkbun each alias is a row somebody creates
+#: by hand. A missing row bounces exactly like a missing mailbox and looks
+#: identical from out here. Matthew has named support@docketseo.app as the
+#: address; one real message sent and read is what promotes this from intended
+#: to true, and that has not happened yet.
+#:
+#: A refund question is also the one message that must not go into a public
+#: issue tracker, because it carries an order reference and a name. Until the
+#: mailbox is confirmed, the refund page routes people to the receipt the
+#: payment processor sends them and says plainly that this is why.
 BILLING_EMAIL = ""
 #: The company that will take the payment and appear on the card statement.
 #: Not chosen. The pages say "not chosen" rather than naming a likely candidate,
