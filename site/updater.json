@@ -1,11 +1,11 @@
 {
-  "version": "0.1.66",
-  "notes": "A certificate belongs to a host, and a deprecated language code is not an unknown one.",
-  "pub_date": "2026-08-13T18:46:39Z",
+  "version": "0.1.67",
+  "notes": "A count you could disprove at a glance, a lane that passed in silence, and an address Docket could not see.",
+  "pub_date": "2026-08-13T19:17:19Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJkMkVzRkR3U0tLcWFNUEhBYlc3NVJXckZ3bVZsei8zcEtMazhUQVRwdlgzcmxGb0ZMNFZuUVVuNmE1K1kzRjlWcWcyVUlzLzNhZDcyZ3BtSi9JVndJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjQ2Njk5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKWVRXdjZwbUpQNjJ0VllrS21GelpXV3h4Tlpmdjdsb0g4VlFNbmpZSE5WNUhrZTJwaDJsN2VqbitSZEd1YlF3NDJsc0NmdURkSzBqV2xkVy81dFIyQUE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.66/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTQzdlM0YUwvTnliYUVvRE5aN1FWMzFNUWhFdWRrU3hnVFkrR0NWNUtWR2ZkUFhCamIzUUJoQmZicjVpSjlLeEN3Y3Q4VTZZcEQ2MUNhVlUvTityMGcwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjQ4NTUwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZnlLM2F0c0JBNkRRTktMYnByUCtQRllldUFKR09jMEVEeHkyeXlJM1NwUEVVOGdWdFdWOTE1RUt4YTdobUxDZTFZWlo2c1JURkNuWWQ5bGlsYkZPRGc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.67/Docket.app.tar.gz"
     }
   }
 }
