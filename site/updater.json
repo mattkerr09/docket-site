@@ -1,11 +1,11 @@
 {
-  "version": "0.1.71",
-  "notes": "A robots.txt server error is no longer reported as a rule your file does not contain.",
-  "pub_date": "2026-08-13T22:11:31Z",
+  "version": "0.1.72",
+  "notes": "Your report is named after your business, and a contact link in your own language counts.",
+  "pub_date": "2026-08-13T23:05:33Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTczSFRLVjRZczdZNktqTlNMdXFTMmJ0cThVU1BQUUp4UmZlYmpvSjNSc0t2OVN1T2lUN3Jpc0Nzc09qZWgvcWRvaXhQYjZxbnlVOWVucjQvQjJrNUFnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjU4OTkzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZ1BjaDFoUllEblVSU0M5SE5uNTkvWXNGMVMyNFZSZEhDcVVldERoSzN4dmY1RVV0SlV1cm9mM05EU096SmJVdWFvbGFGQUI2aWwrTkdNRysxY1h2RGc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.71/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJ4MFBTdnhxaml6ZkVITzZJZ21Ga0JOUms1VzhSKzJMUER2Sk1rMmRKQXpZZGV1bzJTc0pkK3JUOStNMXRabEtweVJkNWdTRytPUzBGVGpDaTl2dFFBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjYyMjE2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKTlYydENZOUt3MTdhMy9QUXpQaGxEaTRoaUN4VndHSlpMZDl5dlJkbE5ZSlM4SWtkbzlzZjdKZmdhbW9YU3RFS3hzUU9qRUtxL29uMlBqZHg2RnlsQUE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.72/Docket.app.tar.gz"
     }
   }
 }
