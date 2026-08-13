@@ -19,6 +19,7 @@ content.ai_slop,content,Content quality,Generic AI-sounding copy
 content.dates,content,Content quality,Freshness signals
 content.eeat,content,Content quality,Trust and authorship signals
 content.js_rendering,content,Content quality,JavaScript-dependent content
+content.lang_mismatch,content,Content quality,Declared page language
 content.language_scope,content,Content quality,Language coverage
 content.placeholder,content,Content quality,Placeholder content
 content.readability,content,Content quality,Readability
