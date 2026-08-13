@@ -40,7 +40,32 @@ CHECKED_ON_HUMAN = "10 August 2026"
 #: What was actually read, and where. Anything not sourced here is not stated as
 #: a fact about a competitor on these pages — it is either a concession, or
 #: written as a limit of what could be checked.
+#: The homepage's four-lane claim, and the day it was last read against the
+#: vendors' own pages. Deliberately NOT `CHECKED_ON`: only these two were
+#: re-read on this date, and reusing the other constant would assert that
+#: Ahrefs, Semrush and Lighthouse had been re-read too.
+#:
+#: The claim used to read "Four things crawler tools ignore", unsourced and
+#: undated, on the highest-traffic page of a site whose every comparison page
+#: quotes its source. It was also wrong on its sharpest point — see the third
+#: entry below, which is the vendor describing a capability we said they
+#: lacked.
+HOME_CLAIM_CHECKED = "2026-08-13"
+HOME_CLAIM_CHECKED_HUMAN = "13 August 2026"
+
 VERIFIED: dict[str, list[tuple[str, str]]] = {
+    "home-four-lanes": [
+        ("neither vendor's published feature list names conversion or "
+         "landing-page auditing, brand consistency, or local-business SEO",
+         "https://www.screamingfrog.co.uk/seo-spider/"),
+        ("Sitebulb's features page names none of the four",
+         "https://sitebulb.com/features/"),
+        # The concession. Read it before writing anything about AI crawlers.
+        ('the user-agent configuration "allows you to switch the user-agent of '
+         'the HTTP requests made by the SEO Spider and which robots.txt '
+         'directives are followed"',
+         "https://www.screamingfrog.co.uk/seo-spider/user-guide/configuration/"),
+    ],
     "screaming-frog": [
         ('renders with the "integrated Chromium WRS"',
          "https://www.screamingfrog.co.uk/seo-spider/"),

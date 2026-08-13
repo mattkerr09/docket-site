@@ -38,6 +38,15 @@ echo "==> contact gate"
 # resolves every mailto domain and requests every advertised contact URL.
 "$PY" scripts/verify_contact.py
 
+echo "==> competitive-claim gate"
+# The homepage said "Four things crawler tools ignore" — unsourced, undated, on
+# the page with more traffic than every /vs/ page combined, and wrong on its
+# sharpest point: Screaming Frog's user guide describes switching user-agent and
+# following that agent's robots.txt directives, which is the AI-crawler question
+# we said it ignored. Every comparison page quotes its source; this makes the
+# rest of the site meet the same standard.
+"$PY" scripts/verify_competitive_claims.py
+
 echo "==> third-party gate"
 # This site published a page-by-page audit of a named delicatessen — the domain,
 # 33 page URLs, their titles and per-page risk scores — at a public URL and in
