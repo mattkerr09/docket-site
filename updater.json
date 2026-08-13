@@ -1,11 +1,11 @@
 {
-  "version": "0.1.46",
-  "notes": "Fixes the storage path: 0.1.45 and earlier wrote to ~/\\.docket. This release writes to ~/.docket and migrates on first run.",
-  "pub_date": "2026-08-12T21:33:12Z",
+  "version": "0.1.47",
+  "notes": "Docket 0.1.47",
+  "pub_date": "2026-08-13T01:52:18Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXdRaHdzOGxPV1R0ZEY4a1NoaWtDREc4eFN6Wi9sVGFNc3J1ZzdpWXRrbG1HdVZKOHk2T1BSNG15d29PN2FuNklsYTJ3VzZTeFRPTUhYeTBod3lIUGdRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NTU1NjQ4CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKUklPNmt4L29zdXZGcUVSaHpCUGdMRUFjMmFBMXZYZHJQby9zUW9xc283NWdpck1sdGw3NkRLWENTYmVtOEJKYStzQXNSNE5UMmRzL2M1cDF0REZtQUE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.46/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXdDUFEvdytJemxHL1dSQm1EYzREdGdtV1dFVEtrQ3YzOWV6c1VoWW44a1dhY0NPcm9JWHBnV2twZEJaS1hYZVMraVE4UVhKc0J5bW82ZlRSbGNDcFFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NTg1MTkyCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKbzJud1F0NjdzcXlDR21wTmludGVhazdHZGxyL0lUcGhJUVBDUmdnaSs1a29QcUVXaVM4bkRFOTdscitwUTZRbkdFU25mbEphazlOcTNaOWo1Z3Y2Q2c9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.47/Docket.app.tar.gz"
     }
   }
 }
