@@ -46,6 +46,20 @@ DERIVED = [
     ("collect_regressions.py", "site/_data/regressions.json"),
 ]
 
+#: Checks run from the *app* repo, which owns the fact. `--check` reports
+#: staleness without writing, which is what a gate wants.
+#:
+#: `export_checks_csv.py --check` has existed since the catalogue stopped being
+#: hand-maintained, and its own docstring calls it "the form worth wiring into
+#: a release". It was wired nowhere. When it was finally run on 2026-08-13 it
+#: exited 1 — not because the catalogue was stale but because its default
+#: output path was `/tmp/scout-site/...`, where the site lived before the
+#: rename. The guard on the most prominent number on this site had been aiming
+#: at a directory that no longer exists.
+APP_CHECKS = [
+    ("export_checks_csv.py --check", ["scripts/export_checks_csv.py", "--check"]),
+]
+
 
 def main() -> int:
     fix = "--fix" in sys.argv
@@ -70,8 +84,22 @@ def main() -> int:
                 # changes", which is a different and more confusing failure.
                 path.write_bytes(before)
 
+    import app_path
+    app = app_path.find()
+    for label, argv in APP_CHECKS:
+        result = subprocess.run([sys.executable, *[str(app / a) if a.endswith(".py") else a
+                                                   for a in argv]],
+                                capture_output=True, text=True, cwd=str(app))
+        line = (result.stdout or result.stderr).strip().splitlines()
+        print("  " + (line[0] if line else label))
+        if result.returncode != 0:
+            print(f"\nFAIL  {label} — the published catalogue does not describe "
+                  "the engine this would ship beside.")
+            return 1
+
     if not stale:
-        print(f"derived data ok — {len(DERIVED)} dataset(s) match the app repo")
+        print(f"derived data ok — {len(DERIVED)} dataset(s) and "
+              f"{len(APP_CHECKS)} catalogue check(s) match the app repo")
         return 0
 
     for collector, target in stale:
