@@ -26,6 +26,13 @@ echo "==> derived-number gate"
 # cannot be caught by reading.
 "$PY" scripts/verify_numbers.py
 
+echo "==> derived-data freshness gate"
+# verify_numbers.py refuses a number that was typed. It cannot see a number
+# that was derived from a dataset nobody rebuilt: the prose and the data agree
+# with each other and both are stale. /learn/audit-tool-accuracy/ shipped
+# "17 of the 35 test files" for six days against a repo with 74 of 145.
+"$PY" scripts/verify_derived_data.py
+
 echo "==> quality gate"
 # Runs against the built HTML. A failure here must stop the deploy: this is the
 # only thing standing between a bad edit and the live site.
