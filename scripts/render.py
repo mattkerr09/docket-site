@@ -182,6 +182,19 @@ PRICE_TODAY = 0 if BETA_FREE else PRICE
 BETA_NOTE = (f"{RELEASE} is free while it is in beta; {PRICE_STR} applies "
              f"from v1.0." if BETA_FREE else "")
 
+#: The same fact as a clause that can sit mid-sentence, because five pages were
+#: writing their own version of it.
+#:
+#: "{RELEASE} is free while it is in beta" was hardcoded into about.py, two
+#: comparison pages, the SaaS page and the download page. `BETA_FREE` went False
+#: when Docket went on sale and every one of those kept saying it — the live
+#: site called v1.1.0 a free beta, and the download page additionally promised
+#: that $79 "applies from v1.0", a trigger that had already passed. Five copies,
+#: one updated.
+FREE_CLAUSE = (f"{RELEASE} is free while it is in beta"
+               if BETA_FREE else
+               f"{RELEASE} has no activation step yet, so it runs without a key")
+
 #: Where the money is actually taken. Polar is the merchant of record; this link
 #: is a checkout-link object on the `docketseo` organisation, whose product
 #: "Docket SEO" is $79.00 one-time with a license_keys benefit attached.

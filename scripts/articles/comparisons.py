@@ -13,7 +13,8 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import BETA_NOTE, N_CHECKS, PRICE_STR, RELEASE, price, render  # noqa: E402
+from render import (BETA_NOTE, FREE_CLAUSE, N_CHECKS, PRICE_STR, RELEASE,  # noqa: E402
+                    price, render)
 
 CTA = """
 <div class="callout">
@@ -605,7 +606,7 @@ Business, and their knowledge base notes those reset on the 1st rather than roll
 <h2>The arithmetic, and why it flatters Docket</h2>
 <p>Semrush's pricing page lists the entry plan at $139 a month, or $117.33 a month billed
 annually. Paid monthly that is $1,668 in the first year and the same again in the second. Docket
-is {PRICE_STR} once — {RELEASE} is free while it is in beta — which works out at roughly five
+is {PRICE_STR} once — {FREE_CLAUSE} — which works out at roughly five
 weeks of the cheapest Semrush plan.</p>
 <p>Then take the flattery back out. That $139 is not the price of a site audit. It is the price
 of keyword research, rank tracking and a backlink index, with an audit included. If you use
@@ -820,7 +821,7 @@ equivalent. And if you are not on an Apple Silicon Mac running macOS 12 or later
 not run at all.</p>
 <p>Docket costs {PRICE_STR} once, runs {N_CHECKS} checks on your own machine with no account,
 no licence check and no telemetry, and keeps everything under <code>~/.docket</code>.
-{RELEASE} is free while it is in beta. It earns that money against a free tool from Google in
+{FREE_CLAUSE}. It earns that money against a free tool from Google in
 one situation only: when the question has stopped being how fast is this page and become which
 of forty things do I do first.</p>
 {_verified_note("lighthouse")}

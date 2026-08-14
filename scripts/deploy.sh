@@ -54,6 +54,15 @@ echo "==> competitive-claim gate"
 # rest of the site meet the same standard.
 "$PY" scripts/verify_competitive_claims.py
 
+echo "==> price-claim gate"
+# The download page said "v1.1.0 is free … the $79 applies from v1.0" on a live
+# site selling v1.1.0. Both halves were written when BETA_FREE was True and the
+# release was 0.1.x; flipping the flag updated the constant and left five
+# hand-written copies of the same claim across about, two comparison pages, the
+# SaaS page and the download page. A site selling an instrument for catching
+# stale copy cannot be the counterexample on its own pricing page.
+"$PY" scripts/verify_price_claims.py || exit 1
+
 echo "==> brand asset gate"
 # Three different marks across four files, found by opening them: the favicon
 # was the desktop app's indigo, and icon.png and og.png were still the orange
