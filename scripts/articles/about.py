@@ -24,7 +24,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import (  # noqa: E402
+from render import (
+    FREE_CLAUSE,  # noqa: E402
     DMG_NAME, DMG_SIZE, ISSUES, N_CHECKS, N_LANES, PRICE_STR, RELEASE, REPO,
     VOLUME, render,
 )
@@ -34,8 +35,7 @@ def about() -> Path:
     body = f"""
 <p class="lede">Docket is built by Matt Kerr, one person, in the UK. It is a Mac app that
 audits a site's SEO, copy and branding against {N_CHECKS} checks across {N_LANES} lanes,
-runs the crawl on your own machine, and costs {PRICE_STR} once — {RELEASE} is free while it
-is in beta.</p>
+runs the crawl on your own machine, and costs {PRICE_STR} once — {FREE_CLAUSE}.</p>
 
 <p>That is the whole company. There is no team page because there is no team, no office
 address because there is no office, and no support desk because there is one person reading

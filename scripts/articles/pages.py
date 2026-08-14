@@ -12,7 +12,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import (  # noqa: E402
+from render import (
+    FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
     RELEASE, SELLER, SELLER_REG_NO, SUMS, price_note_html, render,
@@ -36,6 +37,33 @@ def _cost_rows() -> str:
     )
 
 
+def _payment_note() -> str:
+    """What actually happens when you press Download, in one paragraph.
+
+    This used to be a hardcoded sentence: "{RELEASE} is free. The beta downloads
+    without payment and keeps working; the $79 applies from v1.0." It was true
+    while `BETA_FREE` was True, and it went false the moment the version passed
+    v1.0 with the flag flipped — the page then told a reader that the price
+    applies from v1.0 while offering v1.1.0 for nothing. One fact living in two
+    places, and only the constant got updated.
+
+    So it is derived. The wording still refuses to leave a price beside a button
+    that charges nothing without saying so, because that is exactly the kind of
+    thing this tool exists to flag, and a site that sells an honesty instrument
+    cannot be the counterexample.
+    """
+    if BETA_FREE:
+        return (f'<p><strong>{RELEASE} is free while it is in beta.</strong> It downloads '
+                f'without payment and keeps working; {PRICE_STR} applies from v1.0.</p>')
+    return (
+        f'<p><strong>{RELEASE} still downloads and runs without a licence key.</strong> '
+        f'The price is {PRICE_STR}, paid once, and buying is what pays for the work — '
+        f'but there is no activation step in this build and nothing stops you using it '
+        f'first. Said plainly because a price on a page beside a button that charges '
+        f'nothing is precisely the kind of thing this tool exists to flag, and it would '
+        f'be a poor advertisement to be the example.</p>')
+
+
 def download() -> Path:
     body = f"""
 <p class="lede">Docket is {PRICE_STR}, paid once, for macOS 12 or later on Apple Silicon.
@@ -43,9 +71,7 @@ def download() -> Path:
 you like, for as long as you like. There is no account to create, no licence server to phone,
 and no telemetry.</p>
 
-<p><strong>{RELEASE} is free.</strong> The beta downloads without payment and keeps working; the
-{PRICE_STR} applies from v1.0. Said plainly because a price on a page beside a button that
-charges nothing is the kind of thing this tool exists to flag.</p>
+{_payment_note()}
 
 <p><a class="btn btn-lg" href="{DMG}">Download Docket {RELEASE} for Mac</a></p>
 <p style="font-size:.92rem;color:var(--text-dim)">Apple Silicon · macOS 12+ · {DMG_SIZE} ·
@@ -1104,7 +1130,7 @@ years.</p>
 
 <h2>Why the price is a number rather than a plan</h2>
 
-<p>{PRICE_STR}, once, from v1.0 — and {RELEASE} is free while it is in beta. No seats, no
+<p>{PRICE_STR}, once, from v1.0 — and {FREE_CLAUSE}. No seats, no
 crawl credits, no renewal date. You price a SaaS product yourself, so you know what a
 recurring line item does to a buying decision at a company that already has eleven of
 them.</p>
