@@ -52,9 +52,9 @@ score. <strong>Deleting every title tag registered as three improvements.</stron
 checks for short titles, for titles missing a location, and for titles that do not match
 the page all stopped firing — correctly, since there is no title to be short or wrong.</p>
 
-<p>And the score did not move. <strong>55.0 before, 55.0 after.</strong> A gate watching the
-number would have let that deploy through, and a report showing three fixes and one issue
-would have looked like a decent week.</p>
+<p>And the overall score did not move at all — identical before and after, to the decimal.
+A gate watching the number would have let that deploy through, and a report showing three
+fixes against one issue would have looked like a decent week.</p>
 
 <h2>The exit codes</h2>
 
@@ -126,9 +126,10 @@ test panels, the GitHub Action — is here.</p>
              "fails before the change reaches production."),
             ("Why not just fail the build on the audit score?",
              "Because a score can hide a regression. Stripping every title tag from a "
-             "test site left the score unchanged at 55.0 and registered three "
+             "test site left the score unchanged and registered three "
              "improvements, since the checks for short, mismatched and location-free "
-             "titles all stopped firing. The diff still reported the HIGH regression."),
+             "titles all stopped firing — and the overall score did not move at all. "
+             "The diff still reported the high-severity regression."),
             ("What happens if staging is partly unreachable?",
              "Docket refuses to compare crawls that reached very different numbers of "
              "pages, and exits 1 rather than 0. Refusing to judge is not a pass. "
