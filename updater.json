@@ -1,11 +1,11 @@
 {
-  "version": "1.1.2",
-  "notes": "A relative Sitemap line in robots.txt no longer ends the audit with no report.",
-  "pub_date": "2026-08-14T07:45:44Z",
+  "version": "1.1.3",
+  "notes": "A report about a group is no longer named after one of its parts.",
+  "pub_date": "2026-08-14T08:26:45Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJxRGNQVXp4UUdkeWJqZ2JrTE9kRmpoOVh6aHAyUkVqc3orcHNoMTVKaE9XYkxVQ2pxK1BFbDRVc2xQRFRMSENvRzEvTVl4WG1BUnJqN3RMbEhXMHdNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjkzNDQ4CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKdG5EQmdGeGdjY3I5Ry9MV3U3M0VOSTAzTEFNYWtZVUxkVm0waVNWZU9qeGtvRHpXcUk3dTkzSWZwRHM4bWFWZUEweXY5TFNBWTV4VVFLZXdXVmY0Q2c9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.2/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTNMT2Y3WU5RRG1ESWljSHBQVjdVQ1RPQ3JrTnJXcVM3Q0lYR2hGVTdmd1ZWcHVKTjN5R2ZWcnVtZ0lKS1NFTm5ucC9yTVJRUXZOSjhIWnhIbHprOWdJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2Njk1OTA3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKOWQvL3ZwTzFWb3lCRWFBK09UTnpKNm5TWXExNGZhYXZ0eC9LeUJqUDJMMk1kVUFtZU9WdngxeUlnVkVKdkJ4NlNmOFZiSFMzamhhMU1SK1RFR3B0QXc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.3/Docket.app.tar.gz"
     }
   }
 }
