@@ -1,11 +1,11 @@
 {
-  "version": "1.1.3",
-  "notes": "A report about a group is no longer named after one of its parts.",
-  "pub_date": "2026-08-14T08:26:45Z",
+  "version": "1.1.4",
+  "notes": "\"Under construction\" in a long finished page no longer reads as placeholder text.",
+  "pub_date": "2026-08-14T09:11:38Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTNMT2Y3WU5RRG1ESWljSHBQVjdVQ1RPQ3JrTnJXcVM3Q0lYR2hGVTdmd1ZWcHVKTjN5R2ZWcnVtZ0lKS1NFTm5ucC9yTVJRUXZOSjhIWnhIbHprOWdJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2Njk1OTA3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKOWQvL3ZwTzFWb3lCRWFBK09UTnpKNm5TWXExNGZhYXZ0eC9LeUJqUDJMMk1kVUFtZU9WdngxeUlnVkVKdkJ4NlNmOFZiSFMzamhhMU1SK1RFR3B0QXc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.3/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTlqVWE0ZmVkM0pUc1cyMXdWUDgvRm5UQ2dKWTJiVGRkdFRaS3p5QW5yT2ZYZVJFUmpJVTZBMlZxVWdCVEdOdjZwd0hRVTFGOTQzRGRJUXVUaVFCbmdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2Njk4NjAzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKYk9aQXpseW5Cdnk1TGVCNU9MTnZkNU1FMENXL2pVRTh3MHp1aGp5Z2NpbHJxZnBGUFB1eVArZFhpL2hZbVhzdTZqMVk5SmIzNVFyeEcyOTduUlZJQXc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.4/Docket.app.tar.gz"
     }
   }
 }
