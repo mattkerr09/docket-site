@@ -24,7 +24,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (BETA_NOTE, DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR,
+from render import (BETA_NOTE, CHECKOUT, DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR,
                     price, price_note_html, render)  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
@@ -190,17 +190,17 @@ def body() -> str:
 <!-- ================= HERO ================= -->
 <section class="hero-sec"><div class="wrap-wide hero-grid">
 <div>
-  <span class="eyebrow">{N_CHECKS} checks · free in beta · {PRICE_STR} once from v1.0</span>
+  <span class="eyebrow">{N_CHECKS} checks · {PRICE_STR} once · no subscription</span>
   <h1 class="hero-h1">Everything that's wrong.
   <em>In the order to fix&nbsp;it.</em></h1>
   <p class="hero-sub">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
   conversion, brand, AI search visibility and campaign tracking — then one ranked plan with the
   markup to paste. Not four tools. One download.</p>
   <div class="hero-cta">
-    <a class="btn btn-lg" href="{DMG}">Download for Mac</a>
-    <a class="btn-ghost btn-lg" href="/index/">See the Index →</a>
+    <a class="btn btn-lg" href="{CHECKOUT}">Buy Docket · {PRICE_STR} once</a>
+    <a class="btn-ghost btn-lg" href="{DMG}">Download for Mac</a>
   </div>
-  <p class="hero-note">macOS 12+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account</p>
+  <p class="hero-note">macOS 12+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites</p>
 </div>
 {_mockup()}
 </div></section>
@@ -399,7 +399,8 @@ on your site and how it is configured.</p></div>
 <section class="cta-band"><div class="wrap">
 <h2>Audit your site in about a minute</h2>
 <p>Download it, type a domain, press Run. There is no onboarding because none is needed.</p>
-<a class="btn btn-lg" href="{DMG}">Download Docket for Mac</a>
+<a class="btn btn-lg" href="{CHECKOUT}">Buy Docket · {PRICE_STR} once</a>
+<a class="btn-ghost btn-lg" href="{DMG}">Download for Mac</a>
 </div></section>
 """
 

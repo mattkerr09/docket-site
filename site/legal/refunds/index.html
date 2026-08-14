@@ -53,7 +53,7 @@
   /* Indigo, in its light-ground values. #4338CA is the press colour in the
      desktop app and the only one dark enough to be link text on paper:
      #818CF8, the dark-mode fill, reads 1.9:1 here and is unusable. */
-  --brand:#4338CA;--brand-light:#312E81;--brand-soft:rgba(67,56,202,.09);
+  --brand:#134E4A;--brand-light:#0F3D3A;--brand-soft:rgba(19,78,74,.09);
   --on-accent:#FFFFFF;
   /* Severity, defined ONCE as a channel triple and derived from there.
      Every tinted background in this stylesheet is the severity colour at low
@@ -420,7 +420,7 @@ body.landing article{padding:0}
 .faq-item p{font-size:.93rem;margin:0}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 96 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"96 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 96 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"79","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"96 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","headline":"Refund and cancellation policy","description":"Thirty days from purchase, no conditions — Docket collects no usage data it could condition one on. How to ask, and what happens to your copy after.","datePublished":"2026-08-11","dateModified":"2026-08-11","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/legal/refunds/","inLanguage":"en"}</script>
 </head>
 <body>
@@ -444,15 +444,6 @@ any paid copy of Docket. What follows is how to ask, what happens to the copy on
 afterwards, and why the window is thirty days rather than a number picked because it sounded
 generous.</p>
 
-<div class="callout">
-<div class="callout-title">There is nothing to refund today</div>
-<p>v0.1.75 is free. It downloads without payment, it keeps working, and this site has no
-checkout to pay through. This policy is published before there is a transaction behind it
-because the $79 is already written on this site, and a price with no refund terms
-beside it is half a sentence.</p>
-<p>If you have paid money for a copy of Docket, it did not reach us. Say so on
-<a href="https://github.com/mattkerr09/docket-site/issues">the issue tracker</a> and where it went will be written up in public.</p>
-</div>
 <h2>The policy</h2>
 
 <p>Ask within 30 days of the date on your receipt and the full purchase price goes back to the
@@ -482,24 +473,8 @@ chased, so the length of the window costs nothing but the money.</li>
 
 <h2>How to ask</h2>
 
-<p>Reply to the receipt the payment processor sends when you buy. That message comes from an address
-that accepts replies and it quotes the order reference, which is the one detail needed to find
-a payment.</p>
-
-<p>There is no billing address at <code>docketseo.app</code> yet, and the reason is worth having
-rather than hiding. Mail to a domain with no MX record does not bounce back to us — it bounces
-to you, silently, and we never learn you wrote.
-<a href="/learn/dead-contact-address/">That already happened here once</a>, to
-<code>hello@docketseo.app</code>, on every page of this site. A build check now resolves the
-MX of any address this site prints and refuses to publish one that cannot receive mail. It is
-why you are not reading an invented address on this page.</p>
-
-<p>What has changed since that was written: <code>docketseo.app</code> now publishes an MX
-record and does accept mail. So the original obstacle is gone, and only a smaller one is left —
-delivery to the domain is not the same as a mailbox existing behind a particular name, and the
-address we intend to publish has not yet had a real message sent to it and read. The moment it
-has, it goes on this page. We would rather show you this sentence than an address nobody has
-tested.</p>
+<p>Refund requests go to <a href="mailto:support@docketseo.app">support@docketseo.app</a>, or as a reply to
+the receipt the payment processor sends you. Either arrives.</p>
 <p>Please do not open a GitHub issue about a refund. The tracker is the contact channel for
 everything else here and it is deliberately public, which is right for a wrong finding and
 wrong for a payment: a refund request carries your name, an order reference and sometimes the

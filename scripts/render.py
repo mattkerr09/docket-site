@@ -176,11 +176,23 @@ PRICE_STR = f"${PRICE}"
 #: machine-readable claim to Google that a price existed to be paid. Docket's
 #: own schema.price_not_visible check found it, which is the strongest argument
 #: for the check that exists.
-BETA_FREE = True
+BETA_FREE = False
 PRICE_TODAY = 0 if BETA_FREE else PRICE
 #: The qualifier that travels with every mention of the price.
 BETA_NOTE = (f"{RELEASE} is free while it is in beta; {PRICE_STR} applies "
              f"from v1.0." if BETA_FREE else "")
+
+#: Where the money is actually taken. Polar is the merchant of record; this link
+#: is a checkout-link object on the `docketseo` organisation, whose product
+#: "Docket SEO" is $79.00 one-time with a license_keys benefit attached.
+#:
+#: This existed and was unused. On 2026-08-14 the product, its price, its licence
+#: benefit and this very link were all live in Polar while every page on the site
+#: said "free in beta; $79 applies from v1.0" — a price with a trigger nobody had
+#: scheduled to pull. The checkout was not the blocker. The version number was,
+#: and Matthew resolved it in four words.
+CHECKOUT = ("https://buy.polar.sh/"
+            "polar_cl_FteABR6qSwOHHAOhrP1ObrzCOeVqsraAjhLZ323XgFR")
 
 # --------------------------------------------------------------------------
 # Who the money is paid to.
@@ -233,7 +245,7 @@ GOVERNING_LAW = "the State of Michigan, United States"
 #: issue tracker, because it carries an order reference and a name. Until the
 #: mailbox is confirmed, the refund page routes people to the receipt the
 #: payment processor sends them and says plainly that this is why.
-BILLING_EMAIL = ""
+BILLING_EMAIL = "support@docketseo.app"
 #: The company that will take the payment and appear on the card statement.
 #: Not chosen. The pages say "not chosen" rather than naming a likely candidate,
 #: because a buyer who reads a name here and sees a different one on their
@@ -285,7 +297,7 @@ STYLE = """<style>
   /* Indigo, in its light-ground values. #4338CA is the press colour in the
      desktop app and the only one dark enough to be link text on paper:
      #818CF8, the dark-mode fill, reads 1.9:1 here and is unusable. */
-  --brand:#4338CA;--brand-light:#312E81;--brand-soft:rgba(67,56,202,.09);
+  --brand:#134E4A;--brand-light:#0F3D3A;--brand-soft:rgba(19,78,74,.09);
   --on-accent:#FFFFFF;
   /* Severity, defined ONCE as a channel triple and derived from there.
      Every tinted background in this stylesheet is the severity colour at low
