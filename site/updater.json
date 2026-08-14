@@ -1,11 +1,11 @@
 {
-  "version": "1.1.1",
-  "notes": "A capped score is no longer listed as a verdict on your site.",
-  "pub_date": "2026-08-14T06:14:13Z",
+  "version": "1.1.2",
+  "notes": "A relative Sitemap line in robots.txt no longer ends the audit with no report.",
+  "pub_date": "2026-08-14T07:45:44Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXpsa2E5V1JIVDROeEJIeEp2SVJLRnhtOEE1empPM3hwNC9QTHFucHhtQTBQazJzWWxsV3BZekNtSlk3a3FkeEVCZnNTL0RJeXFUT1lUbGlzUmtaRmdjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2Njg3OTUzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKcjJVWThDK2hiNEFOQ05hTUJ6eGhSOFRJa0VHUDJXTmRqMmxMSkpnMitHdWh3a1VRT3J1azFNMkNvaHU3S3JJaG9MS3B4bDJaZzVqb2d2ZnZBYzQ4QWc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.1/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJxRGNQVXp4UUdkeWJqZ2JrTE9kRmpoOVh6aHAyUkVqc3orcHNoMTVKaE9XYkxVQ2pxK1BFbDRVc2xQRFRMSENvRzEvTVl4WG1BUnJqN3RMbEhXMHdNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjkzNDQ4CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKdG5EQmdGeGdjY3I5Ry9MV3U3M0VOSTAzTEFNYWtZVUxkVm0waVNWZU9qeGtvRHpXcUk3dTkzSWZwRHM4bWFWZUEweXY5TFNBWTV4VVFLZXdXVmY0Q2c9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.2/Docket.app.tar.gz"
     }
   }
 }
