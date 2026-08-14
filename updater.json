@@ -1,11 +1,11 @@
 {
-  "version": "1.0.3",
-  "notes": "Docket no longer reports things it did not observe: branch phone numbers, invented numbers, or a rate limit the audit itself caused.",
-  "pub_date": "2026-08-14T03:11:28Z",
+  "version": "1.0.4",
+  "notes": "A locator page saved as a file \u2014 /shops.html \u2014 is recognised again, so the local lane applies to hand-written sites.",
+  "pub_date": "2026-08-14T03:45:21Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTlhQVVoaVNFTXpaeEFHdnQ0eDc1WXp5WWdPUy9PSFBERThUZVRDZDd0RTJpWEEwWVNJMDJkM3dWZExNSy9BWjBvTlpTeDFGaytrUGVwTFppOUFqb1FNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2Njc2OTg2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZlNQamk2Z1M2MGsyalZRd1EwS2xzYzk1Zi9kZ2tXdUpXM2Fab21meHNtUWUwdXhMMHBBNkZuOHJ1T1lNdEk0V3pkN1ppYjJMTmN1RnlLTUI0d2lIQ1E9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.0.3/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVwb2pHUmY0em5od2RCSllnV0xONDVnR05sMk5XYVRIY243NzBQUFYvK2ZTREtHbSthYlFJZngyaGI5YWkvekZLMVo4S0Z5VWRYdFZPdEJxZWU5MndrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2Njc5MDEzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKMkJaS0NCZTZvK2g2eXhMWEhFaXIwdUQ0d1grajJ3VXZDVjV6ZWY4cml4WjJnRnFMS0w1V1BtY3VpVVM3ZHhKbitpRkE1T09oR0hTZEsydTFnUEZSQnc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.0.4/Docket.app.tar.gz"
     }
   }
 }
