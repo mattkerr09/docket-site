@@ -1444,9 +1444,9 @@ which affiliate sent you, so they are paid if you buy. Arrive from a search resu
 or a link of ours and no cookie is set at all &mdash; which is what almost every visitor does.
 It records which affiliate sent a visit, never who the visitor is.</p>
 <p>This paragraph replaced one that said the site &ldquo;sets no cookies&rdquo; and runs
-&ldquo;one third-party script&rdquo;. Both were true until Sled was added on 14 August 2026, and
-a privacy page that enumerates what a site does not do is only worth reading if the enumeration
-stays complete.</p>
+&ldquo;one third-party script&rdquo;. Both were true until Sled was added, and a privacy page
+that enumerates what a site does not do is only worth reading if the enumeration stays
+complete.</p>
 <p>If you would rather not be counted, any content blocker stops it, and nothing on this site
 depends on it loading.</p>
 
