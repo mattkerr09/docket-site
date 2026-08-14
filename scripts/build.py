@@ -45,6 +45,7 @@ import index_page  # noqa: E402
 import learn  # noqa: E402
 import link_equity  # noqa: E402
 import conversion  # noqa: E402
+import monitoring  # noqa: E402
 import martech  # noqa: E402
 import mailcheck  # noqa: E402
 import pages  # noqa: E402
@@ -165,6 +166,10 @@ money.</p>
              f"Of {F.brand_social_frame()} company sites linking social profiles, "
              f"{F.brand_social_undeclared()} declared none of them in schema. What the "
              f"brand lane checks, and where design tools beat it."),
+            ("/learn/site-monitoring/", "SEO monitoring: what changed, not what is wrong",
+             "Re-audits while the app is open, regressions first, and the two "
+             "comparisons Docket refuses to make because the number would look useful "
+             "and be wrong."),
             ("/learn/conversion-audit/", "Conversion audit: 9 checks on your landing pages",
              "Ranking and then failing to say what to do next costs the same as not "
              "ranking. The 9 mechanical checks, and the judgement calls Docket "
@@ -422,6 +427,7 @@ def main() -> int:
     pages += link_equity.build_all()
     pages += martech.build_all()
     pages += conversion.build_all()
+    pages += monitoring.build_all()
     pages += entity.build_all()
     pages += directives.build_all()
     pages += rendering.build_all()
