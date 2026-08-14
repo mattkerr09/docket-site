@@ -1405,9 +1405,14 @@ at once, leaving only the crawl of your own site.</p>
 as plain JSON files. They are never transmitted. Deleting that folder removes them permanently.</p>
 
 <h2>This website</h2>
-<p>This site is static. It sets no cookies, runs no analytics and embeds no third-party
-scripts or fonts. Standard server logs may record IP addresses and requested URLs, which are
-used only to keep the site running.</p>
+<p>This site is static and sets no cookies. It runs one third-party script:
+<a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, which counts page
+views. Plausible states that it uses no cookies, collects no personal data and does not track
+visitors across sites; it is hosted in the EU. Nothing about your audits reaches it &mdash;
+audits run on your Mac and this website never sees them. Standard server logs may record IP
+addresses and requested URLs, which are used only to keep the site running.</p>
+<p>If you would rather not be counted, any content blocker stops it, and nothing on this site
+depends on it loading.</p>
 
 <h2>Data you give us</h2>
 <p>There is no contact form and no mailing list. If you open an issue on GitHub, that issue
