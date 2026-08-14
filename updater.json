@@ -1,11 +1,11 @@
 {
-  "version": "0.1.73",
-  "notes": "Ask about one page and get an answer about that page, not about a homepage never fetched.",
-  "pub_date": "2026-08-13T23:26:11Z",
+  "version": "0.1.74",
+  "notes": "A projection that could not run now says so, instead of showing an unexplained zero.",
+  "pub_date": "2026-08-14T00:12:44Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTNMUlFuVFljYWM2UWRPdmo5QVhRbCswekNSSmNqZmVpcSt4YkFSL1BwQ3cvOHI3VnZWa3ZjYWYyU2QzSDJPWWxENGJOWXdCOERiSVcrU3JpTWllY2c4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjYzNDY3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKMS9pNlVzM0hrTWFvUWludlhwVUNiV2VVd1ozT0JmSGJNWUtNcDU3VEJ6WEhPaW9xcWxuc3BqdW9WZmdLR0RjZDBRUzlGeWUweGdRandXNXNUa3B1QVE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.73/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaS9HMXFGSm0wb1dSNDF3VCtINFBvZ2RPM01SUGN6eGdETUtBWkFuRmNMeWRBU0cvWXRWM0VNQm5zOFd3ekF5S3BMKytMNmRJZ1RWVWVldUR6b2xRNVE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjY2MTgwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKbmduVnMxbTdveGd3MlhrTGxvSHdnQUV3dVJyaHg0aktLd25nVUlzMHJEUTdqcmpsY1hxM21qRUwvM0E2aWVSalg5anY3QURabHN3MkdSNDFvd3kwQkE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.74/Docket.app.tar.gz"
     }
   }
 }
