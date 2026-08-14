@@ -791,6 +791,25 @@ def _entity_schema() -> str:
     )
 
 
+#: Plausible, added by Matthew on 2026-08-13. It lived in `site/index.html`,
+#: which is generated — the next build deleted it, and would have deleted it
+#: again after every deploy. It belongs here, where the page shell is written.
+#:
+#: Putting it in the shared head puts it on every page rather than the homepage
+#: alone. That was the choice made when the privacy policy was corrected to
+#: match: the policy speaks about "this website", so the two now describe the
+#: same thing.
+ANALYTICS = (
+    '<!-- Privacy-friendly analytics by Plausible -->\n'
+    '<script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>\n'
+    '<script>\n'
+    'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},'
+    'plausible.init=plausible.init||function(i){plausible.o=i||{}};\n'
+    'plausible.init()\n'
+    '</script>'
+)
+
+
 def render(
     *,
     cat: str,
@@ -908,6 +927,7 @@ def render(
 <meta name="twitter:image" content="{BASE}/og.png">
 {STYLE}
 {schema}
+{ANALYTICS}
 </head>
 <body{body_class}>
 {NAV}
