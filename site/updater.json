@@ -1,11 +1,11 @@
 {
-  "version": "1.1.8",
-  "notes": "A site behind bot protection gets no grade, and the report says which protection answered.",
-  "pub_date": "2026-08-14T12:11:13Z",
+  "version": "1.1.9",
+  "notes": "Local checks now recognise store finders in six languages; two licence-path defects fixed.",
+  "pub_date": "2026-08-14T14:45:27Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTRHWTBUTm1RN3FEZDZzQ2lPUVVWc2wvTk9Qa0lsL2V3d3hHMUNDTGZlVzE2RnR2SnZkTGQ5eUFEUDgwWU5Fd0FMQ3FLeUlYOER4cFJVbG1QSlBLL0FrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NzA5Mzg5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKUy81Nnl2VkFGT1FjeUx6OStmOWxENXErTGxnaEltOEFLNzRTaFcrc3gzRFM4VDkrSGd6T1Q5OS92dno4alJzNlBFRTBGYncrZGVtbHlrVStPdEJSQnc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.8/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXdqZXl2M0R4alVEekFnWTJLZnYzVlQ3eHB0N1k1ZExFUG5uVkxHQlU3QnJIZmozMUd0V2JvUDBaOEdRbHJ6aDZDdENFVXBVQ3Jqcys2RzlrdzNPTlEwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NzE4NjIzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKYm9adDFUK1dXdHNOT09uN1RKUmxja3RRMm9jbnJRbE1xclp1Tm5ZRmdaakFRdmM3U21XSmswZDlkdlFjZTAzcHRleDRvRTFIdG9SNjZWNEVnY2RaQkE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.9/Docket.app.tar.gz"
     }
   }
 }
