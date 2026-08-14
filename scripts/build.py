@@ -37,6 +37,7 @@ import howto_cls  # noqa: E402
 import howto_hreflang  # noqa: E402
 import howto_https  # noqa: E402
 import howto_schema  # noqa: E402
+import howto_deploy_gate  # noqa: E402
 import howto_open_graph  # noqa: E402
 import howto_soft404  # noqa: E402
 import howto_title_width  # noqa: E402
@@ -418,6 +419,7 @@ def main() -> int:
               howto_canonicals.conflicting_canonicals(),
               howto_soft404.soft_404s(),
               howto_open_graph.howto_open_graph(),
+              howto_deploy_gate.deploy_gate(),
               howto_schema.structured_data_errors(),
               howto_cls.layout_shift(),
               howto_titles.duplicate_titles(),

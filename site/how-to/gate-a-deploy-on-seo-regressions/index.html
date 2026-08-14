@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to fix common SEO problems — Docket</title>
-<meta name="description" content="Fix guides for the specific issues an audit reports, in the order worth doing them, with the exact change to make.">
+<title>Gate a deploy on SEO regressions</title>
+<meta name="description" content="docket diff audits production against staging and fails the build on what the deploy introduced — including the regression that registers as three improvements.">
 <meta name="theme-color" content="#FBFAF7">
-<link rel="canonical" href="https://docketseo.app/how-to/">
+<link rel="canonical" href="https://docketseo.app/how-to/gate-a-deploy-on-seo-regressions/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fix guides">
-<meta property="og:description" content="Fix guides for the specific issues an audit reports, in the order worth doing them, with the exact change to make.">
-<meta property="og:url" content="https://docketseo.app/how-to/">
+<meta property="og:title" content="How to gate a deploy on SEO regressions">
+<meta property="og:description" content="docket diff audits production against staging and fails the build on what the deploy introduced — including the regression that registers as three improvements.">
+<meta property="og:url" content="https://docketseo.app/how-to/gate-a-deploy-on-seo-regressions/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Fix guides">
-<meta name="twitter:description" content="Fix guides for the specific issues an audit reports, in the order worth doing them, with the exact change to make.">
+<meta name="twitter:title" content="How to gate a deploy on SEO regressions">
+<meta name="twitter:description" content="docket diff audits production against staging and fails the build on what the deploy introduced — including the regression that registers as three improvements.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -429,7 +429,9 @@ body.landing article{padding:0}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 96 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"199","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"96 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","headline":"Fix guides","description":"Fix guides for the specific issues an audit reports, in the order worth doing them, with the exact change to make.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to gate a deploy on SEO regressions","description":"docket diff audits production against staging and fails the build on what the deploy introduced — including the regression that registers as three improvements.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/gate-a-deploy-on-seo-regressions/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I stop a deploy that breaks SEO?","acceptedAnswer":{"@type":"Answer","text":"Run docket diff with your production URL and your staging URL in the pipeline. It audits both with identical settings and exits 2 when the candidate introduced a regression at the severity you set, so the build fails before the change reaches production."}},{"@type":"Question","name":"Why not just fail the build on the audit score?","acceptedAnswer":{"@type":"Answer","text":"Because a score can hide a regression. Stripping every title tag from a test site left the score unchanged at 55.0 and registered three improvements, since the checks for short, mismatched and location-free titles all stopped firing. The diff still reported the HIGH regression."}},{"@type":"Question","name":"What happens if staging is partly unreachable?","acceptedAnswer":{"@type":"Answer","text":"Docket refuses to compare crawls that reached very different numbers of pages, and exits 1 rather than 0. Refusing to judge is not a pass. Without that, every page the crawler could not reach would be reported as a brand-new issue and the gate would be ignored within a week."}},{"@type":"Question","name":"Why does docket diff fail on high when docket audit fails on critical?","acceptedAnswer":{"@type":"Answer","text":"Because a regression is a change somebody just made. An issue a site has had for two years is a backlog item; the same issue arriving this afternoon can be reverted while the person who made it still remembers what they did."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
 <script>
@@ -452,108 +454,91 @@ plausible.init()
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / Fix it</div><h1>Fix guides</h1>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Deploy gate</div><h1>How to gate a deploy on SEO regressions</h1>
 
-<p class="lede">Fix guides for the specific problems Docket reports. Each one explains what the
-issue costs you, then gives the change to make.</p>
+<p class="lede">A deploy that quietly removes your title tags does not break the build, does
+not throw an error, and does not show up in any dashboard until rankings move weeks later.
+<code>docket diff</code> audits two URLs — usually production and staging — and exits
+non-zero when the second one introduced something the first did not have.</p>
 
-<p>Before any individual guide, the question that decides whether an audit is worth
-anything: <strong>what do you do first?</strong> A list of 96 checks against a real
-site produces dozens of findings, and the order you work them in matters more than any single
-fix.</p>
+<pre><code>docket diff https://example.com https://staging.example.com --fail-on high</code></pre>
 
-<h2>The order to fix things in</h2>
+<h2>What it actually reports</h2>
 
-<p>Docket ranks every finding by the same formula, and it is worth knowing because you can
-apply it by hand to any tool's output:</p>
+<p>We ran it against a staged regression: a copy of a four-page site with every
+<code>&lt;title&gt;</code> stripped, which is what a template edit does when somebody moves
+the head block. The output, verbatim:</p>
 
-<pre><code>priority = severity x impact x reach / effort</code></pre>
+<pre><code>1 regression(s) — introduced by the candidate:
+  HIGH     onpage.title_missing             new       4 pages have no title tag
 
-<p>Three of those are obvious. The fourth is where most tools go wrong: <strong>reach grows
-sub-linearly</strong> in the number of pages affected — a capped square root rather than a raw
-count. Without that damping, a trivial nit on every page of a large site outranks a
-<code>noindex</code> on your homepage, and the report becomes a list you scroll past. Sorting
-by "number of pages affected", which is the default in several crawlers, is exactly that
-failure.</p>
+3 improvement(s):
+  MEDIUM   onpage.title_short               fixed     4 titles are very short
+  MEDIUM   local.no_geo_in_titles           fixed     No page title mentions a location
+  LOW      cvr.message_mismatch             fixed     3 pages promise one thing in search…</code></pre>
 
-<p>In practice this collapses to a short rule. Fix anything that stops a page being indexed at
-all, first and immediately — those are rare and they are absolute. Then work down by
-priority, which naturally puts small changes on important pages above large changes on
-unimportant ones. A finding marked TRIVIAL or SMALL effort with HIGH severity is almost always
-the best hour you will spend.</p>
+<p>Read that again, because it is the whole argument for gating on a diff rather than a
+score. <strong>Deleting every title tag registered as three improvements.</strong> The
+checks for short titles, for titles missing a location, and for titles that do not match
+the page all stopped firing — correctly, since there is no title to be short or wrong.</p>
 
-<h2>What a fix guide here will not do</h2>
+<p>And the score did not move. <strong>55.0 before, 55.0 after.</strong> A gate watching the
+number would have let that deploy through, and a report showing three fixes and one issue
+would have looked like a decent week.</p>
 
-<p>None of these say "improve your content" or "build quality links". If a guide cannot name
-the exact element to change, it has not earned the page. Where a change depends on something
-only you know — whether you want AI engines training on your writing, for instance — the
-guide sets out the decision rather than making it for you.</p>
+<h2>The exit codes</h2>
 
-<h2><a href="/how-to/fix-ai-crawler-access/">Fix AI crawler access in robots.txt</a></h2>
-<p>How to let ChatGPT, Perplexity and Claude read your site without giving away training data —
-they are separate decisions and need separate rules. Measured against
-6236 sites' robots.txt files, most people who block AI crawlers get this
-wrong in the same direction.</p>
+<p>Measured, not quoted from a manual:</p>
 
-<h2>Redirecting http:// to https://</h2>
-<p>The 301 every host configures differently, and the certificate state that makes the
-"Enforce HTTPS" setting refuse to turn on — written from our own site failing this exact
-check. <a href="/how-to/redirect-http-to-https/">How to redirect http:// to https:// →</a></p>
+<ul>
+<li><strong>2</strong> — a regression at <code>--fail-on</code> or worse. Fails the build.</li>
+<li><strong>0</strong> — nothing introduced.</li>
+<li><strong>0</strong> — with <code>--fail-on never</code>, which reports without failing.
+Useful for a first week of watching before you let it block anything.</li>
+<li><strong>1</strong> — the audits are not comparable, and Docket refuses to judge.</li>
+</ul>
 
-<h2>hreflang return tags</h2>
-<p>The only common SEO tag that cannot be checked by reading the page it sits on: a
-declaration that goes one way is ignored entirely, and every tag looks correct in isolation.
-<a href="/how-to/fix-hreflang-return-tags/">How to fix hreflang return tags →</a></p>
+<h2>That last one is the important one</h2>
 
-<h2>Conflicting canonical tags</h2>
-<p>Two canonicals on one page, a canonical pointing at a noindex page, and the section-wide
-mistake that can cost a site its entire long tail while every page still returns 200.
-<a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
+<p>Point it at a four-page baseline and a one-page candidate and it says:</p>
 
-<h2>Soft 404s</h2>
-<p>A missing page that answers 200 turns every mistyped URL into an indexable page. How to
-check it in one command, and the fix for each cause.
-<a href="/how-to/fix-soft-404s/">How to fix soft 404s →</a></p>
+<blockquote><p>These audits crawled very different numbers of pages (4 then 1), so per-issue
+comparison would be misleading. Re-run with the same page limit for a like-for-like
+changelog.</p></blockquote>
 
-<h2>Structured data errors</h2>
-<p>Invalid JSON-LD is discarded whole rather than partially read, so a page with complete
-markup and one trailing comma is treated like a page with none. The five ways schema breaks,
-and why a single-URL validator misses most of them.
-<a href="/how-to/fix-structured-data-errors/">How to fix structured data errors →</a></p>
+<p>It exits <strong>1</strong>, not 0. Refusing to judge is not a pass.</p>
 
-<h2>Layout shift (CLS)</h2>
-<p>Almost always images with no width and height: the browser cannot reserve the space, so
-content jumps as they load. The fix, the four other causes, and why a crawler can report the
-risk but never the score. <a href="/how-to/fix-layout-shift/">How to fix layout shift →</a></p>
+<p>This matters more in CI than anywhere else. If staging is behind basic auth for half the
+crawl, or a sitemap has not generated yet, the candidate crawl is smaller — and a naive
+comparison reports every page the crawler never reached as a brand-new issue. You would get
+a wall of red on a deploy that changed nothing, chase it for an hour, and then start
+ignoring the gate. The failure that teaches people to ignore a gate is worse than the gate
+not existing.</p>
 
-<h2>Duplicate title tags</h2>
-<p>Rarely a penalty and routinely misdiagnosed: what duplicate titles actually cost you, the
-character limit that does not exist, and the fix by what caused them — pagination, facets,
-product variants, near-identical location pages.
-<a href="/how-to/fix-duplicate-title-tags/">How to fix duplicate title tags →</a></p>
+<p>The other half of the same decision: both sides are crawled with identical settings.
+There is no per-side page limit, because two crawls configured differently are not a
+comparison.</p>
 
-<h2>Gating a deploy on regressions</h2>
-<p>Audit production against staging and fail the build on what the deploy introduced. The
-case for diffing findings rather than a score: stripping every title tag from a test site
-left the score unchanged and registered three improvements.
-<a href="/how-to/gate-a-deploy-on-seo-regressions/">How to gate a deploy →</a></p>
+<h2>Why the default bar is lower than for a plain audit</h2>
 
-<h2>Link previews with no image</h2>
-<p>Three different faults look identical when you paste a link: no Open Graph tags, an
-og:image pointing at a file that no longer exists, or an image a scraper cannot reach. The
-dead image is the one nobody catches, because every platform caches the preview it scraped
-first — so the person who broke it is the last to see it broken.
-<a href="/how-to/fix-missing-open-graph-tags/">How to fix a broken link preview →</a></p>
+<p><code>docket audit</code> defaults to failing on critical. <code>docket diff</code>
+defaults to failing on <strong>high</strong>, and the reason is that a regression is
+somebody's deploy. An issue your site has had for two years is a backlog item; the same
+issue arriving this afternoon is a change that just happened and can be reverted while the
+person who made it still remembers what they did.</p>
 
-<h2>Title tags that fit</h2>
-<p>Search engines truncate by pixel width, not character count — which makes the usual "under
-sixty characters" advice wrong on any site that is not entirely English.
-<a href="/how-to/write-title-tags-that-fit/">How to write title tags that fit →</a></p>
+<h2>In a pipeline</h2>
 
-<h2>More coming</h2>
-<p>Further guides are being written, one per issue Docket reports. They will appear as each is written properly rather than as
-variations on a template.</p>
+<pre><code>- name: SEO regression gate
+  run: |
+    docket diff "$PROD_URL" "$STAGING_URL" --fail-on high -n 200</code></pre>
 
+<p>Docket's Linux CLI is a single binary with no runtime to install.
+<a href="/for/developers/">The rest of the CI story</a> — SARIF for code scanning, JUnit for
+test panels, the GitHub Action — is here.</p>
+
+<p><a class="btn" href="/download/">Download Docket</a></p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I stop a deploy that breaks SEO?</h3><p>Run docket diff with your production URL and your staging URL in the pipeline. It audits both with identical settings and exits 2 when the candidate introduced a regression at the severity you set, so the build fails before the change reaches production.</p></div><div class="faq-item"><h3>Why not just fail the build on the audit score?</h3><p>Because a score can hide a regression. Stripping every title tag from a test site left the score unchanged at 55.0 and registered three improvements, since the checks for short, mismatched and location-free titles all stopped firing. The diff still reported the HIGH regression.</p></div><div class="faq-item"><h3>What happens if staging is partly unreachable?</h3><p>Docket refuses to compare crawls that reached very different numbers of pages, and exits 1 rather than 0. Refusing to judge is not a pass. Without that, every page the crawler could not reach would be reported as a brand-new issue and the gate would be ignored within a week.</p></div><div class="faq-item"><h3>Why does docket diff fail on high when docket audit fails on critical?</h3><p>Because a regression is a change somebody just made. An issue a site has had for two years is a backlog item; the same issue arriving this afternoon can be reverted while the person who made it still remembers what they did.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

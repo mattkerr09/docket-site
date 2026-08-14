@@ -1273,6 +1273,12 @@ character limit that does not exist, and the fix by what caused them — paginat
 product variants, near-identical location pages.
 <a href="/how-to/fix-duplicate-title-tags/">How to fix duplicate title tags →</a></p>
 
+<h2>Gating a deploy on regressions</h2>
+<p>Audit production against staging and fail the build on what the deploy introduced. The
+case for diffing findings rather than a score: stripping every title tag from a test site
+left the score unchanged and registered three improvements.
+<a href="/how-to/gate-a-deploy-on-seo-regressions/">How to gate a deploy →</a></p>
+
 <h2>Link previews with no image</h2>
 <p>Three different faults look identical when you paste a link: no Open Graph tags, an
 og:image pointing at a file that no longer exists, or an image a scraper cannot reach. The
