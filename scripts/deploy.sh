@@ -131,6 +131,15 @@ echo "==> visual gate"
 echo "==> updater gate"
 "$PY" scripts/verify_updater.py || exit 1
 
+# Every gate above this line checks something local. This one checks the
+# release the page points at, which is published by a different command in a
+# different repository at a different moment — and was the only thing the
+# download page cannot function without that nothing verified before going
+# live. verify_live.py does check it, afterwards, by hand, once the broken
+# page is already public.
+echo "==> release gate"
+"$PY" scripts/verify_release_assets.py || exit 1
+
 if [ -f scripts/publish_knowledge.py ]; then
   echo "==> knowledge feed gate"
   "$PY" scripts/publish_knowledge.py
