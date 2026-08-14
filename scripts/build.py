@@ -46,6 +46,7 @@ import outrank  # noqa: E402
 import index_page  # noqa: E402
 import learn  # noqa: E402
 import link_equity  # noqa: E402
+import authority_page  # noqa: E402
 import conversion  # noqa: E402
 import monitoring  # noqa: E402
 import martech  # noqa: E402
@@ -168,6 +169,10 @@ money.</p>
              f"Of {F.brand_social_frame()} company sites linking social profiles, "
              f"{F.brand_social_undeclared()} declared none of them in schema. What the "
              f"brand lane checks, and where design tools beat it."),
+            ("/learn/domain-authority-without-a-subscription/",
+             "Domain authority without a subscription",
+             "Ranked from the public Common Crawl link graph. The useful part is what "
+             "it says when it cannot see you, which is what it said about this site."),
             ("/learn/site-monitoring/", "SEO monitoring: what changed, not what is wrong",
              "Re-audits while the app is open, regressions first, and the two "
              "comparisons Docket refuses to make because the number would look useful "
@@ -431,6 +436,7 @@ def main() -> int:
     pages += link_equity.build_all()
     pages += martech.build_all()
     pages += conversion.build_all()
+    pages += authority_page.build_all()
     pages += monitoring.build_all()
     pages += entity.build_all()
     pages += directives.build_all()
