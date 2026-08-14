@@ -294,9 +294,17 @@ STYLE = """<style>
      The warmth in --bg is deliberate; pure #fff reads as an unstyled document. */
   --bg:#FBFAF7;--surface:#FFFFFF;--surface-2:#F2F1EC;--surface-3:#E6E4DC;
   --text:#16171A;--text-mid:#4A4D55;--text-dim:#5F636B;
-  /* Indigo, in its light-ground values. #4338CA is the press colour in the
-     desktop app and the only one dark enough to be link text on paper:
-     #818CF8, the dark-mode fill, reads 1.9:1 here and is unusable. */
+  /* Deep teal, and deliberately NOT the desktop app's indigo. The app is a
+     tool you run; this is paper you read, and #4338CA on a warm ground reads
+     as a hyperlink from 2003. Measured on --bg / --surface-2 / --surface-3:
+     --brand 9.08/8.38/7.44, --brand-light 11.50/10.62/9.43, and white on
+     --brand is 9.48 — so it works as fill, as link text and as a rule.
+     The app's own #818CF8 is 2.86:1 here and is not a candidate for anything.
+
+     Every published image of the mark is rendered FROM this token by
+     scripts/render_brand_assets.py, which is why the favicon cannot go on
+     being indigo eight months after the site stopped being — it did, and
+     nothing noticed until somebody looked at the file. */
   --brand:#134E4A;--brand-light:#0F3D3A;--brand-soft:rgba(19,78,74,.09);
   --on-accent:#FFFFFF;
   /* Severity, defined ONCE as a channel triple and derived from there.

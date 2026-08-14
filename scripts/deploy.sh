@@ -54,6 +54,16 @@ echo "==> competitive-claim gate"
 # rest of the site meet the same standard.
 "$PY" scripts/verify_competitive_claims.py
 
+echo "==> brand asset gate"
+# Three different marks across four files, found by opening them: the favicon
+# was the desktop app's indigo, and icon.png and og.png were still the orange
+# Scout diamond from before the rename — og.png being the picture every shared
+# link of this site had been showing. lint.py reads HTML, visual_check.py
+# asserts computed CSS and verify_live.py checks files are served; a served
+# file that is the wrong picture passes all three, because nothing read a
+# pixel. This re-renders all four from the --brand token and compares.
+"$PY" scripts/render_brand_assets.py --check || exit 1
+
 echo "==> third-party gate"
 # This site published a page-by-page audit of a named delicatessen — the domain,
 # 33 page URLs, their titles and per-page risk scores — at a public URL and in
