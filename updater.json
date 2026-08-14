@@ -1,11 +1,11 @@
 {
-  "version": "1.1.5",
-  "notes": "A mistyped link with an impossible port no longer ends the audit.",
-  "pub_date": "2026-08-14T09:56:30Z",
+  "version": "1.1.6",
+  "notes": "\"Five-star\" as a boast no longer reads as a review section.",
+  "pub_date": "2026-08-14T10:41:20Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTNsQmVqOHlJdk9Ob3JzOExHQjY5M2gyaU5CUVBoaWM2Um16QVdJbC9GUWFFOURaMVNraWVvYkwwb2hsU1RhYmJBSC9ubFk2aDN6cm9nSzlscDJmR3cwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NzAxMjg3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKK1gyT1QxQkJYZFBKNnZCaVdoYURQc25LNXRuZTVIb1VJWGZVRk12Ry96a0FpSnM4SzZLOFAwamJJblUwSVloT2lVa25VRE5JeVIxYVpLczZFWkFEQ0E9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.5/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJWVFd6M0pXUDBpODBXVWE5NTZ1N0MwQTlUOVJkOWx3YVdOVFFQbWJOdzlGSVd2dHVJYTQ5clh2UUtHMTlneVUwbHR4SUs2WDdnOVlUekduZzZMVHc4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NzAzOTkwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKVlNYMGJRZFg1eHp4RVExaWwrQmY3dUpUOWdQOFBsbVh2NDNNenBYNGpBNWZWZ3F6Z0szYmNpTHlVMmwvd3B1T0RJd3czRlduOWpGMlpuQ2hudTYvQkE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.6/Docket.app.tar.gz"
     }
   }
 }
