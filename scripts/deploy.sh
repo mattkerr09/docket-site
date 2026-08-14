@@ -54,6 +54,16 @@ echo "==> competitive-claim gate"
 # rest of the site meet the same standard.
 "$PY" scripts/verify_competitive_claims.py
 
+echo "==> checkout gate"
+# Every "Buy Docket · $79 once" button points at one Polar checkout link and
+# nothing checked it still existed, still belonged to the right organisation,
+# still sold the right product or still charged $79. The app-side guard that was
+# supposed to cover the organisation had never run once — it needed a token this
+# machine has never had — and was wrong the whole time: it expected
+# kerr-and-company-llc while the money goes to docketseo. Polar renders all
+# three facts into the public checkout page, so this needs no token.
+"$PY" scripts/verify_checkout.py || exit 1
+
 echo "==> price-claim gate"
 # The download page said "v1.1.0 is free … the $79 applies from v1.0" on a live
 # site selling v1.1.0. Both halves were written when BETA_FREE was True and the
