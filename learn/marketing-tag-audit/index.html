@@ -3,23 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learn: SEO audits, AI search visibility and technical SEO</title>
-<meta name="description" content="Plain explanations of what an SEO audit covers, how AI search visibility works, and what Docket checks.">
+<title>Marketing tag audit: is your tracking on every page?</title>
+<meta name="description" content="The 6 tracking checks Docket runs — analytics coverage, ad pixels, consent timing, UTM hygiene — and the common failure you can check yourself in four minutes.">
 <meta name="theme-color" content="#FBFAF7">
-<link rel="canonical" href="https://docketseo.app/learn/">
+<link rel="canonical" href="https://docketseo.app/learn/marketing-tag-audit/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Learn">
-<meta property="og:description" content="Plain explanations of what an SEO audit covers, how AI search visibility works, and what Docket checks.">
-<meta property="og:url" content="https://docketseo.app/learn/">
+<meta property="og:title" content="Marketing tag audit">
+<meta property="og:description" content="The 6 tracking checks Docket runs — analytics coverage, ad pixels, consent timing, UTM hygiene — and the common failure you can check yourself in four minutes.">
+<meta property="og:url" content="https://docketseo.app/learn/marketing-tag-audit/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Learn">
-<meta name="twitter:description" content="Plain explanations of what an SEO audit covers, how AI search visibility works, and what Docket checks.">
+<meta name="twitter:title" content="Marketing tag audit">
+<meta name="twitter:description" content="The 6 tracking checks Docket runs — analytics coverage, ad pixels, consent timing, UTM hygiene — and the common failure you can check yourself in four minutes.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -429,7 +429,9 @@ body.landing article{padding:0}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 96 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"199","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"96 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","headline":"Learn","description":"Plain explanations of what an SEO audit covers, how AI search visibility works, and what Docket checks.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Marketing tag audit","description":"The 6 tracking checks Docket runs — analytics coverage, ad pixels, consent timing, UTM hygiene — and the common failure you can check yourself in four minutes.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/marketing-tag-audit/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a marketing tag audit?","acceptedAnswer":{"@type":"Answer","text":"A check that the analytics and advertising tags you believe are running actually appear on every page, for every visitor, and fire at the right time. It is different from checking a tag is installed: tags are installed on templates, and sites grow pages that use other templates."}},{"@type":"Question","name":"Why would a page be missing my analytics tag?","acceptedAnswer":{"@type":"Answer","text":"Because tags are added to a template, not to a site. Landing pages built for a campaign, checkout flows rebuilt by a contractor, and blogs moved to a subdomain are all pages published outside the template the tag was added to. Nothing errors when it happens."}},{"@type":"Question","name":"Can Docket see tags that JavaScript injects at runtime?","acceptedAnswer":{"@type":"Answer","text":"Not by default — it reports what is present in the HTML it read, and says so rather than concluding a site has no analytics. Running an audit with --render executes the page's JavaScript in WebKit first and audits what a browser actually receives."}},{"@type":"Question","name":"Does Docket check whether my tracking is correct?","acceptedAnswer":{"@type":"Answer","text":"No. It checks what is present in the pages it read. Whether events fire on the right actions and whether revenue is passed accurately can only be tested against real sessions in your analytics account, and a crawler cannot see them."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
 <script>
@@ -452,8 +454,100 @@ plausible.init()
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / Learn</div><h1>Learn</h1>
-<p class="lede">Reference pages, written to be read rather than skimmed for keywords.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/googlebot-2mb-limit/">Googlebot's 2MB cutoff</a></h2><p>It reads the first 2MB and indexes that as the whole page. We measured well-known homepages and found five already past it.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/audit-tool-accuracy/">How to tell whether an audit tool is lying to you</a></h2><p>Four questions to ask of any SEO finding, each of them learned here by getting it wrong first.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/log-file-analysis/">Log file analysis: what Googlebot actually fetched</a></h2><p>A user-agent proves nothing, which is why Google publishes 1,641 crawler IP prefixes. Reading a log honestly, and where the dedicated tool wins.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/brand-consistency/">Brand consistency: the question no crawler asks</a></h2><p>Of 11 company sites linking social profiles, 9 declared none of them in schema. What the brand lane checks, and where design tools beat it.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/marketing-tag-audit/">Marketing tag audit: is your tracking on every page?</a></h2><p>Tags are installed on templates; sites grow pages built from other templates. The 6 tracking checks, and the four-minute version you can do by hand.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/dead-contact-address/">The contact address that cannot receive mail</a></h2><p>An address on a domain with no MX record bounces to the sender and never reaches you, and no tool asks whether yours works.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/ai-substitution/">Which pages an AI answer replaces</a></h2><p>Ranking and not being visited. Measured on two live sites — this one at 5% fully substitutable, a delicatessen at 0% — and three ways we measured it wrong first.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/ai-search-visibility/">AI search visibility</a></h2><p>The three gates a model has to clear before it can cite you — access, rendering and entity clarity — with measured data on who is blocking what.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/seo-audit/">What an SEO audit covers</a></h2><p>Every area, in the order they should be worked, and the three tests a report has to pass to be worth acting on.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/javascript-rendering/">JavaScript rendering</a></h2><p>What a crawler that does not run JavaScript misses — measured on a page that serves 0 characters of text and renders 2,068.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/sameas-entity-signals/">sameAs and entity signals</a></h2><p>The cheapest entity signal there is, and the share of major sites that skip it — measured, with the dataset attached.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/canonical-tags/">Canonical tags</a></h2><p>Google calls rel=canonical a hint and overrules it routinely. The seven ways it gets set wrong, and what each Search Console status is actually telling you.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/internal-link-equity/">Internal link equity</a></h2><p>The ranking signal your pages pass to each other, measured on our own site — where the download page held a fifth of what an average page did.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/what-docket-checks/">What Docket checks</a></h2><p>All the checks, by area, with what each one actually looks at.</p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Marketing tag audit</div><h1>Marketing tag audit</h1>
+
+<p class="lede">A marketing tag audit answers one question: does the tracking you believe is
+running actually run, on every page, for every visitor? It is a different question from
+"is the tag installed", and the gap between them is where reporting quietly stops matching
+reality.</p>
+
+<p>Docket runs <strong>6 checks</strong> in this area on every audit. They are the
+least glamorous part of the report and the most likely to be costing money right now,
+because a missing tag does not break anything a visitor can see. Nothing errors. The site
+looks fine. The numbers in your dashboard are simply smaller than the truth, and they have
+been for as long as nobody checked.</p>
+
+<h2>Why "installed" is the wrong question</h2>
+
+<p>Tag managers are installed once, on a template, and then the site grows. A landing page
+built for one campaign gets published from a different template. A checkout flow gets
+rebuilt by a contractor. A blog moves to a subdomain. Each of those is a page where the tag
+is absent, and none of them announce it — the tag is still installed, on the pages it was
+installed on.</p>
+
+<p>So the check that matters is coverage: of the pages Docket read, how many carried the
+tag. One page missing a pixel in a funnel of four is a quarter of your conversions
+attributed to nobody.</p>
+
+<h2>What Docket looks for</h2>
+
+<ul>
+<li><strong>Advertising pixels</strong> <code>mar.ad_pixels</code></li>
+<li><strong>Analytics installed</strong> <code>mar.analytics</code></li>
+<li><strong>Consent and privacy compliance</strong> <code>mar.consent</code></li>
+<li><strong>Email list building</strong> <code>mar.email_capture</code></li>
+<li><strong>Marketing stack inventory</strong> <code>mar.stack</code></li>
+<li><strong>UTM tagging hygiene</strong> <code>mar.utm_hygiene</code></li>
+</ul>
+
+<p>Two of those need explaining, because they are not what people expect from a tag audit.</p>
+
+<p><strong>Consent and privacy compliance</strong> is checked because a tag firing before
+consent is worse than a tag missing. A missing tag costs you data. A tag that fires before
+the visitor agrees is a legal exposure in the EU and the UK, and it is invisible in every
+dashboard — the data arrives and looks perfect.</p>
+
+<p><strong>UTM tagging hygiene</strong> is about your own links. Inconsistent casing splits
+one campaign into two rows in your reports, and internal links carrying UTM parameters
+overwrite the original source of the session — so a visitor who arrived from search and
+then clicked your own tagged banner is recorded as arriving from the banner. Your best
+channel gets credited to your worst.</p>
+
+<h2>What we found looking at real sites</h2>
+
+<p>On 2026-08-14 we audited four live business sites — an Italian food retailer, a French
+bakery chain, a US coffee retailer and a US museum — and the tracking lane produced a
+finding on the coffee retailer that is worth quoting exactly as it was written:</p>
+
+<blockquote><p>No analytics tag on any page Docket could see</p></blockquote>
+
+<p>The important words are <em>could see</em>. That site renders its pages with JavaScript
+and ships almost no HTML, so a tag injected at runtime would not appear in what Docket read.
+The finding says what was observed and stops there, rather than concluding that a large
+retailer has no analytics — which would be a claim about somebody's business made from an
+absence of evidence.</p>
+
+<p>That is deliberate, and it is the same rule everywhere in the product: a check that could
+not see must not report nothing as though it were zero. If you want the JavaScript-rendered
+answer, <code>--render</code> runs the page in WebKit and audits what a browser actually
+gets. <a href="/learn/javascript-rendering/">How that works, and when it is worth the
+time.</a></p>
+
+<p>Four sites is not a sample and there is no rate here to quote. It is one measurement,
+reported because it shows what the lane does and where it stops.</p>
+
+<h2>Doing this yourself, without Docket</h2>
+
+<p>You do not need a tool for the first pass. Open your site, view source on five pages
+chosen from different templates — homepage, a product or service page, a blog post, a
+landing page, the thank-you page after a form — and search each for your measurement ID.
+The thank-you page is the one to check first: it is the page that proves a conversion
+happened, it is usually built last, and it is the page most often published from a template
+nobody added the tag to.</p>
+
+<p>If all five carry it, you have ruled out the common failure. If one does not, you have
+found the thing this lane exists for, and it took four minutes.</p>
+
+<h2>What this lane deliberately does not do</h2>
+
+<p>It does not tell you whether your tracking is <em>correct</em> — whether the events fire
+on the right actions, whether revenue is passed accurately, whether your goals mean what
+you think. Those need to be tested in your analytics account against real sessions, and a
+crawler cannot see them. Docket reports what is present in the pages it read and does not
+guess at the rest.</p>
+
+<p><a class="btn" href="/download/">Download Docket</a></p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is a marketing tag audit?</h3><p>A check that the analytics and advertising tags you believe are running actually appear on every page, for every visitor, and fire at the right time. It is different from checking a tag is installed: tags are installed on templates, and sites grow pages that use other templates.</p></div><div class="faq-item"><h3>Why would a page be missing my analytics tag?</h3><p>Because tags are added to a template, not to a site. Landing pages built for a campaign, checkout flows rebuilt by a contractor, and blogs moved to a subdomain are all pages published outside the template the tag was added to. Nothing errors when it happens.</p></div><div class="faq-item"><h3>Can Docket see tags that JavaScript injects at runtime?</h3><p>Not by default — it reports what is present in the HTML it read, and says so rather than concluding a site has no analytics. Running an audit with --render executes the page's JavaScript in WebKit first and audits what a browser actually receives.</p></div><div class="faq-item"><h3>Does Docket check whether my tracking is correct?</h3><p>No. It checks what is present in the pages it read. Whether events fire on the right actions and whether revenue is passed accurately can only be tested against real sessions in your analytics account, and a crawler cannot see them.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
