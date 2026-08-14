@@ -83,6 +83,14 @@ echo "==> brand asset gate"
 # pixel. This re-renders all four from the --brand token and compares.
 "$PY" scripts/render_brand_assets.py --check || exit 1
 
+echo "==> claim-source gate"
+# Every claim about a rival cites a page and nothing ever fetched one. A
+# citation to a page that is gone looks checkable and is not, which is the decay
+# verify_competitive_claims.py says it exists to catch — happening to itself.
+# A refusal is not a dead link: Ahrefs and Semrush answer 403 to scripts and
+# serve readers fine, so refusals are reported and pass. Only 404/410 fails.
+"$PY" scripts/verify_claim_sources.py || exit 1
+
 echo "==> third-party gate"
 # This site published a page-by-page audit of a named delicatessen — the domain,
 # 33 page URLs, their titles and per-page risk scores — at a public URL and in
