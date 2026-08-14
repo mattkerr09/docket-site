@@ -1,11 +1,11 @@
 {
-  "version": "0.1.74",
-  "notes": "A projection that could not run now says so, instead of showing an unexplained zero.",
-  "pub_date": "2026-08-14T00:12:44Z",
+  "version": "0.1.75",
+  "notes": "The desktop app now shows why there is no projection, like every other renderer.",
+  "pub_date": "2026-08-14T00:37:38Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaS9HMXFGSm0wb1dSNDF3VCtINFBvZ2RPM01SUGN6eGdETUtBWkFuRmNMeWRBU0cvWXRWM0VNQm5zOFd3ekF5S3BMKytMNmRJZ1RWVWVldUR6b2xRNVE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjY2MTgwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKbmduVnMxbTdveGd3MlhrTGxvSHdnQUV3dVJyaHg0aktLd25nVUlzMHJEUTdqcmpsY1hxM21qRUwvM0E2aWVSalg5anY3QURabHN3MkdSNDFvd3kwQkE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.74/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaSt3ZFVUdGRDN3VSeXBERVlWZUlFQWpZaDl1MEU1MlNzOGlWQTdZV1lSRCtCSjRJRzJkV0plV3BnU2NTTnNCei9HYzdhNGlPUEU1ZXpXNVJVdnBMMGdvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjY3MzgyCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKU3U3eTN6RVU3b3VTMXJHRCs2QTF0ZVFhbVVtY1dTRXVrdVJIRmN2VU1ZTDNYNGVEZ0IzZys3M0tTYkhGVVRkVmM0dWd0bmpvWE9XWjJvOG10OEFjQ3c9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v0.1.75/Docket.app.tar.gz"
     }
   }
 }
