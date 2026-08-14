@@ -332,16 +332,20 @@ def write_static() -> None:
         for f in src.glob("*.json"):
             shutil.copy2(f, dst / f.name)
         shutil.copy2(src / "sites.txt", dst / "sites.txt")
-    # Favicon as inline SVG: one file, scales everywhere, no binary in git.
-    (SITE / "favicon.svg").write_text(
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">'
-        '<rect width="1024" height="1024" rx="228" fill="#818CF8"/>'
-        '<path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 '
-        'C310 838 158 706 158 522 L158 242 Z" fill="#17181C"/>'
-        '<g fill="none" stroke="#818CF8" stroke-width="104" stroke-linecap="round" '
-        'stroke-linejoin="round"><path d="M348 636 L676 396"/>'
-        '<path d="M540 388 L688 388 L688 536"/></g></svg>\n'
-    )
+    # The favicon is NOT written here any more, and this comment is the reason.
+    #
+    # It used to be a literal on these lines, filled #818CF8 — the desktop
+    # app's indigo, and this site's brand until `9ff83aa`. Because the build
+    # rewrote the file every run, the mark could not be corrected: fixing
+    # site/favicon.svg by hand worked until the next deploy silently put the
+    # indigo back. That is what a copy of a fact does, and it is why the tile
+    # now comes from `render_brand_assets.py`, which derives it from the
+    # `--brand` token rather than repeating a hex.
+    #
+    # `deploy.sh` runs that script's `--check` after this build, so a stale
+    # tile fails the deploy rather than shipping.
+    from render_brand_assets import render as render_brand
+    render_brand(SITE)
     (SITE / ".nojekyll").write_text("")
 
 
