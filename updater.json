@@ -1,11 +1,11 @@
 {
-  "version": "1.0.0",
-  "notes": "1.0.0 \u2014 96 checks, notarised, and findings Docket could not check are now marked as such.",
-  "pub_date": "2026-08-14T01:02:08Z",
+  "version": "1.0.1",
+  "notes": "Groundwork for licensing, switched off. Runs exactly as 1.0.0 did.",
+  "pub_date": "2026-08-14T01:27:27Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTdlcmw2UUVTcDBTeVozODlvQ1h3ODZQdE5NbHIxSUsyWGZjejhrNTBUc09rQVdzR3prdncvSXpJWlN4OUJYMGI5c2JFVDRWMkVNb01YOUViZHZFK3cwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjY5MjE4CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKeTFoZWNSaHpuWjg5WERWb01RdmNPWXRKcVhiWm50SHpTZEhLZWlMWEVLSm55VDJUN29sSWlpWFRnWDRUVzhHZmtaejJLelorTGhHQWxrWWU1cHMvQnc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.0.0/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTN2Y3dQS3NJeFAwdkZKbUU5eVk0eEhHRjV6cVk5N2dhaHYwM3AyVThscG5ldWhob1B2MlNjMngrRFk5RFQwekFyRVU0dXdxYlUxQXpJWUtCSXpRbGdrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjcwNzE1CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKalhCYXRsUmNMZW5UcGd3R1RCWDRxa216RHJNVkJZa201anN4MEowTUFqcWJ3bmVlc3dRbHBlS3g5blhES3Z6aUpwWE1qWndjekpHTUQ4aHFDdHBWREE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.0.1/Docket.app.tar.gz"
     }
   }
 }
