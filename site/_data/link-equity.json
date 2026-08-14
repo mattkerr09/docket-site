@@ -1,27 +1,27 @@
 {
   "site": "docketseo.app",
-  "pages": 56,
-  "edges": 1147,
-  "average_share_pct": 1.79,
-  "below_half": 36,
+  "pages": 57,
+  "edges": 1168,
+  "average_share_pct": 1.76,
+  "below_half": 37,
   "nodes": [
     {
       "path": "/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/about/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/best/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/best/free-seo-audit-tools/",
@@ -31,21 +31,21 @@
     },
     {
       "path": "/contact/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/download/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/for/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/for/agencies/",
@@ -56,7 +56,7 @@
     {
       "path": "/for/developers/",
       "inlinks": 6,
-      "share_pct": 0.52,
+      "share_pct": 0.51,
       "index": 0.29
     },
     {
@@ -79,9 +79,9 @@
     },
     {
       "path": "/how-to/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/how-to/fix-ai-crawler-access/",
@@ -93,13 +93,13 @@
       "path": "/how-to/fix-conflicting-canonicals/",
       "inlinks": 2,
       "share_pct": 0.17,
-      "index": 0.09
+      "index": 0.1
     },
     {
       "path": "/how-to/fix-duplicate-title-tags/",
       "inlinks": 2,
       "share_pct": 0.17,
-      "index": 0.09
+      "index": 0.1
     },
     {
       "path": "/how-to/fix-hreflang-return-tags/",
@@ -115,6 +115,12 @@
     },
     {
       "path": "/how-to/fix-missing-open-graph-tags/",
+      "inlinks": 1,
+      "share_pct": 0.09,
+      "index": 0.05
+    },
+    {
+      "path": "/how-to/fix-missing-security-headers/",
       "inlinks": 1,
       "share_pct": 0.09,
       "index": 0.05
@@ -147,7 +153,7 @@
       "path": "/how-to/redirect-http-to-https/",
       "inlinks": 2,
       "share_pct": 0.17,
-      "index": 0.09
+      "index": 0.1
     },
     {
       "path": "/how-to/write-title-tags-that-fit/",
@@ -157,51 +163,51 @@
     },
     {
       "path": "/index/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/index/ai-directives/",
       "inlinks": 5,
-      "share_pct": 0.44,
-      "index": 0.25
+      "share_pct": 0.43,
+      "index": 0.24
     },
     {
       "path": "/learn/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/learn/ai-search-visibility/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/learn/ai-substitution/",
       "inlinks": 4,
-      "share_pct": 0.35,
-      "index": 0.2
+      "share_pct": 0.34,
+      "index": 0.19
     },
     {
       "path": "/learn/audit-tool-accuracy/",
       "inlinks": 2,
       "share_pct": 0.17,
-      "index": 0.09
+      "index": 0.1
     },
     {
       "path": "/learn/brand-consistency/",
       "inlinks": 2,
       "share_pct": 0.17,
-      "index": 0.09
+      "index": 0.1
     },
     {
       "path": "/learn/canonical-tags/",
       "inlinks": 2,
       "share_pct": 0.17,
-      "index": 0.09
+      "index": 0.1
     },
     {
       "path": "/learn/conversion-audit/",
@@ -224,8 +230,8 @@
     {
       "path": "/learn/googlebot-2mb-limit/",
       "inlinks": 4,
-      "share_pct": 0.35,
-      "index": 0.2
+      "share_pct": 0.34,
+      "index": 0.19
     },
     {
       "path": "/learn/internal-link-equity/",
@@ -236,8 +242,8 @@
     {
       "path": "/learn/javascript-rendering/",
       "inlinks": 5,
-      "share_pct": 0.44,
-      "index": 0.25
+      "share_pct": 0.43,
+      "index": 0.24
     },
     {
       "path": "/learn/log-file-analysis/",
@@ -254,14 +260,14 @@
     {
       "path": "/learn/sameas-entity-signals/",
       "inlinks": 4,
-      "share_pct": 0.35,
-      "index": 0.2
+      "share_pct": 0.34,
+      "index": 0.19
     },
     {
       "path": "/learn/seo-audit/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/learn/site-monitoring/",
@@ -271,9 +277,9 @@
     },
     {
       "path": "/learn/what-docket-checks/",
-      "inlinks": 55,
-      "share_pct": 4.8,
-      "index": 2.68
+      "inlinks": 56,
+      "share_pct": 4.79,
+      "index": 2.72
     },
     {
       "path": "/learn/what-scout-checks/",
@@ -283,33 +289,33 @@
     },
     {
       "path": "/legal/privacy/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/legal/refunds/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/legal/terms/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/vs/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/vs/ahrefs-site-audit-alternative/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/vs/google-search-console/",
@@ -321,25 +327,25 @@
       "path": "/vs/lighthouse-alternative/",
       "inlinks": 2,
       "share_pct": 0.17,
-      "index": 0.09
+      "index": 0.1
     },
     {
       "path": "/vs/screaming-frog-alternative/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/vs/semrush-site-audit-alternative/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     },
     {
       "path": "/vs/sitebulb-alternative/",
-      "inlinks": 54,
+      "inlinks": 55,
       "share_pct": 4.71,
-      "index": 2.63
+      "index": 2.68
     }
   ],
   "measured": "2026-08-14"
