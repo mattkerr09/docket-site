@@ -99,6 +99,11 @@ _UNRENDERED = re.compile(r"\{[A-Za-z_][A-Za-z0-9_.\[\]'\"()]*\}")
 #: be mistaken for syntax.
 _CSS_COMMENT = re.compile(r"/\*.*?\*/", re.S)
 _STYLE_BLOCK = re.compile(r"<style>(.*?)</style>", re.S | re.I)
+#: `var(--x)` with no fallback. The fallback form is deliberately excluded:
+#: `var(--muted-bg, rgba(127,127,127,.14))` names an undefined token on
+#: purpose and the second argument is what it means.
+_CSS_VAR_BARE = re.compile(r"var\(\s*(--[a-z0-9-]+)\s*\)")
+_CSS_VAR_DEF = re.compile(r"(--[a-z0-9-]+)\s*:")
 _HEADING = re.compile(r"<h([1-6])[^>]*>", re.I)
 _TITLE = re.compile(r"<title>(.*?)</title>", re.S | re.I)
 _DESC = re.compile(r'<meta name="description" content="(.*?)"', re.S | re.I)
@@ -271,6 +276,30 @@ def main(root: str) -> int:
                 fails.append(
                     f"CSS    {p}: {opens} '{{' vs {closes} '}}' — a stray brace "
                     f"silently drops the rule after it")
+
+        # A colour that names nothing is the quieter half of the same fault.
+        # `var()` on an undefined custom property is not a CSS error: the
+        # declaration is dropped and the property inherits, so the rule renders
+        # as something that looks deliberate rather than as wreckage.
+        #
+        # Found in the desktop app, 2026-08-14, where three states of a new
+        # control were styled against this site's token names — `--warn`,
+        # `--text-1`, `--line` — which that app does not define. All three
+        # rendered as ordinary body text and 2,192 tests passed. The two
+        # codebases share a designer and not a vocabulary, so the mistake
+        # travels in both directions and this end had nothing checking it.
+        blocks = [_CSS_COMMENT.sub("", css) for css in _STYLE_BLOCK.findall(raw)]
+        if blocks:
+            page_css = "\n".join(blocks)
+            defined = set(_CSS_VAR_DEF.findall(page_css))
+            unknown = sorted(set(_CSS_VAR_BARE.findall(page_css)) - defined)
+            if unknown:
+                many = len(unknown) > 1
+                fails.append(
+                    f"CSS    {p}: {', '.join(unknown)} "
+                    f"{'name' if many else 'names'} nothing on this page, so "
+                    f"every declaration using {'them' if many else 'it'} is "
+                    "dropped and the property inherits instead")
 
         # A skipped heading level breaks the outline a screen reader announces
         # and the one a search engine reads. Four hub pages jumped h1 straight
