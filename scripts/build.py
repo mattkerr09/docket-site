@@ -44,6 +44,7 @@ import outrank  # noqa: E402
 import index_page  # noqa: E402
 import learn  # noqa: E402
 import link_equity  # noqa: E402
+import martech  # noqa: E402
 import mailcheck  # noqa: E402
 import pages  # noqa: E402
 
@@ -163,6 +164,10 @@ money.</p>
              f"Of {F.brand_social_frame()} company sites linking social profiles, "
              f"{F.brand_social_undeclared()} declared none of them in schema. What the "
              f"brand lane checks, and where design tools beat it."),
+            ("/learn/marketing-tag-audit/", "Marketing tag audit: is your tracking on every page?",
+             "Tags are installed on templates; sites grow pages built from other "
+             "templates. The 6 tracking checks, and the four-minute version you "
+             "can do by hand."),
             ("/learn/dead-contact-address/", "The contact address that cannot receive mail",
              "An address on a domain with no MX record bounces to the sender and never "
              "reaches you, and no tool asks whether yours works."),
@@ -410,6 +415,7 @@ def main() -> int:
     pages += canonicals.build_all()
     pages += learn.build_all()
     pages += link_equity.build_all()
+    pages += martech.build_all()
     pages += entity.build_all()
     pages += directives.build_all()
     pages += rendering.build_all()
