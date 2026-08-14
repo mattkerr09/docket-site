@@ -1273,6 +1273,12 @@ character limit that does not exist, and the fix by what caused them — paginat
 product variants, near-identical location pages.
 <a href="/how-to/fix-duplicate-title-tags/">How to fix duplicate title tags →</a></p>
 
+<h2>Missing security headers</h2>
+<p>HSTS, nosniff and Referrer-Policy, what each one actually does, and where to set them on
+every common host. Written as a self-audit, because this site fails two of the three checks
+it is describing and the reason is worth reading.
+<a href="/how-to/fix-missing-security-headers/">How to fix missing security headers →</a></p>
+
 <h2>Gating a deploy on regressions</h2>
 <p>Audit production against staging and fail the build on what the deploy introduced. The
 case for diffing findings rather than a score: stripping every title tag from a test site
