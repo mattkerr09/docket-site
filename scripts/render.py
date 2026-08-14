@@ -164,7 +164,20 @@ DMG_SIZE = _facts.dmg_size_str()
 #: One-time price, in USD. Declared once so the schema, the comparison table and
 #: the download page cannot drift apart — which is exactly what happened to the
 #: check count and the download size before they were centralised.
-PRICE = 79
+# Raised from 79 on 2026-08-14. Docket does what Screaming Frog (~$279/YEAR) and
+# Sitebulb ($162-$2,940/year) do, and was charging $79 ONCE for it. That was not
+# undercutting, it was a different order of pricing.
+#
+# The evidence is in this product's own code rather than in an opinion:
+# backend/seo_engine/monitor.py exists, server.py starts and stops a scheduler,
+# store.py keeps one snapshot per audit under history/<site_id>/<ts>.json and
+# sizes retention with the comment "at weekly cadence that is ~4 years of
+# history", and this site advertises "scheduled monitoring" in its own
+# featureList. A one-shot audit tool would not need any of that.
+#
+# $199 is still less than ONE year of the cheapest serious competitor, so the
+# position survives the rise intact.
+PRICE = 199
 PRICE_STR = f"${PRICE}"
 
 #: What the download costs *today*, which is not PRICE. The beta is free, keeps
