@@ -1,11 +1,11 @@
 {
-  "version": "1.1.4",
-  "notes": "\"Under construction\" in a long finished page no longer reads as placeholder text.",
-  "pub_date": "2026-08-14T09:11:38Z",
+  "version": "1.1.5",
+  "notes": "A mistyped link with an impossible port no longer ends the audit.",
+  "pub_date": "2026-08-14T09:56:30Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTlqVWE0ZmVkM0pUc1cyMXdWUDgvRm5UQ2dKWTJiVGRkdFRaS3p5QW5yT2ZYZVJFUmpJVTZBMlZxVWdCVEdOdjZwd0hRVTFGOTQzRGRJUXVUaVFCbmdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2Njk4NjAzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKYk9aQXpseW5Cdnk1TGVCNU9MTnZkNU1FMENXL2pVRTh3MHp1aGp5Z2NpbHJxZnBGUFB1eVArZFhpL2hZbVhzdTZqMVk5SmIzNVFyeEcyOTduUlZJQXc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.4/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTNsQmVqOHlJdk9Ob3JzOExHQjY5M2gyaU5CUVBoaWM2Um16QVdJbC9GUWFFOURaMVNraWVvYkwwb2hsU1RhYmJBSC9ubFk2aDN6cm9nSzlscDJmR3cwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NzAxMjg3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKK1gyT1QxQkJYZFBKNnZCaVdoYURQc25LNXRuZTVIb1VJWGZVRk12Ry96a0FpSnM4SzZLOFAwamJJblUwSVloT2lVa25VRE5JeVIxYVpLczZFWkFEQ0E9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.5/Docket.app.tar.gz"
     }
   }
 }
