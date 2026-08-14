@@ -1,7 +1,7 @@
 {
   "site": "docketseo.app",
   "pages": 50,
-  "edges": 1018,
+  "edges": 1017,
   "average_share_pct": 2.0,
   "below_half": 30,
   "nodes": [
@@ -193,9 +193,9 @@
     },
     {
       "path": "/learn/dead-contact-address/",
-      "inlinks": 3,
-      "share_pct": 0.29,
-      "index": 0.14
+      "inlinks": 2,
+      "share_pct": 0.2,
+      "index": 0.1
     },
     {
       "path": "/learn/googlebot-2mb-limit/",
@@ -236,8 +236,8 @@
     {
       "path": "/learn/what-docket-checks/",
       "inlinks": 49,
-      "share_pct": 4.81,
-      "index": 2.4
+      "share_pct": 4.82,
+      "index": 2.41
     },
     {
       "path": "/learn/what-scout-checks/",
@@ -306,5 +306,5 @@
       "index": 2.36
     }
   ],
-  "measured": "2026-08-12"
+  "measured": "2026-08-14"
 }
