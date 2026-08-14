@@ -827,7 +827,16 @@ ANALYTICS = (
     'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},'
     'plausible.init=plausible.init||function(i){plausible.o=i||{}};\n'
     'plausible.init()\n'
-    '</script>'
+    '</script>\n'
+    # Sled affiliate attribution, added 2026-08-14. Sets a ta_ref cookie ONLY when a
+    # visitor arrives through an affiliate link; an ordinary visitor gets none. The
+    # privacy page was rewritten in the same change — it said the site "sets no
+    # cookies" and runs "one third-party script", and Sled falsifies both.
+    #
+    # Docket was the last of the four sites without it. The ops board read "tracker
+    # verified real and serving", which was true of crispvideo.app alone, so an
+    # affiliate who sent somebody here earned nothing and had no way to know.
+    '<script async src="https://usesled.com/kerr-and-company/t.js"></script>'
 )
 
 
