@@ -1,11 +1,11 @@
 {
-  "version": "1.0.4",
-  "notes": "A locator page saved as a file \u2014 /shops.html \u2014 is recognised again, so the local lane applies to hand-written sites.",
-  "pub_date": "2026-08-14T03:45:21Z",
+  "version": "1.0.5",
+  "notes": "Orphan-page findings are withheld when the crawl did not read the pages that might link to them, and the report says so.",
+  "pub_date": "2026-08-14T04:11:23Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVwb2pHUmY0em5od2RCSllnV0xONDVnR05sMk5XYVRIY243NzBQUFYvK2ZTREtHbSthYlFJZngyaGI5YWkvekZLMVo4S0Z5VWRYdFZPdEJxZWU5MndrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2Njc5MDEzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKMkJaS0NCZTZvK2g2eXhMWEhFaXIwdUQ0d1grajJ3VXZDVjV6ZWY4cml4WjJnRnFMS0w1V1BtY3VpVVM3ZHhKbitpRkE1T09oR0hTZEsydTFnUEZSQnc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.0.4/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXhBT2dkTFF6eVRkU0RJQ1lEU2pRUVpIMWIvVDYydGxmOE5sYytMaVZ6YjlXYUhRYWdzdjJtaFhGVHIzUVZ5Nm9OYW5xbXpWcHNHd2pQd29jOFpyS0FZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NjgwNTkwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKaWdKYVIvRHI3OFd0bk0wWHc2MmN6QjIxampPYXV3eTN1a2c3MnU5SGVxcUJlbm9qQzNMTUZpaFk4dXdoNWQ0NzBHZ2o2aFloMTJxWUMyb2E2bktTRHc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.0.5/Docket.app.tar.gz"
     }
   }
 }
