@@ -179,6 +179,35 @@ def main() -> int:
 
     failures.extend(sorted(set(unsourced)))
 
+    # 4. every claim set's date is real, and the page says the same one.
+    #
+    # The note carried one shared date for the whole site, which was true while
+    # every claim had been read on one afternoon. Adding a page whose facts were
+    # read five days later published "Checked 10 August 2026" above figures
+    # nobody had looked at that day — wrong in the safe direction and still a
+    # false date about somebody else's product.
+    #
+    # Found by fetching the deployed page and reading it. The source looked
+    # fine, because the source never named a date at all.
+    from datetime import date as _date
+    today = _date.today().isoformat()
+    for key in comparisons.VERIFIED:
+        iso = comparisons.CHECKED_ISO.get(key, comparisons.CHECKED_ON)
+        human = comparisons.CHECKED_HUMAN.get(key, comparisons.CHECKED_ON_HUMAN)
+        if iso > today:
+            failures.append(
+                f"{key}: claims to have been checked on {iso}, which is in the "
+                f"future. A date nobody could have read on is worse than none.")
+        # The two forms are written by hand and must agree, or the page says one
+        # thing and the dataset another.
+        year, month, day = iso.split("-")
+        if not (human.startswith(str(int(day))) and human.endswith(year)):
+            failures.append(
+                f"{key}: CHECKED_ISO {iso!r} and CHECKED_HUMAN {human!r} are "
+                f"different dates. The page prints the human one.")
+
+
+
     if failures:
         print("COMPETITIVE FAIL", file=sys.stderr)
         for f in failures:
