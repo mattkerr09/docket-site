@@ -22,6 +22,7 @@ import app_path  # noqa: E402
 
 import base64
 import json
+import re
 import pathlib
 import plistlib
 import shutil
@@ -143,8 +144,68 @@ def _download_links_point_at_this_release() -> None:
                  f"broken.")
 
 
+#: Pages that tell a reader the Linux CLI exists, in prose that does not check
+#: whether one was published. Read from the rendered site rather than listed
+#: here, so removing the promise relaxes the gate instead of silently outliving
+#: it.
+_LINUX_PROMISE = re.compile(
+    r"Linux (x86_64|CLI|tarball|command[ -]line)", re.I)
+
+
+def _a_promised_linux_build_exists() -> None:
+    """Prose that offers a Linux CLI, with no Linux CLI on the release.
+
+    Found 2026-08-15, publishing 1.1.30. The Mac app was built and the Linux
+    tarball was not, so `collect_updater.py` printed `linux : MISSING` and
+    dropped the three Linux keys from download.json — which is right, because a
+    stale filename renders a link that 404s.
+
+    Then every gate went green. `verify_release_assets.py` passed, reporting
+    "all 4 advertised assets", because Linux was no longer advertised. This
+    gate passed too: its loop reads `if not name: continue`. And
+    `collect_updater.py` says in a comment that "verify_updater.py refuses the
+    deploy either way" — a claim about a gate that was not there. I ran it in
+    exactly that state and it printed OK.
+
+    **What the reader would have got.** Six pages promise the Linux CLI in
+    prose with no condition on it — counted by running this gate in that state,
+    after writing "four" here from reading the sources by hand. The about page
+    links to a "Linux x86_64 command line build", the download page names it as
+    one of the two things Docket ships, and the monitoring page tells anyone
+    wanting scheduled runs to use it. The download link would simply have been
+    absent while all six kept promising it — a mention standing in for a
+    product.
+
+    So the rule is not "always require Linux". It is: **if the site says the
+    Linux build exists, the release has to carry it.** Reading the promise out
+    of the rendered HTML keeps the two in step. Deleting the prose is a
+    legitimate way to satisfy this; quietly shipping nothing is not.
+    """
+    path = SITE / "_data" / "download.json"
+    if not path.is_file():
+        return
+    data = json.loads(path.read_text())
+    if data.get("linux_name"):
+        return
+
+    promising = sorted(
+        str(p.relative_to(SITE))
+        for p in SITE.rglob("*.html")
+        if _LINUX_PROMISE.search(p.read_text(encoding="utf-8", errors="ignore")))
+    if not promising:
+        return
+
+    shown = ", ".join(promising[:4]) + (" …" if len(promising) > 4 else "")
+    fail(f"{len(promising)} page(s) tell the reader Docket ships a Linux build "
+         f"and this release carries none, so download.json has no linux_name: "
+         f"{shown}. The pages still say it exists; only the link is gone. "
+         f"Build docket-{data.get('version', '?')}-linux-x86_64.tar.gz and "
+         f"re-run collect_updater.py, or remove the promise from those pages.")
+
+
 def main() -> None:
     _download_links_point_at_this_release()
+    _a_promised_linux_build_exists()
 
     if not MANIFEST.is_file():
         print("UPDATER skipped — no updater.json yet")
