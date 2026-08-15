@@ -138,7 +138,16 @@ def main() -> None:
             # Offering nothing is worse than offering a working tarball and
             # better than offering a broken link, so the keys go and the page
             # renders no Linux link at all. The word MISSING is the signal to
-            # rebuild it; verify_updater.py refuses the deploy either way.
+            # rebuild it.
+            #
+            # This comment used to end "verify_updater.py refuses the deploy
+            # either way", which was not true: that gate's loop read
+            # `if not name: continue`, and verify_release_assets.py reported
+            # "all advertised assets" because Linux was no longer advertised.
+            # Dropping the keys silenced every gate that could have noticed,
+            # while six pages went on promising a Linux build in prose. Written
+            # 2026-08-15 while publishing 1.1.30, in exactly that state.
+            # `_a_promised_linux_build_exists` is now the gate this named.
             dropped = [k for k in ("linux_name", "linux_bytes", "linux_mb")
                        if sizes.pop(k, None) is not None]
             print(f"  linux     : MISSING — {linux.name} was not built, so the "
