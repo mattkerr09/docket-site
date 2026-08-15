@@ -27,6 +27,7 @@ answers the question "would an installed copy actually update".
 
     python3 scripts/verify_updater_live.py
     python3 scripts/verify_updater_live.py --from 1.1.20   # would this build update?
+    python3 scripts/verify_updater_live.py --expect 1.1.34 # is the release live?
 """
 from __future__ import annotations
 
@@ -38,6 +39,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import urllib.error
 import urllib.request
 
@@ -69,6 +71,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--from", dest="installed", default=None,
                         help="pretend an installed build is this version")
+    parser.add_argument("--expect", default=None, metavar="VERSION",
+                        help="the version just released; fails if the served "
+                             "manifest never catches up to it")
+    parser.add_argument("--settle", type=int, default=90, metavar="SECONDS",
+                        help="how long to allow the CDN to catch up (default 90)")
     args = parser.parse_args()
 
     # 1. the manifest, as served
@@ -85,6 +92,49 @@ def main() -> int:
     if not version or not platforms:
         return fail(f"the manifest is served but carries no {'version' if not version else 'platforms'}")
     print(f"  manifest : {version}, {len(platforms)} platform(s)")
+
+    # 1a. is it the release we just made?
+    #
+    # The docstring above has always said step 1 "could 404, **or be stale**",
+    # and staleness was the one thing nothing checked. Found 2026-08-15,
+    # publishing 1.1.34: this script printed `UPDATER LIVE ok — offers 1.1.33`
+    # and exited zero. Everything it verified was true — that manifest is
+    # coherent, its tarball downloads, its signature verifies — and every one of
+    # those things is equally true of a manifest that never gets replaced again.
+    #
+    # A deploy that silently fails to publish updater.json leaves customers on
+    # an old build for ever, which is the exact failure this file was written to
+    # catch, and the check would have gone on saying ok.
+    #
+    # **The wait is for the CDN, not for the deploy.** GitHub Pages serves the
+    # previous file for a short window after a push, so a bare comparison would
+    # fail every release for a reason that is not a fault. It re-reads with
+    # cache-busting until the served version catches up or the window closes;
+    # only then is it stale. Opt-in via --expect, so running this on its own to
+    # answer "would an installed copy update" still works with no release in
+    # mind.
+    if args.expect and version != args.expect:
+        deadline = time.monotonic() + max(0, args.settle)
+        while time.monotonic() < deadline:
+            time.sleep(10)
+            try:
+                fresh = json.loads(_get(f"{MANIFEST_URL}?cb={int(time.time())}",
+                                        timeout=30))
+            except Exception:                                 # noqa: BLE001
+                continue
+            if fresh.get("version") == args.expect:
+                manifest, version = fresh, args.expect
+                platforms = manifest.get("platforms", {})
+                print(f"  manifest : {version} after CDN propagation")
+                break
+        else:
+            return fail(
+                f"{MANIFEST_URL} still offers {version}, not the {args.expect} "
+                f"just released, {args.settle}s after the deploy. Everything "
+                f"else about that manifest may be perfectly valid — a stale "
+                f"manifest is coherent, downloads and verifies — and every "
+                f"installed copy will go on believing it is current. Check that "
+                f"the deploy published site/updater.json.")
 
     # 2. would an installed build take it?
     installed = args.installed
