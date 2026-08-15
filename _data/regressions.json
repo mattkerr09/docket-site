@@ -1,8 +1,8 @@
 {
-  "test_files": 202,
-  "files_pinning_a_past_mistake": 98,
-  "pct": 48.5,
-  "tests_total": 2449,
+  "test_files": 203,
+  "files_pinning_a_past_mistake": 99,
+  "pct": 48.8,
+  "tests_total": 2457,
   "rule": "A test file counts only if it names a specific thing Docket got wrong \u2014 'false positive', 'false accusation', 'invented', 'was false', 'the bug', 'used to produce/say/report/be/call/claim/fire/accuse', 'would have gone/been/called/reported/shipped/failed/accused', or 'nearly published/shipped/deleted'. Counting the word 'test' would prove nothing, and every test file describes a contract \u2014 only some record a mistake. The total is what `pytest --collect-only -q` reports, not a count of `def test_`: parametrised tests are many tests from one function.",
   "files": [
     "test_a_blocked_crawl_does_not_become_an_audit.py",
@@ -102,7 +102,8 @@
     "test_the_shipped_ui_renders_correctly.py",
     "test_ui_contrast.py",
     "test_watch.py",
-    "test_www_duplicate_needs_a_200.py"
+    "test_www_duplicate_needs_a_200.py",
+    "test_your_own_subdomain_is_not_injected_spam.py"
   ],
   "note": "The rule was widened on 2026-08-07, when this collector was written and the figure stopped being maintained by hand. The earlier rule matched 12 of the same 30 files (40.0%); the two it missed were test_rating_visibility.py, which exists because Docket told a real ecommerce site its rich results were at risk when they were not, and test_knowledge_consistency.py. Both plainly record mistakes and the earlier phrasing simply did not name the words they used. Recorded here because the rule changed in the same edit as the count did, and a percentage that rises for two different reasons at once should say so."
 }
