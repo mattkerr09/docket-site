@@ -67,6 +67,22 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          'directives are followed"',
          "https://www.screamingfrog.co.uk/seo-spider/user-guide/configuration/"),
     ],
+    # Read 2026-08-15 from the SoftwareApplication JSON-LD on the vendor's own
+    # product page, which is machine-readable and unambiguous. The visible page
+    # also shows "$115 $86.25" beside a stale Black Friday note and a different
+    # product (a serviced scheduled scan), and reading a price off that banner
+    # would have published a wrong number about a named third party.
+    "scrutiny": [
+        ('the vendor\'s own product schema gives operatingSystem "MacOS", with '
+         '"There are no plans" for Windows',
+         "https://peacockmedia.software/mac/scrutiny/"),
+        ("that schema's offer states a price of 149 USD, fifty dollars less "
+         "than Docket",
+         "https://peacockmedia.software/mac/scrutiny/"),
+        ('its published featureList is "Link checking, html validation, XML '
+         'Sitemap generation, SEO, spell checking, site search"',
+         "https://peacockmedia.software/mac/scrutiny/"),
+    ],
     "screaming-frog": [
         ('renders with the "integrated Chromium WRS"',
          "https://www.screamingfrog.co.uk/seo-spider/"),
@@ -1054,7 +1070,98 @@ forever, and add the crawler when the question is what to change rather than wha
     )
 
 
-BUILDERS = [screaming_frog, sitebulb, ahrefs, semrush, lighthouse, search_console]
+def scrutiny() -> Path:
+    """The closest positional competitor, and the site never named it.
+
+    A paid macOS desktop SEO app sold for a one-time fee is the shape a buyer
+    comparing Docket will land on, and until 2026-08-15 this site compared
+    itself only to crawlers and platforms. Leaving out the nearest neighbour is
+    the kind of omission a reader notices on their own and reads as evasion.
+
+    Every fact below is from the vendor's own `SoftwareApplication` JSON-LD,
+    read 2026-08-15 — machine-readable, so there is nothing to misread. It is
+    cheaper than Docket and its published feature list contains three things
+    Docket does not do at all. Both are said plainly.
+    """
+    body = f"""
+<p>Scrutiny is a macOS desktop SEO tool sold for a one-time fee, which makes it
+the closest thing to Docket on the market: no account, no subscription, runs on
+your own Mac. If you are choosing between the two, the honest summary is that
+<strong>Scrutiny is cheaper and does several things Docket does not do at
+all</strong>.</p>
+
+<h2>What Scrutiny does that Docket does not</h2>
+<p>Its published feature list names <strong>link checking, HTML validation, XML
+sitemap generation, SEO, spell checking and site search</strong>. Three of those
+Docket has no answer to:</p>
+<ul>
+<li><strong>Spell checking.</strong> Docket does not check spelling, in any
+language. If proofreading a site is the job in front of you, Docket is the wrong
+purchase.</li>
+<li><strong>HTML validation.</strong> Docket checks specific structural things —
+headings, canonicals, structured data — and does not validate markup against the
+specification.</li>
+<li><strong>Site search.</strong> Docket has no equivalent of searching your own
+crawled content.</li>
+</ul>
+<p>It is also <strong>cheaper</strong>: {price('scrutiny')} against
+Docket's {PRICE_STR}.</p>
+
+<h2>What Docket does that Scrutiny's feature list does not name</h2>
+<p>The list above names SEO as a single item. What Docket adds is not "more SEO
+checks" but categories that list does not cover: whether your landing pages give
+a visitor a reason and a route to act, whether your brand is presented
+consistently, whether a local business has the markup local results need — and
+whether AI crawlers can reach you at all.</p>
+<p>That last one is the axis Docket is actually built on, and it is worth being
+precise about what it means. Reading <code>robots.txt</code> tells you what a
+site <em>permits</em>. Docket asks the server, as each crawler, with that
+crawler's documented user-agent, and compares the answer. The two disagree more
+often than anyone expects: a CDN or WAF rule refuses a crawler your
+<code>robots.txt</code> explicitly allows, and nothing in the file will ever tell
+you.</p>
+
+<h2>Which one to pick</h2>
+<p><strong>Choose Scrutiny</strong> if you want link checking and spell checking
+on a Mac for less money, or if validation and site search are what you actually
+need. It has been developed for years, it is macOS-native, and for those jobs
+Docket has nothing to offer you.</p>
+<p><strong>Choose Docket</strong> if you want a ranked fix plan rather than a
+dataset, a client-ready report, and the AI-visibility and conversion checks that
+Scrutiny's feature list does not name.</p>
+<p>Both run on your own machine and neither wants a subscription, which is more
+than most of this market can say.</p>
+{_verified_note("scrutiny")}
+{CTA}"""
+
+    return render(
+        cat="vs", slug="scrutiny-alternative",
+        title="Docket vs Scrutiny: two paid Mac SEO tools compared",
+        desc=("Scrutiny is cheaper and does spell checking, HTML validation and site "
+              "search, which Docket does not. What Docket adds, and when to buy theirs "
+              "instead."),
+        h1="Docket vs Scrutiny",
+        crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Scrutiny',
+        body=body,
+        faq=[
+            ("Is Docket a Scrutiny alternative?",
+             "Partly. Both are one-time-purchase Mac SEO tools that run locally. "
+             "Scrutiny does spell checking, HTML validation and site search, none of "
+             "which Docket does. Docket adds AI-crawler access, conversion and "
+             "local-business checks, and produces a ranked fix plan."),
+            ("Which is cheaper?",
+             f"Scrutiny, at {price('scrutiny')} against Docket's {PRICE_STR}. Both "
+             "are one-time purchases rather than subscriptions."),
+            ("Does Scrutiny run on Windows?",
+             "No. Its product page says there are no plans for Windows. Docket's "
+             "desktop app is macOS-only too, though its audit engine also ships as a "
+             "Linux command-line build."),
+        ],
+    )
+
+
+BUILDERS = [screaming_frog, sitebulb, ahrefs, semrush, lighthouse,
+            search_console, scrutiny]
 
 
 def build_all() -> list[Path]:
