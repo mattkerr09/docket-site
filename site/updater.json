@@ -1,11 +1,11 @@
 {
-  "version": "1.1.26",
-  "notes": "Docket 1.1.26",
-  "pub_date": "2026-08-15T03:58:41Z",
+  "version": "1.1.27",
+  "notes": "Docket 1.1.27",
+  "pub_date": "2026-08-15T04:19:09Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTBVeDl1TzBjQlNmRkhkeDF1c2JIdWgybmtCZDR0VksrZEdZdzdXc0laMlB0QjNwN0UxWWZLejdsVlF2a1pWL0pqbEhTenhabWl2QTlOdTZsdEhhT3dVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NzY2MjQxCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKL3lqdCtET2JGRmtjWVRHSGVVRGpObWN1cGQzUERlU2doMTBIS1ZxU3FyZE5jcit1Z09DdktKWTY2cFUxcTcxM2x6YTJFWURpeUhMTHpaUnUzN0RUQlE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.26/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXlUa2ljNHNTaUVGeG8rb2NlTm5yc25sTE1IMXJYWDBsZFRtTVl3YWRhQ1RlS1BtU1dnNXVSTU50TUp4Z3IyUVNTa1pIL0xUM0crOGF3YlpVSmJGWFEwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg2NzY3NDY3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKeTNIYTNVUWdOTUhWL1JNemJ4anFuQzdsT2RadG1rUFgvNFp2Q1k5K1F4V2I1UjB2eUlYTFA0eHFFMk0xOVh2cytLZkhyTXdPOVplUFFFLzhrejMwQ1E9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.27/Docket.app.tar.gz"
     }
   }
 }
