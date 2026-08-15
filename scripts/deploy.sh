@@ -140,6 +140,16 @@ echo "==> updater gate"
 echo "==> release gate"
 "$PY" scripts/verify_release_assets.py || exit 1
 
+# The customer's path: the link on the page, not the tag in a variable.
+#
+# Every other release gate starts from an artifact somebody already knew was
+# right -- dist/, the tag, the manifest. None of them reads a URL off the
+# rendered page, so a stale button or a checksum file from the previous release
+# leaves every one of them green. Cheap tier here; `--full` downloads the DMG
+# and is for a release rather than a deploy.
+echo "==> download-path gate"
+"$PY" scripts/verify_download_path.py || exit 1
+
 if [ -f scripts/publish_knowledge.py ]; then
   echo "==> knowledge feed gate"
   "$PY" scripts/publish_knowledge.py
