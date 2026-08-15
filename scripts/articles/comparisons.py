@@ -38,6 +38,23 @@ turns all four off. <a href="/download/">Download Docket →</a></p>
 CHECKED_ON = "2026-08-10"
 CHECKED_ON_HUMAN = "10 August 2026"
 
+#: Claim sets read on a different day from the rest.
+#:
+#: One shared date was correct while every claim on this site had been read on
+#: one afternoon. It stopped being correct the moment a page's facts were read
+#: later: the Scrutiny page went live on 2026-08-15 stating "Checked 10 August
+#: 2026" about figures nobody had looked at on 10 August. Wrong in the safe
+#: direction — earlier than the truth — and still a false date on a claim about
+#: somebody else's product, which is the one thing this note exists to prevent.
+#:
+#: Found by fetching the deployed page and reading it, not from the source.
+CHECKED_HUMAN: dict[str, str] = {
+    "scrutiny": "15 August 2026",
+}
+CHECKED_ISO: dict[str, str] = {
+    "scrutiny": "2026-08-15",
+}
+
 #: What was actually read, and where. Anything not sourced here is not stated as
 #: a fact about a competitor on these pages — it is either a concession, or
 #: written as a limit of what could be checked.
@@ -222,12 +239,13 @@ def _verified_note(key: str, closing: str = _DEFAULT_CLOSING) -> str:
     items = VERIFIED.get(key) or []
     if not items:
         return ""
+    checked = CHECKED_HUMAN.get(key, CHECKED_ON_HUMAN)
     checks = "; ".join(
         f'{what} (<a href="{url}" rel="nofollow noopener">source</a>)'
         for what, url in items
     )
     return f"""
-<p class="verified-note"><strong>Checked {CHECKED_ON_HUMAN}.</strong> The factual
+<p class="verified-note"><strong>Checked {checked}.</strong> The factual
 claims about this product were read from its own pages on that date: {checks}.
 {closing}</p>"""
 
