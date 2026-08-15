@@ -542,7 +542,7 @@ a five-minute audit into an hour.</p>
 manager loaded. If the helper is missing it says that too, rather than quietly falling back
 to a static crawl and letting you believe otherwise.</p>
 
-<p><a class="btn" href="https://github.com/mattkerr09/docket-site/releases/download/v1.1.24/Docket-1.1.24-arm64.dmg">Download Docket for Mac</a></p>
+<p><a class="btn" href="https://github.com/mattkerr09/docket-site/releases/download/v1.1.25/Docket-1.1.25-arm64.dmg">Download Docket for Mac</a></p>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Do search engines run JavaScript?</h3><p>Google does, on a second pass that can lag the first crawl by days. Most AI crawlers do not render at all, so a client-rendered page is blank to the crawlers behind ChatGPT and Perplexity.</p></div><div class="faq-item"><h3>Does Docket bundle a browser?</h3><p>No. macOS ships WebKit as a system framework, so rendering is a 112 KB helper built against it. The download is 21.8 MB and nothing is fetched at install.</p></div><div class="faq-item"><h3>Why is rendering off by default?</h3><p>It executes the page's JavaScript, so analytics fire and ad pixels load — requests to servers you did not intend to contact by asking for an audit. It is also ten to thirty times slower than fetching.</p></div><div class="faq-item"><h3>Can rendering measure Core Web Vitals?</h3><p>No, and nothing that runs on one machine can. LCP, INP and CLS are field metrics from real users on real connections. Docket reads them from the Chrome UX Report, the same source Search Console uses.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
