@@ -457,7 +457,7 @@ plausible.init()
 
 <p class="lede">Docket is built by Matt Kerr, one person, in the UK. It is a Mac app that
 audits a site's SEO, copy and branding against 96 checks across 13 lanes,
-runs the crawl on your own machine, and costs $199 once — v1.1.41 has no activation step yet, so it runs without a key.</p>
+runs the crawl on your own machine, and costs $199 once — v1.1.42 has no activation step yet, so it runs without a key.</p>
 
 <p>That is the whole company. There is no team page because there is no team, no office
 address because there is no office, and no support desk because there is one person reading
@@ -511,7 +511,7 @@ spent years and a great deal of money building those, and Docket has no answer t
 you sort them; Docket is built to read a site closely, not to survey one at that scale.</li>
 <li><strong>The app's source is not public.</strong> The website and its datasets are; the
 application is not. If your policy requires reading the code, Docket will not pass it.</li>
-<li><strong>It is version v1.1.41.</strong> There are things it should connect to and does
+<li><strong>It is version v1.1.42.</strong> There are things it should connect to and does
 not yet — Search Console for your own impressions is the biggest.</li>
 </ul>
 
@@ -521,8 +521,8 @@ not yet — Search Console for your own impressions is the biggest.</li>
 certificate carries a legal name and Apple has checked it. You do not have to take that on
 faith. After downloading the 21.8 MB disk image:</p>
 
-<pre><code>codesign -dv --verbose=4 "/Volumes/Docket 1.1.41/Docket.app"
-spctl -a -t open --context context:primary-signature -v Docket-1.1.41-arm64.dmg</code></pre>
+<pre><code>codesign -dv --verbose=4 "/Volumes/Docket 1.1.42/Docket.app"
+spctl -a -t open --context context:primary-signature -v Docket-1.1.42-arm64.dmg</code></pre>
 
 <p>The first prints the authority chain, ending at Apple's root. The second should say
 <code>accepted</code> and <code>source=Notarized Developer ID</code>. Any Mac app worth
