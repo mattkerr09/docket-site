@@ -48,7 +48,7 @@ sys.path.insert(0, str(ROOT / "scripts" / "articles"))
 #: Rivals this site names. Kept here rather than derived from VERIFIED so a new
 #: name appearing in prose without an entry is caught rather than excused.
 RIVALS = ("Screaming Frog", "Sitebulb", "Ahrefs", "Semrush", "Lighthouse",
-          "Search Console", "Sitechecker", "SEOptimer", "Ubersuggest")
+          "Search Console", "Sitechecker", "SEOptimer", "Ubersuggest", "Scrutiny")
 
 #: Only the unambiguous superiority claims — an assertion that a named rival
 #: LACKS something, or that Docket alone has it.
@@ -143,6 +143,40 @@ def main() -> int:
                     rel = page.relative_to(SITE)
                     unsourced.append(f"{rel}: compares against {rival} with no check date")
                 break
+
+        # Every /vs/ page, whatever verb it uses.
+        #
+        # `COMPARATIVE` matches superiority words — "ignores", "the only tool",
+        # "no other tool". A page written entirely in concessions and plain
+        # facts matches none of them, so it was never asked for a date. Found
+        # 2026-08-15 while adding a comparison against a paid Mac competitor:
+        # the page states that rival's price, its operating system and its
+        # published feature list, and the break test — deleting every source —
+        # left the gate printing "ok".
+        #
+        # Those are the claims that rot. A superiority claim is wrong the day
+        # somebody argues with it; a price is wrong quietly, months later, and
+        # a stale price about a named third party is the worst thing on this
+        # site to get wrong.
+        #
+        # Scoped to /vs/ rather than to a wider verb list, because widening the
+        # pattern is what produced 23 false failures the first time: most
+        # sentences naming a rival elsewhere on this site are concessions, and a
+        # gate that demands citations for praise teaches people to route around
+        # it. A page under /vs/ exists to compare; there is no case where it
+        # should carry no date.
+        rel = page.relative_to(SITE)
+        if str(rel).startswith("vs/") and str(rel) != "vs/index.html":
+            named = [r for r in RIVALS if r in text]
+            dated = ("Checked" in text or checked in text
+                     or comparisons.CHECKED_ON_HUMAN in text)
+            if named and not dated:
+                unsourced.append(
+                    f"{rel}: names {', '.join(named)} and carries no check "
+                    f"date. Every fact on a /vs/ page about somebody else's "
+                    f"product — price, platform, feature list — needs a date "
+                    f"beside it, whether or not the page claims to be better.")
+
     failures.extend(sorted(set(unsourced)))
 
     if failures:
