@@ -200,6 +200,7 @@ def body() -> str:
     <a class="btn btn-lg" href="{CHECKOUT}">Buy Docket · {PRICE_STR} once</a>
     <a class="btn-ghost btn-lg" href="{DMG}">Download for Mac</a>
   </div>
+  <p class="hero-note"><strong>30 days, no conditions, no questions asked</strong> — <a href="/legal/refunds/">refund policy</a></p>
   <p class="hero-note">macOS 12+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites</p>
 </div>
 {_mockup()}
