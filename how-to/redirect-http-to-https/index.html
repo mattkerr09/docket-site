@@ -6,7 +6,7 @@
 <title>How to redirect http:// to https:// — and when it won't</title>
 <meta name="description" content="A 301 from http:// to https://, host by host — plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b0085bba1c0c">
+<meta name="build-id" content="11fa6a5eadc3">
 <link rel="canonical" href="https://docketseo.app/how-to/redirect-http-to-https/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -339,6 +339,12 @@ body.landing article{padding:0}
    carried ONE image and no video. No amount of spacing or type-size work closes
    that gap, which is why earlier passes at "redesign" kept producing a page
    that looked the same. */
+/* `.will-reveal` is applied by SCRIPT, never by the markup, so the resting
+   state of this page is fully visible. See the note by the script tag. */
+.will-reveal{opacity:0;transform:translateY(14px)}
+.will-reveal.is-in{opacity:1;transform:none;
+  transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+@media(prefers-reduced-motion:reduce){.will-reveal,.will-reveal.is-in{opacity:1;transform:none;transition:none}}
 .hero-media{margin:2.6rem 0 0;position:relative}
 .hero-media-wrap{position:relative;z-index:1}
 .hero-video{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
@@ -673,5 +679,37 @@ your own work rather than reading about one.</p>
 <span>© 2026 Docket SEO · Audits run on your Mac. Nothing is uploaded.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
+<script>
+/* Scroll reveal. Every reference site animates content in; this one shipped no
+   behavioural JavaScript at all, which is part of why it read as inert.
+
+   THREE FAILSAFES, because a reveal that does not fire is content nobody can
+   read, and this project's own tooling has been bitten by exactly that: the
+   portfolio screenshot tool once captured 10,500px of blank because an
+   IntersectionObserver never fired for offscreen sections, and the file passed
+   every check because it was the right height and a plausible size.
+     1. the hiding class is added BY this script, so with JS off, blocked, or
+        still parsing, nothing is hidden and the page is simply static;
+     2. reduced-motion, or no IntersectionObserver, returns before anything is
+        hidden at all;
+     3. a hard timeout reveals everything after 1.4s whatever the observer did,
+        so the worst case is an un-animated page, never an empty one. */
+(function () {
+  var SEL = '.sec-head, .card, .split-col, .shot, .chart, .stat, .hero-media, .rank-demo';
+  var els = [].slice.call(document.querySelectorAll(SEL));
+  if (!els.length) return;
+  var show = function (e) { e.classList.add('is-in'); };
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || !window.IntersectionObserver) return;
+  els.forEach(function (e) { e.classList.add('will-reveal'); });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (x) {
+      if (x.isIntersecting) { show(x.target); io.unobserve(x.target); }
+    });
+  }, { rootMargin: '0px 0px -6% 0px', threshold: 0.01 });
+  els.forEach(function (e) { io.observe(e); });
+  setTimeout(function () { els.forEach(show); }, 1400);
+})();
+</script>
 </body>
 </html>
