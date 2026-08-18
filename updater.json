@@ -1,11 +1,11 @@
 {
-  "version": "1.1.52",
-  "notes": "Italian street addresses are read, and a year no longer poses as a house number.",
-  "pub_date": "2026-08-18T14:21:14Z",
+  "version": "1.1.53",
+  "notes": "If Docket falls over it now leaves a crash report on your Mac \u2014 readable by you, sent nowhere.",
+  "pub_date": "2026-08-18T15:05:53Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTRwZ0JydHZvY294NGhjVlR3RTRKSS9GQWJKR3pFTnR1Rm9BenFGNk05OGVWU1NIUDJLcEQ0bzd1Q1lYS1ZXZTNVVmNqTXArb0MwbFp4cWY4cnpzZnc0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDYyNTMxCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKOWFqS3ZlbE5Hc2lhemZEQ1h1K1B5MWRTUzRvMHlPQlFsTkY5bHNDQ3BPUU5OT3kwVGI5MTFRLzVzWkJLaGViTGpzRW1ZVU5iUlhOdHRsaDYxWnB3QXc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.52/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXpwbXpiU3NNUXlKYnNCUlFqdHMySERSSFR6M1JxRnd0KzZRb3RVSldtdzJONmNxWVFEeEExUXlUeE5ocUF5SUdwTnBLbE5Yamx1c3Brc0JZa083L2dZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDY1MzU5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKUVNMWlZGNEQyVWxIeTJYOHdWaFZiRmIxVzlHQzNBUS9TY3VEODVUTXFKU3lRY3czZDZUdUdjbWtURjVpN0FTZmJYQXdxRHh5ZkpDbkZEbzZ0dmYwQ1E9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.53/Docket.app.tar.gz"
     }
   }
 }
