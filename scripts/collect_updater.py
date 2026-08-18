@@ -87,7 +87,14 @@ def main() -> None:
     # worst bug a product site can have.
     dmg = APP / "dist" / f"Docket-{args.version}-arm64.dmg"
     if dmg.is_file():
-        size_path = OUT.parent / "_data" / "download.json"
+        # Repo-root data/, NOT site/_data. The measurements moved out of the
+        # deployed directory on 2026-08-18 — everything under site/ is pushed
+        # to gh-pages and served — and this line was written as a bare "_data"
+        # string, so it matched none of the greps that found the rest and kept
+        # writing to a directory that no longer exists. The failure was loud in
+        # the right place: download.json went stale, so the ACTION gate refused
+        # the deploy for pinning an old release.
+        size_path = OUT.parent.parent / "data" / "download.json"
         size_path.write_text(json.dumps({
             "version": args.version,
             "tag": args.tag,
