@@ -8,6 +8,8 @@ write a page would be worse than one that writes it and then tells you it fails.
 """
 from __future__ import annotations
 
+import hashlib
+
 import datetime
 import sys
 from pathlib import Path
@@ -416,6 +418,39 @@ and Semrush Site Audit, each naming what the other does better.</li>
     )
 
 
+def stamp_build_id() -> str:
+    """One id over the whole tree, so a stale deploy is detectable from outside.
+
+    The failure this exists for, 2026-08-17: two commits were merged and green,
+    the built site/ carried a screenshot and a refund line, and the live site
+    served neither. Every gate in deploy.sh checks the BUILD; nothing checked
+    that the build reached the CDN, and the answer arrived as "dockets site is
+    still the same or its not updating". Matthew made it rule 0.8 the next day:
+    a commit is not a ship.
+
+    A hash of index.html alone cannot see it — the .webp that 404'd is not in
+    index.html. So this hashes every file under site/, with the placeholder
+    still in place, and rewrites the placeholder afterwards. Nothing is hashed
+    twice: the placeholder is a fixed-length constant, so stamping cannot change
+    the id it stamps.
+    """
+    manifest = []
+    for path in sorted(SITE.rglob("*")):
+        if path.is_dir() or path.name == ".nojekyll":
+            continue
+        manifest.append(path.relative_to(SITE).as_posix().encode()
+                        + b"\0" + hashlib.sha256(path.read_bytes()).hexdigest().encode())
+    build_id = hashlib.sha256(b"\n".join(manifest)).hexdigest()[:12]
+
+    for page in SITE.rglob("*.html"):
+        raw = page.read_text(encoding="utf-8")
+        if "__BUILD_ID__" in raw:
+            page.write_text(raw.replace("__BUILD_ID__", build_id), encoding="utf-8")
+    (SITE / "_data").mkdir(parents=True, exist_ok=True)
+    (SITE / "_data" / "build-id.txt").write_text(build_id + "\n", encoding="utf-8")
+    return build_id
+
+
 def main() -> int:
     pages: list[Path] = [home.build(), index_page.build(), checks_page()]
     pages += comparisons.build_all()
@@ -462,6 +497,9 @@ def main() -> int:
     write_sitemap(pages)
     write_static()
     stamp_competitor_claims(pages)
+
+    build_id = stamp_build_id()
+    print(f"build id {build_id} — stamped into every page and site/_data/build-id.txt")
 
     print(f"built {len(pages)} pages")
     for p in sorted(pages):

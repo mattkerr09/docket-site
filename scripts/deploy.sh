@@ -177,6 +177,12 @@ git subtree split --prefix site -b gh-pages-tmp >/dev/null
 git push -qf origin gh-pages-tmp:gh-pages
 git branch -D gh-pages-tmp >/dev/null
 
+# The gap nothing watched. Every gate above checks the BUILD; this is the only
+# one that checks the build reached a reader. On 2026-08-17 two merged, green,
+# fully-gated commits sat undeployed and the site served neither of them.
+echo "==> deployed-build gate (waits for the CDN)"
+"$PY" scripts/verify_deployed.py --wait 300
+
 echo "==> done — https://docketseo.app (propagation takes a minute)"
 echo
 echo "    verify what the CDN is actually serving, once it has propagated:"
