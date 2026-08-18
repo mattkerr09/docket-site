@@ -6,7 +6,7 @@
 <title>How to fix duplicate title tags — and what it won't fix</title>
 <meta name="description" content="Duplicate titles are not a penalty. They let the wrong page win the query and waste the one line of the result you get to write.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="3fc82b0f8abf">
+<meta name="build-id" content="96b812e43206">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-duplicate-title-tags/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -53,28 +53,38 @@
    than fixed: the retheme uses Switzer throughout, so the files were never needed. */
 
 :root{
-  /* Paper, not a dashboard.
-     Every SEO tool ships a dark neon dashboard, and Docket SEO is not a
-     dashboard — it is a report about a website, read once and worked through.
-     So: paper ground, hard 1px rules, no gradients, no glows, monospace for
-     anything measured. It looks like an instrument, which is what it is, and
-     it does not look like the eight other tools a buyer opened this week.
-     The warmth in --bg is deliberate; pure #fff reads as an unstyled document. */
-  --bg:#FBFAF7;--surface:#FFFFFF;--surface-2:#F2F1EC;--surface-3:#E6E4DC;
-  --text:#16171A;--text-mid:#4A4D55;--text-dim:#5F636B;
+  /* Ink, and the content lifted off it.
+     This replaces the paper ground the site carried until 2026-08-18. That
+     ground had a written thesis — every SEO tool ships a dark dashboard, so
+     don't — and it is worth knowing it was abandoned deliberately rather than
+     drifted away from. What replaces it is not a neon dashboard: it is a dark
+     ground with the reading surfaces raised a few points above it, which is a
+     different idea. Nothing glows; the lift does the work.
+
+     The ladder is the whole mechanic and the steps are deliberately small.
+     Measured luminance ratios between neighbours: bg->surface 1.065,
+     surface->surface-2 1.046, surface-2->surface-3 1.086. Large enough to read
+     as separate planes, small enough that four of them stacked do not band.
+     Every surface is LIGHTER than the ground beneath it, never darker — that
+     is what makes a box read as raised rather than as a hole. */
+  --bg:#070C0D;--surface:#0D1517;--surface-2:#111A1D;--surface-3:#172225;
+  --text:#EAF2F1;--text-mid:#A9B8B8;--text-dim:#8B9C9C;
   /* Deep teal, and deliberately NOT the desktop app's indigo. The app is a
      tool you run; this is paper you read, and #4338CA on a warm ground reads
-     as a hyperlink from 2003. Measured on --bg / --surface-2 / --surface-3:
-     --brand 9.08/8.38/7.44, --brand-light 11.50/10.62/9.43, and white on
-     --brand is 9.48 — so it works as fill, as link text and as a rule.
-     The app's own #818CF8 is 2.86:1 here and is not a candidate for anything.
+     as a hyperlink from 2003. The hue is unchanged from the paper era; only
+     the lightness moved, because #134E4A on a near-black ground is 1.6:1 and
+     invisible. Measured on --bg / --surface / --surface-2 / --surface-3:
+     --brand 10.57/9.92/9.49/8.73, --brand-light 13.30/12.49/11.94/10.99, and
+     --on-accent on --brand is 10.39 — fill, link text and rule all clear AA.
+     This is Docket's own teal and NOT the violet of the site this look was
+     taken from; two products in one portfolio should not be the same product.
 
      Every published image of the mark is rendered FROM this token by
      scripts/render_brand_assets.py, which is why the favicon cannot go on
      being indigo eight months after the site stopped being — it did, and
      nothing noticed until somebody looked at the file. */
-  --brand:#134E4A;--brand-light:#0F3D3A;--brand-soft:rgba(19,78,74,.09);
-  --on-accent:#FFFFFF;
+  --brand:#2DD4BF;--brand-light:#5EEAD4;--brand-soft:rgba(45,212,191,.10);
+  --on-accent:#04100F;
   /* Severity, defined ONCE as a channel triple and derived from there.
      Every tinted background in this stylesheet is the severity colour at low
      alpha, and each one used to be a hand-copied `rgba(74,222,128,.18)` sitting
@@ -83,20 +93,37 @@
      survived a token swap because no gate reads colour.
      `rgba(var(--ok-rgb),.18)` cannot drift; there is nothing to forget.
 
-     These are the PAPER values, darkened from the dark-mode set until each one
-     clears 4.5:1 as text. #FBBF24 amber is 1.7:1 on this ground — it is a fill
-     colour on black and nothing else. Amber remains the warning semantic; that
-     is exactly why the brand is not amber, and why a "safety orange" brand
-     accent was rejected: it would make the brand colour and "this is a warning"
-     the same colour. Measured on --bg / --surface-2 / --surface-3:
-     ok 6.24/5.76/-, warn 5.81/5.36/4.76, bad 6.30/5.81/5.16. */
-  --ok-rgb:19,108,52;--warn-rgb:122,95,0;--bad-rgb:180,35,24;
+     These are the DARK values. The paper set was darkened from an earlier dark
+     set; going back to ink restores the bright ones, because #7A5F00 amber on
+     near-black is 1.9:1 and unreadable. Amber remains the warning semantic;
+     that is exactly why the brand is not amber, and why a "safety orange"
+     brand accent was rejected: it would make the brand colour and "this is a
+     warning" the same colour. Measured on --bg / --surface / --surface-2 /
+     --surface-3: ok 11.29/10.60/10.13/9.33, warn 11.78/11.07/10.58/9.74,
+     bad 7.11/6.68/6.38/5.88. Worst pair is bad on --surface-3 at 5.88. */
+  --ok-rgb:74,222,128;--warn-rgb:251,191,36;--bad-rgb:248,113,113;
   --ok:rgb(var(--ok-rgb));--warn:rgb(var(--warn-rgb));--bad:rgb(var(--bad-rgb));
-  /* On paper --bad is already 6.30:1, so the separate lighter tint the dark
-     theme needed is gone: --bad-text is --bad. The dark theme's #ff9c92 existed
-     because salmon-on-near-black needed hand-tuning; nothing here does. */
-  --bad-text:var(--bad);
-  --border:rgba(22,23,26,.14);--border-strong:rgba(22,23,26,.30);
+  /* Salmon on near-black needs hand-tuning, which is why this token exists
+     separately again: --bad at 7.11 is fine, but --bad-text lifts the reading
+     colour to 9.76 so a failure line is legible at body size. */
+  --bad-text:#FF9C92;
+  --border:rgba(255,255,255,.09);--border-strong:rgba(255,255,255,.17);
+  /* THE LIFT. This is the one thing that makes content read as floating above
+     the page rather than drawn onto it, and it is three effects stacked, not a
+     drop shadow:
+       1. a 1px inset highlight on the TOP edge only — light catching a raised
+          lip. Without this a card is a flat rectangle no matter how large the
+          shadow is; it is the single most load-bearing line here.
+       2. a hairline inset ring, so the edge stays defined on any surface.
+       3. a wide, very soft, heavily negative-spread shadow. The spread is what
+          keeps it from reading as a 2010 drop shadow: the shadow is much
+          smaller than the blur, so it is a pool of darkness under the card
+          rather than an outline around it.
+     Measured off outlier.host at 1440x900, which does the same three things:
+     rgba(255,255,255,.06) 0 2px 0 inset, rgba(255,255,255,.04) 0 0 0 1px inset,
+     rgba(0,0,0,.95) 0 60px 130px -40px. */
+  --lift:0 1px 0 0 rgba(255,255,255,.055) inset,0 0 0 1px rgba(255,255,255,.03) inset,0 18px 40px -24px rgba(0,0,0,.85);
+  --lift-lg:0 2px 0 0 rgba(255,255,255,.07) inset,0 0 0 1px rgba(255,255,255,.04) inset,0 60px 130px -40px rgba(0,0,0,.95);
   /* Hard corners. A 16px radius is the house style of every SaaS dashboard;
      4px reads as a printed rule, and 0 on the data surfaces reads as a table. */
   --radius:5px;--radius-sm:3px;
@@ -164,7 +191,7 @@ code,kbd,samp{background:var(--surface-2);border:1px solid var(--border)}
 .wrap{width:min(820px,calc(100% - 2rem));margin:0 auto}
 .wrap-wide{width:min(1080px,calc(100% - 2rem));margin:0 auto}
 
-nav{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.90);
+nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
   backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem}
 .nav-brand{display:flex;align-items:center;gap:.55rem;font-weight:700;color:var(--text);
@@ -250,7 +277,7 @@ table.cmp td:first-child{color:var(--text);font-weight:600}
 .no{color:var(--bad)}
 .wrap-tbl{overflow-x:auto;margin:1.4rem 0}
 
-.callout{background:var(--surface);border:1px solid var(--border);
+.callout{background:var(--surface);border:1px solid var(--border);box-shadow:var(--lift);
   border-left:3px solid var(--brand);border-radius:var(--radius-sm);
   padding:1.05rem 1.2rem;margin:1.5rem 0}
 .callout p:last-child{margin-bottom:0}
@@ -259,7 +286,7 @@ table.cmp td:first-child{color:var(--text);font-weight:600}
 
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:.8rem;margin:1.6rem 0}
-.stat{background:var(--surface);border:1px solid var(--border);
+.stat{background:var(--surface);border:1px solid var(--border);box-shadow:var(--lift);
   border-radius:var(--radius-sm);padding:1rem 1.1rem}
 .stat b{display:block;font-size:1.85rem;letter-spacing:-.03em;color:var(--text);
   line-height:1.1;font-weight:700}
@@ -293,8 +320,8 @@ body.landing article{padding:0}
    asserts it generates, because a stray brace once ate this rule silently. */
 .hero-sec::before{content:"";position:absolute;inset:0 -10% auto -10%;height:100%;
   background:
-    repeating-linear-gradient(90deg,rgba(22,23,26,.055) 0 1px,transparent 1px 72px),
-    repeating-linear-gradient(0deg,rgba(22,23,26,.055) 0 1px,transparent 1px 72px);
+    repeating-linear-gradient(90deg,rgba(255,255,255,.038) 0 1px,transparent 1px 72px),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.038) 0 1px,transparent 1px 72px);
   background-position:center top;
   -webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);
   mask-image:linear-gradient(180deg,#000 55%,transparent);
@@ -314,7 +341,7 @@ body.landing article{padding:0}
    evidence from a moment rather than a claim about the current build. */
 .shot{margin:0;max-width:min(100%,1100px);margin-inline:auto}
 .shot img{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
-  border:1px solid var(--border-strong);background:var(--surface)}
+  border:1px solid var(--border-strong);background:var(--surface);box-shadow:var(--lift-lg)}
 .shot figcaption{margin-top:.85rem;color:var(--text-dim);font-size:var(--t-md);
   line-height:1.6;max-width:62ch;margin-inline:auto;text-align:center}
 .shot figcaption strong{color:var(--text)}
@@ -395,7 +422,7 @@ body.landing article{padding:0}
 /* Product mockup — an HTML replica of the app, not a screenshot. Stays sharp at
    any density, weighs nothing, and follows the page theme. */
 .mock{background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-lg);
-  box-shadow:0 1px 0 var(--border-strong);border:1px solid var(--border-strong);overflow:hidden}
+  box-shadow:var(--lift-lg);border:1px solid var(--border-strong);overflow:hidden}
 .mock-bar{display:flex;align-items:center;gap:.45rem;padding:.62rem .85rem;
   background:var(--surface-2);border-bottom:1px solid var(--border)}
 .mock-dot{width:10px;height:10px;border-radius:var(--radius-pill);background:var(--surface-3)}
@@ -433,8 +460,8 @@ body.landing article{padding:0}
 .sec-head p{font-size:var(--t-lg);color:var(--text-mid);margin:0}
 .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1rem}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem 1.5rem;
-  transition:border-color .18s,transform .18s}
-.card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
+  box-shadow:var(--lift);transition:border-color .18s,transform .18s,box-shadow .18s}
+.card:hover{border-color:var(--border-strong);transform:translateY(-2px);box-shadow:var(--lift-lg)}
 .card-ico{width:36px;height:36px;border-radius:var(--radius-md);background:var(--brand-soft);color:var(--brand-light);
   display:flex;align-items:center;justify-content:center;margin-bottom:.85rem}
 .card h3{font-size:var(--t-lg);margin:0 0 .45rem}
@@ -444,7 +471,7 @@ body.landing article{padding:0}
 /* Before/after: a list vs a sequence */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:760px){.split{grid-template-columns:1fr}}
-.split-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.3rem 1.4rem}
+.split-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.3rem 1.4rem;box-shadow:var(--lift)}
 .split-col.good{border-color:var(--brand)}
 .split-tag{font-size:var(--t-2xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   color:var(--text-dim);margin-bottom:.8rem}
@@ -458,7 +485,7 @@ body.landing article{padding:0}
   font-weight:700;padding-top:.6rem}
 
 /* Index chart, drawn from the measured dataset */
-.chart{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem 1.6rem}
+.chart{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem 1.6rem;box-shadow:var(--lift)}
 .bar-row{display:grid;grid-template-columns:130px 1fr 46px;gap:.85rem;align-items:center;margin-bottom:.62rem}
 .bar-lbl{font-size:var(--t-sm);color:var(--text-mid);text-align:right}
 .bar-track{height:9px;background:var(--surface-3);border-radius:0;overflow:hidden}
