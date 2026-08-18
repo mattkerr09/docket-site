@@ -435,6 +435,39 @@ on your site and how it is configured.</p></div>
 <a class="btn btn-lg" href="{CHECKOUT}">Buy Docket · {PRICE_STR} once</a>
 <a class="btn-ghost btn-lg" href="{DMG}">Download for Mac</a>
 </div></section>
+
+<!-- ================= NOT READY YET =================
+     Docket is the highest price in the portfolio with no trial and no free tier,
+     so the largest group leaving this page is people who are interested and not
+     ready to spend it. Until the free audit ships they had nowhere to go but
+     away.
+
+     The promise here is deliberately small and literally true. There is no
+     sending set up and no double opt-in, so this does NOT say newsletter, does
+     not say updates, and does not imply a series. It says one email about one
+     thing, which is a promise that can actually be kept.
+
+     Posts on submit only, to our own worker. Nothing loads from a third party —
+     see ops/subscribe-worker. -->
+<section class="sec"><div class="wrap" style="max-width:34rem">
+<div class="sec-head"><h2>Not ready to buy?</h2></div>
+<p>A free audit is coming &mdash; one site, the real ranked report, with the
+detail redacted. If you want to know when it lands, leave your address and we
+will email you <strong>once</strong>, about that. Not a newsletter; there is no
+series to sign up to.</p>
+<form class="sub" method="post" action="https://kerr-subscribe.kerrco.workers.dev">
+  <input type="hidden" name="source" value="docket-homepage">
+  <label class="sub-label" for="sub-email">Email</label>
+  <input id="sub-email" name="email" type="email" required
+         autocomplete="email" placeholder="you@example.com">
+  <div aria-hidden="true" style="position:absolute;left:-9999px">
+    <label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label>
+  </div>
+  <button class="btn" type="submit">Tell me when it lands</button>
+</form>
+<p class="sub-fine">We store the address, which site it came from, and the date.
+No IP address, no tracking, no profile. Nothing is shared.</p>
+</div></section>
 """
 
 

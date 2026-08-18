@@ -435,6 +435,17 @@ body.landing article{padding:0}
    Found by probing a width the visual gate had never rendered. */
 .price-caveat,.chart-note,.claims-note{max-width:68ch}
 
+/* Email capture. Quiet on purpose: it sits after the buy CTA and must not
+   compete with it — someone ready to buy should not be diverted into a form. */
+.sub{display:flex;gap:.5rem;flex-wrap:wrap;align-items:flex-end;margin:1.1rem 0 .6rem}
+.sub-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sub input[type=email]{flex:1 1 15rem;min-width:0;padding:.62rem .8rem;
+  font:inherit;font-size:.95rem;color:var(--text);background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--radius-sm)}
+.sub input[type=email]:focus-visible{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
+.sub .btn{flex:0 0 auto}
+.sub-fine{font-size:.84rem;color:var(--text-dim);line-height:1.55;margin:.2rem 0 0}
+@media(max-width:34rem){.sub input[type=email]{flex:1 1 100%}.sub .btn{width:100%}}
 .cta-band{text-align:center;padding:4.2rem 0}
 .cta-band h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.028em;margin-bottom:.7rem}
 .cta-band p{font-size:1.05rem;color:var(--text-mid);max-width:34rem;margin:0 auto 1.6rem}
@@ -755,6 +766,39 @@ on your site and how it is configured.</p></div>
 <p>Download it, type a domain, press Run. There is no onboarding because none is needed.</p>
 <a class="btn btn-lg" href="https://buy.polar.sh/polar_cl_FteABR6qSwOHHAOhrP1ObrzCOeVqsraAjhLZ323XgFR">Buy Docket · $199 once</a>
 <a class="btn-ghost btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v1.1.46/Docket-1.1.46-arm64.dmg">Download for Mac</a>
+</div></section>
+
+<!-- ================= NOT READY YET =================
+     Docket is the highest price in the portfolio with no trial and no free tier,
+     so the largest group leaving this page is people who are interested and not
+     ready to spend it. Until the free audit ships they had nowhere to go but
+     away.
+
+     The promise here is deliberately small and literally true. There is no
+     sending set up and no double opt-in, so this does NOT say newsletter, does
+     not say updates, and does not imply a series. It says one email about one
+     thing, which is a promise that can actually be kept.
+
+     Posts on submit only, to our own worker. Nothing loads from a third party —
+     see ops/subscribe-worker. -->
+<section class="sec"><div class="wrap" style="max-width:34rem">
+<div class="sec-head"><h2>Not ready to buy?</h2></div>
+<p>A free audit is coming &mdash; one site, the real ranked report, with the
+detail redacted. If you want to know when it lands, leave your address and we
+will email you <strong>once</strong>, about that. Not a newsletter; there is no
+series to sign up to.</p>
+<form class="sub" method="post" action="https://kerr-subscribe.kerrco.workers.dev">
+  <input type="hidden" name="source" value="docket-homepage">
+  <label class="sub-label" for="sub-email">Email</label>
+  <input id="sub-email" name="email" type="email" required
+         autocomplete="email" placeholder="you@example.com">
+  <div aria-hidden="true" style="position:absolute;left:-9999px">
+    <label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label>
+  </div>
+  <button class="btn" type="submit">Tell me when it lands</button>
+</form>
+<p class="sub-fine">We store the address, which site it came from, and the date.
+No IP address, no tracking, no profile. Nothing is shared.</p>
 </div></section>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is Docket free?</h3><p>Docket is a one-time download for macOS. There is no subscription, no crawl credits and no per-seat pricing — you can audit as many sites as you like.</p></div><div class="faq-item"><h3>Does Docket send my site data anywhere?</h3><p>Docket collects nothing about you: no account, no telemetry, no licence check. The crawl runs on your Mac. Four checks reach outside it by default — Core Web Vitals from Google PageSpeed, a deliverability test on the addresses your site publishes, what your server tells AI crawlers, and a knowledge refresh from this site. Offline mode turns all four off, and every report names the ones that ran.</p></div><div class="faq-item"><h3>How is Docket different from Screaming Frog?</h3><p>Screaming Frog gives you raw crawl data and leaves the interpretation to you. Docket ranks every finding by impact against effort and gives you an ordered plan with the exact markup to paste. Screaming Frog renders JavaScript and supports custom XPath extraction; Docket does not.</p></div><div class="faq-item"><h3>Can Docket tell me if ChatGPT can see my website?</h3><p>Yes. Docket checks each AI crawler separately — OAI-SearchBot for ChatGPT Search, PerplexityBot, Claude-SearchBot and Google-Extended — and distinguishes them from training crawlers like GPTBot, which many sites block deliberately.</p></div><div class="faq-item"><h3>Does Docket track keyword rankings?</h3><p>No. Ranking and backlink data require a crawled index of the entire web, which is bought rather than built. Docket audits what is on your site and how it is configured.</p></div></div></section>
 </article>
