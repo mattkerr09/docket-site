@@ -1,11 +1,11 @@
 {
-  "version": "1.1.46",
-  "notes": "Updating works again, and a running audit is visible from every tab.",
-  "pub_date": "2026-08-18T05:45:11Z",
+  "version": "1.1.47",
+  "notes": "A named building is still an address, and a check that passed no longer reads as not applicable.",
+  "pub_date": "2026-08-18T07:05:11Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTRyNXhUb1dVU0hWTDZtREJ1U2J0NldwUStXSTRMWXJnMTRudllPdzlqZ3BFRlU0RmxyUnovN0pyL1Y2WU5HczhrUklyVlp3NW1oNnBUZENXcEQ2cHdnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDMxNTI1CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKVUxnMzJPYjNSWnlIVDk3RXpoQVBwdUc3Q250Q0lZNzM2U3lFamxOeXFDTTNVaDQzSGJNTGcrN0NYejQ3RXFEbUZ6SEFEMVA0WkJZdHVkRjRQSU9WQVE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.46/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStIR0I4amRxRSt1dVE0M1NhQzRwNHpKYnZQMWJvOUc5YVB2TWk2MEVERVNaYldpM0ZpK1F3VDVyNjNHRFZ6ZUV2N3dlSW9iTUZzMis1NmxrZHN1amd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDM2NTg2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKRlQ5OXczbWZWTm9IM2gyZkE5Mno4ekVJaVhFK1RNemVhMWhyYTFSQ3ZVNjVSUTZ1QzVmenJPTHM5a2ZuYXRCSU1GYXdScGRUYW42WHByZGZyZG1XQUE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.47/Docket.app.tar.gz"
     }
   }
 }
