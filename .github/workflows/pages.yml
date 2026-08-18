@@ -11,8 +11,20 @@ name: Quality gate (fallback)
 # site lives in /site so the scripts and datasets stay out of the served tree.
 # The Actions deployment can publish any directory, which is why this exists.
 on:
+  # Added 2026-08-18. This was workflow_dispatch ONLY, so every commit to main
+  # deployed nothing and the live site silently served whatever gh-pages last
+  # held. A researched audit caught it: "the live site is two commits stale —
+  # the screenshot the last commit exists to add is not there". I had verified
+  # that screenshot in the BUILT output and in the gates, reported it shipped,
+  # and it had never left main. Green checks on the wrong artifact.
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'scripts/**'
+      - 'data/**'
+      - '.github/workflows/pages.yml'
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
