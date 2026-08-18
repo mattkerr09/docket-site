@@ -87,16 +87,27 @@ def palette() -> dict:
 
     brand = token("brand")
     return {
-        # The tile, and the shield knocked out of it. The shield is the brand
-        # darkened, not a separate colour, so a brand change carries.
+        # The tile, and the shield knocked out of it. Both are the brand at a
+        # TARGET LIGHTNESS, not the brand scaled by a fixed fraction — that is
+        # the whole reason this is written twice.
+        #
+        # The original was `_darken(brand, 0.42)`, which multiplies toward
+        # black. That works only while the brand is itself dark: it was tuned
+        # against #134E4A. When the site went dark on 2026-08-18 the brand had
+        # to move to #2DD4BF to stay visible, and the same 0.42 then produced a
+        # shield of #1A7B6F under an arrow of #6FE2D3 — 3.29:1, which this
+        # script's own gate refused, correctly, and the build stopped.
+        # A fraction of a colour depends on the colour; a target lightness
+        # does not. At 0.18 the shield lands on #104C45 whatever the brand
+        # does, which is within a shade of the teal it has always been.
         "tile": brand,
-        "shield": _darken(brand, 0.42),
+        "shield": _lift(brand, 0.18),
         # The arrow has to read against the dark shield, so it is the brand
         # lifted well past its paper value. Lifted in HLS, keeping hue and
         # saturation: mixing toward white instead desaturates, and the first
         # version of this produced a grey-green arrow that looked like a
         # rendering fault rather than a colour.
-        "arrow": _lift(brand, 0.66),
+        "arrow": _lift(brand, 0.70),
         "paper": token("bg"),
         "ink": token("text"),
     }
