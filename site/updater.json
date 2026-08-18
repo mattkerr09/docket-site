@@ -1,11 +1,11 @@
 {
-  "version": "1.1.49",
-  "notes": "A phone number outside North America is still a phone number.",
-  "pub_date": "2026-08-18T10:43:09Z",
+  "version": "1.1.50",
+  "notes": "The free report: the real ranked report with the detail and the fix withheld.",
+  "pub_date": "2026-08-18T11:03:32Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVEV3VUanpvdERGU0J4RS9KZlRYdHJEK29zTGNxQjRMRzlVb2JvSkJUZllHM3lpVExjcFRhNWNzQSt3MEo5azdEWEdTbVlDK3FKS3dOTXhyWDAvQlFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDQ5Njg0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKRzJSQnNyb1AwUlBWOFQzcWNIMlNrOGVYSGk3OTFzWWh2K1BMdm5COFMzVU1kVDV3OG9aczVSTWUzYkN5NWZvdmo1TDJWWHRqaFNqTUpxKzNLeDRLQUE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.49/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStEd2wzWjdpTHFFbHQ3eGZRZERtQnRqdHRib2hlcW1PL1BZZi92a2lQYUhVa21UUlJreUwxS3IxcHR0MmdlV0FQakRxMEdxRUg2VnN0TkNPbjVGdUFJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDUwODkwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKN3JIaEwzbytpb1d5bHNRZW1hck1LWFNSS3N0MityeDhHUy8wbElxTmhGanBXZG92TmhTQTZZUzBtTUZabVovU3NNa0RjMGxjeWFYeUxlRGpOVHJFQXc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.50/Docket.app.tar.gz"
     }
   }
 }
