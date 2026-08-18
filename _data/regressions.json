@@ -1,8 +1,8 @@
 {
-  "test_files": 208,
-  "files_pinning_a_past_mistake": 102,
-  "pct": 49.0,
-  "tests_total": 2509,
+  "test_files": 209,
+  "files_pinning_a_past_mistake": 103,
+  "pct": 49.3,
+  "tests_total": 2519,
   "rule": "A test file counts only if it names a specific thing Docket got wrong \u2014 'false positive', 'false accusation', 'invented', 'was false', 'the bug', 'used to produce/say/report/be/call/claim/fire/accuse', 'would have gone/been/called/reported/shipped/failed/accused', or 'nearly published/shipped/deleted'. Counting the word 'test' would prove nothing, and every test file describes a contract \u2014 only some record a mistake. The total is what `pytest --collect-only -q` reports, not a count of `def test_`: parametrised tests are many tests from one function.",
   "files": [
     "test_a_bilingual_name_is_not_an_inconsistency.py",
@@ -53,6 +53,7 @@
     "test_all_rights_reserved_is_not_a_call_to_action.py",
     "test_an_absence_is_claimed_only_where_it_can_be_seen.py",
     "test_an_absent_attribute_and_an_empty_one.py",
+    "test_an_address_in_the_footer_is_still_an_address.py",
     "test_an_id_format_is_not_an_unfinished_page.py",
     "test_an_organisation_that_does_not_sell_anything.py",
     "test_attack_says_why_it_cannot_compare.py",
