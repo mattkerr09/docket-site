@@ -1,11 +1,11 @@
 {
-  "version": "1.1.48",
-  "notes": "A German address is still an address.",
-  "pub_date": "2026-08-18T08:21:32Z",
+  "version": "1.1.49",
+  "notes": "A phone number outside North America is still a phone number.",
+  "pub_date": "2026-08-18T10:43:09Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTFIZjFmRlJBZ1RJZ1JZMVRzS3htUGkvekVSbEErdE1lNlFxT0I3TWdaMjlhT3BBTGhVKzJWcUt3R2tsVXM1VWt1ZHpHclNVTm1UZGh3THhXYnIwcXdjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDQxMTg3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKdXI2Uk5XcGRVZkVJa0ZySTJKSERGQ21GWnlKc3NubWFnMmdscVhkbStnWDhCUzd5QmVuMStZdkFSY3h5NnF5a2t0bER6bGJvMDNJUzI4RHdGcmRuQWc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.48/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVEV3VUanpvdERGU0J4RS9KZlRYdHJEK29zTGNxQjRMRzlVb2JvSkJUZllHM3lpVExjcFRhNWNzQSt3MEo5azdEWEdTbVlDK3FKS3dOTXhyWDAvQlFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDQ5Njg0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKRzJSQnNyb1AwUlBWOFQzcWNIMlNrOGVYSGk3OTFzWWh2K1BMdm5COFMzVU1kVDV3OG9aczVSTWUzYkN5NWZvdmo1TDJWWHRqaFNqTUpxKzNLeDRLQUE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.49/Docket.app.tar.gz"
     }
   }
 }
