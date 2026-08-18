@@ -1,7 +1,0 @@
-token,owner,replaced_by,source
-anthropic-ai,Anthropic,ClaudeBot,"support.claude.com article 8896518, read 2026-08-07, which documents exactly ClaudeBot, Claude-User and Claude-SearchBot"
-claude-web,Anthropic,ClaudeBot,"support.claude.com article 8896518, read 2026-08-07, which documents exactly ClaudeBot, Claude-User and Claude-SearchBot"
-cohere-ai,Cohere,Coherebot,"docs.cohere.com/docs/cohere-web-crawlers, read 2026-08-07. Cohere's bot table reads 'N/A' — they operate no crawler at present — and the blocking example they publish names Coherebot, so that is the token to write if they ever do"
-google-notebooklm,Google,Google-GeminiNotebook,"developers.google.com/crawling/docs/crawlers-fetchers/google-user-triggered-fetchers — renamed, and the old token is 'supported until August 2026'"
-omgili,Webz.io,Webzio,webz.io/bot.html — Omgilibot was replaced by the Webzio Duo (Webzio and Webzio-extended) in July 2024
-omgilibot,Webz.io,Webzio,webz.io/bot.html — Omgilibot was replaced by the Webzio Duo (Webzio and Webzio-extended) in July 2024
