@@ -222,7 +222,18 @@ def body() -> str:
     <p style="font-size:var(--t-base);color:var(--text-dim);margin-top:1rem">
     Ranked by what each one costs you, not by category.</p>
   </div>
-</div></section>
+</div>
+<figure class="shot shot-plan">
+  <img src="/assets/app-plan.webp" width="1600" height="1000" loading="lazy" decoding="async"
+       alt="Docket's ranked plan: numbered items under a BUILD phase heading reading
+            'Worth real effort. Schedule once the quick wins are done.' Each item carries a
+            severity chip, the lane it belongs to, an effort estimate, how many pages it
+            affects, an explanation, and a Fix paragraph with the change to make.">
+  <figcaption>The same idea inside the product. Every item is numbered in the order to
+  do it, grouped into phases, and carries what it is worth, how long it takes, how many
+  pages it touches &mdash; and the fix, written out.</figcaption>
+</figure>
+</section>
 
 <!-- ================= THREE LANES ================= -->
 <section class="sec"><div class="wrap-wide">
