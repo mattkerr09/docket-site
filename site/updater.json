@@ -1,11 +1,11 @@
 {
-  "version": "1.1.55",
-  "notes": "Dutch and Flemish street addresses are read.",
-  "pub_date": "2026-08-18T16:24:25Z",
+  "version": "1.1.56",
+  "notes": "Polish street addresses are read.",
+  "pub_date": "2026-08-18T17:57:34Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVCcUs1MTNNWm1UaTFESTBBODZSYlYxNmFvTDhjRnBpS0xDUjZ3QjlWSFdWYS82cXpvVExMckxBbTVicFM3KzgrWms2WEIzMUtGZHUrWkp6RkxHY2dBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDY5OTUwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKcDVlTVBmZVBONTZ1ZUtLdUY4QWRCSlJnRno0eU9HTGZxaGpQRDZ2K3BrelZVUWxzbWdZdzNwa2t5VmN0b0c5eUx1ZTZMckFCa1p0RXBnVjF3NHVMQ3c9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.55/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTRVNTJkTzJDYjhaYisyNHFQNXE3U05CdC8rUnNKdmRsaTJPb01vdHdzR2dvNW1SaGxGWUJzZWlEU1pNSEVVL1k3L2Q5ZU9hYlZhS24rZXVlcUUvM3dzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDc1NDY0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKd2NlbVdBZGRQUjhLZVo0dXR2OUpkbzViRWpDaTAxL2wvRnFVZWdtbXlOTnFZRld4bEsvNTJYY3N6QVVVeDFNaG1HZ3YxQ0dZeVBNb3JjYjZvdHUvQ0E9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.56/Docket.app.tar.gz"
     }
   }
 }
