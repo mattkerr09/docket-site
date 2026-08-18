@@ -64,6 +64,19 @@ ALLOWED = {
     "58": ("the Local business SEO lane score in that same screenshot. Quoted "
            "because it is the least flattering number in our own report and "
            "the caption's point is that Docket does not hide it"),
+    # -- figures read off the dated HERO RECORDING -------------------------
+    # Same rule as the screenshot above, for site/assets/app-demo.{mp4,webm}:
+    # a screen recording of Docket auditing docketseo.app, captured 2026-08-18
+    # through the e2e harness against the SHIPPED sidecar. They describe that
+    # recording and nothing else, so interpolating them from a live dataset
+    # would eventually caption a video that shows different numbers.
+    #
+    # If the recording is re-shot, re-read all three off the new footage.
+    "57": ("pages crawled in the hero recording — read off the footage, which "
+           "is a real run against docketseo.app on 2026-08-18"),
+    "35": ("seconds that same recorded run took, read off the same footage"),
+    "94": ("the score that recorded run produced. Quoted because the caption's "
+           "claim is that this is the app running, not a render of it"),
     "2.30": ("the glibc floor of the Linux build, measured with objdump over "
              "the shipped binary and its bundled libpython — the highest "
              "GLIBC_ symbol version either requires"),

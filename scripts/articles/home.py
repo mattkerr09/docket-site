@@ -2,7 +2,8 @@
 """The homepage — a landing page, not an article.
 
 The first version was prose in the article template and read like a blog post.
-This one is a real landing page: a hero with a working product mockup, a
+This one is a real landing page: a hero carrying a screen recording of the
+shipped app auditing this very site, a
 before/after that shows the actual difference rather than describing it, a
 feature grid, and a chart drawn from the measured Index data.
 
@@ -28,6 +29,22 @@ from render import (BETA_NOTE, CHECKOUT, DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE
                     price, price_note_html, render)  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
+
+
+
+#: The product's own score bands — `seo_engine.scoring.SCORE_BANDS` — restated
+#: because the site cannot import the engine, and pinned by `_score_band_drift`
+#: in verify_numbers.py so a change in the product fails the build here.
+#:
+#: THIS OUTLIVED WHAT IT WAS WRITTEN FOR. It existed to colour the lanes of the
+#: HTML replica in the hero, and that replica was deleted on 2026-08-18 when the
+#: hero became a screen recording of the actual app. The cross-repo pin is the
+#: part that still earns its place, so the table stays and the colouring helper
+#: that consumed it does not. It was deleted with it by mistake first, and the
+#: derived-number gate refused the deploy — correctly, and that is the only
+#: reason this note exists.
+_BANDS = ((85, "--ok"), (70, "--warn"), (50, "--bad"))
+_BAND_FLOOR = "--bad"
 
 
 def _index() -> dict:
@@ -71,82 +88,6 @@ ICONS = {
                 '<circle cx="12" cy="12" r="2.8"/>'),
 }
 
-
-#: The product's own bands — `seo_engine.scoring.SCORE_BANDS` — restated because
-#: the site cannot import the engine, and pinned by a check in verify_numbers so
-#: a change there fails the build here.
-#:
-#: The site's palette has three severity colours where the product has four, so
-#: `high` and `crit` both land on --bad. That collapse is deliberately toward the
-#: *more* severe colour: a mockup that rounded the other way could show a lane
-#: looking better than the product would draw it, which is the failure this
-#: replaced.
-_BANDS = ((85, "--ok"), (70, "--warn"), (50, "--bad"))
-_BAND_FLOOR = "--bad"
-
-
-def _lane_colour(score: float) -> str:
-    """What the product would draw this lane, computed rather than chosen.
-
-    These six colours were hand-picked and two were wrong: Brand 84 was drawn
-    green when the boundary is 85, and Tracking 63 was drawn in the brand indigo
-    — not a severity colour at all, so a lane the product flags read as an
-    accent. Both mistakes flattered the product, three paragraphs below copy
-    calling this a faithful replica of the real results view.
-    """
-    for floor, token in _BANDS:
-        if score >= floor:
-            return f"var({token})"
-    return f"var({_BAND_FLOOR})"
-
-
-def _mockup() -> str:
-    """An HTML replica of the results view. Numbers are from a real audit."""
-    lanes = [(name, score, _lane_colour(score)) for name, score in (
-        ("Crawlability", 100), ("On-page SEO", 93),
-        ("Copy & content", 71), ("Conversion", 78),
-        ("Brand", 84), ("Tracking", 63),
-    )]
-    lane_html = "".join(
-        f'<div class="mock-lane"><div class="mock-lane-top">'
-        f'<span class="mock-lane-name">{name}</span>'
-        f'<span class="mock-lane-score" style="color:{col}">{v}</span></div>'
-        f'<div class="mock-lane-bar"><i style="width:{v}%;background:{col}"></i></div></div>'
-        for name, v, col in lanes
-    )
-    circ = 2 * 3.14159 * 26
-    filled = circ * 0.892
-    return f"""
-<div class="mock" role="img" aria-label="Docket showing an audit scoring 89 out of 100 with per-area scores and a ranked fix list">
-<div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span>
-<span class="mock-dot"></span><span class="mock-title">Docket</span></div>
-<div class="mock-body">
-  <div class="mock-top">
-    <svg width="66" height="66" viewBox="0 0 66 66" aria-hidden="true">
-      <circle cx="33" cy="33" r="26" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="6"/>
-      <circle cx="33" cy="33" r="26" fill="none" stroke="var(--ok)" stroke-width="6"
-        stroke-linecap="round" stroke-dasharray="{filled:.1f} {circ:.1f}"
-        transform="rotate(-90 33 33)"/>
-      <text x="33" y="37" text-anchor="middle" fill="var(--text)"
-        font-size="17" font-weight="700" font-family="-apple-system,sans-serif">89</text>
-    </svg>
-    <div>
-      <div class="mock-verdict">Solid foundations with a handful of meaningful gaps worth closing.</div>
-      <div class="mock-chips">
-        <span class="mock-chip" style="background:rgba(var(--bad-rgb),.16);color:var(--bad-text)">2 high</span>
-        <span class="mock-chip" style="background:rgba(var(--warn-rgb),.16);color:var(--warn)">5 medium</span>
-        <span class="mock-chip" style="background:rgba(255,255,255,.07);color:var(--text-dim)">9 low</span>
-      </div>
-    </div>
-  </div>
-  <div class="mock-lanes">{lane_html}</div>
-  <div class="mock-find">
-    <div class="mock-find-h"><span class="mock-rank">1</span>Analytics is missing from 39 of 40 pages</div>
-    <p class="mock-find-p">Sessions break when a visitor crosses an untagged page, so traffic
-    gets misattributed to direct. <strong style="color:var(--brand-light)">Fix:</strong> move the
-    tag into the shared template.</p>
-  </div>
-</div></div>"""
 
 
 def _index_chart(m: dict) -> str:
@@ -203,7 +144,19 @@ def body() -> str:
   <p class="hero-note"><strong>30 days, no conditions, no questions asked</strong> — <a href="/legal/refunds/">refund policy</a></p>
   <p class="hero-note">macOS 12+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites</p>
 </div>
-{_mockup()}
+</div>
+<div class="wrap-wide hero-media-wrap">
+<figure class="hero-media">
+  <video class="hero-video" autoplay loop muted playsinline preload="metadata"
+         poster="/assets/app-demo-poster.webp" width="1280" height="800"
+         aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs across 57 pages,
+                     and a report appears scoring 94 out of 100, grade A.">
+    <source src="/assets/app-demo.webm" type="video/webm">
+    <source src="/assets/app-demo.mp4" type="video/mp4">
+  </video>
+  <figcaption>Docket auditing this site. <strong>57&nbsp;pages, 35&nbsp;seconds, 94/100</strong>
+  — screen recording of the shipped app, not a mockup.</figcaption>
+</figure>
 </div></section>
 
 <!-- ================= THE REAL ARTIFACT =================
