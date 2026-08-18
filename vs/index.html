@@ -6,7 +6,7 @@
 <title>Docket compared with other SEO audit tools (2026)</title>
 <meta name="description" content="Honest comparisons of Docket against Screaming Frog, Sitebulb, Ahrefs and Semrush Site Audit — including what each of them does better.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="96b812e43206">
+<meta name="build-id" content="b0085bba1c0c">
 <link rel="canonical" href="https://docketseo.app/vs/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -327,6 +327,26 @@ body.landing article{padding:0}
   mask-image:linear-gradient(180deg,#000 55%,transparent);
   pointer-events:none;z-index:0}
 .hero-grid{position:relative;z-index:1}
+/* THE HERO MEDIA. Until 2026-08-18 this slot held `_mockup()` — a hundred lines
+   of CSS pretending to be the results view, tilted with `transform:perspective()`
+   so a drawing would read as a photograph. It is now a screen recording of the
+   shipped app auditing this site, captured through the e2e harness against the
+   real sidecar.
+
+   The reason is measured, not stylistic. Across the six sites named as the bar
+   (langchain, cofounder, mistral, mobbin, framer, avo): 51-258 images each, and
+   four of the six carry autoplay looping video of the actual product. This page
+   carried ONE image and no video. No amount of spacing or type-size work closes
+   that gap, which is why earlier passes at "redesign" kept producing a page
+   that looked the same. */
+.hero-media{margin:2.6rem 0 0;position:relative}
+.hero-media-wrap{position:relative;z-index:1}
+.hero-video{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
+  border:1px solid var(--border-strong);background:var(--surface);
+  box-shadow:var(--lift-lg)}
+.hero-media figcaption{margin-top:.9rem;font-size:var(--t-sm);color:var(--text-dim);
+  line-height:1.5;max-width:62ch}
+.hero-media figcaption strong{color:var(--text-mid);font-weight:600}
 
 /* The product sits on light rather than beside it. */
 /* A dated specimen of real output, NOT a picture of the UI.
@@ -346,14 +366,6 @@ body.landing article{padding:0}
   line-height:1.6;max-width:62ch;margin-inline:auto;text-align:center}
 .shot figcaption strong{color:var(--text)}
 @media(max-width:640px){.shot figcaption{text-align:left}}
-.mock{position:relative;transform:perspective(1600px) rotateY(-3.5deg) rotateX(1.5deg);
-  transform-origin:left center;
-  box-shadow:none;
-             0 1px 0 var(--border-strong),
-             0 0 0 1px var(--border);
-  transition:transform .6s cubic-bezier(.16,1,.3,1)}
-@media(hover:hover){.mock:hover{transform:perspective(1600px) rotateY(-1.5deg) rotateX(.5deg)}}
-@media(max-width:940px){.mock{transform:none}.mock:hover{transform:none}}
 
 /* ---- the signature: a list becoming an order ------------------------------
    Docket's whole claim is that it ranks. Saying so is weaker than showing it, so
@@ -385,7 +397,11 @@ body.landing article{padding:0}
    where the rule at the top of this sheet asks for two pools.
    The glow rendered, the brace gate passed, and the design still was not the
    one anybody wrote. The duplicate is gone; the original is the live rule. */
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:3.2rem;
+/* ONE column. The media used to sit in a ~500px second column, too small to
+   read a product UI in — the page rendered the thing it sells illegible. Framer,
+   Mobbin and Cofounder all give the product the full measure and put the copy
+   above it. The copy keeps a prose measure; only the media is full width. */
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:2.2rem;max-width:820px;
   align-items:center;position:relative}
 @media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:2.4rem}}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
@@ -421,31 +437,8 @@ body.landing article{padding:0}
 
 /* Product mockup — an HTML replica of the app, not a screenshot. Stays sharp at
    any density, weighs nothing, and follows the page theme. */
-.mock{background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-lg);
-  box-shadow:var(--lift-lg);border:1px solid var(--border-strong);overflow:hidden}
-.mock-bar{display:flex;align-items:center;gap:.45rem;padding:.62rem .85rem;
-  background:var(--surface-2);border-bottom:1px solid var(--border)}
-.mock-dot{width:10px;height:10px;border-radius:var(--radius-pill);background:var(--surface-3)}
-.mock-title{margin-left:.5rem;font-size:var(--t-xs);color:var(--text-dim);font-family:var(--mono)}
-.mock-body{padding:1.05rem}
-.mock-top{display:flex;gap:1.05rem;align-items:center;margin-bottom:1rem}
-.mock-score{font-size:1.95rem;font-weight:700;letter-spacing:-.03em;line-height:1}
-.mock-verdict{font-size:var(--t-base);color:var(--text-mid);line-height:1.45}
-.mock-chips{display:flex;gap:.32rem;margin-top:.45rem;flex-wrap:wrap}
-.mock-chip{font-size:var(--t-2xs);font-weight:700;padding:.13rem .48rem;border-radius:var(--radius-pill)}
-.mock-lanes{display:grid;grid-template-columns:1fr 1fr;gap:.42rem}
-.mock-lane{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);padding:.5rem .62rem}
-.mock-lane-top{display:flex;justify-content:space-between;align-items:baseline;gap:.4rem}
-.mock-lane-name{font-size:var(--t-2xs);color:var(--text-mid)}
-.mock-lane-score{font-size:var(--t-base);font-weight:700}
-.mock-lane-bar{height:3px;border-radius:0;background:var(--surface-3);margin-top:.36rem;overflow:hidden}
-.mock-lane-bar i{display:block;height:100%;border-radius:var(--radius-pill)}
-.mock-find{background:var(--surface-2);border:1px solid var(--border);border-left:2px solid var(--bad);
-  border-radius:var(--radius-md);padding:.6rem .7rem;margin-top:.55rem}
-.mock-find-h{display:flex;gap:.45rem;align-items:center;font-size:var(--t-xs);font-weight:700;color:var(--text)}
 .mock-rank{background:var(--brand-soft);color:var(--brand-light);font-size:var(--t-3xs);font-weight:700;
   width:16px;height:16px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-.mock-find-p{font-size:var(--t-2xs);color:var(--text-dim);margin:.3rem 0 0 1.35rem;line-height:1.45}
 
 /* Sections */
 .sec{padding:var(--sec-y) 0}
