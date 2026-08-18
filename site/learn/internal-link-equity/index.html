@@ -6,7 +6,7 @@
 <title>Internal link equity: find the pages your site is starving</title>
 <meta name="description" content="The ranking signal your pages pass to each other. Measured on our own site, where fixing a starved page moved the problem rather than ending it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b29cf7c18a0c">
+<meta name="build-id" content="e81729709cae">
 <link rel="canonical" href="https://docketseo.app/learn/internal-link-equity/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,6 +30,15 @@
    produces reports, and the type should read as precise rather than friendly.
    Self-hosted because Docket flags render-blocking third-party resources in its
    own audits, and shipping one would be the inconsistency it exists to catch. */
+/* Weights are 400/500/600/700 because those are the four faces that exist.
+   The stylesheet also carried 640, 650, 680, 720 and 750 across ten
+   declarations, and none of them could be expressed: with faces at 400-700,
+   CSS font matching resolves every weight above 600 to the 700 face. Measured
+   on the live page at 40px — 640, 650, 680, 700, 720 and 750 all render at
+   exactly 323.69px. So the numbers said five things and the page said one, and
+   snapping them to 700 changed no pixel. Same drift as the type scale: each
+   value picked locally to sit beside its neighbour, nothing keeping the whole
+   coherent. */
 @font-face{font-family:'Switzer';src:url('/fonts/Switzer-400.woff2') format('woff2');
   font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:'Switzer';src:url('/fonts/Switzer-500.woff2') format('woff2');
@@ -158,7 +167,7 @@ code,kbd,samp{background:var(--surface-2);border:1px solid var(--border)}
 nav{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.90);
   backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem}
-.nav-brand{display:flex;align-items:center;gap:.55rem;font-weight:750;color:var(--text);
+.nav-brand{display:flex;align-items:center;gap:.55rem;font-weight:700;color:var(--text);
   font-size:var(--t-xl);letter-spacing:-.02em}
 .nav-brand i{font-style:normal;font-family:var(--mono);font-weight:600;font-size:var(--t-xs);
   letter-spacing:.04em;color:var(--brand);margin-left:.28em;
@@ -219,7 +228,7 @@ h1{font-size:2.3rem;line-height:1.14;letter-spacing:-.03em;margin-bottom:1rem}
 h2{font-size:var(--t-2xl);letter-spacing:-.02em;margin:2.6rem 0 .9rem}
 h3{font-size:var(--t-xl);margin:1.7rem 0 .5rem}
 p{color:var(--text-mid);margin-bottom:1rem}
-strong{color:var(--text);font-weight:650}
+strong{color:var(--text);font-weight:700}
 .lede{font-size:var(--t-xl);color:var(--text);margin-bottom:1.4rem}
 ul,ol{color:var(--text-mid);margin:0 0 1.1rem 1.25rem}
 li{margin-bottom:.42rem}
@@ -235,9 +244,9 @@ table.cmp{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:var(--t-
 table.cmp th,table.cmp td{text-align:left;padding:.66rem .72rem;
   border-bottom:1px solid var(--border);vertical-align:top}
 table.cmp th{color:var(--text-dim);font-size:var(--t-xs);text-transform:uppercase;
-  letter-spacing:.06em;font-weight:650}
+  letter-spacing:.06em;font-weight:700}
 table.cmp td:first-child{color:var(--text);font-weight:600}
-.yes{color:var(--ok);font-weight:650}
+.yes{color:var(--ok);font-weight:700}
 .no{color:var(--bad)}
 .wrap-tbl{overflow-x:auto;margin:1.4rem 0}
 
@@ -261,7 +270,7 @@ footer{border-top:1px solid var(--border);padding:2.6rem 0 3rem;margin-top:3rem;
 .foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:1.6rem;margin-bottom:2rem}
 .foot-grid h4{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;
-  color:var(--text-dim);margin-bottom:.6rem;font-weight:650}
+  color:var(--text-dim);margin-bottom:.6rem;font-weight:700}
 .foot-grid a{display:block;color:var(--text-mid);padding:.17rem 0;font-size:var(--t-md)}
 .foot-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   border-top:1px solid var(--border);padding-top:1.3rem}
@@ -382,10 +391,10 @@ body.landing article{padding:0}
 .mock-title{margin-left:.5rem;font-size:var(--t-xs);color:var(--text-dim);font-family:var(--mono)}
 .mock-body{padding:1.05rem}
 .mock-top{display:flex;gap:1.05rem;align-items:center;margin-bottom:1rem}
-.mock-score{font-size:1.95rem;font-weight:720;letter-spacing:-.03em;line-height:1}
+.mock-score{font-size:1.95rem;font-weight:700;letter-spacing:-.03em;line-height:1}
 .mock-verdict{font-size:var(--t-base);color:var(--text-mid);line-height:1.45}
 .mock-chips{display:flex;gap:.32rem;margin-top:.45rem;flex-wrap:wrap}
-.mock-chip{font-size:var(--t-2xs);font-weight:680;padding:.13rem .48rem;border-radius:var(--radius-pill)}
+.mock-chip{font-size:var(--t-2xs);font-weight:700;padding:.13rem .48rem;border-radius:var(--radius-pill)}
 .mock-lanes{display:grid;grid-template-columns:1fr 1fr;gap:.42rem}
 .mock-lane{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);padding:.5rem .62rem}
 .mock-lane-top{display:flex;justify-content:space-between;align-items:baseline;gap:.4rem}
@@ -395,8 +404,8 @@ body.landing article{padding:0}
 .mock-lane-bar i{display:block;height:100%;border-radius:var(--radius-pill)}
 .mock-find{background:var(--surface-2);border:1px solid var(--border);border-left:2px solid var(--bad);
   border-radius:var(--radius-md);padding:.6rem .7rem;margin-top:.55rem}
-.mock-find-h{display:flex;gap:.45rem;align-items:center;font-size:var(--t-xs);font-weight:640;color:var(--text)}
-.mock-rank{background:var(--brand-soft);color:var(--brand-light);font-size:var(--t-3xs);font-weight:720;
+.mock-find-h{display:flex;gap:.45rem;align-items:center;font-size:var(--t-xs);font-weight:700;color:var(--text)}
+.mock-rank{background:var(--brand-soft);color:var(--brand-light);font-size:var(--t-3xs);font-weight:700;
   width:16px;height:16px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 .mock-find-p{font-size:var(--t-2xs);color:var(--text-dim);margin:.3rem 0 0 1.35rem;line-height:1.45}
 
@@ -444,7 +453,7 @@ body.landing article{padding:0}
 .bar-track{height:9px;background:var(--surface-3);border-radius:0;overflow:hidden}
 .bar-fill{display:block;height:100%;border-radius:var(--radius-pill);
   background:var(--brand)}
-.bar-val{font-size:var(--t-sm);font-weight:680;color:var(--text);font-variant-numeric:tabular-nums}
+.bar-val{font-size:var(--t-sm);font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
 .chart-note{font-size:var(--t-sm);color:var(--text-dim);margin:1.1rem 0 0}
 /* Prose inside a wide container. `.wrap-wide` is 1080px so a comparison
    table is not cramped; a table wants that width and a sentence does not.
