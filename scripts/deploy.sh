@@ -180,6 +180,13 @@ git branch -D gh-pages-tmp >/dev/null
 # The gap nothing watched. Every gate above checks the BUILD; this is the only
 # one that checks the build reached a reader. On 2026-08-17 two merged, green,
 # fully-gated commits sat undeployed and the site served neither of them.
+# bookbreaker.bet served "0.1.0 is out" on 116 pages while /download/ handed
+# over 0.1.2, because the version was typed inline in a banner. Docket ships
+# several times an hour, so this is the same accident waiting for the same
+# conditions.
+echo "==> version-string gate"
+"$PY" scripts/verify_version_strings.py
+
 echo "==> deployed-build gate (waits for the CDN)"
 "$PY" scripts/verify_deployed.py --wait 300
 
