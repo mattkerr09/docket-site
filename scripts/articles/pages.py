@@ -74,7 +74,7 @@ and no telemetry.</p>
 {_payment_note()}
 
 <p><a class="btn btn-lg" href="{DMG}">Download Docket {RELEASE} for Mac</a></p>
-<p style="font-size:.92rem;color:var(--text-dim)">Apple Silicon · macOS 12+ · {DMG_SIZE} ·
+<p style="font-size:var(--t-md);color:var(--text-dim)">Apple Silicon · macOS 12+ · {DMG_SIZE} ·
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
 
 <h2>What it will crawl</h2>
