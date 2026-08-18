@@ -1,11 +1,11 @@
 {
-  "version": "1.1.54",
-  "notes": "A mistyped -o now says what is wrong instead of failing with a traceback.",
-  "pub_date": "2026-08-18T15:28:16Z",
+  "version": "1.1.55",
+  "notes": "Dutch and Flemish street addresses are read.",
+  "pub_date": "2026-08-18T16:24:25Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTZMSTBES2FwWURtOEVET1pHS2FJNWxRa0xaVVV6MHk0cTRra0NySFBlSEtMSUU4S0JUN015QXE0S2NVaTVnZ3Mzb2diV0F2bDcxeFhnTzdvUnhvZ3dFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDY2NzMxCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKeTY3alE5NG80VUw5NkVZTjB2VlBmQjR6M1hQcnhlNmpmZk4yN25rc1ZRdGVhWHZ6eFkxV3RlVUVOSVM0Vy9wVEJWa3ZZV2p4TGwrTGNlNmMweHNKQnc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.54/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVCcUs1MTNNWm1UaTFESTBBODZSYlYxNmFvTDhjRnBpS0xDUjZ3QjlWSFdWYS82cXpvVExMckxBbTVicFM3KzgrWms2WEIzMUtGZHUrWkp6RkxHY2dBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDY5OTUwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKcDVlTVBmZVBONTZ1ZUtLdUY4QWRCSlJnRno0eU9HTGZxaGpQRDZ2K3BrelZVUWxzbWdZdzNwa2t5VmN0b0c5eUx1ZTZMckFCa1p0RXBnVjF3NHVMQ3c9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.55/Docket.app.tar.gz"
     }
   }
 }
