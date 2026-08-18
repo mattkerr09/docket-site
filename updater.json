@@ -1,11 +1,11 @@
 {
-  "version": "1.1.47",
-  "notes": "A named building is still an address, and a check that passed no longer reads as not applicable.",
-  "pub_date": "2026-08-18T07:05:11Z",
+  "version": "1.1.48",
+  "notes": "A German address is still an address.",
+  "pub_date": "2026-08-18T08:21:32Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStIR0I4amRxRSt1dVE0M1NhQzRwNHpKYnZQMWJvOUc5YVB2TWk2MEVERVNaYldpM0ZpK1F3VDVyNjNHRFZ6ZUV2N3dlSW9iTUZzMis1NmxrZHN1amd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDM2NTg2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKRlQ5OXczbWZWTm9IM2gyZkE5Mno4ekVJaVhFK1RNemVhMWhyYTFSQ3ZVNjVSUTZ1QzVmenJPTHM5a2ZuYXRCSU1GYXdScGRUYW42WHByZGZyZG1XQUE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.47/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTFIZjFmRlJBZ1RJZ1JZMVRzS3htUGkvekVSbEErdE1lNlFxT0I3TWdaMjlhT3BBTGhVKzJWcUt3R2tsVXM1VWt1ZHpHclNVTm1UZGh3THhXYnIwcXdjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDQxMTg3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKdXI2Uk5XcGRVZkVJa0ZySTJKSERGQ21GWnlKc3NubWFnMmdscVhkbStnWDhCUzd5QmVuMStZdkFSY3h5NnF5a2t0bER6bGJvMDNJUzI4RHdGcmRuQWc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.48/Docket.app.tar.gz"
     }
   }
 }
