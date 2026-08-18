@@ -705,6 +705,17 @@ body.landing article{padding:0}
    Found by probing a width the visual gate had never rendered. */
 .price-caveat,.chart-note,.claims-note{max-width:68ch}
 
+/* Email capture. Quiet on purpose: it sits after the buy CTA and must not
+   compete with it — someone ready to buy should not be diverted into a form. */
+.sub{display:flex;gap:.5rem;flex-wrap:wrap;align-items:flex-end;margin:1.1rem 0 .6rem}
+.sub-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sub input[type=email]{flex:1 1 15rem;min-width:0;padding:.62rem .8rem;
+  font:inherit;font-size:.95rem;color:var(--text);background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--radius-sm)}
+.sub input[type=email]:focus-visible{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
+.sub .btn{flex:0 0 auto}
+.sub-fine{font-size:.84rem;color:var(--text-dim);line-height:1.55;margin:.2rem 0 0}
+@media(max-width:34rem){.sub input[type=email]{flex:1 1 100%}.sub .btn{width:100%}}
 .cta-band{text-align:center;padding:4.2rem 0}
 .cta-band h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.028em;margin-bottom:.7rem}
 .cta-band p{font-size:1.05rem;color:var(--text-mid);max-width:34rem;margin:0 auto 1.6rem}
