@@ -1,11 +1,11 @@
 {
-  "version": "1.1.50",
-  "notes": "The free report: the real ranked report with the detail and the fix withheld.",
-  "pub_date": "2026-08-18T11:03:32Z",
+  "version": "1.1.51",
+  "notes": "A Spanish address is still an address.",
+  "pub_date": "2026-08-18T13:14:29Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStEd2wzWjdpTHFFbHQ3eGZRZERtQnRqdHRib2hlcW1PL1BZZi92a2lQYUhVa21UUlJreUwxS3IxcHR0MmdlV0FQakRxMEdxRUg2VnN0TkNPbjVGdUFJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDUwODkwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKN3JIaEwzbytpb1d5bHNRZW1hck1LWFNSS3N0MityeDhHUy8wbElxTmhGanBXZG92TmhTQTZZUzBtTUZabVovU3NNa0RjMGxjeWFYeUxlRGpOVHJFQXc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.50/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTduOHBOSURBVDRaRi9IemlUSFRPQ2RHU1JhVThxNlVRNWk2MGtTSCtzN2p4Z0NsRjJKYy9KYy82YWM0aC9hZHJuNElscWJoU3pvRWxCNmNKK3grOFFNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDU4NzYwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKbXhyWEhVRU5sVWg3Q3dQSFJvVVdIU1NYOHRnUFRjZ1pYcStwQmZ6UjR2SUx0alRKd0phZExDbVJMTDRjc1k3bGs5NHludEg1STlyRjJyVnNtdm5TQ0E9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.51/Docket.app.tar.gz"
     }
   }
 }
