@@ -206,6 +206,37 @@ def body() -> str:
 {_mockup()}
 </div></section>
 
+<!-- ================= THE REAL ARTIFACT =================
+     The hero above is an HTML replica — responsive, themeable, and honest about
+     its numbers, but a drawing of the product rather than the product. This
+     section is the actual thing: Docket run against our own site, rendered by
+     the app's own HTML reporter, not rebuilt in CSS.
+
+     Our own site on purpose. Publishing a critical audit of someone else's
+     property without asking is not ours to do, and auditing ourselves is the
+     stronger demonstration anyway — it is the report we cannot quietly curate. -->
+<section class="sec"><div class="wrap-wide">
+<div class="sec-head">
+  <h2>This is the actual report.<br><em>Run against our own site.</em></h2>
+  <p class="sec-sub">Not a mockup and not a marketing render — the file Docket
+  writes, opened in a browser. We pointed it at our own agency site rather than
+  a competitor's, because publishing someone else's audit without asking is not
+  ours to do, and because this is the one report we cannot quietly curate.</p>
+</div>
+<figure class="shot">
+  <img src="/assets/real-audit-builtbykerr.webp" width="1280" height="1000"
+       loading="lazy" decoding="async"
+       alt="A Docket SEO audit of builtbykerr.com scoring 90 out of 100, grade A, with
+            3 high, 7 medium, 11 low and 6 notice findings, and twelve category scores
+            from Crawlability 100 down to Local business SEO 58.">
+  <figcaption>Twelve pages crawled in eight seconds. It grades our own site
+  <strong>90/A</strong> and still lists twenty-seven things to fix &mdash; including
+  <strong>Local business SEO at 58</strong> on the site of a local business.
+  It also excludes two findings from the score because they describe something
+  Docket could not measure, rather than anything we did wrong.</figcaption>
+</figure>
+</div></section>
+
 <!-- ================= THE DIFFERENCE ================= -->
 <section class="sec"><div class="wrap-wide">
 <div class="sec-head">
