@@ -7,6 +7,8 @@
 <meta name="description" content="Docket for macOS 12+ on Apple Silicon. 21.8 MB, no account, no telemetry. Includes the CLI, which exits non-zero on a critical issue so it can gate a deploy.">
 <meta name="theme-color" content="#FBFAF7">
 <link rel="canonical" href="https://docketseo.app/download/">
+<link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
@@ -88,6 +90,22 @@
   /* Hard corners. A 16px radius is the house style of every SaaS dashboard;
      4px reads as a printed rule, and 0 on the data surfaces reads as a table. */
   --radius:5px;--radius-sm:3px;
+  /* One type scale, because the drift was not taste — it was arithmetic.
+     Measured on the live page at 1440x900 on 2026-08-18: 34 distinct rendered
+     font sizes, 19 of them inside the 12.48-17.76px band, with .92/.93/.94/.95
+     and 1.02/1.03/1.04/1.05 each sitting inside 0.03rem. Nobody chose those
+     sets; each was picked to sit well beside its neighbour and nothing kept the
+     whole coherent. Two `em` values compounded and produced 12.9536px.
+     Snapping 33 declared values onto these nine steps moves no text more than
+     0.48px at a 16px root and needed no design judgement, which is exactly why
+     it is worth having a name for each step. */
+  --t-3xs:0.625rem;--t-2xs:0.6875rem;--t-xs:0.75rem;--t-sm:0.8125rem;--t-base:0.875rem;--t-md:0.9375rem;--t-lg:1.0rem;--t-xl:1.125rem;--t-2xl:1.5rem;
+  /* Corner radii, same story: twelve distinct values rendered against two
+     tokens. The comment below says a 16px radius is the SaaS-dashboard house
+     style and that this site is not that — and .mock was rendering exactly
+     16px. These five are every value that was actually in use, rounded to a
+     set, so the largest move is 3px. */
+  --radius-md:9px;--radius-lg:13px;--radius-pill:99px;
   --display:'Switzer',-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
   --sans:'Switzer',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,sans-serif;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
@@ -97,7 +115,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17.5px;
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:var(--t-xl);
   line-height:1.66;-webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
   font-feature-settings:"ss03"}
@@ -128,7 +146,7 @@ a{color:var(--brand-light);text-decoration:none;transition:color .16s}
 .eyebrow{font-weight:600}
 table{border-collapse:collapse}
 th,td{border-bottom:1px solid var(--border)}
-th{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;
+th{font-family:var(--mono);font-size:var(--t-xs);letter-spacing:.08em;
   text-transform:uppercase;color:var(--text-mid);font-weight:600}
 code,kbd,samp{background:var(--surface-2);border:1px solid var(--border)}
 ::selection{background:var(--brand);color:var(--on-accent)}
@@ -140,12 +158,12 @@ nav{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.90);
   backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem}
 .nav-brand{display:flex;align-items:center;gap:.55rem;font-weight:750;color:var(--text);
-  font-size:1.1rem;letter-spacing:-.02em}
-.nav-brand i{font-style:normal;font-family:var(--mono);font-weight:600;font-size:.74em;
+  font-size:var(--t-xl);letter-spacing:-.02em}
+.nav-brand i{font-style:normal;font-family:var(--mono);font-weight:600;font-size:var(--t-xs);
   letter-spacing:.04em;color:var(--brand);margin-left:.28em;
-  border:1px solid var(--brand);border-radius:2px;padding:.02em .3em}
+  border:1px solid var(--brand);border-radius:var(--radius-sm);padding:.02em .3em}
 .nav-brand:hover{text-decoration:none;color:var(--brand-light)}
-.nav-links{display:flex;gap:1.35rem;font-size:.94rem}
+.nav-links{display:flex;gap:1.35rem;font-size:var(--t-md)}
 .nav-links a{color:var(--text-mid)}
 @media(hover:hover){.nav-links a:hover{color:var(--text);text-decoration:none}}
 @media(max-width:780px){
@@ -173,7 +191,7 @@ nav{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.90);
      writes down. Wrapping has no such number in it: the nav grows a second row
      instead of hiding its last item, at any count and any width. It costs ~26px
      of vertical space on phones when it wraps, and that is the whole trade. */
-  .nav-links{order:3;width:100%;gap:.55rem .8rem;font-size:.88rem;
+  .nav-links{order:3;width:100%;gap:.55rem .8rem;font-size:var(--t-base);
     flex-wrap:wrap;padding-bottom:.15rem}
   .nav-links a{white-space:nowrap}
   /* Stacked CTAs were 200px and 185px against a 343px column — a ragged right
@@ -184,38 +202,38 @@ nav{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.90);
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
-  padding:.62rem 1.2rem;border-radius:10px;font-size:.95rem;border:0;cursor:pointer}
+  padding:.62rem 1.2rem;border-radius:var(--radius-md);font-size:var(--t-md);border:0;cursor:pointer}
 .btn:hover{background:var(--brand-light);color:var(--on-accent);text-decoration:none}
 .btn-ghost{display:inline-block;border:1px solid var(--border-strong);color:var(--text-mid);
-  padding:.6rem 1.15rem;border-radius:10px;font-size:.95rem;font-weight:600}
+  padding:.6rem 1.15rem;border-radius:var(--radius-md);font-size:var(--t-md);font-weight:600}
 .btn-ghost:hover{background:var(--surface-2);color:var(--text);text-decoration:none}
 
 article{padding:2.8rem 0 4.5rem}
-.foot-h{font-size:.82rem;font-weight:600;letter-spacing:.02em;text-transform:none;
+.foot-h{font-size:var(--t-sm);font-weight:600;letter-spacing:.02em;text-transform:none;
   color:var(--text);margin:0 0 .55rem;font-family:var(--sans)}
-.crumb{font-family:var(--mono);font-size:.75rem;color:var(--text-dim);
+.crumb{font-family:var(--mono);font-size:var(--t-xs);color:var(--text-dim);
   text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem}
 .crumb a{color:var(--text-dim)}
 h1{font-size:2.3rem;line-height:1.14;letter-spacing:-.03em;margin-bottom:1rem}
-h2{font-size:1.5rem;letter-spacing:-.02em;margin:2.6rem 0 .9rem}
-h3{font-size:1.13rem;margin:1.7rem 0 .5rem}
+h2{font-size:var(--t-2xl);letter-spacing:-.02em;margin:2.6rem 0 .9rem}
+h3{font-size:var(--t-xl);margin:1.7rem 0 .5rem}
 p{color:var(--text-mid);margin-bottom:1rem}
 strong{color:var(--text);font-weight:650}
-.lede{font-size:1.17rem;color:var(--text);margin-bottom:1.4rem}
+.lede{font-size:var(--t-xl);color:var(--text);margin-bottom:1.4rem}
 ul,ol{color:var(--text-mid);margin:0 0 1.1rem 1.25rem}
 li{margin-bottom:.42rem}
 blockquote{border-left:3px solid var(--brand);padding:.2rem 0 .2rem 1.1rem;
   margin:1.3rem 0;color:var(--text)}
-code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);
-  padding:.14em .4em;border-radius:5px;color:var(--brand-light)}
+code{font-family:var(--mono);font-size:var(--t-base);background:var(--surface-2);
+  padding:.14em .4em;border-radius:var(--radius);color:var(--brand-light)}
 pre{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);
-  padding:1rem 1.1rem;overflow-x:auto;margin:1.2rem 0;font-size:.86rem;line-height:1.6}
+  padding:1rem 1.1rem;overflow-x:auto;margin:1.2rem 0;font-size:var(--t-base);line-height:1.6}
 pre code{background:0;padding:0;color:var(--text-mid)}
 
-table.cmp{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:.94rem}
+table.cmp{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:var(--t-md)}
 table.cmp th,table.cmp td{text-align:left;padding:.66rem .72rem;
   border-bottom:1px solid var(--border);vertical-align:top}
-table.cmp th{color:var(--text-dim);font-size:.78rem;text-transform:uppercase;
+table.cmp th{color:var(--text-dim);font-size:var(--t-xs);text-transform:uppercase;
   letter-spacing:.06em;font-weight:650}
 table.cmp td:first-child{color:var(--text);font-weight:600}
 .yes{color:var(--ok);font-weight:650}
@@ -226,7 +244,7 @@ table.cmp td:first-child{color:var(--text);font-weight:600}
   border-left:3px solid var(--brand);border-radius:var(--radius-sm);
   padding:1.05rem 1.2rem;margin:1.5rem 0}
 .callout p:last-child{margin-bottom:0}
-.callout-title{color:var(--brand-light);font-weight:700;font-size:.8rem;
+.callout-title{color:var(--brand-light);font-weight:700;font-size:var(--t-sm);
   text-transform:uppercase;letter-spacing:.07em;margin-bottom:.4rem}
 
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
@@ -235,15 +253,15 @@ table.cmp td:first-child{color:var(--text);font-weight:600}
   border-radius:var(--radius-sm);padding:1rem 1.1rem}
 .stat b{display:block;font-size:1.85rem;letter-spacing:-.03em;color:var(--text);
   line-height:1.1;font-weight:700}
-.stat span{font-size:.82rem;color:var(--text-dim)}
+.stat span{font-size:var(--t-sm);color:var(--text-dim)}
 
 footer{border-top:1px solid var(--border);padding:2.6rem 0 3rem;margin-top:3rem;
-  font-size:.9rem;color:var(--text-dim)}
+  font-size:var(--t-base);color:var(--text-dim)}
 .foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:1.6rem;margin-bottom:2rem}
-.foot-grid h4{font-size:.76rem;text-transform:uppercase;letter-spacing:.08em;
+.foot-grid h4{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;
   color:var(--text-dim);margin-bottom:.6rem;font-weight:650}
-.foot-grid a{display:block;color:var(--text-mid);padding:.17rem 0;font-size:.92rem}
+.foot-grid a{display:block;color:var(--text-mid);padding:.17rem 0;font-size:var(--t-md)}
 .foot-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   border-top:1px solid var(--border);padding-top:1.3rem}
 
@@ -285,9 +303,9 @@ body.landing article{padding:0}
    handled by the caption carrying the date and the site, so it reads as
    evidence from a moment rather than a claim about the current build. */
 .shot{margin:0;max-width:min(100%,1100px);margin-inline:auto}
-.shot img{display:block;width:100%;height:auto;border-radius:12px;
+.shot img{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
   border:1px solid var(--border-strong);background:var(--surface)}
-.shot figcaption{margin-top:.85rem;color:var(--text-dim);font-size:.94rem;
+.shot figcaption{margin-top:.85rem;color:var(--text-dim);font-size:var(--t-md);
   line-height:1.6;max-width:62ch;margin-inline:auto;text-align:center}
 .shot figcaption strong{color:var(--text)}
 @media(max-width:640px){.shot figcaption{text-align:left}}
@@ -306,10 +324,10 @@ body.landing article{padding:0}
    move, once, on the one idea the product is actually about. */
 .rank-demo{display:grid;gap:.6rem;margin:2rem 0 0}
 .rank-row{display:flex;align-items:center;gap:.9rem;background:var(--surface-2);
-  border:1px solid var(--border);border-radius:11px;padding:.85rem 1.05rem;
-  font-size:.95rem;color:var(--text-mid)}
-.rank-row .n{flex:none;width:26px;height:26px;border-radius:8px;display:grid;
-  place-items:center;font-family:var(--mono);font-size:.78rem;font-weight:600;
+  border:1px solid var(--border);border-radius:var(--radius-md);padding:.85rem 1.05rem;
+  font-size:var(--t-md);color:var(--text-mid)}
+.rank-row .n{flex:none;width:26px;height:26px;border-radius:var(--radius-md);display:grid;
+  place-items:center;font-family:var(--mono);font-size:var(--t-xs);font-weight:600;
   background:var(--surface-3);color:var(--text-dim)}
 .rank-row.hot .n{background:var(--brand);color:var(--on-accent)}
 .rank-row.hot{color:var(--text);border-color:var(--brand)}
@@ -334,9 +352,9 @@ body.landing article{padding:0}
   align-items:center;position:relative}
 @media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:2.4rem}}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
-  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
+  font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
   background:var(--brand-soft);
-  border:1px solid var(--border-strong);border-radius:2px;padding:.5rem 1.05rem;
+  border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.5rem 1.05rem;
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
@@ -348,38 +366,38 @@ body.landing article{padding:0}
 .hero-h1 em{font-style:normal;color:var(--brand-light);display:block}
 .hero-h1 em{font-style:normal;color:var(--brand);display:block;
   -webkit-text-fill-color:currentColor}
-.hero-sub{font-size:1.11rem;color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
+.hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
-.btn-lg{padding:1rem 2.05rem;font-size:1.02rem;border-radius:13px;letter-spacing:-.01em}
-.hero-note{font-size:.86rem;color:var(--text-dim)}
+.btn-lg{padding:1rem 2.05rem;font-size:var(--t-lg);border-radius:var(--radius-lg);letter-spacing:-.01em}
+.hero-note{font-size:var(--t-base);color:var(--text-dim)}
 
 /* Product mockup — an HTML replica of the app, not a screenshot. Stays sharp at
    any density, weighs nothing, and follows the page theme. */
-.mock{background:var(--surface);border:1px solid var(--border-strong);border-radius:16px;
+.mock{background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-lg);
   box-shadow:0 1px 0 var(--border-strong);border:1px solid var(--border-strong);overflow:hidden}
 .mock-bar{display:flex;align-items:center;gap:.45rem;padding:.62rem .85rem;
   background:var(--surface-2);border-bottom:1px solid var(--border)}
-.mock-dot{width:10px;height:10px;border-radius:99px;background:var(--surface-3)}
-.mock-title{margin-left:.5rem;font-size:.74rem;color:var(--text-dim);font-family:var(--mono)}
+.mock-dot{width:10px;height:10px;border-radius:var(--radius-pill);background:var(--surface-3)}
+.mock-title{margin-left:.5rem;font-size:var(--t-xs);color:var(--text-dim);font-family:var(--mono)}
 .mock-body{padding:1.05rem}
 .mock-top{display:flex;gap:1.05rem;align-items:center;margin-bottom:1rem}
 .mock-score{font-size:1.95rem;font-weight:720;letter-spacing:-.03em;line-height:1}
-.mock-verdict{font-size:.86rem;color:var(--text-mid);line-height:1.45}
+.mock-verdict{font-size:var(--t-base);color:var(--text-mid);line-height:1.45}
 .mock-chips{display:flex;gap:.32rem;margin-top:.45rem;flex-wrap:wrap}
-.mock-chip{font-size:.66rem;font-weight:680;padding:.13rem .48rem;border-radius:99px}
+.mock-chip{font-size:var(--t-2xs);font-weight:680;padding:.13rem .48rem;border-radius:var(--radius-pill)}
 .mock-lanes{display:grid;grid-template-columns:1fr 1fr;gap:.42rem}
-.mock-lane{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:.5rem .62rem}
+.mock-lane{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);padding:.5rem .62rem}
 .mock-lane-top{display:flex;justify-content:space-between;align-items:baseline;gap:.4rem}
-.mock-lane-name{font-size:.7rem;color:var(--text-mid)}
-.mock-lane-score{font-size:.86rem;font-weight:700}
+.mock-lane-name{font-size:var(--t-2xs);color:var(--text-mid)}
+.mock-lane-score{font-size:var(--t-base);font-weight:700}
 .mock-lane-bar{height:3px;border-radius:0;background:var(--surface-3);margin-top:.36rem;overflow:hidden}
-.mock-lane-bar i{display:block;height:100%;border-radius:99px}
+.mock-lane-bar i{display:block;height:100%;border-radius:var(--radius-pill)}
 .mock-find{background:var(--surface-2);border:1px solid var(--border);border-left:2px solid var(--bad);
-  border-radius:8px;padding:.6rem .7rem;margin-top:.55rem}
-.mock-find-h{display:flex;gap:.45rem;align-items:center;font-size:.76rem;font-weight:640;color:var(--text)}
-.mock-rank{background:var(--brand-soft);color:var(--brand-light);font-size:.62rem;font-weight:720;
-  width:16px;height:16px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-.mock-find-p{font-size:.68rem;color:var(--text-dim);margin:.3rem 0 0 1.35rem;line-height:1.45}
+  border-radius:var(--radius-md);padding:.6rem .7rem;margin-top:.55rem}
+.mock-find-h{display:flex;gap:.45rem;align-items:center;font-size:var(--t-xs);font-weight:640;color:var(--text)}
+.mock-rank{background:var(--brand-soft);color:var(--brand-light);font-size:var(--t-3xs);font-weight:720;
+  width:16px;height:16px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.mock-find-p{font-size:var(--t-2xs);color:var(--text-dim);margin:.3rem 0 0 1.35rem;line-height:1.45}
 
 /* Sections */
 .sec{padding:var(--sec-y) 0}
@@ -388,45 +406,45 @@ body.landing article{padding:0}
 .sec + .sec{border-top:1px solid var(--border)}
 .sec-head{text-align:center;max-width:41rem;margin:0 auto 2.6rem}
 .sec-head h2{font-family:var(--display);font-weight:700;
-  font-size:clamp(1.9rem,4vw,2.85rem);line-height:1.1;
+  font-size:clamp(1.55rem,2.5vw,2.2rem);line-height:1.1;
   letter-spacing:-.03em;margin:0 0 .85rem}
 .sec-head h2 em{font-style:normal;color:var(--brand-light)}
-.sec-head p{font-size:1.04rem;color:var(--text-mid);margin:0}
+.sec-head p{font-size:var(--t-lg);color:var(--text-mid);margin:0}
 .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1rem}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.4rem 1.5rem;
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.4rem 1.5rem;
   transition:border-color .18s,transform .18s}
 .card:hover{border-color:var(--border-strong);transform:translateY(-2px)}
-.card-ico{width:36px;height:36px;border-radius:9px;background:var(--brand-soft);color:var(--brand-light);
+.card-ico{width:36px;height:36px;border-radius:var(--radius-md);background:var(--brand-soft);color:var(--brand-light);
   display:flex;align-items:center;justify-content:center;margin-bottom:.85rem}
-.card h3{font-size:1.03rem;margin:0 0 .45rem}
-.card p{font-size:.92rem;margin:0;color:var(--text-mid)}
+.card h3{font-size:var(--t-lg);margin:0 0 .45rem}
+.card p{font-size:var(--t-md);margin:0;color:var(--text-mid)}
 .card.wide{grid-column:1/-1}
 
 /* Before/after: a list vs a sequence */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:760px){.split{grid-template-columns:1fr}}
-.split-col{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.3rem 1.4rem}
+.split-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.3rem 1.4rem}
 .split-col.good{border-color:var(--brand)}
-.split-tag{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+.split-tag{font-size:var(--t-2xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   color:var(--text-dim);margin-bottom:.8rem}
 .split-col.good .split-tag{color:var(--brand-light)}
-.split-list{list-style:none;margin:0;padding:0;font-size:.88rem}
+.split-list{list-style:none;margin:0;padding:0;font-size:var(--t-base)}
 .split-list li{padding:.42rem 0;border-bottom:1px solid var(--border);color:var(--text-mid);
   display:flex;gap:.55rem;align-items:flex-start}
 .split-list li:last-child{border-bottom:0}
-.split-list .n{color:var(--brand-light);font-weight:700;font-family:var(--mono);font-size:.78rem;flex:0 0 auto}
-.split-phase{font-size:.66rem;text-transform:uppercase;letter-spacing:.07em;color:var(--brand-light);
+.split-list .n{color:var(--brand-light);font-weight:700;font-family:var(--mono);font-size:var(--t-xs);flex:0 0 auto}
+.split-phase{font-size:var(--t-2xs);text-transform:uppercase;letter-spacing:.07em;color:var(--brand-light);
   font-weight:700;padding-top:.6rem}
 
 /* Index chart, drawn from the measured dataset */
-.chart{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.5rem 1.6rem}
+.chart{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem 1.6rem}
 .bar-row{display:grid;grid-template-columns:130px 1fr 46px;gap:.85rem;align-items:center;margin-bottom:.62rem}
-.bar-lbl{font-size:.83rem;color:var(--text-mid);text-align:right}
+.bar-lbl{font-size:var(--t-sm);color:var(--text-mid);text-align:right}
 .bar-track{height:9px;background:var(--surface-3);border-radius:0;overflow:hidden}
-.bar-fill{display:block;height:100%;border-radius:99px;
+.bar-fill{display:block;height:100%;border-radius:var(--radius-pill);
   background:var(--brand)}
-.bar-val{font-size:.82rem;font-weight:680;color:var(--text);font-variant-numeric:tabular-nums}
-.chart-note{font-size:.8rem;color:var(--text-dim);margin:1.1rem 0 0}
+.bar-val{font-size:var(--t-sm);font-weight:680;color:var(--text);font-variant-numeric:tabular-nums}
+.chart-note{font-size:var(--t-sm);color:var(--text-dim);margin:1.1rem 0 0}
 /* Prose inside a wide container. `.wrap-wide` is 1080px so a comparison
    table is not cramped; a table wants that width and a sentence does not.
    Measured on the live homepage at 1600px: the pricing caveat ran 1080px
@@ -440,20 +458,20 @@ body.landing article{padding:0}
 .sub{display:flex;gap:.5rem;flex-wrap:wrap;align-items:flex-end;margin:1.1rem 0 .6rem}
 .sub-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .sub input[type=email]{flex:1 1 15rem;min-width:0;padding:.62rem .8rem;
-  font:inherit;font-size:.95rem;color:var(--text);background:var(--surface);
+  font:inherit;font-size:var(--t-md);color:var(--text);background:var(--surface);
   border:1px solid var(--border);border-radius:var(--radius-sm)}
 .sub input[type=email]:focus-visible{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
 .sub .btn{flex:0 0 auto}
-.sub-fine{font-size:.84rem;color:var(--text-dim);line-height:1.55;margin:.2rem 0 0}
+.sub-fine{font-size:var(--t-sm);color:var(--text-dim);line-height:1.55;margin:.2rem 0 0}
 @media(max-width:34rem){.sub input[type=email]{flex:1 1 100%}.sub .btn{width:100%}}
 .cta-band{text-align:center;padding:4.2rem 0}
 .cta-band h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.028em;margin-bottom:.7rem}
-.cta-band p{font-size:1.05rem;color:var(--text-mid);max-width:34rem;margin:0 auto 1.6rem}
+.cta-band p{font-size:var(--t-lg);color:var(--text-mid);max-width:34rem;margin:0 auto 1.6rem}
 .faq{padding:var(--sec-y) 0}
 .faq h2{margin:0 0 1.2rem}
 .faq-item{border-top:1px solid var(--border);padding:1.15rem 0}
-.faq-item h3{font-size:1rem;margin:0 0 .4rem}
-.faq-item p{font-size:.93rem;margin:0}
+.faq-item h3{font-size:var(--t-lg);margin:0 0 .4rem}
+.faq-item p{font-size:var(--t-md);margin:0}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 96 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"199","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"96 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
@@ -490,7 +508,7 @@ and no telemetry.</p>
 <p><strong>v1.1.48 still downloads and runs without a licence key.</strong> The price is $199, paid once, and buying is what pays for the work — but there is no activation step in this build and nothing stops you using it first. Said plainly because a price on a page beside a button that charges nothing is precisely the kind of thing this tool exists to flag, and it would be a poor advertisement to be the example.</p>
 
 <p><a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v1.1.48/Docket-1.1.48-arm64.dmg">Download Docket v1.1.48 for Mac</a></p>
-<p style="font-size:.92rem;color:var(--text-dim)">Apple Silicon · macOS 12+ · 21.8 MB ·
+<p style="font-size:var(--t-md);color:var(--text-dim)">Apple Silicon · macOS 12+ · 21.8 MB ·
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
 
 <h2>What it will crawl</h2>
