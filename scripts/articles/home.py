@@ -428,14 +428,6 @@ pages render server-side, since most AI crawlers do not run JavaScript.</p></div
 on your site and how it is configured.</p></div>
 </div></section>
 
-<!-- ================= CTA ================= -->
-<section class="cta-band"><div class="wrap">
-<h2>Audit your site in about a minute</h2>
-<p>Download it, type a domain, press Run. There is no onboarding because none is needed.</p>
-<a class="btn btn-lg" href="{CHECKOUT}">Buy Docket · {PRICE_STR} once</a>
-<a class="btn-ghost btn-lg" href="{DMG}">Download for Mac</a>
-</div></section>
-
 <!-- ================= NOT READY YET =================
      Docket is the highest price in the portfolio with no trial and no free tier,
      so the largest group leaving this page is people who are interested and not
@@ -496,6 +488,30 @@ FAQ = [
 ]
 
 
+def closer() -> str:
+    """The last thing on the page, and the only block that must be.
+
+    It used to sit ninth of twelve, above the email capture and the FAQ, so the
+    page ended on a question. It was also the thinnest section on the page at
+    30 words — the weakest thing in the strongest position was not the ask, it
+    was Q&A.
+
+    The refund line is repeated here on purpose. It is already under the buy
+    button in the hero; a reader who has just spent four minutes on the page
+    and is deciding at the bottom should not have to scroll back up to find the
+    thing that makes the decision reversible.
+    """
+    return f"""<section class="cta-band"><div class="wrap">
+<h2>Audit your site in about a minute</h2>
+<p>Download it, type a domain, press Run. There is no onboarding because none is
+needed, and nothing about your site leaves your Mac.</p>
+<a class="btn btn-lg" href="{CHECKOUT}">Buy Docket &middot; {PRICE_STR} once</a>
+<a class="btn-ghost btn-lg" href="{DMG}">Download for Mac</a>
+<p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>
+&mdash; <a href="/legal/refunds/">refund policy</a></p>
+</div></section>"""
+
+
 def build() -> Path:
     return render(
         cat="", slug="",
@@ -508,6 +524,7 @@ def build() -> Path:
         body=body(),
         schema_type="WebPage",
         faq=FAQ,
+        closer=closer(),
         landing=True,
     )
 

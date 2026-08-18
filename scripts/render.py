@@ -914,6 +914,13 @@ def render(
     modified: str | None = None,
     schema_type: str = "Article",
     faq: list[tuple[str, str]] | None = None,
+    #: Markup emitted AFTER the FAQ, for the one block that has to be last.
+    #:
+    #: The homepage's closing CTA sat at section 9 of 12 because `faq` is
+    #: appended to `body`, so anything in `body` is necessarily above it. The
+    #: page therefore trailed off into Q&A and the last thing a reader saw was
+    #: a question rather than the ask. Measured on the live page 2026-08-18.
+    closer: str = "",
     wide: bool = False,
     landing: bool = False,
     filename: str = "index.html",
@@ -1001,6 +1008,7 @@ def render(
 <title>{title}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="theme-color" content="#FBFAF7">
+<meta name="build-id" content="__BUILD_ID__">
 {'<meta name="robots" content="noindex">' if noindex else f'<link rel="canonical" href="{url}">'}
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -1025,7 +1033,7 @@ def render(
 <body{body_class}>
 {NAV}
 {opening}
-{body}{faq_html}
+{body}{faq_html}{closer}
 {closing}
 {FOOTER}
 </body>
