@@ -1,11 +1,11 @@
 {
-  "version": "1.1.45",
-  "notes": "If your address is in your footer, Docket now finds it.",
-  "pub_date": "2026-08-18T05:16:55Z",
+  "version": "1.1.46",
+  "notes": "Updating works again, and a running audit is visible from every tab.",
+  "pub_date": "2026-08-18T05:45:11Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTBObE9oOEhRcDViSkZYS0MrSjh0LzJDUjhFdXd2KzRVTzVmL0JyU05EcU9HNlpkbUZ1QUdXTE5NRHZtVjhNenJSU0UzdGkwQzNVRlFTNmhoNjlDOFFBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDI5ODMwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKWUR6ZWFmRDFrUXA4VndML0NUN1o3ZU9PWko0NkZCaHkzbVZYNWlOOUdmVExDKzFuNjJRQk1ndXl6ODJYd2VJdytweWdZM1kyTWxBUmxsblR0RllYQkE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.45/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTRyNXhUb1dVU0hWTDZtREJ1U2J0NldwUStXSTRMWXJnMTRudllPdzlqZ3BFRlU0RmxyUnovN0pyL1Y2WU5HczhrUklyVlp3NW1oNnBUZENXcEQ2cHdnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDMxNTI1CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKVUxnMzJPYjNSWnlIVDk3RXpoQVBwdUc3Q250Q0lZNzM2U3lFamxOeXFDTTNVaDQzSGJNTGcrN0NYejQ3RXFEbUZ6SEFEMVA0WkJZdHVkRjRQSU9WQVE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.46/Docket.app.tar.gz"
     }
   }
 }
