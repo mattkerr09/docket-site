@@ -6,7 +6,7 @@
 <title>Docket SEO — SEO, copy, conversion and brand audits for Mac</title>
 <meta name="description" content="Docket SEO audits any website on your Mac: 96 checks across SEO, copy, brand, local and AI search visibility. Ranked fix plan, client-ready PDF, nothing uploaded.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="96b812e43206">
+<meta name="build-id" content="b0085bba1c0c">
 <link rel="canonical" href="https://docketseo.app/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -327,6 +327,26 @@ body.landing article{padding:0}
   mask-image:linear-gradient(180deg,#000 55%,transparent);
   pointer-events:none;z-index:0}
 .hero-grid{position:relative;z-index:1}
+/* THE HERO MEDIA. Until 2026-08-18 this slot held `_mockup()` — a hundred lines
+   of CSS pretending to be the results view, tilted with `transform:perspective()`
+   so a drawing would read as a photograph. It is now a screen recording of the
+   shipped app auditing this site, captured through the e2e harness against the
+   real sidecar.
+
+   The reason is measured, not stylistic. Across the six sites named as the bar
+   (langchain, cofounder, mistral, mobbin, framer, avo): 51-258 images each, and
+   four of the six carry autoplay looping video of the actual product. This page
+   carried ONE image and no video. No amount of spacing or type-size work closes
+   that gap, which is why earlier passes at "redesign" kept producing a page
+   that looked the same. */
+.hero-media{margin:2.6rem 0 0;position:relative}
+.hero-media-wrap{position:relative;z-index:1}
+.hero-video{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
+  border:1px solid var(--border-strong);background:var(--surface);
+  box-shadow:var(--lift-lg)}
+.hero-media figcaption{margin-top:.9rem;font-size:var(--t-sm);color:var(--text-dim);
+  line-height:1.5;max-width:62ch}
+.hero-media figcaption strong{color:var(--text-mid);font-weight:600}
 
 /* The product sits on light rather than beside it. */
 /* A dated specimen of real output, NOT a picture of the UI.
@@ -346,14 +366,6 @@ body.landing article{padding:0}
   line-height:1.6;max-width:62ch;margin-inline:auto;text-align:center}
 .shot figcaption strong{color:var(--text)}
 @media(max-width:640px){.shot figcaption{text-align:left}}
-.mock{position:relative;transform:perspective(1600px) rotateY(-3.5deg) rotateX(1.5deg);
-  transform-origin:left center;
-  box-shadow:none;
-             0 1px 0 var(--border-strong),
-             0 0 0 1px var(--border);
-  transition:transform .6s cubic-bezier(.16,1,.3,1)}
-@media(hover:hover){.mock:hover{transform:perspective(1600px) rotateY(-1.5deg) rotateX(.5deg)}}
-@media(max-width:940px){.mock{transform:none}.mock:hover{transform:none}}
 
 /* ---- the signature: a list becoming an order ------------------------------
    Docket's whole claim is that it ranks. Saying so is weaker than showing it, so
@@ -385,7 +397,11 @@ body.landing article{padding:0}
    where the rule at the top of this sheet asks for two pools.
    The glow rendered, the brace gate passed, and the design still was not the
    one anybody wrote. The duplicate is gone; the original is the live rule. */
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:3.2rem;
+/* ONE column. The media used to sit in a ~500px second column, too small to
+   read a product UI in — the page rendered the thing it sells illegible. Framer,
+   Mobbin and Cofounder all give the product the full measure and put the copy
+   above it. The copy keeps a prose measure; only the media is full width. */
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:2.2rem;max-width:820px;
   align-items:center;position:relative}
 @media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:2.4rem}}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
@@ -421,31 +437,8 @@ body.landing article{padding:0}
 
 /* Product mockup — an HTML replica of the app, not a screenshot. Stays sharp at
    any density, weighs nothing, and follows the page theme. */
-.mock{background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-lg);
-  box-shadow:var(--lift-lg);border:1px solid var(--border-strong);overflow:hidden}
-.mock-bar{display:flex;align-items:center;gap:.45rem;padding:.62rem .85rem;
-  background:var(--surface-2);border-bottom:1px solid var(--border)}
-.mock-dot{width:10px;height:10px;border-radius:var(--radius-pill);background:var(--surface-3)}
-.mock-title{margin-left:.5rem;font-size:var(--t-xs);color:var(--text-dim);font-family:var(--mono)}
-.mock-body{padding:1.05rem}
-.mock-top{display:flex;gap:1.05rem;align-items:center;margin-bottom:1rem}
-.mock-score{font-size:1.95rem;font-weight:700;letter-spacing:-.03em;line-height:1}
-.mock-verdict{font-size:var(--t-base);color:var(--text-mid);line-height:1.45}
-.mock-chips{display:flex;gap:.32rem;margin-top:.45rem;flex-wrap:wrap}
-.mock-chip{font-size:var(--t-2xs);font-weight:700;padding:.13rem .48rem;border-radius:var(--radius-pill)}
-.mock-lanes{display:grid;grid-template-columns:1fr 1fr;gap:.42rem}
-.mock-lane{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);padding:.5rem .62rem}
-.mock-lane-top{display:flex;justify-content:space-between;align-items:baseline;gap:.4rem}
-.mock-lane-name{font-size:var(--t-2xs);color:var(--text-mid)}
-.mock-lane-score{font-size:var(--t-base);font-weight:700}
-.mock-lane-bar{height:3px;border-radius:0;background:var(--surface-3);margin-top:.36rem;overflow:hidden}
-.mock-lane-bar i{display:block;height:100%;border-radius:var(--radius-pill)}
-.mock-find{background:var(--surface-2);border:1px solid var(--border);border-left:2px solid var(--bad);
-  border-radius:var(--radius-md);padding:.6rem .7rem;margin-top:.55rem}
-.mock-find-h{display:flex;gap:.45rem;align-items:center;font-size:var(--t-xs);font-weight:700;color:var(--text)}
 .mock-rank{background:var(--brand-soft);color:var(--brand-light);font-size:var(--t-3xs);font-weight:700;
   width:16px;height:16px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-.mock-find-p{font-size:var(--t-2xs);color:var(--text-dim);margin:.3rem 0 0 1.35rem;line-height:1.45}
 
 /* Sections */
 .sec{padding:var(--sec-y) 0}
@@ -565,37 +558,19 @@ plausible.init()
   <p class="hero-note"><strong>30 days, no conditions, no questions asked</strong> — <a href="/legal/refunds/">refund policy</a></p>
   <p class="hero-note">macOS 12+ · Apple Silicon · 21.8 MB · notarised by Apple · no account · one licence, all your sites</p>
 </div>
-
-<div class="mock" role="img" aria-label="Docket showing an audit scoring 89 out of 100 with per-area scores and a ranked fix list">
-<div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span>
-<span class="mock-dot"></span><span class="mock-title">Docket</span></div>
-<div class="mock-body">
-  <div class="mock-top">
-    <svg width="66" height="66" viewBox="0 0 66 66" aria-hidden="true">
-      <circle cx="33" cy="33" r="26" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="6"/>
-      <circle cx="33" cy="33" r="26" fill="none" stroke="var(--ok)" stroke-width="6"
-        stroke-linecap="round" stroke-dasharray="145.7 163.4"
-        transform="rotate(-90 33 33)"/>
-      <text x="33" y="37" text-anchor="middle" fill="var(--text)"
-        font-size="17" font-weight="700" font-family="-apple-system,sans-serif">89</text>
-    </svg>
-    <div>
-      <div class="mock-verdict">Solid foundations with a handful of meaningful gaps worth closing.</div>
-      <div class="mock-chips">
-        <span class="mock-chip" style="background:rgba(var(--bad-rgb),.16);color:var(--bad-text)">2 high</span>
-        <span class="mock-chip" style="background:rgba(var(--warn-rgb),.16);color:var(--warn)">5 medium</span>
-        <span class="mock-chip" style="background:rgba(255,255,255,.07);color:var(--text-dim)">9 low</span>
-      </div>
-    </div>
-  </div>
-  <div class="mock-lanes"><div class="mock-lane"><div class="mock-lane-top"><span class="mock-lane-name">Crawlability</span><span class="mock-lane-score" style="color:var(--ok)">100</span></div><div class="mock-lane-bar"><i style="width:100%;background:var(--ok)"></i></div></div><div class="mock-lane"><div class="mock-lane-top"><span class="mock-lane-name">On-page SEO</span><span class="mock-lane-score" style="color:var(--ok)">93</span></div><div class="mock-lane-bar"><i style="width:93%;background:var(--ok)"></i></div></div><div class="mock-lane"><div class="mock-lane-top"><span class="mock-lane-name">Copy & content</span><span class="mock-lane-score" style="color:var(--warn)">71</span></div><div class="mock-lane-bar"><i style="width:71%;background:var(--warn)"></i></div></div><div class="mock-lane"><div class="mock-lane-top"><span class="mock-lane-name">Conversion</span><span class="mock-lane-score" style="color:var(--warn)">78</span></div><div class="mock-lane-bar"><i style="width:78%;background:var(--warn)"></i></div></div><div class="mock-lane"><div class="mock-lane-top"><span class="mock-lane-name">Brand</span><span class="mock-lane-score" style="color:var(--warn)">84</span></div><div class="mock-lane-bar"><i style="width:84%;background:var(--warn)"></i></div></div><div class="mock-lane"><div class="mock-lane-top"><span class="mock-lane-name">Tracking</span><span class="mock-lane-score" style="color:var(--bad)">63</span></div><div class="mock-lane-bar"><i style="width:63%;background:var(--bad)"></i></div></div></div>
-  <div class="mock-find">
-    <div class="mock-find-h"><span class="mock-rank">1</span>Analytics is missing from 39 of 40 pages</div>
-    <p class="mock-find-p">Sessions break when a visitor crosses an untagged page, so traffic
-    gets misattributed to direct. <strong style="color:var(--brand-light)">Fix:</strong> move the
-    tag into the shared template.</p>
-  </div>
-</div></div>
+</div>
+<div class="wrap-wide hero-media-wrap">
+<figure class="hero-media">
+  <video class="hero-video" autoplay loop muted playsinline preload="metadata"
+         poster="/assets/app-demo-poster.webp" width="1280" height="800"
+         aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs across 57 pages,
+                     and a report appears scoring 94 out of 100, grade A.">
+    <source src="/assets/app-demo.webm" type="video/webm">
+    <source src="/assets/app-demo.mp4" type="video/mp4">
+  </video>
+  <figcaption>Docket auditing this site. <strong>57&nbsp;pages, 35&nbsp;seconds, 94/100</strong>
+  — screen recording of the shipped app, not a mockup.</figcaption>
+</figure>
 </div></section>
 
 <!-- ================= THE REAL ARTIFACT =================
