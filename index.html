@@ -274,6 +274,23 @@ body.landing article{padding:0}
 .hero-grid{position:relative;z-index:1}
 
 /* The product sits on light rather than beside it. */
+/* A dated specimen of real output, NOT a picture of the UI.
+   This file's homepage docstring argues against screenshots, and the argument is
+   right for the HERO: an HTML replica stays sharp, follows the theme, weighs
+   nothing, and cannot show last month's interface. That reasoning is untouched
+   and the replica above stays.
+   This is a different job. Its entire value is that it IS the artifact — the
+   file the reporter wrote, on a named site, on a stated date. A replica of a
+   report cannot demonstrate that the report exists. The staleness risk is
+   handled by the caption carrying the date and the site, so it reads as
+   evidence from a moment rather than a claim about the current build. */
+.shot{margin:0;max-width:min(100%,1100px);margin-inline:auto}
+.shot img{display:block;width:100%;height:auto;border-radius:12px;
+  border:1px solid var(--border-strong);background:var(--surface)}
+.shot figcaption{margin-top:.85rem;color:var(--text-dim);font-size:.94rem;
+  line-height:1.6;max-width:62ch;margin-inline:auto;text-align:center}
+.shot figcaption strong{color:var(--text)}
+@media(max-width:640px){.shot figcaption{text-align:left}}
 .mock{position:relative;transform:perspective(1600px) rotateY(-3.5deg) rotateX(1.5deg);
   transform-origin:left center;
   box-shadow:none;
@@ -502,6 +519,37 @@ plausible.init()
     tag into the shared template.</p>
   </div>
 </div></div>
+</div></section>
+
+<!-- ================= THE REAL ARTIFACT =================
+     The hero above is an HTML replica — responsive, themeable, and honest about
+     its numbers, but a drawing of the product rather than the product. This
+     section is the actual thing: Docket run against our own site, rendered by
+     the app's own HTML reporter, not rebuilt in CSS.
+
+     Our own site on purpose. Publishing a critical audit of someone else's
+     property without asking is not ours to do, and auditing ourselves is the
+     stronger demonstration anyway — it is the report we cannot quietly curate. -->
+<section class="sec"><div class="wrap-wide">
+<div class="sec-head">
+  <h2>This is the actual report.<br><em>Run against our own site.</em></h2>
+  <p class="sec-sub">Not a mockup and not a marketing render — the file Docket
+  writes, opened in a browser. We pointed it at our own agency site rather than
+  a competitor's, because publishing someone else's audit without asking is not
+  ours to do, and because this is the one report we cannot quietly curate.</p>
+</div>
+<figure class="shot">
+  <img src="/assets/real-audit-builtbykerr.webp" width="1280" height="1000"
+       loading="lazy" decoding="async"
+       alt="A Docket SEO audit of builtbykerr.com scoring 90 out of 100, grade A, with
+            3 high, 7 medium, 11 low and 6 notice findings, and twelve category scores
+            from Crawlability 100 down to Local business SEO 58.">
+  <figcaption>Twelve pages crawled in eight seconds. It grades our own site
+  <strong>90/A</strong> and still lists twenty-seven things to fix &mdash; including
+  <strong>Local business SEO at 58</strong> on the site of a local business.
+  It also excludes two findings from the score because they describe something
+  Docket could not measure, rather than anything we did wrong.</figcaption>
+</figure>
 </div></section>
 
 <!-- ================= THE DIFFERENCE ================= -->
