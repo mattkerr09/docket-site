@@ -390,9 +390,10 @@ one that draws a line.</p></div>
   from Google's own autocomplete, ordered by how common they are. It will not print a monthly
   volume, because it does not have one. Anyone showing you a volume bought a clickstream
   panel.</p></div>
-  <div class="card"><h3>Non-English copy checks</h3><p>Copy-quality checks are English-only.
-  On other languages they stand down and the report says which ones did. Everything technical
-  works in any language.</p></div>
+  <div class="card"><h3>Non-English copy checks</h3><p>Copy-quality checks are English-only, and
+  address detection reads English and French word order only. On other languages both stand down
+  and the report says which ones did, rather than telling a business it publishes no address when
+  the truth is that Docket cannot read the page. Everything technical works in any language.</p></div>
   <div class="card"><h3>Windows and Intel</h3><p>Apple Silicon, macOS 12 or later. There is
   no other build.</p></div>
 </div>
