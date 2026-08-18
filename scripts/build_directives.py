@@ -74,7 +74,7 @@ LIST_GAP = {
 #: Documented once by the vendor, since superseded. A rule under one of these
 #: headings applies to nobody, because the crawler now sends a different name.
 #:
-#: Read from site/_data/retired-crawlers.csv, exported from the app's
+#: Read from data/retired-crawlers.csv, exported from the app's
 #: `RETIRED_AI_TOKENS`. It used to be a dict literal here, and the app and the
 #: site drifted: this file claimed `cohere-ai` was replaced by
 #: `cohere-training-data-crawler` — a name nobody had read anywhere — and
@@ -83,7 +83,7 @@ LIST_GAP = {
 #: one was the public one. There is one table now.
 def _retired() -> dict:
     import csv
-    path = ROOT / "site" / "_data" / "retired-crawlers.csv"
+    path = ROOT / "data" / "retired-crawlers.csv"
     with path.open() as fh:
         rows = list(csv.DictReader(fh))
     out = {}

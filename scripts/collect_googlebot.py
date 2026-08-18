@@ -29,7 +29,7 @@ import time
 import urllib.request
 from pathlib import Path
 
-OUT = Path(__file__).resolve().parent.parent / "site" / "_data" / "googlebot.json"
+OUT = Path(__file__).resolve().parent.parent / "data" / "googlebot.json"
 BASE = "https://developers.google.com/static/search/apis/ipranges"
 
 #: The three lists Google publishes, and what each is for.

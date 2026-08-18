@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """How to tell whether an audit tool is lying to you.
 
-Every figure comes from site/_data/regressions.json through facts.py, which is
+Every figure comes from data/regressions.json through facts.py, which is
 generated from Docket's own test suite. The counting rule is in the dataset and
 it is deliberately conservative — a test file counts only if it names a
 specific thing Docket got wrong.

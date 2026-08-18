@@ -73,7 +73,7 @@ def fail(lines: list[str]) -> None:
 
 
 def main() -> int:
-    data_dir = SITE / "_data"
+    data_dir = SITE.parent / "data"
     exposures = sorted(data_dir.glob("exposure-*.json")) if data_dir.is_dir() else []
     problems: list[str] = []
 

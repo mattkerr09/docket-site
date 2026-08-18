@@ -247,7 +247,7 @@ def entity_same_as() -> int:
 
 @lru_cache(maxsize=None)
 def equity() -> dict:
-    return json.loads((ROOT / "site" / "_data" / "link-equity.json").read_text())
+    return json.loads((ROOT / "data" / "link-equity.json").read_text())
 
 
 def equity_pages() -> int:
@@ -288,7 +288,7 @@ def equity_weakest(limit: int = 3) -> list:
 @lru_cache(maxsize=None)
 def exposure(slug: str) -> dict:
     return json.loads(
-        (ROOT / "site" / "_data" / f"exposure-{slug}.json").read_text())
+        (ROOT / "data" / f"exposure-{slug}.json").read_text())
 
 
 def exposure_assessed(slug: str) -> int:
@@ -332,7 +332,7 @@ def exposure_measured(slug: str) -> str:
 @lru_cache(maxsize=None)
 def page_size() -> dict:
     return json.loads(
-        (ROOT / "site" / "_data" / "page-size-2026-08.json").read_text())
+        (ROOT / "data" / "page-size-2026-08.json").read_text())
 
 
 def size_fetched() -> int:
@@ -387,7 +387,7 @@ def size_over_list(limit: int = 5) -> list:
 
 @lru_cache(maxsize=None)
 def mail() -> dict:
-    return json.loads((ROOT / "site" / "_data" / "mail-2026-08.json").read_text())
+    return json.loads((ROOT / "data" / "mail-2026-08.json").read_text())
 
 
 def mail_attempted() -> int:
@@ -444,7 +444,7 @@ def mail_measured() -> str:
 @lru_cache(maxsize=None)
 def mail_small() -> dict:
     return json.loads(
-        (ROOT / "site" / "_data" / "mail-small-2026-08.json").read_text())
+        (ROOT / "data" / "mail-small-2026-08.json").read_text())
 
 
 def small_frame() -> int:
@@ -516,7 +516,7 @@ def small_cities() -> int:
 
 @lru_cache(maxsize=None)
 def mx() -> dict:
-    return json.loads((ROOT / "site" / "_data" / "mx-2026-08.json").read_text())
+    return json.loads((ROOT / "data" / "mx-2026-08.json").read_text())
 
 
 def mx_publishing() -> int:
@@ -569,7 +569,7 @@ def mx_measured() -> str:
 
 @lru_cache(maxsize=None)
 def limits() -> dict:
-    return json.loads((ROOT / "site" / "_data" / "limits.json").read_text())
+    return json.loads((ROOT / "data" / "limits.json").read_text())
 
 
 def crawl_uncapped() -> bool:
@@ -667,7 +667,7 @@ def three_year_cost(slug: str) -> int:
 @lru_cache(maxsize=None)
 def regressions() -> dict:
     return json.loads(
-        (ROOT / "site" / "_data" / "regressions.json").read_text())
+        (ROOT / "data" / "regressions.json").read_text())
 
 
 def test_files() -> int:
@@ -701,7 +701,7 @@ def tests_total() -> int:
 
 @lru_cache(maxsize=None)
 def authority() -> dict:
-    return json.loads((ROOT / "site" / "_data" / "authority.json").read_text())
+    return json.loads((ROOT / "data" / "authority.json").read_text())
 
 
 def graph_domains() -> int:
@@ -747,7 +747,7 @@ def graph_example_referring() -> int:
 @lru_cache(maxsize=None)
 def ci_timing() -> dict:
     return json.loads(
-        (ROOT / "site" / "_data" / "ci-timing.json").read_text())
+        (ROOT / "data" / "ci-timing.json").read_text())
 
 
 def ci_measured() -> str:
@@ -840,7 +840,7 @@ def gh_monthly_cost(runs: int) -> str:
 @lru_cache(maxsize=None)
 def brand() -> dict:
     return json.loads(
-        (ROOT / "site" / "_data" / "brand.json").read_text())
+        (ROOT / "data" / "brand.json").read_text())
 
 
 def brand_measured() -> str:
@@ -923,7 +923,7 @@ def brand_with_drift() -> int:
 @lru_cache(maxsize=None)
 def ecom() -> dict:
     return json.loads(
-        (ROOT / "site" / "_data" / "ecommerce.json").read_text())
+        (ROOT / "data" / "ecommerce.json").read_text())
 
 
 def ecom_measured() -> str:
@@ -991,7 +991,7 @@ def ecom_indexing() -> int:
 @lru_cache(maxsize=None)
 def googlebot() -> dict:
     return json.loads(
-        (ROOT / "site" / "_data" / "googlebot.json").read_text())
+        (ROOT / "data" / "googlebot.json").read_text())
 
 
 def gbot_measured() -> str:
@@ -1037,7 +1037,7 @@ def gbot_spot_verified() -> int:
 
 @lru_cache(maxsize=None)
 def download() -> dict:
-    return json.loads((ROOT / "site" / "_data" / "download.json").read_text())
+    return json.loads((ROOT / "data" / "download.json").read_text())
 
 
 def app_version() -> str:

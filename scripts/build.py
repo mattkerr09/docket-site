@@ -19,7 +19,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE / "articles"))
 
 import facts as F  # noqa: E402
-from render import BASE, SITE, render  # noqa: E402
+from render import BASE, DATA, SITE, render  # noqa: E402
 
 import about  # noqa: E402
 import audit_quality  # noqa: E402
@@ -224,7 +224,7 @@ money.</p>
 def checks_page() -> Path:
     """Every check, from the shipped catalogue — not a hand-maintained list.
 
-    Generated from `site/_data/checks.csv`, which is exported from the engine's
+    Generated from `data/checks.csv`, which is exported from the engine's
     own registry. A hand-written feature list drifts from the product within a
     release or two, and on a page whose entire purpose is "here is exactly what
     it does", drift is the one unacceptable failure.
@@ -232,7 +232,7 @@ def checks_page() -> Path:
     import csv
     from collections import OrderedDict
 
-    rows = list(csv.DictReader((SITE / "_data" / "checks.csv").open()))
+    rows = list(csv.DictReader((DATA / "checks.csv").open()))
     by_lane: "OrderedDict[str, list]" = OrderedDict()
     for r in rows:
         by_lane.setdefault(r["lane_label"], []).append(r)
@@ -349,14 +349,69 @@ def write_static() -> None:
     # repo root so the collection script and its inputs sit together, but only
     # /site is deployed — the Index page links to the dataset, and publishing
     # the method without the data would undercut the whole point of it.
+    #
+    # ⚠️ AN EXPLICIT LIST, NOT A GLOB, AND THAT IS THE WHOLE POINT.
+    #
+    # This was `src.glob("*.json")`, which publishes whatever happens to be in
+    # the directory rather than what anyone decided to publish. On 2026-08-18
+    # the measurements moved out of `site/_data` — where they had been served
+    # by accident of location — into `/data`, and the glob would have picked up
+    # all 22 of them and served them again from the new address. The fix for
+    # accidental publication cannot itself be a glob.
+    #
+    # Only five datasets are linked from a page. The other sixteen included
+    # `mail-2026-08.json`, which carries 113 email addresses harvested from
+    # `mailto:` links on the Tranco top 1500 — addresses those sites publish
+    # themselves, but which no page here renders, so serving them bought
+    # nothing and handed a spam list a convenient machine-readable form.
+    #
+    # To publish a new dataset, add it here AND link it from the page that
+    # cites it. The check below fails the build if anything else appears in
+    # site/data, so this list cannot quietly drift back into a glob.
     import shutil
+    #: Linked from a page, so serving them is a decision. Verified by reading
+    #: the built HTML for the URLs it actually references — the first attempt at
+    #: that used a substring match and reported `googlebot.json` as ours, when
+    #: every page mentioning it links to Google's own
+    #: developers.google.com/search/apis/ipranges/googlebot.json. Parse the URL,
+    #: not the filename.
+    LINKED = ("ai-directives-2026-08.json", "entity-2026-08.json",
+              "index-2026-08.json", "knowledge.json")
+    #: Not linked, published on purpose: the Index states its population, and
+    #: the list of sites IS that statement.
+    ALSO_PUBLISHED = ("sites.txt",)
+    #: The subset this step owns. The rest are written straight into site/data
+    #: by the scripts that generate them.
+    COPIED_FROM_DATA = ("index-2026-08.json", "sites.txt")
+
     src = SITE.parent / "data"
-    if src.exists():
-        dst = SITE / "data"
-        dst.mkdir(parents=True, exist_ok=True)
-        for f in src.glob("*.json"):
-            shutil.copy2(f, dst / f.name)
-        shutil.copy2(src / "sites.txt", dst / "sites.txt")
+    dst = SITE / "data"
+    dst.mkdir(parents=True, exist_ok=True)
+    for name in COPIED_FROM_DATA:
+        f = src / name
+        if not f.is_file():
+            raise SystemExit(
+                f"build: {name} is published but missing from {src}. A page links "
+                f"to it, so shipping without it would serve a 404 from the Index.")
+        shutil.copy2(f, dst / name)
+
+    # ⚠️ EVERYTHING UNDER site/ IS PUSHED TO gh-pages AND SERVED, so this refuses
+    # anything nobody chose to publish. It replaced `for f in src.glob("*.json")`,
+    # which served whatever happened to be in the directory.
+    #
+    # That mattered on 2026-08-18: the measurements moved out of `site/_data`,
+    # where 22 of them had been served by accident of location, into `/data` —
+    # and the glob promptly copied all 22 to the new address. Among them was
+    # `mail-2026-08.json`, carrying 113 email addresses read from mailto: links
+    # on the Tranco top 1500. No page renders one of them. The fix for
+    # accidental publication cannot itself be a glob.
+    for existing in sorted(dst.iterdir()):
+        if existing.name not in LINKED + ALSO_PUBLISHED:
+            raise SystemExit(
+                f"build: site/data/{existing.name} would be served but nothing "
+                f"links to it. Link it from the page that cites it and add it to "
+                f"LINKED, or delete it.")
+
     # The favicon is NOT written here any more, and this comment is the reason.
     #
     # It used to be a literal on these lines, filled #818CF8 — the desktop
@@ -446,8 +501,8 @@ def stamp_build_id() -> str:
         raw = page.read_text(encoding="utf-8")
         if "__BUILD_ID__" in raw:
             page.write_text(raw.replace("__BUILD_ID__", build_id), encoding="utf-8")
-    (SITE / "_data").mkdir(parents=True, exist_ok=True)
-    (SITE / "_data" / "build-id.txt").write_text(build_id + "\n", encoding="utf-8")
+    (DATA).mkdir(parents=True, exist_ok=True)
+    (DATA / "build-id.txt").write_text(build_id + "\n", encoding="utf-8")
     return build_id
 
 
@@ -499,7 +554,7 @@ def main() -> int:
     stamp_competitor_claims(pages)
 
     build_id = stamp_build_id()
-    print(f"build id {build_id} — stamped into every page and site/_data/build-id.txt")
+    print(f"build id {build_id} — stamped into every page and data/build-id.txt")
 
     print(f"built {len(pages)} pages")
     for p in sorted(pages):

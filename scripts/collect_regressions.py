@@ -36,7 +36,7 @@ import sys
 from pathlib import Path
 
 APP = app_path.find()
-OUT = Path(__file__).resolve().parent.parent / "site" / "_data" / "regressions.json"
+OUT = Path(__file__).resolve().parent.parent / "data" / "regressions.json"
 
 # The published rule, as a regex. Each alternative describes a mistake in the
 # past tense or names one by its category — not a contract in the present tense.

@@ -117,7 +117,7 @@ def _download_links_point_at_this_release() -> None:
     are named for the version (`docket-0.1.37-linux-x86_64.tar.gz`) while the
     URL uses the tag (`v0.1.37`).
     """
-    path = SITE / "_data" / "download.json"
+    path = SITE.parent / "data" / "download.json"
     if not path.is_file():
         return
     try:
@@ -181,7 +181,7 @@ def _a_promised_linux_build_exists() -> None:
     of the rendered HTML keeps the two in step. Deleting the prose is a
     legitimate way to satisfy this; quietly shipping nothing is not.
     """
-    path = SITE / "_data" / "download.json"
+    path = SITE.parent / "data" / "download.json"
     if not path.is_file():
         return
     data = json.loads(path.read_text())

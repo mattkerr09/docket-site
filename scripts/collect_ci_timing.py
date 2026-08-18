@@ -38,7 +38,7 @@ import time
 from pathlib import Path
 from statistics import median
 
-OUT = Path(__file__).resolve().parent.parent / "site" / "_data" / "ci-timing.json"
+OUT = Path(__file__).resolve().parent.parent / "data" / "ci-timing.json"
 BIN = Path("/tmp/scoutdmg/Docket.app/Contents/Resources/docket/docket")
 CAP = 25
 

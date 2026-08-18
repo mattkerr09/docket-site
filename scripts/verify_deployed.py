@@ -41,7 +41,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-BUILD_ID = ROOT / "site" / "_data" / "build-id.txt"
+BUILD_ID = ROOT / "data" / "build-id.txt"
 URL = "https://docketseo.app/"
 
 #: Cache-busting is the point: a CDN that hands back a cached copy would let a

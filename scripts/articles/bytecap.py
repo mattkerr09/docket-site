@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Googlebot's 2MB cutoff, and how close real sites sit to it.
 
-Every figure comes from site/_data/page-size-2026-08.json via facts.py. The
+Every figure comes from data/page-size-2026-08.json via facts.py. The
 Google quotes were re-read from the source immediately before publishing,
 because the page names the sites it measured.
 """

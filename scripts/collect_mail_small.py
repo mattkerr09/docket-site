@@ -91,7 +91,7 @@ PLATFORMS = (
 #: run on donated capacity; re-fetching an unchanged frame on every run is the
 #: kind of thing that gets a tool blocked, and deservedly. The cache also makes
 #: the survey re-runnable by anyone without a second query.
-FRAME_CACHE = ROOT / "site" / "_data" / "mail-small-frame.json"
+FRAME_CACHE = ROOT / "data" / "mail-small-frame.json"
 
 
 def frame(refresh: bool = False) -> list[dict]:
@@ -194,7 +194,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", required=True)
     ap.add_argument("--workers", type=int, default=20)
-    ap.add_argument("--out", default="site/_data/mail-small-2026-08.json")
+    ap.add_argument("--out", default="data/mail-small-2026-08.json")
     ap.add_argument("--refresh-frame", action="store_true",
                     help="re-query Overpass instead of using the cached frame")
     args = ap.parse_args()

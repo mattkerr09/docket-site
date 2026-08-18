@@ -43,7 +43,7 @@ ROOT = Path(__file__).resolve().parent.parent
 #: (collector, the file it writes). Add a row only when rerunning the collector
 #: is a correction rather than a fresh measurement — see the module docstring.
 DERIVED = [
-    ("collect_regressions.py", "site/_data/regressions.json"),
+    ("collect_regressions.py", "data/regressions.json"),
 ]
 
 #: Checks run from the *app* repo, which owns the fact. `--check` reports

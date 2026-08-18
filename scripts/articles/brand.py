@@ -2,7 +2,7 @@
 """Brand consistency — the question no crawler asks.
 
 The brand lane is the most differentiated thing in the product and had no page
-at all. Every figure comes from site/_data/brand.json via facts.py, generated
+at all. Every figure comes from data/brand.json via facts.py, generated
 by scripts/collect_brand.py against real companies.
 
 This page previously withheld the typeface median, because Docket read inline

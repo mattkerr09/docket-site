@@ -41,7 +41,7 @@ from statistics import median
 APP = app_path.find()
 sys.path.insert(0, str(APP / "backend"))
 
-OUT = Path(__file__).resolve().parent.parent / "site" / "_data" / "brand.json"
+OUT = Path(__file__).resolve().parent.parent / "data" / "brand.json"
 PAGES = 15
 
 #: Deliberately spread across sectors and build styles. Two of these are

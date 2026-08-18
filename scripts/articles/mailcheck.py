@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """The contact address that cannot receive mail.
 
-Every figure comes from site/_data/mail-2026-08.json through facts.py. The
+Every figure comes from data/mail-2026-08.json through facts.py. The
 survey found nothing — no dead address among the large sites that still publish
 one — and the article says so, because a survey you only publish when it agrees
 with you is not a survey.

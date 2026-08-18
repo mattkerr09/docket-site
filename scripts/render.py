@@ -21,6 +21,12 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import facts as _facts  # noqa: E402
 
 SITE = Path(__file__).resolve().parent.parent / "site"
+#: Build INPUT, deliberately OUTSIDE `site/`. Everything under `site/` is
+#: pushed to gh-pages and served, so a dataset stored there is published by
+#: accident of location rather than by decision — 22 files were, including 113
+#: email addresses no page renders. Keep measurements here; publish the pages
+#: that quote them.
+DATA = Path(__file__).resolve().parent.parent / "data"
 BASE = "https://docketseo.app"
 
 
@@ -32,7 +38,7 @@ def _check_counts() -> tuple:
     product's own exported data and interpolated everywhere.
     """
     import csv
-    path = pathlib.Path(__file__).resolve().parent.parent / "site" / "_data" / "checks.csv"
+    path = pathlib.Path(__file__).resolve().parent.parent / "data" / "checks.csv"
     with path.open() as fh:
         rows = list(csv.DictReader(fh))
     return len(rows), len({r["lane"] for r in rows})
@@ -50,7 +56,7 @@ def _competitors() -> dict:
     else's product, so it lives in one file and is interpolated.
     """
     import csv
-    path = pathlib.Path(__file__).resolve().parent.parent / "site" / "_data" / "competitors.csv"
+    path = pathlib.Path(__file__).resolve().parent.parent / "data" / "competitors.csv"
     with path.open() as fh:
         return {r["slug"]: r for r in csv.DictReader(fh)}
 

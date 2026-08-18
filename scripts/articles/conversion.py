@@ -10,7 +10,7 @@ what a crawler can honestly judge and states plainly what it cannot. Conversion
 work is mostly judgement and testing, and a tool that implied otherwise would be
 selling the thing this site exists to argue against.
 
-**Check names and count come from `site/_data/checks.csv`**, exported from the
+**Check names and count come from `data/checks.csv`**, exported from the
 shipped engine.
 
 **The findings quoted are real**, from audits run 2026-08-14 against a US coffee
@@ -23,13 +23,13 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import render  # noqa: E402
+from render import DATA, render  # noqa: E402
 
 SITE = Path(__file__).resolve().parents[2] / "site"
 
 
 def _lane(lane: str) -> list[dict]:
-    with (SITE / "_data" / "checks.csv").open() as handle:
+    with (DATA / "checks.csv").open() as handle:
         return [r for r in csv.DictReader(handle) if r["lane"] == lane]
 
 

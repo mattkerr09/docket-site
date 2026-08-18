@@ -48,7 +48,7 @@ def _homepage_must_say() -> list[str]:
     switched off rather than fixed.
     """
     import csv
-    path = pathlib.Path(__file__).resolve().parent.parent / "site" / "_data" / "checks.csv"
+    path = pathlib.Path(__file__).resolve().parent.parent / "data" / "checks.csv"
     with path.open() as fh:
         n = sum(1 for _ in csv.DictReader(fh))
     if not n:

@@ -6,7 +6,7 @@ whole lanes with no coverage at all. This is the larger one: six checks that ran
 on every audit since the lane was written, described nowhere except as six rows
 in the catalogue table.
 
-**Every check name and the count come from `site/_data/checks.csv`**, which is
+**Every check name and the count come from `data/checks.csv`**, which is
 exported from the shipped engine. Typing "six checks" here would put the number
 in a place nothing verifies, which is the fault this site has a gate for.
 
@@ -22,13 +22,13 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import render  # noqa: E402
+from render import DATA, render  # noqa: E402
 
 SITE = Path(__file__).resolve().parents[2] / "site"
 
 
 def _lane(lane: str) -> list[dict]:
-    with (SITE / "_data" / "checks.csv").open() as handle:
+    with (DATA / "checks.csv").open() as handle:
         return [r for r in csv.DictReader(handle) if r["lane"] == lane]
 
 

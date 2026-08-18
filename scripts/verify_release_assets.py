@@ -61,7 +61,7 @@ REPO = "mattkerr09/docket-site"
 #: say what actually happened rather than "not found".
 WRONG_REPO = "mattkerr09/docket-app"
 SITE = pathlib.Path(__file__).resolve().parent.parent / "site"
-DOWNLOAD = SITE / "_data" / "download.json"
+DOWNLOAD = SITE.parent / "data" / "download.json"
 
 #: Assets that do not vary with the version. The updater reads the first two and
 #: fails silently without them; the page documents the third.

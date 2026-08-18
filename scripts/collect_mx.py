@@ -40,7 +40,7 @@ sys.path.insert(0, str(app_path.backend()))
 
 from seo_engine import mailcheck as M  # noqa: E402
 
-FRAME = ROOT / "site" / "_data" / "mail-small-frame.json"
+FRAME = ROOT / "data" / "mail-small-frame.json"
 
 
 def probe(record: dict):
@@ -74,7 +74,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", required=True)
     ap.add_argument("--workers", type=int, default=24)
-    ap.add_argument("--out", default="site/_data/mx-2026-08.json")
+    ap.add_argument("--out", default="data/mx-2026-08.json")
     args = ap.parse_args()
 
     frame = json.loads(FRAME.read_text())

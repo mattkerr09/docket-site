@@ -350,7 +350,7 @@ def _competitor_annual_sanity() -> List[str]:
     import csv as _csv
 
     out: List[str] = []
-    path = pathlib.Path(__file__).resolve().parent.parent / "site" / "_data" / "competitors.csv"
+    path = pathlib.Path(__file__).resolve().parent.parent / "data" / "competitors.csv"
     # $N followed by its unit: /mo, /yr, "annual", "lifetime", or nothing.
     amount = re.compile(r"\$([\d,]+)\s*(?:-\s*\$?[\d,]+)?\s*(/mo|/yr|annual|lifetime)?",
                         re.I)
@@ -410,7 +410,7 @@ def _price_stamp_integrity() -> List[str]:
     import csv as _csv
 
     out: List[str] = []
-    path = pathlib.Path(__file__).resolve().parent.parent / "site" / "_data" / "competitors.csv"
+    path = pathlib.Path(__file__).resolve().parent.parent / "data" / "competitors.csv"
     for row in _csv.DictReader(path.open()):
         slug, when, src = row["slug"], row["price_checked"], row["price_source"]
         if when and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", when):

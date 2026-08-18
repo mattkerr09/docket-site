@@ -24,7 +24,7 @@ from pathlib import Path
 
 APP = app_path.find()
 sys.path.insert(0, str(APP / "backend"))
-OUT = Path(__file__).resolve().parent.parent / "site" / "_data" / "limits.json"
+OUT = Path(__file__).resolve().parent.parent / "data" / "limits.json"
 
 
 def _ui_clamp() -> tuple[int, int]:

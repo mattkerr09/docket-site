@@ -87,9 +87,9 @@ def main() -> int:
                              "SHA256SUMS the site links (about 21 MB)")
     args = parser.parse_args()
 
-    data_path = SITE / "_data" / "download.json"
+    data_path = ROOT / "data" / "download.json"
     if not data_path.is_file():
-        return fail("site/_data/download.json is missing, so there is no tag to "
+        return fail("data/download.json is missing, so there is no tag to "
                     "check the links against")
     data = json.loads(data_path.read_text())
     tag = data.get("tag", "")

@@ -22,7 +22,7 @@ Method, stated because the number is only worth as much as it:
     because outbound 25 is blocked on many networks and a blocked probe looks
     exactly like a closed port.
 
-Usage:  python3 scripts/collect_mail.py [--limit 600] [--out site/_data/...]
+Usage:  python3 scripts/collect_mail.py [--limit 600] [--out data/...]
 """
 from __future__ import annotations
 
@@ -105,7 +105,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=600)
     ap.add_argument("--workers", type=int, default=16)
-    ap.add_argument("--out", default="site/_data/mail-2026-08.json")
+    ap.add_argument("--out", default="data/mail-2026-08.json")
     ap.add_argument("--date", required=True, help="YYYY-MM-DD the survey ran")
     args = ap.parse_args()
 
