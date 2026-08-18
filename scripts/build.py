@@ -240,7 +240,7 @@ def checks_page() -> Path:
         li = "".join(f"<li><strong>{r['title']}</strong> <code>{r['id']}</code></li>"
                      for r in items)
         sections.append(f"<h2>{lane} <span style='color:var(--text-dim);"
-                        f"font-size:1rem;font-weight:400'>({len(items)})</span></h2>"
+                        f"font-size:var(--t-lg);font-weight:400'>({len(items)})</span></h2>"
                         f"<ul>{li}</ul>")
 
     body = f"""

@@ -266,7 +266,7 @@ def body() -> str:
       <div class="rank-row"><span class="n">4</span>No LocalBusiness schema on service pages</div>
       <div class="rank-row"><span class="n">5</span>96 images without alt text</div>
     </div>
-    <p style="font-size:.9rem;color:var(--text-dim);margin-top:1rem">
+    <p style="font-size:var(--t-base);color:var(--text-dim);margin-top:1rem">
     Ranked by what each one costs you, not by category.</p>
   </div>
 </div></section>
@@ -397,7 +397,7 @@ one that draws a line.</p></div>
   <div class="card"><h3>Windows and Intel</h3><p>Apple Silicon, macOS 12 or later. There is
   no other build.</p></div>
 </div>
-<p style="text-align:center;margin-top:1.5rem;font-size:.95rem;color:var(--text-dim)">
+<p style="text-align:center;margin-top:1.5rem;font-size:var(--t-md);color:var(--text-dim)">
 This list keeps getting shorter. <a href="/learn/javascript-rendering/">JavaScript rendering,
 tag manager contents and browser-measured timings</a> came off it; so did Core Web Vitals,
 read from the Chrome UX Report; and so did keyword research and domain authority, both

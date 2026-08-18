@@ -487,9 +487,15 @@ INJECTIONS = [
     # scroll behaviour back, which is exactly the state that shipped "About"
     # off the right edge at 375px.
     ("index.html", "homepage", "nav clipping",
-     ".nav-links{order:3;width:100%;gap:.55rem .8rem;font-size:.88rem;\n"
+     # font-size is `var(--t-base)` and not `.88rem` because the type scale
+     # landed on 2026-08-18. That edit is what caught this: the injection is a
+     # literal string match, so rewriting the rule it targets silently stops
+     # the bug being injectable, and the gate then proves nothing. It refused
+     # the deploy rather than passing on three of four, which is the whole
+     # point of a self-test — and it is the only reason anyone noticed.
+     ".nav-links{order:3;width:100%;gap:.55rem .8rem;font-size:var(--t-base);\n"
      "    flex-wrap:wrap;padding-bottom:.15rem}",
-     ".nav-links{order:3;width:100%;gap:.55rem .8rem;font-size:.88rem;\n"
+     ".nav-links{order:3;width:100%;gap:.55rem .8rem;font-size:var(--t-base);\n"
      "    flex-wrap:nowrap;overflow-x:auto;padding-bottom:.15rem}"),
 ]
 
