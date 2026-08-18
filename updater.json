@@ -1,11 +1,11 @@
 {
-  "version": "1.1.53",
-  "notes": "If Docket falls over it now leaves a crash report on your Mac \u2014 readable by you, sent nowhere.",
-  "pub_date": "2026-08-18T15:05:53Z",
+  "version": "1.1.54",
+  "notes": "A mistyped -o now says what is wrong instead of failing with a traceback.",
+  "pub_date": "2026-08-18T15:28:16Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXpwbXpiU3NNUXlKYnNCUlFqdHMySERSSFR6M1JxRnd0KzZRb3RVSldtdzJONmNxWVFEeEExUXlUeE5ocUF5SUdwTnBLbE5Yamx1c3Brc0JZa083L2dZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDY1MzU5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKUVNMWlZGNEQyVWxIeTJYOHdWaFZiRmIxVzlHQzNBUS9TY3VEODVUTXFKU3lRY3czZDZUdUdjbWtURjVpN0FTZmJYQXdxRHh5ZkpDbkZEbzZ0dmYwQ1E9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.53/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTZMSTBES2FwWURtOEVET1pHS2FJNWxRa0xaVVV6MHk0cTRra0NySFBlSEtMSUU4S0JUN015QXE0S2NVaTVnZ3Mzb2diV0F2bDcxeFhnTzdvUnhvZ3dFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MDY2NzMxCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKeTY3alE5NG80VUw5NkVZTjB2VlBmQjR6M1hQcnhlNmpmZk4yN25rc1ZRdGVhWHZ6eFkxV3RlVUVOSVM0Vy9wVEJWa3ZZV2p4TGwrTGNlNmMweHNKQnc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.54/Docket.app.tar.gz"
     }
   }
 }
