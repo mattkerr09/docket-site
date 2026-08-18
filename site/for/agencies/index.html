@@ -274,6 +274,23 @@ body.landing article{padding:0}
 .hero-grid{position:relative;z-index:1}
 
 /* The product sits on light rather than beside it. */
+/* A dated specimen of real output, NOT a picture of the UI.
+   This file's homepage docstring argues against screenshots, and the argument is
+   right for the HERO: an HTML replica stays sharp, follows the theme, weighs
+   nothing, and cannot show last month's interface. That reasoning is untouched
+   and the replica above stays.
+   This is a different job. Its entire value is that it IS the artifact — the
+   file the reporter wrote, on a named site, on a stated date. A replica of a
+   report cannot demonstrate that the report exists. The staleness risk is
+   handled by the caption carrying the date and the site, so it reads as
+   evidence from a moment rather than a claim about the current build. */
+.shot{margin:0;max-width:min(100%,1100px);margin-inline:auto}
+.shot img{display:block;width:100%;height:auto;border-radius:12px;
+  border:1px solid var(--border-strong);background:var(--surface)}
+.shot figcaption{margin-top:.85rem;color:var(--text-dim);font-size:.94rem;
+  line-height:1.6;max-width:62ch;margin-inline:auto;text-align:center}
+.shot figcaption strong{color:var(--text)}
+@media(max-width:640px){.shot figcaption{text-align:left}}
 .mock{position:relative;transform:perspective(1600px) rotateY(-3.5deg) rotateX(1.5deg);
   transform-origin:left center;
   box-shadow:none;

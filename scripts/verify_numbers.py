@@ -47,6 +47,23 @@ ARTICLES = ROOT / "articles"
 #: A reason is required for every entry, and "it looked fine" is not one.
 ALLOWED = {
     # -- standards, specs and versions ------------------------------------
+    # -- figures read off a dated specimen image ---------------------------
+    # These two describe the audit screenshot on the homepage, not the product's
+    # current behaviour. They CANNOT be interpolated: the image is a frozen
+    # artifact from a named run against builtbykerr.com on 2026-08-17, and a
+    # caption that silently tracked a live dataset would eventually describe a
+    # picture that shows something else — the exact failure this file prevents,
+    # pointed the wrong way.
+    #
+    # The coupling is the safeguard: if site/assets/real-audit-builtbykerr.webp
+    # is ever regenerated, these numbers must be re-read off the new image and
+    # changed here. That is a deliberate speed bump, not an oversight.
+    "90": ("the overall grade in the audit screenshot on the homepage — read "
+           "off the image, which is a specimen from a real run against "
+           "builtbykerr.com on 2026-08-17, not a live figure"),
+    "58": ("the Local business SEO lane score in that same screenshot. Quoted "
+           "because it is the least flattering number in our own report and "
+           "the caption's point is that Docket does not hide it"),
     "2.30": ("the glibc floor of the Linux build, measured with objdump over "
              "the shipped binary and its bundled libpython — the highest "
              "GLIBC_ symbol version either requires"),
