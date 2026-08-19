@@ -187,6 +187,9 @@ git branch -D gh-pages-tmp >/dev/null
 echo "==> version-string gate"
 "$PY" scripts/verify_version_strings.py
 
+echo "==> media-box gate"
+"$PY" scripts/verify_media_boxes.py
+
 echo "==> deployed-build gate (waits for the CDN)"
 "$PY" scripts/verify_deployed.py --wait 300
 
