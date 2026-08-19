@@ -1,11 +1,11 @@
 {
-  "version": "1.1.57",
-  "notes": "A French phone number is readable, a number written two ways counts once, and the app interface gets a type scale.",
-  "pub_date": "2026-08-19T00:56:16Z",
+  "version": "1.1.58",
+  "notes": "A word in a list is no longer read as a review section, so Docket no longer offers AggregateRating markup \u2014 with a worked star rating attached \u2014 to sites that have no reviews. A pixel snippet that cannot fire is no longer reported as a legal exposure, and is now reported as its own HIGH finding instead: it looks installed, sends nothing, and reports zero conversions while your ad spend continues.",
+  "pub_date": "2026-08-19T18:57:40Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXpRaU5BUlpnQzVVc3orWHNBWlFHeDFwdUpKQW4rTkNhYUNPeGYydllKb1ZzbG1HSWNBT1JTYkw4Q01Ta1JQNHRjaXBkV1F5MTZaL1VtY3Z1MzVDZVF3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MTAwODM5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKSU5kZVJQKy93ZGZJWEhhS0Y0bVgvaFVBYmdST2FhR3R6Nzl3dmpiSkVwaDF4SjV1ZlVJbzdKNDV6Y092MGZjSkthQ3RBL0h5b1FVb3RRbnplcXZ5Q2c9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.57/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXhwbzVoeC9IRUpmc3ZiTG4vYWpEb2EzZzIzYW1RT0hSaWcxQThzOTFkZkR5YlkzNzM1RXhmMXJreVJldDVsUGhuVm5kbTdNWW1oa1c0aVRtaWdkK1FFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MTY1Njk1CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKY2dHTW02N1V4RndCZG9tdTAveVpBejVwNUhMNWxBcHJRcmlGWElVTEJRazJTR2pUZlIzd0xXZWdaWlRKNHl2VSs5TDFaa2wydVJuNGo5TEhpUm1aRHc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.58/Docket.app.tar.gz"
     }
   }
 }
