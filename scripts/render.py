@@ -395,6 +395,11 @@ STYLE = """<style>
      Measured off outlier.host at 1440x900, which does the same three things:
      rgba(255,255,255,.06) 0 2px 0 inset, rgba(255,255,255,.04) 0 0 0 1px inset,
      rgba(0,0,0,.95) 0 60px 130px -40px. */
+  /* Ported from outlier-site: one gradient for text, one for a filled control,
+     one for a hairline. Teal-cyan-green instead of purple-magenta-indigo. */
+  --grad:linear-gradient(112deg,#7FF0E4 0%,#2DD4BF 46%,#22D3EE 100%);
+  --grad-btn:linear-gradient(180deg,#84E1DB 0%,#2DD4BF 100%);
+  --grad-line:linear-gradient(90deg,transparent,#7FF0E4,#2DD4BF,#22D3EE,transparent);
   --lift:0 1px 0 0 rgba(255,255,255,.055) inset,0 0 0 1px rgba(255,255,255,.03) inset,0 18px 40px -24px rgba(0,0,0,.85);
   --lift-lg:0 2px 0 0 rgba(255,255,255,.07) inset,0 0 0 1px rgba(255,255,255,.04) inset,0 60px 130px -40px rgba(0,0,0,.95);
   /* Hard corners. A 16px radius is the house style of every SaaS dashboard;
@@ -473,7 +478,7 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
   letter-spacing:.04em;color:var(--brand);margin-left:.28em;
   border:1px solid var(--brand);border-radius:var(--radius-sm);padding:.02em .3em}
 .nav-brand:hover{text-decoration:none;color:var(--brand-light)}
-.nav-links{display:flex;gap:1.35rem;font-size:var(--t-md)}
+.nav-links{display:flex;gap:1.3rem;font-size:var(--t-md)}
 .nav-links a{color:var(--text-mid)}
 @media(hover:hover){.nav-links a:hover{color:var(--text);text-decoration:none}}
 @media(max-width:780px){
@@ -512,10 +517,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
-  padding:.62rem 1.2rem;border-radius:var(--radius-md);font-size:var(--t-md);border:0;cursor:pointer}
+  padding:0.6rem 1.2rem;border-radius:var(--radius-md);font-size:var(--t-md);border:0;cursor:pointer}
 .btn:hover{background:var(--brand-light);color:var(--on-accent);text-decoration:none}
 .btn-ghost{display:inline-block;border:1px solid var(--border-strong);color:var(--text-mid);
-  padding:.6rem 1.15rem;border-radius:var(--radius-md);font-size:var(--t-md);font-weight:600}
+  padding:.6rem 1.1rem;border-radius:var(--radius-md);font-size:var(--t-md);font-weight:600}
 .btn-ghost:hover{background:var(--surface-2);color:var(--text);text-decoration:none}
 
 article{padding:2.8rem 0 4.5rem}
@@ -541,7 +546,7 @@ pre{background:var(--surface);border:1px solid var(--border);border-radius:var(-
 pre code{background:0;padding:0;color:var(--text-mid)}
 
 table.cmp{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:var(--t-md)}
-table.cmp th,table.cmp td{text-align:left;padding:.66rem .72rem;
+table.cmp th,table.cmp td{text-align:left;padding:0.6rem 0.7rem;
   border-bottom:1px solid var(--border);vertical-align:top}
 table.cmp th{color:var(--text-dim);font-size:var(--t-xs);text-transform:uppercase;
   letter-spacing:.06em;font-weight:700}
@@ -552,7 +557,7 @@ table.cmp td:first-child{color:var(--text);font-weight:600}
 
 .callout{background:var(--surface);border:1px solid var(--border);box-shadow:var(--lift);
   border-left:3px solid var(--brand);border-radius:var(--radius-sm);
-  padding:1.05rem 1.2rem;margin:1.5rem 0}
+  padding:1rem 1.2rem;margin:1.5rem 0}
 .callout p:last-child{margin-bottom:0}
 .callout-title{color:var(--brand-light);font-weight:700;font-size:var(--t-sm);
   text-transform:uppercase;letter-spacing:.07em;margin-bottom:.4rem}
@@ -571,7 +576,7 @@ footer{border-top:1px solid var(--border);padding:2.6rem 0 3rem;margin-top:3rem;
   gap:1.6rem;margin-bottom:2rem}
 .foot-grid h4{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;
   color:var(--text-dim);margin-bottom:.6rem;font-weight:700}
-.foot-grid a{display:block;color:var(--text-mid);padding:.17rem 0;font-size:var(--t-md)}
+.foot-grid a{display:block;color:var(--text-mid);padding:0.2rem 0;font-size:var(--t-md)}
 .foot-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   border-top:1px solid var(--border);padding-top:1.3rem}
 
@@ -614,9 +619,34 @@ body.landing article{padding:0}
    that looked the same. */
 /* `.will-reveal` is applied by SCRIPT, never by the markup, so the resting
    state of this page is fully visible. See the note by the script tag. */
-.will-reveal{opacity:0;transform:translateY(14px)}
-.will-reveal.is-in{opacity:1;transform:none;
-  transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+/* Directional reveal, ported from outlier-site. Cards arrive from alternating
+   sides instead of everything sliding up, which is what stops a long page
+   reading as one repeated animation.
+
+   THE SPECIFICITY NOTE IS THEIRS AND IT IS EASY TO GET WRONG: the offsets live
+   in custom properties on the more specific selectors, because
+   `.grid-3 > .will-reveal:nth-child(odd)` outranks `.will-reveal.is-in`. Write
+   the offset as `transform` there and it beats the settled state, so the card
+   never arrives. `.will-reveal.is-in{transform:none}` has to stay the ONLY rule
+   that sets transform. */
+.will-reveal{opacity:0;
+  transform:translate(var(--rx,0),var(--ry,26px)) scale(var(--rs,1));
+  transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.will-reveal.is-in{opacity:1;transform:none}
+.grid-3 > .will-reveal:nth-child(odd){--rx:-38px;--ry:8px}
+.grid-3 > .will-reveal:nth-child(even){--rx:38px;--ry:8px}
+.split > .will-reveal:nth-child(1){--rx:-46px;--ry:0}
+.split > .will-reveal:nth-child(2){--rx:46px;--ry:0}
+/* No sideways travel on a narrow screen. An un-revealed card sits at its
+   offset, so a +38px slide is +38px of document width until it arrives — the
+   visual gate measured the homepage at 428px in a 375px viewport and called the
+   source unknown, because by the time anything screenshots it the cards have
+   usually settled. The offsets are the only thing on the page that can be wider
+   than the page. */
+@media(max-width:720px){
+  .grid-3 > .will-reveal:nth-child(odd),.grid-3 > .will-reveal:nth-child(even),
+  .split > .will-reveal:nth-child(1),.split > .will-reveal:nth-child(2){--rx:0;--ry:22px}
+}
 @media(prefers-reduced-motion:reduce){.will-reveal,.will-reveal.is-in{opacity:1;transform:none;transition:none}}
 /* The closing ask shows the thing it is asking for. */
 .cta-shot{margin:1.8rem auto 0;max-width:min(100%,760px)}
@@ -645,7 +675,7 @@ body.landing article{padding:0}
 .shot{margin:0;max-width:min(100%,1100px);margin-inline:auto}
 .shot img{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
   border:1px solid var(--border-strong);background:var(--surface);box-shadow:var(--lift-lg)}
-.shot figcaption{margin-top:.85rem;color:var(--text-dim);font-size:var(--t-md);
+.shot figcaption{margin-top:0.8rem;color:var(--text-dim);font-size:var(--t-md);
   line-height:1.6;max-width:62ch;margin-inline:auto;text-align:center}
 .shot figcaption strong{color:var(--text)}
 @media(max-width:640px){.shot figcaption{text-align:left}}
@@ -656,7 +686,7 @@ body.landing article{padding:0}
    move, once, on the one idea the product is actually about. */
 .rank-demo{display:grid;gap:.6rem;margin:2rem 0 0}
 .rank-row{display:flex;align-items:center;gap:.9rem;background:var(--surface-2);
-  border:1px solid var(--border);border-radius:var(--radius-md);padding:.85rem 1.05rem;
+  border:1px solid var(--border);border-radius:var(--radius-md);padding:0.8rem 1rem;
   font-size:var(--t-md);color:var(--text-mid)}
 .rank-row .n{flex:none;width:26px;height:26px;border-radius:var(--radius-md);display:grid;
   place-items:center;font-family:var(--mono);font-size:var(--t-xs);font-weight:600;
@@ -690,7 +720,7 @@ body.landing article{padding:0}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
   font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
   background:var(--brand-soft);
-  border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.5rem 1.05rem;
+  border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:0.55rem 1rem;
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
@@ -709,7 +739,7 @@ body.landing article{padding:0}
      had been lowered to 68.8px, describing a number no longer in the file.
      Tight tracking is what stops large type reading as merely big. */
   font-size:clamp(2.5rem,5.6vw,3.5rem);line-height:1.02;letter-spacing:-.035em;
-  margin:0 0 1.35rem;max-width:15ch}
+  margin:0 0 1.3rem;max-width:15ch}
 .hero-h1 em{font-style:normal;color:var(--brand-light);display:block}
 .hero-h1 em{font-style:normal;color:var(--brand);display:block;
   -webkit-text-fill-color:currentColor}
@@ -724,46 +754,49 @@ body.landing article{padding:0}
   width:16px;height:16px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 
 /* Sections */
-/* LIT FROM BEHIND. Measured off outlier.host, which does it with three large,
-   very soft, low-alpha orbs rather than a background on the section itself:
+/* AMBIENT MESH — ported from outlier-site/index.html rather than guessed at.
+   Three things do the work there, and building this from screenshots got two
+   of them wrong:
 
-     b.m1  804px  radial-gradient(circle, rgba(168,85,247,.40), transparent 68%)
-     b.m2  702px  radial-gradient(circle, rgba(217,70,239,.28), transparent 66%)
-     b.m3  609px  radial-gradient(circle, rgba(99,102,241,.30), transparent 66%)
+     1. `filter:blur(120px)` on each orb. Without it a radial-gradient is a
+        coloured smudge; with it, it is light. This was the missing piece.
+     2. `position:fixed`, so the orbs stay put while the page scrolls past.
+        That is what "the gradient moves with the scrolling" actually is — the
+        content travels THROUGH a light field that does not move with it.
+     3. slow drift, 26-38s, a few vw of translate and ~1.1 scale. Long enough
+        that nothing appears to move while you look straight at it.
 
-   The three properties that matter: the glow is BIG (600-800px), it fades to
-   fully transparent well before its edge (66-68%), and the alpha is low. Miss
-   any one and it reads as a coloured box rather than light.
-
-   Here it hangs off the top of each section, behind the content, alternating
-   side and hue so the page has a rhythm instead of one repeated blob. `z-index`
-   is scoped by `isolation:isolate`, so a glow can never escape its own section
-   and land on top of something.
-
-   NOT applied to .hero-sec, which already owns its ::before for the grid rule —
-   and which the deploy's visual self-test injects a bug into by literal string
-   match, so redefining it would quietly make that gate blind. */
-/* `overflow:hidden` is load-bearing: the glow is deliberately wider than the
-   viewport (130% and offset), and without this the document grew to 1518px in a
-   1280px viewport and 508px at 375px. The visual gate caught all three sizes.
-   A backlight that adds a horizontal scrollbar is not a backlight. */
-.sec{padding:var(--sec-y) 0;position:relative;isolation:isolate;overflow:hidden}
-.sec::before{content:"";position:absolute;z-index:-1;pointer-events:none;
-  top:-8%;left:50%;width:min(1180px,130%);height:min(720px,90%);
-  transform:translateX(-50%);
-  background:radial-gradient(ellipse at 50% 0%,rgba(45,212,191,.125),rgba(45,212,191,0) 64%)}
-.sec:nth-of-type(2n)::before{
-  left:22%;width:min(980px,110%);
-  background:radial-gradient(ellipse at 50% 0%,rgba(94,234,212,.085),rgba(94,234,212,0) 62%)}
-.sec:nth-of-type(3n)::before{
-  left:78%;width:min(1040px,115%);
-  background:radial-gradient(ellipse at 50% 0%,rgba(45,212,191,.095),rgba(45,212,191,0) 66%)}
-/* The closing ask gets the strongest one, because it is the strongest position. */
-.cta-band{position:relative;isolation:isolate;overflow:hidden}
-.cta-band::before{content:"";position:absolute;z-index:-1;pointer-events:none;
-  top:-14%;left:50%;transform:translateX(-50%);
-  width:min(1240px,140%);height:min(760px,120%);
-  background:radial-gradient(ellipse at 50% 30%,rgba(45,212,191,.17),rgba(45,212,191,0) 64%)}
+   Outlier's hues are purple / magenta / indigo. Docket's are teal, cyan and
+   green — the same three-hue texture in its own palette, and the green is the
+   one the product already uses for a lane that passes. */
+.mesh{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.mesh b{position:absolute;border-radius:50%;filter:blur(120px);opacity:.52}
+.mesh .m1{width:60vw;height:60vw;max-width:820px;max-height:820px;
+  background:radial-gradient(circle,rgba(45,212,191,.38),transparent 68%);
+  top:-22vw;left:-8vw;animation:drift1 26s ease-in-out infinite}
+.mesh .m2{width:52vw;height:52vw;max-width:720px;max-height:720px;
+  background:radial-gradient(circle,rgba(34,211,238,.24),transparent 66%);
+  top:-6vw;right:-12vw;animation:drift2 32s ease-in-out infinite}
+.mesh .m3{width:46vw;height:46vw;max-width:640px;max-height:640px;
+  background:radial-gradient(circle,rgba(74,222,128,.20),transparent 66%);
+  top:44vw;left:34vw;animation:drift3 38s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(6vw,4vw) scale(1.12)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-5vw,6vw) scale(1.08)}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-4vw,-5vw) scale(1.15)}}
+.grid-ovl{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.05) 1px,transparent 0);
+  background-size:34px 34px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 0%,transparent 75%);
+  mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 0%,transparent 75%)}
+.spectrum{height:1px;width:100%;background:var(--grad-line);opacity:.5;border:0;margin:0}
+/* Every section boundary is a gradient hairline rather than a flat rule — the
+   `.spectrum` idea from outlier-site, applied without touching the markup. */
+.sec::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;
+  background:var(--grad-line);opacity:.32;pointer-events:none}
+nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
+@media(prefers-reduced-motion:reduce){.mesh b{animation:none}}
+.sec{padding:var(--sec-y) 0;position:relative;isolation:isolate}
+.cta-band{position:relative;isolation:isolate}
 /* Hairlines between every section made the page read as a stack of boxes.
    Space separates them now; a rule is used only where one is doing work. */
 .sec + .sec{border-top:1px solid var(--border)}
@@ -801,7 +834,7 @@ body.landing article{padding:0}
 
 /* Index chart, drawn from the measured dataset */
 .chart{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem 1.6rem;box-shadow:var(--lift)}
-.bar-row{display:grid;grid-template-columns:130px 1fr 46px;gap:.85rem;align-items:center;margin-bottom:.62rem}
+.bar-row{display:grid;grid-template-columns:130px 1fr 46px;gap:0.8rem;align-items:center;margin-bottom:.62rem}
 .bar-lbl{font-size:var(--t-sm);color:var(--text-mid);text-align:right}
 .bar-track{height:9px;background:var(--surface-3);border-radius:0;overflow:hidden}
 .bar-fill{display:block;height:100%;border-radius:var(--radius-pill);
@@ -818,9 +851,9 @@ body.landing article{padding:0}
 
 /* Email capture. Quiet on purpose: it sits after the buy CTA and must not
    compete with it — someone ready to buy should not be diverted into a form. */
-.sub{display:flex;gap:.5rem;flex-wrap:wrap;align-items:flex-end;margin:1.1rem 0 .6rem}
+.sub{display:flex;gap:0.55rem;flex-wrap:wrap;align-items:flex-end;margin:1.1rem 0 .6rem}
 .sub-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.sub input[type=email]{flex:1 1 15rem;min-width:0;padding:.62rem .8rem;
+.sub input[type=email]{flex:1 1 15rem;min-width:0;padding:0.6rem .8rem;
   font:inherit;font-size:var(--t-md);color:var(--text);background:var(--surface);
   border:1px solid var(--border);border-radius:var(--radius-sm)}
 .sub input[type=email]:focus-visible{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
@@ -1126,6 +1159,8 @@ def render(
 {ANALYTICS}
 </head>
 <body{body_class}>
+<div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
+<div class="grid-ovl" aria-hidden="true"></div>
 {NAV}
 {opening}
 {body}{faq_html}{closer}
@@ -1167,13 +1202,18 @@ def render(
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced || !window.IntersectionObserver) return;
   els.forEach(function (e) {{ e.classList.add('will-reveal'); }});
+  /* TWO-WAY, and the observer is deliberately NOT unobserved — that call is
+     what made this one-shot: the page filled in on the way down and stayed
+     filled. Outlier toggles on both edges so content leaves the way it came. */
   var io = new IntersectionObserver(function (entries) {{
-    entries.forEach(function (x) {{
-      if (x.isIntersecting) {{ show(x.target); io.unobserve(x.target); }}
-    }});
-  }}, {{ rootMargin: '0px 0px -6% 0px', threshold: 0.01 }});
+    entries.forEach(function (x) {{ x.target.classList.toggle('is-in', x.isIntersecting); }});
+  }}, {{ rootMargin: '0px 0px -8% 0px', threshold: 0.08 }});
   els.forEach(function (e) {{ io.observe(e); }});
-  setTimeout(function () {{ els.forEach(show); }}, 1400);
+  /* Failsafe kept, but it must not fight the observer: it only fires if NOTHING
+     has been revealed by then, which means the observer never ran at all. */
+  setTimeout(function () {{
+    if (!document.querySelector('.will-reveal.is-in')) els.forEach(show);
+  }}, 1400);
 }})();
 </script>
 </body>
