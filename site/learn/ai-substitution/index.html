@@ -6,7 +6,7 @@
 <title>Which of your pages can an AI answer replace?</title>
 <meta name="description" content="The AI risk is keeping your rankings and losing the visit. What defends a page against an answer, measured on two live sites — and six ways we measured it wrong.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="d6682a1b8118">
+<meta name="build-id" content="7e86028bdc83">
 <link rel="canonical" href="https://docketseo.app/learn/ai-substitution/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -256,7 +256,20 @@ article{padding:2.8rem 0 4.5rem}
 .crumb{font-family:var(--mono);font-size:var(--t-xs);color:var(--text-dim);
   text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem}
 .crumb a{color:var(--text-dim)}
-h1{font-size:2.3rem;line-height:1.14;letter-spacing:-.03em;margin-bottom:1rem}
+/* An article title had no weight of its own and fell through to the UA default
+   of 700, so the 57 article pages stayed the heaviest thing on the site while
+   the homepage moved to 600. Declared here rather than left to the browser.
+
+   NO GRADIENT ON AN ARTICLE TITLE, and the reason is worth keeping. A whole
+   heading run through background-clip:text has `color:transparent`, and the
+   deploy's contrast gate reads the COLOUR, not the paint: it measured 1.07:1
+   against a 3:1 requirement on all ten article templates and refused. It is
+   right to — transparent text is what a forced-colors mode and an automated
+   checker both see. The homepage accents are safe because they are an <em>
+   INSIDE a heading that keeps its own colour; a title has no such half, so the
+   choice there is all-or-nothing, and all is wrong. */
+h1{font-size:2.3rem;font-weight:600;line-height:1.14;letter-spacing:-.03em;margin-bottom:1rem;
+  color:var(--text)}
 h2{font-size:var(--t-2xl);letter-spacing:-.02em;font-weight:600;margin:2.6rem 0 .9rem}
 h3{font-size:var(--t-xl);margin:1.7rem 0 .5rem}
 p{color:var(--text-mid);margin-bottom:1rem}
@@ -562,7 +575,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
    Space separates them now; a rule is used only where one is doing work. */
 .sec + .sec{border-top:1px solid var(--border)}
 .sec-head{text-align:center;max-width:41rem;margin:0 auto 2.6rem}
-.sec-head h2{font-family:var(--display);font-weight:700;
+.sec-head h2{font-family:var(--display);font-weight:600;
   font-size:clamp(1.55rem,2.5vw,2.2rem);line-height:1.1;
   letter-spacing:-.03em;margin:0 0 .85rem}
 .sec-head h2 em{font-style:normal;color:var(--brand-light)}
