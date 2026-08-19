@@ -1233,7 +1233,18 @@ def render(
      the count without touching any markup. */
   var SEL = '.sec-head, .card, .split-col, .shot, .chart, .stat, .hero-media, .rank-demo,'
           + '.faq-item, .bar-row, .rank-row, .hero-note, .cta-shot, .coverage,'
-          + '.wrap-tbl, .callout, figure';
+          + '.wrap-tbl, .callout, figure,'
+          /* ARTICLES ARE 57 OF THE 58 PAGES and were getting almost none of
+             this: measured 2-4 reveal units each, none of them in the viewport
+             at load, so the 1.4s failsafe revealed them and nothing ever
+             animated. The list above is homepage-shaped — `.card`, `.chart`,
+             `.rank-row` — and an article is <h2>, <h3>, <pre> and prose.
+
+             HEADINGS AND BLOCKS ONLY, never <p>. Fading in body text as
+             somebody reads it is a different and worse thing than a section
+             arriving; the point is to animate structure, not sentences. */
+          + 'article h2, article h3, article pre, article .lede,'
+          + 'article table, article blockquote';
   var els = [].slice.call(document.querySelectorAll(SEL));
   if (!els.length) return;
   var show = function (e) {{ e.classList.add('is-in'); }};
@@ -1257,14 +1268,23 @@ def render(
   /* TWO-WAY, and the observer is deliberately NOT unobserved — that call is
      what made this one-shot: the page filled in on the way down and stayed
      filled. Outlier toggles on both edges so content leaves the way it came. */
+  var ran = false;
   var io = new IntersectionObserver(function (entries) {{
+    ran = true;
     entries.forEach(function (x) {{ x.target.classList.toggle('is-in', x.isIntersecting); }});
   }}, {{ rootMargin: '0px 0px -8% 0px', threshold: 0.08 }});
   els.forEach(function (e) {{ io.observe(e); }});
-  /* Failsafe kept, but it must not fight the observer: it only fires if NOTHING
-     has been revealed by then, which means the observer never ran at all. */
+  /* THE FAILSAFE HAD TO GET MORE PRECISE. "nothing is revealed yet" is not the
+     same as "the observer never ran": on an article page every revealed unit is
+     below the fold at load, so nothing was intersecting, the failsafe concluded
+     the observer was dead and pinned all of them visible permanently — which
+     silently disabled the two-way behaviour on 57 of the 58 pages.
+
+     IntersectionObserver invokes its callback once for every element it is
+     given, intersecting or not, so a flag set inside the callback is a direct
+     answer to "did this run". */
   setTimeout(function () {{
-    if (!document.querySelector('.will-reveal.is-in')) els.forEach(show);
+    if (!ran) els.forEach(show);
   }}, 1400);
 }})();
 </script>
