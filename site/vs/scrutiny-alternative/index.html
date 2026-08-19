@@ -6,7 +6,7 @@
 <title>Docket vs Scrutiny: two paid Mac SEO tools compared</title>
 <meta name="description" content="Scrutiny is cheaper and does spell checking, HTML validation and site search, which Docket does not. What Docket adds, and when to buy theirs instead.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="8139772de99b">
+<meta name="build-id" content="5b6c77da7e17">
 <link rel="canonical" href="https://docketseo.app/vs/scrutiny-alternative/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -185,6 +185,12 @@ a{color:var(--brand-light);text-decoration:none;transition:color .16s}
    1px line separates better than a 4% wash, and it survives being printed,
    which a report about a website eventually is. */
 .eyebrow,.split-phase,.mock-rank,.rank-row .n,.split-list .n{font-family:var(--mono)}
+/* The two panels are a matched pair by design, so the shorter one has slack —
+   six short rows against five taller ones plus a closing line, measured at
+   ~150px of empty panel under the last row. Letting the list absorb it spreads
+   the rows instead, which reads as a deliberate rhythm rather than a card that
+   ran out of content. */
+.split-list{flex:1;display:flex;flex-direction:column;justify-content:space-between}
 .eyebrow{font-weight:600}
 table{border-collapse:collapse}
 th,td{border-bottom:1px solid var(--border)}
@@ -425,7 +431,10 @@ body.landing article{padding:0}
    report cannot demonstrate that the report exists. The staleness risk is
    handled by the caption carrying the date and the site, so it reads as
    evidence from a moment rather than a claim about the current build. */
-.shot{margin:0;max-width:min(100%,1100px);margin-inline:auto}
+/* The plan screenshot sat flush against the comparison panels above it —
+   measured gap 0px — so the two blocks read as one run-on object. */
+.shot{margin:2.6rem auto 0;max-width:min(100%,1100px)}
+.split + .shot,.split + figure{margin-top:2.6rem}
 .shot img{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
   border:1px solid var(--border-strong);background:var(--surface);box-shadow:var(--lift-lg)}
 .shot figcaption{margin-top:0.8rem;color:var(--text-dim);font-size:var(--t-md);
@@ -591,9 +600,9 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 .card.wide{grid-column:1/-1}
 
 /* Before/after: a list vs a sequence */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:760px){.split{grid-template-columns:1fr}}
-.split-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.3rem 1.4rem;box-shadow:var(--lift)}
+.split-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.3rem 1.4rem;box-shadow:var(--lift);display:flex;flex-direction:column}
 .split-col.good{border-color:var(--brand)}
 .split-tag{font-size:var(--t-2xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   color:var(--text-dim);margin-bottom:.8rem}
