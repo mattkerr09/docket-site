@@ -6,7 +6,7 @@
 <title>How to fix soft 404s (pages that return 200)</title>
 <meta name="description" content="A missing page that answers 200 makes every mistyped URL indexable. How to check it in one command, what it costs, and the fix for each cause.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="8c5875565a1b">
+<meta name="build-id" content="716d388f13df">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-soft-404s/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -153,7 +153,7 @@
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   /* One vertical rhythm for every section. Space is most of what separates a
      considered page from a cramped one. */
-  --sec-y:clamp(5rem,11vw,9.5rem);
+  --sec-y:clamp(3.25rem,7vw,6.6rem);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -546,7 +546,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 .card.wide{grid-column:1/-1}
 
 /* Before/after: a list vs a sequence */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start}
 @media(max-width:760px){.split{grid-template-columns:1fr}}
 .split-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.3rem 1.4rem;box-shadow:var(--lift)}
 .split-col.good{border-color:var(--brand)}
