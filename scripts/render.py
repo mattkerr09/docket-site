@@ -941,7 +941,7 @@ def _mark(size: int = 22, color: str = "var(--brand)") -> str:
 
 
 NAV = f"""<nav><div class="wrap-wide nav-inner">
-<a class="nav-brand" href="/">{_mark(23)}<span>Docket<i>SEO</i></span></a>
+<a class="nav-brand" href="/" aria-label="Docket SEO">{_mark(23)}<span>Docket<i>SEO</i></span></a>
 <div class="nav-links">
 <a href="/index/">The Index</a>
 <a href="/learn/">Learn</a>

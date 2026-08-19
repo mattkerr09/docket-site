@@ -1,7 +1,7 @@
 {
   "site": "docketseo.app",
   "pages": 58,
-  "edges": 1188,
+  "edges": 1189,
   "average_share_pct": 1.72,
   "below_half": 38,
   "nodes": [
@@ -56,8 +56,8 @@
     {
       "path": "/for/developers/",
       "inlinks": 6,
-      "share_pct": 0.51,
-      "index": 0.3
+      "share_pct": 0.5,
+      "index": 0.29
     },
     {
       "path": "/for/ecommerce/",
@@ -278,8 +278,8 @@
     {
       "path": "/learn/what-docket-checks/",
       "inlinks": 57,
-      "share_pct": 4.8,
-      "index": 2.79
+      "share_pct": 4.79,
+      "index": 2.78
     },
     {
       "path": "/learn/what-scout-checks/",
@@ -337,9 +337,9 @@
     },
     {
       "path": "/vs/scrutiny-alternative/",
-      "inlinks": 0,
-      "share_pct": 0.0,
-      "index": 0.0
+      "inlinks": 1,
+      "share_pct": 0.08,
+      "index": 0.05
     },
     {
       "path": "/vs/semrush-site-audit-alternative/",
@@ -354,5 +354,5 @@
       "index": 2.74
     }
   ],
-  "measured": "2026-08-15"
+  "measured": "2026-08-19"
 }

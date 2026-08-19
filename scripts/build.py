@@ -117,6 +117,11 @@ def build_hubs() -> list[Path]:
              "A division of labour rather than a comparison. Search Console holds your real "
              "queries, index status and field Core Web Vitals, and nothing replaces it. What "
              "it cannot answer is what is wrong with a page today."),
+            ("/vs/scrutiny-alternative/", "Docket vs Scrutiny",
+             "Both are Mac apps you buy once rather than subscribe to. Scrutiny is the "
+             "stronger link checker and has been shipping far longer; Docket ranks what "
+             "it finds and covers conversion, brand and AI visibility, which Scrutiny "
+             "does not."),
         ],
         intro="""
 <h2>The three kinds of tool, and which question each answers</h2>
