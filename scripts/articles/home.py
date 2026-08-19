@@ -469,6 +469,11 @@ def closer() -> str:
 <h2>Audit your site in about a minute</h2>
 <p>Download it, type a domain, press Run. There is no onboarding because none is
 needed, and nothing about your site leaves your Mac.</p>
+<figure class="cta-shot">
+  <img src="/assets/app-running.webp" width="1280" height="800" loading="lazy" decoding="async"
+       alt="Docket mid-audit: the URL being crawled, a progress bar, and four counters reading
+            pages crawled, pages queued, errors, and seconds elapsed.">
+</figure>
 <a class="btn btn-lg" href="{CHECKOUT}">Buy Docket &middot; {PRICE_STR} once</a>
 <a class="btn-ghost btn-lg" href="{DMG}">Download for Mac</a>
 <p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>
