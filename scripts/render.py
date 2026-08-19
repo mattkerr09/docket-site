@@ -529,8 +529,21 @@ article{padding:2.8rem 0 4.5rem}
 .crumb{font-family:var(--mono);font-size:var(--t-xs);color:var(--text-dim);
   text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem}
 .crumb a{color:var(--text-dim)}
-h1{font-size:2.3rem;line-height:1.14;letter-spacing:-.03em;margin-bottom:1rem}
-h2{font-size:var(--t-2xl);letter-spacing:-.02em;margin:2.6rem 0 .9rem}
+/* An article title had no weight of its own and fell through to the UA default
+   of 700, so the 57 article pages stayed the heaviest thing on the site while
+   the homepage moved to 600. Declared here rather than left to the browser.
+
+   NO GRADIENT ON AN ARTICLE TITLE, and the reason is worth keeping. A whole
+   heading run through background-clip:text has `color:transparent`, and the
+   deploy's contrast gate reads the COLOUR, not the paint: it measured 1.07:1
+   against a 3:1 requirement on all ten article templates and refused. It is
+   right to — transparent text is what a forced-colors mode and an automated
+   checker both see. The homepage accents are safe because they are an <em>
+   INSIDE a heading that keeps its own colour; a title has no such half, so the
+   choice there is all-or-nothing, and all is wrong. */
+h1{font-size:2.3rem;font-weight:600;line-height:1.14;letter-spacing:-.03em;margin-bottom:1rem;
+  color:var(--text)}
+h2{font-size:var(--t-2xl);letter-spacing:-.02em;font-weight:600;margin:2.6rem 0 .9rem}
 h3{font-size:var(--t-xl);margin:1.7rem 0 .5rem}
 p{color:var(--text-mid);margin-bottom:1rem}
 strong{color:var(--text);font-weight:700}
@@ -737,7 +750,12 @@ body.landing article{padding:0}
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
-.hero-h1{font-family:var(--display);font-weight:700;
+/* WEIGHT 600, not 700. Measured across the six sites named as the bar:
+   mobbin 652, langchain 300, framer 500, avo 600, outlier 600, cofounder 400 —
+   median ~550, and this page was the heaviest in the set at 700. 600 lands on
+   the same value as two of them, and Switzer-600 is already shipped, so this
+   costs nothing to serve. */
+.hero-h1{font-family:var(--display);font-weight:600;
   /* 56px at the top end, measured at 1440. The CEILING is the whole rule: the
      vw term only governs between roughly 715px and 1000px, so at any desktop
      width this renders at exactly the ceiling.
@@ -762,15 +780,14 @@ body.landing article{padding:0}
    @supports, because `color:transparent` over a background that does not paint
    is invisible text. Same defence as the app's start heading, and the app's
    primary button is the one place I forgot it and shipped 1.18:1. */
-.hero-h1 em,.sec-head h2 em,.cta-band h2 em{font-style:normal;color:var(--brand-light)}
+h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .hero-h1 em{display:block}
 @supports ((-webkit-background-clip:text) or (background-clip:text)){
-  .hero-h1 em,.sec-head h2 em,.cta-band h2 em{
+  h1 em,h2 em,h3 em,.hero-h1 em{
     background-image:var(--grad);-webkit-background-clip:text;background-clip:text;
     color:transparent}
 }
-@media print{.hero-h1 em,.sec-head h2 em,.cta-band h2 em{
-  background-image:none;color:var(--brand-light)}}
+@media print{h1 em,h2 em,h3 em{background-image:none;color:var(--brand-light)}}
 .hero-h1 em{font-style:normal;color:var(--brand);display:block;
   -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
@@ -831,7 +848,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
    Space separates them now; a rule is used only where one is doing work. */
 .sec + .sec{border-top:1px solid var(--border)}
 .sec-head{text-align:center;max-width:41rem;margin:0 auto 2.6rem}
-.sec-head h2{font-family:var(--display);font-weight:700;
+.sec-head h2{font-family:var(--display);font-weight:600;
   font-size:clamp(1.55rem,2.5vw,2.2rem);line-height:1.1;
   letter-spacing:-.03em;margin:0 0 .85rem}
 .sec-head h2 em{font-style:normal;color:var(--brand-light)}
@@ -1169,7 +1186,7 @@ def render(
 <meta name="build-id" content="__BUILD_ID__">
 {'<meta name="robots" content="noindex">' if noindex else f'<link rel="canonical" href="{url}">'}
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="{'website' if schema_type == 'WebPage' else 'article'}">
