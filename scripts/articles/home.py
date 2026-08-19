@@ -316,7 +316,18 @@ def body() -> str:
     5xx — so CI can fail the build before it ships. <code>--fail-on high</code> lowers the bar.
     <code>docket attack</code> ranks a competitor's weak points by how winnable they are.</p></div>
 </div>
-</div></section>
+</div>
+<figure class="shot shot-finding">
+  <img src="/assets/app-finding.webp" width="1500" height="452" loading="lazy" decoding="async"
+       alt="One finding from a Docket audit: a numbered item titled 'http://docketseo.app does not
+            redirect to https://', tagged High, Security &amp; trust, Under an hour, with an
+            explanation and a Fix reading 'Add a site-wide 301 from http://docketseo.app to
+            https://, preserving the path.'">
+  <figcaption>One item, as the app writes it: what is wrong, how bad, which area, how long it
+  takes, and the change to make. This one is real and it is ours &mdash; Docket found it auditing
+  this site.</figcaption>
+</figure>
+</section>
 
 <!-- ================= COMPARISON ================= -->
 <section class="sec"><div class="wrap-wide">
