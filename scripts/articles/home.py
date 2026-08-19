@@ -224,7 +224,7 @@ def body() -> str:
   </div>
 </div>
 <figure class="shot shot-plan">
-  <img src="/assets/app-plan.webp" width="1600" height="1000" loading="lazy" decoding="async"
+  <img src="/assets/app-plan.webp" width="1500" height="672" loading="lazy" decoding="async"
        alt="Docket's ranked plan: numbered items under a BUILD phase heading reading
             'Worth real effort. Schedule once the quick wins are done.' Each item carries a
             severity chip, the lane it belongs to, an effort estimate, how many pages it
