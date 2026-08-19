@@ -6,7 +6,7 @@
 <title>How to redirect http:// to https:// — and when it won't</title>
 <meta name="description" content="A 301 from http:// to https://, host by host — plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="716d388f13df">
+<meta name="build-id" content="1d0bcc602492">
 <link rel="canonical" href="https://docketseo.app/how-to/redirect-http-to-https/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -356,10 +356,21 @@ body.landing article{padding:0}
    the offset as `transform` there and it beats the settled state, so the card
    never arrives. `.will-reveal.is-in{transform:none}` has to stay the ONLY rule
    that sets transform. */
-.will-reveal{opacity:0;
-  transform:translate(var(--rx,0),var(--ry,26px)) scale(var(--rs,1));
+/* The offsets are RESET here, not just defaulted. Custom properties inherit, so
+   a `.rank-row` nested inside a `.split-col` that carries `--rx:46px` inherited
+   the 46px and translated with it — pushing the document 15px past a 1280px
+   viewport. `var(--rx,0)` does not help: the fallback only applies when the
+   property is unset, and an inherited value is set. Declaring them on
+   `.will-reveal` means every revealed element starts from zero and only the
+   specific rules below move it. Caught by the visual gate. */
+.will-reveal{--rx:0;--ry:26px;--rs:1;opacity:0;
+  transform:translate(var(--rx),var(--ry)) scale(var(--rs));
   transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
 .will-reveal.is-in{opacity:1;transform:none}
+.will-reveal.rd1{transition-delay:.08s}
+.will-reveal.rd2{transition-delay:.16s}
+.will-reveal.rd3{transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.will-reveal.rd1,.will-reveal.rd2,.will-reveal.rd3{transition-delay:0s}}
 .grid-3 > .will-reveal:nth-child(odd){--rx:-38px;--ry:8px}
 .grid-3 > .will-reveal:nth-child(even){--rx:38px;--ry:8px}
 .split > .will-reveal:nth-child(1){--rx:-46px;--ry:0}
@@ -469,7 +480,24 @@ body.landing article{padding:0}
      Tight tracking is what stops large type reading as merely big. */
   font-size:clamp(2.5rem,5.6vw,3.5rem);line-height:1.02;letter-spacing:-.035em;
   margin:0 0 1.3rem;max-width:15ch}
-.hero-h1 em{font-style:normal;color:var(--brand-light);display:block}
+/* GRADIENT ACCENT TEXT. outlier-site puts `.accent` on the second half of a
+   heading and runs `--grad` through background-clip:text. Every heading on this
+   site already marks its accent half with <em>, so the same treatment lands
+   with no markup change.
+
+   The solid colour is declared FIRST and the transparent version only inside
+   @supports, because `color:transparent` over a background that does not paint
+   is invisible text. Same defence as the app's start heading, and the app's
+   primary button is the one place I forgot it and shipped 1.18:1. */
+.hero-h1 em,.sec-head h2 em,.cta-band h2 em{font-style:normal;color:var(--brand-light)}
+.hero-h1 em{display:block}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .hero-h1 em,.sec-head h2 em,.cta-band h2 em{
+    background-image:var(--grad);-webkit-background-clip:text;background-clip:text;
+    color:transparent}
+}
+@media print{.hero-h1 em,.sec-head h2 em,.cta-band h2 em{
+  background-image:none;color:var(--brand-light)}}
 .hero-h1 em{font-style:normal;color:var(--brand);display:block;
   -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
@@ -788,13 +816,35 @@ your own work rather than reading about one.</p>
       });
     }
   } catch (e) { /* a video that keeps playing is not worth throwing over */ }
-  var SEL = '.sec-head, .card, .split-col, .shot, .chart, .stat, .hero-media, .rank-demo';
+  /* GRANULARITY IS THE EFFECT. Measured on outlier.host: 51 revealed units,
+     median height 171px, SIX in view at once. This page had 31 large ones and
+     only TWO in flight at any scroll position, which is why it read as sections
+     popping rather than a page assembling itself. Adding the smaller units —
+     the faq rows, the chart rows, the ranked rows, the notes — roughly doubles
+     the count without touching any markup. */
+  var SEL = '.sec-head, .card, .split-col, .shot, .chart, .stat, .hero-media, .rank-demo,'
+          + '.faq-item, .bar-row, .rank-row, .hero-note, .cta-shot, .coverage,'
+          + '.wrap-tbl, .callout, figure';
   var els = [].slice.call(document.querySelectorAll(SEL));
   if (!els.length) return;
   var show = function (e) { e.classList.add('is-in'); };
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced || !window.IntersectionObserver) return;
   els.forEach(function (e) { e.classList.add('will-reveal'); });
+  /* Outlier staggers by hand — 15 elements carry .d1, 9 carry .d2, 4 carry .d3,
+     at .08/.16/.24s. Deriving it from position in the parent gets the same
+     cascade with no markup: the second sibling waits .08s, the third .16s, the
+     rest .24s, so a row of cards arrives in sequence rather than as a block. */
+  els.forEach(function (e) {
+    if (!e.parentElement) return;
+    var sibs = [].slice.call(e.parentElement.children).filter(function (c) {
+      return c.classList.contains('will-reveal');
+    });
+    var i = sibs.indexOf(e);
+    if (i === 1) e.classList.add('rd1');
+    else if (i === 2) e.classList.add('rd2');
+    else if (i > 2) e.classList.add('rd3');
+  });
   /* TWO-WAY, and the observer is deliberately NOT unobserved — that call is
      what made this one-shot: the page filled in on the way down and stayed
      filled. Outlier toggles on both edges so content leaves the way it came. */
