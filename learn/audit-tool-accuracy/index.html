@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How to tell whether an audit tool is lying to you</title>
-<meta name="description" content="Four questions to ask of any SEO finding, each learned by getting it wrong. 108 of Docket's 221 test files exist because Docket said something untrue.">
+<meta name="description" content="Four questions to ask of any SEO finding, each learned by getting it wrong. 109 of Docket's 222 test files exist because Docket said something untrue.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="11fa6a5eadc3">
+<meta name="build-id" content="34673c42e5be">
 <link rel="canonical" href="https://docketseo.app/learn/audit-tool-accuracy/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to tell whether an audit tool is lying to you">
-<meta property="og:description" content="Four questions to ask of any SEO finding, each learned by getting it wrong. 108 of Docket's 221 test files exist because Docket said something untrue.">
+<meta property="og:description" content="Four questions to ask of any SEO finding, each learned by getting it wrong. 109 of Docket's 222 test files exist because Docket said something untrue.">
 <meta property="og:url" content="https://docketseo.app/learn/audit-tool-accuracy/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
@@ -22,7 +22,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="How to tell whether an audit tool is lying to you">
-<meta name="twitter:description" content="Four questions to ask of any SEO finding, each learned by getting it wrong. 108 of Docket's 221 test files exist because Docket said something untrue.">
+<meta name="twitter:description" content="Four questions to ask of any SEO finding, each learned by getting it wrong. 109 of Docket's 222 test files exist because Docket said something untrue.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -345,6 +345,10 @@ body.landing article{padding:0}
 .will-reveal.is-in{opacity:1;transform:none;
   transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
 @media(prefers-reduced-motion:reduce){.will-reveal,.will-reveal.is-in{opacity:1;transform:none;transition:none}}
+/* The closing ask shows the thing it is asking for. */
+.cta-shot{margin:1.8rem auto 0;max-width:min(100%,760px)}
+.cta-shot img{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
+  border:1px solid var(--border-strong);box-shadow:var(--lift)}
 .hero-media{margin:2.6rem 0 0;position:relative}
 .hero-media-wrap{position:relative;z-index:1}
 .hero-video{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
@@ -447,7 +451,46 @@ body.landing article{padding:0}
   width:16px;height:16px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 
 /* Sections */
-.sec{padding:var(--sec-y) 0}
+/* LIT FROM BEHIND. Measured off outlier.host, which does it with three large,
+   very soft, low-alpha orbs rather than a background on the section itself:
+
+     b.m1  804px  radial-gradient(circle, rgba(168,85,247,.40), transparent 68%)
+     b.m2  702px  radial-gradient(circle, rgba(217,70,239,.28), transparent 66%)
+     b.m3  609px  radial-gradient(circle, rgba(99,102,241,.30), transparent 66%)
+
+   The three properties that matter: the glow is BIG (600-800px), it fades to
+   fully transparent well before its edge (66-68%), and the alpha is low. Miss
+   any one and it reads as a coloured box rather than light.
+
+   Here it hangs off the top of each section, behind the content, alternating
+   side and hue so the page has a rhythm instead of one repeated blob. `z-index`
+   is scoped by `isolation:isolate`, so a glow can never escape its own section
+   and land on top of something.
+
+   NOT applied to .hero-sec, which already owns its ::before for the grid rule —
+   and which the deploy's visual self-test injects a bug into by literal string
+   match, so redefining it would quietly make that gate blind. */
+/* `overflow:hidden` is load-bearing: the glow is deliberately wider than the
+   viewport (130% and offset), and without this the document grew to 1518px in a
+   1280px viewport and 508px at 375px. The visual gate caught all three sizes.
+   A backlight that adds a horizontal scrollbar is not a backlight. */
+.sec{padding:var(--sec-y) 0;position:relative;isolation:isolate;overflow:hidden}
+.sec::before{content:"";position:absolute;z-index:-1;pointer-events:none;
+  top:-8%;left:50%;width:min(1180px,130%);height:min(720px,90%);
+  transform:translateX(-50%);
+  background:radial-gradient(ellipse at 50% 0%,rgba(45,212,191,.125),rgba(45,212,191,0) 64%)}
+.sec:nth-of-type(2n)::before{
+  left:22%;width:min(980px,110%);
+  background:radial-gradient(ellipse at 50% 0%,rgba(94,234,212,.085),rgba(94,234,212,0) 62%)}
+.sec:nth-of-type(3n)::before{
+  left:78%;width:min(1040px,115%);
+  background:radial-gradient(ellipse at 50% 0%,rgba(45,212,191,.095),rgba(45,212,191,0) 66%)}
+/* The closing ask gets the strongest one, because it is the strongest position. */
+.cta-band{position:relative;isolation:isolate;overflow:hidden}
+.cta-band::before{content:"";position:absolute;z-index:-1;pointer-events:none;
+  top:-14%;left:50%;transform:translateX(-50%);
+  width:min(1240px,140%);height:min(760px,120%);
+  background:radial-gradient(ellipse at 50% 30%,rgba(45,212,191,.17),rgba(45,212,191,0) 64%)}
 /* Hairlines between every section made the page read as a stack of boxes.
    Space separates them now; a rule is used only where one is doing work. */
 .sec + .sec{border-top:1px solid var(--border)}
@@ -523,7 +566,7 @@ body.landing article{padding:0}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 96 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"199","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"96 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to tell whether an audit tool is lying to you","description":"Four questions to ask of any SEO finding, each learned by getting it wrong. 108 of Docket's 221 test files exist because Docket said something untrue.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/audit-tool-accuracy/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to tell whether an audit tool is lying to you","description":"Four questions to ask of any SEO finding, each learned by getting it wrong. 109 of Docket's 222 test files exist because Docket said something untrue.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/audit-tool-accuracy/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I know if an SEO tool's findings are accurate?","acceptedAnswer":{"@type":"Answer","text":"Ask four things of any finding: how many pages it actually read before claiming something is missing site-wide, whether its headline and its detail report the same number, whether anything was observed at all when it reports an absence, and whether the vendor keeps a regression test when they fix a false positive."}},{"@type":"Question","name":"What is a false positive in an SEO audit?","acceptedAnswer":{"@type":"Answer","text":"A finding that is confidently stated and not true. The common causes are a tool sampling part of a site and reporting about all of it, a crawl that was blocked or returned nothing being read as evidence of absence, and pattern matches that fire on the wrong thing — an inline SVG label counted as the page title, for instance."}},{"@type":"Question","name":"Why does a failed crawl produce false findings?","acceptedAnswer":{"@type":"Answer","text":"Because 'we did not see it' and 'it is not there' are the same observation to a tool that is not careful. A rate-limited crawl that reads one error page has no evidence about analytics, phone numbers or anything else, but a naive check reports all of them as missing. Look for a line saying the crawl was degraded; if the report does not mention it, the silence is not reassurance."}},{"@type":"Question","name":"Why does an SEO tool flag things that look fine in my browser?","acceptedAnswer":{"@type":"Answer","text":"Usually because it read the HTML your server sent and you are looking at the page after JavaScript ran. On most modern sites those are different documents. Anything a tool says about what a visitor sees — visible prices, review stars, headings, body copy — is only trustworthy if it rendered the page. Ask whether the tool rendered, and if it did not, treat those findings as unconfirmed rather than wrong."}},{"@type":"Question","name":"Should I run an SEO audit in CI?","acceptedAnswer":{"@type":"Answer","text":"It is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Test it first against a hostname that does not resolve: a tool that invents findings about a site it never reached will fail your build with advice about a problem you do not have."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -550,8 +593,8 @@ plausible.init()
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Audit accuracy</div><h1>How to tell whether an audit tool is lying to you</h1>
 
 <p class="lede">An SEO audit is a pile of confident sentences about your site, and the useful
-question is which of them the tool actually checked. <strong>108 of Docket's
-221 test files</strong> — 48.9% — exist because Docket said
+question is which of them the tool actually checked. <strong>109 of Docket's
+222 test files</strong> — 49.1% — exist because Docket said
 something that was not true, and every one of those mistakes belongs to a family you can look
 for in any tool's report.</p>
 
@@ -653,7 +696,7 @@ they have had far more of those than Docket has.</p>
 newer, which means it has more undiscovered false positives than they do, and the only useful
 response to that is to publish the ones we find and make them fail the build. Every mistake in
 this article is written up in the code that fixes it, with the site it happened to, and
-108 of the 221 test files exist for no other reason.</p>
+109 of the 222 test files exist for no other reason.</p>
 
 <h2>The version of this that matters most</h2>
 
@@ -718,6 +761,19 @@ site.</p>
      3. a hard timeout reveals everything after 1.4s whatever the observer did,
         so the worst case is an un-animated page, never an empty one. */
 (function () {
+  /* A looping autoplay video is motion nobody asked for, and CSS cannot stop
+     it — `prefers-reduced-motion` can hide or freeze almost anything except a
+     playing <video>. So the script pauses it and rewinds to the poster frame,
+     which is a real frame of the same run, so nothing is lost.
+     builtbykerr.com carries ten prefers-reduced-motion blocks to this file's
+     two; this is the one that was actually missing something. */
+  try {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('video[autoplay]').forEach(function (v) {
+        v.removeAttribute('autoplay'); v.pause(); v.currentTime = 0;
+      });
+    }
+  } catch (e) { /* a video that keeps playing is not worth throwing over */ }
   var SEL = '.sec-head, .card, .split-col, .shot, .chart, .stat, .hero-media, .rank-demo';
   var els = [].slice.call(document.querySelectorAll(SEL));
   if (!els.length) return;
