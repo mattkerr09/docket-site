@@ -6,7 +6,7 @@
 <title>Googlebot stops reading at 2MB and never tells you</title>
 <meta name="description" content="Googlebot fetches 2MB of a page and indexes that as the whole file. We measured 82 homepages: 5 are already past it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="cb94e54c2984">
+<meta name="build-id" content="0df7c8f11724">
 <link rel="canonical" href="https://docketseo.app/learn/googlebot-2mb-limit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -205,7 +205,7 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
   letter-spacing:.04em;color:var(--brand);margin-left:.28em;
   border:1px solid var(--brand);border-radius:var(--radius-sm);padding:.02em .3em}
 .nav-brand:hover{text-decoration:none;color:var(--brand-light)}
-.nav-links{display:flex;gap:1.35rem;font-size:var(--t-md)}
+.nav-links{display:flex;gap:1.3rem;font-size:var(--t-md)}
 .nav-links a{color:var(--text-mid)}
 @media(hover:hover){.nav-links a:hover{color:var(--text);text-decoration:none}}
 @media(max-width:780px){
@@ -244,10 +244,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
-  padding:.62rem 1.2rem;border-radius:var(--radius-md);font-size:var(--t-md);border:0;cursor:pointer}
+  padding:0.6rem 1.2rem;border-radius:var(--radius-md);font-size:var(--t-md);border:0;cursor:pointer}
 .btn:hover{background:var(--brand-light);color:var(--on-accent);text-decoration:none}
 .btn-ghost{display:inline-block;border:1px solid var(--border-strong);color:var(--text-mid);
-  padding:.6rem 1.15rem;border-radius:var(--radius-md);font-size:var(--t-md);font-weight:600}
+  padding:.6rem 1.1rem;border-radius:var(--radius-md);font-size:var(--t-md);font-weight:600}
 .btn-ghost:hover{background:var(--surface-2);color:var(--text);text-decoration:none}
 
 article{padding:2.8rem 0 4.5rem}
@@ -273,7 +273,7 @@ pre{background:var(--surface);border:1px solid var(--border);border-radius:var(-
 pre code{background:0;padding:0;color:var(--text-mid)}
 
 table.cmp{width:100%;border-collapse:collapse;margin:1.4rem 0;font-size:var(--t-md)}
-table.cmp th,table.cmp td{text-align:left;padding:.66rem .72rem;
+table.cmp th,table.cmp td{text-align:left;padding:0.6rem 0.7rem;
   border-bottom:1px solid var(--border);vertical-align:top}
 table.cmp th{color:var(--text-dim);font-size:var(--t-xs);text-transform:uppercase;
   letter-spacing:.06em;font-weight:700}
@@ -284,7 +284,7 @@ table.cmp td:first-child{color:var(--text);font-weight:600}
 
 .callout{background:var(--surface);border:1px solid var(--border);box-shadow:var(--lift);
   border-left:3px solid var(--brand);border-radius:var(--radius-sm);
-  padding:1.05rem 1.2rem;margin:1.5rem 0}
+  padding:1rem 1.2rem;margin:1.5rem 0}
 .callout p:last-child{margin-bottom:0}
 .callout-title{color:var(--brand-light);font-weight:700;font-size:var(--t-sm);
   text-transform:uppercase;letter-spacing:.07em;margin-bottom:.4rem}
@@ -303,7 +303,7 @@ footer{border-top:1px solid var(--border);padding:2.6rem 0 3rem;margin-top:3rem;
   gap:1.6rem;margin-bottom:2rem}
 .foot-grid h4{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;
   color:var(--text-dim);margin-bottom:.6rem;font-weight:700}
-.foot-grid a{display:block;color:var(--text-mid);padding:.17rem 0;font-size:var(--t-md)}
+.foot-grid a{display:block;color:var(--text-mid);padding:0.2rem 0;font-size:var(--t-md)}
 .foot-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   border-top:1px solid var(--border);padding-top:1.3rem}
 
@@ -402,7 +402,7 @@ body.landing article{padding:0}
 .shot{margin:0;max-width:min(100%,1100px);margin-inline:auto}
 .shot img{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
   border:1px solid var(--border-strong);background:var(--surface);box-shadow:var(--lift-lg)}
-.shot figcaption{margin-top:.85rem;color:var(--text-dim);font-size:var(--t-md);
+.shot figcaption{margin-top:0.8rem;color:var(--text-dim);font-size:var(--t-md);
   line-height:1.6;max-width:62ch;margin-inline:auto;text-align:center}
 .shot figcaption strong{color:var(--text)}
 @media(max-width:640px){.shot figcaption{text-align:left}}
@@ -413,7 +413,7 @@ body.landing article{padding:0}
    move, once, on the one idea the product is actually about. */
 .rank-demo{display:grid;gap:.6rem;margin:2rem 0 0}
 .rank-row{display:flex;align-items:center;gap:.9rem;background:var(--surface-2);
-  border:1px solid var(--border);border-radius:var(--radius-md);padding:.85rem 1.05rem;
+  border:1px solid var(--border);border-radius:var(--radius-md);padding:0.8rem 1rem;
   font-size:var(--t-md);color:var(--text-mid)}
 .rank-row .n{flex:none;width:26px;height:26px;border-radius:var(--radius-md);display:grid;
   place-items:center;font-family:var(--mono);font-size:var(--t-xs);font-weight:600;
@@ -447,7 +447,7 @@ body.landing article{padding:0}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
   font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
   background:var(--brand-soft);
-  border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:.5rem 1.05rem;
+  border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:0.55rem 1rem;
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
@@ -466,7 +466,7 @@ body.landing article{padding:0}
      had been lowered to 68.8px, describing a number no longer in the file.
      Tight tracking is what stops large type reading as merely big. */
   font-size:clamp(2.5rem,5.6vw,3.5rem);line-height:1.02;letter-spacing:-.035em;
-  margin:0 0 1.35rem;max-width:15ch}
+  margin:0 0 1.3rem;max-width:15ch}
 .hero-h1 em{font-style:normal;color:var(--brand-light);display:block}
 .hero-h1 em{font-style:normal;color:var(--brand);display:block;
   -webkit-text-fill-color:currentColor}
@@ -561,7 +561,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 
 /* Index chart, drawn from the measured dataset */
 .chart{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem 1.6rem;box-shadow:var(--lift)}
-.bar-row{display:grid;grid-template-columns:130px 1fr 46px;gap:.85rem;align-items:center;margin-bottom:.62rem}
+.bar-row{display:grid;grid-template-columns:130px 1fr 46px;gap:0.8rem;align-items:center;margin-bottom:.62rem}
 .bar-lbl{font-size:var(--t-sm);color:var(--text-mid);text-align:right}
 .bar-track{height:9px;background:var(--surface-3);border-radius:0;overflow:hidden}
 .bar-fill{display:block;height:100%;border-radius:var(--radius-pill);
@@ -578,9 +578,9 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 
 /* Email capture. Quiet on purpose: it sits after the buy CTA and must not
    compete with it — someone ready to buy should not be diverted into a form. */
-.sub{display:flex;gap:.5rem;flex-wrap:wrap;align-items:flex-end;margin:1.1rem 0 .6rem}
+.sub{display:flex;gap:0.55rem;flex-wrap:wrap;align-items:flex-end;margin:1.1rem 0 .6rem}
 .sub-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.sub input[type=email]{flex:1 1 15rem;min-width:0;padding:.62rem .8rem;
+.sub input[type=email]{flex:1 1 15rem;min-width:0;padding:0.6rem .8rem;
   font:inherit;font-size:var(--t-md);color:var(--text);background:var(--surface);
   border:1px solid var(--border);border-radius:var(--radius-sm)}
 .sub input[type=email]:focus-visible{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
