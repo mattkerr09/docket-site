@@ -1,0 +1,44 @@
+Third-party notices — docketseo.app
+===================================
+
+TYPEFACE: Switzer
+-----------------
+
+This site serves four weights of Switzer as self-hosted woff2 files from
+/fonts/. Everything below was read out of the shipped binary's name table with
+fontTools, not from a web page, so it describes the files this site actually
+serves:
+
+    Copyright     Copyright 2015-2021 Indian Type Foundry. All rights reserved.
+    Trademark     Switzer is a trademark of the Indian Type Foundry.
+    Designer      Jeremie Hornus
+    Manufacturer  Indian Type Foundry  (https://indiantypefoundry.com)
+    Version       1.200
+    Licence       https://fontshare.com/terms
+    fsType        0  (installable embedding, no restriction)
+
+The licence text embedded in the font states:
+
+    "This Font Software is protected under domestic and international trademark
+     and copyright law. You agree to identify the ITF fonts by name and credit
+     the ITF's ownership of the trademarks and copyrights in any design or
+     production credits."
+
+This file exists to satisfy that condition. It was missing until 2026-08-19:
+the site had been serving the fonts for months with no credit anywhere, which
+is the one thing the licence asks for in return.
+
+A note for whoever regenerates these files: the name table of the shipped
+subsets has its family (id1), full name (id4) and PostScript name (id6) set to
+the literal string "false" — an artefact of whatever subsetter produced them.
+It is harmless, because @font-face names the family in CSS, but it means the
+files cannot be identified from their own metadata. The unique identifier
+(id3) still reads "1.200;ITFO;Switzer-Regular", which is how the above was
+confirmed.
+
+MONOSPACE
+---------
+
+No monospace font is served. Code and measured figures use the system stack
+(ui-monospace, SF Mono, Menlo, Consolas), so nothing is downloaded and nothing
+needs a notice.
