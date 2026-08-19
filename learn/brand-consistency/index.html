@@ -6,7 +6,7 @@
 <title>Brand consistency: the question no SEO crawler asks</title>
 <meta name="description" content="Of 11 company sites linking social profiles, 9 declared none in schema. What a brand consistency audit checks, and where design tools do it better.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="1d0bcc602492">
+<meta name="build-id" content="73959b25462e">
 <link rel="canonical" href="https://docketseo.app/learn/brand-consistency/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -851,7 +851,18 @@ broken for years because no tool was looking.</p>
      the count without touching any markup. */
   var SEL = '.sec-head, .card, .split-col, .shot, .chart, .stat, .hero-media, .rank-demo,'
           + '.faq-item, .bar-row, .rank-row, .hero-note, .cta-shot, .coverage,'
-          + '.wrap-tbl, .callout, figure';
+          + '.wrap-tbl, .callout, figure,'
+          /* ARTICLES ARE 57 OF THE 58 PAGES and were getting almost none of
+             this: measured 2-4 reveal units each, none of them in the viewport
+             at load, so the 1.4s failsafe revealed them and nothing ever
+             animated. The list above is homepage-shaped — `.card`, `.chart`,
+             `.rank-row` — and an article is <h2>, <h3>, <pre> and prose.
+
+             HEADINGS AND BLOCKS ONLY, never <p>. Fading in body text as
+             somebody reads it is a different and worse thing than a section
+             arriving; the point is to animate structure, not sentences. */
+          + 'article > h2, article > h3, article > pre, article > .lede,'
+          + 'article > table, article > blockquote';
   var els = [].slice.call(document.querySelectorAll(SEL));
   if (!els.length) return;
   var show = function (e) { e.classList.add('is-in'); };
