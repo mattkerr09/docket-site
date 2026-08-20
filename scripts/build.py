@@ -434,6 +434,69 @@ def write_static() -> None:
     (SITE / ".nojekyll").write_text("")
 
 
+def thank_you() -> Path:
+    """The page a buyer lands on after paying. Built 2026-08-19.
+
+    WHY IT EXISTS. Three of the four products in this portfolio had nowhere for a
+    purchase to land. Docket was one of them: the checkout finished on Polar's own
+    confirmation screen, so at the moment of payment the buyer left docketseo.app
+    and was never told anything by us.
+
+    Three costs, and the third is the expensive one:
+      - no sale is countable in analytics, ads or no ads;
+      - a Meta `Purchase` event has nowhere to fire, so a campaign has nothing to
+        optimise toward — and the symptom of that reads as "the pixel is broken",
+        which sends somebody to debug the pixel while the real fault is a missing
+        page;
+      - the buyer is dropped at peak intent with no idea what happens next, which
+        is what turns into a refund request rather than a missing metric.
+
+    ⚠️ WHAT THIS PAGE DELIBERATELY DOES NOT SAY, and why each was left out:
+
+      - **No licence key, and no activation steps.** Docket's site mentions a key
+        exactly zero times, and the shipped 1.1.57 build exposes no licence route
+        at all — every feature is already open. Telling a buyer to "activate" would
+        describe a mechanism that does not exist in the product they just paid for.
+      - **No delivery time.** Not "within a minute", not "shortly". No purchase has
+        ever completed on this product, so any number here would be a promise
+        nobody has measured.
+      - **No support response time**, for the same reason.
+
+    Every link below was checked live before shipping: /download/ 200,
+    /legal/refunds/ 200, /contact/ 200, and hello@docketseo.app is the address the
+    contact page already publishes.
+
+    INERT UNTIL THE CHECKOUT POINTS HERE. Polar's success_url is a dashboard
+    setting and Matthew's to change; until he does, this page is reachable but
+    nobody arrives on it. That is the correct order — the page has to exist before
+    the redirect can be pointed at it.
+    """
+    body = """
+<p>Your payment went through. The receipt comes by email from Polar, who handle
+the checkout — it may land under a different sender name than Docket.</p>
+
+<h2>Get the app</h2>
+<p>Docket runs entirely on your Mac. Nothing to unlock and no key to enter — the
+download is the full application.</p>
+<p><a class="btn" href="/download/">Download Docket</a></p>
+
+<h2>If something is wrong</h2>
+<p>Email <a href="mailto:hello@docketseo.app">hello@docketseo.app</a> and say what
+happened. If the purchase was a mistake, the
+<a href="/legal/refunds/">refund policy</a> is on this site and it is short.</p>
+"""
+    return render(
+        cat="", slug="thank-you",
+        title="Thank you — Docket",
+        desc="Your Docket purchase is complete. Where to download the app and how to reach us.",
+        h1="Thank you",
+        crumb='<a href="/">Docket</a> / Thank you',
+        body=body,
+        schema_type="",
+        noindex=True,
+    )
+
+
 def not_found() -> Path:
     """/404.html — GitHub Pages serves this for any path that does not exist.
 
@@ -552,6 +615,7 @@ def main() -> int:
     # 404 emitted a second <loc>https://docketseo.app/</loc> — a duplicate entry
     # is an invalid sitemap. It is also a page that must never be indexed.
     not_found()
+    thank_you()
 
     write_robots()
     write_sitemap(pages)
