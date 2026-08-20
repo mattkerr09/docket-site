@@ -1057,6 +1057,46 @@ def _entity_schema() -> str:
     )
 
 
+#: Meta pixel, staged DARK 2026-08-19. `META_PIXEL_ID` is empty and the loader
+#: returns before touching the network, so nothing is requested, no cookie is set
+#: and the privacy policy stays true exactly as written today.
+#:
+#: ⚠️ THE ID AND THE PRIVACY REVISION SHIP IN THE SAME COMMIT. Never one then the
+#: other. A pixel running under a policy that denies third-party tracking is a
+#: false legal statement on a commercial page, and "we'll update the policy next"
+#: is how it stays false for a month. If they ever must be split, the POLICY goes
+#: first: over-disclosure is cheap and fixed in a commit, the reverse is not.
+#:
+#: What this site's policy currently says that a live pixel would falsify — read
+#: from the live page, not assumed, because every site denies something different:
+#:
+#:     "No account, no telemetry, no analytics on this site"
+#:     "This site is static and runs two third-party scripts"
+#:
+#: The second is a COUNT and goes to three. A revision that fixes the first and
+#: leaves the count is still false.
+#:
+#: Dark is a claim that has to be tested in both directions, not assumed: assert
+#: that no fbq call is emitted while the id is empty, AND that planting an id
+#: does emit one. A test that only checks the empty case cannot fail.
+META_PIXEL_ID = ""
+
+META_PIXEL = (
+    ('<!-- Meta pixel. Dark: META_PIXEL_ID is empty, so nothing loads. -->\n'
+     '<script>\n'
+     '!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?'
+     'n.callMethod.apply(n,arguments):n.queue.push(arguments)};'
+     'if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];'
+     't=b.createElement(e);t.async=!0;t.src=v;'
+     's=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}'
+     '(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");\n'
+     "fbq('init','" + META_PIXEL_ID + "');\n"
+     "fbq('track','PageView');\n"
+     '</script>\n')
+    if META_PIXEL_ID else ""
+)
+
+
 #: Plausible, added by Matthew on 2026-08-13. It lived in `site/index.html`,
 #: which is generated — the next build deleted it, and would have deleted it
 #: again after every deploy. It belongs here, where the page shell is written.
@@ -1213,7 +1253,7 @@ def render(
 {STYLE}
 {schema}
 {ANALYTICS}
-</head>
+{META_PIXEL}</head>
 <body{body_class}>
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
