@@ -68,8 +68,9 @@ def download() -> Path:
     body = f"""
 <p class="lede">Docket is {PRICE_STR}, paid once, for macOS 12 or later on Apple Silicon.
 {DMG_SIZE}. No subscription, no crawl credits, no per-seat pricing — audit as many sites as
-you like, for as long as you like. There is no account to create, no licence server to phone,
-and no telemetry.</p>
+you like, for as long as you like. There is no account to create and no telemetry. Activating
+your licence checks the key with our payment provider once, and about once a day after that;
+nothing about the sites you audit is ever sent anywhere.</p>
 
 {_payment_note()}
 
@@ -658,7 +659,7 @@ hundred pull requests in a month.</p>
 
 <p>Worth saying plainly: that is a recurring cost on a tool sold as a one-time
 {PRICE_STR}, and it is GitHub's, not ours. If it bothers you, gate on merges to main rather
-than every push, or run the job on a Mac you already own — Docket has no licence server and no
+than every push, or run the job on a Mac you already own — Docket has no
 seat count, so a self-hosted runner is free.</p>
 
 <h2>Three things not to do</h2>
@@ -1563,9 +1564,9 @@ rebrand the CSV and JSON exports, bill for them.</p>
 <p>Delivery is a download. Docket ships as a notarised macOS disk image of {DMG_SIZE} from
 <a href="https://github.com/mattkerr09/docket-site/releases">the releases page</a>{linux_clause}.
 There is nothing to post and no activation email to wait for.</p>
-<p>Two consequences of there being no licence server, both stated because a buyer will meet
-them. The download link is public, so payment is not the thing that makes the file reachable —
-what payment buys is the right to use it. And updates are published to every copy: while Docket
+<p>Two consequences of how this is sold, both stated because a buyer will meet them. The
+download link is public, so payment is not the thing that makes the file reachable — what payment
+buys is the licence key that lets it run. And updates are published to every copy: while Docket
 is on version 1.x, upgrades cost nothing and install through the app's own updater. Whether a
 future 2.0 is a paid upgrade has not been decided; if it ever is, the copy you paid for keeps
 working.</p>
@@ -1603,9 +1604,11 @@ by negligence is not excluded, because it cannot be.</p>
 <h2>Ending the licence</h2>
 <p>Your licence ends if you take a refund — on the day it is issued — or if you break these
 terms in a way you do not put right after being asked. In either case, delete the application.
-Docket has no licence server and no remote switch, so this is a duty on you rather than an
-action taken from here, and saying so is more honest than implying a capability that was
-deliberately never built.</p>
+Your licence key stops validating in either case, and the application stops running audits
+within about a day of that — the check is daily, and a revoked key is refused immediately
+rather than being given the offline grace period. Deleting the application is still asked of
+you, but it is no longer the only thing standing between a cancelled licence and continued
+use.</p>
 <p>Your audit history in <code>~/.docket/</code> is yours in every case. It was never uploaded,
 so there is nothing on our side to delete or withhold.</p>
 
@@ -1757,10 +1760,15 @@ reason you are unhappy, and none of the three belong on a page anyone can read.<
 
 <h2>What happens to your copy</h2>
 
-<p>Nothing happens to it. Docket has no licence server, no account and no activation check —
-that is stated on the homepage, the download page and <a href="/about/">the about page</a> as a
-feature, and it is one, but it has a consequence this page has to own. After a refund the copy
-on your Mac keeps working, and there is no mechanism by which it could be made to stop.</p>
+<p>It stops working. Taking a refund revokes the licence key that came with your purchase, and
+Docket re-checks that key about once a day — so the copy on your Mac will refuse to run an audit
+within roughly a day of the refund being issued. A revoked key is refused immediately and is not
+given the offline grace period that a merely-unreachable licence server would allow.</p>
+
+<p>This changed with version 1.1.59. Before it, Docket had no licence server at all and a
+refunded copy kept working indefinitely; that is no longer true, and it would be worse to leave
+the old promise standing than to say so plainly. Your audit history is untouched either way — see
+below.</p>
 
 <p>What is asked is that you delete the application and stop using it. What that rests on is
 that you will. The licence granted by <a href="/legal/terms/">the terms of use</a> ends the day

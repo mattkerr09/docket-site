@@ -307,7 +307,8 @@ def body() -> str:
     number, not a guess. <a href="/how-to/outrank-a-bigger-competitor/">See what it finds</a>.</p></div>
   <div class="card"><div class="card-ico">{ICONS['lock']}</div>
     <h3>Nothing is uploaded</h3>
-    <p>No account, no telemetry, no licence server. The crawl only ever touches the site you
+    <p>No account and no telemetry. Activating your licence is the one thing that
+    contacts us, and after that it is checked about once a day. The crawl only ever touches the site you
     are auditing; four optional checks also fetch data Docket cannot produce alone, and
     <code>--offline</code> turns all four off.</p></div>
   <div class="card"><div class="card-ico">{ICONS['order']}</div>
