@@ -596,6 +596,24 @@ footer{border-top:1px solid var(--border);padding:2.6rem 0 3rem;margin-top:3rem;
 .foot-grid h4{font-size:var(--t-xs);text-transform:uppercase;letter-spacing:.08em;
   color:var(--text-dim);margin-bottom:.6rem;font-weight:700}
 .foot-grid a{display:block;color:var(--text-mid);padding:0.2rem 0;font-size:var(--t-md)}
+/* TOUCH TARGETS, measured at 375px on 2026-08-19 before any ad spend.
+   30 standalone links were under 44px — nav and footer at 23px, barely half
+   the minimum Apple and Google both publish. Inline links inside prose are
+   deliberately NOT included: a link in a sentence is text-height by nature and
+   padding one to 44px would break the line box it sits in.
+   The two primary CTAs already passed; this is everything else. */
+@media(max-width:720px){
+  .nav-links a{display:inline-flex;align-items:center;min-height:44px}
+  /* The rail carried the height instead of the links, so the nav grew by the
+     full padding twice over. Links own their own hit box now and the rail
+     stays as tight as it was. */
+  .nav-links{gap:1rem 1.15rem}
+  .foot-grid a{min-height:44px;display:flex;align-items:center;padding:0}
+  /* The capture submit is a conversion control, so it gets the same floor as
+     the buy button rather than the smaller size a form input inherits. */
+  .sub button,.sub .btn,.nav-brand{min-height:44px}
+  .nav-brand{display:inline-flex;align-items:center}
+}
 .foot-bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
   border-top:1px solid var(--border);padding-top:1.3rem}
 
