@@ -6,7 +6,7 @@
 <title>Refund policy — 30 days, no conditions</title>
 <meta name="description" content="Thirty days from purchase, no conditions — Docket collects no usage data it could condition one on. How to ask, and what happens to your copy after.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="6a8e862389c1">
+<meta name="build-id" content="cdcc00369c3c">
 <link rel="canonical" href="https://docketseo.app/legal/refunds/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -742,10 +742,15 @@ reason you are unhappy, and none of the three belong on a page anyone can read.<
 
 <h2>What happens to your copy</h2>
 
-<p>Nothing happens to it. Docket has no licence server, no account and no activation check —
-that is stated on the homepage, the download page and <a href="/about/">the about page</a> as a
-feature, and it is one, but it has a consequence this page has to own. After a refund the copy
-on your Mac keeps working, and there is no mechanism by which it could be made to stop.</p>
+<p>It stops working. Taking a refund revokes the licence key that came with your purchase, and
+Docket re-checks that key about once a day — so the copy on your Mac will refuse to run an audit
+within roughly a day of the refund being issued. A revoked key is refused immediately and is not
+given the offline grace period that a merely-unreachable licence server would allow.</p>
+
+<p>This changed with version 1.1.59. Before it, Docket had no licence server at all and a
+refunded copy kept working indefinitely; that is no longer true, and it would be worse to leave
+the old promise standing than to say so plainly. Your audit history is untouched either way — see
+below.</p>
 
 <p>What is asked is that you delete the application and stop using it. What that rests on is
 that you will. The licence granted by <a href="/legal/terms/">the terms of use</a> ends the day
