@@ -1,11 +1,11 @@
 {
-  "version": "1.1.59",
-  "notes": "This release requires a licence key. Docket has been free to run while the site sold it at $199; from 1.1.59 an audit needs the key from your purchase email. Open the app and run an audit and it will ask for the key, or run docket licence --key YOUR-KEY. Activation did not exist before today \u2014 the app would have asked for a key with nowhere to enter one \u2014 so this release is as much about that as about the gate.",
-  "pub_date": "2026-08-21T17:46:13Z",
+  "version": "1.1.60",
+  "notes": "--offline no longer promises silence a licensed build does not deliver: your key is re-checked about once a day whatever flags you pass, and that request carries the key and never the site you are auditing. A licensed copy that has never reached the licence server is refused outright \u2014 there is no grace for a licence that was never validated.",
+  "pub_date": "2026-08-21T18:09:55Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTU5cTZsSU5JbnQ3UHZuMSs5REFmNEd5UG00N3Z1UG1iTzdZYlJmc1paR3hTSGtvOWhvR3o1QkxEMHlIMFNDYko2ZFhnL1RDZms1UW4xSHk4SlJkVlFRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MzM0MjQ5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKWlZOMHBSMkNjRWxlb1UxUVl1UVg5NjN4Vk1xQVp4OHhVZDZoT0wxd1dYOHJlSmkyUlMzTE1jcitZMEhQQVJFVFpBSXVoQWNRVDFUdVpkY0t4SFNvQ1E9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.59/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJFRFBHTjRqS01zaUZFa0lEclUraEZnS00yei81TjYxd2dTc2VBRGRvcnFiT29nN2VEbVdRWUM2UkpjZDRudjF2WUVZQ2RCWEI3TGdUK2ppeUJoclFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MzM1NjkwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKOHhJY0tvc1JaUnVDOFhQRU4rYXd0cWxIcDgwUGlsUWZIcUZTOXloT2JBZlhYd0VoQ2ZVcWFmeDNiLytFd0wwN0lJNU1KY0d1bXozUzJCVEFIdk5tQ3c9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.60/Docket.app.tar.gz"
     }
   }
 }
