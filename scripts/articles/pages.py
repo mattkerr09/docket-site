@@ -1765,7 +1765,8 @@ Docket re-checks that key about once a day — so the copy on your Mac will refu
 within roughly a day of the refund being issued. A revoked key is refused immediately and is not
 given the offline grace period that a merely-unreachable licence server would allow.</p>
 
-<p>This changed with version 1.1.59. Before it, Docket had no licence server at all and a
+<p>This changed when Docket became a licensed product in August 2026. Before that it had no
+licence server at all and a
 refunded copy kept working indefinitely; that is no longer true, and it would be worse to leave
 the old promise standing than to say so plainly. Your audit history is untouched either way — see
 below.</p>
