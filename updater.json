@@ -1,11 +1,11 @@
 {
-  "version": "1.1.58",
-  "notes": "A word in a list is no longer read as a review section, so Docket no longer offers AggregateRating markup \u2014 with a worked star rating attached \u2014 to sites that have no reviews. A pixel snippet that cannot fire is no longer reported as a legal exposure, and is now reported as its own HIGH finding instead: it looks installed, sends nothing, and reports zero conversions while your ad spend continues.",
-  "pub_date": "2026-08-19T18:57:40Z",
+  "version": "1.1.59",
+  "notes": "This release requires a licence key. Docket has been free to run while the site sold it at $199; from 1.1.59 an audit needs the key from your purchase email. Open the app and run an audit and it will ask for the key, or run docket licence --key YOUR-KEY. Activation did not exist before today \u2014 the app would have asked for a key with nowhere to enter one \u2014 so this release is as much about that as about the gate.",
+  "pub_date": "2026-08-21T17:46:13Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXhwbzVoeC9IRUpmc3ZiTG4vYWpEb2EzZzIzYW1RT0hSaWcxQThzOTFkZkR5YlkzNzM1RXhmMXJreVJldDVsUGhuVm5kbTdNWW1oa1c0aVRtaWdkK1FFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MTY1Njk1CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKY2dHTW02N1V4RndCZG9tdTAveVpBejVwNUhMNWxBcHJRcmlGWElVTEJRazJTR2pUZlIzd0xXZWdaWlRKNHl2VSs5TDFaa2wydVJuNGo5TEhpUm1aRHc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.58/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTU5cTZsSU5JbnQ3UHZuMSs5REFmNEd5UG00N3Z1UG1iTzdZYlJmc1paR3hTSGtvOWhvR3o1QkxEMHlIMFNDYko2ZFhnL1RDZms1UW4xSHk4SlJkVlFRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MzM0MjQ5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKWlZOMHBSMkNjRWxlb1UxUVl1UVg5NjN4Vk1xQVp4OHhVZDZoT0wxd1dYOHJlSmkyUlMzTE1jcitZMEhQQVJFVFpBSXVoQWNRVDFUdVpkY0t4SFNvQ1E9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.59/Docket.app.tar.gz"
     }
   }
 }
