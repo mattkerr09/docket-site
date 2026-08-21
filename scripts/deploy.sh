@@ -184,6 +184,17 @@ git branch -D gh-pages-tmp >/dev/null
 # over 0.1.2, because the version was typed inline in a banner. Docket ships
 # several times an hour, so this is the same accident waiting for the same
 # conditions.
+echo "==> vendor-match gate"
+# The site takes the money and the app validates the key. If those name
+# different vendors, a customer pays and the app refuses what they were sent.
+# Every other money gate stays green through that: the checkout gate checks the
+# price, the download gate checks reachability, and neither knows which vendor
+# the binary behind the link will accept a key from.
+if ! python3 scripts/verify_vendor_match.py; then
+  echo "FAIL  vendor mismatch between the site and the build being shipped"
+  exit 1
+fi
+
 echo "==> version-string gate"
 "$PY" scripts/verify_version_strings.py
 
