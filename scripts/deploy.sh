@@ -184,6 +184,16 @@ git branch -D gh-pages-tmp >/dev/null
 # over 0.1.2, because the version was typed inline in a banner. Docket ships
 # several times an hour, so this is the same accident waiting for the same
 # conditions.
+echo "==> source-watch gate"
+# Docket sells being current, so the feed going stale is a product defect rather
+# than a chore. This only FAILS when the feed has been untouched past its window
+# AND the sources it cites have actually moved — a gate that fires on every
+# cosmetic change to someone else's blog is one nobody reads.
+if ! python3 scripts/watch_sources.py; then
+  echo "FAIL  the knowledge feed is overdue and its sources have changed"
+  exit 1
+fi
+
 echo "==> pixel/disclosure gate"
 # render.py has demanded this in a comment for weeks: "Dark is a claim that has
 # to be tested in both directions". The dangerous half is the one nobody writes

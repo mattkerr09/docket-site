@@ -1,0 +1,44 @@
+{
+  "anthropic-crawlers": {
+    "length": 20284,
+    "seen": "2026-08-23",
+    "sha256": "d6a88836be55545ba867fbef2cd08f1d9bedb4ed7f87c9aff1f72ff29232fffc",
+    "url": "https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler"
+  },
+  "google-crawlers": {
+    "length": 11215,
+    "seen": "2026-08-23",
+    "sha256": "093c9a546561883abea6cd2f38844ca99cbfe56463bf07d4536df5bae734f0a2",
+    "url": "https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers"
+  },
+  "google-ranking-updates": {
+    "length": 4287,
+    "seen": "2026-08-23",
+    "sha256": "5c98ae5ca6719f270c71b655085c1b3c0c4c2005de1c25f1397e3b0909923462",
+    "url": "https://developers.google.com/search/updates/ranking"
+  },
+  "google-search-central-blog": {
+    "length": 83614,
+    "seen": "2026-08-23",
+    "sha256": "6d89ec6b15cefa7de2233d61f533e31ead9810eab9917bb87e908b9fa44e3015",
+    "url": "https://developers.google.com/search/blog"
+  },
+  "openai-crawlers": {
+    "length": 14762,
+    "seen": "2026-08-23",
+    "sha256": "447ca63cdca2b453c6c97b0e0c1a87b8c11e112a7152ef75a2270122f0df0bb7",
+    "url": "https://platform.openai.com/docs/bots"
+  },
+  "perplexity-crawlers": {
+    "length": 5822,
+    "seen": "2026-08-23",
+    "sha256": "86bf08f69b43a91009dda4923fbec886823d67a013e6405c7bca6948e2972474",
+    "url": "https://docs.perplexity.ai/guides/bots"
+  },
+  "web-vitals-thresholds": {
+    "length": 16896,
+    "seen": "2026-08-23",
+    "sha256": "b13ee9ef866d129d538ed5ed28ad07d504c5c708b78524518de6c52169121da5",
+    "url": "https://web.dev/articles/vitals"
+  }
+}
