@@ -1,11 +1,11 @@
 {
-  "version": "1.1.62",
-  "notes": "The app now has Help > Buy a Licence, because a licensed copy that refuses to audit until a key is entered had no link anywhere to buy one. And a customer who has used all three activations is told that, rather than that their key was not accepted.",
-  "pub_date": "2026-08-23T15:24:28Z",
+  "version": "1.1.63",
+  "notes": "Fixes an update that failed with advice you had already followed. A copy in your Applications folder could be told it was running from a read-only location; two different problems shared one message. The permission case now names App Management and the direct-download remedy, and the update prepares itself in your own cache folder rather than inside Applications, which is the write macOS was refusing.",
+  "pub_date": "2026-08-23T21:07:31Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStTYXpuclk2a25RbC83U0ZDaC9QMndFdDhYYUNMeFJQYVFFUE5IMHVEQkcxU1BCVUFuN2RGRHd2ZTZxYmZneE1rdUFXOUNXejJJL2gvaFpocWZuaGc0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NDk4NDIzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKb3ZhM0RhazQ4by9VeU05UWtCMGxGUURBSTJYUjJCYTIvN0tKbnB0UEUzZndDbHVVdndKU0ljSi9MYTgyN2lCNHVQWHNPclgzYXdEd1NWOHBtNTRrQXc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.62/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTF1MWVqdHVqc0tLN29ZNHJUcTAyNmxNODdvc1A1R05DSDhIeXNlb3JCU3NYZDhtdUxJQ28yZmVXWkEydUZMM0J0K1E3MzVVUmlyanRaRko2Q000aXdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTE5MTUzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKN3FnQllsQTBEanJPZ0o5M05IYlVrYVVGZ2hraW9yVTVVSUp6UDllZHZUamFERGVkNVFScFZiUVkyQXlZYUw4aFlNVkp1aWMxaXdIdnJtTUNLZFpTQWc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.63/Docket.app.tar.gz"
     }
   }
 }
