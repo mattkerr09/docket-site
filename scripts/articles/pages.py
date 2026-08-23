@@ -1483,7 +1483,8 @@ is public and GitHub's privacy policy applies to it; we hold nothing separately.
     return render(
         cat="legal", slug="privacy",
         title="Privacy policy — what Docket collects, and what it does not",
-        desc="Docket collects nothing. No account, no telemetry, no analytics on this site.",
+        desc="Audits run on your Mac and are never uploaded. No account and no "
+             "telemetry. Page views are counted without cookies or cross-site tracking.",
         h1="Privacy policy",
         crumb='<a href="/">Docket</a> / Privacy',
         body=body,
