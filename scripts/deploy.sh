@@ -184,6 +184,16 @@ git branch -D gh-pages-tmp >/dev/null
 # over 0.1.2, because the version was typed inline in a banner. Docket ships
 # several times an hour, so this is the same accident waiting for the same
 # conditions.
+echo "==> pixel/disclosure gate"
+# render.py has demanded this in a comment for weeks: "Dark is a claim that has
+# to be tested in both directions". The dangerous half is the one nobody writes
+# — a gate that only proves the DARK case passes forever, including on the day
+# someone sets the id and forgets the privacy policy.
+if ! python3 scripts/verify_pixel.py; then
+  echo "FAIL  the tracker's state and its disclosure do not agree"
+  exit 1
+fi
+
 echo "==> vendor-match gate"
 # The site takes the money and the app validates the key. If those name
 # different vendors, a customer pays and the app refuses what they were sent.
