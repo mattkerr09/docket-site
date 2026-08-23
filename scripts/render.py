@@ -255,7 +255,18 @@ CHECKOUT = "https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79"
 #: consumer-finance claim we cannot honour, on the page where money changes
 #: hands. Same rule as the Meta pixel: the copy ships in the commit that makes
 #: it true, never before.
-BNPL_LIVE = False
+#: LIVE 2026-08-23. The condition was never a vendor doc — it was somebody
+#: looking at the real checkout. Matthew did: "i see all fucking checkout
+#: methods on all checkouts".
+#:
+#: MY OWN INSTRUMENT COULD NOT CONFIRM IT AND THAT IS RECORDED RATHER THAN
+#: GLOSSED. A headless load of the Dodo checkout renders 6,805 characters and
+#: mentions no payment method at all, and no network payload names one. The
+#: reason is that the checkout is two steps: the first is the order summary,
+#: and methods appear after a country and email are entered — a screen I will
+#: not drive, because it means typing personal details into a live checkout.
+#: So "I saw nothing" is a fact about where my probe stops, not about the page.
+BNPL_LIVE = True
 
 #: ⚠️ FOUR PAYMENTS EVERY TWO WEEKS — NOT MONTHLY. Klarna's and Afterpay's
 #: product is Pay in 4: four instalments a fortnight apart, six weeks end to end.
