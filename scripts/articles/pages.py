@@ -1517,11 +1517,17 @@ def terms() -> Path:
 payment, it does not expire, and this site has no checkout, so no sale has taken place and the
 commercial sections below describe terms that take effect when one can.</p>
 <p>From v1.0 Docket costs {PRICE_STR} in US dollars, paid once. Not a subscription: there is no
-renewal date, no seat count and nothing to cancel, because nothing recurs.</p>"""
+renewal date and nothing to cancel, because nothing recurs. One licence covers up to three
+machines.</p>"""
     else:
         price_para = f"""
 <p>Docket costs {PRICE_STR} in US dollars, paid once. Not a subscription: there is no renewal
-date, no seat count and nothing to cancel, because nothing recurs.</p>"""
+date and nothing to cancel, because nothing recurs.</p>
+<p><strong>One licence covers up to three machines.</strong> Activating Docket on a Mac uses one
+of them, and the licence is enforced by the payment provider, so a fourth activation is refused.
+This page said &ldquo;no seat count&rdquo; until 2026-08-23, which was wrong from the moment the
+product was configured with a limit of three &mdash; the terms promised something the software
+did not do. If you need more than three, ask and it will be sorted out.</p>"""
 
     # Same escape as on the refunds page, and the same reason.
     seller = SELLER.replace("&", "&amp;")
