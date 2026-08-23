@@ -1,11 +1,11 @@
 {
-  "version": "1.1.63",
-  "notes": "Fixes an update that failed with advice you had already followed. A copy in your Applications folder could be told it was running from a read-only location; two different problems shared one message. The permission case now names App Management and the direct-download remedy, and the update prepares itself in your own cache folder rather than inside Applications, which is the write macOS was refusing.",
-  "pub_date": "2026-08-23T21:07:31Z",
+  "version": "1.1.64",
+  "notes": "Fixes an update that showed nothing and then crashed the app. The download now reports progress \u2014 Downloading, Installing, Restarting \u2014 and Docket stops its background process between the download finishing and the bundle being replaced, which is what was killing it: that process runs out of the bundle the update replaces.",
+  "pub_date": "2026-08-23T22:17:04Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTF1MWVqdHVqc0tLN29ZNHJUcTAyNmxNODdvc1A1R05DSDhIeXNlb3JCU3NYZDhtdUxJQ28yZmVXWkEydUZMM0J0K1E3MzVVUmlyanRaRko2Q000aXdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTE5MTUzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKN3FnQllsQTBEanJPZ0o5M05IYlVrYVVGZ2hraW9yVTVVSUp6UDllZHZUamFERGVkNVFScFZiUVkyQXlZYUw4aFlNVkp1aWMxaXdIdnJtTUNLZFpTQWc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.63/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTIrRVpFQ3FhOEdENmFXTVZ5UWRUWGxuN3pmaCtqUUdWdWkya2NMMSt4am5jek8wcjdicC9EYUtqbEZHSi9Da213QnZUaFk2YVNyNG0wL2xuK1BlUEE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTIzMjk0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKWDhiSndnTnN4ZGY3aXpNR3JUSGt1TU9DRnR5T3R3cXpreUF1S2FhcnlTTzBWT1dEV2hjOGMyemRRejNHK1lQWGRuNEJWMUpnOTJJb2tTeWsvTDdjQkE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.64/Docket.app.tar.gz"
     }
   }
 }
