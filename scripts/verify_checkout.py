@@ -41,7 +41,63 @@ sys.path.insert(0, str(app / "scripts"))
 import resolve_polar_org as resolver  # noqa: E402
 
 
+def _dodo(url: str) -> int:
+    """The same question asked of Dodo: does this link still sell the product
+    this site advertises, at the price the pages print?
+
+    Dodo renders the product name and the amount in cents into the checkout
+    page, so like the Polar path this needs no token. Measured 2026-08-23: the
+    page carries "Docket SEO — Lifetime Licence", a License Key benefit, and
+    19900.
+
+    Weaker than the Polar path in one stated way — it cannot read back an
+    organisation id, so it proves the product and the price and not who is
+    paid. Saying so is better than implying a guarantee it does not make.
+    """
+    import re
+    import urllib.error
+    import urllib.request
+
+    req = urllib.request.Request(
+        url, headers={"User-Agent": "docket-build/1.0 (+https://docketseo.app)"})
+    try:
+        with urllib.request.urlopen(req, timeout=25) as r:
+            html = r.read().decode("utf-8", "replace")
+    except (urllib.error.URLError, OSError) as e:
+        print(f"CHECKOUT FAIL — could not reach the Dodo checkout ({type(e).__name__}). "
+              f"Nothing was compared, which is not a pass.")
+        return 1
+
+    cents = str(render.PRICE * 100)
+    problems = []
+    if "Docket" not in html:
+        problems.append("the checkout does not name Docket at all")
+    if cents not in html:
+        problems.append(f"the checkout does not charge {render.PRICE_STR} "
+                        f"({cents} in cents is absent from the page)")
+    if "License Key" not in html and "license_key" not in html.lower():
+        problems.append("no licence-key benefit — a buyer would pay and receive "
+                        "no key, and a licensed build would refuse them")
+    if problems:
+        print("CHECKOUT FAIL — the Dodo checkout does not match what the site sells:")
+        for pr in problems:
+            print(f"    {pr}")
+        return 1
+    print(f"CHECKOUT ok — the Dodo checkout sells Docket at {render.PRICE_STR} "
+          f"with a licence key, and the site says {render.PRICE_STR}. "
+          f"(Dodo does not expose the organisation, so this proves the product "
+          f"and price, not who is paid.)")
+    return 0
+
+
 def main() -> int:
+    # The site moved to Dodo on 2026-08-23. The Polar path below still works and
+    # is kept for the same reason licence.py keeps its Polar branch: the switch
+    # is reversible and a resolver nobody can run is a resolver nobody notices
+    # is broken.
+    if "dodopayments.com" in render.CHECKOUT:
+        return _dodo(render.CHECKOUT)
+
     if render.CHECKOUT != resolver.CHECKOUT:
         print("CHECKOUT FAIL — the site and the app disagree about the link")
         print(f"  site: {render.CHECKOUT}")

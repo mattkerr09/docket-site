@@ -93,13 +93,26 @@ def app_vendor() -> tuple:
     if not binaries:
         return "", ("no built sidecar in dist/ — nothing compared, which is not "
                     "a pass. Build before shipping, or run this after a build.")
-    binary = binaries[-1]
-    try:
-        r = subprocess.run([str(binary), "licence", "--key", "VENDOR-MATCH-PROBE-0000"],
-                           capture_output=True, text=True, timeout=90)
-    except (subprocess.SubprocessError, OSError) as e:
-        return "", f"could not run {binary}: {e}"
-    said = (r.stdout + r.stderr).lower()
+    # dist/ holds artifacts for more than one platform. A Linux binary cannot
+    # exec on macOS, and treating that as a failure made the gate refuse a
+    # perfectly good deploy the moment a Linux tarball was built beside the Mac
+    # one. Try each candidate and use the first that actually runs; only refuse
+    # when NONE do, because "nothing compared" is the one thing that must never
+    # print a pass.
+    said, binary, skipped = "", None, []
+    for candidate in reversed(binaries):
+        try:
+            r = subprocess.run([str(candidate), "licence", "--key", "VENDOR-MATCH-PROBE-0000"],
+                               capture_output=True, text=True, timeout=90)
+        except (subprocess.SubprocessError, OSError) as e:
+            skipped.append(f"{candidate.parent.name}/{candidate.name} ({type(e).__name__})")
+            continue
+        said, binary = (r.stdout + r.stderr).lower(), candidate
+        break
+    if binary is None:
+        return "", ("no sidecar in dist/ could be run here" +
+                    (f" — skipped {', '.join(skipped)}" if skipped else "") +
+                    ". Nothing compared, which is not a pass.")
     if "not licensed" in said:
         return "free", f"{binary.name} is a free build (no entitlement stamp)"
     for vendor in ("dodo", "polar"):

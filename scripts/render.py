@@ -210,21 +210,35 @@ BETA_NOTE = (f"{RELEASE} is free while it is in beta; {PRICE_STR} applies "
 #: site called v1.1.0 a free beta, and the download page additionally promised
 #: that $79 "applies from v1.0", a trigger that had already passed. Five copies,
 #: one updated.
+#: ⚠️ THIS SAID "has no activation step yet, so it runs without a key" and went
+#: false the moment 1.1.61 shipped with licensing on. Four pages render it —
+#: two comparisons, the about page and a download section — so the wrong version
+#: was live in four places at once, which is the whole reason this clause was
+#: centralised in the first place. The comment above records the same lesson
+#: from the previous time: five copies, one updated.
 FREE_CLAUSE = (f"{RELEASE} is free while it is in beta"
                if BETA_FREE else
-               f"{RELEASE} has no activation step yet, so it runs without a key")
+               "activation is a licence key you paste in once")
 
-#: Where the money is actually taken. Polar is the merchant of record; this link
-#: is a checkout-link object on the `docketseo` organisation, whose product
-#: "Docket SEO" is $79.00 one-time with a license_keys benefit attached.
+#: Where the money is actually taken.
 #:
-#: This existed and was unused. On 2026-08-14 the product, its price, its licence
-#: benefit and this very link were all live in Polar while every page on the site
-#: said "free in beta; $79 applies from v1.0" — a price with a trigger nobody had
-#: scheduled to pull. The checkout was not the blocker. The version number was,
-#: and Matthew resolved it in four words.
-CHECKOUT = ("https://buy.polar.sh/"
-            "polar_cl_FteABR6qSwOHHAOhrP1ObrzCOeVqsraAjhLZ323XgFR")
+#: MOVED FROM POLAR TO DODO on 2026-08-23, together with the build stamp, and
+#: the two have to move together. licence._provider() dispatches on what the
+#: BUILD was stamped with and asks only that vendor, so a Dodo build beside a
+#: Polar checkout is a paid product that cannot be unlocked: the buyer pays,
+#: receives a key from one vendor, and the app asks the other. Nothing on the
+#: board caught that shape — the checkout gate proves the price, the download
+#: gate proves reachability — so scripts/verify_vendor_match.py now refuses a
+#: deploy where these disagree.
+#:
+#: Safe to move because it was measured first: the Polar organisation had ZERO
+#: orders and ZERO licence keys issued, so no existing customer held a key that
+#: this would strand.
+#:
+#: The previous comment here described the product as "$79.00 one-time". The
+#: price has been {PRICE_STR} for some time; a hand-written number in a comment
+#: beside a derived one is exactly the drift this codebase keeps finding.
+CHECKOUT = "https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79"
 
 # --------------------------------------------------------------------------
 # Who the money is paid to.
