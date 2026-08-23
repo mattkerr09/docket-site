@@ -466,18 +466,39 @@ def thank_you() -> Path:
     /legal/refunds/ 200, /contact/ 200, and hello@docketseo.app is the address the
     contact page already publishes.
 
-    INERT UNTIL THE CHECKOUT POINTS HERE. Polar's success_url is a dashboard
-    setting and Matthew's to change; until he does, this page is reachable but
-    nobody arrives on it. That is the correct order — the page has to exist before
-    the redirect can be pointed at it.
+    ⚠️ THIS PAGE WENT FALSE TWICE AND IS THE WORST PLACE ON THE SITE FOR THAT.
+    It is what a customer reads in the seconds after $199 leaves their account.
+
+    It said the receipt comes from POLAR, for days after the checkout moved to
+    Dodo — so a buyer would watch for an email from a company that never took
+    their money, conclude the payment failed, and write in at the moment they
+    are most anxious about it.
+
+    And it said "nothing to unlock and no key to enter", which licensing
+    falsified in 1.1.59. Following that, a buyer downloads, opens Docket, is
+    told it is not activated, and reasonably concludes the app is broken.
+
+    Neither is a wording problem: this page is the handover, so what it says
+    next has to be the thing they actually do.
+
+    NO DUAL-VENDOR CLAUSE HERE, unlike Crisp and Outlier. Their pages keep Polar
+    true for customers who bought before the cutover; Docket has none. Measured
+    before writing this: the Polar account shows ZERO orders and ZERO licence
+    keys ever issued. A reassurance aimed at customers who do not exist is noise
+    on a page that has to be exact.
+
+    The checkout's success_url is a Dodo dashboard setting and Matthew's to
+    change. The page exists first so the redirect has somewhere to point.
     """
     body = """
-<p>Your payment went through. The receipt comes by email from Polar, who handle
-the checkout — it may land under a different sender name than Docket.</p>
+<p>Your payment went through. The receipt comes by email from Dodo Payments, who
+handle the checkout — it may land under a different sender name than Docket.</p>
 
-<h2>Get the app</h2>
-<p>Docket runs entirely on your Mac. Nothing to unlock and no key to enter — the
-download is the full application.</p>
+<h2>Your licence key is in that email</h2>
+<p>Docket needs it before it will run an audit. Open the app, click
+<strong>Enter licence key</strong> in the title bar, and paste it in. From a
+terminal, <code>docket licence --key YOUR-KEY</code> does the same thing.</p>
+<p>One licence covers up to three machines. The key is stored on your own Mac.</p>
 <p><a class="btn" href="/download/">Download Docket</a></p>
 
 <h2>If something is wrong</h2>

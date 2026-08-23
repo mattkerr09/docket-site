@@ -55,13 +55,17 @@ def _payment_note() -> str:
     if BETA_FREE:
         return (f'<p><strong>{RELEASE} is free while it is in beta.</strong> It downloads '
                 f'without payment and keeps working; {PRICE_STR} applies from v1.0.</p>')
+    # ⚠️ THIS SAID "still downloads and runs without a licence key ... there is
+    # no activation step in this build and nothing stops you using it first".
+    # Every clause of that went false in 1.1.59. It was written to be scrupulous
+    # about NOT overclaiming, and became the overclaim it was guarding against:
+    # a page telling buyers they need not pay yet, beside a button that charges.
     return (
-        f'<p><strong>{RELEASE} still downloads and runs without a licence key.</strong> '
-        f'The price is {PRICE_STR}, paid once, and buying is what pays for the work — '
-        f'but there is no activation step in this build and nothing stops you using it '
-        f'first. Said plainly because a price on a page beside a button that charges '
-        f'nothing is precisely the kind of thing this tool exists to flag, and it would '
-        f'be a poor advertisement to be the example.</p>')
+        f'<p><strong>{RELEASE} needs a licence key.</strong> The price is '
+        f'{PRICE_STR}, paid once — the key arrives with your receipt and covers up '
+        f'to three machines. Earlier versions ran without one; since Docket became '
+        f'a licensed product an audit asks for the key, and the app has a field to '
+        f'paste it into.</p>')
 
 
 def download() -> Path:
@@ -1584,7 +1588,9 @@ rebrand the CSV and JSON exports, bill for them.</p>
 <h2>Delivery</h2>
 <p>Delivery is a download. Docket ships as a notarised macOS disk image of {DMG_SIZE} from
 <a href="https://github.com/mattkerr09/docket-site/releases">the releases page</a>{linux_clause}.
-There is nothing to post and no activation email to wait for.</p>
+There is nothing to post. The licence key arrives by email with your receipt,
+which is the one thing worth waiting for &mdash; this sentence used to say there was no
+activation email at all, and licensing made that false.</p>
 <p>Two consequences of how this is sold, both stated because a buyer will meet them. The
 download link is public, so payment is not the thing that makes the file reachable — what payment
 buys is the licence key that lets it run. And updates are published to every copy: while Docket
