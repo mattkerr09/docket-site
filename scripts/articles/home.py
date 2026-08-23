@@ -25,8 +25,13 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (BETA_NOTE, CHECKOUT, DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR,
+from render import (BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR,
                     price, price_note_html, render)  # noqa: E402
+
+#: The instalment note as it appears under a buy button. Empty when BNPL_LIVE is
+#: False, so the markup collapses to nothing — a blank line where a payment
+#: option should be reads as broken rather than as absent.
+BNPL_BLOCK = (f'<p class="hero-note">{BNPL_NOTE}</p>' if BNPL_NOTE else "")
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
@@ -140,6 +145,7 @@ def body() -> str:
   <div class="hero-cta">
     <a class="btn btn-lg" href="{CHECKOUT}">Buy Docket · {PRICE_STR} once</a>
     <a class="btn-ghost btn-lg" href="{DMG}">Download for Mac</a>
+    {BNPL_BLOCK}
   </div>
   <p class="hero-note"><strong>30 days, no conditions, no questions asked</strong> — <a href="/legal/refunds/">refund policy</a></p>
   <p class="hero-note">macOS 12+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites</p>
@@ -488,6 +494,7 @@ needed, and nothing about your site leaves your Mac.</p>
 </figure>
 <a class="btn btn-lg" href="{CHECKOUT}">Buy Docket &middot; {PRICE_STR} once</a>
 <a class="btn-ghost btn-lg" href="{DMG}">Download for Mac</a>
+{BNPL_BLOCK}
 <p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>
 &mdash; <a href="/legal/refunds/">refund policy</a></p>
 </div></section>"""

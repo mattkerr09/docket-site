@@ -240,6 +240,37 @@ FREE_CLAUSE = (f"{RELEASE} is free while it is in beta"
 #: beside a derived one is exactly the drift this codebase keeps finding.
 CHECKOUT = "https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79"
 
+#: ── BUY NOW, PAY LATER ─────────────────────────────────────────────────────
+#: DARK UNTIL SOMEONE SEES IT ON THE LIVE CHECKOUT. Flip to True only after
+#: Klarna or Afterpay is observed at Dodo's payment step for this product.
+#:
+#: Why it is not simply on: Dodo documents Klarna (USD, min $50.01) and Afterpay
+#: (USD/GBP, min $50.01), and $199 clears both floors — but documentation is a
+#: fact about DODO, not about THIS merchant account. Two sessions rendered live
+#: checkouts, at $199 and $249, and neither page named Klarna or Afterpay
+#: anywhere. The most likely reason is that Dodo has not finished verifying the
+#: business, so no payment methods are enabled yet.
+#:
+#: A price page promising instalments that the checkout does not offer is a
+#: consumer-finance claim we cannot honour, on the page where money changes
+#: hands. Same rule as the Meta pixel: the copy ships in the commit that makes
+#: it true, never before.
+BNPL_LIVE = False
+
+#: ⚠️ FOUR PAYMENTS EVERY TWO WEEKS — NOT MONTHLY. Klarna's and Afterpay's
+#: product is Pay in 4: four instalments a fortnight apart, six weeks end to end.
+#: An earlier draft of this copy said "$50/month for 4 months", which states a
+#: schedule no provider offers. Caught before it shipped.
+#:
+#: "Interest-free" is Klarna's promise and carries late fees — say "no extra cost
+#: from us" instead. Never name Affirm; Dodo does not offer it.
+BNPL_INSTALMENT = f"${PRICE / 4:.2f}"
+BNPL_NOTE = (
+    f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks "
+    f"apart — the last one six weeks after the first, at no extra cost from us. "
+    f"Then it stops, and it is yours."
+) if BNPL_LIVE else ""
+
 # --------------------------------------------------------------------------
 # Who the money is paid to.
 #
