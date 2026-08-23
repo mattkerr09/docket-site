@@ -1,11 +1,11 @@
 {
-  "version": "1.1.60",
-  "notes": "--offline no longer promises silence a licensed build does not deliver: your key is re-checked about once a day whatever flags you pass, and that request carries the key and never the site you are auditing. A licensed copy that has never reached the licence server is refused outright \u2014 there is no grace for a licence that was never validated.",
-  "pub_date": "2026-08-21T18:09:55Z",
+  "version": "1.1.61",
+  "notes": "Docket now validates licence keys from Dodo, and the site sells through Dodo \u2014 both halves moved together. And there is finally somewhere to enter your key: the app checks its licence on startup and shows an Enter licence key button when a copy is unactivated, instead of only offering the field after an audit had already failed.",
+  "pub_date": "2026-08-23T14:32:42Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJFRFBHTjRqS01zaUZFa0lEclUraEZnS00yei81TjYxd2dTc2VBRGRvcnFiT29nN2VEbVdRWUM2UkpjZDRudjF2WUVZQ2RCWEI3TGdUK2ppeUJoclFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MzM1NjkwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKOHhJY0tvc1JaUnVDOFhQRU4rYXd0cWxIcDgwUGlsUWZIcUZTOXloT2JBZlhYd0VoQ2ZVcWFmeDNiLytFd0wwN0lJNU1KY0d1bXozUzJCVEFIdk5tQ3c9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.60/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXdHQVFzOVFvSG84TzlSTFpOc3pKNlRzcitrRzlOczAvT1YyaCtZTFdTbStrSW9YSFk5M08wTEFZUEhJb1lkcm11UWVlbkhOeHQ1ZFlVSjFLUDgyMGdjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3MzQxNjA3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKdVoyM00zUTdIUmFMMW5qMlNFZmphaTk0L0lNQ3kwODNoNjByTktKczV2REhTUkNMUmJnbEc2UGZ0YXg4SVk5dnA5Y0NsUCt5bGdacFovQnhxaExmQ0E9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.61/Docket.app.tar.gz"
     }
   }
 }
