@@ -1142,7 +1142,20 @@ def _entity_schema() -> str:
 #: Dark is a claim that has to be tested in both directions, not assumed: assert
 #: that no fbq call is emitted while the id is empty, AND that planting an id
 #: does emit one. A test that only checks the empty case cannot fail.
-META_PIXEL_ID = ""
+#: Set 2026-08-23. Matthew added this pixel by hand to `site/index.html` in
+#: commit 40d3f21 — his own commit, which is where this id is confirmed from
+#: rather than from any relay. Two things were wrong with the placement and
+#: neither was the id:
+#:
+#:   * `site/` is GENERATED. `scripts/build.py` rewrites it from this file, so
+#:     the next build would have deleted the pixel with nothing to show that it
+#:     had ever been there.
+#:   * it was on index.html only — 1 page of 62. Nobody landing on /download/,
+#:     where the money is, would have been counted, and no conversion on that
+#:     page could be attributed.
+#:
+#: Setting it here puts it on every page and survives every build.
+META_PIXEL_ID = "2344029433088526"
 
 META_PIXEL = (
     ('<!-- Meta pixel. Dark: META_PIXEL_ID is empty, so nothing loads. -->\n'

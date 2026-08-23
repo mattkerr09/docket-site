@@ -1451,22 +1451,35 @@ at once, leaving only the crawl of your own site.</p>
 as plain JSON files. They are never transmitted. Deleting that folder removes them permanently.</p>
 
 <h2>This website</h2>
-<p>This site is static and runs two third-party scripts. The first is
+<p>This site is static and runs three third-party scripts. The first is
 <a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, which counts page
 views. Plausible states that it uses no cookies, collects no personal data and does not track
 visitors across sites; it is hosted in the EU. Nothing about your audits reaches it &mdash;
 audits run on your Mac and this website never sees them. Standard server logs may record IP
 addresses and requested URLs, which are used only to keep the site running.</p>
 <p>The second is <a href="https://usesled.com">Sled</a>, which credits the right person when
-somebody recommends Docket. It is the only thing on this site that can set a cookie, and it is
-conditional: arrive through an affiliate link and a single <code>ta_ref</code> cookie records
+somebody recommends Docket. It is conditional: arrive through an affiliate link and a single
+<code>ta_ref</code> cookie records
 which affiliate sent you, so they are paid if you buy. Arrive from a search result, a bookmark
 or a link of ours and no cookie is set at all &mdash; which is what almost every visitor does.
 It records which affiliate sent a visit, never who the visitor is.</p>
-<p>This paragraph replaced one that said the site &ldquo;sets no cookies&rdquo; and runs
-&ldquo;one third-party script&rdquo;. Both were true until Sled was added, and a privacy page
-that enumerates what a site does not do is only worth reading if the enumeration stays
-complete.</p>
+<p>The third is the <a href="https://www.facebook.com/business/tools/meta-pixel">Meta
+pixel</a>. It is here because we advertise on Facebook and Instagram, and without it we cannot
+tell which adverts bring people who actually download Docket &mdash; only how much we spent. It
+records that a page was viewed and sets a <code>_fbp</code> cookie, which lets Meta connect a
+visit here to an advert you saw there. Its id is
+<code>2344029433088526</code>, visible in this page's source; that is normal for a pixel and not
+a secret. It sees pages on this site. It does not see your audits, which run on your Mac and are
+never uploaded.</p>
+<p>This is the most intrusive thing on the site and it is the one we would least like to need. A
+content blocker stops it, as does Meta's own
+<a href="https://www.facebook.com/adpreferences/ad_settings">off-Facebook activity</a> setting,
+and nothing here depends on it loading.</p>
+<p>These paragraphs have been rewritten twice as the answer changed. They once said the site
+&ldquo;sets no cookies&rdquo; and runs &ldquo;one third-party script&rdquo;; both were true until
+Sled was added. The line calling Sled the only thing here that can set a cookie was true until
+the Meta pixel was, and is corrected above rather than quietly deleted. A privacy page that
+enumerates what a site does not do is only worth reading if the enumeration stays complete.</p>
 <p>If you would rather not be counted, any content blocker stops it, and nothing on this site
 depends on it loading.</p>
 
@@ -1483,8 +1496,9 @@ is public and GitHub's privacy policy applies to it; we hold nothing separately.
     return render(
         cat="legal", slug="privacy",
         title="Privacy policy — what Docket collects, and what it does not",
-        desc="Audits run on your Mac and are never uploaded. No account and no "
-             "telemetry. Page views are counted without cookies or cross-site tracking.",
+        desc="Audits run on your Mac and are never uploaded. No account, no "
+             "telemetry. Three third-party scripts, one an advertising pixel — "
+             "what each does and how to stop it.",
         h1="Privacy policy",
         crumb='<a href="/">Docket</a> / Privacy',
         body=body,

@@ -126,7 +126,13 @@ def check(pixel_id: str) -> list[str]:
         bad.append(f"the privacy policy still says the site runs {count} third-party "
                    f"script(s). The pixel is a third. render.py's own note: a revision "
                    f"that fixes the prose and leaves the count is still false")
-    if re.search(r"(?i)(sets? no cookies|no cookies (?:are|is) set|without cookies)", privacy):
+    # A privacy page that documents its own history quotes the claims it used to
+    # make — "They once said the site &ldquo;sets no cookies&rdquo;" — and that
+    # is the opposite of a live claim: it is the page being honest about having
+    # changed. Strip typographically quoted spans before looking, or the gate
+    # punishes exactly the disclosure it wants.
+    live_text = re.sub(r"&ldquo;.*?&rdquo;", " ", privacy, flags=re.S)
+    if re.search(r"(?i)(sets? no cookies|no cookies (?:are|is) set|without cookies)", live_text):
         bad.append("the policy still claims no cookies while the pixel sets _fbp")
     return bad
 
