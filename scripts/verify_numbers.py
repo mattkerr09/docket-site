@@ -77,6 +77,13 @@ ALLOWED = {
     "35": ("seconds that same recorded run took, read off the same footage"),
     "94": ("the score that recorded run produced. Quoted because the caption's "
            "claim is that this is the app running, not a render of it"),
+    "96": ("the check count visible in that recording's status bar. NOT the "
+           "product's count, which is derived from data/checks.csv and is "
+           "higher — the video is frozen at what shipped on 2026-08-18. It is "
+           "quoted only in a source comment warning the next person not to "
+           "soften the live prose to match a stale video; if that number ever "
+           "appears in PROSE, the video is out of date and the answer is to "
+           "re-shoot it, never to change the sentence"),
     "2.30": ("the glibc floor of the Linux build, measured with objdump over "
              "the shipped binary and its bundled libpython — the highest "
              "GLIBC_ symbol version either requires"),
