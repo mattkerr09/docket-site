@@ -1,11 +1,11 @@
 {
-  "version": "1.1.64",
-  "notes": "Fixes an update that showed nothing and then crashed the app. The download now reports progress \u2014 Downloading, Installing, Restarting \u2014 and Docket stops its background process between the download finishing and the bundle being replaced, which is what was killing it: that process runs out of the bundle the update replaces.",
-  "pub_date": "2026-08-23T22:17:04Z",
+  "version": "1.1.65",
+  "notes": "Three crawler fixes. 'Everything, however big it is' crawled exactly one page, because no-limit-on-depth was read as follow-no-links. A rate-limited crawl gave up at the exact moment it finished slowing down, so backing off could never help. And a crawl that read half a site said nothing about the other half.",
+  "pub_date": "2026-08-24T01:05:09Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTIrRVpFQ3FhOEdENmFXTVZ5UWRUWGxuN3pmaCtqUUdWdWkya2NMMSt4am5jek8wcjdicC9EYUtqbEZHSi9Da213QnZUaFk2YVNyNG0wL2xuK1BlUEE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTIzMjk0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKWDhiSndnTnN4ZGY3aXpNR3JUSGt1TU9DRnR5T3R3cXpreUF1S2FhcnlTTzBWT1dEV2hjOGMyemRRejNHK1lQWGRuNEJWMUpnOTJJb2tTeWsvTDdjQkE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.64/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTV4K1RKaHkvTmNPdVdiL3hXMGlvN1FwV0FrZHFsYnZPWnVlcHNwTWpHYnE4Wi9PTUwzWVdSbzRVMXJlV29YQkZOeWpHckxRQ0lkYlRsNzNORlVXc2d3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTMzMzcxCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKcXhHOE5Ga25Rd3J4RjZtRkpnR1V0WXJuQXV0TVRxVjlyUW5oSDhhQjFUekRhbjdDamNjNWJrZDlHL0lWbXFVUURTdGtVWEh4L3pJcmxJVStka3lERFE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.65/Docket.app.tar.gz"
     }
   }
 }
