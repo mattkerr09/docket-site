@@ -1,11 +1,11 @@
 {
-  "version": "1.1.75",
-  "notes": "A working Meta pixel is no longer reported as dead. When a tag manager writes the snippet into a JavaScript string the quotes come back escaped, and Docket's pattern wanted a plain one \u2014 so a real pixel with a real id read as having none. All eight advertising-platform patterns had the same blind spot and all eight are fixed.",
-  "pub_date": "2026-08-24T15:16:11Z",
+  "version": "1.1.76",
+  "notes": "Two things Docket said that were not true, found by fact-checking a real report. A restaurant publishing PDF menus was told at CRITICAL that its audit could not be trusted; every URL had answered 200 and thirty were simply PDFs. And a three-part page title had its brand read as the US state at the end rather than the name in the middle.",
+  "pub_date": "2026-08-24T16:03:17Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTFraWVNY2hteTQrTktBWXc1ZFlWNnI4Y0pOL0Roayt4aWRFVTRBK1dtcG9hTC9jNDNxZWFQRkc0MUlvU0piUnhWY3hhQnVHMnVjZGhsWDd3dkFpTEFVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTg0NDY4CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKaTdjbERuMnQ4b1BoWVVjSzJWakRMaTFBVTZ5TTJZZm1paXBYc3dhVEIvK09kS3grTVRGSnZSZ1U2T2xMWGhYU3B4NnBhVG53SXJxUlM4SmhtL1FUQXc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.75/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTFXemgxR3FwVUhXTVNlV2xsSm5yRDNyZittTENnREpmQU1icm5Qb2lZY05Gdzc1UUlsV3hOM1A3Wk1qOEdEYjRLUnZNeWRUSHRWMm5QdXMzYVFiRXdjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTg3MjkwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKY0lUcWVmNTkxSVJkWDZPRUhOYmtQR3RoZkV3ckt3ek1FaUZqVUFodjhrcStxN1FNaE8zMmU5V1IrNXdidkVaaU5YZUMwOHdLWVI4SnhsVWlwT3JSQ1E9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.76/Docket.app.tar.gz"
     }
   }
 }
