@@ -491,10 +491,19 @@ def thank_you() -> Path:
     change. The page exists first so the redirect has somewhere to point.
     """
     body = """
-<p>Your payment went through. The receipt comes by email from Dodo Payments, who
-handle the checkout — it may land under a different sender name than Docket.</p>
+<p id="ty-lede">Your payment went through. The receipt comes by email from Dodo
+Payments, who handle the checkout — it may land under a different sender name
+than Docket.</p>
 
-<h2>Your licence key is in that email</h2>
+<!-- The key, straight off the URL Dodo redirects to. Hidden until there is one:
+     an empty box under "your payment went through" reads as a failure. Filled
+     with textContent, never innerHTML — the value arrives in a query string, so
+     it is attacker-controllable and this URL is the kind of thing people forward. -->
+<p id="ty-key-wrap" hidden><strong>Your licence key:</strong>
+  <code id="ty-key" style="user-select:all"></code>
+  <br><small>Also in your email. Paste it into <strong>Enter licence key</strong>.</small></p>
+
+<h2 id="ty-key-head">Your licence key is in that email</h2>
 <p>Docket needs it before it will run an audit. Open the app, click
 <strong>Enter licence key</strong> in the title bar, and paste it in. From a
 terminal, <code>docket licence --key YOUR-KEY</code> does the same thing.</p>
@@ -513,9 +522,64 @@ happened. If the purchase was a mistake, the
         h1="Thank you",
         crumb='<a href="/">Docket</a> / Thank you',
         body=body,
+        closer=_THANK_YOU_JS,
         schema_type="",
         noindex=True,
     )
+
+
+#: ⚠️ ADDING THE REDIRECT IS WHAT MAKES THIS NECESSARY, so it ships in the same
+#: change. Until the buy link carried redirect_url, nothing could reach
+#: /thank-you/ except somebody typing the URL, so "Your payment went through"
+#: was safe to state unconditionally. The moment Dodo starts redirecting here it
+#: sends DECLINED cards too — and the fix, shipped alone, would begin telling
+#: people their payment succeeded when it did not. That is a defect created by
+#: the remedy, and it is worse than the problem it solves. Found by the Crisp
+#: session on its own page before either of us shipped.
+#:
+#: Purchase fires ONLY on status=succeeded. Firing on a failure teaches the ad
+#: account to optimise toward people who could not pay. eventID=payment_id so a
+#: later CAPI event dedupes against this one; sessionStorage keyed on the same id
+#: so a reload or a forwarded link does not count a second sale, while a genuine
+#: second purchase still does.
+_THANK_YOU_JS = """
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var status = (q.get('status') || '').toLowerCase();
+  var key = q.get('license_key');
+  var pid = q.get('payment_id');
+  var $ = function (id) { return document.getElementById(id); };
+
+  if (status && status !== 'succeeded') {
+    var h1 = document.querySelector('h1');
+    if (h1) h1.textContent = 'That payment did not go through';
+    if ($('ty-lede')) $('ty-lede').textContent =
+      'Your card was not charged. You can try again from the pricing section, or '
+      + 'email hello@docketseo.app and we will sort it out.';
+    if ($('ty-key-head')) $('ty-key-head').hidden = true;
+    return;
+  }
+
+  if (key && $('ty-key') && $('ty-key-wrap')) {
+    $('ty-key').textContent = key;          // textContent, never innerHTML
+    $('ty-key-wrap').hidden = false;
+    if ($('ty-key-head')) $('ty-key-head').textContent = 'Your licence key';
+  }
+
+  if (status === 'succeeded' && typeof fbq === 'function') {
+    var once = 'dk_purchase_' + (pid || 'nopid');
+    var fire = function () {
+      fbq('track', 'Purchase', { value: 199, currency: 'USD' },
+          pid ? { eventID: pid } : undefined);
+    };
+    try {
+      if (!sessionStorage.getItem(once)) { sessionStorage.setItem(once, '1'); fire(); }
+    } catch (e) { fire(); }   // private mode: firing once beats not firing
+  }
+})();
+</script>
+"""
 
 
 def not_found() -> Path:

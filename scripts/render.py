@@ -238,7 +238,22 @@ FREE_CLAUSE = (f"{RELEASE} is free while it is in beta"
 #: The previous comment here described the product as "$79.00 one-time". The
 #: price has been {PRICE_STR} for some time; a hand-written number in a comment
 #: beside a derived one is exactly the drift this codebase keeps finding.
-CHECKOUT = "https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79"
+#: ⚠️ THE QUERY PARAM IS `redirect_url`. Dodo's docs name `return_url`, and on a
+#: STATIC buy link that does nothing at all — it is the Checkout Sessions API
+#: field. What redirect_url populates IS a session field called return_url,
+#: which is why both names look right. Measured on this product, with a
+#: baseline, because the wrong one fails exactly like success:
+#:
+#:     bare (control)   0 mentions of our URL   137610 bytes
+#:     ?return_url=     0 mentions              137610 bytes  <- identical
+#:     ?redirect_url=   1 mention               137643 bytes
+#:     session field:   "return_url":"https://docketseo.app/thank-you/"
+#:
+#: A link built the documented way still 200s, still opens a real session,
+#: still shows $199 and still takes the card. Only the landing differs, and
+#: nobody sees that without completing a payment.
+CHECKOUT = ("https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79"
+            "?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F")
 
 #: ── BUY NOW, PAY LATER ─────────────────────────────────────────────────────
 #: DARK UNTIL SOMEONE SEES IT ON THE LIVE CHECKOUT. Flip to True only after
