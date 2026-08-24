@@ -1,11 +1,11 @@
 {
-  "version": "1.1.76",
-  "notes": "Two things Docket said that were not true, found by fact-checking a real report. A restaurant publishing PDF menus was told at CRITICAL that its audit could not be trusted; every URL had answered 200 and thirty were simply PDFs. And a three-part page title had its brand read as the US state at the end rather than the name in the middle.",
-  "pub_date": "2026-08-24T16:03:17Z",
+  "version": "1.1.77",
+  "notes": "/tmp/notes389.md",
+  "pub_date": "2026-08-24T17:19:47Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTFXemgxR3FwVUhXTVNlV2xsSm5yRDNyZittTENnREpmQU1icm5Qb2lZY05Gdzc1UUlsV3hOM1A3Wk1qOEdEYjRLUnZNeWRUSHRWMm5QdXMzYVFiRXdjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTg3MjkwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKY0lUcWVmNTkxSVJkWDZPRUhOYmtQR3RoZkV3ckt3ek1FaUZqVUFodjhrcStxN1FNaE8zMmU5V1IrNXdidkVaaU5YZUMwOHdLWVI4SnhsVWlwT3JSQ1E9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.76/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTB5UUVQc3Zzb3FEclZXMzlYOHRUckdWUXAxY0tZUmVYemNzM3F5bXRaeWJkd3FaNVc4SjFKLy9EZmpLS2xmNTZETFcrVW5zd3grUlpFSnlmZGdyWXdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTkxNzQ4CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKaVZ2TC9iUlkwSVRad0lRZ0Y1OTNMWlBKWGkvTkwvbjBHckZYQS92b3M1ajB6cmk4VjNpT0dveHdiZjV3OWs3L2g1Vzh0SkE1ZE16LzZGWUt5b1I0RFE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.77/Docket.app.tar.gz"
     }
   }
 }
