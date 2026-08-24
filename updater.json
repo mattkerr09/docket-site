@@ -1,11 +1,11 @@
 {
-  "version": "1.1.70",
-  "notes": "Fixes a defect in 1.1.69. Refusing a licence bought for a different product left the activation standing, so the customer lost a seat on the product they did have \u2014 the check happens after the provider has already spent one. Docket now gives the activation back before refusing.",
-  "pub_date": "2026-08-24T04:20:24Z",
+  "version": "1.1.71",
+  "notes": "A page limit meant two different things: the app's presets could grow when a site turned out to be bigger and healthy, while passing -n on the command line switched that off entirely. --adaptive N now says which you want. Also, one bad response from a page is no longer read as a broken site.",
+  "pub_date": "2026-08-24T12:28:51Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTZ4VFd6UHd3dm1Wb1BDWDNyY3dhK0VqUDg1bzdpYTVSYXhCc0I5VVNnaWZxd2Q2STNuR1UrUU04S3Ryb1NBZE9ZSFVWWXZ6bVh0S244cy8vM2tDbFFBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTQ1MTQ0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZWZwcUMrSFkyTTl3WElDMnlqTGwvU3VrUWFiR1NJV0hXdjhtaHlzbm8xdk9yOS92K1JIaitkT2hnVDBLTVh0d2ZNdlZ0VjdHR2t4WjR2RE1iTkRoQkE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.70/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTZHL05OaG5tZW1peThUSUNPZDBVUFp0TjNPOVRMK2k1SHdyNG1BRzR5cVJVM1B6eGw2YndnVFZ4SytkOXJKL25EeFJ2Y1AzUEdldHRHQWhBbmVleHdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTc0NDA2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKQ2lhZzMzM2ZIcExTelpoMmx6ODZGdTFuU2NSRThvVExER21ZN2lEVWdTbEFmaTN6ZVp0cmtmRnQrWW94RmF4THNQbTFJSkpUWWR2bVZVZWE1d1pjRGc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.71/Docket.app.tar.gz"
     }
   }
 }
