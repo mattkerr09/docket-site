@@ -41,10 +41,15 @@ def _check_counts() -> tuple:
     path = pathlib.Path(__file__).resolve().parent.parent / "data" / "checks.csv"
     with path.open() as fh:
         rows = list(csv.DictReader(fh))
-    return len(rows), len({r["lane"] for r in rows})
+    ai = sum(1 for r in rows if r["lane"] == "ai")
+    return len(rows), len({r["lane"] for r in rows}), ai
 
 
-N_CHECKS, N_LANES = _check_counts()
+#: The AI-visibility lane is counted separately because the homepage leads on it.
+#: Same reason as the total: it is a fact about the product, read from the
+#: product's own exported catalogue rather than typed into prose that goes stale
+#: the next time a check is added.
+N_CHECKS, N_LANES, N_AI_CHECKS = _check_counts()
 
 
 def _competitors() -> dict:

@@ -25,7 +25,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, N_CHECKS, N_LANES, PRICE_STR,
+from render import (BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, N_AI_CHECKS, N_CHECKS,
+                    N_LANES, PRICE_STR,
                     price, price_note_html, render)  # noqa: E402
 
 #: The instalment note as it appears under a buy button. Empty when BNPL_LIVE is
@@ -274,6 +275,39 @@ def body() -> str:
     <h3>Local business SEO</h3>
     <p>NAP consistency, LocalBusiness schema and its subtypes, opening hours, geo signals,
     review markup — and it knows a software company with an office is not a local business.</p></div>
+</div>
+</div></section>
+
+<!-- ================= AI DISCOVERABILITY ================= -->
+<!-- Placed above the Index because it is the one thing here no other tool does,
+     and it was buried as one card in a three-card comparison. Every claim below
+     is a mechanism the engine actually performs; the count is derived from the
+     exported catalogue rather than typed. -->
+<section class="sec"><div class="wrap-wide">
+<div class="sec-head">
+  <h2>Can an AI answer even reach you?</h2>
+  <p class="sec-sub">A crawler reads your <code>robots.txt</code> and believes it. Docket asks
+  your server &mdash; as <code>OAI-SearchBot</code>, as <code>ClaudeBot</code>, as
+  <code>PerplexityBot</code> &mdash; and compares the answer to what the file promises.</p>
+</div>
+<div class="grid-3">
+  <div class="card"><div class="card-ico">{ICONS['ai']}</div>
+    <h3>The file says yes, the server says no</h3>
+    <p>A bot-protection rule at your CDN blocks anything not on its known-good list, and AI
+    crawlers are newer than most of those lists. Nothing in your <code>robots.txt</code> shows
+    it. Docket makes the request and reports the disagreement.</p></div>
+  <div class="card"><div class="card-ico">{ICONS['order']}</div>
+    <h3>It knows what you meant</h3>
+    <p>Blocking <code>GPTBot</code> on purpose is a decision, not a defect &mdash; it trains
+    models. <code>OAI-SearchBot</code> builds the index ChatGPT answers from, which is a
+    different decision. Docket only reports the crawlers your own file permits and your server
+    refuses anyway.</p></div>
+  <div class="card"><div class="card-ico">{ICONS['doc']}</div>
+    <h3>{N_AI_CHECKS} checks, not one</h3>
+    <p>Whether your content survives without JavaScript, whether your claims are specific
+    enough to quote, whether your entity is defined, whether your dates are machine-readable,
+    and one control that <em>cannot</em> be measured from outside &mdash; which Docket says
+    plainly rather than guessing.</p></div>
 </div>
 </div></section>
 
