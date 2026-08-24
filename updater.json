@@ -1,11 +1,11 @@
 {
-  "version": "1.1.72",
-  "notes": "A link whose destination is text rather than an address is no longer reported as a DNS or certificate failure. It is still reported \u2014 it is a real broken link \u2014 but as what it is, at MEDIUM, with a fix that points at the page rather than at your nameservers.",
-  "pub_date": "2026-08-24T12:51:42Z",
+  "version": "1.1.73",
+  "notes": "Docket can now suggest what to write. Pass --topics and it asks Google's public autocomplete what people type around your subject, then lists the questions no page of yours answers. It will not guess your subject from your URLs \u2014 that was tried and it suggested articles about the wrong thing. No search volumes: Docket does not have them and will not invent them.",
+  "pub_date": "2026-08-24T14:11:54Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaS81ekRaazBSTDdYVXpVZklSY252TzRIZWZSWTQ4b1FzTWJKaEdCRnl5WFB5YWtCU0pTdGlUdnJKcm1laytFbURhbEl5Q1JuQlhQRFpuRGpNZlNWN0FnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTc1NzYzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKejBYWGowYnJmanVueHlDVXRmWUllZVdyaGg5WEZqT3U2dmpEUWFBNlNqcXlCWGRhc0RKZGNPQm85Rm5LU09nSmhnazJ3VHREN2R4UUFJUjRQUTlEQmc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.72/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTgrNURhMThiLzRBQ0NEM0VZa1BUVm1IUkV2am1aWU9EYmErakc2Y0FDVmI2RlJqblEvU2hIS3IvZmIrWmk0N1BHeC9FU2crTExONmIzV0IwNlU4c0FvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTgwNTgzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKQVk2Tkx5ZE96OWxRdGhCemp1Uk8zNmJ5SkdWVWFvOU1qeDFkUk5rMXg0aHp1UGxWNVliOUFIOXpWSEd1SUdsS0p4YXVWeHgwME54VVg4WmlNcURUQWc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.73/Docket.app.tar.gz"
     }
   }
 }
