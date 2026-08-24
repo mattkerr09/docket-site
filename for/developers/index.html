@@ -6,7 +6,7 @@
 <title>SEO checks in your deploy pipeline: Docket's CLI as a gate</title>
 <meta name="description" content="Docket's CLI exits 2 on a critical finding, so it gates a deploy in one line. 25 pages in a median 24.9s across 6 sites. Apple Silicon only.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="8254f8e3ca21">
+<meta name="build-id" content="dbde7b17db67">
 <link rel="canonical" href="https://docketseo.app/for/developers/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -751,7 +751,7 @@ jobs:
     steps:
       - name: Install Docket
         run: |
-          curl -sL -o docket.dmg https://github.com/mattkerr09/docket-site/releases/download/v1.1.80/Docket-1.1.80-arm64.dmg
+          curl -sL -o docket.dmg https://github.com/mattkerr09/docket-site/releases/download/v1.1.81/Docket-1.1.81-arm64.dmg
           hdiutil attach -nobrowse -quiet docket.dmg -mountpoint /Volumes/Docket
           cp -R /Volumes/Docket/Docket.app /Applications/
           echo "/Applications/Docket.app/Contents/Resources/docket" &gt;&gt; "$GITHUB_PATH"
@@ -855,7 +855,7 @@ red tests.</p>
 
 <p>The four lines above work and will keep working. If you would rather not own them:</p>
 
-<pre><code>      - uses: mattkerr09/docket-site@v1.1.80
+<pre><code>      - uses: mattkerr09/docket-site@v1.1.81
         with:
           url: https://staging.example.com
           fail-on: critical
