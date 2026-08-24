@@ -1,11 +1,11 @@
 {
-  "version": "1.1.69",
-  "notes": "A licence key bought for a different product no longer activates Docket. The provider's activation endpoint receives no product id, so it authorises any key on the merchant account; Docket now compares the product named in the reply against its own. It only refuses when the reply names a different product \u2014 a missing field is allowed, because locking out paying customers is worse than the leak.",
-  "pub_date": "2026-08-24T04:06:07Z",
+  "version": "1.1.70",
+  "notes": "Fixes a defect in 1.1.69. Refusing a licence bought for a different product left the activation standing, so the customer lost a seat on the product they did have \u2014 the check happens after the provider has already spent one. Docket now gives the activation back before refusing.",
+  "pub_date": "2026-08-24T04:20:24Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXdzV01TZUlxMithOEZhR20rK21IbDJRWGUycWtiS3pGUm50cEJmZFBUcU9DSnA4akYxUFVJM2xBc1pZMmxWV3o3bmVvRFBkaUtvNlA5RCtUZUJ3QmdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTQ0MjY5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKYWtvZzZqWmI5TGtoM0YxaFRmSFlWMHkvYlh2Y3A4ZGNpRDUwRXpLdy8zS2tBczN5UEtRTGpZd1R2QTJRZWR1ZXd3c1FoMnI4RGtqQ21xbzNDYVY4QXc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.69/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTZ4VFd6UHd3dm1Wb1BDWDNyY3dhK0VqUDg1bzdpYTVSYXhCc0I5VVNnaWZxd2Q2STNuR1UrUU04S3Ryb1NBZE9ZSFVWWXZ6bVh0S244cy8vM2tDbFFBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTQ1MTQ0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZWZwcUMrSFkyTTl3WElDMnlqTGwvU3VrUWFiR1NJV0hXdjhtaHlzbm8xdk9yOS92K1JIaitkT2hnVDBLTVh0d2ZNdlZ0VjdHR2t4WjR2RE1iTkRoQkE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.70/Docket.app.tar.gz"
     }
   }
 }
