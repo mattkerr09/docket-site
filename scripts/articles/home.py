@@ -167,10 +167,24 @@ def body() -> str:
 </div></section>
 
 <!-- ================= THE REAL ARTIFACT =================
-     The hero above is an HTML replica — responsive, themeable, and honest about
-     its numbers, but a drawing of the product rather than the product. This
-     section is the actual thing: Docket run against our own site, rendered by
-     the app's own HTML reporter, not rebuilt in CSS.
+     This section is Docket run against our own site, rendered by the app's own
+     HTML reporter, not rebuilt in CSS.
+
+     This comment used to open "the hero above is an HTML replica ... a drawing
+     of the product rather than the product". That stopped being true when the
+     hero became a screen recording of the shipped app, and the comment was not
+     updated with it — so it sat here contradicting the hero's own figcaption,
+     which says "screen recording of the shipped app, not a mockup". The
+     figcaption is the correct one: frame 12 of app-demo.mp4 is the real window,
+     status bar and all.
+
+     ⚠️ THAT STATUS BAR READS "Ready · 96 checks". The site derives its check
+     count from data/checks.csv and currently prints 97, eight times, on this
+     same page. A number inside a video cannot drift back into line and no gate
+     can see it: verify_numbers.py reads HTML. Re-recording is the only fix and
+     it needs screen-recording permission on this machine, which is not
+     available — see IMPROVEMENT_LOG iteration 391. Do not "fix" it by softening
+     the prose to match a stale video.
 
      Our own site on purpose. Publishing a critical audit of someone else's
      property without asking is not ours to do, and auditing ourselves is the
