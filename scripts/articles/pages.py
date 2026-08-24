@@ -1488,8 +1488,20 @@ enumerates what a site does not do is only worth reading if the enumeration stay
 depends on it loading.</p>
 
 <h2>Data you give us</h2>
-<p>There is no contact form and no mailing list. If you open an issue on GitHub, that issue
-is public and GitHub's privacy policy applies to it; we hold nothing separately.</p>
+<p>The home page has one email field. Leave your address and we will email you once, when the
+free audit is ready &mdash; it is not a newsletter and there is no series to subscribe to. The
+form sends exactly two things, and only when you press the button: the address you type, and a
+hidden field naming which of our sites it came from. Nothing is sent if you never use it.</p>
+<p>What is kept is that address, the site name, and the date. No IP address, no user agent, no
+referer, no fingerprint &mdash; the write stores those three columns and reads nothing from the
+request. To be removed, <a href="/contact/">ask</a> and the row is deleted.</p>
+<p>This section said &ldquo;there is no contact form and no mailing list&rdquo; until
+2026-08-24. The field went live on 2026-08-18, so the denial stood for six days while addresses
+were being collected. It is corrected here rather than quietly rewritten, for the reason given
+two paragraphs above: an enumeration of what a site does not do is worth nothing unless it is
+kept complete, and this is the enumeration failing.</p>
+<p>If you open an issue on GitHub, that issue is public and GitHub's privacy policy applies to
+it; we hold nothing separately.</p>
 
 <h2>Changes</h2>
 <p>If this policy changes, the updated version appears on this page.</p>
