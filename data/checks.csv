@@ -24,6 +24,7 @@ content.language_scope,content,Content quality,Language coverage
 content.placeholder,content,Content quality,Placeholder content
 content.readability,content,Content quality,Readability
 content.thin,content,Content quality,Thin content
+content.topic_gaps,content,Content quality,Topics worth writing about
 cvr.dead_contact,conversion,Conversion & landing pages,Published email addresses that cannot receive mail
 cvr.form_friction,conversion,Conversion & landing pages,Form friction
 cvr.funnel,conversion,Conversion & landing pages,Funnel coverage
