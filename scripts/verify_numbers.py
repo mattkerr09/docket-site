@@ -65,25 +65,30 @@ ALLOWED = {
            "because it is the least flattering number in our own report and "
            "the caption's point is that Docket does not hide it"),
     # -- figures read off the dated HERO RECORDING -------------------------
-    # Same rule as the screenshot above, for site/assets/app-demo.{mp4,webm}:
-    # a screen recording of Docket auditing docketseo.app, captured 2026-08-18
-    # through the e2e harness against the SHIPPED sidecar. They describe that
-    # recording and nothing else, so interpolating them from a live dataset
-    # would eventually caption a video that shows different numbers.
+    # Same rule as the screenshot above, for site/assets/app-demo*.{mp4,webm}:
+    # a screen recording of Docket auditing docketseo.app, driven through
+    # scripts/record_hero.mjs in the app repo against a REAL audit engine. They
+    # describe that recording and nothing else, so interpolating them from a
+    # live dataset would eventually caption a video that shows other numbers.
     #
-    # If the recording is re-shot, re-read all three off the new footage.
+    # RE-READ ALL THREE OFF THE NEW FOOTAGE WHENEVER IT IS RE-SHOT. Done on
+    # 2026-08-24, when the 1280px original measured 0.59x against a slot that
+    # paints 2160: the run changed, and two of the three numbers changed with
+    # it. The score moved 94 -> 96 and the audit time 35s -> 34s, because it is
+    # a different run against a site that had been worked on in between. Pages
+    # crawled stayed 57.
     "57": ("pages crawled in the hero recording — read off the footage, which "
-           "is a real run against docketseo.app on 2026-08-18"),
-    "35": ("seconds that same recorded run took, read off the same footage"),
-    "94": ("the score that recorded run produced. Quoted because the caption's "
-           "claim is that this is the app running, not a render of it"),
-    "96": ("the check count visible in that recording's status bar. NOT the "
-           "product's count, which is derived from data/checks.csv and is "
-           "higher — the video is frozen at what shipped on 2026-08-18. It is "
-           "quoted only in a source comment warning the next person not to "
-           "soften the live prose to match a stale video; if that number ever "
-           "appears in PROSE, the video is out of date and the answer is to "
-           "re-shoot it, never to change the sentence"),
+           "is a real run against docketseo.app"),
+    "34": ("seconds that recorded run took, read off the same footage"),
+    "96": ("the score that recorded run produced, read off frame 185. Quoted "
+           "because the caption's claim is that this is the app running, not a "
+           "render of it.\n"
+           "NOTE: 96 was previously allowed here as something else entirely — "
+           "the check count frozen in the OLD footage's status bar, which had "
+           "drifted below the derived count and could not be corrected without "
+           "re-shooting. The new footage reads 97, which IS the derived count, "
+           "so that exemption is gone and the coincidence of the numbers is "
+           "just a coincidence."),
     "2.30": ("the glibc floor of the Linux build, measured with objdump over "
              "the shipped binary and its bundled libpython — the highest "
              "GLIBC_ symbol version either requires"),
@@ -278,6 +283,16 @@ _ATTR = re.compile(r'\b[a-zA-Z-]+="[^"]*"')
 #: Inside <code> is a literal being quoted — a token, a version, a snippet.
 #: `ChatGPT-User/2.0` is the subject of a sentence, not a claim about the world.
 _CODE = re.compile(r"<code>.*?</code>", re.S)
+#: Inside <script> is code. Same argument as <code>, only stronger: a threshold,
+#: a pixel width or an array index is not a figure any reader ever sees, and
+#: this file's whole purpose is figures a reader could act on.
+#:
+#: Added 2026-08-24, when the hero gained an inline source-picker — the first
+#: script in an article file — and the gate flagged `if (need <= 1400)` as a
+#: claim. Masking is right rather than adding those to ALLOWED: an exemption
+#: list that fills up with array indices stops being readable, which is the
+#: same failure the tokenisation comment above describes.
+_SCRIPT = re.compile(r"<script\b.*?</script>", re.S | re.I)
 #: An f-string hole. Everything inside one is derived, which is the point.
 _HOLE = re.compile(r"\{[^{}]*\}")
 #: A number, without swallowing the punctuation after it. The first version
@@ -295,7 +310,7 @@ def _literals(path: Path) -> Iterator[Tuple[int, str, str]]:
         body = match.group(2)
         # Blank out every interpolation before looking for numbers: a figure
         # inside {} is derived by construction and is exactly what we want.
-        masked = _ATTR.sub(" ", _CODE.sub(" ", _HOLE.sub(" ", body)))
+        masked = _ATTR.sub(" ", _CODE.sub(" ", _HOLE.sub(" ", _SCRIPT.sub(" ", body))))
         for offset, line in enumerate(masked.splitlines()):
             if _SKIP_LINE.match(line):
                 continue

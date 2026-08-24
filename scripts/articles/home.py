@@ -155,16 +155,51 @@ def body() -> str:
 <div class="wrap-wide hero-media-wrap">
 <figure class="hero-media">
   <video class="hero-video" autoplay loop muted playsinline preload="metadata"
-         poster="/assets/app-demo-poster.webp" width="1280" height="800"
+         poster="/assets/app-demo-poster.jpg" width="1280" height="800"
          aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs across 57 pages,
-                     and a report appears scoring 94 out of 100, grade A.">
-    <source src="/assets/app-demo.webm" type="video/webm">
+                     and a report appears scoring 96 out of 100, grade A.">
+    <source src="/assets/app-demo.webm" data-src-hi="/assets/app-demo-hi.webm" type="video/webm">
     <source src="/assets/app-demo.mp4" type="video/mp4">
   </video>
-  <figcaption>Docket auditing this site. <strong>57&nbsp;pages, 35&nbsp;seconds, 94/100</strong>
-  — screen recording of the shipped app, not a mockup.</figcaption>
+  <figcaption>Docket auditing this site. <strong>57&nbsp;pages, 34&nbsp;seconds, 96/100</strong>
+  — screen recording of the shipped app not a mockup.</figcaption>
 </figure>
-</div></section>
+</div>
+<script>
+/* Pick the video source from what THIS ELEMENT will paint.
+
+   The small file stays in `src`, so the hero works with no JavaScript at all —
+   it is above the fold and deliberately not lazy. This upgrades to the 2560px
+   cut only when the slot needs it. Keyed off the element rather than a media
+   query, so it stays correct if the layout changes: the hero sits in
+   `.wrap-wide`, which is min(1080px, 100% - 2rem), so desktop retina needs 2160
+   while a phone at ~350px needs ~1050 and must never pull the big file. Ad
+   traffic is mostly mobile.
+
+   ⚠️ devicePixelRatio is read ONCE. It is not stable in headless engines under
+   a heavy page — observed dropping 2 to 1 mid-load while innerWidth held — and
+   a value that can change underneath a decision is worth capturing anyway.
+
+   This sits immediately after the element on purpose. The site's main script
+   runs at the end of the body, by which time the browser has committed to the
+   file in `src`, and swapping then costs a second download. */
+(function () {{
+  try {{
+    var DPR = window.devicePixelRatio || 1;
+    var v = document.querySelector('video.hero-video');
+    if (!v) return;
+    var need = (v.getBoundingClientRect().width || v.clientWidth || 0) * DPR;
+    if (need <= 1400) return;
+    var swapped = false;
+    [].forEach.call(v.querySelectorAll('source[data-src-hi]'), function (s) {{
+      s.setAttribute('src', s.getAttribute('data-src-hi'));
+      swapped = true;
+    }});
+    if (swapped) v.load();
+  }} catch (e) {{ /* a hero that plays the small file is not worth throwing over */ }}
+}})();
+</script>
+</section>
 
 <!-- ================= THE REAL ARTIFACT =================
      This section is Docket run against our own site, rendered by the app's own
