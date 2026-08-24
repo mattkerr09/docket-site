@@ -1,11 +1,11 @@
 {
-  "version": "1.1.65",
-  "notes": "Three crawler fixes. 'Everything, however big it is' crawled exactly one page, because no-limit-on-depth was read as follow-no-links. A rate-limited crawl gave up at the exact moment it finished slowing down, so backing off could never help. And a crawl that read half a site said nothing about the other half.",
-  "pub_date": "2026-08-24T01:05:09Z",
+  "version": "1.1.66",
+  "notes": "A site whose menu is built by JavaScript is no longer crawled as a single page. The links are not in the HTML at all, so the crawler found nothing to follow; the renderer that already existed ran only after the crawl and could never add a page. It now runs during discovery, spent only on pages that came back with no links.",
+  "pub_date": "2026-08-24T01:37:48Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTV4K1RKaHkvTmNPdVdiL3hXMGlvN1FwV0FrZHFsYnZPWnVlcHNwTWpHYnE4Wi9PTUwzWVdSbzRVMXJlV29YQkZOeWpHckxRQ0lkYlRsNzNORlVXc2d3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTMzMzcxCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKcXhHOE5Ga25Rd3J4RjZtRkpnR1V0WXJuQXV0TVRxVjlyUW5oSDhhQjFUekRhbjdDamNjNWJrZDlHL0lWbXFVUURTdGtVWEh4L3pJcmxJVStka3lERFE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.65/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVwMFBYN0tpMWU2TzV0a2ttTkxjNGlUeklCYTZoQXRGTkpmNkZTTmJoZHNCYWMzZCtHYW8vdGpjN0dMaWE1OExQdHo0NlNLYnpQZXY3dm1sYytrdGdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTM1MzM5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKUkdpZE9xVThpTUxWK3hFSDN6SDhPNkNvT2ZqbHhwZ1lTOG5rWmRQaGZjL1pHWFhBOEsyUWlHV1o5ZTl2b3JCclB3WFJGL29RMkJobjZHSkRNT0cxRHc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.66/Docket.app.tar.gz"
     }
   }
 }
