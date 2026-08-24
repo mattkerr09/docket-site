@@ -1,11 +1,11 @@
 {
-  "version": "1.1.71",
-  "notes": "A page limit meant two different things: the app's presets could grow when a site turned out to be bigger and healthy, while passing -n on the command line switched that off entirely. --adaptive N now says which you want. Also, one bad response from a page is no longer read as a broken site.",
-  "pub_date": "2026-08-24T12:28:51Z",
+  "version": "1.1.72",
+  "notes": "A link whose destination is text rather than an address is no longer reported as a DNS or certificate failure. It is still reported \u2014 it is a real broken link \u2014 but as what it is, at MEDIUM, with a fix that points at the page rather than at your nameservers.",
+  "pub_date": "2026-08-24T12:51:42Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTZHL05OaG5tZW1peThUSUNPZDBVUFp0TjNPOVRMK2k1SHdyNG1BRzR5cVJVM1B6eGw2YndnVFZ4SytkOXJKL25EeFJ2Y1AzUEdldHRHQWhBbmVleHdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTc0NDA2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKQ2lhZzMzM2ZIcExTelpoMmx6ODZGdTFuU2NSRThvVExER21ZN2lEVWdTbEFmaTN6ZVp0cmtmRnQrWW94RmF4THNQbTFJSkpUWWR2bVZVZWE1d1pjRGc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.71/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaS81ekRaazBSTDdYVXpVZklSY252TzRIZWZSWTQ4b1FzTWJKaEdCRnl5WFB5YWtCU0pTdGlUdnJKcm1laytFbURhbEl5Q1JuQlhQRFpuRGpNZlNWN0FnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTc1NzYzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKejBYWGowYnJmanVueHlDVXRmWUllZVdyaGg5WEZqT3U2dmpEUWFBNlNqcXlCWGRhc0RKZGNPQm85Rm5LU09nSmhnazJ3VHREN2R4UUFJUjRQUTlEQmc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.72/Docket.app.tar.gz"
     }
   }
 }
