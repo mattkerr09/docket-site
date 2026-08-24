@@ -1,11 +1,11 @@
 {
-  "version": "1.1.67",
-  "notes": "The page limit now fits the site. A limit chosen before the crawl decided how much got audited: a 500-page site at the default described 40% of itself. It is a starting point now, growing while the site answers quickly and stopping the moment it pushes back. A limit you type yourself is kept exactly.",
-  "pub_date": "2026-08-24T02:36:35Z",
+  "version": "1.1.68",
+  "notes": "A page that answers slowly is no longer reported as one that cannot be reached. A cathedral site was told 24 of its URLs could not be reached at all and sent to check DNS; every one had simply timed out, and the ones checked by hand answered normally. Timeouts are now their own finding, below a genuinely dead host.",
+  "pub_date": "2026-08-24T03:51:32Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJqSmNMNS80WUVlWkJRSkdvZmQwcjA1TGFobFZXalNPOHJwNEJFdlBHNmdFa3VtMGxIYUJnNXc2TXhqbUM0ZWx3bFB3VUpSelZ6NWhoUVhLRFBhUEFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTM4ODg5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKMnZ1Vm5vVS96REJncWFNcUFYTG5ZSGc3SXhpSzdBS1NidHdWUW5ZS3VhREV1dUpZZEErTGZ2a1FnNmFnUlZGN0ZiNC9aVEZpMGgxcksySGk1UVFtQ0E9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.67/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTlvUno1R2F5UUlKcmVMN2VJS0REclptNnh1dnNCR3lEMnUvUTVTdXVtemlTSHdTTkhkeGtZRUh2SjRLSStrcWRYb3Bjd2VVK29NY1RZc1dzbmdPcWcwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTQzMzg1CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKTnJNazJFSVFjWmpzTGU0WkdsOFp6S0lJc3pRMzgxRXhhRUJHMS90bXhCVVFqWjRoYUh1a3k1c0Rsb1NIZzZrdFNJaVJ6SVU0R2toNEt3TFNOZmhsQmc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.68/Docket.app.tar.gz"
     }
   }
 }
