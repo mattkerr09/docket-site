@@ -6,7 +6,7 @@
 <title>About Docket — who builds it and what it cannot do</title>
 <meta name="description" content="Docket is a Mac SEO and copy audit tool with 97 checks, built by one person in the UK and run on your own machine. What it is bad at, and how to verify the download.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="fd0da938c08f">
+<meta name="build-id" content="73aaf7f1117f">
 <link rel="canonical" href="https://docketseo.app/about/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -762,7 +762,7 @@ spent years and a great deal of money building those, and Docket has no answer t
 you sort them; Docket is built to read a site closely, not to survey one at that scale.</li>
 <li><strong>The app's source is not public.</strong> The website and its datasets are; the
 application is not. If your policy requires reading the code, Docket will not pass it.</li>
-<li><strong>It is version v1.1.76.</strong> There are things it should connect to and does
+<li><strong>It is version v1.1.77.</strong> There are things it should connect to and does
 not yet — Search Console for your own impressions is the biggest.</li>
 </ul>
 
@@ -772,8 +772,8 @@ not yet — Search Console for your own impressions is the biggest.</li>
 certificate carries a legal name and Apple has checked it. You do not have to take that on
 faith. After downloading the 21.8 MB disk image:</p>
 
-<pre><code>codesign -dv --verbose=4 "/Volumes/Docket 1.1.76/Docket.app"
-spctl -a -t open --context context:primary-signature -v Docket-1.1.76-arm64.dmg</code></pre>
+<pre><code>codesign -dv --verbose=4 "/Volumes/Docket 1.1.77/Docket.app"
+spctl -a -t open --context context:primary-signature -v Docket-1.1.77-arm64.dmg</code></pre>
 
 <p>The first prints the authority chain, ending at Apple's root. The second should say
 <code>accepted</code> and <code>source=Notarized Developer ID</code>. Any Mac app worth
