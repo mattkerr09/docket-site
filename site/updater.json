@@ -1,11 +1,11 @@
 {
-  "version": "1.1.66",
-  "notes": "A site whose menu is built by JavaScript is no longer crawled as a single page. The links are not in the HTML at all, so the crawler found nothing to follow; the renderer that already existed ran only after the crawl and could never add a page. It now runs during discovery, spent only on pages that came back with no links.",
-  "pub_date": "2026-08-24T01:37:48Z",
+  "version": "1.1.67",
+  "notes": "The page limit now fits the site. A limit chosen before the crawl decided how much got audited: a 500-page site at the default described 40% of itself. It is a starting point now, growing while the site answers quickly and stopping the moment it pushes back. A limit you type yourself is kept exactly.",
+  "pub_date": "2026-08-24T02:36:35Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVwMFBYN0tpMWU2TzV0a2ttTkxjNGlUeklCYTZoQXRGTkpmNkZTTmJoZHNCYWMzZCtHYW8vdGpjN0dMaWE1OExQdHo0NlNLYnpQZXY3dm1sYytrdGdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTM1MzM5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKUkdpZE9xVThpTUxWK3hFSDN6SDhPNkNvT2ZqbHhwZ1lTOG5rWmRQaGZjL1pHWFhBOEsyUWlHV1o5ZTl2b3JCclB3WFJGL29RMkJobjZHSkRNT0cxRHc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.66/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJqSmNMNS80WUVlWkJRSkdvZmQwcjA1TGFobFZXalNPOHJwNEJFdlBHNmdFa3VtMGxIYUJnNXc2TXhqbUM0ZWx3bFB3VUpSelZ6NWhoUVhLRFBhUEFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NTM4ODg5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKMnZ1Vm5vVS96REJncWFNcUFYTG5ZSGc3SXhpSzdBS1NidHdWUW5ZS3VhREV1dUpZZEErTGZ2a1FnNmFnUlZGN0ZiNC9aVEZpMGgxcksySGk1UVFtQ0E9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.1.67/Docket.app.tar.gz"
     }
   }
 }
