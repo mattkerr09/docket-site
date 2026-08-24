@@ -6,7 +6,7 @@
 <title>Thank you — Docket</title>
 <meta name="description" content="Your Docket purchase is complete. Where to download the app and how to reach us.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="cdc63b6a5ea6">
+<meta name="build-id" content="adb5db18ff4c">
 <meta name="robots" content="noindex">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -704,10 +704,19 @@ fbq('track','PageView');
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / Thank you</div><h1>Thank you</h1>
 
-<p>Your payment went through. The receipt comes by email from Dodo Payments, who
-handle the checkout — it may land under a different sender name than Docket.</p>
+<p id="ty-lede">Your payment went through. The receipt comes by email from Dodo
+Payments, who handle the checkout — it may land under a different sender name
+than Docket.</p>
 
-<h2>Your licence key is in that email</h2>
+<!-- The key, straight off the URL Dodo redirects to. Hidden until there is one:
+     an empty box under "your payment went through" reads as a failure. Filled
+     with textContent, never innerHTML — the value arrives in a query string, so
+     it is attacker-controllable and this URL is the kind of thing people forward. -->
+<p id="ty-key-wrap" hidden><strong>Your licence key:</strong>
+  <code id="ty-key" style="user-select:all"></code>
+  <br><small>Also in your email. Paste it into <strong>Enter licence key</strong>.</small></p>
+
+<h2 id="ty-key-head">Your licence key is in that email</h2>
 <p>Docket needs it before it will run an audit. Open the app, click
 <strong>Enter licence key</strong> in the title bar, and paste it in. From a
 terminal, <code>docket licence --key YOUR-KEY</code> does the same thing.</p>
@@ -718,6 +727,43 @@ terminal, <code>docket licence --key YOUR-KEY</code> does the same thing.</p>
 <p>Email <a href="mailto:hello@docketseo.app">hello@docketseo.app</a> and say what
 happened. If the purchase was a mistake, the
 <a href="/legal/refunds/">refund policy</a> is on this site and it is short.</p>
+
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var status = (q.get('status') || '').toLowerCase();
+  var key = q.get('license_key');
+  var pid = q.get('payment_id');
+  var $ = function (id) { return document.getElementById(id); };
+
+  if (status && status !== 'succeeded') {
+    var h1 = document.querySelector('h1');
+    if (h1) h1.textContent = 'That payment did not go through';
+    if ($('ty-lede')) $('ty-lede').textContent =
+      'Your card was not charged. You can try again from the pricing section, or '
+      + 'email hello@docketseo.app and we will sort it out.';
+    if ($('ty-key-head')) $('ty-key-head').hidden = true;
+    return;
+  }
+
+  if (key && $('ty-key') && $('ty-key-wrap')) {
+    $('ty-key').textContent = key;          // textContent, never innerHTML
+    $('ty-key-wrap').hidden = false;
+    if ($('ty-key-head')) $('ty-key-head').textContent = 'Your licence key';
+  }
+
+  if (status === 'succeeded' && typeof fbq === 'function') {
+    var once = 'dk_purchase_' + (pid || 'nopid');
+    var fire = function () {
+      fbq('track', 'Purchase', { value: 199, currency: 'USD' },
+          pid ? { eventID: pid } : undefined);
+    };
+    try {
+      if (!sessionStorage.getItem(once)) { sessionStorage.setItem(once, '1'); fire(); }
+    } catch (e) { fire(); }   // private mode: firing once beats not firing
+  }
+})();
+</script>
 
 </div></article>
 <footer><div class="wrap-wide">
