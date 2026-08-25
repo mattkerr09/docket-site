@@ -1,11 +1,11 @@
 {
-  "version": "1.2.7",
-  "notes": "## Docket 1.2.7\n\n**A page served only the site furniture was served no content.**\n\nSome pages come back containing the menu and footer that appear on every page,\nand nothing of their own between them \u2014 a page whose content is built by\nJavaScript that did not run, or a cache returning a shell under load. Docket\nalready noticed this when many pages did it at once. It now notices when a\nsingle page does, which is the case nothing could see before: that page was\nbeing judged on its navigation's word count, headings and links, and no finding\nsaid so.\n\nThe site's furniture is worked out from the site itself \u2014 the phrases that\nrecur across its pages \u2014 so it needs no assumption about how the site is built.\nMeasured against nine live pages of a real site: ordinary pages score between\n0.000 and 0.009 against that furniture, and a page that is nothing but the\nfurniture scores 0.978.\n\nPages in that state are no longer judged for content they were never given, and\nthey are reported rather than quietly dropped. Docket says what it received and\npoints at Search Console's URL Inspection for what Google receives, rather than\nguessing on your behalf.",
-  "pub_date": "2026-08-25T20:02:13Z",
+  "version": "1.2.8",
+  "notes": "## Docket 1.2.8\n\n**\"Check now\" tells you it is still going.**\n\nPressing Check now on a watchlist site said the audit was running in the\nbackground and then went quiet \u2014 no progress, no way to tell whether it was\nstill working, and no way to tell whether it had failed.\n\nIt now shows what the check is doing beside the button \u2014 the phase it is in and\nhow many pages it has read \u2014 and the button stays disabled until it finishes, so\na second press cannot start a second crawl of the same site without saying so.\n\nA check that **fails** now says so. Previously the failure was recorded but\nnever surfaced, so a failed check looked exactly like one still running, and\nwent on looking that way indefinitely.\n\nThe state survives a reload. Reopening the site, or restarting the app while a\ncheck is in progress, now shows the check still running instead of losing track\nof it.",
+  "pub_date": "2026-08-25T20:44:54Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVOUXZneTNLNG5RbG5Ub3ZPa21QQVB5aC9BNWdYdFcrNmZYc1ZCVmMrUmQrZGd5Ukw5MWZudnM2dHdlOXduYkh2SkR0aVV1ZkZDOGpmcy8rMEZvRXdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3Njg4MDQ5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKOUUvZ3RibmFURjVQaVYzNzVVdER3SWUxYnRpaUw4MXJDcnBNazlHemgwd1ozOEYwQVBmYWJkRXVZbHgyWFdlNG54dzhubDBDK2gzT3FyeFA3TFljQXc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.2.7/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTA5bjYxeTZERm5nSFFTV3p4Z0VlZ2lqVzR0TFBSMjlqK0lXdHl3eC95bnQyWmtCNlorRE5KVTliTTR6TnoxYXp5V0VkRkpwaXFxNzkxdHBqUmxRZXdVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NjkwNTY4CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKSjZ3OXdLUTRrdTdGajNqOVZFMjIyYXUrOGEvVzFWeFdRUWJXUXM1YzdKSThJblRmUXVZWmYySzNhY0V1U3JLTDZhcS80dmtuQUZwZ1I5K3pBT3JsRFE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.2.8/Docket.app.tar.gz"
     }
   }
 }
