@@ -1109,7 +1109,7 @@ def _breadcrumb_schema(crumb: str) -> str:
             '"itemListElement":[' + ",".join(items) + "]}")
 
 
-def _entity_schema() -> str:
+def _entity_schema(with_offer: bool = True) -> str:
     """Organization + SoftwareApplication + sameAs, on every page.
 
     `sameAs` is what lets a language model resolve "Docket" to this specific
@@ -1120,6 +1120,23 @@ def _entity_schema() -> str:
     says on this same site that padding the array with URLs you do not control
     weakens the signal. There is no social presence yet; when there is, it goes
     here and nowhere else.
+
+    ⚠️ `with_offer` IS FALSE ON PAGES THAT DO NOT SHOW THE PRICE.
+    Found by Docket on this site, 2026-08-25, the first time rendering ran
+    automatically — `schema.price_not_visible`, HIGH, on /for/ and /vs/:
+
+        Offer markup states a price (199) that appears nowhere in the
+        page's visible text.
+
+    True on both. /for/ shows no price at all, and the only price visible on
+    /vs/ is a competitor's $129. Google's general structured-data guideline
+    is "don't mark up content that is not visible to readers of the page",
+    and the penalty for a mismatch is a manual action against every rich
+    result on the domain, not just the offending page.
+
+    The entity itself still appears everywhere — that is what `sameAs` is
+    for. Only the priced Offer is withheld, and only where the number is
+    not on screen.
     """
     return (
         '{"@context":"https://schema.org","@graph":['
@@ -1143,8 +1160,8 @@ def _entity_schema() -> str:
         # pay now; the future price is prose, not an Offer. Declaring 149 while
         # the beta is free let Google advertise a number with no checkout
         # behind it.
-        '"offers":{"@type":"Offer","price":"' + str(PRICE_TODAY) + '","priceCurrency":"USD",'
-        '"availability":"https://schema.org/InStock"},'
+        + ('"offers":{"@type":"Offer","price":"' + str(PRICE_TODAY) + '","priceCurrency":"USD",'
+           '"availability":"https://schema.org/InStock"},' if with_offer else '') +
         '"featureList":"' + str(N_CHECKS) + ' checks, ranked action plan, PDF report, scheduled monitoring, '
         'competitor comparison, AI crawler access audit",'
         '"publisher":{"@id":"' + BASE + '/#org"}}]}'
@@ -1265,7 +1282,11 @@ def render(
     url = BASE + "/" + ("/".join(path_parts) + "/" if path_parts else "")
     esc = lambda s: s.replace('"', "&quot;")  # noqa: E731
 
-    blocks = [_entity_schema()]
+    # The Offer rides along only where a visitor can see the number it states.
+    # Derived from the authored body rather than a per-page flag, because a
+    # flag drifts the first time someone edits the copy without it.
+    shows_price = str(PRICE_TODAY) in body
+    blocks = [_entity_schema(with_offer=shows_price)]
     crumb_schema = _breadcrumb_schema(crumb)
     if crumb_schema:
         blocks.append(crumb_schema)
