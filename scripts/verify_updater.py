@@ -238,6 +238,27 @@ def main() -> None:
     if "darwin-x86_64" in platforms:
         fail("updater.json offers darwin-x86_64 and there is no Intel build")
 
+    # ⚠️ THE ONE FIELD A PERSON READS, AND THE ONLY ONE NOTHING CHECKED.
+    # 1.2.4 and 1.2.5 both published `"notes": "/tmp/notes-1.2.4.md"` — the
+    # filename the notes were in, not the notes. Every installed copy offering
+    # an update showed the reader a path that does not exist on their machine.
+    #
+    # Nothing caught it because everything else was right: the tarball agreed
+    # with the version, the signature verified against the app's public key,
+    # and this gate printed UPDATER ok. Every mechanism was green and the only
+    # broken thing was the sentence a human sees, which is exactly the class of
+    # defect a shape check does not reach.
+    notes = str(data.get("notes", ""))
+    stripped = notes.strip()
+    if not stripped:
+        fail("updater.json has empty notes — the update dialog would describe "
+             "this release with nothing at all")
+    if "\n" not in stripped and (
+            "/" in stripped or stripped.endswith((".md", ".txt"))):
+        fail(f"updater.json notes look like a filename rather than release "
+             f"notes: {stripped[:80]!r}. This is what the update dialog shows "
+             f"the customer, so publishing it would show them a path.")
+
     if not SIG.is_file():
         print(f"UPDATER ok (shape) — {data['version']}, "
               f"{len(platforms)} platform(s); no local build to compare against")

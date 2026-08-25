@@ -41,13 +41,67 @@ SIG = APP / "dist" / "Docket.app.tar.gz.sig"
 RELEASE = "https://github.com/mattkerr09/docket-site/releases/download"
 
 
+#: A value that means "the notes are in this file", not "the notes are this
+#: string". Anything with a directory separator, or a bare markdown/text
+#: filename, is a path — nobody writes release notes that look like that.
+def _looks_like_a_path(value: str) -> bool:
+    stripped = value.strip()
+    if not stripped or "\n" in stripped:
+        return False
+    return ("/" in stripped
+            or stripped.endswith(".md")
+            or stripped.endswith(".txt"))
+
+
+def _notes_text(value: str) -> str:
+    """The notes themselves, whether given as text or as a file to read.
+
+    ⚠️ CUSTOMERS WERE SHOWN A TEMP-FILE PATH AS THE RELEASE NOTES.
+    Measured on the live manifest, 2026-08-25. `--notes` documented itself as
+    "what changed, shown to the user" and stored whatever string it was handed,
+    and every caller handed it a filename:
+
+        1.2.4  "notes": "/tmp/notes-1.2.4.md"
+        1.2.5  "notes": "/tmp/notes419.md"
+
+    Both shipped. Every installed copy offering an update showed the reader
+    `/tmp/notes-1.2.4.md` where the description of the release should have been
+    — a path that does not exist on their machine, describing nothing.
+
+    Nothing caught it because every mechanism was working: the tarball agreed
+    with the version, the signature verified against the app's public key, and
+    the updater gate passed. The field was populated, the manifest was valid,
+    and the only thing wrong was the part a person reads.
+
+    So the flag now accepts either, because both callers exist and the
+    difference was never visible at the call site. A path that does not resolve
+    is fatal rather than silently literal: shipping the string is the failure
+    this exists to prevent, and falling back to it would reintroduce it exactly.
+    """
+    if not _looks_like_a_path(value):
+        return value
+    path = pathlib.Path(value).expanduser()
+    if not path.is_file():
+        sys.exit(f"--notes looks like a path but there is no file at {path}. "
+                 f"Pass the notes themselves, or a file that exists — the one "
+                 f"thing that must not happen is publishing this string to "
+                 f"customers as the description of the release.")
+    text = path.read_text(encoding="utf-8").strip()
+    if not text:
+        sys.exit(f"{path} is empty; refusing to publish a release with no notes")
+    return text
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--version", required=True,
                     help="the version being published, e.g. 0.1.1")
     ap.add_argument("--tag", default="v0.1.0", help="release tag hosting the asset")
-    ap.add_argument("--notes", default="", help="what changed, shown to the user")
+    ap.add_argument("--notes", default="",
+                    help="what changed, shown to the user — literal text, or a "
+                         "path to a file containing it")
     args = ap.parse_args()
+    notes = _notes_text(args.notes)
 
     for path in (TGZ, SIG):
         if not path.is_file():
@@ -60,7 +114,7 @@ def main() -> None:
 
     data = {
         "version": args.version,
-        "notes": args.notes or f"Docket {args.version}",
+        "notes": notes or f"Docket {args.version}",
         "pub_date": datetime.datetime.now(datetime.timezone.utc)
                     .replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "platforms": {
