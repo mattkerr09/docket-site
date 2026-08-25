@@ -1,11 +1,11 @@
 {
-  "version": "1.2.8",
-  "notes": "## Docket 1.2.8\n\n**\"Check now\" tells you it is still going.**\n\nPressing Check now on a watchlist site said the audit was running in the\nbackground and then went quiet \u2014 no progress, no way to tell whether it was\nstill working, and no way to tell whether it had failed.\n\nIt now shows what the check is doing beside the button \u2014 the phase it is in and\nhow many pages it has read \u2014 and the button stays disabled until it finishes, so\na second press cannot start a second crawl of the same site without saying so.\n\nA check that **fails** now says so. Previously the failure was recorded but\nnever surfaced, so a failed check looked exactly like one still running, and\nwent on looking that way indefinitely.\n\nThe state survives a reload. Reopening the site, or restarting the app while a\ncheck is in progress, now shows the check still running instead of losing track\nof it.",
-  "pub_date": "2026-08-25T20:44:54Z",
+  "version": "1.2.9",
+  "notes": "A correctly installed Meta pixel is no longer reported as unable to fire.\n\n`mar.pixel_staged` raised a HIGH against a working pixel whose account id is\nassigned to a variable and passed to the init call by name \u2014 what anyone does\nwhen the same id is shared with a server-side conversions API. Docket matched\nthe id only *inside* the init call, so passing it by name read as an unfilled\nplaceholder.\n\nThe same root cause undercounted pixel coverage: with no page registering the\npixel at all, `mar.pixel_gaps` reported it on zero pages. Both are fixed by\nresolving the id through the variable.\n\nStill reported, deliberately: an identifier with no assignment anywhere, and one\nassigned something that is not an id.",
+  "pub_date": "2026-08-25T23:06:24Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTA5bjYxeTZERm5nSFFTV3p4Z0VlZ2lqVzR0TFBSMjlqK0lXdHl3eC95bnQyWmtCNlorRE5KVTliTTR6TnoxYXp5V0VkRkpwaXFxNzkxdHBqUmxRZXdVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NjkwNTY4CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKSjZ3OXdLUTRrdTdGajNqOVZFMjIyYXUrOGEvVzFWeFdRUWJXUXM1YzdKSThJblRmUXVZWmYySzNhY0V1U3JLTDZhcS80dmtuQUZwZ1I5K3pBT3JsRFE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.2.8/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTlRcnY3OVFCMWtEWkFaVUJRbm5jNmMrTXdCUGpLaU92cmlZd29mUzdzVHVFNjhCMFIveGZrOWFIaCtYTkV5VmtWejcxUFNXL1RBMm9lN1pOdmdWUFFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3Njk5MDgwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKLzRabEZPaGhDaUU1SjBCZzAxaEdQWkpZWnpYblhOQmJCNGl4V3RLVExlMzZuYUdEZmtrQ0FnczNRNVNSMTRlQWxBalVqM3hKK0ZBQXg4djlDaFhFQ1E9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.2.9/Docket.app.tar.gz"
     }
   }
 }
