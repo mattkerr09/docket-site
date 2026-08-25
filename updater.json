@@ -1,7 +1,7 @@
 {
   "version": "1.2.5",
-  "notes": "/tmp/notes419.md",
-  "pub_date": "2026-08-25T18:13:42Z",
+  "notes": "## Docket 1.2.5\n\n**A page served instead of the page is not the page's content.**\n\nTwo false claims fixed, both about content Docket was never actually shown.\n\n**Transcriptions are finished work.** An archive of WWI nursing diaries had six\ntranscripts reported at HIGH as \"unfinished content is live and indexable\". The\nmarker was `xxxxx`, and the context was the transcriber's convention for\nhandwriting they could not read. Runs that vary in length are standing in for\ntext; a field somebody forgot to fill in is one token typed once. A short page\nand a single stray run still fire, so a genuine placeholder is still caught.\n\n**A browser-upgrade notice is not thin content.** \"20 pages have almost no\ncontent\" \u2014 fifteen of them were a notice saying the browser was out of date,\nserved with HTTP 200 in place of the page. Docket no longer judges the writing\nof a page it was not given, and says so plainly instead of dropping those pages\nin silence. It states what that establishes and what it does not: Docket does\nnot impersonate Googlebot to find out what search engines receive.",
+  "pub_date": "2026-08-25T18:18:43Z",
   "platforms": {
     "darwin-aarch64": {
       "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTg5U2ViMzBTeFMyYzNBN2FRcjloc0grZlZIY0MxanEyNXJPdit5Qkd5N21ld1Zla2FsZk5GSFRYZU5HTUZxZlJoeTBFMTZ4d2JyUldqTm9ISlJaaFFZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NjgxNTQ0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKeFFCanZIY3RWWjA0R0N0Tldqc0J2dXg5VDdqUVNXQ0Z3RmNvd0hOUmFjSXI4dDBQa2UvaC90b0NOakVZWFl4MUUvdHZLMDJTbHFlNlRFSUl3UFpFQWc9PQo=",
