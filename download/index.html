@@ -6,7 +6,7 @@
 <title>Download Docket for Mac — $199, paid once</title>
 <meta name="description" content="Docket for macOS 12+ on Apple Silicon. 21.9 MB, no account, no telemetry. Includes the CLI, which exits non-zero on a critical issue so it can gate a deploy.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="e982d4c82ff8">
+<meta name="build-id" content="d210726ebb4f">
 <link rel="canonical" href="https://docketseo.app/download/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -711,9 +711,9 @@ you like, for as long as you like. There is no account to create and no telemetr
 your licence checks the key with our payment provider once, and about once a day after that;
 nothing about the sites you audit is ever sent anywhere.</p>
 
-<p><strong>v1.2.8 needs a licence key.</strong> The price is $199, paid once — the key arrives with your receipt and covers up to three machines. Earlier versions ran without one; since Docket became a licensed product an audit asks for the key, and the app has a field to paste it into.</p>
+<p><strong>v1.2.9 needs a licence key.</strong> The price is $199, paid once — the key arrives with your receipt and covers up to three machines. Earlier versions ran without one; since Docket became a licensed product an audit asks for the key, and the app has a field to paste it into.</p>
 
-<p><a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v1.2.8/Docket-1.2.8-arm64.dmg">Download Docket v1.2.8 for Mac</a></p>
+<p><a class="btn btn-lg" href="https://github.com/mattkerr09/docket-site/releases/download/v1.2.9/Docket-1.2.9-arm64.dmg">Download Docket v1.2.9 for Mac</a></p>
 <p style="font-size:var(--t-md);color:var(--text-dim)">Apple Silicon · macOS 12+ · 21.9 MB ·
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
 
@@ -756,10 +756,10 @@ what they do, they are simply rented rather than owned.</p>
 <p>The Mac app is signed with a Developer&nbsp;ID and notarised by Apple, so macOS verifies it
 with Apple before it opens and you need do nothing. The Linux tarball has no equivalent — it is
 a plain archive from a URL — so every release publishes
-<a href="https://github.com/mattkerr09/docket-site/releases/download/v1.2.8/SHA256SUMS">SHA256SUMS</a> covering all of its artifacts:</p>
+<a href="https://github.com/mattkerr09/docket-site/releases/download/v1.2.9/SHA256SUMS">SHA256SUMS</a> covering all of its artifacts:</p>
 
-<pre><code>curl -LO https://github.com/mattkerr09/docket-site/releases/download/v1.2.8/docket-1.2.8-linux-x86_64.tar.gz
-curl -LO https://github.com/mattkerr09/docket-site/releases/download/v1.2.8/SHA256SUMS
+<pre><code>curl -LO https://github.com/mattkerr09/docket-site/releases/download/v1.2.9/docket-1.2.9-linux-x86_64.tar.gz
+curl -LO https://github.com/mattkerr09/docket-site/releases/download/v1.2.9/SHA256SUMS
 grep linux SHA256SUMS | shasum -a 256 -c -</code></pre>
 
 <p>Be clear about what that proves and what it does not. It proves the file arrived intact and
@@ -909,7 +909,7 @@ how you would drive Docket from your own scripts.</p>
 <li><strong>macOS 12 or later, Apple Silicon</strong> for the desktop app. There is no
 Intel or Windows build.</li>
 <li><strong>Linux x86_64 for the command line.</strong>
-<a href="https://github.com/mattkerr09/docket-site/releases/download/v1.2.8/docket-1.2.8-linux-x86_64.tar.gz">Download the 16.7 MB tarball</a> — needs
+<a href="https://github.com/mattkerr09/docket-site/releases/download/v1.2.9/docket-1.2.9-linux-x86_64.tar.gz">Download the 16.7 MB tarball</a> — needs
 <strong>glibc 2.30</strong> or newer — check yours with <code>ldd --version</code>. That floor
 is measured from the shipped binary rather than assumed from the machine that built it: the
 launcher itself only needs 2.14, and the bundled Python runtime is what raises it to 2.30.
