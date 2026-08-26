@@ -1,11 +1,11 @@
 {
-  "version": "1.3.1",
-  "notes": "Duplicate-content advice now uses the redirect Docket already measured.\n\nA site that serves every page over both http:// and https:// produces one\nduplicate group per path. Docket reported 69 such groups on a university\ndepartment and told the reader to pick a canonical URL for each \u2014 while\nreporting the missing http-to-https redirect in the same report, at HIGH.\n\nWhen the scheme split explains essentially all the groups, the advice now leads\nwith the redirect: one server rule, no canonical tags needed. When it explains\nonly some of them, the per-group advice stands and the redirect is offered as a\nstarting point, so work with another cause is not hidden behind it.",
-  "pub_date": "2026-08-26T01:18:17Z",
+  "version": "1.3.2",
+  "notes": "A response with no words in it is no longer judged as the page.\n\nSome servers answer an automated client with a short stand-in instead of the\npage \u2014 a rate limiter, an edge rule, a bot filter. One classifieds site returned\n24 URLs as 641 bytes of markup with no title and not one word, under a\nnon-standard HTTP status that still counts as success.\n\nDocket judged that stand-in as the site's own content: nine findings named those\nURLs, 214 page-claims, three of them HIGH \u2014 no content, no title tag, no mobile\nviewport. Every one was false; the pages serve full content in a browser.\n\nThose responses are now recognised and taken out of the judged set, and reported\nseparately so you can see Docket was not shown them. A genuinely empty page is\nstill reported as an empty page.",
+  "pub_date": "2026-08-26T02:12:03Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXhtSjU0d2NsbE5BVmNlU0krbmUzN2lqQzM0Z204cHNHQnc2U1FmV1dYcGNLRXNhWGxpN0M2aG5JQ2VwbUVKRGNsWlcyWU1ac2hjcVM3MGFCMDByWVFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzA3MDEyCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKNDl6MXREdzNqM2pzamJLY3BJN3JkcE1YeWU2bHViT1N6V1IyZ29UblJRVWtJS3pBSWFZWDJ2UThVczVpZnN0bkFtUXNXN2w4ZEhyMGNXamZGTmkwRFE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.1/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTd6MTMwaUVPUklpbnNFU2o3Y0lpcm44dzNZS0ZjeXdBREhUWVN5NU5wNEZTcUpiblBTWThpWVE1N2dka25LaC9XcVZRb2g0MU12enlBNVVFRnU4dHcwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzEwMjIzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKeklqVWliQ2hHSDVhS3dSTkMzM2ZlV1Z6N0JuVDhvUWJTTk9rdk03SmltK01wMFRySHkxelh0ZFBocm9FcG00UWhGa1RoTVY2T0pBT2UyZEhWSHI4QWc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.2/Docket.app.tar.gz"
     }
   }
 }
