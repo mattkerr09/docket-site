@@ -1302,6 +1302,13 @@ first — so the person who broke it is the last to see it broken.
 sixty characters" advice wrong on any site that is not entirely English.
 <a href="/how-to/write-title-tags-that-fit/">How to write title tags that fit →</a></p>
 
+<h2>Where a bigger competitor is beatable</h2>
+<p>Authority is bought with time, and a site that has had more of it will win the
+queries that authority decides. Some ranking surfaces are not sold that way — and
+the openings are structural, which means you can find them by looking rather than
+by guessing at rankings nobody outside Google can see.
+<a href="/how-to/outrank-a-bigger-competitor/">How to find where a bigger competitor is beatable →</a></p>
+
 <h2>More coming</h2>
 <p>Further guides are being written, one per issue Docket reports. They will appear as each is written properly rather than as
 variations on a template.</p>

@@ -1,7 +1,7 @@
 {
   "site": "docketseo.app",
   "pages": 59,
-  "edges": 1209,
+  "edges": 1210,
   "average_share_pct": 1.69,
   "below_half": 39,
   "nodes": [
@@ -145,9 +145,9 @@
     },
     {
       "path": "/how-to/outrank-a-bigger-competitor/",
-      "inlinks": 1,
-      "share_pct": 0.08,
-      "index": 0.05
+      "inlinks": 2,
+      "share_pct": 0.17,
+      "index": 0.1
     },
     {
       "path": "/how-to/redirect-http-to-https/",
@@ -278,8 +278,8 @@
     {
       "path": "/learn/what-docket-checks/",
       "inlinks": 58,
-      "share_pct": 4.8,
-      "index": 2.84
+      "share_pct": 4.79,
+      "index": 2.83
     },
     {
       "path": "/learn/what-scout-checks/",
@@ -360,5 +360,5 @@
       "index": 2.79
     }
   ],
-  "measured": "2026-08-20"
+  "measured": "2026-08-26"
 }
