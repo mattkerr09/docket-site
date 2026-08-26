@@ -6,7 +6,7 @@
 <title>Fix missing security headers</title>
 <meta name="description" content="HSTS, nosniff and Referrer-Policy: what each one does, where to set it, and why this site fails two of the three checks it is describing.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="1f5efe72e85c">
+<meta name="build-id" content="73717193579c">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-missing-security-headers/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -676,6 +676,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix missing security headers","description":"HSTS, nosniff and Referrer-Policy: what each one does, where to set it, and why this site fails two of the three checks it is describing.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-missing-security-headers/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do security headers help SEO?","acceptedAnswer":{"@type":"Answer","text":"Directly, almost nothing. Google treats https as a lightweight ranking signal and has never suggested these headers are one. The real argument is that a page reachable over plain http can be modified in transit, which matters most on pages that tell people how to verify something."}},{"@type":"Question","name":"What is the minimum set of security headers?","acceptedAnswer":{"@type":"Answer","text":"Strict-Transport-Security so browsers stop making plain-http requests, X-Content-Type-Options: nosniff so the browser does not guess content types, and Referrer-Policy: strict-origin-when-cross-origin so your full URLs are not handed to every site you link to."}},{"@type":"Question","name":"Can I set security headers on GitHub Pages?","acceptedAnswer":{"@type":"Answer","text":"No. GitHub Pages does not support custom response headers and there is no configuration file for them. The supported route is putting a CDN in front of the site. This site runs on GitHub Pages and therefore fails two of these checks itself."}},{"@type":"Question","name":"Should HSTS max-age start high?","acceptedAnswer":{"@type":"Answer","text":"No. Start with a short max-age, confirm nothing on the site breaks over https, and raise it afterwards. A long max-age set before you are certain commits every returning browser to https for that period."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
+<script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};

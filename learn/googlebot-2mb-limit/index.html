@@ -6,7 +6,7 @@
 <title>Googlebot stops reading at 2MB and never tells you</title>
 <meta name="description" content="Googlebot fetches 2MB of a page and indexes that as the whole file. We measured 82 homepages: 5 are already past it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="1f5efe72e85c">
+<meta name="build-id" content="73717193579c">
 <link rel="canonical" href="https://docketseo.app/learn/googlebot-2mb-limit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -676,6 +676,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Googlebot stops reading at 2MB","description":"Googlebot fetches 2MB of a page and indexes that as the whole file. We measured 82 homepages: 5 are already past it.","datePublished":"2026-08-07","dateModified":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/googlebot-2mb-limit/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much of a page does Googlebot fetch?","acceptedAnswer":{"@type":"Answer","text":"Up to 2MB of any individual URL, including the HTTP headers. PDFs get 64MB, and any crawler that sets no limit of its own defaults to 15MB. Referenced resources like CSS and images have their own separate budgets and do not count against the page that links them."}},{"@type":"Question","name":"What happens to the rest of the page?","acceptedAnswer":{"@type":"Answer","text":"Nothing. In Google's words the bytes past the threshold are not fetched, not rendered and not indexed, and the portion that was fetched is passed to indexing as if it were the complete file. There is no error and no Search Console report."}},{"@type":"Question","name":"Is 2MB of HTML a realistic problem?","acceptedAnswer":{"@type":"Answer","text":"For most sites, no — the median homepage in our sample was 468 KB. But 5 of 82 well-known sites we measured were already past it, and the 90th percentile was 1532 KB, so one in ten is closer than its owners probably think."}},{"@type":"Question","name":"How do I make a page smaller?","acceptedAnswer":{"@type":"Answer","text":"Move inline CSS, JavaScript and base64 images into linked files. That removes them from the page's budget completely, because every referenced resource has its own. Navigation that renders thousands of links before the content is the other common cause."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
+<script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
