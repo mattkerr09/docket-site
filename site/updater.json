@@ -1,11 +1,11 @@
 {
-  "version": "1.3.7",
-  "notes": "Thin-content advice now names the case it cannot detect.\n\n\"This page has almost no content\" comes with three remedies: write more, merge\nit, or remove it. All three assume the page was meant to be an article. An index\nis not \u2014 a category listing, an A\u2013Z, a tag or author page does its job by\npointing elsewhere, and a low word count is normal.\n\nDocket cannot reliably tell the two apart. Nine real pages were measured across\nthree different signals and every one of them overlapped, so no threshold was\ninvented. Instead the advice says so in a sentence, and says not to delete an\nindex page on the strength of its length.\n\nThe finding itself is unchanged. Those pages are thin, which is true.",
-  "pub_date": "2026-08-26T07:46:13Z",
+  "version": "1.3.8",
+  "notes": "Three findings that punished the reader for doing it right.\n\n**A 500 in your sitemap is not a stale entry.** Sitemap URLs returning a server\nerror were reported as broken links to regenerate around. Doing that deletes the\nentries and hides the fault. Those URLs are now reported only by the check that\nowns them, which tells you to read the server logs.\n\n**A more specific business type is still a business.** Sites using\n`ProfessionalService`, `Restaurant`, `NGO` or any other schema.org business\nsubtype were told their markup had no `sameAs` profile links even when it had\nseveral. Every identity subtype is now read the same way as `Organization`.\n\n**Colour advice no longer flattens an elevation ramp.** Near-identical colours\nthat are deliberate steps of a surface ramp were reported as brand drift, with\ninstructions to collapse them into one. The finding still reports what it\nmeasured; the advice now says plainly that Docket cannot tell a ramp from the\nsame colour written twice.",
+  "pub_date": "2026-08-26T21:45:25Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVmQ2p0Kzc1ZnUvRXd3ZnlwYVNPWngrZlhLekEwSXVsbDUvZEozTVFLZi94OUlNNFM3U0U5V3R1VzFRclJVL1h4L3E1RlhHaE5SNDNSNUtRT3NtTlFVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzMwMjkzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKQ29EU1BIditpcU1FbGtaa3B2dXZmSUtYUmx1MHcwV250ZXBhYXU0S21JaXVEcFdqckxiQjJKYnZHWnhtU2tvbzlKTk1CUmVEMkdwTWwvMmZOa2F0QVE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.7/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaS9RaXFxbzhlVm1Pd0hBcDFaSklOb2dFTzN4MEpabGpxTXYrcDM2bWgvR251U3FwQmttZzFOZjVENzJRRkNhV1pBZFByOGlHb0poVjkzRWNPbWpUbFFRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzgwNDEyCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKN01NeUI4bGdsaHlwOFBHYVJ1RU5LOTZmbFBPeFdNaUt1MmFLNk90TUVvR3Z6RUVZUzRwNkw4Q1ZvTlQvWW53TXU3OFl4akRWTDlyaDh2QmJLUXRpQ2c9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.8/Docket.app.tar.gz"
     }
   }
 }
