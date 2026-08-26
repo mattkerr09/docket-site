@@ -1,11 +1,11 @@
 {
-  "version": "1.3.0",
-  "notes": "An archive page that lists almost nothing is no longer told to delete itself.\n\n`content.very_thin` reported a publisher's author pages at HIGH with the remedy\n\"write real content, merge it into a stronger related page, or remove it and\nredirect\". All three are wrong for an author archive: you do not write copy on\none, you cannot merge two authors, and deleting it breaks the byline link on\nevery article that author wrote.\n\nThe finding is kept \u2014 those pages really are near-empty \u2014 but moves to\n`content.empty_archive` at LOW, with advice that refuses deletion and offers\n`noindex, follow` instead.\n\nThin pages that are genuinely thin writing are unaffected and still reported.",
-  "pub_date": "2026-08-26T00:25:13Z",
+  "version": "1.3.1",
+  "notes": "Duplicate-content advice now uses the redirect Docket already measured.\n\nA site that serves every page over both http:// and https:// produces one\nduplicate group per path. Docket reported 69 such groups on a university\ndepartment and told the reader to pick a canonical URL for each \u2014 while\nreporting the missing http-to-https redirect in the same report, at HIGH.\n\nWhen the scheme split explains essentially all the groups, the advice now leads\nwith the redirect: one server rule, no canonical tags needed. When it explains\nonly some of them, the per-group advice stands and the redirect is offered as a\nstarting point, so work with another cause is not hidden behind it.",
+  "pub_date": "2026-08-26T01:18:17Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStidU5MSldhUlBHQ3pERmQ4ckRNNm8ybEZCNVNmTjRudFIvWmplS1daWHNhZkt1U2V4YldTUmt3UThxU3JIdVhuUzZUZmZMbGpEMXVGZlN2S2F6M2d3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzAzODMxCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKMnVCVDhON2o0SlF4U21ma1ZkaEkzaGtJaUYvTUtYYU56bXpWN2did0EzdzNWMU1CbVpwRzFsVmZQQWg3b1doZlNOY1NvdXlLQ3pRVkRnUVBQWGZ3QkE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.0/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXhtSjU0d2NsbE5BVmNlU0krbmUzN2lqQzM0Z204cHNHQnc2U1FmV1dYcGNLRXNhWGxpN0M2aG5JQ2VwbUVKRGNsWlcyWU1ac2hjcVM3MGFCMDByWVFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzA3MDEyCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKNDl6MXREdzNqM2pzamJLY3BJN3JkcE1YeWU2bHViT1N6V1IyZ29UblJRVWtJS3pBSWFZWDJ2UThVczVpZnN0bkFtUXNXN2w4ZEhyMGNXamZGTmkwRFE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.1/Docket.app.tar.gz"
     }
   }
 }
