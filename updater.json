@@ -1,11 +1,11 @@
 {
-  "version": "1.2.9",
-  "notes": "A correctly installed Meta pixel is no longer reported as unable to fire.\n\n`mar.pixel_staged` raised a HIGH against a working pixel whose account id is\nassigned to a variable and passed to the init call by name \u2014 what anyone does\nwhen the same id is shared with a server-side conversions API. Docket matched\nthe id only *inside* the init call, so passing it by name read as an unfilled\nplaceholder.\n\nThe same root cause undercounted pixel coverage: with no page registering the\npixel at all, `mar.pixel_gaps` reported it on zero pages. Both are fixed by\nresolving the id through the variable.\n\nStill reported, deliberately: an identifier with no assignment anywhere, and one\nassigned something that is not an id.",
-  "pub_date": "2026-08-25T23:06:24Z",
+  "version": "1.3.0",
+  "notes": "An archive page that lists almost nothing is no longer told to delete itself.\n\n`content.very_thin` reported a publisher's author pages at HIGH with the remedy\n\"write real content, merge it into a stronger related page, or remove it and\nredirect\". All three are wrong for an author archive: you do not write copy on\none, you cannot merge two authors, and deleting it breaks the byline link on\nevery article that author wrote.\n\nThe finding is kept \u2014 those pages really are near-empty \u2014 but moves to\n`content.empty_archive` at LOW, with advice that refuses deletion and offers\n`noindex, follow` instead.\n\nThin pages that are genuinely thin writing are unaffected and still reported.",
+  "pub_date": "2026-08-26T00:25:13Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTlRcnY3OVFCMWtEWkFaVUJRbm5jNmMrTXdCUGpLaU92cmlZd29mUzdzVHVFNjhCMFIveGZrOWFIaCtYTkV5VmtWejcxUFNXL1RBMm9lN1pOdmdWUFFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3Njk5MDgwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKLzRabEZPaGhDaUU1SjBCZzAxaEdQWkpZWnpYblhOQmJCNGl4V3RLVExlMzZuYUdEZmtrQ0FnczNRNVNSMTRlQWxBalVqM3hKK0ZBQXg4djlDaFhFQ1E9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.2.9/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStidU5MSldhUlBHQ3pERmQ4ckRNNm8ybEZCNVNmTjRudFIvWmplS1daWHNhZkt1U2V4YldTUmt3UThxU3JIdVhuUzZUZmZMbGpEMXVGZlN2S2F6M2d3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzAzODMxCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKMnVCVDhON2o0SlF4U21ma1ZkaEkzaGtJaUYvTUtYYU56bXpWN2did0EzdzNWMU1CbVpwRzFsVmZQQWg3b1doZlNOY1NvdXlLQ3pRVkRnUVBQWGZ3QkE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.0/Docket.app.tar.gz"
     }
   }
 }
