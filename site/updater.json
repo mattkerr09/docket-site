@@ -1,11 +1,11 @@
 {
-  "version": "1.3.3",
-  "notes": "A 400 from someone else's server is no longer called a dead link.\n\nDocket audited its own site and reported two outbound links broken, advising\n\"update or remove each dead link\". Both were Meta's own documentation for the\ntracking pixel the linking page exists to describe \u2014 and both answered 400\nbecause Meta declines automated requests, not because the pages are gone.\n\nThose links now appear as \"could not be checked\", which is what Docket actually\nknows. It will not pretend to be a browser to find out.\n\nProving that exposed an older gap: a page on your own site answering 400 was\nreported by nothing at all. It is now reported, with advice to return 404 or 410\nif the URL should not exist.",
-  "pub_date": "2026-08-26T04:24:23Z",
+  "version": "1.3.4",
+  "notes": "Share images no longer consume the outbound-link budget.\n\nDocket HEAD-checks a sample of a site's outbound links, capped so that auditing\na large site does not turn into thousands of requests to other people's servers.\nThe og:image pass that runs first had no cap of its own, so on a site where every\npage carries a different share image it used the whole allowance before a single\noutbound link was looked at.\n\nOn one large site that meant 686 requests against a documented 60, and exactly\none real outbound link checked.\n\nEach now has its own budget, and a dead share image is reported once \u2014 as a\nshare image \u2014 instead of also being counted as a broken link in the page copy.",
+  "pub_date": "2026-08-26T05:15:59Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTlxVTRKd2tPZ2dqa3hmQkV5OTZzYVc5aHZCK3JoU25xKzlLaEJjbGJTdi9jRmUxQTZyZEtQRTNiQWdoNTVvdkdqdVNwTko0YllxTDFINmZpS2hOcXdVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzE4MTM1CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKTmg4eWd6RmJMZlBlTU1zUDVlRXo0QXZ1bkFHNGU2WGltMTFsaFUrWHgrbEQ3bzdGa0llUzBDMm9sR002WnB3NlBKSjhHTGFVNVJPY1hQbFZ6d25hQkE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.3/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaThNZGprNWtNakljM29IblBPTktQZDhOdXBHNDU3Nk5PbGFaYkdQaFp1YTU4SHh3blFpd3U4b3BPZzhqb3F4NDZkV3huYjhmTjVTY1liOXNkYmsrNkF3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzIxMjUxCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKK1dlL2ZRbHFSNmZWRXFMNHB6cHg4Z0FTNzB3NlJKS21XRUkwejlaY0Y2aThkRndHdk1GNHhIYUdrc1hhb2JKeU9LZktueGlCN0tGQ0QrNjM3NFNEQVE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.4/Docket.app.tar.gz"
     }
   }
 }
