@@ -1231,7 +1231,10 @@ META_PIXEL = (
 #: same thing.
 ANALYTICS = (
     '<!-- Privacy-friendly analytics by Plausible -->\n'
-    '<script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>\n'
+        # The assistant. One widget served from the worker, one factbase per site,
+    # so nothing about prices or terms is duplicated into this repo.
+    '<script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>\n'
+'<script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>\n'
     '<script>\n'
     'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},'
     'plausible.init=plausible.init||function(i){plausible.o=i||{}};\n'

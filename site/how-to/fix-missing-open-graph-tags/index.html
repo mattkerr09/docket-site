@@ -6,7 +6,7 @@
 <title>Fix a link preview that shows no image</title>
 <meta name="description" content="No Open Graph tags, a dead og:image, or an image the platform will not take — they look identical when you paste a link and need different fixes.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="1f5efe72e85c">
+<meta name="build-id" content="73717193579c">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-missing-open-graph-tags/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -676,6 +676,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix a broken link preview","description":"No Open Graph tags, a dead og:image, or an image the platform will not take — they look identical when you paste a link and need different fixes.","datePublished":"2026-08-06","dateModified":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-missing-open-graph-tags/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does my link preview show no image?","acceptedAnswer":{"@type":"Answer","text":"Either the page has no og:image tag, or it has one pointing at a file that no longer exists, or the image is unreachable to a scraper — a relative URL, something behind a login, or an http image on an https page. Open the og:image URL directly in a browser to tell which."}},{"@type":"Question","name":"Why do I still see the old preview after fixing it?","acceptedAnswer":{"@type":"Answer","text":"Because platforms cache the preview they scraped the first time. The person who broke it is the last person to see it broken. Use the platform's own debugger to force a re-scrape rather than pasting the link again yourself."}},{"@type":"Question","name":"Do Open Graph tags help SEO rankings?","acceptedAnswer":{"@type":"Answer","text":"No, and anyone saying otherwise is guessing. They decide whether a link somebody already chose to share arrives looking worth clicking. The traffic is earned before the preview is involved."}},{"@type":"Question","name":"What size should an og:image be?","acceptedAnswer":{"@type":"Answer","text":"Around 1200x630 pixels, served over https at an absolute URL that needs no login. Much smaller and platforms fall back to the small text card, which defeats the point of adding the image."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
+<script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
