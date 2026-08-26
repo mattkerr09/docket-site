@@ -1,11 +1,11 @@
 {
-  "version": "1.3.2",
-  "notes": "A response with no words in it is no longer judged as the page.\n\nSome servers answer an automated client with a short stand-in instead of the\npage \u2014 a rate limiter, an edge rule, a bot filter. One classifieds site returned\n24 URLs as 641 bytes of markup with no title and not one word, under a\nnon-standard HTTP status that still counts as success.\n\nDocket judged that stand-in as the site's own content: nine findings named those\nURLs, 214 page-claims, three of them HIGH \u2014 no content, no title tag, no mobile\nviewport. Every one was false; the pages serve full content in a browser.\n\nThose responses are now recognised and taken out of the judged set, and reported\nseparately so you can see Docket was not shown them. A genuinely empty page is\nstill reported as an empty page.",
-  "pub_date": "2026-08-26T02:12:03Z",
+  "version": "1.3.3",
+  "notes": "A 400 from someone else's server is no longer called a dead link.\n\nDocket audited its own site and reported two outbound links broken, advising\n\"update or remove each dead link\". Both were Meta's own documentation for the\ntracking pixel the linking page exists to describe \u2014 and both answered 400\nbecause Meta declines automated requests, not because the pages are gone.\n\nThose links now appear as \"could not be checked\", which is what Docket actually\nknows. It will not pretend to be a browser to find out.\n\nProving that exposed an older gap: a page on your own site answering 400 was\nreported by nothing at all. It is now reported, with advice to return 404 or 410\nif the URL should not exist.",
+  "pub_date": "2026-08-26T04:24:23Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTd6MTMwaUVPUklpbnNFU2o3Y0lpcm44dzNZS0ZjeXdBREhUWVN5NU5wNEZTcUpiblBTWThpWVE1N2dka25LaC9XcVZRb2g0MU12enlBNVVFRnU4dHcwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzEwMjIzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKeklqVWliQ2hHSDVhS3dSTkMzM2ZlV1Z6N0JuVDhvUWJTTk9rdk03SmltK01wMFRySHkxelh0ZFBocm9FcG00UWhGa1RoTVY2T0pBT2UyZEhWSHI4QWc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.2/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTlxVTRKd2tPZ2dqa3hmQkV5OTZzYVc5aHZCK3JoU25xKzlLaEJjbGJTdi9jRmUxQTZyZEtQRTNiQWdoNTVvdkdqdVNwTko0YllxTDFINmZpS2hOcXdVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3NzE4MTM1CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKTmg4eWd6RmJMZlBlTU1zUDVlRXo0QXZ1bkFHNGU2WGltMTFsaFUrWHgrbEQ3bzdGa0llUzBDMm9sR002WnB3NlBKSjhHTGFVNVJPY1hQbFZ6d25hQkE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.3/Docket.app.tar.gz"
     }
   }
 }
