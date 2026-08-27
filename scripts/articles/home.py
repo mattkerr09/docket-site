@@ -589,7 +589,12 @@ needed, and nothing about your site leaves your Mac.</p>
 {BNPL_BLOCK}
 <p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>
 &mdash; <a href="/legal/refunds/">refund policy</a></p>
-</div></section>"""
+</div>
+<!-- Windows waiting list. The script renders into this div and does nothing
+     without it, so placement is decided here rather than guessed. -->
+<div data-win-notify style="max-width:520px;margin:1.5rem auto 0"></div>
+<script src="https://kerr-subscribe.kerrco.workers.dev/notify.js" defer></script>
+</section>"""
 
 
 def build() -> Path:
