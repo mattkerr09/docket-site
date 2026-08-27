@@ -1462,7 +1462,7 @@ at once, leaving only the crawl of your own site.</p>
 as plain JSON files. They are never transmitted. Deleting that folder removes them permanently.</p>
 
 <h2>This website</h2>
-<p>This site is static and runs three third-party scripts. The first is
+<p>This site is static and runs four third-party scripts. The first is
 <a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, which counts page
 views. Plausible states that it uses no cookies, collects no personal data and does not track
 visitors across sites; it is hosted in the EU. Nothing about your audits reaches it &mdash;
@@ -1486,11 +1486,22 @@ never uploaded.</p>
 content blocker stops it, as does Meta's own
 <a href="https://www.facebook.com/adpreferences/ad_settings">off-Facebook activity</a> setting,
 and nothing here depends on it loading.</p>
-<p>These paragraphs have been rewritten twice as the answer changed. They once said the site
-&ldquo;sets no cookies&rdquo; and runs &ldquo;one third-party script&rdquo;; both were true until
-Sled was added. The line calling Sled the only thing here that can set a cookie was true until
-the Meta pixel was, and is corrected above rather than quietly deleted. A privacy page that
-enumerates what a site does not do is only worth reading if the enumeration stays complete.</p>
+<p>The fourth is the chat assistant in the corner of the page, which answers questions about
+Docket. Its script is loaded from <code>kerr-lead-agent.kerrco.workers.dev</code>, a server we
+run. The assistant stores nothing in your browser &mdash; no cookie of its own, no local
+storage, no session storage &mdash; and it reads nothing about your device. It draws itself in
+an isolated shadow root, so it cannot see or change the rest of the page. If you type a question
+into it, that question is sent to that server so it can be answered; if you never open it,
+nothing is sent. It knows only published facts about Docket, and the price it quotes comes from
+the payment provider rather than from this page, so it cannot quote you a price the checkout
+will not honour.</p>
+<p>These paragraphs have been rewritten three times as the answer changed. They once said the
+site &ldquo;sets no cookies&rdquo; and runs &ldquo;one third-party script&rdquo;; both were true
+until Sled was added. The line calling Sled the only thing here that can set a cookie was true
+until the Meta pixel was. The count said three until the chat assistant was added, and this
+paragraph is the reason that was noticed: each correction is made above rather than quietly
+deleted. A privacy page that enumerates what a site does not do is only worth reading if the
+enumeration stays complete.</p>
 <p>If you would rather not be counted, any content blocker stops it, and nothing on this site
 depends on it loading.</p>
 
