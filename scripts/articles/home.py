@@ -592,6 +592,8 @@ needed, and nothing about your site leaves your Mac.</p>
 </div>
 <!-- Windows waiting list. The script renders into this div and does nothing
      without it, so placement is decided here rather than guessed. -->
+<div data-founding data-was="$199" data-now="$99.50" style="max-width:520px;margin:1.5rem auto 0"></div>
+<script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>
 <div data-win-notify style="max-width:520px;margin:1.5rem auto 0"></div>
 <script src="https://kerr-subscribe.kerrco.workers.dev/notify.js" defer></script>
 </section>"""
