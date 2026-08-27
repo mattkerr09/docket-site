@@ -32,6 +32,14 @@ from render import (BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, N_AI_CHECKS, 
 #: The instalment note as it appears under a buy button. Empty when BNPL_LIVE is
 #: False, so the markup collapses to nothing — a blank line where a payment
 #: option should be reads as broken rather than as absent.
+#: Rendered in TWO places, deliberately: the hero and the pricing section.
+#: The pricing section sits at 58% of the page, four thousand pixels below the
+#: hero note, and until 2026-08-26 it was the only place the price appeared large
+#: with nothing beside it saying how you can pay. A price answers "how much"; it
+#: does not answer "can I do this right now", and the second question is the one
+#: that stops people.
+#: One constant rather than two literals, so the figure cannot drift the day the
+#: price changes — a second copy of "$49.75" is a second thing to remember.
 BNPL_BLOCK = (f'<p class="hero-note">{BNPL_NOTE}</p>' if BNPL_NOTE else "")
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
@@ -422,6 +430,7 @@ def body() -> str:
 <!-- ================= COMPARISON ================= -->
 <section class="sec"><div class="wrap-wide">
 <div class="sec-head"><h2>{PRICE_STR}. Once.</h2>
+{BNPL_BLOCK}
 <p>Every tool below is a subscription. Docket is a one-time purchase, and the audit runs on your Mac, so there are no crawl credits to ration. {BETA_NOTE}</p></div>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Tool</th><th>Price</th><th>Runs</th><th>Output</th></tr></thead>
