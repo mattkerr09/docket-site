@@ -1,11 +1,11 @@
 {
-  "version": "1.3.13",
-  "notes": "**A dead email address at a domain you do not own is not yours to fix.** Docket\nfound three example addresses in a forum's how-to about configuring mailboxes,\nchecked the domain, correctly established that mail to it bounces \u2014 and then\ntold the site to add DNS records for a domain belonging to someone else.\n\nThe check already limited itself to real `mailto:` links, on the reasoning that\nan address written in prose might only be an example. Forum and documentation\nsoftware auto-links bare addresses, so the examples arrive looking exactly like\nreal ones.\n\nDocket cannot tell a documentation example from a genuine contact address. It\ncan tell whose domain it is, and that is enough to stop recommending a repair\nthe reader has no way to make. The finding still appears \u2014 a dead address on\nyour page is worth knowing about whoever owns the domain \u2014 but the advice now\nsays the domain is not yours, and that if it is an example, nothing needs doing.",
-  "pub_date": "2026-09-01T19:50:14Z",
+  "version": "1.3.14",
+  "notes": "Docket 1.3.14",
+  "pub_date": "2026-09-01T23:43:52Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXk2US90N3pBVUtqR3daZ1M0RGIxSFBWcFcyMnZ1aEpwcmhVU0YwZjY1eEdIUHNQYWEvZGhVS0Z4M3VoS216aUNpdWlyczdsc2F4ZWpHazh5T3BQVUFBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4MjkyMTM1CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKdkU3eEFYZnVBNnNzY2VtemRqK1ZpaHJRbzFiYzEvQUFJSFVpTXN1bmYrNzBLZ0ZaVjFCNUJwTE5IdnUydGlZNmpqZ3J3RmdlSktVS0J3QVJzSFVFQ1E9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.13/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTR4Snc2K2VyeVlPS2NjbDdKRVV2TUhLdEtzOUhjZ2N6VjdGbDJXNE8yd3Q3Z29tZjlmV2RLOGFoSnVGMFBMWE1neks2c1BlU3YycW0rZ3l2TEd1RGdZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4MzA2MDU2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKcVVtM0FZLzdpdk5FaDlWRjBVRStmci9nNXZ5UzZxcmFXUHJDM1BtQStkRTZMYkxlMWJVbXB0NTNFUGtya0JLR0xJUHB0aEhqbUlyaDh0a1J4SENRQlE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.14/Docket.app.tar.gz"
     }
   }
 }
