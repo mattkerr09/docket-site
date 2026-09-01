@@ -96,11 +96,35 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--version", required=True,
                     help="the version being published, e.g. 0.1.1")
-    ap.add_argument("--tag", default="v0.1.0", help="release tag hosting the asset")
-    ap.add_argument("--notes", default="",
+    # ⚠️ NO DEFAULT TAG. It used to be "v0.1.0" — the marketing version, and a
+    # release tag that has not hosted a current asset for months. Omitting
+    # --tag then wrote every download link on the site as
+    # `/releases/download/v0.1.0/Docket-1.3.14-arm64.dmg`: a real filename
+    # under a tag that does not carry it, so every one of them 404s. The
+    # contact gate in deploy.sh caught all three and refused to publish, which
+    # is the only reason it cost a deploy cycle rather than a day of downloads.
+    #
+    # A default that is wrong for every release is not a default. The tag is
+    # derived from --version unless it is given explicitly.
+    ap.add_argument("--tag", default="",
+                    help="release tag hosting the asset (default: v<version>)")
+    # ⚠️ REQUIRED. It defaulted to "" and line 130 below turned that into
+    # `"notes": "Docket 1.3.14"` — a valid manifest whose description of the
+    # release is its own version number, shown to every customer the updater
+    # prompts. `_notes_text` above refuses an EMPTY FILE for exactly that
+    # reason ("refusing to publish a release with no notes") and the empty
+    # ARGUMENT walked straight past it into a silent fallback.
+    #
+    # Shipped that way on 1.3.14, 2026-09-01, and caught by reading the live
+    # manifest as a customer rather than by any gate. 1.3.12 and 1.3.13 both
+    # carry real notes, so this was a regression in what the update prompt
+    # says, not a standing gap.
+    ap.add_argument("--notes", required=True,
                     help="what changed, shown to the user — literal text, or a "
                          "path to a file containing it")
     args = ap.parse_args()
+    if not args.tag:
+        args.tag = f"v{args.version}"
     notes = _notes_text(args.notes)
 
     for path in (TGZ, SIG):
@@ -114,7 +138,7 @@ def main() -> None:
 
     data = {
         "version": args.version,
-        "notes": notes or f"Docket {args.version}",
+        "notes": notes,
         "pub_date": datetime.datetime.now(datetime.timezone.utc)
                     .replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "platforms": {

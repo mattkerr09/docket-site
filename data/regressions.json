@@ -1,8 +1,8 @@
 {
-  "test_files": 300,
-  "files_pinning_a_past_mistake": 136,
-  "pct": 45.3,
-  "tests_total": 3282,
+  "test_files": 305,
+  "files_pinning_a_past_mistake": 138,
+  "pct": 45.2,
+  "tests_total": 3331,
   "rule": "A test file counts only if it names a specific thing Docket got wrong \u2014 'false positive', 'false accusation', 'invented', 'was false', 'the bug', 'used to produce/say/report/be/call/claim/fire/accuse', 'would have gone/been/called/reported/shipped/failed/accused', or 'nearly published/shipped/deleted'. Counting the word 'test' would prove nothing, and every test file describes a contract \u2014 only some record a mistake. The total is what `pytest --collect-only -q` reports, not a count of `def test_`: parametrised tests are many tests from one function.",
   "files": [
     "test_a_bilingual_name_is_not_an_inconsistency.py",
@@ -39,6 +39,7 @@
     "test_a_number_per_branch_is_not_an_inconsistency.py",
     "test_a_page_count_cannot_exceed_the_crawl.py",
     "test_a_page_is_not_in_the_language_it_declares.py",
+    "test_a_page_that_does_not_exist_is_not_a_bot_filter.py",
     "test_a_page_with_no_words_is_not_too_wordy.py",
     "test_a_pass_is_not_always_a_skip.py",
     "test_a_paying_customer_can_actually_activate.py",
@@ -67,6 +68,7 @@
     "test_a_university_is_not_a_plumber_in_austin.py",
     "test_a_url_docket_cannot_spell_is_not_an_unreachable_page.py",
     "test_a_url_that_works_is_not_one_you_meant_to_publish.py",
+    "test_a_verb_that_ends_in_y_is_not_spelled_with_an_s.py",
     "test_a_watchlist_check_reports_that_it_is_running.py",
     "test_a_whatsapp_link_is_a_way_to_make_contact.py",
     "test_a_word_in_a_list_is_not_a_review_and_a_staged_pixel_is_not_installed.py",
