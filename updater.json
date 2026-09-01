@@ -1,11 +1,11 @@
 {
-  "version": "1.3.10",
-  "notes": "**The watchlist Refresh button now tells you whether it did anything.** It was\nfiring all along \u2014 it refetched the list \u2014 but nothing was ever awaited or\nreported, so when the list came back unchanged, which is the normal case, the\nscreen was identical before and after. A button that repaints nothing is\nindistinguishable from a dead one. It now disables while it runs and says what\nhappened afterwards, including \"nothing changed\", which is a result rather than\nan absence of one.\n\nA second defect turned up while fixing it: `loadWatchlist` handled its own\nerror and returned normally, so anything waiting on it could not tell a failure\nfrom a success. The Refresh button was about to announce \"nothing changed\"\ndirectly beneath \"could not load the watchlist\".\n\nSame shape as the \"Check now\" fix in 1.3.7: the work was real, the\nacknowledgement was missing.",
-  "pub_date": "2026-08-27T20:39:00Z",
+  "version": "1.3.11",
+  "notes": "**A customer locked out by a network failure was told to check the wrong\nvendor.** Every shipped build is licensed through one provider, chosen when the\nbuild is stamped \u2014 but one error message named the other one, hardcoded. A buyer\nwhose first activation could not reach the network was sent to a service that\nhad never issued their key.\n\nThis was found after a sibling product lost a real sale to exactly that\nconfusion. That product's cause was different \u2014 it asked one provider, failed on\na network error, and never asked the second. Docket cannot do that: it contacts\nexactly one provider per build, decided before the binary ships, with no\nfallback path between them. That is now asserted by a test rather than assumed,\nso a future change introducing a two-provider sequence fails.\n\n**A server error no longer bills two jobs.** When a run of URLs came back with\nthe same stand-in body under HTTP 500, the report listed them at CRITICAL as\nserver errors and again as a separate task worth 6.5 points, whose advice sent\nthe reader hunting a bot-management rule for pages their own server was erroring\non. The observation stays on the record; the duplicate job does not.",
+  "pub_date": "2026-09-01T14:13:37Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXhwMXRTbURYcStickovSlpScEsyc2luUE9pZ1BZeFdBc3VrZnkrTUZiakdUMWxlNzRidXUyUWxKWkJYTmhwWjZlTGJibXVQWXAxOWZtdkhuZFhOQlEwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg3ODYyMzYwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZW5pZ3V1YW5RUVp5S1JmTWxqSGtXQmljV3Z6eS9nRlRMQmVqSHpPQ3M0ZlI1aVdWRFNraC9JTEw0MWZ4eFpYNkE4a1lUMzRiZzNLanNTQjJGTzVUQ0E9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.10/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaThlMmhwdnFXQ0NmNGxiMStrUHR1WkVQejE5SU9qNHBqeVRHdVE4eFpHSnNTd1RCZytzc3FQUXNhUStrendBUlNwOWc0TDllNWhBdmpOd1RKMHU2NXdNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4MjcxNjc3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKY0dWdkV1dHVadlYyTGpoUjkzZXU0UTl2T3JZOWI3SW9vZ01lUXpwZnUxRlo0VjNxT0RPT05HRjJRYmJVbFVsN3Voa2FvaEV1UUNjZ1k0SXBqQkE1RFE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.11/Docket.app.tar.gz"
     }
   }
 }
