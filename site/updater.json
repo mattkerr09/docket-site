@@ -1,11 +1,11 @@
 {
-  "version": "1.3.11",
-  "notes": "**A customer locked out by a network failure was told to check the wrong\nvendor.** Every shipped build is licensed through one provider, chosen when the\nbuild is stamped \u2014 but one error message named the other one, hardcoded. A buyer\nwhose first activation could not reach the network was sent to a service that\nhad never issued their key.\n\nThis was found after a sibling product lost a real sale to exactly that\nconfusion. That product's cause was different \u2014 it asked one provider, failed on\na network error, and never asked the second. Docket cannot do that: it contacts\nexactly one provider per build, decided before the binary ships, with no\nfallback path between them. That is now asserted by a test rather than assumed,\nso a future change introducing a two-provider sequence fails.\n\n**A server error no longer bills two jobs.** When a run of URLs came back with\nthe same stand-in body under HTTP 500, the report listed them at CRITICAL as\nserver errors and again as a separate task worth 6.5 points, whose advice sent\nthe reader hunting a bot-management rule for pages their own server was erroring\non. The observation stays on the record; the duplicate job does not.",
-  "pub_date": "2026-09-01T14:13:37Z",
+  "version": "1.3.12",
+  "notes": "**A partial-crawl report told you to re-run with a number too small to help.**\nOn a large directory site Docket read 999 pages, found 6,893 more it had not\nreached, and then suggested re-running with a limit of 4,995 \u2014 less than the\n7,892 URLs it already knew about. Following that advice meant waiting through a\nsecond crawl and getting the same message back.\n\nThe suggestion was a multiple of what had been crawled. What decides whether a\nre-run finishes is what was *discovered*, and Docket had that number all along \u2014\nit prints it two sentences earlier. The advice now names both figures, how many\nURLs exist and how many were reached, and suggests a limit big enough to cover\nthem.",
+  "pub_date": "2026-09-01T16:34:08Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaThlMmhwdnFXQ0NmNGxiMStrUHR1WkVQejE5SU9qNHBqeVRHdVE4eFpHSnNTd1RCZytzc3FQUXNhUStrendBUlNwOWc0TDllNWhBdmpOd1RKMHU2NXdNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4MjcxNjc3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKY0dWdkV1dHVadlYyTGpoUjkzZXU0UTl2T3JZOWI3SW9vZ01lUXpwZnUxRlo0VjNxT0RPT05HRjJRYmJVbFVsN3Voa2FvaEV1UUNjZ1k0SXBqQkE1RFE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.11/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXcxOXJMbE82VjVteHBRNHlsdWUrUURBeUFIQ29VSVRKRUlnOEd2a1JhQStwQmx3dWMrcTRyNXpmS0NycWpPWTB4eVpidGdRWU9yQmxjZ3F1elQ0ZGc0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4MjgwMzc0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKbjZ3KzdHTGplaHo1eFMydzBKWU9veWUzTC80eGJHTTdwZEZQMEMxQXFqRCtlQTVuWG5hSEI5dWQ5aTh0VU1CcWxlMUFyRXE2bUVSVkJab3JpU2krQUE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.12/Docket.app.tar.gz"
     }
   }
 }
