@@ -1,11 +1,11 @@
 {
-  "version": "1.3.18",
-  "notes": "**`--format junit` no longer reports \"could not measure\" as green.**\n\nDocket withholds its site-wide conclusions when a crawl saw too little of a\nsite to support them \u2014 \"no analytics anywhere\", \"no structured data anywhere\" \u2014\nand the report says so in as many words: they are not passes, they are unknown.\n\nThe JUnit output said otherwise. Unless a crawl read literally nothing, every\nwithheld check appeared in the CI panel as a passing test. On a crawl covering\n0.4% of a site, twelve conclusions were withheld and the panel reported 98\ntests, one failure, nothing skipped.\n\nThose checks are now marked skipped, with the reason, and the number matches\nwhat the report says. A check that genuinely ran and found nothing is still a\npass \u2014 that is what makes the report legible.",
-  "pub_date": "2026-09-02T10:33:57Z",
+  "version": "1.3.19",
+  "notes": "**A site whose pages are all JavaScript shells is described as one.**\n\nDocket refuses to conclude that something is missing site-wide when every page\nit read was an empty shell \u2014 it saw the shell, not the content, and cannot say\nwhat is or is not in there. That refusal was right and the explanation attached\nto it was written for a different problem. On a site where all 221 pages are\nshells and none were missed, the report said \"found at least 0 more it did not\nreach \u2014 about 100% of the site \u2026 because most of it was never seen\", under the\nheading \"Only part of the site was crawled\", and advised re-running with a\nhigher page limit.\n\nNothing was missed and a bigger page limit changes nothing. That case now says\nwhat actually happened, and points at the remedy that would change the answer.\n\n**`docket serve --host` explains what it costs.**\n\nThe local API has no authentication because it is only meant to be reachable\nfrom your own machine, and the default binds to loopback. The flag that changes\nthat had no help text at all. It now says what binding elsewhere exposes.",
+  "pub_date": "2026-09-02T12:26:44Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTUyTTBFbkpmSm4rVFkyR0lTNmxiMmxTTW9kMmViSEZwMEhKTGFTaGxEd0RHa3VRekowaVVXY1ZQMllIL1orOXlFRUE2ZVBMckFvQXpLcFhPeXBaZndJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4MzQ1MTU2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZTU5eEx3SjFSMUJTUUpldElwVm5vb0lGWGNHa3JaMzNnUVlmVm9HRVFORWhud1oxMm9KMW5rSTRyUjNPRHd6NE1Ea1JjS1ZtUVBYYnpIMWZ4VjhjRHc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.18/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTRxcUNMWmtPNmJybC9aTm9Ob2twNk1ia211YnNGR05IUmtxd1RabloxREZHM2tRQ0Q4L2x3S3VHUk1tR3ZJQnpia2xHUmhhb0ZGYnRScWRSaG9pbkFBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4MzUxOTMyCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKQmh4cExIMFFwdDZ2NW0rSWlCUXhlaTdqdklmNUVGM3o1SjNTSXVvZnVIbEoyVWVHeENUNXU1RjUwL0R2OEdIWCszOUk2dVFKWFFLTHFrMFFwaU9HQ2c9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.19/Docket.app.tar.gz"
     }
   }
 }
