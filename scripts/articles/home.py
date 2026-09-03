@@ -603,8 +603,11 @@ def build() -> Path:
     return render(
         cat="", slug="",
         title="Docket SEO — SEO, copy, conversion and brand audits for Mac",
+        # 162 characters, and Google renders about 155 — measured with entities
+        # decoded, which is the only way to count a description honestly.
+        # Dropping "visibility" is the whole edit: 151, brand name still first.
         desc=(f"Docket SEO audits any website on your Mac: {N_CHECKS} checks across SEO, copy, brand, "
-              "local and AI search visibility. Ranked fix plan, client-ready PDF, nothing "
+              "local and AI search. Ranked fix plan, client-ready PDF, nothing "
               "uploaded."),
         h1="SEO audits that tell you what to fix, in order",
         crumb="Docket for Mac",
