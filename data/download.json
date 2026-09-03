@@ -1,12 +1,12 @@
 {
-  "version": "1.3.26",
-  "tag": "v1.3.26",
-  "dmg_name": "Docket-1.3.26-arm64.dmg",
-  "dmg_bytes": 21909784,
+  "version": "1.3.27",
+  "tag": "v1.3.27",
+  "dmg_name": "Docket-1.3.27-arm64.dmg",
+  "dmg_bytes": 21906026,
   "dmg_mb": 21.9,
   "measured": "2026-09-03",
   "note": "Decimal MB, matching what a browser download panel and the Finder report. Written by collect_updater.py from the artifact actually published.",
-  "linux_name": "docket-1.3.26-linux-x86_64.tar.gz",
-  "linux_bytes": 16778678,
+  "linux_name": "docket-1.3.27-linux-x86_64.tar.gz",
+  "linux_bytes": 16780117,
   "linux_mb": 16.8
 }
