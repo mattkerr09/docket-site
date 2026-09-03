@@ -1,11 +1,11 @@
 {
-  "version": "1.3.26",
-  "notes": "**A LinkedIn page is no longer reported as a broken link.**\n\nLinkedIn answers automated requests with HTTP 999 \u2014 a status code it invented,\nwhich does not exist in the standard. Docket read anything at or above 400 as a\ndead page, so a school's own LinkedIn profile was listed as a broken outbound\nlink it should update or remove. The page is fine.\n\nThe control that settles it: `linkedin.com/school/harvard-university/` returns\n999 as well, to a browser as much as to a crawler, while\n`linkedin.com/company/microsoft/` returns 200 to both. The code describes the\nrequest, not the page.\n\nAny status outside the range HTTP actually defines \u2014 100 to 599 \u2014 now reads as\n\"could not be checked\" rather than \"broken\". A vendor inventing a status code\nis telling you about its own policy, and that is not something you can fix by\nediting your links. A connection that never completes is still reported as\nbroken, because that genuinely is about reachability, and an ordinary 404 still\nmeans gone.",
-  "pub_date": "2026-09-03T11:47:26Z",
+  "version": "1.3.27",
+  "notes": "**A pixel found on no pages is no longer reported as being on some of them.**\n\nDocket told a site that six advertising pixels were \"only on part of the site\",\nand then listed every one of them as being on **zero** pages. A pixel on zero\npages is not on part of the site, and the finding contradicted its own numbers\nin its own sentence.\n\nThe cause is that Docket looks for tracking tags twice \u2014 in the HTML your server\nsends, and again in the page as a browser builds it. Pixels loaded by JavaScript\nonly show up in the second pass, on the handful of pages Docket renders. They\nwere being collected from the rendered pages and then counted against the served\nHTML, where they never appear.\n\nA pixel Docket can only see after rendering now says so, by name, instead of\nbeing counted as missing from pages nobody looked at properly. A pixel that\nreally is in your HTML on some pages and not others is still reported, which is\nwhat this check is for \u2014 and a gap on a single page now reads \"1 page\" rather\nthan \"1 pages\".",
+  "pub_date": "2026-09-03T13:15:06Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaThOdStLZmZ6VW9rZEltK09BK3dLUXlmT1g0cWFjQzlTRHQ0cmxlQVNWcjZOaWtZZTBvcXFHUEtIRjZ3L1hVSFJydXBiNENWU2VLalc1b1RyWTRSV3dFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4NDM1OTE2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKR21xR0NCb3Y3K0dNdUpwaitkM2dRU3ArcVVFT1IxSjJ5Yk5LdnVyL1ZzN1RHZmhNblMvb0I4V096RUpDM2lEZzNRY1RtRTdFUnFTZmkvbEQzcWRVQUE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.26/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTF5MlN2bkp6NEpucUgrZ1AxNUVBbi94bFpDWkFHanM2M2RaWk8rNXpFYlhOWmEzZ1BUWU9vRjQvSFJBNXBKNXRtdk1SaDZnTEc4SCtLU3VVMWhaU0FVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4NDQxMTQ5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKYW4vSFkyY29CdmpyMDBtRSs2Y2J4ejFmTTZYL2FhYU5sUkYzaGxRVlNUUWNLUHhDeUJzV3d6enRZS0h1QWpBQklCZTlxeDhPejhXZnllaGM4MlFjQlE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.27/Docket.app.tar.gz"
     }
   }
 }
