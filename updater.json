@@ -1,11 +1,11 @@
 {
-  "version": "1.3.34",
-  "notes": "Fixes licence activation on Macs without Homebrew. Earlier versions could not verify the licence server's security certificate on a standard Mac, so entering a valid key was reported as \"not accepted by Dodo\". This build carries its own certificate bundle, activation works on any Mac, and a temporary licence-server outage is retried instead of being reported as a bad key. The same certificate bundle is now used when Docket crawls HTTPS sites, so audits no longer report broken certificates on sites whose certificates are fine.",
-  "pub_date": "2026-09-06T20:02:01Z",
+  "version": "1.3.35",
+  "notes": "The Linux CLI now ships its own certificate bundle. 1.3.34's Linux build relied on the system trust store, so on a machine without one it could not reach the licence server; every build now carries the same bundle the Mac app does. No change for Mac users beyond the version number.",
+  "pub_date": "2026-09-06T21:02:57Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTN2L2NXcW9GbkhXbnJHZUFETzFHYXBQNUc1aGZkVUx4aU5UV3RCTVRpTzFmeUZQOEltNzRsTElBVmVlUVJSL05heGtoS1h3VmFIK0dSUW1VS013NHc4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4NzIzNDkyCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKSDFscU1NSDkrWmRBSjBHSjdwc2dOZ2w0Y0sxRUJvS2NDWmpaN0QvblVraW1BdkVQNzVxWExBQ0VrS08ybllpbUc3NTZTRnVhUG1pUTdFNzdMUkFQRGc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.34/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXlmRUo2Q2J3M3BtRXZKTHFndkRaazQ4cDBEclJ4eFlGdCtBb1VlZlpuckRmMXhtYk5xSGQzakgrUk9HWjZlMnJCeGZtQzJUeW5SZWRGeFVsOVJhQ2c4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4NzI4NDEyCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKeTNXckpLd0Npb2tWZ0k1VUZZYWhFSHlZSVpaamh3ZXZxVExOTHdYVjNISW1pRHNQTXlFU2NhYml3MFZYQ04rVGFnalB0NFo0VDAyL2lOUm1rQmdGQkE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.35/Docket.app.tar.gz"
     }
   }
 }
