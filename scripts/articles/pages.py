@@ -553,14 +553,14 @@ of the time is the crawl itself, at about {F.ci_seconds_per_page()} seconds per 
 <p>A pipeline depends on these not moving, so they are part of the public interface more than
 anything printed is:</p>
 
-<table>
+<div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Code</th><th>Meaning</th></tr></thead>
 <tbody>
 <tr><td><code>0</code></td><td>The audit ran and found nothing at or above the threshold</td></tr>
 <tr><td><code>1</code></td><td>Docket could not run. A defect in the tool, not in your site</td></tr>
 <tr><td><code>2</code></td><td>The audit ran and the result is bad</td></tr>
 </tbody>
-</table>
+</table></div>
 
 <p><code>1</code> and <code>2</code> are deliberately distinct, because "your site is broken" and
 "the tool is broken" demand opposite responses from whoever reads the log at six on a Friday,
