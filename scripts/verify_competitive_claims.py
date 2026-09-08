@@ -99,6 +99,35 @@ def _text(html: str, *, chrome: bool = True) -> str:
 CLAIMS_SOURCE = "scripts/articles/comparisons.py"
 
 
+
+#: A recurring charge, in any of the shapes these tables use.
+_RECURRING = re.compile(r"/\s?(?:mo|yr|month|year)\b|per\s+(?:month|year)|billed\s+(?:month|year)", re.I)
+#: Docket's model, stated the way the tables state it.
+_ONE_TIME = re.compile(r"one[-\s]?time|paid once|\bonce\b", re.I)
+
+
+def _rival_rows():
+    """competitors.csv as {name: row}. Read here rather than imported so this gate
+    does not depend on render.py having been loaded."""
+    import csv as _csv
+    path = ROOT / "data" / "competitors.csv"
+    return {r["name"]: r for r in _csv.DictReader(path.open())}
+
+
+def _cells(row_html: str) -> list:
+    return [re.sub(r"<[^>]+>", "", c).strip()
+            for c in re.findall(r"<t[hd][^>]*>(.*?)</t[hd]>", row_html, re.S)]
+
+
+def _cmp_tables(html: str):
+    """(header cells, [row cells]) for every comparison table on a page."""
+    for table in re.findall(r"<table[^>]*class=\"cmp\".*?</table>", html, re.S):
+        rows = re.findall(r"<tr>(.*?)</tr>", table, re.S)
+        if not rows:
+            continue
+        yield _cells(rows[0]), [_cells(r) for r in rows[1:]]
+
+
 def _verified_at(src: str):
     """`VERIFIED` as it stood in one revision, or None if this revision predates it.
 
@@ -343,6 +372,91 @@ def main() -> int:
             f"no revision of {CLAIMS_SOURCE} could be read from git — this rule "
             f"found nothing because it saw nothing, which is not a pass")
 
+    # 6. the price attributed to Docket is Docket's price — BOTH AXES.
+    #
+    # Every gate above reads a page as visible TEXT, so "Sitebulb costs $18-$42/mo"
+    # and "Docket costs $18-$42/mo" are the same page to all of them: the figure is
+    # present either way. Proved by planting the swap on /vs/sitebulb-alternative/
+    # on 2026-09-08 — Docket's cell reading "$18-$42/mo" and Sitebulb's reading
+    # "One-time" passed ALL FIVE gates. That page would have told a buyer our
+    # one-time licence is a subscription and the subscription is bought once.
+    #
+    # ⚠️ TWO ORIENTATIONS, AND CHECKING ONE REPORTS CLEAN ON THE OTHER. The /vs/
+    # tables are column-per-product ("", Docket, Sitebulb). The homepage and
+    # /download/ are ROW-per-product (Tool, Price, ...), so a column-only pass
+    # never enters them and says nothing while looking thorough. Outlier hit
+    # exactly this from the other side: three rivals carried Outlier's own price
+    # because Outlier was a row and the gate read columns.
+    #
+    # ⚠️ AND LOCATE DOCKET BY NAME, NEVER BY POSITION. It is the second column on
+    # four /vs/ tables and the THIRD on /vs/google-search-console/, whose header is
+    # ["The question", "Search Console", "Docket"].
+    rivals = _rival_rows()
+    price_headers = ("price", "cheapest tier")
+    cols_checked = rows_checked = 0
+
+    def _judge(where, label, cell, is_docket):
+        if is_docket:
+            if _RECURRING.search(cell):
+                failures.append(
+                    f"{where}: the price attributed to Docket reads {cell!r}, which is a "
+                    f"recurring charge. Docket is sold once — this is a rival's price in "
+                    f"our place.")
+            elif not _ONE_TIME.search(cell):
+                failures.append(
+                    f"{where}: the price attributed to Docket reads {cell!r}, which does "
+                    f"not say the licence is bought once.")
+            return
+        row = next((r for r in rivals.values()
+                    if label and (label in r["name"] or r["name"] in label)), None)
+        if row and row.get("model") == "subscription" and _ONE_TIME.search(cell):
+            failures.append(
+                f"{where}: the price attributed to {label} reads {cell!r}, but "
+                f"competitors.csv records {label} as a subscription. That is our model "
+                f"in their place.")
+
+    for page in pages:
+        where = str(page.relative_to(SITE))
+        for header, rows in _cmp_tables(page.read_text()):
+            names = {h for h in header if h}
+            # COLUMN-PER-PRODUCT: Docket names a column.
+            if "Docket" in header:
+                ours = header.index("Docket")
+                for cells in rows:
+                    if not cells or cells[0].strip().lower() not in price_headers:
+                        continue
+                    if len(cells) <= ours:
+                        failures.append(f"{where}: the price row is shorter than its header")
+                        continue
+                    cols_checked += 1
+                    for i, cell in enumerate(cells):
+                        if i == 0 or not cell:
+                            continue
+                        _judge(where, header[i] if i < len(header) else "?", cell, i == ours)
+                continue
+            # ROW-PER-PRODUCT: a row is named for a product and a column for price.
+            price_col = next((i for i, h in enumerate(header)
+                              if h.strip().lower() in price_headers), None)
+            if price_col is None:
+                continue
+            for cells in rows:
+                if not cells or len(cells) <= price_col:
+                    continue
+                label = cells[0].strip()
+                known = label == "Docket" or any(
+                    label in r["name"] or r["name"] in label for r in rivals.values() if label)
+                if not known:
+                    continue
+                rows_checked += 1
+                _judge(where, label, cells[price_col], label == "Docket")
+
+    if not cols_checked or not rows_checked:
+        failures.append(
+            f"only one orientation was inspected ({cols_checked} column-per-product "
+            f"price row(s), {rows_checked} row-per-product entr(y/ies)) — a pass on one "
+            f"axis says nothing about the other, which is the bug this rule exists for")
+
+
     if failures:
         print("COMPETITIVE FAIL", file=sys.stderr)
         for f in failures:
@@ -353,6 +467,7 @@ def main() -> int:
     print(f"COMPETITIVE ok — {total} sourced claim(s) across "
           f"{len(comparisons.VERIFIED)} rival(s); every comparative page dated; "
           f"every date at or after its facts across {revisions} revision(s); "
+          f"{cols_checked} column-wise and {rows_checked} row-wise price attribution(s); "
           f"the homepage concedes what a crawler can do")
     return 0
 
