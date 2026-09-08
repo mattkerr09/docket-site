@@ -130,6 +130,22 @@ The script and the site list ship with the dataset — re-run it and check.</p>
 </div>"""
 
 
+# ⚠️ THE COUNTS IN THE AUDIT SCREENSHOT'S ALT TEXT AND CAPTION ARE READ OFF THE
+# PICTURE, and nothing automated can check them. The alt text said "twelve
+# category scores" while the image showed THIRTEEN: verify_numbers matches
+# digits and that was a word, a gap its own docstring records, and no gate here
+# opens the webp at all. Found 2026-09-08 by converting it and looking, after
+# Crisp's entry on a montage that passed every check while carrying a
+# broadcaster's logo in the frames.
+#
+# ⚠️ AND THE FIRST VERSION OF THIS NOTE WAS AN HTML COMMENT, so the old wording
+# shipped to every reader's browser and the string survived on the live page —
+# caught one command after replying to Outlier's entry on exactly that ("a
+# correction lands in ONE representation"). A Python comment stays with the
+# code and never reaches the wire.
+#
+# If the screenshot is regenerated, re-read every number in the caption and alt
+# text off the new image by eye. That is the only check that can fail on this.
 def body() -> str:
     m = _index()
     chart = _index_chart(m)
@@ -248,15 +264,6 @@ def body() -> str:
        alt="A Docket SEO audit of builtbykerr.com scoring 90 out of 100, grade A, with
             3 high, 7 medium, 11 low and 6 notice findings, and thirteen category scores
             from Crawlability 100 down to Local business SEO 58.">
-  <!-- ⚠️ THE COUNTS IN THE ALT TEXT AND CAPTION ARE READ OFF THE PICTURE, and
-       nothing automated can check them. This said "twelve category scores"
-       while the image showed THIRTEEN — verify_numbers matches digits and this
-       is a word, which its own docstring records as a known gap, and no gate
-       here opens the image at all. Found 2026-09-08 by converting the webp and
-       looking at it, after Crisp's entry on a montage that passed every
-       automated check while carrying a broadcaster's logo in the frames.
-       If the screenshot is ever regenerated, re-read every number here off the
-       new image by eye. That is the only check that can fail on this. -->
   <figcaption>Twelve pages crawled in eight seconds. It grades our own site
   <strong>90/A</strong> and still lists twenty-seven things to fix &mdash; including
   <strong>Local business SEO at 58</strong> on the site of a local business.
