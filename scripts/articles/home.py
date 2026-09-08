@@ -592,7 +592,17 @@ needed, and nothing about your site leaves your Mac.</p>
 </div>
 <!-- Windows waiting list. The script renders into this div and does nothing
      without it, so placement is decided here rather than guessed. -->
-<div data-founding data-was="$199" data-now="$99.50" style="max-width:520px;margin:1.5rem auto 0"></div>
+<div data-founding data-was="$349" data-now="$174.50" style="max-width:520px;margin:1.5rem auto 0"></div>
+<!-- data-was/data-now are hardcoded because they have to be. founding.js says
+     "Prices come from the mount if a site states them, else from the API" - but the
+     worker's /founding returns only left, of, code, claimed, total and soldOut. There
+     is no price field in it at all, so that fallback does not exist and these two
+     attributes are the ONLY source: they drift from Dodo the moment PRICE moves.
+     2026-09-08: $349 with FOUNDING1 at 50% = $174.50, confirmed against Dodo (3 of 25
+     used, expires 2026-11-25, unrestricted). If the worker ever returns was/now,
+     delete these two attributes and let it.
+     NOTE: this block is an f-string. Braces here are evaluated as Python - writing the
+     response shape out in braces is what broke the build the first time. -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>
 <div data-win-notify style="max-width:520px;margin:1.5rem auto 0"></div>
 <script src="https://kerr-subscribe.kerrco.workers.dev/notify.js" defer></script>
