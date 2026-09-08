@@ -109,6 +109,10 @@ def build_hubs() -> list[Path]:
             ("/vs/semrush-site-audit-alternative/", "Docket vs Semrush Site Audit",
              "Semrush now checks AI crawler access per bot, tracks issue trends over time and "
              "runs 140+ checks. Where a one-time local auditor still makes sense."),
+            ("/vs/se-ranking-vs-screaming-frog/", "SE Ranking vs Screaming Frog",
+             "Not a Docket comparison first: a metered cloud audit against an unmetered "
+             "local crawler, which is the real difference between them. Where Docket fits, "
+             "and the two things it does not do."),
             ("/vs/lighthouse-alternative/", "Docket vs Google Lighthouse",
              "The one here that is not an alternative. Lighthouse is free, it is Google's, "
              "and you should keep running it — its SEO category is ten scored checks on one "

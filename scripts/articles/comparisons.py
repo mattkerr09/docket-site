@@ -14,7 +14,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import (BETA_NOTE, FREE_CLAUSE, N_CHECKS, PRICE_STR, RELEASE,  # noqa: E402
-                    price, render)
+                    price, price_note_html, render)
 
 CTA = """
 <div class="callout">
@@ -50,9 +50,11 @@ CHECKED_ON_HUMAN = "10 August 2026"
 #: Found by fetching the deployed page and reading it, not from the source.
 CHECKED_HUMAN: dict[str, str] = {
     "scrutiny": "15 August 2026",
+    "se-ranking-vs-screaming-frog": "8 September 2026",
 }
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-08-15",
+    "se-ranking-vs-screaming-frog": "2026-09-08",
 }
 
 #: What was actually read, and where. Anything not sourced here is not stated as
@@ -99,6 +101,27 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
         ('its published featureList is "Link checking, html validation, XML '
          'Sitemap generation, SEO, spell checking, site search"',
          "https://peacockmedia.software/mac/scrutiny/"),
+    ],
+    "se-ranking-vs-screaming-frog": [
+        ('SE Ranking\'s Core plan states "250k pages per month in audit"',
+         "https://seranking.com/subscription.html"),
+        ('the same plan lists "25K API credits & MCP access"',
+         "https://seranking.com/subscription.html"),
+        ("its two priced plans are $129.00/mo and $279.00/mo, or $103.20 and "
+         "$223.20 billed annually, above an Enterprise tier that says "
+         "\u201cTalk to sales\u201d",
+         "https://seranking.com/subscription.html"),
+        ('it offers a "Start free 14-day trial" with "No credit card required"',
+         "https://seranking.com/subscription.html"),
+        ('Screaming Frog audits "over 300 SEO issues"',
+         "https://www.screamingfrog.co.uk/seo-spider/"),
+        ('you can "Download & crawl 500 URLs for free, or buy a licence for '
+         '\u00a3199 Per Year to remove the limit & access advanced features"',
+         "https://www.screamingfrog.co.uk/seo-spider/"),
+        ("its Free vs Paid table puts Scheduling, Crawl Configuration, "
+         "Save & Open Crawls, JavaScript Rendering, Crawl Comparison and "
+         "Near Duplicate Content on the paid side only",
+         "https://www.screamingfrog.co.uk/seo-spider/"),
     ],
     "screaming-frog": [
         ('renders with the "integrated Chromium WRS"',
@@ -1178,8 +1201,131 @@ than most of this market can say.</p>
     )
 
 
+def se_ranking_vs_screaming_frog() -> Path:
+    """Two tools people compare that are not the same KIND of thing.
+
+    Every figure here was read from each vendor's own purchase page on
+    2026-09-08 and is recorded in VERIFIED["se-ranking-vs-screaming-frog"].
+
+    ⚠️ THIS PAGE NEARLY PUBLISHED A CHEAPER SE RANKING TIER THAT DOES NOT
+    EXIST. An earlier reading recorded the plans as $89/$129/$279. On the page
+    the $89 is the AI Search ADD-ON — printed "+$ 71.20 $ 89.00 /mo" inside an
+    Add-on block next to Agency Pack (+$69/mo) and API (+$45/mo) — and the plus
+    sign is the only thing separating an add-on from a plan. There are two
+    priced plans and an Enterprise tier reading "Talk to sales".
+    """
+    sr = "https://seranking.com/subscription.html"
+    sf = "https://www.screamingfrog.co.uk/seo-spider/"
+    body = f"""
+<p class="lede">These two get compared a lot and they are not the same kind of product. SE
+Ranking is a monthly subscription to a cloud platform whose site audit is <strong>metered by
+pages per month</strong>. Screaming Frog is a licence for a crawler that runs on your own
+machine with <strong>no page meter at all</strong>. Which one is wrong for you depends less on
+features than on that difference, so this starts there.</p>
+
+<h2>The shapes, not the feature lists</h2>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>&nbsp;</th><th>SE Ranking</th><th>Screaming Frog</th><th>Docket</th></tr></thead>
+<tbody>
+<tr><td>How you pay</td><td>Monthly subscription</td><td>Annual licence</td>
+    <td class="yes">Once</td></tr>
+<tr><td>Published price</td><td>{price("seranking")}</td><td>{price("screaming-frog")}</td>
+    <td class="yes">{PRICE_STR} once</td></tr>
+<tr><td>Where the crawl runs</td><td>Their cloud</td><td class="yes">Your machine</td>
+    <td class="yes">Your Mac</td></tr>
+<tr><td>Audit volume</td><td>Metered &mdash; the Core plan states
+    &ldquo;250k pages per month in audit&rdquo;</td>
+    <td class="yes">Unmetered; free tier stops at 500 URLs</td>
+    <td class="yes">Unmetered</td></tr>
+<tr><td>Try before buying</td><td>&ldquo;Start free 14-day trial&rdquo;, &ldquo;No credit card
+    required&rdquo;</td><td>Free tier, 500 URLs, permanently</td>
+    <td>No trial &mdash; refund instead</td></tr>
+</tbody></table></div>
+{price_note_html()}
+
+<h2>What SE Ranking is actually selling</h2>
+
+<p>Not a crawler. The audit is one module inside a rank-tracking and keyword platform, and the
+Core plan's own bullet list makes the proportions clear: ten projects and one manager seat, two
+thousand keywords and a hundred prompts tracked daily, five domains in GEO research, 250k pages
+a month in audit, and 25K API credits with MCP access. If you want daily rank tracking across
+locations and devices, that is the product, and neither of the other two here does it at all.</p>
+
+<p>The page meter is the thing to check before you buy. 250k pages a month is generous for one
+site and starts to matter when you are auditing many, or re-auditing the same large site often
+&mdash; and it is a ceiling that exists because the crawl happens on their hardware.</p>
+
+<h2>What Screaming Frog is actually selling</h2>
+
+<p>The opposite trade. It audits &ldquo;over 300 SEO issues&rdquo;, it runs on your machine,
+and nothing counts your pages &mdash; their own line is that you can
+&ldquo;Download &amp; crawl 500 URLs for free, or buy a licence for &pound;199 Per Year to
+remove the limit &amp; access advanced features&rdquo;. The free tier is genuinely useful and
+genuinely limited: their Free vs Paid table puts Scheduling, Crawl Configuration, Save &amp;
+Open Crawls, JavaScript Rendering, Crawl Comparison and Near Duplicate Content on the paid side
+only, so the free version cannot save a crawl or render JavaScript.</p>
+
+<p>What you get back is data. Screaming Frog is the better tool if you know what you are looking
+for &mdash; custom extraction, very large crawls, a specific hypothesis to test. It does not
+rank what to fix first, and it does not try to.</p>
+
+<h2>Where Docket sits, and where it does not</h2>
+
+<p>Docket is the third shape: bought once, run locally, unmetered, and the output is a ranked
+plan rather than a table. Every finding carries how bad it is, how long the fix takes and the
+change to make. That is the whole pitch, and it is worth being clear about what it costs you.</p>
+
+<p><strong>Docket does not track rankings.</strong> No keyword positions, no daily rank
+checks, no competitor position history. If that is why you were looking at SE Ranking, Docket
+does not replace it and this page is not trying to talk you out of it.</p>
+
+<p><strong>Docket does not out-crawl Screaming Frog.</strong> Screaming Frog handles far larger
+sites, renders JavaScript across a whole crawl in its integrated Chromium, and supports custom
+XPath extraction. Docket renders a sample by default. On a large single-page application,
+Screaming Frog is the right tool.</p>
+
+<p><strong>Docket is macOS only.</strong> Both of the others run on Windows.</p>
+
+<h2>So which one</h2>
+
+<ul>
+<li>You need daily rank tracking and keyword research &mdash; <a href="{sr}"
+    rel="nofollow noopener">SE Ranking</a>, and the audit comes along with it.</li>
+<li>You crawl very large sites, or you want raw data to interrogate yourself &mdash;
+    <a href="{sf}" rel="nofollow noopener">Screaming Frog</a>.</li>
+<li>You want to know what is wrong with your site and what to do about it, on a Mac, without a
+    subscription or a page meter &mdash; that is what Docket is for.</li>
+</ul>
+"""
+    return render(
+        cat="vs", slug="se-ranking-vs-screaming-frog",
+        title="SE Ranking vs Screaming Frog: metered cloud audit or unmetered local crawler?",
+        desc=("SE Ranking meters its audit by pages per month; Screaming Frog licences an "
+              "unmetered crawler for your own machine. Prices read from both purchase pages, "
+              "with where Docket fits and where it does not."),
+        h1="SE Ranking vs Screaming Frog",
+        crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / SE Ranking vs Screaming Frog',
+        body=body,
+        faq=[
+            ("Is SE Ranking's site audit unlimited?",
+             "No. Its Core plan states \u201c250k pages per month in audit\u201d, so the audit "
+             "is metered by pages per month. Screaming Frog's paid licence has no page meter, "
+             "because the crawl runs on your own machine rather than theirs."),
+            ("Can I use Screaming Frog for free?",
+             "Yes, up to 500 URLs. Their Free vs Paid table puts Scheduling, Crawl "
+             "Configuration, Save & Open Crawls, JavaScript Rendering, Crawl Comparison and "
+             "Near Duplicate Content on the paid side, so the free version cannot save a "
+             "crawl or render JavaScript."),
+            ("Which one tracks keyword rankings?",
+             "SE Ranking. Screaming Frog does not, and neither does Docket \u2014 if daily rank "
+             "tracking is what you need, that is the one of the three that does it."),
+        ],
+    )
+
+
 BUILDERS = [screaming_frog, sitebulb, ahrefs, semrush, lighthouse,
-            search_console, scrutiny]
+            search_console, scrutiny, se_ranking_vs_screaming_frog]
 
 
 def build_all() -> list[Path]:

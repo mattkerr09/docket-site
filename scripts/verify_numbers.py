@@ -46,6 +46,24 @@ ARTICLES = ROOT / "articles"
 #: Numbers that are constants of the world rather than measurements of it.
 #: A reason is required for every entry, and "it looked fine" is not one.
 ALLOWED = {
+    # -- verbatim quotations from a vendor's own purchase page --------------
+    # These two are inside quotation marks on /vs/se-ranking-vs-screaming-frog/
+    # and are Screaming Frog's own sentence, read 2026-09-08 and recorded in
+    # comparisons.VERIFIED["se-ranking-vs-screaming-frog"] with its source URL.
+    #
+    # They are deliberately NOT interpolated. competitors.csv carries the USD
+    # price ($279/yr, which is what their page shows at ?wmc-currency=USD);
+    # this is the GBP figure their page prints by default, inside a quotation.
+    # Interpolating a number into someone else's quoted sentence is how a quote
+    # stops being one — the moment the dataset moved, the page would still be
+    # inside quotation marks and would no longer be what they wrote.
+    #
+    # The date coupling is rule 5's job: CHECKED_ISO pins this page to
+    # 2026-09-08, and editing these facts without moving that date fails.
+    "199": ("Screaming Frog's own \u00a3199 Per Year, quoted verbatim on "
+            "/vs/se-ranking-vs-screaming-frog/ and sourced in VERIFIED"),
+    "500": ("Screaming Frog's own free-tier limit of 500 URLs, quoted verbatim "
+            "on the same page and sourced in VERIFIED"),
     # -- standards, specs and versions ------------------------------------
     # -- figures read off a dated specimen image ---------------------------
     # These two describe the audit screenshot on the homepage, not the product's
