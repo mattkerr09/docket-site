@@ -1,11 +1,11 @@
 {
-  "version": "1.3.41",
-  "notes": "**A page size Docket could not finish measuring is now reported as a floor, not a fact.**\n\nDocket stops reading any single response at 8 MB. On a page larger than that, the number it had been printing was its own ceiling \u2014 so a document of 10.2 MB was described as \"8.4 MB\", precisely and wrongly, in the finding about Google's 2 MB fetch limit and again in the page-weight finding.\n\nBoth now say **\"at least\"**, and only when the read was actually cut short: every page Docket reads to the end still reports an exact size. The audit JSON carries the same distinction, so anything consuming the file can tell a measurement from a lower bound.\n\nFound by auditing a live site and noticing that the reported figure was a round power of two.",
-  "pub_date": "2026-09-08T09:43:18Z",
+  "version": "1.3.42",
+  "notes": "**A heading that names an example is no longer reported as unfinished content.**\n\nA page whose job is to give you sample copy to adapt \u2014 a job-description template, a brief builder, a worked example \u2014 labels each block with a heading like \"Sample text:\". Docket was reading those labels as filler somebody forgot to take out, and saying so at HIGH: *\"Unfinished content is live and indexable.\"* The fix it offered was to remove the page's entire reason for existing.\n\nFiller is not labelled. When every occurrence of a placeholder phrase sits in a heading, it names an example rather than being one, and Docket now leaves it alone.\n\n**Narrowly.** A page that announces \"Coming soon\" or \"Under construction\" in a heading is still reported \u2014 that announcement *is* the finding, not a caption for one \u2014 and a placeholder phrase loose in the body is still reported even when another one on the same page is properly labelled.",
+  "pub_date": "2026-09-08T11:15:37Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXk0Nzd2c09TdCt2VVBzU0xDQWk0TWY2R09GTkZxWk1KR0RScHJBNGl0eGMrU2xnL3pFcHg5bk5zN0NjNEE5QUQzdFNvNVhwWitseHpVY0NZZVhTZWdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4ODYwNDY2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKWmErNnRPMDhWMzBuSEFVMzJBSXlwMjZLZ1JxWG1BeHlBTzNsakthc05INU5tMy9TaTdpS1k0RkE0OGN5OWJra3RNakR0eWcrZTVJUldOMUtiZzlTQUE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.41/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaS8yeUE5ajJ4R2FTZ3l2R1VUdi9TV1NGNVJyeS9vRUJvNkpObHZPKzBZR0plL3NGdGVhUFpKeXBVZWpyZVFHc3I1RVlSeTkxNXhwZEtFMTd4T3QrZUE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4ODY2MDA0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKRWNiUG5WMGQ0Wm5zRm92NHVkNGhDVzVic3hsZWEyMXdFaEV0RXVXdnNiQWtBMm9lZ04yNlc3bXArcFloenY1S28rbVNjcnVwTDJYOVJIeThMZ2tNQVE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.42/Docket.app.tar.gz"
     }
   }
 }
