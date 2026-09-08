@@ -42,6 +42,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BUILD_ID = ROOT / "data" / "build-id.txt"
+BUILT_HOME = ROOT / "site" / "index.html"
 URL = "https://docketseo.app/"
 
 #: Cache-busting is the point: a CDN that hands back a cached copy would let a
@@ -65,6 +66,26 @@ def served_build_id(url: str) -> tuple[str, int]:
     return body[start:body.find('"', start)], len(body)
 
 
+def built_build_id() -> str:
+    """The id stamped into the built home page — the thing a reader is served.
+
+    `data/build-id.txt` is a convenience copy written by the same run, and the
+    two can drift: a commit that stages `site/` and forgets the stamp file
+    leaves them disagreeing, and this gate then compares the live site against a
+    build nobody has. It reported exactly that on 2026-09-08 — "the build on this
+    disk is not the build on the internet" about a deploy that had worked.
+    """
+    if not BUILT_HOME.is_file():
+        return ""
+    marker = '<meta name="build-id" content="'
+    body = BUILT_HOME.read_text(encoding="utf-8", errors="replace")
+    start = body.find(marker)
+    if start == -1:
+        return ""
+    start += len(marker)
+    return body[start:body.find('"', start)]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--wait", type=int, default=0,
@@ -77,6 +98,21 @@ def main() -> int:
         return 1
     expected = BUILD_ID.read_text().strip()
 
+    # The stamp file and the pages it describes must agree before either is used
+    # as the expectation. They are written by one run of build.py, so a
+    # disagreement means a commit took one and left the other — and comparing the
+    # live site against the loser produces a failure about a deploy that worked.
+    built = built_build_id()
+    if not built:
+        print(f"FAIL: no build-id meta tag in {BUILT_HOME} — run scripts/build.py first")
+        return 1
+    if built != expected:
+        print(f"FAIL: data/build-id.txt says {expected!r} but site/index.html was "
+              f"stamped {built!r}. One of them was committed without the other, so "
+              f"this gate has no trustworthy expectation to compare the live site "
+              f"against. Rebuild, and commit data/build-id.txt with the pages.")
+        return 1
+
     deadline = time.time() + args.wait
     while True:
         try:
@@ -86,7 +122,7 @@ def main() -> int:
 
         if got == expected:
             print(f"DEPLOYED ok — {args.url} serves build {expected} "
-                  f"({size:,} bytes), which is what is in site/")
+                  f"({size:,} bytes), which is the id stamped in site/index.html")
             return 0
 
         if time.time() >= deadline:
