@@ -36,8 +36,11 @@ silently.
 """
 from __future__ import annotations
 
+import ast
 import re
+import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -90,7 +93,107 @@ def _text(html: str, *, chrome: bool = True) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
 
 
+
+#: Where the dated facts live. Read out of git rather than off disk, because the
+#: question is *when* a fact changed, and only the history knows that.
+CLAIMS_SOURCE = "scripts/articles/comparisons.py"
+
+
+def _verified_at(src: str):
+    """`VERIFIED` as it stood in one revision, or None if this revision predates it.
+
+    `ast.literal_eval` rather than importing: an old revision may not import at
+    all under today's interpreter, and running it would be worse than skipping.
+    """
+    try:
+        tree = ast.parse(src)
+    except SyntaxError:
+        return None
+    for node in tree.body:
+        name = None
+        if isinstance(node, ast.Assign) and isinstance(node.targets[0], ast.Name):
+            name = node.targets[0].id
+        elif isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+            name = node.target.id
+        if name == "VERIFIED" and node.value is not None:
+            try:
+                return ast.literal_eval(node.value)
+            except (ValueError, TypeError):
+                return None
+    return None
+
+
+def _facts_last_edited(current):
+    """Per competitor, the day its fact list last changed. (edits, unreadable).
+
+    A revision that cannot be read is *reported*, never skipped silently — an
+    edit hiding in an unparsed revision is exactly the failure this rule is for,
+    and a gate that finds nothing has to say how much it could see.
+    """
+    log = subprocess.run(
+        ["git", "-C", str(ROOT), "log", "--format=%H %cI", "--reverse", "--", CLAIMS_SOURCE],
+        capture_output=True, text=True)
+    edits, unreadable, previous, seen = {}, [], {}, 0
+    for line in log.stdout.strip().splitlines():
+        sha, iso = line.split()
+        blob = subprocess.run(["git", "-C", str(ROOT), "show", f"{sha}:{CLAIMS_SOURCE}"],
+                              capture_output=True, text=True).stdout
+        verified = _verified_at(blob)
+        if verified is None:
+            # Every revision before the table existed is a true no-op, not a hole.
+            if "VERIFIED" in blob:
+                unreadable.append(f"{sha[:8]} {iso[:10]}")
+            continue
+        seen += 1
+        for key, facts in verified.items():
+            if previous.get(key) != facts:
+                edits[key] = iso[:10]
+                previous[key] = facts
+    # An edit sitting in the working tree has not been committed yet, so its day
+    # is today — which is the case a deploy is most likely to be publishing.
+    if seen:
+        for key, facts in current.items():
+            if previous.get(key) != facts:
+                edits[key] = date.today().isoformat()
+    return edits, unreadable, seen
+
+
+def _stale_dates(verified, advertised, edited):
+    """The rule, pure, so `--self-check` can plant a wrong date straight into it."""
+    out = []
+    for key in sorted(verified):
+        adv, day = advertised.get(key), edited.get(key)
+        if not adv or not day or day <= adv:
+            continue
+        out.append(
+            f"{key}: the page tells a reader these facts were read on {adv}, but "
+            f"the facts themselves were last edited on {day}. Move the date to the "
+            f"day you actually re-read the vendor, or revert the edit. A date that "
+            f"stays put while the sentence under it changes is a false date about "
+            f"somebody else's product.")
+    return out
+
+
+def _self_check() -> int:
+    """Plant a wrong date and require the rule to catch it.
+
+    A gate whose whole output is "0 stale" is indistinguishable from a gate that
+    cannot see, which is how a date check passes a site with 53 rotten dates on it.
+    """
+    one = [("a claim", "https://example.invalid/")]
+    caught = _stale_dates({"planted": one}, {"planted": "2026-08-10"}, {"planted": "2026-08-24"})
+    clean = _stale_dates({"planted": one}, {"planted": "2026-08-10"}, {"planted": "2026-08-10"})
+    same_day = _stale_dates({"planted": one}, {"planted": "2026-08-24"}, {"planted": "2026-08-24"})
+    ok = len(caught) == 1 and not clean and not same_day
+    print("SELF-CHECK " + ("ok — a fact edited after its date fails; edited on or "
+                           "before it passes" if ok else "FAIL — the rule does not fire"))
+    return 0 if ok else 1
+
+
 def main() -> int:
+    if "--self-check" in sys.argv:
+        return _self_check()
+
     failures: list[str] = []
 
     try:
@@ -208,6 +311,38 @@ def main() -> int:
 
 
 
+    # 5. the date moves when the facts move.
+    #
+    # Rule 4 catches a date in the future and the two spellings disagreeing.
+    # Neither catches the ordinary way one of these rots: somebody corrects a
+    # quoted fact, the note above it keeps yesterday's date, and the page now
+    # tells a reader that sentence was read on a day nobody read it. Nothing on
+    # disk records when a fact changed, so this reads git.
+    #
+    # Prompted by Crisp, whose date audit read JSON-LD and passed a site with
+    # visible "Updated" lines it could not see. Here the dates are generated
+    # rather than typed, so the equivalent blind spot is not the markup — it is
+    # the gap between the date and the data it dates.
+    advertised = {
+        key: comparisons.CHECKED_ISO.get(key, comparisons.CHECKED_ON)
+        for key in comparisons.VERIFIED
+    }
+    if hasattr(comparisons, "HOME_CLAIM_CHECKED") and "home-four-lanes" in advertised:
+        # The homepage prints its own constant; rule 4's pair is not what a
+        # reader sees there.
+        advertised["home-four-lanes"] = comparisons.HOME_CLAIM_CHECKED
+    edited, unreadable, revisions = _facts_last_edited(comparisons.VERIFIED)
+    failures.extend(_stale_dates(comparisons.VERIFIED, advertised, edited))
+    if unreadable:
+        failures.append(
+            "could not read VERIFIED in " + ", ".join(unreadable) +
+            " — an edit in a revision this gate cannot parse is the thing it is "
+            "looking for, so it fails rather than reporting a clean run")
+    if not revisions:
+        failures.append(
+            f"no revision of {CLAIMS_SOURCE} could be read from git — this rule "
+            f"found nothing because it saw nothing, which is not a pass")
+
     if failures:
         print("COMPETITIVE FAIL", file=sys.stderr)
         for f in failures:
@@ -217,6 +352,7 @@ def main() -> int:
     total = sum(len(v) for v in comparisons.VERIFIED.values())
     print(f"COMPETITIVE ok — {total} sourced claim(s) across "
           f"{len(comparisons.VERIFIED)} rival(s); every comparative page dated; "
+          f"every date at or after its facts across {revisions} revision(s); "
           f"the homepage concedes what a crawler can do")
     return 0
 
