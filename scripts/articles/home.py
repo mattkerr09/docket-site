@@ -460,6 +460,7 @@ different orders of magnitude.</p></div>
 <tr><td>One-off project, most common band</td><td>{agency_amount("ahrefs-survey-project")}+</td>
     <td>{AG["ahrefs-survey-project"]["scope"]}</td></tr>
 </tbody></table></div>
+<div style="max-width:44rem;margin-inline:auto">
 <p>One month at the published agency rate is {agency_multiple("webfx-audit")} Docket licences.
 The bottom of the most common one-off project band is {agency_multiple("ahrefs-survey-project")}.
 Docket is bought once and run as often as you like.</p>
@@ -468,6 +469,7 @@ long the fix takes and the exact change to make &mdash; naming the pages, where 
 page-level problem rather than a site-wide one. That is why it pays for itself the first time
 you act on one report, instead of the fifth month of a retainer.</p>
 {agency_note_html()}
+</div>
 
 <p style="text-align:center;margin-top:1.4rem"><a class="btn-ghost" href="/vs/">See the honest
 comparisons →</a></p>
