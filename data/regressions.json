@@ -1,8 +1,8 @@
 {
-  "test_files": 362,
-  "files_pinning_a_past_mistake": 161,
-  "pct": 44.5,
-  "tests_total": 3823,
+  "test_files": 364,
+  "files_pinning_a_past_mistake": 163,
+  "pct": 44.8,
+  "tests_total": 3830,
   "rule": "A test file counts only if it names a specific thing Docket got wrong \u2014 'false positive', 'false accusation', 'invented', 'was false', 'the bug', 'used to produce/say/report/be/call/claim/fire/accuse', 'would have gone/been/called/reported/shipped/failed/accused', or 'nearly published/shipped/deleted'. Counting the word 'test' would prove nothing, and every test file describes a contract \u2014 only some record a mistake. The total is what `pytest --collect-only -q` reports, not a count of `def test_`: parametrised tests are many tests from one function.",
   "files": [
     "test_a_bilingual_name_is_not_an_inconsistency.py",
@@ -24,6 +24,7 @@
     "test_a_footer_is_not_the_page_either.py",
     "test_a_german_address_puts_the_number_last.py",
     "test_a_head_404_is_not_a_broken_link.py",
+    "test_a_honeypot_hidden_by_its_wrapper_is_not_a_field_you_can_cut.py",
     "test_a_house_number_can_have_a_letter.py",
     "test_a_javascript_shell_is_not_evidence_the_page_is_empty.py",
     "test_a_key_for_another_product_does_not_unlock_this_one.py",
@@ -55,6 +56,7 @@
     "test_a_rate_limit_is_not_a_refusal.py",
     "test_a_rate_limit_we_caused_is_not_a_broken_site.py",
     "test_a_redirect_chain_says_where_you_came_from.py",
+    "test_a_redirect_that_leaves_the_site_does_not_come_back.py",
     "test_a_redirect_to_a_third_host_is_still_a_redirect.py",
     "test_a_region_label_is_not_a_company_name.py",
     "test_a_registry_nobody_imported_is_empty_and_calm.py",

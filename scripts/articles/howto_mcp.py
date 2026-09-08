@@ -25,6 +25,24 @@ Measured, in that order:
 The config path is stated rather than written by us: `claude_desktop_config.json`
 exists at the documented location on this machine, so the path is confirmed, but
 editing a customer's assistant config is theirs to do.
+
+⚠️ THE PROVENANCE LINE ON THE PAGE CARRIES A DATE AND NO VERSION NUMBER, AND
+THAT IS THE WHOLE DESIGN. The CEO session asked for "measured against 1.3.44
+(build 922) on 2026-09-08" so the page is falsifiable, which is the right
+instinct — but a typed version on a page is what `verify_version_strings`
+exists to refuse, and its message is "Derive it, or delete it". Deriving it
+from RELEASE would be worse than typing it: at 1.3.45 the page would claim a
+measurement against a build nobody ran these commands on, which is the
+freshness lie rule 5 catches for competitor prices, pointed at ourselves.
+
+The asymmetry is the way out. **"Last run on 2026-09-08" never becomes false.**
+"Measured against 1.3.44" becomes false the moment 1.3.45 ships. So the page
+carries the date, which stays true forever, and points the reader at their own
+handshake for the version — which is a live product behaviour rather than a
+claim about a past run, and is a stronger falsifier than our stamp anyway.
+
+The frozen basis lives here instead, where it cannot mislead a customer:
+1.3.44, build 922, measured 2026-09-08.
 """
 from __future__ import annotations
 
@@ -35,6 +53,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import N_CHECKS, N_LANES, PRICE_STR, render  # noqa: E402
 
 SIDECAR = "/Applications/Docket.app/Contents/Resources/docket/docket"
+
+#: The day these commands were last run against a shipped build. It is a
+#: DATE and not a version on purpose — see the module docstring.
+MEASURED_HUMAN = "8 September 2026"
 
 
 def mcp_setup() -> Path:
@@ -62,6 +84,13 @@ launches Docket itself. In Claude Desktop, open
 <p>That path is the audit engine inside the installed app, not the app icon you click. Restart
 the client and Docket appears as a tool. Any MCP client works the same way &mdash; the command
 and the argument are all it needs.</p>
+
+<p class="note"><strong>Every answer on this page was produced by running these commands</strong>
+against a shipped, notarised build on {MEASURED_HUMAN} &mdash; not against a development
+checkout, which behaves differently in the one way that matters most here (see the licence
+section below). Your own copy reports its version in the MCP handshake, so you can check this
+page against what you actually have; if it disagrees, the page is wrong and we want to hear
+about it.</p>
 
 <h2>The two tools</h2>
 
