@@ -1,8 +1,8 @@
 {
-  "test_files": 368,
-  "files_pinning_a_past_mistake": 167,
-  "pct": 45.4,
-  "tests_total": 3844,
+  "test_files": 370,
+  "files_pinning_a_past_mistake": 169,
+  "pct": 45.7,
+  "tests_total": 3853,
   "rule": "A test file counts only if it names a specific thing Docket got wrong \u2014 'false positive', 'false accusation', 'invented', 'was false', 'the bug', 'used to produce/say/report/be/call/claim/fire/accuse', 'would have gone/been/called/reported/shipped/failed/accused', or 'nearly published/shipped/deleted'. Counting the word 'test' would prove nothing, and every test file describes a contract \u2014 only some record a mistake. The total is what `pytest --collect-only -q` reports, not a count of `def test_`: parametrised tests are many tests from one function.",
   "files": [
     "test_a_bilingual_name_is_not_an_inconsistency.py",
@@ -21,6 +21,7 @@
     "test_a_crawler_we_said_was_blocked_and_was_not.py",
     "test_a_dead_token_over_a_rule_the_star_group_already_has.py",
     "test_a_fallback_must_not_assert_a_cause.py",
+    "test_a_field_the_site_publishes_is_not_an_example_of_what_is_missing.py",
     "test_a_finding_points_at_what_it_measured.py",
     "test_a_footer_is_not_the_page_either.py",
     "test_a_form_that_reports_an_incident_is_not_a_lead_form.py",
@@ -35,6 +36,7 @@
     "test_a_licensed_build_cannot_be_made_by_accident.py",
     "test_a_link_description_is_not_a_brand_name.py",
     "test_a_link_that_names_itself_has_a_name.py",
+    "test_a_link_with_the_scheme_written_twice_is_a_typo_not_a_dead_page.py",
     "test_a_main_element_that_is_not_the_page.py",
     "test_a_marker_written_the_way_a_person_reads_it.py",
     "test_a_meta_refresh_is_a_redirect_docket_can_see.py",
