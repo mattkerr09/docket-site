@@ -1285,6 +1285,12 @@ every common host. Written as a self-audit, because this site fails two of the t
 it is describing and the reason is worth reading.
 <a href="/how-to/fix-missing-security-headers/">How to fix missing security headers →</a></p>
 
+<h2>Auditing from an AI assistant</h2>
+<p>Docket speaks the Model Context Protocol over stdio, so an assistant can run an audit on
+your own Mac and read the findings back as structured data. No API key, no cloud, and the
+same one-time licence &mdash; the assistant is talking to the copy you own.
+<a href="/how-to/audit-your-site-from-an-ai-assistant/">How to set it up &rarr;</a></p>
+
 <h2>Gating a deploy on regressions</h2>
 <p>Audit production against staging and fail the build on what the deploy introduced. The
 case for diffing findings rather than a score: stripping every title tag from a test site

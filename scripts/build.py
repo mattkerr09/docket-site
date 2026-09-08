@@ -45,6 +45,7 @@ import howto_open_graph  # noqa: E402
 import howto_soft404  # noqa: E402
 import howto_title_width  # noqa: E402
 import howto_titles  # noqa: E402
+import howto_mcp  # noqa: E402
 import outrank  # noqa: E402
 import index_page  # noqa: E402
 import learn  # noqa: E402
@@ -676,6 +677,7 @@ def main() -> int:
               howto_security_headers.security_headers(),
               howto_schema.structured_data_errors(),
               howto_cls.layout_shift(),
+              howto_mcp.mcp_setup(),
               howto_titles.duplicate_titles(),
               howto_title_width.title_tags(),
               outrank.outrank()]
