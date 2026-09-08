@@ -1,11 +1,11 @@
 {
-  "version": "1.3.40",
-  "notes": "**A page that arrives as an empty JavaScript shell can no longer testify that your site is missing things.**\n\nOn sites that render their content in the browser, Docket was reading the shell's silence as the site's: no H1, no share card, a canonical pointing somewhere else, duplicate titles, missing analytics, too few internal links. Every one of those was a claim about content Docket had never seen.\n\nMeasured on a live airline site that serves one byte-identical 37 KB shell for 23 URLs across 18 sections: **eight false findings removed, and both true ones kept.** Those pages are still reported as JavaScript-dependent and still counted as invisible to AI crawlers \u2014 that finding is the point of the crawl, and it survives.\n\nTwo smaller things in the same release: the analytics finding now says which pages its number is drawn from when some could not be read, and the read-out is unchanged on every site that has no such pages.",
-  "pub_date": "2026-09-08T07:54:56Z",
+  "version": "1.3.41",
+  "notes": "**A page size Docket could not finish measuring is now reported as a floor, not a fact.**\n\nDocket stops reading any single response at 8 MB. On a page larger than that, the number it had been printing was its own ceiling \u2014 so a document of 10.2 MB was described as \"8.4 MB\", precisely and wrongly, in the finding about Google's 2 MB fetch limit and again in the page-weight finding.\n\nBoth now say **\"at least\"**, and only when the read was actually cut short: every page Docket reads to the end still reports an exact size. The audit JSON carries the same distinction, so anything consuming the file can tell a measurement from a lower bound.\n\nFound by auditing a live site and noticing that the reported figure was a round power of two.",
+  "pub_date": "2026-09-08T09:43:18Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTF1eXZQaDUxaVhISXVpTVZmWVFHV3BERk81SGpvNjNwZ2lqdWRuVjlOaVkrMXNJd1RpREM3cG9EV0lWdTgrbUZ6RUxlVnY3dHpVUE5BYkp1TVRPalFZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4ODUzOTY0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKUnN5YmYwajVUTEg1MXdqWEJPQkFyMnM2bG5KZ0lJdXVFbjFIclhaVisyaFllSngza0x1K3hzb3RhSDdNdGFEeTVHaUVZWjBSTXhmREVHZEljc0UxQWc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.40/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXk0Nzd2c09TdCt2VVBzU0xDQWk0TWY2R09GTkZxWk1KR0RScHJBNGl0eGMrU2xnL3pFcHg5bk5zN0NjNEE5QUQzdFNvNVhwWitseHpVY0NZZVhTZWdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4ODYwNDY2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKWmErNnRPMDhWMzBuSEFVMzJBSXlwMjZLZ1JxWG1BeHlBTzNsakthc05INU5tMy9TaTdpS1k0RkE0OGN5OWJra3RNakR0eWcrZTVJUldOMUtiZzlTQUE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.41/Docket.app.tar.gz"
     }
   }
 }
