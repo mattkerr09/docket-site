@@ -6,7 +6,7 @@
 <title>Thank you — Docket</title>
 <meta name="description" content="Your Docket purchase is complete. Where to download the app and how to reach us.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="231a10109696">
+<meta name="build-id" content="66dfd55552f6">
 <meta name="robots" content="noindex">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -756,7 +756,7 @@ happened. If the purchase was a mistake, the
   if (status === 'succeeded' && typeof fbq === 'function') {
     var once = 'dk_purchase_' + (pid || 'nopid');
     var fire = function () {
-      fbq('track', 'Purchase', { value: 199, currency: 'USD' },
+      fbq('track', 'Purchase', { value: 349, currency: 'USD' },
           pid ? { eventID: pid } : undefined);
     };
     try {
