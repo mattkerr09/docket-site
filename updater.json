@@ -1,11 +1,11 @@
 {
-  "version": "1.3.42",
-  "notes": "**A heading that names an example is no longer reported as unfinished content.**\n\nA page whose job is to give you sample copy to adapt \u2014 a job-description template, a brief builder, a worked example \u2014 labels each block with a heading like \"Sample text:\". Docket was reading those labels as filler somebody forgot to take out, and saying so at HIGH: *\"Unfinished content is live and indexable.\"* The fix it offered was to remove the page's entire reason for existing.\n\nFiller is not labelled. When every occurrence of a placeholder phrase sits in a heading, it names an example rather than being one, and Docket now leaves it alone.\n\n**Narrowly.** A page that announces \"Coming soon\" or \"Under construction\" in a heading is still reported \u2014 that announcement *is* the finding, not a caption for one \u2014 and a placeholder phrase loose in the body is still reported even when another one on the same page is properly labelled.",
-  "pub_date": "2026-09-08T11:15:37Z",
+  "version": "1.3.43",
+  "notes": "**Placeholder text hiding in your search snippet is now found.**\n\nEvery text check in Docket read a page's rendered body. The meta description, the `og:description` and a JSON-LD `description` are a second copy of the same sentence \u2014 and they are the copy Google and an AI crawler quote first. Nothing was reading them.\n\nSo a site could ship *\"Lorem ipsum dolor sit amet\"* as the sentence that appears under its own name in search results, and Docket would call the page clean.\n\nIt now checks that surface too, and says which one it found, because the fix is different: edit the tag, not the copy. A page that *argues against* placeholder text in its description is still left alone, and a page carrying filler in both its body and its meta is reported once.",
+  "pub_date": "2026-09-08T11:58:46Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaS8yeUE5ajJ4R2FTZ3l2R1VUdi9TV1NGNVJyeS9vRUJvNkpObHZPKzBZR0plL3NGdGVhUFpKeXBVZWpyZVFHc3I1RVlSeTkxNXhwZEtFMTd4T3QrZUE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4ODY2MDA0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKRWNiUG5WMGQ0Wm5zRm92NHVkNGhDVzVic3hsZWEyMXdFaEV0RXVXdnNiQWtBMm9lZ04yNlc3bXArcFloenY1S28rbVNjcnVwTDJYOVJIeThMZ2tNQVE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.42/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXl4MENxZDZKOW4veTg4YlBRVzhVSG01NDI0ZzhJVUQ0b3V4Wk5QV0diZTlxOGM2UGIvS1BBcENJYlI4T09pUlpiZXIwK2dhRzhpbFdDWlhaQlFWeFE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4ODY4NjA0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKQnN6TjdXNnJqVDFueFg4bFNZdmhQSndNbXhZbVgrVkVMalBDVWdEcmp5ZTRaa0FwcnVlQ083bWxYanJGQ1NrbCt4bGtIRVhEZmJYRlpOelBxaUUwRGc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.43/Docket.app.tar.gz"
     }
   }
 }
