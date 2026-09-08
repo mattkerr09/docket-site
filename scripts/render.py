@@ -206,6 +206,19 @@ PRICE = 349
 #: Set to None the moment Dodo reads 34900 — a transition window left open is a
 #: gate that has stopped checking.
 PRICE_PREVIOUS = 199
+
+#: The founding-offer discount, as a percentage, and the price it produces.
+#:
+#: Read from Dodo 2026-09-08: code FOUNDING1, 50% off, 3 of 25 used, expires
+#: 2026-11-25, unrestricted. DERIVED rather than typed because the banner is the
+#: one price on this site with no generator behind it: founding.js claims prices
+#: come "from the mount if a site states them, else from the API", and the
+#: worker's /founding returns no price field at all, so the mount is the only
+#: source. Typed, it silently kept saying $199/$99.50 after the site moved to
+#: $349 and was the last thing on the page contradicting every other price.
+FOUNDING_PCT = 50
+FOUNDING_WAS = f"${PRICE}"
+FOUNDING_NOW = f"${PRICE * (100 - FOUNDING_PCT) / 100:.2f}"
 PRICE_STR = f"${PRICE}"
 
 #: What the download costs *today*, which is not PRICE. The beta is free, keeps
