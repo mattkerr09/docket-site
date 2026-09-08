@@ -196,16 +196,14 @@ DMG_SIZE = _facts.dmg_size_str()
 # Screaming Frog from month 16 onwards. The prose on /download/ says that now.
 PRICE = 349
 
-#: The price the CHECKOUT may still be charging while a price change lands.
+#: No price transition is open. `verify_checkout.py` reads this and, when it is
+#: None, requires the live checkout to charge exactly PRICE.
 #:
-#: Matthew, 2026-09-08: "yes lets do 349." The agreed order is site first, then
-#: Dodo, so that a buyer in the gap pays LESS than the page shows and never more.
-#: `verify_checkout.py` asserted the checkout and the site were equal, which
-#: makes that order impossible to ship: the deploy would fail until Dodo moved,
-#: and moving Dodo first is the one direction that overcharges somebody.
-#: Set to None the moment Dodo reads 34900 — a transition window left open is a
-#: gate that has stopped checking.
-PRICE_PREVIOUS = 199
+#: It held 199 from 06:05Z to 06:35Z on 2026-09-08 while the site said $349 and
+#: Dodo still said $199 — the agreed order, so that a buyer in the window paid
+#: less than the page showed and never more. Dodo now reads 34900, so the window
+#: is CLOSED. A transition window left open is a gate that has stopped checking.
+PRICE_PREVIOUS = None
 
 #: The founding-offer discount, as a percentage, and the price it produces.
 #:
