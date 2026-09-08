@@ -186,9 +186,26 @@ DMG_SIZE = _facts.dmg_size_str()
 # history", and this site advertises "scheduled monitoring" in its own
 # featureList. A one-shot audit tool would not need any of that.
 #
-# $199 is still less than ONE year of the cheapest serious competitor, so the
-# position survives the rise intact.
-PRICE = 199
+# That sentence was true at $199 and is FALSE at $349, so it is recorded here
+# rather than quietly deleted: the cheapest paid annual tier we track is Sitebulb
+# Lite at $180/yr (purchase page read 2026-09-08), and $349 is 1.9 years of it.
+#
+# What is true at $349, from purchase pages read the same day: it is exactly one
+# year of SEO PowerSuite Professional ($349/yr), and fifteen months of Screaming
+# Frog ($279/yr = $23.25/mo; 15 x 23.25 = $348.75), so Docket is cheaper than
+# Screaming Frog from month 16 onwards. The prose on /download/ says that now.
+PRICE = 349
+
+#: The price the CHECKOUT may still be charging while a price change lands.
+#:
+#: Matthew, 2026-09-08: "yes lets do 349." The agreed order is site first, then
+#: Dodo, so that a buyer in the gap pays LESS than the page shows and never more.
+#: `verify_checkout.py` asserted the checkout and the site were equal, which
+#: makes that order impossible to ship: the deploy would fail until Dodo moved,
+#: and moving Dodo first is the one direction that overcharges somebody.
+#: Set to None the moment Dodo reads 34900 — a transition window left open is a
+#: gate that has stopped checking.
+PRICE_PREVIOUS = 199
 PRICE_STR = f"${PRICE}"
 
 #: What the download costs *today*, which is not PRICE. The beta is free, keeps

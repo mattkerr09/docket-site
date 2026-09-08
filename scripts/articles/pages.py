@@ -112,9 +112,10 @@ cannot drift from what the app does.</p>
 </tbody></table></div>
 {price_note_html()}
 
-<p>Docket costs less than a year of the cheapest alternative and nothing after that. That is
-the whole pricing argument and it does not need help: the tools above are not overpriced for
-what they do, they are simply rented rather than owned.</p>
+<p>{PRICE_STR} once is one year of the cheapest serious desktop subscription, or fifteen months
+of Screaming Frog &mdash; and nothing after that. From month sixteen Docket is the cheaper tool and
+stays cheaper every month afterwards. That is the whole pricing argument and it does not need help:
+the tools above are not overpriced for what they do, they are simply rented rather than owned.</p>
 
 <h2>Checking what you downloaded</h2>
 

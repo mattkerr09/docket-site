@@ -19,7 +19,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE / "articles"))
 
 import facts as F  # noqa: E402
-from render import BASE, DATA, SITE, render  # noqa: E402
+from render import BASE, DATA, PRICE, SITE, render  # noqa: E402
 
 import about  # noqa: E402
 import audit_quality  # noqa: E402
@@ -467,7 +467,7 @@ def thank_you() -> Path:
     contact page already publishes.
 
     ⚠️ THIS PAGE WENT FALSE TWICE AND IS THE WORST PLACE ON THE SITE FOR THAT.
-    It is what a customer reads in the seconds after $199 leaves their account.
+    It is what a customer reads in the seconds after the price leaves their account.
 
     It said the receipt comes from POLAR, for days after the checkout moved to
     Dodo — so a buyer would watch for an email from a company that never took
@@ -522,7 +522,7 @@ happened. If the purchase was a mistake, the
         h1="Thank you",
         crumb='<a href="/">Docket</a> / Thank you',
         body=body,
-        closer=_THANK_YOU_JS,
+        closer=_THANK_YOU_JS.replace("__PRICE__", str(PRICE)),
         schema_type="",
         noindex=True,
     )
@@ -570,7 +570,7 @@ _THANK_YOU_JS = """
   if (status === 'succeeded' && typeof fbq === 'function') {
     var once = 'dk_purchase_' + (pid || 'nopid');
     var fire = function () {
-      fbq('track', 'Purchase', { value: 199, currency: 'USD' },
+      fbq('track', 'Purchase', { value: __PRICE__, currency: 'USD' },
           pid ? { eventID: pid } : undefined);
     };
     try {

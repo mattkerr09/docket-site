@@ -41,6 +41,20 @@ sys.path.insert(0, str(app / "scripts"))
 import resolve_polar_org as resolver  # noqa: E402
 
 
+
+def _charges(html: str, cents: str) -> bool:
+    """Does the checkout show exactly this amount, as a whole number?
+
+    `cents in html` is a SUBSTRING test, and amounts nest: "9900" sits inside
+    "19900". Break-tested 2026-09-08 with the site at $99 against the live $199
+    checkout, this gate printed "CHECKOUT ok ... the site says $99" while a buyer
+    would have been charged a hundred dollars more. The gate that exists to stop
+    exactly that was passing it, and had been since it was written.
+    """
+    import re as _re
+    return _re.search(r"(?<!\d)" + _re.escape(cents) + r"(?!\d)", html) is not None
+
+
 def _dodo(url: str) -> int:
     """The same question asked of Dodo: does this link still sell the product
     this site advertises, at the price the pages print?
@@ -70,11 +84,34 @@ def _dodo(url: str) -> int:
 
     cents = str(render.PRICE * 100)
     problems = []
+    transition = ""
     if "Docket" not in html:
         problems.append("the checkout does not name Docket at all")
-    if cents not in html:
-        problems.append(f"the checkout does not charge {render.PRICE_STR} "
-                        f"({cents} in cents is absent from the page)")
+    if not _charges(html, cents):
+        # A PRICE RISE LANDS ON THE SITE FIRST, ON PURPOSE.
+        #
+        # This asserted the site and the checkout were equal, which reads as the
+        # safe rule and is not it. The rule a buyer cares about is that the
+        # checkout never charges MORE than the page advertises. Equality also
+        # made the agreed order unshippable: the site cannot go to $349 while
+        # Dodo still says $199, so the deploy would fail until Dodo moved — and
+        # moving Dodo first is the one order that overcharges somebody.
+        #
+        # So an OLD, LOWER price is accepted and announced; anything else fails.
+        previous = getattr(render, "PRICE_PREVIOUS", None)
+        old_cents = str(previous * 100) if previous else ""
+        if previous and previous < render.PRICE and _charges(html, old_cents):
+            transition = (
+                f"    TRANSITION: the checkout still charges ${previous} while the "
+                f"site advertises {render.PRICE_STR}. That is the agreed order — a "
+                f"buyer in this window pays LESS than the page showed, never more. "
+                f"Clear render.PRICE_PREVIOUS once Dodo reads {cents}.")
+        else:
+            problems.append(f"the checkout does not charge {render.PRICE_STR} "
+                            f"({cents} in cents is absent from the page), and it is "
+                            f"not the recorded previous price either. A checkout that "
+                            f"charges anything other than the price on the page, or "
+                            f"more than it, is the failure this gate exists for.")
     if "License Key" not in html and "license_key" not in html.lower():
         problems.append("no licence-key benefit — a buyer would pay and receive "
                         "no key, and a licensed build would refuse them")
@@ -83,6 +120,10 @@ def _dodo(url: str) -> int:
         for pr in problems:
             print(f"    {pr}")
         return 1
+    if transition:
+        print(f"CHECKOUT ok (price transition) — the site says {render.PRICE_STR}.")
+        print(transition)
+        return 0
     print(f"CHECKOUT ok — the Dodo checkout sells Docket at {render.PRICE_STR} "
           f"with a licence key, and the site says {render.PRICE_STR}. "
           f"(Dodo does not expose the organisation, so this proves the product "
