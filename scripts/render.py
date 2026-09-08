@@ -69,6 +69,81 @@ def _competitors() -> dict:
 COMPETITORS = _competitors()
 
 
+def _agencies() -> dict:
+    """Published agency prices, keyed by slug — the OTHER thing a buyer compares against.
+
+    The competitor table answers "which tool?". It cannot answer the question
+    most people actually arrive with, which is "should I buy a tool at all, or
+    pay somebody to do this?" Those are different orders of magnitude and the
+    site was silent on the second one.
+
+    Two kinds of row live here and they are not interchangeable, which is why
+    `kind` exists rather than one undifferentiated price column:
+
+      * `published_price` — a named company's own price for its own service. A
+        hard fact with a URL.
+      * `survey_average` / `survey_mode` — what a third party reports about a
+        market. Softer, older, and quoted as somebody else's finding.
+
+    ⚠️ THE DATE COLUMN MEANS TWO DIFFERENT THINGS AND BOTH ARE HONEST. For a
+    published price it is the day WE read their page. For a survey it is the
+    day THEY published, because a two-year-old survey re-read today is still a
+    two-year-old survey, and stamping it with today's date would be the exact
+    freshness lie `price_note_html` was written to prevent.
+    """
+    import csv
+    path = pathlib.Path(__file__).resolve().parent.parent / "data" / "agencies.csv"
+    with path.open() as fh:
+        return {r["slug"]: r for r in csv.DictReader(fh)}
+
+
+AGENCIES = _agencies()
+
+
+def agency_amount(slug: str) -> str:
+    """The agency figure as money: "$8,600", not "$8600".
+
+    The CSV stores a bare integer so it can be divided; every page that prints
+    it needs the separator, and a template that formats it by hand is a
+    template that will one day forget.
+    """
+    return "${:,}".format(int(AGENCIES[slug]["amount"]))
+
+
+def agency_multiple(slug: str) -> int:
+    """How many Docket licences fit inside one agency charge, rounded DOWN.
+
+    Down, always: the figure is an argument in our own favour, so it rounds the
+    way that understates it. $8,600/mo against $349 is 24.6, published as 24.
+    """
+    return int(int(AGENCIES[slug]["amount"]) // PRICE)
+
+
+def agency_note_html() -> str:
+    """The provenance line that must appear wherever an agency figure does.
+
+    Same rule as competitor prices, with one addition: a survey is labelled as a
+    survey and dated to ITS publication, so a reader can see that the $3,209 is
+    somebody else's 2024 finding and the $8,600 is a price on a page today.
+    """
+    published = [a for a in AGENCIES.values() if a["kind"] == "published_price"]
+    surveys = [a for a in AGENCIES.values() if a["kind"].startswith("survey")]
+    parts = []
+    for a in published:
+        parts.append(f'<a href="{a["source"]}" rel="nofollow noopener">{a["name"]}</a>\u2019s '
+                     f'own published price, read {a["checked"]}')
+    seen = set()
+    for a in surveys:
+        if a["source"] in seen:
+            continue
+        seen.add(a["source"])
+        parts.append(f'<a href="{a["source"]}" rel="nofollow noopener">{a["name"]}</a>, '
+                     f'published {a["checked"]}')
+    return ('<p class="note"><strong>Where these come from:</strong> '
+            + "; ".join(parts) + '. Docket is not an agency and does not do the '
+            'work an agency does \u2014 it produces the audit, not the fixes.</p>')
+
+
 def price(slug: str) -> str:
     """The published price for a competitor, with en dashes for ranges."""
     return COMPETITORS[slug]["price_note"].replace("-", "–")

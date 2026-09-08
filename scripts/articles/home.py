@@ -25,7 +25,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, FOUNDING_NOW,
+from render import (AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE,
+                    FOUNDING_NOW, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
                     N_LANES, PRICE_STR,
                     price, price_note_html, render)  # noqa: E402
@@ -443,6 +444,31 @@ def body() -> str:
 <tr><td>Screaming Frog</td><td>{price("screaming-frog")}</td><td>Your machine</td><td>Raw crawl data</td></tr>
 </tbody></table></div>
 {price_note_html()}
+
+<div class="sec-head" style="margin-top:3rem"><h3>Or you could pay someone to do it.</h3>
+<p>That table is the wrong comparison for most people. They are not choosing between two
+crawlers &mdash; they are choosing between buying a tool and hiring somebody, and those are
+different orders of magnitude.</p></div>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>What you could buy</th><th>Price</th><th>For that you get</th></tr></thead>
+<tbody>
+<tr><td>Docket</td><td class="yes">{PRICE_STR} once</td><td>Unlimited audits, on your Mac</td></tr>
+<tr><td>{AG["webfx-audit"]["name"]}, published rate</td><td>{agency_amount("webfx-audit")}/month</td>
+    <td>{AG["webfx-audit"]["scope"]}</td></tr>
+<tr><td>Agency retainer, survey average</td><td>{agency_amount("ahrefs-survey-retainer")}/month</td>
+    <td>{AG["ahrefs-survey-retainer"]["scope"]}</td></tr>
+<tr><td>One-off project, most common band</td><td>{agency_amount("ahrefs-survey-project")}+</td>
+    <td>{AG["ahrefs-survey-project"]["scope"]}</td></tr>
+</tbody></table></div>
+<p>One month at the published agency rate is {agency_multiple("webfx-audit")} Docket licences.
+The bottom of the most common one-off project band is {agency_multiple("ahrefs-survey-project")}.
+Docket is bought once and run as often as you like.</p>
+<p>And what you get back is the thing you were paying for: every finding says how bad it is, how
+long the fix takes and the exact change to make &mdash; naming the pages, where it is a
+page-level problem rather than a site-wide one. That is why it pays for itself the first time
+you act on one report, instead of the fifth month of a retainer.</p>
+{agency_note_html()}
+
 <p style="text-align:center;margin-top:1.4rem"><a class="btn-ghost" href="/vs/">See the honest
 comparisons →</a></p>
 </div></section>

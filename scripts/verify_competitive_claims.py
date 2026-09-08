@@ -219,6 +219,63 @@ def _self_check() -> int:
     return 0 if ok else 1
 
 
+def _agency_rows_are_sourced(home_html: str) -> list:
+    """Rule 7: every agency figure on the page is a dated, sourced row.
+
+    ⚠️ WRITTEN AFTER SHIPPING THE BUG IT CATCHES, WHICH IS THE POINT. Adding a
+    thousands separator to `data/agencies.csv` put a COMMA INSIDE AN UNQUOTED
+    CSV FIELD. The column split: `checked` became "000)" and `source` became
+    the note. The homepage would have published "published 000)" where a date
+    goes — and `build.py` exited 0, `verify_numbers` passed, and this file
+    passed, because agencies are not in `competitors.csv` and no rule had ever
+    looked at them.
+
+    A price beside our own price reads as current forever, which is why the
+    competitor rows have carried a date for weeks. These now carry one too, and
+    the check is on the PARSED row rather than the file's text, so a shifted
+    column fails instead of being read as a value.
+    """
+    import csv
+    bad = []
+    path = ROOT / "data" / "agencies.csv"
+    with path.open() as fh:
+        reader = csv.DictReader(fh)
+        expected = list(reader.fieldnames or [])
+        rows = list(reader)
+    if not rows:
+        return ["agencies.csv has no rows"]
+    for row in rows:
+        slug = row.get("slug") or "?"
+        if row.get(None):
+            bad.append(f"{slug}: more fields than the {len(expected)} declared columns — "
+                       f"an unquoted comma has shifted every value after it")
+            continue
+        if any(row.get(c) is None for c in expected):
+            bad.append(f"{slug}: fewer fields than columns")
+            continue
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", (row.get("checked") or "").strip()):
+            bad.append(f"{slug}: 'checked' is {row.get('checked')!r}, not an ISO date")
+        if not (row.get("source") or "").startswith("http"):
+            bad.append(f"{slug}: 'source' is {(row.get('source') or '')[:40]!r}, not a URL")
+        if not (row.get("amount") or "").strip().isdigit():
+            bad.append(f"{slug}: 'amount' is {row.get('amount')!r}, not a bare integer")
+
+    # Any agency amount printed on the homepage must come from a row above.
+    text = _text(home_html)
+    known = {"${:,}".format(int(r["amount"])) for r in rows
+             if (r.get("amount") or "").strip().isdigit()}
+    if known and not any(k in text for k in known):
+        return bad  # the block is not on this page; nothing further to check
+    for row in rows:
+        if not (row.get("amount") or "").strip().isdigit():
+            continue
+        money = "${:,}".format(int(row["amount"]))
+        if money in text and (row.get("checked") or "") not in text:
+            bad.append(f"{row['slug']}: the homepage prints {money} without its "
+                       f"{row.get('checked')!r} date anywhere on the page")
+    return bad
+
+
 def main() -> int:
     if "--self-check" in sys.argv:
         return _self_check()
@@ -251,6 +308,9 @@ def main() -> int:
             "the homepage no longer concedes that a crawler can check robots "
             "directives per user-agent — Screaming Frog's user guide says it "
             "can, and saying otherwise is the error this gate exists for")
+
+    # 7. Agency figures are dated and sourced like every other outside price.
+    failures.extend(_agency_rows_are_sourced(home_html))
 
     # 1. Comparative sentences carry a date.
     checked = comparisons.HOME_CLAIM_CHECKED_HUMAN
