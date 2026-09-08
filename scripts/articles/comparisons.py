@@ -1300,10 +1300,10 @@ Screaming Frog is the right tool.</p>
 """
     return render(
         cat="vs", slug="se-ranking-vs-screaming-frog",
-        title="SE Ranking vs Screaming Frog: metered cloud audit or unmetered local crawler?",
+        title="SE Ranking vs Screaming Frog: metered or unmetered?",
         desc=("SE Ranking meters its audit by pages per month; Screaming Frog licences an "
-              "unmetered crawler for your own machine. Prices read from both purchase pages, "
-              "with where Docket fits and where it does not."),
+              "unmetered crawler for your machine. Both prices read from their own "
+              "purchase pages."),
         h1="SE Ranking vs Screaming Frog",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / SE Ranking vs Screaming Frog',
         body=body,
