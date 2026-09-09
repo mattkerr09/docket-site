@@ -1,11 +1,11 @@
 {
-  "version": "1.3.59",
-  "notes": "A holding page is no longer mistaken for a whole website.\n\nSome sites answer a crawler with a short notice instead of their homepage \u2014 a\nqueue page, a \"we are experiencing high demand\" message \u2014 and do it with a normal\n200 response and valid HTML. Because such a page links nowhere, Docket had\nnothing left to crawl and concluded it had seen the entire site. It then reported,\nwith full confidence, that the site has no analytics anywhere, no prices anywhere,\nand no About, Contact or Privacy page.\n\nA page the site has itself withheld from search is not the site. Where every page\na crawl could read carries a noindex directive, Docket no longer draws conclusions\nabout what the rest of the site is missing, says the crawl was unreliable, and\nstops claiming the report speaks for the site. Findings about the page it did read\nare unaffected.\n\nInternally, the rule for reading robots directives now lives in one place rather\nthan two.",
-  "pub_date": "2026-09-09T18:28:48Z",
+  "version": "1.3.60",
+  "notes": "Businesses your site lists are no longer reported as your own premises.\n\nIf a page publishes structured data about other companies \u2014 a directory, a\nmarketplace, a \"restaurants near you\" listing \u2014 those entries sit inside an\nItemList. Docket read the first of them as if it described the audited business\nitself, and reported that the site was missing its own address, telephone,\nopening hours, map location and price range. On a national food-delivery site\nevery one of those facts belonged to a takeaway the site lists.\n\nDocket now judges the site's own markup whenever it has any. Where the only\nlocal markup describes businesses the site lists, the finding says so, names the\nbusiness it is about, and states plainly that it is not a claim about the site's\nown address or opening hours. It is reported as a lower-priority listing-quality\nissue, because that is what it is: complete listing entries are what make a\ndirectory page eligible for rich results.\n\nThe sentence explaining why the local checks ran was corrected in the same way,\nand no longer tells a marketplace it looks like a restaurant.",
+  "pub_date": "2026-09-09T19:59:32Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStDTGFnbjRLVUY5dTRhWlBwUDFaTlBxTWUrbWNOTm9LdkJaTlZIWjBVS2Z2ampndmYyZTl1bStRTDdSc0JGOEk4U2FEQUZzeC9jRWlBY3hqOEx0dmdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4OTc4MzgxCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKK3dyeCtPWTdWVkJtQ1l4SENBS0pzSWxIcW1HY2trbjAvdGxLS2ZsVnFUKy9VZTdXVUsxRjY1QjBDQ2dGQS9mb2VpemdMbVlPeWlSVU1RUFNId2ZyQ0E9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.59/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTR3OHhqK3BOaWVteFRFT1JpWG1LWE5nT1Zlc3dOckRPUHczYTZ6NE1RbjRGS3NjSjl0aUVzWTRNSFVpOXZ4WTRpR1N5VmZFR2o1QzBLaTBLVWNJUkFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg4OTgzNzc2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKUkFqcUkzeE9tWTVaeFZBSkFhcGhZQ3J4N1Y0NWdpYTlpUEIvSVpWSm0zYTcwQUZleGNNOU14dzBFcmY0MDR5dFIxaFBwYnZYdjNzQTJ5Z1lFdXluQWc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.60/Docket.app.tar.gz"
     }
   }
 }
