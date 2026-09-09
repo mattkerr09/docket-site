@@ -1,0 +1,16 @@
+{
+  "measured": "2026-09-09",
+  "what": "Main-content word counts of the same URLs, as served by the origin and after rendering, on one site whose navigation, header and footer are server-rendered while the article body arrives after hydration.",
+  "site": "not published",
+  "site_withheld_because": "Publishing a named company's SEO defect to sell a tool is not a trade this project makes. The figures stand on their own; the identity adds nothing a reader needs.",
+  "method": "Origin HTML fetched with a plain GET; the rendered view from docket-render with --timeout 45 --settle 4. Both views of each URL measured in the same session on 2026-09-09. Word counts are Docket's own main-content extraction (nav, header, footer and forms stripped) applied identically to both views, so the two numbers are comparable to each other.",
+  "pages": [
+    {"served": 27, "rendered": 607},
+    {"served": 49, "rendered": 318},
+    {"served": 52, "rendered": 224},
+    {"served": 59, "rendered": 666},
+    {"served": 67, "rendered": 671}
+  ],
+  "not_a_rate": "Five pages on one site. This is an existence proof that the shape occurs and is large when it does — it is not a frequency, a median, or a claim about how common the pattern is, and it must never be written up as one.",
+  "why_it_is_stored": "The derived-number gate is right that these cannot go stale loudly: the site could be server-rendered tomorrow and the page would still assert this. Stored with its date so the claim is always reported as a measurement taken on a day, and so a re-measurement replaces it in one place."
+}

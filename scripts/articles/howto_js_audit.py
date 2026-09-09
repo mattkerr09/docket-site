@@ -18,7 +18,8 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import RELEASE, render  # noqa: E402
+import facts as F  # noqa: E402
+from render import N_CHECKS, N_LANES, RELEASE, render  # noqa: E402
 
 
 def javascript_seo_audit() -> Path:
@@ -77,8 +78,10 @@ obvious the moment you look.</p>
 <p><strong>The chrome is server-rendered and the body is not.</strong> This is the one that
 hides. The navigation, header and footer arrive in the HTML — so the page is plainly not an
 empty shell — while the article itself is fetched after hydration. Measured on one site on
-2026-09-09, five pages returned 27, 49, 52, 59 and 67 words of main text as served, and 607,
-318, 224, 666 and 671 once rendered. The pages were not thin. The served HTML was.</p>
+{GAP_MEASURED}, {GAP_COUNT} pages returned {GAP_SERVED} words of main text as served, and
+{GAP_RENDERED} once rendered. The pages were not thin. The served HTML was. That is
+{GAP_COUNT} pages on one site — an existence proof that the shape occurs and is large when it
+does, not a claim about how common it is.</p>
 
 <p>Docket shipped a change for exactly this in {RELEASE}: where a page carries a client-side
 framework's hydration marker, a word count is now labelled as a count of the HTML as served,
@@ -119,7 +122,7 @@ the gap, and judge the result against what you recorded before you started.</p>
 thousand pages. Docket runs the comparison across the crawl and reports the pages where the two
 views disagree, alongside the rest of a
 <a href="/learn/seo-audit/">technical SEO audit</a> —
-<a href="/learn/what-docket-checks/">97 checks across 13 areas</a>, on your machine, with no
+<a href="/learn/what-docket-checks/">{N_CHECKS} checks across {N_LANES} areas</a>, on your machine, with no
 crawl credits. If you would rather see how it compares to the tools you already know, there is
 <a href="/vs/screaming-frog-alternative/">Docket vs Screaming Frog</a> and
 <a href="/vs/ahrefs-site-audit-alternative/">Docket vs Ahrefs Site Audit</a>.</p>
@@ -129,7 +132,13 @@ session, and a decision about which of the three gaps you are looking at before 
 anything.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
-""".replace("{RELEASE}", RELEASE)
+""".replace("{RELEASE}", RELEASE) \
+     .replace("{GAP_MEASURED}", F.gap_measured()) \
+     .replace("{GAP_COUNT}", str(F.gap_count())) \
+     .replace("{GAP_SERVED}", F.gap_served()) \
+     .replace("{GAP_RENDERED}", F.gap_rendered()) \
+     .replace("{N_CHECKS}", str(N_CHECKS)) \
+     .replace("{N_LANES}", str(N_LANES))
     return render(
         cat="how-to", slug="javascript-seo-audit",
         title="How to run a JavaScript SEO audit (step by step)",

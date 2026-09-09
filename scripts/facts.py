@@ -989,6 +989,40 @@ def ecom_indexing() -> int:
 
 
 @lru_cache(maxsize=None)
+def rendering_gap() -> dict:
+    """Served-vs-rendered word counts measured on one site, 2026-09-09.
+
+    Five pages, not a rate. `gap_pages()` is deliberately the only accessor that
+    returns the counts, so a caller cannot quietly turn five observations into a
+    median or a percentage without going through a function that says it is not
+    one.
+    """
+    return json.loads(
+        (ROOT / "data" / "rendering-gap-2026-09.json").read_text())
+
+
+def gap_measured() -> str:
+    return rendering_gap()["measured"]
+
+
+def gap_count() -> int:
+    return len(rendering_gap()["pages"])
+
+
+def gap_served() -> str:
+    """The served counts, ascending, as an English list."""
+    n = sorted(p["served"] for p in rendering_gap()["pages"])
+    return ", ".join(str(x) for x in n[:-1]) + f" and {n[-1]}"
+
+
+def gap_rendered() -> str:
+    """The rendered counts, in the SAME page order as `gap_served`."""
+    pages = sorted(rendering_gap()["pages"], key=lambda p: p["served"])
+    n = [p["rendered"] for p in pages]
+    return ", ".join(str(x) for x in n[:-1]) + f" and {n[-1]}"
+
+
+@lru_cache(maxsize=None)
 def googlebot() -> dict:
     return json.loads(
         (ROOT / "data" / "googlebot.json").read_text())
