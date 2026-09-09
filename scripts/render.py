@@ -14,6 +14,8 @@ found months after launch — no reason to repeat that here.
 from __future__ import annotations
 
 from pathlib import Path
+import datetime as _dt
+import json
 import pathlib
 import sys
 
@@ -1355,6 +1357,31 @@ ANALYTICS = (
 )
 
 
+#: Page-first-seen dates, written by `scripts/collect_page_dates.py`.
+#:
+#: Loaded once. A page missing from the dataset is a page the collector has not
+#: seen — a brand-new one being built before the dataset was regenerated — and
+#: it takes today, which is when it is in fact being published for the first
+#: time. That is the same rule `verify_competitive_claims` applies to an edit
+#: sitting uncommitted in the working tree.
+_PAGE_DATES: dict | None = None
+
+
+def _published_for(key: str) -> str:
+    global _PAGE_DATES
+    if _PAGE_DATES is None:
+        path = Path(__file__).resolve().parent.parent / "data" / "page-dates.json"
+        try:
+            _PAGE_DATES = json.loads(path.read_text()).get("dates", {})
+        except (OSError, ValueError):
+            #: NOT a silent fallback to a constant — that is the bug this
+            #: replaces. An absent dataset means every page takes today, which
+            #: is wrong but visibly wrong, and `verify_datelines.py` fails the
+            #: deploy when a published date is not one the dataset supplies.
+            _PAGE_DATES = {}
+    return _PAGE_DATES.get(key) or _dt.date.today().isoformat()
+
+
 def render(
     *,
     cat: str,
@@ -1364,7 +1391,7 @@ def render(
     h1: str,
     crumb: str,
     body: str,
-    published: str = "2026-08-06",
+    published: str | None = None,
     modified: str | None = None,
     schema_type: str = "Article",
     faq: list[tuple[str, str]] | None = None,
@@ -1385,6 +1412,26 @@ def render(
     # canonicalises the page to a URL it is not served from — the canonical then
     # argues against itself. Crisp hit exactly this.
     path_parts = [p for p in (cat, slug) if p]
+    # A PUBLICATION DATE NOBODY SUPPLIED IS A CLAIM NOBODY CHECKED.
+    #
+    # This parameter defaulted to the literal "2026-08-06", so any article that
+    # did not pass `published=` asserted a date no author chose — 38 of 53
+    # render() calls, measured 2026-09-09. That date is this REPOSITORY's
+    # birthday (`bffff490 Initial commit`, with `site/` committed 31 minutes
+    # later), and at least one page it was applied to was written a month after
+    # it: `/how-to/audit-your-site-from-an-ai-assistant/` came from `a49c106d`
+    # on 2026-09-08.
+    #
+    # Derived now, from the first commit that added the page's built
+    # `index.html`. Validated against the 14 pages a human actually dated: 12
+    # agree exactly, 2 are one day later, **none earlier**. See
+    # `scripts/collect_page_dates.py` for the derivation and why `--follow`
+    # gives the wrong answer.
+    #
+    # A hand-supplied date still wins, and that is deliberate: deriving over the
+    # top would move those two pages a day later than their author put them.
+    if published is None:
+        published = _published_for("/".join(path_parts) or ".")
     url = BASE + "/" + ("/".join(path_parts) + "/" if path_parts else "")
     esc = lambda s: s.replace('"', "&quot;")  # noqa: E731
 
