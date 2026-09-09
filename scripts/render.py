@@ -1397,10 +1397,34 @@ def render(
     if crumb_schema:
         blocks.append(crumb_schema)
     if schema_type:
+        # A `dateModified` NOBODY SUPPLIED IS A CLAIM NOBODY CHECKED.
+        #
+        # This read `modified or published`, so a page that never passed a
+        # modification date asserted it was last modified on the day it was
+        # published. Measured 2026-09-09 on the built tree: **58 of 59 pages
+        # carrying a date block emitted `dateModified` equal to
+        # `datePublished`**, and 41 of those sat on this function's own default
+        # of 2026-08-06 — a date no article chose.
+        #
+        # At least one is provably false. `/learn/dead-contact-address/` says
+        # 2026-08-07 and serves a paragraph added on 2026-08-13 ("The domain now
+        # publishes MX records…", commit `6c9d6989`), which the live page
+        # carries today. Google asks that these dates be accurate, and this is
+        # the class of defect Docket exists to find on other people's sites.
+        #
+        # **Derived, or deleted — the rule this site already applies to version
+        # strings.** It cannot be derived here: an article's prose is built
+        # inside its function from interpolated facts, not held as a literal, so
+        # recovering it per revision would mean EXECUTING old revisions — which
+        # `verify_competitive_claims._verified_at` refuses to do, for the good
+        # reason that an old revision need not import under today's interpreter.
+        # So it is deleted unless a human supplied one. An absent `dateModified`
+        # says "unknown", which is true; an invented one says something false.
+        modified_field = f'"dateModified":"{modified}",' if modified else ""
         blocks.append(
             '{"@context":"https://schema.org","@type":"' + schema_type + '",'
             f'"headline":"{esc(h1)}","description":"{esc(desc)}",'
-            f'"datePublished":"{published}","dateModified":"{modified or published}",'
+            f'"datePublished":"{published}",' + modified_field +
             '"author":{"@type":"Person","name":"Matt Kerr",'
             '"description":"Builds Docket. Every number on this site comes from running it."},'
             '"publisher":{"@id":"' + BASE + '/#org"},'

@@ -218,6 +218,14 @@ fi
 echo "==> version-string gate"
 "$PY" scripts/verify_version_strings.py
 
+# Same family as the gate above it: a string the site publishes must come from
+# somewhere, not from a default. `render()` used to emit
+# `dateModified = modified or published`, so 58 of 59 dated pages claimed they
+# were last modified on the day they were published — 41 of them on a date no
+# article ever chose.
+echo "==> dateline gate"
+"$PY" scripts/verify_datelines.py
+
 echo "==> media-box gate"
 "$PY" scripts/verify_media_boxes.py
 
