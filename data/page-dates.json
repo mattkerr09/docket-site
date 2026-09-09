@@ -25,6 +25,7 @@
     "how-to/fix-soft-404s": "2026-08-10",
     "how-to/fix-structured-data-errors": "2026-08-10",
     "how-to/gate-a-deploy-on-seo-regressions": "2026-08-14",
+    "how-to/javascript-seo-audit": "2026-09-09",
     "how-to/outrank-a-bigger-competitor": "2026-08-12",
     "how-to/redirect-http-to-https": "2026-08-10",
     "how-to/write-title-tags-that-fit": "2026-08-10",
@@ -63,5 +64,7 @@
     "vs/semrush-site-audit-alternative": "2026-08-10",
     "vs/sitebulb-alternative": "2026-08-06"
   },
-  "uncommitted": []
+  "uncommitted": [
+    "how-to/javascript-seo-audit"
+  ]
 }
