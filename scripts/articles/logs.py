@@ -145,9 +145,9 @@ you turn it on.</p>
     return render(
         cat="learn", slug="log-file-analysis",
         title="Log file analysis for SEO: what Googlebot actually fetched",
-        desc=(f"Verify Googlebot with a reverse and forward DNS lookup, then compare the "
-              f"log against a crawl. Google publishes {F.gbot_total_prefixes():,} crawler IP "
-              f"prefixes because a user-agent proves nothing."),
+        desc=(f"Verify Googlebot with reverse then forward DNS, then compare the log "
+              f"against a crawl. Google publishes {F.gbot_total_prefixes():,} crawler IP "
+              f"prefixes; a user-agent proves nothing."),
         h1="Log file analysis: what Googlebot actually fetched",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Log file analysis',
         body=body,
