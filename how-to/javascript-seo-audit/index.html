@@ -6,7 +6,7 @@
 <title>How to run a JavaScript SEO audit (step by step)</title>
 <meta name="description" content="Compare the HTML your server sends against the rendered page, in five steps. Which of the three gaps you have decides the fix.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b2aa8938f9e8">
+<meta name="build-id" content="9d98010ee3be">
 <link rel="canonical" href="https://docketseo.app/how-to/javascript-seo-audit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -762,8 +762,10 @@ obvious the moment you look.</p>
 <p><strong>The chrome is server-rendered and the body is not.</strong> This is the one that
 hides. The navigation, header and footer arrive in the HTML — so the page is plainly not an
 empty shell — while the article itself is fetched after hydration. Measured on one site on
-2026-09-09, five pages returned 27, 49, 52, 59 and 67 words of main text as served, and 607,
-318, 224, 666 and 671 once rendered. The pages were not thin. The served HTML was.</p>
+2026-09-09, 5 pages returned 27, 49, 52, 59 and 67 words of main text as served, and
+607, 318, 224, 666 and 671 once rendered. The pages were not thin. The served HTML was. That is
+5 pages on one site — an existence proof that the shape occurs and is large when it
+does, not a claim about how common it is.</p>
 
 <p>Docket shipped a change for exactly this in v1.3.61: where a page carries a client-side
 framework's hydration marker, a word count is now labelled as a count of the HTML as served,
