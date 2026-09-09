@@ -60,10 +60,14 @@ def _derived_caveat() -> str:
     if not derived:
         return ""
     names = " and ".join(derived) if len(derived) < 3 else ", ".join(derived)
+    one = len(derived) == 1
     return (
         f'<p class="verified-note"><strong>Billed monthly.</strong> {names} '
-        f"quote a monthly price and offer a discount for paying yearly, and the figures above "
-        f"are twelve monthly payments — what you pay without committing to a year. Their annual "
+        + ("quotes" if one else "quote")
+        + f" a monthly price and offers a discount for paying yearly, and the "
+        + ("figure" if one else "figures")
+        + f" above {'is' if one else 'are'} twelve monthly payments — what you pay without "
+        f"committing to a year. Their annual "
         f"prices are lower. Where we have read one it is on that tool's "
         f'<a href="/vs/">comparison page</a> — Semrush publishes $117.33 a month billed '
         f"annually — and where we have not, we leave it out rather than work it out: a figure "
