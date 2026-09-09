@@ -642,6 +642,30 @@ def rival_annual_low(slug: str) -> int:
     return _annual(slug)[0]
 
 
+def annual_is_derived(slug: str) -> bool:
+    """True when `annual_low` is monthly x12 rather than a price the vendor charges.
+
+    ⚠️ `_annual`'s own docstring already sets the rule this exists to enforce:
+    "Where a note gives two ways to buy a year the cheaper one is used — it is
+    the competitor's real price and the less flattering number for us." Ahrefs
+    and Semrush both offer two ways (monthly, or annual at a discount) and both
+    rows carried the DEARER one, presented as the annual price in the table that
+    argues Docket is cheaper.
+
+    Found 2026-09-09. The same defect was found and fixed for Sitebulb on
+    2026-09-08 — "a competitor overstated by 20% in the table that exists to
+    argue Docket is cheaper" — and the sweep stopped at that row. Reading a
+    marker off `annual_basis` rather than keeping a hand-written list of slugs
+    means a row cannot be corrected in prose and stay wrong in the table.
+    """
+    import sys as _sys
+
+    _sys.path.insert(0, str(ROOT / "scripts"))
+    from render import COMPETITORS  # noqa: PLC0415
+
+    return "BILLED MONTHLY" in (COMPETITORS[slug].get("annual_basis") or "").upper()
+
+
 def years_to_match(slug: str) -> float:
     """Years of the cheapest tier of `slug` before it costs more than Docket."""
     import sys as _sys

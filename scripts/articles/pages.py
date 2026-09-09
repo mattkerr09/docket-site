@@ -29,11 +29,46 @@ _COST_SLUGS = ("sitebulb", "screaming-frog", "ahrefs-site-audit",
 
 
 def _cost_rows() -> str:
+    """The three-year table, with derived annual figures labelled as derived.
+
+    ⚠️ TWO OF THESE FOUR ARE NOT ANNUAL PRICES. Ahrefs and Semrush publish a
+    monthly price and discount annual billing ("Pay annually, save up to 17%",
+    read 2026-09-09), and both rows carried monthly x12 — the DEARER of the two
+    ways to buy a year — presented as the annual cost in the table that argues
+    Docket is cheaper. Overstating a competitor here is the worst direction for
+    the error to run, and `_annual`'s docstring already said to take the cheaper
+    one. Sitebulb was corrected for exactly this on 2026-09-08 and the sweep
+    stopped there.
+
+    Labelled rather than recomputed: "up to 17%" is a ceiling, not a rate, so a
+    figure derived from it would be the same defect wearing a discount.
+    """
     rows = sorted(((F.rival_annual_low(s), s) for s in _COST_SLUGS))
-    return "".join(
-        f"<tr><td>{COMPETITORS[slug]['name']}</td>"
-        f"<td>${low:,}/yr</td><td>${F.three_year_cost(slug):,}</td></tr>"
-        for low, slug in rows
+    out = []
+    for low, slug in rows:
+        note = (' <span class="qual">billed monthly</span>'
+                if F.annual_is_derived(slug) else "")
+        out.append(
+            f"<tr><td>{COMPETITORS[slug]['name']}</td>"
+            f"<td>${low:,}/yr{note}</td><td>${F.three_year_cost(slug):,}{note}</td></tr>")
+    return "".join(out)
+
+
+def _derived_caveat() -> str:
+    """Named under the table, because a two-word label is not an explanation."""
+    derived = [COMPETITORS[s]["name"] for s in _COST_SLUGS if F.annual_is_derived(s)]
+    if not derived:
+        return ""
+    names = " and ".join(derived) if len(derived) < 3 else ", ".join(derived)
+    return (
+        f'<p class="verified-note"><strong>Billed monthly.</strong> {names} '
+        f"quote a monthly price and offer a discount for paying yearly, and the figures above "
+        f"are twelve monthly payments — what you pay without committing to a year. Their annual "
+        f"prices are lower. Where we have read one it is on that tool's "
+        f'<a href="/vs/">comparison page</a> — Semrush publishes $117.33 a month billed '
+        f"annually — and where we have not, we leave it out rather than work it out: a figure "
+        f"derived from an advertised “save up to” is a guess wearing a discount, and a "
+        f"competitor’s price is not ours to estimate.</p>"
     )
 
 
@@ -110,6 +145,7 @@ cannot drift from what the app does.</p>
 <td><strong>{PRICE_STR}</strong></td></tr>
 {_cost_rows()}
 </tbody></table></div>
+{_derived_caveat()}
 {price_note_html()}
 
 <p>{PRICE_STR} once is one year of the cheapest serious desktop subscription, or fifteen months
