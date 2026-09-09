@@ -102,7 +102,7 @@ It is a feature that is fully implemented, looks correct on inspection, and does
 """
     return render(
         cat="how-to", slug="fix-hreflang-return-tags",
-        title="How to fix hreflang return tags (the error you cannot see)",
+        title="How to fix hreflang tags with errors (return tags)",
         desc=("hreflang only works when the link goes both ways. Why one-way declarations "
               "are ignored, the four ways a set breaks, and why canonical must agree."),
         h1="How to fix hreflang return tags",

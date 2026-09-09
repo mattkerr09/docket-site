@@ -550,7 +550,7 @@ your data anywhere.</p>
 
     return render(
         cat="vs", slug="ahrefs-site-audit-alternative",
-        title="Docket vs Ahrefs Site Audit: what you get for $129/mo (2026)",
+        title="Ahrefs Site Audit tool vs Docket: what $129/mo buys (2026)",
         desc=("Ahrefs Site Audit is one module of a keyword and backlink platform. Docket is a "
               "one-time local auditor with a ranked fix plan. What each actually does."),
         h1="Docket vs Ahrefs Site Audit",

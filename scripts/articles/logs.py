@@ -61,6 +61,37 @@ Google's published Googlebot ranges — addresses that are Googlebot by Google's
 real DNS rather than a rate; six addresses cannot be turned into a percentage and this page is
 not going to pretend otherwise.</p>
 
+<h2>Verifying Googlebot, step by step</h2>
+
+<p>You do not need Docket for this and it is worth doing by hand once, because it is the step
+almost every log report skips. Take a client IP from a line claiming to be Googlebot and run
+two lookups.</p>
+
+<p><strong>1. Reverse lookup the address.</strong> <code>host 66.249.66.1</code>. A genuine
+Google crawler answers with a hostname under <code>googlebot.com</code>,
+<code>google.com</code> or <code>googleusercontent.com</code>. Anything else is not Google, and
+you can stop here.</p>
+
+<p><strong>2. Forward lookup the hostname it gave you.</strong>
+<code>host crawl-66-249-66-1.googlebot.com</code>. The address you started with has to come
+back. If it does not, the PTR record is a claim somebody set on their own address block and the
+line is not Googlebot.</p>
+
+<p>Both steps, or neither. Step 1 alone is the mistake: a reverse lookup reads a record set by
+whoever controls the address, so on its own it proves only that they were willing to type
+"googlebot" into it. That is why Google documents the pair, and why the check in Docket has a
+test that fails if the forward lookup is ever removed.</p>
+
+<p>The IP-range route answers the same question without DNS: Google publishes the address
+blocks as JSON, so an address either falls inside a published prefix or it does not. Ranges
+change, so the file has a date on it and so should any list you cache from it.</p>
+
+<p>In Docket the same two lookups run per distinct address with
+<code>docket logs access.log --verify</code>. Without that flag every line is reported as
+"claiming to be Google", because one round trip per address is a cost you should opt into
+rather than pay by accident. What the checker looks at across the rest of a site is listed in
+<a href="/learn/what-docket-checks/">what Docket checks</a>.</p>
+
 <h2>What the log tells you that a crawl cannot</h2>
 
 <p>Run <code>docket logs access.log --url https://example.com</code> and it crawls the site as
@@ -79,6 +110,10 @@ that lets you read it that way is setting you up to go fixing a problem you do n
 <p>And the response codes Google actually received. Every redirect and every 404 in that list
 is a request spent on your site that returned nothing indexable — the clearest measure of
 wasted crawl budget there is, and it is measured rather than modelled.</p>
+
+<p>All of it describes one window. A log is a period, a crawl is a moment, and neither is a
+trend — if what you want is "did this change after Tuesday's deploy", that is
+<a href="/learn/site-monitoring/">site monitoring</a>, a different job from this one.</p>
 
 <h2>Where the dedicated tool is better</h2>
 
@@ -109,10 +144,10 @@ you turn it on.</p>
 """
     return render(
         cat="learn", slug="log-file-analysis",
-        title="Log file analysis: what Googlebot fetched, not what it could",
-        desc=(f"Google publishes {F.gbot_total_prefixes():,} crawler IP prefixes because a "
-              f"user-agent proves nothing. How to read an access log honestly, and where "
-              f"the dedicated tool beats this one."),
+        title="Log file analysis for SEO: what Googlebot actually fetched",
+        desc=(f"Verify Googlebot with a reverse and forward DNS lookup, then compare the "
+              f"log against a crawl. Google publishes {F.gbot_total_prefixes():,} crawler IP "
+              f"prefixes because a user-agent proves nothing."),
         h1="Log file analysis: what Googlebot actually fetched",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Log file analysis',
         body=body,

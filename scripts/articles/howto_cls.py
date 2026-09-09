@@ -95,7 +95,7 @@ them so the action plan asks for the work once.</p>
 """
     return render(
         cat="how-to", slug="fix-layout-shift",
-        title="How to fix layout shift (CLS) on your site",
+        title="How to fix CLS issues (cumulative layout shift)",
         desc=("Layout shift is almost always images with no width and height. The fix, the "
               "four other causes, and why a crawler can report the risk but not the score."),
         h1="How to fix layout shift",
