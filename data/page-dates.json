@@ -64,7 +64,5 @@
     "vs/semrush-site-audit-alternative": "2026-08-10",
     "vs/sitebulb-alternative": "2026-08-06"
   },
-  "uncommitted": [
-    "how-to/javascript-seo-audit"
-  ]
+  "uncommitted": []
 }
