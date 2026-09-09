@@ -160,15 +160,83 @@ Docket does not. That is a genuine difference in kind, not a feature gap we inte
 to a small site. <a href="/data/entity-2026-08.json">The dataset behind this page</a> lists
 every site measured, so you can check our arithmetic.</p>
 
+<h2>How to write the sameAs array</h2>
+
+<p>It is one property on the Organization node you already have. If you have no Organization
+node, that is the first thing to add — <code>sameAs</code> hanging off nothing resolves
+nothing.</p>
+
+<pre><code>&lt;script type="application/ld+json"&gt;
+{{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "YOUR ORGANISATION NAME",
+  "url": "https://example.com/",
+  "sameAs": [
+    "https://www.linkedin.com/company/YOUR-COMPANY/",
+    "https://github.com/YOUR-ORG",
+    "https://en.wikipedia.org/wiki/YOUR_ARTICLE"
+  ]
+}}
+&lt;/script&gt;</code></pre>
+
+<p>Every value is a placeholder on purpose. A pasteable block with plausible-looking URLs in it
+is how a factual claim about somebody else's organisation ends up in somebody's markup.</p>
+
+<h2>Which URLs belong in it, and which do not</h2>
+
+<ul>
+<li><strong>In:</strong> profiles your organisation controls and that represent the
+organisation itself — LinkedIn company page, GitHub organisation, X account, YouTube channel,
+Crunchbase, and a Wikipedia or Wikidata entry if one exists.</li>
+<li><strong>Out:</strong> anything about you rather than you. A news article, a review, a
+podcast appearance — those are <code>subjectOf</code>. Padding the array with press mentions
+dilutes exactly the signal you are trying to send.</li>
+<li><strong>Out:</strong> a personal account, unless the node is a <code>Person</code>. A
+founder's profile does not identify the company.</li>
+<li><strong>Out:</strong> profiles you do not control. If you cannot edit it, you cannot keep
+it true, and a dead or reassigned URL in <code>sameAs</code> is a claim that decays.</li>
+</ul>
+
+<h2>Verifying it</h2>
+
+<p>Three checks, in order, and the first two are the ones people skip.</p>
+
+<p><strong>1. Is it on the homepage?</strong> The homepage is what resolves a site's primary
+entity, so an array that exists only on an About page is largely wasted. Fetch the homepage
+itself and look for the block.</p>
+
+<p><strong>2. Is it in the HTML, or only after JavaScript?</strong> If the JSON-LD is injected
+at runtime, the crawlers that do not render never see it — a plain <code>curl</code> of the
+page shows you what they get. That is the same gap covered in
+<a href="/how-to/javascript-seo-audit/">how to run a JavaScript SEO audit</a>.</p>
+
+<p><strong>3. Does every URL still resolve to a profile you control?</strong> Open them. This
+is the part nobody repeats a year later, which is why it is the part that rots.</p>
+
+<p>Docket checks the first two across a whole site and reports the pages where the entity is
+declared without <code>sameAs</code>, or with an array too weak to resolve anything — part of
+its <a href="/learn/ai-search-visibility/">AI search visibility</a> lane.</p>
+
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="learn", slug="sameas-entity-signals",
-        title=f"sameAs: the entity signal {100 - m['pct_same']}% of major sites skip",
+        # Leads with "sameAs schema" because that is the phrase this page already
+        # ranks for and its title did not contain: 6 impressions at position
+        # 77.5 over 90 days, with "same as schema" 4 at p71 and six more sameAs
+        # queries behind them (ops/search/sameas-howto-preregistration.json).
+        # The alternative considered and rejected was a second page on the same
+        # query, which is the duplication rule.
+        title=f"sameAs schema: the signal {100 - m['pct_same']}% of major sites skip",
         desc=(f"sameAs tells search engines that your site, your LinkedIn and your Wikipedia "
               f"entry are one organisation. We measured {m['n']} major sites: "
               f"{m['pct_same']}% declare it."),
-        h1="sameAs, and why half the web skips it",
+        # ⚠️ WAS "why half the web skips it". The measurement is of major sites,
+        # not of the web, and the page's own body says so two paragraphs down.
+        # A headline that outruns the dataset underneath it is the defect this
+        # project keeps having to take back.
+        h1=f"sameAs schema, and why {100 - m['pct_same']}% of major sites skip it",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / sameAs and entities',
         body=body,
         faq=[
