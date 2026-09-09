@@ -15,6 +15,7 @@
     "for/saas": "2026-08-10",
     "how-to": "2026-08-06",
     "how-to/audit-your-site-from-an-ai-assistant": "2026-09-08",
+    "how-to/content-audit": "2026-09-09",
     "how-to/fix-ai-crawler-access": "2026-08-06",
     "how-to/fix-conflicting-canonicals": "2026-08-10",
     "how-to/fix-duplicate-title-tags": "2026-08-10",
@@ -64,5 +65,7 @@
     "vs/semrush-site-audit-alternative": "2026-08-10",
     "vs/sitebulb-alternative": "2026-08-06"
   },
-  "uncommitted": []
+  "uncommitted": [
+    "how-to/content-audit"
+  ]
 }
