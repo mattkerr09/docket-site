@@ -39,6 +39,7 @@ import howto_cls  # noqa: E402
 import howto_hreflang  # noqa: E402
 import howto_js_audit  # noqa: E402
 import howto_content_audit  # noqa: E402
+import howto_lang_mismatch  # noqa: E402
 import howto_https  # noqa: E402
 import howto_schema  # noqa: E402
 import howto_deploy_gate  # noqa: E402
@@ -696,6 +697,7 @@ def main() -> int:
     pages += rendering.build_all()
     pages += howto_js_audit.build_all()
     pages += howto_content_audit.build_all()
+    pages += howto_lang_mismatch.build_all()
     pages += substitution.build_all()
     pages += __import__('pages').build_all()
     pages += about.build_all()
