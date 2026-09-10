@@ -20,6 +20,7 @@
     "how-to/fix-conflicting-canonicals": "2026-08-10",
     "how-to/fix-duplicate-title-tags": "2026-08-10",
     "how-to/fix-hreflang-return-tags": "2026-08-10",
+    "how-to/fix-lang-attribute-mismatch": "2026-09-09",
     "how-to/fix-layout-shift": "2026-08-10",
     "how-to/fix-missing-open-graph-tags": "2026-08-14",
     "how-to/fix-missing-security-headers": "2026-08-14",
@@ -66,6 +67,6 @@
     "vs/sitebulb-alternative": "2026-08-06"
   },
   "uncommitted": [
-    "how-to/content-audit"
+    "how-to/fix-lang-attribute-mismatch"
   ]
 }
