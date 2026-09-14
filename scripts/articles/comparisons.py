@@ -13,6 +13,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import facts as F  # noqa: E402
 from render import (BETA_NOTE, FREE_CLAUSE, N_CHECKS, PRICE_STR, RELEASE,  # noqa: E402
                     price, price_note_html, render)
 
@@ -51,10 +52,18 @@ CHECKED_ON_HUMAN = "10 August 2026"
 CHECKED_HUMAN: dict[str, str] = {
     "scrutiny": "15 August 2026",
     "se-ranking-vs-screaming-frog": "8 September 2026",
+    # Re-read 2026-09-14: crawl-credit allowances unchanged since 2026-08-10,
+    # plus the per-project page caps and the pay-as-you-go overage clause, which
+    # the page had not carried. The competitive gate caught the stamp staying at
+    # 10 August while the sentences beneath it changed — "a date that stays put
+    # while the sentence under it changes is a false date about somebody else's
+    # product", and it was right.
+    "ahrefs": "14 September 2026",
 }
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-08-15",
     "se-ranking-vs-screaming-frog": "2026-09-08",
+    "ahrefs": "2026-09-14",
 }
 
 #: What was actually read, and where. Anything not sourced here is not stated as
@@ -139,8 +148,9 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     ],
     "ahrefs": [
         ('Site Audit "scans for 170+ issues"', "https://ahrefs.com/site-audit"),
-        ("crawl credits are listed per plan — Lite 100,000, Standard 500,000, "
-         "Advanced 1,500,000 per month", "https://ahrefs.com/pricing"),
+        ("crawl credits are listed per plan — Lite 100,000, Standard 500,000, Advanced 1.5M per "
+         "month, and max pages per project of 25,000, 50,000 and 250,000",
+         "https://ahrefs.com/pricing"),
     ],
     # Lighthouse is the one entry here whose source is not a marketing page but
     # a configuration file, which is the strongest form this claim can take:
@@ -534,6 +544,22 @@ once rather than iterating, and you hesitate before crawling a prospect's site t
 work. Docket has no equivalent constraint: the crawl happens on your laptop, so running it
 twenty times in an afternoon costs nothing but time. For agencies doing pre-sales audits that
 difference compounds quickly.</p>
+
+<h3>Two limits, not one — and the second is a bill</h3>
+<p>Re-read on {F.credits_read()}: the credit allowances are unchanged, but they are not the only
+ceiling. Each plan also caps <strong>pages per project</strong> — {F.max_pages_for('Lite')} on Lite,
+{F.max_pages_for('Standard')} on Standard, {F.max_pages_for('Advanced')} on Advanced. A monthly credit budget and a per-project page cap
+constrain different things: the first limits how often you can re-crawl, the second limits how
+large a single site can be before it will not fit in one project at all.</p>
+<p>And the credit figure is a billing threshold as well as a cap. Ahrefs' own FAQ:
+<em>"Once you enable additional pay-as-you-go credits and data, you'll be automatically charged
+when consumption exceeds your plan's limits."</em> That is opt-in, and it is worth knowing which
+way yours is set before a large re-crawl rather than after — running out and running up a bill
+are different outcomes, and only one of them stops.</p>
+<p>Docket has neither limit, because neither is a thing a local crawler needs: there is no
+allowance to draw down and no project size to exceed. The bound is the page and depth caps you
+choose, and the fifteen-minute crawl deadline the tool applies to respect the site it is
+reading.</p>
 <p>The reverse is also true and worth stating. Because Docket runs locally, closing the laptop
 stops a scheduled audit, and there is no shared workspace for a team to look at the same
 results. If either of those matters, cloud is the right architecture and the metering is what

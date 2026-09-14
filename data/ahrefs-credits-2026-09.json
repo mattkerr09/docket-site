@@ -1,0 +1,20 @@
+{
+  "read": "2026-09-14",
+  "source": "https://ahrefs.com/pricing",
+  "method": "Read from the page's served HTML (monthly view). Not derived, not inferred from tier prices.",
+  "site_audit_crawl_credits_per_month": {
+    "Lite": "100,000",
+    "Standard": "500,000",
+    "Advanced": "1.5M",
+    "Enterprise": "From 5M"
+  },
+  "max_pages_per_project": {
+    "Lite": "25,000",
+    "Standard": "50,000",
+    "Advanced": "250,000",
+    "Enterprise": "5M"
+  },
+  "overage": "Ahrefs' own FAQ: \"Once you enable additional pay-as-you-go credits and data, you'll be automatically charged when consumption exceeds your plan's limits.\" So the credit figure is a threshold for billing as well as a cap, when pay-as-you-go is switched on.",
+  "not_claimed": "Which tiers include Site Audit at all is NOT resolved here. Their feature grid uses no table rows and did not resolve per-tier; see competitors.csv's ahrefs-site-audit row, where the entry tier is recorded as unverified.",
+  "why_stored": "A competitor's limits change without telling us. Dated here so the page quotes a reading rather than a memory, and so one edit updates every place that cites it."
+}

@@ -1013,6 +1013,31 @@ def ecom_indexing() -> int:
 
 
 @lru_cache(maxsize=None)
+def ahrefs_credits() -> dict:
+    """Ahrefs' Site Audit crawl-credit limits, read from their pricing page.
+
+    Stored rather than typed because a competitor's limits change without
+    telling us, and the derived-number gate is right that a figure in prose has
+    no expiry. `credits_read()` is the date, and every sentence that cites a
+    number here must cite the date with it.
+    """
+    return json.loads(
+        (ROOT / "data" / "ahrefs-credits-2026-09.json").read_text())
+
+
+def credits_read() -> str:
+    return ahrefs_credits()["read"]
+
+
+def credits_for(tier: str) -> str:
+    return ahrefs_credits()["site_audit_crawl_credits_per_month"][tier]
+
+
+def max_pages_for(tier: str) -> str:
+    return ahrefs_credits()["max_pages_per_project"][tier]
+
+
+@lru_cache(maxsize=None)
 def rendering_gap() -> dict:
     """Served-vs-rendered word counts measured on one site, 2026-09-09.
 
