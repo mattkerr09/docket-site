@@ -50,13 +50,20 @@ you say otherwise.</p>
 
 <p>Send your homepage two requests and compare.</p>
 
-<pre><code>curl -sS -o /dev/null -w "%{http_code}\\n" \\
+<pre><code>curl -sS -D - -o /dev/null \\
   -A "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; GPTBot/1.1; +https://openai.com/gptbot" \\
-  https://example.com/
+  https://example.com/ | head -1
 
-curl -sS -o /dev/null -w "%{http_code}\\n" \\
+curl -sS -D - -o /dev/null \\
   -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36" \\
-  https://example.com/</code></pre>
+  https://example.com/ | head -1</code></pre>
+
+<p><strong>Use a GET, not a HEAD.</strong> <code>-D - -o /dev/null</code> makes a real request
+and throws the body away. <code>curl -I</code> looks like the tidier way to ask for a status
+code and is the wrong tool here: measured on the same site on the same day, the blocked crawler
+got <code>403</code> on a GET and <code>200</code> on a HEAD, from the same machine a second
+apart. Bot rules are commonly scoped to the requests that actually serve content, so a HEAD can
+sail through a rule that stops every real visit. Check with the method a crawler uses.</p>
 
 <p><strong>The trap: a single 403 proves nothing.</strong> The same bot protection usually
 refuses <code>curl</code> whatever user-agent it sends. If you run only the first command, see
