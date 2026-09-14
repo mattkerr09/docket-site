@@ -1382,6 +1382,42 @@ def _published_for(key: str) -> str:
     return _PAGE_DATES.get(key) or _dt.date.today().isoformat()
 
 
+#: Which article module produced which built page.
+#:
+#: ⚠️ THE SITEMAP'S `lastmod` CANNOT COME FROM THE BUILT HTML. A build id is
+#: stamped into every page, so every page's HTML changes on every build: one
+#: content-unchanged page has 240 commits on it, five of them on a single day.
+#: Its git date is the BUILD date, which is why all 64 URLs carried the same
+#: `lastmod` and Google could not tell which page had actually changed.
+#:
+#: ⚠️ AND IT CANNOT COME FROM `data/page-dates.json` EITHER. That file is
+#: FIRST-ADDED — its own docstring says "when each built page first appeared, so
+#: datePublished is not a default". Using it for `lastmod` would date
+#: /learn/log-file-analysis/ to 2026-08-08 when it was rewritten on 2026-09-14,
+#: signalling "unchanged" on the one page most in need of a re-crawl.
+#:
+#: So the honest source is the module that generates the page. Recorded here at
+#: render time rather than mapped by hand, because a hand-kept map is one more
+#: thing to drift.
+_PAGE_SOURCE: dict[str, str] = {}
+
+
+def _record_source(out) -> None:
+    """Note the article module whose call produced `out`."""
+    import inspect  # noqa: PLC0415
+
+    for frame in inspect.stack()[1:]:
+        name = frame.filename
+        if name.endswith("render.py"):
+            continue
+        _PAGE_SOURCE[str(out)] = name
+        return
+
+
+def page_sources() -> dict[str, str]:
+    return dict(_PAGE_SOURCE)
+
+
 def render(
     *,
     cat: str,
@@ -1667,4 +1703,5 @@ def render(
     out_dir.mkdir(parents=True, exist_ok=True)
     out = out_dir / filename
     out.write_text(html, encoding="utf-8")
+    _record_source(out)
     return out

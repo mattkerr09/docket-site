@@ -11,10 +11,12 @@ from __future__ import annotations
 import hashlib
 
 import datetime
+import subprocess
 import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE / "articles"))
 
@@ -338,8 +340,51 @@ def write_robots() -> None:
     (SITE / "robots.txt").write_text("\n".join(lines) + "\n")
 
 
+def _last_changed(page: Path, sources: dict, today: str, cache: dict) -> str:
+    """The day this page's content last changed, from its source module's git log.
+
+    ⚠️ NOT the built HTML's git date: a build id is stamped into every page, so
+    every page changes on every build — one content-unchanged page carries 240
+    commits, five on a single day. That is why all 64 URLs were reporting the
+    same `lastmod` and Google could not tell which page had moved.
+
+    ⚠️ NOT `data/page-dates.json` either: that is FIRST-ADDED, for
+    `datePublished`. Using it here would date a page rewritten on 2026-09-14 to
+    2026-08-08 and tell Google nothing had changed on the page most in need of a
+    re-crawl.
+
+    ⚠️ WHAT THIS DOES NOT COVER, stated rather than implied: a page whose text is
+    unchanged but whose interpolated DATA moved — a competitor price in
+    `competitors.csv`, a figure in `data/*.json` — keeps its old date, because
+    the dependency is not tracked. That is a narrower claim than "nothing
+    changed", and it is the honest one until the build records data
+    dependencies too.
+
+    ⚠️ AND FIVE PAGES ARE DEFINED INLINE IN THIS FILE — 404, /learn/,
+    /learn/what-docket-checks/, /thank-you/ and /vs/ — so their source IS
+    `build.py`, which changes for reasons that have nothing to do with them
+    (this function, for one). They will over-report change. That is the safer
+    direction of the two: it invites a re-crawl rather than suppressing one, and
+    it is the opposite of the defect being fixed here. Moving them into their own
+    module would remove it and is a refactor, not part of this change.
+    """
+    source = sources.get(str(page))
+    if not source:
+        return today
+    if source not in cache:
+        out = subprocess.run(
+            ["git", "-C", str(ROOT), "log", "-1", "--format=%cI", "--", source],
+            capture_output=True, text=True).stdout.strip()
+        # Never committed: it is being published today, the same rule
+        # collect_page_dates uses for a page with no first-add commit.
+        cache[source] = out[:10] if out else today
+    return cache[source]
+
+
 def write_sitemap(pages: list[Path]) -> None:
     today = datetime.date.today().isoformat()
+    from render import page_sources  # noqa: PLC0415
+    sources, cache = page_sources(), {}
     urls = []
     for p in sorted(pages):
         rel = p.parent.relative_to(SITE).as_posix()
@@ -347,7 +392,8 @@ def write_sitemap(pages: list[Path]) -> None:
         # The homepage and the Index are the two pages worth prioritising; the
         # rest are equal. Priority is a weak signal at best, so it stays simple.
         priority = "1.0" if rel == "." else ("0.9" if rel == "index" else "0.7")
-        urls.append(f"  <url><loc>{loc}</loc><lastmod>{today}</lastmod>"
+        lastmod = _last_changed(p, sources, today, cache)
+        urls.append(f"  <url><loc>{loc}</loc><lastmod>{lastmod}</lastmod>"
                     f"<priority>{priority}</priority></url>")
     (SITE / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
