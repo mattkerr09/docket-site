@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "compiled": "2026-08-23",
-  "revision": 4,
+  "compiled": "2026-09-14",
+  "revision": 5,
   "ai_crawlers": {
     "GPTBot": {
       "owner": "OpenAI",
@@ -97,6 +97,11 @@
       "owner": "Google",
       "purpose": "grounding",
       "impact": "Blocks Vertex AI grounding on your content for Google Cloud customers who ask it to index your site."
+    },
+    "OAI-AdsBot": {
+      "owner": "OpenAI",
+      "purpose": "ads landing-page review",
+      "impact": "Affects advertising on ChatGPT, not organic or AI-answer visibility. OpenAI's documentation says it only visits pages submitted as ads, to check they comply with their policies, and that what it collects is not used to train their foundation models. Blocking it is the right call for most sites and costs nothing in search; it matters only if you advertise on ChatGPT."
     }
   },
   "web_vitals": {
