@@ -52,7 +52,7 @@ inherited a domain with a known history, the honest answer is usually "leave it"
 <h2>What Ahrefs actually offers here</h2>
 
 <p><strong>Backlink Checker</strong> — in their words, "check backlinks to any site", drawing on
-what they describe as "the world's biggest index of live backlinks (over 15 trillion)". There is
+what they describe as the world's biggest index of live backlinks. There is
 a free tier. This is the page-level view: individual linking URLs and anchor text.</p>
 
 <p><strong>Site Explorer</strong> — their description is "analyze ANY website's organic traffic,
