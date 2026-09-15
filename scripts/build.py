@@ -47,6 +47,7 @@ import cloudflare_gptbot  # noqa: E402
 import noindex_ai_crawlers  # noqa: E402
 import sitemaps_ai_crawlers  # noqa: E402
 import googlebot_robots_blocks  # noqa: E402
+import www_vs_apex  # noqa: E402
 import howto_cdn_blocks_ai  # noqa: E402
 import howto_https  # noqa: E402
 import howto_schema  # noqa: E402
@@ -459,7 +460,8 @@ def write_static() -> None:
     #: developers.google.com/search/apis/ipranges/googlebot.json. Parse the URL,
     #: not the filename.
     LINKED = ("ai-directives-2026-08.json", "entity-2026-08.json",
-              "index-2026-08.json", "knowledge.json")
+              "index-2026-08.json", "knowledge.json",
+              "www-canonical-2026-09.json")
     #: Not linked, published on purpose: the Index states its population, and
     #: the list of sites IS that statement.
     ALSO_PUBLISHED = ("sites.txt",)
@@ -774,6 +776,7 @@ def main() -> int:
     pages += noindex_ai_crawlers.build_all()
     pages += sitemaps_ai_crawlers.build_all()
     pages += googlebot_robots_blocks.build_all()
+    pages += www_vs_apex.build_all()
     pages += substitution.build_all()
     pages += __import__('pages').build_all()
     pages += about.build_all()
