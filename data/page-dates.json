@@ -49,6 +49,7 @@
     "learn/domain-authority-without-a-subscription": "2026-08-14",
     "learn/googlebot-2mb-limit": "2026-08-07",
     "learn/internal-link-equity": "2026-08-06",
+    "learn/internal-utm-links": "2026-09-15",
     "learn/javascript-rendering": "2026-08-06",
     "learn/log-file-analysis": "2026-08-08",
     "learn/marketing-tag-audit": "2026-08-14",
@@ -73,5 +74,7 @@
     "vs/semrush-site-audit-alternative": "2026-08-10",
     "vs/sitebulb-alternative": "2026-08-06"
   },
-  "uncommitted": []
+  "uncommitted": [
+    "learn/internal-utm-links"
+  ]
 }
