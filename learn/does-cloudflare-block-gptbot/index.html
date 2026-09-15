@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to run a JavaScript SEO audit (step by step)</title>
-<meta name="description" content="Compare the HTML your server sends against the rendered page, in five steps. Which of the three gaps you have decides the fix.">
+<title>Cloudflare blocks GPTBot on new ad-supported domains — but not OAI-SearchBot</title>
+<meta name="description" content="Since 15 September 2026 new Cloudflare domains block Training and Agent bots on ad pages and allow Search. Which OpenAI crawler is affected, and how to check yours.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="0ca874ba791a">
-<link rel="canonical" href="https://docketseo.app/how-to/javascript-seo-audit/">
+<link rel="canonical" href="https://docketseo.app/learn/does-cloudflare-block-gptbot/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to run a JavaScript SEO audit">
-<meta property="og:description" content="Compare the HTML your server sends against the rendered page, in five steps. Which of the three gaps you have decides the fix.">
-<meta property="og:url" content="https://docketseo.app/how-to/javascript-seo-audit/">
+<meta property="og:title" content="Does Cloudflare block GPTBot by default?">
+<meta property="og:description" content="Since 15 September 2026 new Cloudflare domains block Training and Agent bots on ad pages and allow Search. Which OpenAI crawler is affected, and how to check yours.">
+<meta property="og:url" content="https://docketseo.app/learn/does-cloudflare-block-gptbot/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How to run a JavaScript SEO audit">
-<meta name="twitter:description" content="Compare the HTML your server sends against the rendered page, in five steps. Which of the three gaps you have decides the fix.">
+<meta name="twitter:title" content="Does Cloudflare block GPTBot by default?">
+<meta name="twitter:description" content="Since 15 September 2026 new Cloudflare domains block Training and Agent bots on ad pages and allow Search. Which OpenAI crawler is affected, and how to check yours.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -672,9 +672,9 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 97 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"97 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to run a JavaScript SEO audit","description":"Compare the HTML your server sends against the rendered page, in five steps. Which of the three gaps you have decides the fix.","datePublished":"2026-09-09","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/javascript-seo-audit/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a JavaScript SEO audit?","acceptedAnswer":{"@type":"Answer","text":"A comparison of two views of the same URL: the HTML the server returns, and the page after JavaScript has run. Where they disagree, some crawlers see less than your visitors do. Everything else in the audit follows from the size and shape of that gap."}},{"@type":"Question","name":"Does Google render JavaScript?","acceptedAnswer":{"@type":"Answer","text":"Yes, on a delay and with no guarantee about when. That is not the same as saying it makes no difference: the render is a second pass, and the AI crawlers that increasingly decide whether you are quoted mostly do not render at all. A page that only exists after JavaScript is invisible to them."}},{"@type":"Question","name":"My page looks fine in the browser. Is that enough?","acceptedAnswer":{"@type":"Answer","text":"No, and it is the most common reason this problem goes unnoticed. The browser ran the JavaScript before you looked. Use view-source or curl to see what the server sent, which is what a non-rendering crawler gets."}},{"@type":"Question","name":"The HTML has my navigation and footer but not the article. Is that a shell?","acceptedAnswer":{"@type":"Answer","text":"Not a shell, and it is the case that hides. An empty shell is obvious; a page whose chrome is server-rendered looks server-rendered at a glance while the body arrives after hydration. Compare the MAIN content of the two views, not the page as a whole, or the navigation will mask the gap."}},{"@type":"Question","name":"Can a tool tell me what Googlebot rendered?","acceptedAnswer":{"@type":"Answer","text":"No. Nobody outside Google can measure what Google rendered or when. A tool can tell you what your server sent and what a browser builds from it; anything beyond that is a model presented as a measurement."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Does Cloudflare block GPTBot by default?","description":"Since 15 September 2026 new Cloudflare domains block Training and Agent bots on ad pages and allow Search. Which OpenAI crawler is affected, and how to check yours.","datePublished":"2026-09-15","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/does-cloudflare-block-gptbot/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Cloudflare block GPTBot by default?","acceptedAnswer":{"@type":"Answer","text":"On a new domain onboarding from 15 September 2026, bots classified Training or Agent are blocked on pages that display ads, and GPTBot is the training crawler — so yes, there. Search-classified bots such as OAI-SearchBot stay allowed. Every new domain has also been asked the question at sign-up since 1 July 2025, so an existing domain is wherever its owner left that prompt."}},{"@type":"Question","name":"Does blocking GPTBot stop me appearing in ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"No. GPTBot is the training crawler. OAI-SearchBot builds the search index and ChatGPT-User fetches pages a user asks about. Blocking GPTBot alone keeps your content out of training while leaving you citable — that is a coherent position, and a single 'block AI' toggle does not express it."}},{"@type":"Question","name":"My robots.txt allows GPTBot. Does that settle it?","acceptedAnswer":{"@type":"Answer","text":"No. In Docket's August 2026 survey of the Tranco top 10,000, 6.43% of hosts refused a self-identifying bot outright before any robots.txt rule could apply, and 4.73% of hosts whose robots.txt permitted /llms.txt were then denied it by the server. robots.txt is a request; the server is the answer."}},{"@type":"Question","name":"How do I check whether my site blocks an AI crawler?","acceptedAnswer":{"@type":"Answer","text":"Request the same URL twice from the same machine, once with the crawler's user-agent and once with an ordinary browser's, and compare. Browser 200 with crawler 403 is the finding. Both 403 usually means your protection dislikes command-line tools rather than the crawler. Both 200 means nothing blocks on the user-agent string, though Cloudflare also verifies bot identity by IP."}},{"@type":"Question","name":"Is blocking AI crawlers a mistake?","acceptedAnswer":{"@type":"Answer","text":"Blocking training crawlers is a legitimate editorial choice. Blocking search crawlers rarely is, and the survey suggests most people do it without meaning to: of the 425 sites blocking OAI-SearchBot, 414 also block GPTBot, and only 11 blocked search without blocking training. That overlap is the shape of one switch, not a decision."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -706,117 +706,122 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / JavaScript SEO audit</div><h1>How to run a JavaScript SEO audit</h1>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Cloudflare and GPTBot</div><h1>Does Cloudflare block GPTBot by default?</h1>
 
-<p class="lede">A JavaScript SEO audit answers one question: <em>is the thing you wrote in the
-HTML your server sends, or does it only exist after JavaScript runs?</em> Everything else —
-which framework, which rendering mode, whose crawler — follows from that answer, and you can
-get it in about ten minutes.</p>
+<div class="callout">
+<div class="callout-title">Quick answer</div>
+<p><strong>It depends which OpenAI crawler, and since 15 September 2026 it also depends on the
+page.</strong> Cloudflare asks every new domain at sign-up whether to allow AI crawlers, and from
+15 September 2026 new domains onboard with bots classified <em>Training</em> or <em>Agent</em>
+blocked on pages that display ads, while <em>Search</em> stays allowed.</p>
+<p><strong>GPTBot is the training crawler</strong>, so on a new ad-supported Cloudflare domain it is
+blocked by default. <strong>OAI-SearchBot is not</strong> — and that is the one that decides whether
+you can be cited.</p>
+<p><strong>And the setting is not the whole answer.</strong> Your robots.txt can say yes while your
+edge says no, and nothing in the file reveals it.</p>
+</div>
 
-<h2>Why the answer is not obvious from looking at the page</h2>
+<h2>The three OpenAI crawlers are not one thing</h2>
 
-<p>Open the page in a browser and it looks complete, because your browser ran the JavaScript.
-View source and you may see something entirely different. Those two views disagree on plenty of
-real sites, and the disagreement is invisible until you go looking for it.</p>
+<p>Almost every page written about this treats "AI crawler" as a single switch. OpenAI ships three,
+and they do different jobs:</p>
 
-<p>It matters because the two audiences behave differently. Google renders JavaScript, on a
-delay and with no guarantee about when. The AI crawlers that increasingly decide whether you
-get quoted in an answer mostly do not render at all — to them, the page is whatever the server
-sent. So a page can rank adequately and be invisible to the systems people now ask instead of
-searching. <a href="/learn/ai-search-visibility/">AI search visibility</a> is a separate
-surface with a separate failure mode.</p>
+<table>
+<thead><tr><th>Crawler</th><th>What it is for</th><th>What blocking it costs you</th></tr></thead>
+<tbody>
+<tr><td><code>GPTBot</code></td><td>Training</td><td>Your content is not used to train the model.
+Nothing about search or citation changes.</td></tr>
+<tr><td><code>OAI-SearchBot</code></td><td>Search index</td><td><strong>You stop appearing in
+ChatGPT's search results.</strong> This is the expensive one.</td></tr>
+<tr><td><code>ChatGPT-User</code></td><td>Live fetch</td><td>A page a user asks about cannot be
+fetched and read back to them.</td></tr>
+</tbody>
+</table>
 
-<h2>Step 1: read the HTML your server actually sends</h2>
+<p>Blocking training is a legitimate editorial decision and plenty of publishers make it on purpose.
+Blocking search is almost never what someone meant to do. The question "does Cloudflare block GPTBot
+by default" matters mostly because of what the answer implies about the other two.</p>
 
-<p>Not the rendered DOM. The bytes.</p>
+<h2>What Cloudflare actually does, from Cloudflare's own pages</h2>
 
-<pre><code>curl -sS https://example.com/your-page/ | wc -c</code></pre>
+<p>Read on 15 September 2026, from the primary sources rather than from the summaries:</p>
 
-<p>Then look at the body text inside those bytes, not the byte count — a big HTML payload with
-almost nothing readable in it is exactly the shape you are hunting. A page can be 200 KB of
-markup and carry forty words a reader would recognise.</p>
+<ul>
+<li><strong>1 July 2025</strong> — Cloudflare became the first infrastructure provider to block AI
+crawlers by default where there is no permission or compensation, and <strong>every new domain is
+asked at sign-up</strong> whether to allow them. The choice is presented; it is not silently made.</li>
+<li><strong>15 September 2026</strong> — new domains onboarding get updated defaults: bots classified
+<strong>Training or Agent are blocked on pages that display ads</strong>, and <strong>Search remains
+allowed</strong>.</li>
+</ul>
 
-<h2>Step 2: render the same URL and compare</h2>
+<p>So the flat sentence "Cloudflare blocks AI bots by default", which is what every result on page one
+for this question says today, is no longer the whole answer. The default is now scoped by
+<em>classification</em> and by <em>whether the page carries ads</em>. An existing domain is wherever
+its owner left it, which is usually wherever the sign-up prompt was answered.</p>
 
-<p>The audit is the comparison, not either number on its own. In Docket:</p>
+<h2>The measurement: what sites actually do, and the mistake in it</h2>
 
-<pre><code>docket-render https://example.com/your-page/ --timeout 45 --settle 4</code></pre>
+<p>Docket surveyed the <strong>Tranco top 10,000</strong> in August 2026 — reading robots.txt,
+and separately asking each server. Two findings bear directly on this question.</p>
 
-<p>It returns the rendered HTML with the link count, the text length and the script sources, so
-you can put the two side by side. Any headless browser does the same job; what matters is that
-you measure both views of the same URL in the same session, because comparing today's render
-against last week's source tells you about the week, not the page.</p>
+<p><strong>First, the file is not the answer. 643 hosts (6.43%) refused a
+self-identifying bot outright</strong> — 401, 403, 406, 429 or 503 — before any robots.txt rule could
+apply. Of the hosts whose robots.txt explicitly permitted a fetch of <code>/llms.txt</code>,
+<strong>4.73% were then denied it by the server anyway</strong>. A site can allow every AI
+crawler in the file and still be invisible to all of them.</p>
 
-<h2>Step 3: read the gap, and know which gap you have</h2>
+<p><strong>Second, and this is the part that should change what you do:</strong> of the
+<strong>425</strong> sites blocking <code>OAI-SearchBot</code>,
+<strong>414</strong> also block <code>GPTBot</code> — <strong>97.4%</strong>. Only
+<strong>11</strong> sites in the whole survey blocked search without also blocking
+training.</p>
 
-<p>There are three outcomes and they have different remedies.</p>
+<p>That overlap is the signature of a blanket decision rather than a considered one. Almost nobody
+sat down and chose to be absent from ChatGPT's search results while allowing training; they turned
+"AI crawlers" off as one switch, and search went with it. A default that distinguishes Training from
+Search — which is what Cloudflare now ships — is an improvement precisely because the blanket version
+is what people were living with.</p>
 
-<p><strong>The two views agree.</strong> The page is server-rendered. There is no JavaScript SEO
-problem here and you can stop — resist the urge to find one.</p>
+<h2>How to find out what your own site does</h2>
 
-<p><strong>The HTML is essentially empty.</strong> A shell, a mount point and a script tag.
-Every crawler that does not render sees nothing, and the fix is server-side rendering or
-prerendering. This is the case most articles describe, and it is the easier one, because it is
-obvious the moment you look.</p>
+<p>The only reliable test is to ask your own server as each crawler and compare the answer to an
+ordinary request. Two requests, same machine, seconds apart:</p>
 
-<p><strong>The chrome is server-rendered and the body is not.</strong> This is the one that
-hides. The navigation, header and footer arrive in the HTML — so the page is plainly not an
-empty shell — while the article itself is fetched after hydration. Measured on one site on
-2026-09-09, 5 pages returned 27, 49, 52, 59 and 67 words of main text as served, and
-607, 318, 224, 666 and 671 once rendered. The pages were not thin. The served HTML was. That is
-5 pages on one site — an existence proof that the shape occurs and is large when it
-does, not a claim about how common it is.</p>
+<ul>
+<li><strong>Browser 200, crawler 403</strong> — your edge is refusing that crawler. This is the finding.</li>
+<li><strong>Both 403</strong> — your protection is refusing the <em>tool</em>, not the crawler, and the
+answer has to come from your CDN's logs instead.</li>
+<li><strong>Both 200</strong> — nothing is blocking on the user-agent string. Note the limit honestly:
+Cloudflare verifies bot identity by IP as well, so this does not prove a verified crawler gets through.</li>
+</ul>
 
-<p>Docket shipped a change for exactly this in v1.3.64: where a page carries a client-side
-framework's hydration marker, a word count is now labelled as a count of the HTML as served,
-because a tool that reports "almost no content" about a page carrying six hundred words is
-telling you something false in a confident voice.</p>
+<p>Docket does this as part of an audit: it asks your origin once per crawler using each crawler's
+documented user-agent, with its own name appended so anyone reading their logs can see who asked, and
+compares the status against an ordinary request. Nothing that only reads robots.txt can find this,
+because nothing in robots.txt is wrong.</p>
 
-<h2>Step 4: check what a non-rendering crawler is allowed to fetch</h2>
+<h2>What to do about it</h2>
 
-<p>Rendering is only half of it. A crawler that renders nothing still has to be let in, and the
-refusal usually happens somewhere your robots.txt never sees — a bot rule at the CDN, returning
-403 to a user-agent the site owner believes is welcome. Send the same request twice, once with
-the crawler's user-agent and once with an ordinary browser's, and compare: if only one is
-refused, the rule is about the crawler.
-<a href="/how-to/fix-ai-crawler-access/">Fixing AI crawler access</a> covers the robots.txt
-side of the same question.</p>
+<ul>
+<li><strong>Decide per crawler, not per category.</strong> Blocking <code>GPTBot</code> and allowing
+<code>OAI-SearchBot</code> and <code>ChatGPT-User</code> is a coherent position: no training, still
+citable. A single "block AI" toggle does not express it.</li>
+<li><strong>Check the edge, not the file.</strong> Your robots.txt is a request. Your server is the
+answer, and 6.43% of the top 10,000 sites answer differently from their file.</li>
+<li><strong>Re-check after any CDN change.</strong> Managed bot rules ship with lists that update
+without you, and AI crawlers are newer than most of those lists.</li>
+</ul>
 
-<h2>Step 5: confirm what was actually fetched</h2>
-
-<p>A render tells you what a browser can build. It does not tell you what any crawler did.
-For that you need the server's own record —
-<a href="/learn/log-file-analysis/">log file analysis</a> — which is the only view that
-distinguishes "Google could reach this" from "Google fetched this". The two disagree constantly,
-and on a JavaScript-heavy site they disagree more.</p>
-
-<h2>What this audit does not tell you</h2>
-
-<p>It does not tell you whether Google rendered your page, or when, or what it saw — nobody
-outside Google can measure that, and a tool that implies otherwise is selling you a model as a
-measurement. It tells you what the two views contain, which is the part you control.</p>
-
-<p>It also will not tell you that a slow render is the reason you are not ranking. Rendering
-delay is real and it is frequently blamed for outcomes it did not cause. Measure the gap, fix
-the gap, and judge the result against what you recorded before you started.</p>
-
-<h2>Doing it across a whole site</h2>
-
-<p>The steps above are per-URL, which is fine for a spot check and useless for a site with a
-thousand pages. Docket runs the comparison across the crawl and reports the pages where the two
-views disagree, alongside the rest of a
-<a href="/learn/seo-audit/">technical SEO audit</a> —
-<a href="/learn/what-docket-checks/">97 checks across 13 areas</a>, on your machine, with no
-crawl credits. If you would rather see how it compares to the tools you already know, there is
-<a href="/vs/screaming-frog-alternative/">Docket vs Screaming Frog</a> and
-<a href="/vs/ahrefs-site-audit-alternative/">Docket vs Ahrefs Site Audit</a>.</p>
-
-<p>Whatever you use, the discipline is the same: two views of the same URL, measured in the same
-session, and a decision about which of the three gaps you are looking at before you change
-anything.</p>
+<p>If your crawlers are already getting a 403 while robots.txt allows them, the diagnosis and fix are
+on <a href="/how-to/fix-ai-crawlers-blocked-by-your-cdn/">when your CDN blocks AI crawlers your
+robots.txt allows</a>. The directive side — which tokens are live, which are retired and which do
+nothing — is <a href="/how-to/fix-ai-crawler-access/">AI crawler access</a>. A crawler you let in still has
+to be able to read the page, which is <a href="/how-to/javascript-seo-audit/">the JavaScript SEO
+audit</a>.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is a JavaScript SEO audit?</h3><p>A comparison of two views of the same URL: the HTML the server returns, and the page after JavaScript has run. Where they disagree, some crawlers see less than your visitors do. Everything else in the audit follows from the size and shape of that gap.</p></div><div class="faq-item"><h3>Does Google render JavaScript?</h3><p>Yes, on a delay and with no guarantee about when. That is not the same as saying it makes no difference: the render is a second pass, and the AI crawlers that increasingly decide whether you are quoted mostly do not render at all. A page that only exists after JavaScript is invisible to them.</p></div><div class="faq-item"><h3>My page looks fine in the browser. Is that enough?</h3><p>No, and it is the most common reason this problem goes unnoticed. The browser ran the JavaScript before you looked. Use view-source or curl to see what the server sent, which is what a non-rendering crawler gets.</p></div><div class="faq-item"><h3>The HTML has my navigation and footer but not the article. Is that a shell?</h3><p>Not a shell, and it is the case that hides. An empty shell is obvious; a page whose chrome is server-rendered looks server-rendered at a glance while the body arrives after hydration. Compare the MAIN content of the two views, not the page as a whole, or the navigation will mask the gap.</p></div><div class="faq-item"><h3>Can a tool tell me what Googlebot rendered?</h3><p>No. Nobody outside Google can measure what Google rendered or when. A tool can tell you what your server sent and what a browser builds from it; anything beyond that is a model presented as a measurement.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Cloudflare block GPTBot by default?</h3><p>On a new domain onboarding from 15 September 2026, bots classified Training or Agent are blocked on pages that display ads, and GPTBot is the training crawler — so yes, there. Search-classified bots such as OAI-SearchBot stay allowed. Every new domain has also been asked the question at sign-up since 1 July 2025, so an existing domain is wherever its owner left that prompt.</p></div><div class="faq-item"><h3>Does blocking GPTBot stop me appearing in ChatGPT?</h3><p>No. GPTBot is the training crawler. OAI-SearchBot builds the search index and ChatGPT-User fetches pages a user asks about. Blocking GPTBot alone keeps your content out of training while leaving you citable — that is a coherent position, and a single 'block AI' toggle does not express it.</p></div><div class="faq-item"><h3>My robots.txt allows GPTBot. Does that settle it?</h3><p>No. In Docket's August 2026 survey of the Tranco top 10,000, 6.43% of hosts refused a self-identifying bot outright before any robots.txt rule could apply, and 4.73% of hosts whose robots.txt permitted /llms.txt were then denied it by the server. robots.txt is a request; the server is the answer.</p></div><div class="faq-item"><h3>How do I check whether my site blocks an AI crawler?</h3><p>Request the same URL twice from the same machine, once with the crawler's user-agent and once with an ordinary browser's, and compare. Browser 200 with crawler 403 is the finding. Both 403 usually means your protection dislikes command-line tools rather than the crawler. Both 200 means nothing blocks on the user-agent string, though Cloudflare also verifies bot identity by IP.</p></div><div class="faq-item"><h3>Is blocking AI crawlers a mistake?</h3><p>Blocking training crawlers is a legitimate editorial choice. Blocking search crawlers rarely is, and the survey suggests most people do it without meaning to: of the 425 sites blocking OAI-SearchBot, 414 also block GPTBot, and only 11 blocked search without blocking training. That overlap is the shape of one switch, not a decision.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
