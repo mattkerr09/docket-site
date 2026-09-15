@@ -460,6 +460,10 @@ rather than from Cohere, and is corrected above. The two tables are now one file
 reading what you meant to withhold. A dead heading above nothing but <code>Allow</code> costs
 nothing and is reported as a note.</p>
 
+<p>The same survey answers a question people ask far more often about a crawler that is not an AI
+at all: <a href="/learn/who-blocks-googlebot/">how many sites disallow Googlebot</a>, where page one
+is nine repair manuals and none of them counted.</p>
+
 <h2>What to do with your own robots.txt</h2>
 
 <ol>

@@ -246,7 +246,8 @@ other end: a redirect, a 404, a different host, a URL differing from the page on
 protocol or trailing slash. Those are verifiable. <code>index.canonical_conflict</code>
 fires when a page declares more than one, which is never deliberate.
 <code>index.www</code> handles apex-versus-www separately, because that is a server
-configuration rather than a markup mistake.</p>
+configuration rather than a markup mistake — and we measured how often it is still wrong in
+<a href="/learn/www-vs-non-www/">www versus non-www, counted rather than asserted</a>.</p>
 
 <p>A canonical that merely points elsewhere is now reported without a severity — a
 statement of fact with the resolved target attached, so you can see at a glance whether it

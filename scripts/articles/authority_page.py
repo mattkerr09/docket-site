@@ -89,7 +89,9 @@ times.</p>
 <ul>
 <li><strong>Which page links to you, and with what anchor text.</strong> That lives in
 archive files far too large to fetch from a laptop. If you need per-page backlinks, a
-subscription tool is the right purchase and Docket will not pretend otherwise.</li>
+subscription tool is the right purchase and Docket will not pretend otherwise — and
+<a href="/how-to/backlink-audit/">which backlink questions are worth paying for</a> sorts the
+ones a subscription answers from the ones it does not.</li>
 <li><strong>Whether a link is followed, paid, or in a footer.</strong> The graph records
 that a link exists.</li>
 <li><strong>Anything about a domain outside the ranked slice</strong>, which is most

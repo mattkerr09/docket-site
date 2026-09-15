@@ -168,6 +168,10 @@ this site is defended at all.</li>
 <li><strong>Give explainers something to do.</strong> A quote form, a checker, a booking
 step. An explainer with a tool in it stops being a page an answer replaces and becomes one it
 points at.</li>
+<li><strong>Decide which explainers are worth keeping at all.</strong> A high number across a
+section is a content-audit question before it is a writing one:
+<a href="/how-to/content-audit/">which tool does what</a> covers the part a crawler can answer
+and the part it cannot.</li>
 <li><strong>Consider gating your deepest material</strong> behind a free sign-up. What is
 gated is not in a training set, and the trade is one readers already understand.</li>
 <li><strong>For everything that stays explanatory</strong>, compete to be the source that
