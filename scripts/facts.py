@@ -155,6 +155,70 @@ def _d() -> dict:
 # crawler and withhold it from another. These accessors describe what the FILE
 # expresses. None of them says a blocked crawler fetched anything.
 
+# -- www / apex canonicalisation, measured 2026-09-15 -------------------------
+#
+# ⚠️ A SMALL, STATED SAMPLE. 300 hosts drawn from the Tranco top 10,000 with a
+# recorded seed, two requests each. Every share must be published WITH its
+# denominator and the sample size — it is not the survey, and it cannot carry a
+# sentence that sounds like one.
+
+def _w() -> dict:
+    import json as _j
+    from pathlib import Path as _P
+    return _j.loads((_P(__file__).resolve().parent.parent
+                     / "data" / "www-canonical-2026-09.json").read_text())
+
+
+def www_sample() -> int:
+    return _w()["sample"]
+
+
+def www_reachable() -> int:
+    return _w()["reachable"]
+
+
+def www_both_serve() -> int:
+    """Hosts serving the site on BOTH spellings without redirecting."""
+    return _w()["both_serve"]
+
+
+def www_redirects() -> int:
+    return _w()["redirects_to_canonical"]
+
+
+def www_other_answered() -> int:
+    return _w()["other_answered_2xx"]
+
+
+def www_pct_of_sample() -> float:
+    return _w()["pct_both_of_sample"]
+
+
+def www_pct_of_reachable() -> float:
+    return _w()["pct_both_of_reachable"]
+
+
+def www_pct_of_answered() -> float:
+    return _w()["pct_both_of_answered"]
+
+
+def www_unreachable() -> int:
+    return _w()["origin_unreachable"]
+
+
+def www_pct_unreachable() -> float:
+    return _w()["pct_unreachable"]
+
+
+def www_other_non_2xx() -> int:
+    """The other spelling answered, but not with the site — NOT a defect."""
+    return _w()["other_non_2xx"]
+
+
+def www_other_absent() -> int:
+    return _w()["other_does_not_resolve"]
+
+
 def blocks_googlebot() -> int:
     """Readable robots.txt files that disallow Googlebot itself.
 
