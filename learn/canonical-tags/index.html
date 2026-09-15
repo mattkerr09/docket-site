@@ -6,7 +6,7 @@
 <title>Canonical tags are a hint, not an instruction</title>
 <meta name="description" content="Google treats rel=canonical as a hint and regularly picks a different canonical. The failure patterns behind that, and what Search Console is telling you.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="df2fa8e470f1">
+<meta name="build-id" content="6e63d389823f">
 <link rel="canonical" href="https://docketseo.app/learn/canonical-tags/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -869,7 +869,8 @@ other end: a redirect, a 404, a different host, a URL differing from the page on
 protocol or trailing slash. Those are verifiable. <code>index.canonical_conflict</code>
 fires when a page declares more than one, which is never deliberate.
 <code>index.www</code> handles apex-versus-www separately, because that is a server
-configuration rather than a markup mistake.</p>
+configuration rather than a markup mistake — and we measured how often it is still wrong in
+<a href="/learn/www-vs-non-www/">www versus non-www, counted rather than asserted</a>.</p>
 
 <p>A canonical that merely points elsewhere is now reported without a severity — a
 statement of fact with the resolved target attached, so you can see at a glance whether it
