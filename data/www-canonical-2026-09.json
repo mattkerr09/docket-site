@@ -1,0 +1,22 @@
+{
+  "measured": "2026-09-15",
+  "what": "www vs apex canonicalisation across a random sample of the Tranco top 10,000",
+  "method": "For each sampled host: fetch https://<host>/ following redirects to find the site's FINAL origin, then fetch the opposite spelling of that origin and see where it lands. A host counts as serving two copies when that fetch answers 2xx and does NOT land back on the canonical host \u2014 which includes landing on a THIRD hostname, not only answering without redirecting at all. Docket's own identified user-agent; two requests per host; no page crawl. This replicates crawler.py's www check exactly, including that a non-2xx on the other spelling is NOT a defect: a 404 is the correct configuration and a 403 is usually a bot block, and two bot-block pages are not duplicate content.",
+  "why_the_origin_step_matters": "A first run omitted the final-origin step and compared the www spelling against the apex it started from. That scores every site correctly canonicalised ON www as a duplicate, and reported 49.3% instead of 7.0% \u2014 a sevenfold inflation. The step is the measurement, not a detail.",
+  "sample": 300,
+  "seed": 20260915,
+  "origin_unreachable": 68,
+  "reachable": 232,
+  "other_does_not_resolve": 14,
+  "other_non_2xx": 47,
+  "redirects_to_canonical": 150,
+  "both_serve": 21,
+  "other_answered_2xx": 171,
+  "pct_both_of_sample": 7.0,
+  "pct_both_of_reachable": 9.1,
+  "pct_both_of_answered": 12.3,
+  "pct_unreachable": 22.7,
+  "hosts_withheld_because": "Publishing a named site's SEO defect to sell a tool is not a trade this project makes. Counts and categories only.",
+  "erroneous_first_run_pct_both_of_sample": 49.3,
+  "erroneous_first_run_note": "What the FIRST, BROKEN run reported for both_serve as a share of the sample, kept so a page can cite the error without typing it. It is not a measurement of anything real: the probe compared the www spelling against the apex it started from instead of resolving the site's final origin first, so every site correctly canonicalised ON www was scored a duplicate. The corrected figure is pct_both_of_sample."
+}
