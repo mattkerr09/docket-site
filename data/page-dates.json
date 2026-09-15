@@ -57,6 +57,7 @@
     "learn/site-monitoring": "2026-08-14",
     "learn/what-docket-checks": "2026-08-08",
     "learn/what-scout-checks": "2026-08-06",
+    "learn/who-blocks-googlebot": "2026-09-15",
     "legal/privacy": "2026-08-06",
     "legal/refunds": "2026-08-12",
     "legal/terms": "2026-08-06",
@@ -72,6 +73,6 @@
     "vs/sitebulb-alternative": "2026-08-06"
   },
   "uncommitted": [
-    "learn/ai-crawlers-and-sitemaps"
+    "learn/who-blocks-googlebot"
   ]
 }

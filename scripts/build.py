@@ -46,6 +46,7 @@ import howto_backlink_audit  # noqa: E402
 import cloudflare_gptbot  # noqa: E402
 import noindex_ai_crawlers  # noqa: E402
 import sitemaps_ai_crawlers  # noqa: E402
+import googlebot_robots_blocks  # noqa: E402
 import howto_cdn_blocks_ai  # noqa: E402
 import howto_https  # noqa: E402
 import howto_schema  # noqa: E402
@@ -754,6 +755,7 @@ def main() -> int:
     pages += howto_cdn_blocks_ai.build_all()
     pages += noindex_ai_crawlers.build_all()
     pages += sitemaps_ai_crawlers.build_all()
+    pages += googlebot_robots_blocks.build_all()
     pages += substitution.build_all()
     pages += __import__('pages').build_all()
     pages += about.build_all()
