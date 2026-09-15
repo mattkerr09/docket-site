@@ -17,7 +17,10 @@ cd "$(dirname "$0")/.."
 PY="${PYTHON:-python3}"
 
 echo "==> build"
-"$PY" scripts/build.py >/dev/null
+# DOCKET_DEPLOY=1 is what licences build.py to write data/build-id.txt, the
+# anchor the deployed-matches-committed gate compares the live build against.
+# Any other build writes it to a scratch path so the checkout stays clean.
+DOCKET_DEPLOY=1 "$PY" scripts/build.py >/dev/null
 
 echo "==> derived-number gate"
 # The Index published 30% over a 26% dataset because a correction updated the

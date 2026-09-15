@@ -9,6 +9,8 @@ write a page would be worse than one that writes it and then tells you it fails.
 from __future__ import annotations
 
 import hashlib
+import tempfile
+import os
 
 import datetime
 import subprocess
@@ -734,8 +736,29 @@ def stamp_build_id() -> str:
         raw = page.read_text(encoding="utf-8")
         if "__BUILD_ID__" in raw:
             page.write_text(raw.replace("__BUILD_ID__", build_id), encoding="utf-8")
-    (DATA).mkdir(parents=True, exist_ok=True)
-    (DATA / "build-id.txt").write_text(build_id + "\n", encoding="utf-8")
+    # ⚠️ THE ANCHOR FILE IS WRITTEN ONLY BY A DEPLOY, AND HERE IS WHY.
+    #
+    # `data/build-id.txt` is what the deployed-matches-committed gate compares
+    # the live build against. Every local `build.py` run used to rewrite it, so
+    # the checkout went dirty whenever anyone built without deploying — and by
+    # 2026-09-15 that was most runs, because a full audit of our own site became
+    # a per-cycle routine. The ops checklist row failed for two hours on exactly
+    # that.
+    #
+    # Committing the local value was the wrong fix, even when it happened to
+    # match production: "a local build that happens to match is exactly the case
+    # where the next one silently will not" (CEO, 2026-09-15). The gate must stay
+    # strict, so the file must stop moving unless a deploy moved it.
+    #
+    # `deploy.sh` exports DOCKET_DEPLOY=1 before calling this. Any other run
+    # writes the id to a scratch path instead, so it is still inspectable and
+    # the tree stays clean.
+    if os.environ.get("DOCKET_DEPLOY") == "1":
+        (DATA).mkdir(parents=True, exist_ok=True)
+        (DATA / "build-id.txt").write_text(build_id + "\n", encoding="utf-8")
+    else:
+        scratch = Path(tempfile.gettempdir()) / "docket-build-id.txt"
+        scratch.write_text(build_id + "\n", encoding="utf-8")
     return build_id
 
 
