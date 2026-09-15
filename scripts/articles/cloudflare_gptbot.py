@@ -166,7 +166,7 @@ audit</a>.</p>
 """
     return render(
         cat="learn", slug="does-cloudflare-block-gptbot",
-        title="Cloudflare blocks GPTBot on new ad-supported domains — but not OAI-SearchBot",
+        title="Cloudflare blocks GPTBot on ad pages, not OAI-SearchBot",
         desc=("Since 15 September 2026 new Cloudflare domains block Training and Agent bots on "
               "ad pages and allow Search. Which OpenAI crawler is affected, and how to check yours."),
         h1="Does Cloudflare block GPTBot by default?",
