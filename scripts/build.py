@@ -278,6 +278,24 @@ not applicable rather than scored as passing.</p>
 
 {''.join(sections)}
 
+<h2>Where a check has a step-by-step fix</h2>
+<p>A finding tells you what changed and hands you the markup. For the checks people most often
+arrive here looking for, there is a longer walkthrough with the reasoning behind the fix:</p>
+<ul>
+<li><a href="/how-to/fix-ai-crawler-access/">AI crawler access</a> — which crawler does what, and
+how to allow citation while refusing training.</li>
+<li><a href="/how-to/fix-lang-attribute-mismatch/">hreflang and html lang mismatch</a> — the two are
+different declarations and only one of them is usually wrong.</li>
+<li><a href="/how-to/fix-missing-open-graph-tags/">Open Graph tags</a> — why a shared link shows no
+image, and what each platform actually reads.</li>
+<li><a href="/how-to/fix-missing-security-headers/">Security headers</a> — which ones a crawler
+notices and which are for your users.</li>
+<li><a href="/learn/marketing-tag-audit/">Marketing tag audit</a> — whether your tracking is on every
+page, which is not the same question as whether it is installed.</li>
+<li><a href="/learn/conversion-audit/">Conversion audit</a> — the nine checks that apply to a landing
+page rather than to a crawl.</li>
+</ul>
+
 <h2>How a finding is put together</h2>
 <p>A check that fires produces more than a label. Each finding carries four things, and they
 are what separate a plan from a list:</p>

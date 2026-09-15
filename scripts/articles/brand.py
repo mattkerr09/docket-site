@@ -65,7 +65,9 @@ inconsistent" is something you can only agree or disagree with.</p>
 
 <ul>
 <li><strong>Name consistency</strong> — whether your title tags, <code>og:site_name</code>,
-<code>Organization</code> schema and logo alt text call the company the same thing.</li>
+<code>Organization</code> schema and logo alt text call the company the same thing. A page missing
+its Open Graph tags entirely has no <code>og:site_name</code> to be consistent with, which is
+<a href="/how-to/fix-missing-open-graph-tags/">a different fix</a>.</li>
 <li><strong>Logo</strong> — whether the logo's alt text names the company.
 {F.brand_logo_unnamed()} of the sites we measured had a logo whose alt text did not.</li>
 <li><strong>Typography and colour</strong> — how many typefaces the pages ship, and which

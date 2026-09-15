@@ -1292,6 +1292,12 @@ check. <a href="/how-to/redirect-http-to-https/">How to redirect http:// to http
 declaration that goes one way is ignored entirely, and every tag looks correct in isolation.
 <a href="/how-to/fix-hreflang-return-tags/">How to fix hreflang return tags →</a></p>
 
+<h2>hreflang and html lang mismatch</h2>
+<p>The tag people confuse with the one above. <code>hreflang</code> tells search engines which
+translation to serve; <code>html lang</code> declares what this page is written in, and only one of
+them is usually wrong.
+<a href="/how-to/fix-lang-attribute-mismatch/">Which one you have →</a></p>
+
 <h2>Conflicting canonical tags</h2>
 <p>Two canonicals on one page, a canonical pointing at a noindex page, and the section-wide
 mistake that can cost a site its entire long tail while every page still returns 200.

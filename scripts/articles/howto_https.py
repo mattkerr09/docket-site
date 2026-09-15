@@ -109,6 +109,10 @@ HTTPS for that domain without asking. Add it after the redirect works, never bef
 header tells browsers to refuse plain HTTP for your domain for its whole
 <code>max-age</code>, and if HTTPS is broken when they act on that, they cannot fall back.</p>
 
+<p>HSTS is one of a small set of headers a crawler or a browser acts on rather than merely
+records; the rest are on <a href="/how-to/fix-missing-security-headers/">fixing missing security
+headers</a>, which separates the ones that change behaviour from the ones that only reassure.</p>
+
 <p>Start with a short <code>max-age</code>, confirm nothing broke, then raise it. Treat
 <code>preload</code> as close to irreversible: removal from the browser preload lists takes
 months.</p>

@@ -201,9 +201,14 @@ trouble of describing themselves and then connected it to nothing.
 subtypes, opening hours, geo targeting. For a plumber or a restaurant this <em>is</em> organic
 search.</li>
 <li><strong>AI search visibility</strong> — per-crawler access, server-side rendering, entity
-resolution. <a href="/learn/ai-search-visibility/">Explained here</a>.</li>
+resolution. <a href="/learn/ai-search-visibility/">Explained here</a>, and the directives
+themselves are on <a href="/how-to/fix-ai-crawler-access/">letting ChatGPT and Perplexity read
+your site</a>.</li>
 <li><strong>Conversion</strong> — whether the traffic you earn has anywhere to go. The most
-expensive failure on any site is a page that ranks and converts nobody.</li>
+expensive failure on any site is a page that ranks and converts nobody:
+<a href="/learn/conversion-audit/">nine checks that apply to a landing page</a> rather than to a
+crawl, and <a href="/learn/marketing-tag-audit/">whether your tracking is on every page</a>,
+which is a different question from whether it is installed.</li>
 </ul>
 
 <h2>How often to run one</h2>
