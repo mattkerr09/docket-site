@@ -178,7 +178,20 @@ def www_reachable() -> int:
 
 
 def www_both_serve() -> int:
-    """Hosts serving the site on BOTH spellings without redirecting."""
+    """Hosts whose other spelling answered 2xx and did NOT land back on the
+    canonical host.
+
+    ⚠️ NOT "without redirecting", which is what this docstring said until a
+    writer checked it against the engine. `crawler.py` scores
+    `www_canonicalized = landed == host.lower()`, and it carries a comment
+    recording that "without redirecting" was hardcoded there once and was
+    FALSE: a university's apex 302s to a THIRD hostname — `web.` rather than
+    `www.` — serving byte-identical content. The duplicate is real and a reader
+    who curls the apex sees a 302 and stops believing the finding. Measured
+    2026-08-13, fixed in the engine, and reintroduced here a month later by me
+    in this docstring. The bucket therefore CONTAINS hosts that redirected —
+    just not back to the canonical host.
+    """
     return _w()["both_serve"]
 
 
@@ -188,6 +201,13 @@ def www_redirects() -> int:
 
 def www_other_answered() -> int:
     return _w()["other_answered_2xx"]
+
+
+def www_erroneous_first_run_pct() -> float:
+    """What the FIRST, BROKEN run reported — kept so a page can cite the error
+    without typing it. Not a measurement of anything real; see the dataset's
+    erroneous_first_run_note and why_the_origin_step_matters."""
+    return _w()["erroneous_first_run_pct_both_of_sample"]
 
 
 def www_pct_of_sample() -> float:
