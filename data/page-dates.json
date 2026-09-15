@@ -36,6 +36,7 @@
     "index": "2026-08-06",
     "index/ai-directives": "2026-08-07",
     "learn": "2026-08-06",
+    "learn/ai-crawlers-and-sitemaps": "2026-09-15",
     "learn/ai-search-visibility": "2026-08-06",
     "learn/ai-substitution": "2026-08-07",
     "learn/audit-tool-accuracy": "2026-08-07",
@@ -71,6 +72,6 @@
     "vs/sitebulb-alternative": "2026-08-06"
   },
   "uncommitted": [
-    "learn/does-noindex-stop-ai-crawlers"
+    "learn/ai-crawlers-and-sitemaps"
   ]
 }
