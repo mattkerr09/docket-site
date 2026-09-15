@@ -6,7 +6,7 @@
 <title>How to redirect http:// to https:// — and when it won't</title>
 <meta name="description" content="A 301 from http:// to https://, host by host — plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="f80d0cab7cd4">
+<meta name="build-id" content="08d9575de6a8">
 <link rel="canonical" href="https://docketseo.app/how-to/redirect-http-to-https/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -792,6 +792,10 @@ the insecure request being made at all: once a browser has seen the header, it g
 HTTPS for that domain without asking. Add it after the redirect works, never before — the
 header tells browsers to refuse plain HTTP for your domain for its whole
 <code>max-age</code>, and if HTTPS is broken when they act on that, they cannot fall back.</p>
+
+<p>HSTS is one of a small set of headers a crawler or a browser acts on rather than merely
+records; the rest are on <a href="/how-to/fix-missing-security-headers/">fixing missing security
+headers</a>, which separates the ones that change behaviour from the ones that only reassure.</p>
 
 <p>Start with a short <code>max-age</code>, confirm nothing broke, then raise it. Treat
 <code>preload</code> as close to irreversible: removal from the browser preload lists takes
