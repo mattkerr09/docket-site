@@ -728,6 +728,8 @@ article{padding:2.8rem 0 4.5rem}
    checker both see. The homepage accents are safe because they are an <em>
    INSIDE a heading that keeps its own colour; a title has no such half, so the
    choice there is all-or-nothing, and all is wrong. */
+.byline{font-size:.86rem;color:var(--muted);margin:-.4rem 0 1.6rem;line-height:1.5}
+.byline .sep{opacity:.5;padding:0 .35em}
 h1{font-size:2.3rem;font-weight:600;line-height:1.14;letter-spacing:-.03em;margin-bottom:1rem;
   color:var(--text)}
 h2{font-size:var(--t-2xl);letter-spacing:-.02em;font-weight:600;margin:2.6rem 0 .9rem}
@@ -1418,6 +1420,39 @@ def page_sources() -> dict[str, str]:
     return dict(_PAGE_SOURCE)
 
 
+def _byline(published: str | None, modified: str | None) -> str:
+    """The visible byline: who wrote it, when it first shipped, when it changed.
+
+    ⚠️ WHY THIS EXISTS. Every page carried `author` and `datePublished` in the
+    Article schema and showed NEITHER to a reader — 0 of 67 pages had a visible
+    date anywhere outside the body prose. A machine-readable date a human cannot
+    see is a claim made only to crawlers, and the thing a reader uses to judge
+    whether a page about a moving subject is still current was missing.
+
+    ⚠️ "UPDATED" APPEARS ONLY WHEN A HUMAN SUPPLIED `modified`. This obeys the
+    same rule as the schema field beside it: a `dateModified` nobody supplied is
+    a claim nobody checked, and 41 pages once emitted one equal to their
+    `datePublished` from a default. The published date is the page's first ship;
+    the updated date moves only when the content does. A page that has not
+    changed says so by saying nothing.
+    """
+    if not published:
+        return ""
+    out = f'<p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="{published}">{_human_date(published)}</time>'
+    if modified and modified != published:
+        out += f'<span class="sep">·</span>Updated <time datetime="{modified}">{_human_date(modified)}</time>'
+    return out + "</p>"
+
+
+def _human_date(iso: str) -> str:
+    """`2026-09-15` -> `15 September 2026`; anything unparseable is returned as-is."""
+    import datetime as _dt
+    try:
+        return _dt.date.fromisoformat(iso).strftime("%-d %B %Y")
+    except ValueError:
+        return iso
+
+
 def render(
     *,
     cat: str,
@@ -1562,7 +1597,8 @@ def render(
     else:
         body_class = ""
         opening = (f'<article><div class="{wrap_class}">'
-                   f'<div class="crumb">{crumb}</div><h1>{h1}</h1>')
+                   f'<div class="crumb">{crumb}</div><h1>{h1}</h1>'
+                   + _byline(published, modified))
         closing = "</div></article>"
 
     html = f"""<!DOCTYPE html>
