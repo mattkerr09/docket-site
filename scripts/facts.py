@@ -169,6 +169,19 @@ def blocks_googleother() -> int:
     return _d()["blocks_googleother"]
 
 
+def blocks_both_google() -> int:
+    """Files denying BOTH Googlebot and GoogleOther."""
+    return _d()["blocks_both_google"]
+
+
+def blocks_googleother_only() -> int:
+    return _d()["blocks_googleother_only"]
+
+
+def blocks_googlebot_only() -> int:
+    return _d()["blocks_googlebot_only"]
+
+
 def pop_unreachable() -> int:
     return _d()["pop_unreachable"]
 

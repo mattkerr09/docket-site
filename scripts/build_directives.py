@@ -289,6 +289,17 @@ def build() -> Path:
         "blocks_googleother": sum(1 for r in recs
                                   if r.get("state") == "ok"
                                   and (r.get("access") or {}).get("GoogleOther") is False),
+        # The two Google tokens are separate decisions, and the split is the
+        # evidence for saying so: most files denying Googlebot also deny
+        # GoogleOther, but far more deny GoogleOther alone than Googlebot alone.
+        "blocks_both_google": sum(1 for r in recs if r.get("state") == "ok"
+                                  and (r.get("access") or {}).get("Googlebot") is False and (r.get("access") or {}).get("GoogleOther") is False),
+        "blocks_googleother_only": sum(1 for r in recs if r.get("state") == "ok"
+                                       and (r.get("access") or {}).get("GoogleOther") is False
+                                       and not (r.get("access") or {}).get("Googlebot") is False),
+        "blocks_googlebot_only": sum(1 for r in recs if r.get("state") == "ok"
+                                     and (r.get("access") or {}).get("Googlebot") is False
+                                     and not (r.get("access") or {}).get("GoogleOther") is False),
         "pop_unreachable": sum(1 for r in recs if r.get("state") == "unreachable"),
         "pop_no_robots": sum(1 for r in recs if r.get("state") == "no_robots"),
         # ⚠️ THE COLLECTOR'S SIZE THRESHOLD IS NOT IN THIS REPO. These hosts were
