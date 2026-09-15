@@ -728,7 +728,7 @@ article{padding:2.8rem 0 4.5rem}
    checker both see. The homepage accents are safe because they are an <em>
    INSIDE a heading that keeps its own colour; a title has no such half, so the
    choice there is all-or-nothing, and all is wrong. */
-.byline{font-size:.86rem;color:var(--muted);margin:-.4rem 0 1.6rem;line-height:1.5}
+.byline{font-size:.86rem;color:var(--text-dim);margin:-.4rem 0 1.6rem;line-height:1.5}
 .byline .sep{opacity:.5;padding:0 .35em}
 h1{font-size:2.3rem;font-weight:600;line-height:1.14;letter-spacing:-.03em;margin-bottom:1rem;
   color:var(--text)}
