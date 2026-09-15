@@ -239,6 +239,69 @@ def www_other_absent() -> int:
     return _w()["other_does_not_resolve"]
 
 
+# -- internal UTM links, measured 2026-09-15 ---------------------------------
+#
+# ⚠️ A SMALL, STATED SAMPLE, AND ONE FIGURE IN IT IS A CEILING. `pages_affected`
+# is bounded by the 25-page crawl limit: a host showing 25 means every page we
+# looked at carried such a link, NOT that the site has 25 pages. Those hosts are
+# a lower bound and the share of their site affected is unmeasured. Any page
+# using these must say so.
+
+def _u() -> dict:
+    import json as _j
+    from pathlib import Path as _P
+    return _j.loads((_P(__file__).resolve().parent.parent
+                     / "data" / "utm-internal-2026-09.json").read_text())
+
+
+def utm_sample() -> int:
+    return _u()["sample"]
+
+
+def utm_crawled_ok() -> int:
+    return _u()["crawled_ok"]
+
+
+def utm_hosts() -> int:
+    """Hosts emitting at least one internal link carrying UTM parameters."""
+    return _u()["hosts_with_internal_utm"]
+
+
+def utm_pct_hosts() -> float:
+    return _u()["pct_hosts"]
+
+
+def utm_links_total() -> int:
+    return _u()["links_total"]
+
+
+def utm_links_median() -> float:
+    return _u()["links_median"]
+
+
+def utm_links_max() -> int:
+    return _u()["links_max"]
+
+
+def utm_pages_affected() -> list:
+    """Per affected host, pages carrying such a link. ⚠️ CEILING-BOUNDED."""
+    return _u()["pages_affected_sorted"]
+
+
+def utm_hosts_at_cap() -> int:
+    """Affected hosts where EVERY crawled page carried one — a lower bound."""
+    return _u()["hosts_at_page_cap"]
+
+
+def utm_hosts_isolated() -> int:
+    """Affected hosts where four pages or fewer carried one."""
+    return _u()["hosts_isolated_4_or_fewer"]
+
+
+def utm_page_cap() -> int:
+    return _u()["pages_per_site"]
+
+
 def blocks_googlebot() -> int:
     """Readable robots.txt files that disallow Googlebot itself.
 

@@ -1,0 +1,28 @@
+{
+  "measured": "2026-09-15",
+  "what": "Internal links carrying UTM campaign parameters, across a random Tranco sample",
+  "method": "Docket audited 40 hosts drawn with seed 20260915 from the Tranco top 10,000, at most 25 pages each, with its own identified user-agent and its own backoff. Ordinary crawling at the scale a customer runs. A host counts when mar.internal_utm fires, which is when any indexable page emits a link to the same site carrying UTM parameters (seo_engine/checks/martech.py). Every host crawled successfully.",
+  "ceiling_warning": "pages_affected is bounded by the 25-page crawl limit. A host showing 25 means every page we looked at carried such a link, NOT that the site has that many pages. Those hosts are a lower bound, and the share of their site affected is unmeasured.",
+  "not_measured": "Whether any analytics tool actually re-attributed a session. This counts what the HTML emits. The consequence in GA4 is documented behaviour, not something this survey observed.",
+  "sample": 40,
+  "seed": 20260915,
+  "pages_per_site": 25,
+  "crawled_ok": 40,
+  "hosts_with_internal_utm": 6,
+  "pct_hosts": 15.0,
+  "links_total": 177,
+  "links_median": 17.5,
+  "links_min": 1,
+  "links_max": 91,
+  "pages_affected_sorted": [
+    1,
+    1,
+    4,
+    24,
+    25,
+    25
+  ],
+  "hosts_at_page_cap": 2,
+  "hosts_isolated_4_or_fewer": 3,
+  "hosts_withheld_because": "Publishing a named site's misconfiguration to sell a tool is not a trade this project makes."
+}
