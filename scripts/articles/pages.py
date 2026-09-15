@@ -714,7 +714,13 @@ weighting changes. Gate on severities, which are defined per check and do not dr
 
 <p><strong>Do not run it against production on every push.</strong> Point it at staging. Docket
 backs off on 429 and 503 rather than hammering, but a crawl on every commit is still traffic
-your own analytics has to explain.</p>
+your own analytics has to explain — and if you are not sure your tracking is on every page in the
+first place, that is <a href="/learn/marketing-tag-audit/">its own audit</a>.</p>
+
+<p><strong>Do not assume the headers survived the deploy.</strong> Response headers are set by the
+host, the CDN or the framework, and a platform change quietly rewrites them. Docket reads what was
+actually served: <a href="/how-to/fix-missing-security-headers/">which headers matter to a crawler</a>
+and which are for your users.</p>
 
 <p><strong>Do not turn on <code>--render</code> and leave it.</strong> Rendering runs each page
 through WebKit and it is much slower than the numbers above, which were measured without it.
@@ -820,6 +826,12 @@ cannot fail a check, and counting it as a pass would flatter these numbers.</p>
 retailers with teams, so this is the easy case rather than a random sample of the web — but it
 is worth saying plainly that the standard pitch, that your product markup is quietly broken,
 did not survive contact with ten real shops.</p>
+
+<p>One thing we did not count in this sample, and which costs a shop more than a schema warning
+usually does: a product shared into a chat or a feed with no Open Graph tags arrives as a bare link
+with no image. It is not in the table above because we did not measure it here —
+<a href="/how-to/fix-missing-open-graph-tags/">why a shared link shows no image</a> covers what to
+check.</p>
 
 <h2>The one that carries real risk</h2>
 
@@ -1130,6 +1142,11 @@ The duplicate check works inside a single crawl and not across two, and saying o
 describe a feature that does not exist. What you get is every title and description in one
 place per host, which is enough to see the collisions in a few minutes — and the docs run
 usually turns up auto-generated API pages nobody meant to index.</p>
+
+<p>If either host serves more than one language, the declaration that catches people out is not
+<code>hreflang</code> but the <code>html lang</code> attribute beside it — they answer different
+questions and only one of them is usually wrong.
+<a href="/how-to/fix-lang-attribute-mismatch/">Which one you have</a>.</p>
 
 <h2>What this will not do</h2>
 

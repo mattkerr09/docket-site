@@ -906,7 +906,8 @@ not run at all.</p>
 no licence check and no telemetry, and keeps everything under <code>~/.docket</code>.
 {FREE_CLAUSE}. It earns that money against a free tool from Google in
 one situation only: when the question has stopped being how fast is this page and become which
-of forty things do I do first.</p>
+of forty things do I do first. If you are not at that point yet, the honest answer is to stay free:
+<a href="/best/free-seo-audit-tools/">the best free SEO audit tools, and when to stop</a>.</p>
 {_verified_note("lighthouse")}
 {CTA}"""
 

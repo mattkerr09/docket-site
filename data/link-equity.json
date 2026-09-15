@@ -1,51 +1,51 @@
 {
   "site": "docketseo.app",
   "pages": 70,
-  "edges": 1482,
+  "edges": 1489,
   "average_share_pct": 1.43,
   "below_half": 50,
   "nodes": [
     {
       "path": "/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/about/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/best/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/best/free-seo-audit-tools/",
-      "inlinks": 1,
-      "share_pct": 0.07,
-      "index": 0.05
+      "inlinks": 3,
+      "share_pct": 0.2,
+      "index": 0.14
     },
     {
       "path": "/contact/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/download/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/for/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/for/agencies/",
@@ -80,8 +80,8 @@
     {
       "path": "/how-to/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/how-to/audit-your-site-from-an-ai-assistant/",
@@ -104,8 +104,8 @@
     {
       "path": "/how-to/fix-ai-crawler-access/",
       "inlinks": 9,
-      "share_pct": 0.61,
-      "index": 0.43
+      "share_pct": 0.6,
+      "index": 0.42
     },
     {
       "path": "/how-to/fix-ai-crawlers-blocked-by-your-cdn/",
@@ -133,9 +133,9 @@
     },
     {
       "path": "/how-to/fix-lang-attribute-mismatch/",
-      "inlinks": 2,
-      "share_pct": 0.13,
-      "index": 0.09
+      "inlinks": 4,
+      "share_pct": 0.27,
+      "index": 0.19
     },
     {
       "path": "/how-to/fix-layout-shift/",
@@ -145,15 +145,15 @@
     },
     {
       "path": "/how-to/fix-missing-open-graph-tags/",
-      "inlinks": 3,
-      "share_pct": 0.2,
-      "index": 0.14
+      "inlinks": 4,
+      "share_pct": 0.27,
+      "index": 0.19
     },
     {
       "path": "/how-to/fix-missing-security-headers/",
-      "inlinks": 3,
-      "share_pct": 0.2,
-      "index": 0.14
+      "inlinks": 4,
+      "share_pct": 0.27,
+      "index": 0.19
     },
     {
       "path": "/how-to/fix-soft-404s/",
@@ -200,8 +200,8 @@
     {
       "path": "/index/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/index/ai-directives/",
@@ -212,8 +212,8 @@
     {
       "path": "/learn/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/learn/ai-crawlers-and-sitemaps/",
@@ -224,8 +224,8 @@
     {
       "path": "/learn/ai-search-visibility/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/learn/ai-substitution/",
@@ -307,9 +307,9 @@
     },
     {
       "path": "/learn/marketing-tag-audit/",
-      "inlinks": 3,
-      "share_pct": 0.2,
-      "index": 0.14
+      "inlinks": 4,
+      "share_pct": 0.27,
+      "index": 0.19
     },
     {
       "path": "/learn/sameas-entity-signals/",
@@ -320,8 +320,8 @@
     {
       "path": "/learn/seo-audit/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/learn/site-monitoring/",
@@ -332,8 +332,8 @@
     {
       "path": "/learn/what-docket-checks/",
       "inlinks": 69,
-      "share_pct": 4.66,
-      "index": 3.26
+      "share_pct": 4.63,
+      "index": 3.24
     },
     {
       "path": "/learn/what-scout-checks/",
@@ -350,20 +350,20 @@
     {
       "path": "/legal/privacy/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/legal/refunds/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/legal/terms/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/thank-you/",
@@ -374,14 +374,14 @@
     {
       "path": "/vs/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/vs/ahrefs-site-audit-alternative/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/vs/google-search-console/",
@@ -398,8 +398,8 @@
     {
       "path": "/vs/screaming-frog-alternative/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/vs/scrutiny-alternative/",
@@ -416,14 +416,14 @@
     {
       "path": "/vs/semrush-site-audit-alternative/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     },
     {
       "path": "/vs/sitebulb-alternative/",
       "inlinks": 68,
-      "share_pct": 4.59,
-      "index": 3.21
+      "share_pct": 4.57,
+      "index": 3.2
     }
   ],
   "measured": "2026-09-15"

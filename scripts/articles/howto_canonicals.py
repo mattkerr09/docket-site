@@ -92,6 +92,12 @@ page is now telling search engines not to index it.</p>
 If you want the concept rather than the fix list,
 <a href="/learn/canonical-tags/">what a canonical tag actually does</a> explains it.</p>
 
+<p>One neighbouring case is worth separating out, because it looks like a canonical problem and is
+not. Translations of a page are not duplicates to consolidate: they are alternates, and the tags
+that describe them are <code>hreflang</code> and <code>html lang</code>, which answer different
+questions and are routinely confused for each other.
+<a href="/how-to/fix-lang-attribute-mismatch/">Which one you have</a>.</p>
+
 <h2>Why a crawler finds these and a page check does not</h2>
 
 <p>Four of the five need context beyond the page itself: whether the target is

@@ -127,6 +127,10 @@ response to that is to publish the ones we find and make them fail the build. Ev
 this article is written up in the code that fixes it, with the site it happened to, and
 {F.regression_files()} of the {F.test_files()} test files exist for no other reason.</p>
 
+<p>The same scepticism applies before you pay for anything at all. Several free tools answer a
+narrow question well, and the useful judgement is knowing which question each one answers and where
+it stops: <a href="/best/free-seo-audit-tools/">the best free SEO audit tools, and when to stop</a>.</p>
+
 <h2>The version of this that matters most</h2>
 
 <p>All of it gets more expensive the moment an audit is automated. Docket's CLI exits non-zero

@@ -6,7 +6,7 @@
 <title>SEO checks in your deploy pipeline: Docket's CLI as a gate</title>
 <meta name="description" content="Docket's CLI exits 2 on a critical finding, so it gates a deploy in one line. 25 pages in a median 24.9s across 6 sites. Apple Silicon only.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="f79990630495">
+<meta name="build-id" content="a8418b0697ad">
 <link rel="canonical" href="https://docketseo.app/for/developers/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -892,7 +892,13 @@ weighting changes. Gate on severities, which are defined per check and do not dr
 
 <p><strong>Do not run it against production on every push.</strong> Point it at staging. Docket
 backs off on 429 and 503 rather than hammering, but a crawl on every commit is still traffic
-your own analytics has to explain.</p>
+your own analytics has to explain — and if you are not sure your tracking is on every page in the
+first place, that is <a href="/learn/marketing-tag-audit/">its own audit</a>.</p>
+
+<p><strong>Do not assume the headers survived the deploy.</strong> Response headers are set by the
+host, the CDN or the framework, and a platform change quietly rewrites them. Docket reads what was
+actually served: <a href="/how-to/fix-missing-security-headers/">which headers matter to a crawler</a>
+and which are for your users.</p>
 
 <p><strong>Do not turn on <code>--render</code> and leave it.</strong> Rendering runs each page
 through WebKit and it is much slower than the numbers above, which were measured without it.
