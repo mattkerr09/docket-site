@@ -44,6 +44,7 @@
     "learn/conversion-audit": "2026-08-14",
     "learn/dead-contact-address": "2026-08-07",
     "learn/does-cloudflare-block-gptbot": "2026-09-15",
+    "learn/does-noindex-stop-ai-crawlers": "2026-09-15",
     "learn/domain-authority-without-a-subscription": "2026-08-14",
     "learn/googlebot-2mb-limit": "2026-08-07",
     "learn/internal-link-equity": "2026-08-06",
@@ -70,6 +71,6 @@
     "vs/sitebulb-alternative": "2026-08-06"
   },
   "uncommitted": [
-    "learn/does-cloudflare-block-gptbot"
+    "learn/does-noindex-stop-ai-crawlers"
   ]
 }
