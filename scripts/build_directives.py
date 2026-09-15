@@ -279,6 +279,23 @@ def build() -> Path:
         # Sitemap: line; the collector is not in this repo, so the meaning was
         # checked against 8 live files (7 agreed, 1 unreachable) rather than
         # assumed.
+        # ⚠️ GOOGLEBOT, NOT AN AI CRAWLER — and counted over the same readable
+        # set as everything else. `oversize` and `unreachable` hosts are NOT in
+        # this denominator; see the population keys below, which exist so a page
+        # cannot quote a share without being able to state what it is a share of.
+        "blocks_googlebot": sum(1 for r in recs
+                                if r.get("state") == "ok"
+                                and (r.get("access") or {}).get("Googlebot") is False),
+        "blocks_googleother": sum(1 for r in recs
+                                  if r.get("state") == "ok"
+                                  and (r.get("access") or {}).get("GoogleOther") is False),
+        "pop_unreachable": sum(1 for r in recs if r.get("state") == "unreachable"),
+        "pop_no_robots": sum(1 for r in recs if r.get("state") == "no_robots"),
+        # ⚠️ THE COLLECTOR'S SIZE THRESHOLD IS NOT IN THIS REPO. These hosts were
+        # dropped BEFORE the readable set, so no size statistic computed over
+        # `ok` records can speak for them, and no page may claim large files are
+        # a non-problem on the strength of the readable maximum alone.
+        "pop_oversize": sum(1 for r in recs if r.get("state") == "oversize"),
         "sites_with_sitemap": sum(1 for h in hosts if h["sm"]),
         "pct_sitemap": round(100 * sum(1 for h in hosts if h["sm"]) / n, 1),
         "blocks_any_with_sitemap": sum(1 for h in any_ai if h["sm"]),

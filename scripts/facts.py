@@ -155,6 +155,37 @@ def _d() -> dict:
 # crawler and withhold it from another. These accessors describe what the FILE
 # expresses. None of them says a blocked crawler fetched anything.
 
+def blocks_googlebot() -> int:
+    """Readable robots.txt files that disallow Googlebot itself.
+
+    ⚠️ This is a count of what files EXPRESS. It is not a count of mistakes:
+    nothing in the data says whether a given site meant it, and a page built on
+    this number must not imply one way or the other.
+    """
+    return _d()["blocks_googlebot"]
+
+
+def blocks_googleother() -> int:
+    return _d()["blocks_googleother"]
+
+
+def pop_unreachable() -> int:
+    return _d()["pop_unreachable"]
+
+
+def pop_no_robots() -> int:
+    return _d()["pop_no_robots"]
+
+
+def pop_oversize() -> int:
+    """Hosts whose robots.txt was too large for the collector to parse.
+
+    ⚠️ Dropped BEFORE the readable set, on a threshold that is not in this repo.
+    Any claim about robots.txt file sizes has to disclose this bucket.
+    """
+    return _d()["pop_oversize"]
+
+
 def directives_sitemap_sites() -> int:
     """Readable robots.txt files carrying a Sitemap: line."""
     return _d()["sites_with_sitemap"]
