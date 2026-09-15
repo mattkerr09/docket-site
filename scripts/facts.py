@@ -150,6 +150,38 @@ def _d() -> dict:
     return directives()["summary"]
 
 
+# ⚠️ A Sitemap: line is a NON-GROUP record — RFC 9309 §2.2.4 keeps it outside
+# the User-agent group mechanism, so a robots.txt cannot offer a sitemap to one
+# crawler and withhold it from another. These accessors describe what the FILE
+# expresses. None of them says a blocked crawler fetched anything.
+
+def directives_sitemap_sites() -> int:
+    """Readable robots.txt files carrying a Sitemap: line."""
+    return _d()["sites_with_sitemap"]
+
+
+def directives_sitemap_pct() -> float:
+    return _d()["pct_sitemap"]
+
+
+def blocks_any_with_sitemap() -> int:
+    """Sites blocking at least one of the nine AI crawlers that still publish
+    a Sitemap: line. The nine are the same set /index/ai-directives/ uses."""
+    return _d()["blocks_any_with_sitemap"]
+
+
+def pct_blocks_any_with_sitemap() -> float:
+    return _d()["pct_blocks_any_with_sitemap"]
+
+
+def blocks_citation_with_sitemap() -> int:
+    return _d()["blocks_citation_with_sitemap"]
+
+
+def pct_blocks_citation_with_sitemap() -> float:
+    return _d()["pct_blocks_citation_with_sitemap"]
+
+
 def directives_hosts() -> int:
     return _d()["parseable_robots"]
 

@@ -380,6 +380,20 @@ def check(name: str, width: int, r: dict) -> list[str]:
     #    container caps — at 375 and
     #    1280 every paragraph is already bounded by `.wrap`, which is why two
     #    widths saw nothing and 1600 found it.
+    # ⚠️ ABSENT IS NOT ZERO. The probe always emits `widestProsePx`, and a
+    # legitimate 0 means "no <p> carries 120+ characters, so there is nothing
+    # to judge". A MISSING key means the probe did not report it at all — a
+    # partial render or a probe that has drifted from this reader. `or 0`
+    # rendered those two as the same thing, and the second one passed
+    # silently, because 0 is comfortably under every limit. A failed
+    # measurement that defaults to a plausible-looking FAILURE gets
+    # investigated; one that defaults to a plausible-looking SUCCESS does not.
+    # `contrastExamined` below already fails loudly on an absent key; this is
+    # the same rule applied to the same payload.
+    if "widestProsePx" not in r:
+        bad.append(f"{name}: the probe reported no widestProsePx at all — "
+                   f"prose width was NOT measured here, so this render proves "
+                   f"nothing about line length")
     prose = r.get("widestProsePx") or 0
     if prose > MAX_PROSE_PX:
         bad.append(f"{name}: a paragraph is {prose}px wide "

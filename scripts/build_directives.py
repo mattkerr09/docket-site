@@ -270,6 +270,23 @@ def build() -> Path:
         "pct_provably_broken_of_ai": round(100 * sites_prov / sites_ai, 1),
         "pct_ai_directive": round(100 * sites_ai / n, 1),
         "pct_dead_of_ai": round(100 * sites_dead / sites_ai, 1),
+        # ⚠️ A Sitemap: line is a NON-GROUP record. RFC 9309 §2.2.4 puts it
+        # outside the User-agent group mechanism ("a 'Sitemaps' record MUST NOT
+        # terminate a group"), so a file cannot offer a sitemap to one crawler
+        # and withhold it from another. These counts are therefore about what
+        # the FILE expresses, not about what any crawler fetched.
+        # `has_sitemap` in the raw survey means the robots.txt carried a
+        # Sitemap: line; the collector is not in this repo, so the meaning was
+        # checked against 8 live files (7 agreed, 1 unreachable) rather than
+        # assumed.
+        "sites_with_sitemap": sum(1 for h in hosts if h["sm"]),
+        "pct_sitemap": round(100 * sum(1 for h in hosts if h["sm"]) / n, 1),
+        "blocks_any_with_sitemap": sum(1 for h in any_ai if h["sm"]),
+        "pct_blocks_any_with_sitemap": round(
+            100 * sum(1 for h in any_ai if h["sm"]) / len(any_ai), 1),
+        "blocks_citation_with_sitemap": sum(1 for h in any_cit if h["sm"]),
+        "pct_blocks_citation_with_sitemap": round(
+            100 * sum(1 for h in any_cit if h["sm"]) / len(any_cit), 1),
         "blocks_citation": len(any_cit),
         "blocks_training": len(any_tr),
         "blocks_any": len(any_ai),
