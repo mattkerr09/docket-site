@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brand consistency: the question no SEO crawler asks</title>
-<meta name="description" content="Of 11 company sites linking social profiles, 9 declared none in schema. What a brand consistency audit checks, and where design tools do it better.">
+<title>noindex does not stop AI crawlers – robots.txt does</title>
+<meta name="description" content="noindex tells indexers not to list a page; it cannot stop a crawler fetching it. What robots.txt and your server control instead, and which layer is refusing yours.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="a0a17361ff1e">
-<link rel="canonical" href="https://docketseo.app/learn/brand-consistency/">
+<link rel="canonical" href="https://docketseo.app/learn/does-noindex-stop-ai-crawlers/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Brand consistency: the question no crawler asks">
-<meta property="og:description" content="Of 11 company sites linking social profiles, 9 declared none in schema. What a brand consistency audit checks, and where design tools do it better.">
-<meta property="og:url" content="https://docketseo.app/learn/brand-consistency/">
+<meta property="og:title" content="Does noindex stop AI crawlers?">
+<meta property="og:description" content="noindex tells indexers not to list a page; it cannot stop a crawler fetching it. What robots.txt and your server control instead, and which layer is refusing yours.">
+<meta property="og:url" content="https://docketseo.app/learn/does-noindex-stop-ai-crawlers/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Brand consistency: the question no crawler asks">
-<meta name="twitter:description" content="Of 11 company sites linking social profiles, 9 declared none in schema. What a brand consistency audit checks, and where design tools do it better.">
+<meta name="twitter:title" content="Does noindex stop AI crawlers?">
+<meta name="twitter:description" content="noindex tells indexers not to list a page; it cannot stop a crawler fetching it. What robots.txt and your server control instead, and which layer is refusing yours.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -675,8 +675,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 97 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"97 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Brand consistency: the question no crawler asks","description":"Of 11 company sites linking social profiles, 9 declared none in schema. What a brand consistency audit checks, and where design tools do it better.","datePublished":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/brand-consistency/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a brand consistency audit?","acceptedAnswer":{"@type":"Answer","text":"A check of whether a site presents one company rather than several: the same name in its titles, its Organization schema, its og:site_name and its logo alt text; a consistent claim about what the business does; and social profiles declared in schema rather than only linked in the footer. It is a different question from whether a crawler can read the page, which is what SEO tools normally check."}},{"@type":"Question","name":"What is sameAs in schema markup?","acceptedAnswer":{"@type":"Answer","text":"A property of Organization schema listing the other places on the web that are the same entity — your LinkedIn, Instagram, Wikipedia entry. It is how a search engine knows those accounts and your website are one organisation, and it is an input to knowledge panels. Linking a profile in your footer tells a human; sameAs tells the machine."}},{"@type":"Question","name":"Do SEO tools check brand consistency?","acceptedAnswer":{"@type":"Answer","text":"Crawlers generally do not — they answer whether a machine can read and index the page. Docket runs six brand checks as one of its lanes. If typography and colour governance is your real problem, though, a design-system tool reads your tokens directly and will beat any crawler at it."}},{"@type":"Question","name":"Why does my audit say typefaces were not measured?","acceptedAnswer":{"@type":"Answer","text":"Docket fetches the stylesheets your pages link, so this is now uncommon. It happens when the sheets could not be fetched, or when you ran with --offline, which deliberately makes no third-party calls and so skips styles served from an asset domain. The notice says which, and exists so a silent check is not mistaken for a clean one — it is a gap in the tool, not a finding about you."}},{"@type":"Question","name":"What is brand colour drift?","acceptedAnswer":{"@type":"Answer","text":"Two colours close enough that nobody could tell them apart, defined separately in your CSS — #005fcc and #0066cc, say. It happens when a value is copied and nudged rather than referenced from a shared custom property, and it compounds. Palette size is not the issue: a design system legitimately defines hundreds of values, and two of them being the same colour is still a mistake."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Does noindex stop AI crawlers?","description":"noindex tells indexers not to list a page; it cannot stop a crawler fetching it. What robots.txt and your server control instead, and which layer is refusing yours.","datePublished":"2026-09-15","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/does-noindex-stop-ai-crawlers/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does noindex stop AI crawlers?","acceptedAnswer":{"@type":"Answer","text":"No. A noindex directive is carried inside the response — either as a robots meta element or an X-Robots-Tag header — so the crawler has already requested and received the page by the time it can read the tag. noindex governs whether a search engine shows the page in results, not whether anything may fetch it."}},{"@type":"Question","name":"What does stop an AI crawler, then?","acceptedAnswer":{"@type":"Answer","text":"Two layers. A Disallow rule in robots.txt against that crawler's user-agent token stops crawlers that choose to comply, before they request anything. Your server or CDN stops everything, because the refusal is issued rather than requested. robots.txt is a published request; the server is the only enforcement."}},{"@type":"Question","name":"If I block a crawler in robots.txt, will it still see my noindex?","acceptedAnswer":{"@type":"Answer","text":"No, and that is the trap in stacking the two. A compliant crawler does not fetch a disallowed URL, so it never reads the noindex on it. Blocking access prevents a suppression instruction from being delivered rather than delivering one."}},{"@type":"Question","name":"Does blocking GPTBot keep me out of AI answers?","acceptedAnswer":{"@type":"Answer","text":"Not by itself. GPTBot is the training crawler; OAI-SearchBot builds the search index that decides whether you can be cited, and ChatGPT-User fetches a page live when somebody asks about it. Refusing training while admitting search is a coherent position, though the survey suggests it is rarely the one taken: of 425 sites refusing OAI-SearchBot, 414 (97.4%) refuse GPTBot too, and only 11 gave up search while permitting training."}},{"@type":"Question","name":"My robots.txt allows AI crawlers. Is that the whole answer?","acceptedAnswer":{"@type":"Answer","text":"No. In Docket's August 2026 survey of the Tranco top 10,000, 643 hosts (6.43%) refused a self-identifying bot outright — 401, 403, 406, 429 or 503 — before any robots rule could apply, and 4.73% of hosts whose robots.txt explicitly permitted a fetch of /llms.txt were then denied it by the server. Test the server, not the file."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -708,134 +708,148 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Brand consistency</div><h1>Brand consistency: the question no crawler asks</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-07">7 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / noindex and AI crawlers</div><h1>Does noindex stop AI crawlers?</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time></p>
 
-<p class="lede">A crawler asks whether a machine can read your page. None of them ask whether
-a person moving between your pages sees the same company each time — which is the question a
-brand owner actually has, and it falls straight down the gap between the SEO tool and the
-design review. Docket has a whole lane for it, and on
-<strong>9 of 11</strong> real company sites
-we measured, the machine-readable version of "this is us" was simply missing.</p>
+<div class="callout">
+<div class="callout-title">Quick answer</div>
+<p><strong>No.</strong> <code>noindex</code> speaks to search <em>indexers</em> about whether a page
+may be shown in results. It says nothing about whether the page may be retrieved, and a crawler has
+to retrieve the page before it can read the tag at all.</p>
+<p><strong>Access is a separate control with separate levers.</strong> Whether an AI crawler gets your
+pages is decided by the user-agent tokens in robots.txt — <code>GPTBot</code>, <code>ClaudeBot</code>,
+<code>Google-Extended</code> and the rest — and above that by your server or CDN, which can refuse
+the request before any file or tag is consulted.</p>
+<p><strong>Those two layers disagree more often than anyone expects.</strong> In Docket's
+August 2026 survey of the Tranco top 10,000, <strong>643 hosts
+(6.43%)</strong> turned away a self-identifying bot at the edge, with no tag and no robots rule
+involved.</p>
+</div>
 
-<h2>The finding that is not a matter of taste</h2>
+<h2>What the tag is actually addressed to</h2>
 
-<p>Most brand questions are judgement calls. This one is not: either your
-<code>Organization</code> schema declares your social profiles in <code>sameAs</code> or it
-does not.</p>
+<p>A <code>noindex</code> travels in one of two places: a robots meta element in the HTML, or an
+<code>X-Robots-Tag</code> response header. Both of them arrive <em>inside a response</em>. That single
+structural fact settles the question. The request was made, the server answered it, the bytes were
+transferred, and only then is there a tag for anything to read. Whatever the reader does next, the
+copy has already been taken.</p>
 
-<p>Of 16 sites measured on 2026-08-07,
-11 linked at least one social profile in their footer — the only ones
-that <em>can</em> fail this, since a site linking none cannot fail to declare them. Of those,
-9 declared none of them in schema. That is
-81.8%, and with a denominator of 11 the honest range is
-<strong>52% to 95%</strong> — wide, because eleven is not many. Treat it as
-"most of them", not as a rate.</p>
+<p>For a search engine that honours the directive, what happens next is that the page is withheld from
+the results listing. That is a real and useful effect, and it is the effect the tag was designed for.
+It is also the wrong tool for the worry that brings most people to this question, which is not "will
+this page be listed" but "is this text being ingested".</p>
 
-<p>Why it matters is specific rather than vague. <code>sameAs</code> is how you tell Google
-that the Instagram account, the LinkedIn page and the Wikipedia entry are all the same entity
-as the website. It is a
-<a href="https://developers.google.com/search/docs/appearance/structured-data/organization">documented
-Organization property</a>, and it is one of the inputs to a knowledge panel. Linking a profile
-in your footer says it to a human. Declaring it in schema says it to the machine that decides
-whether you are an entity at all.</p>
+<p>The interaction runs the other way as well, and it is the reason the two controls should never be
+stacked casually. A URL disallowed in robots.txt is not fetched by a compliant crawler, so the
+<code>noindex</code> on it is never seen. Blocking access does not deliver a suppression instruction;
+it prevents one from being delivered. The directive side of this is
+<a href="/how-to/fix-ai-crawler-access/">AI crawler access</a>, and the indexing side sits with
+<a href="/learn/canonical-tags/">canonical tags</a>, which are a hint about duplicates rather than a
+removal instruction.</p>
 
-<p>It is also about ten minutes of work, which is the interesting part: this is not a hard
-problem that companies have weighed and deprioritised. It is a cheap one nobody's tool
-mentioned.</p>
+<h2>Three controls, three different jobs</h2>
 
-<h2>What the lane actually checks</h2>
+<table>
+<thead><tr><th>Control</th><th>Stops indexing</th><th>Stops fetching</th><th>Who has to co-operate</th></tr></thead>
+<tbody>
+<tr><td><code>noindex</code> (meta robots or <code>X-Robots-Tag</code>)</td>
+<td><strong>Yes</strong>, in search engines that honour it</td>
+<td><strong>No.</strong> The page is requested and served in full first</td>
+<td>The indexer, after it already holds your page</td></tr>
+<tr><td><code>Disallow</code> in robots.txt, per user-agent token</td>
+<td><strong>Not directly.</strong> A disallowed URL can still be listed from other signals</td>
+<td><strong>Yes</strong>, for crawlers that comply</td>
+<td>The crawler, voluntarily, before it requests anything</td></tr>
+<tr><td>Your server or CDN</td>
+<td>Only as a side effect — there is nothing to index</td>
+<td><strong>Yes</strong>, for everybody. This is the enforcement layer</td>
+<td>Nobody. The refusal is issued, not requested</td></tr>
+</tbody>
+</table>
 
-<p>Six checks, one of 13 lanes. Each is a counted fact rather than an opinion, because
-"four typefaces across nine pages" is something you can verify and "the typography is
-inconsistent" is something you can only agree or disagree with.</p>
+<p>Read down the "stops fetching" column and the answer to the page's question falls out. The only row
+that governs retrieval by consent is robots.txt; the only row that governs it absolutely is the
+server. The tag is in neither position.</p>
+
+<h2>Which crawler you are refusing matters more than whether you refuse</h2>
+
+<p>Docket's reports sort AI crawlers by the job they do rather than lumping them into one category,
+because the cost of blocking is wildly different across them. On the OpenAI side,
+<code>GPTBot</code> is the training crawler, <code>OAI-SearchBot</code> builds the search index that
+decides whether you can be cited, and <code>ChatGPT-User</code> fetches a page live when somebody asks
+about it. Refusing the first is an editorial position plenty of publishers hold on purpose. Refusing
+the second removes you from answers, which is rarely what anyone sat down intending.</p>
+
+<p>Across the 6,236 hosts in the survey with a parseable robots.txt, <strong>1,371
+block at least one training crawler</strong> and <strong>646 block at least one
+citation crawler</strong>. Two checks in the audit cover the two layers separately —
+<code>ai.crawler_access</code> reads what the directives say, and <code>ai.edge_access</code> asks the
+server what it actually does. Neither of them is a check on your meta tags, because a meta tag is not
+where this is decided.</p>
+
+<h2>The measurement: the edge answers first, and it answers alone</h2>
+
+<p>The survey read robots.txt for the Tranco top 10,000 and, separately, put a request to each
+server as a bot that said who it was. The gap between those two readings is the finding.
+<strong>643 hosts — 6.43% — returned 401, 403, 406, 429 or 503</strong> to that
+request. None of those refusals was produced by a directive or a tag; the connection was closed before
+either could matter.</p>
+
+<p>The same pattern shows up one layer further in. Among hosts whose robots.txt <em>explicitly
+permitted</em> a fetch of <code>/llms.txt</code>, <strong>4.73% were refused the file by
+the server anyway</strong>. A site can publish a permissive robots.txt, leave every page indexable,
+and still be unreachable to the crawlers it meant to welcome. If that is the shape of what you are
+seeing, the diagnosis is on
+<a href="/how-to/fix-ai-crawlers-blocked-by-your-cdn/">when your CDN blocks AI crawlers your robots.txt
+allows</a>, and the platform defaults behind it are on
+<a href="/learn/does-cloudflare-block-gptbot/">Cloudflare and GPTBot</a>.</p>
+
+<h2>One switch, two losses</h2>
+
+<p>The sharper result in the survey is about what people intended. Of the <strong>425</strong>
+sites refusing <code>OAI-SearchBot</code>, <strong>414</strong> refuse <code>GPTBot</code> as well
+— <strong>97.4%</strong>. Only <strong>11</strong> sites in the whole sample gave up
+search while still permitting training.</p>
+
+<p>An overlap that tight is not the residue of many separate judgements. It is the signature of a
+single blanket switch: somebody decided to refuse training, the control they reached for said "AI
+bots", and citation went out with it. Nearly nobody chose that trade, and the ones who did are a
+rounding error. Separating the decision per crawler is the whole of the fix, and it costs nothing but
+attention.</p>
+
+<h2>The limit, stated plainly</h2>
+
+<p>robots.txt has no teeth. It is a published request that well-behaved crawlers choose to honour, and
+a crawler that ignores it faces nothing but its own operator's policy. Anything that must be refused
+rather than asked has to be refused at the server or the CDN — which is exactly why the edge figure
+above is the one worth acting on, and why a robots.txt audit on its own cannot tell you what your site
+does.</p>
+
+<p>The honest counterpart is that the edge is blunt. A rule that turns away an unrecognised user-agent
+turns away the crawlers you wanted along with the ones you did not, and it leaves no trace in any file
+a reader of your site can inspect.</p>
+
+<h2>What to do instead</h2>
 
 <ul>
-<li><strong>Name consistency</strong> — whether your title tags, <code>og:site_name</code>,
-<code>Organization</code> schema and logo alt text call the company the same thing.</li>
-<li><strong>Logo</strong> — whether the logo's alt text names the company.
-2 of the sites we measured had a logo whose alt text did not.</li>
-<li><strong>Typography and colour</strong> — how many typefaces the pages ship, and which
-colours in your CSS are indistinguishable from each other.</li>
-<li><strong>Positioning</strong> — whether the pages make a consistent claim about what the
-company does, or a different one each time.</li>
-<li><strong>Voice</strong> — whether the reading level and sentence length hold steady across
-the site or lurch between pages written years apart.</li>
-<li><strong>Social consistency</strong> — the <code>sameAs</code> finding above.</li>
+<li><strong>Stop treating <code>noindex</code> as an access control.</strong> Use it for what it does:
+keeping a page out of search results. It is not a consent mechanism and was never offered as one.</li>
+<li><strong>Decide per crawler, in robots.txt.</strong> Refusing a training crawler while admitting a
+search crawler is a coherent, statable position. A single category toggle cannot express it — and
+check the names you write, because more than half the files that write an AI rule at all
+<a href="/index/ai-directives/">address a crawler that no longer answers to it</a>.</li>
+<li><strong>Test the server, not the file.</strong> Request the same URL twice from one machine — once
+as an ordinary browser, once as the crawler — and compare. A browser 200 against a crawler 403 is the
+finding, and it is invisible to anything that only reads robots.txt.</li>
+<li><strong>Check that a crawler you admit can read what it gets</strong>, which is a separate failure
+again — see <a href="/learn/javascript-rendering/">JavaScript rendering</a> and
+<a href="/learn/ai-search-visibility/">AI search visibility</a>.</li>
+<li><strong>Look at your own site the way an assistant does</strong>, rather than the way your CMS
+does: <a href="/how-to/audit-your-site-from-an-ai-assistant/">audit your site from an AI
+assistant</a>.</li>
 </ul>
 
-<p>The lane is weighted lightly in the score on purpose. An inconsistent wordmark is a real
-problem and it is not a <code>noindex</code>; it should never dominate a grade.</p>
-
-<h2>Two colours nobody can tell apart</h2>
-
-<p>Docket fetches the stylesheets your pages link, deduplicated across the crawl, and counts
-the typefaces and colours they actually declare. The median site in this sample ships
-3 typefaces; the widest ships 9.</p>
-
-<p>What it reports about colour is not palette size. It used to be — anything over 24 distinct
-values — and that rule died the moment Docket could see real stylesheets, because one very
-well-run site came back with 485. Every shade ramp, every semantic token, every dark-mode
-pair. The old finding claimed a wide palette meant colours were being written as literals
-instead of referenced from a shared set, and the data says the reverse: a centralised design
-system declares <em>more</em> values precisely because it is centralised.</p>
-
-<p>So the count is gone rather than re-tuned, because raising a threshold until the false
-positives stop is fitting the rule to the sample. What Docket reports instead is groups of
-colours no visitor could tell apart, defined separately — <code>#005fcc</code> and
-<code>#0066cc</code> in the same stylesheet. That is what drift actually looks like: a value
-gets copied and nudged rather than referenced, and a year later the brand blue has four
-spellings. It does not care how big your palette is.
-13 of the 16 sites had at least one such group.</p>
-
-<p>Getting that right took two corrections worth repeating, because both produced confident
-nonsense first. Ignoring the alpha channel made every opacity variant of one colour look like
-drift — <code>rgba(0,0,0,.1)</code> is a hairline and <code>rgba(0,0,0,.5)</code> is a scrim,
-and treating them as the same put 49 "near-identical pairs" on a 26-colour palette. And
-grouping colours by chaining — A is close to B, B to C — walked from a pale lavender to a grey
-one indistinguishable step at a time and called them one colour. Every member of a group now
-has to be indistinguishable from every other member.</p>
-
-<h2>Where other tools are better than this</h2>
-
-<p>If typography and colour governance is the actual problem you have, a design-system tool
-beats an SEO crawler at it and it is not close. Figma's published libraries, a token pipeline,
-or a linter running against your own stylesheets all read the source of truth rather than
-inferring it from shipped pages, and they catch a drifting value before it is deployed rather
-than after. Docket is looking at the outside of the building.</p>
-
-<p>Equally, if you want to know what people are <em>saying</em> about your brand, this is the
-wrong category of tool entirely — Docket reads your site and nothing else. It has no mention
-tracking, no share-of-voice, no sentiment.</p>
-
-<p>What is genuinely unusual here is only that a technical SEO audit asks the question at all.
-<a href="/vs/screaming-frog-alternative/">Screaming Frog</a> and
-<a href="/vs/sitebulb-alternative/">Sitebulb</a> are both better crawlers than Docket by several
-measures, and neither will tell you your logo alt text does not name your company.</p>
-
-<h2>The one to fix this afternoon</h2>
-
-<p>Take the social links out of your footer, and put them in your
-<code>Organization</code> schema:</p>
-
-<pre><code>{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Your Company",
-  "url": "https://example.com",
-  "logo": "https://example.com/logo.png",
-  "sameAs": [
-    "https://www.linkedin.com/company/yourcompany",
-    "https://www.instagram.com/yourcompany",
-    "https://en.wikipedia.org/wiki/Your_Company"
-  ]
-}</code></pre>
-
-<p>Then check the alt text on your logo actually says your company's name. Between them that is
-most of an afternoon's worth of the findings above, and both are the kind of thing that stays
-broken for years because no tool was looking.</p>
-
 <p><a class="btn" href="/download/">Download Docket</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is a brand consistency audit?</h3><p>A check of whether a site presents one company rather than several: the same name in its titles, its Organization schema, its og:site_name and its logo alt text; a consistent claim about what the business does; and social profiles declared in schema rather than only linked in the footer. It is a different question from whether a crawler can read the page, which is what SEO tools normally check.</p></div><div class="faq-item"><h3>What is sameAs in schema markup?</h3><p>A property of Organization schema listing the other places on the web that are the same entity — your LinkedIn, Instagram, Wikipedia entry. It is how a search engine knows those accounts and your website are one organisation, and it is an input to knowledge panels. Linking a profile in your footer tells a human; sameAs tells the machine.</p></div><div class="faq-item"><h3>Do SEO tools check brand consistency?</h3><p>Crawlers generally do not — they answer whether a machine can read and index the page. Docket runs six brand checks as one of its lanes. If typography and colour governance is your real problem, though, a design-system tool reads your tokens directly and will beat any crawler at it.</p></div><div class="faq-item"><h3>Why does my audit say typefaces were not measured?</h3><p>Docket fetches the stylesheets your pages link, so this is now uncommon. It happens when the sheets could not be fetched, or when you ran with --offline, which deliberately makes no third-party calls and so skips styles served from an asset domain. The notice says which, and exists so a silent check is not mistaken for a clean one — it is a gap in the tool, not a finding about you.</p></div><div class="faq-item"><h3>What is brand colour drift?</h3><p>Two colours close enough that nobody could tell them apart, defined separately in your CSS — #005fcc and #0066cc, say. It happens when a value is copied and nudged rather than referenced from a shared custom property, and it compounds. Palette size is not the issue: a design system legitimately defines hundreds of values, and two of them being the same colour is still a mistake.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does noindex stop AI crawlers?</h3><p>No. A noindex directive is carried inside the response — either as a robots meta element or an X-Robots-Tag header — so the crawler has already requested and received the page by the time it can read the tag. noindex governs whether a search engine shows the page in results, not whether anything may fetch it.</p></div><div class="faq-item"><h3>What does stop an AI crawler, then?</h3><p>Two layers. A Disallow rule in robots.txt against that crawler's user-agent token stops crawlers that choose to comply, before they request anything. Your server or CDN stops everything, because the refusal is issued rather than requested. robots.txt is a published request; the server is the only enforcement.</p></div><div class="faq-item"><h3>If I block a crawler in robots.txt, will it still see my noindex?</h3><p>No, and that is the trap in stacking the two. A compliant crawler does not fetch a disallowed URL, so it never reads the noindex on it. Blocking access prevents a suppression instruction from being delivered rather than delivering one.</p></div><div class="faq-item"><h3>Does blocking GPTBot keep me out of AI answers?</h3><p>Not by itself. GPTBot is the training crawler; OAI-SearchBot builds the search index that decides whether you can be cited, and ChatGPT-User fetches a page live when somebody asks about it. Refusing training while admitting search is a coherent position, though the survey suggests it is rarely the one taken: of 425 sites refusing OAI-SearchBot, 414 (97.4%) refuse GPTBot too, and only 11 gave up search while permitting training.</p></div><div class="faq-item"><h3>My robots.txt allows AI crawlers. Is that the whole answer?</h3><p>No. In Docket's August 2026 survey of the Tranco top 10,000, 643 hosts (6.43%) refused a self-identifying bot outright — 401, 403, 406, 429 or 503 — before any robots rule could apply, and 4.73% of hosts whose robots.txt explicitly permitted a fetch of /llms.txt were then denied it by the server. Test the server, not the file.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
