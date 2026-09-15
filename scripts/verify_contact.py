@@ -68,16 +68,40 @@ def contact_urls() -> dict[str, set[str]]:
     return found
 
 
-def has_mx(domain: str) -> tuple[bool, str]:
-    """(accepts_mail, explanation). DNS failure is a failure, not a pass."""
+def _dig_mx(domain: str):
+    """One dig. Returns (stdout, err_explanation). Exactly one is non-empty."""
     try:
         out = subprocess.run(["dig", "+short", "+time=3", "+tries=2", "MX", domain],
                              capture_output=True, text=True, timeout=20)
     except (OSError, subprocess.TimeoutExpired) as exc:
-        return False, f"could not query DNS ({exc}); re-run rather than deploy blind"
+        return "", f"could not query DNS ({exc})"
     if out.returncode != 0:
-        return False, f"dig failed: {out.stderr.strip() or 'no output'}"
-    records = [ln for ln in out.stdout.splitlines() if ln.strip()]
+        return "", f"dig failed: {out.stderr.strip() or 'no output'}"
+    return out.stdout, ""
+
+
+def has_mx(domain: str) -> tuple[bool, str]:
+    """(accepts_mail, explanation). DNS failure is a failure, not a pass.
+
+    ⚠️ A RESOLVER FLAP IS NOT A DEAD MAILBOX, AND THE TWO MUST NOT SHARE AN
+    EXIT. A deploy was blocked here by a single dig that exited non-zero with
+    an empty stderr; the identical command, run by hand seconds later, returned
+    both MX records. The URL checker below already draws this distinction — see
+    the TRANSIENT list and the comment above it, written after a burst of HEADs
+    blocked a deploy twice in a row. DNS had no equivalent, so one flap was
+    indistinguishable from a domain that cannot receive mail.
+
+    So a dig that FAILS is retried once. A dig that SUCCEEDS and returns no MX
+    record is not retried and not softened: that is the finding this gate
+    exists to catch, and it stays fatal.
+    """
+    stdout, err = _dig_mx(domain)
+    if err:
+        time.sleep(2)
+        stdout, err2 = _dig_mx(domain)
+        if err2:
+            return False, f"{err2} (twice, {err} first); re-run rather than deploy blind"
+    records = [ln for ln in stdout.splitlines() if ln.strip()]
     if records:
         return True, f"{len(records)} MX record(s)"
     return False, ("no MX record — senders fall back to the address record per "
