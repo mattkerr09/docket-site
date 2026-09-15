@@ -32,6 +32,12 @@ from render import render  # noqa: E402
 #: When Cloudflare's own pages were read for this article.
 CHECKED_HUMAN = "15 September 2026"
 
+#: The two dated policy changes, from Cloudflare's own pages. Single-sourced so a
+#: change has to be made once and cannot go stale in one place while staying
+#: current in another — the derived-number gate refuses them typed into prose.
+ASKED_FROM_HUMAN = "1 July 2025"
+DEFAULTS_CHANGED_HUMAN = "15 September 2026"
+
 
 def cloudflare_gptbot() -> Path:
     surveyed = F._d()["attempted"]
@@ -46,9 +52,9 @@ def cloudflare_gptbot() -> Path:
     body = f"""
 <div class="callout">
 <div class="callout-title">Quick answer</div>
-<p><strong>It depends which OpenAI crawler, and since 15 September 2026 it also depends on the
+<p><strong>It depends which OpenAI crawler, and since {DEFAULTS_CHANGED_HUMAN} it also depends on the
 page.</strong> Cloudflare asks every new domain at sign-up whether to allow AI crawlers, and from
-15 September 2026 new domains onboard with bots classified <em>Training</em> or <em>Agent</em>
+{DEFAULTS_CHANGED_HUMAN} new domains onboard with bots classified <em>Training</em> or <em>Agent</em>
 blocked on pages that display ads, while <em>Search</em> stays allowed.</p>
 <p><strong>GPTBot is the training crawler</strong>, so on a new ad-supported Cloudflare domain it is
 blocked by default. <strong>OAI-SearchBot is not</strong> — and that is the one that decides whether
@@ -83,10 +89,10 @@ by default" matters mostly because of what the answer implies about the other tw
 <p>Read on {CHECKED_HUMAN}, from the primary sources rather than from the summaries:</p>
 
 <ul>
-<li><strong>1 July 2025</strong> — Cloudflare became the first infrastructure provider to block AI
+<li><strong>{ASKED_FROM_HUMAN}</strong> — Cloudflare became the first infrastructure provider to block AI
 crawlers by default where there is no permission or compensation, and <strong>every new domain is
 asked at sign-up</strong> whether to allow them. The choice is presented; it is not silently made.</li>
-<li><strong>15 September 2026</strong> — new domains onboarding get updated defaults: bots classified
+<li><strong>{DEFAULTS_CHANGED_HUMAN}</strong> — new domains onboarding get updated defaults: bots classified
 <strong>Training or Agent are blocked on pages that display ads</strong>, and <strong>Search remains
 allowed</strong>.</li>
 </ul>
@@ -169,10 +175,10 @@ audit</a>.</p>
         published="2026-09-15",
         faq=[
             ("Does Cloudflare block GPTBot by default?",
-             "On a new domain onboarding from 15 September 2026, bots classified Training or Agent "
+             f"On a new domain onboarding from {DEFAULTS_CHANGED_HUMAN}, bots classified Training or Agent "
              "are blocked on pages that display ads, and GPTBot is the training crawler — so yes, "
              "there. Search-classified bots such as OAI-SearchBot stay allowed. Every new domain "
-             "has also been asked the question at sign-up since 1 July 2025, so an existing domain "
+             f"has also been asked the question at sign-up since {ASKED_FROM_HUMAN}, so an existing domain "
              "is wherever its owner left that prompt."),
             ("Does blocking GPTBot stop me appearing in ChatGPT?",
              "No. GPTBot is the training crawler. OAI-SearchBot builds the search index and "
@@ -180,8 +186,8 @@ audit</a>.</p>
              "content out of training while leaving you citable — that is a coherent position, and "
              "a single 'block AI' toggle does not express it."),
             ("My robots.txt allows GPTBot. Does that settle it?",
-             "No. In Docket's August 2026 survey of the Tranco top 10,000, 6.43% of hosts refused "
-             "a self-identifying bot outright before any robots.txt rule could apply, and 4.73% of "
+             f"No. In Docket's August 2026 survey of the Tranco top {surveyed:,}, {edge_pct}% of hosts refused "
+             f"a self-identifying bot outright before any robots.txt rule could apply, and {llms_edge_pct}% of "
              "hosts whose robots.txt permitted /llms.txt were then denied it by the server. "
              "robots.txt is a request; the server is the answer."),
             ("How do I check whether my site blocks an AI crawler?",
@@ -192,8 +198,8 @@ audit</a>.</p>
              "Cloudflare also verifies bot identity by IP."),
             ("Is blocking AI crawlers a mistake?",
              "Blocking training crawlers is a legitimate editorial choice. Blocking search crawlers "
-             "rarely is, and the survey suggests most people do it without meaning to: of the 425 "
-             "sites blocking OAI-SearchBot, 414 also block GPTBot, and only 11 blocked search "
+             f"rarely is, and the survey suggests most people do it without meaning to: of the {search_blocked} "
+             f"sites blocking OAI-SearchBot, {both} also block GPTBot, and only {search_only} blocked search "
              "without blocking training. That overlap is the shape of one switch, not a decision."),
         ],
     )
