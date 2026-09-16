@@ -21,6 +21,22 @@ Two deliberate choices:
     wrong. Every test file in the repo describes a contract; that is not the
     claim. The phrases below are the ones that only appear when somebody is
     writing down a mistake that actually happened.
+
+⚠️ THIS COUNT IS A FLOOR AND THE SITE NOW SAYS SO. Measured 2026-09-16 on one
+batch of seven new test files, every one of which pins a real defect Docket
+shipped: FOUR were missed. The rule below matches a fixed list of phrases, and
+these four describe their mistake in other words —
+
+  * a redirect chain claiming to "dilute the signal", unsourced
+  * a connection failure reported as the reader's broken hreflang target
+  * an hreflang check promising ISO 3166 validation it did not perform
+  * click depth reported from a link graph Docket never saw
+
+The list is NOT being widened. Its own text argues for narrowness, and the
+failure it exists to prevent — counting a file that merely describes a contract
+— is worse than the one it has, which understates our own rigour. What changed
+is the prose: `/learn/audit-quality/` now reads "at least N", because a floor
+presented as a measurement is the thing this repo refuses everywhere else.
 """
 from __future__ import annotations
 

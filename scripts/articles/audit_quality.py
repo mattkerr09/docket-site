@@ -22,10 +22,12 @@ from render import N_CHECKS, render  # noqa: E402
 def audit_quality() -> Path:
     body = f"""
 <p class="lede">An SEO audit is a pile of confident sentences about your site, and the useful
-question is which of them the tool actually checked. <strong>{F.regression_files()} of Docket's
-{F.test_files()} test files</strong> — {F.regression_pct()}% — exist because Docket said
-something that was not true, and every one of those mistakes belongs to a family you can look
-for in any tool's report.</p>
+question is which of them the tool actually checked. <strong>At least
+{F.regression_files()} of Docket's {F.test_files()} test files</strong> — more than
+{F.regression_pct()}% — exist because Docket said something that was not true, and every one of
+those mistakes belongs to a family you can look for in any tool's report. "At least" is meant
+literally: that count comes from searching each test for a phrase naming what went wrong, which
+is deliberately narrow, so it misses files that record a real mistake in different words.</p>
 
 <p>This is not a confession. It is the four questions worth asking of any finding, each of
 which we learned by getting it wrong first.</p>
