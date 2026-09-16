@@ -71,12 +71,14 @@ CHECKED_HUMAN: dict[str, str] = {
     # prices unchanged and added the monthly crawl allowances, which are the
     # thing this page actually turns on.
     "seoptimer": "16 September 2026",
+    "sitechecker": "16 September 2026",
 }
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-08-15",
     "se-ranking-vs-screaming-frog": "2026-09-08",
     "ahrefs": "2026-09-14",
     "seoptimer": "2026-09-16",
+    "sitechecker": "2026-09-16",
 }
 
 #: What was actually read, and where. Anything not sourced here is not stated as
@@ -113,6 +115,22 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     # also shows "$115 $86.25" beside a stale Black Friday note and a different
     # product (a serviced scheduled scan), and reading a price off that banner
     # would have published a wrong number about a named third party.
+    "sitechecker": [
+        ("its plans are priced 99, 249 and 449 US dollars a month, discounted to "
+         "83, 208 and 375 a month when paid annually",
+         "https://sitechecker.pro/account/plans/"),
+        ("every plan is listed as including unlimited users, unlimited recrawls, "
+         "AI search visibility tracking, GSC and GA4 insights, and a rank tracker "
+         "with SERP history",
+         "https://sitechecker.pro/account/plans/"),
+        ("its AI visibility tracker covers five models — ChatGPT, Gemini, Google "
+         "AI Mode, Perplexity and Copilot — for brand visibility and for mentions "
+         "and citations",
+         "https://sitechecker.pro/account/plans/"),
+        ("its core tools are listed as website crawler, website monitoring, rank "
+         "tracker, GSC dashboard, SEO dashboard and AI visibility tracker",
+         "https://sitechecker.pro/account/plans/"),
+    ],
     "seoptimer": [
         ("its three plans are priced 29, 39 and 59 US dollars a month — DIY SEO, "
          "White Label and Lead Generation",
@@ -1373,6 +1391,124 @@ the other is an instrument you point at a site.</p>
     )
 
 
+def sitechecker() -> Path:
+    """The rival that answers the AI question Docket deliberately does not.
+
+    Sitechecker tracks whether a brand is MENTIONED in ChatGPT, Gemini, Google
+    AI Mode, Perplexity and Copilot. Docket checks whether those crawlers are
+    ALLOWED IN. Those are different questions, and this site has spent a lot of
+    words insisting on that distinction in its own favour — every AI figure we
+    publish is about access, never extraction. The same distinction cuts the
+    other way here, and the page says so rather than blurring it.
+
+    ⚠️ THE CRAWL-METER ARGUMENT DOES NOT APPLY HERE AND IS NOT REUSED. Its
+    plans advertise unlimited recrawls, so the point made on
+    /vs/seoptimer-alternative/ would be false about this vendor. Each rival gets
+    the comparison that is true of it.
+
+    Read live 2026-09-16 from the vendor's own plans page. Nothing about output
+    quality is claimed in either direction: it has not been measured.
+    """
+    body = f"""
+<p>Sitechecker is a cloud SEO platform from {price('sitechecker')}. It overlaps with Docket on
+crawling and very little else, and the honest headline is that <strong>it answers questions
+Docket refuses to answer at all</strong>.</p>
+
+<h2>What Sitechecker does that Docket does not</h2>
+
+<ul>
+<li><strong>Rank tracking.</strong> Its rank tracker keeps SERP history for the keywords you
+track. Docket does not track rankings, and says so on its own home page: that needs a crawled
+index of the whole web, which is bought rather than built.</li>
+<li><strong>AI brand visibility.</strong> Its AI visibility tracker covers five models —
+ChatGPT, Gemini, Google AI Mode, Perplexity and Copilot — and reports brand visibility,
+mentions and citations. <strong>This is the one worth reading twice</strong>, because it looks
+like something Docket does and is not.</li>
+<li><strong>Search Console and Analytics dashboards</strong>, and website monitoring that
+tracks changes over time. Docket audits a site at a moment; it is not a monitor.</li>
+</ul>
+
+<h2>The AI distinction, stated against our own interest</h2>
+
+<p>Docket checks AI <strong>access</strong>: whether each of {F.ai_agents()} named crawlers is
+permitted by your robots.txt, and whether your server actually agrees with that file, since a
+CDN rule refusing a crawler is invisible in a file that allows it. That is a question about your
+configuration, and it is answerable from outside with certainty.</p>
+
+<p>Sitechecker is answering a different question: whether an assistant currently mentions you.
+That is a measurement of an outcome, and Docket does not make it. Every AI figure this site
+publishes is about access rather than about being quoted, and we have been careful to say so
+everywhere else — so it would be dishonest to imply the two overlap here. <strong>If what you
+want to know is whether ChatGPT names your brand today, Docket cannot tell you and Sitechecker
+is built to.</strong></p>
+
+<p>The two are complements more than alternatives. Access is a precondition: a crawler that
+cannot read your pages will not cite them, which is what Docket can prove and fix. Whether
+citation then happens is a question about the model, and needs a tool that watches the model.</p>
+
+<h2>What Docket adds</h2>
+
+<p>{N_CHECKS} checks across thirteen areas, including conversion and brand consistency, which
+do not appear in Sitechecker's listed core tools. Findings arrive as a ranked plan with the fix
+written out rather than as a dashboard —
+<a href="/learn/priority-model/">the ordering formula is published</a>. It runs on your Mac
+with no account, so nothing about your site is uploaded. And it is {PRICE_STR} once rather than
+a monthly bill.</p>
+
+<p>That last one is the plainest difference. A year on Sitechecker's entry plan costs several
+times what Docket costs in total, and the second year costs the same again. Set against that:
+a subscription buys continuous monitoring and rank history, which a tool you run on demand
+cannot give you at any price.</p>
+
+<h2>Which to buy</h2>
+
+<ul>
+<li><strong>Buy Sitechecker</strong> if you need rank tracking, ongoing monitoring, or to know
+whether AI assistants are mentioning your brand.</li>
+<li><strong>Buy Docket</strong> if you want a deep one-off audit of what is wrong and in what
+order, including conversion and brand, without an account or a recurring bill.</li>
+</ul>
+
+<p>Nothing here compares the quality of the two crawlers' output, because that has not been
+measured. Both vendors' published feature lists are what this page is built from.</p>
+
+{_verified_note("sitechecker")}
+{CTA}"""
+
+    return render(
+        cat="vs", slug="sitechecker-alternative",
+        title="Docket vs Sitechecker: access or mentions?",
+        desc=("Sitechecker tracks rankings and whether AI assistants mention you; Docket "
+              "checks whether those crawlers can reach you at all. Different questions, "
+              "said plainly."),
+        h1="Docket vs Sitechecker",
+        crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Sitechecker',
+        body=body,
+        faq=[
+            ("Is Docket a Sitechecker alternative?",
+             "Only partly, and the gap matters. Sitechecker tracks keyword rankings and "
+             "whether five AI models mention your brand. Docket does neither. Docket audits "
+             "what is wrong with your site and ranks the fixes, and checks whether AI "
+             "crawlers are allowed to reach you in the first place."),
+            ("Does Docket track AI visibility like Sitechecker?",
+             "No, and the difference is worth being precise about. Sitechecker measures "
+             "whether assistants mention you — an outcome. Docket measures whether their "
+             f"crawlers can read you — {F.ai_agents()} of them by name, comparing your "
+             "robots.txt against what your server actually returns. Access is a "
+             "precondition for citation, not the same thing as it."),
+            ("Which is cheaper?",
+             f"Docket, unless you need one audit and then cancel. Docket is {PRICE_STR} "
+             f"once; Sitechecker starts at {price('sitechecker')} and keeps billing. What "
+             "the subscription buys is continuous monitoring and rank history, which a "
+             "tool you run on demand cannot provide."),
+            ("Does Sitechecker limit how much you can crawl?",
+             "Its plans advertise unlimited recrawls, so crawl volume is not the difference "
+             "between these two. The limits it publishes are on projects and tracked "
+             "keywords. Docket has no limits of either kind, because there is no account."),
+        ],
+    )
+
+
 def se_ranking_vs_screaming_frog() -> Path:
     """Two tools people compare that are not the same KIND of thing.
 
@@ -1497,7 +1633,8 @@ Screaming Frog is the right tool.</p>
 
 
 BUILDERS = [screaming_frog, sitebulb, ahrefs, semrush, lighthouse,
-            search_console, scrutiny, seoptimer, se_ranking_vs_screaming_frog]
+            search_console, scrutiny, seoptimer, sitechecker,
+            se_ranking_vs_screaming_frog]
 
 
 def build_all() -> list[Path]:

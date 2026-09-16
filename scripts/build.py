@@ -160,6 +160,10 @@ def build_hubs() -> list[Path]:
              "stronger link checker and has been shipping far longer; Docket ranks what "
              "it finds and covers conversion, brand and AI visibility, which Scrutiny "
              "does not."),
+            ("/vs/sitechecker-alternative/", "Docket vs Sitechecker",
+             "It tracks rankings and whether five AI models mention your brand; Docket "
+             "does neither. What Docket checks is whether those crawlers can reach you "
+             "at all — a precondition rather than the same question."),
             ("/vs/seoptimer-alternative/", "Docket vs SEOptimer",
              "The cheapest way in, and built for a job Docket does not do: white-label "
              "reports and an embeddable lead-capture audit. The real difference is the "

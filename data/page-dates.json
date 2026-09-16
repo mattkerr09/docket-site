@@ -91,9 +91,10 @@
     "vs/se-ranking-vs-screaming-frog": "2026-09-08",
     "vs/semrush-site-audit-alternative": "2026-08-10",
     "vs/seoptimer-alternative": "2026-09-16",
-    "vs/sitebulb-alternative": "2026-08-06"
+    "vs/sitebulb-alternative": "2026-08-06",
+    "vs/sitechecker-alternative": "2026-09-16"
   },
   "uncommitted": [
-    "vs/seoptimer-alternative"
+    "vs/sitechecker-alternative"
   ]
 }

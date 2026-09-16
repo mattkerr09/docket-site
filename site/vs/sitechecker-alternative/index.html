@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEO monitoring: what changed, not what is wrong</title>
-<meta name="description" content="Scheduled site re-audits on your own machine, regressions first, and the two comparisons Docket refuses to make because the number would look useful and be wrong.">
+<title>Docket vs Sitechecker: access or mentions?</title>
+<meta name="description" content="Sitechecker tracks rankings and whether AI assistants mention you; Docket checks whether those crawlers can reach you at all. Different questions, said plainly.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="0b69e5ca09b8">
-<link rel="canonical" href="https://docketseo.app/learn/site-monitoring/">
+<link rel="canonical" href="https://docketseo.app/vs/sitechecker-alternative/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Site monitoring">
-<meta property="og:description" content="Scheduled site re-audits on your own machine, regressions first, and the two comparisons Docket refuses to make because the number would look useful and be wrong.">
-<meta property="og:url" content="https://docketseo.app/learn/site-monitoring/">
+<meta property="og:title" content="Docket vs Sitechecker">
+<meta property="og:description" content="Sitechecker tracks rankings and whether AI assistants mention you; Docket checks whether those crawlers can reach you at all. Different questions, said plainly.">
+<meta property="og:url" content="https://docketseo.app/vs/sitechecker-alternative/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Site monitoring">
-<meta name="twitter:description" content="Scheduled site re-audits on your own machine, regressions first, and the two comparisons Docket refuses to make because the number would look useful and be wrong.">
+<meta name="twitter:title" content="Docket vs Sitechecker">
+<meta name="twitter:description" content="Sitechecker tracks rankings and whether AI assistants mention you; Docket checks whether those crawlers can reach you at all. Different questions, said plainly.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -673,10 +673,10 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 .faq-item p{font-size:var(--t-md);margin:0}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 97 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"97 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Site monitoring","description":"Scheduled site re-audits on your own machine, regressions first, and the two comparisons Docket refuses to make because the number would look useful and be wrong.","datePublished":"2026-08-14","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/site-monitoring/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How often does Docket re-audit a monitored site?","acceptedAnswer":{"@type":"Answer","text":"Daily, weekly or monthly — you choose per site. The re-audit runs on your own machine with the same crawl settings as a manual run, so a monitored site is not crawled harder than one you audit by hand."}},{"@type":"Question","name":"Does monitoring keep running when Docket is closed?","acceptedAnswer":{"@type":"Answer","text":"No. The scheduler is a thread inside the app, so it stops when you quit and nothing is left running on your machine. A site that falls due while Docket is shut is re-audited the next time you open it. For unattended runs on a schedule, use the Linux CLI in cron or CI."}},{"@type":"Question","name":"Does site monitoring need an account or a server?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs locally and history is stored in ~/.docket/ as plain JSON — a watchlist plus one small snapshot per audit. Nothing is uploaded, and the history stays yours if you stop using Docket."}},{"@type":"Question","name":"Why does Docket refuse to compare some audits?","acceptedAnswer":{"@type":"Answer","text":"Because comparing a 50-page crawl with a 500-page crawl invents dozens of new issues that were always there and simply had not been reached. Every one of those alerts would be false, so Docket says the crawls are not comparable instead of producing the diff."}},{"@type":"Question","name":"What does the competitor comparison actually show?","acceptedAnswer":{"@type":"Answer","text":"Where you lead and trail area by area, on rivals audited with the same settings, plus the issues every competitor has already fixed. Areas where only one side could be evaluated are left out rather than counted as a win or a loss."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 97 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"97 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Compare","item":"https://docketseo.app/vs/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Docket vs Sitechecker","description":"Sitechecker tracks rankings and whether AI assistants mention you; Docket checks whether those crawlers can reach you at all. Different questions, said plainly.","datePublished":"2026-09-16","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/vs/sitechecker-alternative/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Docket a Sitechecker alternative?","acceptedAnswer":{"@type":"Answer","text":"Only partly, and the gap matters. Sitechecker tracks keyword rankings and whether five AI models mention your brand. Docket does neither. Docket audits what is wrong with your site and ranks the fixes, and checks whether AI crawlers are allowed to reach you in the first place."}},{"@type":"Question","name":"Does Docket track AI visibility like Sitechecker?","acceptedAnswer":{"@type":"Answer","text":"No, and the difference is worth being precise about. Sitechecker measures whether assistants mention you — an outcome. Docket measures whether their crawlers can read you — 19 of them by name, comparing your robots.txt against what your server actually returns. Access is a precondition for citation, not the same thing as it."}},{"@type":"Question","name":"Which is cheaper?","acceptedAnswer":{"@type":"Answer","text":"Docket, unless you need one audit and then cancel. Docket is $349 once; Sitechecker starts at $99–$449/mo and keeps billing. What the subscription buys is continuous monitoring and rank history, which a tool you run on demand cannot provide."}},{"@type":"Question","name":"Does Sitechecker limit how much you can crawl?","acceptedAnswer":{"@type":"Answer","text":"Its plans advertise unlimited recrawls, so crawl volume is not the difference between these two. The limits it publishes are on projects and tracked keywords. Docket has no limits of either kind, because there is no account."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -708,84 +708,81 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Site monitoring</div><h1>Site monitoring</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-14">14 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/vs/">Compare</a> / Sitechecker</div><h1>Docket vs Sitechecker</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-16">16 September 2026</time></p>
 
-<p class="lede">An audit tells you what is wrong today. Monitoring tells you what changed —
-which is the question you actually have, because a site that was fine last month and is not
-fine now has a cause, and a site that has been failing the same check since 2023 is not
-news.</p>
+<p>Sitechecker is a cloud SEO platform from $99–$449/mo. It overlaps with Docket on
+crawling and very little else, and the honest headline is that <strong>it answers questions
+Docket refuses to answer at all</strong>.</p>
 
-<p>Docket re-audits on a schedule you set — daily, weekly or monthly — on your own machine,
-with no account and nothing uploaded. Every re-audit is compared against the last one, and
-the comparison leads with what got worse.</p>
+<h2>What Sitechecker does that Docket does not</h2>
 
-<p><strong>It runs while Docket is open, and stops when you quit.</strong> The scheduler is
-a thread inside the app, not a background service and not a server — there is nothing left
-running on your Mac after you close it, and nothing running anywhere else at any time. A
-site that falls due while Docket is shut is picked up the next time you open it, so you get
-the check late rather than not at all. If you need an audit to run at 3am whether or not
-anybody is logged in, that is a job for the Linux CLI in cron or CI, and
-<a href="/for/developers/">it is built for exactly that</a>.</p>
+<ul>
+<li><strong>Rank tracking.</strong> Its rank tracker keeps SERP history for the keywords you
+track. Docket does not track rankings, and says so on its own home page: that needs a crawled
+index of the whole web, which is bought rather than built.</li>
+<li><strong>AI brand visibility.</strong> Its AI visibility tracker covers five models —
+ChatGPT, Gemini, Google AI Mode, Perplexity and Copilot — and reports brand visibility,
+mentions and citations. <strong>This is the one worth reading twice</strong>, because it looks
+like something Docket does and is not.</li>
+<li><strong>Search Console and Analytics dashboards</strong>, and website monitoring that
+tracks changes over time. Docket audits a site at a moment; it is not a monitor.</li>
+</ul>
 
-<h2>Regressions first, not alphabetically</h2>
+<h2>The AI distinction, stated against our own interest</h2>
 
-<p>The ordering is the feature. Most tools hand you the current state and leave you to
-notice what moved; you open the report, see forty issues, and cannot tell which three are
-new. Docket separates them: appeared, fixed, got worse, got better, and the score move per
-area.</p>
+<p>Docket checks AI <strong>access</strong>: whether each of 19 named crawlers is
+permitted by your robots.txt, and whether your server actually agrees with that file, since a
+CDN rule refusing a crawler is invisible in a file that allows it. That is a question about your
+configuration, and it is answerable from outside with certainty.</p>
 
-<p>A check that has been failing for six months is a decision you have already made, whether
-you made it deliberately or not. A check that passed last week and fails today is somebody's
-deploy. Only one of those needs you this morning.</p>
+<p>Sitechecker is answering a different question: whether an assistant currently mentions you.
+That is a measurement of an outcome, and Docket does not make it. Every AI figure this site
+publishes is about access rather than about being quoted, and we have been careful to say so
+everywhere else — so it would be dishonest to imply the two overlap here. <strong>If what you
+want to know is whether ChatGPT names your brand today, Docket cannot tell you and Sitechecker
+is built to.</strong></p>
 
-<h2>What it will not tell you, on purpose</h2>
+<p>The two are complements more than alternatives. Access is a precondition: a crawler that
+cannot read your pages will not cite them, which is what Docket can prove and fix. Whether
+citation then happens is a question about the model, and needs a tool that watches the model.</p>
 
-<p>Two refusals, both cases of declining to produce a number that would look useful and be
-wrong.</p>
+<h2>What Docket adds</h2>
 
-<p><strong>It will not diff two audits that crawled very different numbers of pages.</strong>
-It says so instead. If last week reached 50 pages and this week reached 500 — because a
-sitemap appeared, or a crawl budget changed, or a section stopped being blocked — then
-comparing them invents dozens of "new" issues that were there all along and simply had not
-been reached. Every one of those alerts would be false, and you would spend the morning
-proving it.</p>
+<p>97 checks across thirteen areas, including conversion and brand consistency, which
+do not appear in Sitechecker's listed core tools. Findings arrive as a ranked plan with the fix
+written out rather than as a dashboard —
+<a href="/learn/priority-model/">the ordering formula is published</a>. It runs on your Mac
+with no account, so nothing about your site is uploaded. And it is $349 once rather than
+a monthly bill.</p>
 
-<p><strong>Areas where only one side was evaluated are excluded from the competitor
-table</strong>, rather than shown as a win or a loss. If Docket could read your local SEO
-signals and could not read a rival's, the honest cell is empty. A tool that filled it would
-be handing you a lead you do not have.</p>
+<p>That last one is the plainest difference. A year on Sitechecker's entry plan costs several
+times what Docket costs in total, and the second year costs the same again. Set against that:
+a subscription buys continuous monitoring and rank history, which a tool you run on demand
+cannot give you at any price.</p>
 
-<h2>Competitors, and the finding worth acting on</h2>
+<h2>Which to buy</h2>
 
-<p>Attach rival sites and they are audited on the same settings, so the comparison is
-like-for-like rather than your thorough crawl against their shallow one. The table shows
-where you lead and trail area by area.</p>
+<ul>
+<li><strong>Buy Sitechecker</strong> if you need rank tracking, ongoing monitoring, or to know
+whether AI assistants are mentioning your brand.</li>
+<li><strong>Buy Docket</strong> if you want a deep one-off audit of what is wrong and in what
+order, including conversion and brand, without an account or a recurring bill.</li>
+</ul>
 
-<p>The most useful row is not the score. It is the list of issues <em>every competitor has
-already fixed</em>. That is the clearest evidence you get that something is both achievable
-in your market and expected in it — an issue nobody else has is a standard, not an
-opinion.</p>
+<p>Nothing here compares the quality of the two crawlers' output, because that has not been
+measured. Both vendors' published feature lists are what this page is built from.</p>
 
-<h2>Where the history lives</h2>
 
-<p>In <code>~/.docket/</code>, as plain JSON: a watchlist plus one compact snapshot per
-audit, a few kilobytes each. You can read it, back it up, put it in version control, or
-delete it. Set <code>DOCKET_HOME</code> to keep it somewhere else.</p>
+<p class="verified-note"><strong>Checked 16 September 2026.</strong> The factual
+claims about this product were read from its own pages on that date: its plans are priced 99, 249 and 449 US dollars a month, discounted to 83, 208 and 375 a month when paid annually (<a href="https://sitechecker.pro/account/plans/" rel="nofollow noopener">source</a>); every plan is listed as including unlimited users, unlimited recrawls, AI search visibility tracking, GSC and GA4 insights, and a rank tracker with SERP history (<a href="https://sitechecker.pro/account/plans/" rel="nofollow noopener">source</a>); its AI visibility tracker covers five models — ChatGPT, Gemini, Google AI Mode, Perplexity and Copilot — for brand visibility and for mentions and citations (<a href="https://sitechecker.pro/account/plans/" rel="nofollow noopener">source</a>); its core tools are listed as website crawler, website monitoring, rank tracker, GSC dashboard, SEO dashboard and AI visibility tracker (<a href="https://sitechecker.pro/account/plans/" rel="nofollow noopener">source</a>).
+Products change and pricing changes; if something here has gone out of date, <a href="/about/">tell us</a> and it will be corrected. Everything else on this page is a comparison of approach, not a claim about their roadmap.</p>
 
-<p>There is no server in this. Nothing is uploaded, there is no account, and if you stop
-using Docket your history is still sitting in a folder you own — which is the difference
-between monitoring you rent and monitoring you have.</p>
-
-<h2>Scheduled audits are a promise to somebody else's server</h2>
-
-<p>A monitor is a program that visits a site repeatedly without a person present, so the
-politeness settings matter more than they do for a one-off audit. Docket crawls with the
-same concurrency and delay you set for a manual run, deduplicates URLs, and respects the
-page cap. If you are monitoring a site you do not own — a competitor — those settings are
-the difference between research and a nuisance.</p>
-
-<p><a class="btn" href="/download/">Download Docket</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How often does Docket re-audit a monitored site?</h3><p>Daily, weekly or monthly — you choose per site. The re-audit runs on your own machine with the same crawl settings as a manual run, so a monitored site is not crawled harder than one you audit by hand.</p></div><div class="faq-item"><h3>Does monitoring keep running when Docket is closed?</h3><p>No. The scheduler is a thread inside the app, so it stops when you quit and nothing is left running on your machine. A site that falls due while Docket is shut is re-audited the next time you open it. For unattended runs on a schedule, use the Linux CLI in cron or CI.</p></div><div class="faq-item"><h3>Does site monitoring need an account or a server?</h3><p>No. Everything runs locally and history is stored in ~/.docket/ as plain JSON — a watchlist plus one small snapshot per audit. Nothing is uploaded, and the history stays yours if you stop using Docket.</p></div><div class="faq-item"><h3>Why does Docket refuse to compare some audits?</h3><p>Because comparing a 50-page crawl with a 500-page crawl invents dozens of new issues that were always there and simply had not been reached. Every one of those alerts would be false, so Docket says the crawls are not comparable instead of producing the diff.</p></div><div class="faq-item"><h3>What does the competitor comparison actually show?</h3><p>Where you lead and trail area by area, on rivals audited with the same settings, plus the issues every competitor has already fixed. Areas where only one side could be evaluated are left out rather than counted as a win or a loss.</p></div></div></section>
+<div class="callout">
+<div class="callout-title">Try it against your own site</div>
+<p>Docket is a one-time download for macOS. No account, no crawl credits, and the crawl runs
+on your machine. Five optional checks fetch data it cannot produce alone; <code>--offline</code>
+turns all five off. <a href="/download/">Download Docket →</a></p>
+</div><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is Docket a Sitechecker alternative?</h3><p>Only partly, and the gap matters. Sitechecker tracks keyword rankings and whether five AI models mention your brand. Docket does neither. Docket audits what is wrong with your site and ranks the fixes, and checks whether AI crawlers are allowed to reach you in the first place.</p></div><div class="faq-item"><h3>Does Docket track AI visibility like Sitechecker?</h3><p>No, and the difference is worth being precise about. Sitechecker measures whether assistants mention you — an outcome. Docket measures whether their crawlers can read you — 19 of them by name, comparing your robots.txt against what your server actually returns. Access is a precondition for citation, not the same thing as it.</p></div><div class="faq-item"><h3>Which is cheaper?</h3><p>Docket, unless you need one audit and then cancel. Docket is $349 once; Sitechecker starts at $99–$449/mo and keeps billing. What the subscription buys is continuous monitoring and rank history, which a tool you run on demand cannot provide.</p></div><div class="faq-item"><h3>Does Sitechecker limit how much you can crawl?</h3><p>Its plans advertise unlimited recrawls, so crawl volume is not the difference between these two. The limits it publishes are on projects and tracked keywords. Docket has no limits of either kind, because there is no account.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
