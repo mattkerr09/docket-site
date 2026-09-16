@@ -1683,8 +1683,9 @@ machines.</p>"""
         price_para = f"""
 <p>Docket costs {PRICE_STR} in US dollars, paid once. Not a subscription: there is no renewal
 date and nothing to cancel, because nothing recurs.</p>
-<p><strong>One licence covers up to three machines.</strong> Activating Docket on a Mac uses one
-of them, and the licence is enforced by the payment provider, so a fourth activation is refused.
+<p><strong>One licence covers up to {F.licence_activations()} Macs at a time.</strong>
+Activating Docket on a Mac uses one of them; deactivate one to move it to another machine. The
+limit is enforced by the payment provider, so an activation past it is refused.
 This page said &ldquo;no seat count&rdquo; until 2026-08-23, which was wrong from the moment the
 product was configured with a limit of three &mdash; the terms promised something the software
 did not do. If you need more than three, ask and it will be sorted out.</p>"""
@@ -1717,9 +1718,10 @@ page</a>.</p>
 
 <h2>What it costs</h2>
 {price_para}
-<p>One purchase covers you, the person or company that paid, on any machine you own or control.
-You may audit any number of websites with it, including on behalf of clients, and you may
-charge those clients for the work. There is no per-seat price and no crawl allowance.</p>
+<p>One purchase covers you, the person or company that paid, on up to
+{F.licence_activations()} Macs at a time — deactivate one to move it. You may audit any number of
+websites with it, including on behalf of clients, and you may charge those clients for the work.
+There is no per-seat price and no crawl allowance.</p>
 
 <h2>What you may not do with it</h2>
 <p>Do not resell, sublicense or redistribute the application itself, and do not offer it as a

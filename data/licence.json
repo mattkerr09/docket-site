@@ -1,0 +1,7 @@
+{
+  "activations_limit": 3,
+  "product_id": "pdt_0Nlgdu6xbdzeG5tDAWx79",
+  "source": "Dodo product license_key_activations_limit",
+  "read_by": "CEO session, 2026-09-16, which also corrected the customer-facing activation message from 'up to 5 machines' to 3 by PATCH and re-read it",
+  "note": "NOT read from Dodo by this repo. The Products API answers 403 to the key on this machine, so the figure is recorded from the session that could read it, with that session named. If it ever disagrees with Dodo, Dodo is right and this file is stale \u2014 which is exactly why the number lives here once rather than in the prose of two pages."
+}

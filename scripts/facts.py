@@ -1346,6 +1346,22 @@ def download() -> dict:
     return json.loads((ROOT / "data" / "download.json").read_text())
 
 
+def licence_activations() -> int:
+    """How many machines one licence activates, from `data/licence.json`.
+
+    ⚠️ ONE PLACE, BECAUSE IT WAS TYPED IN TWO AND THEY DISAGREED. The terms
+    page said "up to three machines" in one paragraph and "any machine you own
+    or control" two paragraphs later; the second is unbounded and was the older
+    sentence, left standing when the limit was introduced. A seat count in prose
+    is a promise nobody re-reads.
+
+    The file records who read the figure from Dodo and says plainly that this
+    repo cannot: the Products API answers 403 to the key on this machine.
+    """
+    import json
+    return int(json.loads((ROOT / "data" / "licence.json").read_text())["activations_limit"])
+
+
 def app_version() -> str:
     """The version actually published, from the artifact the build produced."""
     return download()["version"]
