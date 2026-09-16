@@ -77,7 +77,8 @@ import howto_phone  # noqa: E402
 import eeat  # noqa: E402
 import howto_images  # noqa: E402
 import email_capture  # noqa: E402
-import howto_redirects  # noqa: E402
+import howto_redirects
+import index_coverage  # noqa: E402
 import howto_headings  # noqa: E402
 import howto_broken_links  # noqa: E402
 import howto_compression  # noqa: E402
@@ -218,6 +219,10 @@ money.</p>
              "noindex tells an indexer not to list a page; it cannot stop a crawler "
              "fetching it. What robots.txt and your server control instead, and which "
              "layer is refusing yours."),
+            ("/learn/index-coverage/", "Is your page actually indexed?",
+             "Whether a page is in Google, Bing or Brave is a fact about their "
+             "index, not your HTML. What Docket asks each engine, and the places "
+             "it refuses to guess."),
             ("/learn/ai-crawlers-and-sitemaps/", "AI crawlers and your sitemap",
              "A Sitemap: line is a non-group record, so every crawler is offered the "
              "same one — including the crawlers a site is trying to keep out."),
@@ -843,6 +848,7 @@ def main() -> int:
     pages += howto_backlink_audit.build_all()
     pages += cloudflare_gptbot.build_all()
     pages += howto_cdn_blocks_ai.build_all()
+    pages += index_coverage.build_all()
     pages += noindex_ai_crawlers.build_all()
     pages += sitemaps_ai_crawlers.build_all()
     pages += googlebot_robots_blocks.build_all()
