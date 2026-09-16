@@ -3,10 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- The only way to set a referrer policy on a host that cannot send headers,
+     and GitHub Pages cannot. Browsers honour the meta form. strict-origin-when-cross-origin
+     sends the full URL to ourselves, the origin only to other sites, and nothing when
+     leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
+     stays unset here and is not worth chasing. -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>AI crawler directives: which to block, which to keep</title>
 <meta name="description" content="Docket checks 19 AI crawlers from 10 companies. Blocking a training bot and blocking a search bot are different decisions with different costs.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="fbf0e60aa4c1">
+<meta name="build-id" content="5d4d9df8fc91">
 <link rel="canonical" href="https://docketseo.app/learn/ai-crawler-directives/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
