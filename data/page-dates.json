@@ -98,7 +98,5 @@
     "vs/sitebulb-alternative": "2026-08-06",
     "vs/sitechecker-alternative": "2026-09-16"
   },
-  "uncommitted": [
-    "vs/crawler-sh-alternative"
-  ]
+  "uncommitted": []
 }

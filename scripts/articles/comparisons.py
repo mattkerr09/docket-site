@@ -494,7 +494,10 @@ URLs. It is the deeper instrument and its price-to-power ratio is unmatched.</p>
 <p><strong>Choose Docket</strong> if you need to hand someone a plan rather than a dataset, if
 you care about AI search visibility or whether your landing pages convert, or if you want a
 client-ready PDF without building one.</p>
-<p>They are not mutually exclusive, and plenty of people will want both.</p>
+<p>They are not mutually exclusive, and plenty of people will want both. If the site is large
+enough that crawl budget is the real question, the tool that answers it is neither of these:
+<a href="/vs/jetoctopus-alternative/">JetOctopus</a> reads your server logs, which shows what
+Googlebot actually fetched rather than what your site would serve if asked.</p>
 {_verified_note("screaming-frog")}
 {CTA}"""
 
@@ -1322,7 +1325,10 @@ Docket has nothing to offer you.</p>
 dataset, a client-ready report, and the AI-visibility and conversion checks that
 Scrutiny's feature list does not name.</p>
 <p>Both run on your own machine and neither wants a subscription, which is more
-than most of this market can say.</p>
+than most of this market can say. If buying once is the part that matters,
+<a href="/vs/crawlraven-alternative/">CrawlRaven</a> is the other one-time licence worth knowing
+about — cheaper again, though its own pricing page still marks the technical audit as coming
+soon.</p>
 {_verified_note("scrutiny")}
 {CTA}"""
 
@@ -1429,7 +1435,9 @@ you fix things, and would rather pay once.</li>
 </ul>
 
 <p>They are not really the same product. One is a reporting and lead product sold to agencies;
-the other is an instrument you point at a site.</p>
+the other is an instrument you point at a site. If the metering is what puts you off,
+<a href="/vs/crawler-sh-alternative/">crawler.sh</a> is worth a look for the same reason and
+against the same limit — it caps pages per session rather than crawls per month.</p>
 
 {_verified_note("seoptimer")}
 {CTA}"""
@@ -1520,7 +1528,10 @@ is built to.</strong></p>
 
 <p>The two are complements more than alternatives. Access is a precondition: a crawler that
 cannot read your pages will not cite them, which is what Docket can prove and fix. Whether
-citation then happens is a question about the model, and needs a tool that watches the model.</p>
+citation then happens is a question about the model, and needs a tool that watches the model.
+<a href="/vs/profound-alternative/">Profound</a> does only that half, at enterprise pricing, if
+tracking mentions is the whole of what you need. What Docket checks on the access side is
+<a href="/learn/ai-crawler-directives/">written out crawler by crawler</a>.</p>
 
 <h2>What Docket adds</h2>
 
@@ -1545,7 +1556,10 @@ whether AI assistants are mentioning your brand.</li>
 order, including conversion and brand, without an account or a recurring bill.</li>
 </ul>
 
-<p>Nothing here compares the quality of the two crawlers' output, because that has not been
+<p>One contrast worth carrying away: Sitechecker does not meter crawling, and most of this
+market does. <a href="/vs/seoptimer-alternative/">SEOptimer</a> sells four, ten or fifty crawls a
+month depending on the tier, which changes how you work far more than any feature list does.
+Nothing here compares the quality of the two crawlers' output, because that has not been
 measured. Both vendors' published feature lists are what this page is built from.</p>
 
 {_verified_note("sitechecker")}
@@ -1579,8 +1593,9 @@ measured. Both vendors' published feature lists are what this page is built from
              "tool you run on demand cannot provide."),
             ("Does Sitechecker limit how much you can crawl?",
              "Its plans advertise unlimited recrawls, so crawl volume is not the difference "
-             "between these two. The limits it publishes are on projects and tracked "
-             "keywords. Docket has no limits of either kind, because there is no account."),
+             "between these two — unlike SEOptimer, which sells four, ten or fifty crawls a "
+             "month. The limits Sitechecker publishes are on projects and tracked keywords. "
+             "Docket has no limits of either kind, because there is no account."),
         ],
     )
 
@@ -1654,8 +1669,12 @@ order, including whether AI crawlers can reach it, without an account or a sales
 </ul>
 
 <p>Plenty of companies would sensibly do both, and they are not substitutes in either direction.
-Nothing here compares the accuracy of Profound's tracking, which we have not measured and have
-no way to measure from outside.</p>
+If mention-tracking is what you want but an enterprise contract is not,
+<a href="/vs/sitechecker-alternative/">Sitechecker</a> does it across five models inside an
+ordinary SEO subscription. The access question Docket answers instead is
+<a href="/learn/ai-crawler-directives/">set out crawler by crawler</a>. Nothing here compares the
+accuracy of Profound's tracking, which we have not measured and have no way to measure from
+outside.</p>
 
 {_verified_note("profound")}
 {CTA}"""
@@ -1763,8 +1782,11 @@ hundreds of thousands of pages or more, and a budget that treats SEO tooling as 
 machine, ranked into an order, once, for a fixed price.</li>
 </ul>
 
-<p>Nothing here compares crawl accuracy or the quality of either tool's findings, which has not
-been measured. The facts above are what each vendor publishes about its own product.</p>
+<p>If scale is your problem but server logs are not,
+<a href="/vs/screaming-frog-alternative/">Screaming Frog</a> is the other tool built for very
+large crawls and costs a fraction of this. Nothing here compares crawl accuracy or the quality of
+either tool's findings, which has not been measured. The facts above are what each vendor
+publishes about its own product.</p>
 
 {_verified_note("jetoctopus")}
 {CTA}"""
@@ -1877,8 +1899,10 @@ in what order to fix it, today.</li>
 </ul>
 
 <p>They are close enough in spirit that owning both is not absurd, and their free tier costs
-nothing to try. Nothing here compares the quality of either tool's output, which has not been
-measured.</p>
+nothing to try. If a one-time price is what drew you here, the other one worth knowing about is
+<a href="/vs/scrutiny-alternative/">Scrutiny</a> — a Mac app bought once, cheaper than Docket, and
+stronger than either of us at link checking. Nothing here compares the quality of either tool's
+output, which has not been measured.</p>
 
 {_verified_note("crawlraven")}
 {CTA}"""
@@ -1988,8 +2012,11 @@ a free local crawler for a small site with SEO checks attached.</li>
 conversion, brand and AI visibility, ranked into the order to fix it, with no page limit.</li>
 </ul>
 
-<p>Nothing here compares the quality of either tool's checks, which has not been measured. Both
-vendors' own published descriptions are what this page is built from.</p>
+<p>If running locally is the part that matters to you,
+<a href="/vs/scrutiny-alternative/">Scrutiny</a> is the third tool in that shape — a Mac app,
+bought once, and the strongest link checker of the three. Nothing here compares the quality of
+either tool's checks, which has not been measured. Both vendors' own published descriptions are
+what this page is built from.</p>
 
 {_verified_note("crawler-sh")}
 {CTA}"""
