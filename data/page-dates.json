@@ -26,6 +26,7 @@
     "how-to/fix-heading-structure": "2026-09-15",
     "how-to/fix-hreflang-return-tags": "2026-08-10",
     "how-to/fix-image-seo-problems": "2026-09-15",
+    "how-to/fix-invalid-hreflang-codes": "2026-09-16",
     "how-to/fix-lang-attribute-mismatch": "2026-09-09",
     "how-to/fix-layout-shift": "2026-08-10",
     "how-to/fix-missing-open-graph-tags": "2026-08-14",
@@ -51,6 +52,7 @@
     "learn/audit-tool-accuracy": "2026-08-07",
     "learn/brand-consistency": "2026-08-07",
     "learn/canonical-tags": "2026-08-10",
+    "learn/click-depth-and-orphan-pages": "2026-09-16",
     "learn/conversion-audit": "2026-08-14",
     "learn/dead-contact-address": "2026-08-07",
     "learn/does-cloudflare-block-gptbot": "2026-09-15",
@@ -64,10 +66,12 @@
     "learn/javascript-rendering": "2026-08-06",
     "learn/log-file-analysis": "2026-08-08",
     "learn/marketing-tag-audit": "2026-08-14",
+    "learn/page-weight": "2026-09-16",
     "learn/sameas-entity-signals": "2026-08-06",
     "learn/seo-audit": "2026-08-06",
     "learn/site-monitoring": "2026-08-14",
     "learn/trust-and-authorship-signals": "2026-09-15",
+    "learn/url-structure": "2026-09-16",
     "learn/what-docket-checks": "2026-08-08",
     "learn/what-scout-checks": "2026-08-06",
     "learn/who-blocks-googlebot": "2026-09-15",
@@ -86,5 +90,10 @@
     "vs/semrush-site-audit-alternative": "2026-08-10",
     "vs/sitebulb-alternative": "2026-08-06"
   },
-  "uncommitted": []
+  "uncommitted": [
+    "how-to/fix-invalid-hreflang-codes",
+    "learn/click-depth-and-orphan-pages",
+    "learn/page-weight",
+    "learn/url-structure"
+  ]
 }

@@ -1315,6 +1315,12 @@ check. <a href="/how-to/redirect-http-to-https/">How to redirect http:// to http
 declaration that goes one way is ignored entirely, and every tag looks correct in isolation.
 <a href="/how-to/fix-hreflang-return-tags/">How to fix hreflang return tags →</a></p>
 
+<h2>Invalid hreflang codes</h2>
+<p>A separate failure from the one above: the tag is present and points both ways, but the
+value inside it is not a language code anyone recognises. What the check really validates —
+and the region codes it waves through.
+<a href="/how-to/fix-invalid-hreflang-codes/">What is actually checked &rarr;</a></p>
+
 <h2>hreflang and html lang mismatch</h2>
 <p>The tag people confuse with the one above. <code>hreflang</code> tells search engines which
 translation to serve; <code>html lang</code> declares what this page is written in, and only one of

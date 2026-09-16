@@ -79,6 +79,10 @@ import howto_images  # noqa: E402
 import email_capture  # noqa: E402
 import howto_redirects
 import index_coverage  # noqa: E402
+import click_depth_orphans  # noqa: E402
+import url_structure  # noqa: E402
+import howto_hreflang_codes  # noqa: E402
+import page_weight  # noqa: E402
 import howto_headings  # noqa: E402
 import howto_broken_links  # noqa: E402
 import howto_compression  # noqa: E402
@@ -219,6 +223,16 @@ money.</p>
              "noindex tells an indexer not to list a page; it cannot stop a crawler "
              "fetching it. What robots.txt and your server control instead, and which "
              "layer is refusing yours."),
+            ("/learn/click-depth-and-orphan-pages/", "Click depth and orphan pages",
+             "How many clicks from the homepage a page sits, and which pages "
+             "nothing links to — plus the crawl conditions under which neither "
+             "number means anything."),
+            ("/learn/url-structure/", "URL structure: checked vs folklore",
+             "What Docket actually enforces about URLs, and which popular rules "
+             "have no published source behind them."),
+            ("/learn/page-weight/", "Page weight and how heavy is too heavy",
+             "Docket grades the HTML document, not the whole page — and says "
+             "'at least' when the read was capped."),
             ("/learn/index-coverage/", "Is your page actually indexed?",
              "Whether a page is in Google, Bing or Brave is a fact about their "
              "index, not your HTML. What Docket asks each engine, and the places "
@@ -849,6 +863,10 @@ def main() -> int:
     pages += cloudflare_gptbot.build_all()
     pages += howto_cdn_blocks_ai.build_all()
     pages += index_coverage.build_all()
+    pages += click_depth_orphans.build_all()
+    pages += url_structure.build_all()
+    pages += howto_hreflang_codes.build_all()
+    pages += page_weight.build_all()
     pages += noindex_ai_crawlers.build_all()
     pages += sitemaps_ai_crawlers.build_all()
     pages += googlebot_robots_blocks.build_all()
