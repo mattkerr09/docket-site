@@ -74,6 +74,10 @@ import pages  # noqa: E402
 import ai_slop  # noqa: E402
 import howto_nav_js  # noqa: E402
 import howto_phone  # noqa: E402
+import eeat  # noqa: E402
+import howto_images  # noqa: E402
+import email_capture  # noqa: E402
+import howto_redirects  # noqa: E402
 
 
 def hub(cat: str, title: str, desc: str, h1: str, lede: str,
@@ -186,6 +190,12 @@ money.</p>
         "Learn",
         "Reference pages, written to be read rather than skimmed for keywords.",
         [
+            ("/learn/trust-and-authorship-signals/", "Trust and authorship signals a crawler can see",
+             "About, Contact and a privacy page are the reliable half. The authorship half is "
+             "looser, and this is the page that says which is which."),
+            ("/learn/email-capture-audit/", "The email-capture check that never looks at your form",
+             "It reads body text, and body text is defined as the page minus nav, header, footer, "
+             "aside and form. What that means for a footer signup."),
             ("/learn/ai-sounding-copy/", "Does your copy read as AI-written?",
              "Docket matches a register, not authorship — it cannot tell you who or what "
              "wrote a page. What it looks for, why it needs more than one tell, and what "
@@ -841,6 +851,10 @@ def main() -> int:
     pages += ai_slop.build_all()
     pages += howto_nav_js.build_all()
     pages += howto_phone.build_all()
+    pages += eeat.build_all()
+    pages += howto_images.build_all()
+    pages += email_capture.build_all()
+    pages += howto_redirects.build_all()
     pages += build_hubs()
 
     # NOT appended to `pages`: the sitemap is derived from that list, and

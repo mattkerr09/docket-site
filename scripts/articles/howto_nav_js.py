@@ -260,7 +260,8 @@ context.</p>
     return render(
         cat="how-to", slug="fix-navigation-that-needs-javascript",
         title="Fix navigation that needs JavaScript to work",
-        desc=("Docket's nav_not_in_html check counts internal links in the HTML your server "
+        desc=("Docket's nav_not_in_html check counts internal links across a site in the HTML "
+              "your server "
               "sent. What it measures, what it cannot tell you about Google, and the fix."),
         h1="Fixing navigation that only exists after JavaScript runs",
         crumb=('<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / '

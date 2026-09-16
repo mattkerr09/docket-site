@@ -1326,6 +1326,17 @@ mistake that can cost a site its entire long tail while every page still returns
 check it in one command, and the fix for each cause.
 <a href="/how-to/fix-soft-404s/">How to fix soft 404s →</a></p>
 
+<h2>Image problems worth fixing</h2>
+<p>Docket reads image markup, never the picture, so it can tell you an image has no alt attribute
+and never whether the alt describes anything. Which image advice is real, and the case where
+reserving space correctly still leaves the finding standing.
+<a href="/how-to/fix-image-seo-problems/">Which image SEO problems actually matter &rarr;</a></p>
+
+<h2>Redirect problems</h2>
+<p>Loops, chains, and internal links pointing at a redirect — three findings at three severities,
+and one thing the crawl records that cannot tell you whether a hop was permanent or temporary.
+<a href="/how-to/fix-redirect-problems/">How to fix redirect problems &rarr;</a></p>
+
 <h2>Navigation that needs JavaScript</h2>
 <p>Google follows a link when it is an <code>a</code> element with an <code>href</code> in the
 HTML your server sent. A menu assembled by a click handler is not one. What Docket counts, and

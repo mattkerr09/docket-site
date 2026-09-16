@@ -55,6 +55,14 @@ in CSS instead:</p>
 
 <p>The container holds its shape before anything loads. Any known ratio beats no ratio.</p>
 
+<p><strong>This fixes the browser and not the finding, and you should know that before you
+wonder why.</strong> Docket reads markup, so it can see <code>width</code> and
+<code>height</code> attributes on the element, and it can see <code>aspect-ratio</code> inside
+that element's own inline <code>style</code> attribute. A rule in your stylesheet is neither: it
+reserves the space correctly for every visitor and stays invisible to a crawler that never
+fetched your CSS. If you have reserved space this way and Docket still reports the image, the
+page is right and the finding is wrong about it.</p>
+
 <h2>The other four causes, in the order they bite</h2>
 
 <ul>
@@ -112,7 +120,9 @@ them so the action plan asks for the work once.</p>
              "visually."),
             ("What if I don't know the image dimensions?",
              "Reserve the space in CSS with aspect-ratio on the container. Any known ratio is "
-             "better than none, and it works for user-uploaded or third-party images."),
+             "better than none, and it works for user-uploaded or third-party images. Note that "
+             "Docket cannot see a rule in your stylesheet — it reads the element's attributes and "
+             "its inline style — so this fixes the shift without clearing the finding."),
             ("Does an accordion opening count as layout shift?",
              "No. Shifts within half a second of a user interaction are excluded, because the "
              "user caused them."),
