@@ -16,6 +16,17 @@ Neither is visible by reading the file. The first needs the release listing to
 know the asset is absent; the second needs it to know a newer tag exists. So
 this asks GitHub.
 
+**It reads the COMMITTED file, not the one on disk (2026-09-16).** A third
+failure, of the same shape as the two above and found the same way: the 1.3.65
+ship ran `collect_updater.py`, which bumped the default to v1.3.65 on disk, and
+nobody committed it. This gate read the working tree, printed "ACTION ok —
+default v1.3.65 is the latest release", and the deploy finished — while the
+file every consumer of `mattkerr09/docket-site` actually resolves still said
+v1.3.64. Consumers do not get my working tree. So the version default is read
+from `git show HEAD:action.yml`, and a disk copy that differs from the
+committed one fails: an uncommitted bump is not a bump. When git cannot answer
+(not a checkout, file untracked) it falls back to disk and says so.
+
 **Network, and what happens without it.** This reaches api.github.com. When it
 cannot — offline, rate-limited, no `gh` — it prints why and returns 0 rather
 than failing the deploy, because a gate that blocks shipping whenever the
@@ -43,8 +54,28 @@ def _fail(msg: str) -> int:
     return 1
 
 
+def _committed() -> str | None:
+    """action.yml as HEAD has it — what a consumer of this repo resolves."""
+    try:
+        out = subprocess.run(["git", "-C", str(ROOT), "show", "HEAD:action.yml"],
+                             capture_output=True, text=True, timeout=15)
+    except Exception:  # noqa: BLE001 — no git, no checkout: fall back to disk
+        return None
+    return out.stdout if out.returncode == 0 else None
+
+
 def main() -> int:
-    text = ACTION.read_text()
+    on_disk = ACTION.read_text()
+    text = _committed()
+    if text is None:
+        print("ACTION note — could not read action.yml from HEAD; checking the "
+              "working copy instead, which is not what a consumer resolves")
+        text = on_disk
+    elif text != on_disk:
+        return _fail(
+            "action.yml on disk differs from the committed copy. Consumers of "
+            "this action resolve the committed file, so an edit that is only "
+            "in the working tree ships nothing: commit action.yml, then deploy")
 
     # Comments are excluded, and the first version of this gate did not do that
     # — it flagged its own explanatory comment quoting the old filename, and
