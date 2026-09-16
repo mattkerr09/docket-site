@@ -85,6 +85,7 @@
     "vs": "2026-08-06",
     "vs/ahrefs-site-audit-alternative": "2026-08-06",
     "vs/google-search-console": "2026-08-10",
+    "vs/jetoctopus-alternative": "2026-09-16",
     "vs/lighthouse-alternative": "2026-08-10",
     "vs/profound-alternative": "2026-09-16",
     "vs/screaming-frog-alternative": "2026-08-06",
@@ -96,6 +97,6 @@
     "vs/sitechecker-alternative": "2026-09-16"
   },
   "uncommitted": [
-    "vs/profound-alternative"
+    "vs/jetoctopus-alternative"
   ]
 }

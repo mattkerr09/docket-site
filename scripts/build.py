@@ -160,6 +160,10 @@ def build_hubs() -> list[Path]:
              "stronger link checker and has been shipping far longer; Docket ranks what "
              "it finds and covers conversion, brand and AI visibility, which Scrutiny "
              "does not."),
+            ("/vs/jetoctopus-alternative/", "Docket vs JetOctopus",
+             "It reads your server logs, which Docket cannot do at all, and meters "
+             "crawling in millions of URLs. An enterprise platform against a Mac app you "
+             "buy once."),
             ("/vs/profound-alternative/", "Docket vs Profound",
              "An answer-engine tracker sold by demo, with no crawler in its published "
              "platform list. It reports whether AI assistants mention you; Docket checks "

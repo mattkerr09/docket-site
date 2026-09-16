@@ -73,6 +73,7 @@ CHECKED_HUMAN: dict[str, str] = {
     "seoptimer": "16 September 2026",
     "sitechecker": "16 September 2026",
     "profound": "16 September 2026",
+    "jetoctopus": "16 September 2026",
 }
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-08-15",
@@ -81,6 +82,7 @@ CHECKED_ISO: dict[str, str] = {
     "seoptimer": "2026-09-16",
     "sitechecker": "2026-09-16",
     "profound": "2026-09-16",
+    "jetoctopus": "2026-09-16",
 }
 
 #: What was actually read, and where. Anything not sourced here is not stated as
@@ -117,6 +119,24 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     # also shows "$115 $86.25" beside a stale Black Friday note and a different
     # product (a serviced scheduled scan), and reading a price off that banner
     # would have published a wrong number about a named third party.
+    "jetoctopus": [
+        ("its In-House plans are priced 689 and 1,369 US dollars a month "
+         "quarterly, or 549 and 1,089 billed annually, with a third tier "
+         'quoted only as "let\'s talk"',
+         "https://jetoctopus.com/pricing/"),
+        ("the plans are metered on crawled URLs and log lines per month — one "
+         "million URLs and five million log lines on Pro, three million and ten "
+         "million on Ultra",
+         "https://jetoctopus.com/pricing/"),
+        ("projects, seats and simultaneous crawls are unlimited on every tier, "
+         "and the Agencies tab prices the same while halving the crawled-URL "
+         "allowance",
+         "https://jetoctopus.com/pricing/"),
+        ("its published product list leads with a Log Analyzer that tracks how "
+         "Google and AI bots navigate a site, alongside a JavaScript crawler, "
+         "GSC and GA4 integration, position tracking and an MCP integration",
+         "https://jetoctopus.com/pricing/"),
+    ],
     "profound": [
         ("its pricing page publishes two tiers and no price: a free Trial, and "
          "Enterprise at custom pricing reached through a demo",
@@ -1630,6 +1650,117 @@ no way to measure from outside.</p>
     )
 
 
+def jetoctopus() -> Path:
+    """The one that reads your server logs, which Docket cannot do at all.
+
+    JetOctopus is an enterprise log-analysis and crawl platform. Its published
+    product list leads with a Log Analyzer, and that is a data source Docket has
+    no access to: Docket audits what a site serves to a crawler, and logs record
+    what crawlers actually did. On a large site the logs are the more valuable
+    of the two and there is no argument otherwise.
+
+    So the concession is the whole first half of this page, and the comparison
+    that follows is about SCALE rather than quality. Their plans are metered in
+    millions of crawled URLs and millions of log lines; Docket runs on a Mac.
+
+    ⚠️ MCP IS NOT A DIFFERENTIATOR HERE. Docket ships an MCP server and so does
+    JetOctopus — their product list names one. Claiming it would have been the
+    easy sentence and it would have been false.
+
+    ⚠️ The cheaper of the two ways to buy a year is quoted (annual, not
+    quarterly), per the rule in `facts._annual`: it is their real price and the
+    less flattering number for us.
+    """
+    body = f"""
+<p>JetOctopus is an enterprise technical-SEO platform built around server log files. Docket is a
+{PRICE_STR} Mac app. Before any comparison is worth making, the important part:
+<strong>JetOctopus reads your server logs and Docket cannot</strong>, and on a large site that is
+the most valuable technical-SEO data there is.</p>
+
+<h2>What log analysis gives you that no crawler can</h2>
+
+<p>A crawler — Docket included — tells you what your site serves when something asks. Logs tell
+you what Googlebot actually did: which pages it fetched, how often, which it ignored for months,
+where it spent a crawl budget you did not know you were spending. Those are different questions,
+and the second cannot be inferred from the first. JetOctopus's product list leads with its Log
+Analyzer for that reason, and adds a JavaScript crawler, GSC and GA4 integration, position
+tracking and alerts.</p>
+
+<p>If crawl budget on a large catalogue is your problem, a tool that cannot see your logs is not
+the answer, and this page is not going to pretend otherwise.</p>
+
+<h2>Where the comparison actually sits: scale</h2>
+
+<p>Their In-House plans are metered in <strong>millions</strong> — one million crawled URLs and
+five million log lines a month on the lower tier, three million and ten million on the upper one,
+with a third tier quoted only as "let's talk". Projects, seats and simultaneous crawls are
+unlimited on every tier. That is a platform for sites with millions of pages and a team around
+them.</p>
+
+<p>The prices follow: {price('jetoctopus')}, or {F.rival_annual_low('jetoctopus'):,} US dollars
+for a year at the cheaper annual rate. Docket is {PRICE_STR} once. Setting those two numbers
+beside each other is close to meaningless, because they are not sold to the same buyer — but it
+does tell you which question you are asking. If a five-figure annual platform fee is a normal
+line item, JetOctopus is in your category and Docket is not.</p>
+
+<h2>What Docket does</h2>
+
+<p>{N_CHECKS} checks across thirteen areas, on your own Mac, with no account and no page limit —
+<code>-n 0</code> crawls until the site ends, and re-running after each fix costs nothing because
+nothing is metered. Four of those areas are not technical SEO at all: conversion, brand
+consistency, AI search visibility and campaign tracking. Findings arrive as a ranked plan with
+the fix written out, and <a href="/learn/priority-model/">the ordering formula is published</a>.</p>
+
+<p>One thing worth not claiming: an MCP integration. Docket ships one so that an AI assistant can
+run an audit, and JetOctopus's product list names one too. It is not a difference between them.</p>
+
+<h2>Which to buy</h2>
+
+<ul>
+<li><strong>Buy JetOctopus</strong> if you have server logs worth analysing, a site measured in
+hundreds of thousands of pages or more, and a budget that treats SEO tooling as infrastructure.</li>
+<li><strong>Buy Docket</strong> if you want a deep audit of a site you can crawl from your own
+machine, ranked into an order, once, for a fixed price.</li>
+</ul>
+
+<p>Nothing here compares crawl accuracy or the quality of either tool's findings, which has not
+been measured. The facts above are what each vendor publishes about its own product.</p>
+
+{_verified_note("jetoctopus")}
+{CTA}"""
+
+    return render(
+        cat="vs", slug="jetoctopus-alternative",
+        title="Docket vs JetOctopus: logs at scale, or an audit you own",
+        desc=("JetOctopus reads your server logs and meters crawling in millions of URLs. "
+              "Docket cannot read logs at all. Which question you are asking decides it."),
+        h1="Docket vs JetOctopus",
+        crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / JetOctopus',
+        body=body,
+        faq=[
+            ("Is Docket a JetOctopus alternative?",
+             "Not for log analysis, which is what JetOctopus is built around and Docket "
+             "cannot do at all. For auditing a site you can crawl from your own machine and "
+             "getting the fixes in priority order, Docket does that for a one-time price "
+             "instead of an enterprise subscription."),
+            ("Does Docket analyse server log files?",
+             "No. Docket audits what your site serves to a crawler. Logs record what "
+             "crawlers actually did — which pages Googlebot fetched, how often, and which it "
+             "ignored — and that cannot be inferred from a crawl. On a large site it is the "
+             "more valuable of the two data sources."),
+            ("How much does JetOctopus cost?",
+             f"Its published In-House plans are {price('jetoctopus')}, which is "
+             f"{F.rival_annual_low('jetoctopus'):,} US dollars for a year at the cheaper "
+             f"annual rate, with a third tier quoted only on request. Docket is {PRICE_STR} "
+             "once. They are not sold to the same buyer."),
+            ("Do both have an MCP integration?",
+             "Yes. Docket ships an MCP server so an assistant can run an audit, and "
+             "JetOctopus's product list names an MCP integration too. It is not a difference "
+             "between them, and this page does not present it as one."),
+        ],
+    )
+
+
 def se_ranking_vs_screaming_frog() -> Path:
     """Two tools people compare that are not the same KIND of thing.
 
@@ -1755,7 +1886,7 @@ Screaming Frog is the right tool.</p>
 
 BUILDERS = [screaming_frog, sitebulb, ahrefs, semrush, lighthouse,
             search_console, scrutiny, seoptimer, sitechecker, profound,
-            se_ranking_vs_screaming_frog]
+            jetoctopus, se_ranking_vs_screaming_frog]
 
 
 def build_all() -> list[Path]:
