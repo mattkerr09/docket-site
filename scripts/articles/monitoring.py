@@ -103,7 +103,7 @@ the difference between research and a nuisance.</p>
     return render(
         cat="learn", slug="site-monitoring",
         title="SEO monitoring: what changed, not what is wrong",
-        desc=("Scheduled re-audits on your own machine, regressions first, and "
+        desc=("Scheduled site re-audits on your own machine, regressions first, and "
               "the two comparisons Docket refuses to make because the number "
               "would look useful and be wrong."),
         h1="Site monitoring",

@@ -150,7 +150,7 @@ site.</p>
     return render(
         cat="learn", slug="audit-tool-accuracy",
         title="How to tell whether an audit tool is lying to you",
-        desc=(f"Four questions to ask of any SEO finding, each learned by getting it "
+        desc=(f"Four questions to ask of any SEO audit finding, each learned by getting it "
               f"wrong. {F.regression_files()} of Docket's {F.test_files()} test files "
               f"exist because Docket said something untrue."),
         h1="How to tell whether an audit tool is lying to you",

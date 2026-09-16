@@ -101,7 +101,8 @@ which is why this is a crawl problem rather than a validation problem.</p>
         cat="how-to", slug="fix-structured-data-errors",
         title="How to fix structured data errors",
         desc=("Invalid JSON-LD is discarded whole, not partially read. The five ways schema "
-              "breaks, why a single-URL validator misses most of them, and the fix for each."),
+              "breaks, why a single-URL validator misses most of them on a site, and the fix "
+              "for each."),
         h1="How to fix structured data errors",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / structured data errors',
         body=body,

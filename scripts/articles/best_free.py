@@ -151,13 +151,40 @@ by Google. What each does, the limits its own documentation states, and the thre
 points where paying starts to help.
 <a href="/best/free-seo-audit-tools/">The best free SEO audit tools →</a></p>
 
+<h2>How a tool gets onto one of these pages</h2>
+<p>There is no scoring formula and no ranking here, because a number invented to order a list is
+still invented. A guide gets written when there is a job worth choosing a tool for, and it names
+the tool that does that job best &mdash; which is regularly not ours.</p>
+<ul>
+<li><strong>Every capability claim comes from the vendor.</strong> Not from a review, not from a
+comparison table someone else built, and not from memory. Where a page says a tool does or does
+not do something, it is reading that tool's own documentation or published feature list, with a
+link and the date it was read. Documentation changes; an undated claim is one you cannot check.</li>
+<li><strong>A missing feature is written up as a missing claim.</strong> If a vendor's own pages
+never mention something, that is what the page says &mdash; not that the product is incapable of
+it. Those are different statements, and only one of them is evidence.</li>
+<li><strong>Prices are the vendor's, in the vendor's own terms.</strong> Taken from their pricing
+page, in the currency and billing period that page states, and dated like everything else.</li>
+<li><strong>No link on this site earns a commission.</strong> There are no affiliate parameters on
+any outbound link here, and nothing paid to be listed.</li>
+</ul>
+
+<h2>We make one of the tools</h2>
+<p>Docket is ours, which is exactly why every sentence about it deserves checking &mdash; so the
+method above is pointed back at us too. Every comparison page on this site names what the other
+tool does better than Docket. One of them says plainly that a competitor is cheaper. Where Docket
+has no answer at all &mdash; rendering at scale, Core Web Vitals, backlinks, rank tracking &mdash;
+the page covering that tool says so before it makes any case in our favour. A page here that
+reads like an advertisement is a bug in the page.</p>
+
 <h2>More coming</h2>
 <p>Further guides are being written, one per job worth choosing a tool for.</p>
 """
     return render(
         cat="best", slug="",
         title="Best SEO tools, by the job you are doing — Docket",
-        desc=("Which SEO tool fits which job, with every claim read from the product's own "
+        desc=("Which SEO tool fits which job on your site, with every claim read from the "
+              "product's own "
               "documentation and dated on the page."),
         h1="Best tools, by job",
         crumb='<a href="/">Docket</a> / Best',

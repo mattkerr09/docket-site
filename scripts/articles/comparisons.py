@@ -915,7 +915,8 @@ of forty things do I do first. If you are not at that point yet, the honest answ
         cat="vs", slug="lighthouse-alternative",
         title="Docket vs Google Lighthouse: what its SEO score covers",
         desc=("Lighthouse is free, from Google, and the authority on lab Core Web Vitals. "
-              "Its SEO category is ten scored checks on one URL. What sits outside it."),
+              "Its SEO category is ten scored checks on one URL. What a site audit sees "
+              "outside it."),
         h1="Docket vs Google Lighthouse",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Lighthouse',
         body=body,
@@ -1108,7 +1109,7 @@ forever, and add the crawler when the question is what to change rather than wha
         cat="vs", slug="google-search-console",
         title="Docket vs Google Search Console: what each answers",
         desc=("Search Console is free, it is Google's own data, and nothing replaces it. What "
-              "it cannot tell you, and where a crawl on your own Mac answers instead."),
+              "it cannot tell you, and where an audit on your own Mac answers instead."),
         h1="Docket vs Google Search Console",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Search Console',
         published="2026-08-10",

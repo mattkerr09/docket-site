@@ -142,7 +142,8 @@ anything.</p>
     return render(
         cat="how-to", slug="javascript-seo-audit",
         title="How to run a JavaScript SEO audit (step by step)",
-        desc=("Compare the HTML your server sends against the rendered page, in five steps. "
+        desc=("A JavaScript SEO audit compares the HTML your server sends against the rendered "
+              "page, in five steps. "
               "Which of the three gaps you have decides the fix."),
         h1="How to run a JavaScript SEO audit",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / JavaScript SEO audit',

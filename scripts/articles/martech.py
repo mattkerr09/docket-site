@@ -129,7 +129,7 @@ guess at the rest.</p>
     return render(
         cat="learn", slug="marketing-tag-audit",
         title="Marketing tag audit: is your tracking on every page?",
-        desc=(f"The {len(rows)} tracking checks Docket runs — analytics coverage, ad "
+        desc=(f"The {len(rows)} tracking checks in Docket's audit — analytics coverage, ad "
               "pixels, consent timing, UTM hygiene — and the common failure you "
               "can check yourself in four minutes."),
         h1="Marketing tag audit",

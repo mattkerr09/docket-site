@@ -90,7 +90,8 @@ crawler concludes.</p>
     return render(
         cat="how-to", slug="fix-soft-404s",
         title="How to fix soft 404s (pages that return 200)",
-        desc=("A missing page that answers 200 makes every mistyped URL indexable. How to "
+        desc=("A missing page that answers 200 makes every mistyped URL on your site indexable. "
+              "How to "
               "check it in one command, what it costs, and the fix for each cause."),
         h1="How to fix soft 404s",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / soft 404s',

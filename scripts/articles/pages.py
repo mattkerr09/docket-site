@@ -741,7 +741,7 @@ benchmark, and measure your own.</p>
     return render(
         cat="for", slug="developers",
         title="SEO checks in your deploy pipeline: Docket's CLI as a gate",
-        desc=(f"Docket's CLI exits 2 on a critical finding, so it gates a deploy in one "
+        desc=(f"Docket's CLI exits 2 on a critical audit finding, so it gates a deploy in one "
               f"line. {F.ci_page_cap()} pages in a median {F.ci_median_seconds()}s across "
               f"{F.ci_sites()} sites. Apple Silicon only."),
         h1="SEO checks in your deploy pipeline",

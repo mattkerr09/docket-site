@@ -117,7 +117,7 @@ traffic you already earned.</p>
     return render(
         cat="learn", slug="conversion-audit",
         title="Conversion audit: 9 checks on your landing pages",
-        desc=(f"The {len(rows)} conversion checks Docket runs — calls to action, social "
+        desc=(f"The {len(rows)} conversion checks in Docket's audit — calls to action, social "
               "proof, message match, dead contact details — and the judgement calls "
               "it refuses to make for you."),
         h1="Conversion audit",
