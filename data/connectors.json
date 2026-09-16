@@ -1,0 +1,13 @@
+{
+  "collected_by": "scripts/collect_connectors.py",
+  "count": 5,
+  "keys": [
+    "demand_topics",
+    "edge_access",
+    "knowledge",
+    "mail_delivery",
+    "psi"
+  ],
+  "note": "Generated. Do not edit by hand. The count reaches prose only through facts.optional_connectors().",
+  "source": "seo_engine.connectors.base.registry, the set --offline turns off"
+}

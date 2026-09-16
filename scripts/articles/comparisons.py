@@ -17,12 +17,19 @@ import facts as F  # noqa: E402
 from render import (BETA_NOTE, FREE_CLAUSE, N_CHECKS, PRICE_STR, RELEASE,  # noqa: E402
                     price, price_note_html, render)
 
-CTA = """
+#: How many optional checks reach the network, spelled, from the engine's own
+#: connector registry. Typed as "four" here and in four other places while the
+#: registry held five — see facts.optional_connectors for why that mattered and
+#: why verify_numbers could not see it.
+CONNECTORS_WORD = F.optional_connectors_word()
+CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
+
+CTA = f"""
 <div class="callout">
 <div class="callout-title">Try it against your own site</div>
 <p>Docket is a one-time download for macOS. No account, no crawl credits, and the crawl runs
-on your machine. Four optional checks fetch data it cannot produce alone; <code>--offline</code>
-turns all four off. <a href="/download/">Download Docket →</a></p>
+on your machine. {CONNECTORS_WORD_CAP} optional checks fetch data it cannot produce alone; <code>--offline</code>
+turns all {CONNECTORS_WORD} off. <a href="/download/">Download Docket →</a></p>
 </div>"""
 
 #: When the factual claims about competitors on these pages were last checked
@@ -528,7 +535,7 @@ need one of these, ask them rather than taking this page's word for it.</p>
 <tr><td>Keyword &amp; backlink data</td><td class="no">None</td><td class="yes">Its main product</td></tr>
 <tr><td>Rank tracking</td><td class="no">No</td><td class="yes">Yes</td></tr>
 <tr><td>Crawl limits</td><td class="yes">Your machine, your limits</td><td>Credit-metered by plan</td></tr>
-<tr><td>Data location</td><td class="yes">Crawl runs on your Mac; four optional checks fetch data unless <code>--offline</code></td><td>Cloud</td></tr>
+<tr><td>Data location</td><td class="yes">Crawl runs on your Mac; {CONNECTORS_WORD} optional checks fetch data unless <code>--offline</code></td><td>Cloud</td></tr>
 <tr><td>Ranked action plan</td><td class="yes">Yes</td><td>Issues by severity</td></tr>
 <tr><td>AI crawler audit</td><td class="yes">Per-crawler</td><td>Not listed as per-crawler</td></tr>
 <tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
@@ -662,7 +669,7 @@ opens as a sequence instead of a filter you have to operate.</p>
 <h2>Nothing leaves your Mac</h2>
 <p>Docket has no account, no sign-in and no telemetry. The crawl runs on your machine and each
 run is written to <code>~/.docket/</code> as plain JSON you can diff, script against, or delete.
-Four checks reach outside by default and <code>--offline</code> turns all four off.</p>
+{CONNECTORS_WORD_CAP} checks reach outside by default and <code>--offline</code> turns all {CONNECTORS_WORD} off.</p>
 <p>Two consequences that matter in practice. Auditing a prospect's site before a pitch is a
 quieter act on your own laptop than inside a vendor's project workspace. And re-running costs
 nothing, so a fix gets verified the moment it ships rather than saved up until a crawl is worth
@@ -1130,7 +1137,7 @@ forever, and add the crawler when the question is what to change rather than wha
             ("Does Docket measure Core Web Vitals?",
              "No. Docket checks the causes of poor performance and can fetch the same CrUX "
              "field values Search Console shows, through the PageSpeed Insights API, as one of "
-             "four optional checks that --offline turns off. The authoritative view is Google's "
+             f"{CONNECTORS_WORD} optional checks that --offline turns off. The authoritative view is Google's "
              "and it is in Search Console. Confirm a speed fix there, not in Docket."),
             ("Is the URL Inspection tool enough to audit a site?",
              "Not at any scale. It inspects one URL at a time, and Google documents the API "

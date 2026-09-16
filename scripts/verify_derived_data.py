@@ -44,6 +44,12 @@ ROOT = Path(__file__).resolve().parent.parent
 #: is a correction rather than a fresh measurement — see the module docstring.
 DERIVED = [
     ("collect_regressions.py", "data/regressions.json"),
+    # Added 2026-09-16. The count of optional checks that reach the network was
+    # the word "four", typed in eight places across four modules, while the
+    # engine's registry held five — and one of those eight ENUMERATED them, so
+    # the page named four connectors and omitted a fifth. Re-running this reads
+    # the registry again, which is a correction and never a fresh measurement.
+    ("collect_connectors.py", "data/connectors.json"),
 ]
 
 #: Checks run from the *app* repo, which owns the fact. `--check` reports

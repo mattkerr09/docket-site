@@ -12,6 +12,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
+
+#: The optional checks that reach the network, spelled, from the engine's
+#: registry. It was the word "four" here while the registry held five.
+CONNECTORS_WORD = F.optional_connectors_word()
+CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
 from render import (
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, GOVERNING_LAW, ISSUES,
@@ -333,11 +338,11 @@ size. The defaults are deliberately polite; you can raise them.</li>
 its user-agent rather than impersonating Googlebot — a spoofed user-agent gets a different,
 sometimes cloaked response, which would make every finding a lie.</p>
 
-<p>Four optional checks do reach out, and it is worth being exact rather than reassuring:
+<p>{CONNECTORS_WORD_CAP} optional checks do reach out, and it is worth being exact rather than reassuring:
 Docket asks your own server what it tells AI crawlers, refreshes its crawler knowledge file
 from this site, checks whether the email addresses you publish can actually receive mail, and
 fetches Core Web Vitals from Google PageSpeed Insights. <code>--offline</code>, or the offline
-tick in the desktop app, turns all four off and the audit still completes — the report then
+tick in the desktop app, turns all {CONNECTORS_WORD} off and the audit still completes — the report then
 says which checks did not run rather than quietly scoring them.</p>
 
 <p>Docket also asks docketseo.app once at launch whether a newer version exists, and tells you

@@ -85,6 +85,11 @@ def _ico(path: str) -> str:
             f'stroke-linejoin="round">{path}</svg>')
 
 
+#: The optional checks that reach the network, spelled, from the engine's own
+#: registry rather than from a sentence nobody re-reads.
+CONNECTORS_WORD = F.optional_connectors_word()
+CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
+
 ICONS = {
     "order": _ico('<path d="M3 6h13M3 12h9M3 18h5"/><path d="M17 14l3 3 4-5"/>'),
     "ai": _ico('<path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1'
@@ -388,6 +393,36 @@ def body() -> str:
 </div>
 </div></section>
 
+<!-- ================= INDEX COVERAGE ================= -->
+<section class="sec"><div class="wrap-wide">
+<div class="sec-head">
+  <h2>Is the page actually <em>in</em> there?</h2>
+  <p class="sec-sub">Being indexed is not a property of your HTML, so no crawler can read it
+  off your page. Docket asks Google, Bing and Brave directly, with your own credentials, and
+  records what you announced through IndexNow &mdash; then says which of those answered about
+  the page and which answered about the site.</p>
+</div>
+<div class="grid-3">
+  <div class="card"><div class="card-ico">{ICONS['eye']}</div>
+    <h3>Per page, where per page exists</h3>
+    <p>Google answers for a single URL against a property you have verified, so that column is
+    real. Bing answers for the whole site and says so, because its per-URL call throttles long
+    before a real site finishes. Two different questions, never averaged into one score.</p></div>
+  <div class="card"><div class="card-ico">{ICONS['lock']}</div>
+    <h3>It will not invent an absence</h3>
+    <p>Brave can only be enumerated to a fixed depth. Past it, &ldquo;not in the results&rdquo;
+    and &ldquo;past what anyone could read&rdquo; are the same observation, so Docket reports
+    blindness rather than telling you a page is missing when nobody looked.</p></div>
+  <div class="card"><div class="card-ico">{ICONS['doc']}</div>
+    <h3>Announcing is not indexing</h3>
+    <p>IndexNow records that you told the search engines a URL changed. That is a real action
+    and a useful one, and it is still your outbox rather than anyone's index &mdash; so it is
+    labelled a submission and never counted toward whether you are indexed.</p></div>
+</div>
+<p style="text-align:center;margin-top:1.6rem">
+<a class="btn-ghost" href="/learn/index-coverage/">How each engine is asked &rarr;</a></p>
+</div></section>
+
 <!-- ================= THE INDEX ================= -->
 <section class="sec"><div class="wrap-wide">
 <div class="sec-head">
@@ -427,8 +462,8 @@ def body() -> str:
     <h3>Nothing is uploaded</h3>
     <p>No account and no telemetry. Activating your licence is the one thing that
     contacts us, and after that it is checked about once a day. The crawl only ever touches the site you
-    are auditing; four optional checks also fetch data Docket cannot produce alone, and
-    <code>--offline</code> turns all four off.</p></div>
+    are auditing; {CONNECTORS_WORD} optional checks also fetch data Docket cannot produce alone,
+    and <code>--offline</code> turns all {CONNECTORS_WORD} off.</p></div>
   <div class="card"><div class="card-ico">{ICONS['order']}</div>
     <h3>A CLI, including <code>docket attack</code></h3>
     <p><code>docket audit</code> exits non-zero on a critical issue — a noindexed homepage, a
@@ -607,10 +642,12 @@ FAQ = [
      "no per-seat pricing — you can audit as many sites as you like."),
     ("Does Docket send my site data anywhere?",
      "Docket collects nothing about you: no account, no telemetry, no licence check. The "
-     "crawl runs on your Mac. Four checks reach outside it by default — Core Web Vitals "
-     "from Google PageSpeed, a deliverability test on the addresses your site publishes, "
-     "what your server tells AI crawlers, and a knowledge refresh from this site. Offline "
-     "mode turns all four off, and every report names the ones that ran."),
+     f"crawl runs on your Mac. {CONNECTORS_WORD_CAP} checks reach outside it by default — Core Web "
+     "Vitals from Google PageSpeed, a deliverability test on the addresses your site "
+     "publishes, what your server tells AI crawlers, a knowledge refresh from this site, "
+     "and Google's public autocomplete for topic suggestions, which sends only the topic "
+     "words. Offline "
+     f"mode turns all {CONNECTORS_WORD} off, and every report names the ones that ran."),
     ("How is Docket different from Screaming Frog?",
      "Screaming Frog gives you raw crawl data and leaves the interpretation to you. Docket "
      "ranks every finding by impact against effort and gives you an ordered plan with the "

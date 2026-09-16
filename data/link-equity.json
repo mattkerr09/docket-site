@@ -1,7 +1,7 @@
 {
   "site": "docketseo.app",
   "pages": 84,
-  "edges": 1825,
+  "edges": 1826,
   "average_share_pct": 1.19,
   "below_half": 64,
   "nodes": [
@@ -349,9 +349,9 @@
     },
     {
       "path": "/learn/index-coverage/",
-      "inlinks": 1,
-      "share_pct": 0.05,
-      "index": 0.04
+      "inlinks": 2,
+      "share_pct": 0.11,
+      "index": 0.09
     },
     {
       "path": "/learn/internal-link-equity/",

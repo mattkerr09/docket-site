@@ -1392,3 +1392,42 @@ def dmg_mb() -> float:
 
 def dmg_size_str() -> str:
     return f"{dmg_mb():.1f} MB"
+
+
+#: Spelled forms for the small counts this site puts in prose. Digits are what
+#: `verify_numbers.py` polices; a spelled number walks straight past it, which
+#: is exactly how "four optional checks" survived a fifth connector being added.
+_SPELLED = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six",
+            7: "seven", 8: "eight", 9: "nine", 10: "ten"}
+
+
+def optional_connectors() -> int:
+    """How many optional checks reach the network, from `data/connectors.json`.
+
+    ⚠️ IT WAS TYPED IN FIVE PLACES AND ALL FIVE WERE WRONG. Three modules said
+    "four optional checks also fetch data Docket cannot produce alone" while the
+    engine's registry held five, because `edge_access` was added and nothing
+    pointed at any of those sentences.
+
+    The direction matters more than the drift. Those are the pages that make the
+    privacy argument, and they UNDERSTATED what Docket fetches. A tool whose
+    pitch is that nothing is uploaded cannot be approximate about how much it
+    downloads.
+
+    `verify_numbers.py` could not have caught it: it polices digits, and every
+    one of those five was the word "four".
+    """
+    import json
+
+    data = json.loads((ROOT / "data" / "connectors.json").read_text())
+    count = data.get("count")
+    if not isinstance(count, int) or count < 1:
+        raise SystemExit("facts.optional_connectors: data/connectors.json has no "
+                         "usable count — run scripts/collect_connectors.py")
+    return count
+
+
+def optional_connectors_word() -> str:
+    """The same count, spelled, for prose that reads better without a digit."""
+    count = optional_connectors()
+    return _SPELLED.get(count, str(count))
