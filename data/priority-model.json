@@ -1,0 +1,38 @@
+{
+  "collected_by": "scripts/collect_priority_model.py",
+  "effort_cost": {
+    "large": 12.0,
+    "medium": 5.0,
+    "small": 2.0,
+    "trivial": 1.0
+  },
+  "formula": "severity weight x impact x reach / effort cost",
+  "note": "Generated. Do not edit by hand.",
+  "phase_impact_threshold": 5.0,
+  "plan_item_cap": 40,
+  "quick_win_efforts": [
+    "small",
+    "trivial"
+  ],
+  "reach_curve": {
+    "1": 2.0,
+    "100": 11.0,
+    "144": 13.0,
+    "25": 6.0,
+    "4": 3.0,
+    "500": 13.0,
+    "5000": 13.0,
+    "9": 4.0
+  },
+  "reach_max": 13.0,
+  "reach_plateau_at": 144,
+  "severity_weight": {
+    "critical": 10.0,
+    "high": 5.0,
+    "low": 0.7,
+    "medium": 2.0,
+    "notice": 0.15,
+    "pass": 0.0
+  },
+  "source": "seo_engine.models.SEVERITY_WEIGHT and EFFORT_COST, Finding.priority, and seo_engine.scoring.action_plan"
+}

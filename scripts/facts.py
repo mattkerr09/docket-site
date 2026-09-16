@@ -1431,3 +1431,94 @@ def optional_connectors_word() -> str:
     """The same count, spelled, for prose that reads better without a digit."""
     count = optional_connectors()
     return _SPELLED.get(count, str(count))
+
+
+# -- the priority model ------------------------------------------------------
+
+def _priority_model() -> dict:
+    """`data/priority-model.json`, generated from the engine's own tables.
+
+    The weights that decide what Docket tells you to fix first live as literals
+    in two engine modules. Typed into prose they are the shape of number this
+    site refuses everywhere else — one that lives in a second place and drifts
+    with nothing rendering wrong, so the page goes on describing a formula the
+    product stopped using. `scripts/collect_priority_model.py --check` fails the
+    deploy instead.
+    """
+    import json
+
+    data = json.loads((ROOT / "data" / "priority-model.json").read_text())
+    for key in ("severity_weight", "effort_cost", "reach_curve"):
+        if not data.get(key):
+            raise SystemExit(f"facts._priority_model: {key} is missing or empty "
+                             "— run scripts/collect_priority_model.py")
+    return data
+
+
+def severity_weight(name: str) -> float:
+    """The relative weight of one severity, e.g. `severity_weight("high")`."""
+    table = _priority_model()["severity_weight"]
+    if name not in table:
+        raise SystemExit(f"facts.severity_weight: the engine has no severity "
+                         f"{name!r} — it has {', '.join(sorted(table))}")
+    return table[name]
+
+
+def effort_cost(name: str) -> float:
+    """The divisor for one effort level, e.g. `effort_cost("large")`."""
+    table = _priority_model()["effort_cost"]
+    if name not in table:
+        raise SystemExit(f"facts.effort_cost: the engine has no effort level "
+                         f"{name!r} — it has {', '.join(sorted(table))}")
+    return table[name]
+
+
+def severity_levels() -> list:
+    """Severity names worst-first, excluding `pass`, which is not a problem."""
+    table = _priority_model()["severity_weight"]
+    return [n for n, _w in sorted(table.items(), key=lambda kv: -kv[1])
+            if n != "pass"]
+
+
+def reach_plateau() -> int:
+    """The affected-page count at which the reach multiplier stops growing."""
+    return int(_priority_model()["reach_plateau_at"])
+
+
+def reach_max() -> float:
+    """The largest reach multiplier any finding can earn."""
+    return float(_priority_model()["reach_max"])
+
+
+def reach_at(count: int) -> float:
+    """The reach multiplier at one page count, for counts the collector sampled."""
+    curve = _priority_model()["reach_curve"]
+    key = str(count)
+    if key not in curve:
+        raise SystemExit(f"facts.reach_at: the collector did not sample "
+                         f"{count} pages — it sampled {', '.join(sorted(curve, key=int))}")
+    return float(curve[key])
+
+
+def phase_impact_threshold() -> float:
+    """The impact at or above which a finding leaves the Polish phase."""
+    return float(_priority_model()["phase_impact_threshold"])
+
+
+def plan_item_cap() -> int:
+    """How many items the action plan prints before it says what it withheld."""
+    return int(_priority_model()["plan_item_cap"])
+
+
+def quick_win_efforts_words() -> list:
+    """The effort levels that qualify for the Quick wins phase, as words.
+
+    Read from the engine rather than restated: if someone widens that branch to
+    include medium-effort fixes, the page must not go on saying "trivial or
+    small".
+    """
+    model = _priority_model()
+    cost = model["effort_cost"]
+    # Ordered cheapest-first so the prose reads "trivial or small", which is the
+    # order the engine writes them in; alphabetical would invert it.
+    return sorted(model["quick_win_efforts"], key=lambda n: cost[n])

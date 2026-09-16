@@ -67,6 +67,7 @@
     "learn/log-file-analysis": "2026-08-08",
     "learn/marketing-tag-audit": "2026-08-14",
     "learn/page-weight": "2026-09-16",
+    "learn/priority-model": "2026-09-16",
     "learn/sameas-entity-signals": "2026-08-06",
     "learn/seo-audit": "2026-08-06",
     "learn/site-monitoring": "2026-08-14",
@@ -91,9 +92,6 @@
     "vs/sitebulb-alternative": "2026-08-06"
   },
   "uncommitted": [
-    "how-to/fix-invalid-hreflang-codes",
-    "learn/click-depth-and-orphan-pages",
-    "learn/page-weight",
-    "learn/url-structure"
+    "learn/priority-model"
   ]
 }

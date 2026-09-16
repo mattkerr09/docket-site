@@ -83,6 +83,7 @@ import click_depth_orphans  # noqa: E402
 import url_structure  # noqa: E402
 import howto_hreflang_codes  # noqa: E402
 import page_weight  # noqa: E402
+import priority_model  # noqa: E402
 import howto_headings  # noqa: E402
 import howto_broken_links  # noqa: E402
 import howto_compression  # noqa: E402
@@ -233,6 +234,9 @@ money.</p>
             ("/learn/page-weight/", "Page weight and how heavy is too heavy",
              "Docket grades the HTML document, not the whole page — and says "
              "'at least' when the read was capped."),
+            ("/learn/priority-model/", "How Docket decides what to fix first",
+             "Severity, impact, reach and effort — the formula an audit ranks "
+             "your site with, written out."),
             ("/learn/index-coverage/", "Is your page actually indexed?",
              "Whether a page is in Google, Bing or Brave is a fact about their "
              "index, not your HTML. What Docket asks each engine, and the places "
@@ -867,6 +871,7 @@ def main() -> int:
     pages += url_structure.build_all()
     pages += howto_hreflang_codes.build_all()
     pages += page_weight.build_all()
+    pages += priority_model.build_all()
     pages += noindex_ai_crawlers.build_all()
     pages += sitemaps_ai_crawlers.build_all()
     pages += googlebot_robots_blocks.build_all()

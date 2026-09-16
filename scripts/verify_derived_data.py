@@ -50,6 +50,12 @@ DERIVED = [
     # the page named four connectors and omitted a fifth. Re-running this reads
     # the registry again, which is a correction and never a fresh measurement.
     ("collect_connectors.py", "data/connectors.json"),
+    # Added 2026-09-16, before the page that needs it shipped rather than after.
+    # `/learn/priority-model/` states the weights Docket ranks findings with, and
+    # those live as literals in two engine modules. A formula page that drifts
+    # still renders perfectly — it just describes a product that no longer
+    # exists — so there is no visible symptom for anyone to notice.
+    ("collect_priority_model.py", "data/priority-model.json"),
 ]
 
 #: Checks run from the *app* repo, which owns the fact. `--check` reports
