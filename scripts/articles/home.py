@@ -574,10 +574,12 @@ computed from free public data rather than a bought index.</p>
 as many sites as you like.</p></div>
 <div class="faq-item"><h3>Does it send my site data anywhere?</h3>
 <p>Docket collects nothing about you — no account, no telemetry, no licence check. The
-crawl runs on your Mac. Four checks do reach outside it by default: Core Web Vitals from
-Google PageSpeed, a deliverability test on the addresses your site publishes, what your
-server tells AI crawlers, and a knowledge refresh from this site. Offline mode turns all
-four off, and every report names the ones that ran.</p></div>
+crawl runs on your Mac. {CONNECTORS_WORD_CAP} checks do reach outside it by default: Core Web
+Vitals from Google PageSpeed, a deliverability test on the addresses your site publishes, what
+your server tells AI crawlers, a knowledge refresh from this site, and Google's public
+autocomplete for topic suggestions, which is sent only the topic words your own URLs are built
+from. Offline mode turns all {CONNECTORS_WORD} off, and every report names the ones that
+ran.</p></div>
 <div class="faq-item"><h3>Other tools advertise more checks. Why {N_CHECKS}?</h3>
 <p>Because a count is the easy number to grow and the hard one to use. Splitting one check into
 four raises the total and tells you nothing new; what a report is for is knowing which of the
