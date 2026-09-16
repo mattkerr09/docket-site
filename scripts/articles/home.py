@@ -651,10 +651,20 @@ FAQ = [
      "words. Offline "
      f"mode turns all {CONNECTORS_WORD} off, and every report names the ones that ran."),
     ("How is Docket different from Screaming Frog?",
+     # ⚠️ THIS ANSWER USED TO END "Screaming Frog renders JavaScript and supports
+     # custom XPath extraction; Docket does not." One sentence, two claims, and
+     # the first was false: Docket renders a small sample of EVERY audit
+     # automatically where the helper is present, in WebKit. The page it sat on
+     # already said so twice — the "absent on purpose" list names JavaScript
+     # rendering among the things that came OFF it — so the home page
+     # contradicted itself, and /vs/screaming-frog-alternative/ contradicted the
+     # home page. It conceded a capability we ship, on the highest-traffic page
+     # on the site. Split, because one predicate was answering two questions.
      "Screaming Frog gives you raw crawl data and leaves the interpretation to you. Docket "
      "ranks every finding by impact against effort and gives you an ordered plan with the "
-     "exact markup to paste. Screaming Frog renders JavaScript and supports custom XPath "
-     "extraction; Docket does not."),
+     "exact markup to paste. Screaming Frog supports custom XPath extraction, which Docket "
+     "does not. Both run JavaScript: Docket renders a sample of every audit automatically, "
+     "in the WebKit engine macOS already ships."),
     ("Can Docket tell me if ChatGPT can see my website?",
      "Yes. Docket checks each AI crawler separately — OAI-SearchBot for ChatGPT Search, "
      "PerplexityBot, Claude-SearchBot and Google-Extended — and distinguishes them from "

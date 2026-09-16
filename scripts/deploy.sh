@@ -75,6 +75,8 @@ echo "==> price-claim gate"
 # SaaS page and the download page. A site selling an instrument for catching
 # stale copy cannot be the counterexample on its own pricing page.
 "$PY" scripts/verify_price_claims.py || exit 1
+echo "==> capability-claims gate"
+"$PY" scripts/verify_capability_claims.py || exit 1
 
 echo "==> brand asset gate"
 # Three different marks across four files, found by opening them: the favicon
