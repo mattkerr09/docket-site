@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to tell whether an audit tool is lying to you</title>
-<meta name="description" content="Four questions to ask of any SEO audit finding, each learned by getting it wrong. 185 of Docket's 413 test files exist because Docket said something untrue.">
+<title>How Docket decides what to fix first</title>
+<meta name="description" content="Severity, impact, reach and effort, and the formula that combines them. The weights an audit ranks your site with, written out so you can check them.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="8e2790982464">
-<link rel="canonical" href="https://docketseo.app/learn/audit-tool-accuracy/">
+<link rel="canonical" href="https://docketseo.app/learn/priority-model/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to tell whether an audit tool is lying to you">
-<meta property="og:description" content="Four questions to ask of any SEO audit finding, each learned by getting it wrong. 185 of Docket's 413 test files exist because Docket said something untrue.">
-<meta property="og:url" content="https://docketseo.app/learn/audit-tool-accuracy/">
+<meta property="og:title" content="How Docket decides what to fix first">
+<meta property="og:description" content="Severity, impact, reach and effort, and the formula that combines them. The weights an audit ranks your site with, written out so you can check them.">
+<meta property="og:url" content="https://docketseo.app/learn/priority-model/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How to tell whether an audit tool is lying to you">
-<meta name="twitter:description" content="Four questions to ask of any SEO audit finding, each learned by getting it wrong. 185 of Docket's 413 test files exist because Docket said something untrue.">
+<meta name="twitter:title" content="How Docket decides what to fix first">
+<meta name="twitter:description" content="Severity, impact, reach and effort, and the formula that combines them. The weights an audit ranks your site with, written out so you can check them.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -675,8 +675,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 97 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"97 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to tell whether an audit tool is lying to you","description":"Four questions to ask of any SEO audit finding, each learned by getting it wrong. 185 of Docket's 413 test files exist because Docket said something untrue.","datePublished":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/audit-tool-accuracy/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I know if an SEO tool's findings are accurate?","acceptedAnswer":{"@type":"Answer","text":"Ask four things of any finding: how many pages it actually read before claiming something is missing site-wide, whether its headline and its detail report the same number, whether anything was observed at all when it reports an absence, and whether the vendor keeps a regression test when they fix a false positive."}},{"@type":"Question","name":"What is a false positive in an SEO audit?","acceptedAnswer":{"@type":"Answer","text":"A finding that is confidently stated and not true. The common causes are a tool sampling part of a site and reporting about all of it, a crawl that was blocked or returned nothing being read as evidence of absence, and pattern matches that fire on the wrong thing — an inline SVG label counted as the page title, for instance."}},{"@type":"Question","name":"Why does a failed crawl produce false findings?","acceptedAnswer":{"@type":"Answer","text":"Because 'we did not see it' and 'it is not there' are the same observation to a tool that is not careful. A rate-limited crawl that reads one error page has no evidence about analytics, phone numbers or anything else, but a naive check reports all of them as missing. Look for a line saying the crawl was degraded; if the report does not mention it, the silence is not reassurance."}},{"@type":"Question","name":"Why does an SEO tool flag things that look fine in my browser?","acceptedAnswer":{"@type":"Answer","text":"Usually because it read the HTML your server sent and you are looking at the page after JavaScript ran. On most modern sites those are different documents. Anything a tool says about what a visitor sees — visible prices, review stars, headings, body copy — is only trustworthy if it rendered the page. Ask whether the tool rendered, and if it did not, treat those findings as unconfirmed rather than wrong."}},{"@type":"Question","name":"Should I run an SEO audit in CI?","acceptedAnswer":{"@type":"Answer","text":"It is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Test it first against a hostname that does not resolve: a tool that invents findings about a site it never reached will fail your build with advice about a problem you do not have."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How Docket decides what to fix first","description":"Severity, impact, reach and effort, and the formula that combines them. The weights an audit ranks your site with, written out so you can check them.","datePublished":"2026-09-16","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/priority-model/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does Docket decide which SEO problem to fix first?","acceptedAnswer":{"@type":"Answer","text":"It computes a priority score for every finding: severity weight multiplied by impact and by reach, divided by the effort the fix takes. Findings are then grouped into four phases — critical problems, quick wins, longer builds, and polish — and ordered by score inside each phase."}},{"@type":"Question","name":"Why does a medium-severity issue rank above a high one?","acceptedAnswer":{"@type":"Answer","text":"Because reach and effort are in the formula. A medium problem across dozens of pages that one template edit fixes will outrank a high-severity problem on a single page that needs a rebuild. That is intended: it matches what an experienced consultant would tell you to do with one free afternoon."}},{"@type":"Question","name":"Does a problem on more pages always rank higher?","acceptedAnswer":{"@type":"Answer","text":"No. Reach follows a square-root curve that stops growing entirely past 144 affected pages, so breadth matters but cannot win on its own. Without that cap, one trivial issue repeated across thousands of template-generated pages would outrank a critical problem on the homepage, which is the usual reason large-site audits are unreadable."}},{"@type":"Question","name":"Are Docket's severity weights based on measured ranking data?","acceptedAnswer":{"@type":"Answer","text":"No, and the page says so. They are an editorial judgement about relative harm, held consistent so that two audits of the same site agree. No study backs a claim that any particular issue costs a specific amount of traffic, and Docket does not make one."}},{"@type":"Question","name":"What is a tool-limit finding and why does it not affect my score?","acceptedAnswer":{"@type":"Answer","text":"It is Docket reporting its own blind spot rather than a fault in your site — a link graph it could not read, an external link it could not fetch. Those are excluded from the score deduction, because a site Docket cannot fully read should not score lower than one it can for that reason alone."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -708,134 +708,184 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Audit accuracy</div><h1>How to tell whether an audit tool is lying to you</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-07">7 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / What to fix first</div><h1>How Docket decides what to fix first</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-16">16 September 2026</time></p>
 
-<p class="lede">An SEO audit is a pile of confident sentences about your site, and the useful
-question is which of them the tool actually checked. <strong>185 of Docket's
-413 test files</strong> — 44.8% — exist because Docket said
-something that was not true, and every one of those mistakes belongs to a family you can look
-for in any tool's report.</p>
+<p class="lede">Every audit tool hands you a list of problems. The hard part is not finding them
+— it is knowing which one to do on Monday morning. Docket answers that with a single number it
+computes for every finding, and this page is that number written out in full, because a
+priority you cannot audit is just an opinion with a sort order.</p>
 
-<p>This is not a confession. It is the four questions worth asking of any finding, each of
-which we learned by getting it wrong first.</p>
+<h2>The formula</h2>
 
-<h2>Did it look at what it says it looked at?</h2>
+<p>Each finding gets a priority score of <strong>severity weight x impact x reach, divided by
+effort cost</strong>. Higher goes first. Three of those four multiply the case for doing
+something; the fourth divides by what it costs you. That is the whole of it, and the four inputs
+are worth taking one at a time.</p>
 
-<p>Docket had eight checks that scanned the first 40 pages of a crawl and then reported "No
-email capture anywhere on the site". On a site with fewer pages than that, it is true. On a
-larger one it is a statement about every page the tool never opened.</p>
+<h3>Severity — how badly it hurts</h3>
 
-<p>The tell is a total claim with no number in it. "No X anywhere", "no Y found", "the site
-has no Z" — those are claims about a population, and a tool that sampled cannot make them.
-Compare with "12 pages have no title tag", which says exactly what it counted.</p>
+<p>There are 5 severities that represent a problem, and their weights are not evenly
+spaced:</p>
 
-<p><strong>What to do with it:</strong> when a report tells you something is missing site-wide,
-find out how many pages it read. If that number is smaller than your site, the finding is a
-hypothesis. Check one page it did not visit before you act.</p>
+<ul>
+<li><strong>Critical</strong>, weight 10 — reserved, in the
+engine's own words, for "this page or site cannot rank at all": a noindex on a page that earns
+money, a robots.txt that disallows everything, a server returning 5xx. Anything that merely
+<em>reduces</em> performance is High or below, deliberately, because a critical bucket that
+fills with noise stops meaning anything.</li>
+<li><strong>High</strong>, weight 5.</li>
+<li><strong>Medium</strong>, weight 2.</li>
+<li><strong>Low</strong>, weight 0.7.</li>
+<li><strong>Notice</strong>, weight 0.15 — including every finding
+where Docket is reporting its own blind spot rather than a fault in your site.</li>
+</ul>
 
-<h2>Do the headline and the detail agree?</h2>
+<p>Two honest notes about those numbers. They are ratios, not measurements: nothing was timed or
+tested to establish that a critical is worth exactly
+67 notices. They are an editorial
+judgement about relative harm, held steady so that two audits of the same site agree with each
+other. And the gap between Critical and High is the largest in the table on purpose, because the
+distinction it encodes — cannot rank at all, versus ranks worse than it should — is the only one
+that changes what you do today.</p>
 
-<p>A Docket finding once read, in two consecutive lines:</p>
+<h3>Impact — how much this particular instance matters</h3>
 
-<pre><code>35 outbound links all point to github.com
-74% of outbound links go to a single domain.</code></pre>
+<p>Severity is a property of the <em>kind</em> of problem. Impact is set per finding, so two
+findings at the same severity can rank differently. It is also the field that decides which
+phase of the plan a finding lands in, at a threshold of 5.</p>
 
-<p>Both came from the same two numbers. The word "all" was written into the title by hand and
-was only ever true at 100%.</p>
+<h3>Reach — how much of the site is affected, with the volume turned down</h3>
 
-<p>That is worse than sloppy. "All your outbound links point to one domain" is what an injected
-spam footer looks like, and the fix text underneath told the reader their site might be
-compromised and to go scanning templates. At the proportion the detail line actually reports,
-that sends someone hunting for a hack which is not there.</p>
+<p>This is the input most tools get wrong, and the way Docket handles it is the most opinionated
+thing on this page. Reach does <strong>not</strong> scale with the number of affected pages. It
+follows a square-root curve that stops growing altogether:</p>
 
-<p><strong>What to do with it:</strong> read the headline and the body of the same finding
-against each other. They are computed from one set of numbers and there is no honest reason for
-them to differ. When they do, believe the one with the arithmetic in it.</p>
+<ul>
+<li>1 page — multiplier 2</li>
+<li>9 pages — multiplier 4</li>
+<li>25 pages — multiplier 6</li>
+<li>100 pages — multiplier 11</li>
+<li>144 pages — multiplier 13, and it never goes higher</li>
+<li>5,000 pages — still 13</li>
+</ul>
 
-<h2>Was anything actually observed?</h2>
+<p>Past 144 affected pages, one more changes nothing. The reason is written into
+the code as a failure mode to avoid: with a raw count, one trivial nit repeated across 5,000
+template-generated pages would outrank a critical noindex on your homepage. That is exactly why
+large-site audits from big tools are so often unusable — the top of the list is whatever the CMS
+happens to do everywhere. Docket caps reach so that breadth matters, but cannot win on its
+own.</p>
 
-<p>This is the sharpest one, and it took us three separate fixes to get right.</p>
+<h3>Effort — the divisor</h3>
 
-<p>Point Docket at a domain that does not exist and it used to report three critical issues:
-that robots.txt blocked Googlebot, that the site was not served over HTTPS, and that no pages
-could be crawled. Only the third was true. There was no robots.txt and nothing was served,
-because there was no site — the tool was reporting its own inability to see anything as a set
-of defects in the thing it could not see.</p>
+<p>Effort is the only input that makes a score smaller, and the spread is wide:</p>
 
-<p>The same shape had already been fixed twice before, by different routes: once when a
-rate-limited crawl read a single error page and announced "no analytics installed anywhere on
-the site" about a site that had analytics, and once for the page caps above. Three roads to
-the same wrong sentence, and a guard built for one of them covered neither of the others.</p>
+<ul>
+<li><strong>Trivial</strong>, cost 1 — one tag or one line of config,
+minutes.</li>
+<li><strong>Small</strong>, cost 2 — a template change, under an
+hour.</li>
+<li><strong>Medium</strong>, cost 5 — a few hours, several templates
+or some content.</li>
+<li><strong>Large</strong>, cost 12 — a project: a migration, a rebuild,
+net-new content.</li>
+</ul>
 
-<p>A fourth road opened later, and it is the one worth watching for in any tool. Docket warns when
-a page carries star-rating markup but shows no rating to visitors, because Google treats that as
-grounds for a manual action that removes every rich result a site has. It was deciding this from
-the served HTML. Point it at a shop that draws its star widget in JavaScript and it accused two
-perfectly compliant product pages of the most serious thing the tool can say. Re-running with
-rendering turned on cleared them completely.</p>
+<p>A Large fix is divided by 12 times as much
+as a Trivial one, which is a strong enough thumb on the scale to reorder the list — and it is
+meant to be. A fix nobody has time for is worth less than a smaller fix that ships this
+afternoon.</p>
 
-<p>Notice the shape: nothing was broken, nothing was degraded, the crawl was clean. The tool
-simply answered a question about the rendered page using a document that was not the rendered
-page. Now it will not make that accusation without rendered evidence, and where it has none it
-says so and stays at a notice.</p>
+<h2>A worked example, where the milder finding wins</h2>
 
-<p><strong>What to do with it:</strong> when a tool reports an absence, ask what it saw. If the
-crawl was blocked, rate-limited, or returned nothing, every "missing" finding in that report is
-unsupported — not wrong necessarily, just unevidenced. And if a finding is about what a visitor
-sees, ask whether the tool rendered the page or read the HTML. Those are different documents on
-most modern sites, and only one of them is what Google judges.</p>
+<p>Two findings on the same site:</p>
 
-<h2>Would the tool have caught it, or did a person have to notice?</h2>
+<ul>
+<li>A <strong>High</strong> on one page, impact 7, requiring a
+<strong>Large</strong> project. Score: 5 x 7 x
+2 /
+12 = <strong>5.8</strong>.</li>
+<li>A <strong>Medium</strong> across 25 pages, impact 6, fixed by a
+<strong>Trivial</strong> edit. Score: 2 x 6 x
+6 / 1 =
+<strong>72</strong>.</li>
+</ul>
 
-<p>Docket's byte-cap check once reported a major news site's title tag as sitting past
-Googlebot's 2MB cutoff. It was reading an inline SVG icon label that said "Close icon"; the
-real title was 470 KB in and perfectly fine. That was caught one
-edit before it went into <a href="/learn/googlebot-2mb-limit/">an article naming the site</a>.</p>
+<p>The Medium ranks far above the High, and that is the formula working rather than failing. One
+is an afternoon's work that improves 25 pages; the other is a quarter's project that
+improves one. If you have a morning, the arithmetic agrees with what an experienced consultant
+would tell you.</p>
 
-<p>What fixed the class was not the fix. It was a test that fails the build if the mistake
-returns, and later a second kind of test that greps the source for the <em>shape</em> of the
-mistake rather than the instance. That one earned itself immediately: after we had swept a file
-by hand and fixed three findings that listed every crawled page as their URLs, the pattern test
-named two more in the same file.</p>
+<h2>Four phases, because a sorted list is still not a plan</h2>
 
-<p><strong>What to do with it:</strong> ask a vendor what happens when they find a false
-positive. "We fixed it" is a worse answer than "we fixed it and here is the test that fails if
-it comes back", because the first one will happen again the next time somebody refactors.</p>
+<p>The score orders findings, but the plan groups them first, so it reads as a sequence rather
+than a leaderboard:</p>
 
-<h2>Where the older tools are better</h2>
+<ol>
+<li><strong>Stop the bleeding</strong> — everything Critical, regardless of effort. If a page
+cannot rank at all, nothing else you do to it matters.</li>
+<li><strong>Quick wins</strong> — impact 5 or above, at
+trivial or small effort.</li>
+<li><strong>Build</strong> — impact 5 or above, but real work.</li>
+<li><strong>Polish</strong> — everything else worth doing.</li>
+</ol>
 
-<p>Directly: <a href="https://www.screamingfrog.co.uk/about/">Screaming Frog</a> describes
-itself as an agency founded in 2010, and
-<a href="/vs/sitebulb-alternative/">Sitebulb</a> has been at this for years too. Every mistake
-above is the kind of thing that a very large number of other people's sites finds for you, and
-they have had far more of those than Docket has.</p>
+<p>Within each phase, items stay in priority order. The plan prints
+40 items at most — a plan of two hundred things is not a plan — and every item
+it keeps carries the true total, so the report can say how many it is not showing. That last
+part exists because of a mistake described below.</p>
 
-<p>So the honest position is not that Docket is more accurate than either. It is that Docket is
-newer, which means it has more undiscovered false positives than they do, and the only useful
-response to that is to publish the ones we find and make them fail the build. Every mistake in
-this article is written up in the code that fixes it, with the site it happened to, and
-185 of the 413 test files exist for no other reason.</p>
+<h2>Where Docket does not let the score decide</h2>
 
-<p>The same scepticism applies before you pay for anything at all. Several free tools answer a
-narrow question well, and the useful judgement is knowing which question each one answers and where
-it stops: <a href="/best/free-seo-audit-tools/">the best free SEO audit tools, and when to stop</a>.</p>
+<p>Two places, both deliberate.</p>
 
-<h2>The version of this that matters most</h2>
+<p><strong>The summary at the top of the report is ordered by severity, not priority.</strong>
+Priority is the right answer to "what should I do first", because reach genuinely should decide
+the work order. It is the wrong answer to "what are the five biggest problems", and a section
+headed that way which lists five Mediums above a High contradicts the severity label the same
+report prints beside each one. When two things on one page disagree, the reader cannot tell
+which to believe. So the summary sorts by severity band and uses priority only to order within
+a band.</p>
 
-<p>All of it gets more expensive the moment an audit is automated. Docket's CLI exits non-zero
-on a critical finding so it can gate a deployment, which is genuinely useful and also means a
-fabricated critical stops being an annoyance and starts failing somebody's build at six in the
-evening.</p>
+<p><strong>Findings that describe Docket's own blind spots cost your score nothing.</strong>
+When a check cannot see enough to answer — a link graph assembled by JavaScript, an external
+link that could not be fetched — it says so rather than guessing, and that finding is marked as
+a limit of the tool. Those are excluded from the score deduction entirely, because a site Docket
+<em>cannot read</em> should not score below one it can for that reason alone.</p>
 
-<p>The invented-criticals bug above was harmless for as long as nobody automated the tool. It
-was found by testing the error path of the deploy gate, which is to say: <strong>the feature
-that made the bug dangerous is also what exposed it.</strong> If you are about to wire any
-audit tool into CI, run it first against a hostname that does not resolve and read what it
-tells you. You will learn more about the tool in that one run than in ten against a healthy
-site.</p>
+<h2>When we got this wrong</h2>
+
+<p>Both of the rules above are repairs, and the repository records what prompted them.</p>
+
+<p>The summary ordering was found by reading a full report for a roofing company rather than
+looking at its score. All five headline items were Medium, while both High findings — one of
+them invisible rating markup, which carries a Google manual-action risk — sat past position ten,
+which is further than anyone reads. Nothing was broken; priority was doing exactly what it was
+designed to do, in a section where that was the wrong question.</p>
+
+<p>The plan cap was found on an agency report of several hundred pages whose cover promised
+fifty items while the plan printed 40 numbered ones, with nothing explaining
+the gap. A reader who counted would conclude the report withheld ten fixes it had charged for.
+The cap stayed — it is there for a reason — but every item now carries the total so the
+renderers can say what was left out.</p>
+
+<p>And the tool-limit exclusion was subtler than it looks. Those findings were given an impact
+of zero, which everyone assumed protected the score. It did not: impact never enters the score
+calculation at all, which is driven by severity and reach, so a blind-spot notice deducted from
+a lane exactly like any other notice. The test that was supposed to guard this asserted that
+impact was zero — the premise, not the behaviour it was named for. The fix was two lines; the
+lesson was that a test should assert the thing it claims to protect.</p>
+
+<h2>Checking it yourself</h2>
+
+<p>None of this has to be taken on trust. Every finding in a Docket report carries its own
+severity, impact, effort and affected-page count, and the JSON export carries the computed
+priority alongside them, so you can recompute any score on this page from the numbers in your
+own report. If our arithmetic and yours disagree, one of us has a bug, and we would like to know
+which.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I know if an SEO tool's findings are accurate?</h3><p>Ask four things of any finding: how many pages it actually read before claiming something is missing site-wide, whether its headline and its detail report the same number, whether anything was observed at all when it reports an absence, and whether the vendor keeps a regression test when they fix a false positive.</p></div><div class="faq-item"><h3>What is a false positive in an SEO audit?</h3><p>A finding that is confidently stated and not true. The common causes are a tool sampling part of a site and reporting about all of it, a crawl that was blocked or returned nothing being read as evidence of absence, and pattern matches that fire on the wrong thing — an inline SVG label counted as the page title, for instance.</p></div><div class="faq-item"><h3>Why does a failed crawl produce false findings?</h3><p>Because 'we did not see it' and 'it is not there' are the same observation to a tool that is not careful. A rate-limited crawl that reads one error page has no evidence about analytics, phone numbers or anything else, but a naive check reports all of them as missing. Look for a line saying the crawl was degraded; if the report does not mention it, the silence is not reassurance.</p></div><div class="faq-item"><h3>Why does an SEO tool flag things that look fine in my browser?</h3><p>Usually because it read the HTML your server sent and you are looking at the page after JavaScript ran. On most modern sites those are different documents. Anything a tool says about what a visitor sees — visible prices, review stars, headings, body copy — is only trustworthy if it rendered the page. Ask whether the tool rendered, and if it did not, treat those findings as unconfirmed rather than wrong.</p></div><div class="faq-item"><h3>Should I run an SEO audit in CI?</h3><p>It is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Test it first against a hostname that does not resolve: a tool that invents findings about a site it never reached will fail your build with advice about a problem you do not have.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How does Docket decide which SEO problem to fix first?</h3><p>It computes a priority score for every finding: severity weight multiplied by impact and by reach, divided by the effort the fix takes. Findings are then grouped into four phases — critical problems, quick wins, longer builds, and polish — and ordered by score inside each phase.</p></div><div class="faq-item"><h3>Why does a medium-severity issue rank above a high one?</h3><p>Because reach and effort are in the formula. A medium problem across dozens of pages that one template edit fixes will outrank a high-severity problem on a single page that needs a rebuild. That is intended: it matches what an experienced consultant would tell you to do with one free afternoon.</p></div><div class="faq-item"><h3>Does a problem on more pages always rank higher?</h3><p>No. Reach follows a square-root curve that stops growing entirely past 144 affected pages, so breadth matters but cannot win on its own. Without that cap, one trivial issue repeated across thousands of template-generated pages would outrank a critical problem on the homepage, which is the usual reason large-site audits are unreadable.</p></div><div class="faq-item"><h3>Are Docket's severity weights based on measured ranking data?</h3><p>No, and the page says so. They are an editorial judgement about relative harm, held consistent so that two audits of the same site agree. No study backs a claim that any particular issue costs a specific amount of traffic, and Docket does not make one.</p></div><div class="faq-item"><h3>What is a tool-limit finding and why does it not affect my score?</h3><p>It is Docket reporting its own blind spot rather than a fault in your site — a link graph it could not read, an external link it could not fetch. Those are excluded from the score deduction, because a site Docket cannot fully read should not score lower than one it can for that reason alone.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
