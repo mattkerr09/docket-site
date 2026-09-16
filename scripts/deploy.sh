@@ -173,9 +173,25 @@ if [ ! -f site/CNAME ]; then
   exit 1
 fi
 
-if [ -n "$(git status --porcelain site)" ]; then
-  echo "==> committing rebuilt site"
-  git add site
+# ⚠️ `data/build-id.txt` COMMITS WITH THE SITE, AND IT DID NOT FOR THREE HOURS.
+# This step staged `site` only. But the build that just ran under
+# DOCKET_DEPLOY=1 also rewrote `data/build-id.txt` — the anchor the
+# served-equals-committed gate compares against — so every deploy left that file
+# modified and never staged, and the portfolio checklist row read
+# "FAIL docket-site: served == committed, clean, pushed — 1 modified" on the
+# hour, every hour.
+#
+# Nothing was wrong with the site or the id: the worktree value matched what the
+# CDN was serving exactly. The anchor was simply never committed, so the gate
+# compared the deploy before last. An anchor nobody commits is not an anchor.
+#
+# It also is not the gating change it was mistaken for — `DOCKET_DEPLOY=1` has
+# gated the write since it was added; the write was landing and the commit was
+# not. Diagnosed 2026-09-16 by reading `git show HEAD:data/build-id.txt` against
+# the worktree and the live page rather than by re-reading build.py.
+if [ -n "$(git status --porcelain site data/build-id.txt)" ]; then
+  echo "==> committing rebuilt site and build-id anchor"
+  git add site data/build-id.txt
   git commit -qm "${1:-site: rebuild}"
 fi
 
