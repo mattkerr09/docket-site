@@ -160,6 +160,10 @@ def build_hubs() -> list[Path]:
              "stronger link checker and has been shipping far longer; Docket ranks what "
              "it finds and covers conversion, brand and AI visibility, which Scrutiny "
              "does not."),
+            ("/vs/crawler-sh-alternative/", "Docket vs crawler.sh",
+             "Both run locally with no account, and they agree about almost everything "
+             "except purpose: crawler.sh turns sites into Markdown for AI training, and "
+             "caps pages per session."),
             ("/vs/crawlraven-alternative/", "Docket vs CrawlRaven",
              "The closest thing to Docket's pitch, sold once and far cheaper. Its own "
              "pricing page marks the technical audit coming soon, which is the whole "

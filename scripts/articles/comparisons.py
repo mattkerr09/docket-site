@@ -75,6 +75,7 @@ CHECKED_HUMAN: dict[str, str] = {
     "profound": "16 September 2026",
     "jetoctopus": "16 September 2026",
     "crawlraven": "16 September 2026",
+    "crawler-sh": "16 September 2026",
 }
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-08-15",
@@ -85,6 +86,7 @@ CHECKED_ISO: dict[str, str] = {
     "profound": "2026-09-16",
     "jetoctopus": "2026-09-16",
     "crawlraven": "2026-09-16",
+    "crawler-sh": "2026-09-16",
 }
 
 #: What was actually read, and where. Anything not sourced here is not stated as
@@ -121,6 +123,24 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     # also shows "$115 $86.25" beside a stale Black Friday note and a different
     # product (a serviced scheduled scan), and reading a price off that banner
     # would have published a wrong number about a named third party.
+    "crawler-sh": [
+        ("it describes itself as a local crawler that turns websites into "
+         "RAG-ready Markdown for AI training, fine-tuning and agent context, "
+         "built in Rust and running on your own machine",
+         "https://crawler.sh"),
+        ("its free tier is capped at 50 pages a session and its paid tiers at "
+         "10,000, priced at 99 US dollars a year with one subscription covering "
+         "both the CLI and the desktop app",
+         "https://crawler.sh"),
+        ('it states its SEO coverage twice and differently — "16-category SEO '
+         'analysis" beside the paid tier, and "24 automated checks" in its '
+         "workflow section",
+         "https://crawler.sh"),
+        ("it renders JavaScript with its own engine rather than headless "
+         "Chrome, and respects robots.txt Disallow, Allow and Crawl-delay with "
+         "adaptive pacing on 429 and 403",
+         "https://crawler.sh"),
+    ],
     "crawlraven": [
         ("its pricing page lists a free tier for one site and one-time lifetime "
          "licences at 39, 79 and 129 US dollars for one, three and ten sites",
@@ -1895,6 +1915,116 @@ measured.</p>
     )
 
 
+def crawler_sh() -> Path:
+    """The one that shares Docket's politics and does a different job.
+
+    crawler.sh runs locally, needs no account, has no cloud bill and no
+    per-page fee. That is Docket's own argument, made by somebody else, and
+    saying so plainly is what makes the rest of the page believable.
+
+    What it is FOR is different: its own headline calls it a local Markdown
+    extractor for AI training and RAG. SEO analysis is one of its features
+    rather than its purpose. Docket has nothing that turns a site into a
+    training corpus.
+
+    ⚠️ JAVASCRIPT RENDERING IS NOT A DIFFERENTIATOR. They render with their own
+    engine instead of headless Chrome; Docket renders a sample of every audit in
+    WebKit. Both do it.
+
+    ⚠️ THEIR CHECK COUNT IS STATED TWICE AND DIFFERENTLY on the same page — "16
+    categories" beside the paid tier, "24 automated checks" in the workflow
+    section. Both are quoted rather than whichever suits this page, because
+    picking one would be choosing the flattering reading of somebody else's
+    marketing.
+    """
+    body = f"""
+<p>crawler.sh and Docket agree about almost everything except what a crawler is for. It runs on
+your own machine, needs no account, has no cloud bill and no per-page fee — which is Docket's
+entire argument, made by somebody else. Where they part company is purpose.</p>
+
+<h2>What crawler.sh is for</h2>
+
+<p>Its own headline calls it a local Markdown extractor for AI training and RAG: point it at a
+site and it returns clean, readable Markdown ready for a retrieval pipeline, a fine-tuning
+corpus or an agent's context, with word count, byline, language and excerpt on every page.
+<strong>Docket does nothing of the kind.</strong> If you are building a dataset out of web
+content, Docket is the wrong tool and crawler.sh is built for precisely that.</p>
+
+<p>It also does SEO analysis, and describes that coverage in two different ways on the same
+page — "16-category SEO analysis" beside its paid tier, and "24 automated checks" in its
+workflow section. The examples it gives are missing titles, duplicate meta descriptions, noindex
+directives, thin content, broken links, long URLs and content-freshness signals.</p>
+
+<h2>What Docket is for</h2>
+
+<p>{N_CHECKS} checks across thirteen areas, four of which are not technical SEO at all —
+conversion, brand consistency, AI search visibility and campaign tracking — arriving as a ranked
+plan rather than a list of issues, with <a href="/learn/priority-model/">the ordering formula
+published</a>. The overlap with their SEO feature is real but partial: the technical checks on
+their list are ones Docket also runs, and most of what Docket runs is not on their list.</p>
+
+<h2>The page cap</h2>
+
+<p>This is the one measurable difference between two tools that both run locally. crawler.sh's
+free tier is capped at 50 pages a session and its paid tiers at 10,000. Docket has no cap:
+<code>-n 0</code> crawls until the site ends, because nothing is counting. On a site of a few
+hundred pages neither limit matters; past ten thousand, one of them does.</p>
+
+<p>On price they are not close. crawler.sh is {price('crawler-sh')}, renewed yearly. Docket is
+{PRICE_STR} once. A subscription is better value until roughly the fourth year and worse after
+it, and a free tier that needs no account is a genuinely easier thing to try than a
+{PRICE_STR} purchase.</p>
+
+<p>One thing that is <em>not</em> a difference: both render JavaScript. They use their own
+engine rather than headless Chrome; Docket renders a sample of every audit in the WebKit that
+macOS already ships.</p>
+
+<h2>Which to buy</h2>
+
+<ul>
+<li><strong>Use crawler.sh</strong> if you want site content as Markdown for an AI pipeline, or
+a free local crawler for a small site with SEO checks attached.</li>
+<li><strong>Buy Docket</strong> if you want the audit itself — what is wrong, across technical,
+conversion, brand and AI visibility, ranked into the order to fix it, with no page limit.</li>
+</ul>
+
+<p>Nothing here compares the quality of either tool's checks, which has not been measured. Both
+vendors' own published descriptions are what this page is built from.</p>
+
+{_verified_note("crawler-sh")}
+{CTA}"""
+
+    return render(
+        cat="vs", slug="crawler-sh-alternative",
+        title="Docket vs crawler.sh: an audit, or Markdown for AI?",
+        desc=("Both run locally with no account. crawler.sh turns sites into Markdown for AI "
+              "training and caps pages per session; Docket is the audit, ranked, uncapped."),
+        h1="Docket vs crawler.sh",
+        crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / crawler.sh',
+        body=body,
+        faq=[
+            ("Is Docket a crawler.sh alternative?",
+             "Only for the SEO half. crawler.sh is a local Markdown extractor for AI training "
+             "and RAG with SEO analysis attached; Docket has nothing that turns a site into a "
+             "training corpus. For auditing and prioritising what is wrong with a site, "
+             "Docket does considerably more."),
+            ("Does crawler.sh limit how many pages you can crawl?",
+             "Yes. Its free tier is capped at 50 pages a session and its paid tiers at "
+             "10,000. Docket has no cap at all — -n 0 crawls until the site ends, because "
+             "there is no server counting."),
+            ("Which is cheaper?",
+             f"crawler.sh, at {price('crawler-sh')} against Docket's {PRICE_STR} one-time. It "
+             "renews yearly, so a subscription is better value until roughly the fourth year "
+             "and worse after it. Its free tier also needs no account, which makes it much "
+             "easier to try."),
+            ("Do both render JavaScript?",
+             "Yes, and it is not a difference between them. crawler.sh uses its own render "
+             "engine rather than headless Chrome; Docket renders a sample of every audit in "
+             "the WebKit engine macOS already ships."),
+        ],
+    )
+
+
 def se_ranking_vs_screaming_frog() -> Path:
     """Two tools people compare that are not the same KIND of thing.
 
@@ -2020,7 +2150,8 @@ Screaming Frog is the right tool.</p>
 
 BUILDERS = [screaming_frog, sitebulb, ahrefs, semrush, lighthouse,
             search_console, scrutiny, seoptimer, sitechecker, profound,
-            jetoctopus, crawlraven, se_ranking_vs_screaming_frog]
+            jetoctopus, crawlraven, crawler_sh,
+            se_ranking_vs_screaming_frog]
 
 
 def build_all() -> list[Path]:

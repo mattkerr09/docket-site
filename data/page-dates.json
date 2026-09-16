@@ -84,6 +84,7 @@
     "thank-you": "2026-08-19",
     "vs": "2026-08-06",
     "vs/ahrefs-site-audit-alternative": "2026-08-06",
+    "vs/crawler-sh-alternative": "2026-09-16",
     "vs/crawlraven-alternative": "2026-09-16",
     "vs/google-search-console": "2026-08-10",
     "vs/jetoctopus-alternative": "2026-09-16",
@@ -98,6 +99,6 @@
     "vs/sitechecker-alternative": "2026-09-16"
   },
   "uncommitted": [
-    "vs/crawlraven-alternative"
+    "vs/crawler-sh-alternative"
   ]
 }
