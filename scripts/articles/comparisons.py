@@ -336,6 +336,8 @@ and UTM parameters on internal links.</li>
 <thead><tr><th></th><th>Docket</th><th>Screaming Frog</th></tr></thead>
 <tbody>
 <tr><td>Price</td><td>One-time</td><td>Free to 500 URLs, then {price("screaming-frog")}</td></tr>
+<tr><td>Who the licence covers</td><td>You, on up to three of your machines</td>
+    <td>One user — their pricing page states that two users need two licences</td></tr>
 <tr><td>Runs on</td><td>Your Mac</td><td>Your machine</td></tr>
 <tr><td>Output</td><td>Ranked plan with fixes</td><td>Spreadsheet of crawl data</td></tr>
 <tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>

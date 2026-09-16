@@ -166,6 +166,8 @@ def body() -> str:
   <span class="eyebrow">{N_CHECKS} checks · {PRICE_STR} once · no subscription</span>
   <h1 class="hero-h1">Everything that's wrong.
   <em>In the order to fix&nbsp;it.</em></h1>
+  <p class="hero-note">No page meter. No credit counter. Nothing to check before you run an
+  audit.</p>
   <p class="hero-sub">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
   conversion, brand, AI search visibility and campaign tracking — then one ranked plan with the
   markup to paste. Not four tools. One download.</p>
@@ -175,7 +177,7 @@ def body() -> str:
     {BNPL_BLOCK}
   </div>
   <p class="hero-note"><strong>30 days, no conditions, no questions asked</strong> — <a href="/legal/refunds/">refund policy</a></p>
-  <p class="hero-note">macOS 12+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites</p>
+  <p class="hero-note">macOS 12+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
 </div>
 </div>
 <div class="wrap-wide hero-media-wrap">
@@ -404,7 +406,8 @@ def body() -> str:
   <div class="card"><div class="card-ico">{ICONS['order']}</div>
     <h3>A sequence, not a pile</h3>
     <p>Every finding ranked by impact against effort, in four phases. There is always a
-    defensible first task.</p></div>
+    defensible first task — and every finding carries its evidence: the page it is on, the
+    exact value found there, and the fix.</p></div>
   <div class="card"><div class="card-ico">{ICONS['doc']}</div>
     <h3>Client-ready PDF</h3>
     <p>Designed to send, not rebuild. Score, scorecard, ranked plan, paste-ready markup — and
