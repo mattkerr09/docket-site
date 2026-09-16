@@ -36,6 +36,31 @@ DATASET = ROOT / "data" / "link-equity.json"
 
 HREF = re.compile(r'href="(/[^"#?]*)"')
 
+#: Markup a reader cannot click, stripped before hrefs are counted.
+#:
+#: ⚠️ A CODE SAMPLE IS NOT A LINK, AND THIS GATE READ IT AS ONE.
+#: `/how-to/fix-navigation-that-needs-javascript/` shows the shape Google can
+#: follow, escaped so it renders as text:
+#:
+#:     &lt;nav&gt;&lt;a href="/services/"&gt;Services&lt;/a&gt;&lt;/nav&gt;
+#:
+#: Escaping the angle brackets does not escape the quotes, so the raw file
+#: still contains the literal `href="/services/"` and the regex above matched
+#: it. The gate reported two internal links pointing at nothing, on a page
+#: whose entire subject is what a real link looks like.
+#:
+#: The mistake is chrome-versus-content, made here for the sixth time in this
+#: project: a regex over raw HTML cannot tell rendered markup from markup being
+#: displayed. The engine already draws this line — `page.prose` strips
+#: `<pre>`, `<code>`, `<samp>` and `<kbd>` for exactly this reason — so this
+#: follows the same list rather than inventing a narrower one.
+#:
+#: This cannot hide a real broken link: an `<a>` inside a code sample is not
+#: clickable, and we author no clickable anchor inside `<code>`. The falsifier
+#: is a real broken link OUTSIDE a code block, which is the control in
+#: `_selftest` below.
+UNCLICKABLE = re.compile(r"(?is)<(pre|code|samp|kbd)\b.*?</\1>")
+
 
 def path_of(page: Path) -> str:
     rel = str(page.parent.relative_to(SITE))
@@ -56,7 +81,7 @@ def measure() -> tuple[dict, dict[str, set[str]]]:
     broken: dict[str, set[str]] = {}
     for page in pages:
         src = path_of(page)
-        for href in HREF.findall(page.read_text()):
+        for href in HREF.findall(UNCLICKABLE.sub(" ", page.read_text())):
             target = href if href.endswith("/") else href + "/"
             if target not in paths:
                 # A direct file reference (/sitemap.xml, /robots.txt) is a link

@@ -41,11 +41,17 @@ rendering is not an optimisation, it is the entry fee. We measured
 and nothing is fetched at install time. The audit engine stays what it was: dependency-free
 Python that never needed a browser to do most of its job.</p>
 
-<p>Rendering is <strong>off by default</strong>, for two reasons worth stating plainly.
-It executes the page's JavaScript, so analytics fire and advertising pixels load — requests
-to servers you did not intend to contact when you asked for an audit. And it is roughly ten
-to thirty times slower than fetching. Both are decisions for you to make rather than
-surprises to discover.</p>
+<p>Rendering is <strong>not off by default, and this page used to say it was</strong>.
+A small sample of every audit is rendered whenever the WebKit helper is present, because a
+finding whose remedy is &ldquo;re-run with rendering on&rdquo; is a bug rather than advice.
+The whole crawl is still a plain HTTP fetch; only the sample goes through a browser.</p>
+
+<p>The costs are real and are the reason the sample is small rather than the whole crawl.
+Rendering executes the page's JavaScript, so analytics fire and advertising pixels load —
+requests to servers you did not intend to contact when you asked for an audit. And it is
+roughly ten to thirty times slower than fetching. <code>--render 0</code> turns it off
+entirely, which is what makes the automatic sample a default rather than a decision taken
+for you.</p>
 
 <h2>What it unlocked</h2>
 
@@ -120,10 +126,13 @@ to a static crawl and letting you believe otherwise.</p>
             ("Does Docket bundle a browser?",
              "No. macOS ships WebKit as a system framework, so rendering is a 112 KB helper "
              "built against it. The download is " + DMG_SIZE + " and nothing is fetched at install."),
-            ("Why is rendering off by default?",
-             "It executes the page's JavaScript, so analytics fire and ad pixels load — "
-             "requests to servers you did not intend to contact by asking for an audit. It "
-             "is also ten to thirty times slower than fetching."),
+            ("Is rendering off by default?",
+             "No, and this page said it was until the claim was checked against the engine. "
+             "A small sample of every audit is rendered when the WebKit helper is present; "
+             "--render 0 turns it off. The sample is small because rendering executes the "
+             "page's JavaScript, so analytics fire and ad pixels load — requests to servers "
+             "you did not intend to contact by asking for an audit — and it is ten to thirty "
+             "times slower than fetching."),
             ("Can rendering measure Core Web Vitals?",
              "No, and nothing that runs on one machine can. LCP, INP and CLS are field "
              "metrics from real users on real connections. Docket reads them from the Chrome "

@@ -71,6 +71,9 @@ import monitoring  # noqa: E402
 import martech  # noqa: E402
 import mailcheck  # noqa: E402
 import pages  # noqa: E402
+import ai_slop  # noqa: E402
+import howto_nav_js  # noqa: E402
+import howto_phone  # noqa: E402
 
 
 def hub(cat: str, title: str, desc: str, h1: str, lede: str,
@@ -183,6 +186,10 @@ money.</p>
         "Learn",
         "Reference pages, written to be read rather than skimmed for keywords.",
         [
+            ("/learn/ai-sounding-copy/", "Does your copy read as AI-written?",
+             "Docket matches a register, not authorship — it cannot tell you who or what "
+             "wrote a page. What it looks for, why it needs more than one tell, and what "
+             "that finding is worth."),
             ("/learn/who-blocks-googlebot/", "Who blocks Googlebot, and who blocks GoogleOther",
              "We read robots.txt across a large public sample. A small share deny "
              "Googlebot and rather more deny GoogleOther — what that can, and cannot, "
@@ -831,6 +838,9 @@ def main() -> int:
     pages += brand_article.build_all()
     pages += logs_article.build_all()
     pages += mailcheck.build_all()
+    pages += ai_slop.build_all()
+    pages += howto_nav_js.build_all()
+    pages += howto_phone.build_all()
     pages += build_hubs()
 
     # NOT appended to `pages`: the sitemap is derived from that list, and

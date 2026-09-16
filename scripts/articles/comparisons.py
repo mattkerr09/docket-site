@@ -390,8 +390,8 @@ client-ready PDF without building one.</p>
              "custom XPath extraction, rendering at scale and very large crawls, no — "
              "Screaming Frog does those better and Docket does not try to."),
             ("Does Docket render JavaScript like Screaming Frog?",
-             "Yes, through a WebKit helper, though it is off by default and renders a "
-             "sample — ten pages by default. Screaming Frog renders across the whole crawl "
+             "Yes, through a WebKit helper, but only a small automatic sample of each "
+             "crawl rather than every page. Screaming Frog renders across the whole crawl "
              "in its integrated Chromium engine, which is the better tool for a large "
              "single-page application."),
         ],

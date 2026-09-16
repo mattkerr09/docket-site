@@ -494,9 +494,10 @@ export exists: it drops straight into a Jira or Linear import without anyone ret
 
 <h2>What to tell clients it cannot do</h2>
 <p>Say it early rather than being asked. Docket has no per-page backlink or anchor-text data
-and no search volumes — you will still need an index tool for keyword research. Rendering is
-available but off by default and samples the shallowest pages, so a very large single-page
-application still wants a dedicated rendering crawl.</p>
+and no search volumes — you will still need an index tool for keyword research. Rendering runs
+automatically on a small sample of each crawl rather than on every page, and the sample is
+drawn from the shallowest pages once utility pages such as cart, checkout and login are set
+aside, so a very large single-page application still wants a dedicated rendering crawl.</p>
 <p>Being straight about the boundary is also, in practice, a good sales posture. A tool that
 claims everything invites the client to test the claim.</p>
 
@@ -1324,6 +1325,18 @@ mistake that can cost a site its entire long tail while every page still returns
 <p>A missing page that answers 200 turns every mistyped URL into an indexable page. How to
 check it in one command, and the fix for each cause.
 <a href="/how-to/fix-soft-404s/">How to fix soft 404s →</a></p>
+
+<h2>Navigation that needs JavaScript</h2>
+<p>Google follows a link when it is an <code>a</code> element with an <code>href</code> in the
+HTML your server sent. A menu assembled by a click handler is not one. What Docket counts, and
+why the empty-shell app is often not the site this catches.
+<a href="/how-to/fix-navigation-that-needs-javascript/">How to fix navigation that needs JavaScript &rarr;</a></p>
+
+<h2>Phone links that will not dial</h2>
+<p>A <code>tel:</code> link can look perfect on a desktop and dial nothing when it is tapped.
+The shapes that fail, which of them Docket reports and at what severity, and the one it
+deliberately says nothing about.
+<a href="/how-to/fix-phone-links-that-will-not-dial/">How to fix phone links that will not dial &rarr;</a></p>
 
 <h2>Structured data errors</h2>
 <p>Invalid JSON-LD is discarded whole rather than partially read, so a page with complete
