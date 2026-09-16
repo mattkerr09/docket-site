@@ -78,6 +78,10 @@ import eeat  # noqa: E402
 import howto_images  # noqa: E402
 import email_capture  # noqa: E402
 import howto_redirects  # noqa: E402
+import howto_headings  # noqa: E402
+import howto_broken_links  # noqa: E402
+import howto_compression  # noqa: E402
+import extractability  # noqa: E402
 
 
 def hub(cat: str, title: str, desc: str, h1: str, lede: str,
@@ -190,6 +194,9 @@ money.</p>
         "Learn",
         "Reference pages, written to be read rather than skimmed for keywords.",
         [
+            ("/learn/answer-extractability/", "Answer extractability: can an AI quote your page?",
+             "The check reads your question-form headings and nothing under them. What that "
+             "measures, what nobody can measure, and why one is a proxy for the other."),
             ("/learn/trust-and-authorship-signals/", "Trust and authorship signals a crawler can see",
              "About, Contact and a privacy page are the reliable half. The authorship half is "
              "looser, and this is the page that says which is which."),
@@ -855,6 +862,10 @@ def main() -> int:
     pages += howto_images.build_all()
     pages += email_capture.build_all()
     pages += howto_redirects.build_all()
+    pages += howto_headings.build_all()
+    pages += howto_broken_links.build_all()
+    pages += howto_compression.build_all()
+    pages += extractability.build_all()
     pages += build_hubs()
 
     # NOT appended to `pages`: the sitemap is derived from that list, and

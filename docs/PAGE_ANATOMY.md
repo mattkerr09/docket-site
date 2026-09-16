@@ -77,6 +77,29 @@ Two rules that are written on the brief because they have each been broken:
   `[1, 1, 4, 24, 25, 25]` was called bimodal in a brief. Six observations cannot
   establish a distribution's shape. The writer refused the word and was right.
 
+## The positioning words, and why this keeps failing the build
+
+`verify_positioning` runs the shipped `brand.positioning` check against our own
+descriptions, and it has now failed on three consecutive batches — not because
+anything regressed, but because **every new page dilutes the share**. The check
+wants at least two non-brand words each appearing on 30% of described pages, and
+30% of a growing number is a moving target: a word on 23 pages passes at 70
+pages and fails at 81.
+
+So a description is not finished until it carries the positioning vocabulary
+**where that word is true of the page**. The sentence is *Docket audits your
+site on your own Mac*, and in practice the two load-bearing words are `audit`
+and `site`.
+
+⚠️ **NOT EVERY PAGE, AND NEVER WHERE IT IS FALSE.** The check's own fix text
+says "this is not keyword stuffing — it is having a position", and a description
+that says "audit" about a page that is not about auditing is worse than failing
+the gate. Where the word does not belong, leave it out and let another page
+carry the share.
+
+Run `python3 scripts/verify_positioning.py` **before** committing, not after the
+deploy starts.
+
 ## Numbers
 
 **Accessors, never literals.** Every published figure comes from

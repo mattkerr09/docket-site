@@ -1326,6 +1326,23 @@ mistake that can cost a site its entire long tail while every page still returns
 check it in one command, and the fix for each cause.
 <a href="/how-to/fix-soft-404s/">How to fix soft 404s →</a></p>
 
+<h2>Heading structure</h2>
+<p>Four findings, not one, and the check contradicts itself on the question everyone asks. What
+Docket measures about headings, and where the one-H1 rule parts company with the HTML standard.
+<a href="/how-to/fix-heading-structure/">Fix heading structure &rarr;</a></p>
+
+<h2>Broken outbound links</h2>
+<p>A site that refuses an automated request is not a dead site, and Docket separates the two. Which
+rows are rot, which are a fact about the crawl, and the one status that means the request never
+finished at all.
+<a href="/how-to/fix-broken-outbound-links/">How to fix broken outbound links &rarr;</a></p>
+
+<h2>Compression and caching headers</h2>
+<p>One of these is a genuine speed win and the other is quieter than it looks. Plus the case where
+a site that compresses perfectly is reported anyway, and the one command that tells you which you
+have.
+<a href="/how-to/fix-compression-and-caching/">Fix compression and caching &rarr;</a></p>
+
 <h2>Image problems worth fixing</h2>
 <p>Docket reads image markup, never the picture, so it can tell you an image has no alt attribute
 and never whether the alt describes anything. Which image advice is real, and the case where

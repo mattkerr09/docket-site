@@ -19,8 +19,11 @@
     "how-to/content-audit": "2026-09-09",
     "how-to/fix-ai-crawler-access": "2026-08-06",
     "how-to/fix-ai-crawlers-blocked-by-your-cdn": "2026-09-14",
+    "how-to/fix-broken-outbound-links": "2026-09-15",
+    "how-to/fix-compression-and-caching": "2026-09-15",
     "how-to/fix-conflicting-canonicals": "2026-08-10",
     "how-to/fix-duplicate-title-tags": "2026-08-10",
+    "how-to/fix-heading-structure": "2026-09-15",
     "how-to/fix-hreflang-return-tags": "2026-08-10",
     "how-to/fix-image-seo-problems": "2026-09-15",
     "how-to/fix-lang-attribute-mismatch": "2026-09-09",
@@ -44,6 +47,7 @@
     "learn/ai-search-visibility": "2026-08-06",
     "learn/ai-sounding-copy": "2026-09-15",
     "learn/ai-substitution": "2026-08-07",
+    "learn/answer-extractability": "2026-09-15",
     "learn/audit-tool-accuracy": "2026-08-07",
     "learn/brand-consistency": "2026-08-07",
     "learn/canonical-tags": "2026-08-10",
@@ -82,9 +86,9 @@
     "vs/sitebulb-alternative": "2026-08-06"
   },
   "uncommitted": [
-    "how-to/fix-image-seo-problems",
-    "how-to/fix-redirect-problems",
-    "learn/email-capture-audit",
-    "learn/trust-and-authorship-signals"
+    "how-to/fix-broken-outbound-links",
+    "how-to/fix-compression-and-caching",
+    "how-to/fix-heading-structure",
+    "learn/answer-extractability"
   ]
 }
