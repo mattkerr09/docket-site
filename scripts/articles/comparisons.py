@@ -1697,8 +1697,9 @@ with a third tier quoted only as "let's talk". Projects, seats and simultaneous 
 unlimited on every tier. That is a platform for sites with millions of pages and a team around
 them.</p>
 
-<p>The prices follow: {price('jetoctopus')}, or {F.rival_annual_low('jetoctopus'):,} US dollars
-for a year at the cheaper annual rate. Docket is {PRICE_STR} once. Setting those two numbers
+<p>Their published rates: {price('jetoctopus')}. That works out at
+{F.rival_annual_low('jetoctopus'):,} US dollars for a year at the cheaper of the two rates.
+Docket is {PRICE_STR} once. Setting those two numbers
 beside each other is close to meaningless, because they are not sold to the same buyer — but it
 does tell you which question you are asking. If a five-figure annual platform fee is a normal
 line item, JetOctopus is in your category and Docket is not.</p>
