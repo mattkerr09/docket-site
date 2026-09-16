@@ -1629,6 +1629,12 @@ def render(
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- The only way to set a referrer policy on a host that cannot send headers,
+     and GitHub Pages cannot. Browsers honour the meta form. strict-origin-when-cross-origin
+     sends the full URL to ourselves, the origin only to other sites, and nothing when
+     leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
+     stays unset here and is not worth chasing. -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>{title}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="theme-color" content="#FBFAF7">
