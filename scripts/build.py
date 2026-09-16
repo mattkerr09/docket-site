@@ -183,6 +183,27 @@ money.</p>
         "Learn",
         "Reference pages, written to be read rather than skimmed for keywords.",
         [
+            ("/learn/who-blocks-googlebot/", "Who blocks Googlebot, and who blocks GoogleOther",
+             "We read robots.txt across a large public sample. A small share deny "
+             "Googlebot and rather more deny GoogleOther — what that can, and cannot, "
+             "tell you about a site."),
+            ("/learn/does-cloudflare-block-gptbot/", "Does Cloudflare block GPTBot?",
+             "Cloudflare changed what a new domain does by default, and the answer "
+             "differs by which OpenAI crawler is asking. How to check your own."),
+            ("/learn/does-noindex-stop-ai-crawlers/", "Does noindex stop AI crawlers?",
+             "noindex tells an indexer not to list a page; it cannot stop a crawler "
+             "fetching it. What robots.txt and your server control instead, and which "
+             "layer is refusing yours."),
+            ("/learn/ai-crawlers-and-sitemaps/", "AI crawlers and your sitemap",
+             "A Sitemap: line is a non-group record, so every crawler is offered the "
+             "same one — including the crawlers a site is trying to keep out."),
+            ("/learn/www-vs-non-www/", "www or no www, and whether it still matters",
+             "Every page-one result agrees you should pick one. None of them counted. "
+             "We probed a random sample to see how many hosts still serve both."),
+            ("/learn/internal-utm-links/", "Internal links that carry UTM parameters",
+             "A site tagging its own internal links splits its analytics and can split "
+             "its canonical signals. We crawled a sample and counted — and the affected "
+             "hosts split into two different problems."),
             ("/learn/googlebot-2mb-limit/", "Googlebot's 2MB cutoff",
              "It reads the first 2MB and indexes that as the whole page. We measured "
              "well-known homepages and found five already past it."),
