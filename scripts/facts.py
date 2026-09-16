@@ -1522,3 +1522,55 @@ def quick_win_efforts_words() -> list:
     # Ordered cheapest-first so the prose reads "trivial or small", which is the
     # order the engine writes them in; alphabetical would invert it.
     return sorted(model["quick_win_efforts"], key=lambda n: cost[n])
+
+
+# -- the AI crawler table ----------------------------------------------------
+
+def _ai_agents() -> dict:
+    """`data/ai-agents.json`, generated from `robots.AI_USER_AGENTS`.
+
+    The most volatile table in the engine: OpenAI split `OAI-SearchBot` out of
+    `GPTBot` after launch, Anthropic retired `Claude-Web`, Google added
+    `Google-CloudVertexBot`. A count typed beside a table like that is wrong
+    within weeks, and nothing renders differently when it goes wrong.
+    """
+    import json
+
+    data = json.loads((ROOT / "data" / "ai-agents.json").read_text())
+    if not data.get("agents"):
+        raise SystemExit("facts._ai_agents: no agents — run "
+                         "scripts/collect_ai_agents.py")
+    return data
+
+
+def ai_agents() -> int:
+    """How many AI crawlers Docket checks by name."""
+    return int(_ai_agents()["count"])
+
+
+def ai_agents_word() -> str:
+    count = ai_agents()
+    return _SPELLED.get(count, str(count))
+
+
+def ai_agent_operators() -> int:
+    """How many distinct companies operate those crawlers."""
+    return int(_ai_agents()["owner_count"])
+
+
+def ai_agents_for(purpose: str) -> list:
+    """Agent names whose purpose contains `purpose`, engine's wording."""
+    agents = _ai_agents()["agents"]
+    found = sorted(n for n, m in agents.items()
+                   if purpose.lower() in m["purpose"].lower())
+    if not found:
+        raise SystemExit(f"facts.ai_agents_for: no crawler has purpose "
+                         f"{purpose!r} — the engine has "
+                         f"{', '.join(sorted({m['purpose'] for m in agents.values()}))}")
+    return found
+
+
+def ai_agent_rows() -> list:
+    """Every agent as (name, owner, purpose, impact), for a table."""
+    return [(n, m["owner"], m["purpose"], m["impact"])
+            for n, m in _ai_agents()["agents"].items()]

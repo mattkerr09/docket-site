@@ -56,6 +56,11 @@ DERIVED = [
     # still renders perfectly — it just describes a product that no longer
     # exists — so there is no visible symptom for anyone to notice.
     ("collect_priority_model.py", "data/priority-model.json"),
+    # Added 2026-09-16. The AI crawler table is the most volatile in the
+    # engine — OpenAI split OAI-SearchBot out of GPTBot after launch,
+    # Anthropic retired Claude-Web, Google added Google-CloudVertexBot —
+    # and the home page promises "every AI crawler in one pass".
+    ("collect_ai_agents.py", "data/ai-agents.json"),
 ]
 
 #: Checks run from the *app* repo, which owns the fact. `--check` reports

@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trust and authorship signals a crawler can see</title>
-<meta name="description" content="What content.eeat looks for on a site: About, Contact and privacy pages, plus an author signal. What it measures, what it misses, and why E-E-A-T is not a score.">
+<title>AI crawler directives: which to block, which to keep</title>
+<meta name="description" content="Docket checks 19 AI crawlers from 10 companies. Blocking a training bot and blocking a search bot are different decisions with different costs.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="ee214961804f">
-<link rel="canonical" href="https://docketseo.app/learn/trust-and-authorship-signals/">
+<link rel="canonical" href="https://docketseo.app/learn/ai-crawler-directives/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Trust and authorship signals, and what a crawler can actually see">
-<meta property="og:description" content="What content.eeat looks for on a site: About, Contact and privacy pages, plus an author signal. What it measures, what it misses, and why E-E-A-T is not a score.">
-<meta property="og:url" content="https://docketseo.app/learn/trust-and-authorship-signals/">
+<meta property="og:title" content="AI crawler directives: which to block, which to keep">
+<meta property="og:description" content="Docket checks 19 AI crawlers from 10 companies. Blocking a training bot and blocking a search bot are different decisions with different costs.">
+<meta property="og:url" content="https://docketseo.app/learn/ai-crawler-directives/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Trust and authorship signals, and what a crawler can actually see">
-<meta name="twitter:description" content="What content.eeat looks for on a site: About, Contact and privacy pages, plus an author signal. What it measures, what it misses, and why E-E-A-T is not a score.">
+<meta name="twitter:title" content="AI crawler directives: which to block, which to keep">
+<meta name="twitter:description" content="Docket checks 19 AI crawlers from 10 companies. Blocking a training bot and blocking a search bot are different decisions with different costs.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -675,8 +675,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 97 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"97 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Trust and authorship signals, and what a crawler can actually see","description":"What content.eeat looks for on a site: About, Contact and privacy pages, plus an author signal. What it measures, what it misses, and why E-E-A-T is not a score.","datePublished":"2026-09-15","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/trust-and-authorship-signals/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can a tool measure E-E-A-T?","acceptedAnswer":{"@type":"Answer","text":"No. Google's own documentation says E-E-A-T is not a specific ranking factor, and that the human raters who assess it have no control over how pages rank and their data is not used directly in the ranking algorithms. What a tool can measure is a handful of signals that tend to travel with it — whether an About page exists, whether there is a way to make contact, whether a page names an author. Anything presented as an E-E-A-T score is an opinion with a number written on it."}},{"@type":"Question","name":"What does Docket's trust and authorship check actually look at?","acceptedAnswer":{"@type":"Answer","text":"Two things. Whether your site has an About page, a way to get in touch and a privacy policy, judged against every internal path the crawl saw rather than only the pages it fetched. And whether any author signal appears anywhere on the site, for sites carrying article markup."}},{"@type":"Question","name":"My contact page is not called Contact. Will Docket report it as missing?","acceptedAnswer":{"@type":"Answer","text":"It should not. The check matches a wide list of paths — quote, enquire, book, appointment, work with us, support and others — and separately counts any page carrying a form that asks for more than a single field as a way to make contact, whatever the path is called. That rule exists because the earlier version told a plumbing firm it had no contact page while its quote form was linked from every page on the site."}},{"@type":"Question","name":"Why does a single-field form not count?","acceptedAnswer":{"@type":"Answer","text":"Because site search is the common single-field form, and counting it would silence the check on nearly every site. A check that never fires is worse than one that occasionally asks for a page you already have under another name."}},{"@type":"Question","name":"Docket says my articles have no visible author, but they have bylines. Why?","acceptedAnswer":{"@type":"Answer","text":"Because the author test is narrow. It matches a JSON-LD type whose name contains the word author, or the words 'written by' or 'author' in the body text. A byline reading 'By Jane Smith' matches none of those, and correct schema markup contributes the type Person rather than author, since author is a schema.org property and not a type. Your bylines are fine. The check is reading for something narrower than a byline."}},{"@type":"Question","name":"Does adding an author help anything other than this check?","acceptedAnswer":{"@type":"Answer","text":"Google's guidance asks whether it is self-evident to your visitors who authored your content, whether pages carry a byline where one would be expected, and whether bylines lead to further information about the author. Those questions are addressed to readers, not crawlers. A byline that leads to a page saying who the person is and what they know is the thing worth having; the markup is worth adding afterwards because it is one property and costs nothing."}},{"@type":"Question","name":"Is a missing privacy policy as serious as a missing contact page?","acceptedAnswer":{"@type":"Answer","text":"Docket does not treat it that way. A missing contact page raises the finding to medium severity; a missing About page or privacy policy on its own leaves it at low. A site nobody can reach has the bigger problem."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"AI crawler directives: which to block, which to keep","description":"Docket checks 19 AI crawlers from 10 companies. Blocking a training bot and blocking a search bot are different decisions with different costs.","datePublished":"2026-09-16","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/ai-crawler-directives/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many AI crawlers are there?","acceptedAnswer":{"@type":"Answer","text":"Docket checks 19 by name, operated by 10 companies, and the list changes: OpenAI split OAI-SearchBot out of GPTBot after launch and Anthropic retired Claude-Web. The number on this page is read from the product's own table rather than typed, so it cannot drift away from what Docket actually checks."}},{"@type":"Question","name":"Should I block AI crawlers from my website?","acceptedAnswer":{"@type":"Answer","text":"It depends which one, and that is the point. Blocking a training crawler keeps your writing out of a model and costs you no visibility. Blocking a search-index crawler removes you from the answers that cite live sources. Many sites make the second decision while intending only the first."}},{"@type":"Question","name":"Does blocking GPTBot stop ChatGPT citing my site?","acceptedAnswer":{"@type":"Answer","text":"No. GPTBot collects training data; OAI-SearchBot builds the index ChatGPT Search answers from. They are separate user-agents and a robots.txt rule for one says nothing about the other. In the robots.txt files we read, the two blocks travel together 97.4% of the time."}},{"@type":"Question","name":"Do noai and noimageai meta tags work?","acceptedAnswer":{"@type":"Answer","text":"None of the crawler operators in Docket's table documents support for them, so this page does not tell you they work. robots.txt is the mechanism these operators publish rules for. A request is all any of them is."}},{"@type":"Question","name":"Why does Docket say a crawler is blocked when my robots.txt allows it?","acceptedAnswer":{"@type":"Answer","text":"Because a CDN or firewall rule can return 403 to that crawler regardless of what the file says, and the file cannot see it. Docket tests access at the edge as well as reading the rules, and reports the two separately — a file that says yes and a server that says no is rarely a configuration anyone chose deliberately."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -708,213 +708,123 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Trust and authorship signals</div><h1>Trust and authorship signals, and what a crawler can actually see</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / AI crawler directives</div><h1>AI crawler directives: which to block, which to keep</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-16">16 September 2026</time></p>
 
-<p class="lede">Google's guidance keeps returning to experience and trust, and a crawler can see
-neither. What a crawler can see is a much smaller thing: whether your site names a person, and
-whether the pages that say who you are exist at all. Docket's check for this is
-<code>content.eeat</code>, "Trust and authorship signals". This page is about the distance
-between those two sentences, because that distance is the whole answer.</p>
+<p class="lede">Blocking <code>GPTBot</code> and blocking <code>OAI-SearchBot</code> look like the
+same decision in a robots.txt file. They are not remotely the same decision, and most sites that
+make one make the other by accident. Docket checks
+19 AI crawlers separately, from 10 companies, because the
+cost of blocking each one is different.</p>
 
-<h2>The honest centre, before anything else</h2>
+<h2>The distinction the whole thing turns on</h2>
 
-<p>A byline is not expertise. Markup is not trust. Docket can see whether a page carries a word
-that looks like attribution, and whether your site has an About page, a Contact page and a privacy
-policy. It cannot assess whether the person named knows anything about the subject, whether the
-About page is true, or whether anybody answers the contact form. No automated tool can do those
-things, and a tool that implies it can is handing you a number it invented.</p>
-
-<p>So read every finding from this check as a statement about <em>signals</em> rather than about
-<em>standing</em>. It says a reader arriving on your site has nothing to go on. Supplying
-something to go on is work only a person can do.</p>
-
-<h2>What it actually looks for</h2>
-
-<p>The check produces two findings, and they are less related than the name suggests. Most of it
-is about pages; a smaller and looser part is about authorship.</p>
-
-<h3>The three pages</h3>
-
-<p>Docket asks three existence questions and reports the ones that fail as a single finding,
-titled with the missing pages named:</p>
+<p>An AI company points more than one crawler at your site, and they do different jobs:</p>
 
 <ul>
-<li><strong>About.</strong> A path containing <code>/about</code>, <code>/who-we-are</code>,
-<code>/our-story</code>, <code>/team</code> or <code>/meet</code>.</li>
-<li><strong>Contact.</strong> Either a path from a much longer list — <code>/contact</code>,
-<code>/get-a-quote</code>, <code>/enquire</code>, <code>/book</code>, <code>/appointment</code>,
-<code>/work-with-us</code>, <code>/support</code> and more besides — <em>or</em> any page in the
-crawled sample carrying a form that asks for more than a single field.</li>
-<li><strong>Privacy policy.</strong> A path containing <code>/privacy</code>.</li>
+<li><strong>Training crawlers</strong> collect text to train a model. Blocking one means your
+writing does not become training data. It does <em>not</em> remove you from any answer.</li>
+<li><strong>Search-index crawlers</strong> build the index an assistant searches when it answers
+a question with live citations. Blocking one removes you from those answers entirely.</li>
+<li><strong>Live-fetch agents</strong> retrieve a page at the moment a user asks about it —
+usually because someone pasted your URL. Blocking one means the assistant cannot read a page a
+user explicitly asked it to read.</li>
 </ul>
 
-<p>Severity depends on which one is missing. A missing Contact page raises the finding to medium;
-a missing About page or privacy policy alone leaves it at low. That ordering is deliberate — a
-site nobody can reach has a bigger problem than a site whose ownership is vague.</p>
+<p>That is why "should I block AI crawlers?" has no single answer. Keeping your writing out of a
+training set while staying quotable in ChatGPT Search is a perfectly coherent position, and it
+is one robots.txt can express precisely — if you know which name does which job.</p>
 
-<p>The fix text is the check's own, and it is worth reading as written rather than paraphrased:</p>
+<h2>What we found in published robots.txt files</h2>
 
-<blockquote><p>Add the missing pages with genuine detail — real names, a physical address if you
-have one, a phone number, and who is behind the business.</p></blockquote>
+<p>We read 6,236 robots.txt files. Of those,
+1,616 name an AI crawler at all, and
+1,381 block at least one. So far so unsurprising. The number worth
+sitting with is this one:</p>
 
-<p>"Genuine detail" is doing the work in that sentence. An About page that says the company was
-founded on a passion for excellence is, as a trust signal, indistinguishable from no About page
-at all. The crawler cannot tell the difference. Every human reader can.</p>
+<p><strong>735 of those sites —
+53.2% — block only training crawlers</strong>, which is the
+decision described above, made deliberately and correctly. The rest did something broader.
+Among sites that block <code>OAI-SearchBot</code> and therefore leave ChatGPT Search,
+97.4% also block <code>GPTBot</code>.</p>
 
-<h3>It asks whether the page exists, not whether it was crawled</h3>
+<p>That overlap is the tell. It is consistent with one decision — "block OpenAI" — applied to
+every OpenAI user-agent at once, rather than two decisions taken separately. We cannot prove
+intent from a file and we are not going to try: what the number shows is that the two blocks
+travel together almost always, and one of them has a cost the other does not.</p>
 
-<p>This is the part most tools get wrong, and the reason is in the check's own comment. The
-question is asked against every internal path the crawl <em>saw</em> — links, raw hrefs and
-sitemap entries — rather than against the pages it fetched. A capped crawl of a large site reads a
-fraction of it, so asking "did we fetch a privacy policy?" reports a missing privacy policy on a
-site whose footer links to one from every page. That false positive is worse than a missed
-finding: it makes the whole report look careless to the one person who knows the site best.</p>
+<p>One caveat that applies to every figure here. These are measurements of
+<strong>access</strong> — what a file permits — and nothing downstream. We did not measure
+citations, traffic or revenue, and no figure on this page should be read as measuring them.</p>
 
-<p>The same finding is also marked as requiring a full crawl, which means it is dropped rather
-than published when the crawl itself was unreliable. A statement of the form "X is missing from
-the entire site" is only defensible if the site was actually seen.</p>
+<h2>The 19 crawlers, and what each block costs</h2>
 
-<h3>The rule that a quote form is a contact page</h3>
+<table>
+<thead><tr><th>User-agent</th><th>Operator</th><th>Job</th><th>What blocking it does</th></tr></thead>
+<tbody>
+<tr><td><code>Amazonbot</code></td><td>Amazon</td><td>search index</td><td>Blocks Alexa and Amazon's answer surfaces.</td></tr>
+<tr><td><code>Applebot-Extended</code></td><td>Apple</td><td>training</td><td>Blocks Apple Intelligence training. Applebot (search) is separate.</td></tr>
+<tr><td><code>Bytespider</code></td><td>ByteDance</td><td>training</td><td>Blocks ByteDance/TikTok AI crawling.</td></tr>
+<tr><td><code>CCBot</code></td><td>Common Crawl</td><td>open corpus</td><td>Removes you from Common Crawl, an input to many open models.</td></tr>
+<tr><td><code>ChatGPT-User</code></td><td>OpenAI</td><td>live fetch</td><td>Stops ChatGPT fetching your page when a user asks about you.</td></tr>
+<tr><td><code>Claude-SearchBot</code></td><td>Anthropic</td><td>search index</td><td>Blocks your pages from Claude's search results.</td></tr>
+<tr><td><code>Claude-User</code></td><td>Anthropic</td><td>live fetch</td><td>Stops Claude fetching your page on a user's behalf.</td></tr>
+<tr><td><code>ClaudeBot</code></td><td>Anthropic</td><td>training</td><td>Blocks Anthropic from training on your content.</td></tr>
+<tr><td><code>GPTBot</code></td><td>OpenAI</td><td>training</td><td>Blocks OpenAI from training on your content. Does not affect whether ChatGPT can cite you live.</td></tr>
+<tr><td><code>Google-CloudVertexBot</code></td><td>Google</td><td>grounding</td><td>Blocks Vertex AI grounding on your content for Google Cloud customers who ask it to index your site.</td></tr>
+<tr><td><code>Google-Extended</code></td><td>Google</td><td>training / Gemini Apps grounding</td><td>Blocks Gemini model training and grounding in Gemini Apps and Vertex AI. Does NOT affect AI Overviews, AI Mode or classic Google Search — those follow your Googlebot rules.</td></tr>
+<tr><td><code>GoogleOther</code></td><td>Google</td><td>research / product fetch</td><td>Blocks Google's non-Search crawls. Does not affect Search.</td></tr>
+<tr><td><code>Meta-ExternalFetcher</code></td><td>Meta</td><td>live fetch</td><td>Stops Meta AI fetching your page on a user's behalf.</td></tr>
+<tr><td><code>MistralAI-Index</code></td><td>Mistral</td><td>search index</td><td>Removes you from Le Chat's search index and citations.</td></tr>
+<tr><td><code>MistralAI-Training</code></td><td>Mistral</td><td>training</td><td>Blocks Mistral from training on your content.</td></tr>
+<tr><td><code>OAI-SearchBot</code></td><td>OpenAI</td><td>search index</td><td>Blocks your pages from ChatGPT Search results entirely.</td></tr>
+<tr><td><code>Perplexity-User</code></td><td>Perplexity</td><td>live fetch</td><td>Stops Perplexity fetching your page on a user's behalf.</td></tr>
+<tr><td><code>PerplexityBot</code></td><td>Perplexity</td><td>search index</td><td>Removes you from Perplexity's index and citations.</td></tr>
+<tr><td><code>meta-externalagent</code></td><td>Meta</td><td>training</td><td>Blocks Meta AI training and grounding.</td></tr>
+</tbody>
+</table>
 
-<p>The Contact half used to match three paths. Measured on a ground-truth fixture: a plumber's
-site whose enquiry page was <code>/quote.html</code> — a short "tell us what you need" form,
-linked from the homepage, the services page and the nav — was told at medium severity that no
-Contact page was found.</p>
+<p>The impact column is the engine's own wording, printed here from the same table the checks
+read, so a crawler added to Docket appears here without anyone editing this page.</p>
 
-<p>The path list is wider now, and more usefully, paths are no longer the only rule: a page
-carrying an enquiry form is a contact page whatever it is called. A plumber's "Request a callback"
-and a consultancy's "Work with us" are the same page under different signage. The form has to ask
-for more than a single field, because site search is the common one-field form and counting it
-would silence the check on nearly every site — which would be the worse bug of the two.</p>
+<h2>Writing the rules</h2>
 
-<p>That was the third check in a single day with the same shape: it knew one form of the thing,
-and reported the absence of every other form as the absence of the thing. It is worth naming
-because it is the failure mode of every rule-based audit tool, including this one, and the only
-defence is measuring against sites that plainly have what they are accused of lacking.</p>
+<p>Directives are matched against the user-agent string, and the names are exact. A rule for
+<code>GPTBot</code> says nothing about <code>OAI-SearchBot</code>, because as far as robots.txt
+is concerned they are unrelated crawlers that happen to share an owner.</p>
 
-<h3>The authorship half, and what it is really testing</h3>
+<p>To stay out of training while staying quotable, name the training crawlers and leave the
+search ones alone:</p>
 
-<p>The second finding, <code>content.no_author</code>, fires at low severity when a site has three
-or more pages carrying article markup and no author signal anywhere. An author signal is one of
-two things: the page's JSON-LD carries an <code>author</code> property naming somebody, or the
-body text carries a byline phrase — "written by", "posted by", "author:" and a couple of
-neighbours.</p>
+<pre><code>User-agent: GPTBot
+Disallow: /
 
-<p><strong>That is the corrected version, and the correction is worth the space.</strong> The
-markup test used to ask the wrong question, and it asked it of the exact snippet the finding
-itself prints as the remedy:</p>
+User-agent: Google-Extended
+Disallow: /</code></pre>
 
-<pre><code>"author": {"@type": "Person", "name": "YOUR AUTHOR NAME",
-           "url": "https://example.com/team/your-author"}</code></pre>
+<p>Two mistakes are worth naming because they are silent. The first is a blanket
+<code>User-agent: *</code> block added for some unrelated reason, which catches every crawler in
+the table above including the 5 that decide whether you can be cited. The second is
+blocking at the CDN or firewall instead of in robots.txt: an edge rule that returns 403 to an AI
+crawler is invisible in your robots.txt file, so every tool that reads the file — including the
+robots half of Docket — will tell you the crawler is allowed. Docket checks both, and reports
+them separately, because a file that says yes and a server that says no is a configuration
+nobody chose on purpose.</p>
 
-<p><a href="https://schema.org/author">schema.org's <code>author</code></a>, read on 15 September 2026, is a
-<em>property</em>; its expected types are <code>Person</code> and <code>Organization</code>. There
-is no type called "author". The check was reading the list of <code>@type</code> values on a page
-and looking for "author" in it, so that snippet contributed <code>Article</code> and
-<code>Person</code> and never the thing being looked for. A site that did precisely what the
-report told it to do, re-ran the audit, and saw the same finding with the same remedy.</p>
+<h2>What robots.txt cannot do</h2>
 
-<p>It stayed hidden because the prose half was a bare substring test for the word "author" across
-a blob joined from a capped sample of pages. A privacy policy offering to delete "content you
-authored" contains it. So does a cookie notice or a plugin credit. Any one of them silenced the
-finding sitewide, which is how a broken markup test went unnoticed: sites were being credited by
-an unrelated word rather than by an attribution.</p>
+<p>It is a request, not a control. It is also the only mechanism these operators document. You
+will find advice recommending <code>noai</code> or <code>noimageai</code> meta tags: none of the
+operators in the table above documents support for them, so this page does not tell you they
+work. If you need a guarantee rather than a request, the honest answer is authentication, not a
+directive.</p>
 
-<p>Both halves now do what their names say. The markup test reads the <code>author</code> property
-out of your structured data, at any depth, and an empty one or a blank name does not count — the
-property being present is not the same as somebody being named. The prose test matches byline
-phrases rather than the word.</p>
-
-<p><strong>One limit survives the fix, and you should know it.</strong> A visible byline that
-reads simply "By Jane Smith", with no structured data behind it, still matches nothing: it is not
-one of the byline phrases and it is not markup. That is a narrower miss than the one above and it
-is deliberate — "by" alone appears in ordinary prose constantly — but if your attribution is a
-bare name under a headline, add the schema rather than expecting the sentence to be read.</p>
-
-<h3>What the count on that finding means</h3>
-
-<p>One more thing to know before treating the number beside <code>content.no_author</code> as a
-task list: the author signal is sitewide, so the count is every page carrying article markup, not
-the pages that lack an attribution. Nothing in the check identifies a specific unattributed page,
-because nothing in it looks at pages individually.</p>
-
-<p>Its population is narrower than it sounds, too. "Article pages" here means pages declaring
-article-family schema and nothing else. A blog with no structured data at all is never asked the
-question by this check.</p>
-
-<h2>What Google publishes about this, in its own words</h2>
-
-<p>The panic around E-E-A-T is considerably larger than what Google actually documents, and the
-documentation is short enough to read. From Google's guidance on
-<a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content">creating helpful, reliable, people-first content</a>, read on 15 September 2026:</p>
-
-<blockquote><p>While E-E-A-T itself isn't a specific ranking factor, using a mix of factors that
-can identify content with good E-E-A-T is useful.</p></blockquote>
-
-<blockquote><p>Search raters have no control over how pages rank. Rater data is not used directly
-in our ranking algorithms.</p></blockquote>
-
-<p>So E-E-A-T is a description of what human raters assess when they sanity-check a change to the
-algorithm. It is not a dial, not a score your page carries, and not something any third-party tool
-can measure on your behalf. Anyone selling you an E-E-A-T score is selling you their own opinion
-with a number written on it.</p>
-
-<p>The same page is much more concrete about attribution, and this part is mechanically useful:</p>
-
-<blockquote><p>Is it self-evident to your visitors who authored your content? … Do pages carry a
-byline, where one might be expected? Do bylines lead to further information about the author or
-authors involved, giving background about them and the areas they write about?</p></blockquote>
-
-<p>Note what those questions are addressed to: your visitors. A byline that leads to a page about
-the person is useful because a reader can follow it. The markup matters after that, not
-instead of it.</p>
-
-<p>Google also says, of experience, expertise, authoritativeness and trust, that "of these
-aspects, trust is most important". Docket's own finding puts the case for trust pages more
-strongly than that source does — it describes their absence as a negative for any site that
-transacts, which is a reading of the rater guidelines rather than of the page quoted here. The
-narrower published wording is the one to act on, and it is the one linked above.</p>
-
-<h2>Naming a person is not the same as resolving one</h2>
-
-<p><code>content.eeat</code> does not read <code>sameAs</code>, and nothing in it connects an
-author's name to an identity anywhere else. Docket does check <code>sameAs</code>, in a separate
-check in the AI visibility lane, but that one reads the <em>organisation's</em> node — it asks
-whether the business resolves to something a model already knows about, not whether your writer
-does. Neither check resolves a named author to a real identity, which is the honest position:
-<a href="/learn/sameas-entity-signals/">what sameAs does and who should declare it</a> is a
-different question from whether your articles carry a byline.</p>
-
-<h2>What to do with a finding from this check</h2>
-
-<p>The trust-pages half is genuinely worth clearing, and it is an afternoon's work. Add the three
-pages. Put real information on them — the name of the person who answers the phone, an address if
-you have one, what the company actually is. If your enquiry page is called something other than
-Contact, that is fine and Docket will recognise it, but a visitor searching your nav for the word
-might not.</p>
-
-<p>The authorship half deserves the weight its severity gives it, which is not much. Do the thing
-Google's questions describe rather than the thing the check can detect: a byline on articles where
-a reader would expect one, leading to a page that says who the person is and what they know. Add
-the schema alongside it, because it is one property and it costs nothing. Just do not expect the
-markup on its own to change what this particular check reports.</p>
-
-<p>Every check Docket runs, with the reasoning behind each one, is listed on
-<a href="/learn/what-docket-checks/">what Docket checks</a>.</p>
-
-<h2>How much to trust this finding</h2>
-
-<p>The trust-pages half is the reliable one: it asks a question with a factual answer, it asks it
-against discovered paths rather than crawled ones, and it stands down entirely when the crawl was
-too thin to support the claim. A finding from it is nearly always real.</p>
-
-<p>The authorship half is a heuristic with a known gap in both directions, described above in
-detail because a reader deciding whether to act on it needs to know which direction their own site
-falls in. A clean result there is not evidence that your content is attributed. A finding there is
-not evidence that it is not.</p>
+<p>And robots.txt says nothing about whether an assistant can make sense of your page once it
+arrives. Most AI crawlers do not run JavaScript, so a page whose content is assembled in the
+browser is effectively blank to them even when every rule permits it —
+<a href="/learn/ai-search-visibility/">AI search visibility</a> covers the rest of that.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can a tool measure E-E-A-T?</h3><p>No. Google's own documentation says E-E-A-T is not a specific ranking factor, and that the human raters who assess it have no control over how pages rank and their data is not used directly in the ranking algorithms. What a tool can measure is a handful of signals that tend to travel with it — whether an About page exists, whether there is a way to make contact, whether a page names an author. Anything presented as an E-E-A-T score is an opinion with a number written on it.</p></div><div class="faq-item"><h3>What does Docket's trust and authorship check actually look at?</h3><p>Two things. Whether your site has an About page, a way to get in touch and a privacy policy, judged against every internal path the crawl saw rather than only the pages it fetched. And whether any author signal appears anywhere on the site, for sites carrying article markup.</p></div><div class="faq-item"><h3>My contact page is not called Contact. Will Docket report it as missing?</h3><p>It should not. The check matches a wide list of paths — quote, enquire, book, appointment, work with us, support and others — and separately counts any page carrying a form that asks for more than a single field as a way to make contact, whatever the path is called. That rule exists because the earlier version told a plumbing firm it had no contact page while its quote form was linked from every page on the site.</p></div><div class="faq-item"><h3>Why does a single-field form not count?</h3><p>Because site search is the common single-field form, and counting it would silence the check on nearly every site. A check that never fires is worse than one that occasionally asks for a page you already have under another name.</p></div><div class="faq-item"><h3>Docket says my articles have no visible author, but they have bylines. Why?</h3><p>Because the author test is narrow. It matches a JSON-LD type whose name contains the word author, or the words 'written by' or 'author' in the body text. A byline reading 'By Jane Smith' matches none of those, and correct schema markup contributes the type Person rather than author, since author is a schema.org property and not a type. Your bylines are fine. The check is reading for something narrower than a byline.</p></div><div class="faq-item"><h3>Does adding an author help anything other than this check?</h3><p>Google's guidance asks whether it is self-evident to your visitors who authored your content, whether pages carry a byline where one would be expected, and whether bylines lead to further information about the author. Those questions are addressed to readers, not crawlers. A byline that leads to a page saying who the person is and what they know is the thing worth having; the markup is worth adding afterwards because it is one property and costs nothing.</p></div><div class="faq-item"><h3>Is a missing privacy policy as serious as a missing contact page?</h3><p>Docket does not treat it that way. A missing contact page raises the finding to medium severity; a missing About page or privacy policy on its own leaves it at low. A site nobody can reach has the bigger problem.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How many AI crawlers are there?</h3><p>Docket checks 19 by name, operated by 10 companies, and the list changes: OpenAI split OAI-SearchBot out of GPTBot after launch and Anthropic retired Claude-Web. The number on this page is read from the product's own table rather than typed, so it cannot drift away from what Docket actually checks.</p></div><div class="faq-item"><h3>Should I block AI crawlers from my website?</h3><p>It depends which one, and that is the point. Blocking a training crawler keeps your writing out of a model and costs you no visibility. Blocking a search-index crawler removes you from the answers that cite live sources. Many sites make the second decision while intending only the first.</p></div><div class="faq-item"><h3>Does blocking GPTBot stop ChatGPT citing my site?</h3><p>No. GPTBot collects training data; OAI-SearchBot builds the index ChatGPT Search answers from. They are separate user-agents and a robots.txt rule for one says nothing about the other. In the robots.txt files we read, the two blocks travel together 97.4% of the time.</p></div><div class="faq-item"><h3>Do noai and noimageai meta tags work?</h3><p>None of the crawler operators in Docket's table documents support for them, so this page does not tell you they work. robots.txt is the mechanism these operators publish rules for. A request is all any of them is.</p></div><div class="faq-item"><h3>Why does Docket say a crawler is blocked when my robots.txt allows it?</h3><p>Because a CDN or firewall rule can return 403 to that crawler regardless of what the file says, and the file cannot see it. Docket tests access at the edge as well as reading the rules, and reports the two separately — a file that says yes and a server that says no is rarely a configuration anyone chose deliberately.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

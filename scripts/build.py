@@ -83,6 +83,7 @@ import click_depth_orphans  # noqa: E402
 import url_structure  # noqa: E402
 import howto_hreflang_codes  # noqa: E402
 import page_weight  # noqa: E402
+import ai_directives  # noqa: E402
 import priority_model  # noqa: E402
 import howto_headings  # noqa: E402
 import howto_broken_links  # noqa: E402
@@ -237,6 +238,9 @@ money.</p>
             ("/learn/priority-model/", "How Docket decides what to fix first",
              "Severity, impact, reach and effort — the formula an audit ranks "
              "your site with, written out."),
+            ("/learn/ai-crawler-directives/", "AI crawler directives: which to block",
+             "Training crawlers and search crawlers are different decisions "
+             "with different costs."),
             ("/learn/index-coverage/", "Is your page actually indexed?",
              "Whether a page is in Google, Bing or Brave is a fact about their "
              "index, not your HTML. What Docket asks each engine, and the places "
@@ -872,6 +876,7 @@ def main() -> int:
     pages += howto_hreflang_codes.build_all()
     pages += page_weight.build_all()
     pages += priority_model.build_all()
+    pages += ai_directives.build_all()
     pages += noindex_ai_crawlers.build_all()
     pages += sitemaps_ai_crawlers.build_all()
     pages += googlebot_robots_blocks.build_all()

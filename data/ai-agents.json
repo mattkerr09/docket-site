@@ -1,0 +1,125 @@
+{
+  "agents": {
+    "Amazonbot": {
+      "impact": "Blocks Alexa and Amazon's answer surfaces.",
+      "owner": "Amazon",
+      "purpose": "search index"
+    },
+    "Applebot-Extended": {
+      "impact": "Blocks Apple Intelligence training. Applebot (search) is separate.",
+      "owner": "Apple",
+      "purpose": "training"
+    },
+    "Bytespider": {
+      "impact": "Blocks ByteDance/TikTok AI crawling.",
+      "owner": "ByteDance",
+      "purpose": "training"
+    },
+    "CCBot": {
+      "impact": "Removes you from Common Crawl, an input to many open models.",
+      "owner": "Common Crawl",
+      "purpose": "open corpus"
+    },
+    "ChatGPT-User": {
+      "impact": "Stops ChatGPT fetching your page when a user asks about you.",
+      "owner": "OpenAI",
+      "purpose": "live fetch"
+    },
+    "Claude-SearchBot": {
+      "impact": "Blocks your pages from Claude's search results.",
+      "owner": "Anthropic",
+      "purpose": "search index"
+    },
+    "Claude-User": {
+      "impact": "Stops Claude fetching your page on a user's behalf.",
+      "owner": "Anthropic",
+      "purpose": "live fetch"
+    },
+    "ClaudeBot": {
+      "impact": "Blocks Anthropic from training on your content.",
+      "owner": "Anthropic",
+      "purpose": "training"
+    },
+    "GPTBot": {
+      "impact": "Blocks OpenAI from training on your content. Does not affect whether ChatGPT can cite you live.",
+      "owner": "OpenAI",
+      "purpose": "training"
+    },
+    "Google-CloudVertexBot": {
+      "impact": "Blocks Vertex AI grounding on your content for Google Cloud customers who ask it to index your site.",
+      "owner": "Google",
+      "purpose": "grounding"
+    },
+    "Google-Extended": {
+      "impact": "Blocks Gemini model training and grounding in Gemini Apps and Vertex AI. Does NOT affect AI Overviews, AI Mode or classic Google Search \u2014 those follow your Googlebot rules.",
+      "owner": "Google",
+      "purpose": "training / Gemini Apps grounding"
+    },
+    "GoogleOther": {
+      "impact": "Blocks Google's non-Search crawls. Does not affect Search.",
+      "owner": "Google",
+      "purpose": "research / product fetch"
+    },
+    "Meta-ExternalFetcher": {
+      "impact": "Stops Meta AI fetching your page on a user's behalf.",
+      "owner": "Meta",
+      "purpose": "live fetch"
+    },
+    "MistralAI-Index": {
+      "impact": "Removes you from Le Chat's search index and citations.",
+      "owner": "Mistral",
+      "purpose": "search index"
+    },
+    "MistralAI-Training": {
+      "impact": "Blocks Mistral from training on your content.",
+      "owner": "Mistral",
+      "purpose": "training"
+    },
+    "OAI-SearchBot": {
+      "impact": "Blocks your pages from ChatGPT Search results entirely.",
+      "owner": "OpenAI",
+      "purpose": "search index"
+    },
+    "Perplexity-User": {
+      "impact": "Stops Perplexity fetching your page on a user's behalf.",
+      "owner": "Perplexity",
+      "purpose": "live fetch"
+    },
+    "PerplexityBot": {
+      "impact": "Removes you from Perplexity's index and citations.",
+      "owner": "Perplexity",
+      "purpose": "search index"
+    },
+    "meta-externalagent": {
+      "impact": "Blocks Meta AI training and grounding.",
+      "owner": "Meta",
+      "purpose": "training"
+    }
+  },
+  "by_owner": {
+    "Amazon": 1,
+    "Anthropic": 3,
+    "Apple": 1,
+    "ByteDance": 1,
+    "Common Crawl": 1,
+    "Google": 3,
+    "Meta": 2,
+    "Mistral": 2,
+    "OpenAI": 3,
+    "Perplexity": 2
+  },
+  "by_purpose": {
+    "grounding": 1,
+    "live fetch": 4,
+    "open corpus": 1,
+    "research / product fetch": 1,
+    "search index": 5,
+    "training": 6,
+    "training / Gemini Apps grounding": 1
+  },
+  "collected_by": "scripts/collect_ai_agents.py",
+  "count": 19,
+  "note": "Generated. Do not edit by hand.",
+  "owner_count": 10,
+  "source": "seo_engine.robots.AI_USER_AGENTS, the table the checks read"
+}

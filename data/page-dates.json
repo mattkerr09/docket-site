@@ -44,6 +44,7 @@
     "index": "2026-08-06",
     "index/ai-directives": "2026-08-07",
     "learn": "2026-08-06",
+    "learn/ai-crawler-directives": "2026-09-16",
     "learn/ai-crawlers-and-sitemaps": "2026-09-15",
     "learn/ai-search-visibility": "2026-08-06",
     "learn/ai-sounding-copy": "2026-09-15",
@@ -92,6 +93,6 @@
     "vs/sitebulb-alternative": "2026-08-06"
   },
   "uncommitted": [
-    "learn/priority-model"
+    "learn/ai-crawler-directives"
   ]
 }
