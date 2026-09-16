@@ -90,9 +90,10 @@
     "vs/scrutiny-alternative": "2026-08-15",
     "vs/se-ranking-vs-screaming-frog": "2026-09-08",
     "vs/semrush-site-audit-alternative": "2026-08-10",
+    "vs/seoptimer-alternative": "2026-09-16",
     "vs/sitebulb-alternative": "2026-08-06"
   },
   "uncommitted": [
-    "learn/ai-crawler-directives"
+    "vs/seoptimer-alternative"
   ]
 }

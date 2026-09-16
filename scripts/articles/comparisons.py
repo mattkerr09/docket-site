@@ -66,11 +66,17 @@ CHECKED_HUMAN: dict[str, str] = {
     # while the sentence under it changes is a false date about somebody else's
     # product", and it was right.
     "ahrefs": "14 September 2026",
+    # Read live 2026-09-16, both tiers and the crawl quotas, from the vendor's
+    # own pricing page. The CSV had carried 2026-08-10; re-reading confirmed the
+    # prices unchanged and added the monthly crawl allowances, which are the
+    # thing this page actually turns on.
+    "seoptimer": "16 September 2026",
 }
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-08-15",
     "se-ranking-vs-screaming-frog": "2026-09-08",
     "ahrefs": "2026-09-14",
+    "seoptimer": "2026-09-16",
 }
 
 #: What was actually read, and where. Anything not sourced here is not stated as
@@ -107,6 +113,20 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     # also shows "$115 $86.25" beside a stale Black Friday note and a different
     # product (a serviced scheduled scan), and reading a price off that banner
     # would have published a wrong number about a named third party.
+    "seoptimer": [
+        ("its three plans are priced 29, 39 and 59 US dollars a month — DIY SEO, "
+         "White Label and Lead Generation",
+         "https://www.seoptimer.com/pricing"),
+        ("each plan meters crawling by the month: 4 SEO crawls for one website, "
+         "10 across multiple websites, and 50",
+         "https://www.seoptimer.com/pricing"),
+        ("white-label PDF reporting, a custom report domain and report templates "
+         "are named features of the paid plans",
+         "https://www.seoptimer.com/pricing"),
+        ("the Lead Generation plan's named purpose is an embeddable audit tool "
+         "for capturing leads",
+         "https://www.seoptimer.com/pricing"),
+    ],
     "scrutiny": [
         ('the vendor\'s own product schema gives operatingSystem "MacOS", with '
          '"There are no plans" for Windows',
@@ -1238,6 +1258,121 @@ than most of this market can say.</p>
     )
 
 
+def seoptimer() -> Path:
+    """The cheapest subscription a buyer comparing Docket will find, and it wins on one thing.
+
+    SEOptimer starts at a third of what Docket costs per month and is built for
+    a job Docket has no answer to: white-label audit reports an agency puts its
+    own branding on, and an embeddable audit form that captures leads. Both are
+    said before anything else, because a reader who wants either should buy
+    theirs and this page should tell them so.
+
+    The honest comparison is not features, it is the meter. Every plan buys a
+    fixed number of crawls per month; Docket's crawl limit is the machine. Read
+    live 2026-09-16 from the vendor's own pricing page — the prices were
+    unchanged since the CSV's 2026-08-10 check, but the crawl quotas had never
+    been recorded here and they are the thing that actually decides this.
+
+    ⚠️ NO CLAIM THAT DOCKET REPLACES IT, and no claim about scorecard quality:
+    nothing here has been measured against their output. The comparison is
+    confined to what each vendor publishes about its own product.
+    """
+    body = f"""
+<p>SEOptimer is a cloud SEO auditing tool starting at {price('seoptimer')}, which is a
+fraction of what Docket costs in the first year. If you are weighing the two, start with the
+honest part: <strong>SEOptimer does two things Docket does not do at all</strong>, and if
+either is what you came for, buy theirs.</p>
+
+<h2>What SEOptimer does that Docket does not</h2>
+
+<ul>
+<li><strong>White-label reports.</strong> Its paid plans name white-label PDF reporting, a
+custom report domain and report templates. An agency can hand a client an audit with its own
+branding on it. Docket produces a Docket-branded report and has no white-label mode.</li>
+<li><strong>Lead generation.</strong> Its top plan is called Lead Generation and exists to
+embed an audit form on your site that captures visitor details. That is a marketing product.
+Docket is a tool you run, and has nothing like it.</li>
+</ul>
+
+<p>Those are not small concessions. Selling audits is a real business and SEOptimer is built
+for it end to end; Docket is not built for it at all.</p>
+
+<h2>The difference that actually decides it: the meter</h2>
+
+<p>Every SEOptimer plan buys a fixed number of crawls per month. The entry plan is four crawls
+for one website. The middle plan is ten across multiple sites. The top plan is fifty. That is
+the shape of every subscription audit tool, and it changes how you work: a crawl becomes
+something you spend rather than something you run.</p>
+
+<p>Docket does not meter anything. There is no page allowance, no crawl count and no project
+limit, because there is no server keeping score — the audit runs on your Mac, and
+<code>-n 0</code> crawls until the site ends. Re-running after every fix costs you nothing but
+the time, which matters more than it sounds: the natural way to use an audit is to fix
+something and immediately check whether you fixed it.</p>
+
+<p>The pricing follows from that. SEOptimer bills monthly and keeps billing.
+Docket is {PRICE_STR} once. Over a year the entry plan costs roughly what Docket does, and after
+that the comparison stops being close — but a year is a long time in software and a subscription
+you can cancel is a real advantage if you only need one audit.</p>
+
+<h2>What Docket adds</h2>
+
+<p>Docket runs {N_CHECKS} checks across thirteen areas, and four of those areas are not technical
+SEO at all: conversion, brand consistency, AI search visibility and campaign tracking. The AI
+lane checks {F.ai_agents()} crawlers by name and compares what your robots.txt permits against
+what your server actually returns, because a CDN rule refusing GPTBot is invisible in a file that
+allows it. And every finding lands in a ranked plan rather than a categorised list —
+<a href="/learn/priority-model/">the formula is written out</a> if you want to check the
+ordering yourself.</p>
+
+<h2>Which to buy</h2>
+
+<ul>
+<li><strong>Buy SEOptimer</strong> if you sell audits, need your own branding on the report, or
+want an audit form on your site that collects leads.</li>
+<li><strong>Buy Docket</strong> if you are auditing your own sites, want unlimited re-runs while
+you fix things, and would rather pay once.</li>
+</ul>
+
+<p>They are not really the same product. One is a reporting and lead product sold to agencies;
+the other is an instrument you point at a site.</p>
+
+{_verified_note("seoptimer")}
+{CTA}"""
+
+    return render(
+        cat="vs", slug="seoptimer-alternative",
+        title="Docket vs SEOptimer: metered crawls or unlimited?",
+        desc=("SEOptimer does white-label reports and lead capture, which Docket does not. "
+              "What Docket adds, and why the monthly crawl allowance is the real "
+              "difference."),
+        h1="Docket vs SEOptimer",
+        crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / SEOptimer',
+        body=body,
+        faq=[
+            ("Is Docket an SEOptimer alternative?",
+             "For auditing your own sites, yes. For selling audits it is not: SEOptimer does "
+             "white-label PDF reporting with a custom domain and an embeddable lead-capture "
+             "audit form, and Docket has no equivalent to either."),
+            ("Which is cheaper, Docket or SEOptimer?",
+             f"SEOptimer is cheaper to start, at {price('seoptimer')} against Docket's "
+             f"{PRICE_STR} one-time. Over roughly a year the entry plan reaches what Docket "
+             "costs, and after that Docket does not cost anything more — but a subscription "
+             "you can cancel is genuinely better value if you only need one audit."),
+            ("How many crawls does SEOptimer allow?",
+             "Its published plans buy four crawls a month for one website, ten across "
+             "multiple websites, or fifty. Docket does not meter crawls at all: the audit "
+             "runs on your own Mac and -n 0 crawls a site until it ends, so re-running after "
+             "each fix costs nothing."),
+            ("Does SEOptimer check AI crawler access?",
+             "This page does not say, because it was not measured — only what the vendor "
+             f"publishes was read. What Docket does here is checked: {F.ai_agents()} AI "
+             "crawlers by name, with the server's actual response compared against what "
+             "robots.txt permits."),
+        ],
+    )
+
+
 def se_ranking_vs_screaming_frog() -> Path:
     """Two tools people compare that are not the same KIND of thing.
 
@@ -1362,7 +1497,7 @@ Screaming Frog is the right tool.</p>
 
 
 BUILDERS = [screaming_frog, sitebulb, ahrefs, semrush, lighthouse,
-            search_console, scrutiny, se_ranking_vs_screaming_frog]
+            search_console, scrutiny, seoptimer, se_ranking_vs_screaming_frog]
 
 
 def build_all() -> list[Path]:
