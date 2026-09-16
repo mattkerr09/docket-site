@@ -72,6 +72,7 @@ CHECKED_HUMAN: dict[str, str] = {
     # thing this page actually turns on.
     "seoptimer": "16 September 2026",
     "sitechecker": "16 September 2026",
+    "profound": "16 September 2026",
 }
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-08-15",
@@ -79,6 +80,7 @@ CHECKED_ISO: dict[str, str] = {
     "ahrefs": "2026-09-14",
     "seoptimer": "2026-09-16",
     "sitechecker": "2026-09-16",
+    "profound": "2026-09-16",
 }
 
 #: What was actually read, and where. Anything not sourced here is not stated as
@@ -115,6 +117,21 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     # also shows "$115 $86.25" beside a stale Black Friday note and a different
     # product (a serviced scheduled scan), and reading a price off that banner
     # would have published a wrong number about a named third party.
+    "profound": [
+        ("its pricing page publishes two tiers and no price: a free Trial, and "
+         "Enterprise at custom pricing reached through a demo",
+         "https://www.tryprofound.com/pricing"),
+        ("the free Trial is limited to 10 prompts run once, against ChatGPT "
+         "only, in one language and one region",
+         "https://www.tryprofound.com/pricing"),
+        ("Enterprise tracks up to 9 answer engines, with SSO/SAML and SOC2 "
+         "compliance listed alongside dedicated support",
+         "https://www.tryprofound.com/pricing"),
+        ("its published platform list is Monitor, Answer Engine Insights, "
+         "Prompt Volumes, Shopping Agent Analytics, AI Marketer, Agents and "
+         "Context Manager — no site crawler or technical audit appears in it",
+         "https://www.tryprofound.com/pricing"),
+    ],
     "sitechecker": [
         ("its plans are priced 99, 249 and 449 US dollars a month, discounted to "
          "83, 208 and 375 a month when paid annually",
@@ -1509,6 +1526,110 @@ measured. Both vendors' published feature lists are what this page is built from
     )
 
 
+def profound() -> Path:
+    """An answer-engine tracker with no crawler, sold by demo. Barely the same category.
+
+    Profound measures whether a brand appears in AI answers across up to nine
+    answer engines. Docket measures whether those crawlers can reach the site at
+    all. The Sitechecker page already makes an access-versus-mentions argument,
+    so this page deliberately makes a DIFFERENT one: Profound's published
+    platform list contains no crawler and no technical audit, and it has no
+    self-serve price — the two tiers are a free trial and "get a demo".
+
+    ⚠️ NO PRICE IS QUOTED, because none is published. This row carried
+    "$99-$399/mo billed yearly" from 2026-08-10 and its own source no longer
+    supports it; the figure was removed from `competitors.csv` rather than
+    printed here. A page arguing that Docket's price is on the page cannot
+    invent one for the company it is comparing against.
+
+    ⚠️ NOTHING IS CLAIMED ABOUT WHAT PROFOUND CANNOT DO — only about what its
+    own pricing page lists. "No crawler appears in the published platform list"
+    is a statement about the list.
+    """
+    body = f"""
+<p>Profound tracks whether AI assistants mention your brand. Docket audits whether those
+assistants' crawlers can read your site in the first place. Those sound adjacent and they are
+not the same purchase at all — and the clearest way to see it is that
+<strong>Profound does not publish a price</strong>.</p>
+
+<h2>Two tiers, neither of them a price</h2>
+
+<p>Its pricing page lists a free <strong>Trial</strong> — ten prompts, run once, against
+ChatGPT only, in one language and one region — and <strong>Enterprise</strong>, at custom
+pricing, reached by booking a demo. Enterprise tracks up to nine answer engines and lists
+SSO/SAML and SOC2 compliance beside dedicated support.</p>
+
+<p>That is an enterprise sales motion, and the compliance line tells you who it is for. It is
+not a criticism: tracking nine answer engines across languages and regions is genuinely
+expensive to operate, and companies that need it have procurement departments. But it means the
+comparison with Docket is not really about features. One is a platform you are onboarded onto.
+The other is a {PRICE_STR} download with the price on the page.</p>
+
+<h2>What Profound does that Docket does not</h2>
+
+<p>Its published platform names Monitor, Answer Engine Insights, Prompt Volumes, Shopping Agent
+Analytics, AI Marketer, Agents and Context Manager. Answer Engine Insights analyses how your
+brand and your competitors appear in AI platforms. <strong>Docket does none of this.</strong> It
+cannot tell you whether ChatGPT named you this week, how often, or beside whom.</p>
+
+<h2>What Docket does that Profound's platform list does not name</h2>
+
+<p>No site crawler and no technical audit appears in that list. Docket is entirely that:
+{N_CHECKS} checks across thirteen areas, run against your own pages.</p>
+
+<p>The two meet at one specific point, and it is worth being precise about it. Docket checks
+{F.ai_agents()} AI crawlers by name and compares what your robots.txt permits against what your
+server actually returns — because a CDN rule refusing a crawler is invisible in a file that
+allows it. That is the question underneath a visibility report: if a tracker tells you that you
+are not being cited, one possible reason is that the crawler was never allowed to read the page.
+Docket can prove or eliminate that. It cannot tell you whether citation then happens.</p>
+
+<h2>Which to buy</h2>
+
+<ul>
+<li><strong>Book the Profound demo</strong> if measuring your presence in AI answers is a
+reporting obligation — you need it across engines, languages and regions, and someone is asking
+for the numbers.</li>
+<li><strong>Buy Docket</strong> if you want to know what is wrong with your site and in what
+order, including whether AI crawlers can reach it, without an account or a sales call.</li>
+</ul>
+
+<p>Plenty of companies would sensibly do both, and they are not substitutes in either direction.
+Nothing here compares the accuracy of Profound's tracking, which we have not measured and have
+no way to measure from outside.</p>
+
+{_verified_note("profound")}
+{CTA}"""
+
+    return render(
+        cat="vs", slug="profound-alternative",
+        title="Docket vs Profound: mentions tracked, or access checked?",
+        desc=("Profound tracks whether AI assistants mention your brand, by demo and custom "
+              "pricing. Docket checks whether their crawlers can reach you. Different "
+              "purchases."),
+        h1="Docket vs Profound",
+        crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Profound',
+        body=body,
+        faq=[
+            ("Is Docket a Profound alternative?",
+             "No, and it would be misleading to say otherwise. Profound reports whether AI "
+             "assistants mention your brand across answer engines. Docket audits your site "
+             "and checks whether those crawlers are permitted to read it. Neither replaces "
+             "the other."),
+            ("How much does Profound cost?",
+             "Its pricing page publishes no figure. It lists a free trial — ten prompts run "
+             "once, ChatGPT only — and Enterprise at custom pricing reached through a demo. "
+             "Docket is a one-time purchase with the price on the page, which is the "
+             "starkest difference between them."),
+            ("Can Docket tell me if ChatGPT mentions my brand?",
+             "No. Docket measures access, not mentions: whether each AI crawler is allowed "
+             "in, and whether your server agrees with your robots.txt. If a tracker says you "
+             "are not being cited, Docket can tell you whether a blocked crawler is one "
+             "reason. It cannot tell you whether citation happens."),
+        ],
+    )
+
+
 def se_ranking_vs_screaming_frog() -> Path:
     """Two tools people compare that are not the same KIND of thing.
 
@@ -1633,7 +1754,7 @@ Screaming Frog is the right tool.</p>
 
 
 BUILDERS = [screaming_frog, sitebulb, ahrefs, semrush, lighthouse,
-            search_console, scrutiny, seoptimer, sitechecker,
+            search_console, scrutiny, seoptimer, sitechecker, profound,
             se_ranking_vs_screaming_frog]
 
 
