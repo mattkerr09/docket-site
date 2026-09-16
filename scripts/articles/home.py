@@ -518,6 +518,11 @@ one that draws a line.</p></div>
   the truth is that Docket cannot read the page. Everything technical works in any language.</p></div>
   <div class="card"><h3>Windows and Intel</h3><p>Apple Silicon, macOS 12 or later. There is
   no other build.</p></div>
+  <div class="card"><h3>Five things we chose not to build</h3><p>Rank tracking, a cloud
+  version, team accounts, server-side scheduling, and white-label or uptime monitoring. Each
+  one needs a machine of ours running every day on your behalf, which is a monthly bill —
+  the thing Docket exists not to send you. They are absent on purpose, not yet to
+  come.</p></div>
 </div>
 <p style="text-align:center;margin-top:1.5rem;font-size:var(--t-md);color:var(--text-dim)">
 This list keeps getting shorter. <a href="/learn/javascript-rendering/">JavaScript rendering,
@@ -538,6 +543,17 @@ crawl runs on your Mac. Four checks do reach outside it by default: Core Web Vit
 Google PageSpeed, a deliverability test on the addresses your site publishes, what your
 server tells AI crawlers, and a knowledge refresh from this site. Offline mode turns all
 four off, and every report names the ones that ran.</p></div>
+<div class="faq-item"><h3>Other tools advertise more checks. Why {N_CHECKS}?</h3>
+<p>Because a count is the easy number to grow and the hard one to use. Splitting one check into
+four raises the total and tells you nothing new; what a report is for is knowing which of the
+things it found to do first. Docket runs {N_CHECKS} checks and ranks every finding by impact
+against effort, so the order is the product and the count is a footnote. If a rival's larger
+number buys you something ours does not, that is a fair reason to choose theirs — but ask what
+the extra checks are, not how many there are.</p></div>
+<div class="faq-item"><h3>Is there anything to cancel?</h3>
+<p>No. There is no subscription and no account, so there is nothing to cancel and nobody to
+email. The licence you bought keeps working on the version you have, for as long as you have
+it.</p></div>
 <div class="faq-item"><h3>How is it different from Screaming Frog?</h3>
 <p>Screaming Frog gives raw crawl data and leaves interpretation to you. Docket ranks findings
 and gives you an ordered plan with markup to paste. Screaming Frog supports custom XPath extraction and crawls at far greater scale;
