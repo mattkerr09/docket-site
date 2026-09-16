@@ -15,6 +15,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import datetime as _dt
+import re
 import json
 import pathlib
 import sys
@@ -147,8 +148,23 @@ def agency_note_html() -> str:
 
 
 def price(slug: str) -> str:
-    """The published price for a competitor, with en dashes for ranges."""
-    return COMPETITORS[slug]["price_note"].replace("-", "–")
+    """The published price for a competitor, with en dashes for ranges.
+
+    ⚠️ THIS REPLACED EVERY HYPHEN, NOT JUST THE ONE IN A RANGE. The docstring
+    has always said "for ranges" and the code said `.replace("-", "–")`, which
+    is a different thing — it just had nothing to bite on, because every note in
+    the dataset happened to be digits either side of a dash. The first note
+    containing a hyphenated word rendered "one-time" as "one–time" on a live
+    page.
+
+    A range is a hyphen with a digit before it and a digit or a currency symbol
+    after it — these notes are written "$18-$42", so the character after the
+    dash is usually "$" rather than a digit. The first attempt at this fix
+    required digits on both sides and silently un-dashed ten of the fourteen
+    rows; it was caught by diffing every rendered price against the previous
+    output rather than spot-checking one.
+    """
+    return re.sub(r"(?<=\d)-(?=[$\d])", "–", COMPETITORS[slug]["price_note"])
 
 
 def price_note_html() -> str:

@@ -74,6 +74,7 @@ CHECKED_HUMAN: dict[str, str] = {
     "sitechecker": "16 September 2026",
     "profound": "16 September 2026",
     "jetoctopus": "16 September 2026",
+    "crawlraven": "16 September 2026",
 }
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-08-15",
@@ -83,6 +84,7 @@ CHECKED_ISO: dict[str, str] = {
     "sitechecker": "2026-09-16",
     "profound": "2026-09-16",
     "jetoctopus": "2026-09-16",
+    "crawlraven": "2026-09-16",
 }
 
 #: What was actually read, and where. Anything not sourced here is not stated as
@@ -119,6 +121,23 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     # also shows "$115 $86.25" beside a stale Black Friday note and a different
     # product (a serviced scheduled scan), and reading a price off that banner
     # would have published a wrong number about a named third party.
+    "crawlraven": [
+        ("its pricing page lists a free tier for one site and one-time lifetime "
+         "licences at 39, 79 and 129 US dollars for one, three and ten sites",
+         "https://crawlraven.com/pricing"),
+        ('those prices are a batch: the page states "price steps up every 10 '
+         'licences", showed ten remaining when read, and names the next batch '
+         "as 49, 89 and 139",
+         "https://crawlraven.com/pricing"),
+        ('every paid tier lists "Technical SEO audit — coming soon"',
+         "https://crawlraven.com/pricing"),
+        ("the shipped features it lists are Search Console insights, linked GA4 "
+         "reporting, keyword and page performance, Ahrefs/Semrush list import, "
+         "keyword maps and cannibalization flags, content gaps and decay "
+         "tracking, prioritised action items, white-label reports, and MCP "
+         "access to up to 13 scoped tools",
+         "https://crawlraven.com/pricing"),
+    ],
     "jetoctopus": [
         ("its In-House plans are priced 689 and 1,369 US dollars a month "
          "quarterly, or 549 and 1,089 billed annually, with a third tier "
@@ -1762,6 +1781,120 @@ been measured. The facts above are what each vendor publishes about its own prod
     )
 
 
+def crawlraven() -> Path:
+    """The closest thing to Docket's pitch, cheaper, and its audit is not built yet.
+
+    CrawlRaven's own headline is almost this site's: every tool tells you what
+    happened, it tells you what to do next, and hands back one ranked plan. It
+    is sold once rather than monthly, like Docket. It costs a fraction of
+    Docket. All of that is conceded first, because a reader who has seen both
+    home pages will notice the overlap and any page pretending otherwise loses
+    them.
+
+    The one fact that separates them is on CrawlRaven's own pricing page, in
+    their words rather than ours: every paid tier lists "Technical SEO audit —
+    coming soon". Today it is a Search Console and GA4 content-insights tool.
+    That is stated as their label, never as a judgement about the product.
+
+    ⚠️ THE BATCH PRICE IS A SCARCITY MECHANIC AND IS DATED AS SUCH. Their page
+    steps the price up every ten licences and showed ten remaining when read.
+    Quoting it as a standing price would be quoting a number designed to change.
+
+    ⚠️ MCP IS NOT A DIFFERENTIATOR. They list up to 13 scoped tools; Docket
+    ships an MCP server too.
+    """
+    body = f"""
+<p>CrawlRaven is the closest thing on the market to Docket's pitch, and it is much cheaper. Its
+home page says what this one says — every SEO tool tells you what happened, this one tells you
+what to do next — and it is sold as a one-time licence rather than a subscription. If you are
+comparing the two, that overlap is real and worth saying first.</p>
+
+<h2>What CrawlRaven does that Docket does not</h2>
+
+<ul>
+<li><strong>Search Console and GA4, joined up.</strong> It connects both and reports keyword and
+page performance against what visitors actually did. Docket audits your pages; it does not pull
+your Search Console history or your analytics.</li>
+<li><strong>Keyword work.</strong> Keyword maps, clusters, cannibalization flags, content gaps,
+runner-up keywords and decay tracking, plus importing your existing Ahrefs or Semrush lists.
+Docket does none of this — it does not track rankings or research keywords.</li>
+<li><strong>White-label reports</strong>, and a free tier for one site. Docket has neither.</li>
+</ul>
+
+<p>It also lists MCP access to up to thirteen scoped tools. Docket ships an MCP server as well,
+so that is not a difference between them.</p>
+
+<h2>The one thing that separates them, in their words</h2>
+
+<p>Every paid tier on CrawlRaven's pricing page carries the line <strong>"Technical SEO audit —
+coming soon"</strong>. That is their label, not our assessment. What it means for a buyer today
+is that the two tools overlap far less than the two home pages suggest: CrawlRaven is a Search
+Console and GA4 content-insights tool with the audit still ahead of it, and Docket is
+{N_CHECKS} technical, conversion, brand and AI-visibility checks that run now.</p>
+
+<p>If that line disappears from their pricing page, this comparison changes, and the date above
+the sources below is when it was read.</p>
+
+<h2>On the price</h2>
+
+<p>Their licences are {price('crawlraven')}. Read honestly, that is a scarcity mechanic rather
+than a list price: the page states the price steps up every ten licences and shows how many are
+left, so the figure is designed to move. Docket is {PRICE_STR} once, for unlimited sites, and
+does not change with demand.</p>
+
+<p>Even at the next batch up, CrawlRaven is far cheaper than Docket, and nothing on this page
+argues otherwise. What {PRICE_STR} buys is a shipped technical audit — {N_CHECKS} checks across
+thirteen areas — running locally on your own Mac with no account, no site limit and nothing
+uploaded.</p>
+
+<h2>Which to buy</h2>
+
+<ul>
+<li><strong>Buy CrawlRaven</strong> if your question is which content to write and update, you
+want Search Console and GA4 in one view, and you want it cheaply.</li>
+<li><strong>Buy Docket</strong> if your question is what is technically wrong with the site and
+in what order to fix it, today.</li>
+</ul>
+
+<p>They are close enough in spirit that owning both is not absurd, and their free tier costs
+nothing to try. Nothing here compares the quality of either tool's output, which has not been
+measured.</p>
+
+{_verified_note("crawlraven")}
+{CTA}"""
+
+    return render(
+        cat="vs", slug="crawlraven-alternative",
+        title="Docket vs CrawlRaven: a shipped audit, or coming soon?",
+        desc=("CrawlRaven is cheaper, sold once, and pitches a ranked plan like Docket. Its "
+              "own pricing page marks the technical audit 'coming soon'. What each does "
+              "today."),
+        h1="Docket vs CrawlRaven",
+        crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / CrawlRaven',
+        body=body,
+        faq=[
+            ("Is Docket a CrawlRaven alternative?",
+             "They overlap in pitch more than in function today. CrawlRaven connects Search "
+             "Console and GA4 and works on keywords and content; its pricing page marks the "
+             "technical SEO audit as coming soon. Docket is the technical audit, shipped, "
+             "with conversion, brand and AI-visibility checks alongside it."),
+            ("Which is cheaper, Docket or CrawlRaven?",
+             f"CrawlRaven, considerably. Its licences are {price('crawlraven')} against "
+             f"Docket's {PRICE_STR}, and it has a free tier for one site. Its prices step up "
+             "every ten licences sold, so the figure quoted here is the batch that was "
+             "current on the date below, not a standing price."),
+            ("Do both have an MCP integration?",
+             "Yes. CrawlRaven lists MCP access to up to thirteen scoped tools, and Docket "
+             "ships an MCP server so an assistant can run an audit. It is not a difference "
+             "between them."),
+            ("Does Docket connect to Google Search Console?",
+             "Not for the keyword and traffic history CrawlRaven reports. Docket audits what "
+             "your pages contain and how your server is configured, on your own machine, "
+             "without an account."),
+        ],
+    )
+
+
 def se_ranking_vs_screaming_frog() -> Path:
     """Two tools people compare that are not the same KIND of thing.
 
@@ -1887,7 +2020,7 @@ Screaming Frog is the right tool.</p>
 
 BUILDERS = [screaming_frog, sitebulb, ahrefs, semrush, lighthouse,
             search_console, scrutiny, seoptimer, sitechecker, profound,
-            jetoctopus, se_ranking_vs_screaming_frog]
+            jetoctopus, crawlraven, se_ranking_vs_screaming_frog]
 
 
 def build_all() -> list[Path]:
