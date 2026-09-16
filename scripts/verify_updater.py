@@ -119,6 +119,13 @@ def _download_links_point_at_this_release() -> None:
     """
     path = SITE.parent / "data" / "download.json"
     if not path.is_file():
+        # ⚠️ THIS USED TO BE A BARE `return`. A gate that cannot see its
+        # reference and says nothing is indistinguishable from a gate that
+        # passed — and this function ends by printing "UPDATER ok", so the
+        # skip was reported as a success. Outlier lost a whole day of live-claim
+        # coverage to exactly this shape (CEO, 2026-09-16 17:47Z).
+        print(f"UPDATER SKIPPED — {path.name} is absent, so the DMG filename "
+              f"was NOT checked against the tag")
         return
     try:
         data = json.loads(path.read_text())
@@ -183,6 +190,11 @@ def _a_promised_linux_build_exists() -> None:
     """
     path = SITE.parent / "data" / "download.json"
     if not path.is_file():
+        # Same shape, and worse here: this is the check whose own docstring says
+        # "quietly shipping nothing is not" a legitimate way to satisfy it. If
+        # its reference vanishes it must not be the one doing the quiet part.
+        print(f"UPDATER SKIPPED — {path.name} is absent, so the site's Linux "
+              f"promise was NOT checked against the release")
         return
     data = json.loads(path.read_text())
     if data.get("linux_name"):
