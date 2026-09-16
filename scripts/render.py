@@ -1291,9 +1291,16 @@ def _entity_schema(with_offer: bool = True) -> str:
     )
 
 
-#: Meta pixel, staged DARK 2026-08-19. `META_PIXEL_ID` is empty and the loader
-#: returns before touching the network, so nothing is requested, no cookie is set
-#: and the privacy policy stays true exactly as written today.
+#: Meta pixel. Staged DARK 2026-08-19; LIVE since 2026-08-23 — see the dated note
+#: further down, which is where the id came from. It is live NOW: `fbevents.js`
+#: loads, a `_fbp` cookie is set, and the privacy policy documents all of it.
+#:
+#: ⚠️ THIS HEADER SAID "META_PIXEL_ID is empty … nothing is requested, no cookie
+#: is set" FOR THREE WEEKS AFTER THE ID WAS SET, and the HTML comment emitted
+#: below said "Dark … so nothing loads" on every one of 97 built pages — inside
+#: the branch that only runs when the id IS set, so it was false exactly when it
+#: shipped. Our own audit found the pixel and following it here found this. A
+#: comment that contradicts its own code is a defect even when the code is right.
 #:
 #: ⚠️ THE ID AND THE PRIVACY REVISION SHIP IN THE SAME COMMIT. Never one then the
 #: other. A pixel running under a policy that denies third-party tracking is a
@@ -1329,7 +1336,7 @@ def _entity_schema(with_offer: bool = True) -> str:
 META_PIXEL_ID = "2344029433088526"
 
 META_PIXEL = (
-    ('<!-- Meta pixel. Dark: META_PIXEL_ID is empty, so nothing loads. -->\n'
+    ('<!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->\n'
      '<script>\n'
      '!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?'
      'n.callMethod.apply(n,arguments):n.queue.push(arguments)};'

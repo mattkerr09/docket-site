@@ -1584,7 +1584,7 @@ at once, leaving only the crawl of your own site.</p>
 as plain JSON files. They are never transmitted. Deleting that folder removes them permanently.</p>
 
 <h2>This website</h2>
-<p>This site is static and runs four third-party scripts. The first is
+<p>This site is static and runs five third-party scripts. The first is
 <a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, which counts page
 views. Plausible states that it uses no cookies, collects no personal data and does not track
 visitors across sites; it is hosted in the EU. Nothing about your audits reaches it &mdash;
@@ -1617,10 +1617,17 @@ into it, that question is sent to that server so it can be answered; if you neve
 nothing is sent. It knows only published facts about Docket, and the price it quotes comes from
 the payment provider rather than from this page, so it cannot quote you a price the checkout
 will not honour.</p>
+<p>The fifth is on the front page only, and not on this one: a
+&ldquo;tell me when Windows is ready&rdquo; form, loaded from
+<code>kerr-subscribe.kerrco.workers.dev</code>, a server we run. Like the assistant it draws
+itself in an isolated shadow root and stores nothing in your browser &mdash; no cookie, no local
+storage, no session storage. Nothing is sent unless you type an address and press the button, and
+what is sent is that address and which site it came from, so the Windows list stays separate from
+every other list. If you never use the form, it makes no request at all.</p>
 <p>These paragraphs have been rewritten three times as the answer changed. They once said the
 site &ldquo;sets no cookies&rdquo; and runs &ldquo;one third-party script&rdquo;; both were true
 until Sled was added. The line calling Sled the only thing here that can set a cookie was true
-until the Meta pixel was. The count said three until the chat assistant was added, and this
+until the Meta pixel was. The count said three until the chat assistant was added, and the description on this page still said three after the body said four &mdash; caught by our own audit and corrected to five, which is when the Windows form on the front page was counted too. This
 paragraph is the reason that was noticed: each correction is made above rather than quietly
 deleted. A privacy page that enumerates what a site does not do is only worth reading if the
 enumeration stays complete.</p>
@@ -1653,7 +1660,7 @@ it; we hold nothing separately.</p>
         cat="legal", slug="privacy",
         title="Privacy policy — what Docket collects, and what it does not",
         desc="Audits run on your Mac and are never uploaded. No account, no "
-             "telemetry. Three third-party scripts, one an advertising pixel — "
+             "telemetry. Five third-party scripts, one an advertising pixel — "
              "what each does and how to stop it.",
         h1="Privacy policy",
         crumb='<a href="/">Docket</a> / Privacy',
