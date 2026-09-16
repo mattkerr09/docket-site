@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Docket vs Screaming Frog: which SEO crawler should you use?</title>
-<meta name="description" content="Screaming Frog gives you raw crawl data; a Docket audit gives a ranked fix plan. Including what Screaming Frog does better — rendering at scale, custom extraction.">
+<title>Fix navigation that needs JavaScript to work</title>
+<meta name="description" content="Docket's nav_not_in_html check counts internal links in the HTML your server sent. What it measures, what it cannot tell you about Google, and the fix.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="abdb71f5ab5a">
-<link rel="canonical" href="https://docketseo.app/vs/screaming-frog-alternative/">
+<link rel="canonical" href="https://docketseo.app/how-to/fix-navigation-that-needs-javascript/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docket vs Screaming Frog">
-<meta property="og:description" content="Screaming Frog gives you raw crawl data; a Docket audit gives a ranked fix plan. Including what Screaming Frog does better — rendering at scale, custom extraction.">
-<meta property="og:url" content="https://docketseo.app/vs/screaming-frog-alternative/">
+<meta property="og:title" content="Fixing navigation that only exists after JavaScript runs">
+<meta property="og:description" content="Docket's nav_not_in_html check counts internal links in the HTML your server sent. What it measures, what it cannot tell you about Google, and the fix.">
+<meta property="og:url" content="https://docketseo.app/how-to/fix-navigation-that-needs-javascript/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Docket vs Screaming Frog">
-<meta name="twitter:description" content="Screaming Frog gives you raw crawl data; a Docket audit gives a ranked fix plan. Including what Screaming Frog does better — rendering at scale, custom extraction.">
+<meta name="twitter:title" content="Fixing navigation that only exists after JavaScript runs">
+<meta name="twitter:description" content="Docket's nav_not_in_html check counts internal links in the HTML your server sent. What it measures, what it cannot tell you about Google, and the fix.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -674,9 +674,9 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 97 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"97 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Compare","item":"https://docketseo.app/vs/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Docket vs Screaming Frog","description":"Screaming Frog gives you raw crawl data; a Docket audit gives a ranked fix plan. Including what Screaming Frog does better — rendering at scale, custom extraction.","datePublished":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/vs/screaming-frog-alternative/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Docket a Screaming Frog alternative?","acceptedAnswer":{"@type":"Answer","text":"For prioritisation, reporting and non-technical users, yes. For JavaScript custom XPath extraction, rendering at scale and very large crawls, no — Screaming Frog does those better and Docket does not try to."}},{"@type":"Question","name":"Does Docket render JavaScript like Screaming Frog?","acceptedAnswer":{"@type":"Answer","text":"Yes, through a WebKit helper, but only a small automatic sample of each crawl rather than every page. Screaming Frog renders across the whole crawl in its integrated Chromium engine, which is the better tool for a large single-page application."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Fixing navigation that only exists after JavaScript runs","description":"Docket's nav_not_in_html check counts internal links in the HTML your server sent. What it measures, what it cannot tell you about Google, and the fix.","datePublished":"2026-09-15","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-navigation-that-needs-javascript/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"My menu is built by JavaScript. Can Google follow it?","acceptedAnswer":{"@type":"Answer","text":"If the menu ends up as anchor elements with href attributes, yes — Google's documentation says a link is an anchor with an href, and injecting one with JavaScript is allowed. The catch is timing: crawling and rendering are separate queues, so those links are found on a later pass. If the menu is made of clickable divs or spans with no href, it is not a link at any stage."}},{"@type":"Question","name":"What does the nav_not_in_html check actually count?","acceptedAnswer":{"@type":"Answer","text":"Distinct internal destinations reachable from an anchor element with an href, in the HTML the server returned, deduplicated per page and averaged across every crawled page that returned OK with an HTML content type. It does not inspect nav elements or look for a menu. The finding is raised once for the site, at HIGH severity, with a LARGE effort estimate."}},{"@type":"Question","name":"Why did my single-page app not get flagged?","acceptedAnswer":{"@type":"Answer","text":"Probably because Docket recovered its links. During discovery, a page whose raw HTML yields no links and which looks like a JavaScript shell is re-read in WebKit, and the links found there are used. The site this check was written for is the opposite case: real server-rendered copy, so the shell heuristic never fires, and navigation that is client-side, so the links are never there."}},{"@type":"Question","name":"Can Docket tell me whether Googlebot rendered my navigation?","acceptedAnswer":{"@type":"Answer","text":"No. Nobody outside Google can measure what Google rendered, or when. Docket reports what your server sent and, on a capped sample, what a local WebKit engine builds from it. Googlebot's rendering is not identical to that, and no finding here should be read as a statement about what Google in particular did."}},{"@type":"Question","name":"My site is small and got flagged anyway. Is that a false positive?","acceptedAnswer":{"@type":"Answer","text":"It may be. The check needs at least three crawled HTML pages before it will look at all, but a genuinely sparse brochure site can still fall under the average without any JavaScript being involved. Fetch a few pages with curl and grep for anchors — if your links are in the source, the finding does not apply to you."}},{"@type":"Question","name":"Is a sitemap enough to make up for it?","acceptedAnswer":{"@type":"Answer","text":"It keeps the pages discoverable and does nothing about the rest. The check's own wording is that a sitemap tells a crawler a page exists but not which pages matter, which is the job internal links do. Losing the navigation from the HTML costs you the second thing, not the first."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -708,106 +708,201 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/vs/">Compare</a> / Screaming Frog</div><h1>Docket vs Screaming Frog</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-06">6 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / navigation that needs JavaScript</div><h1>Fixing navigation that only exists after JavaScript runs</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time></p>
 
-<p class="lede">Screaming Frog is the better tool if you want raw crawl data and know exactly
-what to do with it. Docket is the better tool if you want to be told what to fix first. That is
-the whole difference, and which one is right depends on how much of the interpretation you
-want to do yourself.</p>
+<p class="lede">Your menu is built by JavaScript, an audit has told you that is a problem,
+and you want to know whether it actually is. The answer has two halves: Google will usually
+follow the links once it renders the page, and the tool that flagged you is measuring
+something narrower than "your menu". Here is what was measured, and what it does and does not
+license you to conclude.</p>
 
-<h2>What Screaming Frog does that Docket does not</h2>
-<p>Three things, and they are real:</p>
+<h2>The short answer</h2>
+
+<p>If your navigation ends up as real anchor elements with <code>href</code> attributes after
+JavaScript runs, Google can follow them — but only after it renders, and rendering is a
+separate, later stage. If your navigation is made of clickable divs, spans, or router
+components that never emit an <code>href</code>, it is not a set of links to Google at any
+stage, rendered or not. A crawler that does not render at all sees both cases as the same
+thing: nothing.</p>
+
+<p>Docket's check cannot tell those two cases apart for you. What it can tell you is whether
+the HTML your server sent contained enough internal links to describe a site — a smaller
+question with a much firmer answer.</p>
+
+<h2>What <code>links.nav_not_in_html</code> actually measures</h2>
+
+<p>The check is registered in the links lane under the name
+<code>Navigation reachable without JavaScript</code>, and that title is broader than the
+measurement underneath it. Read the source and the measurement is this: for every crawled page
+that returned OK and declared an HTML content type, Docket counts the distinct internal
+destinations reachable from an <code>&lt;a href&gt;</code> in the delivered markup, then
+averages that across those pages.</p>
+
+<p>It does not look at <code>&lt;nav&gt;</code> elements, a menu, a header, or anything a
+designer would call navigation. It counts internal anchors, deduplicated per page, and takes
+the mean. A page linking the same destination repeatedly contributes one.</p>
+
+<p>Two conditions gate it, and both live on the crawl result rather than in the check:</p>
+
 <ul>
-<li><strong>Rendering at scale, in the right engine.</strong> Screaming Frog renders with an
-integrated Chromium engine across an entire crawl — their page calls it the "integrated
-Chromium WRS". Docket renders in WebKit — the engine macOS already ships — and renders a sample, ten
-pages by default, enough to answer whether the site is client-rendered and what that costs.
-On a large React or Vue site, or for a bug that only appears in Chrome's renderer, Screaming
-Frog is the tool.</li>
-<li><strong>Custom extraction.</strong> XPath, CSS and regex extraction pulls arbitrary fields
-out of a crawl — product prices, author names, whatever you define. Docket has no equivalent.</li>
-<li><strong>Scale.</strong> Screaming Frog's paid licence lists no crawl limit; their page says
-the maximum "is dependent on allocated memory and storage", with a hybrid engine that spills to
-disk for large sites. Docket is bounded by design.</li>
+<li>The crawl must have read at least <code>3</code> OK HTML pages. Below that,
+<code>nav_in_html</code> returns true regardless — the source comment says
+<code>Too small to tell a JS-nav site from a genuinely tiny one</code>, and a
+test named <code>test_a_genuinely_tiny_site_is_not_called_javascript_driven</code>
+holds that line.</li>
+<li>The average must fall below <code>html_link_coverage &gt;= 2.0</code>. The comment
+explaining the number is worth quoting rather than paraphrasing:
+<code>A site whose pages average fewer than two internal links is not a site with sparse
+navigation; it is a site whose navigation is absent from the HTML. Real sites carry a nav, a
+footer and body links.</code></li>
 </ul>
 
-<h2>What Docket does that Screaming Frog does not</h2>
-<p>Screaming Frog tells you that 412 pages have a short title. It does not tell you whether
-that matters more than the noindex it also found, or which to do on Tuesday morning. Reviewers
-describe its lack of built-in interpretation as simultaneously its greatest strength and its
-most expensive characteristic — the power is proportional to your own skill and your own time.</p>
+<p>When it fires, it fires once for the whole site, not per page. Severity is HIGH, the effort
+estimate is LARGE, and the finding's own headline takes one of two forms: either
+<code>None of your pages contain a single internal link in their HTML</code>, or a sentence
+that states the measured average and ends
+<code>internal links in the HTML — the navigation is built by JavaScript</code>. The URLs
+attached to the finding are the pages nothing in the HTML points at, which is the practical
+cost rather than the abstract one.</p>
 
-<p>Docket ranks every finding by impact against effort and sorts them into four phases:
-stop the bleeding, quick wins, build, polish. Each finding states what it costs you in plain
-language and carries the exact markup to paste.</p>
+<p>Its fix text, verbatim:</p>
 
-<p>Beyond the ordering, Docket audits three areas that Screaming Frog's own feature list does
-not cover. That is what their page advertises, not proof the tool cannot be made to do it —
-their custom extraction is powerful enough that a determined user could build some of this by
-hand:</p>
-<ul>
-<li><strong>AI search visibility.</strong> Per-crawler access for ChatGPT, Perplexity, Claude
-and Gemini, separating search crawlers from training crawlers. Whether pages are
-server-rendered, since most AI crawlers do not execute JavaScript. Entity resolution via
-<code>sameAs</code>.</li>
-<li><strong>Marketing conversion.</strong> Calls to action, above-the-fold value proposition,
-form friction, social proof, pricing transparency, message match between title and headline.</li>
-<li><strong>Tracking readiness.</strong> Analytics coverage gaps, missing ad pixels, consent,
-and UTM parameters on internal links.</li>
-</ul>
+<blockquote><p>Render the navigation server-side, or output real &lt;a href&gt; elements in the
+initial HTML and let JavaScript enhance them. A menu built from &lt;div onclick&gt; or injected
+after load is not a link. Test it the way Docket did: fetch the page with JavaScript disabled
+and look for &lt;a href&gt; in the source.</p></blockquote>
 
-<h2>Side by side</h2>
-<div class="wrap-tbl"><table class="cmp">
-<thead><tr><th></th><th>Docket</th><th>Screaming Frog</th></tr></thead>
-<tbody>
-<tr><td>Price</td><td>One-time</td><td>Free to 500 URLs, then $279/yr USD</td></tr>
-<tr><td>Runs on</td><td>Your Mac</td><td>Your machine</td></tr>
-<tr><td>Output</td><td>Ranked plan with fixes</td><td>Spreadsheet of crawl data</td></tr>
-<tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>
-<tr><td>Custom XPath extraction</td><td class="no">No</td><td class="yes">Yes</td></tr>
-<tr><td>hreflang reciprocity</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-<tr><td>AI crawler audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
-<tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
-<tr><td>Local business SEO</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
-<tr><td>Client-ready PDF</td><td class="yes">Built in</td><td>Export and build it yourself</td></tr>
-<tr><td>Scheduled re-audits</td><td class="yes">Yes, while the app is open</td><td>Scheduling in the paid tier, and it runs headless</td></tr>
-</tbody></table></div>
+<p>And the shape it asks for, which is the snippet the finding ships with:</p>
 
-<h2>Where the technical depth is genuinely equal</h2>
-<p>Docket implements the checks Screaming Frog is specifically praised for, including the two
-that fail silently and that most tools miss:</p>
-<ul>
-<li><strong>hreflang return tags.</strong> If page A declares B as its alternate and B does not
-declare A back, Google discards the whole cluster. Every tag looks correct in isolation, which
-is why this survives review.</li>
-<li><strong>Conflicting canonicals.</strong> An HTML canonical that disagrees with the one in
-the HTTP <code>Link</code> header. The header usually wins, so the page consolidates to a URL
-nobody on the team chose — and the page source looks fine.</li>
-</ul>
-<p>Docket's robots.txt parser also does full longest-match resolution with <code>*</code> and
-<code>$</code> support, which matters more than it sounds: the near-universal
-<code>Disallow: /wp-admin/</code> plus <code>Allow: /wp-admin/admin-ajax.php</code> pair is
-judged wrongly by any parser that resolves rules in order.</p>
+<pre><code>&lt;nav&gt;&lt;a href="/services/"&gt;Services&lt;/a&gt; &lt;a href="/team/"&gt;Team&lt;/a&gt;&lt;/nav&gt;</code></pre>
 
-<h2>Which one to pick</h2>
-<p><strong>Choose Screaming Frog</strong> if you are a technical SEO, your sites are
-JavaScript-heavy, you need custom extraction, or you are crawling hundreds of thousands of
-URLs. It is the deeper instrument and its price-to-power ratio is unmatched.</p>
-<p><strong>Choose Docket</strong> if you need to hand someone a plan rather than a dataset, if
-you care about AI search visibility or whether your landing pages convert, or if you want a
-client-ready PDF without building one.</p>
-<p>They are not mutually exclusive, and plenty of people will want both.</p>
+<h2>The case it was written for, which is not the one you expect</h2>
 
-<p class="verified-note"><strong>Checked 10 August 2026.</strong> The factual
-claims about this product were read from its own pages on that date: renders with the "integrated Chromium WRS" (<a href="https://www.screamingfrog.co.uk/seo-spider/" rel="nofollow noopener">source</a>); free tier limited to 500 URLs; paid crawl limit "Unlimited", with the maximum "dependent on allocated memory and storage" (<a href="https://www.screamingfrog.co.uk/seo-spider/" rel="nofollow noopener">source</a>).
-Products change and pricing changes; if something here has gone out of date, <a href="/about/">tell us</a> and it will be corrected. Everything else on this page is a comparison of approach, not a claim about their roadmap.</p>
+<p>The obvious client-rendered site — a mount point, a script tag, no text — is not what this
+check was built to catch. It was built for a law firm's site that served close to a thousand
+words of real, server-rendered copy per page and returned a homepage containing zero internal
+links. The prose was in the HTML. The navigation was assembled in the browser.</p>
 
-<div class="callout">
-<div class="callout-title">Try it against your own site</div>
-<p>Docket is a one-time download for macOS. No account, no crawl credits, and the crawl runs
-on your machine. Four optional checks fetch data it cannot produce alone; <code>--offline</code>
-turns all four off. <a href="/download/">Download Docket →</a></p>
-</div><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is Docket a Screaming Frog alternative?</h3><p>For prioritisation, reporting and non-technical users, yes. For JavaScript custom XPath extraction, rendering at scale and very large crawls, no — Screaming Frog does those better and Docket does not try to.</p></div><div class="faq-item"><h3>Does Docket render JavaScript like Screaming Frog?</h3><p>Yes, through a WebKit helper, but only a small automatic sample of each crawl rather than every page. Screaming Frog renders across the whole crawl in its integrated Chromium engine, which is the better tool for a large single-page application.</p></div></div></section>
+<p>That shape defeats any audit reasoning from text volume, because the text is all there. It
+is also invisible to a human reviewer, who opens the page in a browser that has already run
+the JavaScript and sees a perfectly ordinary menu. The consequence recorded in
+<code>CrawlResult.nav_in_html</code> is a cascade of confident falsehoods: pages reported as
+orphans that nothing links to, the same pages reported as weakly linked, and a click-depth
+model built on a link graph that was never the site's. So when <code>nav_in_html</code> is
+false, Docket withdraws its own orphan and click-depth claims rather than publishing them —
+never conclude absence from a view that could not have shown presence.</p>
+
+<h2>What is not measured, stated plainly</h2>
+
+<p>Docket does not crawl with a browser. The crawl is an HTTP fetch, and the links this check
+counts are the ones in the bytes your server returned. A WebKit helper exists and is used in
+two narrow places: a small capped sample of every audit is rendered where the helper is
+present, and during discovery a page whose raw HTML yielded no links <em>and</em> which looks
+like a JavaScript shell is re-read in a browser so its links can be recovered. That helper is
+built against the macOS system framework and is simply absent elsewhere, in which case link
+recovery degrades to finding nothing.</p>
+
+<p>This has a consequence that cuts against the check's own name, and you should know it
+before you act on a finding: <strong>a textbook single-page app often will not trigger this
+check at all</strong>, because its pages announce themselves as shells, get rendered during
+discovery, and have their real links folded back in. The site that does trigger it is the one
+whose copy is served and whose links are not — the shell heuristic never fires, so nothing is
+re-read, and the average stays where the bytes left it.</p>
+
+<p>And the larger limit: <strong>Docket cannot tell you what Google did.</strong> It has no
+view of Google's render queue, no record of which of your URLs were rendered or when, and no
+way to distinguish "Google could reach this" from "Google fetched this". Any tool that implies
+otherwise is showing you a model and calling it a measurement. What this check gives you is a
+fact about your own server's output, which is the part you control. If you want a record of
+what actually fetched what, that lives in your server logs, not in a crawler.</p>
+
+<h2>What Google's documentation says</h2>
+
+<p>Google's own guidance is narrower than the folklore around it. The requirement is stated as
+a property of markup, not of frameworks: a link is an anchor element with an
+<code>href</code>. Injecting links with JavaScript is explicitly allowed provided the result is
+that shape. The documentation's own examples of markup it does not recommend are an anchor
+with no <code>href</code>, a <code>span</code> carrying an <code>href</code>, and an anchor
+whose destination lives in an <code>onclick</code> handler.</p>
+
+<p>Google also describes crawling and rendering as separate queues, with rendering after the
+crawl. That ordering is the whole reason this finding carries a HIGH severity rather than a
+shrug: links that exist only after rendering are links that arrive late, and on a site where
+every link is in that category, discovery of new pages waits on a stage nobody outside Google
+can schedule. The crawlers behind the AI assistants are a harder case again, because most do
+not render at any point.
+<a href="/learn/javascript-rendering/">How rendering works, and what it costs to run</a> covers
+that trade in detail — it executes third-party scripts and is an order of magnitude slower than
+fetching, which is why the sample is capped.</p>
+
+
+<p class="verified-note"><strong>Read from Google's own documentation on
+15 September 2026.</strong> "Google can only discover your links if they are &lt;a&gt; HTML elements with an href attribute", and that Googlebot "queues pages for both crawling and rendering", with rendering happening after the crawl (<a href="https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics" rel="nofollow noopener">source</a>); "Google can only crawl your link if it's an &lt;a&gt; HTML element (also known as anchor element) with an href attribute", and that Google "can't reliably extract URLs from &lt;a&gt; elements that don't have an href attribute or other tags that perform as links because of script events" — the examples given as not recommended being an anchor with no href, a span carrying an href, and an anchor whose destination is in an onclick handler (<a href="https://developers.google.com/search/docs/crawling-indexing/links-crawlable" rel="nofollow noopener">source</a>). If Google has changed any of this since
+that date, <a href="/about/">tell us</a> and the page will be corrected rather
+than quietly left standing.</p>
+
+<h2>Check it yourself, without a tool</h2>
+
+<p>The check's own fix text tells you how, and it takes one command. Fetch the page the way a
+non-rendering crawler does and look at what came back:</p>
+
+<pre><code>curl -sS https://example.com/ | grep -o '&lt;a [^&gt;]*href="[^"]*"' | sort -u</code></pre>
+
+<p>If that prints your menu, the navigation is in the HTML and this finding does not apply to
+you. If it prints your footer and nothing else, you have the shape the check looks for. Run it
+against a few pages rather than the homepage alone, which is the page most likely to have been
+given special treatment.</p>
+
+<h2>The fix</h2>
+
+<p>One thing changes, and it is smaller than a rewrite: emit anchors with destinations in the
+initial HTML, and let the client-side router take over from there. Server-side rendering,
+static generation and prerendering all produce exactly that, and a router hydrating over a
+real anchor is the intended arrangement rather than a workaround.</p>
+
+<p>What does not work is the pattern the fix text names:</p>
+
+<pre><code>&lt;div class="nav-item" onclick="go('/services/')"&gt;Services&lt;/div&gt;</code></pre>
+
+<p>That is a button with link-coloured text. It is not a link to a crawler, it is not a link
+to a screen reader, and it cannot be opened in a new tab. An anchor with an <code>href</code>
+fixes all three at once.</p>
+
+<p>If your framework's link component renders an anchor, the markup is fine and the finding
+is about your rendering mode. If it renders a div, the component is the bug.</p>
+
+<h2>Why it is worth the effort estimate</h2>
+
+<p>The finding's detail makes an argument about sitemaps that is worth repeating, because it
+is the one most often waved away. Quoting the check:
+<code>A sitemap tells a crawler a page exists; it does not tell it which pages matter, which
+is what internal links do.</code> The signal you lose when the navigation is client-side is
+not discovery, which the sitemap covers, but the relative weight your own site places on its
+own pages — <a href="/learn/internal-link-equity/">how internal links distribute authority</a>
+is the mechanism being described.</p>
+
+<h2>When the finding is wrong</h2>
+
+<p>Push back on it in three situations. A site that genuinely has little internal linking — a
+brochure site whose pages link only to the homepage — can land under the threshold with no
+JavaScript involved; the average does not know why it is low. A crawl that was blocked or
+truncated may have read pages unrepresentative of the site. And a site whose links Docket
+recovered by rendering has those links counted, so a finding you expected may correctly not
+appear. In all three, settle it with the <code>curl</code> command above, on pages you choose
+rather than pages a crawler chose.</p>
+
+<h2>Where to go next</h2>
+
+<p>This page is about navigation specifically. If the question is broader — whether your
+content, not your menu, exists before JavaScript runs — that is a different procedure, and
+<a href="/how-to/javascript-seo-audit/">running a JavaScript SEO audit</a> walks through
+comparing the served HTML against the rendered page. If you want the rest of what Docket looks
+at while it is in there, <a href="/learn/what-docket-checks/">the full check list</a> is
+published, and <a href="/learn/seo-audit/">what a technical SEO audit covers</a> sets the
+context.</p>
+
+<p><a class="btn" href="/download/">Download Docket</a></p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>My menu is built by JavaScript. Can Google follow it?</h3><p>If the menu ends up as anchor elements with href attributes, yes — Google's documentation says a link is an anchor with an href, and injecting one with JavaScript is allowed. The catch is timing: crawling and rendering are separate queues, so those links are found on a later pass. If the menu is made of clickable divs or spans with no href, it is not a link at any stage.</p></div><div class="faq-item"><h3>What does the nav_not_in_html check actually count?</h3><p>Distinct internal destinations reachable from an anchor element with an href, in the HTML the server returned, deduplicated per page and averaged across every crawled page that returned OK with an HTML content type. It does not inspect nav elements or look for a menu. The finding is raised once for the site, at HIGH severity, with a LARGE effort estimate.</p></div><div class="faq-item"><h3>Why did my single-page app not get flagged?</h3><p>Probably because Docket recovered its links. During discovery, a page whose raw HTML yields no links and which looks like a JavaScript shell is re-read in WebKit, and the links found there are used. The site this check was written for is the opposite case: real server-rendered copy, so the shell heuristic never fires, and navigation that is client-side, so the links are never there.</p></div><div class="faq-item"><h3>Can Docket tell me whether Googlebot rendered my navigation?</h3><p>No. Nobody outside Google can measure what Google rendered, or when. Docket reports what your server sent and, on a capped sample, what a local WebKit engine builds from it. Googlebot's rendering is not identical to that, and no finding here should be read as a statement about what Google in particular did.</p></div><div class="faq-item"><h3>My site is small and got flagged anyway. Is that a false positive?</h3><p>It may be. The check needs at least three crawled HTML pages before it will look at all, but a genuinely sparse brochure site can still fall under the average without any JavaScript being involved. Fetch a few pages with curl and grep for anchors — if your links are in the source, the finding does not apply to you.</p></div><div class="faq-item"><h3>Is a sitemap enough to make up for it?</h3><p>It keeps the pages discoverable and does nothing about the rest. The check's own wording is that a sitemap tells a crawler a page exists but not which pages matter, which is the job internal links do. Losing the navigation from the HTML costs you the second thing, not the first.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
