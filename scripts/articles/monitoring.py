@@ -41,6 +41,19 @@ the check late rather than not at all. If you need an audit to run at 3am whethe
 anybody is logged in, that is a job for the Linux CLI in cron or CI, and
 <a href="/for/developers/">it is built for exactly that</a>.</p>
 
+<h2>Every check keeps its report</h2>
+
+<p>A snapshot is enough to say what changed and to draw the trend, and it is not enough to
+read: it records which checks fired and how badly, not the detail, the fix or the URLs. So
+each scheduled check now keeps the full report it produced, and the site&rsquo;s page offers
+it &mdash; open it, or download it as PDF, HTML or JSON.</p>
+
+<p>It has to be kept at the moment it is made. A report is rendered from an audit that is
+still in memory, and once the check has finished there is nothing left to render from, so a
+check that ran before this existed has no report to recover. The buttons show only the
+formats that particular check actually produced, rather than offering three and failing on
+two.</p>
+
 <h2>Regressions first, not alphabetically</h2>
 
 <p>The ordering is the feature. Most tools hand you the current state and leave you to
@@ -83,8 +96,11 @@ opinion.</p>
 <h2>Where the history lives</h2>
 
 <p>In <code>~/.docket/</code>, as plain JSON: a watchlist plus one compact snapshot per
-audit, a few kilobytes each. You can read it, back it up, put it in version control, or
-delete it. Set <code>DOCKET_HOME</code> to keep it somewhere else.</p>
+audit, a few kilobytes each. Alongside them sits the full report from each site&rsquo;s most
+recent check &mdash; that one is not a few kilobytes, and it is replaced rather than
+accumulated, so the folder grows with the number of sites you watch and not with the number
+of checks you run. You can read any of it, back it up, put it in version control, or delete
+it. Set <code>DOCKET_HOME</code> to keep it somewhere else.</p>
 
 <p>There is no server in this. Nothing is uploaded, there is no account, and if you stop
 using Docket your history is still sitting in a folder you own — which is the difference
