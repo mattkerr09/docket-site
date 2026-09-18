@@ -1405,6 +1405,12 @@ purpose — and an audit reading it as a half-finished entity is wrong. But a po
 is not on the same page produces neither a rich result nor an error, which is why nothing catches
 it. <a href="/how-to/schema-id-references/">Check the graph first &rarr;</a></p>
 
+<h2>What the JSON-LD error actually says</h2>
+<p>A check that finds invalid markup has just parsed it and caught the exact reason — then prints
+a list of likely causes instead. What each parser message means, and why a report can be right
+that they all fail the same way while the pages stay broken.
+<a href="/how-to/json-ld-parser-errors/">Read the message &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
