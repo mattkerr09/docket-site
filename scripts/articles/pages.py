@@ -1387,6 +1387,12 @@ thing — and the warning's own advice said so. When an exception belongs in the
 stated caveat is the honest answer instead.
 <a href="/how-to/findings-that-flag-correct-pages/">Read the fix text first &rarr;</a></p>
 
+<h2>Identical content that is not duplicate content</h2>
+<p>Pages share a body for three reasons and only one of them is duplicate content. The case where
+following the advice would have redirected a site's blog, press page and FAQs into a terms page —
+and the two-minute check that tells them apart.
+<a href="/how-to/identical-content-three-causes/">Check before you redirect &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,

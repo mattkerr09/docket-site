@@ -9,26 +9,26 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Meta refresh: the redirect your tools cannot see</title>
-<meta name="description" content="A meta refresh answers 200, so a link audit reads it as content. What it costs your site, and when it is the only option your host gives you.">
+<title>Identical content is not always duplicate</title>
+<meta name="description" content="Three reasons pages share a body, and only one is duplicate content. Why an audit told a site to redirect its own blog away.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="70c79624115c">
-<link rel="canonical" href="https://docketseo.app/how-to/fix-meta-refresh-redirects/">
+<link rel="canonical" href="https://docketseo.app/how-to/identical-content-three-causes/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Meta refresh: the redirect your tools cannot see">
-<meta property="og:description" content="A meta refresh answers 200, so a link audit reads it as content. What it costs your site, and when it is the only option your host gives you.">
-<meta property="og:url" content="https://docketseo.app/how-to/fix-meta-refresh-redirects/">
+<meta property="og:title" content="Identical content is not always duplicate content">
+<meta property="og:description" content="Three reasons pages share a body, and only one is duplicate content. Why an audit told a site to redirect its own blog away.">
+<meta property="og:url" content="https://docketseo.app/how-to/identical-content-three-causes/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Meta refresh: the redirect your tools cannot see">
-<meta name="twitter:description" content="A meta refresh answers 200, so a link audit reads it as content. What it costs your site, and when it is the only option your host gives you.">
+<meta name="twitter:title" content="Identical content is not always duplicate content">
+<meta name="twitter:description" content="Three reasons pages share a body, and only one is duplicate content. Why an audit told a site to redirect its own blog away.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -681,8 +681,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Meta refresh: the redirect your tools cannot see","description":"A meta refresh answers 200, so a link audit reads it as content. What it costs your site, and when it is the only option your host gives you.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-meta-refresh-redirects/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a meta refresh bad for SEO?","acceptedAnswer":{"@type":"Answer","text":"Search engines support it and follow it, so it is not a broken page. A server-side redirect is preferred because it is faster and unambiguous. The bigger cost is that the page answers 200, so link checkers and redirect reports read it as content and your own tooling stops describing the site accurately."}},{"@type":"Question","name":"Why does my link checker not flag meta refresh redirects?","acceptedAnswer":{"@type":"Answer","text":"Because at the HTTP level there is nothing to flag. The page returns 200 with a normal body; the hop lives in the markup, not the status line."}},{"@type":"Question","name":"What if my host cannot issue a 301?","acceptedAnswer":{"@type":"Answer","text":"Then a refresh stub is a reasonable second best, and plenty of static hosting offers nothing else. Set the delay to zero and add a canonical pointing at the new URL. It is worth knowing that is what you are relying on."}},{"@type":"Question","name":"Does the delay value matter?","acceptedAnswer":{"@type":"Answer","text":"Yes. Zero makes the hop instant. Anything above it leaves the visitor on a page they did not want, and search engines treat a delayed refresh as a weaker signal than an immediate one."}},{"@type":"Question","name":"Is a JavaScript redirect better?","acceptedAnswer":{"@type":"Answer","text":"No. location.replace has the same shape and the same invisibility to status-code tooling, and it additionally requires something to run the script. If you want a redirect a crawler can rely on, that is further away, not closer."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Identical content is not always duplicate content","description":"Three reasons pages share a body, and only one is duplicate content. Why an audit told a site to redirect its own blog away.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/identical-content-three-causes/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"My audit says unrelated pages have identical content. Why?","acceptedAnswer":{"@type":"Answer","text":"Almost always because the server served the crawler one short shared body — a holding page or an interstitial — rather than the real pages. Re-fetch one by hand before acting on it."}},{"@type":"Question","name":"Should I redirect pages an audit calls duplicates?","acceptedAnswer":{"@type":"Answer","text":"Only after confirming they are URL variants of one page. Variants share a section of the site; a group scattered across unrelated sections is a fetch problem, and a permanent redirect is not undone by noticing."}},{"@type":"Question","name":"Do pages that all declare the same canonical still count as duplicates?","acceptedAnswer":{"@type":"Answer","text":"No. If every page in the group names one canonical, the site has already resolved it and one URL gets indexed. A group whose members declare different canonicals, or none, is the one that matters."}},{"@type":"Question","name":"Are product colour variants duplicate content?","acceptedAnswer":{"@type":"Answer","text":"They can be, and they are the ordinary case the rule is built to keep. They sit in one section and carry full bodies, so they are treated as genuine variants rather than as a server problem."}},{"@type":"Question","name":"How do I tell a placeholder from real duplicate content?","acceptedAnswer":{"@type":"Answer","text":"Look at the word count. Unrelated pages recording exactly the same short count, across many sections of the site, is one body served to all of them rather than content anybody wrote twice."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -714,74 +714,134 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / meta refresh</div><h1>Meta refresh: the redirect your tools cannot see</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Identical bodies</div><h1>Identical content is not always duplicate content</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
-<p class="lede">A meta refresh sends the visitor onward and the browser obeys, so from a chair
-it is indistinguishable from a redirect. It is not one. The page answers 200 with a normal body,
-which means every tool that reads status codes — including your link checker, including most
-audits — sees a page with content on it and moves on.</p>
+<p class="lede">An audit reports that a set of your pages have identical content and tells you to
+redirect all but one of them. Sometimes that is exactly right. Twice it has been recorded as
+wrong, and the second time a reader who followed it would have redirected their blog, their press
+page and their FAQs into a terms-and-conditions page — <strong>and a redirect is not a thing you
+undo by noticing.</strong></p>
 
-<h2>What it looks like</h2>
+<p>Pages can share a body for three reasons. Only one of them is duplicate content.</p>
 
-<pre><code>&lt;meta http-equiv="refresh" content="0;url=https://example.com/new-page/"&gt;</code></pre>
+<h2>One: URL variants of the same page</h2>
 
-<p>A visitor lands, the browser waits the stated interval, and off they go. Nothing is broken.
-Nobody complains. That is exactly the problem.</p>
+<p>A trailing slash and no trailing slash. A query string a filter added. A colour a customer can
+still buy. These are genuinely one page reachable several ways, they compete with each other for
+one result, and consolidating them is what the finding exists for.</p>
 
-<h2>Why the invisibility is the cost</h2>
+<p>The tell is that they <strong>share a section</strong> of your site. Variants of a product page
+live under products; variants of an article live under the blog. If the URLs in the group come
+from all over the site, they are probably not variants of anything.</p>
 
-<p>A server redirect announces itself in the status line, and everything downstream can act on
-it. A meta refresh announces itself only in the body, so:</p>
+<h2>Two: already resolved, and the report has not noticed</h2>
+
+<p>A documentation site publishes several version aliases of the same manual, and every one of
+them declares the same canonical. The audit reported that its pages shared duplicated titles and
+descriptions, that they competed with each other, and that they gave searchers no way to tell the
+results apart.</p>
+
+<p>They do not compete. One URL is indexed, so there is one result — there is nothing to tell
+apart. The site had already answered the question the finding was asking.</p>
+
+<p>Worse, the report contradicted itself: the body-level check had been taught to skip
+already-canonicalised groups and the title and description checks had not, so the same pages were
+resolved in one finding and a defect two findings later. <strong>When one report says both things
+about one set of URLs, at least one of them is wrong and the reader cannot tell which.</strong></p>
+
+<p>What to check: if every page in the group declares the same canonical, the group is resolved.
+A group whose members declare <em>different</em> canonicals, or none, is where pages really do
+compete.</p>
+
+<h2>Three: the server handed out a placeholder</h2>
+
+<p>This is the one that costs money. On an energy supplier's site the audit reported dozens of
+pages with identical content across two groups and advised redirecting the extras. One group was
+two URL variants of a tariffs page — genuine, and worth fixing.</p>
+
+<p>The other was fifty-four pages that had nothing to do with each other: a heat-pump terms page,
+an EV tariffs page, the blog, the press page, the help section. Every one recorded exactly the
+same short word count, across eighteen distinct top-level sections. Re-fetched by hand afterwards,
+those same URLs served thousands of words of entirely different content.</p>
+
+<p>The site had handed the crawler one short shared body — a holding page, an error template, a
+bot-protection interstitial — and the audit judged it as the site's own duplicate content.
+<strong>The finding was true about the bytes it received and dangerous as advice.</strong></p>
+
+<h2>The rule that separates them</h2>
+
+<p>Duplicate content comes from URL variants of one page, and variants share a section. So:</p>
 
 <ul>
-<li><strong>Your link checker says the link is fine.</strong> It is pointing at a 200.</li>
-<li><strong>Your redirect report is incomplete</strong>, and you have no way of knowing by how
-much — the hops are not in it because they are not hops.</li>
-<li><strong>The page is assessed as a destination.</strong> A thin stub with no content gets
-judged as a page you wrote badly rather than as a signpost.</li>
+<li><strong>Several URLs in one section, sharing a full-length body</strong> — duplicate content.
+Consolidate.</li>
+<li><strong>Many URLs across many unrelated sections, sharing a short body</strong> — a server
+handing out a placeholder. Nothing is duplicated; the tool simply was not shown those pages.</li>
 </ul>
 
-<p>The damage is not that the visitor fails to arrive. They arrive. It is that your own tooling
-quietly stops describing your site accurately, and you keep trusting it.</p>
+<p>The filter is deliberately narrow so the ordinary case survives it. A two-URL pair is untouched.
+Several colour variants of one product are untouched, because they sit in one section and carry
+full bodies. So is any large group whose shared body is substantial rather than placeholder-sized
+— a real templated page with real content is a real duplicate-content problem.</p>
 
-<h2>The honest caveat, which most advice skips</h2>
+<h2>Checking your own group in two minutes</h2>
 
-<p>Search engines support meta refresh and follow it. A server-side redirect is preferred
-because it is faster and unambiguous — but <strong>plenty of hosting cannot issue one</strong>.
-Static hosts commonly have no mechanism to return a 301 for a moved page, and on those a refresh
-stub is the only tool available.</p>
+<ul>
+<li><strong>Do the URLs share a section?</strong> If they are scattered across the site, treat the
+finding as a fetch problem rather than a content problem.</li>
+<li><strong>Is the shared body short?</strong> A few hundred words shared by pages that should be
+long is a stand-in, not an article.</li>
+<li><strong>Does the word count repeat exactly?</strong> Identical counts across unrelated pages
+is the clearest single signal that one body was served to all of them.</li>
+<li><strong>Re-fetch one by hand.</strong> Open it in a browser. If it is full of content, the
+crawler was served something you were not.</li>
+</ul>
 
-<p>So this is not a fault to be ashamed of. If you can issue a real redirect, do. If your host
-will not let you, a zero-delay refresh stub with a canonical pointing at the new URL is a
-reasonable second best, and it is worth knowing that is what you are relying on.</p>
+<h2>When the finding is real</h2>
 
-<h2>A delay above zero is a different, worse thing</h2>
+<p>Duplicate content is a genuine and common defect, and two shapes deserve the fix as written:</p>
 
-<p>Zero means the hop is instant. Anything above it leaves a visitor looking at a page that is
-not the page they wanted and is not going to stay — and search engines treat a delayed refresh
-as a weaker signal than an immediate one. If you are stuck with a refresh, set it to zero.</p>
+<ul>
+<li><strong>Filter and sort parameters</strong> generating an unbounded set of near-identical
+pages from one listing.</li>
+<li><strong>A site reachable at more than one address</strong> — with and without www, http and
+https — serving the same pages at each. That is a server configuration rather than a content
+problem, and it is usually a single fix.</li>
+</ul>
 
-<h2>The wrong fixes</h2>
+<h2>The fixes that make it worse</h2>
 
-<p><strong>Adding a canonical and considering it handled.</strong> The canonical is worth having
-alongside a refresh stub, but it does not make the page a redirect and it does not make the hop
-visible to your tooling. Two weak signals are not a strong one.</p>
+<ul>
+<li><strong>Redirecting before confirming the group is variants.</strong> The most expensive
+mistake on this page. A permanent redirect tells every search engine and every visitor that the
+page has moved for good, and taking it back does not restore what it cost.</li>
+<li><strong>Adding noindex to the extras instead.</strong> Less destructive and still wrong when
+the pages are not duplicates — you have hidden working pages because a crawl was served a
+placeholder.</li>
+<li><strong>Rewriting the pages to be different.</strong> Somebody has occasionally been told to
+do this to unrelated pages that were never the same. Check what was actually served first.</li>
+</ul>
 
-<p><strong>Swapping it for JavaScript.</strong> A <code>location.replace()</code> in a script
-has the same shape and the same invisibility, with the added condition that something has to run
-it. If the goal was a redirect a crawler can rely on, this is further from it, not closer.</p>
+<h2>How to make the finding disappear without fixing anything</h2>
 
-<h2>Finding them</h2>
+<p>Crawl again when your server is not serving the placeholder, and the group vanishes. Which is
+the same tell as everywhere else: <strong>if a re-run changes the finding, the finding was partly
+about the run</strong> — see
+<a href="/how-to/pages-an-audit-could-not-reach/">"could not be reached" is not a
+diagnosis &rarr;</a>.</p>
 
-<pre><code>curl -s https://example.com/old-page/ | grep -i 'http-equiv'</code></pre>
+<h2>Where this sits in an audit</h2>
 
-<p>Check the URLs you moved. Renames and site migrations are where these accumulate, because
-each one is created at a moment when somebody is thinking about the new URL rather than about
-how the old one will be audited a year later.</p>
+<p>The registered check is <code>index.duplicate_content</code>, which covers duplicate pages. The
+identifiers on its findings differ from the check's own, which matters when you search for one by
+name.</p>
 
-<p>If you can replace them with real redirects,
-<a href="/how-to/fix-redirect-problems/">the redirect rules are worth getting right too</a>.</p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is a meta refresh bad for SEO?</h3><p>Search engines support it and follow it, so it is not a broken page. A server-side redirect is preferred because it is faster and unambiguous. The bigger cost is that the page answers 200, so link checkers and redirect reports read it as content and your own tooling stops describing the site accurately.</p></div><div class="faq-item"><h3>Why does my link checker not flag meta refresh redirects?</h3><p>Because at the HTTP level there is nothing to flag. The page returns 200 with a normal body; the hop lives in the markup, not the status line.</p></div><div class="faq-item"><h3>What if my host cannot issue a 301?</h3><p>Then a refresh stub is a reasonable second best, and plenty of static hosting offers nothing else. Set the delay to zero and add a canonical pointing at the new URL. It is worth knowing that is what you are relying on.</p></div><div class="faq-item"><h3>Does the delay value matter?</h3><p>Yes. Zero makes the hop instant. Anything above it leaves the visitor on a page they did not want, and search engines treat a delayed refresh as a weaker signal than an immediate one.</p></div><div class="faq-item"><h3>Is a JavaScript redirect better?</h3><p>No. location.replace has the same shape and the same invisibility to status-code tooling, and it additionally requires something to run the script. If you want a redirect a crawler can rely on, that is further away, not closer.</p></div></div></section>
+<p>For the related case where two pages are not identical but are competing anyway, see
+<a href="/how-to/fix-pages-competing-for-one-search/">when your own pages compete &rarr;</a>.
+For why a remedy that removes something deserves more proof than one that adds something, see
+<a href="/how-to/sitemap-urls-that-are-not-stale/">when "regenerate your sitemap" is
+wrong &rarr;</a>.</p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>My audit says unrelated pages have identical content. Why?</h3><p>Almost always because the server served the crawler one short shared body — a holding page or an interstitial — rather than the real pages. Re-fetch one by hand before acting on it.</p></div><div class="faq-item"><h3>Should I redirect pages an audit calls duplicates?</h3><p>Only after confirming they are URL variants of one page. Variants share a section of the site; a group scattered across unrelated sections is a fetch problem, and a permanent redirect is not undone by noticing.</p></div><div class="faq-item"><h3>Do pages that all declare the same canonical still count as duplicates?</h3><p>No. If every page in the group names one canonical, the site has already resolved it and one URL gets indexed. A group whose members declare different canonicals, or none, is the one that matters.</p></div><div class="faq-item"><h3>Are product colour variants duplicate content?</h3><p>They can be, and they are the ordinary case the rule is built to keep. They sit in one section and carry full bodies, so they are treated as genuine variants rather than as a server problem.</p></div><div class="faq-item"><h3>How do I tell a placeholder from real duplicate content?</h3><p>Look at the word count. Unrelated pages recording exactly the same short count, across many sections of the site, is one body served to all of them rather than content anybody wrote twice.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

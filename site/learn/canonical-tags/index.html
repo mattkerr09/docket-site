@@ -12,7 +12,7 @@
 <title>Canonical tags are a hint, not an instruction</title>
 <meta name="description" content="Google treats rel=canonical as a hint and regularly picks a different canonical. The failure patterns behind that, and what Search Console is telling you.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="4c7b8ffa5cfd">
+<meta name="build-id" content="70c79624115c">
 <link rel="canonical" href="https://docketseo.app/learn/canonical-tags/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -881,8 +881,13 @@ configuration rather than a markup mistake — and we measured how often it is s
 <p>A canonical that merely points elsewhere is now reported without a severity — a
 statement of fact with the resolved target attached, so you can see at a glance whether it
 is your syndication arrangement or your CMS having an opinion. The limit worth stating
-plainly: Docket cannot tell a deliberate cross-domain canonical from an accidental one,
-because that distinction lives in a commercial agreement and not in the HTML.</p>
+plainly: Docket cannot tell a deliberate cross-domain canonical from an accidental one in
+general, because that distinction lives in a commercial agreement rather than in the
+markup. The one case it can read is a page that <em>declares</em> the arrangement — a
+byline saying the story was co-published with, or first appeared on, the domain the
+canonical names. That is the site telling us, not us guessing, and it is required in both
+halves: the phrase and the canonical's own host in the page's text. A copied template or a
+leaked staging URL has neither.</p>
 
 <h2>Ten minutes on your own site</h2>
 
