@@ -1471,6 +1471,12 @@ as a product was told to add an image — correct for the type, and worth nothin
 that was present all along under one capital letter.
 <a href="/how-to/completeness-findings-assume-your-type/">Read the type first &rarr;</a></p>
 
+<h2>When a dead crawler rule costs nothing</h2>
+<p>A retired crawler name in robots.txt is easy to spot and tells you nothing about what it cost —
+a crawler matching no group falls back to the catch-all, which is often stricter than the group
+written for it. How to tell an inert line from a real exposure.
+<a href="/how-to/what-a-dead-crawler-rule-costs/">Read the other group &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
