@@ -9,26 +9,26 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Fix missing security headers</title>
-<meta name="description" content="HSTS, nosniff and Referrer-Policy: what each one does, where to set it, and why this site fails two of the three checks it is describing.">
+<title>Why an audit finds reviews you do not have</title>
+<meta name="description" content="Audits infer from text, and a phrase can mean two things. Why a site gets told to mark up reviews it has none of, and which error is safer.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="7706d6f9da1e">
-<link rel="canonical" href="https://docketseo.app/how-to/fix-missing-security-headers/">
+<link rel="canonical" href="https://docketseo.app/how-to/findings-from-phrase-matching/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to fix missing security headers">
-<meta property="og:description" content="HSTS, nosniff and Referrer-Policy: what each one does, where to set it, and why this site fails two of the three checks it is describing.">
-<meta property="og:url" content="https://docketseo.app/how-to/fix-missing-security-headers/">
+<meta property="og:title" content="Why an audit finds reviews you do not have">
+<meta property="og:description" content="Audits infer from text, and a phrase can mean two things. Why a site gets told to mark up reviews it has none of, and which error is safer.">
+<meta property="og:url" content="https://docketseo.app/how-to/findings-from-phrase-matching/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How to fix missing security headers">
-<meta name="twitter:description" content="HSTS, nosniff and Referrer-Policy: what each one does, where to set it, and why this site fails two of the three checks it is describing.">
+<meta name="twitter:title" content="Why an audit finds reviews you do not have">
+<meta name="twitter:description" content="Audits infer from text, and a phrase can mean two things. Why a site gets told to mark up reviews it has none of, and which error is safer.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -681,8 +681,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix missing security headers","description":"HSTS, nosniff and Referrer-Policy: what each one does, where to set it, and why this site fails two of the three checks it is describing.","datePublished":"2026-08-14","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-missing-security-headers/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do security headers help SEO?","acceptedAnswer":{"@type":"Answer","text":"Directly, almost nothing. Google treats https as a lightweight ranking signal and has never suggested these headers are one. The real argument is that a page reachable over plain http can be modified in transit, which matters most on pages that tell people how to verify something."}},{"@type":"Question","name":"What is the minimum set of security headers?","acceptedAnswer":{"@type":"Answer","text":"Strict-Transport-Security so browsers stop making plain-http requests, X-Content-Type-Options: nosniff so the browser does not guess content types, and Referrer-Policy: strict-origin-when-cross-origin so your full URLs are not handed to every site you link to."}},{"@type":"Question","name":"Can I set security headers on GitHub Pages?","acceptedAnswer":{"@type":"Answer","text":"No. GitHub Pages does not support custom response headers and there is no configuration file for them. The supported route is putting a CDN in front of the site. This site runs on GitHub Pages and therefore fails two of these checks itself."}},{"@type":"Question","name":"Should HSTS max-age start high?","acceptedAnswer":{"@type":"Answer","text":"No. Start with a short max-age, confirm nothing on the site breaks over https, and raise it afterwards. A long max-age set before you are certain commits every returning browser to https for that period."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Why an audit finds reviews you do not have","description":"Audits infer from text, and a phrase can mean two things. Why a site gets told to mark up reviews it has none of, and which error is safer.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/findings-from-phrase-matching/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does my audit say I show reviews when I do not?","acceptedAnswer":{"@type":"Answer","text":"Because it matched a phrase rather than seeing a review. Words like review, rate and star are nouns a tool looks for and verbs people write, so a page that discusses reviews matches as readily as one covered in them."}},{"@type":"Question","name":"Should I add review structured data to clear the finding?","acceptedAnswer":{"@type":"Answer","text":"No. Markup describing reviews you do not display misrepresents the page, and that is the kind of misrepresentation search engines act on. Confirm the reviews exist first."}},{"@type":"Question","name":"Why was my site classed as a local business when it has no premises?","acceptedAnswer":{"@type":"Answer","text":"Usually a street-address pattern matching ordinary prose. Several street suffixes are common English words, so a sentence containing a number and one of them can read as an address."}},{"@type":"Question","name":"Is it better for a check to miss reviews or to invent them?","acceptedAnswer":{"@type":"Answer","text":"To miss them. A missed section produces advice to go and get reviews, which you can ignore. A false match sends you looking for a review section you do not have, which you cannot."}},{"@type":"Question","name":"How do I tell a real phrase-matched finding from a false one?","acceptedAnswer":{"@type":"Answer","text":"Read the quoted evidence before the headline, and ask whether the page is about the thing or doing the thing. A policy page about reviews matches every phrase list and is not the signal."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -714,88 +714,140 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Security headers</div><h1>How to fix missing security headers</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-14">14 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Phrase matching</div><h1>Why an audit finds reviews you do not have</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
-<p class="lede">Security headers are response headers that tell a browser how carefully to
-treat your site. They cost nothing, they are set once at the server or CDN, and most sites
-have none of them — including, at the time of writing, this one.</p>
+<p class="lede">An audit cannot see your reviews. It reads your text, looks for phrases that
+usually sit beside reviews, and infers. That works until a phrase means two things — and then it
+tells a business with no customers to mark up its customer ratings, and the business goes looking
+for something that is not there.</p>
 
-<h2>What an audit of this site returns</h2>
+<h2>The sentence that said the opposite</h2>
 
-<pre><code>high     security.no_http_redirect    http://docketseo.app does not redirect to https://
-low      security.no_hsts             No HSTS header
-notice   security.missing_headers     Missing 2 baseline security headers</code></pre>
+<p>A software foundation was told "Reviews are shown but not marked up". The evidence the check
+had collected was every use of the word "review" as an ordinary verb — please review the
+licence, participants are invited to review the guidelines, allow ten business days to complete
+the review.</p>
 
-<p>All three are true. We checked the first by hand before believing it, which is the rule
-we apply to findings about anybody else's site:</p>
+<p>And one more, which is the one worth remembering. The site's own sentence stating that it does
+<strong>not</strong> provide testimonials was counted as evidence that it does.</p>
 
-<pre><code>$ curl -sI http://docketseo.app/
-HTTP/1.1 200 OK
-Server: GitHub.com</code></pre>
+<p>That is the failure in its purest form: <strong>counting a signal being mentioned as the
+signal being present.</strong> A page that discusses reviews, disclaims reviews, links to a
+review policy or explains why it has no reviews contains the word as often as a page covered in
+them.</p>
 
-<p>Two hundred, over plain http, with no redirect. The <code>www</code> host redirects
-correctly; the apex does not — which is the same half-configured shape Docket found on a
-French bakery chain the same week, and the reason its redirect finding now names the exact
-host it probed instead of saying "http://".</p>
-
-<h2>The three headers worth having</h2>
-
-<p><strong>Strict-Transport-Security.</strong> Tells the browser to use https for this site
-from now on, so a visitor who types the bare domain never makes the plain-http request at
-all. Start with a short max-age, confirm nothing breaks, then raise it:</p>
-
-<pre><code>Strict-Transport-Security: max-age=31536000; includeSubDomains</code></pre>
-
-<p><strong>X-Content-Type-Options: nosniff.</strong> Stops the browser guessing that
-something you served as text is really a script. One line, no trade-offs.</p>
-
-<p><strong>Referrer-Policy.</strong> Controls how much of the current URL is passed to sites
-you link to. <code>strict-origin-when-cross-origin</code> sends the full path within your
-own site and only the origin to anyone else — which matters if your URLs contain anything
-you would not print on a postcard.</p>
-
-<pre><code>X-Content-Type-Options: nosniff
-Referrer-Policy: strict-origin-when-cross-origin</code></pre>
-
-<h2>Why we have not fixed ours</h2>
-
-<p>Because we cannot. This site is served by GitHub Pages, which does not let you set
-response headers. There is no configuration file for it, no setting, and no supported
-workaround short of putting a CDN in front of the whole site.</p>
-
-<p>That is a real trade-off and it is the honest reason, not an excuse. Static hosting that
-costs nothing and cannot go down in an interesting way is worth a great deal, and the
-headers it cannot set are worth less than that. If this site accepted logins or took
-payments the calculation would be different and we would be on something else.</p>
-
-<p>The http redirect is a separate matter and it is a hosting setting rather than a header,
-so it is fixable. It is on the list.</p>
-
-<h2>Where to actually set them</h2>
+<h2>Three more phrases that had to go</h2>
 
 <ul>
-<li><strong>Cloudflare, Fastly, or any CDN</strong> — a rule at the edge, applied to every
-response, no deploy needed.</li>
-<li><strong>Nginx</strong> — <code>add_header</code> in the server block.</li>
-<li><strong>Apache</strong> — <code>Header set</code> in the vhost or .htaccess.</li>
-<li><strong>Netlify, Vercel</strong> — a headers file in the repository.</li>
-<li><strong>GitHub Pages</strong> — not possible, as above.</li>
+<li><strong>"Stars."</strong> Fine on a restaurant, meaningless on a technical site, where every
+repository badge says it. The word was in the list; every developer tools page in the sample
+matched.</li>
+<li><strong>"Five-star."</strong> A wildlife charity teaching children to build a bee hotel wrote
+that it offers solitary bees five-star accommodation. The check quoted that joke back as its
+evidence of displayed customer ratings. The phrase is a <em>claim about quality</em> — a
+five-star hotel, five-star service — and a business describing itself that way is not showing
+anybody's review.</li>
+<li><strong>A street address that was a statistic.</strong> This one is ours. The address pattern
+was case-insensitive and allowed several words between the house number and the street suffix,
+and "way" is both a street suffix and an ordinary English word. It matched a sentence in this
+project's own marketing copy about domains linking to a competitor "that way", concluded that a
+Mac software company was a location-bound local business, and produced six findings including
+two false high-severity headlines. <strong>Any page with a statistic in it was one sentence away
+from the same fate.</strong></li>
 </ul>
 
-<h2>How much does this matter for SEO</h2>
+<h2>Why the guards cut both ways</h2>
 
-<p>Directly, almost nothing. Google has said https is a lightweight ranking signal and has
-never suggested these headers are. Anyone selling you security headers as a ranking factor
-is guessing.</p>
+<p>The repair to the address pattern was to require the street name to be capitalised and to
+allow at most two words between the number and the suffix. That stops statistics matching. It
+also means the pattern is now strict in ways that can miss real addresses — and one was found
+immediately: a house number carrying a single lowercase letter, the Baker Street shape, which
+the numeric-only version had been failing on all along.</p>
 
-<p>Indirectly it matters more than the ranking question. A page reachable over plain http
-can be modified between the server and the reader — and on this site, one of those pages
-tells people how to verify a signed and notarised binary. Instructions for checking a
-signature are exactly the instructions worth tampering with. That is the argument for the
-redirect, and it has nothing to do with rankings.</p>
+<p>So tightening a pattern is not free, and loosening it is not free either. What you choose
+depends entirely on which error costs the reader more.</p>
 
-<p><a class="btn" href="/download/">Download Docket</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Do security headers help SEO?</h3><p>Directly, almost nothing. Google treats https as a lightweight ranking signal and has never suggested these headers are one. The real argument is that a page reachable over plain http can be modified in transit, which matters most on pages that tell people how to verify something.</p></div><div class="faq-item"><h3>What is the minimum set of security headers?</h3><p>Strict-Transport-Security so browsers stop making plain-http requests, X-Content-Type-Options: nosniff so the browser does not guess content types, and Referrer-Policy: strict-origin-when-cross-origin so your full URLs are not handed to every site you link to.</p></div><div class="faq-item"><h3>Can I set security headers on GitHub Pages?</h3><p>No. GitHub Pages does not support custom response headers and there is no configuration file for them. The supported route is putting a CDN in front of the site. This site runs on GitHub Pages and therefore fails two of these checks itself.</p></div><div class="faq-item"><h3>Should HSTS max-age start high?</h3><p>No. Start with a short max-age, confirm nothing on the site breaks over https, and raise it afterwards. A long max-age set before you are certain commits every returning browser to https for that period.</p></div></div></section>
+<h2>The asymmetry that decides where the line goes</h2>
+
+<p>Here the two errors are not equal, and saying why is the most useful thing on this page.</p>
+
+<ul>
+<li><strong>A missed review section</strong> produces "no customer reviews found". That is advice
+to go and collect some. A business that has reviews reads it, knows better, and ignores it. The
+cost is a wasted sentence.</li>
+<li><strong>A false match</strong> produces "mark up the reviews you display" to a business that
+displays none. It cannot be ignored, because it sounds like a technical instruction: the reader
+goes looking for the review section the tool says they have, and there is nothing to find. The
+cost is their afternoon and their trust in the report.</li>
+</ul>
+
+<p>So the phrase list is deliberately short and deliberately specific — named review platforms,
+"out of five stars", "star rating", "what our customers say" — and it deliberately misses a page
+simply headed "Reviews" with no other phrasing. That is the safer error, chosen knowingly.</p>
+
+<p><strong>A short phrase is cheap to add and expensive to be wrong about.</strong> The source
+notes that this is the sixth time a phrase has been removed for being a signal in one context and
+ordinary English in another, and the third time in that one list — which tells you how strong the
+pull is towards adding just one more word.</p>
+
+<h2>How to read a phrase-matched finding on your own site</h2>
+
+<p>Any finding that claims your pages <em>show</em> something — reviews, prices, testimonials,
+locations, opening hours — was almost certainly inferred from text rather than observed. Three
+questions settle it:</p>
+
+<ul>
+<li><strong>Does the report quote its evidence?</strong> If it does, read the quote before the
+headline. Most of the cases above were obvious the moment somebody looked at the matched
+sentence.</li>
+<li><strong>Is the matched word a verb?</strong> "Review", "rate", "star", "book", "order" and
+"contact" are all nouns that audits look for and verbs that people write.</li>
+<li><strong>Is the page <em>about</em> the thing rather than <em>doing</em> the thing?</strong> A
+policy page about reviews, a help article about booking, a blog post about pricing — each one
+will match a phrase list and none of them is the signal.</li>
+</ul>
+
+<h2>When this does not matter</h2>
+
+<p>On a genuine local business — a restaurant, a clinic, a shop with an address and opening
+hours — these findings are usually right, because the phrases mean what they look like they mean.
+The failure mode is concentrated on sites that are <em>not</em> location-bound and on technical
+or editorial sites, where the same vocabulary is ordinary prose.</p>
+
+<p>If your site has no premises the public visits, a local-business finding is worth a sceptical
+read before it is worth any work at all.</p>
+
+<h2>The fixes that make it worse</h2>
+
+<ul>
+<li><strong>Adding review markup to satisfy the finding.</strong> Structured data describing
+reviews you do not display is a misrepresentation of your page, and it is the kind that search
+engines act on.</li>
+<li><strong>Rewriting your prose to avoid the trigger words.</strong> Removing "please review the
+licence" from a licence page to quieten a tool is letting the tool edit your site.</li>
+<li><strong>Adding a business address to a site that has no premises</strong> because a
+local-business check fired. It fired because of a sentence about something else.</li>
+</ul>
+
+<h2>How to make this finding appear on any site</h2>
+
+<p>Write a sentence about reviews. That is the whole trick, and it is why the finding's presence
+is weak evidence on its own and its quoted evidence is strong evidence. <strong>A phrase list can
+tell you a page mentions something; only a person can tell you the page is doing it.</strong></p>
+
+<h2>Where this sits in an audit</h2>
+
+<p>The registered checks are <code>local.reviews</code>, which covers review signals, and
+<code>local.applicable</code>, which decides whether a site is a local business at all — the one
+the address pattern feeds, and the one that was wrong about us. Both sit in the local business
+area.</p>
+
+<p>For the related habit of reading what a finding actually counted before acting on it, see
+<a href="/how-to/check-the-count-on-a-finding/">a finding's count is not decoration &rarr;</a>.
+For the opposite failure — a tool reporting the absence of something it simply could not
+recognise — see <a href="/how-to/cta-findings-that-miss-the-form/">a form is a call to
+action &rarr;</a>.</p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Why does my audit say I show reviews when I do not?</h3><p>Because it matched a phrase rather than seeing a review. Words like review, rate and star are nouns a tool looks for and verbs people write, so a page that discusses reviews matches as readily as one covered in them.</p></div><div class="faq-item"><h3>Should I add review structured data to clear the finding?</h3><p>No. Markup describing reviews you do not display misrepresents the page, and that is the kind of misrepresentation search engines act on. Confirm the reviews exist first.</p></div><div class="faq-item"><h3>Why was my site classed as a local business when it has no premises?</h3><p>Usually a street-address pattern matching ordinary prose. Several street suffixes are common English words, so a sentence containing a number and one of them can read as an address.</p></div><div class="faq-item"><h3>Is it better for a check to miss reviews or to invent them?</h3><p>To miss them. A missed section produces advice to go and get reviews, which you can ignore. A false match sends you looking for a review section you do not have, which you cannot.</p></div><div class="faq-item"><h3>How do I tell a real phrase-matched finding from a false one?</h3><p>Read the quoted evidence before the headline, and ask whether the page is about the thing or doing the thing. A policy page about reviews matches every phrase list and is not the signal.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

@@ -64,6 +64,7 @@ import howto_meta_refresh  # noqa: E402
 import howto_positioning  # noqa: E402
 import howto_rate_limits  # noqa: E402
 import howto_brand_name  # noqa: E402
+import howto_phrase_matching  # noqa: E402
 import howto_cta_forms  # noqa: E402
 import howto_finding_counts  # noqa: E402
 import howto_sameas  # noqa: E402
@@ -898,6 +899,7 @@ def main() -> int:
               howto_finding_counts.finding_counts(),
               howto_cta_forms.cta_forms(),
               howto_brand_name.brand_name(),
+              howto_phrase_matching.phrase_matching(),
               howto_soft404.soft_404s(),
               howto_open_graph.howto_open_graph(),
               howto_deploy_gate.deploy_gate(),

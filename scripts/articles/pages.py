@@ -1363,6 +1363,12 @@ that inference, including a logo link whose correct accessibility label was read
 then advised away.
 <a href="/how-to/what-your-site-says-you-are-called/">Where the guess comes from &rarr;</a></p>
 
+<h2>Reviews you do not have</h2>
+<p>An audit cannot see your reviews, so it matches phrases — and a phrase can mean two things. A
+site's own sentence saying it has no testimonials, counted as proof that it does; why one of
+these two errors is much worse than the other.
+<a href="/how-to/findings-from-phrase-matching/">Read the evidence first &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
