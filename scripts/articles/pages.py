@@ -1333,6 +1333,12 @@ them is usually wrong.
 mistake that can cost a site its entire long tail while every page still returns 200.
 <a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
 
+<h2>The social links that are not yours</h2>
+<p>A wrong <code>sameAs</code> entry is worse than a missing one: it asserts that your company and
+somebody else are the same thing. Why a permalink is not a profile, and why repetition tells you
+what your footer owns when position cannot.
+<a href="/how-to/fix-sameas-that-claims-the-wrong-accounts/">What it must not claim &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,

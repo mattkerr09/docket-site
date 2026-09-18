@@ -62,6 +62,7 @@ import howto_mobile  # noqa: E402
 import howto_pagination  # noqa: E402
 import howto_meta_refresh  # noqa: E402
 import howto_positioning  # noqa: E402
+import howto_sameas  # noqa: E402
 import howto_template_findings  # noqa: E402
 import howto_voice  # noqa: E402
 import howto_schema_mismatch  # noqa: E402
@@ -888,6 +889,7 @@ def main() -> int:
               howto_positioning.positioning(),
               howto_voice.voice(),
               howto_template_findings.template_findings(),
+              howto_sameas.sameas(),
               howto_soft404.soft_404s(),
               howto_open_graph.howto_open_graph(),
               howto_deploy_gate.deploy_gate(),
