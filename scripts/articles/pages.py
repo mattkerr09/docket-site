@@ -1441,6 +1441,12 @@ and one property settles it. Why a marketplace was told its own address, hours a
 missing when every fact belonged to a shop it listed.
 <a href="/how-to/schema-that-describes-someone-else/">Whose data is it? &rarr;</a></p>
 
+<h2>The type you declare is a claim</h2>
+<p>A university is not a LocalBusiness in schema.org's hierarchy, so "add LocalBusiness or a
+subtype" offered it plumber and dentist. And a pasteable block that carries your real domain will
+carry somebody else's address just as confidently.
+<a href="/how-to/schema-type-is-a-claim/">Check every value &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
