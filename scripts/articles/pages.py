@@ -1339,6 +1339,12 @@ somebody else are the same thing. Why a permalink is not a profile, and why repe
 what your footer owns when position cannot.
 <a href="/how-to/fix-sameas-that-claims-the-wrong-accounts/">What it must not claim &rarr;</a></p>
 
+<h2>A rate limit is not a block</h2>
+<p>An audit is traffic, and a crawl can trip the very rate limit it then measures. How to tell a
+throttle from a refusal, the one-click test that says whether a 403 is about your identity or
+your network, and why a re-run is the only thing that makes the finding real.
+<a href="/how-to/tell-a-rate-limit-from-a-block/">Tell a wait from a refusal &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,

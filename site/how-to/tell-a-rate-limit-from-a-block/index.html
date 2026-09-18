@@ -9,26 +9,26 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Docket Index: 26% of major sites block an AI search crawler</title>
-<meta name="description" content="We measured the robots.txt of 110 well-known sites with Docket's own parser. 26% block at least one AI search crawler. Full method and dataset included.">
+<title>A rate limit is not a block</title>
+<meta name="description" content="An audit that crawls your site can trip its own rate limit, then report the throttle as a fault. How to tell a wait from a refusal.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="642c6446c9f7">
-<link rel="canonical" href="https://docketseo.app/index/">
+<link rel="canonical" href="https://docketseo.app/how-to/tell-a-rate-limit-from-a-block/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The Docket Index: who is blocking AI search crawlers">
-<meta property="og:description" content="We measured the robots.txt of 110 well-known sites with Docket's own parser. 26% block at least one AI search crawler. Full method and dataset included.">
-<meta property="og:url" content="https://docketseo.app/index/">
+<meta property="og:title" content="A rate limit is not a block">
+<meta property="og:description" content="An audit that crawls your site can trip its own rate limit, then report the throttle as a fault. How to tell a wait from a refusal.">
+<meta property="og:url" content="https://docketseo.app/how-to/tell-a-rate-limit-from-a-block/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Docket Index: who is blocking AI search crawlers">
-<meta name="twitter:description" content="We measured the robots.txt of 110 well-known sites with Docket's own parser. 26% block at least one AI search crawler. Full method and dataset included.">
+<meta name="twitter:title" content="A rate limit is not a block">
+<meta name="twitter:description" content="An audit that crawls your site can trip its own rate limit, then report the throttle as a fault. How to tell a wait from a refusal.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -680,8 +680,9 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Docket Index: who is blocking AI search crawlers","description":"We measured the robots.txt of 110 well-known sites with Docket's own parser. 26% block at least one AI search crawler. Full method and dataset included.","datePublished":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/index/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What percentage of websites block AI crawlers?","acceptedAnswer":{"@type":"Answer","text":"In Docket's August 2026 sample of 98 well-known sites with a robots.txt, 26% blocked at least one AI search crawler and 38% blocked at least one training crawler. News and media sites were the outlier at 94.7%; SaaS companies were at 5.0%."}},{"@type":"Question","name":"What is the difference between GPTBot and OAI-SearchBot?","acceptedAnswer":{"@type":"Answer","text":"GPTBot collects data used to train OpenAI's models. OAI-SearchBot builds the index ChatGPT searches when a user asks a question. Blocking GPTBot keeps your content out of training data. Blocking OAI-SearchBot removes you from ChatGPT's answers. They are separate decisions and require separate robots.txt rules."}},{"@type":"Question","name":"Should I block AI crawlers?","acceptedAnswer":{"@type":"Answer","text":"It depends on whether your content is the product. Publishers who sell access to writing have a clear reason to block training crawlers. A business that wants to be recommended to customers generally does not — blocking the search crawlers removes you from the answers where those recommendations happen."}},{"@type":"Question","name":"Does blocking Google-Extended affect my Google rankings or AI Overviews?","acceptedAnswer":{"@type":"Answer","text":"Neither. Google-Extended controls Gemini model training and grounding in Gemini Apps and Vertex AI. Google documents the Googlebot directives as the control for AI features in Search, so blocking Google-Extended leaves both AI Overviews and classic ranking untouched. We had this wrong until August 2026 and counted it as a citation crawler; the figures on this page have been recomputed without it."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"A rate limit is not a block","description":"An audit that crawls your site can trip its own rate limit, then report the throttle as a fault. How to tell a wait from a refusal.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/tell-a-rate-limit-from-a-block/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is HTTP 429 a block?","acceptedAnswer":{"@type":"Answer","text":"No. It means too many requests, and it is temporary. A server that sends it with a Retry-After header is naming a time to come back rather than turning the crawler away. HTTP 403 is the refusal."}},{"@type":"Question","name":"Why did my audit report crawler blocks that a re-run did not?","acceptedAnswer":{"@type":"Answer","text":"Because the first run probably caused them. A crawl is traffic from one address, which is what rate limiting slows down, so the probes that follow the crawl can all be measuring the limit the crawl tripped."}},{"@type":"Question","name":"My site returns 403 to an audit tool. Is that a problem?","acceptedAnswer":{"@type":"Answer","text":"Only if you did not intend it. Open the same URL in your browser: if it loads, the rule is on the user-agent and lives in your bot protection; if your browser is refused too, the rule is on the network."}},{"@type":"Question","name":"Should I remove retired AI crawler names from robots.txt?","acceptedAnswer":{"@type":"Answer","text":"It is tidiness rather than visibility, unless the wildcard group those crawlers fall back to is more permissive than the group the retired name sat in. Compare the two groups before editing."}},{"@type":"Question","name":"How do I know a crawler-access finding is real?","acceptedAnswer":{"@type":"Answer","text":"Run the audit again, more slowly, and see whether it survives. A measurement that a re-run can change is a measurement about the run rather than about the site."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -713,129 +714,153 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / The Index</div><h1>The Docket Index: who is blocking AI search crawlers</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-06">6 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Rate limits</div><h1>A rate limit is not a block</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
-<p class="lede">We fetched the robots.txt of 110 well-known websites and parsed
-each one with Docket's own crawler-rules engine. <strong>26% of them block at least one
-AI <em>search</em> crawler</strong> — the crawlers that decide whether a site can appear in
-ChatGPT, Perplexity or Claude at all. Google's AI Overviews are deliberately not in that list:
-they follow your Googlebot rules, not Google-Extended, and treating the two as the same thing
-was our own largest source of false positives until August 2026. Most of these sites did not
-appear to mean to.</p>
+<p class="lede">An audit is traffic. It asks for page after page, faster than a person would,
+from one address — which is the exact shape of the thing rate limiting exists to slow down. So
+a crawl can trip a limit, and then every measurement it takes afterwards is a measurement of
+the limit it tripped. The report that comes out says your server is turning crawlers away.
+Nobody is turning anyone away.</p>
 
-<div class="stat-row">
-<div class="stat"><b>98</b><span>sites with a robots.txt</span></div>
-<div class="stat"><b>26%</b><span>block an AI search crawler</span></div>
-<div class="stat"><b>38%</b><span>block a training crawler</span></div>
-<div class="stat"><b>43%</b><span>name any AI bot at all</span></div>
-</div>
+<h2>The audit that caused the problem it found</h2>
 
-<h2>The finding: almost nobody separates training from search</h2>
-<p>AI crawlers are not one thing. <code>GPTBot</code> collects data to train OpenAI's models.
-<code>OAI-SearchBot</code> builds the index ChatGPT searches when a user asks a question.
-Blocking the first is a defensible business decision about your content being used as training
-material. Blocking the second removes you from the answer.</p>
+<p>Docket crawls a batch of pages, then asks for the homepage once more as each AI crawler in
+turn to see which of them the edge lets through. On one retailer that sequence was enough: the
+crawl consumed the allowance, every crawler probe after it came back HTTP 429, and Docket
+reported that the server had refused the audit and that the site's bot protection distrusted
+the network it ran from.</p>
 
-<p>Of the 37 sites in our sample that block any AI crawler, only <strong>12
-blocked training crawlers while leaving the search crawlers alone</strong>. The other
-25 — <strong>68%</strong> — hit a citation crawler too.</p>
+<p>A browser from the same machine loaded the page a couple of minutes later, twice, without
+complaint. A re-run of the audit passed clean. Nothing about the site had changed in between,
+because nothing about the site was ever the problem — <strong>the tool had caused the condition
+it was reporting</strong>, and then described it as a property of somebody else's server.</p>
 
-<div class="callout">
-<div class="callout-title">This does not generalise, and we checked</div>
-<p>68% is true of this sample, which is news-heavy by construction. We later read
-the robots.txt of the <a href="/index/ai-directives/">Tranco top 10,000</a> and found the
-opposite: of 1,381 sites there blocking any AI crawler,
-53.2% blocked training crawlers and left the search crawlers
-alone — the informed split, and the majority.</p>
-<p>Both numbers are real. The difference between them is the finding: large sites with someone
-responsible for the robots.txt mostly get this right, and the conflation risk is concentrated
-in publishers and in whoever copied a block list from one.</p>
-</div>
+<p>This is the shape to keep: <strong>a measurement that a re-run can change is a measurement
+about the run, not about the site.</strong> Before you act on any crawler-access finding, run
+it again, slower. If it goes away, it was about you.</p>
 
-<h2>Perplexity is blocked 2.3× more often than OpenAI's search crawler</h2>
-<p><code>PerplexityBot</code> was disallowed by 25 sites. <code>OAI-SearchBot</code>
-was disallowed by 11. That gap is not a rounding artefact — 14 sites block
-Perplexity specifically while allowing OpenAI's search crawler through, which is a deliberate
-editorial position rather than a misconfiguration.</p>
-<p>Among them: theguardian.com, reuters.com, apnews.com, washingtonpost.com, wsj.com, ft.com, forbes.com, theatlantic.com….</p>
+<h2>A throttle names a wait; a refusal names a door</h2>
 
-<h2>Every crawler we measured</h2>
-<div class="wrap-tbl"><table class="cmp">
-<thead><tr><th>Crawler</th><th>Operator</th><th>Purpose</th><th>Sites blocking</th><th>%</th></tr></thead>
-<tbody><tr><td>CCBot</td><td>Common Crawl</td><td>open corpus</td><td>33</td><td>33.7%</td></tr><tr><td>ClaudeBot</td><td>Anthropic</td><td>training</td><td>32</td><td>32.7%</td></tr><tr><td>Bytespider</td><td>ByteDance</td><td>training</td><td>31</td><td>31.6%</td></tr><tr><td>Applebot-Extended</td><td>Apple</td><td>training</td><td>27</td><td>27.6%</td></tr><tr><td>meta-externalagent</td><td>Meta</td><td>training</td><td>27</td><td>27.6%</td></tr><tr><td>PerplexityBot</td><td>Perplexity</td><td>search index</td><td>25</td><td>25.5%</td></tr><tr><td>GPTBot</td><td>OpenAI</td><td>training</td><td>24</td><td>24.5%</td></tr><tr><td>Google-Extended</td><td>Google</td><td>Gemini grounding</td><td>23</td><td>23.5%</td></tr><tr><td>Amazonbot</td><td>Amazon</td><td>search index</td><td>23</td><td>23.5%</td></tr><tr><td>Claude-SearchBot</td><td>Anthropic</td><td>search index</td><td>20</td><td>20.4%</td></tr><tr><td>Claude-User</td><td>Anthropic</td><td>live fetch</td><td>20</td><td>20.4%</td></tr><tr><td>Perplexity-User</td><td>Perplexity</td><td>live fetch</td><td>18</td><td>18.4%</td></tr><tr><td>ChatGPT-User</td><td>OpenAI</td><td>live fetch</td><td>15</td><td>15.3%</td></tr><tr><td>OAI-SearchBot</td><td>OpenAI</td><td>search index</td><td>11</td><td>11.2%</td></tr></tbody></table></div>
+<p>HTTP 429 means too many requests, and HTTP 503 means not right now. Both are temporary and
+both are usually <em>correct behaviour</em> by a server that is protecting itself. A 403 is a
+different sentence: it says this requester is not allowed, and it will still say that tomorrow
+at a slower pace.</p>
 
-<h2>By category</h2>
-<p>The spread is the story. News publishers have overwhelmingly decided to shut AI search out.
-Almost nobody else has.</p>
-<div class="wrap-tbl"><table class="cmp">
-<thead><tr><th>Category</th><th>Sites</th><th>Blocking AI search</th><th>%</th></tr></thead>
-<tbody><tr><td>News &amp; media</td><td>19</td><td>17</td><td>89.5%</td></tr><tr><td>Reference &amp; knowledge</td><td>14</td><td>6</td><td>42.9%</td></tr><tr><td>Ecommerce</td><td>15</td><td>2</td><td>13.3%</td></tr><tr><td>SaaS &amp; software</td><td>20</td><td>0</td><td>0.0%</td></tr><tr><td>SEO &amp; marketing</td><td>10</td><td>0</td><td>0.0%</td></tr><tr><td>Local &amp; service businesses</td><td>11</td><td>0</td><td>0.0%</td></tr><tr><td>Education &amp; nonprofit</td><td>9</td><td>0</td><td>0.0%</td></tr></tbody></table></div>
+<p>The tell that settles it is the <code>Retry-After</code> header. A server that sends one is
+naming a time to come back — it is scheduling the crawler, not refusing it. Well-behaved
+crawlers honour it and return. A rate limit with a <code>Retry-After</code> is not a visibility
+problem at all.</p>
 
-<p>For a business that competes for customers rather than readers — a shop, a SaaS product, a
-local service — the practical read is that the field is wide open. Your competitors are almost
-certainly not blocking these crawlers, so being visible to them is not an advantage you can
-win by default. It is table stakes you can lose by accident.</p>
+<p>Docket got this wrong for a while and it is worth saying how, because the error is easy to
+repeat. On a forum, every AI crawler received 429 with a short <code>Retry-After</code> while a
+browser from the same address got 200. Docket called that refusal, rated it critical, and sent
+the owner to their CDN to add an allow rule for a WAF block that did not exist. The observation
+was right and the diagnosis was wrong, which costs the reader an afternoon and their provider a
+support ticket.</p>
 
-<h2>Two things we did not expect</h2>
+<h2>The one-click test that settles a 403</h2>
 
-<h3>8 sites use Content-signal</h3>
-<p><code>Content-signal</code> is a newer, Cloudflare-backed convention for stating intent
-declaratively — Stack Overflow's reads
-<code>Content-signal: search=no, ai-train=no</code>. No crawler is obliged to honour it. It is
-worth watching because it separates <em>what you permit</em> from <em>which user-agent
-happens to be asking</em>, which is exactly the distinction robots.txt handles badly.</p>
+<p>A genuine 403 has two possible causes and they need opposite fixes: the rule is on
+<em>who is asking</em>, or the rule is on <em>where they are asking from</em>. Open the same URL
+in your own browser, on your own connection:</p>
 
-<h3>4 sites block a conventional search engine</h3>
-<p>Not AI crawlers — Googlebot, Bingbot, DuckDuckBot or Applebot. In the cases we looked at
-this is intentional: Reddit's robots.txt is a blanket <code>Disallow: /</code> with search
-access negotiated commercially instead. It is a reminder that robots.txt describes policy,
-not always practice.</p>
-
-<h2>Method</h2>
-<p>One <code>GET</code> to <code>https://&lt;host&gt;/robots.txt</code> per site, serialised
-with a delay — a smaller footprint than one person visiting the homepage. Rules were parsed
-with Docket's <a href="https://www.rfc-editor.org/rfc/rfc9309">RFC 9309</a> implementation, which does longest-match resolution, <code>*</code>
-wildcards and <code>$</code> anchors. A site counts as blocking a crawler when that crawler
-is disallowed from <code>/</code>.</p>
-
-<p>Whether a response is a real robots.txt is decided by its <em>content</em>, not its status
-code. Stack Overflow serves a genuine, restrictive robots.txt with an HTTP 418; a status-code
-test would have miscounted it. Sites returning no <code>User-agent:</code> directive at all
-(9 of them) are excluded from every percentage, because a site with no
-robots.txt has no policy — counting it as "allows everything" would overstate how open the
-web is.</p>
-
-<h2>Limits of this sample</h2>
-<p>Stated plainly, because the Index is only useful if you can judge it:</p>
 <ul>
-<li><strong>It is not a random sample of the web.</strong> It is 110 well-known,
-high-traffic sites chosen across categories where an AI assistant might plausibly be asked for
-a recommendation. Percentages describe this population and nothing wider.</li>
-<li><strong>3 sites were unreachable</strong> at collection time and are
-excluded.</li>
-<li><strong>robots.txt is a request, not a wall.</strong> It records what a site asks
-crawlers to do. Well-behaved crawlers comply; compliance is not measured here and we make no
-claim about it.</li>
-<li><strong>This measures access, not citation.</strong> Being crawlable is necessary for
-appearing in AI answers. It is not sufficient — rendering, structure and entity clarity all
-matter, and none of them are in this dataset.</li>
-<li><strong>It is a snapshot.</strong> Collected 2026-08-06. robots.txt files
-change; this one will be re-run and the figures will move.</li>
+<li><strong>It loads.</strong> The rule is on the identity. Something in the requester's
+user-agent matched a bot signature. The change belongs in your bot protection, not on your
+site.</li>
+<li><strong>It is refused too.</strong> The rule is on the network or the address, and the
+user-agent is irrelevant. That is a different setting entirely.</li>
 </ul>
 
-<h2>Get the data</h2>
-<p>The full dataset, the collection script and the exact site list are in the repository.
-Re-run it yourself and you should get the same answer — that is the point of publishing the
-method alongside the numbers.</p>
-<p><a class="btn-ghost" href="/data/index-2026-08.json">Download the dataset (JSON)</a></p>
+<p>Docket had this backwards, and the reason is worth more than the fix. Its crawler sends a
+browser-shaped user-agent with an honest suffix naming the tool and linking to a page about it
+— which is precisely the substring a WAF rule matches on. But the check's own text called that
+"a plain browser request", so when it was refused it concluded the block could not be about
+identity and must therefore be about the network, and it told the reader to try a different
+connection. A clean browser string from the same machine got 200 and a full page. The network
+had never been involved.</p>
 
-<div class="callout">
-<div class="callout-title">Check your own site</div>
-<p>Docket runs this same audit against your site, plus 98 other checks, on your Mac.
-It tells you which crawlers you are blocking, whether it looks deliberate, and what the
-practical consequence is for each one. <a href="/download/">Download Docket →</a></p>
-</div>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What percentage of websites block AI crawlers?</h3><p>In Docket's August 2026 sample of 98 well-known sites with a robots.txt, 26% blocked at least one AI search crawler and 38% blocked at least one training crawler. News and media sites were the outlier at 94.7%; SaaS companies were at 5.0%.</p></div><div class="faq-item"><h3>What is the difference between GPTBot and OAI-SearchBot?</h3><p>GPTBot collects data used to train OpenAI's models. OAI-SearchBot builds the index ChatGPT searches when a user asks a question. Blocking GPTBot keeps your content out of training data. Blocking OAI-SearchBot removes you from ChatGPT's answers. They are separate decisions and require separate robots.txt rules.</p></div><div class="faq-item"><h3>Should I block AI crawlers?</h3><p>It depends on whether your content is the product. Publishers who sell access to writing have a clear reason to block training crawlers. A business that wants to be recommended to customers generally does not — blocking the search crawlers removes you from the answers where those recommendations happen.</p></div><div class="faq-item"><h3>Does blocking Google-Extended affect my Google rankings or AI Overviews?</h3><p>Neither. Google-Extended controls Gemini model training and grounding in Gemini Apps and Vertex AI. Google documents the Googlebot directives as the control for AI features in Search, so blocking Google-Extended leaves both AI Overviews and classic ranking untouched. We had this wrong until August 2026 and counted it as a citation crawler; the figures on this page have been recomputed without it.</p></div></div></section>
+<p><strong>An instrument that misdescribes its own request will misattribute the response.</strong>
+When a tool reports a refusal, the first question is what it actually sent.</p>
+
+<h2>A true observation with a false consequence</h2>
+
+<p>The third variant is the hardest to catch, because the fact is correct. Docket flags AI
+crawler tokens in <code>robots.txt</code> that no longer belong to any crawler — a retired name
+sitting in a file that has not been revisited. On a manufacturer's site it found several, all
+genuinely dead, and said those crawlers were therefore reading pages the owner meant to withhold
+from them.</p>
+
+<p>They were not. A crawler that matches no group of its own falls back to
+<code>User-agent: *</code>, and on that file the wildcard group was the <em>stricter</em> of the
+two — it carried every rule the AI group carried, and more. The dead tokens cost nothing but a
+crawl-delay. The tokens were dead; the consequence was invented; and the severity of the finding
+rested entirely on the consequence.</p>
+
+<p>So when a finding tells you what something <em>costs</em>, check whether the tool measured the
+cost or inferred it. Inferring it means modelling the fallback behaviour of whatever reads the
+file, and most tools do not.</p>
+
+<h2>When none of this matters</h2>
+
+<p>Said plainly, because the checks above are rated where they are for a reason and not every
+one of them is worth your afternoon:</p>
+
+<ul>
+<li><strong>A throttle against an aggressive crawler is your rate limiting working.</strong> If a
+crawler is taking pages faster than a person could read them and your server slows it down, that
+is the system behaving correctly. A commercial crawler that cannot tolerate a
+<code>Retry-After</code> is not a crawler you need to accommodate.</li>
+<li><strong>A dead token in robots.txt is tidiness, not visibility</strong>, unless the fallback
+group is genuinely more permissive than the group the token sat in. Check that before you edit
+anything.</li>
+<li><strong>A 403 against a tool that names itself may be exactly what you configured.</strong>
+Plenty of sites deliberately refuse self-identifying automated readers. If that was the decision,
+the finding is a description of your policy rather than a fault in it.</li>
+</ul>
+
+<h2>The fixes that make it worse</h2>
+
+<ul>
+<li><strong>Turning off bot protection to make a report go green.</strong> The report was
+measuring a request that no real crawler makes, at a rate no real crawler uses.</li>
+<li><strong>Adding an allow rule at your CDN for a block that does not exist.</strong> This is
+what a misdiagnosed 429 leads to. The rule does nothing, and it stays in the configuration for
+years as a thing nobody dares remove.</li>
+<li><strong>Retrying immediately.</strong> On many edges a burst of retries during a cool-down
+extends it, so the second audit looks worse than the first and the picture gets darker each time
+you check.</li>
+<li><strong>Allowlisting by IP range.</strong> Crawler address ranges move, and an allowlist that
+names them is a maintenance promise you did not mean to make. Verify by reverse DNS if you need
+to verify at all.</li>
+</ul>
+
+<h2>How to make the finding disappear without changing anything</h2>
+
+<p>Worth knowing, because it tells you what the finding is worth. Crawl one page at a time with
+a pause between requests and the rate limit never fires, so the crawler probes all return 200
+and the report is clean. Nothing about your site is different. The same is true in reverse: crawl
+harder and a clean site produces refusals.</p>
+
+<p>Which means <strong>the absence of this finding proves less than its presence</strong>, and
+its presence proves less than a second, slower run that reproduces it. Any tool that reports edge
+access without telling you how hard it crawled is handing you a number it cannot support.</p>
+
+<h2>Where this sits in an audit</h2>
+
+<p>The two registered checks are <code>ai.edge_access</code>, which tests server access for AI
+crawlers, and <code>ai.dead_crawler_directive</code>, which reads retired tokens in
+<code>robots.txt</code>. Both live in Docket's AI search visibility area.</p>
+
+<p>Their findings carry different identifiers from the checks that emit them —
+<code>ai.throttled_at_the_edge</code> and <code>ai.edge_untestable</code> both come out of
+<code>ai.edge_access</code> — which is worth knowing when you search for one and find nothing. A
+finding identifier is not a check identifier.</p>
+
+<p>The untestable one is the useful habit here: when a run cannot measure something, the honest
+output is a notice saying so, not a pass. <a href="/learn/audit-tool-accuracy/">A gate that
+could not measure is not a pass &rarr;</a></p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is HTTP 429 a block?</h3><p>No. It means too many requests, and it is temporary. A server that sends it with a Retry-After header is naming a time to come back rather than turning the crawler away. HTTP 403 is the refusal.</p></div><div class="faq-item"><h3>Why did my audit report crawler blocks that a re-run did not?</h3><p>Because the first run probably caused them. A crawl is traffic from one address, which is what rate limiting slows down, so the probes that follow the crawl can all be measuring the limit the crawl tripped.</p></div><div class="faq-item"><h3>My site returns 403 to an audit tool. Is that a problem?</h3><p>Only if you did not intend it. Open the same URL in your browser: if it loads, the rule is on the user-agent and lives in your bot protection; if your browser is refused too, the rule is on the network.</p></div><div class="faq-item"><h3>Should I remove retired AI crawler names from robots.txt?</h3><p>It is tidiness rather than visibility, unless the wildcard group those crawlers fall back to is more permissive than the group the retired name sat in. Compare the two groups before editing.</p></div><div class="faq-item"><h3>How do I know a crawler-access finding is real?</h3><p>Run the audit again, more slowly, and see whether it survives. A measurement that a re-run can change is a measurement about the run rather than about the site.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
