@@ -12,7 +12,7 @@
 <title>hreflang and html lang mismatch: which one you have</title>
 <meta name="description" content="Three different faults share that description and have three different fixes. How to tell them apart in a minute, and which one to fix first.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="a5521ac9d13a">
+<meta name="build-id" content="4e61dc7c150c">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-lang-attribute-mismatch/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -716,11 +716,11 @@ fbq('track','PageView');
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Language mismatch</div><h1>hreflang and html lang mismatch</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-09">9 September 2026</time></p>
 
-<p class="lede">"hreflang and html lang mismatch" is three different faults sharing one
+<p class="lede">"hreflang and html lang mismatch" is four different faults sharing one
 description, and they have three different fixes. Sorting out which one you have takes about a
 minute and saves you changing the wrong attribute.</p>
 
-<h2>The three mismatches</h2>
+<h2>The four mismatches</h2>
 
 <p><strong>1. The declaration contradicts the prose.</strong> The page says
 <code>lang="en"</code> and the text is Spanish. This is the one that does immediate damage: a
@@ -738,15 +738,25 @@ a common one — the country is <code>GB</code>, not <code>UK</code> — as are 
 language slot and vice versa. An invalid code is discarded, silently, and the cluster it was
 part of is weakened.</p>
 
+<p><strong>4. The body is not the page's own writing.</strong> This is the one nobody warns you
+about, and the one that produces the most confident wrong fix. A bookshelf listing Dutch titles,
+a directory of French restaurants, a marketplace page quoting a tutor's introduction in German —
+the page is English, written by you, and the foreign words on it belong to someone else. Every
+automated check that reads the body will tell you the page is Dutch. It is not. Changing
+<code>lang</code> here makes a correct page wrong.</p>
+
 <h2>Which one you have, in one minute</h2>
 
 <p>Open the page and read three things in this order.</p>
 
-<p><strong>The prose.</strong> What language is the body text actually in? Not the navigation —
-the body. This is the ground truth and everything else is a claim about it.</p>
+<p><strong>The prose — and whose prose it is.</strong> What language is the body text actually
+in? Not the navigation — the body. Then ask the second question: did you write it? If almost
+everything you are reading sits inside links, or is a list of names, titles or addresses, you
+are looking at an index of other people's words, not at a page written in their language. That
+is fault 4, and the fix is to change nothing.</p>
 
 <p><strong>The <code>&lt;html lang&gt;</code> attribute.</strong> Does it match what you just
-read? If not, that is fault 1 and it is the one to fix first, because the other two are claims
+read, in words you wrote? If not, that is fault 1 and it is the one to fix first, because the other two are claims
 about a page whose own declaration is wrong.</p>
 
 <p><strong>The page's own hreflang entry.</strong> In a correct cluster every page lists every
