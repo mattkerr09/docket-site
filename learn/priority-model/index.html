@@ -12,7 +12,7 @@
 <title>How Docket decides what to fix first</title>
 <meta name="description" content="Severity, impact, reach and effort, and the formula that combines them. The weights an audit ranks your site with, written out so you can check them.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="90a8f441fb40">
+<meta name="build-id" content="9058ef0d7078">
 <link rel="canonical" href="https://docketseo.app/learn/priority-model/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -679,7 +679,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 .faq-item p{font-size:var(--t-md);margin:0}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 97 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"97 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How Docket decides what to fix first","description":"Severity, impact, reach and effort, and the formula that combines them. The weights an audit ranks your site with, written out so you can check them.","datePublished":"2026-09-16","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/priority-model/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does Docket decide which SEO problem to fix first?","acceptedAnswer":{"@type":"Answer","text":"It computes a priority score for every finding: severity weight multiplied by impact and by reach, divided by the effort the fix takes. Findings are then grouped into four phases — critical problems, quick wins, longer builds, and polish — and ordered by score inside each phase."}},{"@type":"Question","name":"Why does a medium-severity issue rank above a high one?","acceptedAnswer":{"@type":"Answer","text":"Because reach and effort are in the formula. A medium problem across dozens of pages that one template edit fixes will outrank a high-severity problem on a single page that needs a rebuild. That is intended: it matches what an experienced consultant would tell you to do with one free afternoon."}},{"@type":"Question","name":"Does a problem on more pages always rank higher?","acceptedAnswer":{"@type":"Answer","text":"No. Reach follows a square-root curve that stops growing entirely past 144 affected pages, so breadth matters but cannot win on its own. Without that cap, one trivial issue repeated across thousands of template-generated pages would outrank a critical problem on the homepage, which is the usual reason large-site audits are unreadable."}},{"@type":"Question","name":"Are Docket's severity weights based on measured ranking data?","acceptedAnswer":{"@type":"Answer","text":"No, and the page says so. They are an editorial judgement about relative harm, held consistent so that two audits of the same site agree. No study backs a claim that any particular issue costs a specific amount of traffic, and Docket does not make one."}},{"@type":"Question","name":"What is a tool-limit finding and why does it not affect my score?","acceptedAnswer":{"@type":"Answer","text":"It is Docket reporting its own blind spot rather than a fault in your site — a link graph it could not read, an external link it could not fetch. Those are excluded from the score deduction, because a site Docket cannot fully read should not score lower than one it can for that reason alone."}}]}</script>
@@ -725,8 +725,21 @@ priority you cannot audit is just an opinion with a sort order.</p>
 
 <p>Each finding gets a priority score of <strong>severity weight x impact x reach, divided by
 effort cost</strong>. Higher goes first. Three of those four multiply the case for doing
-something; the fourth divides by what it costs you. That is the whole of it, and the four inputs
-are worth taking one at a time.</p>
+something; the fourth divides by what it costs you.</p>
+
+<p>There is a fifth term: a finding that names a page where you sell, book or take
+enquiries is multiplied by <strong>1.5</strong>. A missing title on
+<code>/pricing</code> and the same missing title on a tag archive used to rank identically, and
+for a business paying to be found they are not the same job.</p>
+
+<p>That multiplier is deliberately small. It orders two findings of the same severity and
+cannot lift one past a more serious problem — a critical issue anywhere still outranks a medium
+one on your pricing page, because this page prints a severity beside every finding and a
+ranking that contradicts that label would make one of the two wrong with no way to tell which.
+It recognises English paths only, and it errs towards leaving a page alone rather than
+promoting the wrong one.</p>
+
+<p>The inputs are worth taking one at a time.</p>
 
 <h3>Severity — how badly it hurts</h3>
 
