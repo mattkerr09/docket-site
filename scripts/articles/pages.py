@@ -1477,6 +1477,12 @@ a crawler matching no group falls back to the catch-all, which is often stricter
 written for it. How to tell an inert line from a real exposure.
 <a href="/how-to/what-a-dead-crawler-rule-costs/">Read the other group &rarr;</a></p>
 
+<h2>When a report calls your decision a defect</h2>
+<p>A deliberate policy and an accident look identical in a configuration file, and a tool that
+cannot tell them apart will shout at one and stay quiet about the other. Plus the universal claim
+that was false about the reader's own file, and why it was the sentence that set the severity.
+<a href="/how-to/when-a-policy-is-reported-as-a-defect/">Named, or caught &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
