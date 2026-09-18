@@ -1333,6 +1333,12 @@ them is usually wrong.
 mistake that can cost a site its entire long tail while every page still returns 200.
 <a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
 
+<h2>When the site sounds like several companies</h2>
+<p>Sentence length across your pages is a crude proxy for one voice, and it works better than it
+deserves to. What it can see, why several voices are often correct, and why rewriting everything
+to one length is a metronome rather than a voice.
+<a href="/how-to/fix-a-site-that-sounds-like-several-companies/">What it refuses to judge &rarr;</a></p>
+
 <h2>When the site stops saying one thing</h2>
 <p>Read one page and it is fine; read twenty and you cannot say what the company does. The defect
 does not live on a page, it lives between them — and you get there by shipping good pages one at
