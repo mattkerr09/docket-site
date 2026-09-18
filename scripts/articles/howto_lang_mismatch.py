@@ -50,9 +50,16 @@ part of is weakened.</p>
 <p><strong>4. The body is not the page's own writing.</strong> This is the one nobody warns you
 about, and the one that produces the most confident wrong fix. A bookshelf listing Dutch titles,
 a directory of French restaurants, a marketplace page quoting a tutor's introduction in German —
-the page is English, written by you, and the foreign words on it belong to someone else. Every
+the page is English, written by you, and the foreign words on it belong to someone else. An
 automated check that reads the body will tell you the page is Dutch. It is not. Changing
 <code>lang</code> here makes a correct page wrong.</p>
+
+<p>Docket now catches one shape of this and says so: when most of a page's words sit inside
+link text, the page is a listing rather than a piece of writing, and the finding is withheld.
+That covers a catalogue, an index or a directory — the titles are links. <strong>It does not
+cover foreign prose that is not links</strong>, such as a quoted introduction or a pasted
+review in running text, so the fault above is still one you have to recognise yourself. The
+guard was added because this check was wrong about a real library catalogue.</p>
 
 <h2>Which one you have, in one minute</h2>
 

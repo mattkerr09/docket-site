@@ -1393,6 +1393,12 @@ following the advice would have redirected a site's blog, press page and FAQs in
 and the two-minute check that tells them apart.
 <a href="/how-to/identical-content-three-causes/">Check before you redirect &rarr;</a></p>
 
+<h2>When a finished page is called unfinished</h2>
+<p>A charity's housing policy was flagged for discussing homes under construction, and a wiki for
+documenting the filler template it ships. Why both repairs replaced a question about meaning with
+a question about the shape of the text.
+<a href="/how-to/placeholder-text-findings/">Read the quoted sentence &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
