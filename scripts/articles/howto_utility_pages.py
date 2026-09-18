@@ -96,9 +96,8 @@ are telling search engines to list them, and one directive stops it.</p>
     return render(
         cat="how-to", slug="stop-indexing-site-search-and-cart-pages",
         title="Site search and cart pages in Google: take them out",
-        desc=("Internal search results, carts and order confirmations get indexed because "
-              "nothing about them looks broken. What it costs and the one directive that "
-              "fixes it."),
+        desc=("Search results, carts and confirmations get indexed because nothing looks "
+              "broken. What an audit of your site finds, and why robots.txt cannot fix it."),
         h1="Site search and cart pages that ended up in Google",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / utility pages',
         body=body,

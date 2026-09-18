@@ -86,9 +86,8 @@ that is saying something untrue about it.</p>
     return render(
         cat="how-to", slug="fix-paginated-pages-that-canonicalise-to-page-1",
         title="Pagination SEO: the canonical mistake that hides pages",
-        desc=("Pages 2 and beyond declaring page 1 as canonical tells Google they are "
-              "duplicates, and everything only linked from them goes too. How to spot and "
-              "fix it."),
+        desc=("Paginated pages canonicalising to page 1 tells Google they are duplicates. "
+              "What it costs a site, and how to audit yours in one command."),
         h1="Pagination: the canonical mistake that hides pages",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / pagination',
         body=body,

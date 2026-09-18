@@ -99,9 +99,8 @@ one that is not.</p>
     return render(
         cat="how-to", slug="fix-your-money-pages-first",
         title="Fix the pages that make you money first",
-        desc=("Audit tools rank by how broken a thing is, not by which page it is on. How to "
-              "identify your money pages and let page value break ties without overriding "
-              "severity."),
+        desc=("An audit ranks by how broken a thing is, not which page it is on. How to "
+              "weight the pages on your site that earn, and let page value break ties."),
         h1="Fix the pages that make you money first",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / money pages',
         body=body,

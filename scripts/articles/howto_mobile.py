@@ -91,8 +91,8 @@ persevere.</p>
     return render(
         cat="how-to", slug="check-mobile-seo-from-a-crawl",
         title="Mobile SEO: what a crawl can and cannot check",
-        desc=("Google indexes the mobile page, not the desktop one. Which mobile faults a "
-              "crawler can prove, which need a real phone, and why one score hides it."),
+        desc=("Google indexes the mobile page. Which mobile faults an audit can prove from "
+              "your site's HTML, which need a real phone, and why one score hides it."),
         h1="Mobile SEO: what a crawl can and cannot check",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / mobile',
         body=body,

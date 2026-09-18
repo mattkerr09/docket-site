@@ -97,8 +97,8 @@ how the old one will be audited a year later.</p>
     return render(
         cat="how-to", slug="fix-meta-refresh-redirects",
         title="Meta refresh: the redirect your tools cannot see",
-        desc=("A meta refresh sends the visitor onward but answers 200, so link checkers read "
-              "it as content. What that costs, and when it is your only option."),
+        desc=("A meta refresh answers 200, so a link audit reads it as content. What it costs "
+              "your site, and when it is the only option your host gives you."),
         h1="Meta refresh: the redirect your tools cannot see",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / meta refresh',
         body=body,

@@ -10,9 +10,9 @@
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Meta refresh: the redirect your tools cannot see</title>
-<meta name="description" content="A meta refresh sends the visitor onward but answers 200, so link checkers read it as content. What that costs, and when it is your only option.">
+<meta name="description" content="A meta refresh answers 200, so a link audit reads it as content. What it costs your site, and when it is the only option your host gives you.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="d6dc6c48a317">
+<meta name="build-id" content="4876ebdbfb5b">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-meta-refresh-redirects/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -20,7 +20,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Meta refresh: the redirect your tools cannot see">
-<meta property="og:description" content="A meta refresh sends the visitor onward but answers 200, so link checkers read it as content. What that costs, and when it is your only option.">
+<meta property="og:description" content="A meta refresh answers 200, so a link audit reads it as content. What it costs your site, and when it is the only option your host gives you.">
 <meta property="og:url" content="https://docketseo.app/how-to/fix-meta-refresh-redirects/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
@@ -28,7 +28,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Meta refresh: the redirect your tools cannot see">
-<meta name="twitter:description" content="A meta refresh sends the visitor onward but answers 200, so link checkers read it as content. What that costs, and when it is your only option.">
+<meta name="twitter:description" content="A meta refresh answers 200, so a link audit reads it as content. What it costs your site, and when it is the only option your host gives you.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -681,7 +681,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Meta refresh: the redirect your tools cannot see","description":"A meta refresh sends the visitor onward but answers 200, so link checkers read it as content. What that costs, and when it is your only option.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-meta-refresh-redirects/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Meta refresh: the redirect your tools cannot see","description":"A meta refresh answers 200, so a link audit reads it as content. What it costs your site, and when it is the only option your host gives you.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-meta-refresh-redirects/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a meta refresh bad for SEO?","acceptedAnswer":{"@type":"Answer","text":"Search engines support it and follow it, so it is not a broken page. A server-side redirect is preferred because it is faster and unambiguous. The bigger cost is that the page answers 200, so link checkers and redirect reports read it as content and your own tooling stops describing the site accurately."}},{"@type":"Question","name":"Why does my link checker not flag meta refresh redirects?","acceptedAnswer":{"@type":"Answer","text":"Because at the HTTP level there is nothing to flag. The page returns 200 with a normal body; the hop lives in the markup, not the status line."}},{"@type":"Question","name":"What if my host cannot issue a 301?","acceptedAnswer":{"@type":"Answer","text":"Then a refresh stub is a reasonable second best, and plenty of static hosting offers nothing else. Set the delay to zero and add a canonical pointing at the new URL. It is worth knowing that is what you are relying on."}},{"@type":"Question","name":"Does the delay value matter?","acceptedAnswer":{"@type":"Answer","text":"Yes. Zero makes the hop instant. Anything above it leaves the visitor on a page they did not want, and search engines treat a delayed refresh as a weaker signal than an immediate one."}},{"@type":"Question","name":"Is a JavaScript redirect better?","acceptedAnswer":{"@type":"Answer","text":"No. location.replace has the same shape and the same invisibility to status-code tooling, and it additionally requires something to run the script. If you want a redirect a crawler can rely on, that is further away, not closer."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>

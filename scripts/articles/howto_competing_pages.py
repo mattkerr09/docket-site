@@ -100,8 +100,8 @@ page. Redirect instead: it is the same outcome for the reader and a better one f
     return render(
         cat="how-to", slug="fix-pages-competing-for-one-search",
         title="Pages competing for the same search: find and fix them",
-        desc=("Two of your pages aiming at one query split your links and relevance, so "
-              "neither ranks as well as one would. How to spot it and which page to keep."),
+        desc=("Two pages on one site aiming at the same search split your own links and "
+              "relevance. Why a duplicate-content audit misses them, and which to keep."),
         h1="Pages competing for the same search",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / competing pages',
         body=body,
