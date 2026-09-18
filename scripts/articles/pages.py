@@ -1483,6 +1483,12 @@ cannot tell them apart will shout at one and stay quiet about the other. Plus th
 that was false about the reader's own file, and why it was the sentence that set the severity.
 <a href="/how-to/when-a-policy-is-reported-as-a-defect/">Named, or caught &rarr;</a></p>
 
+<h2>When a check cannot see the markup you wrote</h2>
+<p>Schema types inherit, so a specific business type is an Organization — and a check comparing
+type names misses every subtype. The finding that fires hardest on whoever marked their business
+up most precisely, and how to tell two checks disagreeing from two checks overlapping.
+<a href="/how-to/when-a-check-cannot-see-your-markup/">Look at the type first &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,

@@ -153,7 +153,7 @@ Docket does not. That is a genuine difference in kind, not a feature gap we inte
 <ol>
 <li>Open your homepage source and search for <code>sameAs</code>. Absent is the common case.</li>
 <li>List every official profile you actually control.</li>
-<li>Put them in the array, on the homepage, inside your Organization node.</li>
+<li>Put them in the array, on the homepage, inside your Organization node — or inside whichever more specific business type you declare, since a subtype <em>is</em> an Organization.</li>
 </ol>
 
 <p>It takes about ten minutes and it is the highest ratio of entity signal to effort available
