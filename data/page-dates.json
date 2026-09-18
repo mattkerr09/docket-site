@@ -1,5 +1,5 @@
 {
-  "compiled": "2026-09-17",
+  "compiled": "2026-09-18",
   "dates": {
     ".": "2026-08-06",
     "about": "2026-08-07",
@@ -34,6 +34,7 @@
     "how-to/fix-missing-security-headers": "2026-08-14",
     "how-to/fix-navigation-that-needs-javascript": "2026-09-15",
     "how-to/fix-pages-competing-for-one-search": "2026-09-17",
+    "how-to/fix-paginated-pages-that-canonicalise-to-page-1": "2026-09-18",
     "how-to/fix-phone-links-that-will-not-dial": "2026-09-15",
     "how-to/fix-redirect-problems": "2026-09-15",
     "how-to/fix-soft-404s": "2026-08-10",
