@@ -1333,6 +1333,12 @@ them is usually wrong.
 mistake that can cost a site its entire long tail while every page still returns 200.
 <a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
 
+<h2>The redirect your tools cannot see</h2>
+<p>A meta refresh sends the visitor onward but answers 200, so link checkers call the link fine
+and redirect reports never mention the hop. What that costs, why a delay above zero is worse, and
+the case where it is the only option your hosting gives you.
+<a href="/how-to/fix-meta-refresh-redirects/">Find yours in one command &rarr;</a></p>
+
 <h2>Search and cart pages in the index</h2>
 <p>Internal search results, carts and order confirmations get indexed because nothing about them
 looks broken — they are working exactly as built. What that costs, the one directive that fixes

@@ -60,6 +60,7 @@ import howto_open_graph  # noqa: E402
 import howto_competing_pages  # noqa: E402
 import howto_mobile  # noqa: E402
 import howto_pagination  # noqa: E402
+import howto_meta_refresh  # noqa: E402
 import howto_utility_pages  # noqa: E402
 import howto_money_pages  # noqa: E402
 import howto_soft404  # noqa: E402
@@ -878,6 +879,7 @@ def main() -> int:
               howto_mobile.mobile(),
               howto_pagination.pagination(),
               howto_utility_pages.utility_pages(),
+              howto_meta_refresh.meta_refresh(),
               howto_soft404.soft_404s(),
               howto_open_graph.howto_open_graph(),
               howto_deploy_gate.deploy_gate(),
