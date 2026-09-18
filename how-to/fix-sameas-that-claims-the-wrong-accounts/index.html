@@ -9,26 +9,26 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Fix compression and caching headers</title>
-<meta name="description" content="What Docket's perf.compression check reads, the Brotli quirk that makes it report a site that already compresses, and which half is worth your time.">
+<title>Not every social link on your site is yours</title>
+<meta name="description" content="A wrong sameAs entry is worse than a missing one. What an audit of your site can tell you about social profiles, and what it must not claim.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="415638f5db16">
-<link rel="canonical" href="https://docketseo.app/how-to/fix-compression-and-caching/">
+<link rel="canonical" href="https://docketseo.app/how-to/fix-sameas-that-claims-the-wrong-accounts/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to fix compression and caching headers">
-<meta property="og:description" content="What Docket's perf.compression check reads, the Brotli quirk that makes it report a site that already compresses, and which half is worth your time.">
-<meta property="og:url" content="https://docketseo.app/how-to/fix-compression-and-caching/">
+<meta property="og:title" content="Not every social link on your site is yours">
+<meta property="og:description" content="A wrong sameAs entry is worse than a missing one. What an audit of your site can tell you about social profiles, and what it must not claim.">
+<meta property="og:url" content="https://docketseo.app/how-to/fix-sameas-that-claims-the-wrong-accounts/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How to fix compression and caching headers">
-<meta name="twitter:description" content="What Docket's perf.compression check reads, the Brotli quirk that makes it report a site that already compresses, and which half is worth your time.">
+<meta name="twitter:title" content="Not every social link on your site is yours">
+<meta name="twitter:description" content="A wrong sameAs entry is worse than a missing one. What an audit of your site can tell you about social profiles, and what it must not claim.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -681,8 +681,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix compression and caching headers","description":"What Docket's perf.compression check reads, the Brotli quirk that makes it report a site that already compresses, and which half is worth your time.","datePublished":"2026-09-15","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-compression-and-caching/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Docket check for Brotli?","acceptedAnswer":{"@type":"Answer","text":"No, and this is the check's most important limit. Docket's crawler sends Accept-Encoding: gzip, deflate and never advertises br, because there is no Brotli decoder in the Python standard library. A server that only offers Brotli and obeys RFC 9110 will send our crawler an uncompressed document, so perf.no_compression can fire on a site that compresses perfectly for real browsers. Confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' before changing anything."}},{"@type":"Question","name":"What counts as compressed?","acceptedAnswer":{"@type":"Answer","text":"The presence of a Content-Encoding header on the response, whatever its value. The check never reads the algorithm, never compares sizes and makes no claim about how much was saved. It is a presence test, not a measurement."}},{"@type":"Question","name":"Why does the compression finding only cover some pages?","acceptedAnswer":{"@type":"Answer","text":"There is a size floor, and it is measured on the decompressed HTML rather than on what crossed the wire. Pages whose markup is smaller than the floor are never reported however they are served, because the saving on a small document does not justify a finding."}},{"@type":"Question","name":"What counts as a caching header?","acceptedAnswer":{"@type":"Answer","text":"Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare when all three are absent, and the finding is only raised when more than half the crawled pages are bare — so it is a statement about the site, not a count of pages. The value is never read, so Cache-Control: no-store clears the check as thoroughly as a good policy would."}},{"@type":"Question","name":"Will fixing this improve my Core Web Vitals score?","acceptedAnswer":{"@type":"Answer","text":"It may improve the experience, but Docket cannot tell you, and neither can any tool running on one machine. LCP, INP and CLS come from real visitors on real connections. Docket measures the causes; the field values belong in Search Console."}},{"@type":"Question","name":"Does compression affect rankings directly?","acceptedAnswer":{"@type":"Answer","text":"Not as a header. Nothing in the check claims a ranking effect and this page will not invent one. Smaller responses arrive faster, which is worth having on its own terms."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Not every social link on your site is yours","description":"A wrong sameAs entry is worse than a missing one. What an audit of your site can tell you about social profiles, and what it must not claim.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-sameas-that-claims-the-wrong-accounts/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is sameAs for?","acceptedAnswer":{"@type":"Answer","text":"It tells search engines that a website and a set of social profiles are one organisation. It is an identity claim rather than a list of links you happen to have on the page."}},{"@type":"Question","name":"Is a missing sameAs worse than a wrong one?","acceptedAnswer":{"@type":"Answer","text":"No — the other way round. A missing entry costs a little entity evidence. A wrong one asserts in machine-readable form that your company and somebody else, possibly a private individual, are the same thing."}},{"@type":"Question","name":"Can I use a link to a post or a video?","acceptedAnswer":{"@type":"Answer","text":"No. A comment thread, a short video or a status post lives on a social host and identifies no account. It is something somebody published, not somebody's identity. Only profile URLs belong in sameAs."}},{"@type":"Question","name":"How do I tell my own accounts from other people's?","acceptedAnswer":{"@type":"Answer","text":"Count how often each appears. Your accounts sit in the template, so they turn up across the crawl; an author's account appears on that author's articles and a cited source appears once."}},{"@type":"Question","name":"Why not just ignore links in the header and footer?","acceptedAnswer":{"@type":"Answer","text":"Because position is unreliable. Author cards are sometimes nested in a footer element inside each article, so byline links sit inside a boilerplate tag and survive that filter. Repetition separates them; position does not."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -714,200 +714,67 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / compression and caching</div><h1>How to fix compression and caching headers</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / sameAs</div><h1>Not every social link on your site is yours</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
-<p class="lede">Your audit came back with a heading reading "Compression and caching headers"
-and a list of URLs under it, and the two halves of that heading sound like the same afternoon of
-server work. They are not. One is usually a single line of configuration and a real saving; the
-other is a smaller matter than its name suggests — and on some hosts the first is reported
-against a site already doing it correctly.</p>
+<p class="lede"><code>sameAs</code> is how you tell a search engine that this website, that
+LinkedIn page and that Instagram account are one organisation. It is an identity claim, not a
+list of links you happen to have — and the difference matters, because the wrong entry is worse
+than a missing one.</p>
 
-<p>Docket's <code>perf.compression</code> check emits two findings, under
-two ids, at two very different severities:</p>
+<h2>The advice that would have caused harm</h2>
 
-<pre><code>high   perf.no_compression     N pages are served without compression
-low    perf.no_cache_headers   Pages are served with no caching headers</code></pre>
+<p>A tool crawls a newsroom, collects every social link it finds, and reports that those
+profiles are missing from the organisation's <code>sameAs</code>. Reasonable-sounding, and
+completely wrong: on that site the social links were reporters' own accounts and links to cited
+sources. The suggested markup — ready to paste — would have declared a named journalist's
+personal profile, and somebody else's video, as the publisher's own identity.</p>
 
-<p>The gap between <code>high</code> and <code>low</code> is most of the answer. The check also
-grades its own workload, and grades neither as an afternoon: the compression fix is filed as
-<code>trivial</code>, which the engine defines as "edit one tag / one line of config, minutes",
-and the caching fix as <code>small</code>, "a template change, under an hour".</p>
+<p>That is not a tidy-up gone slightly astray. A missing <code>sameAs</code> costs you a little
+entity evidence. A wrong one asserts that a company and a private individual are the same thing,
+in machine-readable form, on the company's own site.</p>
 
-<h2>What this cannot tell you, first</h2>
+<h2>The two rules that keep the claim honest</h2>
 
-<p><strong>Docket reads the headers on the responses it was given. It does not measure how fast
-anything felt.</strong> There is no browser, no paint, no device and no network but ours. A
-finding here is a fact about the response that arrived at our crawler, and most of this page is
-about the distance between that and your site.</p>
+<p><strong>A content permalink is not a profile.</strong> A comment thread, a short video, a
+status post — these live on a social host and identify no account. They are things somebody
+published, not somebody's identity. Only a profile URL can be a <code>sameAs</code>.</p>
 
-<p><strong>It cannot measure Core Web Vitals, and nothing that runs on one machine can.</strong>
-Largest Contentful Paint, Interaction to Next Paint and Cumulative Layout Shift come from real
-people on real connections. The check module says so in its own opening comment — that it
-measures the network and the document, not a rendered browser, and that "a number invented from
-static analysis would be worse than no number". Confirm the field values in Search Console.</p>
+<p><strong>A profile you own appears across the site, because it sits in the template.</strong>
+Your accounts are in the footer, so they turn up on every page crawled. A reporter's account
+appears on that reporter's articles. A cited source appears once. The ones that belong to the
+organisation are the ones that repeat.</p>
 
-<p><strong>It does not measure how much compression saved you</strong>, and
-<strong>it only looked at HTML.</strong> Nothing is compressed twice and nothing is compared;
-the check asks whether a <code>Content-Encoding</code> header was present and stops. Your
-stylesheets, scripts and JSON endpoints were never fetched for it, so it has no opinion about
-those — even though its own fix text asks you to turn compression on for them.</p>
+<h2>Why position does not work and repetition does</h2>
 
-<h2>The false positive you should check before you change anything</h2>
+<p>The obvious filter is structural: ignore links inside the header and footer, keep the rest —
+or the reverse. It fails on real sites. That newsroom nests its author cards inside a
+<code>&lt;footer&gt;</code> element that sits within each <code>&lt;article&gt;</code>, so the
+byline links are inside a boilerplate tag and survive any filter keyed on position.</p>
 
-<p>This one matters, and it is ours rather than yours. Docket's crawler sends <code>Accept-Encoding: gzip, deflate</code>. It does not advertise
-Brotli, because there is no Brotli decoder in the Python standard library and the engine is kept
-dependency-free. The fetcher says so in its own comment: Docket never advertises
-<code>br</code>, so Brotli cannot arrive from a specification-abiding server.</p>
+<p><strong>Repetition separates them and position does not.</strong> It is worth knowing as a
+general habit: when you need to tell a site's own furniture from its content, count how often
+something appears rather than reasoning about where it sits. Markup is a weaker signal of intent
+than frequency, because the markup is whatever the theme author chose and the frequency is what
+the site actually does.</p>
 
-<p>Now read that against the specification. Under
-<a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-12.5.3">RFC 9110 section 12.5.3</a>, the
-<code>Accept-Encoding</code> request header is how a client states which content codings it
-will accept, and a server that respects it will not send one that was not offered. So an origin
-or CDN configured to serve Brotli and nothing else, behaving correctly, answers our crawler with
-an uncompressed document and no <code>Content-Encoding</code> header. Docket then reports
-<code>perf.no_compression</code> at <code>high</code> against a site whose real visitors have
-had compressed HTML all along.</p>
+<h2>Checking yours</h2>
 
-<p>Check before you touch a configuration file, with the request a browser actually makes:</p>
+<p>Look at the <code>sameAs</code> block in your organisation markup and ask of each entry:
+is this a profile, and is it ours? Then look at what you are <em>missing</em> — the accounts in
+your own footer that never made it into the markup are the ones worth adding, and they are
+usually the whole answer.</p>
 
-<pre><code>curl -sI -H 'Accept-Encoding: gzip, deflate, br' https://example.com/ | grep -i content-encoding</code></pre>
+<h2>What an audit cannot settle</h2>
 
-<p>If that prints <code>content-encoding: br</code> and the same request without
-<code>br</code> prints nothing, the finding is about our request rather than your server and
-there is nothing to fix. The general form holds in both directions: a managed host or CDN can
-compress for real visitors while answering an unfamiliar client differently, and the response we
-got is the only thing this check ever saw.</p>
+<p>Whether an account belongs to you. A crawler sees a URL on a page; it does not know your org
+chart, your agency relationships, or which of two similarly-named accounts is the real one. A
+tool can tell you which links repeat across the site, and that is a strong hint — it is not
+ownership, and anything that presents it as ownership is inviting you to publish a claim about
+somebody else.</p>
 
-<h2>What the check actually computes</h2>
-
-<p><strong>Compression.</strong> For every page that returned a success status and parsed as
-HTML, Docket asks two questions: is the HTML document bigger than the floor, and is a
-<code>Content-Encoding</code> header present. That is the whole test:</p>
-
-<pre><code>uncompressed = [
-    p for p in ctx.ok_pages
-    if p.html_bytes &gt; 20_000
-    and not p.headers.get("content-encoding")
-]</code></pre>
-
-<p>Two things follow that people get wrong. First, <em>any</em> value satisfies it. The check
-never reads what the header says, so it cannot distinguish gzip from Brotli from
-<code>identity</code>. Second, the size floor is measured on the <em>decompressed</em> document:
-<code>html_bytes</code> is documented in the model as the raw HTML byte length before any
-transfer encoding, and is assigned after the fetcher has unpacked the body. It is the size of
-your markup, not of what crossed the wire. A page under the floor is never reported however it
-is served, because the saving on a small document does not justify a finding.</p>
-
-<p><strong>Caching.</strong> Here the shape is different, and this is the part most likely to
-surprise you. A page counts as having no caching headers only when <em>all</em> of
-<code>Cache-Control</code>, <code>ETag</code> and <code>Last-Modified</code> are absent. Any one
-of the three is enough to clear it. And the finding is then gated on the site rather than the
-page: it is only emitted when more than half of the crawled OK pages are bare. If a minority of
-your pages have no caching headers, this check says nothing at all — and its title, "Pages are
-served with no caching headers", is deliberately a statement about the site rather than a
-count.</p>
-
-<p>As with compression, presence is the test and the value is never read.
-<code>Cache-Control: no-store</code> clears this check completely, because the check is asking
-whether you said anything about caching, not whether it was wise.</p>
-
-<h2>Turning compression on</h2>
-
-<p>On nginx, the <a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html">gzip module documentation</a> is short and worth reading
-in full. The directive defaults to off, and HTML is a special case: the documentation says
-plainly that responses with the <code>text/html</code> type are always compressed, so
-<code>text/html</code> does not belong in the type list.</p>
-
-<pre><code>gzip on;
-gzip_types text/css application/javascript application/json image/svg+xml;
-gzip_min_length 256;</code></pre>
-
-<p>On Apache, <a href="https://httpd.apache.org/docs/2.4/mod/mod_deflate.html">mod_deflate</a> does the same job from the vhost or
-<code>.htaccess</code>:</p>
-
-<pre><code>AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml</code></pre>
-
-<p>If you are on a managed platform and control neither file — the common case, and the reason
-this page exists — the setting is in your host's dashboard rather than your repository. On a CDN
-it is usually one toggle applied at the edge, and the CDN compresses on the way out whether or
-not your origin did. That is why the fix is graded <code>trivial</code>: it is not a deploy.</p>
-
-<h2>Caching headers, and what to actually set</h2>
-
-<p>The reason this one is <code>low</code> rather than <code>high</code> is that a missing
-caching header costs you nothing on a first visit, which is most search traffic. It costs you on
-repeat visits and on re-crawls.</p>
-
-<p><a href="https://www.rfc-editor.org/rfc/rfc9111.html#section-3">RFC 9111 section 3</a> sets out when a cache may store a
-response at all, and <a href="https://www.rfc-editor.org/rfc/rfc9111.html#section-5.2">RFC 9111 section 5.2</a> defines
-<code>Cache-Control</code> as the field carrying directives to caches along the
-request/response chain. The other two headers the check looks for are validators rather than
-policy: <a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-8.8.3">RFC 9110 section 8.8.3</a> defines
-<code>ETag</code>, <a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-8.8.2">RFC 9110 section 8.8.2</a>
-defines <code>Last-Modified</code>, and either lets a client ask "has this changed" and be told
-no — the conditional-request mechanism in
-<a href="https://www.rfc-editor.org/rfc/rfc9111.html#section-4.3">RFC 9111 section 4.3</a>. That is the part crawlers use,
-and why a validator alone satisfies the check.</p>
-
-<p>For HTML that changes when you publish, the check's own suggested value is conservative and
-sensible:</p>
-
-<pre><code>Cache-Control: public, max-age=0, must-revalidate</code></pre>
-
-<p>That does not mean "do not cache". It means the cache may keep a copy and must check with
-you before reusing it — which, with an <code>ETag</code> alongside it, turns most repeat fetches
-into a short response with no body. For fingerprinted assets, a long <code>max-age</code> with
-<code>immutable</code> is the usual pairing. Those are not what this check looked at, but they
-are where the saving is.</p>
-
-<h2>What this check is not</h2>
-
-<p>Header findings attract everything else that is slow, so the boundaries are worth stating.
-Docket's speed lane runs this check alongside separate ones with their own ids, their own
-thresholds and their own findings:</p>
-
-<ul>
-<li><code>perf.page_weight</code> — the size of the HTML document itself, decompressed. Same
-<code>html_bytes</code> field, different question: compression is about how it was sent, weight
-is about how much of it there is.</li>
-<li><code>perf.render_blocking</code> — stylesheets and scripts that block the first paint. Counted
-from the markup, and reported per page.</li>
-<li><code>perf.ttfb</code> — time to first byte, taken from the fetch and reported against
-the median across the site.</li>
-<li><code>perf.modern_images</code> — images still served as JPEG or PNG where a modern format
-would be smaller.</li>
-</ul>
-
-<p>None of those is fixed by a compression header and none of them fixes one. The full list of
-what the engine looks at, lane by lane, is on
-<a href="/learn/what-docket-checks/">what Docket checks</a>. The lane's other markup-level
-finding is written up at <a href="/how-to/fix-layout-shift/">how to fix layout shift</a>, which
-carries the same limit from the other side: Docket infers layout-shift risk from markup and
-cannot measure the metric.</p>
-
-<p>The closest relative outside this lane is response headers of a different kind.
-<a href="/how-to/fix-missing-security-headers/">Missing security headers</a> are set in the same
-file, at the same edge, by the same person — and this site fails two of those checks itself,
-because its host cannot set response headers at all. If you are opening that file anyway, do
-both.</p>
-
-<h2>So which is worth an afternoon</h2>
-
-<p>Neither, on the check's own grading, and that is the useful answer. Confirm the compression
-finding with the <code>curl</code> above, because a Brotli-only host produces it falsely. If it
-holds, turn compression on: one line, and the largest single win this check can point at. Then
-set a <code>Cache-Control</code> value and make sure a validator is present — worth doing, not
-urgent. Spend the rest of the afternoon on
-<a href="/how-to/">something else on the list</a>.</p>
-
-<p>Every external reading on this page was taken on 15 September 2026:
-<a href="https://www.rfc-editor.org/rfc/rfc9110.html">RFC 9110, HTTP Semantics</a> and
-<a href="https://www.rfc-editor.org/rfc/rfc9111.html">RFC 9111, HTTP Caching</a> at rfc-editor.org, the
-<a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html">gzip module</a> at nginx.org, and
-<a href="https://httpd.apache.org/docs/2.4/mod/mod_deflate.html">mod_deflate</a> at httpd.apache.org.</p>
-
-<p><a class="btn" href="/download/">Download Docket</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Docket check for Brotli?</h3><p>No, and this is the check's most important limit. Docket's crawler sends Accept-Encoding: gzip, deflate and never advertises br, because there is no Brotli decoder in the Python standard library. A server that only offers Brotli and obeys RFC 9110 will send our crawler an uncompressed document, so perf.no_compression can fire on a site that compresses perfectly for real browsers. Confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' before changing anything.</p></div><div class="faq-item"><h3>What counts as compressed?</h3><p>The presence of a Content-Encoding header on the response, whatever its value. The check never reads the algorithm, never compares sizes and makes no claim about how much was saved. It is a presence test, not a measurement.</p></div><div class="faq-item"><h3>Why does the compression finding only cover some pages?</h3><p>There is a size floor, and it is measured on the decompressed HTML rather than on what crossed the wire. Pages whose markup is smaller than the floor are never reported however they are served, because the saving on a small document does not justify a finding.</p></div><div class="faq-item"><h3>What counts as a caching header?</h3><p>Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare when all three are absent, and the finding is only raised when more than half the crawled pages are bare — so it is a statement about the site, not a count of pages. The value is never read, so Cache-Control: no-store clears the check as thoroughly as a good policy would.</p></div><div class="faq-item"><h3>Will fixing this improve my Core Web Vitals score?</h3><p>It may improve the experience, but Docket cannot tell you, and neither can any tool running on one machine. LCP, INP and CLS come from real visitors on real connections. Docket measures the causes; the field values belong in Search Console.</p></div><div class="faq-item"><h3>Does compression affect rankings directly?</h3><p>Not as a header. Nothing in the check claims a ranking effect and this page will not invent one. Smaller responses arrive faster, which is worth having on its own terms.</p></div></div></section>
+<p>This check was wrong in exactly that direction before the two rules above were added. A page
+citing a check is worth more for saying so than for implying the check has always been right.</p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is sameAs for?</h3><p>It tells search engines that a website and a set of social profiles are one organisation. It is an identity claim rather than a list of links you happen to have on the page.</p></div><div class="faq-item"><h3>Is a missing sameAs worse than a wrong one?</h3><p>No — the other way round. A missing entry costs a little entity evidence. A wrong one asserts in machine-readable form that your company and somebody else, possibly a private individual, are the same thing.</p></div><div class="faq-item"><h3>Can I use a link to a post or a video?</h3><p>No. A comment thread, a short video or a status post lives on a social host and identifies no account. It is something somebody published, not somebody's identity. Only profile URLs belong in sameAs.</p></div><div class="faq-item"><h3>How do I tell my own accounts from other people's?</h3><p>Count how often each appears. Your accounts sit in the template, so they turn up across the crawl; an author's account appears on that author's articles and a cited source appears once.</p></div><div class="faq-item"><h3>Why not just ignore links in the header and footer?</h3><p>Because position is unreliable. Author cards are sometimes nested in a footer element inside each article, so byline links sit inside a boilerplate tag and survive that filter. Repetition separates them; position does not.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
