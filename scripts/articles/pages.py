@@ -1381,6 +1381,12 @@ following it would have removed the only list pointing at a server fault. Why a 
 needs a higher standard of proof.
 <a href="/how-to/sitemap-urls-that-are-not-stale/">Before you regenerate &rarr;</a></p>
 
+<h2>When the finding concedes your case and fires anyway</h2>
+<p>Nearly every page an insurer was warned about was a confirmation page doing exactly the right
+thing — and the warning's own advice said so. When an exception belongs in the rule, and when a
+stated caveat is the honest answer instead.
+<a href="/how-to/findings-that-flag-correct-pages/">Read the fix text first &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
