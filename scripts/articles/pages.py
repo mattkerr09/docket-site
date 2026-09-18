@@ -1459,6 +1459,12 @@ so the most semantic markup got the false positive. Then reading everything turn
 published identically, into dozens of variations.
 <a href="/how-to/where-an-audit-looks-for-your-address/">Both failures, one cause &rarr;</a></p>
 
+<h2>When a pixel is on part of the site and on no pages</h2>
+<p>The inventory of your tags and the count of pages carrying them were read from different
+documents, so anything loaded by JavaScript was reported as a deployment gap — and a script-weight
+warning could never fire for the sites it was written for.
+<a href="/how-to/pixels-reported-on-zero-pages/">What the count measures &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,

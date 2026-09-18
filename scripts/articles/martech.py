@@ -59,8 +59,9 @@ is absent, and none of them announce it — the tag is still installed, on the p
 installed on.</p>
 
 <p>So the check that matters is coverage: of the pages Docket read, how many carried the
-tag. One page missing a pixel in a funnel of four is a quarter of your conversions
-attributed to nobody.</p>
+tag. One page missing a pixel in a funnel of four breaks the path rather than a quarter of
+it — a conversion that fires on a page the platform never saw the visitor reach is
+attributed to nobody, and how much that costs depends on which page it is.</p>
 
 <h2>What Docket looks for</h2>
 
