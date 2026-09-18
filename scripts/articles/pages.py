@@ -1333,6 +1333,12 @@ them is usually wrong.
 mistake that can cost a site its entire long tail while every page still returns 200.
 <a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
 
+<h2>Search and cart pages in the index</h2>
+<p>Internal search results, carts and order confirmations get indexed because nothing about them
+looks broken — they are working exactly as built. What that costs, the one directive that fixes
+it, and why robots.txt is the wrong tool.
+<a href="/how-to/stop-indexing-site-search-and-cart-pages/">Take them out &rarr;</a></p>
+
 <h2>Pagination that hides half your site</h2>
 <p>When pages two and beyond declare page one as their canonical, a crawler is told they are
 duplicates — and everything only reachable from them goes too. The mistake looks like good
