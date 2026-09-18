@@ -70,6 +70,7 @@ import howto_identical_bodies  # noqa: E402
 import howto_placeholder_text  # noqa: E402
 import howto_json_ld_errors  # noqa: E402
 import howto_analytics_findings  # noqa: E402
+import howto_double_counting  # noqa: E402
 import howto_hreflang_targets  # noqa: E402
 import howto_which_host  # noqa: E402
 import howto_schema_id  # noqa: E402
@@ -920,6 +921,7 @@ def main() -> int:
               howto_which_host.which_host(),
               howto_hreflang_targets.hreflang_targets(),
               howto_analytics_findings.analytics_findings(),
+              howto_double_counting.double_counting(),
               howto_soft404.soft_404s(),
               howto_open_graph.howto_open_graph(),
               howto_deploy_gate.deploy_gate(),

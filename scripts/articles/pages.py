@@ -1429,6 +1429,12 @@ was measuring the whole time and was told it was not, and why a tag container tu
 into "this could not tell".
 <a href="/how-to/analytics-findings-name-the-tag/">Check what it named &rarr;</a></p>
 
+<h2>When the numbers add up to more than your site</h2>
+<p>Two findings, one check, the same fix, overlapping pages — and a total larger than the crawl.
+What a tool split that should not have been split, and why an explanation attached to the wrong
+condition is invisible to the people who need it.
+<a href="/how-to/findings-that-double-count/">Add the counts first &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
