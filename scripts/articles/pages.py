@@ -1447,6 +1447,12 @@ subtype" offered it plumber and dentist. And a pasteable block that carries your
 carry somebody else's address just as confidently.
 <a href="/how-to/schema-type-is-a-claim/">Check every value &rarr;</a></p>
 
+<h2>When a field is there and still missing</h2>
+<p>You search your own markup for the property a report called missing, and find it — holding an
+empty value, which a search engine reads as nothing at all. The other half: the phone number
+reported missing because the check read one of the two places it can live.
+<a href="/how-to/when-a-field-is-there-and-still-missing/">Tell the two apart &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,

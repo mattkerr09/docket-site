@@ -73,6 +73,7 @@ import howto_analytics_findings  # noqa: E402
 import howto_double_counting  # noqa: E402
 import howto_listed_schema  # noqa: E402
 import howto_schema_type  # noqa: E402
+import howto_missing_means_empty  # noqa: E402
 import howto_hreflang_targets  # noqa: E402
 import howto_which_host  # noqa: E402
 import howto_schema_id  # noqa: E402
@@ -926,6 +927,7 @@ def main() -> int:
               howto_double_counting.double_counting(),
               howto_listed_schema.listed_schema(),
               howto_schema_type.schema_type(),
+              howto_missing_means_empty.missing_means_empty(),
               howto_soft404.soft_404s(),
               howto_open_graph.howto_open_graph(),
               howto_deploy_gate.deploy_gate(),
