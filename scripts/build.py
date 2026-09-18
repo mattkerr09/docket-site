@@ -63,6 +63,7 @@ import howto_pagination  # noqa: E402
 import howto_meta_refresh  # noqa: E402
 import howto_positioning  # noqa: E402
 import howto_rate_limits  # noqa: E402
+import howto_cta_forms  # noqa: E402
 import howto_finding_counts  # noqa: E402
 import howto_sameas  # noqa: E402
 import howto_template_findings  # noqa: E402
@@ -894,6 +895,7 @@ def main() -> int:
               howto_sameas.sameas(),
               howto_rate_limits.rate_limits(),
               howto_finding_counts.finding_counts(),
+              howto_cta_forms.cta_forms(),
               howto_soft404.soft_404s(),
               howto_open_graph.howto_open_graph(),
               howto_deploy_gate.deploy_gate(),

@@ -1351,6 +1351,12 @@ thing moves work you do not need to do above work you do. Two cases where the ba
 its own headline, and the four questions that catch it.
 <a href="/how-to/check-the-count-on-a-finding/">Check the count &rarr;</a></p>
 
+<h2>When the form is the call to action</h2>
+<p>A page whose whole content is a quote form can be reported as having nothing to click,
+because the tool was looking for buttons. Why a form counts, why a search box must not, and the
+general fault behind half the findings phrased as an absence.
+<a href="/how-to/cta-findings-that-miss-the-form/">Why a form counts &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
