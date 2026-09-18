@@ -1,25 +1,25 @@
 {
   "site": "docketseo.app",
-  "pages": 123,
-  "edges": 2712,
+  "pages": 124,
+  "edges": 2735,
   "average_share_pct": 0.81,
-  "below_half": 103,
+  "below_half": 104,
   "nodes": [
     {
       "path": "/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
     {
       "path": "/about/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
     {
       "path": "/best/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
@@ -31,19 +31,19 @@
     },
     {
       "path": "/contact/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
     {
       "path": "/download/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
     {
       "path": "/for/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
@@ -79,7 +79,7 @@
     },
     {
       "path": "/how-to/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
@@ -295,9 +295,9 @@
     },
     {
       "path": "/how-to/fix-structured-data-errors/",
-      "inlinks": 3,
-      "share_pct": 0.11,
-      "index": 0.14
+      "inlinks": 4,
+      "share_pct": 0.15,
+      "index": 0.19
     },
     {
       "path": "/how-to/fix-structured-data-that-does-not-match-the-page/",
@@ -373,9 +373,15 @@
     },
     {
       "path": "/how-to/schema-id-references/",
-      "inlinks": 3,
-      "share_pct": 0.11,
-      "index": 0.14
+      "inlinks": 4,
+      "share_pct": 0.15,
+      "index": 0.19
+    },
+    {
+      "path": "/how-to/schema-that-describes-someone-else/",
+      "inlinks": 1,
+      "share_pct": 0.04,
+      "index": 0.05
     },
     {
       "path": "/how-to/sitemap-urls-that-are-not-stale/",
@@ -409,7 +415,7 @@
     },
     {
       "path": "/index/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
@@ -421,7 +427,7 @@
     },
     {
       "path": "/learn/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
@@ -439,7 +445,7 @@
     },
     {
       "path": "/learn/ai-search-visibility/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
@@ -583,7 +589,7 @@
     },
     {
       "path": "/learn/seo-audit/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
@@ -607,7 +613,7 @@
     },
     {
       "path": "/learn/what-docket-checks/",
-      "inlinks": 122,
+      "inlinks": 123,
       "share_pct": 4.5,
       "index": 5.56
     },
@@ -631,19 +637,19 @@
     },
     {
       "path": "/legal/privacy/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
     {
       "path": "/legal/refunds/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
     {
       "path": "/legal/terms/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
@@ -655,13 +661,13 @@
     },
     {
       "path": "/vs/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
     {
       "path": "/vs/ahrefs-site-audit-alternative/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
@@ -703,7 +709,7 @@
     },
     {
       "path": "/vs/screaming-frog-alternative/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
@@ -721,7 +727,7 @@
     },
     {
       "path": "/vs/semrush-site-audit-alternative/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
@@ -733,7 +739,7 @@
     },
     {
       "path": "/vs/sitebulb-alternative/",
-      "inlinks": 121,
+      "inlinks": 122,
       "share_pct": 4.46,
       "index": 5.51
     },
