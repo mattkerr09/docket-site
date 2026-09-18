@@ -1375,6 +1375,12 @@ that served the rest of the crawl, DNS and TLS are the one place nothing is wron
 that tell slow from down in a minute.
 <a href="/how-to/pages-an-audit-could-not-reach/">Before you touch DNS &rarr;</a></p>
 
+<h2>The fix that deletes the evidence</h2>
+<p>"Regenerate your sitemap" is right for a 404 and wrong for four other causes — and on one site
+following it would have removed the only list pointing at a server fault. Why a subtractive remedy
+needs a higher standard of proof.
+<a href="/how-to/sitemap-urls-that-are-not-stale/">Before you regenerate &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
