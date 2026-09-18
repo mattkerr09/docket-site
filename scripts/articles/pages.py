@@ -1333,6 +1333,12 @@ them is usually wrong.
 mistake that can cost a site its entire long tail while every page still returns 200.
 <a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
 
+<h2>Mobile, and what a crawl cannot see</h2>
+<p>Google indexes the mobile page, not the desktop one. Which mobile faults a crawler can
+genuinely prove — the viewport tag, weight, render-blocking, layout shift, numbers that will not
+dial — and which ones still need you to pick up a phone.
+<a href="/how-to/check-mobile-seo-from-a-crawl/">What a crawl can and cannot check &rarr;</a></p>
+
 <h2>The pages that make you money</h2>
 <p>Every ranking is built from how broken a thing is, never from which page it is on — so a
 missing title on your pricing page sorts level with the same fault on a tag archive. How to
