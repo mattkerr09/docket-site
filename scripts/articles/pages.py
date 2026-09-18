@@ -1369,6 +1369,12 @@ site's own sentence saying it has no testimonials, counted as proof that it does
 these two errors is much worse than the other.
 <a href="/how-to/findings-from-phrase-matching/">Read the evidence first &rarr;</a></p>
 
+<h2>The pages an audit could not reach</h2>
+<p>Four different causes come out as one line telling you to check DNS and TLS — and on a domain
+that served the rest of the crawl, DNS and TLS are the one place nothing is wrong. Four questions
+that tell slow from down in a minute.
+<a href="/how-to/pages-an-audit-could-not-reach/">Before you touch DNS &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
