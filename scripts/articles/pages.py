@@ -1357,6 +1357,12 @@ because the tool was looking for buttons. Why a form counts, why a search box mu
 general fault behind half the findings phrased as an absence.
 <a href="/how-to/cta-findings-that-miss-the-form/">Why a form counts &rarr;</a></p>
 
+<h2>What your markup says you are called</h2>
+<p>Nothing tells an audit your company's name, so it infers one — and four ordinary sites broke
+that inference, including a logo link whose correct accessibility label was read as a brand and
+then advised away.
+<a href="/how-to/what-your-site-says-you-are-called/">Where the guess comes from &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
