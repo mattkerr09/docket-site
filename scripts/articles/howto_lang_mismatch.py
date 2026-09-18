@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""hreflang and html lang mismatch — three different faults with one name.
+"""hreflang and html lang mismatch — four different faults with one name.
 
 Target query: "hreflang and html lang mismatch" (11 impressions, Search Console
 2026-08-10 to 2026-09-05). Distinct from /how-to/fix-hreflang-return-tags/,
@@ -25,11 +25,11 @@ from render import render  # noqa: E402
 
 def lang_attribute_mismatch() -> Path:
     body = """
-<p class="lede">"hreflang and html lang mismatch" is three different faults sharing one
+<p class="lede">"hreflang and html lang mismatch" is four different faults sharing one
 description, and they have three different fixes. Sorting out which one you have takes about a
 minute and saves you changing the wrong attribute.</p>
 
-<h2>The three mismatches</h2>
+<h2>The four mismatches</h2>
 
 <p><strong>1. The declaration contradicts the prose.</strong> The page says
 <code>lang="en"</code> and the text is Spanish. This is the one that does immediate damage: a
@@ -47,15 +47,25 @@ a common one — the country is <code>GB</code>, not <code>UK</code> — as are 
 language slot and vice versa. An invalid code is discarded, silently, and the cluster it was
 part of is weakened.</p>
 
+<p><strong>4. The body is not the page's own writing.</strong> This is the one nobody warns you
+about, and the one that produces the most confident wrong fix. A bookshelf listing Dutch titles,
+a directory of French restaurants, a marketplace page quoting a tutor's introduction in German —
+the page is English, written by you, and the foreign words on it belong to someone else. Every
+automated check that reads the body will tell you the page is Dutch. It is not. Changing
+<code>lang</code> here makes a correct page wrong.</p>
+
 <h2>Which one you have, in one minute</h2>
 
 <p>Open the page and read three things in this order.</p>
 
-<p><strong>The prose.</strong> What language is the body text actually in? Not the navigation —
-the body. This is the ground truth and everything else is a claim about it.</p>
+<p><strong>The prose — and whose prose it is.</strong> What language is the body text actually
+in? Not the navigation — the body. Then ask the second question: did you write it? If almost
+everything you are reading sits inside links, or is a list of names, titles or addresses, you
+are looking at an index of other people's words, not at a page written in their language. That
+is fault 4, and the fix is to change nothing.</p>
 
 <p><strong>The <code>&lt;html lang&gt;</code> attribute.</strong> Does it match what you just
-read? If not, that is fault 1 and it is the one to fix first, because the other two are claims
+read, in words you wrote? If not, that is fault 1 and it is the one to fix first, because the other two are claims
 about a page whose own declaration is wrong.</p>
 
 <p><strong>The page's own hreflang entry.</strong> In a correct cluster every page lists every
