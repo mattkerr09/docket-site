@@ -1453,6 +1453,12 @@ empty value, which a search engine reads as nothing at all. The other half: the 
 reported missing because the check read one of the two places it can live.
 <a href="/how-to/when-a-field-is-there-and-still-missing/">Tell the two apart &rarr;</a></p>
 
+<h2>Where a tool looks for your address</h2>
+<p>Strip the page furniture and you strip the footer, which is where a business puts its address —
+so the most semantic markup got the false positive. Then reading everything turned one address,
+published identically, into dozens of variations.
+<a href="/how-to/where-an-audit-looks-for-your-address/">Both failures, one cause &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
