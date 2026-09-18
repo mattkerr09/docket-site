@@ -1465,6 +1465,12 @@ documents, so anything loaded by JavaScript was reported as a deployment gap —
 warning could never fire for the sites it was written for.
 <a href="/how-to/pixels-reported-on-zero-pages/">What the count measures &rarr;</a></p>
 
+<h2>When the missing fields belong to the wrong type</h2>
+<p>A completeness check never judges the type you declared, so a company's identity markup labelled
+as a product was told to add an image — correct for the type, and worth nothing. Plus the property
+that was present all along under one capital letter.
+<a href="/how-to/completeness-findings-assume-your-type/">Read the type first &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,

@@ -76,6 +76,7 @@ import howto_schema_type  # noqa: E402
 import howto_missing_means_empty  # noqa: E402
 import howto_address_region  # noqa: E402
 import howto_pixel_coverage  # noqa: E402
+import howto_wrong_type_fields  # noqa: E402
 import howto_hreflang_targets  # noqa: E402
 import howto_which_host  # noqa: E402
 import howto_schema_id  # noqa: E402
@@ -932,6 +933,7 @@ def main() -> int:
               howto_missing_means_empty.missing_means_empty(),
               howto_address_region.address_region(),
               howto_pixel_coverage.pixel_coverage(),
+              howto_wrong_type_fields.wrong_type_fields(),
               howto_soft404.soft_404s(),
               howto_open_graph.howto_open_graph(),
               howto_deploy_gate.deploy_gate(),
