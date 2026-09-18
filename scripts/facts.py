@@ -1464,6 +1464,16 @@ def severity_weight(name: str) -> float:
     return table[name]
 
 
+def money_weight() -> float:
+    """How much a finding is lifted for landing on a page that sells.
+
+    Added in 1.3.77. Read from the generated dataset like every other weight on
+    this page, because a multiplier typed into prose is the second place a
+    number lives and the first place it goes stale.
+    """
+    return _priority_model()["money_weight"]
+
+
 def effort_cost(name: str) -> float:
     """The divisor for one effort level, e.g. `effort_cost("large")`."""
     table = _priority_model()["effort_cost"]

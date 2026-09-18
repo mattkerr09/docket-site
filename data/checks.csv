@@ -16,6 +16,7 @@ brand.social_consistency,brand,Brand consistency,Social profile consistency
 brand.visual_consistency,brand,Brand consistency,Typography and colour consistency
 brand.voice_consistency,brand,Brand consistency,Writing voice consistency
 content.ai_slop,content,Content quality,Generic AI-sounding copy
+content.competing_pages,content,Content quality,Pages competing with each other
 content.dates,content,Content quality,Freshness signals
 content.eeat,content,Content quality,Trust and authorship signals
 content.js_rendering,content,Content quality,JavaScript-dependent content
@@ -56,6 +57,7 @@ intl.hreflang_targets,indexability,Crawlability & indexing,hreflang target healt
 links.broken_external,links,Links,Broken outbound links
 links.http_on_https,links,Links,Insecure internal links
 links.internal_volume,links,Links,Internal linking
+links.money_page_weak_inlinks,links,Links,Internal linking
 links.nav_not_in_html,links,Links,Navigation reachable without JavaScript
 links.outbound_quality,links,Links,Outbound link handling
 links.pagination,links,Links,Pagination handling

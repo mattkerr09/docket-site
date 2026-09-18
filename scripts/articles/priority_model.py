@@ -78,8 +78,21 @@ priority you cannot audit is just an opinion with a sort order.</p>
 
 <p>Each finding gets a priority score of <strong>severity weight x impact x reach, divided by
 effort cost</strong>. Higher goes first. Three of those four multiply the case for doing
-something; the fourth divides by what it costs you. That is the whole of it, and the four inputs
-are worth taking one at a time.</p>
+something; the fourth divides by what it costs you.</p>
+
+<p>There is a fifth term: a finding that names a page where you sell, book or take
+enquiries is multiplied by <strong>{F.money_weight():g}</strong>. A missing title on
+<code>/pricing</code> and the same missing title on a tag archive used to rank identically, and
+for a business paying to be found they are not the same job.</p>
+
+<p>That multiplier is deliberately small. It orders two findings of the same severity and
+cannot lift one past a more serious problem — a critical issue anywhere still outranks a medium
+one on your pricing page, because this page prints a severity beside every finding and a
+ranking that contradicts that label would make one of the two wrong with no way to tell which.
+It recognises English paths only, and it errs towards leaving a page alone rather than
+promoting the wrong one.</p>
+
+<p>The inputs are worth taking one at a time.</p>
 
 <h3>Severity — how badly it hurts</h3>
 

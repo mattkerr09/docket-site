@@ -6,7 +6,8 @@
     "small": 2.0,
     "trivial": 1.0
   },
-  "formula": "severity weight x impact x reach / effort cost",
+  "formula": "severity weight x impact x reach / effort cost, x1.5 when the finding names a page that sells",
+  "money_weight": 1.5,
   "note": "Generated. Do not edit by hand.",
   "phase_impact_threshold": 5.0,
   "plan_item_cap": 40,
@@ -34,5 +35,5 @@
     "notice": 0.15,
     "pass": 0.0
   },
-  "source": "seo_engine.models.SEVERITY_WEIGHT and EFFORT_COST, Finding.priority, and seo_engine.scoring.action_plan"
+  "source": "seo_engine.models.SEVERITY_WEIGHT and EFFORT_COST, seo_engine.moneypages.MONEY_WEIGHT, Finding.priority, and seo_engine.scoring.action_plan"
 }

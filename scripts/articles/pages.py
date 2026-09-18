@@ -1277,7 +1277,8 @@ fix.</p>
 <p>Docket ranks every finding by the same formula, and it is worth knowing because you can
 apply it by hand to any tool's output:</p>
 
-<pre><code>priority = severity x impact x reach / effort</code></pre>
+<pre><code>priority = severity x impact x reach / effort
+           x{F.money_weight():g} if the finding is on a page that sells</code></pre>
 
 <p>Three of those are obvious. The fourth is where most tools go wrong: <strong>reach grows
 sub-linearly</strong> in the number of pages affected — a capped square root rather than a raw

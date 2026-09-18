@@ -77,6 +77,9 @@ def read() -> dict:
         raise SystemExit("collect_priority_model: the reach curve no longer "
                          "plateaus; the page's claim that it is capped is stale")
 
+    from seo_engine.moneypages import MONEY_WEIGHT
+    money_weight = float(MONEY_WEIGHT)
+
     return {
         "severity_weight": severity,
         "effort_cost": effort,
@@ -86,9 +89,16 @@ def read() -> dict:
         "reach_curve": curve,
         "reach_plateau_at": plateau,
         "reach_max": curve["5000"],
-        "formula": "severity weight x impact x reach / effort cost",
+        # ⚠️ READ FROM THE ENGINE, NOT TYPED. 1.3.77 added a multiplier for
+        # pages where the site earns, and a formula string with the weight
+        # written into it would be the second place that number lives — which
+        # is the exact defect this whole file exists to prevent.
+        "money_weight": money_weight,
+        "formula": ("severity weight x impact x reach / effort cost, "
+                    f"x{money_weight:g} when the finding names a page that sells"),
         "source": ("seo_engine.models.SEVERITY_WEIGHT and EFFORT_COST, "
-                   "Finding.priority, and seo_engine.scoring.action_plan"),
+                   "seo_engine.moneypages.MONEY_WEIGHT, Finding.priority, "
+                   "and seo_engine.scoring.action_plan"),
         "collected_by": "scripts/collect_priority_model.py",
         "note": "Generated. Do not edit by hand.",
     }

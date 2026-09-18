@@ -247,8 +247,10 @@ def body() -> str:
      status bar and all.
 
      ⚠️ THAT STATUS BAR READS "Ready · 96 checks". The site derives its check
-     count from data/checks.csv and currently prints 97, eight times, on this
-     same page. A number inside a video cannot drift back into line and no gate
+     count from data/checks.csv and prints the current total many times on this
+     same page. This note names neither number: the gap widens with every check
+     added, and a figure typed here would go stale exactly as silently as the
+     one in the video. A number inside a video cannot drift back into line and no gate
      can see it: verify_numbers.py reads HTML. Re-recording is the only fix and
      it needs screen-recording permission on this machine, which is not
      available — see IMPROVEMENT_LOG iteration 391. Do not "fix" it by softening
