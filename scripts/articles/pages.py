@@ -1333,6 +1333,12 @@ them is usually wrong.
 mistake that can cost a site its entire long tail while every page still returns 200.
 <a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
 
+<h2>Markup that says what the page does not</h2>
+<p>A rating with no reviews behind it, or a price the page never shows, risks a manual action
+rather than a missing star. Why it happens to careful people, what an audit can and cannot tell
+you, and the three wrong fixes.
+<a href="/how-to/fix-structured-data-that-does-not-match-the-page/">Check yours &rarr;</a></p>
+
 <h2>The redirect your tools cannot see</h2>
 <p>A meta refresh sends the visitor onward but answers 200, so link checkers call the link fine
 and redirect reports never mention the hop. What that costs, why a delay above zero is worse, and
