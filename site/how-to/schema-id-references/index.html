@@ -9,26 +9,26 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Brand consistency: the question no SEO crawler asks</title>
-<meta name="description" content="Of 11 company sites linking social profiles, 9 declared none in schema. What a brand consistency audit checks, and where design tools do it better.">
+<title>An @id is a pointer, not a definition</title>
+<meta name="description" content="Two schema blocks sharing an @id are one node. Why an audit calls valid markup incomplete, and when a pointer on a site resolves to nothing.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="83ba82a27a44">
-<link rel="canonical" href="https://docketseo.app/learn/brand-consistency/">
+<link rel="canonical" href="https://docketseo.app/how-to/schema-id-references/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Brand consistency: the question no crawler asks">
-<meta property="og:description" content="Of 11 company sites linking social profiles, 9 declared none in schema. What a brand consistency audit checks, and where design tools do it better.">
-<meta property="og:url" content="https://docketseo.app/learn/brand-consistency/">
+<meta property="og:title" content="An @id is a pointer, not a definition">
+<meta property="og:description" content="Two schema blocks sharing an @id are one node. Why an audit calls valid markup incomplete, and when a pointer on a site resolves to nothing.">
+<meta property="og:url" content="https://docketseo.app/how-to/schema-id-references/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Brand consistency: the question no crawler asks">
-<meta name="twitter:description" content="Of 11 company sites linking social profiles, 9 declared none in schema. What a brand consistency audit checks, and where design tools do it better.">
+<meta name="twitter:title" content="An @id is a pointer, not a definition">
+<meta name="twitter:description" content="Two schema blocks sharing an @id are one node. Why an audit calls valid markup incomplete, and when a pointer on a site resolves to nothing.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -680,9 +680,9 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Brand consistency: the question no crawler asks","description":"Of 11 company sites linking social profiles, 9 declared none in schema. What a brand consistency audit checks, and where design tools do it better.","datePublished":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/brand-consistency/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a brand consistency audit?","acceptedAnswer":{"@type":"Answer","text":"A check of whether a site presents one company rather than several: the same name in its titles, its Organization schema, its og:site_name and its logo alt text; a consistent claim about what the business does; and social profiles declared in schema rather than only linked in the footer. It is a different question from whether a crawler can read the page, which is what SEO tools normally check."}},{"@type":"Question","name":"What is sameAs in schema markup?","acceptedAnswer":{"@type":"Answer","text":"A property of Organization schema listing the other places on the web that are the same entity — your LinkedIn, Instagram, Wikipedia entry. It is how a search engine knows those accounts and your website are one organisation, and it is an input to knowledge panels. Linking a profile in your footer tells a human; sameAs tells the machine."}},{"@type":"Question","name":"Do SEO tools check brand consistency?","acceptedAnswer":{"@type":"Answer","text":"Crawlers generally do not — they answer whether a machine can read and index the page. Docket runs six brand checks as one of its lanes. If typography and colour governance is your real problem, though, a design-system tool reads your tokens directly and will beat any crawler at it."}},{"@type":"Question","name":"Why does my audit say typefaces were not measured?","acceptedAnswer":{"@type":"Answer","text":"Docket fetches the stylesheets your pages link, so this is now uncommon. It happens when the sheets could not be fetched, or when you ran with --offline, which deliberately makes no third-party calls and so skips styles served from an asset domain. The notice says which, and exists so a silent check is not mistaken for a clean one — it is a gap in the tool, not a finding about you."}},{"@type":"Question","name":"What is brand colour drift?","acceptedAnswer":{"@type":"Answer","text":"Two colours close enough that nobody could tell them apart, defined separately in your CSS — #005fcc and #0066cc, say. It happens when a value is copied and nudged rather than referenced from a shared custom property, and it compounds. Palette size is not the issue: a design system legitimately defines hundreds of values, and two of them being the same colour is still a mistake."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"An @id is a pointer, not a definition","description":"Two schema blocks sharing an @id are one node. Why an audit calls valid markup incomplete, and when a pointer on a site resolves to nothing.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/schema-id-references/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does @id mean in JSON-LD?","acceptedAnswer":{"@type":"Answer","text":"It identifies a node. Two blocks sharing an @id are the same node, which is what lets you define an entity once and reference it from elsewhere in the same document."}},{"@type":"Question","name":"My audit says my Organization markup is incomplete but it looks fine. Why?","acceptedAnswer":{"@type":"Answer","text":"Probably because the blocks it flagged are @id references to a definition elsewhere in the graph. A reference carries no properties by design, and a tool reading it as its own entity will call it incomplete."}},{"@type":"Question","name":"Can an @id point at a definition on another page?","acceptedAnswer":{"@type":"Answer","text":"No, not usefully. Structured data is read one page at a time, so a reference to a node defined on a different page resolves to nothing on the page that carries the reference."}},{"@type":"Question","name":"Why does no validator catch a dangling @id?","acceptedAnswer":{"@type":"Answer","text":"Because it is valid JSON-LD. Validators check syntax; this is a failure of resolution. A rich-results test reports that nothing was found, which reads like missing markup rather than a pointer to nowhere."}},{"@type":"Question","name":"Should I add the missing properties to each reference block?","acceptedAnswer":{"@type":"Answer","text":"No. That duplicates a definition rather than fixing one. Either define the entity on each page that references it, or remove the stub — as it stands it produces neither a rich result nor an error."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -714,136 +714,144 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Brand consistency</div><h1>Brand consistency: the question no crawler asks</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-07">7 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Schema references</div><h1>An @id is a pointer, not a definition</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
-<p class="lede">A crawler asks whether a machine can read your page. None of them ask whether
-a person moving between your pages sees the same company each time — which is the question a
-brand owner actually has, and it falls straight down the gap between the SEO tool and the
-design review. Docket has a whole lane for it, and on
-<strong>9 of 11</strong> real company sites
-we measured, the machine-readable version of "this is us" was simply missing.</p>
+<p class="lede">An audit reports that several of your pages have incomplete Organization markup.
+You open one and the Organization is right there — name, URL, logo, all of it. The blocks the tool
+is complaining about are not incomplete entities. They are references to that one.</p>
 
-<h2>The finding that is not a matter of taste</h2>
+<h2>What an @id actually does</h2>
 
-<p>Most brand questions are judgement calls. This one is not: either your
-<code>Organization</code> schema declares your social profiles in <code>sameAs</code> or it
-does not.</p>
+<p>In JSON-LD, two nodes that share an <code>@id</code> <strong>are one node</strong>. That is the
+whole point of the identifier, and it is what makes the common <code>@graph</code> pattern work:
+define your company once, then point at it from everywhere else.</p>
 
-<p>Of 16 sites measured on 2026-08-07,
-11 linked at least one social profile in their footer — the only ones
-that <em>can</em> fail this, since a site linking none cannot fail to declare them. Of those,
-9 declared none of them in schema. That is
-81.8%, and with a denominator of 11 the honest range is
-<strong>52% to 95%</strong> — wide, because eleven is not many. Treat it as
-"most of them", not as a rate.</p>
+<p>The pointer looks like this, and it is complete as written:</p>
 
-<p>Why it matters is specific rather than vague. <code>sameAs</code> is how you tell Google
-that the Instagram account, the LinkedIn page and the Wikipedia entry are all the same entity
-as the website. It is a
-<a href="https://developers.google.com/search/docs/appearance/structured-data/organization">documented
-Organization property</a>, and it is one of the inputs to a knowledge panel. Linking a profile
-in your footer says it to a human. Declaring it in schema says it to the machine that decides
-whether you are an entity at all.</p>
-
-<p>It is also about ten minutes of work, which is the interesting part: this is not a hard
-problem that companies have weighed and deprioritised. It is a cheap one nobody's tool
-mentioned.</p>
-
-<h2>What the lane actually checks</h2>
-
-<p>Six checks, one of 13 lanes. Each is a counted fact rather than an opinion, because
-"four typefaces across nine pages" is something you can verify and "the typography is
-inconsistent" is something you can only agree or disagree with.</p>
-
-<ul>
-<li><strong>Name consistency</strong> — whether your title tags, <code>og:site_name</code>,
-<code>Organization</code> schema and logo alt text call the company the same thing. A page missing
-its Open Graph tags entirely has no <code>og:site_name</code> to be consistent with, which is
-<a href="/how-to/fix-missing-open-graph-tags/">a different fix</a>.</li>
-<li><strong>Logo</strong> — whether the logo's alt text names the company.
-2 of the sites we measured had a logo whose alt text did not.</li>
-<li><strong>Typography and colour</strong> — how many typefaces the pages ship, and which
-colours in your CSS are indistinguishable from each other.</li>
-<li><strong>Positioning</strong> — whether the pages make a consistent claim about what the
-company does, or a different one each time.</li>
-<li><strong>Voice</strong> — whether the reading level and sentence length hold steady across
-the site or lurch between pages written years apart.</li>
-<li><strong>Social consistency</strong> — the <code>sameAs</code> finding above.</li>
-</ul>
-
-<p>The lane is weighted lightly in the score on purpose. An inconsistent wordmark is a real
-problem and it is not a <code>noindex</code>; it should never dominate a grade.</p>
-
-<h2>Two colours nobody can tell apart</h2>
-
-<p>Docket fetches the stylesheets your pages link, deduplicated across the crawl, and counts
-the typefaces and colours they actually declare. The median site in this sample ships
-3 typefaces; the widest ships 9.</p>
-
-<p>What it reports about colour is not palette size. It used to be — anything over 24 distinct
-values — and that rule died the moment Docket could see real stylesheets, because one very
-well-run site came back with 485. Every shade ramp, every semantic token, every dark-mode
-pair. The old finding claimed a wide palette meant colours were being written as literals
-instead of referenced from a shared set, and the data says the reverse: a centralised design
-system declares <em>more</em> values precisely because it is centralised.</p>
-
-<p>So the count is gone rather than re-tuned, because raising a threshold until the false
-positives stop is fitting the rule to the sample. What Docket reports instead is groups of
-colours no visitor could tell apart, defined separately — <code>#005fcc</code> and
-<code>#0066cc</code> in the same stylesheet. That is what drift actually looks like: a value
-gets copied and nudged rather than referenced, and a year later the brand blue has four
-spellings. It does not care how big your palette is.
-13 of the 16 sites had at least one such group.</p>
-
-<p>Getting that right took two corrections worth repeating, because both produced confident
-nonsense first. Ignoring the alpha channel made every opacity variant of one colour look like
-drift — <code>rgba(0,0,0,.1)</code> is a hairline and <code>rgba(0,0,0,.5)</code> is a scrim,
-and treating them as the same put 49 "near-identical pairs" on a 26-colour palette. And
-grouping colours by chaining — A is close to B, B to C — walked from a pale lavender to a grey
-one indistinguishable step at a time and called them one colour. Every member of a group now
-has to be indistinguishable from every other member.</p>
-
-<h2>Where other tools are better than this</h2>
-
-<p>If typography and colour governance is the actual problem you have, a design-system tool
-beats an SEO crawler at it and it is not close. Figma's published libraries, a token pipeline,
-or a linter running against your own stylesheets all read the source of truth rather than
-inferring it from shipped pages, and they catch a drifting value before it is deployed rather
-than after. Docket is looking at the outside of the building.</p>
-
-<p>Equally, if you want to know what people are <em>saying</em> about your brand, this is the
-wrong category of tool entirely — Docket reads your site and nothing else. It has no mention
-tracking, no share-of-voice, no sentiment.</p>
-
-<p>What is genuinely unusual here is only that a technical SEO audit asks the question at all.
-<a href="/vs/screaming-frog-alternative/">Screaming Frog</a> and
-<a href="/vs/sitebulb-alternative/">Sitebulb</a> are both better crawlers than Docket by several
-measures, and neither will tell you your logo alt text does not name your company.</p>
-
-<h2>The one to fix this afternoon</h2>
-
-<p>Take the social links out of your footer, and put them in your
-<code>Organization</code> schema:</p>
-
-<pre><code>{
-  "@context": "https://schema.org",
+<pre><code>"publisher": {
   "@type": "Organization",
-  "name": "Your Company",
-  "url": "https://example.com",
-  "logo": "https://example.com/logo.png",
-  "sameAs": [
-    "https://www.linkedin.com/company/yourcompany",
-    "https://www.instagram.com/yourcompany",
-    "https://en.wikipedia.org/wiki/Your_Company"
-  ]
+  "@id": "https://example.com/#organization"
 }</code></pre>
 
-<p>Then check the alt text on your logo actually says your company's name. Between them that is
-most of an afternoon's worth of the findings above, and both are the kind of thing that stays
-broken for years because no tool was looking.</p>
+<p>It carries no properties <em>by design</em>. Nobody forgot anything. And because this is what
+the most widely used SEO plugins and CMS platforms emit by default, a check that reads each stub
+as its own half-finished entity will fire on an enormous share of the web — including sites whose
+structured data is exactly right.</p>
 
-<p><a class="btn" href="/download/">Download Docket</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is a brand consistency audit?</h3><p>A check of whether a site presents one company rather than several: the same name in its titles, its Organization schema, its og:site_name and its logo alt text; a consistent claim about what the business does; and social profiles declared in schema rather than only linked in the footer. It is a different question from whether a crawler can read the page, which is what SEO tools normally check.</p></div><div class="faq-item"><h3>What is sameAs in schema markup?</h3><p>A property of Organization schema listing the other places on the web that are the same entity — your LinkedIn, Instagram, Wikipedia entry. It is how a search engine knows those accounts and your website are one organisation, and it is an input to knowledge panels. Linking a profile in your footer tells a human; sameAs tells the machine.</p></div><div class="faq-item"><h3>Do SEO tools check brand consistency?</h3><p>Crawlers generally do not — they answer whether a machine can read and index the page. Docket runs six brand checks as one of its lanes. If typography and colour governance is your real problem, though, a design-system tool reads your tokens directly and will beat any crawler at it.</p></div><div class="faq-item"><h3>Why does my audit say typefaces were not measured?</h3><p>Docket fetches the stylesheets your pages link, so this is now uncommon. It happens when the sheets could not be fetched, or when you ran with --offline, which deliberately makes no third-party calls and so skips styles served from an asset domain. The notice says which, and exists so a silent check is not mistaken for a clean one — it is a gap in the tool, not a finding about you.</p></div><div class="faq-item"><h3>What is brand colour drift?</h3><p>Two colours close enough that nobody could tell them apart, defined separately in your CSS — #005fcc and #0066cc, say. It happens when a value is copied and nudged rather than referenced from a shared custom property, and it compounds. Palette size is not the issue: a design system legitimately defines hundreds of values, and two of them being the same colour is still a mistake.</p></div></div></section>
+<h2>The false positive, reproduced on purpose</h2>
+
+<p>This one was not found on somebody's site and guessed at. It was reproduced with a controlled
+input: a graph that <em>defines</em> an Organization with name, URL and logo, and also
+<em>references</em> it by a typed <code>@id</code>. The result was a finding across several pages
+saying the Organization markup was incomplete. Nothing was incomplete. The reference was being
+counted as a second, worse copy of the thing it pointed at.</p>
+
+<p>If your report says this about a site using a mainstream plugin, check the graph before you
+touch anything. <strong>The stub is not the error; reading it as a definition is.</strong></p>
+
+<h2>The real problem underneath, with the opposite fix</h2>
+
+<p>Here is why this is worth more than "your tool was wrong". There is a genuine defect that looks
+identical from the outside, and it is common.</p>
+
+<p><strong>Structured data is read one page at a time.</strong> A search engine parsing your
+product page does not go and fetch your homepage to resolve an identifier. So if every block of a
+type on a page is a bare <code>@id</code> reference, and nothing on <em>that page</em> says what
+the identifier refers to, the reference resolves to nothing.</p>
+
+<p>And "add the missing properties" is precisely the wrong instruction, because it misdescribes
+what happened. Nobody forgot a property. Somebody wrote a reference, deliberately, believing the
+definition exists somewhere — which it may well do, on a different page, where it cannot help.
+Telling them to add a name to each stub asks them to duplicate a definition they think they
+already have.</p>
+
+<p>The two repairs that are actually available:</p>
+
+<ul>
+<li><strong>Define the entity on every page that references it.</strong> This is what plugins do
+when configured properly, and it is why their output repeats the Organization block everywhere.</li>
+<li><strong>Remove the stub.</strong> If you are not going to define it, the pointer is doing
+nothing for you.</li>
+</ul>
+
+<h2>Why nothing catches this</h2>
+
+<p>A dangling <code>@id</code> produces <strong>neither a rich result nor an error</strong>, which
+is the most useful sentence on this page.</p>
+
+<ul>
+<li><strong>A JSON-LD validator</strong> sees syntactically valid JSON-LD with a valid identifier,
+and passes it.</li>
+<li><strong>A rich-results test</strong> finds no eligible entity and reports that nothing was
+detected — which reads like "you have no markup" rather than "you have a pointer to nowhere", and
+sends you off to add markup you already wrote.</li>
+<li><strong>Your CMS</strong> renders exactly what you configured.</li>
+</ul>
+
+<p>It is a failure of resolution, not of syntax, and syntax is what most tooling checks.</p>
+
+<h2>What a tool can honestly say about it</h2>
+
+<p>Worth stating because it bounds the finding. A crawler reads each page's markup on its own,
+exactly as a search engine does. So it can tell you the target is <strong>absent here</strong>. It
+cannot tell you the target is absent everywhere, because it is not resolving your graph across
+your whole site — and neither is the search engine, which is the entire reason this matters.</p>
+
+<h2>Checking your own markup in five minutes</h2>
+
+<ul>
+<li><strong>View source on a page that was flagged</strong> and search for the identifier from the
+finding. If it appears twice — once as a definition with properties, once as a reference — your
+markup is fine and the finding is wrong.</li>
+<li><strong>If it appears only as a reference</strong>, the page genuinely defines nothing. That is
+the real version of this problem.</li>
+<li><strong>Check the type matches.</strong> A stub typed <code>Organization</code> pointing at a
+node defined as something else is a third failure, and a quieter one.</li>
+<li><strong>Check the identifier is stable.</strong> An <code>@id</code> that changes between
+pages defeats the purpose — the nodes stop being one node.</li>
+</ul>
+
+<h2>When this does not matter</h2>
+
+<p>Two cases where a bare reference is fine as it stands:</p>
+
+<ul>
+<li><strong>The definition is on the same page, further down the graph.</strong> Order does not
+matter within a document.</li>
+<li><strong>The entity is not one you are seeking a rich result for.</strong> A pointer that
+resolves to nothing costs you an entity signal, not a search feature, and if the block was
+aspirational rather than load-bearing you can simply delete it.</li>
+</ul>
+
+<h2>The fixes that make it worse</h2>
+
+<ul>
+<li><strong>Adding a name to every stub.</strong> You now have several partial definitions of one
+entity instead of one good one, which is worse than either the pointer or the definition alone.</li>
+<li><strong>Deleting the <code>@graph</code>.</strong> The graph is not the problem and it is the
+structure that makes references work at all.</li>
+<li><strong>Pointing the <code>@id</code> at a page URL.</strong> An identifier is not a link. It
+does not get fetched, and a URL that happens to exist does not make the node resolve.</li>
+</ul>
+
+<h2>How to clear this finding without improving anything</h2>
+
+<p>Delete the reference blocks. The finding goes away, and so does any chance of the entity being
+understood — you have removed the evidence of an intention rather than completing it. Worth
+knowing, because "it went green" and "it got better" are different outcomes and only one of them
+is visible in a report.</p>
+
+<h2>Where this sits in an audit</h2>
+
+<p>The registered check is <code>schema.incomplete</code>, which covers incomplete structured data
+in the structured data area. For the other ways JSON-LD goes wrong — blocks that do not parse,
+markup contradicting the visible page, required properties genuinely missing — see
+<a href="/how-to/fix-structured-data-errors/">how to fix structured data errors &rarr;</a>.</p>
+
+<p>And for the general habit this page is an instance of — a finding whose own advice does not fit
+the case it fired on — see <a href="/how-to/findings-that-flag-correct-pages/">a caveat is not a
+gate &rarr;</a>.</p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What does @id mean in JSON-LD?</h3><p>It identifies a node. Two blocks sharing an @id are the same node, which is what lets you define an entity once and reference it from elsewhere in the same document.</p></div><div class="faq-item"><h3>My audit says my Organization markup is incomplete but it looks fine. Why?</h3><p>Probably because the blocks it flagged are @id references to a definition elsewhere in the graph. A reference carries no properties by design, and a tool reading it as its own entity will call it incomplete.</p></div><div class="faq-item"><h3>Can an @id point at a definition on another page?</h3><p>No, not usefully. Structured data is read one page at a time, so a reference to a node defined on a different page resolves to nothing on the page that carries the reference.</p></div><div class="faq-item"><h3>Why does no validator catch a dangling @id?</h3><p>Because it is valid JSON-LD. Validators check syntax; this is a failure of resolution. A rich-results test reports that nothing was found, which reads like missing markup rather than a pointer to nowhere.</p></div><div class="faq-item"><h3>Should I add the missing properties to each reference block?</h3><p>No. That duplicates a definition rather than fixing one. Either define the entity on each page that references it, or remove the stub — as it stands it produces neither a rich result nor an error.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

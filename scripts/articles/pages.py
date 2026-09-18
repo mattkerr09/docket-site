@@ -1399,6 +1399,12 @@ documenting the filler template it ships. Why both repairs replaced a question a
 a question about the shape of the text.
 <a href="/how-to/placeholder-text-findings/">Read the quoted sentence &rarr;</a></p>
 
+<h2>The schema reference that resolves to nothing</h2>
+<p>Two blocks sharing an <code>@id</code> are one node, so a reference carries no properties on
+purpose — and an audit reading it as a half-finished entity is wrong. But a pointer whose target
+is not on the same page produces neither a rich result nor an error, which is why nothing catches
+it. <a href="/how-to/schema-id-references/">Check the graph first &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,

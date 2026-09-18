@@ -68,6 +68,7 @@ import howto_phrase_matching  # noqa: E402
 import howto_caveat_gate  # noqa: E402
 import howto_identical_bodies  # noqa: E402
 import howto_placeholder_text  # noqa: E402
+import howto_schema_id  # noqa: E402
 import howto_sitemap_dead_urls  # noqa: E402
 import howto_unreachable  # noqa: E402
 import howto_cta_forms  # noqa: E402
@@ -910,6 +911,7 @@ def main() -> int:
               howto_caveat_gate.caveat_gate(),
               howto_identical_bodies.identical_bodies(),
               howto_placeholder_text.placeholder_text(),
+              howto_schema_id.schema_id(),
               howto_soft404.soft_404s(),
               howto_open_graph.howto_open_graph(),
               howto_deploy_gate.deploy_gate(),
