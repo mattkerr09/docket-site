@@ -1333,6 +1333,12 @@ them is usually wrong.
 mistake that can cost a site its entire long tail while every page still returns 200.
 <a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
 
+<h2>When the site stops saying one thing</h2>
+<p>Read one page and it is fine; read twenty and you cannot say what the company does. The defect
+does not live on a page, it lives between them — and you get there by shipping good pages one at
+a time, not by being careless.
+<a href="/how-to/fix-a-site-that-says-something-different-every-page/">Why good work causes it &rarr;</a></p>
+
 <h2>Markup that says what the page does not</h2>
 <p>A rating with no reviews behind it, or a price the page never shows, risks a manual action
 rather than a missing star. Why it happens to careful people, what an audit can and cannot tell
