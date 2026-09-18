@@ -1345,6 +1345,12 @@ throttle from a refusal, the one-click test that says whether a 403 is about you
 your network, and why a re-run is the only thing that makes the finding real.
 <a href="/how-to/tell-a-rate-limit-from-a-block/">Tell a wait from a refusal &rarr;</a></p>
 
+<h2>The number badged on a finding</h2>
+<p>It feeds the score and decides where the finding sits in your plan, so a count of the wrong
+thing moves work you do not need to do above work you do. Two cases where the badge argued with
+its own headline, and the four questions that catch it.
+<a href="/how-to/check-the-count-on-a-finding/">Check the count &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
