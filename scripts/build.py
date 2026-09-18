@@ -58,6 +58,7 @@ import howto_deploy_gate  # noqa: E402
 import howto_security_headers  # noqa: E402
 import howto_open_graph  # noqa: E402
 import howto_competing_pages  # noqa: E402
+import howto_money_pages  # noqa: E402
 import howto_soft404  # noqa: E402
 import howto_title_width  # noqa: E402
 import howto_titles  # noqa: E402
@@ -870,6 +871,7 @@ def main() -> int:
               howto_hreflang.hreflang_return_tags(),
               howto_canonicals.conflicting_canonicals(),
               howto_competing_pages.competing_pages(),
+              howto_money_pages.money_pages(),
               howto_soft404.soft_404s(),
               howto_open_graph.howto_open_graph(),
               howto_deploy_gate.deploy_gate(),

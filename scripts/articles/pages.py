@@ -1333,6 +1333,12 @@ them is usually wrong.
 mistake that can cost a site its entire long tail while every page still returns 200.
 <a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
 
+<h2>The pages that make you money</h2>
+<p>Every ranking is built from how broken a thing is, never from which page it is on — so a
+missing title on your pricing page sorts level with the same fault on a tag archive. How to
+identify yours, and why page value should break ties rather than set the order.
+<a href="/how-to/fix-your-money-pages-first/">Fix your money pages first &rarr;</a></p>
+
 <h2>Pages competing for the same search</h2>
 <p>Two of your own pages aiming at one query split the links and relevance that should back a
 single page, and neither ranks as well as one would. Not duplicate content — genuinely
