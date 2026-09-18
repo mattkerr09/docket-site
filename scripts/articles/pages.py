@@ -1333,6 +1333,12 @@ them is usually wrong.
 mistake that can cost a site its entire long tail while every page still returns 200.
 <a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
 
+<h2>Pages competing for the same search</h2>
+<p>Two of your own pages aiming at one query split the links and relevance that should back a
+single page, and neither ranks as well as one would. Not duplicate content — genuinely
+different pages, often both good, which is why nothing reports them.
+<a href="/how-to/fix-pages-competing-for-one-search/">How to find and fix them &rarr;</a></p>
+
 <h2>Soft 404s</h2>
 <p>A missing page that answers 200 turns every mistyped URL into an indexable page. How to
 check it in one command, and the fix for each cause.
