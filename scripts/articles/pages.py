@@ -1423,6 +1423,12 @@ redirect test that could only fire on sites already doing it right — and why t
 test that never fires at all.
 <a href="/how-to/hreflang-targets-that-look-dead/">Read the reason, not the headline &rarr;</a></p>
 
+<h2>"You have no analytics" is a claim about a list</h2>
+<p>A tag in the HTML is evidence that a tag is in the HTML — nothing more. Two cases where a site
+was measuring the whole time and was told it was not, and why a tag container turns "you have none"
+into "this could not tell".
+<a href="/how-to/analytics-findings-name-the-tag/">Check what it named &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
