@@ -1,25 +1,25 @@
 {
   "site": "docketseo.app",
-  "pages": 129,
-  "edges": 2858,
+  "pages": 130,
+  "edges": 2883,
   "average_share_pct": 0.77,
-  "below_half": 109,
+  "below_half": 110,
   "nodes": [
     {
       "path": "/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
     {
       "path": "/about/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
     {
       "path": "/best/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
@@ -31,19 +31,19 @@
     },
     {
       "path": "/contact/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
     {
       "path": "/download/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
     {
       "path": "/for/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
@@ -79,7 +79,7 @@
     },
     {
       "path": "/how-to/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
@@ -397,9 +397,9 @@
     },
     {
       "path": "/how-to/schema-type-is-a-claim/",
-      "inlinks": 3,
-      "share_pct": 0.1,
-      "index": 0.13
+      "inlinks": 4,
+      "share_pct": 0.14,
+      "index": 0.18
     },
     {
       "path": "/how-to/sitemap-urls-that-are-not-stale/",
@@ -418,6 +418,12 @@
       "inlinks": 3,
       "share_pct": 0.1,
       "index": 0.13
+    },
+    {
+      "path": "/how-to/what-a-dead-crawler-rule-costs/",
+      "inlinks": 2,
+      "share_pct": 0.07,
+      "index": 0.09
     },
     {
       "path": "/how-to/what-your-site-says-you-are-called/",
@@ -445,19 +451,19 @@
     },
     {
       "path": "/index/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
     {
       "path": "/index/ai-directives/",
-      "inlinks": 10,
-      "share_pct": 0.35,
-      "index": 0.45
+      "inlinks": 11,
+      "share_pct": 0.38,
+      "index": 0.49
     },
     {
       "path": "/learn/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
@@ -475,7 +481,7 @@
     },
     {
       "path": "/learn/ai-search-visibility/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
@@ -541,9 +547,9 @@
     },
     {
       "path": "/learn/does-noindex-stop-ai-crawlers/",
-      "inlinks": 4,
-      "share_pct": 0.14,
-      "index": 0.18
+      "inlinks": 5,
+      "share_pct": 0.17,
+      "index": 0.22
     },
     {
       "path": "/learn/domain-authority-without-a-subscription/",
@@ -619,7 +625,7 @@
     },
     {
       "path": "/learn/seo-audit/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
@@ -643,9 +649,9 @@
     },
     {
       "path": "/learn/what-docket-checks/",
-      "inlinks": 128,
-      "share_pct": 4.48,
-      "index": 5.82
+      "inlinks": 129,
+      "share_pct": 4.47,
+      "index": 5.81
     },
     {
       "path": "/learn/what-scout-checks/",
@@ -667,19 +673,19 @@
     },
     {
       "path": "/legal/privacy/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
     {
       "path": "/legal/refunds/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
     {
       "path": "/legal/terms/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
@@ -691,13 +697,13 @@
     },
     {
       "path": "/vs/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
     {
       "path": "/vs/ahrefs-site-audit-alternative/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
@@ -739,7 +745,7 @@
     },
     {
       "path": "/vs/screaming-frog-alternative/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
@@ -757,7 +763,7 @@
     },
     {
       "path": "/vs/semrush-site-audit-alternative/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
@@ -769,7 +775,7 @@
     },
     {
       "path": "/vs/sitebulb-alternative/",
-      "inlinks": 127,
+      "inlinks": 128,
       "share_pct": 4.44,
       "index": 5.77
     },
