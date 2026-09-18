@@ -1411,6 +1411,12 @@ a list of likely causes instead. What each parser message means, and why a repor
 that they all fail the same way while the pages stay broken.
 <a href="/how-to/json-ld-parser-errors/">Read the message &rarr;</a></p>
 
+<h2>Which host is that finding about?</h2>
+<p>A certificate warning you can disprove in ten seconds is one you stop investigating — and the
+finding was right about a host you did not check. Why www and the bare domain are separate
+configurations, and the three things "http is still reachable" can mean.
+<a href="/how-to/findings-that-name-no-host/">Find the host first &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
