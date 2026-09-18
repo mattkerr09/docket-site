@@ -1333,6 +1333,12 @@ them is usually wrong.
 mistake that can cost a site its entire long tail while every page still returns 200.
 <a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
 
+<h2>When a finding blames the whole site</h2>
+<p>Most findings count pages, but the fault was decided once in a template — so the count is the
+number of pages that template produced. How to find the grouping, why a majority is not a site,
+and the case where this tool got it wrong.
+<a href="/how-to/read-findings-that-blame-the-whole-site/">Read it by the right unit &rarr;</a></p>
+
 <h2>When the site sounds like several companies</h2>
 <p>Sentence length across your pages is a crude proxy for one voice, and it works better than it
 deserves to. What it can see, why several voices are often correct, and why rewriting everything
