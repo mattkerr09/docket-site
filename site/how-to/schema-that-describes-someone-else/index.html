@@ -9,26 +9,26 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>How to tell whether an audit tool is lying to you</title>
-<meta name="description" content="Four questions to ask of any SEO audit finding, each learned by getting it wrong. 191 of Docket's 436 test files exist because Docket said something untrue.">
+<title>The markup on your page may not be about you</title>
+<meta name="description" content="A listing page's schema describes other businesses. Why an audit told a marketplace its own address was missing from its site.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="995b46fff563">
-<link rel="canonical" href="https://docketseo.app/learn/audit-tool-accuracy/">
+<link rel="canonical" href="https://docketseo.app/how-to/schema-that-describes-someone-else/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to tell whether an audit tool is lying to you">
-<meta property="og:description" content="Four questions to ask of any SEO audit finding, each learned by getting it wrong. 191 of Docket's 436 test files exist because Docket said something untrue.">
-<meta property="og:url" content="https://docketseo.app/learn/audit-tool-accuracy/">
+<meta property="og:title" content="The markup on your page may not be about you">
+<meta property="og:description" content="A listing page's schema describes other businesses. Why an audit told a marketplace its own address was missing from its site.">
+<meta property="og:url" content="https://docketseo.app/how-to/schema-that-describes-someone-else/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How to tell whether an audit tool is lying to you">
-<meta name="twitter:description" content="Four questions to ask of any SEO audit finding, each learned by getting it wrong. 191 of Docket's 436 test files exist because Docket said something untrue.">
+<meta name="twitter:title" content="The markup on your page may not be about you">
+<meta name="twitter:description" content="A listing page's schema describes other businesses. Why an audit told a marketplace its own address was missing from its site.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -680,9 +680,9 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to tell whether an audit tool is lying to you","description":"Four questions to ask of any SEO audit finding, each learned by getting it wrong. 191 of Docket's 436 test files exist because Docket said something untrue.","datePublished":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/audit-tool-accuracy/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I know if an SEO tool's findings are accurate?","acceptedAnswer":{"@type":"Answer","text":"Ask four things of any finding: how many pages it actually read before claiming something is missing site-wide, whether its headline and its detail report the same number, whether anything was observed at all when it reports an absence, and whether the vendor keeps a regression test when they fix a false positive."}},{"@type":"Question","name":"What is a false positive in an SEO audit?","acceptedAnswer":{"@type":"Answer","text":"A finding that is confidently stated and not true. The common causes are a tool sampling part of a site and reporting about all of it, a crawl that was blocked or returned nothing being read as evidence of absence, and pattern matches that fire on the wrong thing — an inline SVG label counted as the page title, for instance."}},{"@type":"Question","name":"Why does a failed crawl produce false findings?","acceptedAnswer":{"@type":"Answer","text":"Because 'we did not see it' and 'it is not there' are the same observation to a tool that is not careful. A rate-limited crawl that reads one error page has no evidence about analytics, phone numbers or anything else, but a naive check reports all of them as missing. Look for a line saying the crawl was degraded; if the report does not mention it, the silence is not reassurance."}},{"@type":"Question","name":"Why does an SEO tool flag things that look fine in my browser?","acceptedAnswer":{"@type":"Answer","text":"Usually because it read the HTML your server sent and you are looking at the page after JavaScript ran. On most modern sites those are different documents. Anything a tool says about what a visitor sees — visible prices, review stars, headings, body copy — is only trustworthy if it rendered the page. Ask whether the tool rendered, and if it did not, treat those findings as unconfirmed rather than wrong."}},{"@type":"Question","name":"Should I run an SEO audit in CI?","acceptedAnswer":{"@type":"Answer","text":"It is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Test it first against a hostname that does not resolve: a tool that invents findings about a site it never reached will fail your build with advice about a problem you do not have."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The markup on your page may not be about you","description":"A listing page's schema describes other businesses. Why an audit told a marketplace its own address was missing from its site.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/schema-that-describes-someone-else/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does my audit say my address is missing when I have no premises?","acceptedAnswer":{"@type":"Answer","text":"Because it probably read a node describing a business your page lists. Anything reached through itemListElement is something you are listing rather than something you are."}},{"@type":"Question","name":"What is itemListElement?","acceptedAnswer":{"@type":"Answer","text":"The schema.org property whose entries are the things a page lists. It is the one signal that separates markup about you from markup about everybody else on the page."}},{"@type":"Question","name":"Should I remove structured data that describes other businesses?","acceptedAnswer":{"@type":"Answer","text":"No. Complete entries are what make a listing page eligible for rich results. Fill the empty fields rather than deleting the list."}},{"@type":"Question","name":"My store locator lists my own branches. Does this apply to me?","acceptedAnswer":{"@type":"Answer","text":"The nodes really are yours, so incomplete ones are a genuine defect on premises you operate. That case is exactly why listing markup is still reported rather than ignored."}},{"@type":"Question","name":"Is it safe to add my company as a local business on a listings page?","acceptedAnswer":{"@type":"Answer","text":"Not unless the page describes premises the public visits. Claiming to be a shopfront you do not have is the kind of misrepresentation structured data is policed for."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -714,136 +714,137 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Audit accuracy</div><h1>How to tell whether an audit tool is lying to you</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-07">7 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Listed businesses</div><h1>The markup on your page may not be about you</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
-<p class="lede">An SEO audit is a pile of confident sentences about your site, and the useful
-question is which of them the tool actually checked. <strong>At least
-191 of Docket's 436 test files</strong> — more than
-43.8% — exist because Docket said something that was not true, and every one of
-those mistakes belongs to a family you can look for in any tool's report. "At least" is meant
-literally: that count comes from searching each test for a phrase naming what went wrong, which
-is deliberately narrow, so it misses files that record a real mistake in different words.</p>
+<p class="lede">An audit reports that your address, telephone number, opening hours and price
+range are missing from your structured data — and that two of them are present in the markup but
+carry no value. You check the page. None of those facts was ever about you. They were about a
+takeaway in another city that your page happens to list.</p>
 
-<p>This is not a confession. It is the four questions worth asking of any finding, each of
-which we learned by getting it wrong first.</p>
+<h2>Why a reader of your markup loses track of whose it is</h2>
 
-<h2>Did it look at what it says it looked at?</h2>
+<p>Structured data is nested, and a tool that only looks at the top level finds almost nothing —
+most real markup is a single graph with everything inside it. So a JSON-LD reader descends through
+every value at any depth. That is the right decision and it is why these tools work at all.</p>
 
-<p>Docket had eight checks that scanned the first 40 pages of a crawl and then reported "No
-email capture anywhere on the site". On a site with fewer pages than that, it is true. On a
-larger one it is a statement about every page the tool never opened.</p>
+<p><strong>But a walk like that has no idea whose business it just found.</strong> It sees a node
+with a type it recognises and treats it as yours.</p>
 
-<p>The tell is a total claim with no number in it. "No X anywhere", "no Y found", "the site
-has no Z" — those are claims about a population, and a tool that sampled cannot make them.
-Compare with "12 pages have no title tag", which says exactly what it counted.</p>
+<p>There is exactly one property that settles the question, and it is in the vocabulary already:
+<code>itemListElement</code>. Its entries are, by schema.org's own definition, the things a page
+<em>lists</em> — not the thing the page <em>is</em>. Anything reached through it belongs to somebody
+else.</p>
 
-<p><strong>What to do with it:</strong> when a report tells you something is missing site-wide,
-find out how many pages it read. If that number is smaller than your site, the finding is a
-hypothesis. Check one page it did not visit before you act.</p>
+<h2>What that produced</h2>
 
-<h2>Do the headline and the detail agree?</h2>
+<p>On a national food-delivery marketplace, the only structured data on the page was a list of
+restaurant nodes — other people's takeaways, each carrying an empty address string and an empty
+price range. The check judged the first node it reached and reported that the <em>marketplace's</em>
+address, telephone, opening hours, geolocation and price range were missing, and that two fields
+were present but blank.</p>
 
-<p>A Docket finding once read, in two consecutive lines:</p>
+<p>Every one of those statements was about a shop the marketplace does not own, in a town it does
+not operate from. There was nothing for the reader to fix, and no way to tell that from the
+finding.</p>
 
-<pre><code>35 outbound links all point to github.com
-74% of outbound links go to a single domain.</code></pre>
+<h2>True, and still misleading</h2>
 
-<p>Both came from the same two numbers. The word "all" was written into the title by hand and
-was only ever true at 100%.</p>
+<p>The same site produced a second sentence worth studying separately, because it was not wrong.</p>
 
-<p>That is worse than sloppy. "All your outbound links point to one domain" is what an injected
-spam footer looks like, and the fix text underneath told the reader their site might be
-compromised and to go scanning templates. At the proportion the detail line actually reports,
-that sends someone hunting for a hack which is not there.</p>
+<p>Deciding whether the local-business checks apply at all, the tool said it had found
+<em>restaurant markup on this URL</em>. That is literally correct — the markup is there, and it is
+restaurant markup. It reads to the owner as <strong>"this tool thinks we are a restaurant"</strong>,
+which is not what was meant and not true.</p>
 
-<p><strong>What to do with it:</strong> read the headline and the body of the same finding
-against each other. They are computed from one set of numbers and there is no honest reason for
-them to differ. When they do, believe the one with the arithmetic in it.</p>
+<p>The lane genuinely does apply: a site that lists local businesses has local-schema work to do.
+<strong>But the reason given for applying it has to be the reason that is actually true.</strong> A
+correct sentence that invites a wrong inference costs the same as a wrong one.</p>
 
-<h2>Was anything actually observed?</h2>
+<h2>The repair kept the finding and changed its subject</h2>
 
-<p>This is the sharpest one, and it took us three separate fixes to get right.</p>
+<p>The obvious fix — ignore anything inside a list — would have been wrong, and this is the part
+worth copying.</p>
 
-<p>Point Docket at a domain that does not exist and it used to report three critical issues:
-that robots.txt blocked Googlebot, that the site was not served over HTTPS, and that no pages
-could be crawled. Only the third was true. There was no robots.txt and nothing was served,
-because there was no site — the tool was reporting its own inability to see anything as a set
-of defects in the thing it could not see.</p>
+<p>Thin listing markup <em>is</em> a real finding. Complete entries are what make a listing page
+eligible for rich results, so a list of businesses with empty addresses is a genuine missed
+opportunity. It is simply not a statement about the publisher. So the finding stayed and its
+subject changed: it now describes the businesses the page lists, rather than the page's own
+premises.</p>
 
-<p>The same shape had already been fixed twice before, by different routes: once when a
-rate-limited crawl read a single error page and announced "no analytics installed anywhere on
-the site" about a site that had analytics, and once for the page caps above. Three roads to
-the same wrong sentence, and a guard built for one of them covered neither of the others.</p>
+<p>And dropping it outright would have silenced a real case — a chain that publishes its own
+branches inside a list on its store locator.</p>
 
-<p>A fourth road opened later, and it is the one worth watching for in any tool. Docket warns when
-a page carries star-rating markup but shows no rating to visitors, because Google treats that as
-grounds for a manual action that removes every rich result a site has. It was deciding this from
-the served HTML. Point it at a shop that draws its star widget in JavaScript and it accused two
-perfectly compliant product pages of the most serious thing the tool can say. Re-running with
-rendering turned on cleared them completely.</p>
+<h2>The sentence about evidence</h2>
 
-<p>Notice the shape: nothing was broken, nothing was degraded, the crawl was clean. The tool
-simply answered a question about the rendered page using a document that was not the rendered
-page. Now it will not make that accusation without rendered evidence, and where it has none it
-says so and stays at a notice.</p>
+<p>Six chain store locators were checked for exactly that shape, and none of them nests
+business-type nodes inside a list. That is a useful result and it is not a licence:
+<strong>"none of six" is a reason to keep a finding cheap, not a reason to delete it.</strong></p>
 
-<p><strong>What to do with it:</strong> when a tool reports an absence, ask what it saw. If the
-crawl was blocked, rate-limited, or returned nothing, every "missing" finding in that report is
-unsupported — not wrong necessarily, just unevidenced. And if a finding is about what a visitor
-sees, ask whether the tool rendered the page or read the HTML. Those are different documents on
-most modern sites, and only one of them is what Google judges.</p>
+<p>It is worth saying because the opposite reasoning is everywhere in tooling — a small sample
+that finds nothing gets treated as proof that nothing exists, and a rule is removed on the strength
+of not having seen the case yet.</p>
 
-<h2>Would the tool have caught it, or did a person have to notice?</h2>
+<h2>Reading this on your own report</h2>
 
-<p>Docket's byte-cap check once reported a major news site's title tag as sitting past
-Googlebot's 2MB cutoff. It was reading an inline SVG icon label that said "Close icon"; the
-real title was 470 KB in and perfectly fine. That was caught one
-edit before it went into <a href="/learn/googlebot-2mb-limit/">an article naming the site</a>.</p>
+<ul>
+<li><strong>Ask whose data is missing.</strong> If the finding names fields you would never publish
+about yourself — a price range for a company that is not a venue, opening hours for a
+marketplace — the node is probably not yours.</li>
+<li><strong>Look for a list in your markup.</strong> Search the page source for
+<code>itemListElement</code>. Anything under it describes something you are listing.</li>
+<li><strong>Check whether the empty strings are yours.</strong> A node with empty values is
+usually a template that ran with no data for one entry, which is a different job from missing
+markup.</li>
+<li><strong>Ask whether the page is one business or many.</strong> Directories, locators,
+marketplaces and category pages are the shapes where this goes wrong.</li>
+</ul>
 
-<p>What fixed the class was not the fix. It was a test that fails the build if the mistake
-returns, and later a second kind of test that greps the source for the <em>shape</em> of the
-mistake rather than the instance. That one earned itself immediately: after we had swept a file
-by hand and fixed three findings that listed every crawled page as their URLs, the pattern test
-named two more in the same file.</p>
+<h2>When it matters, and to whom</h2>
 
-<p><strong>What to do with it:</strong> ask a vendor what happens when they find a false
-positive. "We fixed it" is a worse answer than "we fixed it and here is the test that fails if
-it comes back", because the first one will happen again the next time somebody refactors.</p>
+<p>Two readers should act on a listing-markup finding, and they should do different things:</p>
 
-<h2>Where the older tools are better</h2>
+<ul>
+<li><strong>A publisher of a directory or marketplace.</strong> Complete entries are the point —
+empty address and price fields on listed businesses cost the listing page its eligibility, and the
+data usually exists in the database behind the page.</li>
+<li><strong>A chain publishing its own branches in a list.</strong> Here the nodes really are
+yours, and incomplete ones are a genuine local-SEO defect on premises you operate.</li>
+</ul>
 
-<p>Directly: <a href="https://www.screamingfrog.co.uk/about/">Screaming Frog</a> describes
-itself as an agency founded in 2010, and
-<a href="/vs/sitebulb-alternative/">Sitebulb</a> has been at this for years too. Every mistake
-above is the kind of thing that a very large number of other people's sites finds for you, and
-they have had far more of those than Docket has.</p>
+<p>Everyone else can read it as information about their listings rather than a defect in their own
+entity.</p>
 
-<p>So the honest position is not that Docket is more accurate than either. It is that Docket is
-newer, which means it has more undiscovered false positives than they do, and the only useful
-response to that is to publish the ones we find and make them fail the build. Every mistake in
-this article is written up in the code that fixes it, with the site it happened to, and
-191 of the 436 test files exist for no other reason.</p>
+<h2>The fixes that make it worse</h2>
 
-<p>The same scepticism applies before you pay for anything at all. Several free tools answer a
-narrow question well, and the useful judgement is knowing which question each one answers and where
-it stops: <a href="/best/free-seo-audit-tools/">the best free SEO audit tools, and when to stop</a>.</p>
+<ul>
+<li><strong>Adding your own address to a node that describes someone else.</strong> You have now
+published a false claim about a third party's premises in machine-readable form.</li>
+<li><strong>Deleting the list markup to clear the finding.</strong> The list is the thing that
+makes the page eligible for anything. Complete it instead.</li>
+<li><strong>Adding a local-business node for your company to a page that is not premises.</strong>
+A marketplace is not a shopfront, and claiming to be one is the misrepresentation that structured
+data is policed for.</li>
+</ul>
 
-<h2>The version of this that matters most</h2>
+<h2>How to clear this without improving anything</h2>
 
-<p>All of it gets more expensive the moment an audit is automated. Docket's CLI exits non-zero
-on a critical finding so it can gate a deployment, which is genuinely useful and also means a
-fabricated critical stops being an annoyance and starts failing somebody's build at six in the
-evening.</p>
+<p>Remove <code>itemListElement</code> and leave the entries loose in the graph. The nodes are
+still there, the tool can no longer tell they are listings, and it will go back to treating them as
+yours — the finding changes shape rather than disappearing, and you have thrown away the one
+signal that made the page legible.</p>
 
-<p>The invented-criticals bug above was harmless for as long as nobody automated the tool. It
-was found by testing the error path of the deploy gate, which is to say: <strong>the feature
-that made the bug dangerous is also what exposed it.</strong> If you are about to wire any
-audit tool into CI, run it first against a hostname that does not resolve and read what it
-tells you. You will learn more about the tool in that one run than in ten against a healthy
-site.</p>
+<p><strong>The property that got you a confusing finding is the property that makes the page
+readable at all.</strong></p>
 
-<p><a class="btn" href="/download/">Download Docket</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I know if an SEO tool's findings are accurate?</h3><p>Ask four things of any finding: how many pages it actually read before claiming something is missing site-wide, whether its headline and its detail report the same number, whether anything was observed at all when it reports an absence, and whether the vendor keeps a regression test when they fix a false positive.</p></div><div class="faq-item"><h3>What is a false positive in an SEO audit?</h3><p>A finding that is confidently stated and not true. The common causes are a tool sampling part of a site and reporting about all of it, a crawl that was blocked or returned nothing being read as evidence of absence, and pattern matches that fire on the wrong thing — an inline SVG label counted as the page title, for instance.</p></div><div class="faq-item"><h3>Why does a failed crawl produce false findings?</h3><p>Because 'we did not see it' and 'it is not there' are the same observation to a tool that is not careful. A rate-limited crawl that reads one error page has no evidence about analytics, phone numbers or anything else, but a naive check reports all of them as missing. Look for a line saying the crawl was degraded; if the report does not mention it, the silence is not reassurance.</p></div><div class="faq-item"><h3>Why does an SEO tool flag things that look fine in my browser?</h3><p>Usually because it read the HTML your server sent and you are looking at the page after JavaScript ran. On most modern sites those are different documents. Anything a tool says about what a visitor sees — visible prices, review stars, headings, body copy — is only trustworthy if it rendered the page. Ask whether the tool rendered, and if it did not, treat those findings as unconfirmed rather than wrong.</p></div><div class="faq-item"><h3>Should I run an SEO audit in CI?</h3><p>It is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Test it first against a hostname that does not resolve: a tool that invents findings about a site it never reached will fail your build with advice about a problem you do not have.</p></div></div></section>
+<h2>Where this sits in an audit</h2>
+
+<p>The registered checks are <code>local.schema</code>, which covers local-business structured
+data, and <code>local.applicable</code>, which decides whether the local lane applies to your site
+at all. For the other ways structured data misleads, see
+<a href="/how-to/fix-structured-data-errors/">how to fix structured data errors &rarr;</a>; for the
+related case of a node that is a pointer rather than a definition, see
+<a href="/how-to/schema-id-references/">an @id is a pointer, not a definition &rarr;</a>.</p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Why does my audit say my address is missing when I have no premises?</h3><p>Because it probably read a node describing a business your page lists. Anything reached through itemListElement is something you are listing rather than something you are.</p></div><div class="faq-item"><h3>What is itemListElement?</h3><p>The schema.org property whose entries are the things a page lists. It is the one signal that separates markup about you from markup about everybody else on the page.</p></div><div class="faq-item"><h3>Should I remove structured data that describes other businesses?</h3><p>No. Complete entries are what make a listing page eligible for rich results. Fill the empty fields rather than deleting the list.</p></div><div class="faq-item"><h3>My store locator lists my own branches. Does this apply to me?</h3><p>The nodes really are yours, so incomplete ones are a genuine defect on premises you operate. That case is exactly why listing markup is still reported rather than ignored.</p></div><div class="faq-item"><h3>Is it safe to add my company as a local business on a listings page?</h3><p>Not unless the page describes premises the public visits. Claiming to be a shopfront you do not have is the kind of misrepresentation structured data is policed for.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

@@ -1435,6 +1435,12 @@ What a tool split that should not have been split, and why an explanation attach
 condition is invisible to the people who need it.
 <a href="/how-to/findings-that-double-count/">Add the counts first &rarr;</a></p>
 
+<h2>When the markup is about somebody else</h2>
+<p>A reader that walks your structured data to any depth cannot tell whose business it just found —
+and one property settles it. Why a marketplace was told its own address, hours and price range were
+missing when every fact belonged to a shop it listed.
+<a href="/how-to/schema-that-describes-someone-else/">Whose data is it? &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
