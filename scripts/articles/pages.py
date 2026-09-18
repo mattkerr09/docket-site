@@ -1333,6 +1333,12 @@ them is usually wrong.
 mistake that can cost a site its entire long tail while every page still returns 200.
 <a href="/how-to/fix-conflicting-canonicals/">How to fix conflicting canonicals →</a></p>
 
+<h2>Pagination that hides half your site</h2>
+<p>When pages two and beyond declare page one as their canonical, a crawler is told they are
+duplicates — and everything only reachable from them goes too. The mistake looks like good
+hygiene, which is why it survives.
+<a href="/how-to/fix-paginated-pages-that-canonicalise-to-page-1/">Spot it in one command &rarr;</a></p>
+
 <h2>Mobile, and what a crawl cannot see</h2>
 <p>Google indexes the mobile page, not the desktop one. Which mobile faults a crawler can
 genuinely prove — the viewport tag, weight, render-blocking, layout shift, numbers that will not
