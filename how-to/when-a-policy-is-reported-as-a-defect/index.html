@@ -9,26 +9,26 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Learn: SEO audits, AI search visibility and technical SEO</title>
-<meta name="description" content="Plain explanations of what an SEO audit covers, how AI search visibility works, and what Docket checks.">
+<title>When a report calls your decision a defect</title>
+<meta name="description" content="An audit called a publisher's deliberate policy a critical defect and capped the site's score — then told a reader none of their crawlers were named when two were.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="bebcdd1da89e">
-<link rel="canonical" href="https://docketseo.app/learn/">
+<link rel="canonical" href="https://docketseo.app/how-to/when-a-policy-is-reported-as-a-defect/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Learn">
-<meta property="og:description" content="Plain explanations of what an SEO audit covers, how AI search visibility works, and what Docket checks.">
-<meta property="og:url" content="https://docketseo.app/learn/">
+<meta property="og:title" content="When a report calls your decision a defect">
+<meta property="og:description" content="An audit called a publisher's deliberate policy a critical defect and capped the site's score — then told a reader none of their crawlers were named when two were.">
+<meta property="og:url" content="https://docketseo.app/how-to/when-a-policy-is-reported-as-a-defect/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Learn">
-<meta name="twitter:description" content="Plain explanations of what an SEO audit covers, how AI search visibility works, and what Docket checks.">
+<meta name="twitter:title" content="When a report calls your decision a defect">
+<meta name="twitter:description" content="An audit called a publisher's deliberate policy a critical defect and capped the site's score — then told a reader none of their crawlers were named when two were.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -680,7 +680,9 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","headline":"Learn","description":"Plain explanations of what an SEO audit covers, how AI search visibility works, and what Docket checks.","datePublished":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"When a report calls your decision a defect","description":"An audit called a publisher's deliberate policy a critical defect and capped the site's score — then told a reader none of their crawlers were named when two were.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/when-a-policy-is-reported-as-a-defect/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"An audit says blocking AI crawlers is a critical issue. Is it?","acceptedAnswer":{"@type":"Answer","text":"Only if you did not mean to. A named, deliberate block is a policy and should be reported as a note; a crawler swept up by a wildcard rule added for some other reason is the case worth acting on, because nobody decided it."}},{"@type":"Question","name":"How can a tool tell a deliberate block from an accidental one?","acceptedAnswer":{"@type":"Answer","text":"It cannot, exactly. It reads a proxy: whether the crawler is named. Naming a specific user-agent is someone typing it on purpose, while a wildcard is a net. That proxy is good enough to set severity and not good enough to be certain."}},{"@type":"Question","name":"My report says none of my crawlers are named, but some are. Why?","acceptedAnswer":{"@type":"Answer","text":"Because a test asking whether all of them are named answers no as soon as one is not, and the sentence underneath was written for a file that named none. Check any universal claim against the file itself."}},{"@type":"Question","name":"Should I re-allow crawlers my organisation deliberately blocked?","acceptedAnswer":{"@type":"Answer","text":"No. A severity level is not a policy decision. If the block was considered and chosen, the correct outcome is that the report records it and moves on."}},{"@type":"Question","name":"Is fixing robots.txt enough to let an AI crawler in?","acceptedAnswer":{"@type":"Answer","text":"Not always. A rule at your CDN or firewall that refuses the crawler is invisible in robots.txt, so a file that permits it and a server that refuses it will both be true at once. Check the response your server actually gives."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -712,8 +714,141 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / Learn</div><h1>Learn</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-06">6 August 2026</time></p>
-<p class="lede">Reference pages, written to be read rather than skimmed for keywords.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/answer-extractability/">Answer extractability: can an AI quote your page?</a></h2><p>The check reads your question-form headings and nothing under them. What that measures, what nobody can measure, and why one is a proxy for the other.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/trust-and-authorship-signals/">Trust and authorship signals a crawler can see</a></h2><p>About, Contact and a privacy page are the reliable half. The authorship half is looser, and this is the page that says which is which.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/email-capture-audit/">The email-capture check that never looks at your form</a></h2><p>It reads body text, and body text is defined as the page minus nav, header, footer, aside and form. What that means for a footer signup.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/ai-sounding-copy/">Does your copy read as AI-written?</a></h2><p>Docket matches a register, not authorship — it cannot tell you who or what wrote a page. What it looks for, why it needs more than one tell, and what that finding is worth.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/who-blocks-googlebot/">Who blocks Googlebot, and who blocks GoogleOther</a></h2><p>We read robots.txt across a large public sample. A small share deny Googlebot and rather more deny GoogleOther — what that can, and cannot, tell you about a site.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/does-cloudflare-block-gptbot/">Does Cloudflare block GPTBot?</a></h2><p>Cloudflare changed what a new domain does by default, and the answer differs by which OpenAI crawler is asking. How to check your own.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/does-noindex-stop-ai-crawlers/">Does noindex stop AI crawlers?</a></h2><p>noindex tells an indexer not to list a page; it cannot stop a crawler fetching it. What robots.txt and your server control instead, and which layer is refusing yours.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/click-depth-and-orphan-pages/">Click depth and orphan pages</a></h2><p>How many clicks from the homepage a page sits, and which pages nothing links to — plus the crawl conditions under which neither number means anything.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/url-structure/">URL structure: checked vs folklore</a></h2><p>What Docket actually enforces about URLs, and which popular rules have no published source behind them.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/page-weight/">Page weight and how heavy is too heavy</a></h2><p>Docket grades the HTML document, not the whole page — and says 'at least' when the read was capped.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/priority-model/">How Docket decides what to fix first</a></h2><p>Severity, impact, reach and effort — the formula an audit ranks your site with, written out.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/ai-crawler-directives/">AI crawler directives: which to block</a></h2><p>Training crawlers and search crawlers are different decisions with different costs.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/index-coverage/">Is your page actually indexed?</a></h2><p>Whether a page is in Google, Bing or Brave is a fact about their index, not your HTML. What Docket asks each engine, and the places it refuses to guess.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/ai-crawlers-and-sitemaps/">AI crawlers and your sitemap</a></h2><p>A Sitemap: line is a non-group record, so every crawler is offered the same one — including the crawlers a site is trying to keep out.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/www-vs-non-www/">www or no www, and whether it still matters</a></h2><p>Every page-one result agrees you should pick one. None of them counted. We probed a random sample to see how many hosts still serve both.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/internal-utm-links/">Internal links that carry UTM parameters</a></h2><p>A site tagging its own internal links splits its analytics and can split its canonical signals. We crawled a sample and counted — and the affected hosts split into two different problems.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/googlebot-2mb-limit/">Googlebot's 2MB cutoff</a></h2><p>It reads the first 2MB and indexes that as the whole page. We measured well-known homepages and found five already past it.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/audit-tool-accuracy/">How to tell whether an audit tool is lying to you</a></h2><p>Four questions to ask of any SEO finding, each of them learned here by getting it wrong first.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/log-file-analysis/">Log file analysis: what Googlebot actually fetched</a></h2><p>A user-agent proves nothing, which is why Google publishes 1,641 crawler IP prefixes. Reading a log honestly, and where the dedicated tool wins.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/brand-consistency/">Brand consistency: the question no crawler asks</a></h2><p>Of 11 company sites linking social profiles, 9 declared none of them in schema. What the brand lane checks, and where design tools beat it.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/domain-authority-without-a-subscription/">Domain authority without a subscription</a></h2><p>Ranked from the public Common Crawl link graph. The useful part is what it says when it cannot see you, which is what it said about this site.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/site-monitoring/">SEO monitoring: what changed, not what is wrong</a></h2><p>Re-audits while the app is open, regressions first, and the two comparisons Docket refuses to make because the number would look useful and be wrong.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/conversion-audit/">Conversion audit: 9 checks on your landing pages</a></h2><p>Ranking and then failing to say what to do next costs the same as not ranking. The 9 mechanical checks, and the judgement calls Docket refuses to make for you.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/marketing-tag-audit/">Marketing tag audit: is your tracking on every page?</a></h2><p>Tags are installed on templates; sites grow pages built from other templates. The 6 tracking checks, and the four-minute version you can do by hand.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/dead-contact-address/">The contact address that cannot receive mail</a></h2><p>An address on a domain with no MX record bounces to the sender and never reaches you, and no tool asks whether yours works.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/ai-substitution/">Which pages an AI answer replaces</a></h2><p>Ranking and not being visited. Measured on two live sites — this one at 5% fully substitutable, a delicatessen at 0% — and three ways we measured it wrong first.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/ai-search-visibility/">AI search visibility</a></h2><p>The three gates a model has to clear before it can cite you — access, rendering and entity clarity — with measured data on who is blocking what.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/seo-audit/">What an SEO audit covers</a></h2><p>Every area, in the order they should be worked, and the three tests a report has to pass to be worth acting on.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/javascript-rendering/">JavaScript rendering</a></h2><p>What a crawler that does not run JavaScript misses — measured on a page that serves 0 characters of text and renders 2,068.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/sameas-entity-signals/">sameAs and entity signals</a></h2><p>The cheapest entity signal there is, and the share of major sites that skip it — measured, with the dataset attached.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/canonical-tags/">Canonical tags</a></h2><p>Google calls rel=canonical a hint and overrules it routinely. The seven ways it gets set wrong, and what each Search Console status is actually telling you.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/internal-link-equity/">Internal link equity</a></h2><p>The ranking signal your pages pass to each other, measured on our own site — where the download page held a fifth of what an average page did.</p><h2 style="margin-top:1.5rem;font-size:1.35rem"><a href="/learn/what-docket-checks/">What Docket checks</a></h2><p>All the checks, by area, with what each one actually looks at.</p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Policy or defect</div><h1>When a report calls your decision a defect</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
+
+<p class="lede">The hard part of an audit is not finding what is wrong. It is telling a mistake
+from a decision — and in a configuration file those look identical. The same line means "we
+thought about this and chose it" on one site and "nobody has ever read this line" on another, and
+nothing in the file says which. Getting that wrong in the loud direction is how a tool ends up
+shouting at somebody for doing their job.</p>
+
+<h2>A published policy, reported as a critical defect</h2>
+
+<p>A national broadcaster names the AI crawlers that decide whether it can be cited, and disallows
+them. Deliberately, as editorial policy, in its own file, by people who know exactly what those
+names do.</p>
+
+<p>We called it critical, and capped an otherwise well-run site's score over it.</p>
+
+<p>Nothing was wrong. The decision had been made, by the people entitled to make it, and the
+report's contribution was to tell them their published policy was a defect and hand them a block
+of markup to undo it.</p>
+
+<h2>And the case that really is worth interrupting someone over</h2>
+
+<p>The opposite situation produces the same line in the file. A blanket
+<code>User-agent: *</code> rule gets added for an unrelated reason — an aggressive scraper, a
+staging leak, advice from years ago — and it sweeps up every crawler, including the ones that
+decide whether an assistant can cite you live.</p>
+
+<p>Nobody decided that. Nobody knows it happened. It is exactly the thing an audit exists to
+surface.</p>
+
+<p>Two situations, one observation in the file: <em>this crawler is disallowed</em>. What separates
+them is not the rule. <strong>It is whether the crawler is named.</strong> A name is somebody
+typing a specific crawler on purpose. A wildcard is a net.</p>
+
+<h2>The sentence that was false about the reader's own file</h2>
+
+<p>Then the interesting failure, which is the reason this page exists.</p>
+
+<p>The check asked whether <em>all</em> the blocked crawlers were named. That question has a
+sensible answer at each end and a dangerous one in the middle. A file that names and disallows two
+crawlers by hand, and lets a wildcard catch a third, answers no — not all of them are named — and
+the report that follows was written for a file that named none:</p>
+
+<blockquote><p><strong>robots.txt blocks three AI search crawlers.</strong> None of them is named
+in your robots.txt, so a wildcard rule is catching them and this may never have been a
+decision.</p></blockquote>
+
+<p>Two of them were named. In that file. One line above the wildcard.</p>
+
+<p>Three things make this worse than a wording slip. That sentence is the one that turns a notice
+into a critical, so the false claim is load-bearing. The remedy under it told the reader to
+re-allow two crawlers they had just deliberately blocked. And the reader can disprove the whole
+thing by opening the file the report is describing.</p>
+
+<p><strong>"None" is a strong word, and in a report it is usually a mis-stated "not all".</strong>
+When a finding makes a universal claim about your configuration, check it against the
+configuration — a mixed case is the one most likely to be described by a branch written for a pure
+one.</p>
+
+<h2>The fix was to stop making it choose</h2>
+
+<p>The set is partitioned now instead of switched on. The named ones and the wildcard-caught ones
+are separate findings: one records a policy at a notice, the other is the interruption. Both can
+appear on the same report about the same file, because both are true of different crawlers.</p>
+
+<p>That is the general shape. <strong>When one sentence is asked to describe a mixed set, it will
+be wrong about part of it.</strong> The answer is rarely a better sentence; it is usually two
+findings.</p>
+
+<h2>The paste-ready block that ignored the measurement</h2>
+
+<p>One more, because it rides along with the same finding. The report offers a robots.txt snippet
+to paste. It used to be a fixed list — the same user-agent lines for everybody, including a
+crawler our own survey evidence says to leave out of that recommendation, and including crawlers
+the reader had not blocked in the first place.</p>
+
+<p>It is derived from the measurement now: the block names the crawlers actually found to be
+caught, and nothing else. <strong>A snippet is something people paste</strong>, which makes it the
+one part of a report that must never be generic. That is a cousin of
+<a href="/how-to/schema-type-is-a-claim/">a suggested markup block carrying somebody else's facts
+&rarr;</a> — there the example values read as researched; here the list simply did not match the
+finding above it.</p>
+
+<h2>Reading this on your own report</h2>
+
+<ol>
+<li><strong>Open the file and look for the name.</strong> If the crawler is named, someone typed
+it. If only a wildcard covers it, decide now whether you meant to.</li>
+<li><strong>Check any universal claim against the file itself.</strong> "None", "every" and "all"
+are where reports go wrong, and your file is the evidence.</li>
+<li><strong>Decide training and citation separately</strong> — they are different crawlers doing
+different jobs, and the costs are not comparable:
+<a href="/learn/ai-crawler-directives/">which AI crawler does what &rarr;</a>.</li>
+<li><strong>Check the edge as well as the file.</strong> A file that says yes and a server that
+says no is a configuration nobody chose.</li>
+</ol>
+
+<h2>When this is a real problem</h2>
+
+<p>Keep the weight where it belongs. A wildcard catching search-index crawlers removes you from
+answers that cite live sources, and it is invisible precisely because the rule was added for
+something else and has been sitting there ever since. That is worth the interruption. A named
+block is worth a line in the report and nothing more.</p>
+
+<h2>The fixes that make it worse</h2>
+
+<ul>
+<li><strong>Undoing a deliberate block because a report shouted.</strong> If your organisation
+decided to stay out of those answers, a tool's severity is not a reason to reverse it. Tools do
+not know your policy.</li>
+<li><strong>Blocking the whole set because one crawler is a problem.</strong> The names are
+matched exactly and the jobs are different; a rule for one says nothing about another.</li>
+<li><strong>Fixing the file and leaving the firewall.</strong> An edge rule refusing a crawler is
+invisible in robots.txt, so every tool reading the file will tell you the crawler is allowed.</li>
+<li><strong>Pasting a suggested block without reading it.</strong> Check that every line names a
+crawler you actually meant to change.</li>
+</ul>
+
+<h2>How to make this read as policy without deciding anything</h2>
+
+<p>Name every crawler explicitly in your file. The finding drops from an interruption to a note,
+because naming is the signal of intent — and naming costs you nothing and commits you to nothing.
+<strong>The check is reading a proxy for deliberateness, not deliberateness</strong>, and no file
+can carry the difference. Worth knowing in both directions: it is why a named block is treated
+gently, and why a wildcard deserves a look even when you are fairly sure you meant it.</p>
+
+<h2>Where this sits in an audit</h2>
+
+<p>The registered check is <code>ai.crawler_access</code>, which reads robots.txt for AI crawler
+access. For what each crawler does and what blocking it costs, see
+<a href="/learn/ai-crawler-directives/">the AI crawler directives &rarr;</a>. For a rule that names
+a crawler nothing answers to, see <a href="/how-to/what-a-dead-crawler-rule-costs/">what a dead
+robots.txt rule actually costs &rarr;</a>. For the case where the audit itself was refused, see
+<a href="/how-to/tell-a-rate-limit-from-a-block/">telling a rate limit from a block &rarr;</a>.</p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>An audit says blocking AI crawlers is a critical issue. Is it?</h3><p>Only if you did not mean to. A named, deliberate block is a policy and should be reported as a note; a crawler swept up by a wildcard rule added for some other reason is the case worth acting on, because nobody decided it.</p></div><div class="faq-item"><h3>How can a tool tell a deliberate block from an accidental one?</h3><p>It cannot, exactly. It reads a proxy: whether the crawler is named. Naming a specific user-agent is someone typing it on purpose, while a wildcard is a net. That proxy is good enough to set severity and not good enough to be certain.</p></div><div class="faq-item"><h3>My report says none of my crawlers are named, but some are. Why?</h3><p>Because a test asking whether all of them are named answers no as soon as one is not, and the sentence underneath was written for a file that named none. Check any universal claim against the file itself.</p></div><div class="faq-item"><h3>Should I re-allow crawlers my organisation deliberately blocked?</h3><p>No. A severity level is not a policy decision. If the block was considered and chosen, the correct outcome is that the report records it and moves on.</p></div><div class="faq-item"><h3>Is fixing robots.txt enough to let an AI crawler in?</h3><p>Not always. A rule at your CDN or firewall that refuses the crawler is invisible in robots.txt, so a file that permits it and a server that refuses it will both be true at once. Check the response your server actually gives.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
