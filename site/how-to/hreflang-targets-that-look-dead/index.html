@@ -9,26 +9,26 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Fix compression and caching headers</title>
-<meta name="description" content="What Docket's perf.compression check reads, the Brotli quirk that makes it report a site that already compresses, and which half is worth your time.">
+<title>Why an hreflang target is reported as dead</title>
+<meta name="description" content="Four reasons an hreflang target is called broken, two of which are facts about the audit rather than about your site.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="27273ab22e11">
-<link rel="canonical" href="https://docketseo.app/how-to/fix-compression-and-caching/">
+<link rel="canonical" href="https://docketseo.app/how-to/hreflang-targets-that-look-dead/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to fix compression and caching headers">
-<meta property="og:description" content="What Docket's perf.compression check reads, the Brotli quirk that makes it report a site that already compresses, and which half is worth your time.">
-<meta property="og:url" content="https://docketseo.app/how-to/fix-compression-and-caching/">
+<meta property="og:title" content="Why an hreflang target is reported as dead">
+<meta property="og:description" content="Four reasons an hreflang target is called broken, two of which are facts about the audit rather than about your site.">
+<meta property="og:url" content="https://docketseo.app/how-to/hreflang-targets-that-look-dead/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How to fix compression and caching headers">
-<meta name="twitter:description" content="What Docket's perf.compression check reads, the Brotli quirk that makes it report a site that already compresses, and which half is worth your time.">
+<meta name="twitter:title" content="Why an hreflang target is reported as dead">
+<meta name="twitter:description" content="Four reasons an hreflang target is called broken, two of which are facts about the audit rather than about your site.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -681,8 +681,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix compression and caching headers","description":"What Docket's perf.compression check reads, the Brotli quirk that makes it report a site that already compresses, and which half is worth your time.","datePublished":"2026-09-15","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-compression-and-caching/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Docket check for Brotli?","acceptedAnswer":{"@type":"Answer","text":"No, and this is the check's most important limit. Docket's crawler sends Accept-Encoding: gzip, deflate and never advertises br, because there is no Brotli decoder in the Python standard library. A server that only offers Brotli and obeys RFC 9110 will send our crawler an uncompressed document, so perf.no_compression can fire on a site that compresses perfectly for real browsers. Confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' before changing anything."}},{"@type":"Question","name":"What counts as compressed?","acceptedAnswer":{"@type":"Answer","text":"The presence of a Content-Encoding header on the response, whatever its value. The check never reads the algorithm, never compares sizes and makes no claim about how much was saved. It is a presence test, not a measurement."}},{"@type":"Question","name":"Why does the compression finding only cover some pages?","acceptedAnswer":{"@type":"Answer","text":"There is a size floor, and it is measured on the decompressed HTML rather than on what crossed the wire. Pages whose markup is smaller than the floor are never reported however they are served, because the saving on a small document does not justify a finding."}},{"@type":"Question","name":"What counts as a caching header?","acceptedAnswer":{"@type":"Answer","text":"Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare when all three are absent, and the finding is only raised when more than half the crawled pages are bare — so it is a statement about the site, not a count of pages. The value is never read, so Cache-Control: no-store clears the check as thoroughly as a good policy would."}},{"@type":"Question","name":"Will fixing this improve my Core Web Vitals score?","acceptedAnswer":{"@type":"Answer","text":"It may improve the experience, but Docket cannot tell you, and neither can any tool running on one machine. LCP, INP and CLS come from real visitors on real connections. Docket measures the causes; the field values belong in Search Console."}},{"@type":"Question","name":"Does compression affect rankings directly?","acceptedAnswer":{"@type":"Answer","text":"Not as a header. Nothing in the check claims a ranking effect and this page will not invent one. Smaller responses arrive faster, which is worth having on its own terms."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Why an hreflang target is reported as dead","description":"Four reasons an hreflang target is called broken, two of which are facts about the audit rather than about your site.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/hreflang-targets-that-look-dead/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"My hreflang targets load fine but the audit calls them unreachable. Why?","acceptedAnswer":{"@type":"Answer","text":"Because the crawler got no response — a refused connection, a DNS hiccup or a timeout. A status of zero is not something your server sent, so nothing has been learned about that URL."}},{"@type":"Question","name":"Is a 403 on an hreflang target a problem?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. A refusal is a fact about the tool that asked, not about what a search engine is served. If the whole site refused the audit, treat target-level findings as unverified."}},{"@type":"Question","name":"Should hreflang point at a URL that redirects?","acceptedAnswer":{"@type":"Answer","text":"No — point it at where the redirect lands, and make sure that page carries the return tag back. A cluster resolves better when every member is a destination."}},{"@type":"Question","name":"Can an hreflang target be noindex?","acceptedAnswer":{"@type":"Answer","text":"It should not be. Naming a page in a language cluster while telling search engines to ignore that page is a contradiction, and the cluster is the easier half to correct."}},{"@type":"Question","name":"One bad target — does it matter?","acceptedAnswer":{"@type":"Answer","text":"More than its severity suggests. An hreflang set is a group of mutual claims, so a member that does not resolve weakens the set rather than only itself."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -714,200 +714,116 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / compression and caching</div><h1>How to fix compression and caching headers</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / hreflang targets</div><h1>Why an hreflang target is reported as dead</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
-<p class="lede">Your audit came back with a heading reading "Compression and caching headers"
-and a list of URLs under it, and the two halves of that heading sound like the same afternoon of
-server work. They are not. One is usually a single line of configuration and a real saving; the
-other is a smaller matter than its name suggests — and on some hosts the first is reported
-against a site already doing it correctly.</p>
+<p class="lede">An audit says your hreflang tags point at URLs that do not work. Before you edit a
+single tag, it is worth knowing that "does not work" covers four quite different situations — and
+on the two most common ones the honest answer is that the tool learned nothing.</p>
 
-<p>Docket's <code>perf.compression</code> check emits two findings, under
-two ids, at two very different severities:</p>
-
-<pre><code>high   perf.no_compression     N pages are served without compression
-low    perf.no_cache_headers   Pages are served with no caching headers</code></pre>
-
-<p>The gap between <code>high</code> and <code>low</code> is most of the answer. The check also
-grades its own workload, and grades neither as an afternoon: the compression fix is filed as
-<code>trivial</code>, which the engine defines as "edit one tag / one line of config, minutes",
-and the caching fix as <code>small</code>, "a template change, under an hour".</p>
-
-<h2>What this cannot tell you, first</h2>
-
-<p><strong>Docket reads the headers on the responses it was given. It does not measure how fast
-anything felt.</strong> There is no browser, no paint, no device and no network but ours. A
-finding here is a fact about the response that arrived at our crawler, and most of this page is
-about the distance between that and your site.</p>
-
-<p><strong>It cannot measure Core Web Vitals, and nothing that runs on one machine can.</strong>
-Largest Contentful Paint, Interaction to Next Paint and Cumulative Layout Shift come from real
-people on real connections. The check module says so in its own opening comment — that it
-measures the network and the document, not a rendered browser, and that "a number invented from
-static analysis would be worse than no number". Confirm the field values in Search Console.</p>
-
-<p><strong>It does not measure how much compression saved you</strong>, and
-<strong>it only looked at HTML.</strong> Nothing is compressed twice and nothing is compared;
-the check asks whether a <code>Content-Encoding</code> header was present and stops. Your
-stylesheets, scripts and JSON endpoints were never fetched for it, so it has no opinion about
-those — even though its own fix text asks you to turn compression on for them.</p>
-
-<h2>The false positive you should check before you change anything</h2>
-
-<p>This one matters, and it is ours rather than yours. Docket's crawler sends <code>Accept-Encoding: gzip, deflate</code>. It does not advertise
-Brotli, because there is no Brotli decoder in the Python standard library and the engine is kept
-dependency-free. The fetcher says so in its own comment: Docket never advertises
-<code>br</code>, so Brotli cannot arrive from a specification-abiding server.</p>
-
-<p>Now read that against the specification. Under
-<a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-12.5.3">RFC 9110 section 12.5.3</a>, the
-<code>Accept-Encoding</code> request header is how a client states which content codings it
-will accept, and a server that respects it will not send one that was not offered. So an origin
-or CDN configured to serve Brotli and nothing else, behaving correctly, answers our crawler with
-an uncompressed document and no <code>Content-Encoding</code> header. Docket then reports
-<code>perf.no_compression</code> at <code>high</code> against a site whose real visitors have
-had compressed HTML all along.</p>
-
-<p>Check before you touch a configuration file, with the request a browser actually makes:</p>
-
-<pre><code>curl -sI -H 'Accept-Encoding: gzip, deflate, br' https://example.com/ | grep -i content-encoding</code></pre>
-
-<p>If that prints <code>content-encoding: br</code> and the same request without
-<code>br</code> prints nothing, the finding is about our request rather than your server and
-there is nothing to fix. The general form holds in both directions: a managed host or CDN can
-compress for real visitors while answering an unfamiliar client differently, and the response we
-got is the only thing this check ever saw.</p>
-
-<h2>What the check actually computes</h2>
-
-<p><strong>Compression.</strong> For every page that returned a success status and parsed as
-HTML, Docket asks two questions: is the HTML document bigger than the floor, and is a
-<code>Content-Encoding</code> header present. That is the whole test:</p>
-
-<pre><code>uncompressed = [
-    p for p in ctx.ok_pages
-    if p.html_bytes &gt; 20_000
-    and not p.headers.get("content-encoding")
-]</code></pre>
-
-<p>Two things follow that people get wrong. First, <em>any</em> value satisfies it. The check
-never reads what the header says, so it cannot distinguish gzip from Brotli from
-<code>identity</code>. Second, the size floor is measured on the <em>decompressed</em> document:
-<code>html_bytes</code> is documented in the model as the raw HTML byte length before any
-transfer encoding, and is assigned after the fetcher has unpacked the body. It is the size of
-your markup, not of what crossed the wire. A page under the floor is never reported however it
-is served, because the saving on a small document does not justify a finding.</p>
-
-<p><strong>Caching.</strong> Here the shape is different, and this is the part most likely to
-surprise you. A page counts as having no caching headers only when <em>all</em> of
-<code>Cache-Control</code>, <code>ETag</code> and <code>Last-Modified</code> are absent. Any one
-of the three is enough to clear it. And the finding is then gated on the site rather than the
-page: it is only emitted when more than half of the crawled OK pages are bare. If a minority of
-your pages have no caching headers, this check says nothing at all — and its title, "Pages are
-served with no caching headers", is deliberately a statement about the site rather than a
-count.</p>
-
-<p>As with compression, presence is the test and the value is never read.
-<code>Cache-Control: no-store</code> clears this check completely, because the check is asking
-whether you said anything about caching, not whether it was wise.</p>
-
-<h2>Turning compression on</h2>
-
-<p>On nginx, the <a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html">gzip module documentation</a> is short and worth reading
-in full. The directive defaults to off, and HTML is a special case: the documentation says
-plainly that responses with the <code>text/html</code> type are always compressed, so
-<code>text/html</code> does not belong in the type list.</p>
-
-<pre><code>gzip on;
-gzip_types text/css application/javascript application/json image/svg+xml;
-gzip_min_length 256;</code></pre>
-
-<p>On Apache, <a href="https://httpd.apache.org/docs/2.4/mod/mod_deflate.html">mod_deflate</a> does the same job from the vhost or
-<code>.htaccess</code>:</p>
-
-<pre><code>AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml</code></pre>
-
-<p>If you are on a managed platform and control neither file — the common case, and the reason
-this page exists — the setting is in your host's dashboard rather than your repository. On a CDN
-it is usually one toggle applied at the edge, and the CDN compresses on the way out whether or
-not your origin did. That is why the fix is graded <code>trivial</code>: it is not a deploy.</p>
-
-<h2>Caching headers, and what to actually set</h2>
-
-<p>The reason this one is <code>low</code> rather than <code>high</code> is that a missing
-caching header costs you nothing on a first visit, which is most search traffic. It costs you on
-repeat visits and on re-crawls.</p>
-
-<p><a href="https://www.rfc-editor.org/rfc/rfc9111.html#section-3">RFC 9111 section 3</a> sets out when a cache may store a
-response at all, and <a href="https://www.rfc-editor.org/rfc/rfc9111.html#section-5.2">RFC 9111 section 5.2</a> defines
-<code>Cache-Control</code> as the field carrying directives to caches along the
-request/response chain. The other two headers the check looks for are validators rather than
-policy: <a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-8.8.3">RFC 9110 section 8.8.3</a> defines
-<code>ETag</code>, <a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-8.8.2">RFC 9110 section 8.8.2</a>
-defines <code>Last-Modified</code>, and either lets a client ask "has this changed" and be told
-no — the conditional-request mechanism in
-<a href="https://www.rfc-editor.org/rfc/rfc9111.html#section-4.3">RFC 9111 section 4.3</a>. That is the part crawlers use,
-and why a validator alone satisfies the check.</p>
-
-<p>For HTML that changes when you publish, the check's own suggested value is conservative and
-sensible:</p>
-
-<pre><code>Cache-Control: public, max-age=0, must-revalidate</code></pre>
-
-<p>That does not mean "do not cache". It means the cache may keep a copy and must check with
-you before reusing it — which, with an <code>ETag</code> alongside it, turns most repeat fetches
-into a short response with no body. For fingerprinted assets, a long <code>max-age</code> with
-<code>immutable</code> is the usual pairing. Those are not what this check looked at, but they
-are where the saving is.</p>
-
-<h2>What this check is not</h2>
-
-<p>Header findings attract everything else that is slow, so the boundaries are worth stating.
-Docket's speed lane runs this check alongside separate ones with their own ids, their own
-thresholds and their own findings:</p>
+<h2>The four causes, and who each one is about</h2>
 
 <ul>
-<li><code>perf.page_weight</code> — the size of the HTML document itself, decompressed. Same
-<code>html_bytes</code> field, different question: compression is about how it was sent, weight
-is about how much of it there is.</li>
-<li><code>perf.render_blocking</code> — stylesheets and scripts that block the first paint. Counted
-from the markup, and reported per page.</li>
-<li><code>perf.ttfb</code> — time to first byte, taken from the fetch and reported against
-the median across the site.</li>
-<li><code>perf.modern_images</code> — images still served as JPEG or PNG where a modern format
-would be smaller.</li>
+<li><strong>The target returns an error.</strong> A 404 or a server error on a URL your hreflang
+names is real and worth fixing: you are telling search engines that the Spanish version of this
+page lives somewhere that is not there.</li>
+<li><strong>The target is set to noindex.</strong> Also real, and quieter. An hreflang cluster
+pointing at a page you have asked search engines to ignore is a contradiction you wrote
+yourself.</li>
+<li><strong>The target refused the crawler.</strong> <em>This is a fact about the audit, not about
+your site.</em> A 403 to one tool says nothing about what a search engine is served, and it is not
+evidence that anything in the cluster is broken.</li>
+<li><strong>The target sent nothing at all.</strong> A status of zero is not a response — it is a
+refused connection, a DNS hiccup, a timeout, a dropped packet. The tool has no information
+whatever about that URL.</li>
 </ul>
 
-<p>None of those is fixed by a compression header and none of them fixes one. The full list of
-what the engine looks at, lane by lane, is on
-<a href="/learn/what-docket-checks/">what Docket checks</a>. The lane's other markup-level
-finding is written up at <a href="/how-to/fix-layout-shift/">how to fix layout shift</a>, which
-carries the same limit from the other side: Docket infers layout-shift risk from markup and
-cannot measure the metric.</p>
+<p>The last two used to be reported like the first two. The zero case sat inside the
+error branch and produced a medium-severity finding saying the reader's hreflang tags pointed at
+"unusable URLs" that returned "no response" — <strong>from a blip on one machine.</strong></p>
 
-<p>The closest relative outside this lane is response headers of a different kind.
-<a href="/how-to/fix-missing-security-headers/">Missing security headers</a> are set in the same
-file, at the same edge, by the same person — and this site fails two of those checks itself,
-because its host cannot set response headers at all. If you are opening that file anyway, do
-both.</p>
+<h2>The refusal that deliberately says nothing</h2>
 
-<h2>So which is worth an afternoon</h2>
+<p>Worth its own paragraph, because the fix here was to report <em>less</em>.</p>
 
-<p>Neither, on the check's own grading, and that is the useful answer. Confirm the compression
-finding with the <code>curl</code> above, because a Brotli-only host produces it falsely. If it
-holds, turn compression on: one line, and the largest single win this check can point at. Then
-set a <code>Cache-Control</code> value and make sure a validator is present — worth doing, not
-urgent. Spend the rest of the afternoon on
-<a href="/how-to/">something else on the list</a>.</p>
+<p>When a target refuses the crawler, the check could add an "unverified" note of its own. It does
+not — because if the site is refusing the audit at all, the site-level check already says so,
+clearly, once. <strong>Two findings describing one fact are not twice as informative; they are the
+same news twice, and the reader has to work out they are the same thing.</strong></p>
 
-<p>Every external reading on this page was taken on 15 September 2026:
-<a href="https://www.rfc-editor.org/rfc/rfc9110.html">RFC 9110, HTTP Semantics</a> and
-<a href="https://www.rfc-editor.org/rfc/rfc9111.html">RFC 9111, HTTP Caching</a> at rfc-editor.org, the
-<a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html">gzip module</a> at nginx.org, and
-<a href="https://httpd.apache.org/docs/2.4/mod/mod_deflate.html">mod_deflate</a> at httpd.apache.org.</p>
+<p>For what a refusal does and does not tell you, see
+<a href="/how-to/pages-an-audit-could-not-reach/">"could not be reached" is not a
+diagnosis &rarr;</a>.</p>
 
-<p><a class="btn" href="/download/">Download Docket</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Docket check for Brotli?</h3><p>No, and this is the check's most important limit. Docket's crawler sends Accept-Encoding: gzip, deflate and never advertises br, because there is no Brotli decoder in the Python standard library. A server that only offers Brotli and obeys RFC 9110 will send our crawler an uncompressed document, so perf.no_compression can fire on a site that compresses perfectly for real browsers. Confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' before changing anything.</p></div><div class="faq-item"><h3>What counts as compressed?</h3><p>The presence of a Content-Encoding header on the response, whatever its value. The check never reads the algorithm, never compares sizes and makes no claim about how much was saved. It is a presence test, not a measurement.</p></div><div class="faq-item"><h3>Why does the compression finding only cover some pages?</h3><p>There is a size floor, and it is measured on the decompressed HTML rather than on what crossed the wire. Pages whose markup is smaller than the floor are never reported however they are served, because the saving on a small document does not justify a finding.</p></div><div class="faq-item"><h3>What counts as a caching header?</h3><p>Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare when all three are absent, and the finding is only raised when more than half the crawled pages are bare — so it is a statement about the site, not a count of pages. The value is never read, so Cache-Control: no-store clears the check as thoroughly as a good policy would.</p></div><div class="faq-item"><h3>Will fixing this improve my Core Web Vitals score?</h3><p>It may improve the experience, but Docket cannot tell you, and neither can any tool running on one machine. LCP, INP and CLS come from real visitors on real connections. Docket measures the causes; the field values belong in Search Console.</p></div><div class="faq-item"><h3>Does compression affect rankings directly?</h3><p>Not as a header. Nothing in the check claims a ranking effect and this page will not invent one. Smaller responses arrive faster, which is worth having on its own terms.</p></div></div></section>
+<h2>The redirect test that could only fire on correct sites</h2>
+
+<p>This is the half worth the page. The remaining cause — an hreflang target that redirects
+somewhere else instead of resolving directly — is genuinely worth reporting, because a cluster
+resolves better when every URL in it is a destination rather than a stop on the way.</p>
+
+<p>The old test read the wrong end of the data. A crawler records, for each page it fetched, the
+chain of URLs that <em>led to</em> that page. That chain is non-empty exactly when the crawler
+arrived by being redirected — which makes the page it is attached to the <strong>final
+destination</strong>, the thing hreflang is supposed to point at.</p>
+
+<p>So the check fired when the target was already right. On one site with thousands of distinct
+hreflang targets it produced exactly one finding: a URL that returns 200 and does not redirect
+anywhere, which the crawler had simply reached from a different address. The advice attached was
+<em>point each hreflang at the final destination URL</em> — given to a site that already was.</p>
+
+<p><strong>A test that fires only on correct input is worse than a test that never fires</strong>,
+because it produces confident work for people who had nothing to fix, and it is invisible in
+aggregate: the finding count looks plausible, the affected sites look unlucky, and nobody
+investigates a rule that is quiet on the sites where the fault is real.</p>
+
+<p>The repair was to collect the URLs that were redirected <em>away from</em> — the first entries
+of those chains — and test membership of that set instead.</p>
+
+<h2>Reading this on your own report</h2>
+
+<ul>
+<li><strong>Look at the reason beside each target, not the headline.</strong> "Returns 404",
+"is set to noindex", "redirects instead of resolving" and "returned no response" are four
+different jobs, and one of them is not a job at all.</li>
+<li><strong>Open a target that was called unreachable.</strong> If it loads in a browser, the
+finding was about the crawl.</li>
+<li><strong>Check whether the whole site refused the audit.</strong> If there is a site-level
+refusal finding, treat every target-level one as unverified rather than false.</li>
+<li><strong>For a redirecting target, follow it once.</strong> Point the tag at where you land,
+and check the page you land on carries the return tag back.</li>
+</ul>
+
+<h2>When this matters</h2>
+
+<p>An hreflang cluster is a set of mutual claims, and one bad member weakens the set rather than
+just itself — which is why a dead target is worth more attention than its severity suggests. But
+that is true only of the causes that are about your site. A target reported as unreachable by a
+tool that could not connect is not a defect in your markup, and rewriting tags to chase it makes
+a correct cluster wrong.</p>
+
+<h2>The fixes that make it worse</h2>
+
+<ul>
+<li><strong>Removing an hreflang entry because its target was unreachable during one crawl.</strong>
+You have broken a mutual set to satisfy a transient network condition.</li>
+<li><strong>Repointing tags at URLs that were already destinations.</strong> The unfollowable
+advice above, and the reason the test was rewritten.</li>
+<li><strong>Adding a redirect so the target "resolves".</strong> The target was fine; the tag
+should name it directly and usually already does.</li>
+</ul>
+
+<h2>How to clear this without improving anything</h2>
+
+<p>Delete the hreflang annotations. Every target-health finding disappears, along with any chance
+of the right language version being served — which is the general shape of these pages: <strong>the
+fastest way to a clean report is always to remove the thing being measured.</strong></p>
+
+<h2>Where this sits in an audit</h2>
+
+<p>The registered check is <code>intl.hreflang_targets</code>, which covers hreflang target
+health. Its siblings cover the other halves of the subject:
+<a href="/how-to/fix-hreflang-return-tags/">return tags and the four ways a set breaks &rarr;</a>,
+and <a href="/how-to/fix-invalid-hreflang-codes/">invalid language and region codes &rarr;</a>.</p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>My hreflang targets load fine but the audit calls them unreachable. Why?</h3><p>Because the crawler got no response — a refused connection, a DNS hiccup or a timeout. A status of zero is not something your server sent, so nothing has been learned about that URL.</p></div><div class="faq-item"><h3>Is a 403 on an hreflang target a problem?</h3><p>Not necessarily. A refusal is a fact about the tool that asked, not about what a search engine is served. If the whole site refused the audit, treat target-level findings as unverified.</p></div><div class="faq-item"><h3>Should hreflang point at a URL that redirects?</h3><p>No — point it at where the redirect lands, and make sure that page carries the return tag back. A cluster resolves better when every member is a destination.</p></div><div class="faq-item"><h3>Can an hreflang target be noindex?</h3><p>It should not be. Naming a page in a language cluster while telling search engines to ignore that page is a contradiction, and the cluster is the easier half to correct.</p></div><div class="faq-item"><h3>One bad target — does it matter?</h3><p>More than its severity suggests. An hreflang set is a group of mutual claims, so a member that does not resolve weakens the set rather than only itself.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

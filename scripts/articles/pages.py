@@ -1417,6 +1417,12 @@ finding was right about a host you did not check. Why www and the bare domain ar
 configurations, and the three things "http is still reachable" can mean.
 <a href="/how-to/findings-that-name-no-host/">Find the host first &rarr;</a></p>
 
+<h2>The hreflang target that is not really dead</h2>
+<p>Four reasons a target gets called broken, and on two of them the tool learned nothing. Plus the
+redirect test that could only fire on sites already doing it right — and why that is worse than a
+test that never fires at all.
+<a href="/how-to/hreflang-targets-that-look-dead/">Read the reason, not the headline &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
