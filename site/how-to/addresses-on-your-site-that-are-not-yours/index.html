@@ -9,26 +9,26 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Log file analysis for SEO: what Googlebot actually fetched</title>
-<meta name="description" content="Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 1,641 crawler IP prefixes; a user-agent proves nothing.">
+<title>Not every address on your site is yours</title>
+<meta name="description" content="An audit told a forum to publish mail records for a domain it does not own, and called a share button on a site a dead mailbox. Which address is actually yours.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="db8f1037fca5">
-<link rel="canonical" href="https://docketseo.app/learn/log-file-analysis/">
+<link rel="canonical" href="https://docketseo.app/how-to/addresses-on-your-site-that-are-not-yours/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Log file analysis: what Googlebot actually fetched">
-<meta property="og:description" content="Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 1,641 crawler IP prefixes; a user-agent proves nothing.">
-<meta property="og:url" content="https://docketseo.app/learn/log-file-analysis/">
+<meta property="og:title" content="Not every address on your site is yours">
+<meta property="og:description" content="An audit told a forum to publish mail records for a domain it does not own, and called a share button on a site a dead mailbox. Which address is actually yours.">
+<meta property="og:url" content="https://docketseo.app/how-to/addresses-on-your-site-that-are-not-yours/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Log file analysis: what Googlebot actually fetched">
-<meta name="twitter:description" content="Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 1,641 crawler IP prefixes; a user-agent proves nothing.">
+<meta name="twitter:title" content="Not every address on your site is yours">
+<meta name="twitter:description" content="An audit told a forum to publish mail records for a domain it does not own, and called a share button on a site a dead mailbox. Which address is actually yours.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -679,10 +679,10 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 .faq-item p{font-size:var(--t-md);margin:0}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Log file analysis: what Googlebot actually fetched","description":"Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 1,641 crawler IP prefixes; a user-agent proves nothing.","datePublished":"2026-08-08","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/log-file-analysis/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I know if it was really Googlebot in my logs?","acceptedAnswer":{"@type":"Answer","text":"Not from the user-agent, which is a header anybody can send. Either check the client IP against Google's published crawler ranges — 1,641 prefixes across 3 lists as of 2026-08-08 — or do a reverse DNS lookup on the IP followed by a forward lookup on the hostname it returns, confirming the original address comes back. The second step matters: a PTR record is set by whoever controls the address block, so a reverse lookup alone proves nothing."}},{"@type":"Question","name":"What can a server log tell me that a crawl cannot?","acceptedAnswer":{"@type":"Answer","text":"Which pages a search engine actually fetched and how often, which is a different question from which pages it could reach. That surfaces orphan pages with no internal links, retired URLs still being retried, and the share of requests that returned a redirect or an error — crawl budget spent on nothing indexable."}},{"@type":"Question","name":"If a page is missing from my logs, can Google not see it?","acceptedAnswer":{"@type":"Answer","text":"No, and treating it that way sends you fixing a problem you may not have. A log covers a period. A page absent from one week of logs was not fetched that week; it may be crawled rarely because it changes rarely. Look for it across a longer window before concluding anything."}},{"@type":"Question","name":"Does Docket replace a dedicated log file analyser?","acceptedAnswer":{"@type":"Answer","text":"No. Screaming Frog's Log File Analyser is a separate product at $139 per year and is much deeper — a real interface, saved projects, more formats, analysis over time. Docket does one comparison, log against crawl, included in its one-time price. If log analysis is a regular part of your work, the dedicated tool is the right purchase."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Not every address on your site is yours","description":"An audit told a forum to publish mail records for a domain it does not own, and called a share button on a site a dead mailbox. Which address is actually yours.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/addresses-on-your-site-that-are-not-yours/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"An audit says an email address on my site is dead, but it is not my address. Why?","acceptedAnswer":{"@type":"Answer","text":"Because a check that finds published addresses cannot tell documentation from a real contact address — that is a judgement about intent and it is not in the page. It can tell whose domain the address is at, which is enough to stop offering you a repair you have no access to."}},{"@type":"Question","name":"Why would example addresses in my documentation get reported at all?","acceptedAnswer":{"@type":"Answer","text":"The usual guard is that only linked addresses count, because prose may hold an example. Platforms that auto-link bare addresses in markdown turn every example into a link, so the guard stops working without anything on the site changing."}},{"@type":"Question","name":"My share-by-email button was reported as a dead mailbox. Is something wrong?","acceptedAnswer":{"@type":"Answer","text":"No. A share widget has a deliberately empty recipient so the reader types an address, and nothing about it is a contact channel. Renaming that finding to 'broken link' would be the same false positive under a different heading."}},{"@type":"Question","name":"Is an email address at a bare IP address a real problem?","acceptedAnswer":{"@type":"Answer","text":"Yes. Mail records cannot be published for a server address, so nothing can ever be delivered. It is usually left behind when a site moves servers and the old host stays written into the content."}},{"@type":"Question","name":"What does a dead contact address actually cost?","acceptedAnswer":{"@type":"Answer","text":"Every enquiry bounces and you get no record that anyone tried. Unlike a broken form there is no error you will see and no log of yours to check — the people who wrote to you conclude you did not reply."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -714,128 +714,138 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Log file analysis</div><h1>Log file analysis: what Googlebot actually fetched</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-08">8 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Whose address</div><h1>Not every address on your site is yours</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
-<p class="lede">A crawl tells you what a search engine <em>could</em> reach on your site; a
-server log tells you what it actually fetched, how often, and what it wasted requests on. The
-two disagree constantly, and the single most common mistake in reading a log is trusting the
-user-agent — which is why Google publishes
-<strong>1,641 IP prefixes</strong> across
-3 lists so you can check.</p>
+<p class="lede">A check that finds published email addresses and tests whether they can receive
+mail has one job that sounds trivial and is not: deciding which of the addresses on your pages is
+<em>yours</em>. Get that wrong and you hand somebody a real defect they cannot repair, or a repair
+for something that was never broken.</p>
 
-<h2>The user-agent is a claim, not an identity</h2>
+<h2>Publish DNS for a domain you do not own</h2>
 
-<p>Every line in your access log carries whatever user-agent the client chose to send.
-"Googlebot" is a string, and scrapers send it constantly — partly to get past blocks, partly
-because pretending to be a search engine is the easiest way to look legitimate in somebody
-else's log file.</p>
+<p>A software forum runs a how-to about configuring mailboxes. Like every such document it contains
+example addresses at a documentation domain — placeholder words where a real mailbox name would
+go.</p>
 
-<p>So a report that says "Googlebot fetched 40,000 pages last month" is really saying "40,000
-requests claimed to be Googlebot". Those are different numbers and only one of them tells you
-anything about your crawl budget.</p>
+<p>Those were reported as the site's dead contact channel, with the remedy: add mail records for
+that domain, pointing at a mail host. The site cannot publish DNS for a domain it does not own.
+<strong>The finding was true and the instruction was impossible.</strong></p>
 
-<p>There are two honest ways to resolve it. Google
-<a href="https://developers.google.com/search/apis/ipranges/googlebot.json">publishes its
-crawler ranges as JSON</a> — as of 2026-08-08, <strong>315</strong>
-prefixes for Googlebot itself (169 IPv4 and 146 IPv6), plus separate
-lists for special-case crawlers and user-triggered fetches, 1,641 in
-total. Or you do the check Google
-<a href="https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot">documents</a>:
-a reverse DNS lookup on the client IP, then a forward lookup on the hostname it returns, and
-the original address has to come back.</p>
+<p>The guard that was supposed to prevent this is sensible and is written down: only
+<code>mailto:</code> links count, because an address sitting in prose may be an example, a
+customer's, or a fax number's neighbour. It stopped working for a reason nobody chose —
+<strong>any platform whose markdown auto-links bare addresses turns every example in every
+document into a link</strong>, and every forum does that.</p>
 
-<p>The second step is the one people skip, and skipping it defeats the whole exercise. A PTR
-record is set by whoever controls the address block, so anyone can make their IP claim to be
-<code>crawl-something.googlebot.com</code>. Only resolving that name <em>back</em> proves it.
-Docket does both, and there is a test that fails if the forward lookup is ever removed.</p>
+<p>It is worth sitting with as a general shape. A rule that depends on authors not linking
+something stops working the moment the platform links it for them, and nothing about the site
+changed.</p>
 
-<p>Docket's verification was spot-checked against 6 addresses taken from
-Google's published Googlebot ranges — addresses that are Googlebot by Google's own definition
-— and accepted 6 of 6. That is a smoke test against
-real DNS rather than a rate; six addresses cannot be turned into a percentage and this page is
-not going to pretend otherwise.</p>
+<h2>What the tool could actually tell</h2>
 
-<h2>Verifying Googlebot, step by step</h2>
+<p>It cannot distinguish documentation from a real address. That is a judgement about intent and it
+is not in the page.</p>
 
-<p>You do not need Docket for this and it is worth doing by hand once, because it is the step
-almost every log report skips. Take a client IP from a line claiming to be Googlebot and run
-two lookups.</p>
+<p>It <em>can</em> tell whose domain the address is at. So the remedy is now offered only for a
+domain the reader can publish records for, matched on label boundaries so one domain is never read
+as a suffix of a similarly spelled one.</p>
 
-<p><strong>1. Reverse lookup the address.</strong> <code>host 66.249.66.1</code>. A genuine
-Google crawler answers with a hostname under <code>googlebot.com</code>,
-<code>google.com</code> or <code>googleusercontent.com</code>. Anything else is not Google, and
-you can stop here.</p>
+<p><strong>The finding was right; only the instruction changed.</strong> That distinction is most
+of what separates a report somebody acts on from one they dismiss — a reader who is told to do
+something impossible does not conclude the tool was half-right.</p>
 
-<p><strong>2. Forward lookup the hostname it gave you.</strong>
-<code>host crawl-66-249-66-1.googlebot.com</code>. The address you started with has to come
-back. If it does not, the PTR record is a claim somebody set on their own address block and the
-line is not Googlebot.</p>
+<h2>The verdict that meant "I cannot judge this"</h2>
 
-<p>Both steps, or neither. Step 1 alone is the mistake: a reverse lookup reads a record set by
-whoever controls the address, so on its own it proves only that they were willing to type
-"googlebot" into it. That is why Google documents the pair, and why the check in Docket has a
-test that fails if the forward lookup is ever removed.</p>
+<p>The second failure is the one worth borrowing, because the mechanism shows up everywhere.</p>
 
-<p>The IP-range route answers the same question without DNS: Google publishes the address
-blocks as JSON, so an address either falls inside a published prefix or it does not. Ranges
-change, so the file has a date on it and so should any list you cache from it.</p>
+<p>The domain checker answers with a verdict and a reason. For anything that is not a domain at
+all, it answers <em>no</em>, with the reason "not a syntactically valid domain". The branch above
+it tested the verdict and not the reason. <strong>So the sentence written to say the tool could not
+judge the string became a finding about the reader's contact channel.</strong></p>
 
-<p>In Docket the same two lookups run per distinct address with
-<code>docket logs access.log --verify</code>. Without that flag every line is reported as
-"claiming to be Google", because one round trip per address is a cost you should opt into
-rather than pay by accident. What the checker looks at across the rest of a site is listed in
-<a href="/learn/what-docket-checks/">what Docket checks</a>.</p>
+<p>A law firm's site carries a share-by-email button on every page. Its recipient is deliberately
+empty, so a reader's mail client opens with a blank To: field and a subject already filled in —
+they type the address of whoever they are sharing with. Perfectly ordinary, working exactly as
+designed.</p>
 
-<h2>What the log tells you that a crawl cannot</h2>
+<p>The report said that address could not receive mail, and that anyone writing to it would get a
+bounce. Nobody writes to it. It is not an address.</p>
 
-<p>Run <code>docket logs access.log --url https://example.com</code> and it crawls the site as
-well, then reports the two ways the sets disagree.</p>
+<h2>And it was skipped, not renamed</h2>
 
-<p><strong>Pages Google fetched that the crawl never found.</strong> Orphans with no internal
-link pointing at them, URLs you retired that Google is still retrying, pages that exist only in
-the sitemap. Each is a page a crawler alone would never show you, because a crawler starts at
-the homepage and follows links.</p>
+<p>There is a tempting second move here: stop calling it a dead mailbox and start calling it a
+broken link. It is still a finding, it is still technically defensible, and the reader is still
+being shown a working button and told it is broken.</p>
 
-<p><strong>Pages you link to that Google did not fetch.</strong> Careful here, and Docket prints
-the caveat next to the number: a log covers a period. Absence from one week of logs means
-Google did not fetch that page in that week. It does not mean Google cannot see it, and a tool
-that lets you read it that way is setting you up to go fixing a problem you do not have.</p>
+<p>A <code>mailto:</code> with no recipient and a prefilled subject is the ordinary shape of a
+share widget. Reporting it under a different name would be <strong>the same false positive in a new
+coat</strong> — which is worth watching for whenever a tool "addresses" a complaint about a finding
+and the finding is still there under a different heading.</p>
 
-<p>And the response codes Google actually received. Every redirect and every 404 in that list
-is a request spent on your site that returned nothing indexable — the clearest measure of
-wasted crawl budget there is, and it is measured rather than modelled.</p>
+<h2>The one that must still fire</h2>
 
-<p>All of it describes one window. A log is a period, a crawl is a moment, and neither is a
-trend — if what you want is "did this change after Tuesday's deploy", that is
-<a href="/learn/site-monitoring/">site monitoring</a>, a different job from this one.</p>
+<p>Not every unusual address is innocent. An address whose domain part is a bare server address —
+digits and dots, or a block of hexadecimal — is a genuinely dead mailbox, because no mail records
+can ever be published for it. It is the residue of a site being moved between servers while the old
+host stayed written into the content.</p>
 
-<h2>Where the dedicated tool is better</h2>
+<p>Skipping everything that fails a domain-validity test would have silenced exactly that case
+while fixing the two above. A test caught it, which is the usual way —
+<a href="/how-to/when-a-fix-creates-a-false-negative/">a guard that quietens one false positive can
+silence a true finding &rarr;</a>.</p>
 
-<p>Screaming Frog sells a
-<a href="https://www.screamingfrog.co.uk/log-file-analyser/">Log File Analyser</a> as a separate
-product, $139 per year with a free tier capped at 1,000 log events. It is a much deeper tool
-than what Docket does: a real interface for exploring the data, saved projects, imports that
-handle far more formats, and analysis over time rather than a single comparison. If log
-analysis is a regular part of your work, buy it — it is built for that and Docket is not.</p>
+<h2>Reading this on your own report</h2>
 
-<p>What Docket gives you is the one comparison that answers "is Google spending its time on my
-important pages", included in the $349 one-time price — free while v1.3.78 is in
-beta — rather than as a second annual subscription. That is the whole claim, and it is
-deliberately narrow.</p>
+<ol>
+<li><strong>Check the domain in the address against your own.</strong> If it is not yours, no
+instruction about mail records applies to you, whatever the finding says.</li>
+<li><strong>Ask where the address appears.</strong> A code sample, a support document or a
+quoted message is somebody else's address that your platform turned into a link.</li>
+<li><strong>Look for an empty recipient.</strong> A share button has no address in it at all,
+and it is not a contact channel.</li>
+<li><strong>If it is your domain, test it in one command.</strong> The survey behind this check —
+<a href="/learn/dead-contact-address/">what a dead contact address actually is &rarr;</a> — has
+the command and the two ways mail configuration fails.</li>
+</ol>
 
-<h2>What Docket deliberately does not do here</h2>
+<h2>When it is real, and why it is worse than it looks</h2>
 
-<p>It reads Common and Combined format, and gzip. Anything else is counted as unparsed and
-reported as a number, because a parser that quietly skips a third of a file produces
-confident-looking statistics about the rest. It does not follow sessions, does not chart
-anything over time, and does not store your logs — it reads the file, prints, and exits.</p>
+<p>Keep the severity where it belongs. A published address at a domain that cannot receive mail
+means every enquiry bounces — <strong>and you get no record that anyone tried.</strong> That last
+part is what makes it different from a broken form or a dead link: there is no error you will ever
+see, no entry in any log of yours, and no angry follow-up. The people who wrote to you simply
+conclude you did not reply.</p>
 
-<p>It also does not do reverse DNS unless you ask. <code>--verify</code> is a lookup per
-distinct address, so it is off by default and everything says "claiming to be Google" until
-you turn it on.</p>
+<h2>The fixes that make it worse</h2>
 
-<p><a class="btn" href="/download/">Download Docket</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I know if it was really Googlebot in my logs?</h3><p>Not from the user-agent, which is a header anybody can send. Either check the client IP against Google's published crawler ranges — 1,641 prefixes across 3 lists as of 2026-08-08 — or do a reverse DNS lookup on the IP followed by a forward lookup on the hostname it returns, confirming the original address comes back. The second step matters: a PTR record is set by whoever controls the address block, so a reverse lookup alone proves nothing.</p></div><div class="faq-item"><h3>What can a server log tell me that a crawl cannot?</h3><p>Which pages a search engine actually fetched and how often, which is a different question from which pages it could reach. That surfaces orphan pages with no internal links, retired URLs still being retried, and the share of requests that returned a redirect or an error — crawl budget spent on nothing indexable.</p></div><div class="faq-item"><h3>If a page is missing from my logs, can Google not see it?</h3><p>No, and treating it that way sends you fixing a problem you may not have. A log covers a period. A page absent from one week of logs was not fetched that week; it may be crawled rarely because it changes rarely. Look for it across a longer window before concluding anything.</p></div><div class="faq-item"><h3>Does Docket replace a dedicated log file analyser?</h3><p>No. Screaming Frog's Log File Analyser is a separate product at $139 per year and is much deeper — a real interface, saved projects, more formats, analysis over time. Docket does one comparison, log against crawl, included in its one-time price. If log analysis is a regular part of your work, the dedicated tool is the right purchase.</p></div></div></section>
+<ul>
+<li><strong>Chasing DNS for a domain that is not yours.</strong> You cannot, and an hour spent
+finding that out is the cost of the false positive.</li>
+<li><strong>Deleting the examples from your documentation.</strong> They are doing their job. The
+tool was reading them wrongly.</li>
+<li><strong>Removing the share button.</strong> It works. Nothing about it needs fixing.</li>
+<li><strong>Adding a working address and leaving the broken one.</strong> The dead address stays
+on the pages that carry it, and those are the pages people will use.</li>
+</ul>
+
+<h2>How to pass this check while staying unreachable</h2>
+
+<p>Publish your address as plain text without a <code>mailto:</code> link. Only linked addresses
+are checked — because an unlinked one might be an example — so the finding disappears and the
+mailbox is exactly as broken as it was.</p>
+
+<p><strong>A check that must avoid other people's examples can only see the addresses you chose to
+link</strong>, and that boundary is visible from outside. It is the honest limit of this kind of
+check, and it is why the survey behind it starts from DNS rather than from pages.</p>
+
+<h2>Where this sits in an audit</h2>
+
+<p>The registered check is <code>cvr.dead_contact</code>, which tests whether published email
+addresses can receive mail. For what actually breaks in mail configuration, and the measurement
+behind it, see <a href="/learn/dead-contact-address/">a dead contact address &rarr;</a>. For the
+same question one channel over, see <a href="/how-to/fix-phone-links-that-will-not-dial/">phone
+links that will not dial &rarr;</a>.</p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>An audit says an email address on my site is dead, but it is not my address. Why?</h3><p>Because a check that finds published addresses cannot tell documentation from a real contact address — that is a judgement about intent and it is not in the page. It can tell whose domain the address is at, which is enough to stop offering you a repair you have no access to.</p></div><div class="faq-item"><h3>Why would example addresses in my documentation get reported at all?</h3><p>The usual guard is that only linked addresses count, because prose may hold an example. Platforms that auto-link bare addresses in markdown turn every example into a link, so the guard stops working without anything on the site changing.</p></div><div class="faq-item"><h3>My share-by-email button was reported as a dead mailbox. Is something wrong?</h3><p>No. A share widget has a deliberately empty recipient so the reader types an address, and nothing about it is a contact channel. Renaming that finding to 'broken link' would be the same false positive under a different heading.</p></div><div class="faq-item"><h3>Is an email address at a bare IP address a real problem?</h3><p>Yes. Mail records cannot be published for a server address, so nothing can ever be delivered. It is usually left behind when a site moves servers and the old host stays written into the content.</p></div><div class="faq-item"><h3>What does a dead contact address actually cost?</h3><p>Every enquiry bounces and you get no record that anyone tried. Unlike a broken form there is no error you will see and no log of yours to check — the people who wrote to you conclude you did not reply.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

@@ -1495,6 +1495,12 @@ disagreement on another site — and a false negative makes no noise. What the n
 was, and what the trade cost.
 <a href="/how-to/when-a-fix-creates-a-false-negative/">What a fix costs &rarr;</a></p>
 
+<h2>Not every address on your site is yours</h2>
+<p>Example addresses in your documentation, and a share button with no recipient, both look like
+published contact channels to a checker. What it can tell about an address, what it cannot, and
+why one of these was right about the defect and impossible about the repair.
+<a href="/how-to/addresses-on-your-site-that-are-not-yours/">Whose domain is it &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,

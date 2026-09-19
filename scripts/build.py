@@ -81,6 +81,7 @@ import howto_dead_crawler_rules  # noqa: E402
 import howto_policy_vs_defect  # noqa: E402
 import howto_type_matching  # noqa: E402
 import howto_fix_false_negative  # noqa: E402
+import howto_whose_address  # noqa: E402
 import howto_hreflang_targets  # noqa: E402
 import howto_which_host  # noqa: E402
 import howto_schema_id  # noqa: E402
@@ -942,6 +943,7 @@ def main() -> int:
               howto_policy_vs_defect.policy_vs_defect(),
               howto_type_matching.type_matching(),
               howto_fix_false_negative.fix_false_negative(),
+              howto_whose_address.whose_address(),
               howto_soft404.soft_404s(),
               howto_open_graph.howto_open_graph(),
               howto_deploy_gate.deploy_gate(),
