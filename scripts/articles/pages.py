@@ -1507,6 +1507,12 @@ anywhere — not a zero, not an unclassified row, nothing. How that gap was foun
 one, and how to work out what your own report is not telling you.
 <a href="/how-to/when-a-report-says-nothing-at-all/">Find the gap &rarr;</a></p>
 
+<h2>Telling your site's furniture from its content</h2>
+<p>Counting links measures your template, not your page — and the fix for that walked into the same
+confusion a fifth time, excusing an empty stub as an index. The three tests that separate a
+navigation label from a real entry, and where each one fails.
+<a href="/how-to/telling-furniture-from-content/">Three discriminators &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
