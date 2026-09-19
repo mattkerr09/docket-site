@@ -1501,6 +1501,12 @@ published contact channels to a checker. What it can tell about an address, what
 why one of these was right about the defect and impossible about the repair.
 <a href="/how-to/addresses-on-your-site-that-are-not-yours/">Whose domain is it &rarr;</a></p>
 
+<h2>When a report says nothing at all</h2>
+<p>Checks sort responses into categories, and a status that fits none of them produces no finding
+anywhere — not a zero, not an unclassified row, nothing. How that gap was found, why nobody reports
+one, and how to work out what your own report is not telling you.
+<a href="/how-to/when-a-report-says-nothing-at-all/">Find the gap &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
