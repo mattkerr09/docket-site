@@ -9,26 +9,26 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>A rate limit is not a block</title>
-<meta name="description" content="An audit that crawls your site can trip its own rate limit, then report the throttle as a fault. How to tell a wait from a refusal.">
+<title>A fix that hid a real problem somewhere else</title>
+<meta name="description" content="An audit stopped reading a navigation label as a brand name — and that fix left the same check unable to flag a real disagreement on another site.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="0825c7282ea4">
-<link rel="canonical" href="https://docketseo.app/how-to/tell-a-rate-limit-from-a-block/">
+<link rel="canonical" href="https://docketseo.app/how-to/when-a-fix-creates-a-false-negative/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A rate limit is not a block">
-<meta property="og:description" content="An audit that crawls your site can trip its own rate limit, then report the throttle as a fault. How to tell a wait from a refusal.">
-<meta property="og:url" content="https://docketseo.app/how-to/tell-a-rate-limit-from-a-block/">
+<meta property="og:title" content="A fix that hid a real problem somewhere else">
+<meta property="og:description" content="An audit stopped reading a navigation label as a brand name — and that fix left the same check unable to flag a real disagreement on another site.">
+<meta property="og:url" content="https://docketseo.app/how-to/when-a-fix-creates-a-false-negative/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="A rate limit is not a block">
-<meta name="twitter:description" content="An audit that crawls your site can trip its own rate limit, then report the throttle as a fault. How to tell a wait from a refusal.">
+<meta name="twitter:title" content="A fix that hid a real problem somewhere else">
+<meta name="twitter:description" content="An audit stopped reading a navigation label as a brand name — and that fix left the same check unable to flag a real disagreement on another site.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -681,8 +681,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"A rate limit is not a block","description":"An audit that crawls your site can trip its own rate limit, then report the throttle as a fault. How to tell a wait from a refusal.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/tell-a-rate-limit-from-a-block/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is HTTP 429 a block?","acceptedAnswer":{"@type":"Answer","text":"No. It means too many requests, and it is temporary. A server that sends it with a Retry-After header is naming a time to come back rather than turning the crawler away. HTTP 403 is the refusal."}},{"@type":"Question","name":"Why did my audit report crawler blocks that a re-run did not?","acceptedAnswer":{"@type":"Answer","text":"Because the first run probably caused them. A crawl is traffic from one address, which is what rate limiting slows down, so the probes that follow the crawl can all be measuring the limit the crawl tripped."}},{"@type":"Question","name":"My site returns 403 to an audit tool. Is that a problem?","acceptedAnswer":{"@type":"Answer","text":"Only if you did not intend it. Open the same URL in your browser: if it loads, the rule is on the user-agent and lives in your bot protection; if your browser is refused too, the rule is on the network."}},{"@type":"Question","name":"Should I remove retired AI crawler names from robots.txt?","acceptedAnswer":{"@type":"Answer","text":"It is tidiness rather than visibility, unless the wildcard group those crawlers fall back to is more permissive than the group the retired name sat in. Compare the two groups before editing."}},{"@type":"Question","name":"How do I know a crawler-access finding is real?","acceptedAnswer":{"@type":"Answer","text":"Run the audit again, more slowly, and see whether it survives. A measurement that a re-run can change is a measurement about the run rather than about the site."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"A fix that hid a real problem somewhere else","description":"An audit stopped reading a navigation label as a brand name — and that fix left the same check unable to flag a real disagreement on another site.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/when-a-fix-creates-a-false-negative/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why did an audit report my navigation label as a company name?","acceptedAnswer":{"@type":"Answer","text":"Because a logo link's accessible name describes where the link goes, and a step that strips navigation words can leave a section name behind. What remains is as likely to be the section as the company."}},{"@type":"Question","name":"How should a tool decide whether a logo link name is a real brand name?","acceptedAnswer":{"@type":"Answer","text":"By whether it had to edit the string to get one. A name that was already plain is close to a declaration; one left over after a navigation word was stripped should have to resemble the domain before it counts."}},{"@type":"Question","name":"Can fixing a false positive cause a false negative?","acceptedAnswer":{"@type":"Answer","text":"Yes, and it is the common outcome, because the easy fix is to make a rule quieter. A false negative is silent — nobody writes in to report that a tool failed to tell them something — so only a test asserting the opposite case catches it."}},{"@type":"Question","name":"An audit says my site uses two brand names. Should I believe it?","acceptedAnswer":{"@type":"Answer","text":"Check where the second one came from and how often it appears. A tagline or a section label appearing once across a whole site is a page, not an identity. What you declared in structured data or og:site_name is the part you actually claimed."}},{"@type":"Question","name":"Should I rename my logo link so it matches my company name?","acceptedAnswer":{"@type":"Answer","text":"No. That name exists so someone using a screen reader knows where the link goes. Put the company name in your declarations instead, where a tool should be reading it from anyway."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -714,153 +714,145 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Rate limits</div><h1>A rate limit is not a block</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Fixes with a cost</div><h1>A fix that hid a real problem somewhere else</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
-<p class="lede">An audit is traffic. It asks for page after page, faster than a person would,
-from one address — which is the exact shape of the thing rate limiting exists to slow down. So
-a crawl can trip a limit, and then every measurement it takes afterwards is a measurement of
-the limit it tripped. The report that comes out says your server is turning crawlers away.
-Nobody is turning anyone away.</p>
+<p class="lede">Every false positive you have ever reported to a tool gets fixed the same way:
+somebody adds a condition. The part nobody sees is what that condition does to every other site
+the check runs on — because the usual way to stop a rule being wrong about you is to make it
+quieter about everyone, and quiet is indistinguishable from correct.</p>
 
-<h2>The audit that caused the problem it found</h2>
+<h2>The navigation label that became a company name</h2>
 
-<p>Docket crawls a batch of pages, then asks for the homepage once more as each AI crawler in
-turn to see which of them the edge lets through. On one retailer that sequence was enough: the
-crawl consumed the allowance, every crawler probe after it came back HTTP 429, and Docket
-reported that the server had refused the audit and that the site's bot protection distrusted
-the network it ran from.</p>
+<p>A preprint archive's logo is a link, and that link's accessible name is "archive home". Good
+accessibility practice: it tells a screen-reader user where the link goes.</p>
 
-<p>A browser from the same machine loaded the page a couple of minutes later, twice, without
-complaint. A re-run of the audit passed clean. Nothing about the site had changed in between,
-because nothing about the site was ever the problem — <strong>the tool had caused the condition
-it was reporting</strong>, and then described it as a property of somebody else's server.</p>
+<p>A check that works out what a site calls itself reads four sources, and one of them is that
+accessible name. It has a salvage step that strips navigation words, because plenty of real logo
+labels look like "[Company] homepage" and the company is what you want. So "home" came off, and
+"archive" was recorded as one of two names the organisation uses for itself.</p>
 
-<p>This is the shape to keep: <strong>a measurement that a re-run can change is a measurement
-about the run, not about the site.</strong> Before you act on any crawler-access finding, run
-it again, slower. If it goes away, it was about you.</p>
+<p>It is not a name. It is the section the link points to, with the word "home" removed by a step
+that was working exactly as designed.</p>
 
-<h2>A throttle names a wait; a refusal names a door</h2>
+<h2>The rule that fixed it, and why it is about the domain</h2>
 
-<p>HTTP 429 means too many requests, and HTTP 503 means not right now. Both are temporary and
-both are usually <em>correct behaviour</em> by a server that is protecting itself. A 403 is a
-different sentence: it says this requester is not allowed, and it will still say that tomorrow
-at a slower pace.</p>
+<p>A link's accessible name is the weakest of the four identity sources. Structured data and
+<code>og:site_name</code> are <em>declarations</em> — a site saying who it is. A link name is a
+<em>description of a destination</em>. So the weak source was made to corroborate against the one
+identity signal a site cannot easily fake: its own domain.</p>
 
-<p>The tell that settles it is the <code>Retry-After</code> header. A server that sends one is
-naming a time to come back — it is scheduling the crawler, not refusing it. Well-behaved
-crawlers honour it and return. A rate limit with a <code>Retry-After</code> is not a visibility
-problem at all.</p>
+<p>Across crawled sites the pattern held cleanly — every genuine residue resembles the domain, and
+only the navigation label does not:</p>
 
-<p>Docket got this wrong for a while and it is worth saying how, because the error is easy to
-repeat. On a forum, every AI crawler received 429 with a short <code>Retry-After</code> while a
-browser from the same address got 200. Docket called that refusal, rated it critical, and sent
-the owner to their CDN to add an allow rule for a WAF block that did not exist. The observation
-was right and the diagnosis was wrong, which costs the reader an afternoon and their provider a
-support ticket.</p>
+<table>
+<tr><th>What the logo link was called</th><th>Resembles the domain?</th></tr>
+<tr><td>The company's name, plainly</td><td>Yes</td></tr>
+<tr><td>The company's name plus a description of itself</td><td>Yes</td></tr>
+<tr><td>A health service's initials plus "homepage"</td><td>Yes</td></tr>
+<tr><td>"archive home", on an archive whose name is not "archive"</td><td>No</td></tr>
+</table>
 
-<h2>The one-click test that settles a 403</h2>
+<h2>And then the fix broke a site it had never seen</h2>
 
-<p>A genuine 403 has two possible causes and they need opposite fixes: the rule is on
-<em>who is asking</em>, or the rule is on <em>where they are asking from</em>. Open the same URL
-in your own browser, on your own connection:</p>
+<p>This is the half worth publishing.</p>
 
-<ul>
-<li><strong>It loads.</strong> The rule is on the identity. Something in the requester's
-user-agent matched a bot signature. The change belongs in your bot protection, not on your
-site.</li>
-<li><strong>It is refused too.</strong> The rule is on the network or the address, and the
-user-agent is irrelevant. That is a different setting entirely.</li>
-</ul>
+<p>The first version of that fix required corroboration from <em>every</em> residue. It is the
+obvious reading of the rule and it is wrong, because a test in the suite asserts the opposite case:
+a logo naming one institution, on a site titled after a completely different one, on a domain
+resembling neither. That is a real disagreement, and it is precisely what this check exists to
+find.</p>
 
-<p>Docket had this backwards, and the reason is worth more than the fix. Its crawler sends a
-browser-shaped user-agent with an honest suffix naming the tool and linking to a page about it
-— which is precisely the substring a WAF rule matches on. But the check's own text called that
-"a plain browser request", so when it was refused it concluded the block could not be about
-identity and must therefore be about the network, and it told the reader to try a different
-connection. A clean browser string from the same machine got 200 and a full page. The network
-had never been involved.</p>
+<p>Demanding corroboration everywhere made the logo source <strong>incapable of ever being the odd
+one out</strong>. One site's false positive had been traded for another site's false negative — and
+a false negative makes no noise at all. Nobody writes in to say a tool failed to tell them
+something.</p>
 
-<p><strong>An instrument that misdescribes its own request will misattribute the response.</strong>
-When a tool reports a refusal, the first question is what it actually sent.</p>
+<h2>The narrower condition</h2>
 
-<h2>A true observation with a false consequence</h2>
-
-<p>The third variant is the hardest to catch, because the fact is correct. Docket flags AI
-crawler tokens in <code>robots.txt</code> that no longer belong to any crawler — a retired name
-sitting in a file that has not been revisited. On a manufacturer's site it found several, all
-genuinely dead, and said those crawlers were therefore reading pages the owner meant to withhold
-from them.</p>
-
-<p>They were not. A crawler that matches no group of its own falls back to
-<code>User-agent: *</code>, and on that file the wildcard group was the <em>stricter</em> of the
-two — it carried every rule the AI group carried, and more. The dead tokens cost nothing but a
-crawl-delay. The tokens were dead; the consequence was invented; and the severity of the finding
-rested entirely on the consequence.</p>
-
-<p>So when a finding tells you what something <em>costs</em>, check whether the tool measured the
-cost or inferred it. Inferring it means modelling the fallback behaviour of whatever reads the
-file, and most tools do not.</p>
-
-<h2>When none of this matters</h2>
-
-<p>Said plainly, because the checks above are rated where they are for a reason and not every
-one of them is worth your afternoon:</p>
+<p>What separates the two cases is not the name. It is <strong>whether the salvage had to run at
+all.</strong></p>
 
 <ul>
-<li><strong>A throttle against an aggressive crawler is your rate limiting working.</strong> If a
-crawler is taking pages faster than a person could read them and your server slows it down, that
-is the system behaving correctly. A commercial crawler that cannot tolerate a
-<code>Retry-After</code> is not a crawler you need to accommodate.</li>
-<li><strong>A dead token in robots.txt is tidiness, not visibility</strong>, unless the fallback
-group is genuinely more permissive than the group the token sat in. Check that before you edit
-anything.</li>
-<li><strong>A 403 against a tool that names itself may be exactly what you configured.</strong>
-Plenty of sites deliberately refuse self-identifying automated readers. If that was the decision,
-the finding is a description of your policy rather than a fault in it.</li>
+<li><strong>An accessible name that was already a plain name</strong> — the company, and nothing
+else — is a declaration in everything but format. It is read as before, corroborated or not.</li>
+<li><strong>One that needed a navigation word stripped off it</strong> was a description of a
+destination, and what remains is as likely to be the section as the company. That residue has to
+resemble the domain before it counts.</li>
 </ul>
+
+<p>The general form: <strong>when a guard is about to silence a whole source, ask what made this
+case suspicious, and condition on that instead of on the source.</strong> The suspicious thing here
+was never "logo links are unreliable" — it was "this string only became a name because we edited
+it".</p>
+
+<h2>What the rule costs, stated plainly</h2>
+
+<p>A company whose domain does not contain its name — a rebrand still living on the old host —
+loses this one source, and only when a navigation word had to be removed to find the name. Its
+declarations are untouched, so the name is still seen. That is the trade, it was taken
+deliberately, and it is the kind of thing a tool should tell you rather than leave you to
+discover.</p>
+
+<h2>The other half of not being silly about names</h2>
+
+<p>A related guard, worth knowing because it changes how you read any "second brand" finding: a
+name seen once across dozens of signals is a single odd page, not a second identity. A
+delicatessen that puts its tagline in one page title is not announcing a new company, and reporting
+it as one is the sort of confident nonsense that costs a report its credibility.</p>
+
+<p>Declared identity is exempt: structured data or <code>og:site_name</code> counts at a single
+occurrence, because saying it once is still saying it.</p>
+
+<h2>Reading this on your own report</h2>
+
+<ol>
+<li><strong>When a tool names a "second brand" you do not recognise, find where it came from.</strong>
+A navigation label, a tagline and a section heading all look like names once they are out of
+context.</li>
+<li><strong>Check how many times it appears.</strong> Once, in a site's worth of signals, is a page
+rather than a policy.</li>
+<li><strong>Check your declarations first.</strong> Your structured data and
+<code>og:site_name</code> are what you have actually claimed; everything else is inference.</li>
+<li><strong>Do not rewrite a link's accessible name to satisfy a finding</strong> — it is there for
+a reason, and <a href="/how-to/what-your-site-says-you-are-called/">the harm in that is a page of
+its own &rarr;</a>.</li>
+</ol>
+
+<h2>When the finding is real</h2>
+
+<p>Two genuinely different names for one organisation, across titles and declarations, is worth
+fixing — it splits the signals that tell a search engine and an assistant that all these pages
+belong to one entity. The point of the guards above is that this finding only means something when
+it is rare, and a check that produces it on ordinary sites has made it mean nothing.</p>
 
 <h2>The fixes that make it worse</h2>
 
 <ul>
-<li><strong>Turning off bot protection to make a report go green.</strong> The report was
-measuring a request that no real crawler makes, at a rate no real crawler uses.</li>
-<li><strong>Adding an allow rule at your CDN for a block that does not exist.</strong> This is
-what a misdiagnosed 429 leads to. The rule does nothing, and it stays in the configuration for
-years as a thing nobody dares remove.</li>
-<li><strong>Retrying immediately.</strong> On many edges a burst of retries during a cool-down
-extends it, so the second audit looks worse than the first and the picture gets darker each time
-you check.</li>
-<li><strong>Allowlisting by IP range.</strong> Crawler address ranges move, and an allowlist that
-names them is a maintenance promise you did not mean to make. Verify by reverse DNS if you need
-to verify at all.</li>
+<li><strong>Changing your accessible names so a tool stops guessing.</strong> They describe
+destinations for people who cannot see the logo. That is not negotiable against a report.</li>
+<li><strong>Adding your company name into every navigation label.</strong> Now every link says the
+same thing and none of them says where it goes.</li>
+<li><strong>Removing the odd title rather than the inconsistency.</strong> If two real names exist,
+picking one is the fix; deleting the page that revealed it is not.</li>
 </ul>
 
-<h2>How to make the finding disappear without changing anything</h2>
+<h2>What this means for any tool you trust</h2>
 
-<p>Worth knowing, because it tells you what the finding is worth. Crawl one page at a time with
-a pause between requests and the rate limit never fires, so the crawler probes all return 200
-and the report is clean. Nothing about your site is different. The same is true in reverse: crawl
-harder and a clean site produces refusals.</p>
-
-<p>Which means <strong>the absence of this finding proves less than its presence</strong>, and
-its presence proves less than a second, slower run that reproduces it. Any tool that reports edge
-access without telling you how hard it crawled is handing you a number it cannot support.</p>
+<p>When you report a false positive and it gets fixed, the honest question to ask is what the fix
+cost. A condition that makes a rule quieter about you probably made it quieter about somebody else
+too. <strong>The only reason the regression above was caught is that a test existed asserting the
+opposite case</strong> — a site where that source <em>should</em> disagree with the rest. Reasoning
+would not have caught it; the suite did.</p>
 
 <h2>Where this sits in an audit</h2>
 
-<p>The two registered checks are <code>ai.edge_access</code>, which tests server access for AI
-crawlers, and <code>ai.dead_crawler_directive</code>, which reads retired tokens in
-<code>robots.txt</code>. Both live in Docket's AI search visibility area.</p>
-
-<p>Their findings carry different identifiers from the checks that emit them —
-<code>ai.throttled_at_the_edge</code> and <code>ai.edge_untestable</code> both come out of
-<code>ai.edge_access</code> — which is worth knowing when you search for one and find nothing. A
-finding identifier is not a check identifier.</p>
-
-<p>The untestable one is the useful habit here: when a run cannot measure something, the honest
-output is a notice saying so, not a pass. <a href="/learn/audit-tool-accuracy/">A gate that
-could not measure is not a pass &rarr;</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is HTTP 429 a block?</h3><p>No. It means too many requests, and it is temporary. A server that sends it with a Retry-After header is naming a time to come back rather than turning the crawler away. HTTP 403 is the refusal.</p></div><div class="faq-item"><h3>Why did my audit report crawler blocks that a re-run did not?</h3><p>Because the first run probably caused them. A crawl is traffic from one address, which is what rate limiting slows down, so the probes that follow the crawl can all be measuring the limit the crawl tripped.</p></div><div class="faq-item"><h3>My site returns 403 to an audit tool. Is that a problem?</h3><p>Only if you did not intend it. Open the same URL in your browser: if it loads, the rule is on the user-agent and lives in your bot protection; if your browser is refused too, the rule is on the network.</p></div><div class="faq-item"><h3>Should I remove retired AI crawler names from robots.txt?</h3><p>It is tidiness rather than visibility, unless the wildcard group those crawlers fall back to is more permissive than the group the retired name sat in. Compare the two groups before editing.</p></div><div class="faq-item"><h3>How do I know a crawler-access finding is real?</h3><p>Run the audit again, more slowly, and see whether it survives. A measurement that a re-run can change is a measurement about the run rather than about the site.</p></div></div></section>
+<p>The registered check is <code>brand.name_consistency</code>, which compares the names your site
+uses for itself. For four other ways it got that wrong — including why rewriting a logo link's
+accessible name is the wrong repair — see
+<a href="/how-to/what-your-site-says-you-are-called/">what your site says you are called
+&rarr;</a>. For the wider lane, see <a href="/learn/brand-consistency/">brand consistency
+&rarr;</a>.</p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Why did an audit report my navigation label as a company name?</h3><p>Because a logo link's accessible name describes where the link goes, and a step that strips navigation words can leave a section name behind. What remains is as likely to be the section as the company.</p></div><div class="faq-item"><h3>How should a tool decide whether a logo link name is a real brand name?</h3><p>By whether it had to edit the string to get one. A name that was already plain is close to a declaration; one left over after a navigation word was stripped should have to resemble the domain before it counts.</p></div><div class="faq-item"><h3>Can fixing a false positive cause a false negative?</h3><p>Yes, and it is the common outcome, because the easy fix is to make a rule quieter. A false negative is silent — nobody writes in to report that a tool failed to tell them something — so only a test asserting the opposite case catches it.</p></div><div class="faq-item"><h3>An audit says my site uses two brand names. Should I believe it?</h3><p>Check where the second one came from and how often it appears. A tagline or a section label appearing once across a whole site is a page, not an identity. What you declared in structured data or og:site_name is the part you actually claimed.</p></div><div class="faq-item"><h3>Should I rename my logo link so it matches my company name?</h3><p>No. That name exists so someone using a screen reader knows where the link goes. Put the company name in your declarations instead, where a tool should be reading it from anyway.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

@@ -1489,6 +1489,12 @@ type names misses every subtype. The finding that fires hardest on whoever marke
 up most precisely, and how to tell two checks disagreeing from two checks overlapping.
 <a href="/how-to/when-a-check-cannot-see-your-markup/">Look at the type first &rarr;</a></p>
 
+<h2>The fix that hid a real problem somewhere else</h2>
+<p>A guard added to stop one false positive made the same check unable to flag a genuine
+disagreement on another site — and a false negative makes no noise. What the narrower condition
+was, and what the trade cost.
+<a href="/how-to/when-a-fix-creates-a-false-negative/">What a fix costs &rarr;</a></p>
+
 <h2>When a finding blames the whole site</h2>
 <p>Most findings count pages, but the fault was decided once in a template — so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
