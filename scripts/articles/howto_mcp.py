@@ -13,7 +13,13 @@ Measured, in that order:
     (no arguments).
   * `initialize` answers with serverInfo {"name": "docket", "version": "1.3.44"}
     and echoes the client's protocolVersion.
-  * `list_checks` on the installed copy returns 97 checks across 13 lanes.
+  * `list_checks` on the installed copy returned 97 checks across 13 lanes
+    WHEN THIS WAS MEASURED, against the 1.3.44 named two lines above. The
+    engine registers 99 as of 2026-09-21 and the rendered page reads that
+    from facts rather than from here, so the page is right and this line is
+    a record of one run. Left as a record rather than bumped, because
+    nobody re-ran `list_checks` today — the count came from the source and
+    from the frozen build's own `docket checks`.
   * ⚠️ AND THE ONE THE SOURCE TREE WOULD HAVE HIDDEN: an unactivated copy
     REFUSES `audit_site` with "This copy of Docket is not activated", while
     `list_checks` still answers. Run from source, `licence.mode()` is "free" and
