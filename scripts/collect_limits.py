@@ -36,7 +36,8 @@ def _ui_clamp() -> tuple[int, int]:
 
 
 def main() -> None:
-    from seo_engine.crawler import CrawlConfig
+    from seo_engine.crawler import CrawlConfig, Crawler
+    from seo_engine.fetcher import DOCKET_TOKEN, USER_AGENT
 
     cfg = CrawlConfig(start_url="https://example.com")
     ui_lo, ui_hi = _ui_clamp()
@@ -54,6 +55,11 @@ def main() -> None:
         "wall_clock_minutes": round(cfg.max_seconds / 60),
         "delay_seconds": cfg.delay,
         "concurrency": cfg.concurrency,
+        # For /bot/: the name a robots.txt group can address, the full string
+        # every request carries, and the longest Crawl-delay honoured.
+        "user_agent_token": DOCKET_TOKEN,
+        "user_agent": USER_AGENT,
+        "robots_delay_cap_seconds": int(Crawler.MAX_ROBOTS_DELAY),
         "note": (
             "Read from seo_engine.crawler.CrawlConfig and the clamp in "
             "ui/src/app.js by scripts/collect_limits.py, so the published "

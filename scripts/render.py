@@ -1189,6 +1189,7 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <div><h2 class="foot-h">Contact</h2>
 <a href="/about/">About Docket</a>
 <a href="/contact/">Get in touch</a>
+<a href="/bot/">Our crawler</a>
 <a href="{REPO}/issues">Issue tracker</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a>
 <a href="/legal/refunds/">Refunds</a></div>

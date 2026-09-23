@@ -9,5 +9,8 @@
   "wall_clock_minutes": 15,
   "delay_seconds": 0.25,
   "concurrency": 4,
+  "user_agent_token": "Docket-SEO-Audit",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 Docket-SEO-Audit/1.0 (+https://docketseo.app/bot/)",
+  "robots_delay_cap_seconds": 30,
   "note": "Read from seo_engine.crawler.CrawlConfig and the clamp in ui/src/app.js by scripts/collect_limits.py, so the published figures cannot drift from the shipped ones. There is no page ceiling: 0 means the page count does not stop the crawl. It is still bounded \u2014 by the wall clock, by the frontier running dry, and in practice by memory, because every page is held in a list. Publishing 'unlimited' without those three would be a promise the program cannot keep."
 }
