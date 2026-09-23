@@ -163,7 +163,7 @@ the exception their own advice describes.</p>
 """
     return render(
         cat="how-to", slug="findings-that-flag-correct-pages",
-        title="A caveat is not a gate",
+        title="A caveat is not a gate: findings that flag correct pages",
         desc=("When an audit's own advice says your case is fine, the finding should not have "
               "fired. Two cases where a site was flagged for being right."),
         h1="A caveat is not a gate",
