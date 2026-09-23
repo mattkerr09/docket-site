@@ -856,6 +856,21 @@ stand; the local tool answers what to change next.</p>
 {_verified_note("semrush")}
 {CTA}"""
 
+    # Other comparisons: the six /vs/ pages Google had not discovered on
+    # 2026-09-22. The /vs/ hub that lists them was last crawled 11 August;
+    # this page is among the comparison pages crawled most recently. Kept
+    # to comparison pages so no article reading list names a vendor.
+    body += """
+<h2>Other comparisons</h2>
+<ul>
+<li><a href="/vs/crawler-sh-alternative/">Docket vs crawler.sh</a></li>
+<li><a href="/vs/crawlraven-alternative/">Docket vs CrawlRaven</a></li>
+<li><a href="/vs/jetoctopus-alternative/">Docket vs JetOctopus</a></li>
+<li><a href="/vs/profound-alternative/">Docket vs Profound</a></li>
+<li><a href="/vs/seoptimer-alternative/">Docket vs SEOptimer</a></li>
+<li><a href="/vs/sitechecker-alternative/">Docket vs Sitechecker</a></li>
+</ul>
+"""
     return render(
         cat="vs", slug="semrush-site-audit-alternative",
         title="Docket vs Semrush Site Audit: a one-time alternative",
@@ -1037,6 +1052,21 @@ of forty things do I do first. If you are not at that point yet, the honest answ
 {_verified_note("lighthouse")}
 {CTA}"""
 
+    # Other comparisons: the six /vs/ pages Google had not discovered on
+    # 2026-09-22. The /vs/ hub that lists them was last crawled 11 August;
+    # this page is among the comparison pages crawled most recently. Kept
+    # to comparison pages so no article reading list names a vendor.
+    body += """
+<h2>Other comparisons</h2>
+<ul>
+<li><a href="/vs/crawler-sh-alternative/">Docket vs crawler.sh</a></li>
+<li><a href="/vs/crawlraven-alternative/">Docket vs CrawlRaven</a></li>
+<li><a href="/vs/jetoctopus-alternative/">Docket vs JetOctopus</a></li>
+<li><a href="/vs/profound-alternative/">Docket vs Profound</a></li>
+<li><a href="/vs/seoptimer-alternative/">Docket vs SEOptimer</a></li>
+<li><a href="/vs/sitechecker-alternative/">Docket vs Sitechecker</a></li>
+</ul>
+"""
     return render(
         cat="vs", slug="lighthouse-alternative",
         title="Docket vs Google Lighthouse: what its SEO score covers",
@@ -1231,6 +1261,21 @@ forever, and add the crawler when the question is what to change rather than wha
 )}
 {CTA}"""
 
+    # Other comparisons: the six /vs/ pages Google had not discovered on
+    # 2026-09-22. The /vs/ hub that lists them was last crawled 11 August;
+    # this page is among the comparison pages crawled most recently. Kept
+    # to comparison pages so no article reading list names a vendor.
+    body += """
+<h2>Other comparisons</h2>
+<ul>
+<li><a href="/vs/crawler-sh-alternative/">Docket vs crawler.sh</a></li>
+<li><a href="/vs/crawlraven-alternative/">Docket vs CrawlRaven</a></li>
+<li><a href="/vs/jetoctopus-alternative/">Docket vs JetOctopus</a></li>
+<li><a href="/vs/profound-alternative/">Docket vs Profound</a></li>
+<li><a href="/vs/seoptimer-alternative/">Docket vs SEOptimer</a></li>
+<li><a href="/vs/sitechecker-alternative/">Docket vs Sitechecker</a></li>
+</ul>
+"""
     return render(
         cat="vs", slug="google-search-console",
         title="Docket vs Google Search Console: what each answers",
