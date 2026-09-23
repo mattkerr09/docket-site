@@ -9,26 +9,26 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Backlink audit: which questions are worth paying for</title>
-<meta name="description" content="Ahrefs sells no product called Backlink Audit. The three questions an audit asks, which tool answers each, and what an open link graph cannot.">
+<title>Docket's crawler: what it requests and how to stop it</title>
+<meta name="description" content="What Docket's audit crawler does on your site, how fast it goes, and the robots.txt rule that asks it to stay out.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="096e5e440eef">
-<link rel="canonical" href="https://docketseo.app/how-to/backlink-audit/">
+<link rel="canonical" href="https://docketseo.app/bot/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to do a backlink audit">
-<meta property="og:description" content="Ahrefs sells no product called Backlink Audit. The three questions an audit asks, which tool answers each, and what an open link graph cannot.">
-<meta property="og:url" content="https://docketseo.app/how-to/backlink-audit/">
+<meta property="og:title" content="The Docket crawler">
+<meta property="og:description" content="What Docket's audit crawler does on your site, how fast it goes, and the robots.txt rule that asks it to stay out.">
+<meta property="og:url" content="https://docketseo.app/bot/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How to do a backlink audit">
-<meta name="twitter:description" content="Ahrefs sells no product called Backlink Audit. The three questions an audit asks, which tool answers each, and what an open link graph cannot.">
+<meta name="twitter:title" content="The Docket crawler">
+<meta name="twitter:description" content="What Docket's audit crawler does on your site, how fast it goes, and the robots.txt rule that asks it to stay out.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -680,9 +680,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to do a backlink audit","description":"Ahrefs sells no product called Backlink Audit. The three questions an audit asks, which tool answers each, and what an open link graph cannot.","datePublished":"2026-09-14","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/backlink-audit/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Ahrefs have a backlink audit tool?","acceptedAnswer":{"@type":"Answer","text":"Not under that name. Checked across their pricing, Site Audit, Backlink Checker and Site Explorer pages, the phrase does not appear. The work people mean by “backlink audit” is done with Backlink Checker for individual links and Site Explorer for the full profile."}},{"@type":"Question","name":"Can I audit backlinks for free?","acceptedAnswer":{"@type":"Answer","text":"Partly. Common Crawl's public hyperlink graph gives referring domains at the domain level, which answers “who links to us” and lets you compare your count against a competitor's. It does not give linking URLs, anchor text or nofollow status — those need a commercial backlink index."}},{"@type":"Question","name":"Should I disavow bad backlinks?","acceptedAnswer":{"@type":"Answer","text":"Usually not. Search engines discount obvious spam on their own, and a disavow file submitted on a hunch can remove links that were helping. The case for it is narrow: links you or a predecessor bought, or a domain with a known history."}},{"@type":"Question","name":"What is the difference between a domain-level and a page-level link graph?","acceptedAnswer":{"@type":"Answer","text":"A domain-level graph records that one domain links to another. A page-level index records which URL links to which URL, with the anchor text. The first is enough to count referring domains and compare sites; the second is what you need to look at an individual link."}},{"@type":"Question","name":"What is the most common fixable finding in a backlink audit?","acceptedAnswer":{"@type":"Answer","text":"An earned link pointing at a URL that no longer exists. The authority arrives at a 404 and one redirect recovers it. It is worth checking before anything more ambitious, because it costs almost nothing and nobody is selling it to you."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Docket crawler","description":"What Docket's audit crawler does on your site, how fast it goes, and the robots.txt rule that asks it to stay out.","datePublished":"2026-09-23","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/bot/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Docket a search engine?","acceptedAnswer":{"@type":"Answer","text":"No. Nothing it reads is indexed or published. Each request belongs to an audit somebody ran from their own computer, and the results stay on it."}},{"@type":"Question","name":"How do I stop Docket crawling my site?","acceptedAnswer":{"@type":"Answer","text":"Add a group for Docket-SEO-Audit with Disallow: / to your robots.txt. The person running an audit can switch robots.txt off for their own sites, so refusing the user agent at your server is the rule that always holds."}},{"@type":"Question","name":"Why does Docket follow Googlebot's rules rather than only its own?","acceptedAnswer":{"@type":"Answer","text":"Because an audit reports what search engines can reach. A group written for Docket by name is followed as well."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -714,110 +713,56 @@ fbq('track','PageView');
 </div>
 <a class="btn" href="/download/">Download Docket SEO</a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Backlink audit</div><h1>How to do a backlink audit</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-14">14 September 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / Crawler</div><h1>The Docket crawler</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-23">23 September 2026</time></p>
 
-<p class="lede">A backlink audit asks three questions: who links to us, is any of it doing
-anything, and is any of it a liability. Ahrefs does not sell a product called "Backlink Audit" —
-the work is split across their Backlink Checker and Site Explorer — and the free half of the job
-can be done from an open dataset, as long as you know which question that dataset can answer.</p>
+<p class="lede">If <code>Docket-SEO-Audit</code> is in your logs, somebody audited your site with
+Docket from their own computer. There is no Docket crawler farm and no scheduled sweep of the web:
+every request under this name belongs to one audit that one person started.</p>
 
-<h2>The three questions, and which tool answers which</h2>
+<h2>How it identifies itself</h2>
 
-<p><strong>Who links to us.</strong> A list of referring domains. This is the cheapest question
-and the one an open dataset answers well.</p>
+<p>Every page request carries this user agent:</p>
 
-<p><strong>Is it doing anything.</strong> Whether those links carry authority, and whether the
-pages they point at are the ones you want ranking. This needs a link index with page-level detail
-and a metric attached to it.</p>
+<pre><code>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 Docket-SEO-Audit/1.0 (+https://docketseo.app/bot/)</code></pre>
 
-<p><strong>Is any of it a liability.</strong> The disavow question — the one people reach for
-first and need least. Search engines discount obvious spam automatically; a disavow file
-submitted on a hunch can remove links that were helping you. Unless you have bought links or
-inherited a domain with a known history, the honest answer is usually "leave it".</p>
+<p>Pages that are also opened in a browser engine — to see what JavaScript builds — carry the
+same name and the same link back to this page. Docket never claims to be Googlebot or any other
+search engine's crawler.</p>
 
-<h2>What Ahrefs actually offers here</h2>
+<h2>How hard it pushes</h2>
 
-<p><strong>Backlink Checker</strong> — in their words, "check backlinks to any site", drawing on
-what they describe as the world's biggest index of live backlinks. There is
-a free tier. This is the page-level view: individual linking URLs and anchor text.</p>
-
-<p><strong>Site Explorer</strong> — their description is "analyze ANY website's organic traffic,
-AI visibility, backlink profile, and paid traffic". This is the paid, full version of the same
-data with the metrics and filtering attached.</p>
-
-<p>If what you need is every linking URL with its anchor text, that is what a commercial backlink
-index is for and there is no free substitute for it. Docket does not have one and is not going to
-pretend otherwise.</p>
-
-<h2>What an open link graph can tell you</h2>
-
-<p>Common Crawl publishes a hyperlink graph of the web — 118.0 million domains in the
-cc-main-2026-may-jun-jul release. <code>docket backlinks example.com</code> reads it directly:</p>
-
-<pre><code>docket backlinks example.com --referring</code></pre>
-
-<p>It streams the graph rather than downloading it, so nothing is written to disk, one pass
-serves every domain you pass on the command line, and there are no credits to spend. On a real
-site — screamingfrog.co.uk — the graph shows 12,411 referring domains.</p>
-
-<p><strong>The limit, stated plainly: this is a domain-level graph.</strong> It tells you that
-one domain links to another. It does not give you the linking page, the anchor text, the link's
-first-seen date, or whether it is nofollow. Those are page-level facts and they are not in this
-dataset at any price.</p>
-
-<p>So it answers question one properly and question two partially — enough to compare your
-referring-domain count against a competitor's, which is the comparison most people actually want
-and the one they usually pay a subscription to make once.
-<a href="/learn/domain-authority-without-a-subscription/">Domain authority without a
-subscription</a> covers the metric side of that: what the ranking derived from this graph means,
-and what it deliberately cannot tell you.</p>
-
-<h2>The order to do it in</h2>
-
-<p><strong>1. Count before you read.</strong> Get your referring-domain count and two
-competitors'. If you are within the same order of magnitude, links are probably not your
-constraint and the audit can stop here — which is a genuinely useful outcome and the one nobody
-sells you.</p>
-
-<p><strong>2. Check what the links point at.</strong> Referring domains pointing only at your
-homepage is a different problem from links spread across your content, and it is fixable by
-choosing what you promote rather than by acquiring more links.</p>
-
-<p><strong>3. Check the pages are still there.</strong> An earned link pointing at a URL you
-retired is authority arriving at a 404. This is the most common repairable finding in a backlink
-audit and it costs one redirect — Docket's crawl reports the broken internal targets, and
-<a href="/learn/log-file-analysis/">your server log</a> shows the external ones actually being
-requested.</p>
-
-<p><strong>4. Only then consider disavow.</strong> And usually decide against it.</p>
-
-<h2>What Docket does and does not do here</h2>
-
-<p>Docket reads the public graph for referring-domain counts and a comparative ranking, on your
-machine, with no subscription. It has no backlink index of its own, no anchor-text data, no
-disavow workflow, and no opinion about link quality. Those are the parts a commercial index
-exists for, and if they are what your week needs, buy one —
-<a href="/vs/ahrefs-site-audit-alternative/">the comparison against Ahrefs Site Audit</a> is
-about the crawling half only, and says the same thing about their link data.</p>
-
-<p>What Docket audits properly is what is on your own site: the
-<a href="/learn/seo-audit/">technical audit</a> across
-<a href="/learn/what-docket-checks/">every check it runs</a>, including the internal link
-structure that decides where authority goes once it arrives — see
-<a href="/learn/internal-link-equity/">internal link equity</a>. A link profile you cannot use
-because the pages it points at are thin or unreachable is a content and crawling problem wearing
-a backlink costume.</p>
-
-<p><a class="btn" href="/download/">Download Docket</a></p>
-
-<h2>Further reading</h2>
 <ul>
-<li><a href="/learn/click-depth-and-orphan-pages/">Click depth and orphan pages</a></li>
-<li><a href="/how-to/fix-pages-competing-for-one-search/">Pages competing for the same search</a></li>
-<li><a href="/how-to/fix-your-money-pages-first/">Fix the pages that make you money first</a></li>
-<li><a href="/learn/priority-model/">How Docket decides what to fix first</a></li>
+<li>At most 4 requests at a time, with at least 0.25
+seconds between requests to your site from each of them.</li>
+<li>If your robots.txt sets a <code>Crawl-delay</code>, Docket waits that long instead — up to
+30 seconds between requests.</li>
+<li>If your server answers 429 or 503, it slows down, and honours a <code>Retry-After</code>
+header. If refusals keep coming, it stops and says so in the report.</li>
+<li>An audit reads 200 pages by default, and stops crawling new pages after
+15 minutes whatever it has reached.</li>
 </ul>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Ahrefs have a backlink audit tool?</h3><p>Not under that name. Checked across their pricing, Site Audit, Backlink Checker and Site Explorer pages, the phrase does not appear. The work people mean by “backlink audit” is done with Backlink Checker for individual links and Site Explorer for the full profile.</p></div><div class="faq-item"><h3>Can I audit backlinks for free?</h3><p>Partly. Common Crawl's public hyperlink graph gives referring domains at the domain level, which answers “who links to us” and lets you compare your count against a competitor's. It does not give linking URLs, anchor text or nofollow status — those need a commercial backlink index.</p></div><div class="faq-item"><h3>Should I disavow bad backlinks?</h3><p>Usually not. Search engines discount obvious spam on their own, and a disavow file submitted on a hunch can remove links that were helping. The case for it is narrow: links you or a predecessor bought, or a domain with a known history.</p></div><div class="faq-item"><h3>What is the difference between a domain-level and a page-level link graph?</h3><p>A domain-level graph records that one domain links to another. A page-level index records which URL links to which URL, with the anchor text. The first is enough to count referring domains and compare sites; the second is what you need to look at an individual link.</p></div><div class="faq-item"><h3>What is the most common fixable finding in a backlink audit?</h3><p>An earned link pointing at a URL that no longer exists. The authority arrives at a 404 and one redirect recovers it. It is worth checking before anything more ambitious, because it costs almost nothing and nobody is selling it to you.</p></div></div></section>
+
+<h2>How robots.txt applies to it</h2>
+
+<p>An audit exists to show what search engines can reach, so Docket crawls what your robots.txt
+allows <strong>Googlebot</strong> to crawl. It also obeys any group written for it by name. To
+ask it to stay out of your site:</p>
+
+<pre><code>User-agent: Docket-SEO-Audit
+Disallow: /</code></pre>
+
+<p>Two limits, stated plainly rather than discovered. The address the person typed is still
+requested once — they asked for that page by name — but nothing beyond it. And the person running
+the audit can switch robots.txt off, which exists for auditing their own staging sites. If that
+matters to you, refuse the user agent at your server as well; that is the only rule a crawler
+cannot choose to ignore.</p>
+
+<h2>If it misbehaved on your site</h2>
+
+<p>Tell us, with the time and the address it requested, and we will find out why.</p>
+
+<p><a class="btn" href="/contact/">How to get in touch</a></p>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is Docket a search engine?</h3><p>No. Nothing it reads is indexed or published. Each request belongs to an audit somebody ran from their own computer, and the results stay on it.</p></div><div class="faq-item"><h3>How do I stop Docket crawling my site?</h3><p>Add a group for Docket-SEO-Audit with Disallow: / to your robots.txt. The person running an audit can switch robots.txt off for their own sites, so refusing the user agent at your server is the rule that always holds.</p></div><div class="faq-item"><h3>Why does Docket follow Googlebot's rules rather than only its own?</h3><p>Because an audit reports what search engines can reach. A group written for Docket by name is followed as well.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
