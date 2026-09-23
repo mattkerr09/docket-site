@@ -201,7 +201,9 @@ ALLOWED = {
     "0.85": "PageRank damping factor from the original paper",
     "5.0": "Mozilla/5.0, part of every user-agent string ever written",
     "537.36": "AppleWebKit build in the user-agent strings we quote",
-    "12": "macOS 12, the minimum version Docket supports",
+    "12": ("illustrative counts in example report lines and a video frame "
+           "number. NOT the macOS floor: that is {MACOS}, and "
+           "_typed_macos_floor refuses a typed one"),
     "2": "'the first two sentences', '.2MB', ordinals",
     "3": "ordinals and list counts in prose",
     "1": "ordinals",
@@ -532,9 +534,30 @@ def _caveat_branches() -> List[str]:
     return out
 
 
+def _typed_macos_floor() -> List[str]:
+    """A macOS version written into any page source is a promise nobody re-reads.
+
+    The floor comes from the shipped bundle (`facts.macos_floor()`, via
+    collect_updater.py) and is interpolated as `{MACOS}`. It was typed in nine
+    sentences; a sibling product's typed "12+" stood on 184 sentences while its
+    engine could not start below 26 (~/ops/UPGRADES.md, 2026-09-21).
+    """
+    import re as _re
+    out = []
+    sources = sorted(ARTICLES.glob("*.py")) + [ARTICLES.parent / "render.py",
+                                               ARTICLES.parent / "build.py"]
+    for path in sources:
+        for n, line in enumerate(path.read_text().splitlines(), 1):
+            if _re.search(r"macOS\s+\d", line):
+                out.append(f"  {path.name}:{n}  typed macOS version — use {{MACOS}}\n"
+                           f"      {line.strip()[:120]}")
+    return out
+
+
 def main() -> int:
     problems: List[str] = (_score_band_drift() + _competitor_annual_sanity()
-                           + _price_stamp_integrity() + _caveat_branches())
+                           + _price_stamp_integrity() + _caveat_branches()
+                           + _typed_macos_floor())
     # build.py carries the hub entry summaries, which are article prose on a
     # published page and were not being scanned. "Tranco top 1,500" was typed
     # into one and sailed through, which is the exact bug this file exists for.

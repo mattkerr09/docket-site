@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE,
+from render import (AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     FOUNDING_NOW, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
                     N_LANES, PRICE_STR,
@@ -182,7 +182,7 @@ def body() -> str:
     {BNPL_BLOCK}
   </div>
   <p class="hero-note"><strong>30 days, no conditions, no questions asked</strong> — <a href="/legal/refunds/">refund policy</a></p>
-  <p class="hero-note">macOS 12+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
+  <p class="hero-note">{MACOS}+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
 </div>
 </div>
 <div class="wrap-wide hero-media-wrap">
@@ -553,8 +553,8 @@ one that draws a line.</p></div>
   address detection reads English and French word order only. On other languages both stand down
   and the report says which ones did, rather than telling a business it publishes no address when
   the truth is that Docket cannot read the page. Everything technical works in any language.</p></div>
-  <div class="card"><h3>Windows and Intel</h3><p>Apple Silicon, macOS 12 or later. There is
-  no other build.</p></div>
+  <div class="card"><h3>Windows and Intel</h3><p>Apple Silicon, {MACOS} or later. There is no
+  Windows or Intel build of the app.</p></div>
   <div class="card"><h3>Five things we chose not to build</h3><p>Rank tracking, a cloud
   version, team accounts, server-side scheduling, and white-label or uptime monitoring. Each
   one needs a machine of ours running every day on your behalf, which is a monthly bill —

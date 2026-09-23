@@ -19,7 +19,7 @@ CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
 from render import (
     FREE_CLAUSE,  # noqa: E402
-    BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, GOVERNING_LAW, ISSUES,
+    BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
     RELEASE, SELLER, SELLER_REG_NO, SUMS, price_note_html, render,
     seller_address,
@@ -114,7 +114,7 @@ def _payment_note() -> str:
 
 def download() -> Path:
     body = f"""
-<p class="lede">Docket is {PRICE_STR}, paid once, for macOS 12 or later on Apple Silicon.
+<p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on Apple Silicon.
 {DMG_SIZE}. No subscription, no crawl credits, no per-seat pricing — audit as many sites as
 you like, for as long as you like. There is no account to create and no telemetry. Activating
 your licence checks the key with our payment provider once, and about once a day after that;
@@ -123,7 +123,7 @@ nothing about the sites you audit is ever sent anywhere.</p>
 {_payment_note()}
 
 <p><a class="btn btn-lg" href="{DMG}">Download Docket {RELEASE} for Mac</a></p>
-<p style="font-size:var(--t-md);color:var(--text-dim)">Apple Silicon · macOS 12+ · {DMG_SIZE} ·
+<p style="font-size:var(--t-md);color:var(--text-dim)">Apple Silicon · {MACOS}+ · {DMG_SIZE} ·
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
 
 <h2>What it will crawl</h2>
@@ -317,7 +317,7 @@ how you would drive Docket from your own scripts.</p>
 
 <h2>Requirements and limits</h2>
 <ul>
-<li><strong>macOS 12 or later, Apple Silicon</strong> for the desktop app. There is no
+<li><strong>{MACOS} or later, Apple Silicon</strong> for the desktop app. There is no
 Intel or Windows build.</li>
 <li><strong>Linux x86_64 for the command line.</strong>
 {'<a href="' + LINUX + '">Download the ' + LINUX_SIZE + ' tarball</a> — needs' if LINUX else 'A tarball needing'}
@@ -361,7 +361,7 @@ is gone.</p>
     return render(
         cat="download", slug="",
         title=f"Download Docket for Mac — {PRICE_STR}, paid once",
-        desc=(f"Docket for macOS 12+ on Apple Silicon. {DMG_SIZE}, no account, no telemetry. "
+        desc=(f"Docket for {MACOS}+ on Apple Silicon. {DMG_SIZE}, no account, no telemetry. "
               "Includes the CLI, which exits non-zero on a critical issue so it can gate a "
               "deploy."),
         h1="Download Docket for Mac",

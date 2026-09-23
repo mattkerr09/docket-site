@@ -1394,6 +1394,18 @@ def dmg_size_str() -> str:
     return f"{dmg_mb():.1f} MB"
 
 
+def macos_floor() -> str:
+    """"12" for a bundle declaring 12.0 — the version a person would say.
+
+    From `download.json`'s `macos_min`, which collect_updater.py reads out of
+    the published tarball's Info.plist. Never typed: see its `macos_min`.
+    """
+    parts = download()["macos_min"].split(".")
+    while len(parts) > 1 and parts[-1] == "0":
+        parts.pop()
+    return ".".join(parts)
+
+
 #: Spelled forms for the small counts this site puts in prose. Digits are what
 #: `verify_numbers.py` polices; a spelled number walks straight past it, which
 #: is exactly how "four optional checks" survived a fifth connector being added.

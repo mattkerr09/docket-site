@@ -41,6 +41,33 @@ SIG = APP / "dist" / "Docket.app.tar.gz.sig"
 RELEASE = "https://github.com/mattkerr09/docket-site/releases/download"
 
 
+def macos_min(tgz: pathlib.Path) -> str:
+    """The macOS floor the published bundle declares, read out of the tarball.
+
+    ⚠️ READ FROM THE ARTIFACT, NEVER TYPED. "macOS 12 or later" was typed into
+    nine sentences on five pages. The build proves the bundle loads there
+    (build_docket.sh 4b-ii, check_macos_floor.py against the bundle's own
+    LSMinimumSystemVersion), so this is the one number that is both declared
+    and gated — and the site now says whatever the shipped bundle says. A
+    sibling product promised 12+ on 184 sentences while its engine could not
+    start below 26 (~/ops/UPGRADES.md, 2026-09-21).
+    """
+    import plistlib
+    import tarfile
+    with tarfile.open(tgz) as tar:
+        member = next((m for m in tar.getmembers()
+                       if m.name.endswith(".app/Contents/Info.plist")
+                       and m.name.count("/") == 2), None)
+        if member is None:
+            raise SystemExit(f"{tgz.name} has no Contents/Info.plist")
+        plist = plistlib.load(tar.extractfile(member))
+    floor = plist.get("LSMinimumSystemVersion")
+    if not floor or not re.fullmatch(r"\d+(\.\d+){0,2}", floor):
+        raise SystemExit(f"{tgz.name} declares no usable LSMinimumSystemVersion "
+                         f"({floor!r}); the site cannot state a floor it does not have")
+    return floor
+
+
 #: A value that means "the notes are in this file", not "the notes are this
 #: string". Anything with a directory separator, or a bare markdown/text
 #: filename, is a path — nobody writes release notes that look like that.
@@ -179,6 +206,7 @@ def main() -> None:
             "dmg_name": dmg.name,
             "dmg_bytes": dmg.stat().st_size,
             "dmg_mb": round(dmg.stat().st_size / 1_000_000, 1),
+            "macos_min": macos_min(TGZ),
             "measured": datetime.datetime.now(datetime.timezone.utc)
                         .strftime("%Y-%m-%d"),
             "note": ("Decimal MB, matching what a browser download panel and "
@@ -187,6 +215,7 @@ def main() -> None:
         }, indent=2) + "\n")
         print(f"  dmg       : {dmg.stat().st_size / 1_000_000:.1f} MB "
               f"({dmg.stat().st_size:,} bytes)")
+        print(f"  macOS min : {macos_min(TGZ)} (LSMinimumSystemVersion in {TGZ.name})")
 
         # The Linux CLI, measured the same way and for the same reason. The
         # download page described "a 12 MB tarball" from memory while no Linux

@@ -265,6 +265,10 @@ VOLUME = f"Docket {_facts.app_version()}"
 # It was "17 MB" against an 18.3 MB download.
 DMG_SIZE = _facts.dmg_size_str()
 
+#: "macOS <N>" — the floor the shipped bundle declares, read from it by
+#: collect_updater.py. It was typed in nine sentences; now none.
+MACOS = f"macOS {_facts.macos_floor()}"
+
 #: One-time price, in USD. Declared once so the schema, the comparison table and
 #: the download page cannot drift apart — which is exactly what happened to the
 #: check count and the download size before they were centralised.
@@ -1276,7 +1280,7 @@ def _entity_schema(with_offer: bool = True) -> str:
         '{"@type":"SoftwareApplication","@id":"' + BASE + '/#app",'
         '"name":"Docket SEO","applicationCategory":"BusinessApplication",'
         '"applicationSubCategory":"SEO audit software",'
-        '"operatingSystem":"macOS 12 or later, Apple Silicon",'
+        '"operatingSystem":"' + MACOS + ' or later, Apple Silicon",'
         '"description":"Docket crawls a website, runs ' + str(N_CHECKS) + ' checks across SEO, copy, '
         'speed, structured data, local visibility, AI search visibility and marketing '
         'conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.",'
