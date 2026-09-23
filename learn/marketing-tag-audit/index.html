@@ -12,7 +12,7 @@
 <title>Marketing tag audit: is your tracking on every page?</title>
 <meta name="description" content="The 6 tracking checks in Docket's audit — analytics coverage, ad pixels, consent timing, UTM hygiene — and the common failure you can check yourself in four minutes.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="0893d218d4d4">
+<meta name="build-id" content="8cc049c9d25b">
 <link rel="canonical" href="https://docketseo.app/learn/marketing-tag-audit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -808,6 +808,12 @@ crawler cannot see them. Docket reports what is present in the pages it read and
 guess at the rest.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
+
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/analytics-findings-name-the-tag/">'You have no analytics' is a claim about a list</a></li>
+<li><a href="/how-to/pixels-reported-on-zero-pages/">A pixel on part of the site, and on no pages</a></li>
+</ul>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is a marketing tag audit?</h3><p>A check that the analytics and advertising tags you believe are running actually appear on every page, for every visitor, and fire at the right time. It is different from checking a tag is installed: tags are installed on templates, and sites grow pages that use other templates.</p></div><div class="faq-item"><h3>Why would a page be missing my analytics tag?</h3><p>Because tags are added to a template, not to a site. Landing pages built for a campaign, checkout flows rebuilt by a contractor, and blogs moved to a subdomain are all pages published outside the template the tag was added to. Nothing errors when it happens.</p></div><div class="faq-item"><h3>Can Docket see tags that JavaScript injects at runtime?</h3><p>Not by default — it reports what is present in the HTML it read, and says so rather than concluding a site has no analytics. Running an audit with --render executes the page's JavaScript in WebKit first and audits what a browser actually receives.</p></div><div class="faq-item"><h3>Does Docket check whether my tracking is correct?</h3><p>No. It checks what is present in the pages it read. Whether events fire on the right actions and whether revenue is passed accurately can only be tested against real sessions in your analytics account, and a crawler cannot see them.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

@@ -12,7 +12,7 @@
 <title>Fix heading structure: is one H1 per page a real rule?</title>
 <meta name="description" content="What Docket's heading check measures, what it cannot see, and where the one-H1 rule parts company with the HTML standard and Google's own docs.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="0893d218d4d4">
+<meta name="build-id" content="8cc049c9d25b">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-heading-structure/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -900,6 +900,16 @@ that changes anything.</li>
 href="/learn/what-docket-checks/">what Docket checks</a>.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
+
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/fix-a-site-that-says-something-different-every-page/">When your site stops saying one thing about itself</a></li>
+<li><a href="/how-to/fix-a-site-that-sounds-like-several-companies/">When your site sounds like several companies wrote it</a></li>
+<li><a href="/how-to/what-your-site-says-you-are-called/">What your site says your company is called</a></li>
+<li><a href="/how-to/addresses-on-your-site-that-are-not-yours/">Not every address on your site is yours</a></li>
+<li><a href="/how-to/where-an-audit-looks-for-your-address/">Where an audit looks for your address</a></li>
+<li><a href="/how-to/fix-sameas-that-claims-the-wrong-accounts/">Not every social link on your site is yours</a></li>
+</ul>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is one H1 per page a real rule?</h3><p>Not in the HTML standard and not in Google's documentation. The living standard says a document can contain multiple top-level headings and prints a conforming example with three; its only requirement is that at least one heading in the outline is level 1. Docket still flags multiple H1s, at its lightest-but-one weight, because in practice it usually means a template is using H1 for font size.</p></div><div class="faq-item"><h3>Does skipping a heading level hurt my rankings?</h3><p>Google's SEO starter guide says semantic order is excellent for screen readers but that from Google Search's perspective it does not matter if headings are out of order. Docket reports it at NOTICE, its lowest severity, and its finding text talks about screen readers and parsers rather than rankings.</p></div><div class="faq-item"><h3>Why does Docket say my page has no H1 when I can see one?</h3><p>Because it records a heading only if the element has text content. An H1 holding only a logo image or an inline SVG has no text, is not recorded, and the page reads as having none.</p></div><div class="faq-item"><h3>Do headings in my footer count?</h3><p>Yes. The extractor walks the whole document and applies no nav, header or footer filter, so an H2 in your footer clears the no-subheadings finding and a header logo wrapped in an H1 counts as that page's H1 sitewide.</p></div><div class="faq-item"><h3>Does Docket check whether my headings are any good?</h3><p>No, and nor can any tool that reads markup. It can tell you a heading element is present, absent or out of order. It cannot tell you that your subheadings say Overview, More and Other. That judgement is yours and it is worth more than every finding on this page.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
