@@ -12,7 +12,7 @@
 <title>How to fix redirect problems: loops, chains, links</title>
 <meta name="description" content="Redirect loops, chains and internal links pointing at redirects — what Docket's index.redirects check reports, what it cannot see, and which ones cost you.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="0893d218d4d4">
+<meta name="build-id" content="8cc049c9d25b">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-redirect-problems/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -923,6 +923,15 @@ URL-by-URL job. Then check the status codes by hand on the redirects that matter
 is the one part of this no crawl report will do for you.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
+
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/fix-meta-refresh-redirects/">Meta refresh: the redirect your tools cannot see</a></li>
+<li><a href="/how-to/hreflang-targets-that-look-dead/">Why an hreflang target is reported as dead</a></li>
+<li><a href="/how-to/fix-invalid-hreflang-codes/">hreflang values that are not valid language codes</a></li>
+<li><a href="/how-to/fix-lang-attribute-mismatch/">hreflang and html lang mismatch</a></li>
+<li><a href="/how-to/identical-content-three-causes/">Identical content is not always duplicate content</a></li>
+</ul>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Are all redirects bad for SEO?</h3><p>No. A redirect that sends one old URL to one new URL in a single hop is the correct way to move a page, and Docket does not report it at all unless your own internal links still point at the old URL. What gets reported is a loop, a chain of two or more hops, and a template still linking to the redirecting URL.</p></div><div class="faq-item"><h3>Does Docket tell me which redirects are 301 and which are 302?</h3><p>No. The crawler keeps the list of URLs it walked, not the status of each hop, so no finding under this check distinguishes a permanent redirect from a temporary one. Check that yourself with curl -sIL against the URL and read the status lines it prints.</p></div><div class="faq-item"><h3>How much link equity does a redirect lose?</h3><p>This page does not give a figure, because Google's redirect documentation does not publish one and the percentages you see quoted elsewhere have no source. What Google's documentation does say is that a permanent redirect is used as a signal that the target should be canonical, and a temporary one is not.</p></div><div class="faq-item"><h3>Why does my audit list a redirect I do not have a rule for?</h3><p>Docket reports the redirects its crawler actually walked from the pages it crawled, so a hop can come from your CDN, your host's trailing-slash handling, or a platform-level rule rather than from your own configuration file. It never reads that configuration, so the crawl is the evidence, not the rule list.</p></div><div class="faq-item"><h3>Does a redirect chain get shortened automatically by Google?</h3><p>Googlebot follows redirects, but each hop is still a request a visitor's browser makes and your own links still point at the first URL. Collapsing the chain in your configuration is a one-line edit; leaving it means every visitor pays for the history of your URL structure.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

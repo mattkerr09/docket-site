@@ -12,7 +12,7 @@
 <title>Fix missing security headers</title>
 <meta name="description" content="HSTS, nosniff and Referrer-Policy: what each one does, where to set it, and why this site fails two of the three checks it is describing.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="0893d218d4d4">
+<meta name="build-id" content="8cc049c9d25b">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-missing-security-headers/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -795,6 +795,14 @@ signature are exactly the instructions worth tampering with. That is the argumen
 redirect, and it has nothing to do with rankings.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
+
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/findings-that-name-no-host/">Which host is that finding about?</a></li>
+<li><a href="/how-to/when-a-fix-creates-a-false-negative/">A fix that hid a real problem somewhere else</a></li>
+<li><a href="/how-to/findings-from-phrase-matching/">Why an audit finds reviews you do not have</a></li>
+<li><a href="/how-to/placeholder-text-findings/">Mentioning filler is not shipping filler</a></li>
+</ul>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Do security headers help SEO?</h3><p>Directly, almost nothing. Google treats https as a lightweight ranking signal and has never suggested these headers are one. The real argument is that a page reachable over plain http can be modified in transit, which matters most on pages that tell people how to verify something.</p></div><div class="faq-item"><h3>What is the minimum set of security headers?</h3><p>Strict-Transport-Security so browsers stop making plain-http requests, X-Content-Type-Options: nosniff so the browser does not guess content types, and Referrer-Policy: strict-origin-when-cross-origin so your full URLs are not handed to every site you link to.</p></div><div class="faq-item"><h3>Can I set security headers on GitHub Pages?</h3><p>No. GitHub Pages does not support custom response headers and there is no configuration file for them. The supported route is putting a CDN in front of the site. This site runs on GitHub Pages and therefore fails two of these checks itself.</p></div><div class="faq-item"><h3>Should HSTS max-age start high?</h3><p>No. Start with a short max-age, confirm nothing on the site breaks over https, and raise it afterwards. A long max-age set before you are certain commits every returning browser to https for that period.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

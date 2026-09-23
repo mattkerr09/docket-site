@@ -12,7 +12,7 @@
 <title>Cloudflare blocks GPTBot on ad pages, not OAI-SearchBot</title>
 <meta name="description" content="Since 15 September 2026 new Cloudflare domains block Training and Agent bots on ad pages and allow Search. Which OpenAI crawler is affected, and how to check yours.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="0893d218d4d4">
+<meta name="build-id" content="8cc049c9d25b">
 <link rel="canonical" href="https://docketseo.app/learn/does-cloudflare-block-gptbot/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -829,6 +829,13 @@ to be able to read the page, which is <a href="/how-to/javascript-seo-audit/">th
 audit</a>.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
+
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/tell-a-rate-limit-from-a-block/">A rate limit is not a block</a></li>
+<li><a href="/how-to/pages-an-audit-could-not-reach/">'Could not be reached' is not a diagnosis</a></li>
+<li><a href="/how-to/when-a-policy-is-reported-as-a-defect/">When a report calls your decision a defect</a></li>
+</ul>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Cloudflare block GPTBot by default?</h3><p>On a new domain onboarding from 15 September 2026, bots classified Training or Agent are blocked on pages that display ads, and GPTBot is the training crawler — so yes, there. Search-classified bots such as OAI-SearchBot stay allowed. Every new domain has also been asked the question at sign-up since 1 July 2025, so an existing domain is wherever its owner left that prompt.</p></div><div class="faq-item"><h3>Does blocking GPTBot stop me appearing in ChatGPT?</h3><p>No. GPTBot is the training crawler. OAI-SearchBot builds the search index and ChatGPT-User fetches pages a user asks about. Blocking GPTBot alone keeps your content out of training while leaving you citable — that is a coherent position, and a single 'block AI' toggle does not express it.</p></div><div class="faq-item"><h3>My robots.txt allows GPTBot. Does that settle it?</h3><p>No. In Docket's August 2026 survey of the Tranco top 10,000, 6.43% of hosts refused a self-identifying bot outright before any robots.txt rule could apply, and 4.73% of hosts whose robots.txt permitted /llms.txt were then denied it by the server. robots.txt is a request; the server is the answer.</p></div><div class="faq-item"><h3>How do I check whether my site blocks an AI crawler?</h3><p>Request the same URL twice from the same machine, once with the crawler's user-agent and once with an ordinary browser's, and compare. Browser 200 with crawler 403 is the finding. Both 403 usually means your protection dislikes command-line tools rather than the crawler. Both 200 means nothing blocks on the user-agent string, though Cloudflare also verifies bot identity by IP.</p></div><div class="faq-item"><h3>Is blocking AI crawlers a mistake?</h3><p>Blocking training crawlers is a legitimate editorial choice. Blocking search crawlers rarely is, and the survey suggests most people do it without meaning to: of the 425 sites blocking OAI-SearchBot, 414 also block GPTBot, and only 11 blocked search without blocking training. That overlap is the shape of one switch, not a decision.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

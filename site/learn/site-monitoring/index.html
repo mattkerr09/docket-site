@@ -12,7 +12,7 @@
 <title>SEO monitoring: what changed, not what is wrong</title>
 <meta name="description" content="Scheduled site re-audits on your own machine, regressions first, and the two comparisons Docket refuses to make because the number would look useful and be wrong.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="0893d218d4d4">
+<meta name="build-id" content="8cc049c9d25b">
 <link rel="canonical" href="https://docketseo.app/learn/site-monitoring/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -807,6 +807,15 @@ page cap. If you are monitoring a site you do not own — a competitor — those
 the difference between research and a nuisance.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
+
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/when-a-report-says-nothing-at-all/">When a report says nothing at all</a></li>
+<li><a href="/how-to/check-the-count-on-a-finding/">A finding's count is not decoration</a></li>
+<li><a href="/how-to/findings-that-double-count/">When two findings count the same pages twice</a></li>
+<li><a href="/how-to/read-findings-that-blame-the-whole-site/">When an audit blames the site for one template</a></li>
+<li><a href="/how-to/findings-that-flag-correct-pages/">A caveat is not a gate</a></li>
+</ul>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How often does Docket re-audit a monitored site?</h3><p>Daily, weekly or monthly — you choose per site. The re-audit runs on your own machine with the same crawl settings as a manual run, so a monitored site is not crawled harder than one you audit by hand.</p></div><div class="faq-item"><h3>Does monitoring keep running when Docket is closed?</h3><p>No. The scheduler is a thread inside the app, so it stops when you quit and nothing is left running on your machine. A site that falls due while Docket is shut is re-audited the next time you open it. For unattended runs on a schedule, use the Linux CLI in cron or CI.</p></div><div class="faq-item"><h3>Does site monitoring need an account or a server?</h3><p>No. Everything runs locally and history is stored in ~/.docket/ as plain JSON — a watchlist plus one small snapshot per audit. Nothing is uploaded, and the history stays yours if you stop using Docket.</p></div><div class="faq-item"><h3>Why does Docket refuse to compare some audits?</h3><p>Because comparing a 50-page crawl with a 500-page crawl invents dozens of new issues that were always there and simply had not been reached. Every one of those alerts would be false, so Docket says the crawls are not comparable instead of producing the diff.</p></div><div class="faq-item"><h3>What does the competitor comparison actually show?</h3><p>Where you lead and trail area by area, on rivals audited with the same settings, plus the issues every competitor has already fixed. Areas where only one side could be evaluated are left out rather than counted as a win or a loss.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
