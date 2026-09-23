@@ -298,6 +298,22 @@ being worse.</li>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
+    # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
+    # Inspection: "unknown to Google"), linked from this page because Google
+    # recrawls it often and last crawled the hubs that list them in August.
+    # Chosen by topic; each such page is linked from exactly one article.
+    body += """
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/schema-type-is-a-claim/">A schema type is a claim about what you are</a></li>
+<li><a href="/how-to/schema-id-references/">An @id is a pointer, not a definition</a></li>
+<li><a href="/how-to/schema-that-describes-someone-else/">The markup on your page may not be about you</a></li>
+<li><a href="/how-to/json-ld-parser-errors/">Read the JSON-LD error, not the guess</a></li>
+<li><a href="/how-to/fix-structured-data-that-does-not-match-the-page/">Structured data that says what the page does not</a></li>
+<li><a href="/how-to/completeness-findings-assume-your-type/">A completeness check assumes your type is right</a></li>
+<li><a href="/how-to/when-a-field-is-there-and-still-missing/">When a field is there and still missing</a></li>
+</ul>
+"""
     return render(
         cat="learn", slug="answer-extractability",
         title="Answer extractability: can an AI quote your page?",

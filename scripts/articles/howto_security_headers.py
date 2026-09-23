@@ -102,6 +102,19 @@ redirect, and it has nothing to do with rankings.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
+    # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
+    # Inspection: "unknown to Google"), linked from this page because Google
+    # recrawls it often and last crawled the hubs that list them in August.
+    # Chosen by topic; each such page is linked from exactly one article.
+    body += """
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/findings-that-name-no-host/">Which host is that finding about?</a></li>
+<li><a href="/how-to/when-a-fix-creates-a-false-negative/">A fix that hid a real problem somewhere else</a></li>
+<li><a href="/how-to/findings-from-phrase-matching/">Why an audit finds reviews you do not have</a></li>
+<li><a href="/how-to/placeholder-text-findings/">Mentioning filler is not shipping filler</a></li>
+</ul>
+"""
     return render(
         cat="how-to", slug="fix-missing-security-headers",
         title="Fix missing security headers",

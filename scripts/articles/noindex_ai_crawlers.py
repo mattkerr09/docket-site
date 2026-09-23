@@ -199,6 +199,20 @@ assistant</a>.</li>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
+    # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
+    # Inspection: "unknown to Google"), linked from this page because Google
+    # recrawls it often and last crawled the hubs that list them in August.
+    # Chosen by topic; each such page is linked from exactly one article.
+    body += """
+<h2>Further reading</h2>
+<ul>
+<li><a href="/learn/ai-crawler-directives/">AI crawler directives: which to block, which to keep</a></li>
+<li><a href="/how-to/fix-ai-crawler-access/">How to fix AI crawler access</a></li>
+<li><a href="/how-to/what-a-dead-crawler-rule-costs/">What a dead robots.txt rule actually costs</a></li>
+<li><a href="/how-to/stop-indexing-site-search-and-cart-pages/">Site search and cart pages that ended up in Google</a></li>
+<li><a href="/learn/index-coverage/">Checking whether your pages are actually indexed</a></li>
+</ul>
+"""
     return render(
         cat="learn", slug="does-noindex-stop-ai-crawlers",
         title="noindex does not stop AI crawlers – robots.txt does",

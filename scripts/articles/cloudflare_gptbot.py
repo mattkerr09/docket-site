@@ -164,6 +164,18 @@ audit</a>.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
+    # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
+    # Inspection: "unknown to Google"), linked from this page because Google
+    # recrawls it often and last crawled the hubs that list them in August.
+    # Chosen by topic; each such page is linked from exactly one article.
+    body += """
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/tell-a-rate-limit-from-a-block/">A rate limit is not a block</a></li>
+<li><a href="/how-to/pages-an-audit-could-not-reach/">'Could not be reached' is not a diagnosis</a></li>
+<li><a href="/how-to/when-a-policy-is-reported-as-a-defect/">When a report calls your decision a defect</a></li>
+</ul>
+"""
     return render(
         cat="learn", slug="does-cloudflare-block-gptbot",
         title="Cloudflare blocks GPTBot on ad pages, not OAI-SearchBot",

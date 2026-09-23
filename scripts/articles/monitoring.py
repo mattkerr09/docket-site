@@ -116,6 +116,20 @@ the difference between research and a nuisance.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
+    # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
+    # Inspection: "unknown to Google"), linked from this page because Google
+    # recrawls it often and last crawled the hubs that list them in August.
+    # Chosen by topic; each such page is linked from exactly one article.
+    body += """
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/when-a-report-says-nothing-at-all/">When a report says nothing at all</a></li>
+<li><a href="/how-to/check-the-count-on-a-finding/">A finding's count is not decoration</a></li>
+<li><a href="/how-to/findings-that-double-count/">When two findings count the same pages twice</a></li>
+<li><a href="/how-to/read-findings-that-blame-the-whole-site/">When an audit blames the site for one template</a></li>
+<li><a href="/how-to/findings-that-flag-correct-pages/">A caveat is not a gate</a></li>
+</ul>
+"""
     return render(
         cat="learn", slug="site-monitoring",
         title="SEO monitoring: what changed, not what is wrong",

@@ -127,6 +127,17 @@ guess at the rest.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
+    # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
+    # Inspection: "unknown to Google"), linked from this page because Google
+    # recrawls it often and last crawled the hubs that list them in August.
+    # Chosen by topic; each such page is linked from exactly one article.
+    body += """
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/analytics-findings-name-the-tag/">'You have no analytics' is a claim about a list</a></li>
+<li><a href="/how-to/pixels-reported-on-zero-pages/">A pixel on part of the site, and on no pages</a></li>
+</ul>
+"""
     return render(
         cat="learn", slug="marketing-tag-audit",
         title="Marketing tag audit: is your tracking on every page?",

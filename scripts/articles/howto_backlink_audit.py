@@ -127,6 +127,19 @@ a backlink costume.</p>
    .replace("{GRAPH_RELEASE}", F.graph_release()) \
    .replace("{GRAPH_HOST}", F.graph_example_host()) \
    .replace("{GRAPH_REFERRING:,}", f"{F.graph_example_referring():,}")
+    # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
+    # Inspection: "unknown to Google"), linked from this page because Google
+    # recrawls it often and last crawled the hubs that list them in August.
+    # Chosen by topic; each such page is linked from exactly one article.
+    body += """
+<h2>Further reading</h2>
+<ul>
+<li><a href="/learn/click-depth-and-orphan-pages/">Click depth and orphan pages</a></li>
+<li><a href="/how-to/fix-pages-competing-for-one-search/">Pages competing for the same search</a></li>
+<li><a href="/how-to/fix-your-money-pages-first/">Fix the pages that make you money first</a></li>
+<li><a href="/learn/priority-model/">How Docket decides what to fix first</a></li>
+</ul>
+"""
     return render(
         cat="how-to", slug="backlink-audit",
         title="Backlink audit: which questions are worth paying for",

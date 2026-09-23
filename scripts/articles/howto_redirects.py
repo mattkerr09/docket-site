@@ -256,6 +256,20 @@ is the one part of this no crawl report will do for you.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
+    # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
+    # Inspection: "unknown to Google"), linked from this page because Google
+    # recrawls it often and last crawled the hubs that list them in August.
+    # Chosen by topic; each such page is linked from exactly one article.
+    body += """
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/fix-meta-refresh-redirects/">Meta refresh: the redirect your tools cannot see</a></li>
+<li><a href="/how-to/hreflang-targets-that-look-dead/">Why an hreflang target is reported as dead</a></li>
+<li><a href="/how-to/fix-invalid-hreflang-codes/">hreflang values that are not valid language codes</a></li>
+<li><a href="/how-to/fix-lang-attribute-mismatch/">hreflang and html lang mismatch</a></li>
+<li><a href="/how-to/identical-content-three-causes/">Identical content is not always duplicate content</a></li>
+</ul>
+"""
     return render(
         cat="how-to", slug="fix-redirect-problems",
         title="How to fix redirect problems: loops, chains, links",

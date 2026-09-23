@@ -323,6 +323,19 @@ tutorial that never counted them.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
+    # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
+    # Inspection: "unknown to Google"), linked from this page because Google
+    # recrawls it often and last crawled the hubs that list them in August.
+    # Chosen by topic; each such page is linked from exactly one article.
+    body += """
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/sitemap-urls-that-are-not-stale/">When 'regenerate your sitemap' is wrong</a></li>
+<li><a href="/how-to/fix-paginated-pages-that-canonicalise-to-page-1/">Pagination: the canonical mistake that hides pages</a></li>
+<li><a href="/learn/url-structure/">SEO URL structure best practice, minus the folklore</a></li>
+<li><a href="/learn/what-docket-checks/">Every check Docket runs, by area</a></li>
+</ul>
+"""
     return render(
         cat="learn", slug="who-blocks-googlebot",
         title="How many sites disallow Googlebot in robots.txt?",

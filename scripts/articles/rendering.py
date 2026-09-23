@@ -109,6 +109,20 @@ to a static crawl and letting you believe otherwise.</p>
 
 <p><a class="btn" href="{DMG}">Download Docket for Mac</a></p>
 """
+    # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
+    # Inspection: "unknown to Google"), linked from this page because Google
+    # recrawls it often and last crawled the hubs that list them in August.
+    # Chosen by topic; each such page is linked from exactly one article.
+    body += """
+<h2>Further reading</h2>
+<ul>
+<li><a href="/how-to/when-a-check-cannot-see-your-markup/">When a check cannot see the markup you wrote</a></li>
+<li><a href="/how-to/cta-findings-that-miss-the-form/">A form is a call to action</a></li>
+<li><a href="/how-to/check-mobile-seo-from-a-crawl/">Mobile SEO: what a crawl can and cannot check</a></li>
+<li><a href="/learn/page-weight/">Page weight: how heavy is too heavy?</a></li>
+<li><a href="/how-to/telling-furniture-from-content/">Telling your site's furniture from its content</a></li>
+</ul>
+"""
     return render(
         cat="learn", slug="javascript-rendering",
         title="JavaScript rendering: auditing what a browser actually sees",
