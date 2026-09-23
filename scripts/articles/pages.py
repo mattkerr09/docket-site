@@ -1825,7 +1825,7 @@ at once, leaving only the crawl of your own site.</p>
 as plain JSON files. They are never transmitted. Deleting that folder removes them permanently.</p>
 
 <h2>This website</h2>
-<p>This site is static and runs five third-party scripts. The first is
+<p>This site is static and runs six third-party scripts. The first is
 <a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, which counts page
 views. Plausible states that it uses no cookies, collects no personal data and does not track
 visitors across sites; it is hosted in the EU. Nothing about your audits reaches it &mdash;
@@ -1865,10 +1865,16 @@ itself in an isolated shadow root and stores nothing in your browser &mdash; no 
 storage, no session storage. Nothing is sent unless you type an address and press the button, and
 what is sent is that address and which site it came from, so the Windows list stays separate from
 every other list. If you never use the form, it makes no request at all.</p>
+<p>The sixth is also on the front page only: the founding-offer bar across the top of the
+page, loaded from <code>kerr-lead-agent.kerrco.workers.dev</code>, the same server as the
+assistant. When the page loads it asks that server whether the offer is still open, and the only
+thing it sends is this site's name. If you close the bar, the time you closed it is kept in your
+browser's local storage so the bar stays away for seven days; nothing else is stored and it sets
+no cookie. It draws itself in an isolated shadow root, like the assistant.</p>
 <p>These paragraphs have been rewritten three times as the answer changed. They once said the
 site &ldquo;sets no cookies&rdquo; and runs &ldquo;one third-party script&rdquo;; both were true
 until Sled was added. The line calling Sled the only thing here that can set a cookie was true
-until the Meta pixel was. The count said three until the chat assistant was added, and the description on this page still said three after the body said four &mdash; caught by our own audit and corrected to five, which is when the Windows form on the front page was counted too. This
+until the Meta pixel was. The count said three until the chat assistant was added, and the description on this page still said three after the body said four &mdash; caught by our own audit and corrected to five, which is when the Windows form on the front page was counted too. It said five while the front page loaded six: the founding-offer bar was missed until a count of every script on every built page was checked against this list, and that count now runs before every deploy. This
 paragraph is the reason that was noticed: each correction is made above rather than quietly
 deleted. A privacy page that enumerates what a site does not do is only worth reading if the
 enumeration stays complete.</p>
@@ -1901,7 +1907,7 @@ it; we hold nothing separately.</p>
         cat="legal", slug="privacy",
         title="Privacy policy — what Docket collects, and what it does not",
         desc="Audits run on your Mac and are never uploaded. No account, no "
-             "telemetry. Five third-party scripts, one an advertising pixel — "
+             "telemetry. Six third-party scripts, one an advertising pixel — "
              "what each does and how to stop it.",
         h1="Privacy policy",
         crumb='<a href="/">Docket</a> / Privacy',

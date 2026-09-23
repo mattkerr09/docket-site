@@ -59,8 +59,13 @@ PRIVACY = SITE / "legal" / "privacy" / "index.html"
 #: The count sentence render.py's comment is about. Captured as a word so the
 #: check is about the NUMBER rather than the phrasing around it.
 _COUNT = re.compile(
-    r"runs\s+(one|two|three|four|five|\d+)\s+third-party\s+scripts?", re.I)
-_WORD_TO_INT = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
+    r"runs\s+(one|two|three|four|five|six|seven|eight|nine|ten|\d+)\s+third-party\s+scripts?",
+    re.I)
+#: It stopped at "five". The page moved to "six" and the count read None, which
+#: every comparison below treats as "no claim" — a count the gate could not
+#: read was a count it did not check.
+_WORD_TO_INT = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
+                "seven": 7, "eight": 8, "nine": 9, "ten": 10}
 
 
 def built_pages() -> list[pathlib.Path]:
@@ -150,8 +155,15 @@ def self_test() -> int:
         print("  self-test: a live pixel whose privacy policy was not updated")
         original = PRIVACY.read_text(encoding="utf-8")
         try:
-            PRIVACY.write_text(original.replace("three third-party scripts",
-                                                "two third-party scripts"))
+            # Plant "two" over whatever the page says now. This replaced the
+            # literal "three" and went on replacing nothing after the count
+            # moved to four, five and six — a self-test of an unchanged file.
+            planted = _COUNT.sub(lambda m: m.group(0).replace(m.group(1), "two"),
+                                 original, count=1)
+            if planted == original:
+                print("  SELF-TEST FAILED — no script count found to plant over.")
+                return 1
+            PRIVACY.write_text(planted)
             if not check(render.META_PIXEL_ID):
                 print("  SELF-TEST FAILED — a stale script count passed.")
                 return 1

@@ -233,6 +233,14 @@ if ! python3 scripts/verify_pixel.py; then
   exit 1
 fi
 
+echo "==> privacy-scripts gate"
+# Every script the built pages load is counted and named on the privacy page.
+# It said five while the front page loaded six (the founding-offer bar).
+if ! python3 scripts/verify_privacy_scripts.py --self-test; then
+  echo "FAIL  the privacy page does not list what the site loads"
+  exit 1
+fi
+
 echo "==> vendor-match gate"
 # The site takes the money and the app validates the key. If those name
 # different vendors, a customer pays and the app refuses what they were sent.
