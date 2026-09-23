@@ -113,6 +113,18 @@ appear on the same report about the same file, because both are true of differen
 be wrong about part of it.</strong> The answer is rarely a better sentence; it is usually two
 findings.</p>
 
+<h2>A wildcard can be a decision too</h2>
+
+<p>"A wildcard is a net" is true of most files and false of one kind. Some robots.txt files are
+allowlists: they name the crawlers they admit, one by one, and end with a wildcard that refuses
+everything else. A file like that has plainly considered who gets in. If it names an AI crawler it
+lets in and leaves another off the list, leaving it off was part of the same decision.</p>
+
+<p>So a crawler caught by the wildcard of a file that names the AI crawlers it admits is now
+recorded as a policy, the same way a named block is, rather than raised as something nobody
+chose. An allowlist that names no AI crawler at all still gets the interruption: nothing in that
+file shows the question was ever asked.</p>
+
 <h2>The paste-ready block that ignored the measurement</h2>
 
 <p>One more, because it rides along with the same finding. The report offers a robots.txt snippet
