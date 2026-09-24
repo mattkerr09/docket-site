@@ -12,7 +12,7 @@
 <title>Log file analysis for SEO: what Googlebot actually fetched</title>
 <meta name="description" content="Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 1,641 crawler IP prefixes; a user-agent proves nothing.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="cf47f23e3e51">
+<meta name="build-id" content="ba8afcc9a988">
 <link rel="canonical" href="https://docketseo.app/learn/log-file-analysis/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -554,6 +554,16 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+.buy-block{margin:0 0 1.1rem}
+@media (max-width:700px){html.buy-in-view #kc-agent-host{opacity:0;pointer-events:none;transition:opacity .15s}}
+#buy{scroll-margin-top:4.5rem}.buy-block .hero-cta{margin-bottom:.7rem}
+.founding-note{margin:.2rem 0 .5rem}.founding-note code{font-size:.92em}
+.price-anchor{margin:.2rem 0 .5rem}
+.cta-band .buy-block .hero-cta{justify-content:center}
+.callout .buy-block{margin-top:.9rem}
+.buy-strip{margin:2.4rem 0 0;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:var(--radius-lg);font-size:var(--t-md)}
+.buy-strip p{margin:0}
+ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.steps .buy-block{margin-top:.8rem}
 .btn-lg{padding:1rem 2.05rem;font-size:var(--t-lg);border-radius:var(--radius-lg);letter-spacing:-.01em}
 .hero-note{font-size:var(--t-base);color:var(--text-dim)}
 
@@ -689,6 +699,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+(function(){function chk(){var h=document.getElementById('kc-agent-host');if(!h)return;var a=h.getBoundingClientRect(),hit=false;document.querySelectorAll('[data-ev=Buy]').forEach(function(b){var r=b.getBoundingClientRect();if(r.width&&r.bottom>a.top-8&&r.top<a.bottom+8&&r.right>a.left-8&&r.left<a.right+8)hit=true;});document.documentElement.classList.toggle('buy-in-view',hit);}document.addEventListener('scroll',chk,{passive:true,capture:true});addEventListener('resize',chk);addEventListener('load',chk);})();
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -712,7 +724,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div>
-<a class="btn" href="/download/">Download Docket SEO</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Log file analysis</div><h1>Log file analysis: what Googlebot actually fetched</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-08">8 August 2026</time></p>
 
@@ -819,8 +831,8 @@ handle far more formats, and analysis over time rather than a single comparison.
 analysis is a regular part of your work, buy it — it is built for that and Docket is not.</p>
 
 <p>What Docket gives you is the one comparison that answers "is Google spending its time on my
-important pages", included in the $349 one-time price — free while v1.3.93 is in
-beta — rather than as a second annual subscription. That is the whole claim, and it is
+important pages", included in the $349 one-time price rather than as a second annual
+subscription. That is the whole claim, and it is
 deliberately narrow.</p>
 
 <h2>What Docket deliberately does not do here</h2>
@@ -834,7 +846,7 @@ anything over time, and does not store your logs — it reads the file, prints, 
 distinct address, so it is off by default and everything says "claiming to be Google" until
 you turn it on.</p>
 
-<p><a class="btn" href="/download/">Download Docket</a></p>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=learn-log-file-analysis" data-ev="Buy" data-ev-button="learn-log-file-analysis">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I know if it was really Googlebot in my logs?</h3><p>Not from the user-agent, which is a header anybody can send. Either check the client IP against Google's published crawler ranges — 1,641 prefixes across 3 lists as of 2026-08-08 — or do a reverse DNS lookup on the IP followed by a forward lookup on the hostname it returns, confirming the original address comes back. The second step matters: a PTR record is set by whoever controls the address block, so a reverse lookup alone proves nothing.</p></div><div class="faq-item"><h3>What can a server log tell me that a crawl cannot?</h3><p>Which pages a search engine actually fetched and how often, which is a different question from which pages it could reach. That surfaces orphan pages with no internal links, retired URLs still being retried, and the share of requests that returned a redirect or an error — crawl budget spent on nothing indexable.</p></div><div class="faq-item"><h3>If a page is missing from my logs, can Google not see it?</h3><p>No, and treating it that way sends you fixing a problem you may not have. A log covers a period. A page absent from one week of logs was not fetched that week; it may be crawled rarely because it changes rarely. Look for it across a longer window before concluding anything.</p></div><div class="faq-item"><h3>Does Docket replace a dedicated log file analyser?</h3><p>No. Screaming Frog's Log File Analyser is a separate product at $139 per year and is much deeper — a real interface, saved projects, more formats, analysis over time. Docket does one comparison, log against crawl, included in its one-time price. If log analysis is a regular part of your work, the dedicated tool is the right purchase.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

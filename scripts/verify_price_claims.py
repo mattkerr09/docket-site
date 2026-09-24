@@ -57,6 +57,12 @@ def _text(path: Path) -> str:
     return " ".join(re.sub(r"<[^>]+>", " ", html).split())
 
 
+#: Every way the site has written "the current build costs nothing".
+_FREE_BETA = re.compile(
+    r"free while \S+ is in beta|\bthe beta is free\b|is free while it is in beta"
+    r"|free during the beta|the beta (?:downloads|runs) (?:free|without payment)", re.I)
+
+
 def main() -> int:
     pages = sorted(SITE.rglob("*.html"))
     if not pages:
@@ -81,6 +87,15 @@ def main() -> int:
                     f"so the sentence is false to anyone reading it today")
 
         if re.search(rf"{re.escape(render.RELEASE)}\s+is free", text, re.I):
+            beta_wording_seen = True
+            free_claims.append(rel)
+        # ⚠️ THE EXACT PHRASE WAS THE ONLY ONE LOOKED FOR. "free while v1.3.93
+        # is in beta" (three pages) and "The beta is free and keeps working"
+        # (the refund policy) stayed live for weeks after BETA_FREE went False,
+        # because neither says "v1.3.93 is free". Found 2026-09-24 by the CEO's
+        # read of the pages, not by this gate. Any phrasing of a free beta now
+        # counts.
+        elif _FREE_BETA.search(text):
             beta_wording_seen = True
             free_claims.append(rel)
 

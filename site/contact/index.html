@@ -10,9 +10,9 @@
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Contact Docket — report a bug or a wrong finding</title>
-<meta name="description" content="Reach Docket through the GitHub issue tracker: bugs, wrong audit findings, feature requests — and why the address this site used to advertise could not receive mail.">
+<meta name="description" content="Email support@docketseo.app about your licence or a refund; use the GitHub issue tracker for bugs, wrong findings and feature requests.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="cf47f23e3e51">
+<meta name="build-id" content="ba8afcc9a988">
 <link rel="canonical" href="https://docketseo.app/contact/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -20,7 +20,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Contact">
-<meta property="og:description" content="Reach Docket through the GitHub issue tracker: bugs, wrong audit findings, feature requests — and why the address this site used to advertise could not receive mail.">
+<meta property="og:description" content="Email support@docketseo.app about your licence or a refund; use the GitHub issue tracker for bugs, wrong findings and feature requests.">
 <meta property="og:url" content="https://docketseo.app/contact/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png">
@@ -28,7 +28,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Contact">
-<meta name="twitter:description" content="Reach Docket through the GitHub issue tracker: bugs, wrong audit findings, feature requests — and why the address this site used to advertise could not receive mail.">
+<meta name="twitter:description" content="Email support@docketseo.app about your licence or a refund; use the GitHub issue tracker for bugs, wrong findings and feature requests.">
 <meta name="twitter:image" content="https://docketseo.app/og.png">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -554,6 +554,16 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+.buy-block{margin:0 0 1.1rem}
+@media (max-width:700px){html.buy-in-view #kc-agent-host{opacity:0;pointer-events:none;transition:opacity .15s}}
+#buy{scroll-margin-top:4.5rem}.buy-block .hero-cta{margin-bottom:.7rem}
+.founding-note{margin:.2rem 0 .5rem}.founding-note code{font-size:.92em}
+.price-anchor{margin:.2rem 0 .5rem}
+.cta-band .buy-block .hero-cta{justify-content:center}
+.callout .buy-block{margin-top:.9rem}
+.buy-strip{margin:2.4rem 0 0;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:var(--radius-lg);font-size:var(--t-md)}
+.buy-strip p{margin:0}
+ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.steps .buy-block{margin-top:.8rem}
 .btn-lg{padding:1rem 2.05rem;font-size:var(--t-lg);border-radius:var(--radius-lg);letter-spacing:-.01em}
 .hero-note{font-size:var(--t-base);color:var(--text-dim)}
 
@@ -680,14 +690,16 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","headline":"Contact","description":"Reach Docket through the GitHub issue tracker: bugs, wrong audit findings, feature requests — and why the address this site used to advertise could not receive mail.","datePublished":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/contact/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I report a finding I think is wrong?","acceptedAnswer":{"@type":"Answer","text":"Open an issue on GitHub with the URL you audited and the check ID printed beside the finding. Those two things let the same crawl be reproduced, which is the difference between a report that can be fixed and one that cannot."}},{"@type":"Question","name":"Is there a support email address?","acceptedAnswer":{"@type":"Answer","text":"Not yet. The site once listed hello@docketseo.app, which could not receive mail: the domain published no MX record at the time, so senders fell back to the GitHub Pages address record, where nothing answers on port 25. Every message bounced. The domain does publish an MX record now and accepts mail, but an address is only worth printing once someone has sent a real message to it and read it, and that has not happened yet. The issue tracker is used in the meantime because messages sent there demonstrably arrive."}},{"@type":"Question","name":"How do I report a security issue?","acceptedAnswer":{"@type":"Answer","text":"Not in a public issue. Use GitHub's private security advisory form on the repository so the problem can be fixed before it is described publicly."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","headline":"Contact","description":"Email support@docketseo.app about your licence or a refund; use the GitHub issue tracker for bugs, wrong findings and feature requests.","datePublished":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/contact/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I report a finding I think is wrong?","acceptedAnswer":{"@type":"Answer","text":"Open an issue on GitHub with the URL you audited and the check ID printed beside the finding. Those two things let the same crawl be reproduced, which is the difference between a report that can be fixed and one that cannot."}},{"@type":"Question","name":"Is there a support email address?","acceptedAnswer":{"@type":"Answer","text":"Yes: support@docketseo.app, for your licence, a refund or a payment. The site once listed hello@docketseo.app, which could not receive mail — the domain had no MX record then — so that address is gone for good. Bugs and wrong findings are better on the public issue tracker, where the answer helps the next person too."}},{"@type":"Question","name":"How do I report a security issue?","acceptedAnswer":{"@type":"Answer","text":"Not in a public issue. Use GitHub's private security advisory form on the repository so the problem can be fixed before it is described publicly."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+(function(){function chk(){var h=document.getElementById('kc-agent-host');if(!h)return;var a=h.getBoundingClientRect(),hit=false;document.querySelectorAll('[data-ev=Buy]').forEach(function(b){var r=b.getBoundingClientRect();if(r.width&&r.bottom>a.top-8&&r.top<a.bottom+8&&r.right>a.left-8&&r.left<a.right+8)hit=true;});document.documentElement.classList.toggle('buy-in-view',hit);}document.addEventListener('scroll',chk,{passive:true,capture:true});addEventListener('resize',chk);addEventListener('load',chk);})();
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -711,17 +723,18 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div>
-<a class="btn" href="/download/">Download Docket SEO</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / Contact</div><h1>Contact</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-07">7 August 2026</time></p>
 
-<p class="lede">The issue tracker is the way to reach us:
-<a href="https://github.com/mattkerr09/docket-site/issues">github.com/mattkerr09/docket-site/issues</a>. It is read by the person who
-writes the code, it is public so the answer helps whoever asks next, and — unlike the email
-address this page used to advertise — messages sent to it actually arrive.</p>
+<p class="lede">Email <a href="mailto:support@docketseo.app">support@docketseo.app</a> for anything
+private &mdash; your licence, a refund, a billing question. For a finding you think is wrong, a
+bug or a feature, use the public issue tracker,
+<a href="https://github.com/mattkerr09/docket-site/issues">github.com/mattkerr09/docket-site/issues</a>: it is read by the person who
+writes the code, and the answer helps whoever asks next.</p>
 
-<p>There is no support email. That is a deliberate correction rather than an omission, and
-the reason is the more useful half of this page.</p>
+<p>This page used to say there was no support email, and why is worth keeping: the address the
+site first advertised could not receive mail.</p>
 
 <h2>The address that did not work</h2>
 
@@ -740,9 +753,8 @@ be proved.</strong> <code>docketseo.app</code> now has MX records — forwarding
 <code>fwd1.porkbun.com</code> and <code>fwd2.porkbun.com</code>. What has <em>not</em> been
 established is whether a message to an address on this domain reaches a mailbox anyone reads:
 an MX record is necessary for delivery, not sufficient, and forwarding is configured per
-address. So no support address goes back on this site until a message has been sent to one
-and answered. Re-advertising it on the strength of a DNS lookup would repeat the original
-mistake with better paperwork.</p>
+address. support@docketseo.app is the address the owner named for it, and the one the refund
+policy and the purchase receipt point to.</p>
 
 <p>Nobody noticed because a bounce goes to the sender, not to us. This is the exact failure
 Docket is built to catch and did not: a channel that is advertised, believed, and dead. It is
@@ -752,6 +764,9 @@ now a check we run on our own build, and it will be a check in the app.</p>
 
 <div class="wrap-tbl"><table class="cmp"><thead><tr>
 <th>If you want to</th><th>Use</th></tr></thead><tbody>
+<tr><td>Ask about your licence, a refund or a payment</td>
+<td>Email <a href="mailto:support@docketseo.app">support@docketseo.app</a>, or reply to your receipt.
+These carry an order reference and a name, so never a public issue</td></tr>
 <tr><td>Report a wrong or confusing finding</td>
 <td><a href="https://github.com/mattkerr09/docket-site/issues/new">Open an issue</a> with the URL you audited and the check ID —
 it is printed next to every finding, like <code>index.byte_cap</code></td></tr>
@@ -786,13 +801,13 @@ cite their sources for the same reason.</li>
 
 <h2>What to expect back</h2>
 
-<p>One person reads the tracker, so there is no response-time promise here — an invented one
+<p>One person reads the inbox and the tracker, so there is no response-time promise here — an invented one
 would be the same category of thing as the address that bounced. What is promised is that a
 report naming a specific URL and check ID gets a specific answer, and that if Docket is wrong
 the correction gets written down where the mistake was made.</p>
 
 <p><a class="btn" href="https://github.com/mattkerr09/docket-site/issues/new">Open an issue on GitHub</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I report a finding I think is wrong?</h3><p>Open an issue on GitHub with the URL you audited and the check ID printed beside the finding. Those two things let the same crawl be reproduced, which is the difference between a report that can be fixed and one that cannot.</p></div><div class="faq-item"><h3>Is there a support email address?</h3><p>Not yet. The site once listed hello@docketseo.app, which could not receive mail: the domain published no MX record at the time, so senders fell back to the GitHub Pages address record, where nothing answers on port 25. Every message bounced. The domain does publish an MX record now and accepts mail, but an address is only worth printing once someone has sent a real message to it and read it, and that has not happened yet. The issue tracker is used in the meantime because messages sent there demonstrably arrive.</p></div><div class="faq-item"><h3>How do I report a security issue?</h3><p>Not in a public issue. Use GitHub's private security advisory form on the repository so the problem can be fixed before it is described publicly.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I report a finding I think is wrong?</h3><p>Open an issue on GitHub with the URL you audited and the check ID printed beside the finding. Those two things let the same crawl be reproduced, which is the difference between a report that can be fixed and one that cannot.</p></div><div class="faq-item"><h3>Is there a support email address?</h3><p>Yes: support@docketseo.app, for your licence, a refund or a payment. The site once listed hello@docketseo.app, which could not receive mail — the domain had no MX record then — so that address is gone for good. Bugs and wrong findings are better on the public issue tracker, where the answer helps the next person too.</p></div><div class="faq-item"><h3>How do I report a security issue?</h3><p>Not in a public issue. Use GitHub's private security advisory form on the repository so the problem can be fixed before it is described publicly.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

@@ -125,8 +125,8 @@ handle far more formats, and analysis over time rather than a single comparison.
 analysis is a regular part of your work, buy it — it is built for that and Docket is not.</p>
 
 <p>What Docket gives you is the one comparison that answers "is Google spending its time on my
-important pages", included in the {PRICE_STR} one-time price — free while {RELEASE} is in
-beta — rather than as a second annual subscription. That is the whole claim, and it is
+important pages", included in the {PRICE_STR} one-time price rather than as a second annual
+subscription. That is the whole claim, and it is
 deliberately narrow.</p>
 
 <h2>What Docket deliberately does not do here</h2>

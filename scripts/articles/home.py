@@ -26,6 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
 from render import (AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
+                    buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
                     N_LANES, PRICE_STR,
@@ -176,12 +177,7 @@ def body() -> str:
   <p class="hero-sub">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
   conversion, brand, AI search visibility and campaign tracking — then one ranked plan with the
   markup to paste. Not four tools. One download.</p>
-  <div class="hero-cta">
-    <a class="btn btn-lg" href="{CHECKOUT}">Buy Docket · {PRICE_STR} once</a>
-    <a class="btn-ghost btn-lg" href="{DMG}">Download for Mac</a>
-    {BNPL_BLOCK}
-  </div>
-  <p class="hero-note"><strong>30 days, no conditions, no questions asked</strong> — <a href="/legal/refunds/">refund policy</a></p>
+  {buy_block("home-hero")}
   <p class="hero-note">{MACOS}+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
 </div>
 </div>
@@ -285,9 +281,18 @@ def body() -> str:
 <section class="sec"><div class="wrap-wide">
 <div class="sec-head">
   <h2>Most tools hand you a list.<br><em>This one hands you an order.</em></h2>
-  <p>Semrush publishes 140+ checkpoints. Ahrefs lists 170+. Neither tells you what to do
-  first — and ordering is the hard part. <a href="/vs/sitebulb-alternative/">Sitebulb</a> is
-  the exception worth naming: it prioritises too.</p>
+  <!-- ⚠️ THIS SAID "Neither tells you what to do first" about Semrush and Ahrefs.
+       Both say they do, on their own pages, read 2026-09-24: Ahrefs' Site Audit
+       "segments issues into errors, warnings, and notices, so you know which ones
+       to fix first", and Semrush promises "prioritized recommendations for what to
+       fix first". The difference is real but smaller than the sentence claimed:
+       severity buckets against a ranked order with a time on each item. -->
+  <p>Semrush publishes 140+ checkpoints and Ahrefs lists 170+, and both sort what they find
+  by severity &mdash; Ahrefs into errors, warnings and notices, Semrush into priorities
+  &ldquo;based on severity&rdquo;. Docket ranks every finding by impact against the effort of
+  fixing it and says how long each fix takes, so the plan answers <em>what first</em> and
+  <em>how long</em> together. <a href="/vs/sitebulb-alternative/">Sitebulb</a> prioritises
+  too. <span class="qual">Their pages read 24 September 2026.</span></p>
 </div>
 <div class="split">
   <div class="split-col">
@@ -568,43 +573,6 @@ read from the Chrome UX Report; and so did keyword research and domain authority
 computed from free public data rather than a bought index.</p>
 </div></section>
 
-<!-- ================= FAQ ================= -->
-<section class="sec"><div class="wrap" style="max-width:44rem">
-<div class="sec-head"><h2>Clear answers.</h2></div>
-<div class="faq-item"><h3>Is Docket free?</h3>
-<p>It is a one-time download. No subscription, no crawl credits, no per-seat pricing — audit
-as many sites as you like.</p></div>
-<div class="faq-item"><h3>Does it send my site data anywhere?</h3>
-<p>Docket collects nothing about you — no account, no telemetry, no licence check. The
-crawl runs on your Mac. {CONNECTORS_WORD_CAP} checks do reach outside it by default: Core Web
-Vitals from Google PageSpeed, a deliverability test on the addresses your site publishes, what
-your server tells AI crawlers, a knowledge refresh from this site, and Google's public
-autocomplete for topic suggestions, which is sent only the topic words your own URLs are built
-from. Offline mode turns all {CONNECTORS_WORD} off, and every report names the ones that
-ran.</p></div>
-<div class="faq-item"><h3>Other tools advertise more checks. Why {N_CHECKS}?</h3>
-<p>Because a count is the easy number to grow and the hard one to use. Splitting one check into
-four raises the total and tells you nothing new; what a report is for is knowing which of the
-things it found to do first. Docket runs {N_CHECKS} checks and ranks every finding by impact
-against effort, so the order is the product and the count is a footnote. If a rival's larger
-number buys you something ours does not, that is a fair reason to choose theirs — but ask what
-the extra checks are, not how many there are.</p></div>
-<div class="faq-item"><h3>Is there anything to cancel?</h3>
-<p>No. There is no subscription and no account, so there is nothing to cancel and nobody to
-email. The licence you bought keeps working on the version you have, for as long as you have
-it.</p></div>
-<div class="faq-item"><h3>How is it different from Screaming Frog?</h3>
-<p>Screaming Frog gives raw crawl data and leaves interpretation to you. Docket ranks findings
-and gives you an ordered plan with markup to paste. Screaming Frog supports custom XPath extraction and crawls at far greater scale;
-Docket does not.</p></div>
-<div class="faq-item"><h3>Can it tell me whether ChatGPT can see my site?</h3>
-<p>Yes — per crawler, distinguishing search crawlers from training crawlers, plus whether your
-pages render server-side, since most AI crawlers do not run JavaScript.</p></div>
-<div class="faq-item"><h3>Does it track keyword rankings?</h3>
-<p>No. Ranking and backlink data need a crawled index of the whole web. Docket audits what is
-on your site and how it is configured.</p></div>
-</div></section>
-
 <!-- ================= NOT READY YET =================
      Docket is the highest price in the portfolio with no trial and no free tier,
      so the largest group leaving this page is people who are interested and not
@@ -640,28 +608,51 @@ No IP address, no tracking, no profile. Nothing is shared.</p>
 """
 
 
+#: ONE FAQ, THE OBJECTIONS A BUYER ACTUALLY HAS. The page carried two: an
+#: inline "Clear answers." block and this list, rendered as "Common questions"
+#: and as FAQPage markup — seven overlapping questions twice, and the inline
+#: copy said "no licence check" while the download page, correctly, says the
+#: key is checked about once a day. Merged 2026-09-24 on Matthew's plan into the
+#: questions that stand between a visitor and the button, each answered from
+#: the terms and the refund page rather than restated from memory.
 FAQ = [
     ("Is Docket free?",
-     "Docket is a one-time download for macOS. There is no subscription, no crawl credits and "
-     "no per-seat pricing — you can audit as many sites as you like."),
+     f"No: {PRICE_STR} once, {FOUNDING_NOW} for founding buyers. There's no trial yet; the "
+     "30-day refund is your trial. There is no subscription and nothing to cancel."),
+    ("What if it isn't for me?",
+     "Ask for a refund within 30 days of buying and you get your money back — no conditions "
+     f"and no questions. Write to {SUPPORT_EMAIL}, or reply to the receipt the payment "
+     "processor emails you. The licence key is revoked, so the copy stops running."),
+    ("How many Macs does one licence cover?",
+     f"Up to 3 at a time. Activating Docket on a Mac uses one; deactivate it to move the "
+     f"licence to another machine. Apple Silicon, {MACOS} or later."),
+    ("Are updates included?",
+     "Yes. While Docket is on version 1.x, every update is free and installs through the "
+     "app's own updater. Whether a future 2.0 is a paid upgrade has not been decided; if it "
+     "ever is, the copy you paid for keeps working."),
+    ("Can I use it for client work?",
+     "Yes. Audit any number of sites — yours, a client's, a prospect's or a competitor's — "
+     "and charge clients for the work. The licence belongs to the person or company that "
+     "paid; it may not be resold or sublicensed."),
+    ("Does it run on Windows?",
+     f"No. The app is for Apple Silicon Macs on {MACOS} or later, and there is no Windows or "
+     "Intel build. A command-line build for Linux x86_64 is on the download page."),
+    ("How do I get help?",
+     f"Email {SUPPORT_EMAIL}. Questions whose answers would help the next person can go on "
+     "the public issue tracker instead."),
     ("Does Docket send my site data anywhere?",
-     "Docket collects nothing about you: no account, no telemetry, no licence check. The "
-     f"crawl runs on your Mac. {CONNECTORS_WORD_CAP} checks reach outside it by default — Core Web "
-     "Vitals from Google PageSpeed, a deliverability test on the addresses your site "
-     "publishes, what your server tells AI crawlers, a knowledge refresh from this site, "
-     "and Google's public autocomplete for topic suggestions, which sends only the topic "
-     "words. Offline "
-     f"mode turns all {CONNECTORS_WORD} off, and every report names the ones that ran."),
+     "Nothing about the sites you audit is uploaded, and there is no account and no "
+     "telemetry. The licence key is checked with our payment provider when you activate "
+     "it and about once a day after that. The crawl runs on your Mac; "
+     f"{CONNECTORS_WORD_CAP} optional checks reach outside it — Core Web Vitals from "
+     "Google PageSpeed, a deliverability test on the addresses your site publishes, what "
+     "your server tells AI crawlers, a knowledge refresh from this site, and Google's "
+     "public autocomplete for topic suggestions. Offline mode turns all "
+     f"{CONNECTORS_WORD} off, and every report names the ones that ran."),
     ("How is Docket different from Screaming Frog?",
-     # ⚠️ THIS ANSWER USED TO END "Screaming Frog renders JavaScript and supports
-     # custom XPath extraction; Docket does not." One sentence, two claims, and
-     # the first was false: Docket renders a small sample of EVERY audit
-     # automatically where the helper is present, in WebKit. The page it sat on
-     # already said so twice — the "absent on purpose" list names JavaScript
-     # rendering among the things that came OFF it — so the home page
-     # contradicted itself, and /vs/screaming-frog-alternative/ contradicted the
-     # home page. It conceded a capability we ship, on the highest-traffic page
-     # on the site. Split, because one predicate was answering two questions.
+     # ⚠️ Kept from the earlier answer, whose history matters: it used to say
+     # "Screaming Frog renders JavaScript … Docket does not", which was false —
+     # Docket renders a sample of every audit in WebKit. See git history.
      "Screaming Frog gives you raw crawl data and leaves the interpretation to you. Docket "
      "ranks every finding by impact against effort and gives you an ordered plan with the "
      "exact markup to paste. Screaming Frog supports custom XPath extraction, which Docket "
@@ -671,9 +662,6 @@ FAQ = [
      "Yes. Docket checks each AI crawler separately — OAI-SearchBot for ChatGPT Search, "
      "PerplexityBot, Claude-SearchBot and Google-Extended — and distinguishes them from "
      "training crawlers like GPTBot, which many sites block deliberately."),
-    ("Does Docket track keyword rankings?",
-     "No. Ranking and backlink data require a crawled index of the entire web, which is bought "
-     "rather than built. Docket audits what is on your site and how it is configured."),
 ]
 
 
@@ -699,11 +687,7 @@ needed, and nothing about your site leaves your Mac.</p>
        alt="Docket mid-audit: the URL being crawled, a progress bar, and four counters reading
             pages crawled, pages queued, errors, and seconds elapsed.">
 </figure>
-<a class="btn btn-lg" href="{CHECKOUT}">Buy Docket &middot; {PRICE_STR} once</a>
-<a class="btn-ghost btn-lg" href="{DMG}">Download for Mac</a>
-{BNPL_BLOCK}
-<p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>
-&mdash; <a href="/legal/refunds/">refund policy</a></p>
+{buy_block("home-closer")}
 </div>
 <!-- Windows waiting list. The script renders into this div and does nothing
      without it, so placement is decided here rather than guessed. -->

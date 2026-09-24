@@ -9,6 +9,7 @@ write a page would be worse than one that writes it and then tells you it fails.
 from __future__ import annotations
 
 import hashlib
+import json
 import tempfile
 import os
 
@@ -23,7 +24,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE / "articles"))
 
 import facts as F  # noqa: E402
-from render import BASE, DATA, PRICE, SITE, render  # noqa: E402
+from render import BASE, DATA, PRICE, SITE, SUPPORT_EMAIL, render  # noqa: E402
 
 import about  # noqa: E402
 import audit_quality  # noqa: E402
@@ -504,51 +505,48 @@ def write_robots() -> None:
     (SITE / "robots.txt").write_text("\n".join(lines) + "\n")
 
 
-def _last_changed(page: Path, sources: dict, today: str, cache: dict) -> str:
-    """The day this page's content last changed, from its source module's git log.
+#: The day each page's content last changed, and the fingerprint it had then.
+#: Seeded from history by scripts/collect_lastmod.py; updated by every build.
+LASTMOD = DATA / "page-lastmod.json"
 
-    ⚠️ NOT the built HTML's git date: a build id is stamped into every page, so
-    every page changes on every build — one content-unchanged page carries 240
-    commits, five on a single day. That is why all 64 URLs were reporting the
-    same `lastmod` and Google could not tell which page had moved.
 
-    ⚠️ NOT `data/page-dates.json` either: that is FIRST-ADDED, for
-    `datePublished`. Using it here would date a page rewritten on 2026-09-14 to
-    2026-08-08 and tell Google nothing had changed on the page most in need of a
-    re-crawl.
+def page_fingerprint(html: str) -> str:
+    """What a reader of the page sees, hashed: title, description, article.
 
-    ⚠️ WHAT THIS DOES NOT COVER, stated rather than implied: a page whose text is
-    unchanged but whose interpolated DATA moved — a competitor price in
-    `competitors.csv`, a figure in `data/*.json` — keeps its old date, because
-    the dependency is not tracked. That is a narrower claim than "nothing
-    changed", and it is the honest one until the build records data
-    dependencies too.
-
-    ⚠️ AND FIVE PAGES ARE DEFINED INLINE IN THIS FILE — 404, /learn/,
-    /learn/what-docket-checks/, /thank-you/ and /vs/ — so their source IS
-    `build.py`, which changes for reasons that have nothing to do with them
-    (this function, for one). They will over-report change. That is the safer
-    direction of the two: it invites a re-crawl rather than suppressing one, and
-    it is the opposite of the defect being fixed here. Moving them into their own
-    module would remove it and is a refactor, not part of this change.
+    ⚠️ NOT THE WHOLE FILE: a build id is stamped into the head of every page,
+    so every page changes on every build (one content-unchanged page carried
+    240 commits). And NOT the source module's git date, which is what this
+    replaced (2026-09-24): one module builds many pages, so an edit to
+    comparisons.py re-dated all fourteen /vs/ pages and nearly every URL read
+    09-23. Nav and footer are outside the article and do not count; a change
+    to them is not a change to the page's content.
     """
-    source = sources.get(str(page))
-    if not source:
-        return today
-    if source not in cache:
-        out = subprocess.run(
-            ["git", "-C", str(ROOT), "log", "-1", "--format=%cI", "--", source],
-            capture_output=True, text=True).stdout.strip()
-        # Never committed: it is being published today, the same rule
-        # collect_page_dates uses for a page with no first-add commit.
-        cache[source] = out[:10] if out else today
-    return cache[source]
+    import re as _re
+    title = _re.search(r"<title>(.*?)</title>", html, _re.S)
+    desc = _re.search(r'<meta name="description" content="([^"]*)"', html)
+    art = _re.search(r"<article\b.*</article>", html, _re.S)
+    part = art.group(0) if art else html
+    part = _re.sub(r"<script\b.*?</script>|<style\b.*?</style>", "", part, flags=_re.S)
+    blob = "\n".join([title.group(1) if title else "", desc.group(1) if desc else "",
+                      _re.sub(r"\s+", " ", part)])
+    return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:16]
+
+
+def _last_changed(page: Path, today: str, store: dict) -> str:
+    """The day this page's content last changed: kept while its fingerprint
+    holds, today when it moves. A page never seen before is new today."""
+    key = page.relative_to(SITE).as_posix()
+    fp = page_fingerprint(page.read_text(encoding="utf-8"))
+    rec = store.get(key)
+    if rec and rec.get("hash") == fp:
+        return rec["date"]
+    store[key] = {"hash": fp, "date": today}
+    return today
 
 
 def write_sitemap(pages: list[Path]) -> None:
     today = datetime.date.today().isoformat()
-    from render import page_sources  # noqa: PLC0415
-    sources, cache = page_sources(), {}
+    store = json.loads(LASTMOD.read_text(encoding="utf-8")) if LASTMOD.exists() else {}
     urls = []
     for p in sorted(pages):
         rel = p.parent.relative_to(SITE).as_posix()
@@ -556,7 +554,7 @@ def write_sitemap(pages: list[Path]) -> None:
         # The homepage and the Index are the two pages worth prioritising; the
         # rest are equal. Priority is a weak signal at best, so it stays simple.
         priority = "1.0" if rel == "." else ("0.9" if rel == "index" else "0.7")
-        lastmod = _last_changed(p, sources, today, cache)
+        lastmod = _last_changed(p, today, store)
         urls.append(f"  <url><loc>{loc}</loc><lastmod>{lastmod}</lastmod>"
                     f"<priority>{priority}</priority></url>")
     (SITE / "sitemap.xml").write_text(
@@ -565,6 +563,11 @@ def write_sitemap(pages: list[Path]) -> None:
             "www.w3.org/1999/sitemaps/0.9", "www.sitemaps.org/schemas/sitemap/0.9")
         + "\n".join(urls) + "\n</urlset>\n"
     )
+    # Dropped pages leave the record with them, so a URL that comes back later
+    # is dated the day it comes back.
+    live = {p.relative_to(SITE).as_posix() for p in pages}
+    store = {k: v for k, v in store.items() if k in live}
+    LASTMOD.write_text(json.dumps(store, indent=1, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def write_static() -> None:
@@ -733,7 +736,7 @@ terminal, <code>docket licence --key YOUR-KEY</code> does the same thing.</p>
 <p><a class="btn" href="/download/">Download Docket</a></p>
 
 <h2>If something is wrong</h2>
-<p>Email <a href="mailto:hello@docketseo.app">hello@docketseo.app</a> and say what
+<p>Email <a href="mailto:__SUPPORT__">__SUPPORT__</a> and say what
 happened. If the purchase was a mistake, the
 <a href="/legal/refunds/">refund policy</a> is on this site and it is short.</p>
 """
@@ -743,8 +746,14 @@ happened. If the purchase was a mistake, the
         desc="Your Docket purchase is complete. Where to download the app and how to reach us.",
         h1="Thank you",
         crumb='<a href="/">Docket</a> / Thank you',
-        body=body,
-        closer=_THANK_YOU_JS.replace("__PRICE__", str(PRICE)),
+        body=body.replace("__SUPPORT__", SUPPORT_EMAIL),
+        # ⚠️ This page told buyers to email hello@docketseo.app — the address
+        # Matthew replaced with support@ on 2026-08-13 and ~/ops/bin/contact-gate
+        # lists as DISOWNED. The gate never saw it: /thank-you/ is noindexed and
+        # linked from nowhere, so a crawl of the site cannot reach the one page
+        # every buyer lands on. Found 2026-09-24 reading the page by hand. The
+        # address now comes from render.SUPPORT_EMAIL like every other page's.
+        closer=_THANK_YOU_JS.replace("__PRICE__", str(PRICE)).replace("__SUPPORT__", SUPPORT_EMAIL),
         schema_type="",
         noindex=True,
     )
@@ -778,7 +787,7 @@ _THANK_YOU_JS = """
     if (h1) h1.textContent = 'That payment did not go through';
     if ($('ty-lede')) $('ty-lede').textContent =
       'Your card was not charged. You can try again from the pricing section, or '
-      + 'email hello@docketseo.app and we will sort it out.';
+      + 'email __SUPPORT__ and we will sort it out.';
     if ($('ty-key-head')) $('ty-key-head').hidden = true;
     return;
   }

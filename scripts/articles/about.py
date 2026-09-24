@@ -27,18 +27,19 @@ import facts as F  # noqa: E402
 from render import (
     FREE_CLAUSE,  # noqa: E402
     DMG_NAME, DMG_SIZE, MACOS, ISSUES, N_CHECKS, N_LANES, PRICE_STR, RELEASE, REPO,
-    VOLUME, render,
+    VOLUME, render, SELLER, SELLER_CITY, SUPPORT_EMAIL,
 )
 
 
 def about() -> Path:
     body = f"""
-<p class="lede">Docket is built by Matt Kerr, one person, in the UK. It is a Mac app that
+<p class="lede">Docket is built by Matt Kerr, one person, in {SELLER_CITY}, and sold by his
+company, {SELLER}. It is a Mac app that
 audits a site's SEO, copy and branding against {N_CHECKS} checks across {N_LANES} lanes,
 runs the crawl on your own machine, and costs {PRICE_STR} once — {FREE_CLAUSE}.</p>
 
-<p>That is the whole company. There is no team page because there is no team, no office
-address because there is no office, and no support desk because there is one person reading
+<p>There is no team page because there is no team, and no support desk because there is
+one person reading <a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a> and
 <a href="{ISSUES}">the issue tracker</a>. Saying so is more useful than a stock photo.</p>
 
 <h2>Why it exists</h2>
@@ -120,9 +121,8 @@ authors do.</p>
     return render(
         cat="about", slug="",
         title="About Docket — who builds it and what it cannot do",
-        desc=(f"Docket is a Mac SEO and copy audit tool with {N_CHECKS} checks, built "
-              f"by one person in the UK and run on your own machine. What it is bad "
-              f"at, and how to verify the download."),
+        desc=(f"Docket is a Mac SEO audit tool with {N_CHECKS} checks, built by one person "
+              f"in Grand Rapids, Michigan. What it is bad at, and how to check the download."),
         h1="About Docket",
         crumb='<a href="/">Docket</a> / About',
         body=body,
@@ -130,7 +130,7 @@ authors do.</p>
         schema_type="AboutPage",
         faq=[
             ("Who makes Docket?",
-             "Matt Kerr, one person, in the UK. There is no team and no company office. "
+             f"Matt Kerr, one person, in {SELLER_CITY}; the seller is his company, {SELLER}. There is no team. "
              "The macOS download is signed with an Apple Developer ID and notarised, so "
              "the legal name on the certificate can be checked with codesign before you "
              "install anything."),
@@ -150,13 +150,14 @@ authors do.</p>
 
 def contact() -> Path:
     body = f"""
-<p class="lede">The issue tracker is the way to reach us:
-<a href="{ISSUES}">github.com/mattkerr09/docket-site/issues</a>. It is read by the person who
-writes the code, it is public so the answer helps whoever asks next, and — unlike the email
-address this page used to advertise — messages sent to it actually arrive.</p>
+<p class="lede">Email <a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a> for anything
+private &mdash; your licence, a refund, a billing question. For a finding you think is wrong, a
+bug or a feature, use the public issue tracker,
+<a href="{ISSUES}">github.com/mattkerr09/docket-site/issues</a>: it is read by the person who
+writes the code, and the answer helps whoever asks next.</p>
 
-<p>There is no support email. That is a deliberate correction rather than an omission, and
-the reason is the more useful half of this page.</p>
+<p>This page used to say there was no support email, and why is worth keeping: the address the
+site first advertised could not receive mail.</p>
 
 <h2>The address that did not work</h2>
 
@@ -175,9 +176,8 @@ be proved.</strong> <code>docketseo.app</code> now has MX records — forwarding
 <code>fwd1.porkbun.com</code> and <code>fwd2.porkbun.com</code>. What has <em>not</em> been
 established is whether a message to an address on this domain reaches a mailbox anyone reads:
 an MX record is necessary for delivery, not sufficient, and forwarding is configured per
-address. So no support address goes back on this site until a message has been sent to one
-and answered. Re-advertising it on the strength of a DNS lookup would repeat the original
-mistake with better paperwork.</p>
+address. {SUPPORT_EMAIL} is the address the owner named for it, and the one the refund
+policy and the purchase receipt point to.</p>
 
 <p>Nobody noticed because a bounce goes to the sender, not to us. This is the exact failure
 Docket is built to catch and did not: a channel that is advertised, believed, and dead. It is
@@ -187,6 +187,9 @@ now a check we run on our own build, and it will be a check in the app.</p>
 
 <div class="wrap-tbl"><table class="cmp"><thead><tr>
 <th>If you want to</th><th>Use</th></tr></thead><tbody>
+<tr><td>Ask about your licence, a refund or a payment</td>
+<td>Email <a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a>, or reply to your receipt.
+These carry an order reference and a name, so never a public issue</td></tr>
 <tr><td>Report a wrong or confusing finding</td>
 <td><a href="{ISSUES}/new">Open an issue</a> with the URL you audited and the check ID —
 it is printed next to every finding, like <code>index.byte_cap</code></td></tr>
@@ -221,7 +224,7 @@ cite their sources for the same reason.</li>
 
 <h2>What to expect back</h2>
 
-<p>One person reads the tracker, so there is no response-time promise here — an invented one
+<p>One person reads the inbox and the tracker, so there is no response-time promise here — an invented one
 would be the same category of thing as the address that bounced. What is promised is that a
 report naming a specific URL and check ID gets a specific answer, and that if Docket is wrong
 the correction gets written down where the mistake was made.</p>
@@ -231,9 +234,8 @@ the correction gets written down where the mistake was made.</p>
     return render(
         cat="contact", slug="",
         title="Contact Docket — report a bug or a wrong finding",
-        desc=("Reach Docket through the GitHub issue tracker: bugs, wrong audit "
-              "findings, feature requests — and why the address this site used "
-              "to advertise could not receive mail."),
+        desc=(f"Email {SUPPORT_EMAIL} about your licence or a refund; use the GitHub "
+              "issue tracker for bugs, wrong findings and feature requests."),
         h1="Contact",
         crumb='<a href="/">Docket</a> / Contact',
         body=body,
@@ -245,13 +247,11 @@ the correction gets written down where the mistake was made.</p>
              "beside the finding. Those two things let the same crawl be reproduced, which "
              "is the difference between a report that can be fixed and one that cannot."),
             ("Is there a support email address?",
-             "Not yet. The site once listed hello@docketseo.app, which could not receive "
-             "mail: the domain published no MX record at the time, so senders fell back to "
-             "the GitHub Pages address record, where nothing answers on port 25. Every "
-             "message bounced. The domain does publish an MX record now and accepts mail, "
-             "but an address is only worth printing once someone has sent a real message to "
-             "it and read it, and that has not happened yet. The issue tracker is used in "
-             "the meantime because messages sent there demonstrably arrive."),
+             f"Yes: {SUPPORT_EMAIL}, for your licence, a refund or a payment. The site "
+             "once listed hello@docketseo.app, which could not receive mail — the domain "
+             "had no MX record then — so that address is gone for good. Bugs and wrong "
+             "findings are better on the public issue tracker, where the answer helps "
+             "the next person too."),
             ("How do I report a security issue?",
              "Not in a public issue. Use GitHub's private security advisory form on the "
              "repository so the problem can be fixed before it is described publicly."),

@@ -22,7 +22,7 @@ from render import (
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
     RELEASE, SELLER, SELLER_REG_NO, SUMS, price_note_html, render,
-    seller_address,
+    seller_address, buy_block, FOUNDING_NOW, SUPPORT_EMAIL, SELLER_CITY,
 )
 
 
@@ -113,7 +113,21 @@ def _payment_note() -> str:
 
 
 def download() -> Path:
+    # Matthew's plan, 2026-09-24: the download page opens with the order things
+    # actually happen in. GitHub counted about 3,107 Mac and 950 Linux downloads
+    # from 08-07 against no sales, and the key wall right after download is where
+    # people leave: this page led with a Download button for an app that will not
+    # audit anything until a key is pasted. Buying is step one because it is.
     body = f"""
+<ol class="steps" id="buy">
+<li><strong>Buy once &mdash; {PRICE_STR}</strong> ({FOUNDING_NOW} founding). The licence key
+arrives with your receipt.{buy_block("download-steps", sample=True, big=True)}</li>
+<li><strong>Download</strong> the app &mdash; <a href="{DMG}" data-ev="Download"
+data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.</li>
+<li><strong>Paste the key</strong> into the field the app shows, and run your first audit.
+<span class="qual">30-day refund, no conditions.</span></li>
+</ol>
+
 <p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on Apple Silicon.
 {DMG_SIZE}. No subscription, no crawl credits, no per-seat pricing — audit as many sites as
 you like, for as long as you like. There is no account to create and no telemetry. Activating
@@ -122,7 +136,7 @@ nothing about the sites you audit is ever sent anywhere.</p>
 
 {_payment_note()}
 
-<p><a class="btn btn-lg" href="{DMG}">Download Docket {RELEASE} for Mac</a></p>
+<p><a class="btn btn-lg" href="{DMG}" data-ev="Download" data-ev-button="download-page">Download Docket {RELEASE} for Mac</a></p>
 <p style="font-size:var(--t-md);color:var(--text-dim)">Apple Silicon · {MACOS}+ · {DMG_SIZE} ·
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
 
@@ -518,9 +532,9 @@ claims everything invites the client to test the claim.</p>
         body=body,
         faq=[
             ("Can I use Docket for client work?",
-             "Yes. Docket is " + PRICE_STR + " once — free while " + RELEASE + " is in "
-             "beta — with no per-seat or per-crawl limits, so you can audit as many client "
-             "and prospect sites as you like."),
+             "Yes. Docket is " + PRICE_STR + " once (" + FOUNDING_NOW + " for founding buyers), "
+             "with no per-seat or per-crawl limits, so you can audit as many client and "
+             "prospect sites as you like and charge for the work."),
             ("Can I white-label the report?",
              "The PDF is Docket-branded. The CSV and JSON exports carry no branding and can be "
              "dropped into your own template."),
@@ -1254,10 +1268,10 @@ to happen whether or not anyone is at the machine, that is what a hosted crawler
              "field data if you add your own Google API key, which is Google measuring rather "
              "than Docket measuring."),
             ("Is Docket really a one-time purchase?",
-             f"Yes. {PRICE_STR} once from v1.0, and the current build is free while "
-             f"{RELEASE} is in beta. There are no seats, no crawl credits, no account and no "
-             f"telemetry, and audit history is stored on your Mac in ~/.docket/ as plain "
-             f"JSON."),
+             f"Yes. {PRICE_STR} once, or {FOUNDING_NOW} for the first founding buyers, and "
+             f"every 1.x update is included. There are no seats, no crawl credits, no account "
+             f"and no telemetry, and audit history is stored on your Mac in ~/.docket/ as "
+             f"plain JSON."),
         ],
     )
 
@@ -2172,10 +2186,10 @@ item at one price, so there is no partial refund to calculate and none is offere
 <p>Three reasons, and each is a fact about this product rather than a convention:</p>
 
 <ul>
-<li><strong>You can run the whole thing before paying.</strong> The beta is free and keeps
-working, so the evaluation happens before the money does. A refund window is therefore a second
-look rather than the first one, and it does not have to carry the whole weight of the
-decision.</li>
+<li><strong>There is no free trial, so this is the trial.</strong> An audit needs a licence
+key, which means the first real look at Docket happens after the money does. Thirty days with
+no conditions is what makes that fair: run it on your own sites and your clients', and if it is
+not worth {PRICE_STR} to you, ask for it back.</li>
 <li><strong>Monitoring needs weeks to say anything.</strong> The default re-audit cadence is
 weekly, and the thing being sold — what changed on your site since last time — is empty on the
 first run and thin on the second. Thirty days is four of them. A fourteen-day window would end

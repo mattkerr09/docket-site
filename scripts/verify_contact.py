@@ -164,6 +164,20 @@ def main() -> int:
         else:
             print(f"  {domain}: {why}")
 
+    # ONE INBOX. MX proves a domain takes mail, not that a name on it is read:
+    # /thank-you/ offered hello@docketseo.app — the address Matthew replaced with
+    # support@ on 2026-08-13 — for weeks, on the one page every buyer lands on,
+    # and the domain check above passed it because the domain has MX. Every
+    # mailto on this site must now be the address render.py names.
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from render import SUPPORT_EMAIL  # noqa: PLC0415
+    for page in SITE.rglob("*.html"):
+        for addr in MAILTO.findall(page.read_text()):
+            if addr.strip().lower() != SUPPORT_EMAIL.lower():
+                problems.append(f"{page.relative_to(SITE)} offers mailto:{addr.strip()}, "
+                                f"not {SUPPORT_EMAIL} — one address, the one that is read")
+
     for url, pages in sorted(contact_urls().items()):
         checked += 1
         ok, why = reachable(url)

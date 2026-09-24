@@ -167,6 +167,97 @@ def price(slug: str) -> str:
     return re.sub(r"(?<=\d)-(?=[$\d])", "–", COMPETITORS[slug]["price_note"])
 
 
+def rival_monthly_range(slug: str) -> tuple:
+    """(low, high) monthly dollars from a row's price note, as strings, so prose
+    quoting a rival's plan range interpolates it instead of typing it."""
+    m = re.match(r"\$(\d+)-\$(\d+)/mo", COMPETITORS[slug]["price_note"])
+    return (m.group(1), m.group(2)) if m else ("", "")
+
+
+def price_anchor_html() -> str:
+    """One line beside a buy button: what the alternatives cost, and when read.
+
+    Matthew's plan, 2026-09-24: "Price beside the button". Built from
+    competitors.csv so it cannot say a number the comparison table does not,
+    and dated because a rival price without a date reads as current forever
+    (`verify_competitive_claims.py`). Screaming Frog is its one annual tier;
+    Ahrefs is the range of plans that include Site Audit, low end first — the
+    less flattering way to state it, per the file's standing rule.
+    """
+    sf = COMPETITORS["screaming-frog"]
+    ah = COMPETITORS["ahrefs-site-audit"]
+    lo, hi = rival_monthly_range("ahrefs-site-audit")
+    when = max(sf["price_checked"], ah["price_checked"])
+    import datetime as _dt
+    day = _dt.date.fromisoformat(when)
+    return (f'<p class="hero-note price-anchor">Screaming Frog is ${sf["annual_low"]} a year. '
+            f'Ahrefs plans with Site Audit run ${lo}&ndash;${hi} a month. '
+            f'Docket is {PRICE_STR} once. <span class="qual">Their prices read '
+            f'{day.day} {day:%B %Y}.</span></p>')
+
+
+#: A real report, exported from a real audit by the shipped app's own PDF
+#: writer. The hero's second button used to be "Download for Mac", which hands
+#: a first-time visitor a 22 MB app that will not audit anything without a key.
+SAMPLE_REPORT = "/assets/docket-sample-report.pdf"
+#: Every sample link is drawn only when the file is actually in site/assets —
+#: a button to a 404 is worse than no button, and the PDF is published in its
+#: own commit once it has been read end to end.
+HAS_SAMPLE = (SITE / SAMPLE_REPORT.lstrip("/")).exists()
+
+
+def checkout_url(src: str) -> str:
+    """The buy link, tagged with where it was clicked.
+
+    `metadata_*` query parameters on a Dodo payment link travel with the
+    payment (docs.dodopayments.com, one-time payments guide, read 2026-09-24),
+    so a sale can be traced to the button that started it.
+    """
+    return f"{CHECKOUT}&metadata_src={src}"
+
+
+def buy_block(src: str, *, sample: bool = True, big: bool = True,
+              anchor: bool = True, refund: bool = True, refund_link: bool = True) -> str:
+    """Buy button, founding offer, what the alternatives cost, the refund.
+
+    One definition, because the buy path is now on every kind of page and a
+    copy per page is how the founding code, the price and the refund window
+    would drift apart. `src` names the placement for the checkout's metadata
+    and the analytics event.
+    """
+    size = " btn-lg" if big else ""
+    out = [f'<div class="buy-block"><div class="hero-cta">'
+           f'<a class="btn{size}" href="{checkout_url(src)}" data-ev="Buy" '
+           f'data-ev-button="{src}">Buy Docket &middot; {PRICE_STR} once</a>']
+    if sample and HAS_SAMPLE:
+        out.append(f'<a class="btn-ghost{size}" href="{SAMPLE_REPORT}" data-ev="Sample report" '
+                   f'data-ev-button="{src}">See a full sample report</a>')
+    out.append('</div>')
+    out.append(f'<p class="hero-note founding-note">{FOUNDING_LINE}</p>')
+    if anchor:
+        out.append(price_anchor_html())
+    if refund:
+        # `refund_link=False` for a page inside a registered link experiment,
+        # where a new internal link would change the thing being measured.
+        tail = (' &mdash; <a href="/legal/refunds/">refund policy</a>' if refund_link else "")
+        out.append('<p class="hero-note"><strong>30 days, no conditions, no questions '
+                   f'asked</strong>{tail}</p>')
+    out.append('</div>')
+    return "".join(out)
+
+
+def buy_strip(src: str) -> str:
+    """The quiet ending for a guide: one line, two links. Matthew's plan,
+    2026-09-24 — "how-to and learn pages end with 'Buy once — $349 · See a
+    sample report'"."""
+    sample = (f'<a href="{SAMPLE_REPORT}" data-ev="Sample report" data-ev-button="{src}">'
+              f'See a sample report</a> &middot; ' if HAS_SAMPLE else "")
+    return (f'<aside class="buy-strip"><p><a href="{checkout_url(src)}" data-ev="Buy" '
+            f'data-ev-button="{src}">Buy once &mdash; {PRICE_STR}</a> &middot; '
+            f'{sample}founding price {FOUNDING_NOW} for the first '
+            f'{FOUNDING_SEATS} buyers with <code>{FOUNDING_CODE}</code></p></aside>')
+
+
 def price_note_html() -> str:
     """The dated caveat that must appear wherever competitor prices are shown.
 
@@ -315,6 +406,21 @@ FOUNDING_PCT = 50
 FOUNDING_WAS = f"${PRICE}"
 FOUNDING_NOW = f"${PRICE * (100 - FOUNDING_PCT) / 100:.2f}"
 PRICE_STR = f"${PRICE}"
+#: The code a founding buyer types, and how many seats it had. Read from Dodo
+#: 2026-09-24 by ~/ops/bin/discount-guardrail-gate.py: FOUNDINGDOCKET, 50% off,
+#: used 0 of limit 25, restricted to this product, expiring 2026-11-25; and by
+#: founding-bar-gate.py: Dodo charges $349 at 50% = $174.50. The checkout's own
+#: wording for the field, read on the live session the same day: "Have a
+#: discount code?".
+FOUNDING_CODE = "FOUNDINGDOCKET"
+FOUNDING_SEATS = 25
+#: Beside every buy button, as page text — the founding bar is a script that
+#: can fail to load, and a visitor at the button should not need it to know the
+#: offer exists or how to claim it. Says "first 25 buyers", never how many are
+#: left: that number lives in Dodo and the bar reads it live.
+FOUNDING_LINE = (f"Founding price <strong>{FOUNDING_NOW} once</strong>, first "
+                 f"{FOUNDING_SEATS} buyers. At checkout click &lsquo;Have a discount "
+                 f"code?&rsquo; and enter <code>{FOUNDING_CODE}</code>. Then {PRICE_STR}.")
 
 #: What the download costs *today*, which is not PRICE. The beta is free, keeps
 #: working, and has no checkout to pay through even if you wanted to.
@@ -411,7 +517,22 @@ CHECKOUT = ("https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79"
 #: and methods appear after a country and email are entered — a screen I will
 #: not drive, because it means typing personal details into a live checkout.
 #: So "I saw nothing" is a fact about where my probe stops, not about the page.
-BNPL_LIVE = True
+#: ⚠️ OFF AGAIN 2026-09-24, on the CEO's order relaying Matthew's plan ("prove
+#: Dodo offers it — docs or API, not by entering personal data at checkout —
+#: or remove every copy"). What is and is not known:
+#:   * Matthew saw the methods on 08-23 (above) — a first-hand report, and the
+#:     reason this went live.
+#:   * Crisp's records carry three later test checkouts showing neither.
+#:   * Nothing here can re-check it: the live checkout, read 2026-09-24, still
+#:     lists no payment method before contact details are typed, and Dodo's
+#:     public docs describe Dodo, not this merchant account.
+#:   * And the copy would now be wrong for the buyers most likely to use it:
+#:     "four payments of $87.25" is a quarter of $349, but a founding buyer
+#:     pays $174.50.
+#: A consumer-finance promise needs proof on the day it is made. Flip back to
+#: True only when someone has seen Klarna or Afterpay offered on this product's
+#: checkout again, and write down who and when.
+BNPL_LIVE = False
 
 #: ⚠️ FOUR PAYMENTS EVERY TWO WEEKS — NOT MONTHLY. Klarna's and Afterpay's
 #: product is Pay in 4: four instalments a fortnight apart, six weeks end to end.
@@ -452,6 +573,7 @@ SELLER_COUNTRY = "United States"
 #: look finished would be the same defect as hello@docketseo.app: a detail that
 #: reads as verified and is not.
 SELLER_STREET = ""
+
 #: The company number, once there is one to publish. Empty for the same reason.
 SELLER_REG_NO = ""
 #: Which law governs a dispute. Michigan, where the seller is.
@@ -479,6 +601,13 @@ GOVERNING_LAW = "the State of Michigan, United States"
 #: mailbox is confirmed, the refund page routes people to the receipt the
 #: payment processor sends them and says plainly that this is why.
 BILLING_EMAIL = "support@docketseo.app"
+#: The one address this site offers for mail. Matthew, 2026-08-13: "and its
+#: support@docketseo.app". The domain's MX is Porkbun forwarding (fwd1/fwd2,
+#: read 2026-09-24); whether the support@ forwarding row exists cannot be seen
+#: from outside — each alias is a row made by hand, outbound port 25 is closed
+#: here, and a test message is not ours to send. One real message received is
+#: what proves it; that is Matthew's to do, and he has been asked.
+SUPPORT_EMAIL = BILLING_EMAIL
 #: The company that will take the payment and appear on the card statement.
 #: Not chosen. The pages say "not chosen" rather than naming a likely candidate,
 #: because a buyer who reads a name here and sees a different one on their
@@ -1022,6 +1151,16 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+.buy-block{margin:0 0 1.1rem}
+@media (max-width:700px){html.buy-in-view #kc-agent-host{opacity:0;pointer-events:none;transition:opacity .15s}}
+#buy{scroll-margin-top:4.5rem}.buy-block .hero-cta{margin-bottom:.7rem}
+.founding-note{margin:.2rem 0 .5rem}.founding-note code{font-size:.92em}
+.price-anchor{margin:.2rem 0 .5rem}
+.cta-band .buy-block .hero-cta{justify-content:center}
+.callout .buy-block{margin-top:.9rem}
+.buy-strip{margin:2.4rem 0 0;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:var(--radius-lg);font-size:var(--t-md)}
+.buy-strip p{margin:0}
+ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.steps .buy-block{margin-top:.8rem}
 .btn-lg{padding:1rem 2.05rem;font-size:var(--t-lg);border-radius:var(--radius-lg);letter-spacing:-.01em}
 .hero-note{font-size:var(--t-base);color:var(--text-dim)}
 
@@ -1172,7 +1311,7 @@ NAV = f"""<nav><div class="wrap-wide nav-inner">
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div>
-<a class="btn" href="/download/">Download Docket SEO</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; ${PRICE}</a>
 </div></nav>"""
 
 FOOTER = f"""<footer><div class="wrap-wide">
@@ -1374,6 +1513,34 @@ ANALYTICS = (
     'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},'
     'plausible.init=plausible.init||function(i){plausible.o=i||{}};\n'
     'plausible.init()\n'
+    # Custom events, Matthew's plan 2026-09-24: "Buy" with the button name, and
+    # "Download". One delegated listener instead of a handler per link, so a
+    # button added to any page is counted by carrying data-ev. Nothing new is
+    # loaded: this calls the Plausible function already defined above.
+    "document.addEventListener('click',function(e){var a=e.target.closest&&"
+    "e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;"
+    "var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');"
+    "plausible(a.getAttribute('data-ev'),{props:p});},true);\n"
+    # ⚠️ THE CHAT BUTTON COVERED "BUY" ON A PHONE. The assistant's launcher is a
+    # 48px circle fixed to the bottom-right corner, and at 375px every buy button
+    # is full width, so while scrolling the button passes underneath it and the
+    # right-hand end cannot be tapped (the CEO's visual pass, 2026-09-24; measured
+    # the same day: #kc-agent-host fixed at 311,748 48x48). The widget is served
+    # by the worker, so it is not ours to restyle; what is ours is when it shows.
+    # While any buy button is on screen on a narrow window, it steps aside.
+    # Measured by geometry on scroll, not IntersectionObserver: this site's CSS
+    # records that IntersectionObserver does not fire in the webview used to
+    # verify it, and an effect that cannot be shown working is not shipped.
+    # It hides only when a buy button actually overlaps the launcher's box.
+    "(function(){function chk(){var h=document.getElementById('kc-agent-host');"
+    "if(!h)return;var a=h.getBoundingClientRect(),hit=false;"
+    "document.querySelectorAll('[data-ev=Buy]').forEach(function(b){var r=b.getBoundingClientRect();"
+    "if(r.width&&r.bottom>a.top-8&&r.top<a.bottom+8&&r.right>a.left-8&&r.left<a.right+8)hit=true;});"
+    "document.documentElement.classList.toggle('buy-in-view',hit);}"
+    # Directly on each scroll, no requestAnimationFrame: a handful of buttons is
+    # cheap to measure, and a hidden or throttled page never runs a frame.
+    "document.addEventListener('scroll',chk,{passive:true,capture:true});addEventListener('resize',chk);"
+    "addEventListener('load',chk);})();\n"
     '</script>\n'
     # Sled affiliate attribution, added 2026-08-14. Sets a ta_ref cookie ONLY when a
     # visitor arrives through an affiliate link; an ordinary visitor gets none. The
@@ -1481,6 +1648,10 @@ def _human_date(iso: str) -> str:
         return iso
 
 
+#: The button 57 page generators ended with. See `render`.
+_OLD_END_BUTTON = '<p><a class="btn" href="/download/">Download Docket</a></p>'
+
+
 def render(
     *,
     cat: str,
@@ -1507,6 +1678,19 @@ def render(
     noindex: bool = False,
 ) -> Path:
     """Write one page. `body` is the caller's authored HTML — never generated here."""
+    # THE END OF A PAGE IS A BUY PATH, NOT A DOWNLOAD. Fifty-seven generators
+    # closed with the same button, "Download Docket", pointing at an app that
+    # will not audit anything until a key is pasted — GitHub counts about 3,107
+    # Mac downloads from 08-07 against no sales. Replaced here, once, rather
+    # than in 57 files, so the next page written with the old button gets the
+    # new ending too. Guides with no button get the strip appended (Matthew's
+    # plan, 2026-09-24). Noindexed utility pages keep what they have.
+    if not noindex:
+        _src = "-".join(p for p in (cat, slug) if p)[:60] or "home"
+        if _OLD_END_BUTTON in body:
+            body = body.replace(_OLD_END_BUTTON, buy_strip(_src))
+        elif cat in ("learn", "how-to") and slug:
+            body = body + buy_strip(_src)
     # A hub page is a cat with no slug. Joining blindly gives "/vs//", which
     # canonicalises the page to a URL it is not served from — the canonical then
     # argues against itself. Crisp hit exactly this.

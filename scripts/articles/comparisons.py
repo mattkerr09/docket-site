@@ -15,7 +15,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (BETA_NOTE, FREE_CLAUSE, MACOS, N_CHECKS, PRICE_STR, RELEASE,  # noqa: E402
-                    price, price_note_html, render)
+                    price, price_note_html, render, buy_block, rival_monthly_range)
 
 #: How many optional checks reach the network, spelled, from the engine's own
 #: connector registry. Typed as "four" here and in four other places while the
@@ -24,12 +24,30 @@ from render import (BETA_NOTE, FREE_CLAUSE, MACOS, N_CHECKS, PRICE_STR, RELEASE,
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
 
+#: ⚠️ THIS SAID "Try it against your own site" above a Download link, on
+#: thirteen pages. Nothing can be tried: an audit needs a licence key, so the
+#: link handed a comparison-shopper 22 MB that stops at a key field. Matthew's
+#: plan, 2026-09-24: every /vs/ page shows the price and a Buy button.
 CTA = f"""
-<div class="callout">
-<div class="callout-title">Try it against your own site</div>
-<p>Docket is a one-time download for macOS. No account, no crawl credits, and the crawl runs
+<div class="callout" id="buy">
+<div class="callout-title">{PRICE_STR} once. No subscription.</div>
+<p>Docket is a one-time purchase for macOS: no account, no crawl credits, and the crawl runs
+on your machine. {CONNECTORS_WORD_CAP} optional checks fetch data it cannot produce alone; <code>--offline</code>
+turns all {CONNECTORS_WORD} off.</p>
+{buy_block("vs-page", big=False)}
+</div>"""
+
+#: The same callout for a page inside a registered link experiment
+#: (/vs/ahrefs-site-audit-alternative/, Cycle 33, read 10-06): the price and
+#: an external Buy button, the one internal link it always had, and no new
+#: ones — an added internal link would change what the experiment measures.
+CTA_LINK_EXPERIMENT = f"""
+<div class="callout" id="buy">
+<div class="callout-title">{PRICE_STR} once. No subscription.</div>
+<p>Docket is a one-time purchase for macOS: no account, no crawl credits, and the crawl runs
 on your machine. {CONNECTORS_WORD_CAP} optional checks fetch data it cannot produce alone; <code>--offline</code>
 turns all {CONNECTORS_WORD} off. <a href="/download/">Download Docket →</a></p>
+{buy_block("vs-ahrefs", big=False, sample=False, refund_link=False)}
 </div>"""
 
 #: When the factual claims about competitors on these pages were last checked
@@ -65,7 +83,7 @@ CHECKED_HUMAN: dict[str, str] = {
     # 10 August while the sentences beneath it changed — "a date that stays put
     # while the sentence under it changes is a false date about somebody else's
     # product", and it was right.
-    "ahrefs": "14 September 2026",
+    "ahrefs": "24 September 2026",
     # Read live 2026-09-16, both tiers and the crawl quotas, from the vendor's
     # own pricing page. The CSV had carried 2026-08-10; re-reading confirmed the
     # prices unchanged and added the monthly crawl allowances, which are the
@@ -80,7 +98,7 @@ CHECKED_HUMAN: dict[str, str] = {
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-08-15",
     "se-ranking-vs-screaming-frog": "2026-09-08",
-    "ahrefs": "2026-09-14",
+    "ahrefs": "2026-09-24",
     "seoptimer": "2026-09-16",
     "sitechecker": "2026-09-16",
     "profound": "2026-09-16",
@@ -268,7 +286,15 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "https://sitebulb.com/features/"),
     ],
     "ahrefs": [
-        ('Site Audit "scans for 170+ issues"', "https://ahrefs.com/site-audit"),
+        ('Site Audit "scans for 170+ issues", and "segments issues into errors, warnings, and '
+         'notices, so you know which ones to fix first"', "https://ahrefs.com/site-audit"),
+        ("Ahrefs Free includes Site Audit \"For verified websites\", and Ahrefs says Ahrefs Free "
+         "and Ahrefs Webmaster Tools \"are the same account\"", "https://ahrefs.com/free"),
+        ("Site Audit is among the tools on the $29 Starter plan",
+         "https://ahrefs.com/blog/starter-plan/"),
+        ("monthly prices Starter $29, Lite $129, Standard $249, Advanced $449; projects on sites "
+         "of unverified ownership 5 on Lite, 20 on Standard, 50 on Advanced",
+         "https://ahrefs.com/pricing"),
         ("crawl credits are listed per plan — Lite 100,000, Standard 500,000, Advanced 1.5M per "
          "month, and max pages per project of 25,000, 50,000 and 250,000",
          "https://ahrefs.com/pricing"),
@@ -612,12 +638,25 @@ check".</p>
     )
 
 
+#: Projects allowed on sites of UNVERIFIED ownership, per paid plan — the
+#: "Projects / Unverified ownership" row of https://ahrefs.com/pricing, read
+#: 2026-09-24 (Enterprise: 100). Verified-ownership projects are unlimited on
+#: every plan. Recorded in VERIFIED["ahrefs"] with the same source and date.
+_AH_UNVERIFIED = {"Lite": 5, "Standard": 20, "Advanced": 50}
+_AH_LO, _AH_HI = rival_monthly_range("ahrefs-site-audit")
+
+
 def ahrefs() -> Path:
     body = f"""
-<p class="lede">Ahrefs Site Audit is one module of a keyword and backlink platform. Docket is
-only an auditor. If you need keyword volumes and a backlink index, Docket cannot replace Ahrefs
-and does not try — that data has to be bought, not built. If the site audit is the part you
-actually use, you are paying {price("ahrefs-site-audit")} for it.</p>
+<p class="lede">Docket audits any site, including a client's, a prospect's or a competitor's,
+for {PRICE_STR} once. Ahrefs Site Audit is one module of a keyword and backlink platform, and
+where you can point it depends on the plan: Ahrefs Free &mdash; which Ahrefs says is the same
+account as the original Ahrefs Webmaster Tools &mdash; runs it only on sites you verify you own,
+and the paid plans that include it run from Starter at ${_AH_LO} a month to Advanced at ${_AH_HI}, with
+Lite allowing {_AH_UNVERIFIED["Lite"]} projects on sites you have not verified, Standard
+{_AH_UNVERIFIED["Standard"]} and Advanced {_AH_UNVERIFIED["Advanced"]}. If you
+need keyword volumes and a backlink index, Docket cannot replace Ahrefs and does not try &mdash;
+that data has to be bought, not built.</p>
 
 <h2>What Ahrefs has that Docket can never have</h2>
 <p>A crawled index of the web. That is what powers keyword difficulty, search volume, backlink
@@ -630,9 +669,11 @@ guessing.</p>
 your laptop is closed, or a team looking at the same data.</p>
 
 <h2>Where the audit itself differs</h2>
-<p>Ahrefs' Site Audit page says it "scans for 170+ issues". More checks with no ordering is a
-bigger pile, and the practical
-question is what you do first. Docket ranks by impact against effort and gives you a sequence.</p>
+<p>Ahrefs' Site Audit page says it "scans for 170+ issues" and sorts them into errors,
+warnings and notices "so you know which ones to fix first". Docket goes one step further in the
+same direction: every finding is ranked by impact against the effort of fixing it, with an
+estimate of how long the fix takes, so the output is a sequence rather than three
+buckets.</p>
 
 <p>The cloud model also brings metering. Ahrefs' pricing page lists a monthly crawl-credit
 allowance per plan — 100,000 on Lite, 500,000 on Standard, 1,500,000 on Advanced — so the audit
@@ -648,12 +689,13 @@ need one of these, ask them rather than taking this page's word for it.</p>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th></th><th>Docket</th><th>Ahrefs</th></tr></thead>
 <tbody>
-<tr><td>Price</td><td>One-time</td><td>{price("ahrefs-site-audit")}</td></tr>
+<tr><td>Price</td><td class="yes">{PRICE_STR} once</td><td>{price("ahrefs-site-audit")}</td></tr>
+<tr><td>Sites you do not own</td><td class="yes">Any site, no project limit</td><td>Not on Ahrefs Free; {_AH_UNVERIFIED["Lite"]}, {_AH_UNVERIFIED["Standard"]} or {_AH_UNVERIFIED["Advanced"]} projects on Lite, Standard or Advanced</td></tr>
 <tr><td>Keyword &amp; backlink data</td><td class="no">None</td><td class="yes">Its main product</td></tr>
 <tr><td>Rank tracking</td><td class="no">No</td><td class="yes">Yes</td></tr>
 <tr><td>Crawl limits</td><td class="yes">Your machine, your limits</td><td>Credit-metered by plan</td></tr>
 <tr><td>Data location</td><td class="yes">Crawl runs on your Mac; {CONNECTORS_WORD} optional checks fetch data unless <code>--offline</code></td><td>Cloud</td></tr>
-<tr><td>Ranked action plan</td><td class="yes">Yes</td><td>Issues by severity</td></tr>
+<tr><td>Ranked action plan</td><td class="yes">By impact against effort</td><td>Errors, warnings and notices</td></tr>
 <tr><td>AI crawler audit</td><td class="yes">Per-crawler</td><td>Not listed as per-crawler</td></tr>
 <tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
 <tr><td>Team access</td><td class="no">Single machine</td><td class="yes">Yes</td></tr>
@@ -661,7 +703,7 @@ need one of these, ask them rather than taking this page's word for it.</p>
 
 <h2>The metering problem, concretely</h2>
 <p>Cloud auditing is priced per crawled URL, and that changes how you work in a way that is
-easy to miss until you hit it. Ahrefs' entry plan lists 100,000 crawl credits a month. Their
+easy to miss until you hit it. Ahrefs' Lite plan lists 100,000 crawl credits a month. Their
 pricing page does not spell out what spends a credit, so the exact arithmetic is theirs to
 state, not ours — but a monthly allowance means re-auditing a client site after a fix, then
 again after the next fix, draws down a budget that a larger client might need.</p>
@@ -698,7 +740,7 @@ and marketing audit with a plan attached, Docket does that for a one-time cost a
 your data anywhere.</p>
 <p>Plenty of people run both: an index tool for research, and a local auditor for the work.</p>
 {_verified_note("ahrefs")}
-{CTA}"""
+{CTA_LINK_EXPERIMENT}"""
 
     return render(
         cat="vs", slug="ahrefs-site-audit-alternative",
@@ -760,9 +802,9 @@ someone else's logo, dashboards, alerts.</li>
 </ul>
 
 <p>Their knowledge base also says Site Audit can "check over 140+ website issues", against
-Docket's {N_CHECKS}. A count is a weak measure of an audit and more checks with no ordering is
-just a longer list. It is still a larger number, and writing around that would be its own kind
-of tell.</p>
+Docket's {N_CHECKS}. A count is a weak measure of an audit &mdash; what decides its worth is
+the order the findings arrive in and what each one tells you to do. It is still a larger
+number, and writing around that would be its own kind of tell.</p>
 
 <p>One further concession, which retires something this site has leaned on elsewhere. Semrush's
 Site Audit page now checks AI crawler access per bot, naming ChatGPT-User, OAI-SearchBot,
@@ -783,10 +825,11 @@ bleeding, quick wins, build, polish. Reach is compressed as well, so a trivial i
 happens to appear on 4,000 pages does not outrank a serious one on the homepage. The report
 opens as a sequence instead of a filter you have to operate.</p>
 
-<h2>Nothing leaves your Mac</h2>
+<h2>The audit stays on your Mac</h2>
 <p>Docket has no account, no sign-in and no telemetry. The crawl runs on your machine and each
 run is written to <code>~/.docket/</code> as plain JSON you can diff, script against, or delete.
-{CONNECTORS_WORD_CAP} checks reach outside by default and <code>--offline</code> turns all {CONNECTORS_WORD} off.</p>
+{CONNECTORS_WORD_CAP} checks reach outside by default and <code>--offline</code> turns all {CONNECTORS_WORD} off;
+the licence key is checked with the payment provider about once a day.</p>
 <p>Two consequences that matter in practice. Auditing a prospect's site before a pitch is a
 quieter act on your own laptop than inside a vendor's project workspace. And re-running costs
 nothing, so a fix gets verified the moment it ships rather than saved up until a crawl is worth
@@ -1043,9 +1086,10 @@ speed, Lighthouse is the better tool and this is the wrong page. If you want a s
 continuous integration, Lighthouse ships as a Node module built for that and Docket has no
 equivalent. And if you are not on an Apple Silicon Mac running {MACOS} or later, Docket will
 not run at all.</p>
-<p>Docket costs {PRICE_STR} once, runs {N_CHECKS} checks on your own machine with no account,
-no licence check and no telemetry, and keeps everything under <code>~/.docket</code>.
-{FREE_CLAUSE}. It earns that money against a free tool from Google in
+<p>Docket costs {PRICE_STR} once, runs {N_CHECKS} checks on your own machine with no account
+and no telemetry, and keeps everything under <code>~/.docket</code>. The one thing it sends is
+the licence key, checked with the payment provider when you activate it and about once a day
+after that. It earns that money against a free tool from Google in
 one situation only: when the question has stopped being how fast is this page and become which
 of forty things do I do first. If you are not at that point yet, the honest answer is to stay free:
 <a href="/best/free-seo-audit-tools/">the best free SEO audit tools, and when to stop</a>.</p>

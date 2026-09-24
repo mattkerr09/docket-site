@@ -12,7 +12,7 @@
 <title>Canonical tags are a hint, not an instruction</title>
 <meta name="description" content="Google treats rel=canonical as a hint and regularly picks a different canonical. The failure patterns behind that, and what Search Console is telling you.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="cf47f23e3e51">
+<meta name="build-id" content="ba8afcc9a988">
 <link rel="canonical" href="https://docketseo.app/learn/canonical-tags/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -554,6 +554,16 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+.buy-block{margin:0 0 1.1rem}
+@media (max-width:700px){html.buy-in-view #kc-agent-host{opacity:0;pointer-events:none;transition:opacity .15s}}
+#buy{scroll-margin-top:4.5rem}.buy-block .hero-cta{margin-bottom:.7rem}
+.founding-note{margin:.2rem 0 .5rem}.founding-note code{font-size:.92em}
+.price-anchor{margin:.2rem 0 .5rem}
+.cta-band .buy-block .hero-cta{justify-content:center}
+.callout .buy-block{margin-top:.9rem}
+.buy-strip{margin:2.4rem 0 0;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:var(--radius-lg);font-size:var(--t-md)}
+.buy-strip p{margin:0}
+ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.steps .buy-block{margin-top:.8rem}
 .btn-lg{padding:1rem 2.05rem;font-size:var(--t-lg);border-radius:var(--radius-lg);letter-spacing:-.01em}
 .hero-note{font-size:var(--t-base);color:var(--text-dim)}
 
@@ -679,7 +689,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 .faq-item p{font-size:var(--t-md);margin:0}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Canonical tags, and the ways they get set wrong","description":"Google treats rel=canonical as a hint and regularly picks a different canonical. The failure patterns behind that, and what Search Console is telling you.","datePublished":"2026-08-10","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/canonical-tags/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a canonical tag a directive that Google has to follow?","acceptedAnswer":{"@type":"Answer","text":"No. Google's documentation describes a canonical preference as a hint rather than a rule, and says it may choose a different page as canonical than you do. The tag is a strong signal weighed against your redirects, internal links and sitemap, not an instruction."}},{"@type":"Question","name":"Why does Search Console say Google chose a different canonical?","acceptedAnswer":{"@type":"Answer","text":"Because it read your tag and disagreed, usually because a near-identical URL carries stronger signals. The fix is to stop contradicting yourself: point internal links, redirects and the sitemap at the same URL the canonical names, then allow up to two weeks for the cluster to settle."}},{"@type":"Question","name":"Should paginated pages canonicalise to page one?","acceptedAnswer":{"@type":"Answer","text":"No. Google's guidance is to give each page in a sequence its own canonical URL, because page four contains items that page one does not. Pointing them all at page one asks Google to ignore content that exists nowhere else on the site."}},{"@type":"Question","name":"Do canonical tags fix duplicate content?","acceptedAnswer":{"@type":"Answer","text":"Only the indexing half of it. A canonical says which URL to index; it does not make the indexed page worth ranking. If forty near-identical pages each add nothing, the answer is to consolidate them with redirects rather than to label them."}}]}</script>
@@ -689,6 +699,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+(function(){function chk(){var h=document.getElementById('kc-agent-host');if(!h)return;var a=h.getBoundingClientRect(),hit=false;document.querySelectorAll('[data-ev=Buy]').forEach(function(b){var r=b.getBoundingClientRect();if(r.width&&r.bottom>a.top-8&&r.top<a.bottom+8&&r.right>a.left-8&&r.left<a.right+8)hit=true;});document.documentElement.classList.toggle('buy-in-view',hit);}document.addEventListener('scroll',chk,{passive:true,capture:true});addEventListener('resize',chk);addEventListener('load',chk);})();
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -712,7 +724,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div>
-<a class="btn" href="/download/">Download Docket SEO</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Canonical tags</div><h1>Canonical tags, and the ways they get set wrong</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-10">10 August 2026</time></p>
 
@@ -909,7 +921,7 @@ different host — among 99 checks that run on your Mac, with no account and not
 uploaded. Findings come back ranked by cost against effort, each with the exact markup to
 paste.</p>
 
-<p><a class="btn" href="/download/">Download Docket</a></p>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=learn-canonical-tags" data-ev="Buy" data-ev-button="learn-canonical-tags">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 
 <p class="verified-note"><strong>Read from Google's own documentation on
 10 August 2026.</strong> indicating a canonical preference "is a hint, not a rule", and "Google may choose a different page as canonical than you do" (<a href="https://developers.google.com/search/docs/crawling-indexing/canonicalization" rel="nofollow noopener">source</a>); the canonical "will be crawled most regularly; duplicates are crawled less frequently in order to reduce the crawling load on sites" (<a href="https://developers.google.com/search/docs/crawling-indexing/canonicalization" rel="nofollow noopener">source</a>); "even if you explicitly designate a canonical page, Google might choose a different canonical for various reasons, such as the quality of the content", and after a fix "Google might hold pages in a duplicate cluster for up to two weeks" (<a href="https://developers.google.com/search/docs/crawling-indexing/canonicalization-troubleshooting" rel="nofollow noopener">source</a>); canonicalisation lets search engines consolidate the information they hold for individual URLs, such as links to them, into one preferred URL; rel=canonical and a redirect are described as strong signals and a sitemap entry as a weak one, and absolute URLs are recommended over relative ones (<a href="https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls" rel="nofollow noopener">source</a>); "Don't use the first page of a paginated sequence as the canonical page. Instead, give each page its own canonical URL", and Google no longer uses rel=next and rel=prev (<a href="https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading" rel="nofollow noopener">source</a>); "While we don't recommend using JavaScript for this, it is possible to inject a rel="canonical" link tag with JavaScript" — and if you do, it must be the only one on the page (<a href="https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics" rel="nofollow noopener">source</a>); the wording of the three canonical-related page indexing statuses quoted in the table above (<a href="https://support.google.com/webmasters/answer/7440203" rel="nofollow noopener">source</a>). Canonical advice ages badly — a great deal
