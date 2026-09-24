@@ -179,6 +179,13 @@ def body() -> str:
   markup to paste. Not four tools. One download.</p>
   {buy_block("home-hero")}
   {BNPL_BLOCK}
+  <!-- The hero's second button became "See a full sample report" (Matthew's
+       plan, 2026-09-24), which left a buyer holding a key with no download on
+       the homepage — and ~/ops's shipped-activation and updater-signature
+       gates, which test the DMG this page links, with nothing to measure.
+       One quiet line keeps both. -->
+  <p class="hero-note">Already have a key? <a href="{DMG}" data-ev="Download"
+  data-ev-button="home-hero">Download Docket for Mac</a> ({DMG_SIZE}).</p>
   <p class="hero-note">{MACOS}+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
 </div>
 </div>
