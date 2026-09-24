@@ -12,7 +12,7 @@
 <title>Gate a deploy on SEO regressions</title>
 <meta name="description" content="docket diff audits production against staging and fails the build on what the deploy introduced — including the regression that registers as three improvements.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="3b710b927ea9">
+<meta name="build-id" content="c2b4571140ee">
 <link rel="canonical" href="https://docketseo.app/how-to/gate-a-deploy-on-seo-regressions/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -841,7 +841,7 @@ person who made it still remembers what they did.</p>
 <a href="/for/developers/">The rest of the CI story</a> — SARIF for code scanning, JUnit for
 test panels, the GitHub Action — is here.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-gate-a-deploy-on-seo-regressions" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-gate-a-deploy-on-seo-regressions">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-gate-a-deploy-on-seo-regressions" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-gate-a-deploy-on-seo-regressions">Buy once &mdash; $349</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-gate-a-deploy-on-seo-regressions">See a sample report</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I stop a deploy that breaks SEO?</h3><p>Run docket diff with your production URL and your staging URL in the pipeline. It audits both with identical settings and exits 2 when the candidate introduced a regression at the severity you set, so the build fails before the change reaches production.</p></div><div class="faq-item"><h3>Why not just fail the build on the audit score?</h3><p>Because a score can hide a regression. Stripping every title tag from a test site left the score unchanged and registered three improvements, since the checks for short, mismatched and location-free titles all stopped firing — and the overall score did not move at all. The diff still reported the high-severity regression.</p></div><div class="faq-item"><h3>What happens if staging is partly unreachable?</h3><p>Docket refuses to compare crawls that reached very different numbers of pages, and exits 1 rather than 0. Refusing to judge is not a pass. Without that, every page the crawler could not reach would be reported as a brand-new issue and the gate would be ignored within a week.</p></div><div class="faq-item"><h3>Why does docket diff fail on high when docket audit fails on critical?</h3><p>Because a regression is a change somebody just made. An issue a site has had for two years is a backlog item; the same issue arriving this afternoon can be reverted while the person who made it still remembers what they did.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
