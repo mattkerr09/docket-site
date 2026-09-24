@@ -12,7 +12,7 @@
 <title>Page weight and SEO: how heavy is too heavy?</title>
 <meta name="description" content="A Docket audit of your site flags an HTML document over 400 KB. What that counts, what it leaves out, and when a size is a floor rather than a measurement.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b3de5bd65464">
+<meta name="build-id" content="3b710b927ea9">
 <link rel="canonical" href="https://docketseo.app/learn/page-weight/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -722,7 +722,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});if(a.getAttribute('data-ev-price')&&/dodopayments\.com/.test(a.href)){try{localStorage.setItem('dk_offer',a.getAttribute('data-ev-price'))}catch(x){}}},true);
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -945,7 +945,7 @@ the LOW finding lists its band in crawl order. Start at the top, check whether t
 largest figure carries an "at least", and if it does, fetch that URL yourself before deciding
 how bad it is. Everything else on the list is a measurement you can trust to the kilobyte.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=learn-page-weight" data-ev="Buy" data-ev-button="learn-page-weight">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=learn-page-weight" data-ev="Buy" data-ev-price="349" data-ev-button="learn-page-weight">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What counts as page weight in Docket?</h3><p>The HTML document on its own, decompressed, and nothing it references. Images, stylesheets, fonts and JavaScript bundles are not in the number, so a page that passes this check can still be slow to load. Most page-weight advice means the total a browser downloads, which is a different and usually much larger figure.</p></div><div class="faq-item"><h3>How heavy is too heavy for a web page?</h3><p>Docket draws two lines on the HTML document: one at a hundred and fifty kilobytes, which it only reports when more than half the crawled pages sit in that band, and one at four hundred kilobytes, which it reports for a single page. Both are strict compared with the real web — the median homepage in our own sample of well-known sites is past the higher of the two.</p></div><div class="faq-item"><h3>Why does my report say 'at least' before a page size?</h3><p>Because the crawler stopped reading before the page ended, so the figure is the point it stopped at rather than the size of the document. That happens when a response passes the fetcher's eight-mebibyte read ceiling, and also when a slow server is still dribbling the body when the deadline expires. Fetch the URL yourself to get the real size.</p></div><div class="faq-item"><h3>Does page weight affect Google rankings?</h3><p>This page does not claim a ranking penalty, because Docket has not measured one and the finding's own note about delaying first paint is an inference from the size rather than something timed. What document size provably controls is Googlebot's byte budget: it reads a fixed amount of any URL and indexes that fragment as if it were the whole file.</p></div><div class="faq-item"><h3>Is a large HTML file the same as a slow page?</h3><p>No, and the repository records a case against assuming it. Of two sites measured with the shipped renderer, the one serving roughly a sixth of the markup rendered slower than the heavier one, and the note concludes that document size should not be used to predict render cost. Script execution and the network waterfall dominate, and neither is visible in a byte count.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

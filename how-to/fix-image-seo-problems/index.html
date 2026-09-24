@@ -12,7 +12,7 @@
 <title>Which image SEO problems actually matter</title>
 <meta name="description" content="Docket reads image markup, not pictures. What its image check counts, why an empty alt is correct, and which image advice is cargo cult.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b3de5bd65464">
+<meta name="build-id" content="3b710b927ea9">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-image-seo-problems/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -722,7 +722,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});if(a.getAttribute('data-ev-price')&&/dodopayments\.com/.test(a.href)){try{localStorage.setItem('dk_offer',a.getAttribute('data-ev-price'))}catch(x){}}},true);
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -933,7 +933,7 @@ hero eager.</p>
 divider, chasing a green tick on an accessibility widget — is work that Docket will not credit
 you for, because there is nothing there to measure.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-image-seo-problems" data-ev="Buy" data-ev-button="how-to-fix-image-seo-problems">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-image-seo-problems" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-image-seo-problems">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does an empty alt attribute hurt SEO?</h3><p>No. An empty alt is the correct markup for a decorative image, and Docket deliberately does not count it as a problem. The W3C's accessibility guidance is that a null alt should be provided so assistive technology can skip the image, and that leaving the attribute out entirely is not an option because some screen readers then announce the file name instead.</p></div><div class="faq-item"><h3>Can an SEO tool tell whether my alt text is any good?</h3><p>No. A crawler reads the attribute; it never sees the picture, so it has nothing to compare the words against. It can tell you an alt attribute is missing. It cannot tell you that yours says 'banner-final' or repeats your brand name. Those are the ones most worth fixing.</p></div><div class="faq-item"><h3>Which image problem should I fix first?</h3><p>By Docket's own weighting, missing width and height attributes outrank missing alt attributes, and missing lazy loading comes last. Width and height is also the cheapest of them to fix, since it is usually a template change rather than writing anything.</p></div><div class="faq-item"><h3>Why does Docket report fewer images than my site has?</h3><p>It counts img elements in the HTML. Background images set in CSS, inline SVG and video poster frames are not counted, and an img whose address cannot be resolved from src, data-src, data-lazy-src or srcset is skipped by the missing-alt count.</p></div><div class="faq-item"><h3>I set aspect-ratio in my stylesheet. Why is the finding still there?</h3><p>Because Docket reads markup. It accepts width and height attributes, or aspect-ratio inside the element's own inline style attribute. A rule in an external stylesheet reserves the space correctly for a browser and is invisible to a crawler, so the finding is wrong about your page in that case.</p></div><div class="faq-item"><h3>Do I need to rename my image files for SEO?</h3><p>It is far down the list. Descriptive file names are mildly useful context, but no Docket check reads them, and keyword-stuffed names are closer to a risk than a gain. Alt text and declared dimensions are worth more than every file rename on your site put together.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

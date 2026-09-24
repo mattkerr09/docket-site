@@ -12,7 +12,7 @@
 <title>How to fix hreflang tags with errors (return tags)</title>
 <meta name="description" content="hreflang only works when the link goes both ways. Why one-way declarations are ignored, the four ways a set breaks, and why canonical must agree.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b3de5bd65464">
+<meta name="build-id" content="3b710b927ea9">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-hreflang-return-tags/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -722,7 +722,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});if(a.getAttribute('data-ev-price')&&/dodopayments\.com/.test(a.href)){try{localStorage.setItem('dk_offer',a.getAttribute('data-ev-price'))}catch(x){}}},true);
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -838,7 +838,7 @@ pair that fails — which page points where, and which page does not point back 
 <p>It reports this at HIGH severity for a reason: a broken set is not a missed optimisation.
 It is a feature that is fully implemented, looks correct on inspection, and does nothing.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-hreflang-return-tags" data-ev="Buy" data-ev-button="how-to-fix-hreflang-return-tags">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-hreflang-return-tags" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-hreflang-return-tags">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is an hreflang return tag?</h3><p>If page A lists page B as a language alternate, B must list A in return. That reciprocal declaration is the return tag. Without it the declaration is one-way and search engines ignore it.</p></div><div class="faq-item"><h3>Does every page need to list itself in hreflang?</h3><p>Yes. Each page in the set must include a self-referencing hreflang entry alongside the entries for the other versions. Omitting it is the most common way a set breaks.</p></div><div class="faq-item"><h3>Can hreflang and canonical tags conflict?</h3><p>They can, and it is the conflict that undoes most correct-looking setups. Each language version must canonicalise to itself. A canonical pointing at another language says that page is a duplicate, which removes it from the set.</p></div><div class="faq-item"><h3>Why can't I spot this by viewing the page source?</h3><p>Because nothing is wrong on the page you are looking at. Every tag can be present and valid in isolation; the error exists only in the relationship between two pages, so finding it requires fetching both and comparing them.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

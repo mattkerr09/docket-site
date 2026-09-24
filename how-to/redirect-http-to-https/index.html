@@ -12,7 +12,7 @@
 <title>How to redirect http:// to https:// — and when it won't</title>
 <meta name="description" content="A 301 from http:// to https://, host by host — plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b3de5bd65464">
+<meta name="build-id" content="3b710b927ea9">
 <link rel="canonical" href="https://docketseo.app/how-to/redirect-http-to-https/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -722,7 +722,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});if(a.getAttribute('data-ev-price')&&/dodopayments\.com/.test(a.href)){try{localStorage.setItem('dk_offer',a.getAttribute('data-ev-price'))}catch(x){}}},true);
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -861,7 +861,7 @@ break. Both name the change to make.</p>
 <p>It found this on the site that sells it. That is the argument for running an audit against
 your own work rather than reading about one.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-redirect-http-to-https" data-ev="Buy" data-ev-button="how-to-redirect-http-to-https">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-redirect-http-to-https" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-redirect-http-to-https">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does a missing HTTPS redirect actually affect ranking?</h3><p>HTTPS has been a Google ranking signal since 2014, but the redirect matters more for duplication and trust than for the signal itself: without it the same page is reachable at two addresses, and browsers label the insecure one 'Not secure' in the address bar.</p></div><div class="faq-item"><h3>Should I use a 301 or a 302?</h3><p>301. A 302 is a temporary redirect and tells a search engine to keep indexing the http:// URL, which is the opposite of what you want.</p></div><div class="faq-item"><h3>Why does 'Enforce HTTPS' refuse to turn on?</h3><p>Usually because the certificate has not finished being issued. On GitHub Pages the API reports a certificate state such as dns_changed. The common cause is a DNS record that does not point at the host — often a www subdomain still pointing at a registrar parking page — because the certificate covers both the apex and www.</p></div><div class="faq-item"><h3>Should I add HSTS at the same time?</h3><p>No. Get the redirect working first. HSTS tells browsers to refuse plain HTTP for your domain for the whole max-age, so if HTTPS is broken when they act on it there is no fallback. Add it afterwards with a short max-age and raise it once you are confident.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

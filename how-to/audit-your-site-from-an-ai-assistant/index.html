@@ -12,7 +12,7 @@
 <title>Audit your site from an AI assistant</title>
 <meta name="description" content="Docket speaks the Model Context Protocol over stdio. Point Claude Desktop at the app you own and ask it to audit a site — no API key, no cloud.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b3de5bd65464">
+<meta name="build-id" content="3b710b927ea9">
 <link rel="canonical" href="https://docketseo.app/how-to/audit-your-site-from-an-ai-assistant/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -722,7 +722,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});if(a.getAttribute('data-ev-price')&&/dodopayments\.com/.test(a.href)){try{localStorage.setItem('dk_offer',a.getAttribute('data-ev-price'))}catch(x){}}},true);
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -829,7 +829,7 @@ Docket is $349 once, so there is no seat to add for the assistant.</p>
 not schedule audits, compare two crawls the way <code>docket diff</code> does, or expose the
 site-history features. If you want those, they are in the app and the CLI, and the honest answer
 is that nobody has yet asked for them through an assistant.</p>
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-audit-your-site-from-an-ai-assistant" data-ev="Buy" data-ev-button="how-to-audit-your-site-from-an-ai-assistant">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Docket work with Claude Desktop?</h3><p>Yes. Add Docket to mcpServers in claude_desktop_config.json with the command /Applications/Docket.app/Contents/Resources/docket/docket and the argument mcp, then restart the client. Any MCP client works the same way, because Docket speaks the protocol over stdio.</p></div><div class="faq-item"><h3>Does using Docket through MCP cost extra?</h3><p>No. There is no API key and no per-call charge. The crawl runs on your own Mac, the assistant is talking to the copy of Docket you bought, and the licence is the same one-time purchase.</p></div><div class="faq-item"><h3>Can an assistant audit a site if Docket is not activated?</h3><p>No. Asking it to audit returns 'This copy of Docket is not activated'. Listing the checks still works, because that crawls nothing. The licence gate is the same one the app and the command line use, so MCP is not a way around it.</p></div></div></section>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-audit-your-site-from-an-ai-assistant" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-audit-your-site-from-an-ai-assistant">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Docket work with Claude Desktop?</h3><p>Yes. Add Docket to mcpServers in claude_desktop_config.json with the command /Applications/Docket.app/Contents/Resources/docket/docket and the argument mcp, then restart the client. Any MCP client works the same way, because Docket speaks the protocol over stdio.</p></div><div class="faq-item"><h3>Does using Docket through MCP cost extra?</h3><p>No. There is no API key and no per-call charge. The crawl runs on your own Mac, the assistant is talking to the copy of Docket you bought, and the licence is the same one-time purchase.</p></div><div class="faq-item"><h3>Can an assistant audit a site if Docket is not activated?</h3><p>No. Asking it to audit returns 'This copy of Docket is not activated'. Listing the checks still works, because that crawls nothing. The licence gate is the same one the app and the command line use, so MCP is not a way around it.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
