@@ -12,7 +12,7 @@
 <title>Click depth and orphan pages: what Docket checks</title>
 <meta name="description" content="A Docket audit of your site reports deep pages and orphans from one crawl. What each threshold really measures, and when the orphan answer is withheld.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b3de5bd65464">
+<meta name="build-id" content="3b710b927ea9">
 <link rel="canonical" href="https://docketseo.app/learn/click-depth-and-orphan-pages/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -722,7 +722,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});if(a.getAttribute('data-ev-price')&&/dodopayments\.com/.test(a.href)){try{localStorage.setItem('dk_offer',a.getAttribute('data-ev-price'))}catch(x){}}},true);
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -933,7 +933,7 @@ and nothing here should be read as a claim that an audience for it was counted. 
 because the check exists, its two halves are easy to confuse, and one of them applies a
 crawl-quality gate the other does not. Engine source read on 16 September 2026.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=learn-click-depth-and-orphan-pages" data-ev="Buy" data-ev-button="learn-click-depth-and-orphan-pages">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=learn-click-depth-and-orphan-pages" data-ev="Buy" data-ev-price="349" data-ev-button="learn-click-depth-and-orphan-pages">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How many clicks from the homepage is too many?</h3><p>Docket reports a page at four clicks or more, at its lowest severity, and the finding's own wording suggests keeping anything commercially valuable within three. That is a rule of thumb the check encodes rather than a published threshold, and no citation is attached to it. The number is also capped by your crawl settings before it is capped by your site.</p></div><div class="faq-item"><h3>Does Docket measure click depth from my homepage?</h3><p>It measures depth from the URL you started the crawl at. If you audit a section URL, that section is depth zero and everything is counted from there. The engine tracks separately whether the page it treats as the homepage is really the site root, because findings worded around the homepage can otherwise be wrong.</p></div><div class="faq-item"><h3>Why does my audit say orphan pages could not be checked?</h3><p>Because too many URLs the crawl discovered were never fetched, and those are exactly the pages that might carry the missing links. Docket withholds the orphan claim rather than reporting a count nobody should act on, and it tells you how many URLs were missed instead. Re-run with no page limit, and if the notice persists, lift the click-depth limit too.</p></div><div class="faq-item"><h3>Will Docket find an orphan page that is not in my sitemap?</h3><p>No. The orphan finding requires the URL to appear in your sitemap as well as having no internal links pointing at it. If you publish no sitemap, this finding cannot fire at all. A page that nothing links to and nothing declares is also a page a link-following crawler has no way to reach.</p></div><div class="faq-item"><h3>Are orphan pages always a problem?</h3><p>No, and the fix text says so: link to each from a relevant parent or hub page, or remove it if it is obsolete. A page nothing links to because nothing should link to it any more is a deletion. What is not defensible is leaving it in the sitemap, which tells search engines the page matters while the rest of the site says it does not.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

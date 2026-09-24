@@ -798,6 +798,24 @@ _THANK_YOU_JS = """
     if ($('ty-key-head')) $('ty-key-head').textContent = 'Your licence key';
   }
 
+  // Plausible "Purchase" with revenue, once per payment_id. The amount is the
+  // price on offer when the Buy button was clicked (stored by the site-wide
+  // click listener), because Dodo's redirect carries none; with nothing stored
+  // it is the list price. A founding buyer who typed the code is therefore
+  // recorded at the price they clicked, not the discounted total.
+  if (status === 'succeeded') {
+    var pk = 'dk_pl_purchase_' + (pid || 'nopid');
+    var amt = __PRICE__;
+    try { amt = parseFloat(localStorage.getItem('dk_offer')) || __PRICE__; } catch (e) {}
+    var sendP = function () {
+      if (typeof plausible === 'function')
+        plausible('Purchase', { revenue: { currency: 'USD', amount: amt } });
+    };
+    try {
+      if (!localStorage.getItem(pk)) { localStorage.setItem(pk, '1'); sendP(); }
+    } catch (e) { sendP(); }
+  }
+
   if (status === 'succeeded' && typeof fbq === 'function') {
     var once = 'dk_purchase_' + (pid || 'nopid');
     var fire = function () {

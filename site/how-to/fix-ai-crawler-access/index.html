@@ -12,7 +12,7 @@
 <title>Let ChatGPT and Perplexity read your site (robots.txt, 2026)</title>
 <meta name="description" content="Search and training crawlers are separate decisions. The robots.txt that allows citation while opting out of training, and the shared snippet that gets it wrong.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b3de5bd65464">
+<meta name="build-id" content="3b710b927ea9">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-ai-crawler-access/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -722,7 +722,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});if(a.getAttribute('data-ev-price')&&/dodopayments\.com/.test(a.href)){try{localStorage.setItem('dk_offer',a.getAttribute('data-ev-price'))}catch(x){}}},true);
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -842,7 +842,7 @@ longer path pattern does. This is where hand-checking gets unreliable.</p>
 <p>Docket parses robots.txt the way Google does and tells you, per crawler, whether it can
 reach your site and what blocking it actually costs. That check is one of 99 and runs in the
 first few seconds of any audit.</p>
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-ai-crawler-access" data-ev="Buy" data-ev-button="how-to-fix-ai-crawler-access">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-ai-crawler-access" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-ai-crawler-access">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I let ChatGPT read my website?</h3><p>Allow OAI-SearchBot in robots.txt. That is the crawler that builds ChatGPT Search's index. GPTBot is a separate crawler used for training and can be blocked without affecting whether ChatGPT can cite you.</p></div><div class="faq-item"><h3>Does blocking GPTBot stop ChatGPT citing my site?</h3><p>No. GPTBot collects training data. Citation in ChatGPT Search depends on OAI-SearchBot, which is a separate user-agent and needs its own rule.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

@@ -12,7 +12,7 @@
 <title>How Docket decides what to fix first</title>
 <meta name="description" content="Severity, impact, reach and effort, and the formula that combines them. The weights an audit ranks your site with, written out so you can check them.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b3de5bd65464">
+<meta name="build-id" content="3b710b927ea9">
 <link rel="canonical" href="https://docketseo.app/learn/priority-model/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -722,7 +722,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});if(a.getAttribute('data-ev-price')&&/dodopayments\.com/.test(a.href)){try{localStorage.setItem('dk_offer',a.getAttribute('data-ev-price'))}catch(x){}}},true);
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -947,7 +947,7 @@ priority alongside them, so you can recompute any score on this page from the nu
 own report. If our arithmetic and yours disagree, one of us has a bug, and we would like to know
 which.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=learn-priority-model" data-ev="Buy" data-ev-button="learn-priority-model">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=learn-priority-model" data-ev="Buy" data-ev-price="349" data-ev-button="learn-priority-model">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How does Docket decide which SEO problem to fix first?</h3><p>It computes a priority score for every finding: severity weight multiplied by impact and by reach, divided by the effort the fix takes. Findings are then grouped into four phases — critical problems, quick wins, longer builds, and polish — and ordered by score inside each phase.</p></div><div class="faq-item"><h3>Why does a medium-severity issue rank above a high one?</h3><p>Because reach and effort are in the formula. A medium problem across dozens of pages that one template edit fixes will outrank a high-severity problem on a single page that needs a rebuild. That is intended: it matches what an experienced consultant would tell you to do with one free afternoon.</p></div><div class="faq-item"><h3>Does a problem on more pages always rank higher?</h3><p>No. Reach follows a square-root curve that stops growing entirely past 144 affected pages, so breadth matters but cannot win on its own. Without that cap, one trivial issue repeated across thousands of template-generated pages would outrank a critical problem on the homepage, which is the usual reason large-site audits are unreadable.</p></div><div class="faq-item"><h3>Are Docket's severity weights based on measured ranking data?</h3><p>No, and the page says so. They are an editorial judgement about relative harm, held consistent so that two audits of the same site agree. No study backs a claim that any particular issue costs a specific amount of traffic, and Docket does not make one.</p></div><div class="faq-item"><h3>What is a tool-limit finding and why does it not affect my score?</h3><p>It is Docket reporting its own blind spot rather than a fault in your site — a link graph it could not read, an external link it could not fetch. Those are excluded from the score deduction, because a site Docket cannot fully read should not score lower than one it can for that reason alone.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

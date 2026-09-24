@@ -12,7 +12,7 @@
 <title>How to run a JavaScript SEO audit (step by step)</title>
 <meta name="description" content="A JavaScript SEO audit compares the HTML your server sends against the rendered page, in five steps. Which of the three gaps you have decides the fix.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b3de5bd65464">
+<meta name="build-id" content="3b710b927ea9">
 <link rel="canonical" href="https://docketseo.app/how-to/javascript-seo-audit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -722,7 +722,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});if(a.getAttribute('data-ev-price')&&/dodopayments\.com/.test(a.href)){try{localStorage.setItem('dk_offer',a.getAttribute('data-ev-price'))}catch(x){}}},true);
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -867,7 +867,7 @@ crawl credits. If you would rather see how it compares to the tools you already 
 session, and a decision about which of the three gaps you are looking at before you change
 anything.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-javascript-seo-audit" data-ev="Buy" data-ev-button="how-to-javascript-seo-audit">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-javascript-seo-audit" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-javascript-seo-audit">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is a JavaScript SEO audit?</h3><p>A comparison of two views of the same URL: the HTML the server returns, and the page after JavaScript has run. Where they disagree, some crawlers see less than your visitors do. Everything else in the audit follows from the size and shape of that gap.</p></div><div class="faq-item"><h3>Does Google render JavaScript?</h3><p>Yes, on a delay and with no guarantee about when. That is not the same as saying it makes no difference: the render is a second pass, and the AI crawlers that increasingly decide whether you are quoted mostly do not render at all. A page that only exists after JavaScript is invisible to them.</p></div><div class="faq-item"><h3>My page looks fine in the browser. Is that enough?</h3><p>No, and it is the most common reason this problem goes unnoticed. The browser ran the JavaScript before you looked. Use view-source or curl to see what the server sent, which is what a non-rendering crawler gets.</p></div><div class="faq-item"><h3>The HTML has my navigation and footer but not the article. Is that a shell?</h3><p>Not a shell, and it is the case that hides. An empty shell is obvious; a page whose chrome is server-rendered looks server-rendered at a glance while the body arrives after hydration. Compare the MAIN content of the two views, not the page as a whole, or the navigation will mask the gap.</p></div><div class="faq-item"><h3>Can a tool tell me what Googlebot rendered?</h3><p>No. Nobody outside Google can measure what Google rendered or when. A tool can tell you what your server sent and what a browser builds from it; anything beyond that is a model presented as a measurement.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

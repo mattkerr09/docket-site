@@ -227,7 +227,7 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
     """
     size = " btn-lg" if big else ""
     out = [f'<div class="buy-block"><div class="hero-cta">'
-           f'<a class="btn{size}" href="{checkout_url(src)}" data-ev="Buy" '
+           f'<a class="btn{size}" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
            f'data-ev-button="{src}">Buy Docket &middot; {PRICE_STR} once</a>']
     if sample and HAS_SAMPLE:
         out.append(f'<a class="btn-ghost{size}" href="{SAMPLE_REPORT}" data-ev="Sample report" '
@@ -252,7 +252,7 @@ def buy_strip(src: str) -> str:
     sample report'"."""
     sample = (f'<a href="{SAMPLE_REPORT}" data-ev="Sample report" data-ev-button="{src}">'
               f'See a sample report</a> &middot; ' if HAS_SAMPLE else "")
-    return (f'<aside class="buy-strip"><p><a href="{checkout_url(src)}" data-ev="Buy" '
+    return (f'<aside class="buy-strip"><p><a href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
             f'data-ev-button="{src}">Buy once &mdash; {PRICE_STR}</a> &middot; '
             f'{sample}founding price {FOUNDING_NOW} for the first '
             f'{FOUNDING_SEATS} buyers with <code>{FOUNDING_CODE}</code></p></aside>')
@@ -1544,7 +1544,14 @@ ANALYTICS = (
     "document.addEventListener('click',function(e){var a=e.target.closest&&"
     "e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;"
     "var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');"
-    "plausible(a.getAttribute('data-ev'),{props:p});},true);\n"
+    "plausible(a.getAttribute('data-ev'),{props:p});"
+    # The price on offer, kept for the thank-you page: Dodo's redirect carries
+    # no amount, so "Purchase" revenue is the price the buyer clicked through
+    # at (the CEO's standard across the sites, 2026-09-25). Only a click that
+    # really goes to checkout records it.
+    "if(a.getAttribute('data-ev-price')&&/dodopayments\\.com/.test(a.href)){"
+    "try{localStorage.setItem('dk_offer',a.getAttribute('data-ev-price'))}catch(x){}}"
+    "},true);\n"
     # The chat launcher covering "Buy" at 375px is fixed in the shared widget
     # itself (worker version 79bd6dbf, 2026-09-24 23:0xZ). This site carried
     # its own override for an hour; it was removed so the two do not stack.

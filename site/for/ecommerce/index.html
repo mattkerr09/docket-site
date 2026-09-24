@@ -12,7 +12,7 @@
 <title>Docket for ecommerce: what 10 real shops actually got wrong</title>
 <meta name="description" content="We audited 10 large online shops. Zero had broken Product schema and zero had thin product pages. What did show up, and where Screaming Frog is the better tool.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b3de5bd65464">
+<meta name="build-id" content="3b710b927ea9">
 <link rel="canonical" href="https://docketseo.app/for/ecommerce/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -722,7 +722,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
-document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});if(a.getAttribute('data-ev-price')&&/dodopayments\.com/.test(a.href)){try{localStorage.setItem('dk_offer',a.getAttribute('data-ev-price'))}catch(x){}}},true);
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -838,7 +838,7 @@ which for a shop taking returns is not a small thing.</p>
 <a href="/for/developers/">a noindex reaching production</a> is the mistake that costs the most
 and is noticed the latest.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=for-ecommerce" data-ev="Buy" data-ev-button="for-ecommerce">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=for-ecommerce" data-ev="Buy" data-ev-price="349" data-ev-button="for-ecommerce">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Do online shops usually have broken product schema?</h3><p>Not in our sample. We audited 10 large retailers and none had missing, invalid or incomplete Product schema, and none had thin product pages. These are well-resourced companies rather than a random sample, but the common claim that your product markup is quietly broken did not survive contact with them.</p></div><div class="faq-item"><h3>What happens if my star ratings are not visible?</h3><p>Google requires the rating to be visible on the page carrying the AggregateRating markup, and a manual action for breaking that removes rich results across the entire site rather than just the page at fault. The common false alarm is a star widget drawn in JavaScript: the served HTML has no visible rating and the rendered page is fine. Check the rendered page before believing any tool that accuses you of this.</p></div><div class="faq-item"><h3>Can Docket extract prices from every product page?</h3><p>No. Screaming Frog does that with custom extraction and it is the right tool for auditing a catalogue against a feed. Docket deliberately does not compete there — it also has a page ceiling per crawl, which matters for a large catalogue.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
