@@ -248,17 +248,41 @@ PROBE = """
     // clips, and a link can be off the rail while still inside the window.
     navClipped: (function () {
       if (!nav) return [];
-      var rail = nav.querySelector('.nav-links');
-      if (!rail) return [];
-      var edge = rail.getBoundingClientRect().right;
       var out = [];
-      var as = rail.querySelectorAll('a');
-      for (var ni = 0; ni < as.length; ni++) {
-        // 1px of tolerance for subpixel layout; a real clip is tens of px.
-        if (as[ni].getBoundingClientRect().right > edge + 1) {
-          out.push((as[ni].textContent || '').trim());
+      var rail = nav.querySelector('.nav-links');
+      // The rail, where it is shown (wide windows).
+      if (rail && getComputedStyle(rail).display !== 'none') {
+        var edge = rail.getBoundingClientRect().right;
+        var as = rail.querySelectorAll('a');
+        for (var ni = 0; ni < as.length; ni++) {
+          // 1px of tolerance for subpixel layout; a real clip is tens of px.
+          if (as[ni].getBoundingClientRect().right > edge + 1) {
+            out.push((as[ni].textContent || '').trim());
+          }
         }
       }
+      // ⚠️ ON PHONES THE RAIL IS HIDDEN, AND THIS CHECK HAD NOTHING TO LOOK AT.
+      // Since 2026-09-24 the links sit behind a menu toggle below 780px, so the
+      // rail check above passed by measuring nothing — its own self-test said
+      // so ("injected … and the gate still passed"). What can go wrong now is
+      // the top row: logo, toggle and Buy button must each sit inside the
+      // window, in order without overlapping, and the button must stay one line.
+      var vw = document.documentElement.clientWidth;
+      var row = [nav.querySelector('.nav-brand'), nav.querySelector('.nav-more > summary'),
+                 nav.querySelector('.btn')].filter(function (el) {
+        return el && getComputedStyle(el).display !== 'none'
+          && getComputedStyle(el.parentElement).display !== 'none';
+      });
+      var prev = null;
+      row.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        var label = (el.textContent || '').trim() || el.className || el.tagName;
+        if (r.right > vw + 1 || r.left < -1) out.push(label + ' (off screen)');
+        if (prev && r.left < prev.right - 1) out.push(label + ' (overlaps)');
+        prev = r;
+      });
+      var btn = nav.querySelector('.btn');
+      if (btn && btn.getBoundingClientRect().height > 58) out.push('nav button wraps');
       return out;
     })(),
     footerLinks: document.querySelectorAll('footer a').length,
@@ -438,9 +462,9 @@ def check(name: str, width: int, r: dict) -> list[str]:
     # and this one reached production because the pre-deploy gate had no
     # opinion about it while verify_live.py did — the wrong order to find out.
     if r.get("navClipped"):
-        bad.append(f"{name}: nav link(s) past the edge of the nav rail: "
-                   f"{r['navClipped']} — they are only reachable by a sideways "
-                   f"swipe, with nothing on screen to suggest one")
+        bad.append(f"{name}: nav item(s) clipped or crowded: {r['navClipped']} — "
+                   f"past the edge of the rail or the window, overlapping, or the "
+                   f"button wrapping onto two lines")
 
     # 4. Structure, so a page that renders blank cannot pass the colour test.
     if r["h1"] != 1:
@@ -501,16 +525,17 @@ INJECTIONS = [
     # scroll behaviour back, which is exactly the state that shipped "About"
     # off the right edge at 375px.
     ("index.html", "homepage", "nav clipping",
-     # font-size is `var(--t-base)` and not `.88rem` because the type scale
-     # landed on 2026-08-18. That edit is what caught this: the injection is a
-     # literal string match, so rewriting the rule it targets silently stops
-     # the bug being injectable, and the gate then proves nothing. It refused
-     # the deploy rather than passing on three of four, which is the whole
-     # point of a self-test — and it is the only reason anyone noticed.
-     ".nav-links{order:3;width:100%;gap:.55rem .8rem;font-size:var(--t-base);\n"
-     "    flex-wrap:wrap;padding-bottom:.15rem}",
-     ".nav-links{order:3;width:100%;gap:.55rem .8rem;font-size:var(--t-base);\n"
-     "    flex-wrap:nowrap;overflow-x:auto;padding-bottom:.15rem}"),
+     # The phone header is one row since 2026-09-24 — logo, menu toggle, Buy —
+     # so the regression replayed is that row outgrowing the window: a gap
+     # wide enough to push the button off the right edge (measured: its right
+     # edge lands at 419px in a 375px window). The previous injection targeted
+     # the old link rail, which phones no longer show; this self-test is what
+     # refused the deploy and said so, exactly as it did on 2026-08-18.
+     # Aimed at the narrowest rule, which is the one in force at 375px — the
+     # first version targeted the 780px rule and a later 420px rule overrode
+     # the injection, so the self-test failed rather than the gate passing.
+     "@media(max-width:420px){.nav-inner{gap:.4rem}",
+     "@media(max-width:420px){.nav-inner{gap:5rem}"),
 ]
 
 

@@ -12,7 +12,7 @@
 <title>The contact address that bounces every message</title>
 <meta name="description" content="An address on a domain with no MX record bounces silently. Two measured surveys: 6.5% of the Tranco top publish one, 20.9% of UK shops do, and 7 of those are dead.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="8f14baf808be">
+<meta name="build-id" content="b3de5bd65464">
 <link rel="canonical" href="https://docketseo.app/learn/dead-contact-address/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -272,7 +272,11 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
     display:grid;padding:.4rem 1rem .8rem;background:var(--bg);border-bottom:1px solid var(--border)}
   .nav-more-links a{min-height:44px;display:flex;align-items:center;color:var(--text-mid)}
 }
-@media(max-width:420px){nav .btn{padding:.55rem .8rem;font-size:.92rem}}
+/* One line, always: the gate renders in WebKit — the engine an iPhone uses —
+   where this label measured wider than in Chrome and wrapped to two lines
+   on three pages at 375px. nowrap plus a little less padding and type
+   keeps the row inside 343px with room to spare. */
+@media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
