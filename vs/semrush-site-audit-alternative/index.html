@@ -12,7 +12,7 @@
 <title>Docket vs Semrush Site Audit: a one-time alternative</title>
 <meta name="description" content="Semrush Site Audit is 140+ checks inside a platform from $139/mo. Docket is a one-time Mac audit with a ranked fix plan. Where Semrush genuinely wins.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="cf47f23e3e51">
+<meta name="build-id" content="ba8afcc9a988">
 <link rel="canonical" href="https://docketseo.app/vs/semrush-site-audit-alternative/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -554,6 +554,16 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+.buy-block{margin:0 0 1.1rem}
+@media (max-width:700px){html.buy-in-view #kc-agent-host{opacity:0;pointer-events:none;transition:opacity .15s}}
+#buy{scroll-margin-top:4.5rem}.buy-block .hero-cta{margin-bottom:.7rem}
+.founding-note{margin:.2rem 0 .5rem}.founding-note code{font-size:.92em}
+.price-anchor{margin:.2rem 0 .5rem}
+.cta-band .buy-block .hero-cta{justify-content:center}
+.callout .buy-block{margin-top:.9rem}
+.buy-strip{margin:2.4rem 0 0;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:var(--radius-lg);font-size:var(--t-md)}
+.buy-strip p{margin:0}
+ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.steps .buy-block{margin-top:.8rem}
 .btn-lg{padding:1rem 2.05rem;font-size:var(--t-lg);border-radius:var(--radius-lg);letter-spacing:-.01em}
 .hero-note{font-size:var(--t-base);color:var(--text-dim)}
 
@@ -689,6 +699,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+(function(){function chk(){var h=document.getElementById('kc-agent-host');if(!h)return;var a=h.getBoundingClientRect(),hit=false;document.querySelectorAll('[data-ev=Buy]').forEach(function(b){var r=b.getBoundingClientRect();if(r.width&&r.bottom>a.top-8&&r.top<a.bottom+8&&r.right>a.left-8&&r.left<a.right+8)hit=true;});document.documentElement.classList.toggle('buy-in-view',hit);}document.addEventListener('scroll',chk,{passive:true,capture:true});addEventListener('resize',chk);addEventListener('load',chk);})();
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -712,7 +724,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div>
-<a class="btn" href="/download/">Download Docket SEO</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/vs/">Compare</a> / Semrush</div><h1>Docket vs Semrush Site Audit</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-10">10 August 2026</time></p>
 
@@ -745,9 +757,9 @@ someone else's logo, dashboards, alerts.</li>
 </ul>
 
 <p>Their knowledge base also says Site Audit can "check over 140+ website issues", against
-Docket's 99. A count is a weak measure of an audit and more checks with no ordering is
-just a longer list. It is still a larger number, and writing around that would be its own kind
-of tell.</p>
+Docket's 99. A count is a weak measure of an audit &mdash; what decides its worth is
+the order the findings arrive in and what each one tells you to do. It is still a larger
+number, and writing around that would be its own kind of tell.</p>
 
 <p>One further concession, which retires something this site has leaned on elsewhere. Semrush's
 Site Audit page now checks AI crawler access per bot, naming ChatGPT-User, OAI-SearchBot,
@@ -768,10 +780,11 @@ bleeding, quick wins, build, polish. Reach is compressed as well, so a trivial i
 happens to appear on 4,000 pages does not outrank a serious one on the homepage. The report
 opens as a sequence instead of a filter you have to operate.</p>
 
-<h2>Nothing leaves your Mac</h2>
+<h2>The audit stays on your Mac</h2>
 <p>Docket has no account, no sign-in and no telemetry. The crawl runs on your machine and each
 run is written to <code>~/.docket/</code> as plain JSON you can diff, script against, or delete.
-Five checks reach outside by default and <code>--offline</code> turns all five off.</p>
+Five checks reach outside by default and <code>--offline</code> turns all five off;
+the licence key is checked with the payment provider about once a day.</p>
 <p>Two consequences that matter in practice. Auditing a prospect's site before a pitch is a
 quieter act on your own laptop than inside a vendor's project workspace. And re-running costs
 nothing, so a fix gets verified the moment it ships rather than saved up until a crawl is worth
@@ -843,11 +856,12 @@ stand; the local tool answers what to change next.</p>
 claims about this product were read from its own pages on that date: the entry plan is listed at $139/mo, or $117.33/mo billed annually, and the top standard plan at $549/mo; the entry plan lists "500 keywords to track daily" (<a href="https://www.semrush.com/pricing/" rel="nofollow noopener">source</a>); Site Audit can "check over 140+ website issues", ordered "Errors (most harmful to a website) - Warnings (harmful) - Notices (least harmful)" (<a href="https://www.semrush.com/kb/542-site-audit-issues-list" rel="nofollow noopener">source</a>); the crawl allowance is 20,000 pages per audit on Pro and Guru and 100,000 on Business, against 100,000 / 300,000 / 1,000,000 pages a month, resetting on the 1st rather than rolling over (<a href="https://www.semrush.com/kb/338-how-many-pages-can-i-crawl-in-an-audit" rel="nofollow noopener">source</a>); AI crawler access is checked per bot, naming ChatGPT-User, OAI-SearchBot, Googlebot, Google-Extended, Perplexity-User, PerplexityBot, Claude-User and Claude-SearchBot (<a href="https://www.semrush.com/features/site-audit/" rel="nofollow noopener">source</a>); audits can be scheduled daily, weekly or monthly, with white-label reporting and tracking of "how each issue category trends over time" (<a href="https://www.semrush.com/solutions/technical-seo/" rel="nofollow noopener">source</a>).
 Products change and pricing changes; if something here has gone out of date, <a href="/about/">tell us</a> and it will be corrected. Everything else on this page is a comparison of approach, not a claim about their roadmap.</p>
 
-<div class="callout">
-<div class="callout-title">Try it against your own site</div>
-<p>Docket is a one-time download for macOS. No account, no crawl credits, and the crawl runs
+<div class="callout" id="buy">
+<div class="callout-title">$349 once. No subscription.</div>
+<p>Docket is a one-time purchase for macOS: no account, no crawl credits, and the crawl runs
 on your machine. Five optional checks fetch data it cannot produce alone; <code>--offline</code>
-turns all five off. <a href="/download/">Download Docket →</a></p>
+turns all five off.</p>
+<div class="buy-block"><div class="hero-cta"><a class="btn" href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=vs-page" data-ev="Buy" data-ev-button="vs-page">Buy Docket &middot; $349 once</a></div><p class="hero-note founding-note">Founding price <strong>$174.50 once</strong>, first 25 buyers. At checkout click &lsquo;Have a discount code?&rsquo; and enter <code>FOUNDINGDOCKET</code>. Then $349.</p><p class="hero-note price-anchor">Screaming Frog is $279 a year. Ahrefs plans with Site Audit run $29&ndash;$449 a month. Docket is $349 once. <span class="qual">Their prices read 24 September 2026.</span></p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong> &mdash; <a href="/legal/refunds/">refund policy</a></p></div>
 </div>
 <h2>Other comparisons</h2>
 <ul>

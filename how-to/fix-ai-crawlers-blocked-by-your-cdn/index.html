@@ -12,7 +12,7 @@
 <title>AI crawlers getting 403 when robots.txt allows them</title>
 <meta name="description" content="Your CDN can refuse GPTBot and ClaudeBot before robots.txt is ever read. The two-request test that proves it, and the trap that makes one request useless.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="cf47f23e3e51">
+<meta name="build-id" content="ba8afcc9a988">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-ai-crawlers-blocked-by-your-cdn/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -554,6 +554,16 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+.buy-block{margin:0 0 1.1rem}
+@media (max-width:700px){html.buy-in-view #kc-agent-host{opacity:0;pointer-events:none;transition:opacity .15s}}
+#buy{scroll-margin-top:4.5rem}.buy-block .hero-cta{margin-bottom:.7rem}
+.founding-note{margin:.2rem 0 .5rem}.founding-note code{font-size:.92em}
+.price-anchor{margin:.2rem 0 .5rem}
+.cta-band .buy-block .hero-cta{justify-content:center}
+.callout .buy-block{margin-top:.9rem}
+.buy-strip{margin:2.4rem 0 0;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:var(--radius-lg);font-size:var(--t-md)}
+.buy-strip p{margin:0}
+ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.steps .buy-block{margin-top:.8rem}
 .btn-lg{padding:1rem 2.05rem;font-size:var(--t-lg);border-radius:var(--radius-lg);letter-spacing:-.01em}
 .hero-note{font-size:var(--t-base);color:var(--text-dim)}
 
@@ -679,7 +689,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 .faq-item p{font-size:var(--t-md);margin:0}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"When your CDN blocks AI crawlers your robots.txt allows","description":"Your CDN can refuse GPTBot and ClaudeBot before robots.txt is ever read. The two-request test that proves it, and the trap that makes one request useless.","datePublished":"2026-09-14","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-ai-crawlers-blocked-by-your-cdn/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why is GPTBot getting a 403 when my robots.txt allows it?","acceptedAnswer":{"@type":"Answer","text":"Because robots.txt and your CDN's bot rules are different systems that cannot see each other. robots.txt is a file a crawler fetches and obeys; a CDN bot rule is a decision about the request, made before anything is served. Managed bot protection ships with a known-good list, and AI crawlers are newer than most of those lists."}},{"@type":"Question","name":"How do I check whether my CDN is blocking an AI crawler?","acceptedAnswer":{"@type":"Answer","text":"Request the same URL twice from the same machine — once with the crawler's user-agent, once with an ordinary browser's — and compare the status codes. Browser 200 with crawler 403 is the finding. Both 403 means your protection is refusing the tool rather than the crawler, and the answer has to come from your CDN's logs."}},{"@type":"Question","name":"Does a 403 from curl prove the crawler is blocked?","acceptedAnswer":{"@type":"Answer","text":"No, and this is the most common mistake in checking it. Bot protection usually refuses curl whatever user-agent it sends, so a single 403 may only tell you that your CDN dislikes command-line tools. The comparison is the evidence, not the status code on its own."}},{"@type":"Question","name":"Is blocking AI crawlers always a mistake?","acceptedAnswer":{"@type":"Answer","text":"No. Blocking training crawlers is a legitimate editorial decision. The defect is blocking search and live-fetch crawlers — the ones that decide whether you can be cited in an answer — without choosing to, while your robots.txt says the opposite."}},{"@type":"Question","name":"Will an SEO tool that reads robots.txt find this?","acceptedAnswer":{"@type":"Answer","text":"No. Nothing in the robots.txt file is wrong, so nothing that reads it will report anything. Finding it requires asking your own server as each crawler and comparing the answer to an ordinary request."}}]}</script>
@@ -689,6 +699,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+(function(){function chk(){var h=document.getElementById('kc-agent-host');if(!h)return;var a=h.getBoundingClientRect(),hit=false;document.querySelectorAll('[data-ev=Buy]').forEach(function(b){var r=b.getBoundingClientRect();if(r.width&&r.bottom>a.top-8&&r.top<a.bottom+8&&r.right>a.left-8&&r.left<a.right+8)hit=true;});document.documentElement.classList.toggle('buy-in-view',hit);}document.addEventListener('scroll',chk,{passive:true,capture:true});addEventListener('resize',chk);addEventListener('load',chk);})();
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -712,7 +724,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div>
-<a class="btn" href="/download/">Download Docket SEO</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / CDN blocking AI crawlers</div><h1>When your CDN blocks AI crawlers your robots.txt allows</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-14">14 September 2026</time></p>
 
@@ -829,7 +841,7 @@ a site with both problems is invisible twice over. The full list of what Docket 
 <a href="/learn/what-docket-checks/">what Docket checks</a>, inside
 <a href="/learn/seo-audit/">the technical audit</a>.</p>
 
-<p><a class="btn" href="/download/">Download Docket</a></p>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-ai-crawlers-blocked-by-your-cdn" data-ev="Buy" data-ev-button="how-to-fix-ai-crawlers-blocked-by-your-cdn">Buy once &mdash; $349</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Why is GPTBot getting a 403 when my robots.txt allows it?</h3><p>Because robots.txt and your CDN's bot rules are different systems that cannot see each other. robots.txt is a file a crawler fetches and obeys; a CDN bot rule is a decision about the request, made before anything is served. Managed bot protection ships with a known-good list, and AI crawlers are newer than most of those lists.</p></div><div class="faq-item"><h3>How do I check whether my CDN is blocking an AI crawler?</h3><p>Request the same URL twice from the same machine — once with the crawler's user-agent, once with an ordinary browser's — and compare the status codes. Browser 200 with crawler 403 is the finding. Both 403 means your protection is refusing the tool rather than the crawler, and the answer has to come from your CDN's logs.</p></div><div class="faq-item"><h3>Does a 403 from curl prove the crawler is blocked?</h3><p>No, and this is the most common mistake in checking it. Bot protection usually refuses curl whatever user-agent it sends, so a single 403 may only tell you that your CDN dislikes command-line tools. The comparison is the evidence, not the status code on its own.</p></div><div class="faq-item"><h3>Is blocking AI crawlers always a mistake?</h3><p>No. Blocking training crawlers is a legitimate editorial decision. The defect is blocking search and live-fetch crawlers — the ones that decide whether you can be cited in an answer — without choosing to, while your robots.txt says the opposite.</p></div><div class="faq-item"><h3>Will an SEO tool that reads robots.txt find this?</h3><p>No. Nothing in the robots.txt file is wrong, so nothing that reads it will report anything. Finding it requires asking your own server as each crawler and comparing the answer to an ordinary request.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

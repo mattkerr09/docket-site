@@ -12,7 +12,7 @@
 <title>Thank you — Docket</title>
 <meta name="description" content="Your Docket purchase is complete. Where to download the app and how to reach us.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="cf47f23e3e51">
+<meta name="build-id" content="ba8afcc9a988">
 <meta name="robots" content="noindex">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -554,6 +554,16 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+.buy-block{margin:0 0 1.1rem}
+@media (max-width:700px){html.buy-in-view #kc-agent-host{opacity:0;pointer-events:none;transition:opacity .15s}}
+#buy{scroll-margin-top:4.5rem}.buy-block .hero-cta{margin-bottom:.7rem}
+.founding-note{margin:.2rem 0 .5rem}.founding-note code{font-size:.92em}
+.price-anchor{margin:.2rem 0 .5rem}
+.cta-band .buy-block .hero-cta{justify-content:center}
+.callout .buy-block{margin-top:.9rem}
+.buy-strip{margin:2.4rem 0 0;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:var(--radius-lg);font-size:var(--t-md)}
+.buy-strip p{margin:0}
+ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.steps .buy-block{margin-top:.8rem}
 .btn-lg{padding:1rem 2.05rem;font-size:var(--t-lg);border-radius:var(--radius-lg);letter-spacing:-.01em}
 .hero-note{font-size:var(--t-base);color:var(--text-dim)}
 
@@ -686,6 +696,8 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
+(function(){function chk(){var h=document.getElementById('kc-agent-host');if(!h)return;var a=h.getBoundingClientRect(),hit=false;document.querySelectorAll('[data-ev=Buy]').forEach(function(b){var r=b.getBoundingClientRect();if(r.width&&r.bottom>a.top-8&&r.top<a.bottom+8&&r.right>a.left-8&&r.left<a.right+8)hit=true;});document.documentElement.classList.toggle('buy-in-view',hit);}document.addEventListener('scroll',chk,{passive:true,capture:true});addEventListener('resize',chk);addEventListener('load',chk);})();
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -709,7 +721,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div>
-<a class="btn" href="/download/">Download Docket SEO</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / Thank you</div><h1>Thank you</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-19">19 August 2026</time></p>
 
@@ -733,7 +745,7 @@ terminal, <code>docket licence --key YOUR-KEY</code> does the same thing.</p>
 <p><a class="btn" href="/download/">Download Docket</a></p>
 
 <h2>If something is wrong</h2>
-<p>Email <a href="mailto:hello@docketseo.app">hello@docketseo.app</a> and say what
+<p>Email <a href="mailto:support@docketseo.app">support@docketseo.app</a> and say what
 happened. If the purchase was a mistake, the
 <a href="/legal/refunds/">refund policy</a> is on this site and it is short.</p>
 
@@ -750,7 +762,7 @@ happened. If the purchase was a mistake, the
     if (h1) h1.textContent = 'That payment did not go through';
     if ($('ty-lede')) $('ty-lede').textContent =
       'Your card was not charged. You can try again from the pricing section, or '
-      + 'email hello@docketseo.app and we will sort it out.';
+      + 'email support@docketseo.app and we will sort it out.';
     if ($('ty-key-head')) $('ty-key-head').hidden = true;
     return;
   }
