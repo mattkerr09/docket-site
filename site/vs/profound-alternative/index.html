@@ -12,7 +12,7 @@
 <title>Docket vs Profound: mentions tracked, or access checked?</title>
 <meta name="description" content="Profound tracks whether AI assistants mention your brand, by demo and custom pricing. Docket checks whether their crawlers can reach you. Different purchases.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="ba8afcc9a988">
+<meta name="build-id" content="24306855e554">
 <link rel="canonical" href="https://docketseo.app/vs/profound-alternative/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -253,6 +253,26 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
   .hero-cta{gap:.6rem}
   .hero-cta>*{width:100%;text-align:center}
 }
+/* A COMPACT MENU ON PHONES. The wrapped link rows above made the header 168px
+   tall at 375px — 106px of it links, each row 44px for the tap target — and
+   pushed the hero's Buy button down to 732-790px of an 812px screen (the CEO's
+   pass, 2026-09-24; measured the same day). The links move behind one 44px
+   toggle in the top row; the <details> element needs no script, and the same
+   links stay in the page for anyone and anything reading it. */
+.nav-more{display:none}
+@media(max-width:780px){
+  .nav-inner{flex-wrap:nowrap;padding-bottom:0;gap:.5rem}
+  .nav-links{display:none}
+  .nav-more{display:block;margin-left:auto}
+  .nav-more>summary{list-style:none;cursor:pointer;min-width:44px;min-height:44px;display:flex;
+    align-items:center;justify-content:center;border:1px solid var(--border);
+    border-radius:var(--radius-md);color:var(--text);font-size:1.15rem}
+  .nav-more>summary::-webkit-details-marker{display:none}
+  .nav-more[open] .nav-more-links{position:absolute;left:0;right:0;top:100%;z-index:30;
+    display:grid;padding:.4rem 1rem .8rem;background:var(--bg);border-bottom:1px solid var(--border)}
+  .nav-more-links a{min-height:44px;display:flex;align-items:center;color:var(--text-mid)}
+}
+@media(max-width:420px){nav .btn{padding:.55rem .8rem;font-size:.92rem}}
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -555,7 +575,6 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
 .buy-block{margin:0 0 1.1rem}
-@media (max-width:700px){html.buy-in-view #kc-agent-host{opacity:0;pointer-events:none;transition:opacity .15s}}
 #buy{scroll-margin-top:4.5rem}.buy-block .hero-cta{margin-bottom:.7rem}
 .founding-note{margin:.2rem 0 .5rem}.founding-note code{font-size:.92em}
 .price-anchor{margin:.2rem 0 .5rem}
@@ -700,7 +719,6 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
 plausible.init()
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});},true);
-(function(){function chk(){var h=document.getElementById('kc-agent-host');if(!h)return;var a=h.getBoundingClientRect(),hit=false;document.querySelectorAll('[data-ev=Buy]').forEach(function(b){var r=b.getBoundingClientRect();if(r.width&&r.bottom>a.top-8&&r.top<a.bottom+8&&r.right>a.left-8&&r.left<a.right+8)hit=true;});document.documentElement.classList.toggle('buy-in-view',hit);}document.addEventListener('scroll',chk,{passive:true,capture:true});addEventListener('resize',chk);addEventListener('load',chk);})();
 </script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
@@ -724,6 +742,16 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div>
+<details class="nav-more"><summary aria-label="Menu"><span aria-hidden="true">&#9776;</span></summary>
+<div class="nav-more-links">
+<a href="/index/">The Index</a>
+<a href="/learn/">Learn</a>
+<a href="/vs/">Compare</a>
+<a href="/best/">Best</a>
+<a href="/how-to/">Fix it</a>
+<a href="/for/">For you</a>
+<a href="/about/">About</a>
+</div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/vs/">Compare</a> / Profound</div><h1>Docket vs Profound</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-16">16 September 2026</time></p>

@@ -517,22 +517,15 @@ CHECKOUT = ("https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79"
 #: and methods appear after a country and email are entered — a screen I will
 #: not drive, because it means typing personal details into a live checkout.
 #: So "I saw nothing" is a fact about where my probe stops, not about the page.
-#: ⚠️ OFF AGAIN 2026-09-24, on the CEO's order relaying Matthew's plan ("prove
-#: Dodo offers it — docs or API, not by entering personal data at checkout —
-#: or remove every copy"). What is and is not known:
-#:   * Matthew saw the methods on 08-23 (above) — a first-hand report, and the
-#:     reason this went live.
-#:   * Crisp's records carry three later test checkouts showing neither.
-#:   * Nothing here can re-check it: the live checkout, read 2026-09-24, still
-#:     lists no payment method before contact details are typed, and Dodo's
-#:     public docs describe Dodo, not this merchant account.
-#:   * And the copy would now be wrong for the buyers most likely to use it:
-#:     "four payments of $87.25" is a quarter of $349, but a founding buyer
-#:     pays $174.50.
-#: A consumer-finance promise needs proof on the day it is made. Flip back to
-#: True only when someone has seen Klarna or Afterpay offered on this product's
-#: checkout again, and write down who and when.
-BNPL_LIVE = False
+#: BACK ON 2026-09-24 23:04Z, on Matthew's word (recorded in ~/ops
+#: launch/MATTHEW-ORDERS-2026-09-07.md, commit 47d187e): "put these back, the
+#: bnpl options are offered after putting in your info". It had been switched
+#: off an hour earlier because no check from here could see the methods — the
+#: live checkout lists none before contact details are typed, and Crisp's test
+#: checkouts stopped at the same step. Matthew's point is that step: the methods
+#: appear at the payment screen, after the buyer's details, which is where he
+#: has seen them. Restored exactly as it was.
+BNPL_LIVE = True
 
 #: ⚠️ FOUR PAYMENTS EVERY TWO WEEKS — NOT MONTHLY. Klarna's and Afterpay's
 #: product is Pay in 4: four instalments a fortnight apart, six weeks end to end.
@@ -850,6 +843,26 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
   .hero-cta{gap:.6rem}
   .hero-cta>*{width:100%;text-align:center}
 }
+/* A COMPACT MENU ON PHONES. The wrapped link rows above made the header 168px
+   tall at 375px — 106px of it links, each row 44px for the tap target — and
+   pushed the hero's Buy button down to 732-790px of an 812px screen (the CEO's
+   pass, 2026-09-24; measured the same day). The links move behind one 44px
+   toggle in the top row; the <details> element needs no script, and the same
+   links stay in the page for anyone and anything reading it. */
+.nav-more{display:none}
+@media(max-width:780px){
+  .nav-inner{flex-wrap:nowrap;padding-bottom:0;gap:.5rem}
+  .nav-links{display:none}
+  .nav-more{display:block;margin-left:auto}
+  .nav-more>summary{list-style:none;cursor:pointer;min-width:44px;min-height:44px;display:flex;
+    align-items:center;justify-content:center;border:1px solid var(--border);
+    border-radius:var(--radius-md);color:var(--text);font-size:1.15rem}
+  .nav-more>summary::-webkit-details-marker{display:none}
+  .nav-more[open] .nav-more-links{position:absolute;left:0;right:0;top:100%;z-index:30;
+    display:grid;padding:.4rem 1rem .8rem;background:var(--bg);border-bottom:1px solid var(--border)}
+  .nav-more-links a{min-height:44px;display:flex;align-items:center;color:var(--text-mid)}
+}
+@media(max-width:420px){nav .btn{padding:.55rem .8rem;font-size:.92rem}}
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -1152,7 +1165,6 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
 .buy-block{margin:0 0 1.1rem}
-@media (max-width:700px){html.buy-in-view #kc-agent-host{opacity:0;pointer-events:none;transition:opacity .15s}}
 #buy{scroll-margin-top:4.5rem}.buy-block .hero-cta{margin-bottom:.7rem}
 .founding-note{margin:.2rem 0 .5rem}.founding-note code{font-size:.92em}
 .price-anchor{margin:.2rem 0 .5rem}
@@ -1300,17 +1312,25 @@ def _mark(size: int = 22, color: str = "var(--brand)") -> str:
     )
 
 
-NAV = f"""<nav><div class="wrap-wide nav-inner">
-<a class="nav-brand" href="/" aria-label="Docket SEO">{_mark(23)}<span>Docket<i>SEO</i></span></a>
-<div class="nav-links">
-<a href="/index/">The Index</a>
+#: The section links, written once: the desktop row and the phone menu both
+#: print them, and two hand-kept lists are how one of them loses a link.
+_NAV_LINKS = """<a href="/index/">The Index</a>
 <a href="/learn/">Learn</a>
 <a href="/vs/">Compare</a>
 <a href="/best/">Best</a>
 <a href="/how-to/">Fix it</a>
 <a href="/for/">For you</a>
-<a href="/about/">About</a>
+<a href="/about/">About</a>"""
+
+NAV = f"""<nav><div class="wrap-wide nav-inner">
+<a class="nav-brand" href="/" aria-label="Docket SEO">{_mark(23)}<span>Docket<i>SEO</i></span></a>
+<div class="nav-links">
+{_NAV_LINKS}
 </div>
+<details class="nav-more"><summary aria-label="Menu"><span aria-hidden="true">&#9776;</span></summary>
+<div class="nav-more-links">
+{_NAV_LINKS}
+</div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; ${PRICE}</a>
 </div></nav>"""
 
@@ -1521,26 +1541,10 @@ ANALYTICS = (
     "e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;"
     "var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');"
     "plausible(a.getAttribute('data-ev'),{props:p});},true);\n"
-    # ⚠️ THE CHAT BUTTON COVERED "BUY" ON A PHONE. The assistant's launcher is a
-    # 48px circle fixed to the bottom-right corner, and at 375px every buy button
-    # is full width, so while scrolling the button passes underneath it and the
-    # right-hand end cannot be tapped (the CEO's visual pass, 2026-09-24; measured
-    # the same day: #kc-agent-host fixed at 311,748 48x48). The widget is served
-    # by the worker, so it is not ours to restyle; what is ours is when it shows.
-    # While any buy button is on screen on a narrow window, it steps aside.
-    # Measured by geometry on scroll, not IntersectionObserver: this site's CSS
-    # records that IntersectionObserver does not fire in the webview used to
-    # verify it, and an effect that cannot be shown working is not shipped.
-    # It hides only when a buy button actually overlaps the launcher's box.
-    "(function(){function chk(){var h=document.getElementById('kc-agent-host');"
-    "if(!h)return;var a=h.getBoundingClientRect(),hit=false;"
-    "document.querySelectorAll('[data-ev=Buy]').forEach(function(b){var r=b.getBoundingClientRect();"
-    "if(r.width&&r.bottom>a.top-8&&r.top<a.bottom+8&&r.right>a.left-8&&r.left<a.right+8)hit=true;});"
-    "document.documentElement.classList.toggle('buy-in-view',hit);}"
-    # Directly on each scroll, no requestAnimationFrame: a handful of buttons is
-    # cheap to measure, and a hidden or throttled page never runs a frame.
-    "document.addEventListener('scroll',chk,{passive:true,capture:true});addEventListener('resize',chk);"
-    "addEventListener('load',chk);})();\n"
+    # The chat launcher covering "Buy" at 375px is fixed in the shared widget
+    # itself (worker version 79bd6dbf, 2026-09-24 23:0xZ). This site carried
+    # its own override for an hour; it was removed so the two do not stack.
+
     '</script>\n'
     # Sled affiliate attribution, added 2026-08-14. Sets a ta_ref cookie ONLY when a
     # visitor arrives through an affiliate link; an ordinary visitor gets none. The

@@ -178,6 +178,7 @@ def body() -> str:
   conversion, brand, AI search visibility and campaign tracking — then one ranked plan with the
   markup to paste. Not four tools. One download.</p>
   {buy_block("home-hero")}
+  {BNPL_BLOCK}
   <p class="hero-note">{MACOS}+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
 </div>
 </div>
@@ -688,6 +689,7 @@ needed, and nothing about your site leaves your Mac.</p>
             pages crawled, pages queued, errors, and seconds elapsed.">
 </figure>
 {buy_block("home-closer")}
+{BNPL_BLOCK}
 </div>
 <!-- Windows waiting list. The script renders into this div and does nothing
      without it, so placement is decided here rather than guessed. -->
