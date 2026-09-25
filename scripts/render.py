@@ -1316,6 +1316,16 @@ def _mark(size: int = 22, color: str = "var(--brand)") -> str:
     )
 
 
+#: The founding bar, on every page. Matthew, 2026-09-25 (relayed by the CEO):
+#: "make the discount banner go across all pages of every website, not just the
+#: home pages" — it loaded on the homepage only, 0 of 14 inner pages. The worker's
+#: script mounts a sticky bar at the top of <body> itself; this element only
+#: supplies the prices. Left off /thank-you/: someone who has just paid full
+#: price must not be shown a discount. The one redirect stub
+#: (/learn/what-scout-checks/) is not built through render() and gets nothing.
+FOUNDING_MOUNT = (f'<div data-founding data-was="{FOUNDING_WAS}" data-now="{FOUNDING_NOW}" hidden></div>\n'
+                  '<script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>')
+
 #: The section links, written once: the desktop row and the phone menu both
 #: print them, and two hand-kept lists are how one of them loses a link.
 _NAV_LINKS = """<a href="/index/">The Index</a>
@@ -1872,6 +1882,7 @@ def render(
 {body}{faq_html}{closer}
 {closing}
 {FOOTER}
+{"" if (cat, slug) == ("", "thank-you") else FOUNDING_MOUNT}
 <script>
 /* Scroll reveal. Every reference site animates content in; this one shipped no
    behavioural JavaScript at all, which is part of why it read as inert.
