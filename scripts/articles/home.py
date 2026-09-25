@@ -47,6 +47,13 @@ BNPL_BLOCK = (f'<p class="hero-note">{BNPL_NOTE}</p>' if BNPL_NOTE else "")
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
+#: What the hero video shows, read off its own frames. `record_hero.mjs --site`
+#: in the app repo writes this file in the same run as the footage, so the
+#: caption below re-captions itself whenever the video is re-shot, and
+#: verify_numbers.py fails the deploy when the check count in the video's
+#: status bar stops matching the one this page prints.
+HERO = json.loads((DATA.parent / "hero-recording.json").read_text())
+
 
 
 #: The product's own score bands — `seo_engine.scoring.SCORE_BANDS` — restated
@@ -193,13 +200,13 @@ def body() -> str:
 <figure class="hero-media">
   <video class="hero-video" autoplay loop muted playsinline preload="metadata"
          poster="/assets/app-demo-poster.jpg" width="1280" height="800"
-         aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs across 57 pages,
-                     and a report appears scoring 96 out of 100, grade A.">
+         aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs across {HERO['pages']} pages,
+                     and a report appears scoring {HERO['score']} out of 100, grade {HERO['grade']}.">
     <source src="/assets/app-demo.webm" data-src-hi="/assets/app-demo-hi.webm" type="video/webm">
     <source src="/assets/app-demo.mp4" type="video/mp4">
   </video>
-  <figcaption>Docket auditing this site. <strong>57&nbsp;pages, 34&nbsp;seconds, 96/100</strong>
-  — screen recording of the shipped app not a mockup.</figcaption>
+  <figcaption>Docket auditing this site. <strong>{HERO['pages']}&nbsp;pages, {HERO['seconds']}&nbsp;seconds, {HERO['score']}/100</strong>
+  — screen recording of the shipped app, not a mockup.</figcaption>
 </figure>
 </div>
 <script>
@@ -250,15 +257,16 @@ def body() -> str:
      figcaption is the correct one: frame 12 of app-demo.mp4 is the real window,
      status bar and all.
 
-     ⚠️ THAT STATUS BAR READS "Ready · 96 checks". The site derives its check
-     count from data/checks.csv and prints the current total many times on this
-     same page. This note names neither number: the gap widens with every check
-     added, and a figure typed here would go stale exactly as silently as the
-     one in the video. A number inside a video cannot drift back into line and no gate
-     can see it: verify_numbers.py reads HTML. Re-recording is the only fix and
-     it needs screen-recording permission on this machine, which is not
-     available — see IMPROVEMENT_LOG iteration 391. Do not "fix" it by softening
-     the prose to match a stale video.
+     THE STATUS BAR IN THAT FOOTAGE PRINTS A CHECK COUNT, and a number inside a
+     video cannot drift back into line. Twice it fell behind the derived count
+     this page prints, for weeks; the note that stood here said re-recording
+     needed a screen-recording permission, which was never true. The footage
+     is re-shot by docket-app/scripts/record_hero.mjs --site, which drives the
+     real UI against the real engine, reads the numbers off the screen into
+     data/hero-recording.json, and writes every cut. verify_numbers.py
+     compares that file's count with data/checks.csv, so a new check fails
+     the deploy until the video is re-shot. Do not "fix" a mismatch by
+     softening the prose to match a stale video.
 
      Our own site on purpose. Publishing a critical audit of someone else's
      property without asking is not ours to do, and auditing ourselves is the

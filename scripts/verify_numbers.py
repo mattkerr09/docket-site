@@ -34,6 +34,8 @@ from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
 import app_path  # noqa: E402
 
+import csv
+import json
 import re
 import sys
 import pathlib
@@ -82,31 +84,13 @@ ALLOWED = {
     "58": ("the Local business SEO lane score in that same screenshot. Quoted "
            "because it is the least flattering number in our own report and "
            "the caption's point is that Docket does not hide it"),
-    # -- figures read off the dated HERO RECORDING -------------------------
-    # Same rule as the screenshot above, for site/assets/app-demo*.{mp4,webm}:
-    # a screen recording of Docket auditing docketseo.app, driven through
-    # scripts/record_hero.mjs in the app repo against a REAL audit engine. They
-    # describe that recording and nothing else, so interpolating them from a
-    # live dataset would eventually caption a video that shows other numbers.
-    #
-    # RE-READ ALL THREE OFF THE NEW FOOTAGE WHENEVER IT IS RE-SHOT. Done on
-    # 2026-08-24, when the 1280px original measured 0.59x against a slot that
-    # paints 2160: the run changed, and two of the three numbers changed with
-    # it. The score moved 94 -> 96 and the audit time 35s -> 34s, because it is
-    # a different run against a site that had been worked on in between. Pages
-    # crawled stayed 57.
-    "57": ("pages crawled in the hero recording — read off the footage, which "
-           "is a real run against docketseo.app"),
-    "34": ("seconds that recorded run took, read off the same footage"),
-    "96": ("the score that recorded run produced, read off frame 185. Quoted "
-           "because the caption's claim is that this is the app running, not a "
-           "render of it.\n"
-           "NOTE: 96 was previously allowed here as something else entirely — "
-           "the check count frozen in the OLD footage's status bar, which had "
-           "drifted below the derived count and could not be corrected without "
-           "re-shooting. The new footage reads 97, which IS the derived count, "
-           "so that exemption is gone and the coincidence of the numbers is "
-           "just a coincidence."),
+    # -- figures read off the HERO RECORDING: none, any more ---------------
+    # The caption's pages, seconds and score were typed here as ALLOWED
+    # constants, re-read by hand off each new take. They now come from
+    # data/hero-recording.json, which record_hero.mjs --site writes off the
+    # screen in the same run as the footage, and home.py interpolates them.
+    # The one number in the footage that the page ALSO derives — the status
+    # bar's check count — is pinned by `_hero_footage_drift` below.
     "2.30": ("the glibc floor of the Linux build, measured with objdump over "
              "the shipped binary and its bundled libpython — the highest "
              "GLIBC_ symbol version either requires"),
@@ -554,10 +538,36 @@ def _typed_macos_floor() -> List[str]:
     return out
 
 
+def _hero_footage_drift() -> List[str]:
+    """The homepage video's status bar must show the check count the page prints.
+
+    The video is a real recording of the app, so its status bar ("Ready · N
+    checks") is a number baked into pixels. It read 97 for weeks after the
+    engine reached 99, on the same page that prints 99 in text, and nothing
+    could see it: this file reads prose. The recorder writes what the status
+    bar showed into data/hero-recording.json, so the comparison is two files.
+    """
+    rec_path = ROOT.parent / "data" / "hero-recording.json"
+    checks_path = ROOT.parent / "data" / "checks.csv"
+    try:
+        rec = json.loads(rec_path.read_text())
+        with checks_path.open() as fh:
+            derived = sum(1 for _ in csv.DictReader(fh))
+    except (OSError, ValueError) as exc:
+        return [f"  hero-recording.json / checks.csv unreadable: {exc}"]
+    if rec.get("checks") == derived:
+        return []
+    return [f"  site/assets/app-demo*: the video's status bar reads "
+            f"{rec.get('status')!r} (recorded {rec.get('recorded')} on "
+            f"{rec.get('engine')}), and the site prints {derived} checks.\n"
+            f"      Re-shoot it — docket-app/scripts/record_hero.mjs --site "
+            f"../docket-site — never edit the number by hand."]
+
+
 def main() -> int:
     problems: List[str] = (_score_band_drift() + _competitor_annual_sanity()
                            + _price_stamp_integrity() + _caveat_branches()
-                           + _typed_macos_floor())
+                           + _typed_macos_floor() + _hero_footage_drift())
     # build.py carries the hub entry summaries, which are article prose on a
     # published page and were not being scanned. "Tranco top 1,500" was typed
     # into one and sailed through, which is the exact bug this file exists for.
