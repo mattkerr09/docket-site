@@ -12,7 +12,7 @@
 <title>Docket SEO — SEO, copy, conversion and brand audits for Mac</title>
 <meta name="description" content="Docket SEO audits any website on your Mac: 99 checks across SEO, copy, brand, local and AI search. Ranked fix plan, client-ready PDF, nothing uploaded.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2c8bdb5dbe80">
+<meta name="build-id" content="9460136fe37a">
 <link rel="canonical" href="https://docketseo.app/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -786,13 +786,13 @@ fbq('track','PageView');
 <figure class="hero-media">
   <video class="hero-video" autoplay loop muted playsinline preload="metadata"
          poster="/assets/app-demo-poster.jpg" width="1280" height="800"
-         aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs across 57 pages,
-                     and a report appears scoring 96 out of 100, grade A.">
+         aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs across 136 pages,
+                     and a report appears scoring 98 out of 100, grade A.">
     <source src="/assets/app-demo.webm" data-src-hi="/assets/app-demo-hi.webm" type="video/webm">
     <source src="/assets/app-demo.mp4" type="video/mp4">
   </video>
-  <figcaption>Docket auditing this site. <strong>57&nbsp;pages, 34&nbsp;seconds, 96/100</strong>
-  — screen recording of the shipped app not a mockup.</figcaption>
+  <figcaption>Docket auditing this site. <strong>136&nbsp;pages, 112&nbsp;seconds, 98/100</strong>
+  — screen recording of the shipped app, not a mockup.</figcaption>
 </figure>
 </div>
 <script>
@@ -843,15 +843,16 @@ fbq('track','PageView');
      figcaption is the correct one: frame 12 of app-demo.mp4 is the real window,
      status bar and all.
 
-     ⚠️ THAT STATUS BAR READS "Ready · 96 checks". The site derives its check
-     count from data/checks.csv and prints the current total many times on this
-     same page. This note names neither number: the gap widens with every check
-     added, and a figure typed here would go stale exactly as silently as the
-     one in the video. A number inside a video cannot drift back into line and no gate
-     can see it: verify_numbers.py reads HTML. Re-recording is the only fix and
-     it needs screen-recording permission on this machine, which is not
-     available — see IMPROVEMENT_LOG iteration 391. Do not "fix" it by softening
-     the prose to match a stale video.
+     THE STATUS BAR IN THAT FOOTAGE PRINTS A CHECK COUNT, and a number inside a
+     video cannot drift back into line. Twice it fell behind the derived count
+     this page prints, for weeks; the note that stood here said re-recording
+     needed a screen-recording permission, which was never true. The footage
+     is re-shot by docket-app/scripts/record_hero.mjs --site, which drives the
+     real UI against the real engine, reads the numbers off the screen into
+     data/hero-recording.json, and writes every cut. verify_numbers.py
+     compares that file's count with data/checks.csv, so a new check fails
+     the deploy until the video is re-shot. Do not "fix" a mismatch by
+     softening the prose to match a stale video.
 
      Our own site on purpose. Publishing a critical audit of someone else's
      property without asking is not ours to do, and auditing ourselves is the
