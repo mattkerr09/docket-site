@@ -22,9 +22,11 @@ from render import N_CHECKS, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
-CITATION = ("OAI-SearchBot", "PerplexityBot", "Claude-SearchBot", )
-TRAINING = ("GPTBot", "ClaudeBot", "Applebot-Extended", "CCBot", "Bytespider",
-            "meta-externalagent")
+#: The crawler lists are facts.py's, not a copy. The homepage and
+#: /learn/ai-search-visibility/ quote this page's figures through facts.py, and
+#: two hand-kept lists are how the pages would start disagreeing again.
+CITATION = F.CITATION
+TRAINING = F.TRAINING
 
 CATEGORY_LABEL = {
     "news": "News &amp; media", "reference": "Reference &amp; knowledge",
@@ -38,7 +40,9 @@ def build() -> Path:
     d = json.loads(DATA.read_text())
     s = d["summary"]
     live = [r for r in d["records"] if r.get("reachable") and r.get("has_robots")]
-    n = s["n"]
+    # The records' own count, which is what facts.index_n() gives the homepage.
+    # The summary's `n` agrees today; this makes it unable not to.
+    n = len(live)
 
     def blocked(rec, group):
         return [b for b in group if rec["ai_access"].get(b) is False]
@@ -233,8 +237,8 @@ practical consequence is for each one. <a href="/download/">Download Docket →<
          f"In Docket's August 2026 sample of {n} well-known sites with a robots.txt, "
          f"{cit_pct}% blocked at least one AI search crawler and {train_pct}% blocked at "
          f"least one training crawler. News and media sites were the outlier at "
-         f"{s['by_category'].get('news', {}).get('pct', 0)}%; SaaS companies were at "
-         f"{s['by_category'].get('saas', {}).get('pct', 0)}%."),
+         f"{category_stats('news')[2]:.1f}%; SaaS companies were at "
+         f"{category_stats('saas')[2]:.1f}%."),
         ("What is the difference between GPTBot and OAI-SearchBot?",
          "GPTBot collects data used to train OpenAI's models. OAI-SearchBot builds the index "
          "ChatGPT searches when a user asks a question. Blocking GPTBot keeps your content out "

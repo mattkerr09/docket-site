@@ -8,7 +8,6 @@ carry first-party numbers, and link out to the Index rather than asserting.
 """
 from __future__ import annotations
 
-import json
 import sys
 from pathlib import Path
 
@@ -16,19 +15,28 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import N_CHECKS, render  # noqa: E402
 
-DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
-
 
 def _index_numbers() -> dict:
-    d = json.loads(DATA.read_text())
-    s = d["summary"]
+    """The Index figures this page quotes, recomputed from the records.
+
+    ⚠️ NOT FROM THE DATASET'S `summary`, which was written while Google-Extended
+    still counted as a citation crawler and was never rewritten: it put this
+    page at 30% blocking, with news at 94.7% and SaaS at 5.0%, while /index/
+    recomputed 26%, 89.5% and 0.0% from the same records. Same records, same
+    crawler lists and same one-decimal percentages as the /index/ table, via
+    facts.py, so the two pages cannot disagree.
+    """
+    def category_pct(cat: str) -> float:
+        n = F.category_n(cat)
+        return round(100 * len(F.category_citation_hosts(cat)) / n, 1) if n else 0.0
+
     return {
-        "n": s["n"],
-        "cit_pct": round(100 * s["blocking_any_citation_bot"] / s["n"]),
-        "perplexity": s["by_bot"]["PerplexityBot"]["blocked"],
-        "oai": s["by_bot"]["OAI-SearchBot"]["blocked"],
-        "news_pct": s["by_category"].get("news", {}).get("pct", 0),
-        "saas_pct": s["by_category"].get("saas", {}).get("pct", 0),
+        "n": F.index_n(),
+        "cit_pct": F.index_citation_pct(),
+        "news_pct": category_pct("news"),
+        "saas_pct": category_pct("saas"),
+        "ecommerce_pct": category_pct("ecommerce"),
+        "local_pct": category_pct("local"),
     }
 
 
@@ -88,8 +96,8 @@ model already has an entry for.</p>
 
 <h2>Where the field currently stands</h2>
 <p>Blocking is concentrated almost entirely in publishing. News sites in our sample blocked AI
-search crawlers at {m['news_pct']}%. SaaS companies were at {m['saas_pct']}%. Ecommerce and
-local businesses were in single digits.</p>
+search crawlers at {m['news_pct']}%. SaaS companies were at {m['saas_pct']}%. Ecommerce sites
+were at {m['ecommerce_pct']}% and local businesses at {m['local_pct']}%.</p>
 <p>For a business competing for customers rather than readers, that means visibility here is
 not a competitive advantage you can win — it is table stakes you can lose by accident, usually
 via a copied robots.txt block.</p>

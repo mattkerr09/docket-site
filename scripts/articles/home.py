@@ -72,18 +72,34 @@ _BAND_FLOOR = "--bad"
 
 
 def _index() -> dict:
-    """Measured figures, or empty so the page simply omits the claim."""
+    """Measured figures, or empty so the page simply omits the claim.
+
+    ⚠️ FROM THE RECORDS, THROUGH facts.py, NEVER FROM THE DATASET'S `summary`.
+    That summary was written when the citation-crawler list still included
+    Google-Extended, and it was never rewritten: it counts 29 sites blocking a
+    citation crawler where the records count 25. /index/ recomputes from the
+    records, so for weeks this page said "30% of the 98 major sites" while
+    /index/ said 26% of the same 98 — the "30% over a 26% dataset" bug that
+    verify_numbers.py's docstring opens with, still live in the one place
+    everybody reads. Its category chart claimed 95% news, 9% local and 5% SaaS
+    against a real 89, 0 and 0, and "roughly three quarters" was typed from the
+    same stale count. Every figure here now comes from the same records and the
+    same crawler lists /index/ uses, so the two pages cannot disagree.
+    """
     if not DATA.exists():
         return {}
-    d = json.loads(DATA.read_text())
-    s = d["summary"]
+    by_cat = {}
+    for cat in dict.fromkeys(r.get("category") for r in F.index_live()):
+        n = F.category_n(cat)
+        hit = len(F.category_citation_hosts(cat))
+        by_cat[cat] = {"n": n, "blocking_citation": hit,
+                       "pct": 100 * hit / n if n else 0.0}
     return {
-        "n": s["n"],
-        "cit_pct": round(100 * s["blocking_any_citation_bot"] / s["n"]),
-        "by_cat": s["by_category"],
-        "perplexity": s["by_bot"]["PerplexityBot"],
-        "oai": s["by_bot"]["OAI-SearchBot"],
-        "collected": d["collected"][:10],
+        "n": F.index_n(),
+        "cit_pct": F.index_citation_pct(),
+        "conflated_pct": F.index_conflated_pct(),
+        "by_cat": by_cat,
+        "collected": F.index_measured(),
     }
 
 
@@ -132,7 +148,7 @@ def _index_chart(m: dict) -> str:
         if not v:
             continue
         rows += (f'<div class="bar-row"><span class="bar-lbl">{label[key]}</span>'
-                 f'<span class="bar-track"><i class="bar-fill" style="width:{max(v["pct"],1.2)}%"></i></span>'
+                 f'<span class="bar-track"><i class="bar-fill" style="width:{max(v["pct"],1.2):.1f}%"></i></span>'
                  f'<span class="bar-val">{v["pct"]:.0f}%</span></div>')
     return f"""
 <div class="chart">
@@ -167,9 +183,9 @@ def body() -> str:
     if m:
         index_line = (
             f"<strong>{m['cit_pct']}% of the {m['n']} major sites we measured block at least "
-            f"one AI search crawler.</strong> Among those blocking any AI crawler, roughly "
-            f"three quarters also blocked the ones that decide whether they appear in "
-            f"ChatGPT — almost certainly without meaning to."
+            f"one AI search crawler.</strong> Among those blocking any AI crawler, "
+            f"{m['conflated_pct']}% also blocked one that decides whether they appear in "
+            f"ChatGPT, Perplexity or Claude — almost certainly without meaning to."
         )
 
     return f"""
