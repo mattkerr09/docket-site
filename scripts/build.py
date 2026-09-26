@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the whole site, then write robots.txt and the sitemap.
+"""Build the whole site, then write robots.txt, llms.txt and the sitemap.
 
     python3 scripts/build.py && python3 scripts/lint.py site
 
@@ -503,6 +503,185 @@ def write_robots() -> None:
         lines += [f"User-agent: {bot}", "Allow: /", ""]
     lines.append(f"Sitemap: {BASE}/sitemap.xml")
     (SITE / "robots.txt").write_text("\n".join(lines) + "\n")
+
+
+def write_llms_txt() -> None:
+    """/llms.txt: an index of this site for language models, in the llmstxt.org
+    shape (an H1, a blockquote summary, then H2 sections of annotated links).
+
+    Matthew's order, 2026-09-26 01:28Z ("AI-search visibility"). Written here,
+    beside robots.txt and the sitemap, so every build rewrites it with them.
+    robots.txt allows every path to every agent, so nothing there blocks it.
+
+    ⚠️ NO FACT IN THIS FUNCTION IS TYPED. The check count and the areas come
+    from data/checks.csv, the price, the founding offer, the instalments and the
+    sample report from render.py, the seat count from data/licence.json, and
+    the macOS floor and download size from the shipped build's own record. A
+    price typed here would be a second copy of render.PRICE, and the first time
+    the two disagreed this file would be quoting the old one to every model that
+    reads it. The wording is the site's own (the terms, the refund policy, the
+    homepage), so this file says nothing a page does not.
+
+    What /learn/ai-search-visibility/ says about llms.txt still stands: Google
+    has said it ignores the file, and no study has measured an effect on
+    citations. It costs nothing, and it is a genuine index of the site rather
+    than a keyword list, which is the only kind worth publishing.
+    """
+    import csv
+    import textwrap
+    from collections import OrderedDict
+
+    from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE,
+                        FOUNDING_NOW, FOUNDING_SEATS, HAS_SAMPLE, LINUX, MACOS,
+                        N_CHECKS, N_LANES, PRICE_STR, REPO, SAMPLE_REPORT, SELLER,
+                        seller_address)
+
+    # Same order as /learn/what-docket-checks/, which lists them from the same file.
+    with (DATA / "checks.csv").open() as fh:
+        lanes = list(OrderedDict.fromkeys(r["lane_label"] for r in csv.DictReader(fh)))
+    areas = ", ".join(lanes[:-1]) + " and " + lanes[-1]
+    seats = F.licence_activations()
+
+    def wrap(text: str, first: str = "", rest: str = "") -> str:
+        return textwrap.fill(text, width=86, initial_indent=first, subsequent_indent=rest,
+                             break_long_words=False, break_on_hyphens=False)
+
+    def facts(*items: str) -> list:
+        return [wrap(t, "- ", "  ") for t in items if t]
+
+    def links(*items: tuple) -> list:
+        # One link per line, never wrapped, so a line-by-line reader gets the
+        # whole entry.
+        return [f"- [{name}]({url}): {note}" for name, url, note in items]
+
+    out = ["# Docket SEO", ""]
+    out.append(wrap(
+        f"Docket SEO is a Mac app that audits any website on your own Mac: {N_CHECKS} "
+        f"checks across {N_LANES} areas, then one ranked plan of what to fix, in order, "
+        f"with the markup to paste and a client-ready PDF report. It costs {PRICE_STR}, "
+        f"paid once; there is no subscription.", "> ", "> "))
+    out += ["", wrap(
+        "There is no account and no telemetry, and nothing about the sites you audit is "
+        "uploaded. The licence key is checked with the payment provider when it is "
+        "activated and about once a day after that. Optional checks that fetch outside "
+        "data, such as Core Web Vitals from Google PageSpeed and Google's public "
+        "autocomplete, can all be turned off with offline mode.")]
+    out += ["", wrap(f"Docket is written by Matt Kerr and sold by {SELLER}, of "
+                     f"{seller_address()}.")]
+
+    out += ["", "## What it checks", ""]
+    out += facts(
+        f"{N_CHECKS} checks across {N_LANES} areas: {areas}.",
+        "Every finding is ranked by impact against the effort of fixing it, and carries "
+        "its evidence: the page it is on, the exact value found there, and the fix.",
+        "AI search visibility: each AI crawler is checked separately (OAI-SearchBot for "
+        "ChatGPT Search, PerplexityBot, Claude-SearchBot and Google-Extended) and kept "
+        "apart from training crawlers such as GPTBot. Docket also requests pages as each "
+        "crawler and reports when a server refuses one that robots.txt permits.",
+        "A command-line interface ships inside the app. `docket audit` exits non-zero on a "
+        "critical issue, so CI can fail a build before it ships.")
+    out += links(
+        (f"All {N_CHECKS} checks, by area", f"{BASE}/learn/what-docket-checks/",
+         "the complete list, generated from the shipped build so it cannot drift from "
+         "the product"),
+        ("How Docket decides what to fix first", f"{BASE}/learn/priority-model/",
+         "severity, impact, reach and effort, and the formula that combines them"))
+
+    if HAS_SAMPLE:
+        out += ["", "## Sample report", ""]
+        out += links(
+            ("Sample report (PDF)", f"{BASE}{SAMPLE_REPORT}",
+             "a full sample of the client-ready PDF Docket writes: score, scorecard, "
+             "ranked plan, paste-ready markup, and a page on what was and was not "
+             "measured"))
+
+    out += ["", "## Requirements", ""]
+    out += facts(
+        f"An Apple Silicon Mac running {MACOS} or later. There is no Windows or Intel "
+        f"build of the app.",
+        f"The Mac app is a {DMG_SIZE} download, signed with a Developer ID and notarised "
+        f"by Apple.",
+        "A command-line build for Linux x86_64 is on the download page." if LINUX else "")
+
+    out += ["", "## Price and licence", ""]
+    out += facts(
+        f"{PRICE_STR}, paid once, in US dollars. Not a subscription: there is no renewal "
+        f"date and nothing to cancel.",
+        f"Founding price {FOUNDING_NOW} once, first {FOUNDING_SEATS} buyers: at checkout, "
+        f"click \"Have a discount code?\" and enter {FOUNDING_CODE}. Then {PRICE_STR}.",
+        (f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks "
+         f"apart." if BNPL_LIVE else ""),
+        "There is no free trial; the refund window is the trial.",
+        f"The licence key arrives by email with the receipt and is pasted into the app "
+        f"once. One licence covers up to {seats} Macs at a time: activating Docket on a "
+        f"Mac uses one, and deactivating one moves the licence to another machine.",
+        "The licence belongs to the person or company that paid. It covers any number of "
+        "websites, including clients' sites, and the work can be billed to those clients. "
+        "The application itself may not be resold, sublicensed or redistributed.")
+
+    out += ["", "## Refunds", ""]
+    out += facts(
+        "Thirty days from the date of purchase, no conditions and no questions asked. The "
+        "full purchase price goes back to the payment method it came from.",
+        f"To ask, write to {SUPPORT_EMAIL} or reply to the receipt the payment processor "
+        f"sends.",
+        "A refund revokes the licence key, and the copy stops running audits within about "
+        "a day.")
+
+    out += ["", "## What it does not do", ""]
+    out += facts(
+        "No per-page backlinks or anchor text, and no monthly search volumes.",
+        "Copy-quality checks are English-only; the technical checks work in any language.",
+        "Not built, on purpose: rank tracking, a cloud version, team accounts, server-side "
+        "scheduling, and white-label or uptime monitoring.",
+        "Scheduled re-audits run only while Docket is open: the schedule is a thread "
+        "inside the app, so quitting it stops the clock.")
+
+    out += ["", "## Key pages", ""]
+    out += links(
+        ("Homepage", f"{BASE}/", "what Docket checks, how it ranks what it finds, and "
+         "the price"),
+        ("Download Docket for Mac", f"{BASE}/download/", "the current release, the "
+         "requirements, the price, and the command line"),
+        ("The Docket Index", f"{BASE}/index/", "who is blocking AI search crawlers, "
+         "measured with Docket's own parser; method and dataset included"),
+        ("The AI rules in robots.txt that do nothing", f"{BASE}/index/ai-directives/",
+         "which AI crawler rules in robots.txt name a token no crawler uses"),
+        ("Learn", f"{BASE}/learn/", "plain explanations of what an SEO audit covers, how "
+         "AI search visibility works, and what Docket checks"),
+        ("Fix guides", f"{BASE}/how-to/", "the specific problems Docket reports, what "
+         "each one costs you, and the change to make"),
+        ("How Docket compares", f"{BASE}/vs/", "comparisons with Screaming Frog, "
+         "Sitebulb, Ahrefs, Semrush and others, each naming at least one thing the "
+         "other tool does better"),
+        ("Docket for your situation", f"{BASE}/for/", "SEO agencies, developers, online "
+         "shops, local businesses and SaaS companies"),
+        ("Best tools, by job", f"{BASE}/best/", "which SEO tool fits which job, with "
+         "every claim read from the product's own documentation"),
+        ("AI search visibility", f"{BASE}/learn/ai-search-visibility/", "whether a model "
+         "can reach, read and quote a site: crawler access, server-side rendering and "
+         "entity clarity"),
+        ("About Docket", f"{BASE}/about/", "who builds it and what it cannot do"),
+        ("Contact", f"{BASE}/contact/", f"{SUPPORT_EMAIL} for a licence or a refund; the "
+         "GitHub issue tracker for bugs and wrong findings"),
+        ("The Docket crawler", f"{BASE}/bot/", "what Docket's audit crawler requests and "
+         "the robots.txt rule that asks it to stay out"))
+
+    out += ["", "## Policies", ""]
+    out += links(
+        ("Privacy policy", f"{BASE}/legal/privacy/", "what the app and this website "
+         "collect, and the third-party scripts the website loads"),
+        ("Terms of use", f"{BASE}/legal/terms/", "licence, price, delivery, refunds, "
+         "liability and governing law"),
+        ("Refund policy", f"{BASE}/legal/refunds/", "thirty days, no conditions; how to "
+         "ask, and what happens to the copy afterwards"))
+
+    out += ["", "## Optional", ""]
+    out += links(
+        ("All releases", f"{REPO}/releases", "every Docket release, on GitHub"),
+        ("Sitemap", f"{BASE}/sitemap.xml", "every indexable page on this site"))
+
+    (SITE / "llms.txt").write_text("\n".join(out) + "\n", encoding="utf-8")
 
 
 #: The day each page's content last changed, and the fingerprint it had then.
@@ -1044,6 +1223,7 @@ def main() -> int:
     thank_you()
 
     write_robots()
+    write_llms_txt()
     write_sitemap(pages)
     write_static()
     stamp_competitor_claims(pages)
