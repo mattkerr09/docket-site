@@ -1815,11 +1815,12 @@ def privacy() -> Path:
 and this website.</p>
 
 <h2>The application</h2>
-<p>Docket collects nothing. There is no account, no telemetry, no crash reporting and no licence
-check.</p>
+<p>Docket collects nothing. There is no account, no telemetry and no crash reporting. The licence
+key is checked with our payment provider when you activate it and about once a day after that.</p>
 <p>An earlier version of this policy said the only network requests the app makes are to the
 website you ask it to audit. That was not accurate, and a privacy policy is the last document
-that should be approximately true. Docket makes requests to three kinds of destination:</p>
+that should be approximately true. Besides that licence check, Docket makes requests to three
+kinds of destination:</p>
 <ul>
 <li><strong>The site you asked it to audit.</strong> The crawl itself, from your machine, and
 the edge-access checks that re-request your pages while identifying as each AI crawler.</li>
@@ -1834,7 +1835,7 @@ Google the URL you asked it to measure, because that is what the API takes. Leav
 no request is made.</li>
 </ul>
 <p>Every connector can be turned off individually, and an offline switch disables all of them
-at once, leaving only the crawl of your own site.</p>
+at once, leaving only the crawl of your own site and the licence check.</p>
 <p>Audit results and your saved-site list are stored on your machine in <code>~/.docket/</code>
 as plain JSON files. They are never transmitted. Deleting that folder removes them permanently.</p>
 
