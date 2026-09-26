@@ -12,7 +12,7 @@
 <title>Privacy policy — what Docket collects, and what it does not</title>
 <meta name="description" content="Audits run on your Mac and are never uploaded. No account, no telemetry. Six third-party scripts, one an advertising pixel — what each does and how to stop it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="c0b32850eb1b">
+<meta name="build-id" content="67a9ae3e31ca">
 <link rel="canonical" href="https://docketseo.app/legal/privacy/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -764,29 +764,96 @@ fbq('track','PageView');
 and this website.</p>
 
 <h2>The application</h2>
-<p>Docket collects nothing. There is no account, no telemetry and no crash reporting. The licence
-key is checked with our payment provider when you activate it and about once a day after that.</p>
+<p>Nothing about the sites you audit reaches us, Kerr &amp; Company: the crawl and the report
+stay on your Mac. The requests that do leave it are listed below with who receives each one,
+and the only ones that come to us are for two public files on this website. What our payment
+provider receives on our behalf is your licence key and a name for each Mac you activate it on.
+There is no account, no telemetry and no crash reporting. The licence key is checked with our
+payment provider when you activate it and about once a day after that.</p>
 <p>An earlier version of this policy said the only network requests the app makes are to the
-website you ask it to audit. That was not accurate, and a privacy policy is the last document
-that should be approximately true. Besides that licence check, Docket makes requests to three
-kinds of destination:</p>
+website you ask it to audit, and the next one named three kinds of destination. Neither was
+accurate, and a privacy policy is the last document that should be approximately true. This is
+every request the shipped app makes, read from its code, starting with the ones it makes
+unless you switch them off.</p>
+
+<h3>What it does by default</h3>
 <ul>
-<li><strong>The site you asked it to audit.</strong> The crawl itself, from your machine, and
-the edge-access checks that re-request your pages while identifying as each AI crawler.</li>
-<li><strong>docketseo.app, for one public file.</strong> The knowledge refresh connector is on
-by default and fetches <code>/data/knowledge.json</code> — the current AI crawler list, Core
-Web Vitals thresholds and ranking notes. It is a GET with no body and no query string. It
-carries no identifier and tells the server nothing about what you are auditing; the request
-is indistinguishable from someone opening that file in a browser.</li>
-<li><strong>Google, only if you configure it.</strong> The PageSpeed Insights connector needs
-your own Google API key and does nothing without one. When enabled it necessarily sends
-Google the URL you asked it to measure, because that is what the API takes. Leave it off and
-no request is made.</li>
+<li><strong>The licence check, to Dodo Payments.</strong> Dodo handles our checkout and issues
+the licence keys. When you activate Docket, the app sends Dodo your licence key and a name for
+that activation: <code>Docket @</code> followed by your Mac's hostname, the network name macOS
+usually builds from the computer's name. After that it sends the key with that activation's
+id about once a day, when the app opens or an audit starts, and again if you deactivate. None
+of these requests carries anything about your audits, and no switch turns them off.</li>
+<li><strong>The update check, to this website.</strong> When the app opens, and every thirty
+minutes while it stays open, it asks <code>docketseo.app/updater.json</code> whether a newer
+version exists; <code>Check for Updates…</code> in the Docket menu asks on demand. It sends
+nothing but the request for that file. If you accept an update, the new build is downloaded
+from this site's releases on GitHub, and nothing installs without you saying yes. No switch
+turns the check off.</li>
+<li><strong>Google PageSpeed Insights, for Core Web Vitals.</strong> The addresses of up to five
+of your shallowest pages, homepage first, each sent to Google's PageSpeed Insights API, which
+then measures that page. It works without an API key, and the desktop app never sends one.</li>
+<li><strong>DNS, for email deliverability.</strong> The mail domains of the addresses your pages
+publish, leaving out free providers such as Gmail. Docket looks up their mail-server (MX) and
+address records, asking your Mac's own DNS servers first and Cloudflare's and Google's public
+resolvers if those do not answer. Where a domain has no MX record, it also opens a connection to
+port 25 on that domain's server to see whether anything is listening, and closes it without
+sending a message.</li>
+<li><strong>Google's autocomplete, for topic suggestions.</strong> The topic you type in
+&ldquo;What is this site about?&rdquo; or, if you leave it empty, up to three words that recur
+in the titles, headings and descriptions of at least a quarter of your pages, leaving out the
+site's own name unless nothing else recurs. Each is sent to Google's public autocomplete on its
+own and with question and buying phrases added, such as &ldquo;how to&rdquo; and
+&ldquo;cost&rdquo;. If you type nothing and no word recurs, nothing is sent.</li>
+<li><strong>This website, for the knowledge file.</strong> The knowledge refresh fetches
+<code>docketseo.app/data/knowledge.json</code>: the current AI crawler list, Core Web Vitals
+thresholds and ranking notes. It is a plain request for one public file. Its user-agent says
+Docket, and it carries nothing about you or what you are auditing.</li>
+<li><strong>The site you asked it to audit.</strong> The crawl itself, from your machine,
+naming itself as Docket, and the edge-access checks, which request your homepage again as
+Docket, as Googlebot and as each AI crawler Docket knows (OpenAI's, Perplexity's and
+Anthropic's), naming Docket in each, to see what your server tells them.</li>
+<li><strong>Other sites your pages point to.</strong> Docket checks that a sample of your links
+to other sites still work, and that the share images your pages name load, with a request to
+each address and a second if the first fails. It fetches the stylesheets your pages link,
+including ones served from other hosts. And it renders three of your pages in the WebKit engine
+macOS already ships, which runs their scripts the way a browser would, so whatever those pages
+load, such as analytics or advertising pixels, is requested too.</li>
 </ul>
-<p>Every connector can be turned off individually, and an offline switch disables all of them
-at once, leaving only the crawl of your own site and the licence check.</p>
-<p>Audit results and your saved-site list are stored on your machine in <code>~/.docket/</code>
-as plain JSON files. They are never transmitted. Deleting that folder removes them permanently.</p>
+
+<h3>What turns each off</h3>
+<p>The offline switch turns off five of these together: PageSpeed Insights, the deliverability
+lookups, topic suggestions, the knowledge refresh and the edge-access checks. In the app it is
+the box labelled &ldquo;Keep it private &mdash; only contact this site&rdquo;, and on the
+command line it is <code>--offline</code>. It also keeps stylesheet fetches to the site you
+audit. It does not turn off the licence check, the update check, the link check or rendering.
+Unticking &ldquo;Also check that links to other sites still work&rdquo; in the app, or
+<code>--no-link-check</code>, turns off the link check, and rendering can be turned off only on
+the command line, with <code>--render 0</code>. There is no separate switch for each of the
+five: the offline switch is the one control. These runs ignore it, and always make the five
+checks and render pages as usual: re-audits of the sites you save, whether on their schedule,
+which runs only while Docket is open, or from &ldquo;Check now&rdquo;; <code>docket diff</code>;
+and <code>docket logs --url</code>.</p>
+
+<h3>What it does only when you ask</h3>
+<ul>
+<li><code>docket backlinks</code> and <code>docket attack</code> read Common Crawl's public link
+graph from commoncrawl.org. Each download reads a public file from its beginning rather than
+asking for your domain, so the request does not name the domain you are asking about.
+<code>--referring</code> streams larger files the same way, and <code>--no-authority</code>
+skips it in <code>docket attack</code>.</li>
+<li><code>docket attack --demand</code> sends the phrase you give, or one Docket reads off the
+site, to Google's autocomplete in the same way as topic suggestions.</li>
+<li><code>docket logs --verify</code> looks up each address in your log file that claims to be
+Googlebot in DNS, to confirm it is Google's.</li>
+<li><code>--psi-key</code> on the command line sends your own PageSpeed Insights key to Google
+with those requests.</li>
+<li>An AI assistant you connect with <code>docket mcp</code> runs audits that make the same
+requests as any other, and it can ask for offline mode.</li>
+</ul>
+<p>Audit results, your saved-site list and any crash reports are stored on your machine in
+<code>~/.docket/</code> as plain JSON files. They are never transmitted. Deleting that folder
+removes them permanently.</p>
 
 <h2>This website</h2>
 <p>This site is static and runs six third-party scripts. The first is
@@ -903,7 +970,7 @@ it; we hold nothing separately.</p>
 <a href="https://builtbykerr.com/">Built by Kerr</a>: websites and local SEO for Grand Rapids businesses</p>
 </div>
 <div class="foot-bottom">
-<span>© 2026 Docket SEO · Audits run on your Mac. Nothing is uploaded.</span>
+<span>© 2026 Docket SEO · Audits run on your Mac, and the reports stay there.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
 <div data-founding data-was="$349" data-now="$174.50" hidden></div>
