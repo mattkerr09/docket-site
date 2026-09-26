@@ -1278,8 +1278,10 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
    Measured on the live homepage at 1600px: the pricing caveat ran 1080px
    wide across 316 characters, about 140 characters a line, and the chart
    note 1027px. Ordinary paragraphs sit at 820px because .wrap caps them.
-   Found by probing a width the visual gate had never rendered. */
-.price-caveat,.chart-note,.claims-note{max-width:68ch}
+   Found by probing a width the visual gate had never rendered.
+   The footer's "More from Kerr & Company" paragraph sits in the footer's
+   .wrap-wide too, so it takes the same cap rather than a style of its own. */
+.price-caveat,.chart-note,.claims-note,.foot-more{max-width:68ch}
 
 /* Email capture. Quiet on purpose: it sits after the buy CTA and must not
    compete with it — someone ready to buy should not be diverted into a form. */
@@ -1348,6 +1350,21 @@ NAV = f"""<nav><div class="wrap-wide nav-inner">
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; ${PRICE}</a>
 </div></nav>"""
 
+#: The Kerr & Company cross-links. Matthew's order, 2026-09-26 01:28Z: every
+#: page's footer, plain followed links, Docket itself left out, in exactly the
+#: wording live on adplaybook.app (its commit 63444be). Keep it byte-for-byte
+#: the same as the sister sites rather than editing it here alone.
+#:
+#: External links only, on purpose: /vs/ahrefs-site-audit-alternative/ is in a
+#: title experiment until 2026-10-06 and its internal links must not move.
+#: The /learn/what-scout-checks/ redirect stub is not built by render(), so it
+#: carries a hand-typed copy of this paragraph; change both together.
+KERR_MORE = """<p><strong>More from Kerr &amp; Company</strong><br>
+<a href="https://outlier.host/">Outlier</a>: private, offline AI for your Mac ·
+<a href="https://crispvideo.app/">Crisp Video</a>: restore and upscale video offline on your Mac ·
+<a href="https://adplaybook.app/">AdPlaybook</a>: the ad maker that proves its own claims ·
+<a href="https://builtbykerr.com/">Built by Kerr</a>: websites and local SEO for Grand Rapids businesses</p>"""
+
 FOOTER = f"""<footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>
@@ -1374,6 +1391,9 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <a href="https://adplaybook.app/">AdPlaybook — ad campaigns, sourced</a>
 <a href="https://outlier.host/">Outlier — local AI for Mac</a>
 <a href="https://crispvideo.app/">Crisp — offline video upscaler</a></div>
+</div>
+<div class="foot-more">
+{KERR_MORE}
 </div>
 <div class="foot-bottom">
 <span>© 2026 Docket SEO · Audits run on your Mac. Nothing is uploaded.</span>
