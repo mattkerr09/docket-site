@@ -12,7 +12,7 @@
 <title>Audit your site from an AI assistant</title>
 <meta name="description" content="Docket speaks the Model Context Protocol over stdio. Point Claude Desktop at the app you own and ask it to audit a site — no API key, no cloud.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="67a9ae3e31ca">
+<meta name="build-id" content="a6b0315bbbe2">
 <link rel="canonical" href="https://docketseo.app/how-to/audit-your-site-from-an-ai-assistant/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -807,8 +807,9 @@ across 13 areas.</p>
 <p>Two details worth knowing, because they are choices rather than accidents. The page budget you
 ask for is the page budget you get &mdash; Docket will not quietly crawl five times more because
 the site answered quickly, which is what its own <code>--adaptive</code> default does when a
-person is watching. And <code>offline</code> keeps a run entirely local: no PageSpeed call, no
-DNS lookup, nothing leaving the machine.</p>
+person is watching. And <code>offline</code> turns off the optional checks &mdash; no PageSpeed
+call, no DNS lookup of your mail domains &mdash; though the link check and rendering still reach
+the sites your pages link to or load.</p>
 
 <h2>It is the same engine, and the same licence</h2>
 

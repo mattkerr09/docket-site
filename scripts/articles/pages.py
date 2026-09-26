@@ -221,7 +221,7 @@ cut-down version, and it has six subcommands.</p>
 <pre><code>docket audit example.com
 docket audit example.com -o audit.pdf -n 500
 docket audit example.com --render 10        # run each page's JavaScript first
-docket audit example.com --offline          # no third-party calls at all
+docket audit example.com --offline          # skip the {CONNECTORS_WORD} optional checks
 docket audit example.com -f json --no-pages | jq '.score.overall'</code></pre>
 <p>It exits with status 2 when it finds a critical issue, so it can gate a deployment. Running
 it in CI against a staging URL fails the build if someone ships a <code>noindex</code>, which
@@ -345,7 +345,8 @@ It is the same engine and the same checks, verified running in a clean container
 it is not: there is no Linux desktop app, only the CLI, and <code>--render</code> does not work
 there — the renderer is a WebKit helper that exists only on macOS, so on Linux Docket reports
 that rendering was requested and did not happen rather than quietly skipping it.</li>
-<li><strong>An internet connection to the site you are auditing.</strong> Nothing else.</li>
+<li><strong>An internet connection to the site you are auditing</strong>, and to our payment
+provider when the licence is activated and re-checked.</li>
 <li><strong>Crawls are bounded</strong> by page count, depth, wall-clock time and response
 size. The defaults are deliberately polite; you can raise them.</li>
 </ul>
@@ -357,16 +358,17 @@ sometimes cloaked response, which would make every finding a lie.</p>
 
 <p>{CONNECTORS_WORD_CAP} optional checks do reach out, and it is worth being exact rather than reassuring:
 Docket asks your own server what it tells AI crawlers, refreshes its crawler knowledge file
-from this site, checks whether the email addresses you publish can actually receive mail, and
-fetches Core Web Vitals from Google PageSpeed Insights. <code>--offline</code>, or the offline
+from this site, checks whether the email addresses you publish can actually receive mail,
+fetches Core Web Vitals from Google PageSpeed Insights, and asks Google's public autocomplete
+for topic suggestions. <code>--offline</code>, or the offline
 tick in the desktop app, turns all {CONNECTORS_WORD} off and the audit still completes — the report then
 says which checks did not run rather than quietly scoring them.</p>
 
-<p>Docket also asks docketseo.app once at launch whether a newer version exists, and tells you
-if there is one. It sends nothing but the request itself, it never installs anything without
-you saying yes, and <code>Check for Updates…</code> in the Docket menu does the same thing on
-demand. Said here because a product that sells not phoning home should list the one call it
-makes on its own.</p>
+<p>Docket also asks docketseo.app when it opens, and every thirty minutes while it stays open,
+whether a newer version exists, and tells you if there is one. It sends nothing but the request
+itself, it never installs anything without you saying yes, and <code>Check for Updates…</code>
+in the Docket menu does the same thing on demand. With the licence check, that makes two calls
+it makes on its own, and a product that sells not phoning home should list both.</p>
 
 <p>What never happens: no telemetry, no account, no analytics on you, and nothing about your
 site is sent anywhere for us to see. This page made a stronger, absolute claim until

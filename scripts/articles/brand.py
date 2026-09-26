@@ -184,7 +184,7 @@ broken for years because no tool was looking.</p>
             ("Why does my audit say typefaces were not measured?",
              "Docket fetches the stylesheets your pages link, so this is now uncommon. It "
              "happens when the sheets could not be fetched, or when you ran with --offline, "
-             "which deliberately makes no third-party calls and so skips styles served from "
+             "which keeps stylesheet fetches to the site you audit and so skips styles served from "
              "an asset domain. The notice says which, and exists so a silent check is not "
              "mistaken for a clean one — it is a gap in the tool, not a finding about you."),
             ("What is brand colour drift?",

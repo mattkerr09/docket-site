@@ -112,8 +112,9 @@ across {N_LANES} areas.</p>
 <p>Two details worth knowing, because they are choices rather than accidents. The page budget you
 ask for is the page budget you get &mdash; Docket will not quietly crawl five times more because
 the site answered quickly, which is what its own <code>--adaptive</code> default does when a
-person is watching. And <code>offline</code> keeps a run entirely local: no PageSpeed call, no
-DNS lookup, nothing leaving the machine.</p>
+person is watching. And <code>offline</code> turns off the optional checks &mdash; no PageSpeed
+call, no DNS lookup of your mail domains &mdash; though the link check and rendering still reach
+the sites your pages link to or load.</p>
 
 <h2>It is the same engine, and the same licence</h2>
 
