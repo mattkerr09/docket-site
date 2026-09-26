@@ -1599,6 +1599,17 @@ ANALYTICS = (
 )
 
 
+#: Bing Webmaster Tools site verification. Matthew's order, 2026-09-26 01:28Z
+#: ("AI-search visibility"): exactly this tag, in the <head> of every page.
+#:
+#: It lives in the shared head, so every page render() writes carries it —
+#: /404.html and /thank-you/ included. The one HTML file NOT written by
+#: render() is the /learn/what-scout-checks/ redirect stub, a hand-written file
+#: in site/ that the build never touches, so it carries a copy of this line
+#: typed into it. Add the tag to any other hand-written page the same way.
+BING_SITE_VERIFICATION = '<meta name="msvalidate.01" content="34D102FD9C044A2BDA597B176842725B" />'
+
+
 #: Page-first-seen dates, written by `scripts/collect_page_dates.py`.
 #:
 #: Loaded once. A page missing from the dataset is a page the collector has not
@@ -1863,6 +1874,7 @@ def render(
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{BING_SITE_VERIFICATION}
 <!-- The only way to set a referrer policy on a host that cannot send headers,
      and GitHub Pages cannot. Browsers honour the meta form. strict-origin-when-cross-origin
      sends the full URL to ourselves, the origin only to other sites, and nothing when
