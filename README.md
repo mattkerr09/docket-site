@@ -5,7 +5,8 @@ wrong, in the order to fix it, with the markup to paste. It covers technical
 SEO, copy, conversion, brand, local business, AI search visibility and campaign
 tracking, writes a client-ready PDF report, and includes a command-line
 interface that can fail a CI build on a critical issue. There is no account,
-and nothing about the sites you audit is uploaded.
+and the crawl and the report stay on your Mac; the optional checks that reach
+Google and other services are on by default and can be switched off.
 
 - **Website:** [docketseo.app](https://docketseo.app/)
 - **Download, price and system requirements:**

@@ -736,8 +736,8 @@ you pay for it.</p>
 <h2>The honest recommendation</h2>
 <p>These tools do not substitute for each other. If you do keyword research and link building,
 you need an index, and Ahrefs or Semrush is how you get one. If what you need is a technical
-and marketing audit with a plan attached, Docket does that for a one-time cost and never sends
-your data anywhere.</p>
+and marketing audit with a plan attached, Docket does that for a one-time cost, and the crawl
+and the report stay on your Mac.</p>
 <p>Plenty of people run both: an index tool for research, and a local auditor for the work.</p>
 {_verified_note("ahrefs")}
 {CTA_LINK_EXPERIMENT}"""
@@ -1628,7 +1628,7 @@ tracking mentions is the whole of what you need. What Docket checks on the acces
 do not appear in Sitechecker's listed core tools. Findings arrive as a ranked plan with the fix
 written out rather than as a dashboard —
 <a href="/learn/priority-model/">the ordering formula is published</a>. It runs on your Mac
-with no account, so nothing about your site is uploaded. And it is {PRICE_STR} once rather than
+with no account, and the crawl and the report stay there. And it is {PRICE_STR} once rather than
 a monthly bill.</p>
 
 <p>That last one is the plainest difference. A year on Sitechecker's entry plan costs several
@@ -1975,8 +1975,8 @@ does not change with demand.</p>
 
 <p>Even at the next batch up, CrawlRaven is far cheaper than Docket, and nothing on this page
 argues otherwise. What {PRICE_STR} buys is a shipped technical audit — {N_CHECKS} checks across
-thirteen areas — running locally on your own Mac with no account, no site limit and nothing
-uploaded.</p>
+thirteen areas — running locally on your own Mac with no account and no site limit, the crawl
+and the report kept there.</p>
 
 <h2>Which to buy</h2>
 

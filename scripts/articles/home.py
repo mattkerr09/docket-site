@@ -498,11 +498,12 @@ def body() -> str:
     you answers. It reads their domain authority from <a href="https://commoncrawl.org/">Common Crawl</a> so the size of the gap is a
     number, not a guess. <a href="/how-to/outrank-a-bigger-competitor/">See what it finds</a>.</p></div>
   <div class="card"><div class="card-ico">{ICONS['lock']}</div>
-    <h3>Nothing is uploaded</h3>
-    <p>No account and no telemetry. Activating your licence is the one thing that
-    contacts us, and after that it is checked about once a day. The crawl only ever touches the site you
-    are auditing; {CONNECTORS_WORD} optional checks also fetch data Docket cannot produce alone,
-    and <code>--offline</code> turns all {CONNECTORS_WORD} off.</p></div>
+    <h3>The report stays on your Mac</h3>
+    <p>No account and no telemetry. The crawl and the report stay on your Mac.
+    {CONNECTORS_WORD_CAP} optional checks fetch data Docket cannot produce alone and are on by
+    default, so Google PageSpeed is sent the addresses of your homepage and top pages, and
+    Google's autocomplete your site's topic words; <code>--offline</code> turns all
+    {CONNECTORS_WORD} off. The licence is checked with our payment provider about once a day.</p></div>
   <div class="card"><div class="card-ico">{ICONS['order']}</div>
     <h3>A CLI, including <code>docket attack</code></h3>
     <p><code>docket audit</code> exits non-zero on a critical issue — a noindexed homepage, a
@@ -673,14 +674,17 @@ FAQ = [
      f"Email {SUPPORT_EMAIL}. Questions whose answers would help the next person can go on "
      "the public issue tracker instead."),
     ("Does Docket send my site data anywhere?",
-     "Nothing about the sites you audit is uploaded, and there is no account and no "
-     "telemetry. The licence key is checked with our payment provider when you activate "
-     "it and about once a day after that. The crawl runs on your Mac; "
-     f"{CONNECTORS_WORD_CAP} optional checks reach outside it — Core Web Vitals from "
-     "Google PageSpeed, a deliverability test on the addresses your site publishes, what "
-     "your server tells AI crawlers, a knowledge refresh from this site, and Google's "
-     "public autocomplete for topic suggestions. Offline mode turns all "
-     f"{CONNECTORS_WORD} off, and every report names the ones that ran."),
+     "The crawl and the report stay on your Mac, and there is no account and no "
+     f"telemetry. {CONNECTORS_WORD_CAP} optional checks, on by default, reach outside it — "
+     "Core Web Vitals from Google PageSpeed, which is sent the addresses of your homepage "
+     "and top pages; a deliverability test on the addresses your site publishes, which "
+     "looks up their mail domains in DNS; what your server tells AI crawlers; a knowledge "
+     "refresh from this site; and Google's public autocomplete for topic suggestions, "
+     "which is sent your site's topic words. Offline mode turns all "
+     f"{CONNECTORS_WORD} off, and every report names the ones that ran. Checking your "
+     "links to other sites, and rendering a few pages as a browser would, also reach the "
+     "sites and services those pages link to or load. The licence key is checked with our "
+     "payment provider when you activate it and about once a day after that."),
     ("How is Docket different from Screaming Frog?",
      # ⚠️ Kept from the earlier answer, whose history matters: it used to say
      # "Screaming Frog renders JavaScript … Docket does not", which was false —
@@ -713,7 +717,7 @@ def closer() -> str:
     return f"""<section class="cta-band"><div class="wrap">
 <h2>Audit your site in about a minute</h2>
 <p>Download it, type a domain, press Run. There is no onboarding because none is
-needed, and nothing about your site leaves your Mac.</p>
+needed, and the crawl and the report stay on your Mac.</p>
 <figure class="cta-shot">
   <img src="/assets/app-running.webp" width="1280" height="800" loading="lazy" decoding="async"
        alt="Docket mid-audit: the URL being crawled, a progress bar, and four counters reading
@@ -736,9 +740,12 @@ def build() -> Path:
         # 162 characters, and Google renders about 155 — measured with entities
         # decoded, which is the only way to count a description honestly.
         # Dropping "visibility" is the whole edit: 151, brand name still first.
+        # 154 since "nothing uploaded" became "kept on your Mac": PageSpeed and
+        # topic suggestions send page addresses and topic words to Google by
+        # default, so "nothing uploaded" was not true of a default audit.
         desc=(f"Docket SEO audits any website on your Mac: {N_CHECKS} checks across SEO, copy, brand, "
-              "local and AI search. Ranked fix plan, client-ready PDF, nothing "
-              "uploaded."),
+              "local and AI search. Ranked fix plan and client-ready PDF, kept on "
+              "your Mac."),
         h1="SEO audits that tell you what to fix, in order",
         crumb="Docket for Mac",
         body=body(),

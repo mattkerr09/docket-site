@@ -276,8 +276,8 @@ read your preference and declined it.</li>
 
 <p>Docket does this across a whole site rather than three pages: it checks canonical
 validity, resolves the declared target, and flags the ones landing on redirects, 404s or a
-different host — among {N_CHECKS} checks that run on your Mac, with no account and nothing
-uploaded. Findings come back ranked by cost against effort, each with the exact markup to
+different host — among {N_CHECKS} checks that run on your Mac, with no account, and the crawl
+and the report stay there. Findings come back ranked by cost against effort, each with the exact markup to
 paste.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>

@@ -561,11 +561,19 @@ def write_llms_txt() -> None:
         f"with the markup to paste and a client-ready PDF report. It costs {PRICE_STR}, "
         f"paid once; there is no subscription.", "> ", "> "))
     out += ["", wrap(
-        "There is no account and no telemetry, and nothing about the sites you audit is "
-        "uploaded. The licence key is checked with the payment provider when it is "
-        "activated and about once a day after that. Optional checks that fetch outside "
-        "data, such as Core Web Vitals from Google PageSpeed and Google's public "
-        "autocomplete, can all be turned off with offline mode.")]
+        "The crawl and the report stay on the Mac, and there is no account and no "
+        f"telemetry. {F.optional_connectors_word().capitalize()} optional checks are on by "
+        "default and reach outside it: Google PageSpeed Insights is sent the addresses of "
+        "the homepage and top pages; Google's public autocomplete is sent the site's topic "
+        "words, typed by the user or read off its titles, headings and descriptions; DNS is "
+        "asked about "
+        "the mail domains the site publishes; the audited server is asked what it tells AI "
+        "crawlers; and docketseo.app serves a knowledge file. Offline mode turns all "
+        f"{F.optional_connectors_word()} off. Checking links to other sites, and rendering a "
+        "few pages as a browser would, also reach the sites and services those pages link "
+        "to or load. The licence key is checked with the payment provider when it is "
+        "activated and about once a day after that, and the app asks docketseo.app whether "
+        "an update exists.")]
     out += ["", wrap(f"Docket is written by Matt Kerr and sold by {SELLER}, of "
                      f"{seller_address()}.")]
 
@@ -669,8 +677,8 @@ def write_llms_txt() -> None:
 
     out += ["", "## Policies", ""]
     out += links(
-        ("Privacy policy", f"{BASE}/legal/privacy/", "what the app and this website "
-         "collect, and the third-party scripts the website loads"),
+        ("Privacy policy", f"{BASE}/legal/privacy/", "every request the app makes and who "
+         "receives it, and the third-party scripts this website loads"),
         ("Terms of use", f"{BASE}/legal/terms/", "licence, price, delivery, refunds, "
          "liability and governing law"),
         ("Refund policy", f"{BASE}/legal/refunds/", "thirty days, no conditions; how to "

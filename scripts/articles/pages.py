@@ -131,8 +131,11 @@ data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.</li>
 <p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on Apple Silicon.
 {DMG_SIZE}. No subscription, no crawl credits, no per-seat pricing — audit as many sites as
 you like, for as long as you like. There is no account to create and no telemetry. Activating
-your licence checks the key with our payment provider once, and about once a day after that;
-nothing about the sites you audit is ever sent anywhere.</p>
+your licence checks the key with our payment provider once, and about once a day after that.
+The crawl and the report stay on your Mac. {CONNECTORS_WORD_CAP} optional checks, on by default,
+reach outside it, among them Google PageSpeed, which is sent the addresses of your homepage and
+top pages, and Google's autocomplete, which is sent your site's topic words;
+<code>--offline</code> turns all {CONNECTORS_WORD} off.</p>
 
 {_payment_note()}
 
@@ -1218,7 +1221,7 @@ crawl credits, no renewal date. You price a SaaS product yourself, so you know w
 recurring line item does to a buying decision at a company that already has eleven of
 them.</p>
 
-<p>The rest follows from running on your own machine: no upload, no telemetry, no account, and
+<p>The rest follows from running on your own machine: no telemetry, no account, and
 results that stay in <code>~/.docket/</code> as JSON you can read with <code>cat</code>. Save
 the site and scheduled re-audits report what changed, regressions first — which is how you
 learn a <code>noindex</code> reached production on Tuesday rather than from a traffic graph
@@ -1815,29 +1818,96 @@ def privacy() -> Path:
 and this website.</p>
 
 <h2>The application</h2>
-<p>Docket collects nothing. There is no account, no telemetry and no crash reporting. The licence
-key is checked with our payment provider when you activate it and about once a day after that.</p>
+<p>Nothing about the sites you audit reaches us, Kerr &amp; Company: the crawl and the report
+stay on your Mac. The requests that do leave it are listed below with who receives each one,
+and the only ones that come to us are for two public files on this website. What our payment
+provider receives on our behalf is your licence key and a name for each Mac you activate it on.
+There is no account, no telemetry and no crash reporting. The licence key is checked with our
+payment provider when you activate it and about once a day after that.</p>
 <p>An earlier version of this policy said the only network requests the app makes are to the
-website you ask it to audit. That was not accurate, and a privacy policy is the last document
-that should be approximately true. Besides that licence check, Docket makes requests to three
-kinds of destination:</p>
+website you ask it to audit, and the next one named three kinds of destination. Neither was
+accurate, and a privacy policy is the last document that should be approximately true. This is
+every request the shipped app makes, read from its code, starting with the ones it makes
+unless you switch them off.</p>
+
+<h3>What it does by default</h3>
 <ul>
-<li><strong>The site you asked it to audit.</strong> The crawl itself, from your machine, and
-the edge-access checks that re-request your pages while identifying as each AI crawler.</li>
-<li><strong>docketseo.app, for one public file.</strong> The knowledge refresh connector is on
-by default and fetches <code>/data/knowledge.json</code> — the current AI crawler list, Core
-Web Vitals thresholds and ranking notes. It is a GET with no body and no query string. It
-carries no identifier and tells the server nothing about what you are auditing; the request
-is indistinguishable from someone opening that file in a browser.</li>
-<li><strong>Google, only if you configure it.</strong> The PageSpeed Insights connector needs
-your own Google API key and does nothing without one. When enabled it necessarily sends
-Google the URL you asked it to measure, because that is what the API takes. Leave it off and
-no request is made.</li>
+<li><strong>The licence check, to Dodo Payments.</strong> Dodo handles our checkout and issues
+the licence keys. When you activate Docket, the app sends Dodo your licence key and a name for
+that activation: <code>Docket @</code> followed by your Mac's hostname, the network name macOS
+usually builds from the computer's name. After that it sends the key with that activation's
+id about once a day, when the app opens or an audit starts, and again if you deactivate. None
+of these requests carries anything about your audits, and no switch turns them off.</li>
+<li><strong>The update check, to this website.</strong> When the app opens, and every thirty
+minutes while it stays open, it asks <code>docketseo.app/updater.json</code> whether a newer
+version exists; <code>Check for Updates…</code> in the Docket menu asks on demand. It sends
+nothing but the request for that file. If you accept an update, the new build is downloaded
+from this site's releases on GitHub, and nothing installs without you saying yes. No switch
+turns the check off.</li>
+<li><strong>Google PageSpeed Insights, for Core Web Vitals.</strong> The addresses of up to five
+of your shallowest pages, homepage first, each sent to Google's PageSpeed Insights API, which
+then measures that page. It works without an API key, and the desktop app never sends one.</li>
+<li><strong>DNS, for email deliverability.</strong> The mail domains of the addresses your pages
+publish, leaving out free providers such as Gmail. Docket looks up their mail-server (MX) and
+address records, asking your Mac's own DNS servers first and Cloudflare's and Google's public
+resolvers if those do not answer. Where a domain has no MX record, it also opens a connection to
+port 25 on that domain's server to see whether anything is listening, and closes it without
+sending a message.</li>
+<li><strong>Google's autocomplete, for topic suggestions.</strong> The topic you type in
+&ldquo;What is this site about?&rdquo; or, if you leave it empty, up to three words that recur
+in the titles, headings and descriptions of at least a quarter of your pages, leaving out the
+site's own name unless nothing else recurs. Each is sent to Google's public autocomplete on its
+own and with question and buying phrases added, such as &ldquo;how to&rdquo; and
+&ldquo;cost&rdquo;. If you type nothing and no word recurs, nothing is sent.</li>
+<li><strong>This website, for the knowledge file.</strong> The knowledge refresh fetches
+<code>docketseo.app/data/knowledge.json</code>: the current AI crawler list, Core Web Vitals
+thresholds and ranking notes. It is a plain request for one public file. Its user-agent says
+Docket, and it carries nothing about you or what you are auditing.</li>
+<li><strong>The site you asked it to audit.</strong> The crawl itself, from your machine,
+naming itself as Docket, and the edge-access checks, which request your homepage again as
+Docket, as Googlebot and as each AI crawler Docket knows (OpenAI's, Perplexity's and
+Anthropic's), naming Docket in each, to see what your server tells them.</li>
+<li><strong>Other sites your pages point to.</strong> Docket checks that a sample of your links
+to other sites still work, and that the share images your pages name load, with a request to
+each address and a second if the first fails. It fetches the stylesheets your pages link,
+including ones served from other hosts. And it renders three of your pages in the WebKit engine
+macOS already ships, which runs their scripts the way a browser would, so whatever those pages
+load, such as analytics or advertising pixels, is requested too.</li>
 </ul>
-<p>Every connector can be turned off individually, and an offline switch disables all of them
-at once, leaving only the crawl of your own site and the licence check.</p>
-<p>Audit results and your saved-site list are stored on your machine in <code>~/.docket/</code>
-as plain JSON files. They are never transmitted. Deleting that folder removes them permanently.</p>
+
+<h3>What turns each off</h3>
+<p>The offline switch turns off five of these together: PageSpeed Insights, the deliverability
+lookups, topic suggestions, the knowledge refresh and the edge-access checks. In the app it is
+the box labelled &ldquo;Keep it private &mdash; only contact this site&rdquo;, and on the
+command line it is <code>--offline</code>. It also keeps stylesheet fetches to the site you
+audit. It does not turn off the licence check, the update check, the link check or rendering.
+Unticking &ldquo;Also check that links to other sites still work&rdquo; in the app, or
+<code>--no-link-check</code>, turns off the link check, and rendering can be turned off only on
+the command line, with <code>--render 0</code>. There is no separate switch for each of the
+five: the offline switch is the one control. These runs ignore it, and always make the five
+checks and render pages as usual: re-audits of the sites you save, whether on their schedule,
+which runs only while Docket is open, or from &ldquo;Check now&rdquo;; <code>docket diff</code>;
+and <code>docket logs --url</code>.</p>
+
+<h3>What it does only when you ask</h3>
+<ul>
+<li><code>docket backlinks</code> and <code>docket attack</code> read Common Crawl's public link
+graph from commoncrawl.org. Each download reads a public file from its beginning rather than
+asking for your domain, so the request does not name the domain you are asking about.
+<code>--referring</code> streams larger files the same way, and <code>--no-authority</code>
+skips it in <code>docket attack</code>.</li>
+<li><code>docket attack --demand</code> sends the phrase you give, or one Docket reads off the
+site, to Google's autocomplete in the same way as topic suggestions.</li>
+<li><code>docket logs --verify</code> looks up each address in your log file that claims to be
+Googlebot in DNS, to confirm it is Google's.</li>
+<li><code>--psi-key</code> on the command line sends your own PageSpeed Insights key to Google
+with those requests.</li>
+<li>An AI assistant you connect with <code>docket mcp</code> runs audits that make the same
+requests as any other, and it can ask for offline mode.</li>
+</ul>
+<p>Audit results, your saved-site list and any crash reports are stored on your machine in
+<code>~/.docket/</code> as plain JSON files. They are never transmitted. Deleting that folder
+removes them permanently.</p>
 
 <h2>This website</h2>
 <p>This site is static and runs six third-party scripts. The first is
@@ -2234,14 +2304,13 @@ deleted from our side, because there is no our side. Removing that folder remove
 <h2>Conditions that are deliberately absent</h2>
 
 <p>None of these will be asked, because none of them could be checked. Docket has no account
-and no telemetry, so nothing ties a payment to a copy of the application, and the seller has no
-way to know:</p>
+and no telemetry. The licence key ties a payment to the Macs it is activated on and to nothing
+else, so the seller has no way to know:</p>
 
 <ul>
-<li>how many sites you audited, or whether you opened the app at all;</li>
+<li>how many sites you audited;</li>
 <li>how many PDF or CSV reports you exported, or who you sent them to;</li>
-<li>whether you are asking for the first time or the fourth;</li>
-<li>which machines you installed it on.</li>
+<li>whether you are asking for the first time or the fourth.</li>
 </ul>
 
 <p>A refund policy conditioned on facts the seller cannot verify is one applied by mood, and
@@ -2249,12 +2318,14 @@ that is worse than having no condition at all. So there are none, and this parag
 that the absence reads as a decision rather than an oversight.</p>
 
 <p>One correction to make in the same breath, because a page claiming perfect ignorance would
-be exactly the sort of claim this tool exists to check. Docket does make one request of its
-own accord: on launch it asks <code>docketseo.app/updater.json</code> whether a newer build
-exists, and stays silent if there is none or there is no network. That file is static and
-served by GitHub Pages. The log behind it records an address and a time, the way any page
-fetch does, and it carries no identifier that could be matched against an order — but it is
-named here rather than left out.</p>
+be exactly the sort of claim this tool exists to check. Docket makes two requests of its own
+accord. It checks the licence key with our payment provider when you activate it and about
+once a day after that, which is how a refund reaches the copy on your Mac. And when it opens,
+and every thirty minutes while it stays open, it asks <code>docketseo.app/updater.json</code>
+whether a newer build exists, and stays silent if there is none or there is no network. That
+file is static and served by GitHub Pages. The log behind it records an address and a time,
+the way any page fetch does, and it carries no identifier that could be matched against an
+order — but it is named here rather than left out.</p>
 
 <h2>When the money arrives</h2>
 

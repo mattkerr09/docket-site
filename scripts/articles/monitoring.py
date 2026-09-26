@@ -30,7 +30,7 @@ fine now has a cause, and a site that has been failing the same check since 2023
 news.</p>
 
 <p>Docket re-audits on a schedule you set — daily, weekly or monthly — on your own machine,
-with no account and nothing uploaded. Every re-audit is compared against the last one, and
+with no account, and the results stay there. Every re-audit is compared against the last one, and
 the comparison leads with what got worse.</p>
 
 <p><strong>It runs while Docket is open, and stops when you quit.</strong> The scheduler is
@@ -102,7 +102,7 @@ accumulated, so the folder grows with the number of sites you watch and not with
 of checks you run. You can read any of it, back it up, put it in version control, or delete
 it. Set <code>DOCKET_HOME</code> to keep it somewhere else.</p>
 
-<p>There is no server in this. Nothing is uploaded, there is no account, and if you stop
+<p>There is no server of ours in this. The history is never uploaded, there is no account, and if you stop
 using Docket your history is still sitting in a folder you own — which is the difference
 between monitoring you rent and monitoring you have.</p>
 
@@ -150,9 +150,9 @@ the difference between research and a nuisance.</p>
              "Docket is shut is re-audited the next time you open it. For unattended "
              "runs on a schedule, use the Linux CLI in cron or CI."),
             ("Does site monitoring need an account or a server?",
-             "No. Everything runs locally and history is stored in ~/.docket/ as plain "
-             "JSON — a watchlist plus one small snapshot per audit. Nothing is "
-             "uploaded, and the history stays yours if you stop using Docket."),
+             "No. The re-audits run on your Mac and history is stored in ~/.docket/ as plain "
+             "JSON — a watchlist plus one small snapshot per audit. The history is never "
+             "uploaded, and it stays yours if you stop using Docket."),
             ("Why does Docket refuse to compare some audits?",
              "Because comparing a 50-page crawl with a 500-page crawl invents dozens of "
              "new issues that were always there and simply had not been reached. Every "
