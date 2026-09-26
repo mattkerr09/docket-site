@@ -1,0 +1,103 @@
+# Docket SEO
+
+> Docket SEO is a Mac app that audits any website on your own Mac: 99 checks across 13
+> areas, then one ranked plan of what to fix, in order, with the markup to paste and a
+> client-ready PDF report. It costs $349, paid once; there is no subscription.
+
+There is no account and no telemetry, and nothing about the sites you audit is
+uploaded. The licence key is checked with the payment provider when it is activated
+and about once a day after that. Optional checks that fetch outside data, such as Core
+Web Vitals from Google PageSpeed and Google's public autocomplete, can all be turned
+off with offline mode.
+
+Docket is written by Matt Kerr and sold by Kerr & Company LLC, of Grand Rapids,
+Michigan, United States.
+
+## What it checks
+
+- 99 checks across 13 areas: AI search visibility, Brand consistency, Content quality,
+  Conversion & landing pages, Crawlability & indexing, Links, Local business SEO,
+  Tracking & campaign readiness, On-page SEO, Speed & Core Web Vitals, Structured
+  data, Security & trust and Social & sharing.
+- Every finding is ranked by impact against the effort of fixing it, and carries its
+  evidence: the page it is on, the exact value found there, and the fix.
+- AI search visibility: each AI crawler is checked separately (OAI-SearchBot for
+  ChatGPT Search, PerplexityBot, Claude-SearchBot and Google-Extended) and kept apart
+  from training crawlers such as GPTBot. Docket also requests pages as each crawler
+  and reports when a server refuses one that robots.txt permits.
+- A command-line interface ships inside the app. `docket audit` exits non-zero on a
+  critical issue, so CI can fail a build before it ships.
+- [All 99 checks, by area](https://docketseo.app/learn/what-docket-checks/): the complete list, generated from the shipped build so it cannot drift from the product
+- [How Docket decides what to fix first](https://docketseo.app/learn/priority-model/): severity, impact, reach and effort, and the formula that combines them
+
+## Sample report
+
+- [Sample report (PDF)](https://docketseo.app/assets/docket-sample-report.pdf): a full sample of the client-ready PDF Docket writes: score, scorecard, ranked plan, paste-ready markup, and a page on what was and was not measured
+
+## Requirements
+
+- An Apple Silicon Mac running macOS 12 or later. There is no Windows or Intel build
+  of the app.
+- The Mac app is a 21.9 MB download, signed with a Developer ID and notarised by
+  Apple.
+- A command-line build for Linux x86_64 is on the download page.
+
+## Price and licence
+
+- $349, paid once, in US dollars. Not a subscription: there is no renewal date and
+  nothing to cancel.
+- Founding price $174.50 once, first 25 buyers: at checkout, click "Have a discount
+  code?" and enter FOUNDINGDOCKET. Then $349.
+- Or four payments of $87.25 with Klarna or Afterpay, two weeks apart.
+- There is no free trial; the refund window is the trial.
+- The licence key arrives by email with the receipt and is pasted into the app once.
+  One licence covers up to 3 Macs at a time: activating Docket on a Mac uses one, and
+  deactivating one moves the licence to another machine.
+- The licence belongs to the person or company that paid. It covers any number of
+  websites, including clients' sites, and the work can be billed to those clients. The
+  application itself may not be resold, sublicensed or redistributed.
+
+## Refunds
+
+- Thirty days from the date of purchase, no conditions and no questions asked. The
+  full purchase price goes back to the payment method it came from.
+- To ask, write to support@docketseo.app or reply to the receipt the payment processor
+  sends.
+- A refund revokes the licence key, and the copy stops running audits within about a
+  day.
+
+## What it does not do
+
+- No per-page backlinks or anchor text, and no monthly search volumes.
+- Copy-quality checks are English-only; the technical checks work in any language.
+- Not built, on purpose: rank tracking, a cloud version, team accounts, server-side
+  scheduling, and white-label or uptime monitoring.
+- Scheduled re-audits run only while Docket is open: the schedule is a thread inside
+  the app, so quitting it stops the clock.
+
+## Key pages
+
+- [Homepage](https://docketseo.app/): what Docket checks, how it ranks what it finds, and the price
+- [Download Docket for Mac](https://docketseo.app/download/): the current release, the requirements, the price, and the command line
+- [The Docket Index](https://docketseo.app/index/): who is blocking AI search crawlers, measured with Docket's own parser; method and dataset included
+- [The AI rules in robots.txt that do nothing](https://docketseo.app/index/ai-directives/): which AI crawler rules in robots.txt name a token no crawler uses
+- [Learn](https://docketseo.app/learn/): plain explanations of what an SEO audit covers, how AI search visibility works, and what Docket checks
+- [Fix guides](https://docketseo.app/how-to/): the specific problems Docket reports, what each one costs you, and the change to make
+- [How Docket compares](https://docketseo.app/vs/): comparisons with Screaming Frog, Sitebulb, Ahrefs, Semrush and others, each naming at least one thing the other tool does better
+- [Docket for your situation](https://docketseo.app/for/): SEO agencies, developers, online shops, local businesses and SaaS companies
+- [Best tools, by job](https://docketseo.app/best/): which SEO tool fits which job, with every claim read from the product's own documentation
+- [AI search visibility](https://docketseo.app/learn/ai-search-visibility/): whether a model can reach, read and quote a site: crawler access, server-side rendering and entity clarity
+- [About Docket](https://docketseo.app/about/): who builds it and what it cannot do
+- [Contact](https://docketseo.app/contact/): support@docketseo.app for a licence or a refund; the GitHub issue tracker for bugs and wrong findings
+- [The Docket crawler](https://docketseo.app/bot/): what Docket's audit crawler requests and the robots.txt rule that asks it to stay out
+
+## Policies
+
+- [Privacy policy](https://docketseo.app/legal/privacy/): what the app and this website collect, and the third-party scripts the website loads
+- [Terms of use](https://docketseo.app/legal/terms/): licence, price, delivery, refunds, liability and governing law
+- [Refund policy](https://docketseo.app/legal/refunds/): thirty days, no conditions; how to ask, and what happens to the copy afterwards
+
+## Optional
+
+- [All releases](https://github.com/mattkerr09/docket-site/releases): every Docket release, on GitHub
+- [Sitemap](https://docketseo.app/sitemap.xml): every indexable page on this site
