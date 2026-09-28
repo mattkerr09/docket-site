@@ -595,8 +595,9 @@ def write_llms_txt() -> None:
         f"{F.optional_connectors_word()} off. Checking links to other sites, and rendering a "
         "few pages as a browser would, also reach the sites and services those pages link "
         "to or load. The licence key is checked with the payment provider when it is "
-        "activated and about once a day after that, and the app asks docketseo.app whether "
-        "an update exists.")]
+        "activated and about once a day after that. The app asks docketseo.app whether "
+        "an update exists, and, while its activation screen is showing on a copy with no "
+        "key, what the current price and offer are.")]
     out += ["", wrap(f"Docket is written by Matt Kerr and sold by {SELLER}, of "
                      f"{seller_address()}.")]
 
@@ -800,6 +801,41 @@ def write_sitemap(pages: list[Path]) -> None:
     live = {p.relative_to(SITE).as_posix() for p in pages}
     store = {k: v for k, v in store.items() if k in live}
     LASTMOD.write_text(json.dumps(store, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def write_offer() -> None:
+    """/offer.json: the price and offer the app's activation screen shows.
+
+    The CEO's revenue audit, 2026-09-28: about 3,361 downloads, no sales, and
+    the only screen an unactivated copy shows had no price and no way to buy.
+    The app now shows both. The list price comes from its own
+    EXPECTED_PRICE_CENTS (held to the live checkout by a test). The founding
+    offer ENDS, so a code baked into a release would keep being advertised by
+    every installed copy after it stopped working. This file carries the live
+    offer instead, generated from the same constants as every buy button on
+    the site, and the app falls back to the list price alone when it cannot
+    read it.
+    """
+    from render import (BNPL_LIVE, CHECKOUT, FOUNDING_CODE, FOUNDING_PCT, FOUNDING_SEATS,
+                        HAS_SAMPLE, REFUND_DAYS, SAMPLE_REPORT)
+    import math
+    price_cents = PRICE * 100
+    founding_cents = price_cents * (100 - FOUNDING_PCT) // 100
+    offer = {
+        "schema": 1,
+        "price_cents": price_cents,
+        "currency": "USD",
+        "instalments": ({"count": 4, "cents": math.ceil(price_cents / 4),
+                         "providers": ["Klarna", "Afterpay"], "every_days": 14}
+                        if BNPL_LIVE else None),
+        "founding": {"price_cents": founding_cents,
+                     "instalment_cents": math.ceil(founding_cents / 4) if BNPL_LIVE else None,
+                     "code": FOUNDING_CODE, "seats": FOUNDING_SEATS},
+        "refund_days": REFUND_DAYS,
+        "checkout_url": CHECKOUT,
+        "sample_report_url": f"{BASE}{SAMPLE_REPORT}" if HAS_SAMPLE else None,
+    }
+    (SITE / "offer.json").write_text(json.dumps(offer, indent=1) + "\n", encoding="utf-8")
 
 
 def write_static() -> None:
@@ -1283,6 +1319,7 @@ def main() -> int:
 
     write_robots()
     write_llms_txt()
+    write_offer()
     write_sitemap(pages)
     write_static()
     stamp_competitor_claims(pages)

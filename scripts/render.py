@@ -248,7 +248,7 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
         # `refund_link=False` for a page inside a registered link experiment,
         # where a new internal link would change the thing being measured.
         tail = (' &mdash; <a href="/legal/refunds/">refund policy</a>' if refund_link else "")
-        out.append('<p class="hero-note"><strong>30 days, no conditions, no questions '
+        out.append(f'<p class="hero-note"><strong>{REFUND_DAYS} days, no conditions, no questions '
                    f'asked</strong>{tail}</p>')
     out.append('</div>')
     return "".join(out)
@@ -532,6 +532,9 @@ CHECKOUT = ("https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79"
 #: appear at the payment screen, after the buyer's details, which is where he
 #: has seen them. Restored exactly as it was.
 BNPL_LIVE = True
+#: The refund window, stated beside every buy button and in /offer.json, which
+#: the app's activation screen reads.
+REFUND_DAYS = 30
 
 #: ⚠️ FOUR PAYMENTS EVERY TWO WEEKS — NOT MONTHLY. Klarna's and Afterpay's
 #: product is Pay in 4: four instalments a fortnight apart, six weeks end to end.
