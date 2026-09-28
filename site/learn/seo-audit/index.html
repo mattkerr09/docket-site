@@ -13,7 +13,7 @@
 <title>What is an SEO audit? What it covers and how to read one</title>
 <meta name="description" content="An SEO audit checks whether search engines can find, understand and choose to show your site. What each area covers, and why they fail in order.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="82b4938b61ef">
+<meta name="build-id" content="61aec79dd61f">
 <link rel="canonical" href="https://docketseo.app/learn/seo-audit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -592,6 +592,28 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .price-big{font-size:2.5rem;font-weight:700;line-height:1;letter-spacing:-.02em}
 .price-pay4{font-size:1rem;font-weight:600;white-space:nowrap}
 .pay4-em{color:var(--text);font-weight:600}
+/* The AI crawler checker's form and its answer column. */
+.checker-form{margin:1.4rem 0 2rem;padding:1.1rem 1.2rem;border:1px solid var(--border-strong);
+  border-radius:var(--radius-lg);background:var(--surface)}
+.checker-form label{display:block;font-weight:600;margin-bottom:.5rem;color:var(--text)}
+.checker-row{display:flex;gap:.6rem;flex-wrap:wrap}
+.checker-row input{flex:1 1 14rem;min-width:0;padding:.7rem .85rem;border-radius:var(--radius-md);
+  border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
+.checker-status{margin:.7rem 0 0;color:var(--text-mid);min-height:1.3em;overflow-wrap:anywhere}
+.checker-table .verdict{font-weight:600;overflow-wrap:anywhere}
+.checker-table .verdict.yes{color:var(--ok)}.checker-table .verdict.no{color:var(--bad-text)}
+/* On a phone each crawler is a card: its name, then the answer, then what a
+   block costs. Four columns at 375px put the answer off-screen. */
+@media(max-width:600px){
+  .checker-table{min-width:0;width:100%}
+  .checker-table thead{display:none}
+  .checker-table,.checker-table tbody,.checker-table td{display:block}
+  .checker-table tr{display:flex;flex-direction:column;gap:.3rem;padding:.85rem 0;border-bottom:1px solid var(--border)}
+  table.cmp.checker-table td{border:0;padding:0}
+  .checker-table td:nth-child(2){display:none}
+  .checker-table td.verdict{order:1}
+  .checker-table td:nth-child(3){order:2;color:var(--text-mid)}
+}
 .buy-block.compact .price-big{font-size:2rem}.buy-block.compact .price-pay4{font-size:.8rem}
 .cta-band .price-line{justify-content:center}
 @media(max-width:480px){.price-pay4{flex-basis:100%}}

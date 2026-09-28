@@ -135,6 +135,7 @@ Michigan, United States.
 - [How Docket compares](https://docketseo.app/vs/): comparisons with Screaming Frog, Sitebulb, Ahrefs, Semrush and others, each naming at least one thing the other tool does better
 - [Docket for your situation](https://docketseo.app/for/): SEO agencies, developers, online shops, local businesses and SaaS companies
 - [Best tools, by job](https://docketseo.app/best/): which SEO tool fits which job, with every claim read from the product's own documentation
+- [Free AI crawler checker](https://docketseo.app/tools/ai-crawler-checker/): type an address and see which AI crawlers its robots.txt lets in, and what each block costs
 - [AI search visibility](https://docketseo.app/learn/ai-search-visibility/): whether a model can reach, read and quote a site: crawler access, server-side rendering and entity clarity
 - [About Docket](https://docketseo.app/about/): who builds it and what it cannot do
 - [Contact](https://docketseo.app/contact/): support@docketseo.app for a licence or a refund; the GitHub issue tracker for bugs and wrong findings
