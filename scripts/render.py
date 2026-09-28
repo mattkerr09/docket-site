@@ -554,8 +554,11 @@ BNPL_NOTE = (
 #: left alone.
 BNPL_FOUNDING_INSTALMENT = (
     f"${math.ceil(PRICE * (100 - FOUNDING_PCT) / 4) / 100:.2f}")
-PAY4 = f" &middot; or 4 &times; {BNPL_INSTALMENT}" if BNPL_LIVE else ""
-PAY4_FOUNDING = f" &middot; or 4 &times; {BNPL_FOUNDING_INSTALMENT}" if BNPL_LIVE else ""
+#: Non-breaking inside "or 4 × $87.25": a phone may wrap before "or", never
+#: between "4 ×" and the amount (measured at 375px on 2026-09-28, it did).
+PAY4 = f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_INSTALMENT}" if BNPL_LIVE else ""
+PAY4_FOUNDING = (f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_FOUNDING_INSTALMENT}"
+                 if BNPL_LIVE else "")
 
 FOUNDING_LINE = (f"Founding price <strong>{FOUNDING_NOW} once{PAY4_FOUNDING}</strong>, first "
                  f"{FOUNDING_SEATS} buyers. At checkout click &lsquo;Have a discount "
@@ -1349,7 +1352,12 @@ def _mark(size: int = 22, color: str = "var(--brand)") -> str:
 #: supplies the prices. Left off /thank-you/: someone who has just paid full
 #: price must not be shown a discount. The one redirect stub
 #: (/learn/what-scout-checks/) is not built through render() and gets nothing.
-FOUNDING_MOUNT = (f'<div data-founding data-was="{FOUNDING_WAS}" data-now="{FOUNDING_NOW}" hidden></div>\n'
+#: `data-pay4` is the founding price's pay-in-four for the shared bar to print
+#: beside `data-now`. It is its own attribute because `data-now` must stay a bare
+#: price: ops/bin/founding-bar-gate.py parses it as money against Dodo.
+FOUNDING_MOUNT = (f'<div data-founding data-was="{FOUNDING_WAS}" data-now="{FOUNDING_NOW}"'
+                  + (f' data-pay4="or 4 &times; {BNPL_FOUNDING_INSTALMENT}"' if BNPL_LIVE else '')
+                  + ' hidden></div>\n'
                   '<script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>')
 
 #: The section links, written once: the desktop row and the phone menu both
