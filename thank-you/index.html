@@ -2,6 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+(function () {
+  if (!location.search) return;
+  var q = new URLSearchParams(location.search), keep = {};
+  q.forEach(function (v, k) { keep[k] = v; });
+  window.__dkReturn = keep;
+  try { history.replaceState(null, '', location.pathname + location.hash); }
+  catch (e) { location.replace(location.pathname); }
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="msvalidate.01" content="34D102FD9C044A2BDA597B176842725B" />
 <!-- The only way to set a referrer policy on a host that cannot send headers,
@@ -13,7 +23,7 @@
 <title>Thank you — Docket</title>
 <meta name="description" content="Your Docket purchase is complete. Where to download the app and how to reach us.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="61aec79dd61f">
+<meta name="build-id" content="eeebb8e9c4d7">
 <meta name="robots" content="noindex">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -823,7 +833,10 @@ happened. If the purchase was a mistake, the
 
 <script>
 (function () {
-  var q = new URLSearchParams(location.search);
+  // The head's RETURN_URL_SCRUB has already copied the checkout's parameters
+  // here and removed them from the address, so no tracker saw the key.
+  var ret = window.__dkReturn || {};
+  var q = { get: function (k) { return ret[k] || null; } };
   var status = (q.get('status') || '').toLowerCase();
   var key = q.get('license_key');
   var pid = q.get('payment_id');
@@ -850,10 +863,10 @@ happened. If the purchase was a mistake, the
   // click listener), because Dodo's redirect carries none; with nothing stored
   // it is the list price. A founding buyer who typed the code is therefore
   // recorded at the price they clicked, not the discounted total.
+  var amt = 349;
+  try { amt = parseFloat(localStorage.getItem('dk_offer')) || 349; } catch (e) {}
   if (status === 'succeeded') {
     var pk = 'dk_pl_purchase_' + (pid || 'nopid');
-    var amt = 349;
-    try { amt = parseFloat(localStorage.getItem('dk_offer')) || 349; } catch (e) {}
     var sendP = function () {
       if (typeof plausible === 'function')
         plausible('Purchase', { revenue: { currency: 'USD', amount: amt } });
@@ -866,7 +879,8 @@ happened. If the purchase was a mistake, the
   if (status === 'succeeded' && typeof fbq === 'function') {
     var once = 'dk_purchase_' + (pid || 'nopid');
     var fire = function () {
-      fbq('track', 'Purchase', { value: 349, currency: 'USD' },
+      // The same amount Plausible records, not a hard-coded list price.
+      fbq('track', 'Purchase', { value: amt, currency: 'USD' },
           pid ? { eventID: pid } : undefined);
     };
     try {
