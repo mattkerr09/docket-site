@@ -1823,7 +1823,7 @@ def render(
         _src = "-".join(p for p in (cat, slug) if p)[:60] or "home"
         if _OLD_END_BUTTON in body:
             body = body.replace(_OLD_END_BUTTON, buy_strip(_src))
-        elif cat in ("learn", "how-to") and slug:
+        elif cat in ("learn", "how-to") and slug and 'class="buy-block' not in body:
             body = body + buy_strip(_src)
     # A hub page is a cat with no slug. Joining blindly gives "/vs//", which
     # canonicalises the page to a URL it is not served from — the canonical then

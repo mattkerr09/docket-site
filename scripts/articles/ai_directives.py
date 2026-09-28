@@ -144,6 +144,10 @@ arrives. Most AI crawlers do not run JavaScript, so a page whose content is asse
 browser is effectively blank to them even when every rule permits it —
 <a href="/learn/ai-search-visibility/">AI search visibility</a> covers the rest of that.</p>
 
+<p>To see what your own robots.txt says to each crawler in the table, use the free
+<a href="/tools/ai-crawler-checker/">AI crawler checker</a>. For Anthropic&rsquo;s three crawlers in
+detail, see <a href="/learn/what-is-claudebot/">What is ClaudeBot?</a></p>
+
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(

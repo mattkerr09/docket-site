@@ -132,6 +132,7 @@ import howto_broken_links  # noqa: E402
 import howto_compression  # noqa: E402
 import extractability  # noqa: E402
 import tool_ai_crawlers  # noqa: E402
+import ai_questions  # noqa: E402
 
 
 def hub(cat: str, title: str, desc: str, h1: str, lede: str,
@@ -289,6 +290,12 @@ money.</p>
             ("/learn/does-cloudflare-block-gptbot/", "Does Cloudflare block GPTBot?",
              "Cloudflare changed what a new domain does by default, and the answer "
              "differs by which OpenAI crawler is asking. How to check your own."),
+            ("/learn/what-is-claudebot/", "What is ClaudeBot?",
+             "Anthropic's training crawler, and the two other Anthropic crawlers that "
+             "decide whether Claude can find and quote you. What blocking each one does."),
+            ("/learn/what-is-llms-txt/", "What is llms.txt?",
+             "A Markdown reading list for language models. What goes in it, how many large "
+             "sites have one, and why Google says you do not need it."),
             ("/learn/does-noindex-stop-ai-crawlers/", "Does noindex stop AI crawlers?",
              "noindex tells an indexer not to list a page; it cannot stop a crawler "
              "fetching it. What robots.txt and your server control instead, and which "
@@ -1260,6 +1267,7 @@ def main() -> int:
     pages += howto_compression.build_all()
     pages += extractability.build_all()
     pages += tool_ai_crawlers.build_all()
+    pages += ai_questions.build_all()
     pages += build_hubs()
 
     # NOT appended to `pages`: the sitemap is derived from that list, and

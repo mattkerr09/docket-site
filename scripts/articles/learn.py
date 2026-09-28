@@ -104,9 +104,11 @@ via a copied robots.txt block.</p>
 
 <h2>What about llms.txt?</h2>
 <p><code>llms.txt</code> is a proposed convention for pointing models at your best content.
-Independent studies through 2026 have not found a measurable effect on citations, and Google
-has said it ignores the file. It costs nothing to add and there is no evidence it helps.
-Access, server-side rendering and entity clarity are where the measurable gains are.</p>
+Google&rsquo;s documentation on AI Overviews says you don&rsquo;t need &ldquo;AI text files&rdquo;
+to appear there, and nobody has published evidence that the file changes who gets cited. It
+costs nothing to add. Access, server-side rendering and entity clarity are where the measurable
+gains are. <a href="/learn/what-is-llms-txt/">What goes in one, and how many large sites have
+it</a>.</p>
 
 <h2>The question after this one</h2>
 <p>Access, rendering and entity clarity decide whether a model <em>can</em> cite you. Whether
@@ -144,8 +146,8 @@ blocking and what it costs you. It runs on your Mac, and the crawl and the repor
              "when answering a question. Blocking GPTBot keeps you out of training; blocking "
              "OAI-SearchBot keeps you out of the answers."),
             ("Does llms.txt improve AI visibility?",
-             "There is no measured evidence that it does. Independent studies through 2026 found "
-             "no effect on citations and Google has stated it ignores the file. Crawler access, "
+             "Nobody has published evidence that it does. Google's documentation says you "
+             "don't need AI text files to appear in AI Overviews or AI Mode. Crawler access, "
              "server-side rendering and structured data are where the measurable gains are."),
         ],
     )
