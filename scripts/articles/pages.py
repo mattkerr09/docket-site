@@ -202,9 +202,12 @@ macOS opens it without a security warning and without any of the right-click or 
 workarounds that unsigned software needs.</p>
 
 <h2>What happens on first launch</h2>
-<p>Docket opens, starts its local audit engine, and shows a single field. Type a domain, press
-Run audit, and watch it crawl. There is no onboarding, no project setup and no plan selection,
-because none of those are necessary for the thing you came to do.</p>
+<p>Docket opens, starts its local audit engine, and asks for your licence key &mdash; it is in the
+receipt email from your purchase. Paste it once and the app shows a single field: type a domain,
+press Run audit, and watch it crawl. There is no onboarding, no project setup and no plan
+selection, because none of those are necessary for the thing you came to do.</p>
+<p>Without a key the app opens but cannot run an audit, so buying comes first: the key arrives
+with your receipt, and <a href="#buy">the buy step is at the top of this page</a>.</p>
 <p>The first launch takes a few seconds longer than later ones. It used to say "while the
 engine unpacks itself" — that was an explanation nobody had measured, and timing the CLI out of
 the shipped bundle put its startup at a fifth of a second with no unpacking step to be found.

@@ -1401,6 +1401,31 @@ def _mark(size: int = 22, color: str = "var(--brand)") -> str:
 #: `data-pay4` is the founding price's pay-in-four for the shared bar to print
 #: beside `data-now`. It is its own attribute because `data-now` must stay a bare
 #: price: ops/bin/founding-bar-gate.py parses it as money against Dodo.
+#: A BUYER'S LICENCE KEY MUST NEVER REACH A TRACKER. The checkout returns to
+#: /thank-you/?status=…&payment_id=…&license_key=…, and this page's head loads
+#: the Meta pixel, Sled, Plausible and the assistant, every one of which reads
+#: the page URL. Found by the CEO's revenue audit, 2026-09-28: the key went to
+#: Meta inside the PageView's URL. outlier.host had the same fix a week earlier.
+#:
+#: This runs FIRST in <head>, before any other script can execute. It copies
+#: every query parameter into window.__dkReturn for the page's own script and
+#: rewrites the address to the bare path, so every tracker that loads after it
+#: reads https://docketseo.app/thank-you/ and nothing else. Requests made before
+#: it runs (fonts, preloads) send only the origin cross-site, because of the
+#: strict-origin-when-cross-origin referrer policy. If the history API is
+#: missing, the page reloads itself without the query rather than keep the key
+#: in the URL: the key is lost from the page, and the receipt email still has it.
+RETURN_URL_SCRUB = """<script>
+(function () {
+  if (!location.search) return;
+  var q = new URLSearchParams(location.search), keep = {};
+  q.forEach(function (v, k) { keep[k] = v; });
+  window.__dkReturn = keep;
+  try { history.replaceState(null, '', location.pathname + location.hash); }
+  catch (e) { location.replace(location.pathname); }
+})();
+</script>"""
+
 FOUNDING_MOUNT = (f'<div data-founding data-was="{FOUNDING_WAS}" data-now="{FOUNDING_NOW}"'
                   + (f' data-pay4="or 4 &times; {BNPL_FOUNDING_INSTALMENT}"' if BNPL_LIVE else '')
                   + ' hidden></div>\n'
@@ -1951,6 +1976,7 @@ def render(
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+{RETURN_URL_SCRUB if (cat, slug) == ("", "thank-you") else ""}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {BING_SITE_VERIFICATION}
 <!-- The only way to set a referrer policy on a host that cannot send headers,

@@ -1008,7 +1008,10 @@ happened. If the purchase was a mistake, the
 _THANK_YOU_JS = """
 <script>
 (function () {
-  var q = new URLSearchParams(location.search);
+  // The head's RETURN_URL_SCRUB has already copied the checkout's parameters
+  // here and removed them from the address, so no tracker saw the key.
+  var ret = window.__dkReturn || {};
+  var q = { get: function (k) { return ret[k] || null; } };
   var status = (q.get('status') || '').toLowerCase();
   var key = q.get('license_key');
   var pid = q.get('payment_id');
@@ -1035,10 +1038,10 @@ _THANK_YOU_JS = """
   // click listener), because Dodo's redirect carries none; with nothing stored
   // it is the list price. A founding buyer who typed the code is therefore
   // recorded at the price they clicked, not the discounted total.
+  var amt = __PRICE__;
+  try { amt = parseFloat(localStorage.getItem('dk_offer')) || __PRICE__; } catch (e) {}
   if (status === 'succeeded') {
     var pk = 'dk_pl_purchase_' + (pid || 'nopid');
-    var amt = __PRICE__;
-    try { amt = parseFloat(localStorage.getItem('dk_offer')) || __PRICE__; } catch (e) {}
     var sendP = function () {
       if (typeof plausible === 'function')
         plausible('Purchase', { revenue: { currency: 'USD', amount: amt } });
@@ -1051,7 +1054,8 @@ _THANK_YOU_JS = """
   if (status === 'succeeded' && typeof fbq === 'function') {
     var once = 'dk_purchase_' + (pid || 'nopid');
     var fire = function () {
-      fbq('track', 'Purchase', { value: __PRICE__, currency: 'USD' },
+      // The same amount Plausible records, not a hard-coded list price.
+      fbq('track', 'Purchase', { value: amt, currency: 'USD' },
           pid ? { eventID: pid } : undefined);
     };
     try {
