@@ -13,7 +13,7 @@
 <title>How to run a JavaScript SEO audit (step by step)</title>
 <meta name="description" content="A JavaScript SEO audit compares the HTML your server sends against the rendered page, in five steps. Which of the three gaps you have decides the fix.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="eda1ccdcca89">
+<meta name="build-id" content="80a0899d1162">
 <link rel="canonical" href="https://docketseo.app/how-to/javascript-seo-audit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -278,6 +278,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
+/* The nav button carries the price only where the header has room for the
+   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
+   the other). Narrower, it says "Get Docket" and the hero carries both. */
+@media(max-width:1180px){.nav-price{display:none}}
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -759,7 +763,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or 4 &times; $87.25</span></a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / JavaScript SEO audit</div><h1>How to run a JavaScript SEO audit</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-09">9 September 2026</time></p>
 
@@ -870,7 +874,7 @@ crawl credits. If you would rather see how it compares to the tools you already 
 session, and a decision about which of the three gaps you are looking at before you change
 anything.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-javascript-seo-audit" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-javascript-seo-audit">Buy once &mdash; $349</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-javascript-seo-audit">See a sample report</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-javascript-seo-audit" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-javascript-seo-audit">Buy once &mdash; $349 &middot; or 4 &times; $87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-javascript-seo-audit">See a sample report</a> &middot; founding price $174.50 &middot; or 4 &times; $43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is a JavaScript SEO audit?</h3><p>A comparison of two views of the same URL: the HTML the server returns, and the page after JavaScript has run. Where they disagree, some crawlers see less than your visitors do. Everything else in the audit follows from the size and shape of that gap.</p></div><div class="faq-item"><h3>Does Google render JavaScript?</h3><p>Yes, on a delay and with no guarantee about when. That is not the same as saying it makes no difference: the render is a second pass, and the AI crawlers that increasingly decide whether you are quoted mostly do not render at all. A page that only exists after JavaScript is invisible to them.</p></div><div class="faq-item"><h3>My page looks fine in the browser. Is that enough?</h3><p>No, and it is the most common reason this problem goes unnoticed. The browser ran the JavaScript before you looked. Use view-source or curl to see what the server sent, which is what a non-rendering crawler gets.</p></div><div class="faq-item"><h3>The HTML has my navigation and footer but not the article. Is that a shell?</h3><p>Not a shell, and it is the case that hides. An empty shell is obvious; a page whose chrome is server-rendered looks server-rendered at a glance while the body arrives after hydration. Compare the MAIN content of the two views, not the page as a whole, or the navigation will mask the gap.</p></div><div class="faq-item"><h3>Can a tool tell me what Googlebot rendered?</h3><p>No. Nobody outside Google can measure what Google rendered or when. A tool can tell you what your server sent and what a browser builds from it; anything beyond that is a model presented as a measurement.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">

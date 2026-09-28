@@ -13,7 +13,7 @@
 <title>Not every social link on your site is yours</title>
 <meta name="description" content="A wrong sameAs entry is worse than a missing one. What an audit of your site can tell you about social profiles, and what it must not claim.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="eda1ccdcca89">
+<meta name="build-id" content="80a0899d1162">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-sameas-that-claims-the-wrong-accounts/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -278,6 +278,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
+/* The nav button carries the price only where the header has room for the
+   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
+   the other). Narrower, it says "Get Docket" and the hero carries both. */
+@media(max-width:1180px){.nav-price{display:none}}
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -759,7 +763,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or 4 &times; $87.25</span></a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / sameAs</div><h1>Not every social link on your site is yours</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
@@ -821,7 +825,7 @@ somebody else.</p>
 
 <p>This check was wrong in exactly that direction before the two rules above were added. A page
 citing a check is worth more for saying so than for implying the check has always been right.</p>
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-sameas-that-claims-the-wrong-accounts" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-sameas-that-claims-the-wrong-accounts">Buy once &mdash; $349</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-sameas-that-claims-the-wrong-accounts">See a sample report</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is sameAs for?</h3><p>It tells search engines that a website and a set of social profiles are one organisation. It is an identity claim rather than a list of links you happen to have on the page.</p></div><div class="faq-item"><h3>Is a missing sameAs worse than a wrong one?</h3><p>No — the other way round. A missing entry costs a little entity evidence. A wrong one asserts in machine-readable form that your company and somebody else, possibly a private individual, are the same thing.</p></div><div class="faq-item"><h3>Can I use a link to a post or a video?</h3><p>No. A comment thread, a short video or a status post lives on a social host and identifies no account. It is something somebody published, not somebody's identity. Only profile URLs belong in sameAs.</p></div><div class="faq-item"><h3>How do I tell my own accounts from other people's?</h3><p>Count how often each appears. Your accounts sit in the template, so they turn up across the crawl; an author's account appears on that author's articles and a cited source appears once.</p></div><div class="faq-item"><h3>Why not just ignore links in the header and footer?</h3><p>Because position is unreliable. Author cards are sometimes nested in a footer element inside each article, so byline links sit inside a boilerplate tag and survive that filter. Repetition separates them; position does not.</p></div></div></section>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-sameas-that-claims-the-wrong-accounts" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-sameas-that-claims-the-wrong-accounts">Buy once &mdash; $349 &middot; or 4 &times; $87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-sameas-that-claims-the-wrong-accounts">See a sample report</a> &middot; founding price $174.50 &middot; or 4 &times; $43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is sameAs for?</h3><p>It tells search engines that a website and a set of social profiles are one organisation. It is an identity claim rather than a list of links you happen to have on the page.</p></div><div class="faq-item"><h3>Is a missing sameAs worse than a wrong one?</h3><p>No — the other way round. A missing entry costs a little entity evidence. A wrong one asserts in machine-readable form that your company and somebody else, possibly a private individual, are the same thing.</p></div><div class="faq-item"><h3>Can I use a link to a post or a video?</h3><p>No. A comment thread, a short video or a status post lives on a social host and identifies no account. It is something somebody published, not somebody's identity. Only profile URLs belong in sameAs.</p></div><div class="faq-item"><h3>How do I tell my own accounts from other people's?</h3><p>Count how often each appears. Your accounts sit in the template, so they turn up across the crawl; an author's account appears on that author's articles and a cited source appears once.</p></div><div class="faq-item"><h3>Why not just ignore links in the header and footer?</h3><p>Because position is unreliable. Author cards are sometimes nested in a footer element inside each article, so byline links sit inside a boilerplate tag and survive that filter. Repetition separates them; position does not.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

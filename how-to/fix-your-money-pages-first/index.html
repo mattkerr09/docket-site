@@ -13,7 +13,7 @@
 <title>Fix the pages that make you money first</title>
 <meta name="description" content="An audit ranks by how broken a thing is, not which page it is on. How to weight the pages on your site that earn, and let page value break ties.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="eda1ccdcca89">
+<meta name="build-id" content="80a0899d1162">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-your-money-pages-first/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -278,6 +278,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
+/* The nav button carries the price only where the header has room for the
+   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
+   the other). Narrower, it says "Get Docket" and the hero carries both. */
+@media(max-width:1180px){.nav-price{display:none}}
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -759,7 +763,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or 4 &times; $87.25</span></a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / money pages</div><h1>Fix the pages that make you money first</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-17">17 September 2026</time></p>
 
@@ -834,7 +838,7 @@ differently. That is a floor, not a census: it can miss a money page, and it wil
 one that is not.</p>
 
 <p>So keep your own list. The tool orders the work; you decide what the work is for.</p>
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-your-money-pages-first" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-your-money-pages-first">Buy once &mdash; $349</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-your-money-pages-first">See a sample report</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is a money page?</h3><p>A page where a visitor buys, books, requests a quote, starts a trial or gets in touch — plus the homepage. A useful test: if it returned an error for a day, would you notice it in revenue rather than in analytics?</p></div><div class="faq-item"><h3>Why do audit tools rank a pricing page the same as a tag archive?</h3><p>Because the usual priority terms — severity, how many pages are affected, and how much work the fix is — are all about the problem. None of them is about which page the problem is on.</p></div><div class="faq-item"><h3>Should an important page outrank a more serious problem elsewhere?</h3><p>No. A critical fault anywhere still comes first. Let page value break ties within a severity band rather than set the order, or the plan contradicts the severity shown next to each item.</p></div><div class="faq-item"><h3>What should I check on a money page first?</h3><p>Whether it can be indexed at all, whether more than one page links to it, whether the contact route actually works, whether it states the price, and whether it loads on your customers' connections rather than yours.</p></div><div class="faq-item"><h3>Can a tool work out which pages earn on its own?</h3><p>Not really. It can recognise the shape of a commercial page from its path, which covers the common case and misses sites that name things differently. Keep your own list — it is the information you have and the tool does not.</p></div></div></section>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-your-money-pages-first" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-your-money-pages-first">Buy once &mdash; $349 &middot; or 4 &times; $87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-your-money-pages-first">See a sample report</a> &middot; founding price $174.50 &middot; or 4 &times; $43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is a money page?</h3><p>A page where a visitor buys, books, requests a quote, starts a trial or gets in touch — plus the homepage. A useful test: if it returned an error for a day, would you notice it in revenue rather than in analytics?</p></div><div class="faq-item"><h3>Why do audit tools rank a pricing page the same as a tag archive?</h3><p>Because the usual priority terms — severity, how many pages are affected, and how much work the fix is — are all about the problem. None of them is about which page the problem is on.</p></div><div class="faq-item"><h3>Should an important page outrank a more serious problem elsewhere?</h3><p>No. A critical fault anywhere still comes first. Let page value break ties within a severity band rather than set the order, or the plan contradicts the severity shown next to each item.</p></div><div class="faq-item"><h3>What should I check on a money page first?</h3><p>Whether it can be indexed at all, whether more than one page links to it, whether the contact route actually works, whether it states the price, and whether it loads on your customers' connections rather than yours.</p></div><div class="faq-item"><h3>Can a tool work out which pages earn on its own?</h3><p>Not really. It can recognise the shape of a commercial page from its path, which covers the common case and misses sites that name things differently. Keep your own list — it is the information you have and the tool does not.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

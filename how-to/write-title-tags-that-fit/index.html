@@ -13,7 +13,7 @@
 <title>How to write title tags that fit (width, not characters)</title>
 <meta name="description" content="Search engines truncate by pixel width, not character count — which makes the usual advice wrong on any site that is not entirely English.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="eda1ccdcca89">
+<meta name="build-id" content="80a0899d1162">
 <link rel="canonical" href="https://docketseo.app/how-to/write-title-tags-that-fit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -278,6 +278,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
+/* The nav button carries the price only where the header has room for the
+   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
+   the other). Narrower, it says "Get Docket" and the hero carries both. */
+@media(max-width:1180px){.nav-price{display:none}}
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -759,7 +763,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or 4 &times; $87.25</span></a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / title tags</div><h1>How to write title tags that fit</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-10">10 August 2026</time></p>
 
@@ -831,7 +835,7 @@ nothing about the work.</p>
 <p>Widths are measured in half-width units — a Latin character counts one, a full-width East
 Asian character counts two — so the same thresholds apply to every language on your site.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-write-title-tags-that-fit" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-write-title-tags-that-fit">Buy once &mdash; $349</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-write-title-tags-that-fit">See a sample report</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-write-title-tags-that-fit" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-write-title-tags-that-fit">Buy once &mdash; $349 &middot; or 4 &times; $87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-write-title-tags-that-fit">See a sample report</a> &middot; founding price $174.50 &middot; or 4 &times; $43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How long should a title tag be?</h3><p>Long enough to identify the page and short enough to survive truncation. The useful unit is rendered width rather than character count, because search engines truncate by pixel width and characters are not all the same width.</p></div><div class="faq-item"><h3>Why does character count give the wrong answer?</h3><p>East Asian characters render at roughly double the width of a Latin one, so a twenty-character Japanese title occupies about forty Latin characters' worth of space. Counting characters applies an English rule to languages it does not fit.</p></div><div class="faq-item"><h3>Where should the important words go in a title?</h3><p>First. Truncation happens at the end, so a title opening with your brand name and closing with the page's subject loses the subject.</p></div><div class="faq-item"><h3>Do meta descriptions affect ranking?</h3><p>No, but they affect clicks. Google often rewrites them, which is not a reason to omit them — a rewrite drawn from a page with no description is usually a sentence you would not have chosen.</p></div><div class="faq-item"><h3>Are duplicate titles a problem?</h3><p>Yes. They signal that pages are interchangeable, and search engines will generally pick one and drop the others. Template titles differing only by a hidden ID count as duplicates.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
