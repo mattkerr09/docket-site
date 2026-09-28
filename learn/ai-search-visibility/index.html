@@ -13,7 +13,7 @@
 <title>AI search visibility: how to get cited by ChatGPT and Claude</title>
 <meta name="description" content="Whether a model can reach, read and quote your site. The three gates — crawler access, server-side rendering, entity clarity — with measured data.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="82b4938b61ef">
+<meta name="build-id" content="61aec79dd61f">
 <link rel="canonical" href="https://docketseo.app/learn/ai-search-visibility/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -592,6 +592,28 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .price-big{font-size:2.5rem;font-weight:700;line-height:1;letter-spacing:-.02em}
 .price-pay4{font-size:1rem;font-weight:600;white-space:nowrap}
 .pay4-em{color:var(--text);font-weight:600}
+/* The AI crawler checker's form and its answer column. */
+.checker-form{margin:1.4rem 0 2rem;padding:1.1rem 1.2rem;border:1px solid var(--border-strong);
+  border-radius:var(--radius-lg);background:var(--surface)}
+.checker-form label{display:block;font-weight:600;margin-bottom:.5rem;color:var(--text)}
+.checker-row{display:flex;gap:.6rem;flex-wrap:wrap}
+.checker-row input{flex:1 1 14rem;min-width:0;padding:.7rem .85rem;border-radius:var(--radius-md);
+  border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
+.checker-status{margin:.7rem 0 0;color:var(--text-mid);min-height:1.3em;overflow-wrap:anywhere}
+.checker-table .verdict{font-weight:600;overflow-wrap:anywhere}
+.checker-table .verdict.yes{color:var(--ok)}.checker-table .verdict.no{color:var(--bad-text)}
+/* On a phone each crawler is a card: its name, then the answer, then what a
+   block costs. Four columns at 375px put the answer off-screen. */
+@media(max-width:600px){
+  .checker-table{min-width:0;width:100%}
+  .checker-table thead{display:none}
+  .checker-table,.checker-table tbody,.checker-table td{display:block}
+  .checker-table tr{display:flex;flex-direction:column;gap:.3rem;padding:.85rem 0;border-bottom:1px solid var(--border)}
+  table.cmp.checker-table td{border:0;padding:0}
+  .checker-table td:nth-child(2){display:none}
+  .checker-table td.verdict{order:1}
+  .checker-table td:nth-child(3){order:2;color:var(--text-mid)}
+}
 .buy-block.compact .price-big{font-size:2rem}.buy-block.compact .price-pay4{font-size:.8rem}
 .cta-band .price-line{justify-content:center}
 @media(max-width:480px){.price-pay4{flex-basis:100%}}
@@ -733,7 +755,7 @@ nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"AI search visibility, explained","description":"Whether a model can reach, read and quote your site. The three gates — crawler access, server-side rendering, entity clarity — with measured data.","datePublished":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/ai-search-visibility/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is AI search visibility?","acceptedAnswer":{"@type":"Answer","text":"Whether an AI assistant can reach your website, read its content, and cite it when answering a user's question. It depends on crawler access in robots.txt, whether pages render server-side, and whether the site is identifiable as a real entity."}},{"@type":"Question","name":"Is blocking GPTBot the same as blocking ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"No. GPTBot collects training data. OAI-SearchBot builds the index ChatGPT searches when answering a question. Blocking GPTBot keeps you out of training; blocking OAI-SearchBot keeps you out of the answers."}},{"@type":"Question","name":"Does llms.txt improve AI visibility?","acceptedAnswer":{"@type":"Answer","text":"There is no measured evidence that it does. Independent studies through 2026 found no effect on citations and Google has stated it ignores the file. Crawler access, server-side rendering and structured data are where the measurable gains are."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is AI search visibility?","acceptedAnswer":{"@type":"Answer","text":"Whether an AI assistant can reach your website, read its content, and cite it when answering a user's question. It depends on crawler access in robots.txt, whether pages render server-side, and whether the site is identifiable as a real entity."}},{"@type":"Question","name":"Is blocking GPTBot the same as blocking ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"No. GPTBot collects training data. OAI-SearchBot builds the index ChatGPT searches when answering a question. Blocking GPTBot keeps you out of training; blocking OAI-SearchBot keeps you out of the answers."}},{"@type":"Question","name":"Does llms.txt improve AI visibility?","acceptedAnswer":{"@type":"Answer","text":"Nobody has published evidence that it does. Google's documentation says you don't need AI text files to appear in AI Overviews or AI Mode. Crawler access, server-side rendering and structured data are where the measurable gains are."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -839,9 +861,11 @@ via a copied robots.txt block.</p>
 
 <h2>What about llms.txt?</h2>
 <p><code>llms.txt</code> is a proposed convention for pointing models at your best content.
-Independent studies through 2026 have not found a measurable effect on citations, and Google
-has said it ignores the file. It costs nothing to add and there is no evidence it helps.
-Access, server-side rendering and entity clarity are where the measurable gains are.</p>
+Google&rsquo;s documentation on AI Overviews says you don&rsquo;t need &ldquo;AI text files&rdquo;
+to appear there, and nobody has published evidence that the file changes who gets cited. It
+costs nothing to add. Access, server-side rendering and entity clarity are where the measurable
+gains are. <a href="/learn/what-is-llms-txt/">What goes in one, and how many large sites have
+it</a>.</p>
 
 <h2>The question after this one</h2>
 <p>Access, rendering and entity clarity decide whether a model <em>can</em> cite you. Whether
@@ -859,7 +883,7 @@ only see <code>User-agent: *</code>, whatever it says applies to all of them.</l
 blocking and what it costs you. It runs on your Mac, and the crawl and the report stay there.</p>
 
 <aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=learn-ai-search-visibility" data-ev="Buy" data-ev-price="349" data-ev-button="learn-ai-search-visibility">Buy once &mdash; $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-ai-search-visibility">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is AI search visibility?</h3><p>Whether an AI assistant can reach your website, read its content, and cite it when answering a user's question. It depends on crawler access in robots.txt, whether pages render server-side, and whether the site is identifiable as a real entity.</p></div><div class="faq-item"><h3>Is blocking GPTBot the same as blocking ChatGPT?</h3><p>No. GPTBot collects training data. OAI-SearchBot builds the index ChatGPT searches when answering a question. Blocking GPTBot keeps you out of training; blocking OAI-SearchBot keeps you out of the answers.</p></div><div class="faq-item"><h3>Does llms.txt improve AI visibility?</h3><p>There is no measured evidence that it does. Independent studies through 2026 found no effect on citations and Google has stated it ignores the file. Crawler access, server-side rendering and structured data are where the measurable gains are.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is AI search visibility?</h3><p>Whether an AI assistant can reach your website, read its content, and cite it when answering a user's question. It depends on crawler access in robots.txt, whether pages render server-side, and whether the site is identifiable as a real entity.</p></div><div class="faq-item"><h3>Is blocking GPTBot the same as blocking ChatGPT?</h3><p>No. GPTBot collects training data. OAI-SearchBot builds the index ChatGPT searches when answering a question. Blocking GPTBot keeps you out of training; blocking OAI-SearchBot keeps you out of the answers.</p></div><div class="faq-item"><h3>Does llms.txt improve AI visibility?</h3><p>Nobody has published evidence that it does. Google's documentation says you don't need AI text files to appear in AI Overviews or AI Mode. Crawler access, server-side rendering and structured data are where the measurable gains are.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

@@ -13,7 +13,7 @@
 <title>Internal link equity: find the pages your site is starving</title>
 <meta name="description" content="The ranking signal your pages pass to each other. Measured on our own site, where fixing a starved page moved the problem rather than ending it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="82b4938b61ef">
+<meta name="build-id" content="61aec79dd61f">
 <link rel="canonical" href="https://docketseo.app/learn/internal-link-equity/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -592,6 +592,28 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .price-big{font-size:2.5rem;font-weight:700;line-height:1;letter-spacing:-.02em}
 .price-pay4{font-size:1rem;font-weight:600;white-space:nowrap}
 .pay4-em{color:var(--text);font-weight:600}
+/* The AI crawler checker's form and its answer column. */
+.checker-form{margin:1.4rem 0 2rem;padding:1.1rem 1.2rem;border:1px solid var(--border-strong);
+  border-radius:var(--radius-lg);background:var(--surface)}
+.checker-form label{display:block;font-weight:600;margin-bottom:.5rem;color:var(--text)}
+.checker-row{display:flex;gap:.6rem;flex-wrap:wrap}
+.checker-row input{flex:1 1 14rem;min-width:0;padding:.7rem .85rem;border-radius:var(--radius-md);
+  border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
+.checker-status{margin:.7rem 0 0;color:var(--text-mid);min-height:1.3em;overflow-wrap:anywhere}
+.checker-table .verdict{font-weight:600;overflow-wrap:anywhere}
+.checker-table .verdict.yes{color:var(--ok)}.checker-table .verdict.no{color:var(--bad-text)}
+/* On a phone each crawler is a card: its name, then the answer, then what a
+   block costs. Four columns at 375px put the answer off-screen. */
+@media(max-width:600px){
+  .checker-table{min-width:0;width:100%}
+  .checker-table thead{display:none}
+  .checker-table,.checker-table tbody,.checker-table td{display:block}
+  .checker-table tr{display:flex;flex-direction:column;gap:.3rem;padding:.85rem 0;border-bottom:1px solid var(--border)}
+  table.cmp.checker-table td{border:0;padding:0}
+  .checker-table td:nth-child(2){display:none}
+  .checker-table td.verdict{order:1}
+  .checker-table td:nth-child(3){order:2;color:var(--text-mid)}
+}
 .buy-block.compact .price-big{font-size:2rem}.buy-block.compact .price-pay4{font-size:.8rem}
 .cta-band .price-line{justify-content:center}
 @media(max-width:480px){.price-pay4{flex-basis:100%}}
@@ -793,10 +815,10 @@ a typical page got.</p>
 the footer and reachable in one click, and by every conventional check it was fine.</p>
 
 <p>Then we fixed it, and the interesting part is what happened next. The same measurement
-today: <strong>137 pages and 3249 links</strong>, and the
-download page holds <strong>4.16%</strong> from
-135 internal links — 5.7×
-the 0.73% average, rather than 0.22×. The problem did not go away. It
+today: <strong>140 pages and 3330 links</strong>, and the
+download page holds <strong>4.14%</strong> from
+138 internal links — 5.83×
+the 0.71% average, rather than 0.22×. The problem did not go away. It
 moved.</p>
 
 <h2>Why counting links is not enough</h2>
@@ -820,7 +842,7 @@ link from your homepage. A raw count says the first is better.</p>
 <p>Raw PageRank values are awkward — 0.0125 means nothing on its own. Divide by the average
 and you get something you can act on. Anything under about 0.5× on a page you actually care
 about is worth an afternoon. On this site today,
-<strong>116 pages sit under it</strong>, and they are the newest ones:
+<strong>118 pages sit under it</strong>, and they are the newest ones:
 <code>/learn/what-scout-checks/</code> at 0.0×, <code>/thank-you/</code> at 0.0×, <code>/for/agencies/</code> at 0.04×. Every
 article arrives starved, because nothing links to it until something does.</p>
 
@@ -849,10 +871,10 @@ link meaning, with anchor text that says what the destination is rather than "cl
 
 <p>For us that meant linking the download page from inside the articles people actually
 arrive on, not just from the footer. It worked — 0.22× to
-5.7×.</p>
+5.83×.</p>
 
 <p>It also concentrated equity on the pages already in the navigation, which is why
-116 of 137 pages now sit under 0.5×. There is no version
+118 of 140 pages now sit under 0.5×. There is no version
 of this where every page is above average. The question is never "are any pages starved" —
 some always are — but "are the starved ones the ones that matter", and on a site that keeps
 publishing, the answer needs revisiting every time it does.</p>
@@ -894,7 +916,7 @@ the footer.</li>
 
 <p>You can do this by hand on a small site in about twenty minutes. Docket does it across
 every page, ranks the results, and shows you the map. The figures on this page come from
-running it against this site on 2026-09-23, and they are read from that
+running it against this site on 2026-09-28, and they are read from that
 measurement rather than typed — this article quoted an 18-page graph for a while after the
 site had 23 pages, which is exactly the failure it warns about.</p>
 
