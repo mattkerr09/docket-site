@@ -505,6 +505,21 @@ def write_robots() -> None:
     (SITE / "robots.txt").write_text("\n".join(lines) + "\n")
 
 
+#: The ten fix guides search engines show most, by docketseo.app's Search
+#: Console reads of 2026-09-07 to 2026-09-24: page impressions where a read
+#: lists the page, and the target query's impressions for the four written
+#: after the first read. Matthew's order asked for "the best 10 how-tos". This
+#: is a selection, so the slugs are listed here. Each title and summary is read
+#: from the built page, so a retitle carries through. Re-pick from a fresh read;
+#: never publish the counts.
+LLMS_HOWTOS = (
+    "fix-layout-shift", "fix-hreflang-return-tags", "fix-duplicate-title-tags",
+    "write-title-tags-that-fit", "javascript-seo-audit", "fix-conflicting-canonicals",
+    "content-audit", "fix-lang-attribute-mismatch", "backlink-audit",
+    "redirect-http-to-https",
+)
+
+
 def write_llms_txt() -> None:
     """/llms.txt: an index of this site for language models, in the llmstxt.org
     shape (an H1, a blockquote summary, then H2 sections of annotated links).
@@ -645,6 +660,17 @@ def write_llms_txt() -> None:
         "Scheduled re-audits run only while Docket is open: the schedule is a thread "
         "inside the app, so quitting it stops the clock.")
 
+    # The buyer's questions, from the homepage's own FAQ list rather than
+    # restated, so the answers here are the answers there.
+    import html as _html
+    import re as _re
+
+    def plain(text: str) -> str:
+        return _html.unescape(_re.sub(r"<[^>]+>", "", text))
+
+    out += ["", "## Frequently asked questions", ""]
+    out += facts(*(f"{plain(q)} {plain(a)}" for q, a in home.FAQ))
+
     out += ["", "## Key pages", ""]
     out += links(
         ("Homepage", f"{BASE}/", "what Docket checks, how it ranks what it finds, and "
@@ -674,6 +700,15 @@ def write_llms_txt() -> None:
          "GitHub issue tracker for bugs and wrong findings"),
         ("The Docket crawler", f"{BASE}/bot/", "what Docket's audit crawler requests and "
          "the robots.txt rule that asks it to stay out"))
+
+    def page_entry(path: str) -> tuple:
+        page = (SITE / path.strip("/") / "index.html").read_text(encoding="utf-8")
+        title = _re.search(r"<title>([^<]+)</title>", page).group(1)
+        desc = _re.search(r'<meta name="description" content="([^"]*)"', page).group(1)
+        return (plain(title), f"{BASE}{path}", plain(desc))
+
+    out += ["", "## Fix guides people search for most", ""]
+    out += links(*(page_entry(f"/how-to/{slug}/") for slug in LLMS_HOWTOS))
 
     out += ["", "## Policies", ""]
     out += links(
