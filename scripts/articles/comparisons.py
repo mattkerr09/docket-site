@@ -14,7 +14,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import (BETA_NOTE, FREE_CLAUSE, MACOS, N_CHECKS, PRICE_STR, RELEASE,  # noqa: E402
+from render import (PAY4, BETA_NOTE, FREE_CLAUSE, MACOS, N_CHECKS, PRICE_STR, RELEASE,  # noqa: E402
                     price, price_note_html, render, buy_block, rival_monthly_range)
 
 #: How many optional checks reach the network, spelled, from the engine's own
@@ -30,7 +30,7 @@ CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
 #: plan, 2026-09-24: every /vs/ page shows the price and a Buy button.
 CTA = f"""
 <div class="callout" id="buy">
-<div class="callout-title">{PRICE_STR} once. No subscription.</div>
+<div class="callout-title">{PRICE_STR} once{PAY4}. No subscription.</div>
 <p>Docket is a one-time purchase for macOS: no account, no crawl credits, and the crawl runs
 on your machine. {CONNECTORS_WORD_CAP} optional checks fetch data it cannot produce alone; <code>--offline</code>
 turns all {CONNECTORS_WORD} off.</p>
@@ -43,7 +43,7 @@ turns all {CONNECTORS_WORD} off.</p>
 #: ones — an added internal link would change what the experiment measures.
 CTA_LINK_EXPERIMENT = f"""
 <div class="callout" id="buy">
-<div class="callout-title">{PRICE_STR} once. No subscription.</div>
+<div class="callout-title">{PRICE_STR} once{PAY4}. No subscription.</div>
 <p>Docket is a one-time purchase for macOS: no account, no crawl credits, and the crawl runs
 on your machine. {CONNECTORS_WORD_CAP} optional checks fetch data it cannot produce alone; <code>--offline</code>
 turns all {CONNECTORS_WORD} off. <a href="/download/">Download Docket →</a></p>

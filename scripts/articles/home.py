@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
+from render import (PAY4, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
@@ -192,7 +192,7 @@ def body() -> str:
 <!-- ================= HERO ================= -->
 <section class="hero-sec"><div class="wrap-wide hero-grid">
 <div>
-  <span class="eyebrow">{N_CHECKS} checks · {PRICE_STR} once · no subscription</span>
+  <span class="eyebrow">{N_CHECKS} checks · {PRICE_STR} once{PAY4} · no subscription</span>
   <h1 class="hero-h1">Everything that's wrong.
   <em>In the order to fix&nbsp;it.</em></h1>
   <p class="hero-note">No page meter. No credit counter. Nothing to check before you run an
@@ -525,7 +525,7 @@ def body() -> str:
 
 <!-- ================= COMPARISON ================= -->
 <section class="sec"><div class="wrap-wide">
-<div class="sec-head"><h2>{PRICE_STR}. Once.</h2>
+<div class="sec-head"><h2>{PRICE_STR} once{PAY4}</h2>
 {BNPL_BLOCK}
 <p>Every tool below is a subscription. Docket is a one-time purchase, and the audit runs on your Mac, so there are no crawl credits to ration. {BETA_NOTE}</p></div>
 <div class="wrap-tbl"><table class="cmp">

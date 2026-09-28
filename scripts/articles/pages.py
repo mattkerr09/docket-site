@@ -17,7 +17,7 @@ import facts as F  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
-from render import (
+from render import (PAY4, PAY4_FOUNDING, 
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
@@ -120,7 +120,7 @@ def download() -> Path:
     # audit anything until a key is pasted. Buying is step one because it is.
     body = f"""
 <ol class="steps" id="buy">
-<li><strong>Buy once &mdash; {PRICE_STR}</strong> ({FOUNDING_NOW} founding). The licence key
+<li><strong>Buy once &mdash; {PRICE_STR}{PAY4}</strong> (founding: {FOUNDING_NOW}{PAY4_FOUNDING}). The licence key
 arrives with your receipt.{buy_block("download-steps", sample=True, big=True)}</li>
 <li><strong>Download</strong> the app &mdash; <a href="{DMG}" data-ev="Download"
 data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.</li>

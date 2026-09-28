@@ -14,6 +14,7 @@ found months after launch — no reason to repeat that here.
 from __future__ import annotations
 
 from pathlib import Path
+import math
 import datetime as _dt
 import re
 import json
@@ -228,7 +229,7 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
     size = " btn-lg" if big else ""
     out = [f'<div class="buy-block"><div class="hero-cta">'
            f'<a class="btn{size}" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
-           f'data-ev-button="{src}">Buy Docket &middot; {PRICE_STR} once</a>']
+           f'data-ev-button="{src}">Buy Docket &middot; {PRICE_STR} once{PAY4}</a>']
     if sample and HAS_SAMPLE:
         out.append(f'<a class="btn-ghost{size}" href="{SAMPLE_REPORT}" data-ev="Sample report" '
                    f'data-ev-button="{src}">See a full sample report</a>')
@@ -253,8 +254,8 @@ def buy_strip(src: str) -> str:
     sample = (f'<a href="{SAMPLE_REPORT}" data-ev="Sample report" data-ev-button="{src}">'
               f'See a sample report</a> &middot; ' if HAS_SAMPLE else "")
     return (f'<aside class="buy-strip"><p><a href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
-            f'data-ev-button="{src}">Buy once &mdash; {PRICE_STR}</a> &middot; '
-            f'{sample}founding price {FOUNDING_NOW} for the first '
+            f'data-ev-button="{src}">Buy once &mdash; {PRICE_STR}{PAY4}</a> &middot; '
+            f'{sample}founding price {FOUNDING_NOW}{PAY4_FOUNDING}, for the first '
             f'{FOUNDING_SEATS} buyers with <code>{FOUNDING_CODE}</code></p></aside>')
 
 
@@ -418,9 +419,7 @@ FOUNDING_SEATS = 25
 #: can fail to load, and a visitor at the button should not need it to know the
 #: offer exists or how to claim it. Says "first 25 buyers", never how many are
 #: left: that number lives in Dodo and the bar reads it live.
-FOUNDING_LINE = (f"Founding price <strong>{FOUNDING_NOW} once</strong>, first "
-                 f"{FOUNDING_SEATS} buyers. At checkout click &lsquo;Have a discount "
-                 f"code?&rsquo; and enter <code>{FOUNDING_CODE}</code>. Then {PRICE_STR}.")
+#: FOUNDING_LINE is defined below the pay-in-four constants, which it uses.
 
 #: What the download costs *today*, which is not PRICE. The beta is free, keeps
 #: working, and has no checkout to pay through even if you wanted to.
@@ -540,6 +539,27 @@ BNPL_NOTE = (
     f"apart — the last one six weeks after the first, at no extra cost from us. "
     f"Then it stops, and it is yours."
 ) if BNPL_LIVE else ""
+
+#: PAY-IN-FOUR ON THE SAME LINE AS THE PRICE, IN THE PRICE'S OWN FONT. Matthew,
+#: 2026-09-28: "it needs to say the bnpl price right next to the full price in
+#: the same fucking font for every fucking site". The four-payment sentence
+#: above stays underneath as the small print. Every place a visitor is asked to
+#: pay a price appends one of these INSIDE the price's own element (button,
+#: heading, strong, callout title), so the font follows by construction and
+#: never has to be matched by hand.
+#:
+#: The founding price does not split evenly ($174.50 / 4 = $43.625), so its
+#: instalment is rounded UP to the cent: no payment is ever more than the
+#: figure shown. Comparison tables and prose are not prices to pay and are
+#: left alone.
+BNPL_FOUNDING_INSTALMENT = (
+    f"${math.ceil(PRICE * (100 - FOUNDING_PCT) / 4) / 100:.2f}")
+PAY4 = f" &middot; or 4 &times; {BNPL_INSTALMENT}" if BNPL_LIVE else ""
+PAY4_FOUNDING = f" &middot; or 4 &times; {BNPL_FOUNDING_INSTALMENT}" if BNPL_LIVE else ""
+
+FOUNDING_LINE = (f"Founding price <strong>{FOUNDING_NOW} once{PAY4_FOUNDING}</strong>, first "
+                 f"{FOUNDING_SEATS} buyers. At checkout click &lsquo;Have a discount "
+                 f"code?&rsquo; and enter <code>{FOUNDING_CODE}</code>. Then {PRICE_STR}.")
 
 # --------------------------------------------------------------------------
 # Who the money is paid to.
@@ -867,6 +887,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
+/* The nav button carries the price only where the header has room for the
+   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
+   the other). Narrower, it says "Get Docket" and the hero carries both. */
+@media(max-width:1180px){.nav-price{display:none}}
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -1347,7 +1371,7 @@ NAV = f"""<nav><div class="wrap-wide nav-inner">
 <div class="nav-more-links">
 {_NAV_LINKS}
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; ${PRICE}</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; ${PRICE}{PAY4}</span></a>
 </div></nav>"""
 
 #: The Kerr & Company cross-links. Matthew's order, 2026-09-26 01:28Z: every
