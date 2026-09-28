@@ -19,5 +19,6 @@
  },
  "refund_days": 30,
  "checkout_url": "https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F",
+ "buy_url": "https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket",
  "sample_report_url": "https://docketseo.app/assets/docket-sample-report.pdf"
 }
