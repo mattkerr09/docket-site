@@ -1,0 +1,7 @@
+# Deployed by hand from the Mac:  cd workers/ai-crawler-check && npx wrangler deploy
+# Serves https://ai-crawler-check.kerrco.workers.dev, which the page at
+# docketseo.app/tools/ai-crawler-checker/ calls (render.py CHECKER_ENDPOINT).
+name = "ai-crawler-check"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = true

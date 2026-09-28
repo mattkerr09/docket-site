@@ -131,6 +131,7 @@ import howto_headings  # noqa: E402
 import howto_broken_links  # noqa: E402
 import howto_compression  # noqa: E402
 import extractability  # noqa: E402
+import tool_ai_crawlers  # noqa: E402
 
 
 def hub(cat: str, title: str, desc: str, h1: str, lede: str,
@@ -692,6 +693,8 @@ def write_llms_txt() -> None:
          "shops, local businesses and SaaS companies"),
         ("Best tools, by job", f"{BASE}/best/", "which SEO tool fits which job, with "
          "every claim read from the product's own documentation"),
+        ("Free AI crawler checker", f"{BASE}/tools/ai-crawler-checker/", "type an address "
+         "and see which AI crawlers its robots.txt lets in, and what each block costs"),
         ("AI search visibility", f"{BASE}/learn/ai-search-visibility/", "whether a model "
          "can reach, read and quote a site: crawler access, server-side rendering and "
          "entity clarity"),
@@ -1256,6 +1259,7 @@ def main() -> int:
     pages += howto_broken_links.build_all()
     pages += howto_compression.build_all()
     pages += extractability.build_all()
+    pages += tool_ai_crawlers.build_all()
     pages += build_hubs()
 
     # NOT appended to `pages`: the sitemap is derived from that list, and
