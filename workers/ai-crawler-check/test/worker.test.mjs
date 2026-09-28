@@ -127,3 +127,28 @@ test('bad input gets a 400 with a sentence, other paths 404, other methods 405',
   assert.equal((await handle(new Request('https://w.dev/other'), fetchImpl)).status, 404)
   assert.equal((await handle(req('url=example.com&agents=GPTBot', ALLOWED_ORIGIN, 'POST'), fetchImpl)).status, 405)
 })
+
+test('rate limit: the binding decides when it exists', async () => {
+  const { fetchImpl } = net({ 'https://example.com/robots.txt': { body: 'User-agent: *\nAllow: /' } })
+  const withIp = (qs) => new Request(`https://w.dev/check?${qs}`, { headers: { Origin: ALLOWED_ORIGIN, 'CF-Connecting-IP': '203.0.113.9' } })
+  const deny = { CHECK_LIMITER: { limit: async () => ({ success: false }) } }
+  const allow = { CHECK_LIMITER: { limit: async () => ({ success: true }) } }
+  const r1 = await handle(withIp('url=example.com&agents=GPTBot'), fetchImpl, deny, null)
+  assert.equal(r1.status, 429)
+  assert.equal(r1.headers.get('Retry-After'), '60')
+  assert.equal(r1.headers.get('Access-Control-Allow-Origin'), ALLOWED_ORIGIN, 'the page must be able to read the message')
+  assert.match((await r1.json()).error, /Wait a minute/)
+  assert.equal((await handle(withIp('url=example.com&agents=GPTBot'), fetchImpl, allow, null)).status, 200)
+})
+
+test('rate limit: without the binding, a per-IP counter allows 20 a minute and refuses the 21st', async () => {
+  const mem = new Map()
+  const store = { get: async (k) => mem.get(k) || 0, put: async (k, n) => { mem.set(k, n) } }
+  const { seen, fetchImpl } = net({ 'https://example.com/robots.txt': { body: 'User-agent: *\nAllow: /' } })
+  const from = (ip) => new Request('https://w.dev/check?url=example.com&agents=GPTBot',
+    { headers: { Origin: ALLOWED_ORIGIN, 'CF-Connecting-IP': ip } })
+  for (let i = 0; i < 20; i++) assert.equal((await handle(from('198.51.100.1'), fetchImpl, {}, store)).status, 200, `check ${i + 1}`)
+  assert.equal((await handle(from('198.51.100.1'), fetchImpl, {}, store)).status, 429)
+  assert.equal(seen.length, 20, 'the refused check never reached the site')
+  assert.equal((await handle(from('198.51.100.2'), fetchImpl, {}, store)).status, 200, 'another IP is unaffected')
+})

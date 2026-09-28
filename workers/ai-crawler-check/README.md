@@ -46,6 +46,13 @@ route Worker subrequests to private address space, which is the backstop.
 
 CORS answers only `https://docketseo.app`. Any other `Origin` gets a 403.
 
+Per-IP limit: 20 checks a minute per `CF-Connecting-IP`, then a 429 with
+`Retry-After: 60` and a plain sentence the page shows. It uses the
+`CHECK_LIMITER` rate-limiting binding in wrangler.toml. If the account cannot
+create that binding, delete the block; the Worker then falls back to a per-IP
+counter in the Cache API. That counter is per data centre and approximate,
+which is enough to stop a flood.
+
 ## Test and deploy
 
 ```

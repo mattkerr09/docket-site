@@ -30,6 +30,8 @@ const MAX_BYTES = 512 * 1024
 const MAX_REDIRECTS = 5
 const TIMEOUT_MS = 8000
 const MAX_AGENTS = 40
+export const RATE_LIMIT = 20          // checks per IP per window
+export const RATE_WINDOW_S = 60
 
 const PRIVATE_SUFFIXES = ['.localhost', '.local', '.internal', '.intranet', '.lan', '.home',
   '.home.arpa', '.corp', '.test', '.invalid', '.example', '.onion', '.arpa']
@@ -167,7 +169,46 @@ export function agentsFrom(param) {
   return out
 }
 
-export async function handle(request, fetchImpl = fetch) {
+/**
+ * Per-IP limit, so nobody can use this as an open proxy and spend the
+ * account's request allowance that the founding bar and the chat assistant
+ * share.
+ *
+ * Prefers Cloudflare's rate-limiting binding (`CHECK_LIMITER` in
+ * wrangler.toml). Where the account has none, it falls back to a counter per
+ * IP per minute in the Cache API. That counter is per data centre and not
+ * atomic, so it is approximate. That is fine: it exists to stop a flood, not
+ * to meter anyone exactly. `store` is injectable for tests.
+ */
+export async function overLimit(ip, env = {}, store = cacheStore()) {
+  if (!ip) return false
+  if (env.CHECK_LIMITER && typeof env.CHECK_LIMITER.limit === 'function') {
+    const { success } = await env.CHECK_LIMITER.limit({ key: ip })
+    return !success
+  }
+  if (!store) return false
+  const window = Math.floor(Date.now() / 1000 / RATE_WINDOW_S)
+  const key = `https://rate.ai-crawler-check.invalid/${encodeURIComponent(ip)}/${window}`
+  const used = (await store.get(key)) || 0
+  if (used >= RATE_LIMIT) return true
+  await store.put(key, used + 1, RATE_WINDOW_S)
+  return false
+}
+
+function cacheStore() {
+  if (typeof caches === 'undefined' || !caches.default) return null
+  return {
+    async get(key) {
+      const hit = await caches.default.match(key)
+      return hit ? Number(await hit.text()) || 0 : 0
+    },
+    async put(key, n, ttl) {
+      await caches.default.put(key, new Response(String(n), { headers: { 'Cache-Control': `max-age=${ttl}` } }))
+    },
+  }
+}
+
+export async function handle(request, fetchImpl = fetch, env = {}, store = undefined) {
   const origin = request.headers.get('Origin')
   if (origin && origin !== ALLOWED_ORIGIN) return json({ error: 'This checker only answers docketseo.app.' }, 403, origin)
   if (request.method === 'OPTIONS') {
@@ -177,6 +218,13 @@ export async function handle(request, fetchImpl = fetch) {
   const u = new URL(request.url)
   if (u.pathname === '/health') return json({ ok: true }, 200, origin)
   if (u.pathname !== '/check') return json({ error: 'Not found.' }, 404, origin)
+
+  const ip = request.headers.get('CF-Connecting-IP')
+  if (await overLimit(ip, env, store === undefined ? cacheStore() : store)) {
+    const res = json({ error: 'Too many checks from your connection. Wait a minute and try again.' }, 429, origin)
+    res.headers.set('Retry-After', String(RATE_WINDOW_S))
+    return res
+  }
 
   let site
   try { site = siteFrom(u.searchParams.get('url')) } catch (e) { return json({ error: e.message }, 400, origin) }
@@ -208,5 +256,5 @@ export async function handle(request, fetchImpl = fetch) {
 }
 
 export default {
-  fetch(request) { return handle(request) },
+  fetch(request, env) { return handle(request, fetch, env) },
 }

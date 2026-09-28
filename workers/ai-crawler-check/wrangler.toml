@@ -5,3 +5,14 @@ name = "ai-crawler-check"
 main = "src/index.js"
 compatibility_date = "2026-09-01"
 workers_dev = true
+
+# Per-IP limit: 20 checks a minute (src/index.js RATE_LIMIT). Cloudflare's
+# rate-limiting binding; if the account cannot create it, delete this block and
+# the Worker falls back to its Cache API counter automatically.
+[[ratelimits]]
+name = "CHECK_LIMITER"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 20
+  period = 60
