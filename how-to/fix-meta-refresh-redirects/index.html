@@ -13,7 +13,7 @@
 <title>Meta refresh: the redirect your tools cannot see</title>
 <meta name="description" content="A meta refresh answers 200, so a link audit reads it as content. What it costs your site, and when it is the only option your host gives you.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="80a0899d1162">
+<meta name="build-id" content="6ce79c8a49a9">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-meta-refresh-redirects/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -763,7 +763,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or 4 &times; $87.25</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</span></a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / meta refresh</div><h1>Meta refresh: the redirect your tools cannot see</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
@@ -832,7 +832,7 @@ how the old one will be audited a year later.</p>
 
 <p>If you can replace them with real redirects,
 <a href="/how-to/fix-redirect-problems/">the redirect rules are worth getting right too</a>.</p>
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-meta-refresh-redirects" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-meta-refresh-redirects">Buy once &mdash; $349 &middot; or 4 &times; $87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-meta-refresh-redirects">See a sample report</a> &middot; founding price $174.50 &middot; or 4 &times; $43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is a meta refresh bad for SEO?</h3><p>Search engines support it and follow it, so it is not a broken page. A server-side redirect is preferred because it is faster and unambiguous. The bigger cost is that the page answers 200, so link checkers and redirect reports read it as content and your own tooling stops describing the site accurately.</p></div><div class="faq-item"><h3>Why does my link checker not flag meta refresh redirects?</h3><p>Because at the HTTP level there is nothing to flag. The page returns 200 with a normal body; the hop lives in the markup, not the status line.</p></div><div class="faq-item"><h3>What if my host cannot issue a 301?</h3><p>Then a refresh stub is a reasonable second best, and plenty of static hosting offers nothing else. Set the delay to zero and add a canonical pointing at the new URL. It is worth knowing that is what you are relying on.</p></div><div class="faq-item"><h3>Does the delay value matter?</h3><p>Yes. Zero makes the hop instant. Anything above it leaves the visitor on a page they did not want, and search engines treat a delayed refresh as a weaker signal than an immediate one.</p></div><div class="faq-item"><h3>Is a JavaScript redirect better?</h3><p>No. location.replace has the same shape and the same invisibility to status-code tooling, and it additionally requires something to run the script. If you want a redirect a crawler can rely on, that is further away, not closer.</p></div></div></section>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-meta-refresh-redirects" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-meta-refresh-redirects">Buy once &mdash; $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-meta-refresh-redirects">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is a meta refresh bad for SEO?</h3><p>Search engines support it and follow it, so it is not a broken page. A server-side redirect is preferred because it is faster and unambiguous. The bigger cost is that the page answers 200, so link checkers and redirect reports read it as content and your own tooling stops describing the site accurately.</p></div><div class="faq-item"><h3>Why does my link checker not flag meta refresh redirects?</h3><p>Because at the HTTP level there is nothing to flag. The page returns 200 with a normal body; the hop lives in the markup, not the status line.</p></div><div class="faq-item"><h3>What if my host cannot issue a 301?</h3><p>Then a refresh stub is a reasonable second best, and plenty of static hosting offers nothing else. Set the delay to zero and add a canonical pointing at the new URL. It is worth knowing that is what you are relying on.</p></div><div class="faq-item"><h3>Does the delay value matter?</h3><p>Yes. Zero makes the hop instant. Anything above it leaves the visitor on a page they did not want, and search engines treat a delayed refresh as a weaker signal than an immediate one.</p></div><div class="faq-item"><h3>Is a JavaScript redirect better?</h3><p>No. location.replace has the same shape and the same invisibility to status-code tooling, and it additionally requires something to run the script. If you want a redirect a crawler can rely on, that is further away, not closer.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
@@ -872,7 +872,7 @@ how the old one will be audited a year later.</p>
 <span>© 2026 Docket SEO · Audits run on your Mac, and the reports stay there.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
-<div data-founding data-was="$349" data-now="$174.50" hidden></div>
+<div data-founding data-was="$349" data-now="$174.50" data-pay4="or 4 &times; $43.63" hidden></div>
 <script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>
 <script>
 /* Scroll reveal. Every reference site animates content in; this one shipped no

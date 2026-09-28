@@ -13,7 +13,7 @@
 <title>A robots.txt Sitemap line is global, not per-crawler</title>
 <meta name="description" content="A Sitemap: line is a non-group record, so every crawler gets the same one. What our 10,000-site survey shows about blockers, and what it cannot.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="80a0899d1162">
+<meta name="build-id" content="6ce79c8a49a9">
 <link rel="canonical" href="https://docketseo.app/learn/ai-crawlers-and-sitemaps/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -763,7 +763,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or 4 &times; $87.25</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</span></a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / AI crawlers and sitemaps</div><h1>Do AI crawlers read sitemaps?</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time></p>
 
@@ -917,7 +917,7 @@ GPTBot</a>. If you were reaching for a meta tag instead of robots.txt, start at
 being reachable, readable and quotable is <a href="/learn/ai-search-visibility/">AI search
 visibility</a>.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=learn-ai-crawlers-and-sitemaps" data-ev="Buy" data-ev-price="349" data-ev-button="learn-ai-crawlers-and-sitemaps">Buy once &mdash; $349 &middot; or 4 &times; $87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-ai-crawlers-and-sitemaps">See a sample report</a> &middot; founding price $174.50 &middot; or 4 &times; $43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=learn-ai-crawlers-and-sitemaps" data-ev="Buy" data-ev-price="349" data-ev-button="learn-ai-crawlers-and-sitemaps">Buy once &mdash; $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-ai-crawlers-and-sitemaps">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Do AI crawlers read sitemaps?</h3><p>Our data cannot answer that, and we will not pretend otherwise. Docket's August 2026 survey read robots.txt files from the Tranco top 10,000; it records what those files express, not what any crawler requested afterwards. Answering the question for your own site means looking in your access log for a request from that crawler's user-agent for your sitemap URL. What the survey does show is that 62.9% of the 6,236 readable files publish a Sitemap: line at all.</p></div><div class="faq-item"><h3>Can I give my sitemap to Google but not to GPTBot?</h3><p>No. RFC 9309 section 2.2.4 puts a Sitemap: line outside the User-agent group mechanism — it is a non-group record that must not terminate a group — so it is not scoped to any crawler. One file, one sitemap reference, offered to every reader of the file. The per-crawler decision you can make is whether that crawler may fetch your pages at all, and that lives in the Disallow lines.</p></div><div class="faq-item"><h3>Do sites that block AI crawlers still publish a Sitemap: line?</h3><p>Most of them do, and slightly less often than everyone else rather than more. Of the 1,381 sites blocking at least one of the 9 AI crawlers we track, 806 publish a Sitemap: line (58.4%), against 62.9% across all 6,236 readable files. Among the 646 blocking a citation crawler specifically it is 59.4%. There is no gotcha in those numbers: publishing a sitemap is background behaviour that blocking barely moves.</p></div><div class="faq-item"><h3>Is a Sitemap: line a leak if I block a crawler?</h3><p>No. If the same file carries Disallow: / for that crawler, a compliant crawler does not request your sitemap URL either, because it sits under the same disallowed path. The line is addressed to every reader of the file; whether a reader acts on it depends on the rest of the file. The standing limit applies as well — robots.txt binds only crawlers that read it and choose to comply.</p></div><div class="faq-item"><h3>Should I remove the Sitemap: line to keep AI crawlers out?</h3><p>No. It cannot be aimed at one crawler, so removing it removes it for the search engines that actually use it for discovery, and it does nothing to the crawler you wanted out. The Disallow does that work. In our August 2026 survey 62.9% of readable robots.txt files carry the line, which is roughly what it looks like when a setting is written once and never revisited.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
@@ -958,7 +958,7 @@ visibility</a>.</p>
 <span>© 2026 Docket SEO · Audits run on your Mac, and the reports stay there.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
-<div data-founding data-was="$349" data-now="$174.50" hidden></div>
+<div data-founding data-was="$349" data-now="$174.50" data-pay4="or 4 &times; $43.63" hidden></div>
 <script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>
 <script>
 /* Scroll reveal. Every reference site animates content in; this one shipped no
