@@ -13,7 +13,9 @@ server is asked what it tells AI crawlers; and docketseo.app serves a knowledge 
 Offline mode turns all five off. Checking links to other sites, and rendering a few
 pages as a browser would, also reach the sites and services those pages link to or
 load. The licence key is checked with the payment provider when it is activated and
-about once a day after that, and the app asks docketseo.app whether an update exists.
+about once a day after that. The app asks docketseo.app whether an update exists, and,
+while its activation screen is showing on a copy with no key, what the current price
+and offer are.
 
 Docket is written by Matt Kerr and sold by Kerr & Company LLC, of Grand Rapids,
 Michigan, United States.
