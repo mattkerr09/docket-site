@@ -227,9 +227,16 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
     and the analytics event.
     """
     size = " btn-lg" if big else ""
-    out = [f'<div class="buy-block"><div class="hero-cta">'
+    # The price is the hero number and pay-in-four sits on its baseline at
+    # about 40% of its size (Matthew, 2026-09-28, on the literal same-size
+    # version: "this looks bad"). The button says only what it does: at 375px
+    # "Buy Docket · $349 once · or 4 × $87.25" broke over two lines.
+    out = [f'<div class="buy-block{"" if big else " compact"}">'
+           f'<p class="price-line"><span class="price-big">{PRICE_STR}</span>'
+           f'<span class="price-pay4">once{PAY4}</span></p>'
+           f'<div class="hero-cta">'
            f'<a class="btn{size}" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
-           f'data-ev-button="{src}">Buy Docket &middot; {PRICE_STR} once{PAY4}</a>']
+           f'data-ev-button="{src}">Buy Docket</a>']
     if sample and HAS_SAMPLE:
         out.append(f'<a class="btn-ghost{size}" href="{SAMPLE_REPORT}" data-ev="Sample report" '
                    f'data-ev-button="{src}">See a full sample report</a>')
@@ -1196,6 +1203,16 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
 .buy-block{margin:0 0 1.1rem}
+/* The price, and pay-in-four on its baseline at 40% of its size, same face,
+   full-strength text colour (never the dim note colour). One line at 1280;
+   under 480px the instalment drops to its own line under the price. */
+.price-line{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.6rem;row-gap:.15rem;
+  margin:0 0 .85rem;color:var(--text)}
+.price-big{font-size:2.5rem;font-weight:700;line-height:1;letter-spacing:-.02em}
+.price-pay4{font-size:1rem;font-weight:600;white-space:nowrap}
+.buy-block.compact .price-big{font-size:2rem}.buy-block.compact .price-pay4{font-size:.8rem}
+.cta-band .price-line{justify-content:center}
+@media(max-width:480px){.price-pay4{flex-basis:100%}}
 #buy{scroll-margin-top:4.5rem}.buy-block .hero-cta{margin-bottom:.7rem}
 .founding-note{margin:.2rem 0 .5rem}.founding-note code{font-size:.92em}
 .price-anchor{margin:.2rem 0 .5rem}

@@ -120,7 +120,7 @@ def download() -> Path:
     # audit anything until a key is pasted. Buying is step one because it is.
     body = f"""
 <ol class="steps" id="buy">
-<li><strong>Buy once &mdash; {PRICE_STR}{PAY4}</strong> (founding: {FOUNDING_NOW}{PAY4_FOUNDING}). The licence key
+<li><strong>Buy once.</strong> The licence key
 arrives with your receipt.{buy_block("download-steps", sample=True, big=True)}</li>
 <li><strong>Download</strong> the app &mdash; <a href="{DMG}" data-ev="Download"
 data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.</li>
