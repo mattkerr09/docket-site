@@ -1849,11 +1849,13 @@ version exists; <code>Check for Updates…</code> in the Docket menu asks on dem
 nothing but the request for that file. If you accept an update, the new build is downloaded
 from this site's releases on GitHub, and nothing installs without you saying yes. No switch
 turns the check off.</li>
-<li><strong>The offer, to this website.</strong> Only on a copy with no licence key, and only
-while its activation screen is open, the app asks <code>docketseo.app/offer.json</code> for the
-current price and any founding offer, so it never shows an offer that has ended. It sends
-nothing but the request for that file. With &ldquo;Keep it private&rdquo; ticked in the crawl
-settings it does not ask, and shows the list price alone.</li>
+<li><strong>The offer, to this website and to our offer server.</strong> Only on a copy with no
+licence key, and only while its activation screen is open, the app asks
+<code>docketseo.app/offer.json</code> for the current price and any founding offer, and asks
+<code>kerr-lead-agent.kerrco.workers.dev</code>, a server we run, whether the founding offer is still
+open, sending only this site&rsquo;s name. That is how it avoids showing an offer that has ended.
+Nothing else is sent. With &ldquo;Keep it private&rdquo; ticked in the crawl settings it asks
+neither, and shows the list price alone. Buy opens our buy page in your browser.</li>
 <li><strong>Google PageSpeed Insights, for Core Web Vitals.</strong> The addresses of up to five
 of your shallowest pages, homepage first, each sent to Google's PageSpeed Insights API, which
 then measures that page. It works without an API key, and the desktop app never sends one.</li>

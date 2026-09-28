@@ -597,7 +597,8 @@ def write_llms_txt() -> None:
         "to or load. The licence key is checked with the payment provider when it is "
         "activated and about once a day after that. The app asks docketseo.app whether "
         "an update exists, and, while its activation screen is showing on a copy with no "
-        "key, what the current price and offer are.")]
+        "key, what the current price and offer are and whether the founding offer is "
+        "still open.")]
     out += ["", wrap(f"Docket is written by Matt Kerr and sold by {SELLER}, of "
                      f"{seller_address()}.")]
 
@@ -833,6 +834,9 @@ def write_offer() -> None:
                      "code": FOUNDING_CODE, "seats": FOUNDING_SEATS},
         "refund_days": REFUND_DAYS,
         "checkout_url": CHECKOUT,
+        # Our buy endpoint: makes the Dodo checkout with the founding code
+        # applied while it is honoured, and records which button was pressed.
+        "buy_url": "https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket",
         "sample_report_url": f"{BASE}{SAMPLE_REPORT}" if HAS_SAMPLE else None,
     }
     (SITE / "offer.json").write_text(json.dumps(offer, indent=1) + "\n", encoding="utf-8")
