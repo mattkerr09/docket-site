@@ -13,7 +13,7 @@
 <title>How to find where a bigger competitor is beatable</title>
 <meta name="description" content="Authority is bought with time. Some ranking surfaces are not sold that way — how to find the ones a bigger competitor's links do not help them win.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="eda1ccdcca89">
+<meta name="build-id" content="80a0899d1162">
 <link rel="canonical" href="https://docketseo.app/how-to/outrank-a-bigger-competitor/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -278,6 +278,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
+/* The nav button carries the price only where the header has room for the
+   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
+   the other). Narrower, it says "Get Docket" and the hero carries both. */
+@media(max-width:1180px){.nav-price{display:none}}
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -758,7 +762,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or 4 &times; $87.25</span></a>
 </div></nav>
 <article><div class="wrap"><div class="crumb">How to</div><h1>How to find where a bigger competitor is beatable</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-11">11 August 2026</time></p>
 
@@ -862,7 +866,7 @@ citation in AI answers than ten pages summarising what everyone already wrote.</
 
 <p>The second kind is the cheapest ground on the board and the easiest to act on this week.
 Write the page, put the question in the heading, answer it in the first paragraph.</p>
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-outrank-a-bigger-competitor" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-outrank-a-bigger-competitor">Buy once &mdash; $349</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-outrank-a-bigger-competitor">See a sample report</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can Docket tell me where a competitor ranks?</h3><p>No. Docket has no index of the web, so it does not know either site's rankings and will not guess at them. Every opening it reports is a structural difference measured by crawling both sites — a rich result they cannot win, a crawler they have blocked, a question neither of you answers.</p></div><div class="faq-item"><h3>Where do the searches come from?</h3><p>Google's public autocomplete, which publishes real queries ordered by how commonly they are typed. That ordering is a popularity signal, not a search volume. Docket reports the rank a query sat at and does not print a monthly volume, because it does not have one.</p></div><div class="faq-item"><h3>Does it need an API key or an account?</h3><p>No. The link-authority comparison reads the Common Crawl hyperlink graph and the query discovery uses Google's public autocomplete endpoint. Neither needs a key. Both are capped and rate-limited so a run does not register as load.</p></div><div class="faq-item"><h3>Is this an argument that the competitor is bad?</h3><p>No, and Docket opens by saying so. It reports the size of their link advantage first, in a number, precisely so the openings underneath are read as places their authority does not apply rather than as weaknesses. If their product fits your job better, buy theirs.</p></div></div></section>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-outrank-a-bigger-competitor" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-outrank-a-bigger-competitor">Buy once &mdash; $349 &middot; or 4 &times; $87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-outrank-a-bigger-competitor">See a sample report</a> &middot; founding price $174.50 &middot; or 4 &times; $43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can Docket tell me where a competitor ranks?</h3><p>No. Docket has no index of the web, so it does not know either site's rankings and will not guess at them. Every opening it reports is a structural difference measured by crawling both sites — a rich result they cannot win, a crawler they have blocked, a question neither of you answers.</p></div><div class="faq-item"><h3>Where do the searches come from?</h3><p>Google's public autocomplete, which publishes real queries ordered by how commonly they are typed. That ordering is a popularity signal, not a search volume. Docket reports the rank a query sat at and does not print a monthly volume, because it does not have one.</p></div><div class="faq-item"><h3>Does it need an API key or an account?</h3><p>No. The link-authority comparison reads the Common Crawl hyperlink graph and the query discovery uses Google's public autocomplete endpoint. Neither needs a key. Both are capped and rate-limited so a run does not register as load.</p></div><div class="faq-item"><h3>Is this an argument that the competitor is bad?</h3><p>No, and Docket opens by saying so. It reports the size of their link advantage first, in a number, precisely so the openings underneath are read as places their authority does not apply rather than as weaknesses. If their product fits your job better, buy theirs.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

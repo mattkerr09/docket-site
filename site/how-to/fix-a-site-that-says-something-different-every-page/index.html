@@ -13,7 +13,7 @@
 <title>When your site stops saying one thing about itself</title>
 <meta name="description" content="No page is wrong, but twenty pages describe twenty businesses. Why an audit measures your site across pages, and how good work causes this.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="eda1ccdcca89">
+<meta name="build-id" content="80a0899d1162">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-a-site-that-says-something-different-every-page/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -278,6 +278,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
+/* The nav button carries the price only where the header has room for the
+   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
+   the other). Narrower, it says "Get Docket" and the hero carries both. */
+@media(max-width:1180px){.nav-price{display:none}}
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -759,7 +763,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or 4 &times; $87.25</span></a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / positioning</div><h1>When your site stops saying one thing about itself</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
@@ -838,7 +842,7 @@ which is the correct direction for a test to move when it disagrees with reality
 
 <p>The broader question of why crawlers ignore brand entirely is
 <a href="/learn/brand-consistency/">a separate piece</a>.</p>
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-a-site-that-says-something-different-every-page" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-a-site-that-says-something-different-every-page">Buy once &mdash; $349</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-a-site-that-says-something-different-every-page">See a sample report</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What does a positioning check actually measure?</h3><p>Whether any vocabulary recurs across your meta descriptions. A company with a settled position repeats it without trying, because it keeps being the true thing to say. One without invents a fresh pitch per page.</p></div><div class="faq-item"><h3>Will putting my company name in every description fix it?</h3><p>No, and a good check excludes the brand name on purpose. A site repeating its own name is not a site saying something — the name recurs even when no idea does.</p></div><div class="faq-item"><h3>Is the same description on every page the solution?</h3><p>That is the opposite defect and it is measured separately. It also puts a claim on pages it is not true of, which is worse than an inconsistent one.</p></div><div class="faq-item"><h3>How does a site end up like this?</h3><p>By shipping. Each page gets a description written to describe that page as precisely as possible, every addition improves the site, and the aggregate gets worse. There is no moment where somebody does the wrong thing.</p></div><div class="faq-item"><h3>Can a tool tell me whether my positioning is any good?</h3><p>No. It can see whether your pages share vocabulary. Whether the sentence you settled on is the right one is a judgement about a company, and no crawler has an opinion on it.</p></div></div></section>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-a-site-that-says-something-different-every-page" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-a-site-that-says-something-different-every-page">Buy once &mdash; $349 &middot; or 4 &times; $87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-a-site-that-says-something-different-every-page">See a sample report</a> &middot; founding price $174.50 &middot; or 4 &times; $43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What does a positioning check actually measure?</h3><p>Whether any vocabulary recurs across your meta descriptions. A company with a settled position repeats it without trying, because it keeps being the true thing to say. One without invents a fresh pitch per page.</p></div><div class="faq-item"><h3>Will putting my company name in every description fix it?</h3><p>No, and a good check excludes the brand name on purpose. A site repeating its own name is not a site saying something — the name recurs even when no idea does.</p></div><div class="faq-item"><h3>Is the same description on every page the solution?</h3><p>That is the opposite defect and it is measured separately. It also puts a claim on pages it is not true of, which is worse than an inconsistent one.</p></div><div class="faq-item"><h3>How does a site end up like this?</h3><p>By shipping. Each page gets a description written to describe that page as precisely as possible, every addition improves the site, and the aggregate gets worse. There is no moment where somebody does the wrong thing.</p></div><div class="faq-item"><h3>Can a tool tell me whether my positioning is any good?</h3><p>No. It can see whether your pages share vocabulary. Whether the sentence you settled on is the right one is a judgement about a company, and no crawler has an opinion on it.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

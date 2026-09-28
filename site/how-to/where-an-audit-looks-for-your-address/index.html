@@ -13,7 +13,7 @@
 <title>Where an audit looks for your address</title>
 <meta name="description" content="An audit that strips page furniture cannot see the footer your address sits in — and one that reads everything called a site's single address many variations.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="eda1ccdcca89">
+<meta name="build-id" content="80a0899d1162">
 <link rel="canonical" href="https://docketseo.app/how-to/where-an-audit-looks-for-your-address/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -278,6 +278,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
+/* The nav button carries the price only where the header has room for the
+   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
+   the other). Narrower, it says "Get Docket" and the hero carries both. */
+@media(max-width:1180px){.nav-price{display:none}}
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -759,7 +763,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket &mdash; $349</a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or 4 &times; $87.25</span></a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Address findings</div><h1>Where an audit looks for your address</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
@@ -913,7 +917,7 @@ the same facts. For the case where a field is present but empty, see
 <a href="/learn/audit-tool-accuracy/">how to tell whether an audit tool is lying to you &rarr;</a>.
 For the map-pack signals themselves, see <a href="/for/local-business/">why your business is not in
 the map pack &rarr;</a>.</p>
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-where-an-audit-looks-for-your-address" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-where-an-audit-looks-for-your-address">Buy once &mdash; $349</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-where-an-audit-looks-for-your-address">See a sample report</a> &middot; founding price $174.50 for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Why does an audit say my site has no address when it is in the footer?</h3><p>Because most content checks strip the navigation, header and footer before reading a page, and the footer is exactly where a business puts its address. Semantic markup makes it worse, not better: the stripping is what hides it.</p></div><div class="faq-item"><h3>Why am I told I have many address variations when I publish only one?</h3><p>Because flattened page text has no punctuation between regions, so a breadcrumb runs into the footer address and the pattern reads both as one string. A different breadcrumb on every page produces a different variation on every page.</p></div><div class="faq-item"><h3>Should I move my address out of the footer?</h3><p>No. The footer is where visitors look and where a search engine expects it. A tool that cannot read it is the thing that needs fixing.</p></div><div class="faq-item"><h3>Does this affect addresses drawn by JavaScript?</h3><p>Yes, and more severely. If a platform draws the footer after the page loads, the address is in no document the server sent, so a check reading served HTML reports it as absent. Compare the rendered page with the served HTML.</p></div><div class="faq-item"><h3>What is the address check actually for?</h3><p>Matching what your site publishes against your business listing. A street abbreviated one way in one place and another way elsewhere, or two versions of one phone number, weakens that match. A building name appearing on some pages and not others does not, which is why it is deliberately no longer reported.</p></div></div></section>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-where-an-audit-looks-for-your-address" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-where-an-audit-looks-for-your-address">Buy once &mdash; $349 &middot; or 4 &times; $87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-where-an-audit-looks-for-your-address">See a sample report</a> &middot; founding price $174.50 &middot; or 4 &times; $43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Why does an audit say my site has no address when it is in the footer?</h3><p>Because most content checks strip the navigation, header and footer before reading a page, and the footer is exactly where a business puts its address. Semantic markup makes it worse, not better: the stripping is what hides it.</p></div><div class="faq-item"><h3>Why am I told I have many address variations when I publish only one?</h3><p>Because flattened page text has no punctuation between regions, so a breadcrumb runs into the footer address and the pattern reads both as one string. A different breadcrumb on every page produces a different variation on every page.</p></div><div class="faq-item"><h3>Should I move my address out of the footer?</h3><p>No. The footer is where visitors look and where a search engine expects it. A tool that cannot read it is the thing that needs fixing.</p></div><div class="faq-item"><h3>Does this affect addresses drawn by JavaScript?</h3><p>Yes, and more severely. If a platform draws the footer after the page loads, the address is in no document the server sent, so a check reading served HTML reports it as absent. Compare the rendered page with the served HTML.</p></div><div class="faq-item"><h3>What is the address check actually for?</h3><p>Matching what your site publishes against your business listing. A street abbreviated one way in one place and another way elsewhere, or two versions of one phone number, weakens that match. A building name appearing on some pages and not others does not, which is why it is deliberately no longer reported.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
