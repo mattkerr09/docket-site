@@ -167,7 +167,7 @@ cannot drift from what the app does.</p>
 
 <div class="wrap-tbl"><table class="cmp"><thead><tr>
 <th>Tool</th><th>Cheapest tier</th><th>Three years</th></tr></thead><tbody>
-<tr><td><strong>Docket</strong></td><td><strong>{PRICE_STR} once</strong></td>
+<tr><td><strong>Docket</strong></td><td><strong>{PRICE_STR} once{PAY4}</strong></td>
 <td><strong>{PRICE_STR}</strong></td></tr>
 {_cost_rows()}
 </tbody></table></div>

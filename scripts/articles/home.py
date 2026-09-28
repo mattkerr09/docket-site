@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (PAY4, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
+from render import (PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
@@ -43,7 +43,7 @@ from render import (PAY4, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, D
 #: that stops people.
 #: One constant rather than two literals, so the figure cannot drift the day the
 #: price changes — a second copy of "$49.75" is a second thing to remember.
-BNPL_BLOCK = (f'<p class="hero-note">{BNPL_NOTE}</p>' if BNPL_NOTE else "")
+BNPL_BLOCK = (f'<p class="hero-note">{BNPL_NOTE_HTML}</p>' if BNPL_NOTE else "")
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 
@@ -531,7 +531,7 @@ def body() -> str:
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Tool</th><th>Price</th><th>Runs</th><th>Output</th></tr></thead>
 <tbody>
-<tr><td>Docket</td><td class="yes">{PRICE_STR} once</td><td class="yes">Your Mac</td><td>Ranked fix plan</td></tr>
+<tr><td>Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td><td class="yes">Your Mac</td><td>Ranked fix plan</td></tr>
 <tr><td>Ahrefs Site Audit</td><td>{price("ahrefs-site-audit")}</td><td>Cloud, metered</td><td>170+ issues</td></tr>
 <tr><td>Semrush Site Audit</td><td>{price("semrush-site-audit")}</td><td>Cloud, metered</td><td>140+ checkpoints</td></tr>
 <tr><td>Sitebulb</td><td>{price("sitebulb")}</td><td>Local + cloud</td><td>Visual issue report</td></tr>
@@ -546,7 +546,7 @@ different orders of magnitude.</p></div>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>What you could buy</th><th>Price</th><th>For that you get</th></tr></thead>
 <tbody>
-<tr><td>Docket</td><td class="yes">{PRICE_STR} once</td><td>Unlimited audits, on your Mac</td></tr>
+<tr><td>Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td><td>Unlimited audits, on your Mac</td></tr>
 <tr><td>{AG["webfx-audit"]["name"]}, published rate</td><td>{agency_amount("webfx-audit")}/month</td>
     <td>{AG["webfx-audit"]["scope"]}</td></tr>
 <tr><td>Agency retainer, survey average</td><td>{agency_amount("ahrefs-survey-retainer")}/month</td>

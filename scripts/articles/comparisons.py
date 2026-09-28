@@ -689,7 +689,7 @@ need one of these, ask them rather than taking this page's word for it.</p>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th></th><th>Docket</th><th>Ahrefs</th></tr></thead>
 <tbody>
-<tr><td>Price</td><td class="yes">{PRICE_STR} once</td><td>{price("ahrefs-site-audit")}</td></tr>
+<tr><td>Price</td><td class="yes">{PRICE_STR} once{PAY4}</td><td>{price("ahrefs-site-audit")}</td></tr>
 <tr><td>Sites you do not own</td><td class="yes">Any site, no project limit</td><td>Not on Ahrefs Free; {_AH_UNVERIFIED["Lite"]}, {_AH_UNVERIFIED["Standard"]} or {_AH_UNVERIFIED["Advanced"]} projects on Lite, Standard or Advanced</td></tr>
 <tr><td>Keyword &amp; backlink data</td><td class="no">None</td><td class="yes">Its main product</td></tr>
 <tr><td>Rank tracking</td><td class="no">No</td><td class="yes">Yes</td></tr>
@@ -2171,7 +2171,7 @@ features than on that difference, so this starts there.</p>
 <tr><td>How you pay</td><td>Monthly subscription</td><td>Annual licence</td>
     <td class="yes">Once</td></tr>
 <tr><td>Published price</td><td>{price("seranking")}</td><td>{price("screaming-frog")}</td>
-    <td class="yes">{PRICE_STR} once</td></tr>
+    <td class="yes">{PRICE_STR} once{PAY4}</td></tr>
 <tr><td>Where the crawl runs</td><td>Their cloud</td><td class="yes">Your machine</td>
     <td class="yes">Your Mac</td></tr>
 <tr><td>Audit volume</td><td>Metered &mdash; the Core plan states

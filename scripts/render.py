@@ -566,6 +566,12 @@ BNPL_FOUNDING_INSTALMENT = (
 PAY4 = f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_INSTALMENT}" if BNPL_LIVE else ""
 PAY4_FOUNDING = (f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_FOUNDING_INSTALMENT}"
                  if BNPL_LIVE else "")
+#: The same sentence for a page, with its instalment set in full-strength text
+#: at weight 600: under the pricing heading it sat in the dim note colour,
+#: which is exactly the "BNPL only in small print" Matthew objected to.
+BNPL_NOTE_HTML = BNPL_NOTE.replace(
+    f"Or four payments of {BNPL_INSTALMENT}",
+    f'<strong class="pay4-em">Or four payments of {BNPL_INSTALMENT}</strong>', 1)
 
 FOUNDING_LINE = (f"Founding price <strong>{FOUNDING_NOW} once{PAY4_FOUNDING}</strong>, first "
                  f"{FOUNDING_SEATS} buyers. At checkout click &lsquo;Have a discount "
@@ -1210,6 +1216,7 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   margin:0 0 .85rem;color:var(--text)}
 .price-big{font-size:2.5rem;font-weight:700;line-height:1;letter-spacing:-.02em}
 .price-pay4{font-size:1rem;font-weight:600;white-space:nowrap}
+.pay4-em{color:var(--text);font-weight:600}
 .buy-block.compact .price-big{font-size:2rem}.buy-block.compact .price-pay4{font-size:.8rem}
 .cta-band .price-line{justify-content:center}
 @media(max-width:480px){.price-pay4{flex-basis:100%}}
