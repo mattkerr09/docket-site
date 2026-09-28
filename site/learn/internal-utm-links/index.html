@@ -13,7 +13,7 @@
 <title>How common are internal links with UTM parameters?</title>
 <meta name="description" content="We crawled 40 Tranco hosts and counted. 6 emitted internal links carrying UTM parameters — and the affected hosts split into two different problems.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="6ce79c8a49a9">
+<meta name="build-id" content="bdee85c73407">
 <link rel="canonical" href="https://docketseo.app/learn/internal-utm-links/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -584,6 +584,16 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
 .buy-block{margin:0 0 1.1rem}
+/* The price, and pay-in-four on its baseline at 40% of its size, same face,
+   full-strength text colour (never the dim note colour). One line at 1280;
+   under 480px the instalment drops to its own line under the price. */
+.price-line{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.6rem;row-gap:.15rem;
+  margin:0 0 .85rem;color:var(--text)}
+.price-big{font-size:2.5rem;font-weight:700;line-height:1;letter-spacing:-.02em}
+.price-pay4{font-size:1rem;font-weight:600;white-space:nowrap}
+.buy-block.compact .price-big{font-size:2rem}.buy-block.compact .price-pay4{font-size:.8rem}
+.cta-band .price-line{justify-content:center}
+@media(max-width:480px){.price-pay4{flex-basis:100%}}
 #buy{scroll-margin-top:4.5rem}.buy-block .hero-cta{margin-bottom:.7rem}
 .founding-note{margin:.2rem 0 .5rem}.founding-note code{font-size:.92em}
 .price-anchor{margin:.2rem 0 .5rem}
