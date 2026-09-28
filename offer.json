@@ -1,0 +1,23 @@
+{
+ "schema": 1,
+ "price_cents": 34900,
+ "currency": "USD",
+ "instalments": {
+  "count": 4,
+  "cents": 8725,
+  "providers": [
+   "Klarna",
+   "Afterpay"
+  ],
+  "every_days": 14
+ },
+ "founding": {
+  "price_cents": 17450,
+  "instalment_cents": 4363,
+  "code": "FOUNDINGDOCKET",
+  "seats": 25
+ },
+ "refund_days": 30,
+ "checkout_url": "https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F",
+ "sample_report_url": "https://docketseo.app/assets/docket-sample-report.pdf"
+}
