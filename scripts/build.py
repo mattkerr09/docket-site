@@ -1107,6 +1107,48 @@ _THANK_YOU_JS = """
 """
 
 
+#: Where every Buy outside this site's own buttons goes: the app's menu, its
+#: offline fallback, release notes. Our buy endpoint makes the current Dodo
+#: checkout (founding code applied while it is honoured) and records `src`.
+BUY_ENDPOINT = "https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket"
+
+
+def buy_redirect() -> Path:
+    """/buy/ — a stable address on our own domain that forwards to the buy
+    endpoint, keeping `src`.
+
+    Docket 1.3.95 compiles https://docketseo.app/buy/?src=app-menu into the app.
+    A payment link frozen into a binary cannot follow a vendor move, and a
+    workers.dev address is less durable than our own domain. This page is ours,
+    so a release never has to change when the checkout does. Noindexed, not in
+    the sitemap, linked from nowhere on the site, like /thank-you/.
+    """
+    body = f"""
+<p class="lede" id="buy-lede">Taking you to the secure checkout&hellip;</p>
+<p>If nothing happens, <a id="buy-go" href="{BUY_ENDPOINT}?src=site-buy">continue to checkout</a>.</p>
+<script>
+(function () {{
+  var raw = new URLSearchParams(location.search).get('src') || 'site-buy';
+  var src = raw.replace(/[^a-zA-Z0-9-]/g, '').slice(0, 40) || 'site-buy';
+  var to = {json.dumps(BUY_ENDPOINT)} + '?src=' + encodeURIComponent(src);
+  var a = document.getElementById('buy-go');
+  if (a) a.href = to;
+  location.replace(to);
+}})();
+</script>
+"""
+    return render(
+        cat="", slug="buy",
+        title="Buy Docket SEO",
+        desc="Forwarding to the secure checkout for Docket SEO.",
+        h1="Buy Docket",
+        crumb='<a href="/">Docket</a> / Buy',
+        body=body,
+        schema_type="",
+        noindex=True,
+    )
+
+
 def not_found() -> Path:
     """/404.html — GitHub Pages serves this for any path that does not exist.
 
@@ -1320,6 +1362,7 @@ def main() -> int:
     # is an invalid sitemap. It is also a page that must never be indexed.
     not_found()
     thank_you()
+    buy_redirect()
 
     write_robots()
     write_llms_txt()
