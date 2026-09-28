@@ -13,7 +13,7 @@
 <title>hreflang and html lang mismatch: which one you have</title>
 <meta name="description" content="Three different faults share that description and have three different fixes. How to tell them apart in a minute, and which one to fix first.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="80a0899d1162">
+<meta name="build-id" content="6ce79c8a49a9">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-lang-attribute-mismatch/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -763,7 +763,7 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or 4 &times; $87.25</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</span></a>
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Language mismatch</div><h1>hreflang and html lang mismatch</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-09">9 September 2026</time></p>
 
@@ -888,7 +888,7 @@ which is exactly the shape that wants checking afterwards rather than assuming.
 today, and a crawl of the affected section confirms the new attribute is on every page you
 expected and none you did not.</p>
 
-<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-lang-attribute-mismatch" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-lang-attribute-mismatch">Buy once &mdash; $349 &middot; or 4 &times; $87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-lang-attribute-mismatch">See a sample report</a> &middot; founding price $174.50 &middot; or 4 &times; $43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
+<aside class="buy-strip"><p><a href="https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F&metadata_src=how-to-fix-lang-attribute-mismatch" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-lang-attribute-mismatch">Buy once &mdash; $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-lang-attribute-mismatch">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is an hreflang and html lang mismatch?</h3><p>Usually one of three things: the lang attribute contradicts the language the page is written in; the page's own hreflang entry uses a different code from its lang attribute; or the hreflang codes are not valid codes. They have different fixes, so it is worth knowing which one you are looking at.</p></div><div class="faq-item"><h3>Which should I fix first, lang or hreflang?</h3><p>The lang attribute, if it contradicts the prose. Everything else is a claim about a page whose own declaration of itself is wrong, and a screen reader is already mispronouncing the page for real readers today.</p></div><div class="faq-item"><h3>Is en-UK valid?</h3><p>No. The region subtag comes from ISO 3166-1 alpha-2, where the United Kingdom is GB, so en-GB is the valid form. An invalid code is discarded silently, which is why this survives so long in templates.</p></div><div class="faq-item"><h3>Do the lang attribute and hreflang have to match exactly?</h3><p>They have to agree about the language. A page declaring lang="en-gb" whose own hreflang self-reference says de-de is telling two different stories about itself, and one of them is wrong. Reading the body text is what settles which.</p></div><div class="faq-item"><h3>Does Docket detect a mismatch between hreflang and the lang attribute?</h3><p>Not that specific comparison. Docket checks the declared language against the language the prose is actually in, reports missing lang attributes, and validates hreflang codes, self-references, return tags and targets — but it does not compare a page's hreflang self-reference to its own lang attribute.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
@@ -929,7 +929,7 @@ expected and none you did not.</p>
 <span>© 2026 Docket SEO · Audits run on your Mac, and the reports stay there.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
-<div data-founding data-was="$349" data-now="$174.50" hidden></div>
+<div data-founding data-was="$349" data-now="$174.50" data-pay4="or 4 &times; $43.63" hidden></div>
 <script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>
 <script>
 /* Scroll reveal. Every reference site animates content in; this one shipped no
