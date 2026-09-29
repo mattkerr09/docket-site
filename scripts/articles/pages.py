@@ -1983,6 +1983,10 @@ depends on it loading.</p>
 nothing else about you, to <code>ai-crawler-check.kerrco.workers.dev</code>, a server we run. That
 server fetches the site's robots.txt, answers, and keeps nothing; the page sets no cookie and stores
 nothing in your browser. Nothing is sent until you press the button.</p>
+<p>After a purchase, the page you return to asks <code>kerr-affiliate-hub.kerrco.workers.dev</code>,
+a server we run, what that payment came to, sending only the payment&rsquo;s id, so our own sales
+count and advertising records show what you actually paid rather than the list price. Nothing about
+you is sent or returned.</p>
 <p>The home page has one email field. Leave your address and we will email you once, when the
 free audit is ready &mdash; it is not a newsletter and there is no series to subscribe to. The
 form sends exactly two things, and only when you press the button: the address you type, and a

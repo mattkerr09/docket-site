@@ -1025,7 +1025,8 @@ happened. If the purchase was a mistake, the
         # linked from nowhere, so a crawl of the site cannot reach the one page
         # every buyer lands on. Found 2026-09-24 reading the page by hand. The
         # address now comes from render.SUPPORT_EMAIL like every other page's.
-        closer=_THANK_YOU_JS.replace("__PRICE__", str(PRICE)).replace("__SUPPORT__", SUPPORT_EMAIL),
+        closer=(_THANK_YOU_JS.replace("__PRICE__", str(PRICE)).replace("__SUPPORT__", SUPPORT_EMAIL)
+                .replace("__PAID_ENDPOINT__", PAID_ENDPOINT)),
         schema_type="",
         noindex=True,
     )
@@ -1078,33 +1079,59 @@ _THANK_YOU_JS = """
   // click listener), because Dodo's redirect carries none; with nothing stored
   // it is the list price. A founding buyer who typed the code is therefore
   // recorded at the price they clicked, not the discounted total.
+  // The amount recorded with a purchase. First choice: what the buyer actually
+  // paid, from our hub's /paid (a succeeded payment from the last 72 hours; it
+  // returns only the amount, currency and app, never anything about the
+  // buyer). Before that existed, the best available was the price on offer
+  // when Buy was clicked (dk_offer), else the list price, and that stays the
+  // fallback if /paid answers 404, fails or takes too long. A founding buyer
+  // was recorded at $349 while paying $174.50.
   var amt = __PRICE__;
   try { amt = parseFloat(localStorage.getItem('dk_offer')) || __PRICE__; } catch (e) {}
-  if (status === 'succeeded') {
+
+  var record = function (value) {
     var pk = 'dk_pl_purchase_' + (pid || 'nopid');
     var sendP = function () {
       if (typeof plausible === 'function')
-        plausible('Purchase', { revenue: { currency: 'USD', amount: amt } });
+        plausible('Purchase', { revenue: { currency: 'USD', amount: value } });
     };
     try {
       if (!localStorage.getItem(pk)) { localStorage.setItem(pk, '1'); sendP(); }
     } catch (e) { sendP(); }
-  }
 
-  if (status === 'succeeded' && typeof fbq === 'function') {
-    var once = 'dk_purchase_' + (pid || 'nopid');
-    var fire = function () {
-      // The same amount Plausible records, not a hard-coded list price.
-      fbq('track', 'Purchase', { value: amt, currency: 'USD' },
-          pid ? { eventID: pid } : undefined);
-    };
-    try {
-      if (!sessionStorage.getItem(once)) { sessionStorage.setItem(once, '1'); fire(); }
-    } catch (e) { fire(); }   // private mode: firing once beats not firing
-  }
+    if (typeof fbq === 'function') {
+      var once = 'dk_purchase_' + (pid || 'nopid');
+      var fire = function () {
+        fbq('track', 'Purchase', { value: value, currency: 'USD' },
+            pid ? { eventID: pid } : undefined);
+      };
+      try {
+        if (!sessionStorage.getItem(once)) { sessionStorage.setItem(once, '1'); fire(); }
+      } catch (e) { fire(); }   // private mode: firing once beats not firing
+    }
+  };
+
+  if (status !== 'succeeded') return;
+  if (!pid || !window.fetch) { record(amt); return; }
+  var done = false;
+  var finish = function (value) { if (done) return; done = true; record(value); };
+  setTimeout(function () { finish(amt); }, 4000);
+  fetch('__PAID_ENDPOINT__?payment_id=' + encodeURIComponent(pid))
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) {
+      var v = j && typeof j.amount === 'number' && j.amount > 0 && j.amount < 100000 ? j.amount : amt;
+      finish(v);
+    })
+    .catch(function () { finish(amt); });
 })();
 </script>
 """
+
+
+#: What a payment actually came to. Our hub answers for a succeeded payment
+#: from the last 72 hours with {"amount", "currency", "app"} and nothing about
+#: the buyer; CORS allows only https://docketseo.app.
+PAID_ENDPOINT = "https://kerr-affiliate-hub.kerrco.workers.dev/paid"
 
 
 #: Where every Buy outside this site's own buttons goes: the app's menu, its
