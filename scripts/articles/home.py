@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
+from render import (download_url, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
@@ -207,7 +207,7 @@ def body() -> str:
        the homepage — and ~/ops's shipped-activation and updater-signature
        gates, which test the DMG this page links, with nothing to measure.
        One quiet line keeps both. -->
-  <p class="hero-note">Already have a key? <a href="{DMG}" data-ev="Download"
+  <p class="hero-note">Already have a key? <a href="{download_url('home-owner')}" data-ev="Download"
   data-ev-button="home-hero">Download Docket for Mac</a> ({DMG_SIZE}).</p>
   <p class="hero-note">{MACOS}+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
 </div>

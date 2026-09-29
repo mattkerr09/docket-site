@@ -17,7 +17,7 @@ import facts as F  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
-from render import (PAY4, PAY4_FOUNDING, 
+from render import (download_url, PAY4, PAY4_FOUNDING, 
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
@@ -122,7 +122,7 @@ def download() -> Path:
 <ol class="steps" id="buy">
 <li><strong>Buy once.</strong> The licence key
 arrives with your receipt.{buy_block("download-steps", sample=True, big=True)}</li>
-<li><strong>Download</strong> the app &mdash; <a href="{DMG}" data-ev="Download"
+<li><strong>Download</strong> the app &mdash; <a href="{download_url('download-steps')}" data-ev="Download"
 data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.</li>
 <li><strong>Paste the key</strong> into the field the app shows, and run your first audit.
 <span class="qual">30-day refund, no conditions.</span></li>
@@ -139,7 +139,7 @@ top pages, and Google's autocomplete, which is sent your site's topic words;
 
 {_payment_note()}
 
-<p><a class="btn btn-lg" href="{DMG}" data-ev="Download" data-ev-button="download-page">Download Docket {RELEASE} for Mac</a></p>
+<p><a class="btn btn-lg" href="{download_url('download-page')}" data-ev="Download" data-ev-button="download-page">Download Docket {RELEASE} for Mac</a></p>
 <p style="font-size:var(--t-md);color:var(--text-dim)">Apple Silicon · {MACOS}+ · {DMG_SIZE} ·
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
 

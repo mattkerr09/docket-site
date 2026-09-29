@@ -47,6 +47,12 @@ UA = {"User-Agent": "docketseo-download-path/1.0"}
 
 #: Where a release asset lives, whoever links it.
 LINK = re.compile(r'href="(https://github\.com/[^"]*/releases/download/[^"]+)"')
+#: A Download button wrapped in our counter (render.download_url): the file is
+#: the `to=` parameter, which is last and unencoded. The counter itself is
+#: checked too (step 2b): a wrapper that forwards somewhere else is a broken
+#: button even when the file it names is fine.
+HUB_LINK = re.compile(r'href="(https://kerr-affiliate-hub\.kerrco\.workers\.dev/dl/[^"]*?[?&]to='
+                      r'(https://github\.com/[^"]*/releases/download/[^"]+))"')
 
 
 def fail(message: str) -> int:
@@ -55,12 +61,44 @@ def fail(message: str) -> int:
 
 
 def _links() -> dict:
-    """Every release-asset URL on the built site, and the pages linking it."""
+    """Every release-asset URL on the built site, and the pages linking it.
+    A counter-wrapped link counts as the file it names."""
     found: dict = {}
     for page in sorted(SITE.rglob("*.html")):
-        for url in LINK.findall(page.read_text(encoding="utf-8", errors="ignore")):
+        html = page.read_text(encoding="utf-8", errors="ignore").replace("&amp;", "&")
+        for url in LINK.findall(html):
+            found.setdefault(url, []).append(str(page.relative_to(SITE)))
+        for _wrapped, url in HUB_LINK.findall(html):
             found.setdefault(url, []).append(str(page.relative_to(SITE)))
     return found
+
+
+def _wrapped() -> dict:
+    """Counter URL -> the file it should forward to."""
+    out: dict = {}
+    for page in sorted(SITE.rglob("*.html")):
+        html = page.read_text(encoding="utf-8", errors="ignore").replace("&amp;", "&")
+        for wrapped, url in HUB_LINK.findall(html):
+            out[wrapped] = url
+    return out
+
+
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *args, **kwargs):  # noqa: D401
+        return None
+
+
+def _forwards_to(url: str) -> str:
+    """Where the counter sends a visitor (Location of its redirect), or why not."""
+    opener = urllib.request.build_opener(_NoRedirect)
+    request = urllib.request.Request(url, method="HEAD", headers=UA)
+    try:
+        opener.open(request, timeout=30)
+        return "no redirect"
+    except urllib.error.HTTPError as err:
+        return err.headers.get("Location", f"HTTP {err.code} with no Location")
+    except Exception as err:  # noqa: BLE001
+        return f"unreachable ({err})"
 
 
 def _head(url: str) -> tuple:
@@ -121,6 +159,15 @@ def main() -> int:
                 f"GitHub does not have it.")
         else:
             print(f"  ok  {url.rsplit('/', 1)[-1]} ({detail} bytes)")
+
+    # 2b. every counter-wrapped button forwards to exactly the file it names.
+    # A HEAD, so the counter's own tally is not inflated by this gate.
+    for wrapped, url in sorted(_wrapped().items()):
+        went = _forwards_to(wrapped)
+        if went != url:
+            failures.append(f"the download counter {wrapped} forwards to {went}, not {url}")
+        else:
+            print(f"  ok  counter -> {url.rsplit('/', 1)[-1]}")
 
     if failures:
         print("DOWNLOAD PATH FAIL", file=sys.stderr)

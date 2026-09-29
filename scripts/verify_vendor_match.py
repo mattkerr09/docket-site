@@ -52,16 +52,53 @@ _HOSTS = {
 
 _LINK = re.compile(r'href="https?://([^/"]+)/[^"]*"')
 
+#: Our buy endpoint (render.checkout_url, since 2026-09-28). It is not a
+#: vendor: it makes the vendor's checkout. So its vendor is where it sends a
+#: request that cannot get a live session (this script's plain user agent gets
+#: the plain payment link), read from the redirect rather than assumed.
+_HUB_BUY = re.compile(r'href="(https://kerr-affiliate-hub\.kerrco\.workers\.dev/buy/[^"]+)"')
+
+
+def _hub_vendor(url: str) -> str:
+    import urllib.error
+    import urllib.request
+
+    class _Stop(urllib.request.HTTPRedirectHandler):
+        def redirect_request(self, *a, **k):
+            return None
+
+    req = urllib.request.Request(url.replace("&amp;", "&"), method="GET",
+                                 headers={"User-Agent": "docket-vendor-gate/1"})
+    try:
+        urllib.request.build_opener(_Stop).open(req, timeout=20)
+    except urllib.error.HTTPError as err:
+        host = re.match(r"https?://([^/]+)/", err.headers.get("Location", "") or "")
+        return _HOSTS.get(host.group(1).lower(), "") if host else ""
+    except Exception:  # noqa: BLE001
+        return ""
+    return ""
+
 
 def site_vendor() -> tuple:
     """(vendor, evidence). Reads the built pages, not the live site: this runs
     before publish, and the point is to stop the deploy."""
     found: dict = {}
+    hub_seen = ""
     for page in sorted(SITE.rglob("*.html")):
-        for host in _LINK.findall(page.read_text(encoding="utf-8", errors="replace")):
+        html = page.read_text(encoding="utf-8", errors="replace")
+        for host in _LINK.findall(html):
             vendor = _HOSTS.get(host.lower())
             if vendor:
                 found.setdefault(vendor, set()).add(str(page.relative_to(SITE)))
+        for url in _HUB_BUY.findall(html):
+            hub_seen = hub_seen or url
+            found.setdefault("__hub__", set()).add(str(page.relative_to(SITE)))
+    if "__hub__" in found:
+        # One request answers for every page: they all name the same endpoint.
+        vendor = _hub_vendor(hub_seen)
+        if not vendor:
+            return "", f"the buy endpoint {hub_seen} did not redirect to a known checkout"
+        found.setdefault(vendor, set()).update(found.pop("__hub__"))
     if not found:
         return "", "no checkout link found on any page"
     if len(found) > 1:

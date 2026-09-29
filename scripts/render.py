@@ -207,14 +207,33 @@ SAMPLE_REPORT = "/assets/docket-sample-report.pdf"
 HAS_SAMPLE = (SITE / SAMPLE_REPORT.lstrip("/")).exists()
 
 
+#: Our link server (the CEO's kerr-affiliate-hub Worker).
+HUB = "https://kerr-affiliate-hub.kerrco.workers.dev"
+
+
 def checkout_url(src: str) -> str:
     """The buy link, tagged with where it was clicked.
 
-    `metadata_*` query parameters on a Dodo payment link travel with the
-    payment (docs.dodopayments.com, one-time payments guide, read 2026-09-24),
-    so a sale can be traced to the button that started it.
+    Our buy endpoint, since 2026-09-28. It makes a Dodo checkout with the
+    founding code applied while Dodo honours it, passes affiliate ids through,
+    records `via_buy=1` and `src` with the payment, and falls back to the plain
+    payment link (CHECKOUT) if the code is refused or Dodo is unreachable, so it
+    never dead-ends. Before this the button went straight to CHECKOUT with
+    `metadata_src`, and a founding buyer had to find and type the code.
     """
-    return f"{CHECKOUT}&metadata_src={src}"
+    return f"{HUB}/buy/docket?src={src}"
+
+
+def download_url(src: str, to: str = "") -> str:
+    """A Download button's link: our counter, then the release file.
+
+    GitHub's download counts are mostly our own checks and crawlers (a DMG
+    linked from nowhere showed 285), so nobody knew how many people download.
+    The hub counts the click, stores no IP or user agent, and 302s to `to`. It
+    accepts only this repo's release URLs. `to` is LAST and unencoded, so
+    anything that looks for the release URL in the page still finds it.
+    """
+    return f"{HUB}/dl/docket?src={src}&to={to or DMG}"
 
 
 def buy_block(src: str, *, sample: bool = True, big: bool = True,
@@ -1582,7 +1601,12 @@ def _entity_schema(with_offer: bool = True) -> str:
         '"operatingSystem":"' + MACOS + ' or later, Apple Silicon",'
         '"description":"Docket crawls a website, runs ' + str(N_CHECKS) + ' checks across SEO, copy, '
         'speed, structured data, local visibility, AI search visibility and marketing '
-        'conversion, and returns a ranked list of what to fix. Runs entirely on your Mac.",'
+        'conversion, and returns a ranked list of what to fix. The crawl and the report stay '
+        'on your Mac.",'
+        # The file itself, direct. Search engines read downloadUrl for software,
+        # and it sits in <head>, so the ops release gates, which take the first
+        # .dmg URL on the homepage, test the real file rather than the counter.
+        '"downloadUrl":"' + DMG + '",'
         # PRICE_TODAY, not PRICE. Structured data states what a visitor would
         # pay now; the future price is prose, not an Offer. Declaring 149 while
         # the beta is free let Google advertise a number with no checkout

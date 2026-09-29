@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import DMG, DMG_SIZE, render  # noqa: E402
+from render import DMG, DMG_SIZE, download_url, render  # noqa: E402
 
 
 def javascript_rendering() -> Path:
@@ -107,7 +107,7 @@ a five-minute audit into an hour.</p>
 manager loaded. If the helper is missing it says that too, rather than quietly falling back
 to a static crawl and letting you believe otherwise.</p>
 
-<p><a class="btn" href="{DMG}">Download Docket for Mac</a></p>
+<p><a class="btn" href="{download_url('learn-javascript-rendering')}" data-ev="Download">Download Docket for Mac</a></p>
 """
     # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
     # Inspection: "unknown to Google"), linked from this page because Google
