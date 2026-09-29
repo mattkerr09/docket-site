@@ -23,7 +23,7 @@
 <title>Thank you — Docket</title>
 <meta name="description" content="Your Docket purchase is complete. Where to download the app and how to reach us.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="06eb718fa7b1">
+<meta name="build-id" content="8e52d66ccb24">
 <meta name="robots" content="noindex">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -863,30 +863,50 @@ happened. If the purchase was a mistake, the
   // click listener), because Dodo's redirect carries none; with nothing stored
   // it is the list price. A founding buyer who typed the code is therefore
   // recorded at the price they clicked, not the discounted total.
+  // The amount recorded with a purchase. First choice: what the buyer actually
+  // paid, from our hub's /paid (a succeeded payment from the last 72 hours; it
+  // returns only the amount, currency and app, never anything about the
+  // buyer). Before that existed, the best available was the price on offer
+  // when Buy was clicked (dk_offer), else the list price, and that stays the
+  // fallback if /paid answers 404, fails or takes too long. A founding buyer
+  // was recorded at $349 while paying $174.50.
   var amt = 349;
   try { amt = parseFloat(localStorage.getItem('dk_offer')) || 349; } catch (e) {}
-  if (status === 'succeeded') {
+
+  var record = function (value) {
     var pk = 'dk_pl_purchase_' + (pid || 'nopid');
     var sendP = function () {
       if (typeof plausible === 'function')
-        plausible('Purchase', { revenue: { currency: 'USD', amount: amt } });
+        plausible('Purchase', { revenue: { currency: 'USD', amount: value } });
     };
     try {
       if (!localStorage.getItem(pk)) { localStorage.setItem(pk, '1'); sendP(); }
     } catch (e) { sendP(); }
-  }
 
-  if (status === 'succeeded' && typeof fbq === 'function') {
-    var once = 'dk_purchase_' + (pid || 'nopid');
-    var fire = function () {
-      // The same amount Plausible records, not a hard-coded list price.
-      fbq('track', 'Purchase', { value: amt, currency: 'USD' },
-          pid ? { eventID: pid } : undefined);
-    };
-    try {
-      if (!sessionStorage.getItem(once)) { sessionStorage.setItem(once, '1'); fire(); }
-    } catch (e) { fire(); }   // private mode: firing once beats not firing
-  }
+    if (typeof fbq === 'function') {
+      var once = 'dk_purchase_' + (pid || 'nopid');
+      var fire = function () {
+        fbq('track', 'Purchase', { value: value, currency: 'USD' },
+            pid ? { eventID: pid } : undefined);
+      };
+      try {
+        if (!sessionStorage.getItem(once)) { sessionStorage.setItem(once, '1'); fire(); }
+      } catch (e) { fire(); }   // private mode: firing once beats not firing
+    }
+  };
+
+  if (status !== 'succeeded') return;
+  if (!pid || !window.fetch) { record(amt); return; }
+  var done = false;
+  var finish = function (value) { if (done) return; done = true; record(value); };
+  setTimeout(function () { finish(amt); }, 4000);
+  fetch('https://kerr-affiliate-hub.kerrco.workers.dev/paid?payment_id=' + encodeURIComponent(pid))
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) {
+      var v = j && typeof j.amount === 'number' && j.amount > 0 && j.amount < 100000 ? j.amount : amt;
+      finish(v);
+    })
+    .catch(function () { finish(amt); });
 })();
 </script>
 
