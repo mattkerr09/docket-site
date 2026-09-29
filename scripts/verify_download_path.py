@@ -43,7 +43,9 @@ import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
-UA = {"User-Agent": "docketseo-download-path/1.0"}
+#: Identifies as a robot (the ops convention, CEO 2026-09-29), so the download
+#: counter it HEADs never tallies this check as a person.
+UA = {"User-Agent": "kerr-ops/1.0 (verify_download_path)"}
 
 #: Where a release asset lives, whoever links it.
 LINK = re.compile(r'href="(https://github\.com/[^"]*/releases/download/[^"]+)"')

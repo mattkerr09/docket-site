@@ -67,8 +67,11 @@ def _hub_vendor(url: str) -> str:
         def redirect_request(self, *a, **k):
             return None
 
-    req = urllib.request.Request(url.replace("&amp;", "&"), method="GET",
-                                 headers={"User-Agent": "docket-vendor-gate/1"})
+    # HEAD, and a robot's name: a GET with a browser-like agent makes a real
+    # Dodo checkout session every time, and an unnamed agent was counted as
+    # a buy click (5 in the hub's first hour, all from checks).
+    req = urllib.request.Request(url.replace("&amp;", "&"), method="HEAD",
+                                 headers={"User-Agent": "kerr-ops/1.0 (verify_vendor_match)"})
     try:
         urllib.request.build_opener(_Stop).open(req, timeout=20)
     except urllib.error.HTTPError as err:
