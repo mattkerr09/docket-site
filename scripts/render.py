@@ -1524,13 +1524,15 @@ NAV_ARM = _nav(False)
 #: carries a hand-typed copy of this paragraph; change both together.
 #: The company that takes the payment. Dodo shows buyers "Kerr & Company" and
 #: the card statement reads DODOPAY_KERRANDCOMPANY, and no product page linked
-#: the company site until 2026-09-29 (CEO; the same words Outlier carries).
+#: the company site until 2026-09-29 (CEO; the same words Outlier carries). The
+#: link text is the legal name on the terms page and the company site's title,
+#: "Kerr & Company LLC"; "Holdings" is only in the domain (CEO, 2026-09-29).
 KERR_MORE = """<p><strong>More from Kerr &amp; Company</strong><br>
 <a href="https://outlier.host/">Outlier</a>: private, offline AI for your Mac ·
 <a href="https://crispvideo.app/">Crisp Video</a>: restore and upscale video offline on your Mac ·
 <a href="https://adplaybook.app/">AdPlaybook</a>: the ad maker that proves its own claims ·
 <a href="https://builtbykerr.com/">Built by Kerr</a>: websites and local SEO for Grand Rapids businesses ·
-<a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company Holdings</a>: the company behind these apps</p>"""
+<a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company LLC</a>: the company behind these apps</p>"""
 
 #: The Ahrefs comparison is an experiment arm until 2026-10-06 and keeps the
 #: footer it had when the arm began. See LINK_ARMS.
