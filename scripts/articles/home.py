@@ -200,7 +200,7 @@ def body() -> str:
   <p class="hero-sub">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
   conversion, brand, AI search visibility and campaign tracking — then one ranked plan with the
   markup to paste. Not four tools. One download.</p>
-  {buy_block("home-hero")}
+  {buy_block("home-hero", try_free=True)}
   {BNPL_BLOCK}
   <!-- The hero's second button became "See a full sample report" (Matthew's
        plan, 2026-09-24), which left a buyer holding a key with no download on

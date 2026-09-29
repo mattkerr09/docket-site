@@ -237,7 +237,8 @@ def download_url(src: str, to: str = "") -> str:
 
 
 def buy_block(src: str, *, sample: bool = True, big: bool = True,
-              anchor: bool = True, refund: bool = True, refund_link: bool = True) -> str:
+              anchor: bool = True, refund: bool = True, refund_link: bool = True,
+              try_free: bool = False) -> str:
     """Buy button, founding offer, what the alternatives cost, the refund.
 
     One definition, because the buy path is now on every kind of page and a
@@ -256,6 +257,11 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
            f'<div class="hero-cta">'
            f'<a class="btn{size}" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
            f'data-ev-button="{src}">Buy Docket</a>']
+    if try_free:
+        # The one thing a visitor can try without paying, beside the button
+        # that asks them to pay (CEO's revenue pass, 2026-09-29).
+        out.append(f'<a class="btn-ghost{size}" href="/tools/ai-crawler-checker/" data-ev="Free check" '
+                   f'data-ev-button="{src}">Free: can ChatGPT read your site?</a>')
     if sample and HAS_SAMPLE:
         out.append(f'<a class="btn-ghost{size}" href="{SAMPLE_REPORT}" data-ev="Sample report" '
                    f'data-ev-button="{src}">See a full sample report</a>')
@@ -908,7 +914,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    toggle in the top row; the <details> element needs no script, and the same
    links stay in the page for anyone and anything reading it. */
 .nav-more{display:none}
-@media(max-width:780px){
+/* 1000px, not 780px: with the free-check link the row needs ~960px, and at
+   900px it pushed the page 30px wider than the window (measured 2026-09-29;
+   the visual gate renders only 375, 1280 and 1600, so it could not see it). */
+@media(max-width:1000px){
   .nav-inner{flex-wrap:nowrap;padding-bottom:0;gap:.5rem}
   .nav-links{display:none}
   .nav-more{display:block;margin-left:auto}
@@ -1240,6 +1249,9 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .price-pay4{font-size:1rem;font-weight:600;white-space:nowrap}
 .pay4-em{color:var(--text);font-weight:600}
 /* The AI crawler checker's form and its answer column. */
+.checker-next{margin:-.8rem 0 2rem;padding:1rem 1.2rem;border:1px solid var(--border-strong);
+  border-radius:var(--radius-lg)}
+.checker-next p{margin:0 0 .8rem}.checker-next .buy-block{margin:0}
 .checker-form{margin:1.4rem 0 2rem;padding:1.1rem 1.2rem;border:1px solid var(--border-strong);
   border-radius:var(--radius-lg);background:var(--surface)}
 .checker-form label{display:block;font-weight:600;margin-bottom:.5rem;color:var(--text)}
@@ -1321,6 +1333,11 @@ ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.step
 .sec::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;
   background:var(--grad-line);opacity:.32;pointer-events:none}
 nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
+/* The open phone menu is absolutely positioned inside <nav>. With nav and the
+   article both at z-index 1, the article (later in the page) painted over the
+   menu, so its links showed through the hero text with no panel behind them.
+   Measured at 375px, 2026-09-29. The nav sits above the page instead. */
+nav{z-index:40}
 @media(prefers-reduced-motion:reduce){.mesh b{animation:none}}
 .sec{padding:var(--sec-y) 0;position:relative;isolation:isolate}
 .cta-band{position:relative;isolation:isolate}
@@ -1463,17 +1480,36 @@ _NAV_LINKS = """<a href="/index/">The Index</a>
 <a href="/for/">For you</a>
 <a href="/about/">About</a>"""
 
-NAV = f"""<nav><div class="wrap-wide nav-inner">
+#: The one thing a visitor can try for free, in the menu on every page (the
+#: CEO's revenue pass, 2026-09-29: Docket cannot be tried free, the checker
+#: can, and 5 of 138 pages linked it). Listed first so it is the first thing
+#: in the phone menu too.
+_CHECKER_NAV = '<a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="nav">Free AI check</a>\n'
+
+#: Pages whose INTERNAL links are frozen by a registered experiment. They get
+#: the menu and footer as they were, without the checker link. The Ahrefs
+#: comparison's title and internal links are an arm until 2026-10-06
+#: (~/ops/search ARMS); remove it from here after that read.
+LINK_ARMS = {("vs", "ahrefs-site-audit-alternative")}
+
+
+def _nav(checker: bool) -> str:
+    links = (_CHECKER_NAV if checker else "") + _NAV_LINKS
+    return f"""<nav><div class="wrap-wide nav-inner">
 <a class="nav-brand" href="/" aria-label="Docket SEO">{_mark(23)}<span>Docket<i>SEO</i></span></a>
 <div class="nav-links">
-{_NAV_LINKS}
+{links}
 </div>
 <details class="nav-more"><summary aria-label="Menu"><span aria-hidden="true">&#9776;</span></summary>
 <div class="nav-more-links">
-{_NAV_LINKS}
+{links}
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; ${PRICE}{PAY4}</span></a>
 </div></nav>"""
+
+
+NAV = _nav(True)
+NAV_ARM = _nav(False)
 
 #: The Kerr & Company cross-links. Matthew's order, 2026-09-26 01:28Z: every
 #: page's footer, plain followed links, Docket itself left out, in exactly the
@@ -1494,7 +1530,7 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>
 <a href="/">Overview</a><a href="/download/">Download Docket SEO for Mac</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a></div>
+<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a>__FOOT_CHECKER__</div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/sitebulb-alternative/">vs Sitebulb</a>
@@ -1524,6 +1560,11 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <span>© 2026 Docket SEO · Audits run on your Mac, and the reports stay there.</span>
 <span>{_mark(15, "var(--text-dim)")}</span>
 </div></div></footer>"""
+
+FOOTER_ARM = FOOTER.replace("__FOOT_CHECKER__", "")
+FOOTER = FOOTER.replace("__FOOT_CHECKER__",
+                        '<a href="/tools/ai-crawler-checker/" data-ev="Free check" '
+                        'data-ev-button="footer">Free AI crawler checker</a>')
 
 
 def _breadcrumb_schema(crumb: str) -> str:
@@ -2040,11 +2081,11 @@ def render(
 <body{body_class}>
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
-{NAV}
+{NAV_ARM if (cat, slug) in LINK_ARMS else NAV}
 {opening}
 {body}{faq_html}{closer}
 {closing}
-{FOOTER}
+{FOOTER_ARM if (cat, slug) in LINK_ARMS else FOOTER}
 {"" if (cat, slug) == ("", "thank-you") else FOUNDING_MOUNT}
 <script>
 /* Scroll reveal. Every reference site animates content in; this one shipped no

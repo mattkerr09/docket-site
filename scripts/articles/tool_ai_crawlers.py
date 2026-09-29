@@ -28,7 +28,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import DATA, buy_block, render  # noqa: E402
+from render import (DATA, HAS_SAMPLE, N_CHECKS, PAY4, PRICE, PRICE_STR, SAMPLE_REPORT,  # noqa: E402
+                    buy_block, checkout_url, render)
 
 #: The Worker the form calls. `workers/ai-crawler-check/wrangler.toml` names it.
 CHECKER_ENDPOINT = "https://ai-crawler-check.kerrco.workers.dev/check"
@@ -100,6 +101,23 @@ first, and the ones that only collect training data come second.</p>
   </div>
   <p class="checker-status" id="checker-status" role="status" aria-live="polite"></p>
 </form>
+
+<!-- Shown after any answer. The checker read one file for one page; this says
+     so, and says what the product does beyond it, without dressing a free
+     robots.txt reading up as an audit (CEO's revenue pass, 2026-09-29). -->
+<div class="checker-next" id="checker-next" hidden>
+  <p><strong>That was one file, read for one page.</strong> Docket runs {N_CHECKS} checks across
+  every page it crawls, this one included, and it requests your pages as each AI crawler, so it
+  also sees the server and CDN refusals this checker cannot.</p>
+  <div class="buy-block compact">
+    <p class="price-line"><span class="price-big">{PRICE_STR}</span><span class="price-pay4">once{PAY4}</span></p>
+    <div class="hero-cta">
+      <a class="btn" href="{checkout_url("tools-checker-result")}" data-ev="Buy" data-ev-price="{PRICE}"
+         data-ev-button="tools-checker-result">Buy Docket</a>
+      {f'<a class="btn-ghost" href="{SAMPLE_REPORT}" data-ev="Sample report" data-ev-button="tools-checker-result">See a sample report</a>' if HAS_SAMPLE else ''}
+    </div>
+  </div>
+</div>
 
 <h2>Crawlers that decide whether AI can cite you</h2>
 <p>Block one of these and that assistant cannot read your pages when it answers a question, so it
@@ -188,6 +206,8 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
         if (j.note && j.state !== 'blocked') msg += ' ' + j.note;
         if (j.warnings && j.warnings.length) msg += ' ' + j.warnings[0];
         say(msg);
+        var next = document.getElementById('checker-next');
+        if (next) next.hidden = false;
         if (window.plausible) window.plausible('Checker', {{ props: {{ state: j.state }} }});
       }})
       .catch(function () {{ say('The checker could not be reached. Try again in a minute.'); }});
