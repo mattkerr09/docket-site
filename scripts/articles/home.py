@@ -54,6 +54,55 @@ DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 #: status bar stops matching the one this page prints.
 HERO = json.loads((DATA.parent / "hero-recording.json").read_text())
 
+#: The ~35-second demo: one real audit through to one fix, recorded by
+#: docket-app/scripts/record_demo.mjs --site, which writes this file off the
+#: screen in the same run. The section is left out entirely until it exists.
+_DEMO_PATH = DATA.parent / "demo-recording.json"
+DEMO = json.loads(_DEMO_PATH.read_text()) if _DEMO_PATH.exists() else None
+
+
+def _demo_section() -> str:
+    """A real run, start to finish (CEO's revenue pass, 2026-09-29: nothing on
+    the homepage or Product Hunt showed Docket working through to a fix)."""
+    if not DEMO:
+        return ""
+    import html as _html
+    d = {k: (_html.escape(v, quote=True) if isinstance(v, str) else v) for k, v in DEMO.items()}
+    return f"""
+<!-- ================= A REAL RUN ================= -->
+<section class="sec" id="watch"><div class="wrap-wide">
+<div class="sec-head">
+  <h2>One real audit.<br><em>Start to finish.</em></h2>
+  <p class="sec-sub">Docket auditing this site: {d['pages']}&nbsp;pages crawled in {d['seconds']}&nbsp;seconds,
+  a score of {d['score']}, then the fix list narrowed to one area and one finding opened with the
+  markup to paste. A screen recording of the real app; the crawl is sped up.</p>
+</div>
+<figure class="shot demo-shot">
+  <video class="demo-video" muted playsinline loop preload="none" controls
+         poster="/assets/demo-run-poster.jpg" width="1280" height="720"
+         aria-label="Docket auditing docketseo.app: the address typed, the crawl running across {d['pages']} pages, a score of {d['score']}, the fix list filtered to {d['area']}, and the finding '{d['held']}' opened with its fix.">
+    <source src="/assets/demo-run.webm" type="video/webm">
+    <source src="/assets/demo-run.mp4" type="video/mp4">
+  </video>
+</figure>
+</div></section>
+<script>
+/* Plays only while at least a third of it is on screen, and never for someone
+   who asked for reduced motion (they get the controls and the poster). */
+(function () {{
+  var v = document.querySelector('video.demo-video');
+  if (!v || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  new IntersectionObserver(function (es) {{
+    es.forEach(function (e) {{
+      if (e.isIntersecting) {{ v.preload = 'auto'; var p = v.play(); if (p && p.catch) p.catch(function () {{}}); }}
+      else v.pause();
+    }});
+  }}, {{ threshold: 0.33 }}).observe(v);
+}})();
+</script>
+"""
+
 
 
 #: The product's own score bands — `seo_engine.scoring.SCORE_BANDS` — restated
@@ -260,7 +309,7 @@ def body() -> str:
 }})();
 </script>
 </section>
-
+{_demo_section()}
 <!-- ================= THE REAL ARTIFACT =================
      This section is Docket run against our own site, rendered by the app's own
      HTML reporter, not rebuilt in CSS.

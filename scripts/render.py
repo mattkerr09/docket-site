@@ -1130,6 +1130,8 @@ body.landing article{padding:0}
 .hero-media figcaption{margin-top:.9rem;font-size:var(--t-sm);color:var(--text-dim);
   line-height:1.5;max-width:62ch}
 .hero-media figcaption strong{color:var(--text-mid);font-weight:600}
+.demo-video{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:var(--radius-lg);
+  border:1px solid var(--border-strong);background:var(--surface);box-shadow:var(--lift-lg)}
 
 /* The product sits on light rather than beside it. */
 /* A dated specimen of real output, NOT a picture of the UI.
