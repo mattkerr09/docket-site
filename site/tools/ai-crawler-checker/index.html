@@ -14,7 +14,7 @@
 <title>AI crawler checker: can ChatGPT read your site?</title>
 <meta name="description" content="Free check of your robots.txt against 21 crawlers: which let ChatGPT, Claude, Perplexity, AI Overviews and Copilot read and cite you, and which only train.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="7b815083f045">
+<meta name="build-id" content="c81a48493539">
 <link rel="canonical" href="https://docketseo.app/tools/ai-crawler-checker/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -262,7 +262,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    toggle in the top row; the <details> element needs no script, and the same
    links stay in the page for anyone and anything reading it. */
 .nav-more{display:none}
-@media(max-width:780px){
+/* 1000px, not 780px: with the free-check link the row needs ~960px, and at
+   900px it pushed the page 30px wider than the window (measured 2026-09-29;
+   the visual gate renders only 375, 1280 and 1600, so it could not see it). */
+@media(max-width:1000px){
   .nav-inner{flex-wrap:nowrap;padding-bottom:0;gap:.5rem}
   .nav-links{display:none}
   .nav-more{display:block;margin-left:auto}
@@ -594,6 +597,9 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .price-pay4{font-size:1rem;font-weight:600;white-space:nowrap}
 .pay4-em{color:var(--text);font-weight:600}
 /* The AI crawler checker's form and its answer column. */
+.checker-next{margin:-.8rem 0 2rem;padding:1rem 1.2rem;border:1px solid var(--border-strong);
+  border-radius:var(--radius-lg)}
+.checker-next p{margin:0 0 .8rem}.checker-next .buy-block{margin:0}
 .checker-form{margin:1.4rem 0 2rem;padding:1.1rem 1.2rem;border:1px solid var(--border-strong);
   border-radius:var(--radius-lg);background:var(--surface)}
 .checker-form label{display:block;font-weight:600;margin-bottom:.5rem;color:var(--text)}
@@ -675,6 +681,11 @@ ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.step
 .sec::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;
   background:var(--grad-line);opacity:.32;pointer-events:none}
 nav,article,footer,.hero-sec,.sec,.cta-band{position:relative;z-index:1}
+/* The open phone menu is absolutely positioned inside <nav>. With nav and the
+   article both at z-index 1, the article (later in the page) painted over the
+   menu, so its links showed through the hero text with no panel behind them.
+   Measured at 375px, 2026-09-29. The nav sits above the page instead. */
+nav{z-index:40}
 @media(prefers-reduced-motion:reduce){.mesh b{animation:none}}
 .sec{padding:var(--sec-y) 0;position:relative;isolation:isolate}
 .cta-band{position:relative;isolation:isolate}
@@ -778,6 +789,7 @@ fbq('track','PageView');
 <nav><div class="wrap-wide nav-inner">
 <a class="nav-brand" href="/" aria-label="Docket SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Docket<i>SEO</i></span></a>
 <div class="nav-links">
+<a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="nav">Free AI check</a>
 <a href="/index/">The Index</a>
 <a href="/learn/">Learn</a>
 <a href="/vs/">Compare</a>
@@ -788,6 +800,7 @@ fbq('track','PageView');
 </div>
 <details class="nav-more"><summary aria-label="Menu"><span aria-hidden="true">&#9776;</span></summary>
 <div class="nav-more-links">
+<a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="nav">Free AI check</a>
 <a href="/index/">The Index</a>
 <a href="/learn/">Learn</a>
 <a href="/vs/">Compare</a>
@@ -814,6 +827,23 @@ first, and the ones that only collect training data come second.</p>
   </div>
   <p class="checker-status" id="checker-status" role="status" aria-live="polite"></p>
 </form>
+
+<!-- Shown after any answer. The checker read one file for one page; this says
+     so, and says what the product does beyond it, without dressing a free
+     robots.txt reading up as an audit (CEO's revenue pass, 2026-09-29). -->
+<div class="checker-next" id="checker-next" hidden>
+  <p><strong>That was one file, read for one page.</strong> Docket runs 99 checks across
+  every page it crawls, this one included, and it requests your pages as each AI crawler, so it
+  also sees the server and CDN refusals this checker cannot.</p>
+  <div class="buy-block compact">
+    <p class="price-line"><span class="price-big">$349</span><span class="price-pay4">once &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</span></p>
+    <div class="hero-cta">
+      <a class="btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=tools-checker-result" data-ev="Buy" data-ev-price="349"
+         data-ev-button="tools-checker-result">Buy Docket</a>
+      <a class="btn-ghost" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-checker-result">See a sample report</a>
+    </div>
+  </div>
+</div>
 
 <h2>Crawlers that decide whether AI can cite you</h2>
 <p>Block one of these and that assistant cannot read your pages when it answers a question, so it
@@ -902,6 +932,8 @@ to five optional outside checks and the rest of the audit.</p>
         if (j.note && j.state !== 'blocked') msg += ' ' + j.note;
         if (j.warnings && j.warnings.length) msg += ' ' + j.warnings[0];
         say(msg);
+        var next = document.getElementById('checker-next');
+        if (next) next.hidden = false;
         if (window.plausible) window.plausible('Checker', { props: { state: j.state } });
       })
       .catch(function () { say('The checker could not be reached. Try again in a minute.'); });
@@ -914,7 +946,7 @@ to five optional outside checks and the rest of the audit.</p>
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>
 <a href="/">Overview</a><a href="/download/">Download Docket SEO for Mac</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a></div>
+<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer">Free AI crawler checker</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/sitebulb-alternative/">vs Sitebulb</a>
