@@ -1895,6 +1895,13 @@ def _human_date(iso: str) -> str:
 #: The button 57 page generators ended with. See `render`.
 _OLD_END_BUTTON = '<p><a class="btn" href="/download/">Download Docket</a></p>'
 
+#: Categories whose slugged pages are articles, and every article ends on a buy
+#: path. The strip was appended to learn and how-to only, so a comparison that
+#: was written without the old end button (/vs/se-ranking-vs-screaming-frog/)
+#: had no Buy anywhere in its body until the CEO's scan of 2026-09-30. Hubs
+#: (a cat with no slug), legal, contact and /bot/ are not articles.
+_ARTICLE_CATS = ("learn", "how-to", "vs", "best", "for", "tools")
+
 
 def render(
     *,
@@ -1933,8 +1940,13 @@ def render(
         _src = "-".join(p for p in (cat, slug) if p)[:60] or "home"
         if _OLD_END_BUTTON in body:
             body = body.replace(_OLD_END_BUTTON, buy_strip(_src))
-        elif cat in ("learn", "how-to") and slug and 'class="buy-block' not in body:
+        elif cat in _ARTICLE_CATS and slug and 'class="buy-block' not in body:
             body = body + buy_strip(_src)
+        # And the page that still has none stops the build, rather than
+        # shipping an article a reader can finish without a way to buy.
+        if cat in _ARTICLE_CATS and slug and f"{HUB}/buy/docket?" not in body:
+            raise SystemExit(f"/{cat}/{slug}/ has no Buy link in its body: give it a "
+                             f"buy_block() or let render() append buy_strip()")
     # A hub page is a cat with no slug. Joining blindly gives "/vs//", which
     # canonicalises the page to a URL it is not served from — the canonical then
     # argues against itself. Crisp hit exactly this.
