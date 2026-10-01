@@ -28,7 +28,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import (DATA, HAS_SAMPLE, N_CHECKS, PAY4, PRICE, PRICE_STR, SAMPLE_REPORT,  # noqa: E402
+from render import (DATA, HAS_SAMPLE, N_CHECKS, PAY4, PRICE, PRICE_STR, SAMPLE_REPORT, price_req_html,  # noqa: E402
                     buy_block, checkout_url, render)
 
 #: The Worker the form calls. `workers/ai-crawler-check/wrangler.toml` names it.
@@ -111,6 +111,7 @@ first, and the ones that only collect training data come second.</p>
   also sees the server and CDN refusals this checker cannot.</p>
   <div class="buy-block compact">
     <p class="price-line"><span class="price-big">{PRICE_STR}</span><span class="price-pay4">once{PAY4}</span></p>
+    {price_req_html()}
     <div class="hero-cta">
       <a class="btn" href="{checkout_url("tools-checker-result")}" data-ev="Buy" data-ev-price="{PRICE}"
          data-ev-button="tools-checker-result">Buy Docket</a>

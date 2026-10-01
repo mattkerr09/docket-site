@@ -640,8 +640,9 @@ def write_llms_txt() -> None:
     out += facts(
         f"{PRICE_STR}, paid once, in US dollars. Not a subscription: there is no renewal "
         f"date and nothing to cancel.",
-        f"Founding price {FOUNDING_NOW} once, first {FOUNDING_SEATS} buyers: at checkout, "
-        f"click \"Have a discount code?\" and enter {FOUNDING_CODE}. Then {PRICE_STR}.",
+        f"Founding price {FOUNDING_NOW} once, first {FOUNDING_SEATS} buyers, then {PRICE_STR}: "
+        f"the Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
+        f"{PRICE_STR}, enter it under \"Have a discount code?\").",
         (f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks "
          f"apart." if BNPL_LIVE else ""),
         "There is no free trial; the refund window is the trial.",

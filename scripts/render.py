@@ -236,6 +236,18 @@ def download_url(src: str, to: str = "") -> str:
     return f"{HUB}/dl/docket?src={src}&to={to or DMG}"
 
 
+def price_req_html() -> str:
+    """What the app runs on, directly under the price.
+
+    The Product Hunt rehearsal of 2026-09-30 found the requirement 1,007px
+    down the homepage at 1280x800 and 1,340px down at 375, both below the
+    fold, and absent from the AI crawler checker. A Windows or Intel visitor
+    could reach Buy without ever reading it. The price is where the decision
+    is made, so the requirement sits there, wherever a price is shown.
+    """
+    return f'<p class="price-req">For Apple Silicon Macs, {MACOS} or later</p>'
+
+
 def buy_block(src: str, *, sample: bool = True, big: bool = True,
               anchor: bool = True, refund: bool = True, refund_link: bool = True,
               try_free: bool = False) -> str:
@@ -253,7 +265,7 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
     # "Buy Docket · $349 once · or 4 × $87.25" broke over two lines.
     out = [f'<div class="buy-block{"" if big else " compact"}">'
            f'<p class="price-line"><span class="price-big">{PRICE_STR}</span>'
-           f'<span class="price-pay4">once{PAY4}</span></p>'
+           f'<span class="price-pay4">once{PAY4}</span></p>{price_req_html()}'
            f'<div class="hero-cta">'
            f'<a class="btn{size}" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
            f'data-ev-button="{src}">Buy Docket</a>']
@@ -601,9 +613,14 @@ BNPL_NOTE_HTML = BNPL_NOTE.replace(
     f"Or four payments of {BNPL_INSTALMENT}",
     f'<strong class="pay4-em">Or four payments of {BNPL_INSTALMENT}</strong>', 1)
 
+#: Buy has applied the code itself since the hub's /buy (2026-09-28); the
+#: rehearsal of 2026-09-30 opened it and Dodo showed $174.50 with the code
+#: already in. Typing it is only the fallback, for a checkout that opens at
+#: the full price (the hub falls back to the plain link if Dodo is down).
 FOUNDING_LINE = (f"Founding price <strong>{FOUNDING_NOW} once{PAY4_FOUNDING}</strong>, first "
-                 f"{FOUNDING_SEATS} buyers. At checkout click &lsquo;Have a discount "
-                 f"code?&rsquo; and enter <code>{FOUNDING_CODE}</code>. Then {PRICE_STR}.")
+                 f"{FOUNDING_SEATS} buyers, then {PRICE_STR}. Buy applies the code "
+                 f"<code>{FOUNDING_CODE}</code> for you; if the checkout shows {PRICE_STR}, "
+                 f"enter it under &lsquo;Have a discount code?&rsquo;.")
 
 # --------------------------------------------------------------------------
 # Who the money is paid to.
@@ -1249,6 +1266,7 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   margin:0 0 .85rem;color:var(--text)}
 .price-big{font-size:2.5rem;font-weight:700;line-height:1;letter-spacing:-.02em}
 .price-pay4{font-size:1rem;font-weight:600;white-space:nowrap}
+.price-req{margin:-.5rem 0 .85rem;font-size:var(--t-base);color:var(--text-dim)}
 .pay4-em{color:var(--text);font-weight:600}
 /* The AI crawler checker's form and its answer column. */
 .checker-next{margin:-.8rem 0 2rem;padding:1rem 1.2rem;border:1px solid var(--border-strong);

@@ -53,8 +53,9 @@ Michigan, United States.
 
 - $349, paid once, in US dollars. Not a subscription: there is no renewal date and
   nothing to cancel.
-- Founding price $174.50 once, first 25 buyers: at checkout, click "Have a discount
-  code?" and enter FOUNDINGDOCKET. Then $349.
+- Founding price $174.50 once, first 25 buyers, then $349: the Buy link applies the
+  code FOUNDINGDOCKET at checkout (if the checkout shows $349, enter it under "Have a
+  discount code?").
 - Or four payments of $87.25 with Klarna or Afterpay, two weeks apart.
 - There is no free trial; the refund window is the trial.
 - The licence key arrives by email with the receipt and is pasted into the app once.
