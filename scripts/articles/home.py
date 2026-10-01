@@ -249,16 +249,15 @@ def body() -> str:
   <p class="hero-sub">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
   conversion, brand, AI search visibility and campaign tracking — then one ranked plan with the
   markup to paste. Not four tools. One download.</p>
-  {buy_block("home-hero", try_free=True)}
+  {buy_block("home-hero", try_app="home-try-free")}
   {BNPL_BLOCK}
   <!-- The hero's second button became "See a full sample report" (Matthew's
        plan, 2026-09-24), which left a buyer holding a key with no download on
        the homepage — and ~/ops's shipped-activation and updater-signature
        gates, which test the DMG this page links, with nothing to measure.
        One quiet line keeps both. -->
-  <p class="hero-note">Try it free: <a href="{download_url('home-try-free')}" data-ev="Download"
-  data-ev-button="home-hero">Download Docket for Mac</a> ({DMG_SIZE}) and audit any site.
-  Free shows your score and how many problems each area has.</p>
+  <p class="hero-note">Try it free: the {DMG_SIZE} Mac download audits any site and shows your score
+  and how many problems each area has. Buying opens that same audit in full.</p>
   <p class="hero-note">{MACOS}+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
 </div>
 </div>

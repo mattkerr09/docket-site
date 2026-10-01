@@ -250,7 +250,7 @@ def price_req_html() -> str:
 
 def buy_block(src: str, *, sample: bool = True, big: bool = True,
               anchor: bool = True, refund: bool = True, refund_link: bool = True,
-              try_free: bool = False) -> str:
+              try_free: bool = False, try_app: str = "") -> str:
     """Buy button, founding offer, what the alternatives cost, the refund.
 
     One definition, because the buy path is now on every kind of page and a
@@ -269,7 +269,14 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
            f'<div class="hero-cta">'
            f'<a class="btn{size}" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
            f'data-ev-button="{src}">Buy Docket</a>']
-    if try_free:
+    if try_app:
+        # Since 1.3.96 the app itself is free to try (the score and how many
+        # problems each area has), so that is the free thing beside Buy now.
+        # `try_app` is the download's tag. CEO, 2026-10-01: Monday's visitors
+        # should see the free path above the fold.
+        out.append(f'<a class="btn-ghost{size}" href="{download_url(try_app)}" data-ev="Download" '
+                   f'data-ev-button="{try_app}">Try it free</a>')
+    elif try_free:
         # The one thing a visitor can try without paying, beside the button
         # that asks them to pay (CEO's revenue pass, 2026-09-29).
         out.append(f'<a class="btn-ghost{size}" href="/tools/ai-crawler-checker/" data-ev="Free check" '
