@@ -33,6 +33,9 @@ import sys
 import time as _time
 import urllib.request
 
+_sys.path.insert(0, str(_Path(__file__).resolve().parent))
+import own_hosts  # noqa: E402
+
 BASE = "https://docketseo.app"
 
 PAGES = ["/", "/download/", "/learn/", "/for/", "/for/developers/",
@@ -170,6 +173,11 @@ def _open_with_retry(request, timeout=25, attempts=3):
     last = None
     for attempt in range(attempts):
         try:
+            # A HEAD goes through HEAD_OPENER, which keeps it a HEAD past a
+            # redirect; urlopen re-sends it as a GET and fetched the release
+            # file behind GitHub's 302 (own_hosts.py).
+            if request.get_method() == "HEAD":
+                return own_hosts.HEAD_OPENER.open(request, timeout=timeout)
             return urllib.request.urlopen(request, timeout=timeout)
         except urllib.error.HTTPError:
             raise

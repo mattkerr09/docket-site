@@ -38,6 +38,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 sys.path.insert(0, str(ROOT / "scripts" / "articles"))
 
 import comparisons  # noqa: E402
+import own_hosts  # noqa: E402
 
 #: Answers that mean "not for you", not "not there". Same set the audit engine
 #: uses, and for the same reason.
@@ -53,6 +54,10 @@ TIMEOUT = 20
 
 def _status(url: str, method: str = "HEAD") -> tuple:
     """`(status, note)`. Status 0 means no answer at all."""
+    # Never one of ours: this requests as a browser, with a GET fallback, and a
+    # browser GET of a hub /buy link mints a real checkout (own_hosts.py).
+    if own_hosts.is_own(url):
+        return 0, "own host: never requested by a checker of third-party pages"
     req = urllib.request.Request(url, method=method,
                                  headers={"User-Agent": UA, "Accept": "*/*"})
     try:
@@ -82,6 +87,14 @@ def main() -> int:
 
     if not sources:
         print("SOURCES FAIL — no claims carry a source URL at all")
+        return 1
+
+    own = sorted(u for u in sources if own_hosts.is_own(u))
+    if own:
+        print("SOURCES FAIL — a rival claim cites one of our own hosts, which this "
+              "script will not request:")
+        for url in own:
+            print(f"  - {url}")
         return 1
 
     dead, refused, unreachable, alive = [], [], [], 0

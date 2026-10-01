@@ -42,6 +42,8 @@ import urllib.error
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+import own_hosts  # noqa: E402
 SITE = ROOT / "site"
 #: Identifies as a robot (the ops convention, CEO 2026-09-29), so the download
 #: counter it HEADs never tallies this check as a person.
@@ -104,9 +106,11 @@ def _forwards_to(url: str) -> str:
 
 
 def _head(url: str) -> tuple:
+    # HEAD_OPENER, not urlopen: urllib re-sends a redirected HEAD as a GET, so
+    # this "HEAD" of a release link fetched the DMG behind GitHub's 302.
     request = urllib.request.Request(url, method="HEAD", headers=UA)
     try:
-        with urllib.request.urlopen(request, timeout=30) as response:
+        with own_hosts.HEAD_OPENER.open(request, timeout=30) as response:
             return response.status, response.headers.get("content-length", "")
     except urllib.error.HTTPError as exc:
         return exc.code, ""

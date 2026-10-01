@@ -28,6 +28,9 @@ import time
 import urllib.request
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import own_hosts  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
 
@@ -134,7 +137,8 @@ def reachable(url: str, attempts: int = 3) -> tuple[bool, str]:
         req = urllib.request.Request(url, method="HEAD",
                                      headers={"User-Agent": "docketseo-deploy-gate/1.0"})
         try:
-            with urllib.request.urlopen(req, timeout=15) as resp:
+            # HEAD_OPENER keeps a redirected HEAD a HEAD (own_hosts.py).
+            with own_hosts.HEAD_OPENER.open(req, timeout=15) as resp:
                 code = resp.status
         except urllib.error.HTTPError as exc:
             # An HTTP status is a real answer from a live server. Believe it.

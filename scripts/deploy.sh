@@ -94,6 +94,11 @@ echo "==> claim-source gate"
 # verify_competitive_claims.py says it exists to catch — happening to itself.
 # A refusal is not a dead link: Ahrefs and Semrush answer 403 to scripts and
 # serve readers fine, so refusals are reported and pass. Only 404/410 fails.
+# Before anything here requests a live URL: our own hosts are never fetched
+# by the third-party checkers, a hub link gets one unfollowed HEAD, and a
+# redirected HEAD stays a HEAD (CEO, 2026-10-01: robot GETs of 11 Buy and
+# 7 Download links). A planted hub link, with a control; no network.
+"$PY" scripts/own_hosts.py --self-test || exit 1
 "$PY" scripts/verify_claim_sources.py || exit 1
 
 echo "==> third-party gate"

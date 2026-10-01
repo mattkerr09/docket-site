@@ -50,6 +50,8 @@ import urllib.error
 import urllib.request
 
 HERE = pathlib.Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+import own_hosts  # noqa: E402
 FEED = HERE.parent / "site" / "data" / "knowledge.json"
 STATE = HERE.parent / "data" / "source-watch.json"
 
@@ -114,6 +116,8 @@ _OPENER = urllib.request.build_opener(_Follow308)
 
 def fetch(url: str) -> tuple:
     """(text, error). An error is never treated as 'unchanged'."""
+    if own_hosts.is_own(url):
+        return "", "OWN HOST: never fetched by a watcher of third-party pages (own_hosts.py)"
     req = urllib.request.Request(url, headers={"User-Agent": _UA,
                                                "Accept": "text/html,*/*"})
     try:
