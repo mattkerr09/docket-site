@@ -659,7 +659,7 @@ computed from free public data rather than a bought index.</p>
 <!-- ================= NOT READY YET =================
      Docket is the highest price in the portfolio, so the largest group leaving
      this page is people who are interested and not ready to spend it. Since
-     1.3.96 they can try it: the free version runs the full audit and shows the
+     the free version shipped they can try it: the free version runs the full audit and shows the
      score and how many problems each area has (Matthew, 2026-10-01). This
      block used to collect addresses for "when the free audit lands"; it has.
      The list is the CEO's to email, once, as it promised. -->
