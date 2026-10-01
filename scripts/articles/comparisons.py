@@ -1949,7 +1949,9 @@ your Search Console history or your analytics.</li>
 <li><strong>Keyword work.</strong> Keyword maps, clusters, cannibalization flags, content gaps,
 runner-up keywords and decay tracking, plus importing your existing Ahrefs or Semrush lists.
 Docket does none of this — it does not track rankings or research keywords.</li>
-<li><strong>White-label reports</strong>, and a free tier for one site. Docket has neither.</li>
+<li><strong>White-label reports</strong>, which Docket does not have, and a free tier for one
+site. Docket's free version covers any site but shows only the score and how many problems each
+area has.</li>
 </ul>
 
 <p>It also lists MCP access to up to thirteen scoped tools. Docket ships an MCP server as well,
@@ -2085,8 +2087,9 @@ hundred pages neither limit matters; past ten thousand, one of them does.</p>
 
 <p>On price they are not close. crawler.sh is {price('crawler-sh')}, renewed yearly. Docket is
 {PRICE_STR} once. A subscription is better value until roughly the fourth year and worse after
-it, and a free tier that needs no account is a genuinely easier thing to try than a
-{PRICE_STR} purchase.</p>
+it. Both can be tried free with no account: crawler.sh's free tier stops at 50 pages a
+session, and Docket's free version runs the whole audit but shows only the score and how many
+problems each area has.</p>
 
 <p>One thing that is <em>not</em> a difference: both render JavaScript. They use their own
 engine rather than headless Chrome; Docket renders a sample of every audit in the WebKit that
@@ -2131,8 +2134,8 @@ what this page is built from.</p>
             ("Which is cheaper?",
              f"crawler.sh, at {price('crawler-sh')} against Docket's {PRICE_STR} one-time. It "
              "renews yearly, so a subscription is better value until roughly the fourth year "
-             "and worse after it. Its free tier also needs no account, which makes it much "
-             "easier to try."),
+             "and worse after it. Both have a free version that needs no account; Docket's "
+             "shows the score and how many problems each area has, not what they are."),
             ("Do both render JavaScript?",
              "Yes, and it is not a difference between them. crawler.sh uses its own render "
              "engine rather than headless Chrome; Docket renders a sample of every audit in "

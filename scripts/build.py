@@ -554,7 +554,7 @@ def write_llms_txt() -> None:
     import textwrap
     from collections import OrderedDict
 
-    from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE,
+    from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE,
                         FOUNDING_NOW, FOUNDING_SEATS, HAS_SAMPLE, LINUX, MACOS,
                         N_CHECKS, N_LANES, PRICE_STR, REPO, SAMPLE_REPORT, SELLER,
                         seller_address)
@@ -645,7 +645,8 @@ def write_llms_txt() -> None:
         f"{PRICE_STR}, enter it under \"Have a discount code?\").",
         (f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks "
          f"apart." if BNPL_LIVE else ""),
-        "There is no free trial; the refund window is the trial.",
+        f"{FREE_LINE} The free version needs no key and no account, and runs the same "
+        f"full audit; buying unlocks the audit already run, with no second crawl.",
         f"The licence key arrives by email with the receipt and is pasted into the app "
         f"once. One licence covers up to {seats} Macs at a time: activating Docket on a "
         f"Mac uses one, and deactivating one moves the licence to another machine.",
@@ -659,8 +660,8 @@ def write_llms_txt() -> None:
         "full purchase price goes back to the payment method it came from.",
         f"To ask, write to {SUPPORT_EMAIL} or reply to the receipt the payment processor "
         f"sends.",
-        "A refund revokes the licence key, and the copy stops running audits within about "
-        "a day.")
+        "A refund revokes the licence key, and within about a day the copy goes back to "
+        "the free version.")
 
     out += ["", "## What it does not do", ""]
     out += facts(
@@ -1186,7 +1187,7 @@ def pricing_page() -> Path:
     as every other price on the site. Not in the sitemap: it is a door, not an
     article.
     """
-    from render import (BNPL_INSTALMENT, DMG_SIZE, MACOS, PRICE_STR, REFUND_DAYS,
+    from render import (BNPL_INSTALMENT, DMG_SIZE, FREE_LINE, MACOS, PRICE_STR, REFUND_DAYS,
                         buy_block, download_url)
     # The prose below is this page's own. The quality gate's duplicate check
     # judged the first version (the buy block alone) a copy of 18 pages,
@@ -1218,7 +1219,12 @@ further is ever taken.</p>
 <h2>If Docket turns out not to suit you</h2>
 <p>Within {REFUND_DAYS} days of the receipt date, write to the support address or reply to the
 receipt and you get every cent back, to whatever you paid with. There are no conditions and no
-form. The refund revokes the key, so the app stops auditing within roughly a day.</p>
+form. The refund revokes the key, so within roughly a day the app goes back to the free
+version.</p>
+
+<h2>What is free</h2>
+<p>{FREE_LINE} The free version needs no key and no account and runs the same full audit, so
+you can see how much is wrong on your site before you pay to see what.</p>
 
 <h2>Before you buy: what it runs on</h2>
 <p>An Apple Silicon Mac with {MACOS} or later. No Windows build exists, and no Intel one. If

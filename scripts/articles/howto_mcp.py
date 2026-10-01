@@ -122,13 +122,11 @@ the sites your pages link to or load.</p>
 click the button, there is no API key, and there is no per-call charge &mdash; your assistant is
 talking to the app you bought, not to us.</p>
 
-<p>Which also means an unactivated copy will not audit. Ask it to and it answers:</p>
-
-<pre><code>This copy of Docket is not activated. Enter your licence key to run an
-audit — you can find it in the email from your purchase.</code></pre>
-
-<p><code>list_checks</code> still works, because it crawls nothing. Activate once with
-<code>docket licence --key YOUR-KEY</code>, or in the app, and the audit tool works from then on.
+<p>Which also means an unactivated copy gives your assistant the free version: the audit runs,
+and the result is the overall score and how many problems each area has, with a note saying
+what the paid version adds. <code>list_checks</code> works either way, because it crawls
+nothing. Activate once with <code>docket licence --key YOUR-KEY</code>, or in the app, and the
+audit tool returns every finding from then on.
 Docket is {PRICE_STR} once, so there is no seat to add for the assistant.</p>
 
 <h2>What it does not do</h2>

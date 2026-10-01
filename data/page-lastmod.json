@@ -1,7 +1,7 @@
 {
  "about/index.html": {
-  "date": "2026-09-28",
-  "hash": "99dcb30cbc78a063"
+  "date": "2026-10-01",
+  "hash": "b0d244d8b71be221"
  },
  "best/free-seo-audit-tools/index.html": {
   "date": "2026-09-29",
@@ -20,16 +20,16 @@
   "hash": "8a1533da0242d702"
  },
  "download/index.html": {
-  "date": "2026-09-30",
-  "hash": "2cc016d3d627d03c"
+  "date": "2026-10-01",
+  "hash": "22f0fcd4ca49543c"
  },
  "for/agencies/index.html": {
   "date": "2026-09-28",
   "hash": "874d49b279cb3b5b"
  },
  "for/developers/index.html": {
-  "date": "2026-09-28",
-  "hash": "15502c0e8b1e41db"
+  "date": "2026-10-01",
+  "hash": "da45b453b7b62e2b"
  },
  "for/ecommerce/index.html": {
   "date": "2026-09-28",
@@ -56,8 +56,8 @@
   "hash": "86e8407db41b1651"
  },
  "how-to/audit-your-site-from-an-ai-assistant/index.html": {
-  "date": "2026-09-28",
-  "hash": "722ac28b63f9f38a"
+  "date": "2026-10-01",
+  "hash": "1baa2caa6e10b85b"
  },
  "how-to/backlink-audit/index.html": {
   "date": "2026-09-28",
@@ -144,8 +144,8 @@
   "hash": "0eb1baedf5e6bc8f"
  },
  "how-to/fix-invalid-hreflang-codes/index.html": {
-  "date": "2026-09-28",
-  "hash": "37efc20b4c5d44ba"
+  "date": "2026-10-01",
+  "hash": "1d5f980074b9cdd6"
  },
  "how-to/fix-lang-attribute-mismatch/index.html": {
   "date": "2026-09-28",
@@ -224,8 +224,8 @@
   "hash": "363e6e5dfa27f0c6"
  },
  "how-to/javascript-seo-audit/index.html": {
-  "date": "2026-09-28",
-  "hash": "781b18248c849b4f"
+  "date": "2026-10-01",
+  "hash": "ad3644ff7347b145"
  },
  "how-to/json-ld-parser-errors/index.html": {
   "date": "2026-09-28",
@@ -320,8 +320,8 @@
   "hash": "194e98cb3efd6bfc"
  },
  "index.html": {
-  "date": "2026-09-30",
-  "hash": "e82772c05aa84445"
+  "date": "2026-10-01",
+  "hash": "eeb1a6c30f6beb63"
  },
  "index/ai-directives/index.html": {
   "date": "2026-09-28",
@@ -356,8 +356,8 @@
   "hash": "9f042b75c53fcace"
  },
  "learn/audit-tool-accuracy/index.html": {
-  "date": "2026-09-28",
-  "hash": "5de903ec00c0f9e7"
+  "date": "2026-10-01",
+  "hash": "ff19d1b785884bef"
  },
  "learn/brand-consistency/index.html": {
   "date": "2026-09-28",
@@ -416,8 +416,8 @@
   "hash": "05860308163902ad"
  },
  "learn/javascript-rendering/index.html": {
-  "date": "2026-09-28",
-  "hash": "fe686fcdb221ea6d"
+  "date": "2026-10-01",
+  "hash": "61eb04d484e68ab8"
  },
  "learn/log-file-analysis/index.html": {
   "date": "2026-09-28",
@@ -480,12 +480,12 @@
   "hash": "dac36e3c438514e4"
  },
  "legal/refunds/index.html": {
-  "date": "2026-09-26",
-  "hash": "c662bfb86e33a361"
+  "date": "2026-10-01",
+  "hash": "f932a0fc26a31da1"
  },
  "legal/terms/index.html": {
-  "date": "2026-09-23",
-  "hash": "55d690545df6a167"
+  "date": "2026-10-01",
+  "hash": "b96ff7094fb218bd"
  },
  "tools/ai-crawler-checker/index.html": {
   "date": "2026-09-30",
@@ -496,12 +496,12 @@
   "hash": "7fecaa60184f6805"
  },
  "vs/crawler-sh-alternative/index.html": {
-  "date": "2026-09-30",
-  "hash": "b9cb6d2da0e2ade9"
+  "date": "2026-10-01",
+  "hash": "92fa6d891f8fa134"
  },
  "vs/crawlraven-alternative/index.html": {
-  "date": "2026-09-30",
-  "hash": "500759dcd4f54da4"
+  "date": "2026-10-01",
+  "hash": "e4b0e6fe835996e8"
  },
  "vs/google-search-console/index.html": {
   "date": "2026-09-30",

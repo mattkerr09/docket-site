@@ -622,6 +622,12 @@ FOUNDING_LINE = (f"Founding price <strong>{FOUNDING_NOW} once{PAY4_FOUNDING}</st
                  f"<code>{FOUNDING_CODE}</code> for you; if the checkout shows {PRICE_STR}, "
                  f"enter it under &lsquo;Have a discount code?&rsquo;.")
 
+#: What the free version is, in Matthew's words of 2026-10-01 and the app's
+#: (freemode.py preset `basic`, from 1.3.96). One sentence, every page that says
+#: it, so the homepage, the FAQ, the download page and llms.txt cannot drift.
+FREE_LINE = ("Free: your score and how many problems in each category. Pro: what they "
+             "are, the ranked fix plan and the markup to paste.")
+
 # --------------------------------------------------------------------------
 # Who the money is paid to.
 #

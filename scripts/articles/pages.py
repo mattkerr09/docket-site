@@ -17,7 +17,7 @@ import facts as F  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
-from render import (download_url, PAY4, PAY4_FOUNDING, 
+from render import (download_url, FREE_LINE, PAY4, PAY4_FOUNDING, 
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
@@ -105,11 +105,10 @@ def _payment_note() -> str:
     # about NOT overclaiming, and became the overclaim it was guarding against:
     # a page telling buyers they need not pay yet, beside a button that charges.
     return (
-        f'<p><strong>{RELEASE} needs a licence key.</strong> The price is '
-        f'{PRICE_STR}, paid once — the key arrives with your receipt and covers up '
-        f'to three machines. Earlier versions ran without one; since Docket became '
-        f'a licensed product an audit asks for the key, and the app has a field to '
-        f'paste it into.</p>')
+        f'<p><strong>{RELEASE} runs free without a key.</strong> {FREE_LINE} '
+        f'Pro is {PRICE_STR}, paid once: the key arrives with your receipt, covers up '
+        f'to three machines, and pasted into the app it opens the audit you already '
+        f'ran in full.</p>')
 
 
 def download() -> Path:
@@ -126,7 +125,10 @@ arrives with your receipt.{buy_block("download-steps", sample=True, big=True)}</
 data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.</li>
 <li><strong>Paste the key</strong> into the field the app shows, and run your first audit.
 <span class="qual">30-day refund, no conditions.</span></li>
+
 </ol>
+<p>Or start with step 2: without a key, Docket runs the same full audit for free. {FREE_LINE}
+Buy from inside the app and the audit you ran opens in full.</p>
 
 <p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on Apple Silicon.
 {DMG_SIZE}. No subscription, no crawl credits, no per-seat pricing — audit as many sites as
@@ -202,12 +204,12 @@ macOS opens it without a security warning and without any of the right-click or 
 workarounds that unsigned software needs.</p>
 
 <h2>What happens on first launch</h2>
-<p>Docket opens, starts its local audit engine, and asks for your licence key &mdash; it is in the
-receipt email from your purchase. Paste it once and the app shows a single field: type a domain,
+<p>Docket opens and starts its local audit engine. If you have bought it, paste the licence key
+from your receipt email once. Either way the app shows a single field: type a domain,
 press Run audit, and watch it crawl. There is no onboarding, no project setup and no plan
 selection, because none of those are necessary for the thing you came to do.</p>
-<p>Without a key the app opens but cannot run an audit, so buying comes first: the key arrives
-with your receipt, and <a href="#buy">the buy step is at the top of this page</a>.</p>
+<p>Without a key the audit runs as the free version. {FREE_LINE} The key arrives with your
+receipt, and <a href="#buy">the buy step is at the top of this page</a>.</p>
 <p>The first launch takes a few seconds longer than later ones. It used to say "while the
 engine unpacks itself" — that was an explanation nobody had measured, and timing the CLI out of
 the shipped bundle put its startup at a fifth of a second with no unpacking step to be found.
@@ -2144,8 +2146,8 @@ by negligence is not excluded, because it cannot be.</p>
 <h2>Ending the licence</h2>
 <p>Your licence ends if you take a refund — on the day it is issued — or if you break these
 terms in a way you do not put right after being asked. In either case, delete the application.
-Your licence key stops validating in either case, and the application stops running audits
-within about a day of that — the check is daily, and a revoked key is refused immediately
+Your licence key stops validating in either case, and the application goes back to the free
+version (the score and how many problems each area has) within about a day of that — the check is daily, and a revoked key is refused immediately
 rather than being given the offline grace period. Deleting the application is still asked of
 you, but it is no longer the only thing standing between a cancelled licence and continued
 use.</p>
@@ -2277,9 +2279,9 @@ item at one price, so there is no partial refund to calculate and none is offere
 <p>Three reasons, and each is a fact about this product rather than a convention:</p>
 
 <ul>
-<li><strong>There is no free trial, so this is the trial.</strong> An audit needs a licence
-key, which means the first real look at Docket happens after the money does. Thirty days with
-no conditions is what makes that fair: run it on your own sites and your clients', and if it is
+<li><strong>The free version shows how much is wrong, not what.</strong> It gives the score
+and how many problems each area has, so the first real look at the findings, the fix plan and
+the markup happens after the money does. Thirty days with no conditions is what makes that fair: run it on your own sites and your clients', and if it is
 not worth {PRICE_STR} to you, ask for it back.</li>
 <li><strong>Monitoring needs weeks to say anything.</strong> The default re-audit cadence is
 weekly, and the thing being sold — what changed on your site since last time — is empty on the
@@ -2300,9 +2302,9 @@ reason you are unhappy, and none of the three belong on a page anyone can read.<
 
 <h2>What happens to your copy</h2>
 
-<p>It stops working. Taking a refund revokes the licence key that came with your purchase, and
-Docket re-checks that key about once a day — so the copy on your Mac will refuse to run an audit
-within roughly a day of the refund being issued. A revoked key is refused immediately and is not
+<p>It goes back to the free version. Taking a refund revokes the licence key that came with your
+purchase, and Docket re-checks that key about once a day — so within roughly a day of the refund
+being issued, the copy on your Mac shows only the score and how many problems each area has. A revoked key is refused immediately and is not
 given the offline grace period that a merely-unreachable licence server would allow.</p>
 
 <p>This changed when Docket became a licensed product in August 2026. Before that it had no

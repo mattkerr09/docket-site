@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (download_url, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
+from render import (download_url, FREE_LINE, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
@@ -256,8 +256,9 @@ def body() -> str:
        the homepage — and ~/ops's shipped-activation and updater-signature
        gates, which test the DMG this page links, with nothing to measure.
        One quiet line keeps both. -->
-  <p class="hero-note">Already have a key? <a href="{download_url('home-owner')}" data-ev="Download"
-  data-ev-button="home-hero">Download Docket for Mac</a> ({DMG_SIZE}).</p>
+  <p class="hero-note">Try it free: <a href="{download_url('home-try-free')}" data-ev="Download"
+  data-ev-button="home-hero">Download Docket for Mac</a> ({DMG_SIZE}) and audit any site.
+  Free shows your score and how many problems each area has.</p>
   <p class="hero-note">{MACOS}+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
 </div>
 </div>
@@ -656,36 +657,20 @@ computed from free public data rather than a bought index.</p>
 </div></section>
 
 <!-- ================= NOT READY YET =================
-     Docket is the highest price in the portfolio with no trial and no free tier,
-     so the largest group leaving this page is people who are interested and not
-     ready to spend it. Until the free audit ships they had nowhere to go but
-     away.
-
-     The promise here is deliberately small and literally true. There is no
-     sending set up and no double opt-in, so this does NOT say newsletter, does
-     not say updates, and does not imply a series. It says one email about one
-     thing, which is a promise that can actually be kept.
-
-     Posts on submit only, to our own worker. Nothing loads from a third party —
-     see ops/subscribe-worker. -->
+     Docket is the highest price in the portfolio, so the largest group leaving
+     this page is people who are interested and not ready to spend it. Since
+     1.3.96 they can try it: the free version runs the full audit and shows the
+     score and how many problems each area has (Matthew, 2026-10-01). This
+     block used to collect addresses for "when the free audit lands"; it has.
+     The list is the CEO's to email, once, as it promised. -->
 <section class="sec"><div class="wrap" style="max-width:34rem">
-<div class="sec-head"><h2>Not ready to buy?</h2></div>
-<p>A free audit is coming &mdash; one site, the real ranked report, with the
-detail redacted. If you want to know when it lands, leave your address and we
-will email you <strong>once</strong>, about that. Not a newsletter; there is no
-series to sign up to.</p>
-<form class="sub" method="post" action="https://kerr-subscribe.kerrco.workers.dev">
-  <input type="hidden" name="source" value="docket-homepage">
-  <label class="sub-label" for="sub-email">Email</label>
-  <input id="sub-email" name="email" type="email" required
-         autocomplete="email" placeholder="you@example.com">
-  <div aria-hidden="true" style="position:absolute;left:-9999px">
-    <label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label>
-  </div>
-  <button class="btn" type="submit">Tell me when it lands</button>
-</form>
-<p class="sub-fine">We store the address, which site it came from, and the date.
-No IP address, no tracking, no profile. Nothing is shared.</p>
+<div class="sec-head"><h2>Not ready to buy? Try it free.</h2></div>
+<p>Download Docket and audit any site, with no key and no account. {FREE_LINE}</p>
+<p>Buy from inside the app and the audit you just ran opens in full, at once: nothing is
+crawled twice.</p>
+<p><a class="btn" href="{download_url('home-free-block')}" data-ev="Download"
+data-ev-button="home-free-block">Download Docket for Mac</a></p>
+<p class="sub-fine">{MACOS} or later, Apple Silicon, {DMG_SIZE}, notarised by Apple.</p>
 </div></section>
 """
 
@@ -699,12 +684,12 @@ No IP address, no tracking, no profile. Nothing is shared.</p>
 #: the terms and the refund page rather than restated from memory.
 FAQ = [
     ("Is Docket free?",
-     f"No: {PRICE_STR} once, {FOUNDING_NOW} for founding buyers. There's no trial yet; the "
-     "30-day refund is your trial. There is no subscription and nothing to cancel."),
+     f"{FREE_LINE} Pro is {PRICE_STR} once, {FOUNDING_NOW} for founding buyers, with a "
+     "30-day refund. There is no subscription and nothing to cancel."),
     ("What if it isn't for me?",
      "Ask for a refund within 30 days of buying and you get your money back — no conditions "
      f"and no questions. Write to {SUPPORT_EMAIL}, or reply to the receipt the payment "
-     "processor emails you. The licence key is revoked, so the copy stops running."),
+     "processor emails you. The licence key is revoked, so the copy goes back to the free version."),
     ("How many Macs does one licence cover?",
      f"Up to 3 at a time. Activating Docket on a Mac uses one; deactivate it to move the "
      f"licence to another machine. Apple Silicon, {MACOS} or later."),
