@@ -1186,14 +1186,43 @@ def pricing_page() -> Path:
     as every other price on the site. Not in the sitemap: it is a door, not an
     article.
     """
-    from render import DMG_SIZE, buy_block, download_url
-    from home import BNPL_BLOCK
+    from render import (BNPL_INSTALMENT, DMG_SIZE, MACOS, PRICE_STR, REFUND_DAYS,
+                        buy_block, download_url)
+    # The prose below is this page's own. The quality gate's duplicate check
+    # judged the first version (the buy block alone) a copy of 18 pages,
+    # rightly: a page that is only the shared block says nothing of its own.
+    # Every fact is from the terms, the refund policy and the FAQ, re-worded.
     body = f"""
 <p class="lede">One price, paid once. No subscription, no page meter, nothing to cancel.</p>
 {buy_block("pricing-page")}
-{BNPL_BLOCK}
-<p class="hero-note">Already have a key? <a href="{download_url('pricing-page')}" data-ev="Download"
-data-ev-button="pricing-page">Download Docket for Mac</a> ({DMG_SIZE}).</p>
+<p class="hero-note">Bought it already? <a href="{download_url('pricing-page')}" data-ev="Download"
+data-ev-button="pricing-page">Get the {DMG_SIZE} Mac download</a> and paste the key from your receipt.</p>
+
+<h2>What {PRICE_STR} gets you</h2>
+<ul>
+<li>A Docket licence for life, in US dollars, with no renewal date. Use it on up to three
+Macs at once, and move it by deactivating one.</li>
+<li>No limit on sites. Audit your own, a client's or a prospect's, as often as you want, and
+bill clients for the work. Nothing is counted per page or per site.</li>
+<li>Every 1.x release, delivered by the updater inside the app. If a 2.0 ever costs money,
+the version you bought keeps running.</li>
+<li>The key by email, on the receipt. No account to sign up for, and no telemetry.</li>
+</ul>
+
+<h2>How paying works</h2>
+<p>The checkout belongs to Dodo Payments, the reseller and merchant of record for the sale.
+Pay the whole amount at once, or split it with Klarna or Afterpay into four instalments of
+{BNPL_INSTALMENT} a fortnight apart, at no extra charge from us. Once the fourth is paid, nothing
+further is ever taken.</p>
+
+<h2>If Docket turns out not to suit you</h2>
+<p>Within {REFUND_DAYS} days of the receipt date, write to the support address or reply to the
+receipt and you get every cent back, to whatever you paid with. There are no conditions and no
+form. The refund revokes the key, so the app stops auditing within roughly a day.</p>
+
+<h2>Before you buy: what it runs on</h2>
+<p>An Apple Silicon Mac with {MACOS} or later. No Windows build exists, and no Intel one. If
+you are unsure, open the full sample report first; it shows what an audit hands you.</p>
 """
     return render(
         cat="", slug="pricing",
