@@ -14,7 +14,7 @@
 <title>Audit your site from an AI assistant</title>
 <meta name="description" content="Docket speaks the Model Context Protocol over stdio. Point Claude Desktop at the app you own and ask it to audit a site — no API key, no cloud.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="17d95b182780">
+<meta name="build-id" content="4fdcc783ad7a">
 <link rel="canonical" href="https://docketseo.app/how-to/audit-your-site-from-an-ai-assistant/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -767,7 +767,7 @@ nav{z-index:40}
 .faq-item p{font-size:var(--t-md);margin:0}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.95/Docket-1.3.95-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.96/Docket-1.3.96-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to audit your site from an AI assistant","description":"Docket speaks the Model Context Protocol over stdio. Point Claude Desktop at the app you own and ask it to audit a site — no API key, no cloud.","datePublished":"2026-09-08","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/audit-your-site-from-an-ai-assistant/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Docket work with Claude Desktop?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add Docket to mcpServers in claude_desktop_config.json with the command /Applications/Docket.app/Contents/Resources/docket/docket and the argument mcp, then restart the client. Any MCP client works the same way, because Docket speaks the protocol over stdio."}},{"@type":"Question","name":"Does using Docket through MCP cost extra?","acceptedAnswer":{"@type":"Answer","text":"No. There is no API key and no per-call charge. The crawl runs on your own Mac, the assistant is talking to the copy of Docket you bought, and the licence is the same one-time purchase."}},{"@type":"Question","name":"Can an assistant audit a site if Docket is not activated?","acceptedAnswer":{"@type":"Answer","text":"No. Asking it to audit returns 'This copy of Docket is not activated'. Listing the checks still works, because that crawls nothing. The licence gate is the same one the app and the command line use, so MCP is not a way around it."}}]}</script>
@@ -872,13 +872,11 @@ the sites your pages link to or load.</p>
 click the button, there is no API key, and there is no per-call charge &mdash; your assistant is
 talking to the app you bought, not to us.</p>
 
-<p>Which also means an unactivated copy will not audit. Ask it to and it answers:</p>
-
-<pre><code>This copy of Docket is not activated. Enter your licence key to run an
-audit — you can find it in the email from your purchase.</code></pre>
-
-<p><code>list_checks</code> still works, because it crawls nothing. Activate once with
-<code>docket licence --key YOUR-KEY</code>, or in the app, and the audit tool works from then on.
+<p>Which also means an unactivated copy gives your assistant the free version: the audit runs,
+and the result is the overall score and how many problems each area has, with a note saying
+what the paid version adds. <code>list_checks</code> works either way, because it crawls
+nothing. Activate once with <code>docket licence --key YOUR-KEY</code>, or in the app, and the
+audit tool returns every finding from then on.
 Docket is $349 once, so there is no seat to add for the assistant.</p>
 
 <h2>What it does not do</h2>
