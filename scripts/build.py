@@ -1177,6 +1177,37 @@ def buy_redirect() -> Path:
     )
 
 
+def pricing_page() -> Path:
+    """/pricing/ — the address people and AI assistants guess first.
+
+    It answered 404 until 2026-09-30 (CEO). A small real page, the same shape as
+    outlier.host/pricing/: noindexed with a self canonical, one heading, and the
+    homepage's own buy block, so every number on it comes from the same source
+    as every other price on the site. Not in the sitemap: it is a door, not an
+    article.
+    """
+    from render import DMG_SIZE, buy_block, download_url
+    from home import BNPL_BLOCK
+    body = f"""
+<p class="lede">One price, paid once. No subscription, no page meter, nothing to cancel.</p>
+{buy_block("pricing-page")}
+{BNPL_BLOCK}
+<p class="hero-note">Already have a key? <a href="{download_url('pricing-page')}" data-ev="Download"
+data-ev-button="pricing-page">Download Docket for Mac</a> ({DMG_SIZE}).</p>
+"""
+    return render(
+        cat="", slug="pricing",
+        title="Docket pricing — $" + str(PRICE) + " once",
+        desc=f"Docket SEO costs ${PRICE}, paid once, for Apple Silicon Macs. No subscription.",
+        h1="Docket pricing",
+        crumb='<a href="/">Docket</a> / Pricing',
+        body=body,
+        schema_type="",
+        noindex=True,
+        self_canonical=True,
+    )
+
+
 def not_found() -> Path:
     """/404.html — GitHub Pages serves this for any path that does not exist.
 
@@ -1391,6 +1422,7 @@ def main() -> int:
     not_found()
     thank_you()
     buy_redirect()
+    pricing_page()
 
     write_robots()
     write_llms_txt()

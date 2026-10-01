@@ -1945,6 +1945,10 @@ def render(
     landing: bool = False,
     filename: str = "index.html",
     noindex: bool = False,
+    #: A noindexed page that is still the one address for what it shows, so it
+    #: names itself canonical: /pricing/, which people and assistants guess.
+    #: The 404 and the redirect stubs keep neither (see not_found()).
+    self_canonical: bool = False,
 ) -> Path:
     """Write one page. `body` is the caller's authored HTML — never generated here."""
     # THE END OF A PAGE IS A BUY PATH, NOT A DOWNLOAD. Fifty-seven generators
@@ -2104,7 +2108,7 @@ def render(
 <meta name="description" content="{esc(desc)}">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="__BUILD_ID__">
-{'<meta name="robots" content="noindex">' if noindex else f'<link rel="canonical" href="{url}">'}
+{'<meta name="robots" content="noindex">' if noindex else ''}{f'<link rel="canonical" href="{url}">' if (not noindex or self_canonical) else ''}
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
