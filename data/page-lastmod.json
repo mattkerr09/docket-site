@@ -1,7 +1,7 @@
 {
  "about/index.html": {
-  "date": "2026-10-01",
-  "hash": "b0d244d8b71be221"
+  "date": "2026-10-02",
+  "hash": "932474d06e3de40b"
  },
  "best/free-seo-audit-tools/index.html": {
   "date": "2026-09-29",
@@ -20,16 +20,16 @@
   "hash": "8a1533da0242d702"
  },
  "download/index.html": {
-  "date": "2026-10-01",
-  "hash": "22f0fcd4ca49543c"
+  "date": "2026-10-02",
+  "hash": "a6d0dd46d3129568"
  },
  "for/agencies/index.html": {
   "date": "2026-09-28",
   "hash": "874d49b279cb3b5b"
  },
  "for/developers/index.html": {
-  "date": "2026-10-01",
-  "hash": "da45b453b7b62e2b"
+  "date": "2026-10-02",
+  "hash": "49bb56e05ad677de"
  },
  "for/ecommerce/index.html": {
   "date": "2026-09-28",
@@ -144,8 +144,8 @@
   "hash": "0eb1baedf5e6bc8f"
  },
  "how-to/fix-invalid-hreflang-codes/index.html": {
-  "date": "2026-10-01",
-  "hash": "1d5f980074b9cdd6"
+  "date": "2026-10-02",
+  "hash": "263be18b54b96bfd"
  },
  "how-to/fix-lang-attribute-mismatch/index.html": {
   "date": "2026-09-28",
@@ -224,8 +224,8 @@
   "hash": "363e6e5dfa27f0c6"
  },
  "how-to/javascript-seo-audit/index.html": {
-  "date": "2026-10-01",
-  "hash": "ad3644ff7347b145"
+  "date": "2026-10-02",
+  "hash": "ea55bce2fa16c7d5"
  },
  "how-to/json-ld-parser-errors/index.html": {
   "date": "2026-09-28",
@@ -321,7 +321,7 @@
  },
  "index.html": {
   "date": "2026-10-02",
-  "hash": "d2b97839f5bce078"
+  "hash": "b2221cd8f3f2396b"
  },
  "index/ai-directives/index.html": {
   "date": "2026-09-28",
@@ -356,8 +356,8 @@
   "hash": "9f042b75c53fcace"
  },
  "learn/audit-tool-accuracy/index.html": {
-  "date": "2026-10-01",
-  "hash": "ff19d1b785884bef"
+  "date": "2026-10-02",
+  "hash": "87573db96572b07c"
  },
  "learn/brand-consistency/index.html": {
   "date": "2026-09-28",
@@ -416,8 +416,8 @@
   "hash": "05860308163902ad"
  },
  "learn/javascript-rendering/index.html": {
-  "date": "2026-10-01",
-  "hash": "61eb04d484e68ab8"
+  "date": "2026-10-02",
+  "hash": "32dcc479bbdd155d"
  },
  "learn/log-file-analysis/index.html": {
   "date": "2026-09-28",
@@ -484,8 +484,8 @@
   "hash": "f932a0fc26a31da1"
  },
  "legal/terms/index.html": {
-  "date": "2026-10-01",
-  "hash": "b96ff7094fb218bd"
+  "date": "2026-10-02",
+  "hash": "9680f128f8b74ee3"
  },
  "tools/ai-crawler-checker/index.html": {
   "date": "2026-09-30",

@@ -45,7 +45,7 @@ Michigan, United States.
 
 - An Apple Silicon Mac running macOS 12 or later. There is no Windows or Intel build
   of the app.
-- The Mac app is a 22.0 MB download, signed with a Developer ID and notarised by
+- The Mac app is a 21.9 MB download, signed with a Developer ID and notarised by
   Apple.
 - A command-line build for Linux x86_64 is on the download page.
 
