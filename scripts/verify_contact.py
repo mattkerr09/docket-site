@@ -153,6 +153,31 @@ def reachable(url: str, attempts: int = 3) -> tuple[bool, str]:
     return False, f"{last} (after {attempts} attempts)"
 
 
+#: github.com/<owner>/<repo>/blob/<ref>/<path>, a file view.
+_BLOB = re.compile(r"^https://github\.com/([^/]+)/([^/]+)/blob/([^/]+)/(.+)$")
+
+
+def reachable_or_raw(url: str) -> tuple[bool, str]:
+    """`reachable`, with one confirmation for a GitHub file view.
+
+    ⚠️ GITHUB ANSWERS 503 TO A SCRIPT ON A FILE VIEW. Measured 2026-10-02: the
+    /blob/main/ACTION.md page answered 503 to this gate's HEAD and GET three
+    times running, 200 to a browser, while githubstatus.com read "All Systems
+    Operational" and the repository page answered this gate 200. The file was
+    there (4,908 bytes, by the API). A deploy blocked by GitHub's handling of
+    bots is the flaky-gate failure _TRANSIENT exists to prevent, so a 5xx on a
+    file view is checked once more on raw.githubusercontent.com, which serves
+    the same file to scripts. A 404 there still fails.
+    """
+    ok, why = reachable(url)
+    m = _BLOB.match(url)
+    if ok or not m or not why.startswith("HTTP 5"):
+        return ok, why
+    raw = "https://raw.githubusercontent.com/{}/{}/{}/{}".format(*m.groups())
+    ok2, why2 = reachable(raw)
+    return ok2, f"{why} on the file view (GitHub refuses scripts there); raw file {why2}"
+
+
 def main() -> int:
     problems: list[str] = []
     checked = 0
@@ -184,7 +209,7 @@ def main() -> int:
 
     for url, pages in sorted(contact_urls().items()):
         checked += 1
-        ok, why = reachable(url)
+        ok, why = reachable_or_raw(url)
         if not ok:
             problems.append(f"{url} on {len(pages)} page(s): {why}")
 
