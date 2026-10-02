@@ -43,8 +43,8 @@ Michigan, United States.
 
 ## Requirements
 
-- An Apple Silicon Mac running macOS 12 or later. There is no Windows or Intel build
-  of the app.
+- A Mac with Apple silicon or Intel running macOS 12 or later. There is no Windows
+  build.
 - The Mac app is a 21.9 MB download, signed with a Developer ID and notarised by
   Apple.
 - A command-line build for Linux x86_64 is on the download page.
@@ -97,16 +97,16 @@ Michigan, United States.
   reply to the receipt the payment processor emails you. The licence key is revoked,
   so the copy goes back to the free version.
 - How many Macs does one licence cover? Up to 3 at a time. Activating Docket on a Mac
-  uses one; deactivate it to move the licence to another machine. Apple Silicon, macOS
-  12 or later.
+  uses one; deactivate it to move the licence to another machine. Apple silicon or
+  Intel, macOS 12 or later.
 - Are updates included? Yes. While Docket is on version 1.x, every update is free and
   installs through the app's own updater. Whether a future 2.0 is a paid upgrade has
   not been decided; if it ever is, the copy you paid for keeps working.
 - Can I use it for client work? Yes. Audit any number of sites — yours, a client's, a
   prospect's or a competitor's — and charge clients for the work. The licence belongs
   to the person or company that paid; it may not be resold or sublicensed.
-- Does it run on Windows? No. The app is for Apple Silicon Macs on macOS 12 or later,
-  and there is no Windows or Intel build. A command-line build for Linux x86_64 is on
+- Does it run on Windows? No. The app is for Macs with Apple silicon or Intel on macOS
+  12 or later. There is no Windows build. A command-line build for Linux x86_64 is on
   the download page.
 - How do I get help? Email support@docketseo.app. Questions whose answers would help
   the next person can go on the public issue tracker instead.

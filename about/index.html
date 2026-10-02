@@ -14,7 +14,7 @@
 <title>About Docket — who builds it and what it cannot do</title>
 <meta name="description" content="Docket is a Mac SEO audit tool with 99 checks, built by one person in Grand Rapids, Michigan. What it is bad at, and how to check the download.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="e15d87b6e8e2">
+<meta name="build-id" content="e7eb046774f6">
 <link rel="canonical" href="https://docketseo.app/about/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -25,13 +25,13 @@
 <meta property="og:description" content="Docket is a Mac SEO audit tool with 99 checks, built by one person in Grand Rapids, Michigan. What it is bad at, and how to check the download.">
 <meta property="og:url" content="https://docketseo.app/about/">
 <meta property="og:site_name" content="Docket SEO">
-<meta property="og:image" content="https://docketseo.app/og.png?v=20261002">
+<meta property="og:image" content="https://docketseo.app/og.png?v=20261002-intel">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="About Docket">
 <meta name="twitter:description" content="Docket is a Mac SEO audit tool with 99 checks, built by one person in Grand Rapids, Michigan. What it is bad at, and how to check the download.">
-<meta name="twitter:image" content="https://docketseo.app/og.png?v=20261002">
+<meta name="twitter:image" content="https://docketseo.app/og.png?v=20261002-intel">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
    display faces this category defaults to: Docket is a measuring instrument that
@@ -771,9 +771,9 @@ nav{z-index:40}
 .faq-item p{font-size:var(--t-md);margin:0}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.97/Docket-1.3.97-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.98/Docket-1.3.98-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","headline":"About Docket","description":"Docket is a Mac SEO audit tool with 99 checks, built by one person in Grand Rapids, Michigan. What it is bad at, and how to check the download.","datePublished":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/about/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Who makes Docket?","acceptedAnswer":{"@type":"Answer","text":"Matt Kerr, one person, in Grand Rapids, Michigan; the seller is his company, Kerr & Company LLC. There is no team. The macOS download is signed with an Apple Developer ID and notarised, so the legal name on the certificate can be checked with codesign before you install anything."}},{"@type":"Question","name":"Does Docket send my site data anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The crawl runs on your Mac and results are stored in ~/.docket/ as plain JSON. Two optional connectors do reach outside: the knowledge refresh fetches one public file from docketseo.app and tells it nothing about what you are auditing, and PageSpeed Insights — off unless you add your own Google API key — necessarily sends Google the URL you asked it to measure."}},{"@type":"Question","name":"What can Docket not do?","acceptedAnswer":{"@type":"Answer","text":"It is macOS only on Apple Silicon, it does not track keyword rankings or backlinks, and it is not built for crawling hundreds of thousands of URLs. The application source is not public, though the website's datasets are."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Who makes Docket?","acceptedAnswer":{"@type":"Answer","text":"Matt Kerr, one person, in Grand Rapids, Michigan; the seller is his company, Kerr & Company LLC. There is no team. The macOS download is signed with an Apple Developer ID and notarised, so the legal name on the certificate can be checked with codesign before you install anything."}},{"@type":"Question","name":"Does Docket send my site data anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The crawl runs on your Mac and results are stored in ~/.docket/ as plain JSON. Two optional connectors do reach outside: the knowledge refresh fetches one public file from docketseo.app and tells it nothing about what you are auditing, and PageSpeed Insights — off unless you add your own Google API key — necessarily sends Google the URL you asked it to measure."}},{"@type":"Question","name":"What can Docket not do?","acceptedAnswer":{"@type":"Answer","text":"It is macOS only (Apple silicon or Intel), it does not track keyword rankings or backlinks, and it is not built for crawling hundreds of thousands of URLs. The application source is not public, though the website's datasets are."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -867,7 +867,7 @@ on this site is derived from it rather than typed into a sentence.</p>
 <p>The honest list, because you will find it out in the first hour anyway:</p>
 
 <ul>
-<li><strong>The desktop app is Mac only.</strong> Apple Silicon, macOS 12 or later. There is
+<li><strong>The desktop app is Mac only.</strong> Apple silicon or Intel, macOS 12 or later. There is
 no Windows build and no web version, and neither is planned while it is one person. The same
 engine ships as a <a href="/download/">Linux x86_64 command line build</a>, without the
 desktop app and without <code>--render</code>. This page denied that entirely until
@@ -880,7 +880,7 @@ spent years and a great deal of money building those, and Docket has no answer t
 you sort them; Docket is built to read a site closely, not to survey one at that scale.</li>
 <li><strong>The app's source is not public.</strong> The website and its datasets are; the
 application is not. If your policy requires reading the code, Docket will not pass it.</li>
-<li><strong>It is version v1.3.97.</strong> There are things it should connect to and does
+<li><strong>It is version v1.3.98.</strong> There are things it should connect to and does
 not yet — Search Console for your own impressions is the biggest.</li>
 </ul>
 
@@ -890,8 +890,8 @@ not yet — Search Console for your own impressions is the biggest.</li>
 certificate carries a legal name and Apple has checked it. You do not have to take that on
 faith. After downloading the 21.9 MB disk image:</p>
 
-<pre><code>codesign -dv --verbose=4 "/Volumes/Docket 1.3.97/Docket.app"
-spctl -a -t open --context context:primary-signature -v Docket-1.3.97-arm64.dmg</code></pre>
+<pre><code>codesign -dv --verbose=4 "/Volumes/Docket 1.3.98/Docket.app"
+spctl -a -t open --context context:primary-signature -v Docket-1.3.98-arm64.dmg</code></pre>
 
 <p>The first prints the authority chain, ending at Apple's root. The second should say
 <code>accepted</code> and <code>source=Notarized Developer ID</code>. Any Mac app worth
@@ -907,7 +907,7 @@ because a tool that hides its mistakes is asking you to trust its output more th
 authors do.</p>
 
 <p><a class="btn" href="/contact/">How to get in touch</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Who makes Docket?</h3><p>Matt Kerr, one person, in Grand Rapids, Michigan; the seller is his company, Kerr & Company LLC. There is no team. The macOS download is signed with an Apple Developer ID and notarised, so the legal name on the certificate can be checked with codesign before you install anything.</p></div><div class="faq-item"><h3>Does Docket send my site data anywhere?</h3><p>No. The crawl runs on your Mac and results are stored in ~/.docket/ as plain JSON. Two optional connectors do reach outside: the knowledge refresh fetches one public file from docketseo.app and tells it nothing about what you are auditing, and PageSpeed Insights — off unless you add your own Google API key — necessarily sends Google the URL you asked it to measure.</p></div><div class="faq-item"><h3>What can Docket not do?</h3><p>It is macOS only on Apple Silicon, it does not track keyword rankings or backlinks, and it is not built for crawling hundreds of thousands of URLs. The application source is not public, though the website's datasets are.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Who makes Docket?</h3><p>Matt Kerr, one person, in Grand Rapids, Michigan; the seller is his company, Kerr & Company LLC. There is no team. The macOS download is signed with an Apple Developer ID and notarised, so the legal name on the certificate can be checked with codesign before you install anything.</p></div><div class="faq-item"><h3>Does Docket send my site data anywhere?</h3><p>No. The crawl runs on your Mac and results are stored in ~/.docket/ as plain JSON. Two optional connectors do reach outside: the knowledge refresh fetches one public file from docketseo.app and tells it nothing about what you are auditing, and PageSpeed Insights — off unless you add your own Google API key — necessarily sends Google the URL you asked it to measure.</p></div><div class="faq-item"><h3>What can Docket not do?</h3><p>It is macOS only (Apple silicon or Intel), it does not track keyword rankings or backlinks, and it is not built for crawling hundreds of thousands of URLs. The application source is not public, though the website's datasets are.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
