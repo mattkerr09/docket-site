@@ -216,7 +216,7 @@ body{{background:{pal['paper']};color:{pal['ink']};
 <div class="line">Audits any website on your Mac and ranks what to fix, in order.</div>
 <div class="free">Try it free: your score and how many problems each area has</div>
 <div class="price">{price}</div>
-<div class="foot"><span>Mac \u00b7 Apple Silicon \u00b7 {floor}</span><span>docketseo.app</span></div>
+<div class="foot"><span>Mac \u00b7 {_site.MAC_HW} \u00b7 {floor}</span><span>docketseo.app</span></div>
 """
 
 

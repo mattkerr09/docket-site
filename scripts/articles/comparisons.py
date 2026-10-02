@@ -14,7 +14,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import (PAY4, BETA_NOTE, FREE_CLAUSE, MACOS, N_CHECKS, PRICE_STR, RELEASE,  # noqa: E402
+from render import (PAY4, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE_STR, RELEASE,  # noqa: E402
                     price, price_note_html, render, buy_block, rival_monthly_range)
 
 #: How many optional checks reach the network, spelled, from the engine's own
@@ -852,7 +852,7 @@ Business, and their knowledge base notes those reset on the 1st rather than roll
 <tr><td>Seats and white-label reports</td><td class="no">No</td><td class="yes">Yes</td></tr>
 <tr><td>AI crawler access</td><td class="yes">Per bot, split search from training</td><td class="yes">Per bot</td></tr>
 <tr><td>Account required</td><td class="yes">None</td><td>Yes</td></tr>
-<tr><td>Runs on</td><td>macOS on Apple Silicon</td><td class="yes">Any browser</td></tr>
+<tr><td>Runs on</td><td>macOS on {MAC_HW}</td><td class="yes">Any browser</td></tr>
 </tbody></table></div>
 
 <h2>The arithmetic, and why it flatters Docket</h2>
@@ -1084,7 +1084,7 @@ Lighthouse grades a page, Docket sequences the work on a site.</p>
 gets you most of the way, and Docket is a purchase you do not need. If your problem is
 speed, Lighthouse is the better tool and this is the wrong page. If you want a score gated in
 continuous integration, Lighthouse ships as a Node module built for that and Docket has no
-equivalent. And if you are not on an Apple Silicon Mac running {MACOS} or later, Docket will
+equivalent. And if you are not on a Mac with {MAC_HW} running {MACOS} or later, Docket will
 not run at all.</p>
 <p>Docket costs {PRICE_STR} once, runs {N_CHECKS} checks on your own machine with no account
 and no telemetry, and keeps everything under <code>~/.docket</code>. The one thing it sends is

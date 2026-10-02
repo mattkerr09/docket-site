@@ -17,7 +17,7 @@ import facts as F  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
-from render import (download_url, FREE_LINE, PAY4, PAY4_FOUNDING, 
+from render import (download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
@@ -122,7 +122,7 @@ def download() -> Path:
 <li><strong>Buy once.</strong> The licence key
 arrives with your receipt.{buy_block("download-steps", sample=True, big=True)}</li>
 <li><strong>Download</strong> the app &mdash; <a href="{download_url('download-steps')}" data-ev="Download"
-data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.</li>
+data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On an Intel Mac, <a href="{download_url("download-steps-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="download-steps-intel">the Intel version</a>.') if INTEL else ''}</li>
 <li><strong>Paste the key</strong> into the field the app shows, and run your first audit.
 <span class="qual">30-day refund, no conditions.</span></li>
 
@@ -130,7 +130,7 @@ data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.</li>
 <p>Or start with step 2: without a key, Docket runs the same full audit for free. {FREE_LINE}
 Buy from inside the app and the audit you ran opens in full.</p>
 
-<p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on Apple Silicon.
+<p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on {MAC_HW}.
 {DMG_SIZE}. No subscription, no crawl credits, no per-seat pricing — audit as many sites as
 you like, for as long as you like. There is no account to create and no telemetry. Activating
 your licence checks the key with our payment provider once, and about once a day after that.
@@ -142,6 +142,7 @@ top pages, and Google's autocomplete, which is sent your site's topic words;
 {_payment_note()}
 
 <p><a class="btn btn-lg" href="{download_url('download-page')}" data-ev="Download" data-ev-button="download-page">Download Docket {RELEASE} for Mac</a></p>
+{(f'<p class="intel-dl">Intel Mac? <a href="{download_url("download-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="download-intel">Download the Intel version</a> ({INTEL_DMG_SIZE}).</p>') if INTEL else ''}
 <p style="font-size:var(--t-md);color:var(--text-dim)">Apple Silicon · {MACOS}+ · {DMG_SIZE} ·
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
 
@@ -339,8 +340,7 @@ how you would drive Docket from your own scripts.</p>
 
 <h2>Requirements and limits</h2>
 <ul>
-<li><strong>{MACOS} or later, Apple Silicon</strong> for the desktop app. There is no
-Intel or Windows build.</li>
+<li><strong>{MACOS} or later, {MAC_HW}</strong> for the desktop app. {NO_BUILDS}</li>
 <li><strong>Linux x86_64 for the command line.</strong>
 {'<a href="' + LINUX + '">Download the ' + LINUX_SIZE + ' tarball</a> — needs' if LINUX else 'A tarball needing'}
 <strong>glibc 2.30</strong> or newer — check yours with <code>ldd --version</code>. That floor
@@ -385,7 +385,7 @@ is gone.</p>
     return render(
         cat="download", slug="",
         title=f"Download Docket for Mac — {PRICE_STR}, paid once",
-        desc=(f"Docket for {MACOS}+ on Apple Silicon. {DMG_SIZE}, no account, no telemetry. "
+        desc=(f"Docket for {MACOS}+ on {MAC_HW}. {DMG_SIZE}, no account, no telemetry. "
               "Includes the CLI, which exits non-zero on a critical issue so it can gate a "
               "deploy."),
         h1="Download Docket for Mac",
@@ -571,8 +571,8 @@ short enough to sit on every pull request without anyone noticing the build got 
 
 <h2>Read this first: your runners are probably Linux</h2>
 
-<p>The desktop app is Apple Silicon only, and the Linux CLI is x86_64 — so the action
-installs the macOS build. It runs on GitHub Actions'
+<p>The action installs the Apple silicon build of the macOS app, and the Linux CLI is
+x86_64 — so the action needs a macOS runner. It runs on GitHub Actions'
 <a href="https://docs.github.com/en/actions/reference/runners/github-hosted-runners"><code>macos-latest</code></a>,
 which is arm64, and it does not run on <code>ubuntu-latest</code> at all. If your pipeline is
 Linux and you are not willing to add a macOS job to it, stop reading and use
@@ -773,7 +773,7 @@ benchmark, and measure your own.</p>
         title="SEO checks in your deploy pipeline: Docket's CLI as a gate",
         desc=(f"Docket's CLI exits 2 on a critical audit finding, so it gates a deploy in one "
               f"line. {F.ci_page_cap()} pages in a median {F.ci_median_seconds()}s across "
-              f"{F.ci_sites()} sites. Apple Silicon only."),
+              f"{F.ci_sites()} sites. On macOS runners."),
         h1="SEO checks in your deploy pipeline",
         crumb='<a href="/">Docket</a> / <a href="/for/">For you</a> / Developers',
         body=body,
@@ -785,8 +785,8 @@ benchmark, and measure your own.</p>
              "clean, 2 when it finds something at or above your threshold, and 1 only when "
              "the tool itself could not run."),
             ("Does Docket run on GitHub Actions?",
-             "On macos-latest, which is arm64. Docket is Apple Silicon only, so it will not "
-             "run on ubuntu-latest. If your pipeline is Linux-only, Screaming Frog's CLI runs "
+             "On macos-latest, which is arm64. The action installs the Apple silicon build, "
+             "so it will not run on ubuntu-latest. If your pipeline is Linux-only, Screaming Frog's CLI runs "
              "on Windows, Mac and Ubuntu Linux and is the better fit."),
             ("How long does a Docket audit take in a pipeline?",
              f"A median of {F.ci_median_seconds()} seconds for {F.ci_page_cap()} pages across "
@@ -1195,7 +1195,7 @@ ChatGPT named you this morning. <a href="/vs/">Profound, Otterly and Peec</a> do
 <li><strong>Rendering is a sample</strong> — ten of the shallowest pages by default, which
 answers "is this client-rendered and what is it costing me" without turning a five-minute
 audit into an hour. It is not a full rendered crawl of a large application.</li>
-<li><strong>It is macOS on Apple Silicon.</strong> No Windows, no Linux desktop, no web
+<li><strong>It is macOS on {MAC_HW}.</strong> No Windows, no Linux desktop, no web
 version. The CLI inside the bundle runs on <a href="/for/developers/">macOS CI runners</a>.</li>
 </ul>
 
