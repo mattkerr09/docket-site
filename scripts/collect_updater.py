@@ -34,6 +34,10 @@ OUT = pathlib.Path(__file__).resolve().parent.parent / "site" / "updater.json"
 
 TGZ = APP / "dist" / "Docket.app.tar.gz"
 SIG = APP / "dist" / "Docket.app.tar.gz.sig"
+#: The Intel Macs build, from 1.3.98 (ship.sh builds both). Optional: a release
+#: without it publishes exactly the Apple silicon manifest it always did.
+TGZ_X86 = APP / "dist" / "Docket-x86_64.app.tar.gz"
+SIG_X86 = APP / "dist" / "Docket-x86_64.app.tar.gz.sig"
 
 #: Where the tarball is served from. The GitHub release, not the site: GitHub
 #: Pages has a soft size limit and a 100 MB hard one per file, and serving a
@@ -149,6 +153,12 @@ def main() -> None:
     ap.add_argument("--notes", required=True,
                     help="what changed, shown to the user — literal text, or a "
                          "path to a file containing it")
+    # The Intel build goes into the manifest and the download data only once
+    # its DMG has been checked on a real Intel Mac. --no-intel leaves it out,
+    # so a release whose Intel half failed that check still ships for Apple
+    # silicon without pointing Intel copies at anything.
+    ap.add_argument("--no-intel", action="store_true",
+                    help="publish the Apple silicon manifest only")
     args = ap.parse_args()
     if not args.tag:
         args.tag = f"v{args.version}"
@@ -178,6 +188,18 @@ def main() -> None:
             }
         },
     }
+    # darwin-x86_64 only from an x86_64 tarball and its own signature, never
+    # the arm64 one: a manifest offering an arm64 binary to Intel Macs fails
+    # after the download rather than before it.
+    intel = (not args.no_intel) and TGZ_X86.is_file() and SIG_X86.is_file()
+    if intel:
+        sig_x86 = SIG_X86.read_text().strip()
+        if not sig_x86:
+            sys.exit(f"{SIG_X86} is empty; refusing to publish an Intel entry that rejects every update")
+        data["platforms"]["darwin-x86_64"] = {
+            "signature": sig_x86,
+            "url": f"{RELEASE}/{args.tag}/{TGZ_X86.name}",
+        }
     OUT.write_text(json.dumps(data, indent=2) + "\n")
 
     # The download size, recorded so the site cannot claim one and ship
@@ -270,6 +292,22 @@ def main() -> None:
                 print(f"              dropped {', '.join(dropped)} from "
                       f"download.json; they described an older release and "
                       f"would have rendered a link that 404s")
+        # The Intel DMG, measured like the others, and only when it is in the
+        # manifest too: the site offers an Intel download exactly when the
+        # updater serves Intel copies, never one without the other.
+        intel_dmg = APP / "dist" / f"Docket-{args.version}-x86_64.dmg"
+        if intel and intel_dmg.is_file():
+            sizes.update({
+                "intel_dmg_name": intel_dmg.name,
+                "intel_dmg_bytes": intel_dmg.stat().st_size,
+                "intel_dmg_mb": round(intel_dmg.stat().st_size / 1_000_000, 1),
+                "intel_macos_min": macos_min(TGZ_X86),
+            })
+            print(f"  intel dmg : {intel_dmg.stat().st_size / 1_000_000:.1f} MB ({intel_dmg.name})")
+        else:
+            for k in ("intel_dmg_name", "intel_dmg_bytes", "intel_dmg_mb", "intel_macos_min"):
+                sizes.pop(k, None)
+            print("  intel dmg : not offered" + (" (--no-intel)" if args.no_intel else ""))
         size_path.write_text(json.dumps(sizes, indent=2) + "\n")
 
     digest = hashlib.sha256(TGZ.read_bytes()).hexdigest()[:16]
