@@ -14,7 +14,7 @@
 <title>Privacy policy — what Docket collects, and what it does not</title>
 <meta name="description" content="Audits run on your Mac and are never uploaded. No account, no telemetry. Six third-party scripts, one an advertising pixel — what each does and how to stop it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="e3cae64535cf">
+<meta name="build-id" content="949845846cb0">
 <link rel="canonical" href="https://docketseo.app/legal/privacy/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -777,6 +777,9 @@ window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push
 plausible.init()
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(!a||typeof plausible!=='function')return;var p={};if(a.getAttribute('data-ev-button'))p.button=a.getAttribute('data-ev-button');plausible(a.getAttribute('data-ev'),{props:p});if(a.getAttribute('data-ev-price')&&/dodopayments\.com/.test(a.href)){try{localStorage.setItem('dk_offer',a.getAttribute('data-ev-price'))}catch(x){}}},true);
 </script>
+<script>
+(function(){var L=/^(producthunt|product_hunt|ph|hackernews|hn|reddit|twitter|x|youtube|github|betalist|indiehackers|newsletter|linkedin|facebook|instagram|tiktok|google|bing|chatgpt|perplexity|discord)$/,K='dk_ls',H='https://kerr-affiliate-hub.kerrco.workers.dev/',s='';try{var q=new URLSearchParams(location.search),v=(q.get('ref')||q.get('via')||'').toLowerCase();if(L.test(v)){s=v;sessionStorage.setItem(K,v)}else{s=sessionStorage.getItem(K)||''}}catch(e){}if(!L.test(s))return;function t(a){var h=a.getAttribute('href')||'';if(h.indexOf(H)!==0)return;var p=h.slice(H.length);if(p.indexOf('dl/')===0&&!/[?&]ls=/.test(h)){a.setAttribute('href',/[?&]to=/.test(h)?h.replace(/([?&])to=/,'$1ls='+s+'&to='):h+(h.indexOf('?')<0?'?':'&')+'ls='+s)}else if(p.indexOf('buy/')===0&&!/[?&]metadata_landing_source=/.test(h)){a.setAttribute('href',h+(h.indexOf('?')<0?'?':'&')+'metadata_landing_source='+s)}}function all(){var a=document.querySelectorAll('a[href^="'+H+'"]');for(var i=0;i<a.length;i++)t(a[i])}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();document.addEventListener('click',function(e){var p=e.composedPath?e.composedPath():[e.target];for(var i=0;i<p.length;i++){if(p[i]&&p[i].tagName==='A'){t(p[i]);break}}},true)})();
+</script>
 <script async src="https://usesled.com/kerr-and-company/t.js"></script>
 <!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->
 <script>
@@ -964,6 +967,13 @@ assistant. When the page loads it asks that server whether the offer is still op
 thing it sends is this site's name. If you close the bar, the time you closed it is kept in your
 browser's local storage so the bar stays away for seven days; nothing else is stored and it sets
 no cookie. It draws itself in an isolated shadow root, like the assistant.</p>
+<p>One more thing runs here, written into this site's own pages rather than loaded from
+anywhere. If you arrive from a link that says where it was shared &mdash; <code>?ref=producthunt</code>,
+for example, from a fixed list of such names (Product Hunt, Hacker News, Reddit, a newsletter and
+the like) &mdash; the page keeps that one word in your browser's session storage for this visit and
+adds it to its Download and Buy links, so we can count how many downloads came from a launch. It is
+never an affiliate id, nothing else is stored, and it is gone when you close the tab. Arrive any
+other way and it does nothing at all.</p>
 <p>These paragraphs have been rewritten three times as the answer changed. They once said the
 site &ldquo;sets no cookies&rdquo; and runs &ldquo;one third-party script&rdquo;; both were true
 until Sled was added. The line calling Sled the only thing here that can set a cookie was true

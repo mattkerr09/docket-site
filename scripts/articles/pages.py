@@ -1970,6 +1970,13 @@ assistant. When the page loads it asks that server whether the offer is still op
 thing it sends is this site's name. If you close the bar, the time you closed it is kept in your
 browser's local storage so the bar stays away for seven days; nothing else is stored and it sets
 no cookie. It draws itself in an isolated shadow root, like the assistant.</p>
+<p>One more thing runs here, written into this site's own pages rather than loaded from
+anywhere. If you arrive from a link that says where it was shared &mdash; <code>?ref=producthunt</code>,
+for example, from a fixed list of such names (Product Hunt, Hacker News, Reddit, a newsletter and
+the like) &mdash; the page keeps that one word in your browser's session storage for this visit and
+adds it to its Download and Buy links, so we can count how many downloads came from a launch. It is
+never an affiliate id, nothing else is stored, and it is gone when you close the tab. Arrive any
+other way and it does nothing at all.</p>
 <p>These paragraphs have been rewritten three times as the answer changed. They once said the
 site &ldquo;sets no cookies&rdquo; and runs &ldquo;one third-party script&rdquo;; both were true
 until Sled was added. The line calling Sled the only thing here that can set a cookie was true

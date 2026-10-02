@@ -1776,6 +1776,27 @@ META_PIXEL = (
 #: alone. That was the choice made when the privacy policy was corrected to
 #: match: the policy speaks about "this website", so the two now describe the
 #: same thing.
+#: The landing-source tagger: see the comment where it is placed in the head.
+#: The list matches the hub's LANDING_OK exactly (kerr-affiliate-hub worker.js).
+LANDING_SOURCE_JS = (
+    "(function(){var L=/^(producthunt|product_hunt|ph|hackernews|hn|reddit|twitter|x|youtube|"
+    "github|betalist|indiehackers|newsletter|linkedin|facebook|instagram|tiktok|google|bing|"
+    "chatgpt|perplexity|discord)$/,K='dk_ls',H='https://kerr-affiliate-hub.kerrco.workers.dev/',s='';"
+    "try{var q=new URLSearchParams(location.search),v=(q.get('ref')||q.get('via')||'').toLowerCase();"
+    "if(L.test(v)){s=v;sessionStorage.setItem(K,v)}else{s=sessionStorage.getItem(K)||''}}catch(e){}"
+    "if(!L.test(s))return;"
+    "function t(a){var h=a.getAttribute('href')||'';if(h.indexOf(H)!==0)return;var p=h.slice(H.length);"
+    "if(p.indexOf('dl/')===0&&!/[?&]ls=/.test(h)){a.setAttribute('href',/[?&]to=/.test(h)?"
+    "h.replace(/([?&])to=/,'$1ls='+s+'&to='):h+(h.indexOf('?')<0?'?':'&')+'ls='+s)}"
+    "else if(p.indexOf('buy/')===0&&!/[?&]metadata_landing_source=/.test(h)){"
+    "a.setAttribute('href',h+(h.indexOf('?')<0?'?':'&')+'metadata_landing_source='+s)}}"
+    "function all(){var a=document.querySelectorAll('a[href^=\"'+H+'\"]');for(var i=0;i<a.length;i++)t(a[i])}"
+    "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',all);else all();"
+    "document.addEventListener('click',function(e){var p=e.composedPath?e.composedPath():[e.target];"
+    "for(var i=0;i<p.length;i++){if(p[i]&&p[i].tagName==='A'){t(p[i]);break}}},true)})();"
+)
+
+
 ANALYTICS = (
     '<!-- Privacy-friendly analytics by Plausible -->\n'
         # The assistant. One widget served from the worker, one factbase per site,
@@ -1806,6 +1827,17 @@ ANALYTICS = (
     # its own override for an hour; it was removed so the two do not stack.
 
     '</script>\n'
+    # WHERE A VISIT CAME FROM, FOR THE LAUNCH COUNT (CEO, 2026-10-02). The hub
+    # counts a /dl or /buy click as "<src>~producthunt" when the link carries
+    # ls= (downloads) or metadata_landing_source= (Buy). The other sites get
+    # that from the shared affiliate snippet, which this site does not load
+    # (Matthew's to-do 37). So, inline and on its own: a ref or via on the
+    # landing URL that is on this FIXED list of public places (never an
+    # affiliate id) is kept for the visit in sessionStorage and nothing else,
+    # and added to every hub link, at load and on click. composedPath() reaches
+    # the founding bar's Buy inside its shadow root. ls goes BEFORE to=, so the
+    # release URL stays last and unencoded. Disclosed on /legal/privacy/.
+    + "<script>\n" + LANDING_SOURCE_JS + "\n</script>\n"
     # Sled affiliate attribution, added 2026-08-14. Sets a ta_ref cookie ONLY when a
     # visitor arrives through an affiliate link; an ordinary visitor gets none. The
     # privacy page was rewritten in the same change — it said the site "sets no
