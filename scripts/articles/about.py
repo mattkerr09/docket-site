@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (
     FREE_CLAUSE,  # noqa: E402
-    DMG_NAME, DMG_SIZE, MACOS, ISSUES, N_CHECKS, N_LANES, PRICE_STR, RELEASE, REPO,
+    DMG_NAME, DMG_SIZE, MAC_HW, MACOS, ISSUES, N_CHECKS, N_LANES, PRICE_STR, RELEASE, REPO,
     VOLUME, render, SELLER, SELLER_CITY, SUPPORT_EMAIL,
 )
 
@@ -77,7 +77,7 @@ on this site is derived from it rather than typed into a sentence.</p>
 <p>The honest list, because you will find it out in the first hour anyway:</p>
 
 <ul>
-<li><strong>The desktop app is Mac only.</strong> Apple Silicon, {MACOS} or later. There is
+<li><strong>The desktop app is Mac only.</strong> {MAC_HW}, {MACOS} or later. There is
 no Windows build and no web version, and neither is planned while it is one person. The same
 engine ships as a <a href="/download/">Linux x86_64 command line build</a>, without the
 desktop app and without <code>--render</code>. This page denied that entirely until
@@ -141,7 +141,7 @@ authors do.</p>
              "auditing, and PageSpeed Insights — off unless you add your own Google API "
              "key — necessarily sends Google the URL you asked it to measure."),
             ("What can Docket not do?",
-             "It is macOS only on Apple Silicon, it does not track keyword rankings or "
+             f"It is macOS only ({MAC_HW}), it does not track keyword rankings or "
              "backlinks, and it is not built for crawling hundreds of thousands of URLs. "
              "The application source is not public, though the website's datasets are."),
         ],

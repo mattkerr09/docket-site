@@ -245,7 +245,7 @@ def price_req_html() -> str:
     could reach Buy without ever reading it. The price is where the decision
     is made, so the requirement sits there, wherever a price is shown.
     """
-    return f'<p class="price-req">For Apple Silicon Macs, {MACOS} or later</p>'
+    return f'<p class="price-req">For {MACS}, {MACOS} or later</p>'
 
 
 def buy_block(src: str, *, sample: bool = True, big: bool = True,
@@ -387,6 +387,21 @@ REPO = "https://github.com/mattkerr09/docket-site"
 ISSUES = f"{REPO}/issues"
 DMG_NAME = _facts.dmg_name()
 DMG = f"{REPO}/releases/download/{RELEASE}/{DMG_NAME}"
+#: THE INTEL MACS BUILD (from 1.3.98). Empty until a release publishes it and
+#: collect_updater.py records it, which happens only after the DMG has run on
+#: a real Intel Mac (docket-app intel-dmg-check.yml). Every sentence about
+#: which Macs Docket runs on reads INTEL, so they all change together, in the
+#: same deploy as the Intel download link, and never before it.
+INTEL_DMG_NAME = _facts.intel_dmg_name()
+INTEL = bool(INTEL_DMG_NAME)
+INTEL_DMG = f"{REPO}/releases/download/{RELEASE}/{INTEL_DMG_NAME}" if INTEL else ""
+INTEL_DMG_SIZE = _facts.intel_dmg_size_str()
+#: "macOS 12+ · {MAC_HW}"
+MAC_HW = "Apple silicon or Intel" if INTEL else "Apple Silicon"
+#: "For {MACS}, macOS 12 or later"
+MACS = "Macs with Apple silicon or Intel" if INTEL else "Apple Silicon Macs"
+#: What there is no build of.
+NO_BUILDS = "There is no Windows build." if INTEL else "There is no Windows or Intel build."
 #: The Linux CLI. Empty when the release carries none, so a page can ask
 #: rather than promise — the download page described a Linux tarball in
 #: detail for seven releases during which none was published.
@@ -1693,7 +1708,7 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
         '{"@type":"SoftwareApplication","@id":"' + BASE + '/#app",'
         '"name":"Docket SEO","applicationCategory":"BusinessApplication",'
         '"applicationSubCategory":"SEO audit software",'
-        '"operatingSystem":"' + MACOS + ' or later, Apple Silicon",'
+        '"operatingSystem":"' + MACOS + ' or later, ' + MAC_HW + '",'
         '"description":"Docket crawls a website, runs ' + str(N_CHECKS) + ' checks across SEO, copy, '
         'speed, structured data, local visibility, AI search visibility and marketing '
         'conversion, and returns a ranked list of what to fix. The crawl and the report stay '
@@ -1901,7 +1916,7 @@ ANALYTICS = (
 #: Changed whenever og.png's content changes, so the platforms that cache a
 #: share card by URL (X, LinkedIn, iMessage, Product Hunt) fetch the new one.
 #: 2026-10-02: the card gained the free version, the price and the requirement.
-OG_VERSION = "20261002"
+OG_VERSION = "20261002" + ("-intel" if INTEL else "")
 
 
 #: Bing Webmaster Tools site verification. Matthew's order, 2026-09-26 01:28Z

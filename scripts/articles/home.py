@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (download_url, FREE_LINE, PHONE_LINK, PHONE_LINK_JS, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
+from render import (download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
@@ -257,8 +257,8 @@ def body() -> str:
        gates, which test the DMG this page links, with nothing to measure.
        One quiet line keeps both. -->
   <p class="hero-note">Try it free: the {DMG_SIZE} Mac download audits any site and shows your score
-  and how many problems each area has. Buying opens that same audit in full.</p>
-  <p class="hero-note">{MACOS}+ · Apple Silicon · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
+  and how many problems each area has. Buying opens that same audit in full.{(f' Intel Mac? <a href="{download_url("home-try-free-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="home-try-free-intel">Get the Intel version</a>.') if INTEL else ''}</p>
+  <p class="hero-note">{MACOS}+ · {MAC_HW} · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
 </div>
 </div>
 <div class="wrap-wide hero-media-wrap">
@@ -640,8 +640,7 @@ one that draws a line.</p></div>
   address detection reads English and French word order only. On other languages both stand down
   and the report says which ones did, rather than telling a business it publishes no address when
   the truth is that Docket cannot read the page. Everything technical works in any language.</p></div>
-  <div class="card"><h3>Windows and Intel</h3><p>Apple Silicon, {MACOS} or later. There is no
-  Windows or Intel build of the app.</p></div>
+  <div class="card"><h3>{"Windows" if INTEL else "Windows and Intel"}</h3><p>{MAC_HW}, {MACOS} or later. {NO_BUILDS}</p></div>
   <div class="card"><h3>Five things we chose not to build</h3><p>Rank tracking, a cloud
   version, team accounts, server-side scheduling, and white-label or uptime monitoring. Each
   one needs a machine of ours running every day on your behalf, which is a monthly bill —
@@ -670,7 +669,7 @@ crawled twice.</p>
 <p><a class="btn" href="{download_url('home-free-block')}" data-ev="Download"
 data-ev-button="home-free-block">Download Docket for Mac</a></p>
 {PHONE_LINK}
-<p class="sub-fine">{MACOS} or later, Apple Silicon, {DMG_SIZE}, notarised by Apple.</p>
+<p class="sub-fine">{MACOS} or later, {MAC_HW}, {DMG_SIZE}, notarised by Apple.</p>
 </div></section>
 """
 
@@ -692,7 +691,7 @@ FAQ = [
      "processor emails you. The licence key is revoked, so the copy goes back to the free version."),
     ("How many Macs does one licence cover?",
      f"Up to 3 at a time. Activating Docket on a Mac uses one; deactivate it to move the "
-     f"licence to another machine. Apple Silicon, {MACOS} or later."),
+     f"licence to another machine. {MAC_HW}, {MACOS} or later."),
     ("Are updates included?",
      "Yes. While Docket is on version 1.x, every update is free and installs through the "
      "app's own updater. Whether a future 2.0 is a paid upgrade has not been decided; if it "
@@ -702,8 +701,8 @@ FAQ = [
      "and charge clients for the work. The licence belongs to the person or company that "
      "paid; it may not be resold or sublicensed."),
     ("Does it run on Windows?",
-     f"No. The app is for Apple Silicon Macs on {MACOS} or later, and there is no Windows or "
-     "Intel build. A command-line build for Linux x86_64 is on the download page."),
+     f"No. The app is for {MACS} on {MACOS} or later. {NO_BUILDS} A command-line build for "
+     "Linux x86_64 is on the download page."),
     ("How do I get help?",
      f"Email {SUPPORT_EMAIL}. Questions whose answers would help the next person can go on "
      "the public issue tracker instead."),

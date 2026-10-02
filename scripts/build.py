@@ -554,7 +554,7 @@ def write_llms_txt() -> None:
     import textwrap
     from collections import OrderedDict
 
-    from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE,
+    from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS,
                         FOUNDING_NOW, FOUNDING_SEATS, HAS_SAMPLE, LINUX, MACOS,
                         N_CHECKS, N_LANES, PRICE_STR, REPO, SAMPLE_REPORT, SELLER,
                         seller_address)
@@ -630,8 +630,7 @@ def write_llms_txt() -> None:
 
     out += ["", "## Requirements", ""]
     out += facts(
-        f"An Apple Silicon Mac running {MACOS} or later. There is no Windows or Intel "
-        f"build of the app.",
+        f"A Mac with {MAC_HW} running {MACOS} or later. {NO_BUILDS}",
         f"The Mac app is a {DMG_SIZE} download, signed with a Developer ID and notarised "
         f"by Apple.",
         "A command-line build for Linux x86_64 is on the download page." if LINUX else "")
@@ -1187,7 +1186,7 @@ def pricing_page() -> Path:
     as every other price on the site. Not in the sitemap: it is a door, not an
     article.
     """
-    from render import (BNPL_INSTALMENT, DMG_SIZE, FREE_LINE, MACOS, PRICE_STR, REFUND_DAYS,
+    from render import (BNPL_INSTALMENT, DMG_SIZE, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, PRICE_STR, REFUND_DAYS,
                         buy_block, download_url)
     # The prose below is this page's own. The quality gate's duplicate check
     # judged the first version (the buy block alone) a copy of 18 pages,
@@ -1227,13 +1226,13 @@ version.</p>
 you can see how much is wrong on your site before you pay to see what.</p>
 
 <h2>Before you buy: what it runs on</h2>
-<p>An Apple Silicon Mac with {MACOS} or later. No Windows build exists, and no Intel one. If
+<p>A Mac with {MAC_HW}, on {MACOS} or later. {NO_BUILDS} If
 you are unsure, open the full sample report first; it shows what an audit hands you.</p>
 """
     return render(
         cat="", slug="pricing",
         title="Docket pricing — $" + str(PRICE) + " once",
-        desc=f"Docket SEO costs ${PRICE}, paid once, for Apple Silicon Macs. No subscription.",
+        desc=f"Docket SEO costs ${PRICE}, paid once, for {MACS}. No subscription.",
         h1="Docket pricing",
         crumb='<a href="/">Docket</a> / Pricing',
         body=body,

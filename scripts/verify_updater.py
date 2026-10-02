@@ -245,10 +245,18 @@ def main() -> None:
             fail(f"{name} url is not https — an update channel over plain http "
                  f"is a remote code execution vector")
 
-    # Docket is Apple Silicon only. Claiming darwin-x86_64 would hand an arm64
+    # darwin-x86_64 only alongside a published Intel build (from 1.3.98), and
+    # never pointing at the Apple silicon tarball: that would hand an arm64
     # binary to an Intel Mac, failing after the download rather than before it.
     if "darwin-x86_64" in platforms:
-        fail("updater.json offers darwin-x86_64 and there is no Intel build")
+        import json as _json
+        intel = _json.loads((SITE.parent / "data" / "download.json").read_text()).get("intel_dmg_name")
+        if not intel:
+            fail("updater.json offers darwin-x86_64 and no Intel build is published")
+        if platforms["darwin-x86_64"]["url"].endswith("/Docket.app.tar.gz"):
+            fail("darwin-x86_64 points at the Apple silicon tarball")
+        if platforms["darwin-x86_64"].get("signature") == platforms.get("darwin-aarch64", {}).get("signature"):
+            fail("darwin-x86_64 carries the Apple silicon signature")
 
     # ⚠️ THE ONE FIELD A PERSON READS, AND THE ONLY ONE NOTHING CHECKED.
     # 1.2.4 and 1.2.5 both published `"notes": "/tmp/notes-1.2.4.md"` — the
