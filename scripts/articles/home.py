@@ -778,9 +778,10 @@ def build() -> Path:
         # 154 since "nothing uploaded" became "kept on your Mac": PageSpeed and
         # topic suggestions send page addresses and topic words to Google by
         # default, so "nothing uploaded" was not true of a default audit.
-        desc=(f"Docket SEO audits any website on your Mac: {N_CHECKS} checks across SEO, copy, brand, "
-              "local and AI search. Ranked fix plan and client-ready PDF, kept on "
-              "your Mac."),
+        # 149 characters. Names the free version (1.3.96) because this line is
+        # the Google snippet and every pasted link's preview (CEO, 2026-10-02).
+        desc=(f"Docket SEO audits any website on your Mac with {N_CHECKS} checks, ranked into a fix "
+              f"plan. Free to try: your score and problem counts per area. Pro {PRICE_STR} once."),
         h1="SEO audits that tell you what to fix, in order",
         crumb="Docket for Mac",
         body=body(),

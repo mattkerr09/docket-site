@@ -1650,7 +1650,7 @@ def _breadcrumb_schema(crumb: str) -> str:
             '"itemListElement":[' + ",".join(items) + "]}")
 
 
-def _entity_schema(with_offer: bool = True) -> str:
+def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
     """Organization + SoftwareApplication + sameAs, on every page.
 
     `sameAs` is what lets a language model resolve "Docket" to this specific
@@ -1706,8 +1706,21 @@ def _entity_schema(with_offer: bool = True) -> str:
         # pay now; the future price is prose, not an Offer. Declaring 149 while
         # the beta is free let Google advertise a number with no checkout
         # behind it.
-        + ('"offers":{"@type":"Offer","price":"' + str(PRICE_TODAY) + '","priceCurrency":"USD",'
-           '"availability":"https://schema.org/InStock"},' if with_offer else '') +
+        # FREE AND PRO, where the page says both (CEO, 2026-10-02). Google's
+        # software-app guidance: "If the app is available without payment, set
+        # offers.price to 0". Since 1.3.96 it is, for the score and the
+        # per-area counts, so a page that states the free version (FREE_LINE)
+        # offers both; a page that shows only the price offers only Pro.
+        + (('"offers":['
+            '{"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD",'
+            '"description":"Your site\'s score and how many problems each area has.",'
+            '"availability":"https://schema.org/InStock"},'
+            '{"@type":"Offer","name":"Pro","price":"' + str(PRICE_TODAY) + '","priceCurrency":"USD",'
+            '"description":"What the problems are, the ranked fix plan and the markup to paste.",'
+            '"availability":"https://schema.org/InStock"}],')
+           if with_offer and with_free else
+           ('"offers":{"@type":"Offer","price":"' + str(PRICE_TODAY) + '","priceCurrency":"USD",'
+            '"availability":"https://schema.org/InStock"},') if with_offer else '') +
         '"featureList":"' + str(N_CHECKS) + ' checks, ranked action plan, PDF report, scheduled monitoring, '
         'competitor comparison, AI crawler access audit",'
         '"publisher":{"@id":"' + BASE + '/#org"}}]}'
@@ -2086,7 +2099,9 @@ def render(
     # Derived from the authored body rather than a per-page flag, because a
     # flag drifts the first time someone edits the copy without it.
     shows_price = str(PRICE_TODAY) in body
-    blocks = [_entity_schema(with_offer=shows_price)]
+    # The same rule for the free version: the Free offer rides along only where
+    # the page states what free is.
+    blocks = [_entity_schema(with_offer=shows_price, with_free=FREE_LINE in body)]
     crumb_schema = _breadcrumb_schema(crumb)
     if crumb_schema:
         blocks.append(crumb_schema)
