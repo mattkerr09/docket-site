@@ -14,7 +14,7 @@
 <title>JavaScript rendering: auditing what a browser actually sees</title>
 <meta name="description" content="A crawler that does not run JavaScript sees what your server sent. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="e15d87b6e8e2">
+<meta name="build-id" content="e7eb046774f6">
 <link rel="canonical" href="https://docketseo.app/learn/javascript-rendering/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -25,13 +25,13 @@
 <meta property="og:description" content="A crawler that does not run JavaScript sees what your server sent. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes.">
 <meta property="og:url" content="https://docketseo.app/learn/javascript-rendering/">
 <meta property="og:site_name" content="Docket SEO">
-<meta property="og:image" content="https://docketseo.app/og.png?v=20261002">
+<meta property="og:image" content="https://docketseo.app/og.png?v=20261002-intel">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Auditing what a browser actually sees">
 <meta name="twitter:description" content="A crawler that does not run JavaScript sees what your server sent. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes.">
-<meta name="twitter:image" content="https://docketseo.app/og.png?v=20261002">
+<meta name="twitter:image" content="https://docketseo.app/og.png?v=20261002-intel">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
    display faces this category defaults to: Docket is a measuring instrument that
@@ -771,7 +771,7 @@ nav{z-index:40}
 .faq-item p{font-size:var(--t-md);margin:0}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple Silicon","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.97/Docket-1.3.97-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.98/Docket-1.3.98-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Auditing what a browser actually sees","description":"A crawler that does not run JavaScript sees what your server sent. notion.so returns 0 characters of text statically and 2,068 rendered. What rendering changes.","datePublished":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/javascript-rendering/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do search engines run JavaScript?","acceptedAnswer":{"@type":"Answer","text":"Google does, on a second pass that can lag the first crawl by days. Most AI crawlers do not render at all, so a client-rendered page is blank to the crawlers behind ChatGPT and Perplexity."}},{"@type":"Question","name":"Does Docket bundle a browser?","acceptedAnswer":{"@type":"Answer","text":"No. macOS ships WebKit as a system framework, so rendering is a 112 KB helper built against it. The download is 21.9 MB and nothing is fetched at install."}},{"@type":"Question","name":"Is rendering off by default?","acceptedAnswer":{"@type":"Answer","text":"No, and this page said it was until the claim was checked against the engine. A small sample of every audit is rendered when the WebKit helper is present; --render 0 turns it off. The sample is small because rendering executes the page's JavaScript, so analytics fire and ad pixels load — requests to servers you did not intend to contact by asking for an audit — and it is ten to thirty times slower than fetching."}},{"@type":"Question","name":"Can rendering measure Core Web Vitals?","acceptedAnswer":{"@type":"Answer","text":"No, and nothing that runs on one machine can. LCP, INP and CLS are field metrics from real users on real connections. Docket reads them from the Chrome UX Report, the same source Search Console uses."}}]}</script>
@@ -916,7 +916,7 @@ a five-minute audit into an hour.</p>
 manager loaded. If the helper is missing it says that too, rather than quietly falling back
 to a static crawl and letting you believe otherwise.</p>
 
-<p><a class="btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-javascript-rendering&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.97/Docket-1.3.97-arm64.dmg" data-ev="Download">Download Docket for Mac</a></p>
+<p><a class="btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-javascript-rendering&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.98/Docket-1.3.98-arm64.dmg" data-ev="Download">Download Docket for Mac</a></p>
 
 <h2>Further reading</h2>
 <ul>

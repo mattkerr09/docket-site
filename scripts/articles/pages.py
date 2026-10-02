@@ -385,9 +385,11 @@ is gone.</p>
     return render(
         cat="download", slug="",
         title=f"Download Docket for Mac — {PRICE_STR}, paid once",
-        desc=(f"Docket for {MACOS}+ on {MAC_HW}. {DMG_SIZE}, no account, no telemetry. "
-              "Includes the CLI, which exits non-zero on a critical issue so it can gate a "
-              "deploy."),
+        # Two downloads have two sizes, so with Intel the description names neither.
+        desc=(f"Docket for {MACOS}+ on {MAC_HW}. "
+              + ("No account" if INTEL else f"{DMG_SIZE}, no account")
+              + ", no telemetry. Includes the CLI, which exits non-zero on a critical "
+              "issue so it can gate a deploy."),
         h1="Download Docket for Mac",
         crumb='<a href="/">Docket</a> / Download',
         body=body,

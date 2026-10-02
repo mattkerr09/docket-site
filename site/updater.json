@@ -1,11 +1,15 @@
 {
-  "version": "1.3.97",
-  "notes": "Docket 1.3.97\n\n**Docket is free to try: run a full audit of any site without a key and see your score and how many problems each area has. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $349, or 4 payments of $87.25, to see what they are, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *A text-only number is a clickable number.* A business that publishes its\n  phone number only as text-message (sms:) links was told its number was \"not\n  clickable\" and to wrap it in a call link, which invites calls it does not\n  take. sms: links now count, and when the finding does apply, its fix offers\n  an sms: link for a number that takes texts.\n- *A service-area business is not asked for a street address.* A business\n  that says where it works (\"Serving \u2026\", \"areas we serve\", or `areaServed` in\n  its structured data) was told to put a street address in its footer.\n  Google's guidance for a business that serves customers where they are is the\n  opposite. That finding now stands down for such a business.\n\n99 checks across 13 areas.",
-  "pub_date": "2026-10-02T22:17:24Z",
+  "version": "1.3.98",
+  "notes": "Docket 1.3.98\n\n**Docket now runs on Intel Macs. Download the Intel version from docketseo.app/download/. It is free to try: run a full audit of any site without a key and see your score and how many problems each area has. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $349, or 4 payments of $87.25, to see what they are, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *Intel Macs.* Until now Docket ran only on Macs with Apple silicon. This\n  release comes in two downloads, one for Apple silicon and one for Intel, on\n  macOS 12 or later. Both are the same app, the same 99 checks and the same\n  licence. One licence covers up to three Macs of either kind. Each copy\n  updates to its own build.\n\n99 checks across 13 areas.",
+  "pub_date": "2026-10-02T23:13:32Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXcxQUFnNmVGbVNYdUxRYTJ0ZkdxWkhiMkZiMVJkUVo4K3RhazViWU4xbHFWa1RKK252S3ZZUTNiSVlhNFF4THVTem1vMUVjS3RHVjFUbjl5cGtSNUFRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwOTc5MjY0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKREhYNit6bXNIRWxDOEhiUStaSDRReU0xbEE1c3MrZUJXRHNJRkl3M3FhcmUyS21SN0xTbUpoeUducDE5UUQ4WVMxakNsdG9TWUM4WUtkMVR3T3pXQmc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.97/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTMxOEVHNU9QQVVpb2phV2VROG9Wa2VzQklTbWtMb2V2dVJMS2o3V2ltOS9CeW4zQUJqUUo5ZFVTSHJFL20wV3FCMGJmckhodlNuZ0V5VVdWZDUzdHdVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwOTgyMTAxCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKUmVXdFg5YkxNSVhabVJRQ08ya0cvbHJ2dWNMT1FZa3J6ZEI0Q1NKOHJNWWtJVWtKNEpJSFh3NVBPNnVTbmRDUjVQRTdXaEFpa0tqRWdkaUZsTk5JRFE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.98/Docket.app.tar.gz"
+    },
+    "darwin-x86_64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTI4bXhyeUlYOHRqajhDUnhSQ3NuQWVKb25CcXFKa085N2ZGSThxWUxlYndsVi84b2pXQVB1bU9EKy8zckUwbm9OUDhBekRJeUVVLzA1THRhMkVHMXdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkwOTgyMjU2CWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6CkFBSWRsL3R3SWU0SDR0MU9aemN4MTBFTTI0dmNtQkU1K05pNHJWZHo1aWp1QVFUYlJvYi9NbWI2ZDh1Y0tBOHEwYzRMRmljekVaTHBUU284RmtMZkF3PT0K",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.98/Docket-x86_64.app.tar.gz"
     }
   }
 }
