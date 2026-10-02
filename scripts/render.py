@@ -1850,6 +1850,12 @@ ANALYTICS = (
 )
 
 
+#: Changed whenever og.png's content changes, so the platforms that cache a
+#: share card by URL (X, LinkedIn, iMessage, Product Hunt) fetch the new one.
+#: 2026-10-02: the card gained the free version, the price and the requirement.
+OG_VERSION = "20261002"
+
+
 #: Bing Webmaster Tools site verification. Matthew's order, 2026-09-26 01:28Z
 #: ("AI-search visibility"): exactly this tag, in the <head> of every page.
 #:
@@ -2163,13 +2169,13 @@ def render(
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{url}">
 <meta property="og:site_name" content="Docket SEO">
-<meta property="og:image" content="{BASE}/og.png">
+<meta property="og:image" content="{BASE}/og.png?v={OG_VERSION}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(h1)}">
 <meta name="twitter:description" content="{esc(desc)}">
-<meta name="twitter:image" content="{BASE}/og.png">
+<meta name="twitter:image" content="{BASE}/og.png?v={OG_VERSION}">
 {STYLE}
 {schema}
 {ANALYTICS}

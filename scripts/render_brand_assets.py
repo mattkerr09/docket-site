@@ -171,10 +171,19 @@ def og_html(pal: dict) -> str:
     Deliberately the site's own furniture rather than a poster. This image is
     what a stranger sees before they see anything else, and the site's whole
     argument is that it looks like an instrument and not a neon dashboard.
+
+    From 2026-10-02 (CEO, before the Product Hunt launch) it also carries the
+    reason to click: the free version, the price and what it runs on. Every
+    number is read from render.py's constants, the ones every page prints, so
+    the card cannot quote a price or a requirement the site does not.
     """
+    import render as _site
+    price = f"{_site.PRICE_STR} once" + (
+        f" \u00b7 or 4 \u00d7 {_site.BNPL_INSTALMENT}" if _site.BNPL_LIVE else "")
+    floor = f"{_site.MACOS}+"
     fonts = (SITE / "fonts").as_uri()
     bare_shield = (
-        '<svg viewBox="0 0 1024 1024" width="150" height="150">'
+        '<svg viewBox="0 0 1024 1024" width="116" height="116">'
         f'<path d="{MARK_PATHS["shield"]}" fill="{pal["tile"]}"/>'
         f'<g fill="none" stroke="{pal["paper"]}" stroke-width="112" '
         'stroke-linecap="round" stroke-linejoin="round">'
@@ -189,22 +198,25 @@ html,body{{width:1200px;height:630px}}
 body{{background:{pal['paper']};color:{pal['ink']};
   font-family:'Switzer',system-ui,sans-serif;
   display:flex;flex-direction:column;justify-content:center;
-  padding:0 96px;gap:34px}}
-.row{{display:flex;align-items:center;gap:26px}}
-.word{{font-weight:700;font-size:78px;letter-spacing:-.02em}}
-.chip{{font-family:ui-monospace,Menlo,monospace;font-weight:600;font-size:30px;
+  padding:0 96px;gap:22px}}
+.row{{display:flex;align-items:center;gap:22px}}
+.word{{font-weight:700;font-size:66px;letter-spacing:-.02em}}
+.chip{{font-family:ui-monospace,Menlo,monospace;font-weight:600;font-size:26px;
   letter-spacing:.04em;color:{pal['tile']};border:2px solid {pal['tile']};
-  border-radius:4px;padding:2px 12px;align-self:center}}
+  border-radius:4px;padding:2px 10px;align-self:center}}
 .rule{{height:2px;background:{pal['ink']};opacity:.14}}
-.line{{font-size:38px;line-height:1.32;max-width:900px;color:{pal['ink']}}}
-.foot{{font-family:ui-monospace,Menlo,monospace;font-size:24px;
-  letter-spacing:.06em;color:{pal['tile']}}}
+.line{{font-size:34px;line-height:1.3;color:{pal['ink']}}}
+.free{{font-size:32px;font-weight:700;line-height:1.25;color:{pal['tile']}}}
+.price{{font-size:44px;font-weight:700;letter-spacing:-.01em;color:{pal['ink']}}}
+.foot{{font-family:ui-monospace,Menlo,monospace;font-size:23px;
+  letter-spacing:.05em;color:{pal['tile']};display:flex;justify-content:space-between}}
 </style>
 <div class="row">{bare_shield}<span class="word">Docket</span><span class="chip">SEO</span></div>
 <div class="rule"></div>
-<div class="line">A desktop SEO audit that crawls your site and tells you what to
-fix, in order — and says so when it could not see.</div>
-<div class="foot">docketseo.app</div>
+<div class="line">Audits any website on your Mac and ranks what to fix, in order.</div>
+<div class="free">Try it free: your score and how many problems each area has</div>
+<div class="price">{price}</div>
+<div class="foot"><span>Mac \u00b7 Apple Silicon \u00b7 {floor}</span><span>docketseo.app</span></div>
 """
 
 
