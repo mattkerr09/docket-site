@@ -396,9 +396,9 @@ INTEL_DMG_NAME = _facts.intel_dmg_name()
 INTEL = bool(INTEL_DMG_NAME)
 INTEL_DMG = f"{REPO}/releases/download/{RELEASE}/{INTEL_DMG_NAME}" if INTEL else ""
 INTEL_DMG_SIZE = _facts.intel_dmg_size_str()
-#: "macOS 12+ · {MAC_HW}"
+#: "{MACOS}+ · {MAC_HW}"
 MAC_HW = "Apple silicon or Intel" if INTEL else "Apple Silicon"
-#: "For {MACS}, macOS 12 or later"
+#: "For {MACS}, {MACOS} or later"
 MACS = "Macs with Apple silicon or Intel" if INTEL else "Apple Silicon Macs"
 #: What there is no build of.
 NO_BUILDS = "There is no Windows build." if INTEL else "There is no Windows or Intel build."
