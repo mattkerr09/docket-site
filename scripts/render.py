@@ -285,6 +285,8 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
         out.append(f'<a class="btn-ghost{size}" href="{SAMPLE_REPORT}" data-ev="Sample report" '
                    f'data-ev-button="{src}">See a full sample report</a>')
     out.append('</div>')
+    if try_app:
+        out.append(PHONE_LINK)
     out.append(f'<p class="hero-note founding-note">{FOUNDING_LINE}</p>')
     if anchor:
         out.append(price_anchor_html())
@@ -1319,6 +1321,10 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.steps .buy-block{margin-top:.8rem}
 .btn-lg{padding:1rem 2.05rem;font-size:var(--t-lg);border-radius:var(--radius-lg);letter-spacing:-.01em}
 .hero-note{font-size:var(--t-base);color:var(--text-dim)}
+/* "Send the Mac link to yourself": phones only (PHONE_LINK, CEO 2026-10-02) */
+.phone-link{display:none;margin:.75rem 0 0;font-size:var(--t-base);color:var(--text-dim)}
+.phone-link button{font:inherit;color:var(--text);background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+@media (max-width:760px),(hover:none) and (pointer:coarse){.phone-link{display:block}}
 
 /* Product mockup — an HTML replica of the app, not a screenshot. Stays sharp at
    any density, weighs nothing, and follows the page theme. */
@@ -1776,6 +1782,35 @@ META_PIXEL = (
 #: alone. That was the choice made when the privacy policy was corrected to
 #: match: the policy speaks about "this website", so the two now describe the
 #: same thing.
+#: "Send the Mac link to yourself", for a visitor on a phone (CEO, 2026-10-02).
+#: Product Hunt launches see 17-34% of visitors on phones, and a phone cannot
+#: open a Mac download, so this page gave them no next step. Same behaviour as
+#: outlier.host's: hidden on desktop by CSS, navigator.share with a mailto
+#: fallback, a Plausible "Send Mac Link" event. The shared link carries where
+#: the visit came from (this site's own dk_ls landing source, see
+#: LANDING_SOURCE_JS), so a Product Hunt phone visit still counts as Product
+#: Hunt when it is opened on the Mac. Nothing is collected or sent by us.
+PHONE_LINK = ('<p class="phone-link">On your phone? <button type="button" data-send-mac-link>'
+              'Send the Mac link to yourself</button></p>')
+PHONE_LINK_JS = (
+    "(function(){function carry(u){var q=[];try{var s=sessionStorage.getItem('dk_ls')||'';"
+    "if(/^[a-z_]{1,20}$/.test(s))q.push('ref='+encodeURIComponent(s))}catch(e){}"
+    "try{var a=JSON.parse(localStorage.getItem('kc_aff')||'null');var v=(a&&a.exp>Date.now()&&a.v)||{};"
+    "if(!q.length&&(v.ref||v.landing_source))q.push('ref='+encodeURIComponent(v.ref||v.landing_source));"
+    "['via','rekomi_ref','affonso_referral','awc','cjevent','irclickid'].forEach(function(k){"
+    "if(v[k])q.push(k+'='+encodeURIComponent(v[k]))})}catch(e){}return q.length?u+'&'+q.join('&'):u}"
+    "function go(){var url=carry('https://docketseo.app/?utm_source=phone-share&utm_medium=share');"
+    "var text='Docket SEO for Mac is free to try: your site\\'s score and how many problems each area has. "
+    "Open this on your Mac to download it.';"
+    "if(typeof plausible==='function'){try{plausible('Send Mac Link')}catch(e){}}"
+    "if(navigator.share){navigator.share({title:'Docket SEO for Mac',text:text,url:url}).catch(function(){})}"
+    "else{location.href='mailto:?subject='+encodeURIComponent('Docket SEO for Mac: download link')"
+    "+'&body='+encodeURIComponent(text+'\\n\\n'+url)}}"
+    "document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-send-mac-link]');"
+    "if(b){e.preventDefault();go()}})})();"
+)
+
+
 #: The landing-source tagger: see the comment where it is placed in the head.
 #: The list matches the hub's LANDING_OK exactly (kerr-affiliate-hub worker.js).
 LANDING_SOURCE_JS = (

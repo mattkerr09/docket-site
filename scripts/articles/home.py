@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (download_url, FREE_LINE, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
+from render import (download_url, FREE_LINE, PHONE_LINK, PHONE_LINK_JS, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
@@ -669,6 +669,7 @@ computed from free public data rather than a bought index.</p>
 crawled twice.</p>
 <p><a class="btn" href="{download_url('home-free-block')}" data-ev="Download"
 data-ev-button="home-free-block">Download Docket for Mac</a></p>
+{PHONE_LINK}
 <p class="sub-fine">{MACOS} or later, Apple Silicon, {DMG_SIZE}, notarised by Apple.</p>
 </div></section>
 """
@@ -763,6 +764,7 @@ needed, and the crawl and the report stay on your Mac.</p>
      without it, so placement is decided here rather than guessed. -->
 <div data-win-notify style="max-width:520px;margin:1.5rem auto 0"></div>
 <script src="https://kerr-subscribe.kerrco.workers.dev/notify.js" defer></script>
+<script>{PHONE_LINK_JS}</script>
 </section>"""
 
 

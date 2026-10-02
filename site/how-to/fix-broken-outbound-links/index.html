@@ -14,7 +14,7 @@
 <title>How to fix broken outbound links (and which are not)</title>
 <meta name="description" content="A dead outbound link and a host that refuses a crawler are not the same audit row. What Docket counts as broken, what it files as unverified, and what each needs.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="0759aeac135f">
+<meta name="build-id" content="aee68d018686">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-broken-outbound-links/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -637,6 +637,10 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.steps .buy-block{margin-top:.8rem}
 .btn-lg{padding:1rem 2.05rem;font-size:var(--t-lg);border-radius:var(--radius-lg);letter-spacing:-.01em}
 .hero-note{font-size:var(--t-base);color:var(--text-dim)}
+/* "Send the Mac link to yourself": phones only (PHONE_LINK, CEO 2026-10-02) */
+.phone-link{display:none;margin:.75rem 0 0;font-size:var(--t-base);color:var(--text-dim)}
+.phone-link button{font:inherit;color:var(--text);background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+@media (max-width:760px),(hover:none) and (pointer:coarse){.phone-link{display:block}}
 
 /* Product mockup — an HTML replica of the app, not a screenshot. Stays sharp at
    any density, weighs nothing, and follows the page theme. */
