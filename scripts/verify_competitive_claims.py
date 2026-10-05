@@ -152,6 +152,28 @@ def _verified_at(src: str):
     return None
 
 
+def _wording(value):
+    """What a fact SAYS, for comparing revisions: case and sentence punctuation
+    dropped, numbers kept exactly.
+
+    2026-10-05: a copy pass turned em-dashes into commas, colons and brackets
+    across the comparison pages, and this gate read every vendor's facts as
+    edited that day, after the date the page says they were read. Nothing a
+    vendor states had changed. A change of word or number still counts:
+    "1.5M" and "100,000" keep their dot and comma, because those sit between
+    digits."""
+    if isinstance(value, str):
+        v = value.lower().replace("&mdash;", " ")
+        v = re.sub(r"[—–:;()\[\]\"'“”‘’]", " ", v)
+        v = re.sub(r"(?<!\d)[.,]|[.,](?!\d)", " ", v)
+        return " ".join(v.split())
+    if isinstance(value, (list, tuple)):
+        return tuple(_wording(x) for x in value)
+    if isinstance(value, dict):
+        return {k: _wording(x) for k, x in value.items()}
+    return value
+
+
 def _facts_last_edited(current):
     """Per competitor, the day its fact list last changed. (edits, unreadable).
 
@@ -175,14 +197,14 @@ def _facts_last_edited(current):
             continue
         seen += 1
         for key, facts in verified.items():
-            if previous.get(key) != facts:
+            if previous.get(key) != _wording(facts):
                 edits[key] = iso[:10]
-                previous[key] = facts
+                previous[key] = _wording(facts)
     # An edit sitting in the working tree has not been committed yet, so its day
     # is today — which is the case a deploy is most likely to be publishing.
     if seen:
         for key, facts in current.items():
-            if previous.get(key) != facts:
+            if previous.get(key) != _wording(facts):
                 edits[key] = date.today().isoformat()
     return edits, unreadable, seen
 
@@ -213,7 +235,14 @@ def _self_check() -> int:
     caught = _stale_dates({"planted": one}, {"planted": "2026-08-10"}, {"planted": "2026-08-24"})
     clean = _stale_dates({"planted": one}, {"planted": "2026-08-10"}, {"planted": "2026-08-10"})
     same_day = _stale_dates({"planted": one}, {"planted": "2026-08-24"}, {"planted": "2026-08-24"})
-    ok = len(caught) == 1 and not clean and not same_day
+    # Punctuation and case are not a vendor's facts; a word or a number is.
+    said = "plans are metered on crawled URLs per month — Lite 100,000, Advanced 1.5M"
+    restyled = "Plans are metered on crawled URLs per month: Lite 100,000, Advanced 1.5M"
+    renumbered = "plans are metered on crawled URLs per month — Lite 100,000, Advanced 15M"
+    reworded = "plans are metered on crawled pages per month — Lite 100,000, Advanced 1.5M"
+    wording_ok = (_wording(said) == _wording(restyled) and _wording(said) != _wording(renumbered)
+                  and _wording(said) != _wording(reworded))
+    ok = len(caught) == 1 and not clean and not same_day and wording_ok
     print("SELF-CHECK " + ("ok — a fact edited after its date fails; edited on or "
                            "before it passes" if ok else "FAIL — the rule does not fire"))
     return 0 if ok else 1
