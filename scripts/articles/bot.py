@@ -43,8 +43,7 @@ every request under this name belongs to one audit that one person started.</p>
 
 <pre><code>{escape(lim["user_agent"])}</code></pre>
 
-<p>Pages that are also opened in a browser engine — to see what JavaScript builds — carry the
-same name and the same link back to this page. Docket never claims to be Googlebot or any other
+<p>Pages that are also opened in a browser engine (to see what JavaScript builds) carry the same name and the same link back to this page. Docket never claims to be Googlebot or any other
 search engine's crawler.</p>
 
 <h2>How hard it pushes</h2>
@@ -52,7 +51,7 @@ search engine's crawler.</p>
 <ul>
 <li>At most {lim["concurrency"]} requests at a time, with at least {lim["delay_seconds"]}
 seconds between requests to your site from each of them.</li>
-<li>If your robots.txt sets a <code>Crawl-delay</code>, Docket waits that long instead — up to
+<li>If your robots.txt sets a <code>Crawl-delay</code>, Docket waits that long instead, up to
 {lim["robots_delay_cap_seconds"]} seconds between requests.</li>
 <li>If your server answers 429 or 503, it slows down, and honours a <code>Retry-After</code>
 header. If refusals keep coming, it stops and says so in the report.</li>
@@ -69,8 +68,7 @@ ask it to stay out of your site:</p>
 <pre><code>User-agent: {escape(token)}
 Disallow: /</code></pre>
 
-<p>Two limits, stated plainly rather than discovered. The address the person typed is still
-requested once — they asked for that page by name — but nothing beyond it. And the person running
+<p>Two limits, stated plainly rather than discovered. The address the person typed is still requested once (they asked for that page by name), but nothing beyond it. And the person running
 the audit can switch robots.txt off, which exists for auditing their own staging sites. If that
 matters to you, refuse the user agent at your server as well; that is the only rule a crawler
 cannot choose to ignore.</p>

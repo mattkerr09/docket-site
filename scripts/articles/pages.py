@@ -414,7 +414,7 @@ almost nothing. Neither of those is a judgement about how good the site is; they
 about which door customers come through.</p>
 
 <p>The place this matters most is the middle of the list. Critical findings are critical for
-everyone — a page nobody can index cannot help anybody. It is the twenty MEDIUM findings
+everyone: a page nobody can index cannot help anybody. It is the twenty MEDIUM findings
 underneath where knowing your own situation turns a report into a plan, and where a tool that
 only knows how to sort by severity leaves you to guess.</p>
 
@@ -429,7 +429,7 @@ ago.</p>
 not need rebuilding in a deck.</p>
 
 <h2><a href="/for/developers/">For developers</a></h2>
-<p>The CLI as a deploy gate — exit codes, a working GitHub Actions job, and what it costs to
+<p>The CLI as a deploy gate: exit codes, a working GitHub Actions job, and what it costs to
 run on a macOS runner.</p>
 
 <h2><a href="/for/ecommerce/">For online shops</a></h2>
@@ -438,7 +438,7 @@ pitch: none had broken product markup. What did show up, and where Screaming Fro
 better tool for a catalogue.</p>
 
 <h2><a href="/for/local-business/">For local businesses</a></h2>
-<p>Why you are not in the map pack — LocalBusiness schema, NAP consistency, and the geo
+<p>Why you are not in the map pack: LocalBusiness schema, NAP consistency, and the geo
 signals that decide "near me" results.</p>
 
 <h2><a href="/for/saas/">For SaaS companies</a></h2>
@@ -453,7 +453,7 @@ gets written when there is a measurement behind it rather than to fill a gap in 
 
 <p>That standard is why the ecommerce page took as long as it did: the honest version could
 only be written after auditing real shops, and what came back disagreed with what the page was
-going to say. The SaaS page went the same way — the pitch it was going to make is the one its
+going to say. The SaaS page went the same way. The pitch it was going to make is the one its
 own data contradicts. If the last one never produces a finding worth publishing, it will not
 be written, and this paragraph will say so rather than promising it indefinitely.</p>
 """
@@ -471,7 +471,7 @@ be written, and this paragraph will say so rather than promising it indefinitely
 
 def for_agencies() -> Path:
     body = """
-<p class="lede">The cost that hurts an agency is not the licence — it is the per-seat and
+<p class="lede">The cost that hurts an agency is not the licence. It is the per-seat and
 per-crawl metering that makes you think twice before auditing a prospect. Docket is a one-time
 download that runs on your machine, so a pre-sales audit costs you nothing but the ten minutes
 it takes.</p>
@@ -486,18 +486,17 @@ the pitch. Audit a competitor's site to show the client the gap.</p>
 
 <h2>The report is the deliverable</h2>
 <p>Docket's PDF is designed to be sent, not rebuilt. It opens with a score and a one-sentence
-verdict a client can act on, then a scorecard by area, then the ranked plan — each item with
+verdict a client can act on, then a scorecard by area, then the ranked plan, each item with
 what it costs the client in plain language and the exact markup their developer needs.</p>
 <p>There is also a scope page, and it is there on purpose. It states how many pages were
-crawled, what was measured, and explicitly what was not — Core Web Vitals field values,
+crawled, what was measured, and explicitly what was not: Core Web Vitals field values,
 JavaScript-rendered content, anything inside a tag manager. A report that quietly implies full
 coverage is the one that gets you a difficult question in month three.</p>
 
 <h2>Monitoring turns an audit into a retainer</h2>
 <p>Save a client site and Docket re-audits it on a schedule, then tells you what changed since
 last time: issues that appeared, issues that were resolved, and the score movement per area.
-Regressions surface first, because a site that was clean and broke is the thing you need to
-know about — a check that has been failing for six months is not news.</p>
+Regressions surface first, because a site that was clean and broke is the thing you need to know about. A check that has been failing for six months is not news.</p>
 <p>That changes the conversation from "here is another audit" to "your developer shipped a
 noindex on the pricing page on Tuesday", which is a materially different meeting.</p>
 
@@ -511,12 +510,12 @@ during the working week, not one that needs unattended overnight runs.</p>
 
 <h2>Competitor comparison for pitches</h2>
 <p>Attach competitor URLs to a client site and Docket audits them on the same settings, then
-shows where the client leads and trails area by area — plus the issues <em>every</em>
+shows where the client leads and trails area by area, plus the issues <em>every</em>
 competitor has already fixed. That last list is the most persuasive artefact in the tool,
 because it converts "you should do this" into "everyone you compete with already did".</p>
 
 <h2>Handing the fix list to a developer</h2>
-<p>The friction in agency SEO is rarely finding the problem — it is getting it fixed by someone
+<p>The friction in agency SEO is rarely finding the problem. It is getting it fixed by someone
 who does not report to you. A developer handed "improve your structured data" will deprioritise
 it forever. A developer handed a complete, valid JSON-LD block with the client's own address
 already in the right fields will paste it in the same afternoon.</p>
@@ -525,7 +524,7 @@ export exists: it drops straight into a Jira or Linear import without anyone ret
 
 <h2>What to tell clients it cannot do</h2>
 <p>Say it early rather than being asked. Docket has no per-page backlink or anchor-text data
-and no search volumes — you will still need an index tool for keyword research. Rendering runs
+and no search volumes. You will still need an index tool for keyword research. Rendering runs
 automatically on a small sample of each crawl rather than on every page, and the sample is
 drawn from the shallowest pages once utility pages such as cart, checkout and login are set
 aside, so a very large single-page application still wants a dedicated rendering crawl.</p>
@@ -574,7 +573,7 @@ short enough to sit on every pull request without anyone noticing the build got 
 <h2>Read this first: your runners are probably Linux</h2>
 
 <p>The action installs the Apple silicon build of the macOS app, and the Linux CLI is
-x86_64 — so the action needs a macOS runner. It runs on GitHub Actions'
+x86_64, so the action needs a macOS runner. It runs on GitHub Actions'
 <a href="https://docs.github.com/en/actions/reference/runners/github-hosted-runners"><code>macos-latest</code></a>,
 which is arm64, and it does not run on <code>ubuntu-latest</code> at all. If your pipeline is
 Linux and you are not willing to add a macOS job to it, stop reading and use
@@ -583,8 +582,7 @@ command line interface</a> instead: it is available for Windows, Mac and Ubuntu 
 headless, and for a Linux-only pipeline it is simply the right tool. That is a real advantage
 and there is no version of this page where it is not.</p>
 
-<p>Everything below assumes you are willing to run one macOS job. It costs more than a Linux
-one — see the arithmetic further down — and it is the whole of the catch.</p>
+<p>Everything below assumes you are willing to run one macOS job. It costs more than a Linux one (see the arithmetic further down), and it is the whole of the catch.</p>
 
 <h2>Where the binary actually is</h2>
 
@@ -616,7 +614,7 @@ jobs:
       - name: Audit staging
         run: docket audit https://staging.example.com -n 100 --fail-on critical</code></pre>
 
-<p>No runtime to install, no <code>pip install</code>, no lockfile to resolve — the download is
+<p>No runtime to install, no <code>pip install</code>, no lockfile to resolve. The download is
 {DMG_SIZE} and it is notarised by Apple, so nothing has to be talked past Gatekeeper. Process
 overhead was {F.ci_overhead_seconds()}s of the wall-clock in every run measured; effectively all
 of the time is the crawl itself, at about {F.ci_seconds_per_page()} seconds per page.</p>
@@ -640,8 +638,7 @@ anything printed is:</p>
 and a gate that conflates them gets wrapped in <code>|| true</code> within a month.</p>
 
 <p>A staging URL that does not answer is <code>2</code>, not <code>1</code>: Docket ran
-correctly, the site was not there, and that should stop a deploy. This distinction has teeth —
-pointing Docket at a hostname that does not resolve used to report three critical issues, of
+correctly, the site was not there, and that should stop a deploy. This distinction has teeth: pointing Docket at a hostname that does not resolve used to report three critical issues, of
 which two were invented. A DNS blip would have failed a build with a confident story about a
 robots.txt file that did not exist. If you are wiring <em>any</em> audit tool into CI, run it
 once against a hostname that does not resolve and read what it says. You will learn more in
@@ -658,8 +655,7 @@ loose enough to pass catches nothing. The deploy is only answerable for what it 
 <pre><code>docket diff https://example.com https://staging.example.com --fail-on medium</code></pre>
 
 <p>That audits both on identical settings and fails only on findings that are new or
-<em>worse</em> than production. A check that was MEDIUM before and is HIGH now never appeared or
-disappeared — it got worse, which is exactly what the gate is for, and a naive new-versus-old set
+<em>worse</em> than production. A check that was MEDIUM before and is HIGH now never appeared or disappeared. It got worse, which is exactly what the gate is for, and a naive new-versus-old set
 comparison misses it entirely. Improvements never fail a build, however many there are.</p>
 
 <p>If the two crawls reach very different numbers of pages, Docket refuses to compare them and
@@ -682,29 +678,27 @@ fix attached:</p>
 
 <p><strong>Be clear about what that gets you.</strong> SARIF was designed for static analysis,
 where a result points at a file and a line. Docket's findings are about URLs, and there is no
-general way to know which source file produced a given URL — a template, a CMS record and a
+general way to know which source file produced a given URL: a template, a CMS record and a
 static file all look identical from outside. So the alerts land on the Security tab, correctly
 titled and linked to the affected pages, and they do <em>not</em> annotate the lines of a pull
 request the way a linter's SARIF does. If inline diff annotations are what you are after, this
 will disappoint you.</p>
 
 <p>Two details worth knowing. CRITICAL and HIGH both map to SARIF's <code>error</code>, because
-SARIF has no rank above it — each finding keeps its real severity in <code>properties</code>.
+SARIF has no rank above it. Each finding keeps its real severity in <code>properties</code>.
 And a finding's location is always a page of your own site: a few checks list a third-party URL
 as where you go to fix something, and pointing an alert at Google's settings page would be
 nonsense, so those travel as the rule's <code>helpUri</code> instead.</p>
 
 <h2>Findings in the test-report panel</h2>
 
-<p><code>-f junit</code> writes JUnit XML, which is the report widget every CI system already
-has — GitLab, Jenkins, Azure, Buildkite, CircleCI. The shape is one testcase per check, so the
-panel reads like a test run — {N_CHECKS} tests, four failed — rather than handing
+<p><code>-f junit</code> writes JUnit XML, which is the report widget every CI system already has: GitLab, Jenkins, Azure, Buildkite, CircleCI. The shape is one testcase per check, so the
+panel reads like a test run ( {N_CHECKS} tests, four failed) rather than handing
 you a wall of text.</p>
 
 <p>Two decisions in that shape matter more than the format. A check that ran and found nothing
 is a <strong>pass</strong>; a check that could not run is <strong>skipped</strong>, never
-passed. And if the crawl reached no pages at all, every check is skipped and none is green —
-a passing test report gets read as a guarantee, and an audit that read nothing has not earned
+passed. And if the crawl reached no pages at all, every check is skipped and none is green. A passing test report gets read as a guarantee, and an audit that read nothing has not earned
 one. Failures use the same threshold as the exit code, so a build cannot go green while showing
 red tests.</p>
 
@@ -722,22 +716,21 @@ red tests.</p>
 Silicon macOS, rather than letting you find out inside an <code>hdiutil</code> error. Full
 inputs and exit codes are in
 <a href="https://github.com/mattkerr09/docket-site/blob/main/ACTION.md">ACTION.md</a>. It is
-not published to the GitHub Marketplace — reference it by repository as shown.</p>
+not published to the GitHub Marketplace. Reference it by repository as shown.</p>
 
 <h2>What it costs to run</h2>
 
 <p>macOS minutes are the expensive ones. GitHub
 <a href="https://docs.github.com/en/billing/reference/actions-minute-multipliers">publishes</a>
 {F.gh_macos_per_min()} per minute for a standard macOS runner against {F.gh_linux_per_min()}
-for Linux — about {F.gh_macos_multiple()} times — and billed minutes round up. The measured
+for Linux ( about {F.gh_macos_multiple()} times), and billed minutes round up. The measured
 audit is well under a minute, so a run bills as one: roughly
 <strong>{F.gh_gate_cost_cents()} cents per gate</strong>, or {F.gh_monthly_cost(200)} for two
 hundred pull requests in a month.</p>
 
 <p>Worth saying plainly: that is a recurring cost on a tool sold as a one-time
 {PRICE_STR}, and it is GitHub's, not ours. If it bothers you, gate on merges to main rather
-than every push, or run the job on a Mac you already own — Docket has no
-seat count, so a self-hosted runner is free.</p>
+than every push, or run the job on a Mac you already own. Docket has no seat count, so a self-hosted runner is free.</p>
 
 <h2>Three things not to do</h2>
 
@@ -746,7 +739,7 @@ weighting changes. Gate on severities, which are defined per check and do not dr
 
 <p><strong>Do not run it against production on every push.</strong> Point it at staging. Docket
 backs off on 429 and 503 rather than hammering, but a crawl on every commit is still traffic
-your own analytics has to explain — and if you are not sure your tracking is on every page in the
+your own analytics has to explain, and if you are not sure your tracking is on every page in the
 first place, that is <a href="/learn/marketing-tag-audit/">its own audit</a>.</p>
 
 <p><strong>Do not assume the headers survived the deploy.</strong> Response headers are set by the
@@ -760,11 +753,10 @@ Turn it on for the pages that need it, or on a nightly job rather than a per-PR 
 
 <h2>Where this is thin</h2>
 
-<p>SARIF gets findings onto the Security tab but not onto the pull request diff, for the
-reason above — that one is structural rather than unfinished. `docket diff` is not wired into
+<p>SARIF gets findings onto the Security tab but not onto the pull request diff, for the reason above. That one is structural rather than unfinished. `docket diff` is not wired into
 the action yet, so gating on what a deploy broke means running it as a plain step. Nothing
 is cached between runs, so every job re-downloads {DMG_SIZE}. And the timings above are one
-machine on home broadband on a single day, across {F.ci_sites()} sites — one of them swung
+machine on home broadband on a single day, across {F.ci_sites()} sites. One of them swung
 fifteen seconds between two consecutive runs. Treat them as an order of magnitude, not a
 benchmark, and measure your own.</p>
 
@@ -797,13 +789,13 @@ benchmark, and measure your own.</p>
              f"{F.ci_overhead_seconds()}s, so almost all of it is the crawl. Rendering with "
              f"--render is considerably slower and was not included."),
             ("Can Docket output SARIF for GitHub code scanning?",
-             "Yes — docket audit -f sarif writes SARIF 2.1.0, which you can hand to "
+             "Yes. docket audit -f sarif writes SARIF 2.1.0, which you can hand to "
              "github/codeql-action/upload-sarif. The findings appear as alerts on the "
              "Security tab with their severity and fix. They do not annotate the pull "
              "request diff: SARIF locations are files and lines, and an SEO finding is "
              "about a URL, which cannot generally be mapped back to a source file."),
             ("Does Docket have a GitHub Action?",
-             "Yes — reference mattkerr09/docket-site in a `uses:` step. It installs Docket, "
+             "Yes. Reference mattkerr09/docket-site in a `uses:` step. It installs Docket, "
              "runs the audit and exits with the same codes as the CLI, and it checks the "
              "runner first so a Linux job fails with a sentence you can act on rather than a "
              "confusing disk-image error. It is not on the GitHub Marketplace; reference it "
@@ -812,11 +804,11 @@ benchmark, and measure your own.</p>
              "Yes, with -f junit. One testcase per check, so the panel reads as a test run. A "
              "check that ran and found nothing passes; one that could not run is skipped, "
              "never passed; and if the crawl reached no pages, every check is skipped and "
-             "none is green — a passing test report is read as a guarantee."),
+             "none is green. A passing test report is read as a guarantee."),
             ("Should the build fail on the SEO score?",
              "No. The score is a weighted composite and moves when the weighting changes. "
              "Gate on severities with --fail-on, or better, use docket diff to fail only on "
-             "findings this deploy introduced or made worse — every real site carries standing "
+             "findings this deploy introduced or made worse. Every real site carries standing "
              "findings, so an absolute threshold either fails every build or none of them."),
         ],
     )
@@ -830,7 +822,7 @@ def for_ecommerce() -> Path:
     """
     body = f"""
 <p class="lede">We audited {F.ecom_shops()} large online shops expecting to find broken product
-markup, and did not find it — <strong>zero</strong> had missing or invalid Product schema and
+markup, and did not find it: <strong>zero</strong> had missing or invalid Product schema and
 zero had thin product pages, at a median score of {F.ecom_median_score()}. The problems that
 did show up are narrower and more dangerous than the ones an SEO pitch usually promises, and
 one of them can remove every rich result you have.</p>
@@ -839,7 +831,7 @@ one of them can remove every rich result you have.</p>
 
 <p>{F.ecom_shops()} of {F.ecom_attempted()} shops crawled cleanly on {F.ecom_measured()},
 {F.ecom_page_cap()} pages each, mostly product pages. {F.ecom_unreachable()} refused the
-crawler or timed out and are excluded from every count below — a site that could not be read
+crawler or timed out and are excluded from every count below. A site that could not be read
 cannot fail a check, and counting it as a pass would flatter these numbers.</p>
 
 <div class="wrap-tbl"><table class="cmp"><thead><tr>
@@ -855,21 +847,20 @@ cannot fail a check, and counting it as a pass would flatter these numbers.</p>
 </tbody></table></div>
 
 <p>Scores ran from {F.ecom_worst_score()} to {F.ecom_best_score()}. These are well-resourced
-retailers with teams, so this is the easy case rather than a random sample of the web — but it
-is worth saying plainly that the standard pitch, that your product markup is quietly broken,
+retailers with teams, so this is the easy case rather than a random sample of the web, but it is worth saying plainly that the standard pitch, that your product markup is quietly broken,
 did not survive contact with ten real shops.</p>
 
 <p>One thing we did not count in this sample, and which costs a shop more than a schema warning
 usually does: a product shared into a chat or a feed with no Open Graph tags arrives as a bare link
-with no image. It is not in the table above because we did not measure it here —
-<a href="/how-to/fix-missing-open-graph-tags/">why a shared link shows no image</a> covers what to
+with no image. It is not in the table above because we did not measure it here.
+<a href="/how-to/fix-missing-open-graph-tags/">Why a shared link shows no image</a> covers what to
 check.</p>
 
 <h2>The one that carries real risk</h2>
 
 <p>{F.ecom_rating_unconfirmed()} shops carry <code>AggregateRating</code> markup on pages where
 Docket could not confirm, from the HTML alone, that a rating is actually shown to a visitor.
-That is not an accusation — it is the check declining to make one. Google's
+That is not an accusation. It is the check declining to make one. Google's
 <a href="https://developers.google.com/search/docs/appearance/structured-data/review-snippet">review
 snippet guidance</a> requires the rating to be visible on the page carrying the markup, and the
 consequence of getting it wrong is a manual action that removes every rich result across the
@@ -936,7 +927,7 @@ and is noticed the latest.</p>
             ("Can Docket extract prices from every product page?",
              "No. Screaming Frog does that with custom extraction and it is the right tool "
              "for auditing a catalogue against a feed. Docket deliberately does not compete "
-             "there — it also has a page ceiling per crawl, which matters for a large "
+             "there. It also has a page ceiling per crawl, which matters for a large "
              "catalogue."),
         ],
     )
@@ -954,12 +945,12 @@ reason a business is missing from it is a schema mistake nobody has ever looked 
 <p>The single most common error we see is a business that publishes a complete, correct address
 in structured data while declaring itself a generic <code>Organization</code>. Local pack
 results, map placement and the open/closed label are driven by <code>LocalBusiness</code> and
-its subtypes — <code>Plumber</code>, <code>Dentist</code>, <code>Restaurant</code>,
+its subtypes: <code>Plumber</code>, <code>Dentist</code>, <code>Restaurant</code>,
 <code>Attorney</code>. A plain <code>Organization</code> does not qualify for any of them.</p>
 <p>It is a one-word fix and we have found it on national franchises.</p>
 
 <h3>2. NAP consistency</h3>
-<p>Name, address and phone have to be byte-identical everywhere they appear — on your site and
+<p>Name, address and phone have to be byte-identical everywhere they appear: on your site and
 on your Google Business Profile. "St" on one and "Street" on the other, or two variations of
 the same phone number, weakens the match between your website and your listing. Google is
 trying to decide whether these two things describe one business, and every inconsistency makes
@@ -971,8 +962,7 @@ near me". If no page title on your site names the place you serve, you are not c
 those searches at all. The fix is unglamorous: put the city in the titles of your homepage and
 main service pages.</p>
 <p>Docket only gives this advice to businesses that actually compete locally. A software company
-with a head office publishes an address too, and telling it to put a city in its titles would
-make them worse — so the check distinguishes a local <em>service</em> business from a company
+with a head office publishes an address too, and telling it to put a city in its titles would make them worse, so the check distinguishes a local <em>service</em> business from a company
 that merely has premises.</p>
 
 <h3>4. Reviews, and marking them up</h3>
@@ -998,7 +988,7 @@ address, opening hours and a <code>sameAs</code> link to your Google Business Pr
 <li>Does any page title name your city?</li>
 </ol>
 <p>Docket checks all of these and tells you which of your business's specific signals are
-missing. <a href="/download/">Download it</a> and run one audit — it takes a few minutes.</p>
+missing. <a href="/download/">Download it</a> and run one audit. It takes a few minutes.</p>
 """
     return render(
         cat="for", slug="local-business",
@@ -1091,7 +1081,7 @@ read. Named so you can judge the sample: {saas_hosts}.</p>
 <p>{F.category_mentions_ai('saas')} of the {F.category_n('saas')} name an AI crawler at all,
 {F.category_sitemap('saas')} declare a sitemap, and four publish Content-Signal preferences:
 {signal_hosts}. These are large companies with people whose job this is, so it is the easy
-case rather than a random sample of SaaS — a seed-stage site that inherited its
+case rather than a random sample of SaaS. A seed-stage site that inherited its
 <code>robots.txt</code> from a boilerplate repo is a different risk, and that is the site
 worth checking. But the pitch that everyone is pulling up the drawbridge, or that you are shut
 out by accident, did not survive contact with these {F.category_n('saas')}.</p>
@@ -1099,7 +1089,7 @@ out by accident, did not survive contact with these {F.category_n('saas')}.</p>
 <p>The related failure is a rule aimed at a crawler retired years ago:
 {F.directives_dead_pct()}% of the sites writing AI rules at all across the Tranco top 10,000
 carry one, <code>anthropic-ai</code> alone sitting on {F.token_sites('anthropic-ai')} of them.
-Docket reads both in the same pass as everything else — one check, not a strategy.</p>
+Docket reads both in the same pass as everything else: one check, not a strategy.</p>
 
 <h2>What actually costs you the citation</h2>
 
@@ -1113,8 +1103,8 @@ moved since, the argument below moves with it.</p>
 
 <p>What Docket shows you is your own side of that. It fetched notion.so twice, once as a
 crawler and once through WebKit: the served HTML held 0 characters of text and 0 links, the
-rendered page held 2,068 characters and 106 links —
-<a href="/learn/javascript-rendering/">the full measurement is here</a>. Notion is not a badly
+rendered page held 2,068 characters and 106 links.
+<a href="/learn/javascript-rendering/">The full measurement is here</a>. Notion is not a badly
 built site. It is a normally built one, and to a crawler that does not execute code it is a
 blank sheet.</p>
 
@@ -1127,8 +1117,8 @@ whoever owns the front end.</p>
 
 <p>A caveat, because the alternative is inventing a statistic: we have not audited a
 representative sample of SaaS sites and cannot tell you how often each of these fires. What
-follows is what the SaaS <em>shape</em> produces — a marketing site, a docs subdomain, a
-changelog and a pricing page — roughly in the order the ranking puts them.</p>
+follows is what the SaaS <em>shape</em> produces (a marketing site, a docs subdomain, a
+changelog and a pricing page), roughly in the order the ranking puts them.</p>
 
 <div class="wrap-tbl"><table class="cmp"><thead><tr>
 <th>#</th><th>What turns up</th><th>Why it bites here</th></tr></thead><tbody>
@@ -1139,8 +1129,7 @@ render</td></tr>
 <td>No links in the HTML means no discovery path, so everything below the nav goes
 undiscovered</td></tr>
 <tr><td>3</td><td>A pricing page with no structured data</td>
-<td>Plan names and prices drawn client-side are invisible twice over — to the crawler, and to
-any rich result</td></tr>
+<td>Plan names and prices drawn client-side are invisible twice over: to the crawler, and to any rich result</td></tr>
 <tr><td>4</td><td>Docs and marketing aimed at one query</td>
 <td>Two hosts, two titles, one intent. Google picks, and it is usually not the page with the
 trial button</td></tr>
@@ -1158,8 +1147,7 @@ part that gets a set flagged</td></tr>
 <code>sameAs</code> is the cheapest item on this list to fix</td></tr>
 </tbody></table></div>
 
-<p>Each finding arrives with the change rather than the category — the JSON-LD block, the tag,
-the header — because a ranked plan you still have to translate into a ticket is not a plan.
+<p>Each finding arrives with the change rather than the category (the JSON-LD block, the tag, the header), because a ranked plan you still have to translate into a ticket is not a plan.
 The CSV export drops into Linear or Jira without anyone retyping it.</p>
 
 <h2>Two hosts, one query</h2>
@@ -1172,12 +1160,10 @@ to choose which one a search engine shows.</p>
 <p>Docket audits one host per crawl, so this is two runs and a comparison you make yourself.
 The duplicate check works inside a single crawl and not across two, and saying otherwise would
 describe a feature that does not exist. What you get is every title and description in one
-place per host, which is enough to see the collisions in a few minutes — and the docs run
-usually turns up auto-generated API pages nobody meant to index.</p>
+place per host, which is enough to see the collisions in a few minutes, and the docs run usually turns up auto-generated API pages nobody meant to index.</p>
 
 <p>If either host serves more than one language, the declaration that catches people out is not
-<code>hreflang</code> but the <code>html lang</code> attribute beside it — they answer different
-questions and only one of them is usually wrong.
+<code>hreflang</code> but the <code>html lang</code> attribute beside it. They answer different questions and only one of them is usually wrong.
 <a href="/how-to/fix-lang-attribute-mismatch/">Which one you have</a>.</p>
 
 <h2>What this will not do</h2>
@@ -1187,14 +1173,13 @@ questions and only one of them is usually wrong.
 behind Docket and there will not be one.</li>
 <li><strong>It does not measure Core Web Vitals.</strong> LCP, INP and CLS are field metrics
 from real users on real connections, and one machine on a fast desk cannot produce them.
-Docket flags the patterns that cause them — render-blocking resources, layout-shift risk, page
-weight, slow server response — and you confirm the numbers in Search Console. With your own
+Docket flags the patterns that cause them (render-blocking resources, layout-shift risk, page weight, slow server response), and you confirm the numbers in Search Console. With your own
 Google API key it will read Chrome UX Report data, which is Google measuring, not us.</li>
 <li><strong>It does not see behind your login.</strong> The product is not audited. The
 marketing site, docs, blog and pricing page are.</li>
 <li><strong>It does not run prompts against models,</strong> so it cannot tell you whether
 ChatGPT named you this morning. <a href="/vs/">Profound, Otterly and Peec</a> do that.</li>
-<li><strong>Rendering is a sample</strong> — ten of the shallowest pages by default, which
+<li><strong>Rendering is a sample</strong>: ten of the shallowest pages by default, which
 answers "is this client-rendered and what is it costing me" without turning a five-minute
 audit into an hour. It is not a full rendered crawl of a large application.</li>
 <li><strong>It is macOS on {MAC_HW}.</strong> No Windows, no Linux desktop, no web
@@ -1209,8 +1194,7 @@ version. The CLI inside the bundle runs on <a href="/for/developers/">macOS CI r
 index of the whole web and Docket has none. Buy the subscription; this does not replace
 it.</p>
 
-<p><strong>You need a multi-seat dashboard.</strong> There is no server, no account and no
-shared workspace — audit history sits in <code>~/.docket/</code> as plain JSON on one Mac.
+<p><strong>You need a multi-seat dashboard.</strong> There is no server, no account and no shared workspace. Audit history sits in <code>~/.docket/</code> as plain JSON on one Mac.
 That is the point when a founder is auditing their own site, and a genuine problem for a
 growth team of six who want one live view. Exports travel; state does not.</p>
 
@@ -1225,15 +1209,14 @@ years.</p>
 
 <h2>Why the price is a number rather than a plan</h2>
 
-<p>{PRICE_STR}, once, from v1.0 — and {FREE_CLAUSE}. No seats, no
+<p>{PRICE_STR}, once, from v1.0, and {FREE_CLAUSE}. No seats, no
 crawl credits, no renewal date. You price a SaaS product yourself, so you know what a
 recurring line item does to a buying decision at a company that already has eleven of
 them.</p>
 
 <p>The rest follows from running on your own machine: no telemetry, no account, and
 results that stay in <code>~/.docket/</code> as JSON you can read with <code>cat</code>. Save
-the site and scheduled re-audits report what changed, regressions first — which is how you
-learn a <code>noindex</code> reached production on Tuesday rather than from a traffic graph
+the site and scheduled re-audits report what changed, regressions first, which is how you learn a <code>noindex</code> reached production on Tuesday rather than from a traffic graph
 three weeks later. The schedule lives inside the app rather than in launchd, so it runs while
 Docket is open and picks up anything overdue the next time you launch it; if you need the crawl
 to happen whether or not anyone is at the machine, that is what a hosted crawler is for.</p>

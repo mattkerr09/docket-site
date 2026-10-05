@@ -3,8 +3,8 @@
 
 ⚠️ WHY THIS PAGE EXISTS AND WHY IT IS NOT THE CDN HOW-TO. `/how-to/fix-ai-crawlers-blocked-by-your-cdn/`
 answers "mine is returning 403, how do I fix it". This answers a different
-question with a definite answer — "is it on by default, for which crawler, on
-which pages" — and the two link to each other rather than repeating.
+question with a definite answer ("is it on by default, for which crawler, on
+which pages"), and the two link to each other rather than repeating.
 
 **Page one, checked 2026-09-15 before writing:** six small and vendor blogs, no
 Cloudflare documentation, so the query passes the winnability rule. Every one of
@@ -57,7 +57,7 @@ page.</strong> Cloudflare asks every new domain at sign-up whether to allow AI c
 {DEFAULTS_CHANGED_HUMAN} new domains onboard with bots classified <em>Training</em> or <em>Agent</em>
 blocked on pages that display ads, while <em>Search</em> stays allowed.</p>
 <p><strong>GPTBot is the training crawler</strong>, so on a new ad-supported Cloudflare domain it is
-blocked by default. <strong>OAI-SearchBot is not</strong> — and that is the one that decides whether
+blocked by default. <strong>OAI-SearchBot is not</strong>, and that is the one that decides whether
 you can be cited.</p>
 <p><strong>And the setting is not the whole answer.</strong> Your robots.txt can say yes while your
 edge says no, and nothing in the file reveals it.</p>
@@ -89,10 +89,10 @@ by default" matters mostly because of what the answer implies about the other tw
 <p>Read on {CHECKED_HUMAN}, from the primary sources rather than from the summaries:</p>
 
 <ul>
-<li><strong>{ASKED_FROM_HUMAN}</strong> — Cloudflare became the first infrastructure provider to block AI
+<li><strong>{ASKED_FROM_HUMAN}</strong>. Cloudflare became the first infrastructure provider to block AI
 crawlers by default where there is no permission or compensation, and <strong>every new domain is
 asked at sign-up</strong> whether to allow them. The choice is presented; it is not silently made.</li>
-<li><strong>{DEFAULTS_CHANGED_HUMAN}</strong> — new domains onboarding get updated defaults: bots classified
+<li><strong>{DEFAULTS_CHANGED_HUMAN}</strong>. New domains onboarding get updated defaults: bots classified
 <strong>Training or Agent are blocked on pages that display ads</strong>, and <strong>Search remains
 allowed</strong>.</li>
 </ul>
@@ -104,25 +104,25 @@ its owner left it, which is usually wherever the sign-up prompt was answered.</p
 
 <h2>The measurement: what sites actually do, and the mistake in it</h2>
 
-<p>Docket surveyed the <strong>Tranco top {surveyed:,}</strong> in August 2026 — reading robots.txt,
+<p>Docket surveyed the <strong>Tranco top {surveyed:,}</strong> in August 2026. Reading robots.txt,
 and separately asking each server. Two findings bear directly on this question.</p>
 
 <p><strong>First, the file is not the answer. {edge_denied:,} hosts ({edge_pct}%) refused a
-self-identifying bot outright</strong> — 401, 403, 406, 429 or 503 — before any robots.txt rule could
+self-identifying bot outright</strong> (401, 403, 406, 429 or 503) before any robots.txt rule could
 apply. Of the hosts whose robots.txt explicitly permitted a fetch of <code>/llms.txt</code>,
 <strong>{llms_edge_pct}% were then denied it by the server anyway</strong>. A site can allow every AI
 crawler in the file and still be invisible to all of them.</p>
 
 <p><strong>Second, and this is the part that should change what you do:</strong> of the
 <strong>{search_blocked}</strong> sites blocking <code>OAI-SearchBot</code>,
-<strong>{both}</strong> also block <code>GPTBot</code> — <strong>{overlap}%</strong>. Only
+<strong>{both}</strong> also block <code>GPTBot</code>: <strong>{overlap}%</strong>. Only
 <strong>{search_only}</strong> sites in the whole survey blocked search without also blocking
 training.</p>
 
 <p>That overlap is the signature of a blanket decision rather than a considered one. Almost nobody
 sat down and chose to be absent from ChatGPT's search results while allowing training; they turned
 "AI crawlers" off as one switch, and search went with it. A default that distinguishes Training from
-Search — which is what Cloudflare now ships — is an improvement precisely because the blanket version
+Search (which is what Cloudflare now ships) is an improvement precisely because the blanket version
 is what people were living with.</p>
 
 <h2>How to find out what your own site does</h2>
@@ -131,10 +131,10 @@ is what people were living with.</p>
 ordinary request. Two requests, same machine, seconds apart:</p>
 
 <ul>
-<li><strong>Browser 200, crawler 403</strong> — your edge is refusing that crawler. This is the finding.</li>
-<li><strong>Both 403</strong> — your protection is refusing the <em>tool</em>, not the crawler, and the
+<li><strong>Browser 200, crawler 403</strong>. Your edge is refusing that crawler. This is the finding.</li>
+<li><strong>Both 403</strong>. Your protection is refusing the <em>tool</em>, not the crawler, and the
 answer has to come from your CDN's logs instead.</li>
-<li><strong>Both 200</strong> — nothing is blocking on the user-agent string. Note the limit honestly:
+<li><strong>Both 200</strong>. Nothing is blocking on the user-agent string. Note the limit honestly:
 Cloudflare verifies bot identity by IP as well, so this does not prove a verified crawler gets through.</li>
 </ul>
 
@@ -157,8 +157,8 @@ without you, and AI crawlers are newer than most of those lists.</li>
 
 <p>If your crawlers are already getting a 403 while robots.txt allows them, the diagnosis and fix are
 on <a href="/how-to/fix-ai-crawlers-blocked-by-your-cdn/">when your CDN blocks AI crawlers your
-robots.txt allows</a>. The directive side — which tokens are live, which are retired and which do
-nothing — is <a href="/how-to/fix-ai-crawler-access/">AI crawler access</a>. A crawler you let in still has
+robots.txt allows</a>. The directive side (which tokens are live, which are retired and which do
+nothing) is <a href="/how-to/fix-ai-crawler-access/">AI crawler access</a>. A crawler you let in still has
 to be able to read the page, which is <a href="/how-to/javascript-seo-audit/">the JavaScript SEO
 audit</a>.</p>
 
@@ -188,14 +188,14 @@ audit</a>.</p>
         faq=[
             ("Does Cloudflare block GPTBot by default?",
              f"On a new domain onboarding from {DEFAULTS_CHANGED_HUMAN}, bots classified Training or Agent "
-             "are blocked on pages that display ads, and GPTBot is the training crawler — so yes, "
+             "are blocked on pages that display ads, and GPTBot is the training crawler, so yes, "
              "there. Search-classified bots such as OAI-SearchBot stay allowed. Every new domain "
              f"has also been asked the question at sign-up since {ASKED_FROM_HUMAN}, so an existing domain "
              "is wherever its owner left that prompt."),
             ("Does blocking GPTBot stop me appearing in ChatGPT?",
              "No. GPTBot is the training crawler. OAI-SearchBot builds the search index and "
              "ChatGPT-User fetches pages a user asks about. Blocking GPTBot alone keeps your "
-             "content out of training while leaving you citable — that is a coherent position, and "
+             "content out of training while leaving you citable: that is a coherent position, and "
              "a single 'block AI' toggle does not express it."),
             ("My robots.txt allows GPTBot. Does that settle it?",
              f"No. In Docket's August 2026 survey of the Tranco top {surveyed:,}, {edge_pct}% of hosts refused "

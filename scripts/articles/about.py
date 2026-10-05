@@ -36,7 +36,7 @@ def about() -> Path:
 <p class="lede">Docket is built by Matt Kerr, one person, in {SELLER_CITY}, and sold by his
 company, {SELLER}. It is a Mac app that
 audits a site's SEO, copy and branding against {N_CHECKS} checks across {N_LANES} lanes,
-runs the crawl on your own machine, and costs {PRICE_STR} once — {FREE_CLAUSE}.</p>
+runs the crawl on your own machine, and costs {PRICE_STR} once, and {FREE_CLAUSE}.</p>
 
 <p>There is no team page because there is no team, and no support desk because there is
 one person reading <a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a> and
@@ -90,8 +90,7 @@ spent years and a great deal of money building those, and Docket has no answer t
 you sort them; Docket is built to read a site closely, not to survey one at that scale.</li>
 <li><strong>The app's source is not public.</strong> The website and its datasets are; the
 application is not. If your policy requires reading the code, Docket will not pass it.</li>
-<li><strong>It is version {RELEASE}.</strong> There are things it should connect to and does
-not yet — Search Console for your own impressions is the biggest.</li>
+<li><strong>It is version {RELEASE}.</strong> There are things it should connect to and does not yet: Search Console for your own impressions is the biggest.</li>
 </ul>
 
 <h2>How you can check any of this</h2>
@@ -109,7 +108,7 @@ installing will survive both; a surprising number will not.</p>
 
 <h2>What to do if a finding is wrong</h2>
 
-<p>Tell us, with the URL. Docket has shipped false positives — the byte-cap check once
+<p>Tell us, with the URL. Docket has shipped false positives. The byte-cap check once
 reported a major news site's title tag as past Googlebot's cutoff, when what it had found
 was an inline SVG icon label reading "Close icon" and the real title was fine. That is
 written up in full on <a href="/learn/googlebot-2mb-limit/">the page about the check</a>,
@@ -138,8 +137,8 @@ authors do.</p>
              "No. The crawl runs on your Mac and results are stored in ~/.docket/ as plain "
              "JSON. Two optional connectors do reach outside: the knowledge refresh fetches "
              "one public file from docketseo.app and tells it nothing about what you are "
-             "auditing, and PageSpeed Insights — off unless you add your own Google API "
-             "key — necessarily sends Google the URL you asked it to measure."),
+             "auditing, and PageSpeed Insights (off unless you add your own Google API "
+             "key) necessarily sends Google the URL you asked it to measure."),
             ("What can Docket not do?",
              f"It is macOS only ({MAC_HW}), it does not track keyword rankings or "
              "backlinks, and it is not built for crawling hundreds of thousands of URLs. "
@@ -150,8 +149,7 @@ authors do.</p>
 
 def contact() -> Path:
     body = f"""
-<p class="lede">Email <a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a> for anything
-private &mdash; your licence, a refund, a billing question. For a finding you think is wrong, a
+<p class="lede">Email <a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a> for anything private: your licence, a refund, a billing question. For a finding you think is wrong, a
 bug or a feature, use the public issue tracker,
 <a href="{ISSUES}">github.com/mattkerr09/docket-site/issues</a>: it is read by the person who
 writes the code, and the answer helps whoever asks next.</p>
@@ -167,12 +165,11 @@ site first advertised could not receive mail.</p>
 <p>Delivering mail to a domain means looking up its MX record. When that address was
 advertised, <code>docketseo.app</code> had none.
 <a href="https://www.rfc-editor.org/rfc/rfc5321#section-5.1">RFC 5321 §5.1</a> says a
-sender that finds no MX record falls back to the domain's address record — which for this
-site is GitHub Pages, whose servers do not answer on port 25. So every message went out,
+sender that finds no MX record falls back to the domain's address record, which for this site is GitHub Pages, whose servers do not answer on port 25. So every message went out,
 found nowhere to go, and bounced.</p>
 
 <p><strong>That part has since changed, and this page will state only the half of it that can
-be proved.</strong> <code>docketseo.app</code> now has MX records — forwarding, at
+be proved.</strong> <code>docketseo.app</code> now has MX records: forwarding, at
 <code>fwd1.porkbun.com</code> and <code>fwd2.porkbun.com</code>. What has <em>not</em> been
 established is whether a message to an address on this domain reaches a mailbox anyone reads:
 an MX record is necessary for delivery, not sufficient, and forwarding is configured per
@@ -191,8 +188,7 @@ now a check we run on our own build, and it will be a check in the app.</p>
 <td>Email <a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a>, or reply to your receipt.
 These carry an order reference and a name, so never a public issue</td></tr>
 <tr><td>Report a wrong or confusing finding</td>
-<td><a href="{ISSUES}/new">Open an issue</a> with the URL you audited and the check ID —
-it is printed next to every finding, like <code>index.byte_cap</code></td></tr>
+<td><a href="{ISSUES}/new">Open an issue</a> with the URL you audited and the check ID. It is printed next to every finding, like <code>index.byte_cap</code></td></tr>
 <tr><td>Report a crash or a bug</td>
 <td><a href="{ISSUES}/new">Open an issue</a> with your macOS version and what you were
 doing</td></tr>
@@ -201,7 +197,7 @@ doing</td></tr>
 <a href="{ISSUES}/new">ask</a></td></tr>
 <tr><td>Request a feature</td>
 <td><a href="{ISSUES}/new">Open an issue</a>. The known gaps are listed on
-<a href="/about/">the about page</a> — no need to file those again</td></tr>
+<a href="/about/">the about page</a>. No need to file those again</td></tr>
 <tr><td>Report a security problem</td>
 <td>Please do not open a public issue. Use GitHub's
 <a href="{REPO}/security/advisories/new">private advisory form</a></td></tr>
@@ -213,8 +209,7 @@ doing</td></tr>
 between a report that can be acted on and one that cannot is usually one line:</p>
 
 <ul>
-<li><strong>The URL you audited.</strong> Not a description of it — the address, so the same
-crawl can be run.</li>
+<li><strong>The URL you audited.</strong> Not a description of it: the address, so the same crawl can be run.</li>
 <li><strong>The check ID.</strong> Every finding carries one. It names the exact function
 that produced the output, which turns a search into a lookup.</li>
 <li><strong>What you expected instead, and why.</strong> If a specification or a vendor's own
@@ -224,7 +219,7 @@ cite their sources for the same reason.</li>
 
 <h2>What to expect back</h2>
 
-<p>One person reads the inbox and the tracker, so there is no response-time promise here — an invented one
+<p>One person reads the inbox and the tracker, so there is no response-time promise here. An invented one
 would be the same category of thing as the address that bounced. What is promised is that a
 report naming a specific URL and check ID gets a specific answer, and that if Docket is wrong
 the correction gets written down where the mistake was made.</p>
@@ -248,8 +243,8 @@ the correction gets written down where the mistake was made.</p>
              "is the difference between a report that can be fixed and one that cannot."),
             ("Is there a support email address?",
              f"Yes: {SUPPORT_EMAIL}, for your licence, a refund or a payment. The site "
-             "once listed hello@docketseo.app, which could not receive mail — the domain "
-             "had no MX record then — so that address is gone for good. Bugs and wrong "
+             "once listed hello@docketseo.app, which could not receive mail (the domain "
+             "had no MX record then), so that address is gone for good. Bugs and wrong "
              "findings are better on the public issue tracker, where the answer helps "
              "the next person too."),
             ("How do I report a security issue?",

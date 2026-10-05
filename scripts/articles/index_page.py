@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The Docket Index — the data moat.
+"""The Docket Index: the data moat.
 
 Every figure comes from `data/index-*.json`, produced by
 `scripts/collect_index.py`, which ships alongside its input list so anyone can
@@ -112,7 +112,7 @@ def build() -> Path:
     body = f"""
 <p class="lede">We fetched the robots.txt of {s['attempted']} well-known websites and parsed
 each one with Docket's own crawler-rules engine. <strong>{cit_pct}% of them block at least one
-AI <em>search</em> crawler</strong> — the crawlers that decide whether a site can appear in
+AI <em>search</em> crawler</strong>: the crawlers that decide whether a site can appear in
 ChatGPT, Perplexity or Claude at all. Google's AI Overviews are deliberately not in that list:
 they follow your Googlebot rules, not Google-Extended, and treating the two as the same thing
 was our own largest source of false positives until August 2026. Most of these sites did not
@@ -133,7 +133,7 @@ material. Blocking the second removes you from the answer.</p>
 
 <p>Of the {any_ai} sites in our sample that block any AI crawler, only <strong>{len(training_only)}
 blocked training crawlers while leaving the search crawlers alone</strong>. The other
-{hit_citation} — <strong>{conflated_pct}%</strong> — hit a citation crawler too.</p>
+{hit_citation} (<strong>{conflated_pct}%</strong>) hit a citation crawler too.</p>
 
 <div class="callout">
 <div class="callout-title">This does not generalise, and we checked</div>
@@ -141,7 +141,7 @@ blocked training crawlers while leaving the search crawlers alone</strong>. The 
 the robots.txt of the <a href="/index/ai-directives/">Tranco top 10,000</a> and found the
 opposite: of {F.directives_blocks_any():,} sites there blocking any AI crawler,
 {F.directives_training_only_pct()}% blocked training crawlers and left the search crawlers
-alone — the informed split, and the majority.</p>
+alone: the informed split, and the majority.</p>
 <p>Both numbers are real. The difference between them is the finding: large sites with someone
 responsible for the robots.txt mostly get this right, and the conflation risk is concentrated
 in publishers and in whoever copied a block list from one.</p>
@@ -149,7 +149,7 @@ in publishers and in whoever copied a block list from one.</p>
 
 <h2>Perplexity is blocked {gap}× more often than OpenAI's search crawler</h2>
 <p><code>PerplexityBot</code> was disallowed by {perplexity} sites. <code>OAI-SearchBot</code>
-was disallowed by {oai}. That gap is not a rounding artefact — {len(targeted)} sites block
+was disallowed by {oai}. That gap is not a rounding artefact: {len(targeted)} sites block
 Perplexity specifically while allowing OpenAI's search crawler through, which is a deliberate
 editorial position rather than a misconfiguration.</p>
 <p>Among them: {', '.join(targeted[:8])}{'…' if len(targeted) > 8 else ''}.</p>
@@ -166,8 +166,8 @@ Almost nobody else has.</p>
 <thead><tr><th>Category</th><th>Sites</th><th>Blocking AI search</th><th>%</th></tr></thead>
 <tbody>{cat_rows}</tbody></table></div>
 
-<p>For a business that competes for customers rather than readers — a shop, a SaaS product, a
-local service — the practical read is that the field is wide open. Your competitors are almost
+<p>For a business that competes for customers rather than readers (a shop, a SaaS product, a
+local service) the practical read is that the field is wide open. Your competitors are almost
 certainly not blocking these crawlers, so being visible to them is not an advantage you can
 win by default. It is table stakes you can lose by accident.</p>
 
@@ -175,20 +175,20 @@ win by default. It is table stakes you can lose by accident.</p>
 
 <h3>{s['uses_content_signal']} sites use Content-signal</h3>
 <p><code>Content-signal</code> is a newer, Cloudflare-backed convention for stating intent
-declaratively — Stack Overflow's reads
+declaratively. Stack Overflow's reads
 <code>Content-signal: search=no, ai-train=no</code>. No crawler is obliged to honour it. It is
 worth watching because it separates <em>what you permit</em> from <em>which user-agent
 happens to be asking</em>, which is exactly the distinction robots.txt handles badly.</p>
 
 <h3>{s['blocking_a_search_engine']} sites block a conventional search engine</h3>
-<p>Not AI crawlers — Googlebot, Bingbot, DuckDuckBot or Applebot. In the cases we looked at
+<p>Not AI crawlers: Googlebot, Bingbot, DuckDuckBot or Applebot. In the cases we looked at
 this is intentional: Reddit's robots.txt is a blanket <code>Disallow: /</code> with search
 access negotiated commercially instead. It is a reminder that robots.txt describes policy,
 not always practice.</p>
 
 <h2>Method</h2>
 <p>One <code>GET</code> to <code>https://&lt;host&gt;/robots.txt</code> per site, serialised
-with a delay — a smaller footprint than one person visiting the homepage. Rules were parsed
+with a delay: a smaller footprint than one person visiting the homepage. Rules were parsed
 with Docket's <a href="https://www.rfc-editor.org/rfc/rfc9309">RFC 9309</a> implementation, which does longest-match resolution, <code>*</code>
 wildcards and <code>$</code> anchors. A site counts as blocking a crawler when that crawler
 is disallowed from <code>/</code>.</p>
@@ -197,7 +197,7 @@ is disallowed from <code>/</code>.</p>
 code. Stack Overflow serves a genuine, restrictive robots.txt with an HTTP 418; a status-code
 test would have miscounted it. Sites returning no <code>User-agent:</code> directive at all
 ({s['no_robots_txt']} of them) are excluded from every percentage, because a site with no
-robots.txt has no policy — counting it as "allows everything" would overstate how open the
+robots.txt has no policy. Counting it as "allows everything" would overstate how open the
 web is.</p>
 
 <h2>Limits of this sample</h2>
@@ -212,7 +212,7 @@ excluded.</li>
 crawlers to do. Well-behaved crawlers comply; compliance is not measured here and we make no
 claim about it.</li>
 <li><strong>This measures access, not citation.</strong> Being crawlable is necessary for
-appearing in AI answers. It is not sufficient — rendering, structure and entity clarity all
+appearing in AI answers. It is not sufficient: rendering, structure and entity clarity all
 matter, and none of them are in this dataset.</li>
 <li><strong>It is a snapshot.</strong> Collected {d['collected'][:10]}. robots.txt files
 change; this one will be re-run and the figures will move.</li>
@@ -220,7 +220,7 @@ change; this one will be re-run and the figures will move.</li>
 
 <h2>Get the data</h2>
 <p>The full dataset, the collection script and the exact site list are in the repository.
-Re-run it yourself and you should get the same answer — that is the point of publishing the
+Re-run it yourself and you should get the same answer. That is the point of publishing the
 method alongside the numbers.</p>
 <p><a class="btn-ghost" href="/data/index-2026-08.json">Download the dataset (JSON)</a></p>
 
@@ -247,7 +247,7 @@ practical consequence is for each one. <a href="/download/">Download Docket →<
         ("Should I block AI crawlers?",
          "It depends on whether your content is the product. Publishers who sell access to "
          "writing have a clear reason to block training crawlers. A business that wants to be "
-         "recommended to customers generally does not — blocking the search crawlers removes "
+         "recommended to customers generally does not. Blocking the search crawlers removes "
          "you from the answers where those recommendations happen."),
         ("Does blocking Google-Extended affect my Google rankings or AI Overviews?",
          "Neither. Google-Extended controls Gemini model training and grounding in Gemini "

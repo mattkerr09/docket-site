@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The dead-directive measurement — Docket's second first-party dataset.
+"""The dead-directive measurement. Docket's second first-party dataset.
 
 Every number is read out of site/data/ai-directives-2026-08.json, which is
 built from the raw survey by scripts/build_directives.py and ships with the
@@ -46,7 +46,7 @@ def _retired_table(d: dict) -> str:
 _UNMATCHABLE_ROWS = [
     (("grokbot", "xai-grok", "grok-deepsearch", "grok"),
      "Four spellings for xAI, which publishes no crawler documentation we could "
-     "reach — <code>x.ai/robots</code> returns 403 to an identified bot"),
+     "reach: <code>x.ai/robots</code> returns 403 to an identified bot"),
     (("copilot", "copilotnative", "copilotsapphire"),
      "Three spellings for Microsoft's assistant, which crawls as "
      "<code>Bingbot</code>"),
@@ -149,7 +149,7 @@ def dead_directives() -> Path:
 crawler are addressing something that will never read it. We read the robots.txt of the
 Tranco top 10,000 on {collected}, parsed all {n:,} that returned one with Docket's own parser,
 and found that of the <strong>{ai:,} sites naming at least one AI user-agent</strong>,
-<strong>{dead:,} — {pct_dead}% — name a token that no crawler uses.</strong></p>
+<strong>{dead:,} ({pct_dead}%) name a token that no crawler uses.</strong></p>
 
 <p>These are not sites that decided to allow AI crawlers. They are sites that decided to
 block them, wrote the rule, and got no rule. The file parses, the syntax is valid, nothing
@@ -159,7 +159,7 @@ own.</p>
 <h2>Three ways a directive dies</h2>
 
 <p><strong>Retired.</strong> The vendor documented the token once and has since replaced it.
-The old name is inert — the crawler now identifies itself as something else, so a
+The old name is inert. The crawler now identifies itself as something else, so a
 <code>Disallow</code> under the old heading applies to nobody.</p>
 
 {_retired_table(d)}
@@ -172,7 +172,7 @@ sites in this sample. Every one of those sites believes it has made a decision a
 Anthropic that it has not made.</p>
 
 <p><code>Google-NotebookLM</code> is the live one. Google renamed it to
-<code>Google-GeminiNotebook</code> and says the old token is supported until August 2026 —
+<code>Google-GeminiNotebook</code> and says the old token is supported until August 2026:
 this month. {d['retired_tokens']['google-notebooklm']['count']} sites in our sample name the
 old token, including amazon.com, pinterest.com and tiktok.com.
 <strong>Zero name the new one.</strong></p>
@@ -180,7 +180,7 @@ old token, including amazon.com, pinterest.com and tiktok.com.
 <p><strong>Undocumented.</strong> The token appears on no vendor page and in no community
 list. Someone wrote the company name, the product name, or a plausible-looking guess. We
 report these separately and Docket's own check leaves them alone, because "nobody documents
-it" is weaker evidence than "the vendor replaced it" — a token could be real and simply
+it" is weaker evidence than "the vendor replaced it": a token could be real and simply
 undocumented where we looked.</p>
 
 {_unmatchable_table(d)}
@@ -191,7 +191,7 @@ backwards, and the correction is more useful than the section it replaced.</p>
 <p><a href="https://www.rfc-editor.org/rfc/rfc9309">RFC 9309</a> is exact about what a crawler name may contain. Section 2.2.1: <em>"The product
 token MUST contain only uppercase and lowercase letters ('a-z' and 'A-Z'), underscores ('_'),
 and hyphens ('-')."</em> No digits, no dots, no spaces. So we wrote a rule that flagged any
-token carrying one — which caught <code>ChatGPT-User/2.0</code>, written by
+token carrying one, which caught <code>ChatGPT-User/2.0</code>, written by
 {F.token_sites('chatgpt-user/2.0')} sites in this sample, and called it dead.</p>
 
 <p>It is not dead. We read Google's open-source robots.txt parser rather than reasoning
@@ -205,7 +205,7 @@ while (absl::ascii_isalpha(*end) || *end == '-' || *end == '_') ++end;</code></p
 own string. <code>ChatGPT-User/2.0</code> is therefore cut to <code>ChatGPT-User</code> and
 matches exactly what its author intended. Our rule would have told
 <strong>{F.benign_truncations()} sites in this sample that a working configuration was
-broken</strong> — the same
+broken</strong>: the same
 error the whole page is about, made by us, one step from shipping.</p>
 
 <div class="callout">
@@ -222,11 +222,11 @@ from two sources rather than one, and it is what Docket ships.</p>
 copy their block rules from, and it cannot work as written: the digit is not a legal product
 token character, so the directive is read as <code>img</code>.
 {_token_sites(d, 'img2dataset')} sites in this sample copied it, and
-<code>bigsur.ai</code> — also on that list, also broken, this time by the dot — accounts for
+<code>bigsur.ai</code> (also on that list, also broken, this time by the dot) accounts for
 another {_token_sites(d, 'bigsur.ai')}.</p>
 
-<p>Our favourite is still {len(_nbsp_hosts(d))} sites — including
-<strong>chatgpt.com itself</strong> — writing <code>perplexity&#8209;user</code> with a U+2011
+<p>Our favourite is still {len(_nbsp_hosts(d))} sites (including
+<strong>chatgpt.com itself</strong>) writing <code>perplexity&#8209;user</code> with a U+2011
 non-breaking hyphen where the ASCII one belongs. It renders identically in every editor we
 tried and survives copy-paste out of a styled document, so the rule reads as
 <code>perplexity</code> and nobody can see why. The others:
@@ -240,8 +240,8 @@ meaning depends on whose parser reads it is not a rule you can rely on.</p>
 
 <p>Cloudflare authored the Content-Signal syntax we found in {s['content_signal']} of the
 {n:,} robots.txt files ({100 * s['content_signal'] / n:.1f}%). Its own robots.txt names
-<code>anthropic-ai</code>, <code>Claude-Web</code> and <code>cohere-ai</code> — all three
-retired — and names neither <code>OAI-SearchBot</code> nor <code>Claude-SearchBot</code>, the
+<code>anthropic-ai</code>, <code>Claude-Web</code> and <code>cohere-ai</code> (all three
+retired), and names neither <code>OAI-SearchBot</code> nor <code>Claude-SearchBot</code>, the
 two crawlers that decide whether a site can be cited in ChatGPT and Claude.</p>
 
 <p>That is the shape of the problem. This is not a small-site literacy gap. Keeping a list of
@@ -255,14 +255,14 @@ thirds of the sites blocking any AI crawler also blocked the ones that decide ci
 expected the top 10,000 to say the same thing or worse. It says the opposite.</p>
 
 <p>Of the <strong>{any_ai:,} sites</strong> here that block at least one of nine AI crawlers,
-<strong>{tr_only:,} — {s['pct_training_only']}% — blocked training crawlers and left the
+<strong>{tr_only:,} ({s['pct_training_only']}%) blocked training crawlers and left the
 search crawlers alone.</strong> That is the deliberate, well-informed split, and it is the
 majority behaviour. Only {cit_hit:,} took the citation hit.</p>
 
 <div class="callout">
 <div class="callout-title">What this changes</div>
 <p>The Index figure is true of the Index sample, which is news-heavy by construction, and
-false of the web's largest sites. We have annotated it rather than deleted it — the sample is
+false of the web's largest sites. We have annotated it rather than deleted it. The sample is
 real and the difference between the two is itself the finding. Large sites with someone
 responsible for the robots.txt mostly get this right. The conflation risk is concentrated in
 publishers and in sites that copied a block list from one.</p>
@@ -273,7 +273,7 @@ publishers and in sites that copied a block list from one.</p>
 <p>Blocking a citation crawler is almost never a standalone decision. {s['blocks_citation']:,}
 sites block at least one; when we look at OpenAI specifically,
 <strong>{F.oai_search_blocked()} sites block <code>OAI-SearchBot</code> and
-{F.oai_search_and_gptbot()} of them — {F.oai_overlap_pct()}% — also block
+{F.oai_search_and_gptbot()} of them ({F.oai_overlap_pct()}%) also block
 <code>GPTBot</code>.</strong> {F.oai_search_only()} sites in the entire top 10,000 block
 OpenAI's search crawler while allowing its training crawler. Anthropic is starker:
 {F.claude_search_blocked()} block <code>Claude-SearchBot</code> and
@@ -287,19 +287,19 @@ counting "AI bots blocked".</p>
 
 <h2>llms.txt: adoption is real, and the obvious check is wrong 17% of the time</h2>
 
-<p>We expected llms.txt adoption below 2%. It is <strong>{s['pct_llms_adoption']}%</strong> —
+<p>We expected llms.txt adoption below 2%. It is <strong>{s['pct_llms_adoption']}%</strong>:
 {s['llms_confirmed']} confirmed files across {n:,} hosts. It skews to large sites and falls
 steadily with rank.</p>
 
 {_band_table(d)}
 
-<p>Getting to a trustworthy number took two extra requests per host. A naive check — fetch
-<code>/llms.txt</code>, call a 200 a yes — returned {s['llms_candidates']} candidates. Two
+<p>Getting to a trustworthy number took two extra requests per host. A naive check (fetch
+<code>/llms.txt</code>, call a 200 a yes) returned {s['llms_candidates']} candidates. Two
 things were wrong with that number.</p>
 
 <p>First, we fetched a control path on each host that cannot exist.
 <strong>{s['llms_soft404']} hosts ({s['pct_llms_soft404']}%) answered 200 with a body for that
-too</strong> — catch-all handlers and soft 404s, one of them returning an
+too</strong>: catch-all handlers and soft 404s, one of them returning an
 <code>image/gif</code> for every unknown path. Among them: office.com, sentry.io,
 amplitude.com and dell.com.</p>
 
@@ -311,8 +311,8 @@ count.</p>
 
 <div class="callout">
 <div class="callout-title">A presence check that is wrong once every six times</div>
-<p>{s['llms_false_positive']} of {s['llms_candidates']} apparent llms.txt files —
-<strong>{s['pct_llms_false_positive']}%</strong> — were not one. Semrush's Site Audit flags a
+<p>{s['llms_false_positive']} of {s['llms_candidates']} apparent llms.txt files (
+<strong>{s['pct_llms_false_positive']}%</strong>) were not one. Semrush's Site Audit flags a
 missing llms.txt as an issue; any "does this file exist" test without a control fetch inherits
 that error rate, because a soft-404 handler answers yes to every question. Docket issues the
 control request and reads the first bytes, and reports the file as unconfirmed rather than
@@ -321,7 +321,7 @@ present when either test fails.</p>
 
 <p>The correlation is the interesting part, and it does not point where the advocacy does.
 Sites with an llms.txt block a citation crawler at <strong>{s['cit_rate_llms']}%</strong>
-against <strong>{s['cit_rate_no_llms']}%</strong> for sites without one — a risk ratio of
+against <strong>{s['cit_rate_no_llms']}%</strong> for sites without one, a risk ratio of
 {s['rr_citation_llms']['rr']} (95% CI {s['rr_citation_llms']['lo']} to
 {s['rr_citation_llms']['hi']}, on {s['rr_citation_llms']['events_exposed']} events in the
 smaller arm, so treat the point estimate loosely). That is computed only over the
@@ -339,14 +339,14 @@ is not the job.</p>
 
 <p>Two separate measurements say the file and the server disagree.
 <strong>{s['edge_denied']} of the 10,000 hosts ({100 * s['edge_denied'] / 10000:.1f}%) refused a
-self-identifying bot outright</strong> at the edge — 401, 403, 406, 429 or 503 — before any
+self-identifying bot outright</strong> at the edge (401, 403, 406, 429 or 503) before any
 robots.txt rule applied. And of the {s['probed_for_llms']:,} hosts whose robots.txt permitted
 us to fetch <code>/llms.txt</code>, <strong>{s['llms_edge_denied']}
 ({s['pct_llms_edge_denied']}%) were then denied it by the server.</strong></p>
 
 <p>A site can allow every AI crawler in robots.txt and still be invisible to all of them
-because a WAF rule three layers up drops unknown user-agents. No robots.txt audit — ours
-included — can see that from the outside. It has to be tested against the site itself, with
+because a WAF rule three layers up drops unknown user-agents. No robots.txt audit (ours
+included) can see that from the outside. It has to be tested against the site itself, with
 the crawler's own user-agent.</p>
 
 <h3>nature.com, which gets this more right than almost anyone and still has a hole</h3>
@@ -354,11 +354,11 @@ the crawler's own user-agent.</p>
 <p>Nature's robots.txt blocks <code>GPTBot</code>, <code>PerplexityBot</code> and
 <code>ClaudeBot</code>. We asked their server for the homepage as each of seven documented AI
 crawlers on {collected} and compared the answers to an ordinary browser request, which
-returned 200. All three of those crawlers got <strong>406</strong> — the file and the edge
+returned 200. All three of those crawlers got <strong>406</strong>: the file and the edge
 agreeing, policy enforced twice, exactly as intended.</p>
 
-<p>One did not fit. <code>Perplexity-User</code> — the agent that fetches a page when a person
-asks Perplexity about it — is <strong>allowed in their robots.txt and refused 406 by their
+<p>One did not fit. <code>Perplexity-User</code> (the agent that fetches a page when a person
+asks Perplexity about it) is <strong>allowed in their robots.txt and refused 406 by their
 server</strong>. Nothing in the file says so. It is not a robots.txt decision at all; it is a
 rule in front of it, and the only way to find it is to ask.</p>
 
@@ -378,7 +378,7 @@ their servers do is unsolicited scanning, whatever the header says underneath. O
 inside an audit somebody asked for is a different act. So the survey figure above is
 <strong>{s['edge_denied']} hosts refusing <em>our own</em> self-identifying bot</strong>, which
 is what we were entitled to learn, and the per-crawler answer is something Docket works out
-for one site at a time — the site in front of it.</p>
+for one site at a time: the site in front of it.</p>
 
 <p>That is check 89, <code>ai.edge_access</code>. It probes the audited origin only, appends
 <code>Docket-SEO-Audit</code> to every vendor string so nobody's log shows a forged crawler,
@@ -388,12 +388,12 @@ check. On Nature it reports one finding, not four.</p>
 
 <h2>Where someone else's data is better</h2>
 
-<p>Ahrefs published an llms.txt study in June 2026 across 137,210 domains — thirteen times our
-population — and, more importantly, with server-log request data we have no way to obtain.
+<p>Ahrefs published an llms.txt study in June 2026 across 137,210 domains (thirteen times our
+population) and, more importantly, with server-log request data we have no way to obtain.
 They found 97% of llms.txt files received no requests at all in May 2026, and that AI
 retrieval bots were 1.1% of requests to the ones that did. That is a stronger claim than ours
 about whether llms.txt is read, because it measures reading rather than presence. Our
-measurement covers a different question — who writes directives that cannot work — and the
+measurement covers a different question (who writes directives that cannot work), and the
 two agree in direction.</p>
 
 <h2>Method, and what it cannot tell you</h2>
@@ -411,7 +411,7 @@ deception, and it would have produced better data. Docket runs the same test ins
 product, against a site the person running it owns, where it is not deception.</p>
 
 <p>Limits worth stating. {s['attempted'] - n:,} of the 10,000 hosts did not return a parseable
-robots.txt — Tranco contains CDN and infrastructure hostnames that are not websites. A
+robots.txt. Tranco contains CDN and infrastructure hostnames that are not websites. A
 robots.txt read once is a snapshot, and none of this says what any crawler actually did.</p>
 
 <p>The reference list needed correcting before we could use it. "Unmatchable" is judged
@@ -420,7 +420,7 @@ against the community
 is itself behind vendor documentation. We read six vendor pages on {collected} and found
 <code>{'</code>, <code>'.join(d['list_gap'])}</code> all currently documented and all missing
 from it. Naming one of those is correct behaviour, so we excluded them rather than count them
-as dead. We also removed Awario's crawlers from the population — they are real, and our own
+as dead. We also removed Awario's crawlers from the population: they are real, and our own
 pattern for "AI-intent" had swept them in, which would have inflated this page's headline by
 close to 300 sites.</p>
 
@@ -428,7 +428,7 @@ close to 300 sites.</p>
 noticing anyway: the canonical list most people copy their block rules from is stale in both
 directions at once.</p>
 
-<p><a href="/data/ai-directives-2026-08.json">The full dataset is here</a> — every host, its
+<p><a href="/data/ai-directives-2026-08.json">The full dataset is here</a>: every host, its
 AI tokens, which of them are dead, which crawlers it blocks, and whether it has a confirmed
 llms.txt. Recompute it and disagree.</p>
 
@@ -436,26 +436,26 @@ llms.txt. Recompute it and disagree.</p>
 
 <p>Docket ships this as <code>ai.dead_crawler_directive</code>, and it flags a deliberately
 smaller number than the {pct_dead}% at the top of this page.
-<strong>{s['sites_provably_broken']} sites — {s['pct_provably_broken_of_ai']}% of everyone
-writing an AI crawler rule</strong> — carry a token that is either vendor-retired with a
+<strong>{s['sites_provably_broken']} sites ({s['pct_provably_broken_of_ai']}% of everyone
+writing an AI crawler rule</strong>) carry a token that is either vendor-retired with a
 documented replacement, or cut short by the parser into something no crawler is called. Those
 two we can prove. "Absent from the community list" we cannot, so the product does not say
 it.</p>
 
 <p><code>cohere-ai</code>, on {_token_sites(d, 'cohere-ai')} sites here, spent a day outside
-the check for that reason. It was obviously stale — nobody documents it — but we could not
+the check for that reason. It was obviously stale (nobody documents it), but we could not
 find a page saying what replaced it, and telling {_token_sites(d, 'cohere-ai')} sites their
 rule is dead on an assumption is the error the whole check exists to catch.</p>
 
 <p>Their own sitemap had it.
 <a href="https://docs.cohere.com/docs/cohere-web-crawlers">docs.cohere.com/docs/cohere-web-crawlers</a>
-says more than we expected: Cohere's bot table reads <strong>"N/A"</strong> — they operate no
-crawler at all — and the blocking example they publish names <code>Coherebot</code>, which is
+says more than we expected: Cohere's bot table reads <strong>"N/A"</strong> (they operate no
+crawler at all), and the blocking example they publish names <code>Coherebot</code>, which is
 the token to write if they ever do. This page previously showed
 <code>cohere-training-data-crawler</code> as the replacement, which came from a table of ours
 rather than from Cohere, and is corrected above. The two tables are now one file.</p>
 
-<p>Severity follows the consequence rather than the tidiness — and the consequence cannot be
+<p>Severity follows the consequence rather than the tidiness, and the consequence cannot be
 read from the dead line alone. A crawler matching no group falls back to
 <code>User-agent: *</code>, so a dead heading only puts a restriction out of force where the
 fallback group does not already carry that rule, and a retired name sharing a group with its
@@ -499,7 +499,7 @@ prints the replacement rules to paste.</p>
         published="2026-08-07",
         faq=[
             ("What is a dead robots.txt directive?",
-             "A User-agent rule naming a token that no crawler identifies itself with — "
+             "A User-agent rule naming a token that no crawler identifies itself with: "
              "either because the vendor retired that name, or because it was never a "
              "crawler name. The file parses and nothing warns you, but the rule applies to "
              f"nobody. We found one on {pct_dead}% of the sites writing AI rules at all."),
@@ -518,7 +518,7 @@ prints the replacement rules to paste.</p>
              "maintain their robots.txt rather than with any outcome."),
             ("Is blocking GPTBot the same as blocking ChatGPT search?",
              "No. GPTBot collects training data; OAI-SearchBot builds the index ChatGPT "
-             "searches. Of 425 sites blocking OAI-SearchBot, 414 also block GPTBot — losing "
+             "searches. Of 425 sites blocking OAI-SearchBot, 414 also block GPTBot. Losing "
              "citation is nearly always a side effect of a training decision rather than a "
              "decision of its own."),
         ],
