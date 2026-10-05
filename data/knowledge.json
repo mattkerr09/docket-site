@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "compiled": "2026-09-14",
-  "revision": 5,
+  "compiled": "2026-10-05",
+  "revision": 6,
   "ai_crawlers": {
     "GPTBot": {
       "owner": "OpenAI",
@@ -216,6 +216,11 @@
       "date": "2026-08-18",
       "title": "August 2026 spam update",
       "detail": "Rolled out over 2 days and 16 hours from 18 August 2026."
+    },
+    {
+      "date": "2026-09-24",
+      "title": "September 2026 spam update",
+      "detail": "Started 24 September 2026. Google's ranking-updates page listed no duration when read on 5 October 2026."
     }
   ],
   "superseded": [
