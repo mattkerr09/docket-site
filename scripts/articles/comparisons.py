@@ -15,7 +15,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (PAY4, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE_STR, RELEASE,  # noqa: E402
-                    price, price_note_html, render, buy_block, rival_monthly_range)
+                    price, price_note_html, render, buy_block, rival_monthly_range,
+                    INTEL, INTEL_DMG, download_url)
 
 #: How many optional checks reach the network, spelled, from the engine's own
 #: connector registry. Typed as "four" here and in four other places while the
@@ -35,6 +36,7 @@ CTA = f"""
 on your machine. {CONNECTORS_WORD_CAP} optional checks fetch data it cannot produce alone; <code>--offline</code>
 turns all {CONNECTORS_WORD} off.</p>
 {buy_block("vs-page", big=False, try_app="vs-page-try-free")}
+{('<p class="intel-dl">Intel Mac? <a href="' + download_url("vs-page-try-free-intel", to=INTEL_DMG) + '" data-ev="Download" data-ev-button="vs-page-try-free-intel">Get the Intel version</a></p>') if INTEL else ''}
 </div>"""
 
 #: The same callout for a page inside a registered link experiment
@@ -48,6 +50,7 @@ CTA_LINK_EXPERIMENT = f"""
 on your machine. {CONNECTORS_WORD_CAP} optional checks fetch data it cannot produce alone; <code>--offline</code>
 turns all {CONNECTORS_WORD} off. <a href="/download/">Download Docket →</a></p>
 {buy_block("vs-ahrefs", big=False, sample=False, refund_link=False, try_app="vs-ahrefs-try-free")}
+{('<p class="intel-dl">Intel Mac? <a href="' + download_url("vs-ahrefs-try-free-intel", to=INTEL_DMG) + '" data-ev="Download" data-ev-button="vs-ahrefs-try-free-intel">Get the Intel version</a></p>') if INTEL else ''}
 </div>"""
 
 #: When the factual claims about competitors on these pages were last checked
