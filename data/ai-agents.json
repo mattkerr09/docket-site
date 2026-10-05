@@ -51,7 +51,7 @@
       "purpose": "grounding"
     },
     "Google-Extended": {
-      "impact": "Blocks Gemini model training and grounding in Gemini Apps and Vertex AI. Does NOT affect AI Overviews, AI Mode or classic Google Search \u2014 those follow your Googlebot rules.",
+      "impact": "Blocks Gemini model training and grounding in Gemini Apps and Vertex AI. Does NOT affect AI Overviews, AI Mode or classic Google Search. Those follow your Googlebot rules.",
       "owner": "Google",
       "purpose": "training / Gemini Apps grounding"
     },
