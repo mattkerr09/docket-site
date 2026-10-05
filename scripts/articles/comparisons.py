@@ -34,7 +34,7 @@ CTA = f"""
 <p>Docket is a one-time purchase for macOS: no account, no crawl credits, and the crawl runs
 on your machine. {CONNECTORS_WORD_CAP} optional checks fetch data it cannot produce alone; <code>--offline</code>
 turns all {CONNECTORS_WORD} off.</p>
-{buy_block("vs-page", big=False)}
+{buy_block("vs-page", big=False, try_app="vs-page-try-free")}
 </div>"""
 
 #: The same callout for a page inside a registered link experiment
@@ -47,7 +47,7 @@ CTA_LINK_EXPERIMENT = f"""
 <p>Docket is a one-time purchase for macOS: no account, no crawl credits, and the crawl runs
 on your machine. {CONNECTORS_WORD_CAP} optional checks fetch data it cannot produce alone; <code>--offline</code>
 turns all {CONNECTORS_WORD} off. <a href="/download/">Download Docket →</a></p>
-{buy_block("vs-ahrefs", big=False, sample=False, refund_link=False)}
+{buy_block("vs-ahrefs", big=False, sample=False, refund_link=False, try_app="vs-ahrefs-try-free")}
 </div>"""
 
 #: When the factual claims about competitors on these pages were last checked

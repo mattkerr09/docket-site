@@ -301,13 +301,26 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
 
 
 def buy_strip(src: str) -> str:
-    """The quiet ending for a guide: one line, two links. Matthew's plan,
-    2026-09-24 — "how-to and learn pages end with 'Buy once — $349 · See a
-    sample report'"."""
+    """The quiet ending for a guide: one line. Matthew's plan, 2026-09-24:
+    how-to and learn pages end with Buy and a sample report.
+
+    CEO, 2026-10-05: the free download comes first. Someone who searched "free
+    SEO audit tools" read to the end of that page and found one way to pay and
+    no way to try. The content standard says the next step is the free
+    download with Buy beside it, so the strip leads with "Try it free" through
+    the hub's counted /dl link (src = the page's tag + "-try-free"), names the
+    Intel build when there is one, and keeps the price, pay-in-four and the
+    refund next to Buy."""
+    try_src = f"{src}-try-free"
+    intel = (f' (<a href="{download_url(try_src + "-intel", to=INTEL_DMG)}" data-ev="Download" '
+             f'data-ev-button="{try_src}-intel">Intel Mac</a>)' if INTEL else "")
     sample = (f'<a href="{SAMPLE_REPORT}" data-ev="Sample report" data-ev-button="{src}">'
               f'See a sample report</a> &middot; ' if HAS_SAMPLE else "")
-    return (f'<aside class="buy-strip"><p><a href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
-            f'data-ev-button="{src}">Buy once, {PRICE_STR}{PAY4}</a> &middot; '
+    return (f'<aside class="buy-strip"><p><a href="{download_url(try_src)}" data-ev="Download" '
+            f'data-ev-button="{try_src}"><strong>Try it free</strong></a>{intel}: your score and '
+            f'how many problems each area has &middot; '
+            f'<a href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
+            f'data-ev-button="{src}">Buy once, {PRICE_STR}{PAY4}</a>, {REFUND_DAYS}-day refund &middot; '
             f'{sample}founding price {FOUNDING_NOW}{PAY4_FOUNDING}, for the first '
             f'{FOUNDING_SEATS} buyers with <code>{FOUNDING_CODE}</code></p></aside>')
 
