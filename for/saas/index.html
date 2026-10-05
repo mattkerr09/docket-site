@@ -14,7 +14,7 @@
 <title>Docket for SaaS: audit your marketing site and docs</title>
 <meta name="description" content="The blocking scare is not the SaaS story: 0 of 20 SaaS sites in our Index shut an answer engine out. The real problem is a page that is blank until JavaScript runs.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="28d50731d197">
+<meta name="build-id" content="2726c9d387e2">
 <link rel="canonical" href="https://docketseo.app/for/saas/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -861,7 +861,7 @@ read. Named so you can judge the sample: stripe.com, notion.so, figma.com, slack
 <p>6 of the 20 name an AI crawler at all,
 18 declare a sitemap, and four publish Content-Signal preferences:
 intercom.com, monday.com, vercel.com, webflow.com. These are large companies with people whose job this is, so it is the easy
-case rather than a random sample of SaaS — a seed-stage site that inherited its
+case rather than a random sample of SaaS. A seed-stage site that inherited its
 <code>robots.txt</code> from a boilerplate repo is a different risk, and that is the site
 worth checking. But the pitch that everyone is pulling up the drawbridge, or that you are shut
 out by accident, did not survive contact with these 20.</p>
@@ -869,7 +869,7 @@ out by accident, did not survive contact with these 20.</p>
 <p>The related failure is a rule aimed at a crawler retired years ago:
 51.9% of the sites writing AI rules at all across the Tranco top 10,000
 carry one, <code>anthropic-ai</code> alone sitting on 563 of them.
-Docket reads both in the same pass as everything else — one check, not a strategy.</p>
+Docket reads both in the same pass as everything else: one check, not a strategy.</p>
 
 <h2>What actually costs you the citation</h2>
 
@@ -883,8 +883,8 @@ moved since, the argument below moves with it.</p>
 
 <p>What Docket shows you is your own side of that. It fetched notion.so twice, once as a
 crawler and once through WebKit: the served HTML held 0 characters of text and 0 links, the
-rendered page held 2,068 characters and 106 links —
-<a href="/learn/javascript-rendering/">the full measurement is here</a>. Notion is not a badly
+rendered page held 2,068 characters and 106 links.
+<a href="/learn/javascript-rendering/">The full measurement is here</a>. Notion is not a badly
 built site. It is a normally built one, and to a crawler that does not execute code it is a
 blank sheet.</p>
 
@@ -897,8 +897,8 @@ whoever owns the front end.</p>
 
 <p>A caveat, because the alternative is inventing a statistic: we have not audited a
 representative sample of SaaS sites and cannot tell you how often each of these fires. What
-follows is what the SaaS <em>shape</em> produces — a marketing site, a docs subdomain, a
-changelog and a pricing page — roughly in the order the ranking puts them.</p>
+follows is what the SaaS <em>shape</em> produces (a marketing site, a docs subdomain, a
+changelog and a pricing page), roughly in the order the ranking puts them.</p>
 
 <div class="wrap-tbl"><table class="cmp"><thead><tr>
 <th>#</th><th>What turns up</th><th>Why it bites here</th></tr></thead><tbody>
@@ -909,8 +909,7 @@ render</td></tr>
 <td>No links in the HTML means no discovery path, so everything below the nav goes
 undiscovered</td></tr>
 <tr><td>3</td><td>A pricing page with no structured data</td>
-<td>Plan names and prices drawn client-side are invisible twice over — to the crawler, and to
-any rich result</td></tr>
+<td>Plan names and prices drawn client-side are invisible twice over: to the crawler, and to any rich result</td></tr>
 <tr><td>4</td><td>Docs and marketing aimed at one query</td>
 <td>Two hosts, two titles, one intent. Google picks, and it is usually not the page with the
 trial button</td></tr>
@@ -928,8 +927,7 @@ part that gets a set flagged</td></tr>
 <code>sameAs</code> is the cheapest item on this list to fix</td></tr>
 </tbody></table></div>
 
-<p>Each finding arrives with the change rather than the category — the JSON-LD block, the tag,
-the header — because a ranked plan you still have to translate into a ticket is not a plan.
+<p>Each finding arrives with the change rather than the category (the JSON-LD block, the tag, the header), because a ranked plan you still have to translate into a ticket is not a plan.
 The CSV export drops into Linear or Jira without anyone retyping it.</p>
 
 <h2>Two hosts, one query</h2>
@@ -942,12 +940,10 @@ to choose which one a search engine shows.</p>
 <p>Docket audits one host per crawl, so this is two runs and a comparison you make yourself.
 The duplicate check works inside a single crawl and not across two, and saying otherwise would
 describe a feature that does not exist. What you get is every title and description in one
-place per host, which is enough to see the collisions in a few minutes — and the docs run
-usually turns up auto-generated API pages nobody meant to index.</p>
+place per host, which is enough to see the collisions in a few minutes, and the docs run usually turns up auto-generated API pages nobody meant to index.</p>
 
 <p>If either host serves more than one language, the declaration that catches people out is not
-<code>hreflang</code> but the <code>html lang</code> attribute beside it — they answer different
-questions and only one of them is usually wrong.
+<code>hreflang</code> but the <code>html lang</code> attribute beside it. They answer different questions and only one of them is usually wrong.
 <a href="/how-to/fix-lang-attribute-mismatch/">Which one you have</a>.</p>
 
 <h2>What this will not do</h2>
@@ -957,14 +953,13 @@ questions and only one of them is usually wrong.
 behind Docket and there will not be one.</li>
 <li><strong>It does not measure Core Web Vitals.</strong> LCP, INP and CLS are field metrics
 from real users on real connections, and one machine on a fast desk cannot produce them.
-Docket flags the patterns that cause them — render-blocking resources, layout-shift risk, page
-weight, slow server response — and you confirm the numbers in Search Console. With your own
+Docket flags the patterns that cause them (render-blocking resources, layout-shift risk, page weight, slow server response), and you confirm the numbers in Search Console. With your own
 Google API key it will read Chrome UX Report data, which is Google measuring, not us.</li>
 <li><strong>It does not see behind your login.</strong> The product is not audited. The
 marketing site, docs, blog and pricing page are.</li>
 <li><strong>It does not run prompts against models,</strong> so it cannot tell you whether
 ChatGPT named you this morning. <a href="/vs/">Profound, Otterly and Peec</a> do that.</li>
-<li><strong>Rendering is a sample</strong> — ten of the shallowest pages by default, which
+<li><strong>Rendering is a sample</strong>: ten of the shallowest pages by default, which
 answers "is this client-rendered and what is it costing me" without turning a five-minute
 audit into an hour. It is not a full rendered crawl of a large application.</li>
 <li><strong>It is macOS on Apple silicon or Intel.</strong> No Windows, no Linux desktop, no web
@@ -979,8 +974,7 @@ version. The CLI inside the bundle runs on <a href="/for/developers/">macOS CI r
 index of the whole web and Docket has none. Buy the subscription; this does not replace
 it.</p>
 
-<p><strong>You need a multi-seat dashboard.</strong> There is no server, no account and no
-shared workspace — audit history sits in <code>~/.docket/</code> as plain JSON on one Mac.
+<p><strong>You need a multi-seat dashboard.</strong> There is no server, no account and no shared workspace. Audit history sits in <code>~/.docket/</code> as plain JSON on one Mac.
 That is the point when a founder is auditing their own site, and a genuine problem for a
 growth team of six who want one live view. Exports travel; state does not.</p>
 
@@ -995,15 +989,14 @@ years.</p>
 
 <h2>Why the price is a number rather than a plan</h2>
 
-<p>$349, once, from v1.0 — and activation is a licence key you paste in once. No seats, no
+<p>$349, once, from v1.0, and activation is a licence key you paste in once. No seats, no
 crawl credits, no renewal date. You price a SaaS product yourself, so you know what a
 recurring line item does to a buying decision at a company that already has eleven of
 them.</p>
 
 <p>The rest follows from running on your own machine: no telemetry, no account, and
 results that stay in <code>~/.docket/</code> as JSON you can read with <code>cat</code>. Save
-the site and scheduled re-audits report what changed, regressions first — which is how you
-learn a <code>noindex</code> reached production on Tuesday rather than from a traffic graph
+the site and scheduled re-audits report what changed, regressions first, which is how you learn a <code>noindex</code> reached production on Tuesday rather than from a traffic graph
 three weeks later. The schedule lives inside the app rather than in launchd, so it runs while
 Docket is open and picks up anything overdue the next time you launch it; if you need the crawl
 to happen whether or not anyone is at the machine, that is what a hosted crawler is for.</p>
