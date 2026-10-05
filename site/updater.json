@@ -1,15 +1,15 @@
 {
-  "version": "1.3.99",
-  "notes": "Docket 1.3.99\n\n**Docket is free to try: run a full audit of any site without a key and see your score and how many problems each area has. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $349, or 4 payments of $87.25, to see what they are, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *A free audit is still there after you quit.* If you ran a free audit,\n  quit Docket and bought it later, activating the key used to find nothing to\n  open, and the app asked you to run the audit again. Docket now keeps the\n  full report of your recent free audits on your Mac, sealed until the copy\n  is paid. When you activate, they appear under Reports in full, without\n  crawling the site again.\n\n99 checks across 13 areas.",
-  "pub_date": "2026-10-05T20:11:41Z",
+  "version": "1.3.100",
+  "notes": "Docket 1.3.100\n\n**Docket is free to try: run a full audit of any site without a key and see your score and how many problems each area has. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $349, or 4 payments of $87.25, to see what they are, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *Plainer findings.* Findings, fixes and status lines read in shorter\n  sentences. What they say is unchanged.\n- *The free result says what the full report adds.* It now gives this audit's\n  own number: how many problems the full report ranks, each with where it is\n  and what to change.\n\n99 checks across 13 areas.",
+  "pub_date": "2026-10-05T22:56:11Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXhRK3UwUDdrc1VScGlqMlJTSThIdmJJSXY1eU5HN3VHTnJiWEJzTXVzZit2bDZWUU9VZmxoeXM3TEpuSWxwcklBQVFyNndmcmNKdU9YMjNiN1NaRFE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxMjMwNTY1CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKbEQzSmdiUm93RGIvUGp5YXQ3UzVwSkRrRC9ldG5GT2Y4c2ZZODNEQWxVRjg1R2c3TjZJM0pWR0ZqN1pFNnRkTk1tNCthM0djY2UzNkZVc3hNNWxpQnc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTErdXRXek5nZVQ3TGl3RklZNkU2WHp4QklIZVI4cnRNZW9ITm9HOEg5Z3dVUTJnVjAvdENVcWxheUVEM1JOV2RkV2U1SVVTZUpNbzcrV0JkcmwzMkFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxMjQwMzY1CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKWWVIT3lYMVNsK3hDQkhwVWNpaUF6UGpkNFRIVVd4c3hMZ3dhY2RoNzJGdHZsMjhLbDgvNmYxSFhPSE9wRUg0d1g0aC9DMW01SlJTZU9sRGpoUTZJQkE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.100/Docket.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXhDbG9jbnl3WHE1dHdUUlY4Umg0TU9ranBsQ01NRzY4YlVpS2JHY2JmdjlqY0NjTXI3ajZ0UmhKeERBWFJlSkh1T3lyVnEzSTBEWGVnUzRSVnRlbEF3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxMjMwODA0CWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6Cjhpb01rOWdja21rempBUXpKNlAxUVgzbFpUZDZ0WnhtbVU1RlNZQWE5dUwyZWhaQ3NOTThCQTF5MHFKcTJKazVqWjB4YlY1b2cwcjJQbC9PYjRXWkNBPT0K",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-x86_64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXhtc2pSZXV0SFlZa0pBeVU3UEc0NEdqWjR5bzg3R3U2Z2E0dWVvdW5zTGVyUTFmMWRCVURwWFN3Sm1OeDRrOFUyWGVYUUR4MU5VZ0Jsd2V6dzJoc2c0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxMjQwNTgyCWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6CkFEb3pVVjhma2NLeXJCOCtqY29FNTJYRCtZc0ZPMWFIZERZT3Rqb1pDY21iTWd0MUhBMTN5dVd3QU50QTdodHRBL2ovV2RhbkFrdG5VSWI2eSt6bUFRPT0K",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.100/Docket-x86_64.app.tar.gz"
     }
   }
 }
