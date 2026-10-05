@@ -14,7 +14,7 @@
 <title>Invalid hreflang codes: the rule, and what is not checked</title>
 <meta name="description" content="What makes an hreflang value invalid, the three findings a Docket audit of your site emits for it, and the four things it does not validate.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-invalid-hreflang-codes/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -774,7 +774,7 @@ nav{z-index:40}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"hreflang values that are not valid language codes","description":"What makes an hreflang value invalid, the three findings a Docket audit of your site emits for it, and the four things it does not validate.","datePublished":"2026-09-16","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-invalid-hreflang-codes/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is en-UK a valid hreflang value?","acceptedAnswer":{"@type":"Answer","text":"No. The region subtag comes from the country standard, where the United Kingdom is GB, and there is no UK record of any type in the IANA language subtag registry. Google's own documentation says region codes outside that standard are not supported, so en-uk connects the page to nothing."}},{"@type":"Question","name":"Does hreflang have to be uppercase for the country?","acceptedAnswer":{"@type":"Answer","text":"No. The standard states that language tags and their subtags are to be treated as case insensitive at all times. Uppercase regions are a recommended convention, not a requirement, and af-za and af-ZA are the same tag. Docket reports neither."}},{"@type":"Question","name":"Why does Docket say it does not recognise a language code I know is real?","acceptedAnswer":{"@type":"Answer","text":"Because its language table is two-letter only, and some languages have no two-letter form — Cebuano is the usual example. That finding is a notice carrying a tool-limit flag: it scores nothing and stays off the fix list, because it is a statement about the tool rather than about your markup."}},{"@type":"Question","name":"Is a deprecated language subtag like in-ID broken?","acceptedAnswer":{"@type":"Answer","text":"It is out of date rather than broken. The registry marks it deprecated and names the current subtag, id for Indonesian. Whether a given search engine still honours the old form cannot be measured from outside, so Docket reports it at LOW as a tidy-up and makes no claim about what any engine does with it."}},{"@type":"Question","name":"Will Docket catch every invalid country code in my hreflang tags?","acceptedAnswer":{"@type":"Answer","text":"No, and this is the limit worth knowing. It validates the shape of the value and holds three region strings it knows are wrong; a two-letter region outside that short list passes even when no such country exists. Check unfamiliar regions against the country standard yourself."}},{"@type":"Question","name":"Does Docket read hreflang from my XML sitemap?","acceptedAnswer":{"@type":"Answer","text":"Not in this check. The values it judges come from link rel=alternate elements in the HTML it crawled. Google also supports hreflang in an HTTP Link header and in XML sitemap annotations, and a site declaring them that way gets no finding here rather than a clean result."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is en-UK a valid hreflang value?","acceptedAnswer":{"@type":"Answer","text":"No. The region subtag comes from the country standard, where the United Kingdom is GB, and there is no UK record of any type in the IANA language subtag registry. Google's own documentation says region codes outside that standard are not supported, so en-uk connects the page to nothing."}},{"@type":"Question","name":"Does hreflang have to be uppercase for the country?","acceptedAnswer":{"@type":"Answer","text":"No. The standard states that language tags and their subtags are to be treated as case insensitive at all times. Uppercase regions are a recommended convention, not a requirement, and af-za and af-ZA are the same tag. Docket reports neither."}},{"@type":"Question","name":"Why does Docket say it does not recognise a language code I know is real?","acceptedAnswer":{"@type":"Answer","text":"Because its language table is two-letter only, and some languages have no two-letter form: Cebuano is the usual example. That finding is a notice carrying a tool-limit flag: it scores nothing and stays off the fix list, because it is a statement about the tool rather than about your markup."}},{"@type":"Question","name":"Is a deprecated language subtag like in-ID broken?","acceptedAnswer":{"@type":"Answer","text":"It is out of date rather than broken. The registry marks it deprecated and names the current subtag, id for Indonesian. Whether a given search engine still honours the old form cannot be measured from outside, so Docket reports it at LOW as a tidy-up and makes no claim about what any engine does with it."}},{"@type":"Question","name":"Will Docket catch every invalid country code in my hreflang tags?","acceptedAnswer":{"@type":"Answer","text":"No, and this is the limit worth knowing. It validates the shape of the value and holds three region strings it knows are wrong; a two-letter region outside that short list passes even when no such country exists. Check unfamiliar regions against the country standard yourself."}},{"@type":"Question","name":"Does Docket read hreflang from my XML sitemap?","acceptedAnswer":{"@type":"Answer","text":"Not in this check. The values it judges come from link rel=alternate elements in the HTML it crawled. Google also supports hreflang in an HTTP Link header and in XML sitemap annotations, and a site declaring them that way gets no finding here rather than a clean result."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -839,7 +839,7 @@ nothing else:</p>
 script     4 letters, optional  Hant  Cyrl
 region     2 letters, or 3 digits, optional   GB  419</code></pre>
 
-<p>Per <a href="https://www.rfc-editor.org/rfc/rfc5646.html#section-2.2.1">RFC 5646 section 2.2.1</a> — the document BCP 47 points at —
+<p>Per <a href="https://www.rfc-editor.org/rfc/rfc5646.html#section-2.2.1">RFC 5646 section 2.2.1</a> (the document BCP 47 points at)
 two-character language subtags "were defined in the IANA registry according to the assignments
 found in the standard" ISO 639-1, and three-character ones come from the other parts of that
 standard. Per <a href="https://www.rfc-editor.org/rfc/rfc5646.html#section-2.2.4">section 2.2.4</a>, two-letter regions come from
@@ -869,7 +869,7 @@ naming a real language by a subtag the registry has retired.</p>
 
 <p><strong><code>intl.hreflang_unrecognised_lang</code>, at NOTICE.</strong> A well-formed
 value whose language Docket's table does not contain. It carries the tool-limit flag, scores
-nothing, and stays off the fix list — it is a statement about Docket, not about your markup.</p>
+nothing, and stays off the fix list. It is a statement about Docket, not about your markup.</p>
 
 <h2>What this check does not validate</h2>
 
@@ -880,8 +880,8 @@ says the country "must be a real ISO 3166-1 alpha-2 code", and that is wider tha
 Docket holds 3 region strings: <code>uk</code>, which it rewrites to
 <code>GB</code>; <code>eu</code>, which is not a country; and <code>en</code>, which is a
 language sitting in the region slot. Everything else that is two letters passes. Running the
-check over <code>en-XX</code> and <code>en-QQ</code> — both user-assigned in the country
-standard, neither a country — produces no finding at all. Note too that the language-in-the-
+check over <code>en-XX</code> and <code>en-QQ</code> (both user-assigned in the country
+standard, neither a country) produces no finding at all. Note too that the language-in-the-
 region-slot case is caught only when that language is English: <code>de-en</code> is reported,
 <code>de-fr</code> is not.</p>
 
@@ -889,7 +889,7 @@ region-slot case is caught only when that language is English: <code>de-en</code
 section 2.1.1 is unambiguous: "At all times, language tags and their subtags, including private use
 and extensions, are to be treated as case insensitive". The standard recommends uppercase
 regions as a convention, and a convention is not a defect. This is in the code because Docket
-got it wrong in public — an earlier table mapped <code>us</code> to <code>US</code> and
+got it wrong in public. An earlier table mapped <code>us</code> to <code>US</code> and
 <code>za</code> to <code>ZA</code>, and because the region is lowercased before the lookup, two
 professionally run sites were told <code>en-US</code> was broken and handed
 <code>en-US</code> as the correction. One of them serves every one of its tags lowercase and
@@ -897,7 +897,7 @@ they work.</p>
 
 <p><strong>Only tags in crawled HTML are seen.</strong> The values come from
 <code>link rel="alternate"</code> elements in the pages the crawl fetched. Google's localized-versions documentation describes
-two other ways to declare the same thing — an HTTP <code>Link:</code> header, which it
+two other ways to declare the same thing: an HTTP <code>Link:</code> header, which it
 recommends for non-HTML files, and annotations in an XML sitemap. Neither reaches this check,
 so a site that declares hreflang in its sitemap gets silence here rather than a clean bill.</p>
 
@@ -909,8 +909,8 @@ only one to fix.</p>
 <h2>The one region typo worth its own paragraph</h2>
 
 <p><code>en-uk</code> is the common one, and it is genuinely wrong rather than
-stylistically wrong. In the IANA language subtag registry — the list BCP 47 defers to, read on 16 September 2026 at the URL
-below, <code>File-Date</code> 2026-08-08 — the record reading
+stylistically wrong. In the IANA language subtag registry (the list BCP 47 defers to, read on 16 September 2026 at the URL
+below, <code>File-Date</code> 2026-08-08) the record reading
 <code>Description: United Kingdom</code> has the subtag <code>GB</code>. There is no
 <code>UK</code> record of any type. Google's localized-versions documentation states the consequence directly: "Only language
 codes listed in ISO 639-1 and region codes listed in ISO 3166-1 Alpha 2 are supported; other
@@ -934,7 +934,7 @@ ji -&gt; yi   Yiddish         jw -&gt; jv   Javanese
 mo -&gt; ro   Moldavian       bh -&gt; bih  Bihari languages</code></pre>
 
 <p>This finding exists because of a specific piece of dishonesty. A global retailer publishing
-<code>in-ID</code> across its hreflang block was told Docket did not recognise the language —
+<code>in-ID</code> across its hreflang block was told Docket did not recognise the language:
 true of Docket's table, and useless, because <code>in</code> is not an unknown language. It is
 the superseded subtag for Indonesian and the registry names its replacement. A notice saying
 "our fault, nothing to do" was sitting on something with a documented answer.</p>
@@ -953,7 +953,7 @@ current in the registry as of <code>File-Date</code> 2026-08-08, plus <code>bh</
 which is deprecated rather than unknown. A value whose language is not in that table is
 well-formed, may be entirely correct, and gets a notice that scores zero.</p>
 
-<p>Two real cases explain why it is a notice. Cebuano is <code>ceb</code> — it has no two-letter
+<p>Two real cases explain why it is a notice. Cebuano is <code>ceb</code>. It has no two-letter
 form at all, so no two-letter table can ever contain it, and RFC 5646 section 2.2.1 permits the
 three-letter subtag. Aragonese is <code>an</code>, an ordinary current subtag that was simply
 missing from an earlier, shorter version of the table; a real multilingual site was told its
@@ -975,8 +975,8 @@ for the region separately. A subtag record that carries a <code>Deprecated</code
 replacement on the next line. A region you cannot find at all is the <code>en-uk</code> case:
 the tag is discarded and the page it pointed at is not connected to anything.</p>
 
-<p>If the codes all check out and the set still is not working, the fault is one page over —
-either the cluster is not reciprocal, or the declared language of the page contradicts its own
+<p>If the codes all check out and the set still is not working, the fault is one page over.
+Either the cluster is not reciprocal, or the declared language of the page contradicts its own
 prose. <a href="/how-to/fix-lang-attribute-mismatch/">hreflang and html lang mismatch</a>
 separates those. <a href="/learn/what-docket-checks/">What Docket checks</a> lists the rest of
 the indexing lane these findings sit in.</p>
@@ -985,7 +985,7 @@ the indexing lane these findings sit in.</p>
 rather than from the manual.</p>
 
 <aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-invalid-hreflang-codes" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-invalid-hreflang-codes">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-invalid-hreflang-codes">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is en-UK a valid hreflang value?</h3><p>No. The region subtag comes from the country standard, where the United Kingdom is GB, and there is no UK record of any type in the IANA language subtag registry. Google's own documentation says region codes outside that standard are not supported, so en-uk connects the page to nothing.</p></div><div class="faq-item"><h3>Does hreflang have to be uppercase for the country?</h3><p>No. The standard states that language tags and their subtags are to be treated as case insensitive at all times. Uppercase regions are a recommended convention, not a requirement, and af-za and af-ZA are the same tag. Docket reports neither.</p></div><div class="faq-item"><h3>Why does Docket say it does not recognise a language code I know is real?</h3><p>Because its language table is two-letter only, and some languages have no two-letter form — Cebuano is the usual example. That finding is a notice carrying a tool-limit flag: it scores nothing and stays off the fix list, because it is a statement about the tool rather than about your markup.</p></div><div class="faq-item"><h3>Is a deprecated language subtag like in-ID broken?</h3><p>It is out of date rather than broken. The registry marks it deprecated and names the current subtag, id for Indonesian. Whether a given search engine still honours the old form cannot be measured from outside, so Docket reports it at LOW as a tidy-up and makes no claim about what any engine does with it.</p></div><div class="faq-item"><h3>Will Docket catch every invalid country code in my hreflang tags?</h3><p>No, and this is the limit worth knowing. It validates the shape of the value and holds three region strings it knows are wrong; a two-letter region outside that short list passes even when no such country exists. Check unfamiliar regions against the country standard yourself.</p></div><div class="faq-item"><h3>Does Docket read hreflang from my XML sitemap?</h3><p>Not in this check. The values it judges come from link rel=alternate elements in the HTML it crawled. Google also supports hreflang in an HTTP Link header and in XML sitemap annotations, and a site declaring them that way gets no finding here rather than a clean result.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is en-UK a valid hreflang value?</h3><p>No. The region subtag comes from the country standard, where the United Kingdom is GB, and there is no UK record of any type in the IANA language subtag registry. Google's own documentation says region codes outside that standard are not supported, so en-uk connects the page to nothing.</p></div><div class="faq-item"><h3>Does hreflang have to be uppercase for the country?</h3><p>No. The standard states that language tags and their subtags are to be treated as case insensitive at all times. Uppercase regions are a recommended convention, not a requirement, and af-za and af-ZA are the same tag. Docket reports neither.</p></div><div class="faq-item"><h3>Why does Docket say it does not recognise a language code I know is real?</h3><p>Because its language table is two-letter only, and some languages have no two-letter form: Cebuano is the usual example. That finding is a notice carrying a tool-limit flag: it scores nothing and stays off the fix list, because it is a statement about the tool rather than about your markup.</p></div><div class="faq-item"><h3>Is a deprecated language subtag like in-ID broken?</h3><p>It is out of date rather than broken. The registry marks it deprecated and names the current subtag, id for Indonesian. Whether a given search engine still honours the old form cannot be measured from outside, so Docket reports it at LOW as a tidy-up and makes no claim about what any engine does with it.</p></div><div class="faq-item"><h3>Will Docket catch every invalid country code in my hreflang tags?</h3><p>No, and this is the limit worth knowing. It validates the shape of the value and holds three region strings it knows are wrong; a two-letter region outside that short list passes even when no such country exists. Check unfamiliar regions against the country standard yourself.</p></div><div class="faq-item"><h3>Does Docket read hreflang from my XML sitemap?</h3><p>Not in this check. The values it judges come from link rel=alternate elements in the HTML it crawled. Google also supports hreflang in an HTTP Link header and in XML sitemap annotations, and a site declaring them that way gets no finding here rather than a clean result.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

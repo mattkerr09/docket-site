@@ -56,8 +56,8 @@ def entity_sameas() -> Path:
     body = f"""
 <p class="lede"><code>sameAs</code> is the schema.org property that tells a search engine or
 a language model that this website, that LinkedIn page and that Wikipedia entry are all the
-same organisation. It is the cheapest entity signal available — a list of URLs you already
-own — and <strong>{100 - m['pct_same']}% of the {m['n']} major sites we measured do not have
+same organisation. It is the cheapest entity signal available (a list of URLs you already
+own), and <strong>{100 - m['pct_same']}% of the {m['n']} major sites we measured do not have
 it.</strong></p>
 
 <p>We fetched the homepage of every site in the Docket Index on {m['collected']}, pulled out
@@ -65,8 +65,8 @@ the JSON-LD, and looked for two things: an Organization-family type, and a
 <code>sameAs</code> property. {m['org']} sites ({m['pct_org']}%) declare an organisation.
 Only {m['same']} ({m['pct_same']}%) declare <code>sameAs</code>.</p>
 
-<p>The gap between those numbers is the interesting part. {m['org_no_same']} sites —
-{m['pct_org_no_same']}% of everyone who bothered with Organization schema at all — went to
+<p>The gap between those numbers is the interesting part. {m['org_no_same']} sites (
+{m['pct_org_no_same']}% of everyone who bothered with Organization schema at all) went to
 the trouble of describing themselves as an organisation and then omitted the one property
 that connects that description to anything else.</p>
 
@@ -101,7 +101,7 @@ real organisation than one that is only a domain.</p>
 
 <p>Reference sites came second from bottom at {m['cats'].get('reference', {}).get('pct_same_as', 0):.0f}%,
 which looks wrong until you think about who they are. Wikipedia and its peers <em>are</em>
-the entity graph — they are what everyone else's <code>sameAs</code> points at. They have
+the entity graph. They are what everyone else's <code>sameAs</code> points at. They have
 less to gain by pointing outward.</p>
 
 <p>SEO tools came top at {m['cats'].get('seo-tools', {}).get('pct_same_as', 0):.0f}%, which
@@ -123,15 +123,15 @@ with press mentions weakens the signal rather than strengthening it.</p>
 
 <p><strong>Burying it where nothing looks.</strong> Entity markup belongs on the homepage,
 which is what resolves the site's primary entity. Our measurement only read homepages for
-exactly this reason — a site declaring <code>sameAs</code> on an About page and nowhere else
+exactly this reason. A site declaring <code>sameAs</code> on an About page and nowhere else
 counts as absent here, and that is also roughly how it looks to something trying to work out
 who owns the domain.</p>
 
 <h2>The other half of the problem</h2>
 
 <p>Machines also learn your name from your title tags, your <code>og:site_name</code> and your
-logo's alt text. When those disagree — and they disagree more often than anyone expects,
-usually because a tagline crept into one of them — a knowledge panel, a shared link preview
+logo's alt text. When those disagree (and they disagree more often than anyone expects,
+usually because a tagline crept into one of them) a knowledge panel, a shared link preview
 and an AI citation can each show a different name for the same company. <code>sameAs</code>
 connects your entity to the world; consistent naming is what makes the entity coherent in the
 first place. Docket checks both.</p>
@@ -153,7 +153,7 @@ Docket does not. That is a genuine difference in kind, not a feature gap we inte
 <ol>
 <li>Open your homepage source and search for <code>sameAs</code>. Absent is the common case.</li>
 <li>List every official profile you actually control.</li>
-<li>Put them in the array, on the homepage, inside your Organization node — or inside whichever more specific business type you declare, since a subtype <em>is</em> an Organization.</li>
+<li>Put them in the array, on the homepage, inside your Organization node, or inside whichever more specific business type you declare, since a subtype <em>is</em> an Organization.</li>
 </ol>
 
 <p>It takes about ten minutes and it is the highest ratio of entity signal to effort available
@@ -163,7 +163,7 @@ every site measured, so you can check our arithmetic.</p>
 <h2>How to write the sameAs array</h2>
 
 <p>It is one property on the Organization node you already have. If you have no Organization
-node, that is the first thing to add — <code>sameAs</code> hanging off nothing resolves
+node, that is the first thing to add: <code>sameAs</code> hanging off nothing resolves
 nothing.</p>
 
 <pre><code>&lt;script type="application/ld+json"&gt;
@@ -187,10 +187,10 @@ is how a factual claim about somebody else's organisation ends up in somebody's 
 
 <ul>
 <li><strong>In:</strong> profiles your organisation controls and that represent the
-organisation itself — LinkedIn company page, GitHub organisation, X account, YouTube channel,
+organisation itself: LinkedIn company page, GitHub organisation, X account, YouTube channel,
 Crunchbase, and a Wikipedia or Wikidata entry if one exists.</li>
 <li><strong>Out:</strong> anything about you rather than you. A news article, a review, a
-podcast appearance — those are <code>subjectOf</code>. Padding the array with press mentions
+podcast appearance: those are <code>subjectOf</code>. Padding the array with press mentions
 dilutes exactly the signal you are trying to send.</li>
 <li><strong>Out:</strong> a personal account, unless the node is a <code>Person</code>. A
 founder's profile does not identify the company.</li>
@@ -207,7 +207,7 @@ entity, so an array that exists only on an About page is largely wasted. Fetch t
 itself and look for the block.</p>
 
 <p><strong>2. Is it in the HTML, or only after JavaScript?</strong> If the JSON-LD is injected
-at runtime, the crawlers that do not render never see it — a plain <code>curl</code> of the
+at runtime, the crawlers that do not render never see it: a plain <code>curl</code> of the
 page shows you what they get. That is the same gap covered in
 <a href="/how-to/javascript-seo-audit/">how to run a JavaScript SEO audit</a>.</p>
 
@@ -215,7 +215,7 @@ page shows you what they get. That is the same gap covered in
 is the part nobody repeats a year later, which is why it is the part that rots.</p>
 
 <p>Docket checks the first two across a whole site and reports the pages where the entity is
-declared without <code>sameAs</code>, or with an array too weak to resolve anything — part of
+declared without <code>sameAs</code>, or with an array too weak to resolve anything. Part of
 its <a href="/learn/ai-search-visibility/">AI search visibility</a> lane.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
@@ -241,7 +241,7 @@ its <a href="/learn/ai-search-visibility/">AI search visibility</a> lane.</p>
         body=body,
         faq=[
             ("What does sameAs do in schema.org?",
-             "It lists other URLs that represent the same entity — your LinkedIn page, your "
+             "It lists other URLs that represent the same entity: your LinkedIn page, your "
              "Wikipedia article, your Google Business Profile. It lets a search engine or "
              "language model confirm that those accounts and your website are one "
              "organisation rather than several unrelated ones."),
@@ -249,7 +249,7 @@ its <a href="/learn/ai-search-visibility/">AI search visibility</a> lane.</p>
              "On the homepage, inside your Organization node. The homepage is what resolves "
              "a site's primary entity, so markup on an About page alone is largely wasted."),
             ("Should I list news articles about my company in sameAs?",
-             "No. sameAs means 'this is also me'. An article about you is not you — that is "
+             "No. sameAs means 'this is also me'. An article about you is not you: that is "
              "subjectOf. Padding the array with press mentions weakens the signal."),
         ],
     )

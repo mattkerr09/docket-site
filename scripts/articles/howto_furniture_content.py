@@ -1,25 +1,25 @@
 """Telling a site's navigation from its content, and the five times we did not.
 
 Promised on the how-to hub. Sourced from `content.py`, registered check
-`content.thin` — `_reads_as_archive`, `ARCHIVE_ANCHOR_SHARE` and
+`content.thin`: `_reads_as_archive`, `ARCHIVE_ANCHOR_SHARE` and
 `ARCHIVE_MIN_ANCHOR_WORDS`:
 
   * a thin page whose few words ARE its links is an index, and the remedies for
     a thin page are wrong for one. Telling the two apart is the problem.
   * counting links fails at once: an author archive carries dozens, of which two
     or three are its entries and the rest are site navigation. A RAW COUNT
-    MEASURES THE TEMPLATE — "the chrome-versus-content mistake this project has
+    MEASURES THE TEMPLATE: "the chrome-versus-content mistake this project has
     made four times".
   * ⚠️ AND THE SHARE ALONE WALKED INTO THE SAME MISTAKE A FIFTH TIME. `prose` is
     chrome-stripped only when the markup gives the extractor something to
     recognise navigation BY. A stub carrying dozens of bare `<a>` links with no
     `<nav>` around them put every label in the body, producing a link share
-    comfortably over the threshold — a genuine stub excused as an archive. The
+    comfortably over the threshold: a genuine stub excused as an archive. The
     test written for exactly that case caught it.
   * the third discriminator: LENGTH. An anchor must carry at least four words
     before it counts as an entry rather than a label.
 
-⚠️ NO SITE OR VENDOR IS NAMED — third-party gate. No measured numbers are
+⚠️ NO SITE OR VENDOR IS NAMED: third-party gate. No measured numbers are
 published: `verify_numbers.py` allows none of them, and the thresholds are
 described rather than quoted, except the four-word rule which is a word.
 
@@ -43,15 +43,15 @@ from render import render  # noqa: E402
 
 def furniture_content() -> Path:
     body = """
-<p class="lede">Every page has furniture — navigation, a header, a footer, share buttons, a cookie
-line — and almost every automated judgement about what a page <em>says</em> depends on telling that
+<p class="lede">Every page has furniture (navigation, a header, a footer, share buttons, a cookie
+line), and almost every automated judgement about what a page <em>says</em> depends on telling that
 furniture from the content. It is much harder than it sounds. We have got it wrong five separate
 times, in five different checks, and the fifth was in the fix for the fourth.</p>
 
 <h2>Where it bites hardest</h2>
 
 <p>A page with very few words is usually a problem. But a page whose few words <em>are</em> its
-links is an index — an author archive, a category listing, a tag page — and the standard advice for
+links is an index (an author archive, a category listing, a tag page), and the standard advice for
 a thin page is wrong for one in three different ways, which
 <a href="/how-to/content-audit/">a content audit &rarr;</a> sets out.</p>
 
@@ -65,7 +65,7 @@ point elsewhere?</strong></p>
 
 <p>An author archive on a publisher's site carries dozens of links. Two or three of them are the
 author's articles. Every other one is the site's main navigation, its footer, its section menu and
-its social row — the same links on every page of the site.</p>
+its social row: the same links on every page of the site.</p>
 
 <p><strong>A raw link count measures the template, not the page.</strong> That is the mistake in
 its plainest form, and it is the one we have made repeatedly: a measurement that is perfectly
@@ -75,20 +75,20 @@ contains the whole site's furniture and the page is what a reader sees.</p>
 <h2>So it measures share instead</h2>
 
 <p>The better question is what proportion of the page's words sit inside links. A real index is
-mostly its links — that is what makes it an index. A stub with a navigation bar is mostly not.</p>
+mostly its links. That is what makes it an index. A stub with a navigation bar is mostly not.</p>
 
 <p>That works, and it is where the fifth mistake was waiting.</p>
 
 <h2>The fifth time, inside the fix for the fourth</h2>
 
 <p>Computing a share means having the page's text with the furniture already removed. Extractors do
-that well — <strong>when the markup gives them something to recognise navigation by.</strong> A
+that well. <strong>When the markup gives them something to recognise navigation by.</strong> A
 navigation element, a role, a recognisable container.</p>
 
 <p>A page that carries its links as bare anchor tags, with no navigation element around them, gives
 the extractor nothing to strip. Every one of those labels lands in the body text. In the case that
-caught this, a genuine stub — a page with nothing on it but a row of section links and a line of
-contact detail — came out as a long run of one-word labels, which is a link share comfortably over
+caught this, a genuine stub (a page with nothing on it but a row of section links and a line of
+contact detail) came out as a long run of one-word labels, which is a link share comfortably over
 any threshold. <strong>An empty page was excused as an archive by the rule written to protect
 archives.</strong></p>
 
@@ -103,7 +103,7 @@ often it appears. <strong>It is how long it is.</strong></p>
 
 <p>An anchor has to carry at least four words before it counts as an entry rather than a label.
 "Home", "Contact", "About us", "Our services" never qualify. An article title, a product name, a
-person's full name with a role after it — almost always do.</p>
+person's full name with a role after it: almost always do.</p>
 
 <p>It is crude and it is the most portable of the three, because it needs no crawl and no markup
 at all.</p>
@@ -112,11 +112,11 @@ at all.</p>
 
 <table>
 <tr><th>Test</th><th>Works when</th><th>Fails when</th></tr>
-<tr><td>Repetition — it appears on many pages</td><td>You have the whole crawl to compare
+<tr><td>Repetition: it appears on many pages</td><td>You have the whole crawl to compare
 against</td><td>You are looking at one page, or the furniture is nested inside content</td></tr>
-<tr><td>Region — it sits inside a navigation, header or footer element</td><td>The markup is
+<tr><td>Region: it sits inside a navigation, header or footer element</td><td>The markup is
 semantic</td><td>The markup is bare, or the thing you want lives in the footer</td></tr>
-<tr><td>Length — a label is short, an entry is long</td><td>Always available, needs nothing</td>
+<tr><td>Length: a label is short, an entry is long</td><td>Always available, needs nothing</td>
 <td>The entries really are one or two words</td></tr>
 </table>
 
@@ -135,8 +135,8 @@ links, it counted your template.</li>
 <li><strong>Look at whether your navigation is inside a navigation element.</strong> Bare anchor
 tags are valid, they render identically, and they make every automated reading of your pages
 worse.</li>
-<li><strong>If your index entries are genuinely short</strong> — a glossary, an A to Z, a size
-chart — expect tools to under-count them, and do not let a report talk you into padding them.</li>
+<li><strong>If your index entries are genuinely short</strong> (a glossary, an A to Z, a size
+chart) expect tools to under-count them, and do not let a report talk you into padding them.</li>
 <li><strong>Read the page with styles switched off.</strong> What you see is roughly what a
 text-based reader gets, and the ratio of furniture to content becomes obvious immediately.</li>
 </ol>
@@ -144,7 +144,7 @@ text-based reader gets, and the ratio of furniture to content becomes obvious im
 <h2>When this matters</h2>
 
 <p>The severity sits on both ends and they are the same bug. Wrong in one direction, a publisher is
-told at high severity to delete author pages — breaking a byline link on every article that author
+told at high severity to delete author pages. Breaking a byline link on every article that author
 wrote. Wrong in the other, a genuinely empty page is excused as an index and never fixed. A tool
 that cannot tell furniture from content will do both, on the same site, in the same report.</p>
 
@@ -180,14 +180,14 @@ and reports index pages separately. For what to do with the list it gives you, s
         cat="how-to", slug="telling-furniture-from-content",
         title="Telling your site's furniture from its content",
         desc=("An audit that reads a site's navigation as its content will excuse an empty page "
-              "as an index — the same confusion made five times, and the three ways out of it."),
+              "as an index. The same confusion made five times, and the three ways out of it."),
         h1="Telling your site's furniture from its content",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Furniture or content',
         body=body,
         faq=[
             ("Why does an audit call my category or author page thin?",
              "Because it is short, which is true. The question is whether it is short because "
-             "nobody wrote it or short because its job is to point elsewhere — and the advice "
+             "nobody wrote it or short because its job is to point elsewhere, and the advice "
              "for the first is wrong for the second in three different ways."),
             ("Why is counting links a bad way to recognise an index page?",
              "Because a raw count measures your template. An author archive carries dozens of "
@@ -199,7 +199,7 @@ and reports index pages separately. For what to do with the list it gives you, s
              "body text, and every measurement of what the page says is then wrong."),
             ("What separates a navigation label from a real index entry?",
              "Length is the most portable test. Ours requires an anchor to carry at least four "
-             "words before it counts as an entry — enough to exclude Home, Contact and About us, "
+             "words before it counts as an entry: enough to exclude Home, Contact and About us, "
              "and to include almost any article or product title."),
             ("Can a tool tell whether my index page is any good?",
              "No. These rules recognise the shape of an index, never its usefulness. Whether the "

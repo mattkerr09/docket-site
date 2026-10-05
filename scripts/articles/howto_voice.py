@@ -6,8 +6,8 @@ spread of average sentence length across substantial pages.
 
 ⚠️ THE SPINE OF THIS PAGE IS THAT THE MEASURE IS A PROXY AND SAYS SO. Sentence
 length is a shadow of voice, not voice. The check is LOW severity precisely
-because two registers are often correct — a legal notice should not sound like a
-landing page — and the page keeps that framing rather than inflating it.
+because two registers are often correct (a legal notice should not sound like a
+landing page), and the page keeps that framing rather than inflating it.
 
 Complements /learn/brand-consistency/ (why crawlers ignore brand at all) and
 /how-to/fix-a-site-that-says-something-different-every-page/ (what you say,
@@ -33,7 +33,7 @@ wrong with any of them.</p>
 
 <h2>What can actually be measured</h2>
 
-<p>Not voice. Sentence length — the average per page, and how far those averages sit apart
+<p>Not voice. Sentence length: the average per page, and how far those averages sit apart
 across the site.</p>
 
 <p>That is a crude thing to count and it works better than it deserves to, because substantial
@@ -43,7 +43,7 @@ or an agency's work beside the founder's.</p>
 
 <p><strong>It is a proxy, and it is worth being blunt about that.</strong> Sentence length is a
 shadow that voice casts. Two pages can share an average and read nothing alike. What the measure
-is good for is noticing that a site has more than one register — not telling you what those
+is good for is noticing that a site has more than one register, not telling you what those
 registers are, and not telling you which is better.</p>
 
 <h2>Why this is worth knowing and not worth panicking about</h2>
@@ -55,8 +55,8 @@ its job.</p>
 
 <p>It matters when the pages are supposed to be doing the <em>same</em> job. Two service pages
 that read as though they come from different companies make a visitor moving between them do
-work that should not exist. Something summarising your site — a person skimming, or a model
-writing a sentence about you — has no consistent register to reproduce, and produces the average
+work that should not exist. Something summarising your site (a person skimming, or a model
+writing a sentence about you) has no consistent register to reproduce, and produces the average
 of several, which sounds like nobody.</p>
 
 <h2>The wrong fixes</h2>
@@ -79,7 +79,7 @@ the same job should cohere: the service pages with each other, the guides with e
 Anything genuinely doing a different job is allowed to sound different, and should.</p>
 
 <p>Then pick one page in each group that sounds right and use it as the reference. Not a style
-guide nobody reads — an actual page somebody already wrote, which is the only kind of standard
+guide nobody reads. An actual page somebody already wrote, which is the only kind of standard
 that survives contact with a deadline.</p>
 
 <h2>What an audit cannot tell you</h2>
@@ -89,8 +89,8 @@ voice you settled on is the right one for the people you are selling to. Those a
 and a measurement that claimed to make them would be worth less than one that admits it counts
 sentences.</p>
 
-<p>The related questions — whether your site says one consistent <em>thing</em>, and why brand
-is invisible to crawlers generally — are
+<p>The related questions (whether your site says one consistent <em>thing</em>, and why brand
+is invisible to crawlers generally) are
 <a href="/how-to/fix-a-site-that-says-something-different-every-page/">a different measurement</a>
 and <a href="/learn/brand-consistency/">a longer argument</a>.</p>
 """
@@ -119,7 +119,7 @@ and <a href="/learn/brand-consistency/">a longer argument</a>.</p>
             ("What is the practical fix?",
              "Group pages by the job they do rather than by navigation, and make each group "
              "cohere. Then pick one page in each group that already sounds right and use it as "
-             "the reference — an actual page survives a deadline in a way a style guide does "
+             "the reference. An actual page survives a deadline in a way a style guide does "
              "not."),
             ("Can an audit tell me if my writing is good?",
              "No. It cannot tell you whether the difference it found was deliberate, or "

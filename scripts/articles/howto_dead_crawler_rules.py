@@ -8,19 +8,19 @@ Promised on the how-to hub. Sourced from `ai_visibility.py`, registered check
     were reading the pages it meant to withhold. The file: the catch-all group
     carried seventeen Disallow rules, the AI group carried seven, and EVERY ONE
     of the seven was also in the catch-all. A crawler matching no group falls
-    back to `User-agent: *` — which here was STRICTER. Nothing was lost but a
+    back to `User-agent: *`, which here was STRICTER. Nothing was lost but a
     `Crawl-delay`. THE TOKENS WERE DEAD, THE CONSEQUENCE WAS FALSE, AND THE
     SEVERITY RESTED ON THE CONSEQUENCE.
   * `covered_by_sibling`: a retired name sharing a group with its live
-    replacement costs nothing — the live crawler reads that group and gets
+    replacement costs nothing: the live crawler reads that group and gets
     every rule. Untidy, not an exposure.
   * the refusal: the comparison is an EXACT pattern match. A catch-all
     `Disallow: /` really does cover a narrower rule, but proving it needs
     path-matching semantics and a wrong guess would SILENCE A REAL EXPOSURE, so
-    it stays reported. The direction to err in follows what being wrong costs —
+    it stays reported. The direction to err in follows what being wrong costs,
     which is the opposite of how the same codebase treats recommendations.
 
-⚠️ NO SITE OR VENDOR IS NAMED — third-party gate. The manufacturer, the news
+⚠️ NO SITE OR VENDOR IS NAMED: third-party gate. The manufacturer, the news
 sites and the token owners in the docstrings stay out.
 
 ⚠️ THIS TICK ALSO CORRECTS /index/ai-directives/, which published the stale
@@ -45,7 +45,7 @@ def dead_crawler_rules() -> Path:
     body = """
 <p class="lede">Finding a retired crawler name in your robots.txt is easy, and every tool that
 looks will tell you. What that dead line actually costs you is a completely different question,
-and the answer is not in the line you are looking at — it is in the group the crawler reads
+and the answer is not in the line you are looking at. It is in the group the crawler reads
 instead.</p>
 
 <h2>Six dead names, and nothing was getting through</h2>
@@ -56,7 +56,7 @@ reported, at medium severity, that those crawlers were reading the pages it mean
 from them.</p>
 
 <p>That was false, and here is the file that made it false. The catch-all group carried seventeen
-<code>Disallow</code> rules. The AI group carried seven — <strong>and every one of the seven was
+<code>Disallow</code> rules. The AI group carried seven, <strong>and every one of the seven was
 also in the catch-all.</strong></p>
 
 <p>A crawler that matches no group falls back to <code>User-agent: *</code>. So those crawlers fell
@@ -79,11 +79,11 @@ the crawler simply reads the catch-all, and three things can happen:</p>
 <tr><th>The catch-all group is…</th><th>What the dead name cost you</th></tr>
 <tr><td>Stricter than the group you wrote</td><td>Nothing. The crawler is more restricted, not less.</td></tr>
 <tr><td>Carrying the same rules</td><td>Nothing that matters. The lines are inert but the policy holds.</td></tr>
-<tr><td>Looser, or missing rules the dead group had</td><td>This is the real exposure — and the only case worth a severity.</td></tr>
+<tr><td>Looser, or missing rules the dead group had</td><td>This is the real exposure, and the only case worth a severity.</td></tr>
 </table>
 
 <p>Nothing about the dead line tells you which of those you are in. <strong>The question is never
-"is this token current?" — it is "what does this crawler get instead?"</strong></p>
+"is this token current?". It is "what does this crawler get instead?"</strong></p>
 
 <h2>Sometimes the replacement is already sitting next to it</h2>
 
@@ -92,7 +92,7 @@ them. So a retired name stacked in the same group as its live replacement costs 
 the live crawler reads that group and receives every rule in it.</p>
 
 <p>That is worth knowing before you go tidying. On one site with four dead names, exactly one of
-them was actually uncovered — the other three sat beside live replacements or above rules the
+them was actually uncovered. The other three sat beside live replacements or above rules the
 catch-all already carried. A finding that said four would have been four times the alarm and three
 times the wasted work.</p>
 
@@ -100,7 +100,7 @@ times the wasted work.</p>
 
 <p>The comparison between the two groups is an exact match on the rule patterns, and that is
 deliberately crude. A catch-all group saying <code>Disallow: /</code> genuinely does cover a
-narrower rule written under a dead name — but proving that in general needs full path-matching, and
+narrower rule written under a dead name, but proving that in general needs full path-matching, and
 a wrong answer would quietly <em>silence a real exposure</em>. So that case stays reported.</p>
 
 <p><strong>The direction you err in should follow what being wrong costs.</strong> A false alarm
@@ -129,8 +129,8 @@ crawler's user-agent string and see what the server actually does.</li>
 <h2>When a dead token really is an exposure</h2>
 
 <p>Keep the severity where the harm is. If your AI group disallows paths that the catch-all group
-does not — a members' area, a search endpoint, anything you separated out precisely because you
-did not want it crawled — then a retired name above those rules means they are not in force for
+does not (a members' area, a search endpoint, anything you separated out precisely because you
+did not want it crawled) then a retired name above those rules means they are not in force for
 that crawler. Nothing else in the file is protecting them. That one is worth doing today.</p>
 
 <h2>The fixes that make it worse</h2>
@@ -141,8 +141,8 @@ nothing and added nothing that does. Write the current token first.</li>
 <li><strong>Adding the new token to a group you have not read.</strong> You are now applying that
 group's rules to a live crawler. Read them before you attach a working name to them.</li>
 <li><strong>Treating robots.txt as access control.</strong> It is a request, honoured by the
-crawlers that choose to. If the content must not be fetched, that is an authentication job —
-<a href="/index/ai-directives/">the directives survey &rarr;</a> goes into what the file can and
+crawlers that choose to. If the content must not be fetched, that is an authentication job.
+<a href="/index/ai-directives/">The directives survey &rarr;</a> goes into what the file can and
 cannot do.</li>
 <li><strong>Copying an AI block from another site.</strong> That is how retired names spread in the
 first place: they were correct when someone published them and nothing re-checks a copied file.</li>
@@ -151,7 +151,7 @@ first place: they were correct when someone published them and nothing re-checks
 <h2>How to make this finding go quiet without protecting anything</h2>
 
 <p>Delete the AI group entirely. There are now no dead tokens to report, and your site is governed
-by the catch-all alone — which is the exact situation the finding was describing. <strong>A check
+by the catch-all alone, which is the exact situation the finding was describing. <strong>A check
 about dead rules cannot see rules you never wrote.</strong> The silence means the same thing it
 meant before; only the paperwork changed.</p>
 
@@ -168,7 +168,7 @@ crawlers, see <a href="/learn/does-noindex-stop-ai-crawlers/">does noindex stop 
         cat="how-to", slug="what-a-dead-crawler-rule-costs",
         title="What a dead robots.txt rule actually costs",
         desc=("An audit can call a retired crawler name an exposure when a site's catch-all group "
-              "is stricter — what a dead rule costs depends on where the crawler lands instead."),
+              "is stricter. What a dead rule costs depends on where the crawler lands instead."),
         h1="What a dead robots.txt rule actually costs",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Dead crawler rules',
         body=body,

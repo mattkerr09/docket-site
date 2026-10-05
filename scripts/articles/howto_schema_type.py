@@ -1,7 +1,7 @@
 """A schema type is a factual claim about what your organisation is.
 
-Promised on the how-to hub. Sourced from `local_seo.py` — registered check
-`local.schema` — whose docstrings record three connected failures:
+Promised on the how-to hub. Sourced from `local_seo.py` (registered check
+`local.schema`) whose docstrings record three connected failures:
 
   * the snippet builder handed a university a complete, valid, PASTEABLE block
     declaring it a plumbing firm with a street address and coordinates in
@@ -14,7 +14,7 @@ Promised on the how-to hub. Sourced from `local_seo.py` — registered check
     being generous about WHAT TO RECOMMEND is not, because the output is markup
     a search engine reads as a factual claim.
 
-⚠️ NO SITE IS NAMED — third-party gate. The university and the bakery are
+⚠️ NO SITE IS NAMED: third-party gate. The university and the bakery are
 described by what they are; the plumbing firm in the sample data is fictional
 and is described rather than quoted by name.
 
@@ -49,7 +49,7 @@ declared the organisation a plumbing firm, gave it a plumbing company's name, a 
 a city on another continent and a pair of geographic coordinates to match. And it interpolated the
 audited site's own URL and logo into the same block.</p>
 
-<p>A university received it. So did everybody else — a bakery on one continent was handed markup
+<p>A university received it. So did everybody else. A bakery on one continent was handed markup
 saying it was a plumber on another.</p>
 
 <p><strong>The interpolation is what makes it dangerous rather than merely silly.</strong> A block
@@ -58,8 +58,8 @@ credibility. Nobody scrutinises line four of something that got lines one and tw
 them.</p>
 
 <p>The sharpest part: a sibling function elsewhere in the same codebase states this exact
-principle in its own comments — that the lines above interpolate the real name and origin, so
-anything number-shaped reads as researched and gets pasted verbatim — and was written carefully
+principle in its own comments (that the lines above interpolate the real name and origin, so
+anything number-shaped reads as researched and gets pasted verbatim), and was written carefully
 because of it. This one lived in a different file and never got the lesson. <strong>A rule learned
 in one place does not travel to another by itself.</strong></p>
 
@@ -79,7 +79,7 @@ actually underneath the thing being named.</p>
 
 <p>Here is the distinction that fixed it, and it generalises well past schema.</p>
 
-<p>The test for whether the local-business checks apply at all is deliberately loose — it keys on
+<p>The test for whether the local-business checks apply at all is deliberately loose. It keys on
 signals like a published street address, which universities, government offices, hospitals,
 libraries and museums all have. That looseness is correct: those organisations <em>do</em> have
 local-search work to do, and excluding them would help nobody.</p>
@@ -87,7 +87,7 @@ local-search work to do, and excluding them would help nobody.</p>
 <p>But the output of the check is markup that makes a claim. <strong>Being generous about applying
 a lane is right. Being generous about what to recommend is not.</strong></p>
 
-<p>So only the unambiguous cases are claimed — an education or government domain label is strong
+<p>So only the unambiguous cases are claimed. An education or government domain label is strong
 evidence and gets the matching type. Everything else stays with the general type, because a charity
 on an ordinary domain looks exactly like a shop from the outside, and <strong>guessing wrong is
 precisely the thing the rule exists to prevent.</strong></p>
@@ -99,7 +99,7 @@ precisely the thing the rule exists to prevent.</strong></p>
 <code>LocalBusiness</code> is a common answer because it is a commonly recommended one, not
 because it is usually right.</li>
 <li><strong>Read the hierarchy before picking a subtype.</strong> Check that your type actually
-descends from the one you were told to use — the vocabulary lists its parents.</li>
+descends from the one you were told to use: the vocabulary lists its parents.</li>
 <li><strong>The fields are mostly the same.</strong> Name, address, telephone and opening hours
 appear on educational, governmental, medical and civic types too. Choosing the accurate type costs
 you nothing in coverage.</li>
@@ -113,7 +113,7 @@ worse than a right general one.</li>
 <ul>
 <li><strong>Check every value, not the shape.</strong> The block is valid JSON-LD and will pass a
 validator whatever it says about you.</li>
-<li><strong>Be most suspicious of the fields that look researched</strong> — addresses,
+<li><strong>Be most suspicious of the fields that look researched</strong>: addresses,
 coordinates, opening hours, prices. Those are the ones a template fills with example data.</li>
 <li><strong>Treat your own domain appearing in it as neutral.</strong> It is the easiest field for
 a tool to know and the one that buys the rest of the block its credibility.</li>
@@ -121,14 +121,14 @@ a tool to know and the one that buys the rest of the block its credibility.</li>
 
 <h2>When this matters most</h2>
 
-<p>Structured data that misdescribes your organisation is not a missed opportunity — it is a
+<p>Structured data that misdescribes your organisation is not a missed opportunity. It is a
 statement search engines can act on, and the consequences run from ignored markup to manual action
 depending on how far the claim is from the truth. Two cases deserve care:</p>
 
 <ul>
 <li><strong>Coordinates and addresses.</strong> A wrong location claim is the one most likely to
 be used and most likely to hurt.</li>
-<li><strong>Types that imply regulation</strong> — medical, financial, educational. Claiming to be
+<li><strong>Types that imply regulation</strong>: medical, financial, educational. Claiming to be
 a kind of organisation you are not is a different order of error from a missing property.</li>
 </ul>
 
@@ -146,7 +146,7 @@ than one wrong one.</li>
 
 <h2>How to pass this check while saying something untrue</h2>
 
-<p>Declare the type the report named, fill in your real address, and you are done — the finding
+<p>Declare the type the report named, fill in your real address, and you are done. The finding
 clears whether or not the type is accurate, because no crawler can verify what kind of
 organisation you are. <strong>The check can see the shape of your claim and never its truth</strong>,
 which is exactly why the recommendation has to be careful in a way the validation cannot be.</p>
@@ -162,7 +162,7 @@ you &rarr;</a>. For the other ways structured data goes wrong, see
     return render(
         cat="how-to", slug="schema-type-is-a-claim",
         title="A schema type is a claim about what you are",
-        desc=("An audit saying add LocalBusiness names a type a university does not have — and "
+        desc=("An audit saying add LocalBusiness names a type a university does not have, and "
               "a pasteable block can put another firm's facts on your site."),
         h1="A schema type is a claim about what you are",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Schema types',

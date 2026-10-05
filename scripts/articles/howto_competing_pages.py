@@ -6,7 +6,7 @@ check, including the part that is not obvious from the outside: the site's own
 subject has to be removed before anything is compared, or every page on a
 focused site looks like it competes with every other.
 
-No numeric literals — the thresholds live in the engine, and a figure written
+No numeric literals. The thresholds live in the engine, and a figure written
 into prose here would be the second place that number lives.
 """
 from __future__ import annotations
@@ -21,14 +21,14 @@ from render import render  # noqa: E402
 def competing_pages() -> Path:
     body = """
 <p class="lede">Google shows one result per site for most queries. When two of your pages aim at
-the same search, they do not double your chances — they split the internal links and relevance
+the same search, they do not double your chances. They split the internal links and relevance
 that should have backed one page, and neither ranks as well as one would have. Nobody reports
 this to you, because both pages look fine.</p>
 
 <h2>Why nothing catches it</h2>
 
 <p>Every audit tool looks for <strong>duplicate</strong> content: identical titles, identical
-bodies. Competing pages are not duplicates. They are genuinely different pages — different
+bodies. Competing pages are not duplicates. They are genuinely different pages: different
 words, different length, usually written months apart by different people, often both good.
 That is exactly why they survive: there is nothing wrong with either one on its own.</p>
 
@@ -43,7 +43,7 @@ check compares them and finds no duplication, because there is none.</p>
 <pre><code>site:example.com running shoes flat feet</code></pre>
 
 <p>If several of your own pages come back and you cannot immediately say which one is
-<em>the</em> answer, neither can a search engine. That is the test — not whether the pages are
+<em>the</em> answer, neither can a search engine. That is the test, not whether the pages are
 similar, but whether you can name the one that should win.</p>
 
 <h2>The part that goes wrong when you automate it</h2>
@@ -54,7 +54,7 @@ Group on that and the site is competing with itself on every page, which is nois
 gets switched off.</p>
 
 <p><strong>Subtract what the whole site is about before comparing anything.</strong> What is
-left is what each page is chasing individually — "starters", "classes", "delivery" — and pages
+left is what each page is chasing individually ("starters", "classes", "delivery"), and pages
 that share <em>those</em> are the ones actually pointed at the same search. It is also worth
 requiring more than one word in common, or every page containing "guide" competes with every
 other one.</p>
@@ -71,14 +71,14 @@ other page's writing.</li>
 The page your own site points at more is the page you already treat as the answer.</li>
 <li><strong>Which one matches the intent?</strong> A comparison page and a product page can
 carry the same words while answering different questions. If they genuinely answer different
-questions, the fix is not a merge — see below.</li>
+questions, the fix is not a merge: see below.</li>
 </ul>
 
 <h2>The fix</h2>
 
 <p><strong>If they answer the same question:</strong> keep one, fold anything worth keeping
 from the other into it, and redirect the loser to the winner with a 301. The redirect is the
-point — it moves the links the losing page had earned, which is most of what it was worth.</p>
+point. It moves the links the losing page had earned, which is most of what it was worth.</p>
 
 <p><strong>If they answer different questions:</strong> make that true on the page. Rewrite
 each title and opening paragraph so a reader can tell them apart in a search result, and link
@@ -91,7 +91,7 @@ also stops passing on the links it earned. A redirect keeps that value; a noinde
 
 <p><strong>Do not canonicalise between pages that are genuinely different.</strong> A canonical
 says "this is the same thing". If the pages really answer different questions, that is a false
-statement, and search engines are free to ignore it — usually by picking whichever page they
+statement, and search engines are free to ignore it, usually by picking whichever page they
 prefer, which returns you to the problem you started with.</p>
 
 <p><strong>Do not delete the loser.</strong> Deleting throws away the links along with the
@@ -108,7 +108,7 @@ page. Redirect instead: it is the same outcome for the reader and a better one f
         faq=[
             ("What is keyword cannibalisation?",
              "Two or more pages on the same site aiming at the same search. They are not "
-             "duplicates — they are different pages answering one question — so the internal "
+             "duplicates (they are different pages answering one question), so the internal "
              "links and relevance that should back a single page are split between them."),
             ("Is it the same as duplicate content?",
              "No, and that is why it is easy to miss. Duplicate content means the pages are "
@@ -123,7 +123,7 @@ page. Redirect instead: it is the same outcome for the reader and a better one f
              "earned. Noindex stops it competing but discards that value, and deleting throws "
              "it away along with the page."),
             ("Can two pages target similar words without competing?",
-             "Yes, when they genuinely answer different questions — a comparison page and a "
+             "Yes, when they genuinely answer different questions: a comparison page and a "
              "product page, for example. Make the difference visible in the title and opening "
              "paragraph, and link them to each other."),
         ],

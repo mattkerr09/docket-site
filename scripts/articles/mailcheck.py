@@ -2,8 +2,8 @@
 """The contact address that cannot receive mail.
 
 Every figure comes from data/mail-2026-08.json through facts.py. The
-survey found nothing — no dead address among the large sites that still publish
-one — and the article says so, because a survey you only publish when it agrees
+survey found nothing (no dead address among the large sites that still publish
+one), and the article says so, because a survey you only publish when it agrees
 with you is not a survey.
 """
 from __future__ import annotations
@@ -27,7 +27,7 @@ RFC = "https://www.rfc-editor.org/rfc/rfc5321#section-5.1"
 
 def dead_contact() -> Path:
     body = f"""
-<p class="lede">A contact address on a domain with no MX record does not fail loudly — it
+<p class="lede">A contact address on a domain with no MX record does not fail loudly: it
 bounces, to the sender, and you never learn anyone wrote. We checked the
 {F.mail_answered()} sites in the <a href="https://tranco-list.eu/">Tranco top</a> {F.mail_attempted()} that answered a request, and
 found <strong>{F.mail_publishing()} still publish an email address at all</strong>: every one
@@ -44,7 +44,7 @@ domain's address record and tries SMTP there. On a site hosted by GitHub Pages, 
 Vercel or Cloudflare Pages, that address record points at a machine which serves files and
 does not answer on port 25. The message is attempted, refused, and bounced.</p>
 
-<p>The bounce goes to the person who wrote to you. Nothing arrives at your end — not the
+<p>The bounce goes to the person who wrote to you. Nothing arrives at your end, not the
 message, not a warning, not a record that anyone tried. Your analytics show the contact page
 being read. Your inbox shows nothing, which looks exactly like nobody having anything to
 say.</p>
@@ -59,7 +59,7 @@ The domain had no MX record; it is on GitHub Pages; port 25 is closed there. Eve
 anyone sent bounced, and we found out by writing a contact page and checking our own
 advertised channel before publishing it.</p>
 
-<p>The domain now publishes MX records, and the address is still not back — which is the
+<p>The domain now publishes MX records, and the address is still not back, which is the
 honest end of this story rather than a loose end. An MX record is necessary for delivery and
 not sufficient: forwarding is configured per address, and nobody has yet sent a message to one
 and had it answered. Re-advertising an address because DNS looks right would be the same
@@ -67,14 +67,14 @@ failure this check exists to catch, one layer further in.</p>
 
 <p>An SEO audit tool shipping a dead contact address is embarrassing in a specific and useful
 way: it is exactly the class of defect that only shows up if something asks the question, and
-nothing did, because no tool asks it. That is now check {N_CHECKS} —
+nothing did, because no tool asks it. That is now check {N_CHECKS}:
 <code>cvr.dead_contact</code>.</p>
 
 <h2>What the survey found</h2>
 
 <p>We fetched the homepage of the top {F.mail_attempted()} sites in the Tranco list;
 {F.mail_answered()} answered. An address counts as published only where it appears in a
-<code>mailto:</code> href — text in prose might be an example, a screenshot caption or
+<code>mailto:</code> href. Text in prose might be an example, a screenshot caption or
 somebody else's. Free-provider addresses and
 <a href="https://www.rfc-editor.org/rfc/rfc2606">RFC 2606</a> reserved names are excluded,
 because whether gmail.com accepts mail is not a fact about the site quoting it.</p>
@@ -99,7 +99,7 @@ out is the version of this article we expected to write.</p>
 
 <p>Only <strong>{F.mail_publishing_pct()}% of the sites that answered publish an email address
 at all</strong>. Among the largest sites on the web, the contact address has very nearly
-disappeared — replaced by a form, a help centre, or nothing.</p>
+disappeared: replaced by a form, a help centre, or nothing.</p>
 
 <p>That reframes the risk rather than removing it. A dead address is a failure available only
 to sites that still publish one, and the sites that still publish one are small: the
@@ -134,13 +134,13 @@ the first number is the one that matters:</p>
 </tbody></table></div>
 
 <p>Small businesses publish an email address <strong>{F.small_publishing_ratio()} times as
-often</strong> — {F.small_publishing_pct()}% against {F.mail_publishing_pct()}%. And unlike
+often</strong>: {F.small_publishing_pct()}% against {F.mail_publishing_pct()}%. And unlike
 the large sites, some of theirs do not work: <strong>{F.small_dead()} of
 {F.small_publishing()}</strong>, or {F.small_dead_pct()}%, with a 95% interval of
 {F.small_dead_interval()}. Seven is a small number and the interval says so; what it is not
 is zero.</p>
 
-<p>All seven are businesses with a single mapped location — the independents, not the chains.
+<p>All seven are businesses with a single mapped location: the independents, not the chains.
 That split comes from the data rather than from an opinion about which brands count as
 chains: a domain appearing at one mapped shop is one business, and at nine is not.</p>
 
@@ -153,12 +153,12 @@ two:</p>
 
 <ul>
 <li><strong>The domain in the address does not exist.</strong> Six of the seven. The site is
-on one domain and the email address is at another — a near-miss spelling, or a domain that
-lapsed — and that second domain has no MX record and no address record at all. Nothing about
+on one domain and the email address is at another (a near-miss spelling, or a domain that
+lapsed), and that second domain has no MX record and no address record at all. Nothing about
 the website looks wrong, because nothing about the website <em>is</em> wrong.</li>
 <li><strong>An MX record naming a host that does not resolve.</strong> One of the seven, and
 the more interesting one. The domain publishes a mail exchanger, so every "do you have an MX
-record" test passes. The host it names has no address record — in this case a hosting panel
+record" test passes. The host it names has no address record. In this case a hosting panel
 had pasted the domain into the middle of a template value and left it there. The record looks
 completely correct in the zone file and there is nowhere for the mail to go.</li>
 </ul>
@@ -169,11 +169,11 @@ An MX-exists check would have called that domain healthy.</p>
 <h2>The record that exists and the host that does not</h2>
 
 <p>Everything above is about a domain with no MX record. There is a second
-failure underneath it that is harder to see, and we measured that too — same
+failure underneath it that is harder to see, and we measured that too. Same
 frame, DNS only, no pages fetched.</p>
 
 <p>Of the {F.mx_publishing()} domains in the frame that publish an MX record at all,
-<strong>{F.mx_dead()} name a mail exchanger that does not resolve</strong> — every one of
+<strong>{F.mx_dead()} name a mail exchanger that does not resolve</strong>: every one of
 them, so there is nowhere for the message to go. That is {F.mx_dead_pct()}% of the domains
 that look correctly configured. Another {F.mx_partial()} have one dead exchanger and a
 working one, so their mail arrives; the finding only speaks when all of them fail.</p>
@@ -206,7 +206,7 @@ is a guarantee of failure.</p>
 <h2>What this does not cover</h2>
 
 <p>Said plainly, because a frame with unstated limits is worse than no frame. OpenStreetMap
-coverage is uneven and who gets mapped is not random — a shop nobody added is not in this
+coverage is uneven and who gets mapped is not random: a shop nobody added is not in this
 survey. A <code>website</code> tag sometimes points at a social page or a chain's national
 site rather than the business's own domain; those are excluded, and the exclusion is a
 judgement we made. {F.small_cities()} UK cities is not the world, and shops are not every kind
@@ -217,12 +217,12 @@ of small business. The number to take from this is the contrast in the table, no
 
 <p>Any mail-focused service does deliverability far more thoroughly than this. <a
 href="https://mxtoolbox.com/">MXToolbox</a> and its equivalents will check SPF, DKIM, DMARC,
-blacklist status and whether your outbound mail will land in spam — none of which Docket looks
+blacklist status and whether your outbound mail will land in spam: none of which Docket looks
 at, and all of which matter more than this check if you are actually sending mail.</p>
 
 <p>The difference is what starts the question. Those tools begin with a domain you already
 suspect. This begins with your website, finds the address you are publishing, and asks whether
-it works — which is a question nobody thinks to ask about an address they have had for
+it works, which is a question nobody thinks to ask about an address they have had for
 years.</p>
 
 <h2>Checking your own</h2>
@@ -232,7 +232,7 @@ years.</p>
 <pre><code>dig +short MX yourdomain.com</code></pre>
 
 <p>Output means a mail exchanger is published and mail has somewhere to go. Empty output means
-there is none, and the next question is whether your address record runs a mail server —
+there is none, and the next question is whether your address record runs a mail server:
 almost certainly not, if your site is on a static host. The fix is to add MX records at your
 DNS provider, pointing at whatever mailbox or forwarding service you use.</p>
 
@@ -241,7 +241,7 @@ looks for another way to reach you. A visitor who emails a dead one believes the
 have.</p>
 
 <p>Docket runs this as <code>cvr.dead_contact</code> on every audit, and it will not report a
-domain it could not resolve — a lookup that failed is not a finding, and a domain with no MX
+domain it could not resolve. A lookup that failed is not a finding, and a domain with no MX
 but a working mail server on its address record is legal and fine.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
@@ -261,7 +261,7 @@ but a working mail server on its address record is legal and fine.</p>
             ("How do I know if my contact email works?",
              "Run dig +short MX yourdomain.com. Any output means a mail exchanger is "
              "published and mail has somewhere to go. Empty output means there is none, and "
-             "senders fall back to your address record — which on a static host such as "
+             "senders fall back to your address record, which on a static host such as "
              "GitHub Pages or Netlify does not run a mail server, so every message bounces."),
             ("Why does mail bounce silently?",
              "The bounce is delivered to the sender, not to you. Nothing reaches the address "
@@ -275,7 +275,7 @@ but a working mail server on its address record is legal and fine.</p>
              f"an address and {F.small_dead()} of {F.small_publishing()} cannot receive mail "
              f"— about {F.small_dead_pct()}%, with a 95% interval of "
              f"{F.small_dead_interval()}."),
-            ("My domain has an MX record — is that enough?",
+            ("My domain has an MX record: is that enough?",
              f"No. An MX record names a host, and the host has to exist. Of the "
              f"{F.mx_publishing()} domains in our OpenStreetMap sample that publish an MX "
              f"record, {F.mx_dead()} name an exchanger that does not resolve at all, so "

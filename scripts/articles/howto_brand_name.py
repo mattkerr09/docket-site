@@ -1,4 +1,4 @@
-"""How an audit decides what your company is called — and four ways it missed.
+"""How an audit decides what your company is called, and four ways it missed.
 
 Promised on the how-to hub. Sourced from the registered checks
 `brand.name_consistency` and `brand.logo` in `backend/seo_engine/checks/brand.py`,
@@ -6,7 +6,7 @@ whose docstrings record four measured cases, each of which produced a confident
 false finding from an entirely ordinary site:
 
   * a header logo link whose accessible name described the destination, taken
-    as a brand name — with advice that would have replaced a correct link
+    as a brand name. With advice that would have replaced a correct link
     description with a bare word;
   * a three-part title whose brand sat in the middle, so the two ends were read
     as the company's name and a region;
@@ -15,7 +15,7 @@ false finding from an entirely ordinary site:
   * an institution whose logo carries its initials and whose og:site_name
     carries the expansion, reported as two different brands.
 
-⚠️ NO SITE IS NAMED — third-party gate. None of the four lessons needs a name,
+⚠️ NO SITE IS NAMED: third-party gate. None of the four lessons needs a name,
 and the fourth is better without one because the shape is universal.
 
 ⚠️ THIS PAGE MUST NOT CONTRADICT /learn/brand-consistency/, which tells readers
@@ -40,13 +40,13 @@ def brand_name() -> Path:
 <p class="lede">Before a tool can tell you that your company's name appears inconsistently, it
 has to decide what your company is called. Nobody tells it. It reads your titles, your
 <code>og:site_name</code>, your <code>Organization</code> schema and your logo, and infers. Four
-times that inference produced a confident, specific, wrong sentence — and every site it fired on
+times that inference produced a confident, specific, wrong sentence, and every site it fired on
 was doing something entirely ordinary.</p>
 
 <h2>The advice that would have hurt a screen-reader user</h2>
 
 <p>A national health service's header logo is a link, and that link has an accessible name
-ending in the word "homepage" — so that somebody navigating by voice or by screen reader hears
+ending in the word "homepage", so that somebody navigating by voice or by screen reader hears
 where the link goes rather than just a word. That is exactly what a link's accessible name is
 for.</p>
 
@@ -69,7 +69,7 @@ home, that is something like "<em>Company</em> homepage".</li>
 <p>A logo that is a link has both, they have different jobs, and neither is a substitute for the
 other. Any advice that tells you to make them identical has confused the two.</p>
 
-<p>The repair was to strip the navigational words and keep whatever brand is left — and to drop
+<p>The repair was to strip the navigational words and keep whatever brand is left, and to drop
 the source entirely when nothing is left, rather than record the remainder as a name. That
 second half matters: "Return to homepage" contains no brand at all, and stripping only the tail
 would have filed "Return to" as a company name.</p>
@@ -77,12 +77,12 @@ would have filed "Return to" as a company name.</p>
 <h2>The brand in the middle of the title</h2>
 
 <p>Plenty of sites use three-part titles: page name, company, region. A reader that splits a
-title on its separator and looks at the two ends never considers the middle — so on one
+title on its separator and looks at the two ends never considers the middle, so on one
 restaurant's pages the candidates were the page name and the US state, and the report told the
 owner their brand appeared two different ways, quoting the restaurant and the state.</p>
 
 <p>The repair is narrow on purpose. When a title has more than two fragments, the fragment that
-resembles your domain is the brand, wherever it sits — and only when exactly one fragment
+resembles your domain is the brand, wherever it sits, and only when exactly one fragment
 matches. Guessing which middle fragment is a company name would be worse than the two-ended
 reading it replaces, so when nothing resembles the domain the titles contribute nothing at
 all.</p>
@@ -92,7 +92,7 @@ name.</strong></p>
 
 <h2>Counting spellings instead of pages</h2>
 
-<p>A university's sampled titles were all "<em>Page name</em> | <em>Brand</em>" — a perfectly
+<p>A university's sampled titles were all "<em>Page name</em> | <em>Brand</em>": a perfectly
 consistent suffix, which is the thing the check exists to reward. But several of the page names
 themselves contained the brand: a history page, a research page, a giving page.</p>
 
@@ -103,7 +103,7 @@ brand lived, and it offered "Contact", "Disclaimer", "Athletics" and "Cookie Set
 owner as their company's name.</p>
 
 <p>Counted by occurrence the same data says the opposite, immediately and unambiguously. This is
-the same defect that shows up in finding badges — <a href="/how-to/check-the-count-on-a-finding/">a
+the same defect that shows up in finding badges. <a href="/how-to/check-the-count-on-a-finding/">A
 count is a claim about units before it is a claim about size &rarr;</a>.</p>
 
 <h2>An initialism is not a second name</h2>
@@ -124,16 +124,16 @@ matches. Two names cannot pass that test by luck.</p>
 
 <h2>What to check on your own site</h2>
 
-<p>The finding is worth having — a company that calls itself three things across its own markup
+<p>The finding is worth having. A company that calls itself three things across its own markup
 really does fragment its entity signals. Check the four places by hand, in this order:</p>
 
 <ul>
 <li><strong><code>og:site_name</code></strong>, which is what a shared link preview shows.</li>
 <li><strong>Your <code>Organization</code> schema's name</strong>, which is what structured-data
 consumers read.</li>
-<li><strong>The stable fragment of your title tags</strong> — the part that does not change from
+<li><strong>The stable fragment of your title tags</strong>: the part that does not change from
 page to page.</li>
-<li><strong>Your logo's alt text</strong>, which should be your company name — and, separately,
+<li><strong>Your logo's alt text</strong>, which should be your company name: and, separately,
 the logo link's accessible name, which should describe where it goes.</li>
 </ul>
 
@@ -144,7 +144,7 @@ the logo link's accessible name, which should describe where it goes.</li>
 <ul>
 <li><strong>An initialism and its expansion.</strong> Same name. If a tool flags it, the tool is
 wrong.</li>
-<li><strong>A legal entity name in one place and a trading name in another</strong> — "Company
+<li><strong>A legal entity name in one place and a trading name in another</strong>: "Company
 Limited" in the schema and "Company" everywhere else is normal and usually required.</li>
 <li><strong>A region or division in a title suffix.</strong> Extra context in a title is a
 choice about your titles, not an inconsistency in your name.</li>
@@ -165,7 +165,7 @@ outliers match the right name, not the other way round.</li>
 <h2>How to satisfy this without being consistent</h2>
 
 <p>Put the same string in all four places and stop thinking about it. That is genuinely the
-right fix here — but notice that it also means the check can only ever see agreement between
+right fix here, but notice that it also means the check can only ever see agreement between
 four fields you control, not whether the world knows you by that name. It cannot read a
 directory listing, a knowledge panel or anybody else's citation of you. <strong>It measures
 whether your own markup agrees with itself, which is a precondition for consistency and not the
@@ -175,21 +175,21 @@ same thing as consistency.</strong></p>
 
 <p>The registered checks are <code>brand.name_consistency</code>, which compares what your
 markup calls you, and <code>brand.logo</code>, which covers logo presence and markup. Both are
-in the brand area — see
+in the brand area. See
 <a href="/learn/brand-consistency/">the question no crawler asks &rarr;</a> for what that lane
 measures and where dedicated tools beat an SEO crawler at it.</p>
 """
     return render(
         cat="how-to", slug="what-your-site-says-you-are-called",
         title="What your site says your company is called",
-        desc=("How an audit infers your company name, and four cases where it was wrong — "
+        desc=("How an audit infers your company name, and four cases where it was wrong, "
               "including advice that would have hurt a site's accessibility."),
         h1="What your site says your company is called",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Brand name',
         body=body,
         faq=[
             ("Where does an audit get my company name from?",
-             "It infers it from your markup — the stable fragment of your title tags, your "
+             "It infers it from your markup. The stable fragment of your title tags, your "
              "og:site_name, your Organization schema and your logo. Nothing tells it directly, "
              "so every brand-name finding rests on a guess that can be wrong."),
             ("Should my logo's alt text and its link name be the same?",

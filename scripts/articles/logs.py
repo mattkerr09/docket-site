@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Log-file analysis — the difference between what Google could crawl and did.
+"""Log-file analysis: the difference between what Google could crawl and did.
 
 Every number is real. There is no access log for this site to publish figures
 from (it is served by GitHub Pages, which gives the owner no logs), so the
@@ -25,14 +25,14 @@ def log_file_analysis() -> Path:
 <p class="lede">A crawl tells you what a search engine <em>could</em> reach on your site; a
 server log tells you what it actually fetched, how often, and what it wasted requests on. The
 two disagree constantly, and the single most common mistake in reading a log is trusting the
-user-agent — which is why Google publishes
+user-agent, which is why Google publishes
 <strong>{F.gbot_total_prefixes():,} IP prefixes</strong> across
 {F.gbot_lists()} lists so you can check.</p>
 
 <h2>The user-agent is a claim, not an identity</h2>
 
 <p>Every line in your access log carries whatever user-agent the client chose to send.
-"Googlebot" is a string, and scrapers send it constantly — partly to get past blocks, partly
+"Googlebot" is a string, and scrapers send it constantly: partly to get past blocks, partly
 because pretending to be a search engine is the easiest way to look legitimate in somebody
 else's log file.</p>
 
@@ -42,7 +42,7 @@ anything about your crawl budget.</p>
 
 <p>There are two honest ways to resolve it. Google
 <a href="https://developers.google.com/search/apis/ipranges/googlebot.json">publishes its
-crawler ranges as JSON</a> — as of {F.gbot_measured()}, <strong>{F.gbot_prefixes()}</strong>
+crawler ranges as JSON</a>: as of {F.gbot_measured()}, <strong>{F.gbot_prefixes()}</strong>
 prefixes for Googlebot itself ({F.gbot_ipv4()} IPv4 and {F.gbot_ipv6()} IPv6), plus separate
 lists for special-case crawlers and user-triggered fetches, {F.gbot_total_prefixes():,} in
 total. Or you do the check Google
@@ -56,7 +56,7 @@ record is set by whoever controls the address block, so anyone can make their IP
 Docket does both, and there is a test that fails if the forward lookup is ever removed.</p>
 
 <p>Docket's verification was spot-checked against {F.gbot_spot_size()} addresses taken from
-Google's published Googlebot ranges — addresses that are Googlebot by Google's own definition
+Google's published Googlebot ranges. Addresses that are Googlebot by Google's own definition
 — and accepted {F.gbot_spot_verified()} of {F.gbot_spot_size()}. That is a smoke test against
 real DNS rather than a rate; six addresses cannot be turned into a percentage and this page is
 not going to pretend otherwise.</p>
@@ -108,11 +108,11 @@ Google did not fetch that page in that week. It does not mean Google cannot see 
 that lets you read it that way is setting you up to go fixing a problem you do not have.</p>
 
 <p>And the response codes Google actually received. Every redirect and every 404 in that list
-is a request spent on your site that returned nothing indexable — the clearest measure of
+is a request spent on your site that returned nothing indexable. The clearest measure of
 wasted crawl budget there is, and it is measured rather than modelled.</p>
 
 <p>All of it describes one window. A log is a period, a crawl is a moment, and neither is a
-trend — if what you want is "did this change after Tuesday's deploy", that is
+trend. If what you want is "did this change after Tuesday's deploy", that is
 <a href="/learn/site-monitoring/">site monitoring</a>, a different job from this one.</p>
 
 <h2>Where the dedicated tool is better</h2>
@@ -122,7 +122,7 @@ trend — if what you want is "did this change after Tuesday's deploy", that is
 product, $139 per year with a free tier capped at 1,000 log events. It is a much deeper tool
 than what Docket does: a real interface for exploring the data, saved projects, imports that
 handle far more formats, and analysis over time rather than a single comparison. If log
-analysis is a regular part of your work, buy it — it is built for that and Docket is not.</p>
+analysis is a regular part of your work, buy it. It is built for that and Docket is not.</p>
 
 <p>What Docket gives you is the one comparison that answers "is Google spending its time on my
 important pages", included in the {PRICE_STR} one-time price rather than as a second annual
@@ -134,7 +134,7 @@ deliberately narrow.</p>
 <p>It reads Common and Combined format, and gzip. Anything else is counted as unparsed and
 reported as a number, because a parser that quietly skips a third of a file produces
 confident-looking statistics about the rest. It does not follow sessions, does not chart
-anything over time, and does not store your logs — it reads the file, prints, and exits.</p>
+anything over time, and does not store your logs. It reads the file, prints, and exits.</p>
 
 <p>It also does not do reverse DNS unless you ask. <code>--verify</code> is a lookup per
 distinct address, so it is off by default and everything says "claiming to be Google" until
@@ -155,9 +155,9 @@ you turn it on.</p>
         faq=[
             ("How do I know if it was really Googlebot in my logs?",
              "Not from the user-agent, which is a header anybody can send. Either check the "
-             "client IP against Google's published crawler ranges — "
+             "client IP against Google's published crawler ranges ("
              f"{F.gbot_total_prefixes():,} prefixes across {F.gbot_lists()} lists as of "
-             f"{F.gbot_measured()} — or do a reverse DNS lookup on the IP followed by a "
+             f"{F.gbot_measured()}) or do a reverse DNS lookup on the IP followed by a "
              "forward lookup on the hostname it returns, confirming the original address "
              "comes back. The second step matters: a PTR record is set by whoever controls "
              "the address block, so a reverse lookup alone proves nothing."),
@@ -165,7 +165,7 @@ you turn it on.</p>
              "Which pages a search engine actually fetched and how often, which is a "
              "different question from which pages it could reach. That surfaces orphan pages "
              "with no internal links, retired URLs still being retried, and the share of "
-             "requests that returned a redirect or an error — crawl budget spent on nothing "
+             "requests that returned a redirect or an error: crawl budget spent on nothing "
              "indexable."),
             ("If a page is missing from my logs, can Google not see it?",
              "No, and treating it that way sends you fixing a problem you may not have. A log "
@@ -174,7 +174,7 @@ you turn it on.</p>
              "window before concluding anything."),
             ("Does Docket replace a dedicated log file analyser?",
              "No. Screaming Frog's Log File Analyser is a separate product at $139 per year "
-             "and is much deeper — a real interface, saved projects, more formats, analysis "
+             "and is much deeper: a real interface, saved projects, more formats, analysis "
              "over time. Docket does one comparison, log against crawl, included in its "
              "one-time price. If log analysis is a regular part of your work, the dedicated "
              "tool is the right purchase."),

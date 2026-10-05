@@ -6,16 +6,16 @@ with one shape: the finding was right, named no host, and the reader disproved
 it by checking a different one.
 
   * a certificate expiring soon on a host the site redirects to, reported with
-    no host named — checking the typed address shows a much longer life, so the
+    no host named. Checking the typed address shows a much longer life, so the
     finding reads as plainly false. The author records making that exact
     mistake with that exact evidence before checking the redirect target.
   * an http:// address that answers without redirecting on the `www.` spelling
-    while the apex redirects correctly — reported at HIGH with no host and an
+    while the apex redirects correctly. Reported at HIGH with no host and an
     empty evidence block.
   * an http:// address returning 404, described as "still reachable … two
     indexable copies of every page", which is true of neither.
 
-⚠️ NO SITE IS NAMED — third-party gate. The streaming service and the retailer
+⚠️ NO SITE IS NAMED: third-party gate. The streaming service and the retailer
 are described by what they are.
 
 ⚠️ THE DESIGN NOTE MUST SURVIVE: the first repair added a sentence naming the
@@ -40,7 +40,7 @@ from render import render  # noqa: E402
 def which_host() -> Path:
     body = """
 <p class="lede">An audit tells you your certificate expires in a fortnight. You check, and it has
-months left. You conclude the tool is broken and stop reading — which is the worst outcome
+months left. You conclude the tool is broken and stop reading, which is the worst outcome
 available, because the finding was right about a host you did not check.</p>
 
 <p>Almost every security finding is about <em>one address</em>, and there are usually several
@@ -59,7 +59,7 @@ typed shows a comfortable margin, so the sentence reads as plainly false.</p>
 before thinking to follow the redirect. That is worth saying because it is the ordinary response:
 <strong>a claim you can falsify in ten seconds is one you stop investigating.</strong></p>
 
-<p>Naming the host is the entire fix, and it is all that is available — once a crawl has followed
+<p>Naming the host is the entire fix, and it is all that is available. Once a crawl has followed
 a redirect, the address you typed is gone, and the tool genuinely cannot tell you what you asked
 for. Which produced a second lesson in the same commit: the first repair added a sentence saying
 "you asked for this address, which redirects here", and that branch could never run. <strong>A
@@ -69,7 +69,7 @@ sentence that cannot fire is worse than no sentence, because it looks like cover
 
 <p>The same shape, one layer down. An audit of a bakery chain began at the <code>www</code>
 spelling, where the plain-http address answered without redirecting to https. True, and reported
-at high severity — with no host named and no evidence attached.</p>
+at high severity. With no host named and no evidence attached.</p>
 
 <p>The apex redirects correctly. So the owner reads the finding, types the bare domain, watches it
 redirect to https exactly as it should, and concludes the tool is wrong about something it is
@@ -77,21 +77,21 @@ right about.</p>
 
 <p><strong>The <code>www</code> spelling and the bare domain are different hosts.</strong> They can
 have different DNS records, different certificates, different redirect rules and different
-answers on port eighty. An audit that probed one has said nothing whatever about the other — and
+answers on port eighty. An audit that probed one has said nothing whatever about the other, and
 an honest one says so rather than implying it covered both.</p>
 
 <h2>Reachable, or answering, or refusing</h2>
 
 <p>The third case is about the detail rather than the host, and it is the most instructive.</p>
 
-<p>On a large retail site the plain-http address returned 404 — to the crawler and to a browser
+<p>On a large retail site the plain-http address returned 404. To the crawler and to a browser
 alike. The report said the insecure version was still reachable and that there were two indexable
 copies of every page. <strong>Neither is true of a 404.</strong> Nothing is reachable and nothing
 is indexable. The real harm is smaller and completely different: somebody who types the bare
 domain gets an error page instead of the site.</p>
 
 <p>The title was right and the detail was wrong, and that combination is more dangerous than being
-wrong outright — because a reader who checks the detail finds it false and stops trusting the
+wrong outright, because a reader who checks the detail finds it false and stops trusting the
 findings that are true.</p>
 
 <p>So "http is still reachable" is really three situations:</p>
@@ -110,10 +110,10 @@ would redirect, and a finding that draws a conclusion here is inventing one.</li
 
 <ul>
 <li><strong>Find the host before you check the claim.</strong> If the report does not name one,
-that is the first thing to be sceptical about — not the claim itself.</li>
+that is the first thing to be sceptical about, not the claim itself.</li>
 <li><strong>Check where your audit started and where it landed.</strong> If the crawl followed a
 redirect, everything after that is about the destination.</li>
-<li><strong>Test both spellings by hand</strong> — the bare domain and the <code>www</code> one,
+<li><strong>Test both spellings by hand</strong>: the bare domain and the <code>www</code> one,
 each over plain http. They are separate configurations and it takes a minute.</li>
 <li><strong>Read the status, not the summary.</strong> A 200 and a 404 on the same address call
 for different work and appear under the same heading in most tools.</li>
@@ -122,7 +122,7 @@ for different work and appear under the same heading in most tools.</li>
 <h2>When this matters, and when it does not</h2>
 
 <p>Keep the severity in view. An insecure copy serving 200 is a genuine and common problem, and
-worth fixing the day you find it. An http address that errors is a courtesy fix — real, small, and
+worth fixing the day you find it. An http address that errors is a courtesy fix: real, small, and
 not urgent. And a certificate close to expiry on any host your traffic touches is urgent wherever
 it lives, which is exactly why naming the host matters more than the number of days.</p>
 
@@ -138,7 +138,7 @@ response on this page, and the one every unnamed finding invites.</li>
 
 <h2>How to make this finding disappear without fixing anything</h2>
 
-<p>Turn off the plain-http listener entirely. Nothing answers, so nothing can be reported — and
+<p>Turn off the plain-http listener entirely. Nothing answers, so nothing can be reported, and
 anybody who types your domain without a scheme now gets a connection error rather than your site.
 The finding is quieter and the visitor is worse off, which is a fair summary of what happens when
 you optimise for a report instead of for a person.</p>
@@ -146,8 +146,8 @@ you optimise for a report instead of for a person.</p>
 <h2>Where this sits in an audit</h2>
 
 <p>The registered check is <code>security.https</code>, which covers the plain-http address and the
-certificate. For the repair itself — the redirect, where to configure it by host, and why HSTS is
-a separate step — see
+certificate. For the repair itself (the redirect, where to configure it by host, and why HSTS is
+a separate step) see
 <a href="/how-to/redirect-http-to-https/">how to redirect http to https &rarr;</a>. For the
 broader question of which spelling of your domain is canonical, see
 <a href="/learn/www-vs-non-www/">www versus non-www, counted rather than asserted &rarr;</a>.</p>
@@ -178,7 +178,7 @@ broader question of which spelling of your domain is canonical, see
              "is invented."),
             ("Should I just turn off plain http?",
              "It silences the finding and leaves visitors who type your domain without a scheme "
-             "with a connection error. Redirect instead — that is what the address is for."),
+             "with a connection error. Redirect instead. That is what the address is for."),
         ],
     )
 

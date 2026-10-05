@@ -9,8 +9,8 @@ Promised on the how-to hub. Sourced from `ai_visibility.py`, registered check
     asked `json_ld_nodes` for three literal type names; `ProfessionalService`
     is a `LocalBusiness` is an `Organization` BY INHERITANCE, and matching the
     base name alone sees none of the dozens of subtypes.
-  * THE FINDING FIRES HARDEST ON THE CUSTOMER WHO DID THE WORK — no schema at
-    all gives a true finding; precise markup gives "you did nothing" — and it
+  * THE FINDING FIRES HARDEST ON THE CUSTOMER WHO DID THE WORK (no schema at
+    all gives a true finding; precise markup gives "you did nothing"), and it
     sits near the top of the action plan.
   * `IDENTITY_TYPES` existed in `schemaorg` all along and its own comment states
     the rule. `structured.py` consults it; this did not. THIRD INSTANCE of a set
@@ -20,12 +20,12 @@ Promised on the how-to hub. Sourced from `ai_visibility.py`, registered check
     `schema.no_identity` already reports it at HIGH and re-reporting would
     double-count in the score. Overlapping is fine; disagreeing is not.
 
-⚠️ NO SITE OR VENDOR IS NAMED — third-party gate. The consultancy is "a
+⚠️ NO SITE OR VENDOR IS NAMED: third-party gate. The consultancy is "a
 consultancy"; the profiles are described, never named.
 
 ⚠️ DISTINGUISH FROM /how-to/schema-type-is-a-claim/ (531), which is about the
 type you SHOULD declare. This is a tool failing to recognise a type correctly
-declared — and being more specific is what tripped it. Said on the page.
+declared, and being more specific is what tripped it. Said on the page.
 
 ⚠️ SAME COMMIT corrects /learn/sameas-entity-signals/, whose checklist says to
 put the array "inside your Organization node" without noting that a subtype is
@@ -45,7 +45,7 @@ from render import render  # noqa: E402
 def type_matching() -> Path:
     body = """
 <p class="lede">The worst finding an audit can produce is not a wrong one. It is one that is wrong
-specifically about the people who did the work properly — where doing the job carefully is the
+specifically about the people who did the work properly. Where doing the job carefully is the
 thing that trips it. This is that finding, and the cause is a single word being compared as a
 word.</p>
 
@@ -59,7 +59,7 @@ of exactly the kind every guide asks for.</p>
 
 <blockquote><p>Your Organization schema does not link out to any external profile.</p></blockquote>
 
-<p>That sits near the top of the action plan, so it is among the first things a reader sees — a
+<p>That sits near the top of the action plan, so it is among the first things a reader sees. A
 flat contradiction of their own file, in the section that says what to do first.</p>
 
 <h2>The check was looking for a word, not a thing</h2>
@@ -70,7 +70,7 @@ resemblance; it is the structure of the vocabulary, and anything that understand
 specific type as the general one wherever the general one is expected.</p>
 
 <p>Our check asked for three type names and compared the declared type against those strings. A
-site declaring the accurate, more specific type matched none of them — and there are dozens of
+site declaring the accurate, more specific type matched none of them, and there are dozens of
 such subtypes.</p>
 
 <p>Read that against who it hits. <strong>A site with no business markup at all got a true
@@ -79,7 +79,7 @@ more exactly somebody followed the vocabulary, the more certainly the check went
 
 <h2>Two checks in one product, disagreeing about one site</h2>
 
-<p>The structured-data lane asks the same question — does this site declare a business identity? —
+<p>The structured-data lane asks the same question. Does this site declare a business identity?,
 and got it right on the same file. It consults a shared list of identity types whose own comment
 states the rule plainly: every subtype qualifies, because each one <em>is</em> the base type by
 inheritance.</p>
@@ -99,7 +99,7 @@ designed.</p>
 
 <p><strong>Two checks overlapping is fine. Two checks disagreeing is the bug.</strong> If a report
 describes the same page two different ways, one of them is reading something the other is not, and
-that is the thing to chase — see <a href="/how-to/findings-that-double-count/">when the numbers add
+that is the thing to chase. See <a href="/how-to/findings-that-double-count/">when the numbers add
 up to more than your site &rarr;</a> for the arithmetic version of the same problem.</p>
 
 <h2>This is not the same as declaring the wrong type</h2>
@@ -135,7 +135,7 @@ because it is the parser that actually decides.</li>
 <h2>When the finding is real</h2>
 
 <p>Keep the weight where it belongs. If <code>sameAs</code> genuinely is absent, a model has a
-string where it could have had a resolved entity — it cannot connect your site to the business it
+string where it could have had a resolved entity. It cannot connect your site to the business it
 already knows about from a professional profile or a reference database. It is among the cheapest
 things on any list to fix, which is exactly why a false version of it is expensive: it spends the
 credibility of a finding people would otherwise act on.</p>
@@ -149,8 +149,8 @@ wrong.</li>
 <li><strong>Adding a second, generic node beside the specific one.</strong> Now two blocks
 describe one organisation, and anything reading them has to decide which you meant.</li>
 <li><strong>Filling the array to clear the line.</strong> Profiles you do not control are a claim
-about somebody else's accounts —
-<a href="/how-to/fix-sameas-that-claims-the-wrong-accounts/">whose accounts are in your sameAs
+about somebody else's accounts.
+<a href="/how-to/fix-sameas-that-claims-the-wrong-accounts/">Whose accounts are in your sameAs
 &rarr;</a>.</li>
 </ul>
 
@@ -159,7 +159,7 @@ about somebody else's accounts —
 <p>Put any plausible URLs in the array. Nothing in a crawl verifies that a profile is yours, so
 the finding clears on the presence of links rather than on the existence of an entity.
 <strong>The check can see that you pointed somewhere; it cannot see whether anything points
-back.</strong> Which is the actual job — the value is in the profiles being real, being yours and
+back.</strong> Which is the actual job. The value is in the profiles being real, being yours and
 carrying the same name, and no audit can confirm any of that from your markup alone.</p>
 
 <h2>Where this sits in an audit</h2>
@@ -174,7 +174,7 @@ what you are &rarr;</a>.</p>
         cat="how-to", slug="when-a-check-cannot-see-your-markup",
         title="When a check cannot see the markup you wrote",
         desc=("An audit told a consultancy its schema linked to no profiles while seven sat in "
-              "the file — the check matched a type name literally and never saw the site's "
+              "the file. The check matched a type name literally and never saw the site's "
               "subtype."),
         h1="When a check cannot see the markup you wrote",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Type matching',
@@ -182,14 +182,14 @@ what you are &rarr;</a>.</p>
         faq=[
             ("Why does an audit say I have no Organization schema when I do?",
              "Check which type you declared. Schema.org types inherit, so a specific business "
-             "type is an Organization — but a tool comparing the declared type against a list of "
+             "type is an Organization, but a tool comparing the declared type against a list of "
              "names will miss every subtype. Declaring the accurate type is what trips it."),
             ("Should I change my schema type to Organization so tools recognise it?",
              "No. That makes your markup less accurate so a report goes quiet. The specific type "
              "is correct and carries the same properties; the tool is what needs fixing."),
             ("Two findings in one report disagree about my site. Which is right?",
              "Whichever one is reading more of your markup. A disagreement means the two checks "
-             "match on different things — usually one accepts inherited types and the other "
+             "match on different things, usually one accepts inherited types and the other "
              "compares names. Validate with the search engine's own tool, which resolves "
              "inheritance."),
             ("Is it a problem that two checks cover the same thing?",

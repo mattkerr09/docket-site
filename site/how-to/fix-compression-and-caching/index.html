@@ -14,7 +14,7 @@
 <title>Fix compression and caching headers</title>
 <meta name="description" content="What Docket's perf.compression check reads, the Brotli quirk that makes it report a site that already compresses, and which half is worth your time.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-compression-and-caching/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -774,7 +774,7 @@ nav{z-index:40}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix compression and caching headers","description":"What Docket's perf.compression check reads, the Brotli quirk that makes it report a site that already compresses, and which half is worth your time.","datePublished":"2026-09-15","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-compression-and-caching/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Docket check for Brotli?","acceptedAnswer":{"@type":"Answer","text":"No, and this is the check's most important limit. Docket's crawler sends Accept-Encoding: gzip, deflate and never advertises br, because there is no Brotli decoder in the Python standard library. A server that only offers Brotli and obeys RFC 9110 will send our crawler an uncompressed document, so perf.no_compression can fire on a site that compresses perfectly for real browsers. Confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' before changing anything."}},{"@type":"Question","name":"What counts as compressed?","acceptedAnswer":{"@type":"Answer","text":"The presence of a Content-Encoding header on the response, whatever its value. The check never reads the algorithm, never compares sizes and makes no claim about how much was saved. It is a presence test, not a measurement."}},{"@type":"Question","name":"Why does the compression finding only cover some pages?","acceptedAnswer":{"@type":"Answer","text":"There is a size floor, and it is measured on the decompressed HTML rather than on what crossed the wire. Pages whose markup is smaller than the floor are never reported however they are served, because the saving on a small document does not justify a finding."}},{"@type":"Question","name":"What counts as a caching header?","acceptedAnswer":{"@type":"Answer","text":"Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare when all three are absent, and the finding is only raised when more than half the crawled pages are bare — so it is a statement about the site, not a count of pages. The value is never read, so Cache-Control: no-store clears the check as thoroughly as a good policy would."}},{"@type":"Question","name":"Will fixing this improve my Core Web Vitals score?","acceptedAnswer":{"@type":"Answer","text":"It may improve the experience, but Docket cannot tell you, and neither can any tool running on one machine. LCP, INP and CLS come from real visitors on real connections. Docket measures the causes; the field values belong in Search Console."}},{"@type":"Question","name":"Does compression affect rankings directly?","acceptedAnswer":{"@type":"Answer","text":"Not as a header. Nothing in the check claims a ranking effect and this page will not invent one. Smaller responses arrive faster, which is worth having on its own terms."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Docket check for Brotli?","acceptedAnswer":{"@type":"Answer","text":"No, and this is the check's most important limit. Docket's crawler sends Accept-Encoding: gzip, deflate and never advertises br, because there is no Brotli decoder in the Python standard library. A server that only offers Brotli and obeys RFC 9110 will send our crawler an uncompressed document, so perf.no_compression can fire on a site that compresses perfectly for real browsers. Confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' before changing anything."}},{"@type":"Question","name":"What counts as compressed?","acceptedAnswer":{"@type":"Answer","text":"The presence of a Content-Encoding header on the response, whatever its value. The check never reads the algorithm, never compares sizes and makes no claim about how much was saved. It is a presence test, not a measurement."}},{"@type":"Question","name":"Why does the compression finding only cover some pages?","acceptedAnswer":{"@type":"Answer","text":"There is a size floor, and it is measured on the decompressed HTML rather than on what crossed the wire. Pages whose markup is smaller than the floor are never reported however they are served, because the saving on a small document does not justify a finding."}},{"@type":"Question","name":"What counts as a caching header?","acceptedAnswer":{"@type":"Answer","text":"Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare when all three are absent, and the finding is only raised when more than half the crawled pages are bare, so it is a statement about the site, not a count of pages. The value is never read, so Cache-Control: no-store clears the check as thoroughly as a good policy would."}},{"@type":"Question","name":"Will fixing this improve my Core Web Vitals score?","acceptedAnswer":{"@type":"Answer","text":"It may improve the experience, but Docket cannot tell you, and neither can any tool running on one machine. LCP, INP and CLS come from real visitors on real connections. Docket measures the causes; the field values belong in Search Console."}},{"@type":"Question","name":"Does compression affect rankings directly?","acceptedAnswer":{"@type":"Answer","text":"Not as a header. Nothing in the check claims a ranking effect and this page will not invent one. Smaller responses arrive faster, which is worth having on its own terms."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -827,7 +827,7 @@ fbq('track','PageView');
 <p class="lede">Your audit came back with a heading reading "Compression and caching headers"
 and a list of URLs under it, and the two halves of that heading sound like the same afternoon of
 server work. They are not. One is usually a single line of configuration and a real saving; the
-other is a smaller matter than its name suggests — and on some hosts the first is reported
+other is a smaller matter than its name suggests, and on some hosts the first is reported
 against a site already doing it correctly.</p>
 
 <p>Docket's <code>perf.compression</code> check emits two findings, under
@@ -850,7 +850,7 @@ about the distance between that and your site.</p>
 
 <p><strong>It cannot measure Core Web Vitals, and nothing that runs on one machine can.</strong>
 Largest Contentful Paint, Interaction to Next Paint and Cumulative Layout Shift come from real
-people on real connections. The check module says so in its own opening comment — that it
+people on real connections. The check module says so in its own opening comment. That it
 measures the network and the document, not a rendered browser, and that "a number invented from
 static analysis would be worse than no number". Confirm the field values in Search Console.</p>
 
@@ -858,7 +858,7 @@ static analysis would be worse than no number". Confirm the field values in Sear
 <strong>it only looked at HTML.</strong> Nothing is compressed twice and nothing is compared;
 the check asks whether a <code>Content-Encoding</code> header was present and stops. Your
 stylesheets, scripts and JSON endpoints were never fetched for it, so it has no opinion about
-those — even though its own fix text asks you to turn compression on for them.</p>
+those. Even though its own fix text asks you to turn compression on for them.</p>
 
 <h2>The false positive you should check before you change anything</h2>
 
@@ -911,7 +911,7 @@ surprise you. A page counts as having no caching headers only when <em>all</em> 
 <code>Cache-Control</code>, <code>ETag</code> and <code>Last-Modified</code> are absent. Any one
 of the three is enough to clear it. And the finding is then gated on the site rather than the
 page: it is only emitted when more than half of the crawled OK pages are bare. If a minority of
-your pages have no caching headers, this check says nothing at all — and its title, "Pages are
+your pages have no caching headers, this check says nothing at all, and its title, "Pages are
 served with no caching headers", is deliberately a statement about the site rather than a
 count.</p>
 
@@ -935,8 +935,8 @@ gzip_min_length 256;</code></pre>
 
 <pre><code>AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml</code></pre>
 
-<p>If you are on a managed platform and control neither file — the common case, and the reason
-this page exists — the setting is in your host's dashboard rather than your repository. On a CDN
+<p>If you are on a managed platform and control neither file (the common case, and the reason
+this page exists) the setting is in your host's dashboard rather than your repository. On a CDN
 it is usually one toggle applied at the edge, and the CDN compresses on the way out whether or
 not your origin did. That is why the fix is graded <code>trivial</code>: it is not a deploy.</p>
 
@@ -953,7 +953,7 @@ request/response chain. The other two headers the check looks for are validators
 policy: <a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-8.8.3">RFC 9110 section 8.8.3</a> defines
 <code>ETag</code>, <a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-8.8.2">RFC 9110 section 8.8.2</a>
 defines <code>Last-Modified</code>, and either lets a client ask "has this changed" and be told
-no — the conditional-request mechanism in
+no: the conditional-request mechanism in
 <a href="https://www.rfc-editor.org/rfc/rfc9111.html#section-4.3">RFC 9111 section 4.3</a>. That is the part crawlers use,
 and why a validator alone satisfies the check.</p>
 
@@ -963,7 +963,7 @@ sensible:</p>
 <pre><code>Cache-Control: public, max-age=0, must-revalidate</code></pre>
 
 <p>That does not mean "do not cache". It means the cache may keep a copy and must check with
-you before reusing it — which, with an <code>ETag</code> alongside it, turns most repeat fetches
+you before reusing it: which, with an <code>ETag</code> alongside it, turns most repeat fetches
 into a short response with no body. For fingerprinted assets, a long <code>max-age</code> with
 <code>immutable</code> is the usual pairing. Those are not what this check looked at, but they
 are where the saving is.</p>
@@ -975,14 +975,14 @@ Docket's speed lane runs this check alongside separate ones with their own ids, 
 thresholds and their own findings:</p>
 
 <ul>
-<li><code>perf.page_weight</code> — the size of the HTML document itself, decompressed. Same
+<li><code>perf.page_weight</code>: the size of the HTML document itself, decompressed. Same
 <code>html_bytes</code> field, different question: compression is about how it was sent, weight
 is about how much of it there is.</li>
-<li><code>perf.render_blocking</code> — stylesheets and scripts that block the first paint. Counted
+<li><code>perf.render_blocking</code>. Stylesheets and scripts that block the first paint. Counted
 from the markup, and reported per page.</li>
-<li><code>perf.ttfb</code> — time to first byte, taken from the fetch and reported against
+<li><code>perf.ttfb</code>: time to first byte, taken from the fetch and reported against
 the median across the site.</li>
-<li><code>perf.modern_images</code> — images still served as JPEG or PNG where a modern format
+<li><code>perf.modern_images</code>. Images still served as JPEG or PNG where a modern format
 would be smaller.</li>
 </ul>
 
@@ -995,7 +995,7 @@ cannot measure the metric.</p>
 
 <p>The closest relative outside this lane is response headers of a different kind.
 <a href="/how-to/fix-missing-security-headers/">Missing security headers</a> are set in the same
-file, at the same edge, by the same person — and this site fails two of those checks itself,
+file, at the same edge, by the same person, and this site fails two of those checks itself,
 because its host cannot set response headers at all. If you are opening that file anyway, do
 both.</p>
 
@@ -1004,7 +1004,7 @@ both.</p>
 <p>Neither, on the check's own grading, and that is the useful answer. Confirm the compression
 finding with the <code>curl</code> above, because a Brotli-only host produces it falsely. If it
 holds, turn compression on: one line, and the largest single win this check can point at. Then
-set a <code>Cache-Control</code> value and make sure a validator is present — worth doing, not
+set a <code>Cache-Control</code> value and make sure a validator is present: worth doing, not
 urgent. Spend the rest of the afternoon on
 <a href="/how-to/">something else on the list</a>.</p>
 
@@ -1015,7 +1015,7 @@ urgent. Spend the rest of the afternoon on
 <a href="https://httpd.apache.org/docs/2.4/mod/mod_deflate.html">mod_deflate</a> at httpd.apache.org.</p>
 
 <aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-compression-and-caching" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-compression-and-caching">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-compression-and-caching">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Docket check for Brotli?</h3><p>No, and this is the check's most important limit. Docket's crawler sends Accept-Encoding: gzip, deflate and never advertises br, because there is no Brotli decoder in the Python standard library. A server that only offers Brotli and obeys RFC 9110 will send our crawler an uncompressed document, so perf.no_compression can fire on a site that compresses perfectly for real browsers. Confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' before changing anything.</p></div><div class="faq-item"><h3>What counts as compressed?</h3><p>The presence of a Content-Encoding header on the response, whatever its value. The check never reads the algorithm, never compares sizes and makes no claim about how much was saved. It is a presence test, not a measurement.</p></div><div class="faq-item"><h3>Why does the compression finding only cover some pages?</h3><p>There is a size floor, and it is measured on the decompressed HTML rather than on what crossed the wire. Pages whose markup is smaller than the floor are never reported however they are served, because the saving on a small document does not justify a finding.</p></div><div class="faq-item"><h3>What counts as a caching header?</h3><p>Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare when all three are absent, and the finding is only raised when more than half the crawled pages are bare — so it is a statement about the site, not a count of pages. The value is never read, so Cache-Control: no-store clears the check as thoroughly as a good policy would.</p></div><div class="faq-item"><h3>Will fixing this improve my Core Web Vitals score?</h3><p>It may improve the experience, but Docket cannot tell you, and neither can any tool running on one machine. LCP, INP and CLS come from real visitors on real connections. Docket measures the causes; the field values belong in Search Console.</p></div><div class="faq-item"><h3>Does compression affect rankings directly?</h3><p>Not as a header. Nothing in the check claims a ranking effect and this page will not invent one. Smaller responses arrive faster, which is worth having on its own terms.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Docket check for Brotli?</h3><p>No, and this is the check's most important limit. Docket's crawler sends Accept-Encoding: gzip, deflate and never advertises br, because there is no Brotli decoder in the Python standard library. A server that only offers Brotli and obeys RFC 9110 will send our crawler an uncompressed document, so perf.no_compression can fire on a site that compresses perfectly for real browsers. Confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' before changing anything.</p></div><div class="faq-item"><h3>What counts as compressed?</h3><p>The presence of a Content-Encoding header on the response, whatever its value. The check never reads the algorithm, never compares sizes and makes no claim about how much was saved. It is a presence test, not a measurement.</p></div><div class="faq-item"><h3>Why does the compression finding only cover some pages?</h3><p>There is a size floor, and it is measured on the decompressed HTML rather than on what crossed the wire. Pages whose markup is smaller than the floor are never reported however they are served, because the saving on a small document does not justify a finding.</p></div><div class="faq-item"><h3>What counts as a caching header?</h3><p>Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare when all three are absent, and the finding is only raised when more than half the crawled pages are bare, so it is a statement about the site, not a count of pages. The value is never read, so Cache-Control: no-store clears the check as thoroughly as a good policy would.</p></div><div class="faq-item"><h3>Will fixing this improve my Core Web Vitals score?</h3><p>It may improve the experience, but Docket cannot tell you, and neither can any tool running on one machine. LCP, INP and CLS come from real visitors on real connections. Docket measures the causes; the field values belong in Search Console.</p></div><div class="faq-item"><h3>Does compression affect rankings directly?</h3><p>Not as a header. Nothing in the check claims a ranking effect and this page will not invent one. Smaller responses arrive faster, which is worth having on its own terms.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

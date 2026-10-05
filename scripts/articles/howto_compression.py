@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""How to fix compression and caching headers — Docket's `perf.compression`.
+"""How to fix compression and caching headers: Docket's `perf.compression`.
 
 Sourced from `perf.compression` in
 `backend/seo_engine/checks/performance.py`, the module docstring above it,
 `Page.html_bytes` and `Page.ok` in `models.py`, `AuditContext.ok_pages` in
-`registry.py`, `Fetcher.get` and `_decompress` in `fetcher.py` — which is where
-the request headers are actually set — and the tests beside them:
+`registry.py`, `Fetcher.get` and `_decompress` in `fetcher.py` (which is where
+the request headers are actually set), and the tests beside them:
 
   * tests/test_checks.py::test_uncompressed_pages_flagged
   * tests/test_checks.py::test_compressed_pages_not_flagged
@@ -27,7 +27,7 @@ the request headers are actually set — and the tests beside them:
    OK pages, not a per-page count like its sibling. A minority of bare pages
    produces no finding at all.
 
-The size floor is read off decompressed HTML — `Page.html_bytes` is documented
+The size floor is read off decompressed HTML. `Page.html_bytes` is documented
 as "Raw HTML byte length before any transfer encoding" and is assigned
 `len(resp.body)` after `_decompress` has run. It is not a wire size.
 
@@ -85,7 +85,7 @@ def compression_and_caching() -> Path:
 <p class="lede">Your audit came back with a heading reading "Compression and caching headers"
 and a list of URLs under it, and the two halves of that heading sound like the same afternoon of
 server work. They are not. One is usually a single line of configuration and a real saving; the
-other is a smaller matter than its name suggests — and on some hosts the first is reported
+other is a smaller matter than its name suggests, and on some hosts the first is reported
 against a site already doing it correctly.</p>
 
 <p>Docket's <code>perf.compression</code> check emits {_n(len(FINDINGS))} findings, under
@@ -108,7 +108,7 @@ about the distance between that and your site.</p>
 
 <p><strong>It cannot measure Core Web Vitals, and nothing that runs on one machine can.</strong>
 Largest Contentful Paint, Interaction to Next Paint and Cumulative Layout Shift come from real
-people on real connections. The check module says so in its own opening comment — that it
+people on real connections. The check module says so in its own opening comment. That it
 measures the network and the document, not a rendered browser, and that "a number invented from
 static analysis would be worse than no number". Confirm the field values in Search Console.</p>
 
@@ -116,7 +116,7 @@ static analysis would be worse than no number". Confirm the field values in Sear
 <strong>it only looked at HTML.</strong> Nothing is compressed twice and nothing is compared;
 the check asks whether a <code>Content-Encoding</code> header was present and stops. Your
 stylesheets, scripts and JSON endpoints were never fetched for it, so it has no opinion about
-those — even though its own fix text asks you to turn compression on for them.</p>
+those. Even though its own fix text asks you to turn compression on for them.</p>
 
 <h2>The false positive you should check before you change anything</h2>
 
@@ -169,7 +169,7 @@ surprise you. A page counts as having no caching headers only when <em>all</em> 
 <code>Cache-Control</code>, <code>ETag</code> and <code>Last-Modified</code> are absent. Any one
 of the three is enough to clear it. And the finding is then gated on the site rather than the
 page: it is only emitted when more than half of the crawled OK pages are bare. If a minority of
-your pages have no caching headers, this check says nothing at all — and its title, "Pages are
+your pages have no caching headers, this check says nothing at all, and its title, "Pages are
 served with no caching headers", is deliberately a statement about the site rather than a
 count.</p>
 
@@ -193,8 +193,8 @@ gzip_min_length 256;</code></pre>
 
 <pre><code>AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json image/svg+xml</code></pre>
 
-<p>If you are on a managed platform and control neither file — the common case, and the reason
-this page exists — the setting is in your host's dashboard rather than your repository. On a CDN
+<p>If you are on a managed platform and control neither file (the common case, and the reason
+this page exists) the setting is in your host's dashboard rather than your repository. On a CDN
 it is usually one toggle applied at the edge, and the CDN compresses on the way out whether or
 not your origin did. That is why the fix is graded <code>trivial</code>: it is not a deploy.</p>
 
@@ -211,7 +211,7 @@ request/response chain. The other two headers the check looks for are validators
 policy: <a href="{SEMANTICS_URL}#section-8.8.3">{SEMANTICS} {S_ETAG}</a> defines
 <code>ETag</code>, <a href="{SEMANTICS_URL}#section-8.8.2">{SEMANTICS} {S_LAST_MODIFIED}</a>
 defines <code>Last-Modified</code>, and either lets a client ask "has this changed" and be told
-no — the conditional-request mechanism in
+no: the conditional-request mechanism in
 <a href="{CACHING_URL}#section-4.3">{CACHING} {S_VALIDATION}</a>. That is the part crawlers use,
 and why a validator alone satisfies the check.</p>
 
@@ -221,7 +221,7 @@ sensible:</p>
 <pre><code>Cache-Control: public, max-age=0, must-revalidate</code></pre>
 
 <p>That does not mean "do not cache". It means the cache may keep a copy and must check with
-you before reusing it — which, with an <code>ETag</code> alongside it, turns most repeat fetches
+you before reusing it: which, with an <code>ETag</code> alongside it, turns most repeat fetches
 into a short response with no body. For fingerprinted assets, a long <code>max-age</code> with
 <code>immutable</code> is the usual pairing. Those are not what this check looked at, but they
 are where the saving is.</p>
@@ -233,14 +233,14 @@ Docket's speed lane runs this check alongside separate ones with their own ids, 
 thresholds and their own findings:</p>
 
 <ul>
-<li><code>{NEIGHBOURS[0]}</code> — the size of the HTML document itself, decompressed. Same
+<li><code>{NEIGHBOURS[0]}</code>: the size of the HTML document itself, decompressed. Same
 <code>html_bytes</code> field, different question: compression is about how it was sent, weight
 is about how much of it there is.</li>
-<li><code>{NEIGHBOURS[1]}</code> — stylesheets and scripts that block the first paint. Counted
+<li><code>{NEIGHBOURS[1]}</code>. Stylesheets and scripts that block the first paint. Counted
 from the markup, and reported per page.</li>
-<li><code>{NEIGHBOURS[2]}</code> — time to first byte, taken from the fetch and reported against
+<li><code>{NEIGHBOURS[2]}</code>: time to first byte, taken from the fetch and reported against
 the median across the site.</li>
-<li><code>{NEIGHBOURS[3]}</code> — images still served as JPEG or PNG where a modern format
+<li><code>{NEIGHBOURS[3]}</code>. Images still served as JPEG or PNG where a modern format
 would be smaller.</li>
 </ul>
 
@@ -253,7 +253,7 @@ cannot measure the metric.</p>
 
 <p>The closest relative outside this lane is response headers of a different kind.
 <a href="/how-to/fix-missing-security-headers/">Missing security headers</a> are set in the same
-file, at the same edge, by the same person — and this site fails two of those checks itself,
+file, at the same edge, by the same person, and this site fails two of those checks itself,
 because its host cannot set response headers at all. If you are opening that file anyway, do
 both.</p>
 
@@ -262,7 +262,7 @@ both.</p>
 <p>Neither, on the check's own grading, and that is the useful answer. Confirm the compression
 finding with the <code>curl</code> above, because a Brotli-only host produces it falsely. If it
 holds, turn compression on: one line, and the largest single win this check can point at. Then
-set a <code>Cache-Control</code> value and make sure a validator is present — worth doing, not
+set a <code>Cache-Control</code> value and make sure a validator is present: worth doing, not
 urgent. Spend the rest of the afternoon on
 <a href="/how-to/">something else on the list</a>.</p>
 
@@ -304,7 +304,7 @@ urgent. Spend the rest of the afternoon on
             ("What counts as a caching header?",
              "Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare "
              "when all three are absent, and the finding is only raised when more than half "
-             "the crawled pages are bare — so it is a statement about the site, not a count "
+             "the crawled pages are bare, so it is a statement about the site, not a count "
              "of pages. The value is never read, so Cache-Control: no-store clears the "
              "check as thoroughly as a good policy would."),
             ("Will fixing this improve my Core Web Vitals score?",

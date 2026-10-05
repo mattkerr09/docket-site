@@ -33,7 +33,7 @@ same question twice.</p>
 <h2>Why robots.txt cannot tell you</h2>
 
 <p>robots.txt is a file a crawler fetches and chooses to obey. A bot rule at your CDN is a
-decision made about the request itself — before anything is served, before the crawler has read
+decision made about the request itself: before anything is served, before the crawler has read
 a word of your policy. The two live in different places and cannot see each other.</p>
 
 <p>So a site can publish a robots.txt that explicitly allows GPTBot and ClaudeBot, mean it
@@ -74,15 +74,15 @@ command-line tools.</p>
 it evidence:</p>
 
 <ul>
-<li><strong>Browser 200, crawler 403</strong> — the rule is about the crawler. This is the
+<li><strong>Browser 200, crawler 403</strong>: the rule is about the crawler. This is the
 finding.</li>
-<li><strong>Both 403</strong> — your protection is blocking the tool, not the crawler. The
+<li><strong>Both 403</strong>: your protection is blocking the tool, not the crawler. The
 answer has to come from your CDN's own logs; this test cannot reach it.</li>
-<li><strong>Both 200</strong> — nothing to fix, and worth knowing rather than assuming.</li>
+<li><strong>Both 200</strong>: nothing to fix, and worth knowing rather than assuming.</li>
 </ul>
 
 <p>Measured this way on one large developer platform in September 2026: a browser and an
-ordinary crawler both received 200, while <strong>seven AI crawlers received 403</strong> —
+ordinary crawler both received 200, while <strong>seven AI crawlers received 403</strong>:
 OAI-SearchBot, GPTBot, ChatGPT-User, PerplexityBot, Perplexity-User, ClaudeBot and
 Claude-SearchBot. Its robots.txt allowed every one of them, with a single
 <code>User-agent: *</code> group disallowing only a search path and an API path. Re-tested
@@ -95,13 +95,13 @@ site is not named here; the shape is the point.</p>
 case.</p>
 
 <ul>
-<li><strong>Search and live-fetch crawlers</strong> — OAI-SearchBot, ChatGPT-User,
+<li><strong>Search and live-fetch crawlers</strong>: OAI-SearchBot, ChatGPT-User,
 PerplexityBot, Perplexity-User, Claude-SearchBot, Claude-User. These decide whether you can be
 cited in an answer at all. Blocking them is a visibility loss, and it is the one that hurts.</li>
-<li><strong>Training crawlers</strong> — GPTBot, ClaudeBot and their equivalents. Whether to
+<li><strong>Training crawlers</strong>: GPTBot, ClaudeBot and their equivalents. Whether to
 allow these is a real editorial decision with arguments on both sides, and a deliberate block is
 a legitimate position rather than a defect.</li>
-<li><strong>Everything else</strong> — ad-verification bots and similar visit pages you have
+<li><strong>Everything else</strong>: ad-verification bots and similar visit pages you have
 submitted to them and have nothing to do with organic or AI-answer visibility. Blocking them
 costs nothing in search.</li>
 </ul>
@@ -114,7 +114,7 @@ owner did not choose and cannot see</strong>, while their own robots.txt says th
 <p>Ask whoever runs your CDN or WAF to allow the specific user-agents you want, as an explicit
 rule rather than by relaxing bot protection generally. On Cloudflare, Fastly and AWS WAF this is
 a per-user-agent allow. Then <strong>re-run the two-request test</strong> rather than trusting
-the change — a rule that was added in the wrong order, or to the wrong hostname, looks identical
+the change. A rule that was added in the wrong order, or to the wrong hostname, looks identical
 to a rule that works until you ask the server.</p>
 
 <p>If the block turns out to be deliberate, write it down somewhere the next person will find
@@ -124,7 +124,7 @@ second most common outcome after fixing it is doing the same work again in a yea
 <h2>Where this sits in an audit</h2>
 
 <p>Docket checks this per crawler on your live server, by making the same comparison described
-above, and reports it against what your robots.txt claims — which is why it can say "your
+above, and reports it against what your robots.txt claims, which is why it can say "your
 robots.txt allows these and your server refuses them" rather than either half alone. The
 robots.txt side of the question is <a href="/how-to/fix-ai-crawler-access/">fixing AI crawler
 access</a>, and the wider surface is <a href="/learn/ai-search-visibility/">AI search
@@ -132,8 +132,8 @@ visibility</a>.</p>
 
 <p>Worth pairing it with one other question, because they compound: a crawler that is let in
 still has to be able to read the page. If your content arrives after JavaScript runs, the
-crawlers that do not render see an empty page even with a 200 —
-<a href="/how-to/javascript-seo-audit/">the JavaScript SEO audit</a> is how you check that, and
+crawlers that do not render see an empty page even with a 200.
+<a href="/how-to/javascript-seo-audit/">The JavaScript SEO audit</a> is how you check that, and
 a site with both problems is invisible twice over. The full list of what Docket looks at is
 <a href="/learn/what-docket-checks/">what Docket checks</a>, inside
 <a href="/learn/seo-audit/">the technical audit</a>.</p>
@@ -169,8 +169,8 @@ a site with both problems is invisible twice over. The full list of what Docket 
              "status code on its own."),
             ("Is blocking AI crawlers always a mistake?",
              "No. Blocking training crawlers is a legitimate editorial decision. The defect is "
-             "blocking search and live-fetch crawlers — the ones that decide whether you can be "
-             "cited in an answer — without choosing to, while your robots.txt says the "
+             "blocking search and live-fetch crawlers (the ones that decide whether you can be "
+             "cited in an answer) without choosing to, while your robots.txt says the "
              "opposite."),
             ("Will an SEO tool that reads robots.txt find this?",
              "No. Nothing in the robots.txt file is wrong, so nothing that reads it will "

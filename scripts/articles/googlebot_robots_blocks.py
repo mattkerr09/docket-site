@@ -4,7 +4,7 @@
 ⚠️ WHY THIS PAGE EXISTS. Page one for "how many websites accidentally block
 Googlebot in robots.txt", checked 2026-09-15 before a word was written, is
 malcare.com, embarque.io, feedthebot.org, blog.photobiz.com, onely.com,
-rankmath.com and wp-firewall.com — the seven recorded in `PAGE_ONE` below.
+rankmath.com and wp-firewall.com: the seven recorded in `PAGE_ONE` below.
 There is **no Google documentation on page one**. Every result is a "how to fix
 Blocked by robots.txt in Search Console" tutorial, and **not one of them answers
 the prevalence question**. No competitor study of any size was found on it. The
@@ -31,7 +31,7 @@ bucket appears on this page only as excluded population.
 **Two gate traps this file is written around.** (a) `verify_numbers.py` reduces a
 typed date in prose to a bare year and fails it, so every date is a module
 constant and interpolated. (b) `_TRIPLE` only matches an assigned or returned
-triple-quoted string, so the FAQ is invisible to the gate — every FAQ entry here
+triple-quoted string, so the FAQ is invisible to the gate. Every FAQ entry here
 is therefore an f-string with every figure interpolated, by hand rather than by
 the gate's insistence.
 """
@@ -115,7 +115,7 @@ def googlebot_robots_blocks() -> Path:
 <p><strong>Rarer than the tutorials assume.</strong> In Docket's {SURVEY_HUMAN} survey of the Tranco
 top {attempted:,}, <strong>{gbot:,} of the {readable:,} readable robots.txt files
 ({gbot_pct}%) express a denial for <code>Googlebot</code></strong>. Every share on this page is a
-share of those {readable:,} readable files, not of the {attempted:,} hosts we asked — the rest of
+share of those {readable:,} readable files, not of the {attempted:,} hosts we asked. The rest of
 the population is in the table below, and it is large.</p>
 <p><strong><code>GoogleOther</code> is the bigger number:</strong> {gother:,} files ({gother_pct}%)
 deny it, about {gother_ratio} times as many. That is a different decision, and a more defensible one.</p>
@@ -125,9 +125,9 @@ anyone intended. We cannot tell a mistake from a deliberate policy, and this pag
 
 <h2>Page one answers a different question than the one people ask</h2>
 
-<p>The query that led here — some version of "how many websites accidentally block Googlebot" — has
+<p>The query that led here (some version of "how many websites accidentally block Googlebot") has
 a page one made entirely of repair manuals. Reading it on {CHECKED_HUMAN} turned up
-{len(PAGE_ONE)} of them — tutorials on clearing "Blocked by robots.txt" out of Search Console — and
+{len(PAGE_ONE)} of them (tutorials on clearing "Blocked by robots.txt" out of Search Console), and
 nothing from Google at all. Every one is useful if you already know you have the problem.</p>
 
 <p>Not one of them says how common the problem is. The genre takes the prevalence for granted: it is
@@ -148,7 +148,7 @@ survey could read and parse. The rest split three ways:</p>
 <table>
 <thead><tr><th>Outcome</th><th>Hosts</th><th>Share of hosts attempted</th></tr></thead>
 <tbody>
-<tr><td>Readable, parseable robots.txt — <strong>the denominator for every percentage below</strong></td><td>{readable:,}</td><td>{readable_pct}%</td></tr>
+<tr><td>Readable, parseable robots.txt: <strong>the denominator for every percentage below</strong></td><td>{readable:,}</td><td>{readable_pct}%</td></tr>
 <tr><td>Unreachable: no answer, or an answer we could not use</td><td>{unreachable:,}</td><td>{unreachable_pct}%</td></tr>
 <tr><td>Reachable, but serving no robots.txt at all</td><td>{no_robots:,}</td><td>{no_robots_pct}%</td></tr>
 <tr><td>Excluded as oversize before the readable set was formed</td><td>{oversize:,}</td><td>{oversize_pct}%</td></tr>
@@ -159,7 +159,7 @@ survey could read and parse. The rest split three ways:</p>
 <p>Those {unreachable:,} unreachable hosts are not evidence of anything about robots.txt. They are
 hosts that did not answer us, and a survey that quietly folded them into a denominator would be
 reporting its own reach as a property of the web. The {no_robots:,} with no file at all are a real
-state and a permissive one — absent robots.txt means nothing is disallowed — but they express no
+state and a permissive one (absent robots.txt means nothing is disallowed), but they express no
 directive, so they cannot be counted among files that do.</p>
 
 <p><strong>Which means the readable set is not a random sample of the top {attempted:,}.</strong>
@@ -179,7 +179,7 @@ add up wrongly, and for no other reason.</p>
 <h2>The headline, stated as narrowly as the data supports</h2>
 
 <p>Of the {readable:,} readable files, <strong>{gbot:,} express a denial for
-<code>Googlebot</code></strong> — {gbot_pct}%. Roughly one file in {one_in}, in the most visible slice
+<code>Googlebot</code></strong>: {gbot_pct}%. Roughly one file in {one_in}, in the most visible slice
 of the web there is.</p>
 
 <p>Read that sentence literally, because it is written literally. It says the file expresses a
@@ -197,7 +197,7 @@ expressing a denial for Googlebot.</p>
 
 <p><strong>One honest deflation of that comparison.</strong> The AI figure counts a host that denies
 any one of {ai_tokens} tokens; the Googlebot figure counts one token. A count of "any of several"
-will beat a count of "this one" even if no site cared more about the category — some of the gap is
+will beat a count of "this one" even if no site cared more about the category. Some of the gap is
 arithmetic rather than sentiment. The direction survives the caveat, and the size of it should be
 read loosely. The full breakdown by token is on the <a href="/index/ai-directives/">AI directives
 survey</a>, and the smaller hand-checked sample behind it is <a href="/index/">the Docket Index</a>.</p>
@@ -208,8 +208,8 @@ survey</a>, and the smaller hand-checked sample behind it is <a href="/index/">t
 research work other than building the Search index. It shares Googlebot's infrastructure and obeys
 its own token in robots.txt. Denying it does not remove a site from Search.</p>
 
-<p>More files deny it than deny <code>Googlebot</code> — {gother:,} against {gbot:,}, about
-{gother_ratio} times as many. We cannot show why, and will not guess — but the two tokens are
+<p>More files deny it than deny <code>Googlebot</code>: {gother:,} against {gbot:,}, about
+{gother_ratio} times as many. We cannot show why, and will not guess, but the two tokens are
 genuinely different decisions, and the cost of getting them confused is asymmetric:</p>
 
 <table>
@@ -226,8 +226,8 @@ they are sized is the most useful thing on this page:</p>
 <table>
 <thead><tr><th>Shape</th><th>Files</th><th>What the file expresses</th></tr></thead>
 <tbody>
-<tr><td>Both tokens denied</td><td>{both_google:,}</td><td>The commonest shape, and most files denying <code>Googlebot</code> are in it — the two often move together.</td></tr>
-<tr><td><code>GoogleOther</code> denied, <code>Googlebot</code> allowed</td><td>{gother_only:,}</td><td>Non-Search fetching refused while Search fetching is permitted. The two tokens pulled apart — and the commoner way of pulling them apart, by a factor of about {only_ratio}.</td></tr>
+<tr><td>Both tokens denied</td><td>{both_google:,}</td><td>The commonest shape, and most files denying <code>Googlebot</code> are in it: the two often move together.</td></tr>
+<tr><td><code>GoogleOther</code> denied, <code>Googlebot</code> allowed</td><td>{gother_only:,}</td><td>Non-Search fetching refused while Search fetching is permitted. The two tokens pulled apart, and the commoner way of pulling them apart, by a factor of about {only_ratio}.</td></tr>
 <tr><td><code>Googlebot</code> denied, <code>GoogleOther</code> allowed</td><td>{gbot_only:,}</td><td>The rarest of the three shapes by a wide margin.</td></tr>
 </tbody>
 </table>
@@ -249,8 +249,8 @@ rather than a copy-paste.</p>
 <h2>What we tried to tell you about the blockers, and could not</h2>
 
 <p>The obvious follow-up is: what kind of site does this? We tried. A hostname-pattern pass over the
-blockers placed a handful of them as content delivery or advertising infrastructure — hosts where a
-blanket denial is unremarkable — and left the large majority unclassified. A handful out of a
+blockers placed a handful of them as content delivery or advertising infrastructure (hosts where a
+blanket denial is unremarkable), and left the large majority unclassified. A handful out of a
 population this size supports no characterisation at all.</p>
 
 <p>So the honest answer is that we do not know what kind of site typically expresses a denial for
@@ -265,7 +265,7 @@ statement about whether the URL is in the index, and that trips people up consta
 
 <ul>
 <li><strong>robots.txt governs fetching, not indexing.</strong> A disallowed URL can still be listed
-in search results from other signals — links to it, for instance — typically with no description,
+in search results from other signals (links to it, for instance) typically with no description,
 because the page was never read. If your goal is that a page not appear, robots.txt is the wrong
 instrument, and the tag side of that argument is
 <a href="/learn/does-noindex-stop-ai-crawlers/">whether noindex stops a crawler</a>.</li>
@@ -275,7 +275,7 @@ request, honoured by the crawlers that choose to honour it. A denial is not a lo
 rule, a bot-protection product or a rate limiter can refuse a request that robots.txt permits, and
 nothing in the file will show it. If that is your situation, the diagnosis is on
 <a href="/how-to/fix-ai-crawler-access/">fixing AI crawler access</a>, and the evidence lives in your
-own logs — <a href="/learn/log-file-analysis/">log file analysis</a> is how you find out who actually
+own logs. <a href="/learn/log-file-analysis/">Log file analysis</a> is how you find out who actually
 fetched what.</li>
 </ul>
 
@@ -303,7 +303,7 @@ an edge that returns a refusal is the failure mode nothing in the file can revea
 </ol>
 
 <p>Docket reads robots.txt as part of an audit, reports which named crawlers your file denies, and
-separately asks your server whether it will actually serve a request — the two halves that this page
+separately asks your server whether it will actually serve a request: the two halves that this page
 keeps insisting are different questions. The full list of what it inspects is on
 <a href="/learn/what-docket-checks/">what Docket checks</a>, and the sitemap side of robots.txt, which
 is a non-group record with rules of its own, is covered in
@@ -314,7 +314,7 @@ is a non-group record with rules of its own, is covered in
 <p>If you arrived worried, the base rate is reassuring: {gbot_pct}% of readable files in the top
 {attempted:,} express a denial for <code>Googlebot</code>, so the ambient assumption that this is
 everywhere is not supported by the most visible slice of the web. That is not permission to skip the
-check on your own site — a base rate of one in {one_in} is exactly the sort of number that is
+check on your own site. A base rate of one in {one_in} is exactly the sort of number that is
 comforting in aggregate and catastrophic in your particular case.</p>
 
 <p>And if you find such a line, resist the urge to classify it as an accident before you have asked
@@ -349,7 +349,7 @@ tutorial that never counted them.</p>
         faq=[
             ("How many websites block Googlebot in robots.txt?",
              f"In Docket's {SURVEY_HUMAN} survey of the Tranco top {attempted:,}, {gbot:,} of the "
-             f"{readable:,} readable robots.txt files expressed a denial for Googlebot — {gbot_pct}%. "
+             f"{readable:,} readable robots.txt files expressed a denial for Googlebot: {gbot_pct}%. "
              f"That share is of the readable files only: {unreachable:,} hosts were unreachable, "
              f"{no_robots:,} served no robots.txt at all, and {oversize:,} were excluded as oversize "
              "before the readable set was formed."),
@@ -363,7 +363,7 @@ tutorial that never counted them.</p>
              f"No. Googlebot fetches for the Search index; GoogleOther is Google's general-purpose "
              f"fetcher for product and research work other than building that index, and it obeys "
              f"its own token. Denying GoogleOther does not remove a site from Search. More files "
-             f"deny it than deny Googlebot — {gother:,} against {gbot:,}, about {gother_ratio} times "
+             f"deny it than deny Googlebot: {gother:,} against {gbot:,}, about {gother_ratio} times "
              f"as many. The files also pull the two apart in one direction far more than the other: "
              f"{gother_only:,} deny GoogleOther while allowing Googlebot, against {gbot_only:,} the "
              f"other way round, with {both_google:,} denying both. Which is why treating 'Google' as "

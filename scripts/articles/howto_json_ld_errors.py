@@ -3,11 +3,11 @@
 Promised on the how-to hub. Sourced from the registered check `schema.invalid`
 in `backend/seo_engine/checks/structured.py`, which carries both halves:
 
-  * THE CHECK ALREADY KNEW AND THEN GUESSED ANYWAY — it parses the block,
+  * THE CHECK ALREADY KNEW AND THEN GUESSED ANYWAY: it parses the block,
     catches the exception, prints it, and then offered a fixed list of three
     likely causes. On a consumer-rights body every page checked failed with
     `Invalid control character`, which is none of the three.
-  * IT USED TO STOP AT THE FIRST BROKEN BLOCK PER PAGE — so "they all fail the
+  * IT USED TO STOP AT THE FIRST BROKEN BLOCK PER PAGE, so "they all fail the
     same way" described what had been collected rather than the site. On a
     hardware vendor with two blocks per page, several had both broken with
     DIFFERENT errors.
@@ -15,7 +15,7 @@ in `backend/seo_engine/checks/structured.py`, which carries both halves:
 The seven-entry remedy table below is copied from `_JSON_ERROR_REMEDY` and must
 stay in step with it. Nothing here is invented.
 
-⚠️ NO SITE OR VENDOR IS NAMED — third-party gate.
+⚠️ NO SITE OR VENDOR IS NAMED: third-party gate.
 
 ⚠️ MUST NOT CONTRADICT /how-to/fix-structured-data-errors/, whose short section
 on this says "validate the rendered output, not the template". That is correct
@@ -48,8 +48,8 @@ exception. It is holding the exact reason. Docket printed that exception and <em
 a fixed list of three usual suspects: a trailing comma, an unescaped quote, HTML entities the CMS
 encoded into the block.</p>
 
-<p>On a consumer-rights body's site, every page checked failed with the same message —
-<code>Invalid control character</code> — which is none of those three. The real cause was a raw
+<p>On a consumer-rights body's site, every page checked failed with the same message (
+<code>Invalid control character</code>), which is none of those three. The real cause was a raw
 newline inside a string holding HTML, exactly the shape a CMS produces when it writes a
 multi-line field straight into a script block.</p>
 
@@ -64,22 +64,22 @@ guess while holding the evidence is the defect.</strong></p>
 means for the person fixing it:</p>
 
 <ul>
-<li><strong><code>Invalid control character</code></strong> — a literal newline, tab or carriage
+<li><strong><code>Invalid control character</code></strong>: a literal newline, tab or carriage
 return inside a string value. JSON forbids them unescaped, so write them as <code>\n</code> and
 <code>\t</code>, or strip them. Almost always a CMS writing multi-line HTML into a field.</li>
-<li><strong><code>Expecting property name enclosed in double quotes</code></strong> — a trailing
+<li><strong><code>Expecting property name enclosed in double quotes</code></strong>: a trailing
 comma before a closing brace or bracket, or a key quoted with apostrophes instead of double
 quotes.</li>
-<li><strong><code>Expecting ',' delimiter</code></strong> — an unescaped double quote inside a
+<li><strong><code>Expecting ',' delimiter</code></strong>: an unescaped double quote inside a
 string value. Write it as <code>\"</code>.</li>
-<li><strong><code>Expecting value</code></strong> — an empty field emitted with nothing after the
+<li><strong><code>Expecting value</code></strong>: an empty field emitted with nothing after the
 colon, or HTML entities such as <code>&amp;quot;</code> that the CMS encoded into the script
 block.</li>
-<li><strong><code>Extra data</code></strong> — two JSON documents in one script block. Give each
+<li><strong><code>Extra data</code></strong>: two JSON documents in one script block. Give each
 its own block, or combine them into a single array.</li>
-<li><strong><code>Unterminated string starting at</code></strong> — a string that never closes,
+<li><strong><code>Unterminated string starting at</code></strong>: a string that never closes,
 usually an unescaped quote or a template cut off mid-render.</li>
-<li><strong><code>Invalid \escape</code></strong> — a lone backslash, typically from a Windows
+<li><strong><code>Invalid \escape</code></strong>: a lone backslash, typically from a Windows
 path or a regular expression. Double it.</li>
 </ul>
 
@@ -98,7 +98,7 @@ already-recorded page was never looked at.</p>
 
 <p>On a hardware vendor's site every page carried two JSON-LD blocks, and several had
 <strong>both</strong> broken, with different errors. The report named one missing comma. Somebody
-fixes the comma, re-tests, and the page is still discarded by the search engine — which is exactly
+fixes the comma, re-tests, and the page is still discarded by the search engine, which is exactly
 the outcome the check exists to prevent.</p>
 
 <p><strong>Sampling one instance per page and then summarising across pages produces a claim that
@@ -114,20 +114,20 @@ so the summary describes the site rather than the sample.</p>
 <ul>
 <li><strong>Validate the rendered output, not the template.</strong> The commonest cause is a CMS
 field interpolated into JSON without escaping, so it breaks only for the products whose
-descriptions happen to contain a quote or a line break — which is why it survives
+descriptions happen to contain a quote or a line break, which is why it survives
 spot-checking.</li>
 <li><strong>Fix every block on the page, then re-validate.</strong> One page can carry several,
 and a page is discarded if any block it depends on is invalid.</li>
 <li><strong>Read the parser message first.</strong> Thirty seconds with the list above beats an
 afternoon with a generic checklist.</li>
-<li><strong>Check the records most likely to contain punctuation</strong> — product descriptions
+<li><strong>Check the records most likely to contain punctuation</strong>: product descriptions
 with quotation marks, addresses with line breaks, anything pasted from a word processor.</li>
 </ul>
 
 <h2>When this matters most, and when it does not</h2>
 
-<p>It matters most on templated pages that carry commercial markup — products, events, recipes,
-jobs — because the fault is invisible on the page and total in effect. There is no partial
+<p>It matters most on templated pages that carry commercial markup (products, events, recipes,
+jobs) because the fault is invisible on the page and total in effect. There is no partial
 credit.</p>
 
 <p>It matters least where the block was aspirational: markup added for an entity you were never
@@ -148,15 +148,15 @@ or quote without knowing which one broke tends to produce a second, different pa
 <h2>How to make this finding disappear without fixing anything</h2>
 
 <p>Delete the script block. The finding clears, the page becomes one with no structured data at
-all, and no tool will complain — because an absent block and a discarded block look identical to
+all, and no tool will complain, because an absent block and a discarded block look identical to
 a search engine. That equivalence is the whole reason this fault is worth catching: <strong>you
 already have the outcome of deleting it, and you are paying to generate it.</strong></p>
 
 <h2>Where this sits in an audit</h2>
 
 <p>The registered check is <code>schema.invalid</code>, which covers JSON-LD that does not parse.
-For the other structured-data faults — markup contradicting the visible page, required properties
-genuinely missing, coverage as a judgement rather than an error — see
+For the other structured-data faults (markup contradicting the visible page, required properties
+genuinely missing, coverage as a judgement rather than an error) see
 <a href="/how-to/fix-structured-data-errors/">how to fix structured data errors &rarr;</a>. For
 the case where the block parses perfectly and still resolves to nothing, see
 <a href="/how-to/schema-id-references/">an @id is a pointer, not a definition &rarr;</a>.</p>
@@ -178,7 +178,7 @@ the case where the block parses perfectly and still resolves to nothing, see
              "The error message. The tool parsed your block and caught the exact exception; a "
              "list of usual suspects beside it is a guess that may predate your case."),
             ("If one block on a page is invalid, does the rest still count?",
-             "Invalid JSON is not partially read — the whole block is discarded. A page can "
+             "Invalid JSON is not partially read: the whole block is discarded. A page can "
              "carry several blocks, so fix every one and re-validate rather than stopping at the "
              "first."),
             ("Why did fixing the reported error not fix my page?",

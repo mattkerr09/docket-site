@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""JavaScript rendering — what it is for, and what it changed for Docket.
+"""JavaScript rendering: what it is for, and what it changed for Docket.
 
 Numbers here were measured while building the feature: notion.so fetched
 statically versus rendered in WebKit, on 2026-08-06.
@@ -21,7 +21,7 @@ contained <strong>0 characters of text and 0 links</strong>, and the same page r
 browser contained <strong>2,068 characters and 106 links</strong>.</p>
 
 <p>Everything an audit would say about that page from the static fetch is wrong. Thin
-content, no internal links, no structured data — all artefacts of not running the code.</p>
+content, no internal links, no structured data. All artefacts of not running the code.</p>
 
 <h2>Who renders and who does not</h2>
 
@@ -37,7 +37,7 @@ rendering is not an optimisation, it is the entry fee. We measured
 <h2>How Docket does it</h2>
 
 <p>macOS ships a browser engine. WebKit is a system framework, so Docket renders through a
-112 KB helper built against it rather than bundling a browser — the download is still {DMG_SIZE},
+112 KB helper built against it rather than bundling a browser: the download is still {DMG_SIZE},
 and nothing is fetched at install time. The audit engine stays what it was: dependency-free
 Python that never needed a browser to do most of its job.</p>
 
@@ -47,8 +47,8 @@ finding whose remedy is &ldquo;re-run with rendering on&rdquo; is a bug rather t
 The whole crawl is still a plain HTTP fetch; only the sample goes through a browser.</p>
 
 <p>The costs are real and are the reason the sample is small rather than the whole crawl.
-Rendering executes the page's JavaScript, so analytics fire and advertising pixels load —
-requests to servers you did not intend to contact when you asked for an audit. And it is
+Rendering executes the page's JavaScript, so analytics fire and advertising pixels load.
+Requests to servers you did not intend to contact when you asked for an audit. And it is
 roughly ten to thirty times slower than fetching. <code>--render 0</code> turns it off
 entirely, which is what makes the automatic sample a default rather than a decision taken
 for you.</p>
@@ -57,7 +57,7 @@ for you.</p>
 
 <h3>Pages that only exist after hydration</h3>
 <p>The notion.so case. Docket now compares the served HTML against the rendered DOM and
-reports the difference as a measurement rather than a suspicion — 0 characters versus 2,068
+reports the difference as a measurement rather than a suspicion: 0 characters versus 2,068
 is a fact you can take to whoever owns the front end.</p>
 
 <h3>What your tag manager actually loaded</h3>
@@ -81,11 +81,11 @@ bug Docket will not see.</p>
 
 <p>Rendering also says nothing about how much of the page Google read in the first
 place. It fetches at most 2MB of any URL and indexes that as though it were the whole file, so
-a heavy page can be truncated before the renderer is ever involved —
+a heavy page can be truncated before the renderer is ever involved:
 <a href="/learn/googlebot-2mb-limit/">measured here</a>.</p>
 
-<p>Nor does rendering give you Core Web Vitals. LCP, INP and CLS are <em>field</em> metrics —
-they come from real users on real connections, not from one machine on a fast desk. Docket can
+<p>Nor does rendering give you Core Web Vitals. LCP, INP and CLS are <em>field</em> metrics.
+They come from real users on real connections, not from one machine on a fast desk. Docket can
 pull that data from the Chrome UX Report when you turn it on, which is the same source Search
 Console uses. Any tool presenting a single synthetic run as "your Core Web Vitals" is
 misrepresenting what the number is.</p>
@@ -93,7 +93,7 @@ misrepresenting what the number is.</p>
 <p>And if you want to crawl a large site with rendering at volume, <a
 href="/vs/screaming-frog-alternative/">Screaming Frog</a> has been doing it for years with
 configurable wait strategies, JavaScript error capture and a rendered-versus-raw diff view
-built for exactly this. Docket renders a sample — the shallowest pages, ten by default —
+built for exactly this. Docket renders a sample (the shallowest pages, ten by default)
 because that answers "is this site client-rendered and what is it costing me" without turning
 a five-minute audit into an hour.</p>
 
@@ -144,8 +144,8 @@ to a static crawl and letting you believe otherwise.</p>
              "No, and this page said it was until the claim was checked against the engine. "
              "A small sample of every audit is rendered when the WebKit helper is present; "
              "--render 0 turns it off. The sample is small because rendering executes the "
-             "page's JavaScript, so analytics fire and ad pixels load — requests to servers "
-             "you did not intend to contact by asking for an audit — and it is ten to thirty "
+             "page's JavaScript, so analytics fire and ad pixels load (requests to servers "
+             "you did not intend to contact by asking for an audit), and it is ten to thirty "
              "times slower than fetching."),
             ("Can rendering measure Core Web Vitals?",
              "No, and nothing that runs on one machine can. LCP, INP and CLS are field "

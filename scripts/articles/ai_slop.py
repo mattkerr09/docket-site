@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generic AI-sounding copy — what `content.ai_slop` actually detects.
+"""Generic AI-sounding copy: what `content.ai_slop` actually detects.
 
 Everything about the check is read from its source, `content.ai_slop` in
 `backend/seo_engine/checks/content.py`, and from the test that guards it,
@@ -9,7 +9,7 @@ No figure is published here and there is no dataset behind this page. The
 measurement that removed one entry from the phrase list lives in the check's
 own comment and in that test; it is described here in words, and the corpus
 sites are not named, because they are third parties who did not ask to be
-measured in public — see verify_no_named_third_parties.py.
+measured in public: see verify_no_named_third_parties.py.
 
 Two external sources, both Google's own, read 2026-09-15:
 
@@ -40,8 +40,8 @@ from render import render  # noqa: E402
 def ai_sounding_copy() -> Path:
     body = """
 <p class="lede">You drafted some pages with a language model, and now you are wondering whether
-it shows and whether that costs you anything. Docket has a check for it —
-<code>content.ai_slop</code>, "Generic AI-sounding copy" — and the first honest thing to say is
+it shows and whether that costs you anything. Docket has a check for it (
+<code>content.ai_slop</code>, "Generic AI-sounding copy"), and the first honest thing to say is
 what it cannot do.</p>
 
 <h2>It cannot tell you whether a machine wrote your page</h2>
@@ -60,7 +60,7 @@ unfalsifiable claims about your writing has stopped being useful.</p>
 <p>For every indexable page, Docket lowercases the body text and counts how many phrases from a
 fixed list appear in it. A page is reported only if it carries <strong>two distinct
 phrases</strong> from that list. One is never enough, and the reason is the most interesting thing
-about this check — see below.</p>
+about this check: see below.</p>
 
 <p>Where any pages qualify, the check raises a single finding at <strong>medium severity</strong>
 covering all of them, titled that those pages read as generic AI-generated copy. The detail line
@@ -85,8 +85,8 @@ the sentence to be about.</p>
 nearly not enough.</p>
 
 <p>The list once contained an ordinary English connective that predates the language models by a
-very long way. It was measured against human-written pages from institutional sites — a church, a
-credit union and a trade union, none of them named here — and it turned up on every one of them. Every other
+very long way. It was measured against human-written pages from institutional sites (a church, a
+credit union and a trade union, none of them named here), and it turned up on every one of them. Every other
 marker in the list turned up on none of them. That is not a tell; it is a joint in the language.</p>
 
 <p>Because the check fires on a pair, that one entry was enough to turn a single genuine cliché
@@ -109,7 +109,7 @@ superlative.</p>
 
 <p>There is a small joke in the fact that this page does not quote them. This site runs its own
 copy gate over every page it builds, and that gate bans nearly all of the same phrases as visible
-text — including inside a code block. A page printing the list in full would fail the build that
+text, including inside a code block. A page printing the list in full would fail the build that
 published it. If you want the entries, they are legible in the check's source rather than on a
 marketing page, which is where a claim about your writing ought to be auditable from.</p>
 
@@ -127,8 +127,8 @@ site, tutorial and programming blog was exposed to the same reading.</li>
 carrying a <code>noindex</code> directive is not judged.</li>
 <li><strong>Sites that are not in English.</strong> The check is phrase matching against English,
 so on a site whose content language is anything else it stands down entirely and the report says
-that it did. The alternative — running an English phrase list over Japanese and reporting every
-absence as a fact — is how a tool ends up telling a confectioner it has no call to action on
+that it did. The alternative (running an English phrase list over Japanese and reporting every
+absence as a fact) is how a tool ends up telling a confectioner it has no call to action on
 pages that all have one.</li>
 <li><strong>Everything else about quality.</strong> This check has no opinion on whether your page
 is accurate, useful, or worth reading. It matches phrases.</li>
@@ -162,7 +162,7 @@ crawler will ever measure it for you.</p>
 
 <p>Open the pages the finding names and ask one question of each: what does this page contain that
 only we could have written? If the answer is nothing, the stock phrases are the least of it.
-Replace the generic paragraph with the specific one — what the job costs, how long it takes, which
+Replace the generic paragraph with the specific one: what the job costs, how long it takes, which
 streets you cover, what the awkward customer situation was and how it was handled. Then read the
 result aloud. Stock phrasing is much easier to hear than to see.</p>
 
@@ -181,7 +181,7 @@ answer can replace, and what defends one, is
 
 <p>Medium severity is the right weight for it. This is a heuristic over a small phrase list, it
 knows nothing about authorship, it can still be fooled by a comment thread, and it will miss
-machine-written copy that avoids the stock phrases entirely — which is most of it, and increasingly
+machine-written copy that avoids the stock phrases entirely, which is most of it, and increasingly
 so. A clean result here is not a certificate that your writing sounds human. It only means these
 particular phrases are not doing it.</p>
 

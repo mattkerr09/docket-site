@@ -2,15 +2,15 @@
 """How to write title tags that fit.
 
 Sourced from Docket's five title and description checks and, more usefully,
-from `words.display_width` — the reason those checks do not count characters.
+from `words.display_width`: the reason those checks do not count characters.
 That function exists because counting characters applied an English rule to
 Japanese and produced a false positive on most of a real site's pages.
 
 The article states no threshold numbers at all. Docket's TITLE_MIN/MAX and
 DESC_MIN/MAX are width units, not the character counts every other guide
 quotes, so printing them here would invite the reader to compare them against a
-number measured a different way. The advice that survives is the shape — put
-the distinguishing words first, do not duplicate — which is also the advice
+number measured a different way. The advice that survives is the shape (put
+the distinguishing words first, do not duplicate), which is also the advice
 that does not go stale when a threshold moves.
 """
 from __future__ import annotations
@@ -25,7 +25,7 @@ from render import render  # noqa: E402
 def title_tags() -> Path:
     body = """
 <p class="lede">Almost every guide tells you to keep a title under about sixty characters.
-That advice is wrong in a way that only shows up on some sites — because search engines
+That advice is wrong in a way that only shows up on some sites, because search engines
 truncate by <em>pixel width</em>, and characters are not all the same width.</p>
 
 <h2>The character count is the wrong unit</h2>
@@ -36,12 +36,12 @@ double the width of a Latin one, so a Japanese title of twenty characters occupi
 forty Latin characters' worth of space.</p>
 
 <p>Docket measures width rather than length, and the reason is a bug it had. A real product
-title on a Japanese site — nineteen characters — was reported as "shorter than the minimum"
+title on a Japanese site (nineteen characters) was reported as "shorter than the minimum"
 on eighteen of twenty pages. In width units it was thirty-one: comfortably normal. The tool
 was applying an English rule to a language it does not fit, and reporting the mismatch as the
 site's fault.</p>
 
-<p>If your site is entirely English the practical difference is small — a title of capital
+<p>If your site is entirely English the practical difference is small. A title of capital
 Ws truncates sooner than one of lowercase Ls, and that is about it. If any part of your site
 is in Japanese, Chinese or Korean, a character-counting tool will report problems that do not
 exist and miss ones that do.</p>
@@ -61,7 +61,7 @@ emergency plumbing services in Leeds and surrounding areas" does not.</li>
 <li><strong>Every page needs its own.</strong> Duplicate titles across a site are a signal
 that the pages are interchangeable, and search engines will pick one and drop the rest.
 Template-generated titles that differ only by a hidden ID are duplicates as far as a reader is
-concerned — <a href="/how-to/fix-duplicate-title-tags/">how to fix duplicate title tags</a>
+concerned. <a href="/how-to/fix-duplicate-title-tags/">How to fix duplicate title tags</a>
 covers what that costs and what it does not.</li>
 </ul>
 
@@ -75,7 +75,7 @@ of one word crowding out anything that would make someone click.</p>
 <h2>Meta descriptions</h2>
 
 <p>They are not a ranking factor and they do decide clicks. Google frequently rewrites them,
-which is not a reason to leave them empty — a rewrite drawn from a page with no description is
+which is not a reason to leave them empty. A rewrite drawn from a page with no description is
 usually a sentence you would not have chosen.</p>
 
 <p>The same width rule applies, and the same duplication rule: a description repeated across a
@@ -89,15 +89,15 @@ forty characters too long needs cutting; a hundred pages sharing one title needs
 change. Rolling them into one "title issues" count tells you the size of the problem and
 nothing about the work.</p>
 
-<p>Widths are measured in half-width units — a Latin character counts one, a full-width East
-Asian character counts two — so the same thresholds apply to every language on your site.</p>
+<p>Widths are measured in half-width units (a Latin character counts one, a full-width East
+Asian character counts two), so the same thresholds apply to every language on your site.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="how-to", slug="write-title-tags-that-fit",
         title="How to write title tags that fit (width, not characters)",
-        desc=("Search engines truncate by pixel width, not character count — which makes the "
+        desc=("Search engines truncate by pixel width, not character count, which makes the "
               "usual advice wrong on any site that is not entirely English."),
         h1="How to write title tags that fit",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / title tags',
@@ -117,7 +117,7 @@ Asian character counts two — so the same thresholds apply to every language on
              "and closing with the page's subject loses the subject."),
             ("Do meta descriptions affect ranking?",
              "No, but they affect clicks. Google often rewrites them, which is not a reason "
-             "to omit them — a rewrite drawn from a page with no description is usually a "
+             "to omit them. A rewrite drawn from a page with no description is usually a "
              "sentence you would not have chosen."),
             ("Are duplicate titles a problem?",
              "Yes. They signal that pages are interchangeable, and search engines will "

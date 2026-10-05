@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Click depth and orphan pages — the three findings `index.depth` emits.
+"""Click depth and orphan pages: the three findings `index.depth` emits.
 
 Sourced from `index.depth` in
 `backend/seo_engine/checks/indexability.py`, the crawler properties the orphan
@@ -20,12 +20,12 @@ is on the page rather than smoothed over:
    "homepage" can be wrong about that.
 2. The default depth limit is five, and links discovered past it are appended to
    `skipped` rather than fetched. So the deep list can only ever hold pages at
-   the threshold or at the ceiling — the count is bounded by the crawl setting
+   the threshold or at the ceiling. The count is bounded by the crawl setting
    before it is bounded by the site.
 3. **The depth half consults no crawl-quality gate at all.** The orphan half
    does. `supports_link_graph_claims` is documented as governing "inlink counts,
    orphan status and click depth", and `nav_in_html` was written after a
-   JavaScript-nav site produced "a meaningless click-depth model" — yet
+   JavaScript-nav site produced "a meaningless click-depth model": yet
    `index.deep_pages` never reads either property. That asymmetry is the most
    interesting sentence on the page and it is stated as ours, not hidden.
 4. An orphan must be **in your sitemap**. The gloss "a page nothing links to" is
@@ -38,7 +38,7 @@ No typed figures or dates: every number and date below is a module-level
 constant, interpolated. FAQ strings are not f-strings, so the few numbers they
 carry are spelled out in words, matching the threshold constants above them.
 
-Demand for this topic was NOT measured — no related term cleared a volume
+Demand for this topic was NOT measured. No related term cleared a volume
 floor. The closing note says so in as many words; nothing on the page claims or
 implies an audience was counted.
 """
@@ -90,11 +90,11 @@ of them is withheld when the crawl was too partial to support it.</p>
 emit three findings:</p>
 
 <ul>
-<li><strong>Deep pages</strong> — <code>index.deep_pages</code>, at LOW. Indexable pages whose
+<li><strong>Deep pages</strong>: <code>index.deep_pages</code>, at LOW. Indexable pages whose
 recorded depth is {DEEP_AT} or more.</li>
-<li><strong>Orphan pages</strong> — <code>index.orphan_pages</code>, at MEDIUM. Sitemap URLs
+<li><strong>Orphan pages</strong>: <code>index.orphan_pages</code>, at MEDIUM. Sitemap URLs
 with no internal link pointing at them.</li>
-<li><strong>Orphans not checked</strong> — <code>index.orphans_unchecked</code>, a NOTICE
+<li><strong>Orphans not checked</strong>: <code>index.orphans_unchecked</code>, a NOTICE
 flagged as a tool limitation. The orphan question could not be answered on this crawl, so it
 is not answered.</li>
 </ul>
@@ -120,14 +120,14 @@ only page fetched was a single product page carrying a noindex. Any finding whos
 <p><strong>It counts links Docket could see.</strong> A menu assembled in the browser is not in
 the delivered HTML, so a crawler reading the HTML finds no links in it. Pages reachable in one
 click through that menu are then reached, if at all, by some longer route through a footer or a
-body link — and their depth is the length of that longer route. The number is real; what it
+body link, and their depth is the length of that longer route. The number is real; what it
 measures is your link graph as served, which on a client-rendered site is not your link graph
 as used.</p>
 
 <p><strong>It is capped before it is measured.</strong> The default click-depth limit is
 {DEFAULT_DEPTH}. Links discovered beyond it are not fetched; they are recorded as URLs the
 crawl skipped. So on a default run the deep list can only contain pages at the threshold or at
-the ceiling, and a genuinely buried page — the one this finding is supposed to be about — never
+the ceiling, and a genuinely buried page (the one this finding is supposed to be about) never
 appears in it, because it was never fetched. If you want the real distribution, raise the limit
 or remove it with <code>{DEPTH_FLAG} 0</code>, which means no limit rather than no links.</p>
 
@@ -144,7 +144,7 @@ list of pages wrongly called orphans.</p>
 
 <p>The orphan half of <code>index.depth</code> consults that property. The depth half does not
 read it at all. So on a site whose navigation never reaches the HTML, the orphan claim is
-correctly withheld and the deep-pages list is printed anyway — with depths produced by the same
+correctly withheld and the deep-pages list is printed anyway. With depths produced by the same
 unreadable link graph that caused the orphan claim to be withheld. Treat a deep-pages list on
 such a site as a statement about what Docket could crawl, not about your structure. If your
 report also carries a finding about navigation that needs JavaScript, that is the signal:
@@ -160,29 +160,29 @@ crawl recorded no internal link pointing at it, and it is not the page being tre
 homepage.</p>
 
 <p>The sitemap condition is the one that surprises people. A page nothing links to and nothing
-declares is not reported here — it is not reported anywhere, because a crawler starting from
+declares is not reported here: it is not reported anywhere, because a crawler starting from
 your homepage and following links has no way to reach it and no way to know it exists. If you
 publish no sitemap at all, <code>index.orphan_pages</code> cannot fire under any circumstances.
 The finding's own detail text is accurate about this: "These pages appear in the sitemap but
-nothing on the site links to them." The gloss that gets repeated elsewhere — any page with no
-inbound internal links — is a wider claim than the code makes, and a wider claim than a crawl
+nothing on the site links to them." The gloss that gets repeated elsewhere (any page with no
+inbound internal links) is a wider claim than the code makes, and a wider claim than a crawl
 can support.</p>
 
 <p>The fix attached to it is deliberately two-sided: "Link to each from a relevant parent or
-hub page — or remove it if it is obsolete." Orphans are frequently correct. A page that nothing
+hub page, or remove it if it is obsolete." Orphans are frequently correct. A page that nothing
 links to because nothing should link to it any more is a deletion, not a linking job.</p>
 
 <h2>When the orphan answer is withheld, and why that is the useful part</h2>
 
 <p>"Nothing links to this page" is a claim about your entire site, and you cannot make it from
 pages you never fetched. The URLs left unfetched are exactly the ones whose outbound links are
-unknown — they are the only candidates for carrying the missing link.</p>
+unknown. They are the only candidates for carrying the missing link.</p>
 
 <p>So the check requires that the crawl left nothing meaningful behind: the number of skipped
 URLs must be no more than {SKIP_FLOOR}, or {SKIP_PCT}% of the pages crawled, whichever is
 larger. A handful of stragglers does not invalidate a link graph. Past that line, Docket emits
 the notice instead, and the notice deliberately does <em>not</em> quote how many orphans it
-would have reported — that list is precisely what the crawl cannot support, and printing it
+would have reported. That list is precisely what the crawl cannot support, and printing it
 would hand you a number to act on while claiming not to. What it quotes instead is how many
 URLs were never fetched.</p>
 
@@ -191,7 +191,7 @@ at a cap of {G_CRAWLED} pages: {G_ORPHANS} of those pages were reported as orpha
 crawl's own log recorded {G_SKIPPED} further URLs discovered and never fetched. Roughly
 two-fifths of the link graph had not been looked at, and the pages that would have carried the
 links were sitting in the queue. The gate in place at the time passed the crawl, because it
-fell back to a {ABSENCE_FLOOR}% coverage floor — a defensible bar for "does a privacy page
+fell back to a {ABSENCE_FLOOR}% coverage floor. A defensible bar for "does a privacy page
 exist anywhere on this site?", since a URL seen and never fetched still answers that, and the
 wrong bar entirely for "does anything link here?".</p>
 
@@ -214,7 +214,7 @@ an uncapped run, lift the other ceiling too:</p>
 
 <pre><code>docket audit https://example.com {PAGES_FLAG} 0 {DEPTH_FLAG} 0</code></pre>
 
-<p>Both zeros mean "no limit on this dimension", not "no pages" and not "no links" — a
+<p>Both zeros mean "no limit on this dimension", not "no pages" and not "no links". A
 distinction that once cost a whole-site preset its crawl, and is now the documented
 convention on both flags.</p>
 
@@ -229,7 +229,7 @@ published threshold anyone has verified for your site.</p>
 
 <p>The practical reading is narrower and safer: depth is a proxy for how much internal linking
 a page receives, and internal linking is a thing you control directly. If a page matters and
-sits far from everything, the fix is the same either way — a link from a hub or a related-
+sits far from everything, the fix is the same either way. A link from a hub or a related-
 content block, which is the finding's own advice. <a href="/learn/internal-link-equity/">Internal
 link equity, measured</a> covers the distribution behind that proxy, which is the more useful
 view once you have more than a handful of pages.</p>
@@ -237,7 +237,7 @@ view once you have more than a handful of pages.</p>
 <h2>Reading the list you were given</h2>
 
 <p>The deep list arrives sorted deepest first, which is the order to work in. It is capped at
-{URL_CAP} URLs in the report, with the true total kept separately — so a short list is not
+{URL_CAP} URLs in the report, with the true total kept separately, so a short list is not
 necessarily a short problem, and the report says how many it is showing of how many.</p>
 
 <p>Work orphans before depth. An orphan in your sitemap is a page you told search engines about
@@ -245,7 +245,7 @@ and then left unreachable by anything else, which is a contradiction you can res
 edit. A deep page is a ranking of your own structure against a threshold, on a number whose
 ceiling you set when you started the crawl. And if neither finding appears but the notice does,
 nothing has been ruled out: re-run with both limits lifted before concluding your link graph is
-clean. Whether a page is indexed at all is a different question with a different answer —
+clean. Whether a page is indexed at all is a different question with a different answer:
 <a href="/learn/index-coverage/">is your page actually indexed?</a> covers how to check that
 directly.</p>
 

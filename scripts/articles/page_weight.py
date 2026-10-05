@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""How heavy is too heavy — the two findings `perf.page_weight` emits.
+"""How heavy is too heavy: the two findings `perf.page_weight` emits.
 
 Sourced from `perf.page_weight` in
 `backend/seo_engine/checks/performance.py`, its two thresholds at the top of
@@ -9,7 +9,7 @@ that file, `words.kb` which decides the unit they are printed in,
 which records it, and `registry.AuditContext` which decides which pages are
 weighed at all. Every one of those is in the shipped build (the commits that
 added `body_truncated` and its "at least" wording, `4cfccac` and `599befc`,
-are both ancestors of the 1.3.69 release commit `47c5a40` — checked with
+are both ancestors of the 1.3.69 release commit `47c5a40`. Checked with
 `git merge-base --is-ancestor`, not assumed from the log order).
 
 The test beside it records what went wrong:
@@ -20,7 +20,7 @@ The test beside it records what went wrong:
 All four are stated on the page rather than smoothed over:
 
   1. It weighs the HTML DOCUMENT and nothing else. `page.html_bytes` is
-     `len(resp.body)` — the decompressed markup — so images, CSS, JavaScript
+     `len(resp.body)` (the decompressed markup), so images, CSS, JavaScript
      and fonts are not in the number at any point. The finding's own detail
      says "That is the HTML document alone, before images, CSS or JavaScript",
      and the common meaning of "page weight" (everything the browser pulls) is
@@ -32,7 +32,7 @@ All four are stated on the page rather than smoothed over:
      the moderate pages outnumber half of `ctx.ok_pages`, and never at all
      when any page tripped the MEDIUM branch. It is a site-shape finding, not
      a per-page one.
-  4. Only `ctx.ok_pages` is weighed — HTML, 2xx, not an error, not a bot
+  4. Only `ctx.ok_pages` is weighed: HTML, 2xx, not an error, not a bot
      challenge, not a browser gate, not chrome-only, not an empty stand-in.
      A PDF is never in this finding, and neither is a page the crawl did not
      reach.
@@ -40,8 +40,8 @@ All four are stated on the page rather than smoothed over:
 ⚠️ AND THE UNIT IS DECIMAL. `words.kb` divides by 1000, and the thresholds are
 written decimal (`HTML_VERY_HEAVY = 400_000`), so the KB in this finding is
 1000 bytes. `facts.size_median_kb()` divides by 1024, which is right for the
-2MB article it was written for and WRONG to stand beside these thresholds —
-that mismatch is the defect `words.kb` exists to prevent. So this page does not
+2MB article it was written for and WRONG to stand beside these thresholds.
+That mismatch is the defect `words.kb` exists to prevent. So this page does not
 call those helpers: `_sample()` below re-counts the same published dataset on
 the decimal divisor, and every figure here is on one divisor.
 
@@ -53,7 +53,7 @@ unrendered placeholder.
 
 The oversized page whose size Docket understated is described but not named.
 It is a real business that never asked to be measured, and the number is the
-whole of the point — see `verify_no_named_third_parties.py` for why that rule
+whole of the point. See `verify_no_named_third_parties.py` for why that rule
 exists, and note that it is a rule this page keeps voluntarily, because that
 gate only inspects shipped exposure data and would not have caught a name here.
 """
@@ -136,7 +136,7 @@ def page_weight() -> Path:
     body = f"""
 <p class="lede">"How heavy should a page be?" has an answer in Docket, and it is two numbers:
 {HEAVY_KB} KB and {VERY_HEAVY_KB} KB. Before you measure yourself against either of them, the
-more useful thing to know is what those numbers are counting — because it is much less than the
+more useful thing to know is what those numbers are counting, because it is much less than the
 phrase "page weight" normally means, and on the largest pages it is sometimes not a measurement
 at all.</p>
 
@@ -144,8 +144,8 @@ at all.</p>
 
 <p>The <code>perf.page_weight</code> check weighs <strong>the HTML document, decompressed, and
 nothing else</strong>. Not the images. Not the stylesheets, the fonts, the JavaScript bundles or
-anything those go on to request. The finding says so in its own detail text — "That is the HTML
-document alone, before images, CSS or JavaScript" — and it is worth reading twice, because most
+anything those go on to request. The finding says so in its own detail text ("That is the HTML
+document alone, before images, CSS or JavaScript"), and it is worth reading twice, because most
 page-weight advice you will find means the total transfer a browser makes to paint the page, and
 that is a different number, usually a much larger one.</p>
 
@@ -153,7 +153,7 @@ that is a different number, usually a much larger one.</p>
 Docket's lower threshold and still take a long time to load, because the weight is in a hero
 image and a tag manager. A page can also trip the higher threshold while loading acceptably,
 because the markup compresses to a fraction of its size on the wire. Docket counts the
-decompressed bytes — what your server sent, after the transfer encoding is undone — which is the
+decompressed bytes (what your server sent, after the transfer encoding is undone), which is the
 size that matters for parsing and for byte-counted limits, and not the size that left the
 server.</p>
 
@@ -169,10 +169,10 @@ navigation. A PDF never appears in this finding. Neither does a page nothing lin
 claims:</p>
 
 <ul>
-<li><strong>A page over {VERY_HEAVY_KB} KB</strong> — <code>perf.html_very_heavy</code>, at
+<li><strong>A page over {VERY_HEAVY_KB} KB</strong>: <code>perf.html_very_heavy</code>, at
 MEDIUM. Named pages, worst first, with the largest one printed by size. This fires on a single
 page; one is enough.</li>
-<li><strong>A site whose documents are generally large</strong> — <code>perf.html_heavy</code>,
+<li><strong>A site whose documents are generally large</strong>: <code>perf.html_heavy</code>,
 at LOW. Pages between {HEAVY_KB} KB and {VERY_HEAVY_KB} KB, and it fires only if
 <em>more than half</em> of the crawled pages are in that band.</li>
 </ul>
@@ -180,11 +180,11 @@ at LOW. Pages between {HEAVY_KB} KB and {VERY_HEAVY_KB} KB, and it fires only if
 <p>Two properties of that second one are easy to misread. It is an alternative, not an addition:
 if any page tripped the MEDIUM branch, the LOW finding does not appear at all, so the absence of
 "HTML documents are larger than they need to be" is not evidence that your other pages are
-small. And it is a statement about the shape of the site rather than about any page — a handful
+small. And it is a statement about the shape of the site rather than about any page. A handful
 of fat templates on an otherwise lean site will not reach the majority and will not be reported
 here.</p>
 
-<p>The KB in both is decimal — a thousand bytes, not the {BINARY_KB} a lot of tools mean by the
+<p>The KB in both is decimal: a thousand bytes, not the {BINARY_KB} a lot of tools mean by the
 same two letters. Docket publishes every measured size through one divisor, which exists because
 two findings once described the same page in two units inside the same report, each correct in
 its own file and disagreeing with its neighbour. If you convert Docket's KB yourself, divide by
@@ -196,9 +196,9 @@ a thousand and you will land where it did.</p>
 anywhere else.</p>
 
 <p>Docket's fetcher stops reading a response at {READ_CEILING_MIB} mebibytes, which is
-{READ_CEILING_MB} MB in the decimal unit its findings print. That is deliberate — the
+{READ_CEILING_MB} MB in the decimal unit its findings print. That is deliberate (the
 comment at the constant calls it "~20x the 95th percentile HTML page; anything past it is a
-download, not a document" — and it keeps one pathological URL from eating a crawl. The
+download, not a document"), and it keeps one pathological URL from eating a crawl. The
 consequence is the interesting bit. Whatever the page really weighs, the bytes Docket holds stop
 there:</p>
 
@@ -209,13 +209,13 @@ there:</p>
 <p>For a while the checks never saw that flag. The fetcher recorded it, the extractor dropped
 it, and the page-weight finding printed the ceiling as though it were the measurement. Found on
 {CAP_FOUND_ON} on a large resources hub: Docket reported {READ_CEILING_KB} KB, and fetching the
-same URL returned {TRUNCATED_PAGE_BYTES:,} bytes — about {TRUNCATED_PAGE_MB} MB. The report
+same URL returned {TRUNCATED_PAGE_BYTES:,} bytes: about {TRUNCATED_PAGE_MB} MB. The report
 understated the page by {UNDERSTATED_MB} MB while sounding precise to the kilobyte.</p>
 
 <p><strong>The tell was that the figure was a round power of two.</strong> {READ_CEILING_KB} KB
 is exactly {READ_CEILING_MIB} mebibytes, and no real page is that size by coincidence. If
-a tool hands you a page size that is suspiciously round in binary — a ceiling number rather than
-a measured one — check whether you are reading the page or reading the tool's limit. That
+a tool hands you a page size that is suspiciously round in binary (a ceiling number rather than
+a measured one) check whether you are reading the page or reading the tool's limit. That
 applies to whatever crawler you use, not only to this one.</p>
 
 <p>What the shipped build does now is carry the flag across and change the sentence. One line in
@@ -230,12 +230,12 @@ own test: saying "at least" on every heavy page would turn hundreds of exact, co
 into guesses.</p>
 
 <p>Two caveats on the flag, both true of the code as it stands. It is set on the
-<code>perf.html_very_heavy</code> finding, which is the one that prints a named page's size —
-the LOW finding prints a count and no per-page figure, so there is nothing there to hedge. And
+<code>perf.html_very_heavy</code> finding, which is the one that prints a named page's size.
+The LOW finding prints a count and no per-page figure, so there is nothing there to hedge. And
 truncation has a second cause besides the ceiling: the fetcher reads against a wall-clock
 deadline, and a server that answers quickly and then dribbles the body gets cut off at the
 deadline with whatever arrived kept and marked truncated. A partial read is still worth
-something — the alternative is discarding work already paid for — but it means "at least" can
+something (the alternative is discarding work already paid for), but it means "at least" can
 mean "your server was slow" as well as "your page was enormous".</p>
 
 <h2>So how heavy is too heavy?</h2>
@@ -250,7 +250,7 @@ look rather than a verdict that your site is broken.</p>
 
 <p>The honest reason to care is not a ranking penalty, and this page will not claim one. The
 finding's own detail says a heavy document "delays the first paint by seconds" on a phone
-connection — an inference from the size, not something Docket timed, and worth weighing
+connection: an inference from the size, not something Docket timed, and worth weighing
 accordingly. The repository is blunter about this elsewhere: a note in the crawler records that
 of two sites measured with the shipped renderer, the one serving {RENDER_LIGHT_KB} KB rendered
 <em>slower</em> than the one serving {RENDER_HEAVY_KB} KB, and concludes "do not tune this cap
@@ -266,7 +266,7 @@ that one.</p>
 
 <h2>Measuring it yourself</h2>
 
-<p>Docket's number is reproducible in one line. This is the count it takes — the decompressed
+<p>Docket's number is reproducible in one line. This is the count it takes: the decompressed
 HTML document, nothing referenced:</p>
 
 <pre><code>curl -sS --compressed https://example.com/ | wc -c</code></pre>
@@ -278,8 +278,8 @@ difference between the two is what compression is saving you on this page:</p>
 <pre><code>curl -sS -H 'Accept-Encoding: gzip' https://example.com/ | wc -c</code></pre>
 
 <p>If those two numbers are the same, the document is not being compressed at all, which is a
-separate finding and a much cheaper fix than trimming markup —
-<a href="/how-to/fix-compression-and-caching/">how to fix compression and caching headers</a>
+separate finding and a much cheaper fix than trimming markup.
+<a href="/how-to/fix-compression-and-caching/">How to fix compression and caching headers</a>
 covers it. Doing that first is the right order: compression changes what the visitor waits for
 without changing a line of your templates.</p>
 
@@ -301,7 +301,7 @@ helps more than the byte count suggests.</li>
 
 <p>The check's fix text is one sentence for the first and third of those: move inline blocks to
 cached external files, and paginate long listings. Note what that does to the second finding as
-well — external files are cached across pages, so the site-wide LOW finding tends to close on
+well. External files are cached across pages, so the site-wide LOW finding tends to close on
 the same edit.</p>
 
 <p>One caveat if your pages are built by JavaScript: the document Docket weighed is the one your
@@ -341,7 +341,7 @@ how bad it is. Everything else on the list is a measurement you can trust to the
              "kilobytes, which it only reports when more than half the crawled pages sit in "
              "that band, and one at four hundred kilobytes, which it reports for a single "
              "page. Both "
-             "are strict compared with the real web — the median homepage in our own sample of "
+             "are strict compared with the real web. The median homepage in our own sample of "
              "well-known sites is past the higher of the two."),
             ("Why does my report say 'at least' before a page size?",
              "Because the crawler stopped reading before the page ended, so the figure is the "

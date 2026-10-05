@@ -8,7 +8,7 @@ This page does not re-argue the mechanism. It answers a question that paragraph
 does not: **how often does this actually happen, and in what shape when it
 does.** The two link to each other rather than repeating.
 
-**Pre-registration — the prior check (2026-09-15)** of "internal links with UTM
+**Pre-registration. The prior check (2026-09-15)** of "internal links with UTM
 parameters SEO problem" returned nine results: searchengineland.com,
 seroundtable.com, searchseven.co.uk, site-analyzer.pro, berreby.ai, attri.io,
 sammyseo.com, vonclaro.com, seovendor.co. **No vendor documentation; no study of
@@ -16,7 +16,7 @@ any size.** Every one of them asserts that the practice is harmful; **not one
 measures how often it happens.**
 
 **RE-RUN, 2026-09-15, by the writer of this page.** Same query. The result set
-came back **identical — the same nine domains, in the same order.** No
+came back **identical. The same nine domains, in the same order.** No
 google.com, no developers.google.com, no support.google.com/analytics, no GA4
 help page appeared anywhere on page one. No prevalence measurement, no sample
 size, no survey by anyone. The assertion-without-a-denominator gap the brief
@@ -35,7 +35,7 @@ distribution. The page shows the split, names the two cases, and says in its own
 words that it will not call it bimodal on this evidence.
 
 **THE CEILING IS LOAD-BEARING.** `pages_affected` is bounded by the crawl limit.
-A host at the cap means every page we looked at carried such a link — NOT that
+A host at the cap means every page we looked at carried such a link, NOT that
 the site has that many pages. It is stated in the paragraph that introduces the
 page-count column, not in a footnote, because a reader who takes the cap for a
 site total has been misled by us rather than by their own carelessness.
@@ -88,7 +88,7 @@ def internal_utm() -> Path:
     #: sell a tool is not a trade this project makes.
     def _shape(n: int) -> str:
         if n >= cap:
-            return ("Every page we crawled. A <strong>lower bound</strong> — "
+            return ("Every page we crawled. A <strong>lower bound</strong>: "
                     "the true figure is however many pages the site has.")
         if n <= ISOLATED_MAX:
             return "Isolated. Consistent with links tagged one at a time, by hand."
@@ -108,12 +108,12 @@ def internal_utm() -> Path:
 <strong>{clean} of {sample}</strong> emitted none at all.</p>
 <p><strong>The share is not the useful part. The shape is.</strong> The affected hosts split in
 two: some carried such links on a handful of pages, and some carried them on
-every page we looked at. We measured where the links are, not how they got there — but the two
+every page we looked at. We measured where the links are, not how they got there, but the two
 shapes point at different work. A handful of pages is consistent with links tagged one at a time;
 every page is consistent with something in a template, and <strong>a template would be one fix
 rather than many</strong>.</p>
 <p><strong>We did not measure any consequence.</strong> This counts what the HTML emits. What an
-analytics tool then does with it is documented behaviour, not something this survey observed — the
+analytics tool then does with it is documented behaviour, not something this survey observed: the
 mechanism is explained on <a href="/learn/marketing-tag-audit/">the marketing tag audit</a>.</p>
 </div>
 
@@ -122,7 +122,7 @@ mechanism is explained on <a href="/learn/marketing-tag-audit/">the marketing ta
 <p>Search for the SEO problem with UTM parameters on internal links and page one is unanimous: it
 overwrites the original source of the session, it multiplies URLs, stop doing it. Re-checked on
 {CHECKED_HUMAN}, every result on page one made the argument. <strong>Not one of them stated how often
-it happens.</strong> There was no vendor documentation on the page and no study of any size — no
+it happens.</strong> There was no vendor documentation on the page and no study of any size: no
 sample, no denominator, no rate. Nine pages agreeing on a mechanism is not evidence about a
 prevalence, and after a while an unmeasured claim starts to sound measured simply from repetition.</p>
 
@@ -134,7 +134,7 @@ what shape.</strong></p>
 <h2>What we counted, exactly</h2>
 
 <p>On {MEASURED_HUMAN}, Docket crawled <strong>{sample}</strong> hosts drawn with a recorded seed
-(<code>{seed}</code>) from the Tranco top {TRANCO_POOL_HUMAN} — at most <strong>{cap}</strong> pages
+(<code>{seed}</code>) from the Tranco top {TRANCO_POOL_HUMAN}: at most <strong>{cap}</strong> pages
 each, with its own identified user-agent and its own backoff. Ordinary crawling at the scale a
 customer runs, not a special-purpose scrape.</p>
 
@@ -158,7 +158,7 @@ all. We did not find a case of the latter, but we also did not go looking for on
 </ul>
 
 <p><strong>All {crawled_ok} of {sample} hosts crawled successfully.</strong> That is worth stating
-rather than assuming. In a survey where unreachable hosts drop out — a robots.txt survey, say — the
+rather than assuming. In a survey where unreachable hosts drop out (a robots.txt survey, say) the
 denominator quietly thins and every share computed from it is a share of whoever answered. Here the
 denominator is the sample.</p>
 
@@ -194,15 +194,15 @@ affected hosts sit at that ceiling.</p>
 <p>The affected hosts do not sit on a smooth curve from "a bit" to "a lot". They sit at the two ends:
 <strong>{isolated}</strong> hosts had it on {ISOLATED_MAX_HUMAN} pages or fewer, and the rest had it on
 nearly or exactly every page crawled, with nothing in between. <strong>Say that carefully, though.</strong>
-{hosts} hosts is far too few to establish the shape of a distribution — a split this clean in a group
+{hosts} hosts is far too few to establish the shape of a distribution. A split this clean in a group
 this small could be chance, and we are not going to call it bimodal on this evidence. What it does do
 is show you the two cases exist, and they are worth telling apart when you look at your own site.</p>
 
 <p>Those two clusters are different problems that happen to trip the same check:</p>
 
 <ul>
-<li><strong>The handful.</strong> Somebody built a link by hand — a banner, a promo, an email landing
-page reused as an internal CTA — and pasted the tagged URL rather than the clean one. The fix is to
+<li><strong>The handful.</strong> Somebody built a link by hand (a banner, a promo, an email landing
+page reused as an internal CTA), and pasted the tagged URL rather than the clean one. The fix is to
 edit those links. Finding them is the whole job.</li>
 <li><strong>The whole site.</strong> A header, footer, nav or card component is emitting the parameter
 on every render. <strong>This looks like the worse problem and is usually the cheaper one:</strong> it
@@ -236,13 +236,13 @@ view source and search for <code>utm_</code>; from a terminal, fetch the page an
 <pre><code>curl -s https://example.com/ | grep -o 'href="[^"]*utm_[^"]*"'</code></pre>
 
 <p>Two things to keep straight while you read the output. <strong>A tagged link pointing somewhere
-else is not this problem</strong> — tagging outbound links to a partner or to your own campaign
+else is not this problem</strong>. Tagging outbound links to a partner or to your own campaign
 landing pages on another domain is what UTMs are for. And <strong>check the header, footer and any
 repeated card component first</strong>, because that is where the whole-site pattern lives; if you
 find it there, you have found every page at once.</p>
 
 <p>Whether a parameterised URL is then treated as a duplicate of the clean one is a canonical
-question, and not one this survey measured — that is
+question, and not one this survey measured: that is
 <a href="/learn/canonical-tags/">canonical tags</a>, and when the signals disagree,
 <a href="/how-to/fix-conflicting-canonicals/">fixing conflicting canonicals</a>. Docket runs the
 internal-UTM check as part of its tracking lane, alongside the rest of
@@ -280,7 +280,7 @@ contribution is the count and the shape.</li>
         cat="learn", slug="internal-utm-links",
         title="How common are internal links with UTM parameters?",
         desc=(f"We crawled {sample} Tranco hosts and counted. {hosts} emitted internal links "
-              f"carrying UTM parameters — and the affected hosts split into two different problems."),
+              f"carrying UTM parameters, and the affected hosts split into two different problems."),
         h1="How common are internal links with UTM parameters?",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Internal UTM links',
         body=body,
@@ -295,7 +295,7 @@ contribution is the count and the shape.</li>
             ("Is it a few links or the whole site?",
              f"Both, and that is the finding. Among the {hosts} affected hosts the counts sit at two "
              f"ends with nothing between: {isolated} had such links on {ISOLATED_MAX_HUMAN} pages or "
-             f"fewer, and the rest had them on nearly or exactly every page crawled — though {hosts} "
+             f"fewer, and the rest had them on nearly or exactly every page crawled. Though {hosts} "
              f"hosts is too few to call that a distribution shape rather than chance. A handful of "
              f"pages is usually "
              f"hand-pasted links; every page is a template emitting the parameter on every render, "
@@ -304,7 +304,7 @@ contribution is the count and the shape.</li>
             ("Does a host showing the maximum page count mean the site has that many pages?",
              f"No, and this is the easiest number on the page to misread. We crawled at most {cap} "
              f"pages per host, so the page count cannot exceed {cap}. A host showing {cap} means "
-             f"every page we looked at carried such a link — the true number is however many pages "
+             f"every page we looked at carried such a link: the true number is however many pages "
              f"that site has. {at_cap} of the {hosts} affected hosts sit at that ceiling, and the "
              f"share of those sites affected is unmeasured."),
             ("Did you measure the damage to analytics attribution?",
@@ -314,7 +314,7 @@ contribution is the count and the shape.</li>
              f"something this survey measured, and the mechanism is explained on the marketing tag "
              f"audit page rather than here."),
             ("Is tagging an internal link always a mistake?",
-             f"No. Some teams tag a specific internal link on purpose — an on-site banner, say — "
+             f"No. Some teams tag a specific internal link on purpose (an on-site banner, say), "
              f"and accept the attribution cost to get the click count. That is a decision. Nothing "
              f"in a crawl distinguishes it from a pasted URL, so the check reports the links and "
              f"does not read intent; across {sample} hosts we can say how often it appears and in "

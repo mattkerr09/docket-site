@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""How Docket orders findings — severity, impact, effort and reach.
+"""How Docket orders findings: severity, impact, effort and reach.
 
 Sourced from `models.Severity` and its docstring, `models.SEVERITY_WEIGHT`,
 `models.Effort` and `models.EFFORT_COST`, `models.Finding.priority`,
@@ -31,7 +31,7 @@ perfectly, and describes a product that no longer exists.
 
 The two incidents described in the "when we got this wrong" section are
 recorded in the repository's own comments, and both are named by CATEGORY only
-— a roofing company, an agency report — never by domain, per the rule that
+— a roofing company, an agency report: never by domain, per the rule that
 governs every site we have tested and not published.
 """
 from __future__ import annotations
@@ -86,7 +86,7 @@ enquiries is multiplied by <strong>{F.money_weight():g}</strong>. A missing titl
 for a business paying to be found they are not the same job.</p>
 
 <p>That multiplier is deliberately small. It orders two findings of the same severity and
-cannot lift one past a more serious problem — a critical issue anywhere still outranks a medium
+cannot lift one past a more serious problem. A critical issue anywhere still outranks a medium
 one on your pricing page, because this page prints a severity beside every finding and a
 ranking that contradicts that label would make one of the two wrong with no way to tell which.
 It recognises English paths only, and it errs towards leaving a page alone rather than
@@ -94,13 +94,13 @@ promoting the wrong one.</p>
 
 <p>The inputs are worth taking one at a time.</p>
 
-<h3>Severity — how badly it hurts</h3>
+<h3>Severity: how badly it hurts</h3>
 
 <p>There are {len(levels)} severities that represent a problem, and their weights are not evenly
 spaced:</p>
 
 <ul>
-<li><strong>Critical</strong>, weight {F.severity_weight("critical"):g} — reserved, in the
+<li><strong>Critical</strong>, weight {F.severity_weight("critical"):g}: reserved, in the
 engine's own words, for "this page or site cannot rank at all": a noindex on a page that earns
 money, a robots.txt that disallows everything, a server returning 5xx. Anything that merely
 <em>reduces</em> performance is High or below, deliberately, because a critical bucket that
@@ -108,7 +108,7 @@ fills with noise stops meaning anything.</li>
 <li><strong>High</strong>, weight {F.severity_weight("high"):g}.</li>
 <li><strong>Medium</strong>, weight {F.severity_weight("medium"):g}.</li>
 <li><strong>Low</strong>, weight {F.severity_weight("low"):g}.</li>
-<li><strong>Notice</strong>, weight {F.severity_weight("notice"):g} — including every finding
+<li><strong>Notice</strong>, weight {F.severity_weight("notice"):g}, including every finding
 where Docket is reporting its own blind spot rather than a fault in your site.</li>
 </ul>
 
@@ -117,54 +117,54 @@ tested to establish that a critical is worth exactly
 {F.severity_weight("critical") / F.severity_weight("notice"):.0f} notices. They are an editorial
 judgement about relative harm, held steady so that two audits of the same site agree with each
 other. And the gap between Critical and High is the largest in the table on purpose, because the
-distinction it encodes — cannot rank at all, versus ranks worse than it should — is the only one
+distinction it encodes (cannot rank at all, versus ranks worse than it should) is the only one
 that changes what you do today.</p>
 
-<h3>Impact — how much this particular instance matters</h3>
+<h3>Impact: how much this particular instance matters</h3>
 
 <p>Severity is a property of the <em>kind</em> of problem. Impact is set per finding, so two
 findings at the same severity can rank differently. It is also the field that decides which
 phase of the plan a finding lands in, at a threshold of {F.phase_impact_threshold():g}.</p>
 
-<h3>Reach — how much of the site is affected, with the volume turned down</h3>
+<h3>Reach: how much of the site is affected, with the volume turned down</h3>
 
 <p>This is the input most tools get wrong, and the way Docket handles it is the most opinionated
 thing on this page. Reach does <strong>not</strong> scale with the number of affected pages. It
 follows a square-root curve that stops growing altogether:</p>
 
 <ul>
-<li>1 page — multiplier {F.reach_at(1):g}</li>
-<li>{EG_MID_PAGES} pages — multiplier {F.reach_at(EG_MID_PAGES):g}</li>
-<li>{EG_PAGES} pages — multiplier {F.reach_at(EG_PAGES):g}</li>
-<li>100 pages — multiplier {F.reach_at(100):g}</li>
-<li>{F.reach_plateau()} pages — multiplier {F.reach_max():g}, and it never goes higher</li>
-<li>5,000 pages — still {F.reach_max():g}</li>
+<li>1 page: multiplier {F.reach_at(1):g}</li>
+<li>{EG_MID_PAGES} pages: multiplier {F.reach_at(EG_MID_PAGES):g}</li>
+<li>{EG_PAGES} pages: multiplier {F.reach_at(EG_PAGES):g}</li>
+<li>100 pages: multiplier {F.reach_at(100):g}</li>
+<li>{F.reach_plateau()} pages: multiplier {F.reach_max():g}, and it never goes higher</li>
+<li>5,000 pages: still {F.reach_max():g}</li>
 </ul>
 
 <p>Past {F.reach_plateau()} affected pages, one more changes nothing. The reason is written into
 the code as a failure mode to avoid: with a raw count, one trivial nit repeated across 5,000
 template-generated pages would outrank a critical noindex on your homepage. That is exactly why
-large-site audits from big tools are so often unusable — the top of the list is whatever the CMS
+large-site audits from big tools are so often unusable. The top of the list is whatever the CMS
 happens to do everywhere. Docket caps reach so that breadth matters, but cannot win on its
 own.</p>
 
-<h3>Effort — the divisor</h3>
+<h3>Effort: the divisor</h3>
 
 <p>Effort is the only input that makes a score smaller, and the spread is wide:</p>
 
 <ul>
-<li><strong>Trivial</strong>, cost {F.effort_cost("trivial"):g} — one tag or one line of config,
+<li><strong>Trivial</strong>, cost {F.effort_cost("trivial"):g}: one tag or one line of config,
 minutes.</li>
-<li><strong>Small</strong>, cost {F.effort_cost("small"):g} — a template change, under an
+<li><strong>Small</strong>, cost {F.effort_cost("small"):g}: a template change, under an
 hour.</li>
-<li><strong>Medium</strong>, cost {F.effort_cost("medium"):g} — a few hours, several templates
+<li><strong>Medium</strong>, cost {F.effort_cost("medium"):g}: a few hours, several templates
 or some content.</li>
-<li><strong>Large</strong>, cost {F.effort_cost("large"):g} — a project: a migration, a rebuild,
+<li><strong>Large</strong>, cost {F.effort_cost("large"):g}: a project: a migration, a rebuild,
 net-new content.</li>
 </ul>
 
 <p>A Large fix is divided by {F.effort_cost("large") / F.effort_cost("trivial"):g} times as much
-as a Trivial one, which is a strong enough thumb on the scale to reorder the list — and it is
+as a Trivial one, which is a strong enough thumb on the scale to reorder the list, and it is
 meant to be. A fix nobody has time for is worth less than a smaller fix that ships this
 afternoon.</p>
 
@@ -194,16 +194,16 @@ would tell you.</p>
 than a leaderboard:</p>
 
 <ol>
-<li><strong>Stop the bleeding</strong> — everything Critical, regardless of effort. If a page
+<li><strong>Stop the bleeding</strong>: everything Critical, regardless of effort. If a page
 cannot rank at all, nothing else you do to it matters.</li>
-<li><strong>Quick wins</strong> — impact {F.phase_impact_threshold():g} or above, at
+<li><strong>Quick wins</strong>: impact {F.phase_impact_threshold():g} or above, at
 {" or ".join(F.quick_win_efforts_words())} effort.</li>
-<li><strong>Build</strong> — impact {F.phase_impact_threshold():g} or above, but real work.</li>
-<li><strong>Polish</strong> — everything else worth doing.</li>
+<li><strong>Build</strong>: impact {F.phase_impact_threshold():g} or above, but real work.</li>
+<li><strong>Polish</strong>: everything else worth doing.</li>
 </ol>
 
 <p>Within each phase, items stay in priority order. The plan prints
-{F.plan_item_cap()} items at most — a plan of two hundred things is not a plan — and every item
+{F.plan_item_cap()} items at most (a plan of two hundred things is not a plan), and every item
 it keeps carries the true total, so the report can say how many it is not showing. That last
 part exists because of a mistake described below.</p>
 
@@ -220,8 +220,8 @@ which to believe. So the summary sorts by severity band and uses priority only t
 a band.</p>
 
 <p><strong>Findings that describe Docket's own blind spots cost your score nothing.</strong>
-When a check cannot see enough to answer — a link graph assembled by JavaScript, an external
-link that could not be fetched — it says so rather than guessing, and that finding is marked as
+When a check cannot see enough to answer (a link graph assembled by JavaScript, an external
+link that could not be fetched) it says so rather than guessing, and that finding is marked as
 a limit of the tool. Those are excluded from the score deduction entirely, because a site Docket
 <em>cannot read</em> should not score below one it can for that reason alone.</p>
 
@@ -230,22 +230,22 @@ a limit of the tool. Those are excluded from the score deduction entirely, becau
 <p>Both of the rules above are repairs, and the repository records what prompted them.</p>
 
 <p>The summary ordering was found by reading a full report for a roofing company rather than
-looking at its score. All five headline items were Medium, while both High findings — one of
-them invisible rating markup, which carries a Google manual-action risk — sat past position ten,
+looking at its score. All five headline items were Medium, while both High findings (one of
+them invisible rating markup, which carries a Google manual-action risk) sat past position ten,
 which is further than anyone reads. Nothing was broken; priority was doing exactly what it was
 designed to do, in a section where that was the wrong question.</p>
 
 <p>The plan cap was found on an agency report of several hundred pages whose cover promised
 fifty items while the plan printed {F.plan_item_cap()} numbered ones, with nothing explaining
 the gap. A reader who counted would conclude the report withheld ten fixes it had charged for.
-The cap stayed — it is there for a reason — but every item now carries the total so the
+The cap stayed (it is there for a reason), but every item now carries the total so the
 renderers can say what was left out.</p>
 
 <p>And the tool-limit exclusion was subtler than it looks. Those findings were given an impact
 of zero, which everyone assumed protected the score. It did not: impact never enters the score
 calculation at all, which is driven by severity and reach, so a blind-spot notice deducted from
 a lane exactly like any other notice. The test that was supposed to guard this asserted that
-impact was zero — the premise, not the behaviour it was named for. The fix was two lines; the
+impact was zero: the premise, not the behaviour it was named for. The fix was two lines; the
 lesson was that a test should assert the thing it claims to protect.</p>
 
 <h2>Checking it yourself</h2>
@@ -270,8 +270,8 @@ which.</p>
             ("How does Docket decide which SEO problem to fix first?",
              "It computes a priority score for every finding: severity weight multiplied by "
              "impact and by reach, divided by the effort the fix takes. Findings are then "
-             "grouped into four phases — critical problems, quick wins, longer builds, and "
-             "polish — and ordered by score inside each phase."),
+             "grouped into four phases (critical problems, quick wins, longer builds, and "
+             "polish), and ordered by score inside each phase."),
             ("Why does a medium-severity issue rank above a high one?",
              "Because reach and effort are in the formula. A medium problem across dozens of "
              "pages that one template edit fixes will outrank a high-severity problem on a "
@@ -289,7 +289,7 @@ which.</p>
              "claim that any particular issue costs a specific amount of traffic, and Docket "
              "does not make one."),
             ("What is a tool-limit finding and why does it not affect my score?",
-             "It is Docket reporting its own blind spot rather than a fault in your site — a "
+             "It is Docket reporting its own blind spot rather than a fault in your site. A "
              "link graph it could not read, an external link it could not fetch. Those are "
              "excluded from the score deduction, because a site Docket cannot fully read "
              "should not score lower than one it can for that reason alone."),

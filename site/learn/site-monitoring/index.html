@@ -14,7 +14,7 @@
 <title>SEO monitoring: what changed, not what is wrong</title>
 <meta name="description" content="Scheduled site re-audits on your own machine, regressions first, and the two comparisons Docket refuses to make because the number would look useful and be wrong.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/learn/site-monitoring/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -774,7 +774,7 @@ nav{z-index:40}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Site monitoring","description":"Scheduled site re-audits on your own machine, regressions first, and the two comparisons Docket refuses to make because the number would look useful and be wrong.","datePublished":"2026-08-14","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/site-monitoring/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How often does Docket re-audit a monitored site?","acceptedAnswer":{"@type":"Answer","text":"Daily, weekly or monthly — you choose per site. The re-audit runs on your own machine with the same crawl settings as a manual run, so a monitored site is not crawled harder than one you audit by hand."}},{"@type":"Question","name":"Does monitoring keep running when Docket is closed?","acceptedAnswer":{"@type":"Answer","text":"No. The scheduler is a thread inside the app, so it stops when you quit and nothing is left running on your machine. A site that falls due while Docket is shut is re-audited the next time you open it. For unattended runs on a schedule, use the Linux CLI in cron or CI."}},{"@type":"Question","name":"Does site monitoring need an account or a server?","acceptedAnswer":{"@type":"Answer","text":"No. The re-audits run on your Mac and history is stored in ~/.docket/ as plain JSON — a watchlist plus one small snapshot per audit. The history is never uploaded, and it stays yours if you stop using Docket."}},{"@type":"Question","name":"Why does Docket refuse to compare some audits?","acceptedAnswer":{"@type":"Answer","text":"Because comparing a 50-page crawl with a 500-page crawl invents dozens of new issues that were always there and simply had not been reached. Every one of those alerts would be false, so Docket says the crawls are not comparable instead of producing the diff."}},{"@type":"Question","name":"What does the competitor comparison actually show?","acceptedAnswer":{"@type":"Answer","text":"Where you lead and trail area by area, on rivals audited with the same settings, plus the issues every competitor has already fixed. Areas where only one side could be evaluated are left out rather than counted as a win or a loss."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How often does Docket re-audit a monitored site?","acceptedAnswer":{"@type":"Answer","text":"Daily, weekly or monthly: you choose per site. The re-audit runs on your own machine with the same crawl settings as a manual run, so a monitored site is not crawled harder than one you audit by hand."}},{"@type":"Question","name":"Does monitoring keep running when Docket is closed?","acceptedAnswer":{"@type":"Answer","text":"No. The scheduler is a thread inside the app, so it stops when you quit and nothing is left running on your machine. A site that falls due while Docket is shut is re-audited the next time you open it. For unattended runs on a schedule, use the Linux CLI in cron or CI."}},{"@type":"Question","name":"Does site monitoring need an account or a server?","acceptedAnswer":{"@type":"Answer","text":"No. The re-audits run on your Mac and history is stored in ~/.docket/ as plain JSON: a watchlist plus one small snapshot per audit. The history is never uploaded, and it stays yours if you stop using Docket."}},{"@type":"Question","name":"Why does Docket refuse to compare some audits?","acceptedAnswer":{"@type":"Answer","text":"Because comparing a 50-page crawl with a 500-page crawl invents dozens of new issues that were always there and simply had not been reached. Every one of those alerts would be false, so Docket says the crawls are not comparable instead of producing the diff."}},{"@type":"Question","name":"What does the competitor comparison actually show?","acceptedAnswer":{"@type":"Answer","text":"Where you lead and trail area by area, on rivals audited with the same settings, plus the issues every competitor has already fixed. Areas where only one side could be evaluated are left out rather than counted as a win or a loss."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -824,17 +824,17 @@ fbq('track','PageView');
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Site monitoring</div><h1>Site monitoring</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-14">14 August 2026</time></p>
 
-<p class="lede">An audit tells you what is wrong today. Monitoring tells you what changed —
+<p class="lede">An audit tells you what is wrong today. Monitoring tells you what changed,
 which is the question you actually have, because a site that was fine last month and is not
 fine now has a cause, and a site that has been failing the same check since 2023 is not
 news.</p>
 
-<p>Docket re-audits on a schedule you set — daily, weekly or monthly — on your own machine,
+<p>Docket re-audits on a schedule you set (daily, weekly or monthly) on your own machine,
 with no account, and the results stay there. Every re-audit is compared against the last one, and
 the comparison leads with what got worse.</p>
 
 <p><strong>It runs while Docket is open, and stops when you quit.</strong> The scheduler is
-a thread inside the app, not a background service and not a server — there is nothing left
+a thread inside the app, not a background service and not a server. There is nothing left
 running on your Mac after you close it, and nothing running anywhere else at any time. A
 site that falls due while Docket is shut is picked up the next time you open it, so you get
 the check late rather than not at all. If you need an audit to run at 3am whether or not
@@ -846,7 +846,7 @@ anybody is logged in, that is a job for the Linux CLI in cron or CI, and
 <p>A snapshot is enough to say what changed and to draw the trend, and it is not enough to
 read: it records which checks fired and how badly, not the detail, the fix or the URLs. So
 each scheduled check now keeps the full report it produced, and the site&rsquo;s page offers
-it &mdash; open it, or download it as PDF, HTML or JSON.</p>
+it. Open it, or download it as PDF, HTML or JSON.</p>
 
 <p>It has to be kept at the moment it is made. A report is rendered from an audit that is
 still in memory, and once the check has finished there is nothing left to render from, so a
@@ -871,8 +871,8 @@ deploy. Only one of those needs you this morning.</p>
 wrong.</p>
 
 <p><strong>It will not diff two audits that crawled very different numbers of pages.</strong>
-It says so instead. If last week reached 50 pages and this week reached 500 — because a
-sitemap appeared, or a crawl budget changed, or a section stopped being blocked — then
+It says so instead. If last week reached 50 pages and this week reached 500 (because a
+sitemap appeared, or a crawl budget changed, or a section stopped being blocked) then
 comparing them invents dozens of "new" issues that were there all along and simply had not
 been reached. Every one of those alerts would be false, and you would spend the morning
 proving it.</p>
@@ -890,20 +890,20 @@ where you lead and trail area by area.</p>
 
 <p>The most useful row is not the score. It is the list of issues <em>every competitor has
 already fixed</em>. That is the clearest evidence you get that something is both achievable
-in your market and expected in it — an issue nobody else has is a standard, not an
+in your market and expected in it: an issue nobody else has is a standard, not an
 opinion.</p>
 
 <h2>Where the history lives</h2>
 
 <p>In <code>~/.docket/</code>, as plain JSON: a watchlist plus one compact snapshot per
 audit, a few kilobytes each. Alongside them sits the full report from each site&rsquo;s most
-recent check &mdash; that one is not a few kilobytes, and it is replaced rather than
+recent check. That one is not a few kilobytes, and it is replaced rather than
 accumulated, so the folder grows with the number of sites you watch and not with the number
 of checks you run. You can read any of it, back it up, put it in version control, or delete
 it. Set <code>DOCKET_HOME</code> to keep it somewhere else.</p>
 
 <p>There is no server of ours in this. The history is never uploaded, there is no account, and if you stop
-using Docket your history is still sitting in a folder you own — which is the difference
+using Docket your history is still sitting in a folder you own, which is the difference
 between monitoring you rent and monitoring you have.</p>
 
 <h2>Scheduled audits are a promise to somebody else's server</h2>
@@ -911,7 +911,7 @@ between monitoring you rent and monitoring you have.</p>
 <p>A monitor is a program that visits a site repeatedly without a person present, so the
 politeness settings matter more than they do for a one-off audit. Docket crawls with the
 same concurrency and delay you set for a manual run, deduplicates URLs, and respects the
-page cap. If you are monitoring a site you do not own — a competitor — those settings are
+page cap. If you are monitoring a site you do not own (a competitor) those settings are
 the difference between research and a nuisance.</p>
 
 <aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=learn-site-monitoring" data-ev="Buy" data-ev-price="349" data-ev-button="learn-site-monitoring">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-site-monitoring">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
@@ -924,7 +924,7 @@ the difference between research and a nuisance.</p>
 <li><a href="/how-to/read-findings-that-blame-the-whole-site/">When an audit blames the site for one template</a></li>
 <li><a href="/how-to/findings-that-flag-correct-pages/">A caveat is not a gate</a></li>
 </ul>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How often does Docket re-audit a monitored site?</h3><p>Daily, weekly or monthly — you choose per site. The re-audit runs on your own machine with the same crawl settings as a manual run, so a monitored site is not crawled harder than one you audit by hand.</p></div><div class="faq-item"><h3>Does monitoring keep running when Docket is closed?</h3><p>No. The scheduler is a thread inside the app, so it stops when you quit and nothing is left running on your machine. A site that falls due while Docket is shut is re-audited the next time you open it. For unattended runs on a schedule, use the Linux CLI in cron or CI.</p></div><div class="faq-item"><h3>Does site monitoring need an account or a server?</h3><p>No. The re-audits run on your Mac and history is stored in ~/.docket/ as plain JSON — a watchlist plus one small snapshot per audit. The history is never uploaded, and it stays yours if you stop using Docket.</p></div><div class="faq-item"><h3>Why does Docket refuse to compare some audits?</h3><p>Because comparing a 50-page crawl with a 500-page crawl invents dozens of new issues that were always there and simply had not been reached. Every one of those alerts would be false, so Docket says the crawls are not comparable instead of producing the diff.</p></div><div class="faq-item"><h3>What does the competitor comparison actually show?</h3><p>Where you lead and trail area by area, on rivals audited with the same settings, plus the issues every competitor has already fixed. Areas where only one side could be evaluated are left out rather than counted as a win or a loss.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How often does Docket re-audit a monitored site?</h3><p>Daily, weekly or monthly: you choose per site. The re-audit runs on your own machine with the same crawl settings as a manual run, so a monitored site is not crawled harder than one you audit by hand.</p></div><div class="faq-item"><h3>Does monitoring keep running when Docket is closed?</h3><p>No. The scheduler is a thread inside the app, so it stops when you quit and nothing is left running on your machine. A site that falls due while Docket is shut is re-audited the next time you open it. For unattended runs on a schedule, use the Linux CLI in cron or CI.</p></div><div class="faq-item"><h3>Does site monitoring need an account or a server?</h3><p>No. The re-audits run on your Mac and history is stored in ~/.docket/ as plain JSON: a watchlist plus one small snapshot per audit. The history is never uploaded, and it stays yours if you stop using Docket.</p></div><div class="faq-item"><h3>Why does Docket refuse to compare some audits?</h3><p>Because comparing a 50-page crawl with a 500-page crawl invents dozens of new issues that were always there and simply had not been reached. Every one of those alerts would be false, so Docket says the crawls are not comparable instead of producing the diff.</p></div><div class="faq-item"><h3>What does the competitor comparison actually show?</h3><p>Where you lead and trail area by area, on rivals audited with the same settings, plus the issues every competitor has already fixed. Areas where only one side could be evaluated are left out rather than counted as a win or a loss.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

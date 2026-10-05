@@ -2,7 +2,7 @@
 """How to fix layout shift (CLS).
 
 Sourced from Docket's `perf.cls_risk` and `onpage.img_no_dimensions`, which are
-the same defect seen from two sides — the check itself says so, and carries
+the same defect seen from two sides: the check itself says so, and carries
 `same_fix_as` so the action plan asks for the work once while both lanes keep
 their deduction.
 
@@ -32,7 +32,7 @@ irritating thing a page can do.</p>
 <h2>The cause is almost always one thing</h2>
 
 <p>An image with no declared width and height. The browser cannot know how much space to
-reserve until the file arrives, so it reserves none — text flows up into the gap, then gets
+reserve until the file arrives, so it reserves none: text flows up into the gap, then gets
 shoved down when the image lands.</p>
 
 <p>This got worse when responsive images arrived. People removed <code>width</code> and
@@ -43,7 +43,7 @@ nothing visually.</p>
 
 <pre><code>&lt;img src="/photo.jpg" alt="…" width="1200" height="800"&gt;</code></pre>
 
-<p>Use the file's real pixel dimensions. They are not a display size — the browser takes the
+<p>Use the file's real pixel dimensions. They are not a display size. The browser takes the
 ratio from them and your stylesheet still decides how big it renders.</p>
 
 <h2>When you cannot know the dimensions</h2>
@@ -67,7 +67,7 @@ page is right and the finding is wrong about it.</p>
 
 <ul>
 <li><strong>Ads and embeds injected into the flow.</strong> Anything inserted after first
-paint pushes content down. Give the slot a fixed minimum height even when empty — an
+paint pushes content down. Give the slot a fixed minimum height even when empty. An
 occasional gap is a far smaller cost than the whole page jumping.</li>
 <li><strong>Web fonts swapping.</strong> Text renders in a fallback, the real font arrives, and
 every line reflows because the metrics differ. <code>font-display: optional</code> avoids the
@@ -89,14 +89,14 @@ everything below them combined.</p>
 
 <h2>What Docket can and cannot tell you</h2>
 
-<p>It reads the markup and reports pages where most images have no declared size — the
+<p>It reads the markup and reports pages where most images have no declared size: the
 condition that causes shift. <strong>It does not measure CLS.</strong> That needs a real
 browser under real network conditions, and any tool claiming a CLS score from a crawl is
 reporting a guess as a measurement.</p>
 
 <p>So the finding is a risk, stated as one, with the instruction to confirm the field value in
-PageSpeed Insights or Search Console. The two findings you may see — one about images without
-dimensions, one about layout-shift risk — are the same defect from two sides, and Docket links
+PageSpeed Insights or Search Console. The two findings you may see (one about images without
+dimensions, one about layout-shift risk) are the same defect from two sides, and Docket links
 them so the action plan asks for the work once.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
@@ -121,14 +121,14 @@ them so the action plan asks for the work once.</p>
             ("What if I don't know the image dimensions?",
              "Reserve the space in CSS with aspect-ratio on the container. Any known ratio is "
              "better than none, and it works for user-uploaded or third-party images. Note that "
-             "Docket cannot see a rule in your stylesheet — it reads the element's attributes and "
-             "its inline style — so this fixes the shift without clearing the finding."),
+             "Docket cannot see a rule in your stylesheet (it reads the element's attributes and "
+             "its inline style), so this fixes the shift without clearing the finding."),
             ("Does an accordion opening count as layout shift?",
              "No. Shifts within half a second of a user interaction are excluded, because the "
              "user caused them."),
             ("Can a crawler measure CLS?",
              "No. CLS needs a real browser under real network conditions. A crawler can "
-             "identify the markup that causes shift and report it as a risk — anything "
+             "identify the markup that causes shift and report it as a risk. Anything "
              "presenting a CLS score from a crawl is reporting a guess as a measurement."),
         ],
     )

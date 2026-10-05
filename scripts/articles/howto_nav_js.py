@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-"""Navigation that needs JavaScript — what `links.nav_not_in_html` measures.
+"""Navigation that needs JavaScript: what `links.nav_not_in_html` measures.
 
 Source of record for everything said here about the check:
 
-  * `backend/seo_engine/checks/links.py`, `links.nav_not_in_html` — the
+  * `backend/seo_engine/checks/links.py`, `links.nav_not_in_html`: the
     finding, its severity, its effort, its fix text and its snippet.
   * `backend/seo_engine/crawler.py`, `CrawlResult.nav_in_html` and
-    `CrawlResult.html_link_coverage` — the gate and the threshold. The check
+    `CrawlResult.html_link_coverage`: the gate and the threshold. The check
     itself owns neither.
   * `backend/seo_engine/crawler.py`, `Config.render_discovery` and
-    `Crawler._links_from_browser` — why a client-rendered shell often does
+    `Crawler._links_from_browser`. Why a client-rendered shell often does
     NOT trigger this check.
-  * `backend/seo_engine/renderer.py` — the WebKit helper, and what it costs.
+  * `backend/seo_engine/renderer.py`: the WebKit helper, and what it costs.
   * `tests/test_crawl_quality.py`, `test_nav_built_by_javascript_invalidates_
     the_link_graph` and `test_a_genuinely_tiny_site_is_not_called_javascript_
-    driven` — the two sides of the gate.
+    driven`: the two sides of the gate.
 
 NO FIGURE IS TYPED INTO THE PROSE. There is no dataset for this check, so the
 page carries none: thresholds appear inside <code>, quoted from the source,
@@ -47,7 +47,7 @@ VERIFIED: list[tuple[str, str]] = [
      'known as anchor element) with an href attribute", and that Google '
      '"can\'t reliably extract URLs from &lt;a&gt; elements that don\'t have an '
      'href attribute or other tags that perform as links because of script '
-     'events" — the examples given as not recommended being an anchor with no '
+     'events". The examples given as not recommended being an anchor with no '
      'href, a span carrying an href, and an anchor whose destination is in an '
      'onclick handler',
      "https://developers.google.com/search/docs/crawling-indexing/links-crawlable"),
@@ -77,14 +77,14 @@ license you to conclude.</p>
 <h2>The short answer</h2>
 
 <p>If your navigation ends up as real anchor elements with <code>href</code> attributes after
-JavaScript runs, Google can follow them — but only after it renders, and rendering is a
+JavaScript runs, Google can follow them, but only after it renders, and rendering is a
 separate, later stage. If your navigation is made of clickable divs, spans, or router
 components that never emit an <code>href</code>, it is not a set of links to Google at any
 stage, rendered or not. A crawler that does not render at all sees both cases as the same
 thing: nothing.</p>
 
 <p>Docket's check cannot tell those two cases apart for you. What it can tell you is whether
-the HTML your server sent contained enough internal links to describe a site — a smaller
+the HTML your server sent contained enough internal links to describe a site: a smaller
 question with a much firmer answer.</p>
 
 <h2>What <code>links.nav_not_in_html</code> actually measures</h2>
@@ -104,7 +104,7 @@ the mean. A page linking the same destination repeatedly contributes one.</p>
 
 <ul>
 <li>The crawl must have read at least <code>3</code> OK HTML pages. Below that,
-<code>nav_in_html</code> returns true regardless — the source comment says
+<code>nav_in_html</code> returns true regardless. The source comment says
 <code>Too small to tell a JS-nav site from a genuinely tiny one</code>, and a
 test named <code>test_a_genuinely_tiny_site_is_not_called_javascript_driven</code>
 holds that line.</li>
@@ -119,7 +119,7 @@ footer and body links.</code></li>
 estimate is LARGE, and the finding's own headline takes one of two forms: either
 <code>None of your pages contain a single internal link in their HTML</code>, or a sentence
 that states the measured average and ends
-<code>internal links in the HTML — the navigation is built by JavaScript</code>. The URLs
+<code>internal links in the HTML: the navigation is built by JavaScript</code>. The URLs
 attached to the finding are the pages nothing in the HTML points at, which is the practical
 cost rather than the abstract one.</p>
 
@@ -136,7 +136,7 @@ and look for &lt;a href&gt; in the source.</p></blockquote>
 
 <h2>The case it was written for, which is not the one you expect</h2>
 
-<p>The obvious client-rendered site — a mount point, a script tag, no text — is not what this
+<p>The obvious client-rendered site (a mount point, a script tag, no text) is not what this
 check was built to catch. It was built for a law firm's site that served close to a thousand
 words of real, server-rendered copy per page and returned a homepage containing zero internal
 links. The prose was in the HTML. The navigation was assembled in the browser.</p>
@@ -147,8 +147,8 @@ the JavaScript and sees a perfectly ordinary menu. The consequence recorded in
 <code>CrawlResult.nav_in_html</code> is a cascade of confident falsehoods: pages reported as
 orphans that nothing links to, the same pages reported as weakly linked, and a click-depth
 model built on a link graph that was never the site's. So when <code>nav_in_html</code> is
-false, Docket withdraws its own orphan and click-depth claims rather than publishing them —
-never conclude absence from a view that could not have shown presence.</p>
+false, Docket withdraws its own orphan and click-depth claims rather than publishing them.
+Never conclude absence from a view that could not have shown presence.</p>
 
 <h2>What is not measured, stated plainly</h2>
 
@@ -164,7 +164,7 @@ recovery degrades to finding nothing.</p>
 before you act on a finding: <strong>a textbook single-page app often will not trigger this
 check at all</strong>, because its pages announce themselves as shells, get rendered during
 discovery, and have their real links folded back in. The site that does trigger it is the one
-whose copy is served and whose links are not — the shell heuristic never fires, so nothing is
+whose copy is served and whose links are not. The shell heuristic never fires, so nothing is
 re-read, and the average stays where the bytes left it.</p>
 
 <p>And the larger limit: <strong>Docket cannot tell you what Google did.</strong> It has no
@@ -190,7 +190,7 @@ every link is in that category, discovery of new pages waits on a stage nobody o
 can schedule. The crawlers behind the AI assistants are a harder case again, because most do
 not render at any point.
 <a href="/learn/javascript-rendering/">How rendering works, and what it costs to run</a> covers
-that trade in detail — it executes third-party scripts and is an order of magnitude slower than
+that trade in detail. It executes third-party scripts and is an order of magnitude slower than
 fetching, which is why the sample is capped.</p>
 
 {_verified_note()}
@@ -232,13 +232,13 @@ is the one most often waved away. Quoting the check:
 <code>A sitemap tells a crawler a page exists; it does not tell it which pages matter, which
 is what internal links do.</code> The signal you lose when the navigation is client-side is
 not discovery, which the sitemap covers, but the relative weight your own site places on its
-own pages — <a href="/learn/internal-link-equity/">how internal links distribute authority</a>
+own pages. <a href="/learn/internal-link-equity/">How internal links distribute authority</a>
 is the mechanism being described.</p>
 
 <h2>When the finding is wrong</h2>
 
-<p>Push back on it in three situations. A site that genuinely has little internal linking — a
-brochure site whose pages link only to the homepage — can land under the threshold with no
+<p>Push back on it in three situations. A site that genuinely has little internal linking (a
+brochure site whose pages link only to the homepage) can land under the threshold with no
 JavaScript involved; the average does not know why it is low. A crawl that was blocked or
 truncated may have read pages unrepresentative of the site. And a site whose links Docket
 recovered by rendering has those links counted, so a finding you expected may correctly not
@@ -247,8 +247,8 @@ rather than pages a crawler chose.</p>
 
 <h2>Where to go next</h2>
 
-<p>This page is about navigation specifically. If the question is broader — whether your
-content, not your menu, exists before JavaScript runs — that is a different procedure, and
+<p>This page is about navigation specifically. If the question is broader (whether your
+content, not your menu, exists before JavaScript runs) that is a different procedure, and
 <a href="/how-to/javascript-seo-audit/">running a JavaScript SEO audit</a> walks through
 comparing the served HTML against the rendered page. If you want the rest of what Docket looks
 at while it is in there, <a href="/learn/what-docket-checks/">the full check list</a> is
@@ -271,7 +271,7 @@ context.</p>
         schema_type="Article",
         faq=[
             ("My menu is built by JavaScript. Can Google follow it?",
-             "If the menu ends up as anchor elements with href attributes, yes — Google's "
+             "If the menu ends up as anchor elements with href attributes, yes. Google's "
              "documentation says a link is an anchor with an href, and injecting one with "
              "JavaScript is allowed. The catch is timing: crawling and rendering are separate "
              "queues, so those links are found on a later pass. If the menu is made of "
@@ -298,7 +298,7 @@ context.</p>
              "It may be. The check needs at least three crawled HTML pages before it will "
              "look at all, but a genuinely sparse brochure site can still fall under the "
              "average without any JavaScript being involved. Fetch a few pages with curl and "
-             "grep for anchors — if your links are in the source, the finding does not apply "
+             "grep for anchors. If your links are in the source, the finding does not apply "
              "to you."),
             ("Is a sitemap enough to make up for it?",
              "It keeps the pages discoverable and does nothing about the rest. The check's "

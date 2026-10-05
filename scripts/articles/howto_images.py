@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Image findings — what `onpage.images` actually computes, and what it cannot.
+"""Image findings. What `onpage.images` actually computes, and what it cannot.
 
 Everything about the check is read from its source, `onpage.images` in
 `backend/seo_engine/checks/onpage.py`, from the extractor that fills the fields
@@ -13,7 +13,7 @@ the repo instead. The brief said width/height belongs to `/how-to/fix-layout-shi
 and that this page is `onpage.images` only. But `onpage.img_no_dimensions` is
 emitted BY `onpage.images`, and it is the OWNER of that remedy: `perf.cls_risk`
 carries `same_fix_as="onpage.img_no_dimensions"` and defers to it. So the
-dimensions finding cannot be handed to the neighbour — the neighbour hands it
+dimensions finding cannot be handed to the neighbour: the neighbour hands it
 here. This page therefore names it, states which of its own findings the check
 weights highest, and sends the reader to the CLS page for the causes and the
 fix, which is that page's subject and is not restated.
@@ -88,8 +88,8 @@ selling you a crawl.</p>
 <h2>An empty alt is correct, and the check is built around that</h2>
 
 <p>This is where most alt-text advice goes wrong, and it is the reason the check is written the
-way it is. A decorative image — a divider, a spacer, a background flourish, an icon sitting
-beside a word that already says the same thing — is <em>supposed</em> to carry an empty alt
+way it is. A decorative image (a divider, a spacer, a background flourish, an icon sitting
+beside a word that already says the same thing) is <em>supposed</em> to carry an empty alt
 attribute. It is not a defect to be cleared. It is the instruction that tells assistive
 technology to skip past something that carries no information.</p>
 
@@ -102,7 +102,7 @@ href="https://www.w3.org/WAI/tutorials/images/decorative/">WAI, decorative image
 
 <p>That is the whole distinction: an empty alt is an answer, and a missing alt is silence. The
 comment above the loop in Docket's own source says why it matters commercially as well as
-technically — conflating the two is called the single most common false positive in SEO tooling,
+technically. Conflating the two is called the single most common false positive in SEO tooling,
 and one that trains people to write junk alt text onto spacer images. A tool that flags
 <code>alt=""</code> is not being strict. It is asking you to make your site worse.</p>
 
@@ -172,7 +172,7 @@ skipped by the missing-alt count, because a finding that cannot name the file it
 not actionable.</p>
 
 <p>And the pages: this check reads your <em>indexable</em> pages. A page you have set to
-noindex is not asked about alt text here, which is deliberate — but note that the two
+noindex is not asked about alt text here, which is deliberate, but note that the two
 performance checks described below read a wider set, so a noindex page can appear in one image
 finding and not another.</p>
 
@@ -182,7 +182,7 @@ finding and not another.</p>
 fix are a page of their own and are not repeated: <a href="/how-to/fix-layout-shift/">how to fix
 layout shift</a> covers the reason browsers need the attributes, what to do when you cannot know
 the dimensions, and the four other causes of shift that have nothing to do with images. Docket
-links its own two findings on this for the same reason — the performance lane's layout-shift
+links its own two findings on this for the same reason. The performance lane's layout-shift
 risk finding carries a pointer back to this check as the owner of the remedy, so the action plan
 asks for the work once while both lanes keep their deduction.</p>
 
@@ -191,7 +191,7 @@ extractor decides an image has dimensions if it has <code>width</code> and <code
 attributes, or if the word <code>aspect-ratio</code> appears in that element's own inline
 <code>style</code> attribute. An <code>aspect-ratio</code> rule in your stylesheet reserves the
 space perfectly well for a browser and is invisible to a crawler reading markup. If you took
-that route and the finding did not clear, this is why — and the finding is wrong about your
+that route and the finding did not clear, this is why, and the finding is wrong about your
 page, not the other way round.</p>
 
 <h2>The image findings that are not this check</h2>
@@ -200,21 +200,21 @@ page, not the other way round.</p>
 with the word "image" in them.</p>
 
 <ul>
-<li><strong>Image formats</strong> — <code>perf.modern_images</code>, in the performance lane.
+<li><strong>Image formats</strong>: <code>perf.modern_images</code>, in the performance lane.
 It looks at file extensions and reports pages carrying several JPEGs or PNGs where WebP or AVIF
 would do. Nothing to do with alt text; it never opens a file either, so it is reasoning from the
 extension.</li>
-<li><strong>Layout shift risk</strong> — <code>perf.cls_risk</code>, also performance. Same
+<li><strong>Layout shift risk</strong>: <code>perf.cls_risk</code>, also performance. Same
 missing width and height, seen per page as a proportion rather than a count, and stated as risk
 rather than measurement because a crawl cannot measure Cumulative Layout Shift.</li>
-<li><strong>Social preview images</strong> — the social lane, covered in <a
+<li><strong>Social preview images</strong>: the social lane, covered in <a
 href="/how-to/fix-missing-open-graph-tags/">fixing a broken link preview</a>. An
 <code>og:image</code> is not an <code>&lt;img&gt;</code> on your page and is checked
 differently.</li>
 </ul>
 
 <p>The full list, with what each lane is for, is on <a href="/learn/what-docket-checks/">what
-Docket checks</a> — every check on this page appears there under its own identifier, which is
+Docket checks</a>. Every check on this page appears there under its own identifier, which is
 the thing to search for when a finding's wording is not enough to place it.</p>
 
 <h2>So: what actually matters</h2>
@@ -232,8 +232,8 @@ and height everywhere, because it is a find-and-replace and it is the highest-we
 check emits. Lazy-load the images below the fold on your heaviest pages and leave the
 hero eager.</p>
 
-<p>Everything else in the genre — renaming files to keyword strings, captioning every decorative
-divider, chasing a green tick on an accessibility widget — is work that Docket will not credit
+<p>Everything else in the genre (renaming files to keyword strings, captioning every decorative
+divider, chasing a green tick on an accessibility widget) is work that Docket will not credit
 you for, because there is nothing there to measure.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>

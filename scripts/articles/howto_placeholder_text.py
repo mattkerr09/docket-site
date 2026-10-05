@@ -15,7 +15,7 @@ The repair in each case was a property of the TEXT rather than of the topic:
 length for "under construction", continuation for the Latin passage. That
 distinction is the page.
 
-⚠️ NO SITE IS NAMED — third-party gate.
+⚠️ NO SITE IS NAMED: third-party gate.
 
 ⚠️ NUMERALS: the charity's figures, the wiki's word counts and the
 two-hundred-word threshold are all omitted or spelled as words.
@@ -36,7 +36,7 @@ quotes the evidence. You open the page. It is finished, it has been finished for
 words it was flagged for are doing an ordinary job in an ordinary sentence.</p>
 
 <p>Placeholder detection is a keyword search with a very high severity attached, and the two ways
-it goes wrong are both instructive — because the fix, twice, was to stop asking what the page was
+it goes wrong are both instructive, because the fix, twice, was to stop asking what the page was
 about and start asking what the text looked like.</p>
 
 <h2>Under construction, about buildings</h2>
@@ -47,16 +47,16 @@ audit reported, at high severity, that unfinished content was live and indexable
 sentence back as its evidence.</p>
 
 <p>The obvious guard fails here. A check can look at the words around a marker to see whether the
-page is <em>discussing</em> placeholder text rather than containing it — but this page is not
+page is <em>discussing</em> placeholder text rather than containing it, but this page is not
 discussing placeholder text. It is discussing buildings. There is no cue to find, because the
 phrase is being used for its ordinary meaning.</p>
 
-<p>So the guard that worked was length. <strong>A holding page is short</strong> — that is what
+<p>So the guard that worked was length. <strong>A holding page is short</strong>. That is what
 the marker is for, a stub somebody left behind. A long finished document that happens to contain
 the phrase keeps its finding only if something nearby says <em>this page</em> is the unfinished
 thing: check back soon, this section is coming, that shape of sentence.</p>
 
-<p>The alternative was a list of nouns to exclude — buildings, roads, railways — and that list
+<p>The alternative was a list of nouns to exclude (buildings, roads, railways), and that list
 never ends. <strong>When the exclusions are open-ended, you are using the wrong property.</strong></p>
 
 <h2>Lorem ipsum, named rather than used</h2>
@@ -67,14 +67,14 @@ citing the same famous two words.</p>
 <p>Neither page was unfinished. One was a long discussion of internationalisation whose author
 used a namespaced filler-template name as a worked example of how namespaced template names look.
 The other was a help page listing that template among the templates the wiki has. <strong>Any
-wiki, CMS or design system that ships a filler template names it somewhere</strong> — usually in
+wiki, CMS or design system that ships a filler template names it somewhere</strong>, usually in
 its own documentation, which is exactly the kind of page nobody wants flagged.</p>
 
 <p>Again the discussion guard was useless: the words around those mentions are about namespaces
 and template inventories, not about filler.</p>
 
 <p>The tell turned out to be something else entirely. <strong>The Latin never continues.</strong>
-Real leftover filler is a passage — it runs on into the rest of the sentence and the paragraph
+Real leftover filler is a passage. It runs on into the rest of the sentence and the paragraph
 after it. A mention is two words and stops. Nobody's forgotten placeholder ends after the opening
 phrase, and nobody naming it in passing carries on into the rest of the Latin.</p>
 
@@ -89,7 +89,7 @@ phrase, and nobody naming it in passing carries on into the rest of the Latin.</
 
 <p>Shape is cheap to measure, hard to argue with, and does not need a list of every innocent
 context a phrase can appear in. Whenever you see a keyword-driven finding that keeps needing new
-exceptions, the useful question is not which word to remove from the list — it is
+exceptions, the useful question is not which word to remove from the list. It is
 <strong>what the real thing looks like that a mention of it does not</strong>.</p>
 
 <h2>Reading this on your own report</h2>
@@ -101,7 +101,7 @@ find the phrase yourself.</li>
 <li><strong>Ask whether the page is short.</strong> A long, finished, linked-to page flagged as
 unfinished is almost always a false positive.</li>
 <li><strong>Ask whether the marker is the subject.</strong> Documentation about templates,
-policy about construction, a style guide about typesetting — all of them name the thing without
+policy about construction, a style guide about typesetting. All of them name the thing without
 being it.</li>
 </ul>
 
@@ -112,7 +112,7 @@ among the most damaging things a site can publish without noticing. It is usuall
 
 <ul>
 <li><strong>A stub from a build that was never finished</strong>, still linked from a menu.</li>
-<li><strong>A template shipped with its example text intact</strong> — a new section, a new
+<li><strong>A template shipped with its example text intact</strong>: a new section, a new
 location page, a new product added from a copy of another.</li>
 <li><strong>A page that says it is coming soon</strong> and has said so for two years. That is a
 page telling every visitor and every search engine not to bother, and either finishing it or
@@ -139,8 +139,8 @@ writing about a thing from doing it, and only the shape of the text can.</strong
 <h2>Where this sits in an audit</h2>
 
 <p>The registered check is <code>content.placeholder</code>, which covers placeholder content in
-the content quality area. For the same failure in a different lane — a phrase that is a signal in
-one context and ordinary English in another — see
+the content quality area. For the same failure in a different lane (a phrase that is a signal in
+one context and ordinary English in another) see
 <a href="/how-to/findings-from-phrase-matching/">why an audit finds reviews you do not
 have &rarr;</a>. For why a finding that keeps needing exceptions should be gated rather than
 caveated, see <a href="/how-to/findings-that-flag-correct-pages/">a caveat is not a
@@ -157,7 +157,7 @@ gate &rarr;</a>.</p>
         faq=[
             ("Why does my audit say a finished page is unfinished?",
              "Because it matched a phrase such as lorem ipsum or under construction. Both appear "
-             "in ordinary writing — one in documentation about templates, the other in anything "
+             "in ordinary writing: one in documentation about templates, the other in anything "
              "about building work."),
             ("How can a tool tell filler from a mention of filler?",
              "By shape rather than topic. Real filler sits on short pages and runs on as a "

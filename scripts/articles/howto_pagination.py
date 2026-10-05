@@ -7,7 +7,7 @@ The reason this is worth a page: the mistake looks like good hygiene. Somebody
 is trying to avoid duplicate content and instead tells Google the deeper pages
 are duplicates, which takes everything only reachable from them out with it.
 
-No numeric literals, and no dates — the engine's own fix text states that
+No numeric literals, and no dates. The engine's own fix text states that
 rel=prev/next is no longer used without pinning a year to it, and this mirrors
 that rather than asserting one.
 """
@@ -45,7 +45,7 @@ has little reason to keep fetching them, and the items behind them go with them.
 <h2>Why sensible people do it</h2>
 
 <p>Because it looks like duplicate-content hygiene. The pages share a title, a heading and a
-layout, so collapsing them to one canonical feels tidy — and it is the shape of advice that
+layout, so collapsing them to one canonical feels tidy, and it is the shape of advice that
 circulated widely when pagination markup was a live topic. The instinct is right and the target
 is wrong: near-identical <em>chrome</em> around different <em>items</em> is not duplication.</p>
 
@@ -62,7 +62,7 @@ JavaScript. This is what discovery now relies on: <code>rel="prev"</code> and
 <code>rel="next"</code> are no longer used by Google for indexing, so the ordinary links are
 doing the work.</p>
 
-<p><strong>Give each page something of its own</strong> where you reasonably can — a distinct
+<p><strong>Give each page something of its own</strong> where you reasonably can: a distinct
 title, or a heading that says which slice of the series it is. Not to rank the archive, but so
 nothing about the page invites the collapse you have just undone.</p>
 
@@ -72,14 +72,14 @@ nothing about the page invites the collapse you have just undone.</p>
 
 <pre><code>curl -s https://example.com/blog/page/2/ | grep -i 'rel="canonical"'</code></pre>
 
-<p>If that prints page one, you have found it. Check a product category as well as the blog —
-these are usually set by a template, so the fault tends to be either absent or everywhere.</p>
+<p>If that prints page one, you have found it. Check a product category as well as the blog.
+These are usually set by a template, so the fault tends to be either absent or everywhere.</p>
 
 <h2>What this does not cover</h2>
 
 <p>It is about what the pages <em>declare</em>, not about whether pagination is the right design.
-An infinite scroll or a "load more" button that never changes the URL has the opposite problem —
-there are no deeper pages for a crawler to find at all, canonical or otherwise — and a view-all
+An infinite scroll or a "load more" button that never changes the URL has the opposite problem (
+there are no deeper pages for a crawler to find at all, canonical or otherwise), and a view-all
 page is a different trade again. Those are decisions about the site. This is a line in the head
 that is saying something untrue about it.</p>
 """
@@ -94,7 +94,7 @@ that is saying something untrue about it.</p>
         faq=[
             ("Should paginated pages canonicalise to page 1?",
              "No. It tells search engines that pages 2 and beyond are duplicates of page 1, so "
-             "they may stop being crawled — and everything only reachable from them goes with "
+             "they may stop being crawled, and everything only reachable from them goes with "
              "them. Each paginated page should be self-canonical."),
             ("Do I still need rel=prev and rel=next?",
              "Google no longer uses them for indexing. Ordinary previous, next and numbered "

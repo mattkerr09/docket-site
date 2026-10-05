@@ -1,10 +1,10 @@
-"""A form is a call to action — and a checker that knows one shape misses it.
+"""A form is a call to action, and a checker that knows one shape misses it.
 
 Promised on the how-to hub. Sourced from two recorded cases in the app repo,
 both learned on the same day:
 
   * `cvr.no_cta` reported a page whose entire content is a three-field quote
-    form as having nothing that asks the visitor to do anything — and its own
+    form as having nothing that asks the visitor to do anything, and its own
     sentence listed "quote request" among the things it could not find.
   * `cvr.form_friction`'s capture branch matched English anchor phrases and
     English slugs, so it could not see a contact route written in any other
@@ -36,15 +36,15 @@ from render import render  # noqa: E402
 def cta_forms() -> Path:
     body = """
 <p class="lede">An audit reports that a page has no call to action: nothing on it asks the
-visitor to do anything — no quote request, no booking, no purchase, no contact. The page is a
+visitor to do anything: no quote request, no booking, no purchase, no contact. The page is a
 quote request. Its entire content is a short form headed "tell us what you need", and the
 finding that could not see it listed the exact thing it was looking at among the things it
 could not find.</p>
 
 <h2>The fault, stated generally</h2>
 
-<p>That finding was not lazily written. It was checking for buttons and links — the shape a
-call to action usually takes — and it was right that there were none. What it then said was
+<p>That finding was not lazily written. It was checking for buttons and links (the shape a
+call to action usually takes), and it was right that there were none. What it then said was
 that there was no call to action, which is a different claim and a false one.</p>
 
 <p><strong>A checker that knows one shape of a thing will report every other shape as the
@@ -59,7 +59,7 @@ hardest thing to check and the easiest thing to assert.</p>
 <h2>Why a form counts</h2>
 
 <p>Plenty of pages convert without a button. An enquiry form, a booking widget, a quote
-request, a callback box — the form is not a step towards the action, it <em>is</em> the action,
+request, a callback box. The form is not a step towards the action, it <em>is</em> the action,
 and there is nothing to click because there is nothing to click through to.</p>
 
 <p>So the repair was to count a form as a call to action. Which immediately raises the question
@@ -88,7 +88,7 @@ second because you know what your form does.</li>
 <h2>The same mistake, wearing a different coat</h2>
 
 <p>The check that looks for a route to contact you had this too, and its version shows how the
-fault survives a first fix. It recognised contact routes by anchor text and URL slugs — the
+fault survives a first fix. It recognised contact routes by anchor text and URL slugs: the
 English words people use for a contact page. On an English site that works. On any other site it
 sees nothing, and reports that visitors have no way to get in touch.</p>
 
@@ -102,22 +102,22 @@ invisible to that check. It is better than it was and it is not finished.</p>
 
 <h2>What to check on your own pages</h2>
 
-<p>Take the pages that are supposed to make money — product, service, pricing, contact,
-booking — and ask of each one what a visitor who has decided is meant to do next. Then check
+<p>Take the pages that are supposed to make money (product, service, pricing, contact,
+booking), and ask of each one what a visitor who has decided is meant to do next. Then check
 that the thing is actually reachable:</p>
 
 <ul>
 <li>A button or link, which is what most tools look for.</li>
 <li>A form with enough fields to be an enquiry rather than a search box.</li>
 <li>A phone or message link that opens the thing it promises.</li>
-<li>A booking or checkout widget — and if it loads after the page renders, expect every
+<li>A booking or checkout widget, and if it loads after the page renders, expect every
 audit tool to miss it and to say so at a lower severity if it is honest.</li>
 </ul>
 
 <h2>When this does not matter</h2>
 
 <p>The finding is rated high, and it runs only on the pages judged to be doing commercial
-work — not on your blog. An article with no call to action is an article, and the absence of one
+work, not on your blog. An article with no call to action is an article, and the absence of one
 there is a stylistic choice rather than a fault.</p>
 
 <p>It is also worth ignoring on a page whose action loads from a third-party script, once you
@@ -150,7 +150,7 @@ only defence is that you know what your page is for and the tool does not.</p>
 
 <p>The two registered checks are <code>cvr.no_cta</code>, which covers calls to action, and
 <code>cvr.form_friction</code>, which covers form length and also emits the
-missing-contact-route finding. Both live in the conversion and landing pages area — see
+missing-contact-route finding. Both live in the conversion and landing pages area. See
 <a href="/learn/conversion-audit/">what that lane checks and what it deliberately does
 not &rarr;</a>.</p>
 

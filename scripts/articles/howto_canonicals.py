@@ -2,8 +2,8 @@
 """How to fix conflicting canonical tags.
 
 Promised on the how-to hub and written now. Sourced from Docket's own five
-canonical checks — `index.canonical_conflict`, `canonical_missing`,
-`canonical_non_self`, `canonical_offsite` and `canonical_to_noindex` — which is
+canonical checks (`index.canonical_conflict`, `canonical_missing`,
+`canonical_non_self`, `canonical_offsite` and `canonical_to_noindex`), which is
 also the article's structure: those five are the five ways this goes wrong, and
 they are separate checks because they have separate fixes.
 
@@ -22,13 +22,13 @@ from render import render  # noqa: E402
 def conflicting_canonicals() -> Path:
     body = """
 <p class="lede">A canonical tag is a page telling search engines which URL is the real one.
-It is a hint, not an instruction — which means the failure mode is not an error message, it is
+It is a hint, not an instruction, which means the failure mode is not an error message, it is
 being quietly ignored, or quietly obeyed when you did not mean it.</p>
 
 <h2>Two canonicals on one page</h2>
 
 <p>The worst version, because it looks fine. A page carries two
-<code>rel=canonical</code> tags naming different URLs — usually because a theme injects one and
+<code>rel=canonical</code> tags naming different URLs, usually because a theme injects one and
 an SEO plugin injects another, and nobody has viewed the rendered head since both were
 installed.</p>
 
@@ -38,7 +38,7 @@ installed two tools to control indexing and ended up with less control than if y
 installed neither.</p>
 
 <p><strong>Fix:</strong> exactly one <code>rel=canonical</code> per page. Find the second
-source and turn it off rather than trying to make the two agree — two things writing the same
+source and turn it off rather than trying to make the two agree. Two things writing the same
 tag will disagree again the next time either is updated.</p>
 
 <h2>The canonical points at a noindex page</h2>
@@ -52,7 +52,7 @@ entirely.</p>
 and forgets that other pages still name it as canonical.</p>
 
 <p><strong>Fix:</strong> decide which URL should be indexed and make it self-canonical without
-<code>noindex</code>. Do not use canonical to remove pages from the index — that is what
+<code>noindex</code>. Do not use canonical to remove pages from the index: that is what
 <code>noindex</code> is for, and using canonical instead is how sites lose the wrong page.</p>
 
 <h2>The canonical points at another site</h2>
@@ -68,14 +68,14 @@ self-canonical. Check the whole template, not the one page you noticed.</p>
 
 <h2>No canonical at all</h2>
 
-<p>Not fatal — search engines will choose a URL. But you have left the choice to them on any
+<p>Not fatal: search engines will choose a URL. But you have left the choice to them on any
 page reachable at more than one address, and most pages are: with and without a trailing
 slash, with tracking parameters appended, under both <code>http://</code> and
 <code>https://</code>, with and without <code>www</code>. Every share with a
 <code>?utm_source=</code> on it is another candidate.</p>
 
 <p><strong>Fix:</strong> a self-referencing canonical on every indexable page, absolute, with
-the protocol and host you actually want. Self-canonical is not redundant — it is how a page
+the protocol and host you actually want. Self-canonical is not redundant. It is how a page
 says "the version without the tracking parameters is the one".</p>
 
 <h2>The canonical points somewhere unexpected</h2>
@@ -103,7 +103,7 @@ questions and are routinely confused for each other.
 <p>Four of the five need context beyond the page itself: whether the target is
 <code>noindex</code>, whether it is on your domain, whether it is the page's own URL, whether
 another page also claims it. Docket separates them into distinct findings because they have
-distinct fixes — "canonical problems: 12" tells you nothing about which of five different jobs
+distinct fixes. "Canonical problems: 12" tells you nothing about which of five different jobs
 you are being asked to do.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>

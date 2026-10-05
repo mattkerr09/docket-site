@@ -2,7 +2,7 @@
 """How to fix soft 404s.
 
 Promised on the how-to hub. Sourced from Docket's `index.soft_404` check, which
-requests a deliberately invalid URL and reports when the server answers 200 —
+requests a deliberately invalid URL and reports when the server answers 200,
 including the wording it uses and why it is MEDIUM rather than HIGH.
 
 Status codes are the only numeric literals; ALLOWED declares them as constants
@@ -20,7 +20,7 @@ from render import render  # noqa: E402
 def soft_404s() -> Path:
     body = """
 <p class="lede">A soft 404 is a page that tells a human "not found" and tells a crawler
-"200 OK". Both messages are on the same response, and only one of them is machine-readable —
+"200 OK". Both messages are on the same response, and only one of them is machine-readable,
 so the site ends up with an unbounded supply of indexable pages that contain nothing.</p>
 
 <h2>How to see it in ten seconds</h2>
@@ -56,7 +56,7 @@ no signal, and now the homepage is the destination of every mistake.</li>
 the shell with 200 before the router decided the route was invalid. Fix it at the server or
 edge: the route table has to be known where the status is set, not only in the browser. If
 that is genuinely impossible, the fallback is <code>noindex</code> on the rendered error
-state — worse than a 404, better than an indexable one.</p>
+state: worse than a 404, better than an indexable one.</p>
 
 <p><strong>A CMS with a friendly error page.</strong> Some templates serve the error page as
 ordinary content. The page can stay exactly as it is; the response code has to change.</p>
@@ -66,14 +66,14 @@ path. Give it an explicit not-found branch that sets the status.</p>
 
 <p><strong>Deleted content.</strong> If the URL earned links, <code>301</code> to the closest
 genuine replacement (the mechanics, host by host, are in
-<a href="/how-to/redirect-http-to-https/">how to redirect http:// to https://</a>) — not the homepage. If there is no replacement, <code>404</code> is the
+<a href="/how-to/redirect-http-to-https/">how to redirect http:// to https://</a>), not the homepage. If there is no replacement, <code>404</code> is the
 honest answer, and <code>410</code> is better still when the removal is permanent: it tells
 crawlers not to come back.</p>
 
 <h2>The error page itself should still be good</h2>
 
 <p>Returning the right status costs you nothing in the experience. A 404 page can carry your
-navigation, a search box, and links to the sections people most often want — and still be a
+navigation, a search box, and links to the sections people most often want, and still be a
 404. The status code is for machines and the page is for people; the mistake is letting the
 page's friendliness overwrite the machine's answer.</p>
 
@@ -106,11 +106,11 @@ crawler concludes.</p>
              "curl -sI https://example.com/this-page-does-not-exist | head -1. You want a "
              "404. A 200 means every invalid URL is an indexable page."),
             ("Is redirecting unknown URLs to the homepage a fix?",
-             "No — it is the same bug with extra steps. There is still no error signal, and "
+             "No: it is the same bug with extra steps. There is still no error signal, and "
              "the homepage becomes the destination for every mistyped link."),
             ("Should I use 404 or 410?",
              "404 for anything that might come back or was never there. 410 when the removal "
-             "is deliberate and permanent — it tells crawlers not to return."),
+             "is deliberate and permanent: it tells crawlers not to return."),
             ("Can my 404 page still look nice?",
              "Yes. Keep the navigation, the search box and the helpful links. The status code "
              "is for machines and the page is for people; only the code has to change."),

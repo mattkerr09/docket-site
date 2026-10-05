@@ -14,7 +14,7 @@
 <title>How to fix hreflang tags with errors (return tags)</title>
 <meta name="description" content="hreflang only works when the link goes both ways. Why one-way declarations are ignored, the four ways a set breaks, and why canonical must agree.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-hreflang-return-tags/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -826,13 +826,13 @@ fbq('track','PageView');
 
 <p class="lede">hreflang is the only common SEO tag that cannot be validated by looking at the
 page it sits on. Every tag can be present, spelled correctly and pointing at a live URL, and
-the whole set can still be ignored — because the rule is not about the tag, it is about the
+the whole set can still be ignored, because the rule is not about the tag, it is about the
 pair.</p>
 
 <h2>The rule, in one sentence</h2>
 
 <p>If page A declares page B as an alternate, B must declare A in return. A declaration that
-goes one way is discarded. Not downgraded, not partially honoured — <strong>ignored</strong>,
+goes one way is discarded. Not downgraded, not partially honoured: <strong>ignored</strong>,
 and the wrong language version keeps being served to the wrong country.</p>
 
 <p>This is why it is the hardest hreflang error to find by eye. Open the English page: the tag
@@ -841,14 +841,14 @@ exists only in the relationship between them, and nothing on either page shows i
 
 <h2>What a complete set looks like</h2>
 
-<p>Every page in the group lists every page in the group — <em>including itself</em>. That
+<p>Every page in the group lists every page in the group, <em>including itself</em>. That
 self-reference is the part people leave out, and leaving it out breaks the set:</p>
 
 <pre><code>&lt;link rel="alternate" hreflang="en-gb" href="https://example.com/en-gb/shoes" /&gt;
 &lt;link rel="alternate" hreflang="de-de" href="https://example.com/de-de/schuhe" /&gt;
 &lt;link rel="alternate" hreflang="x-default" href="https://example.com/shoes" /&gt;</code></pre>
 
-<p>That identical block goes on all three URLs. Not a tailored block per page — the same one.
+<p>That identical block goes on all three URLs. Not a tailored block per page: the same one.
 Generating it once and including it everywhere is the only approach that survives contact with
 a growing site, because the failure mode of hand-maintenance is silent.</p>
 
@@ -861,7 +861,7 @@ suspect. Cheapest error to make and cheapest to fix.</li>
 new pages point at the old ones, nobody edits the old ones. The new language is invisible.</li>
 <li><strong>The URLs disagree.</strong> One side uses <code>https://</code> and a trailing
 slash, the other does not. These are different URLs, so the return link does not exist as far
-as a crawler is concerned — a difference no human reading the two pages would notice.</li>
+as a crawler is concerned: a difference no human reading the two pages would notice.</li>
 <li><strong>The target is not indexable.</strong> A return tag pointing at a page that is
 <code>noindex</code>, canonicalised elsewhere or returning a 404 is not a return tag. The pair
 is broken from the other end.</li>
@@ -875,15 +875,15 @@ one, you have told search engines two contradictory things: "these are equivalen
 and "the German one is a duplicate that should not be indexed". The canonical wins, the German
 page drops out, and the hreflang set silently loses a member.</p>
 
-<p>Self-canonical on every language version. Always. The other ways that tag goes wrong —
-two on one page, one pointing at a <code>noindex</code> page — are in
+<p>Self-canonical on every language version. Always. The other ways that tag goes wrong (
+two on one page, one pointing at a <code>noindex</code> page) are in
 <a href="/how-to/fix-conflicting-canonicals/">how to fix conflicting canonicals</a>.</p>
 
 <h2>Which code to use</h2>
 
 <p>Language alone (<code>de</code>) targets speakers of that language anywhere. Language plus
 region (<code>de-at</code>) targets speakers in one country. Use the pair only when the pages
-genuinely differ by country — different prices, currency, shipping, legal text. Two pages that
+genuinely differ by country: different prices, currency, shipping, legal text. Two pages that
 differ by nothing but a flag icon do not need separate regional targeting, and splitting them
 divides whatever authority they have earned.</p>
 
@@ -896,7 +896,7 @@ because it will be served to people it was not written for.</p>
 <p>Any tool that validates hreflang by reading one page can only tell you the codes parse. To
 know whether a set is reciprocated, something has to fetch every page in the set and compare
 the declarations against each other. Docket does that during the crawl and reports the specific
-pair that fails — which page points where, and which page does not point back — because
+pair that fails (which page points where, and which page does not point back) because
 "hreflang errors: 4" is not something anybody can act on.</p>
 
 <p>It reports this at HIGH severity for a reason: a broken set is not a missed optimisation.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Trust and authorship signals — what `content.eeat` actually computes.
+"""Trust and authorship signals: what `content.eeat` actually computes.
 
 Everything about the check is read from its source, `content.eeat` in
 `backend/seo_engine/checks/content.py` (registered as "Trust and authorship
@@ -8,8 +8,8 @@ signals"), from `AuditContext.has_page_like` / `json_ld_types` /
 half of it, `tests/test_a_quote_form_is_a_contact_page.py`.
 
 There is no dataset behind this page and it publishes no figure. The two
-thresholds it describes in words — a form needs more than a single field, and
-the author half needs three article-marked pages — are read from the check's
+thresholds it describes in words (a form needs more than a single field, and
+the author half needs three article-marked pages) are read from the check's
 source and are spelled out rather than digitised, because `verify_numbers.py`
 refuses a typed figure and there is nothing to derive them from: they are local
 literals inside the function, not exported constants. Same choice, for the same
@@ -21,9 +21,9 @@ says so in the past tense. `json_ld_types` returns `@type` VALUES and `author`
 is a schema.org PROPERTY, so the snippet the finding printed as its own remedy
 contributed `Article` and `Person` and never `author`. Measured against the
 check on a fixture carrying exactly that markup plus a visible byline:
-`content.no_author` still fired. Fixed in docket-app on 2026-09-16 —
+`content.no_author` still fired. Fixed in docket-app on 2026-09-16 (
 `_declares_an_author()` walks the JSON-LD for an `author` property with a real
-name, and `_BYLINE_CUES` replaced the bare-substring prose test — with
+name, and `_BYLINE_CUES` replaced the bare-substring prose test) with
 `tests/test_the_author_markup_we_tell_you_to_add_satisfies_the_check.py`
 written first and seen to fail. ⚠️ IF THAT CHECK CHANGES AGAIN, THIS SECTION
 CHANGES WITH IT: it describes behaviour, not history.
@@ -89,20 +89,20 @@ titled with the missing pages named:</p>
 <ul>
 <li><strong>About.</strong> A path containing <code>/about</code>, <code>/who-we-are</code>,
 <code>/our-story</code>, <code>/team</code> or <code>/meet</code>.</li>
-<li><strong>Contact.</strong> Either a path from a much longer list — <code>/contact</code>,
+<li><strong>Contact.</strong> Either a path from a much longer list (<code>/contact</code>,
 <code>/get-a-quote</code>, <code>/enquire</code>, <code>/book</code>, <code>/appointment</code>,
-<code>/work-with-us</code>, <code>/support</code> and more besides — <em>or</em> any page in the
+<code>/work-with-us</code>, <code>/support</code> and more besides) <em>or</em> any page in the
 crawled sample carrying a form that asks for more than a single field.</li>
 <li><strong>Privacy policy.</strong> A path containing <code>/privacy</code>.</li>
 </ul>
 
 <p>Severity depends on which one is missing. A missing Contact page raises the finding to medium;
-a missing About page or privacy policy alone leaves it at low. That ordering is deliberate — a
+a missing About page or privacy policy alone leaves it at low. That ordering is deliberate. A
 site nobody can reach has a bigger problem than a site whose ownership is vague.</p>
 
 <p>The fix text is the check's own, and it is worth reading as written rather than paraphrased:</p>
 
-<blockquote><p>Add the missing pages with genuine detail — real names, a physical address if you
+<blockquote><p>Add the missing pages with genuine detail: real names, a physical address if you
 have one, a phone number, and who is behind the business.</p></blockquote>
 
 <p>"Genuine detail" is doing the work in that sentence. An About page that says the company was
@@ -112,8 +112,8 @@ at all. The crawler cannot tell the difference. Every human reader can.</p>
 <h3>It asks whether the page exists, not whether it was crawled</h3>
 
 <p>This is the part most tools get wrong, and the reason is in the check's own comment. The
-question is asked against every internal path the crawl <em>saw</em> — links, raw hrefs and
-sitemap entries — rather than against the pages it fetched. A capped crawl of a large site reads a
+question is asked against every internal path the crawl <em>saw</em> (links, raw hrefs and
+sitemap entries) rather than against the pages it fetched. A capped crawl of a large site reads a
 fraction of it, so asking "did we fetch a privacy policy?" reports a missing privacy policy on a
 site whose footer links to one from every page. That false positive is worse than a missed
 finding: it makes the whole report look careless to the one person who knows the site best.</p>
@@ -125,15 +125,15 @@ the entire site" is only defensible if the site was actually seen.</p>
 <h3>The rule that a quote form is a contact page</h3>
 
 <p>The Contact half used to match three paths. Measured on a ground-truth fixture: a plumber's
-site whose enquiry page was <code>/quote.html</code> — a short "tell us what you need" form,
-linked from the homepage, the services page and the nav — was told at medium severity that no
+site whose enquiry page was <code>/quote.html</code> (a short "tell us what you need" form,
+linked from the homepage, the services page and the nav) was told at medium severity that no
 Contact page was found.</p>
 
 <p>The path list is wider now, and more usefully, paths are no longer the only rule: a page
 carrying an enquiry form is a contact page whatever it is called. A plumber's "Request a callback"
 and a consultancy's "Work with us" are the same page under different signage. The form has to ask
 for more than a single field, because site search is the common one-field form and counting it
-would silence the check on nearly every site — which would be the worse bug of the two.</p>
+would silence the check on nearly every site, which would be the worse bug of the two.</p>
 
 <p>That was the third check in a single day with the same shape: it knew one form of the thing,
 and reported the absence of every other form as the absence of the thing. It is worth naming
@@ -145,7 +145,7 @@ defence is measuring against sites that plainly have what they are accused of la
 <p>The second finding, <code>content.no_author</code>, fires at low severity when a site has three
 or more pages carrying article markup and no author signal anywhere. An author signal is one of
 two things: the page's JSON-LD carries an <code>author</code> property naming somebody, or the
-body text carries a byline phrase — "written by", "posted by", "author:" and a couple of
+body text carries a byline phrase: "written by", "posted by", "author:" and a couple of
 neighbours.</p>
 
 <p><strong>That is the corrected version, and the correction is worth the space.</strong> The
@@ -169,14 +169,14 @@ finding sitewide, which is how a broken markup test went unnoticed: sites were b
 an unrelated word rather than by an attribution.</p>
 
 <p>Both halves now do what their names say. The markup test reads the <code>author</code> property
-out of your structured data, at any depth, and an empty one or a blank name does not count — the
+out of your structured data, at any depth, and an empty one or a blank name does not count: the
 property being present is not the same as somebody being named. The prose test matches byline
 phrases rather than the word.</p>
 
 <p><strong>One limit survives the fix, and you should know it.</strong> A visible byline that
 reads simply "By Jane Smith", with no structured data behind it, still matches nothing: it is not
 one of the byline phrases and it is not markup. That is a narrower miss than the one above and it
-is deliberate — "by" alone appears in ordinary prose constantly — but if your attribution is a
+is deliberate ("by" alone appears in ordinary prose constantly), but if your attribution is a
 bare name under a headline, add the schema rather than expecting the sentence to be read.</p>
 
 <h3>What the count on that finding means</h3>
@@ -219,7 +219,7 @@ instead of it.</p>
 
 <p>Google also says, of experience, expertise, authoritativeness and trust, that "of these
 aspects, trust is most important". Docket's own finding puts the case for trust pages more
-strongly than that source does — it describes their absence as a negative for any site that
+strongly than that source does. It describes their absence as a negative for any site that
 transacts, which is a reading of the rater guidelines rather than of the page quoted here. The
 narrower published wording is the one to act on, and it is the one linked above.</p>
 
@@ -227,7 +227,7 @@ narrower published wording is the one to act on, and it is the one linked above.
 
 <p><code>content.eeat</code> does not read <code>sameAs</code>, and nothing in it connects an
 author's name to an identity anywhere else. Docket does check <code>sameAs</code>, in a separate
-check in the AI visibility lane, but that one reads the <em>organisation's</em> node — it asks
+check in the AI visibility lane, but that one reads the <em>organisation's</em> node. It asks
 whether the business resolves to something a model already knows about, not whether your writer
 does. Neither check resolves a named author to a real identity, which is the honest position:
 <a href="/learn/sameas-entity-signals/">what sameAs does and who should declare it</a> is a
@@ -236,7 +236,7 @@ different question from whether your articles carry a byline.</p>
 <h2>What to do with a finding from this check</h2>
 
 <p>The trust-pages half is genuinely worth clearing, and it is an afternoon's work. Add the three
-pages. Put real information on them — the name of the person who answers the phone, an address if
+pages. Put real information on them. The name of the person who answers the phone, an address if
 you have one, what the company actually is. If your enquiry page is called something other than
 Contact, that is fine and Docket will recognise it, but a visitor searching your nav for the word
 might not.</p>
@@ -281,7 +281,7 @@ def trust_and_authorship() -> Path:
              "No. Google's own documentation says E-E-A-T is not a specific ranking factor, "
              "and that the human raters who assess it have no control over how pages rank and "
              "their data is not used directly in the ranking algorithms. What a tool can "
-             "measure is a handful of signals that tend to travel with it — whether an About "
+             "measure is a handful of signals that tend to travel with it. Whether an About "
              "page exists, whether there is a way to make contact, whether a page names an "
              "author. Anything presented as an E-E-A-T score is an opinion with a number "
              "written on it."),
@@ -291,8 +291,8 @@ def trust_and_authorship() -> Path:
              "only the pages it fetched. And whether any author signal appears anywhere on "
              "the site, for sites carrying article markup."),
             ("My contact page is not called Contact. Will Docket report it as missing?",
-             "It should not. The check matches a wide list of paths — quote, enquire, book, "
-             "appointment, work with us, support and others — and separately counts any page "
+             "It should not. The check matches a wide list of paths (quote, enquire, book, "
+             "appointment, work with us, support and others), and separately counts any page "
              "carrying a form that asks for more than a single field as a way to make "
              "contact, whatever the path is called. That rule exists because the earlier "
              "version told a plumbing firm it had no contact page while its quote form was "

@@ -1,28 +1,28 @@
-"""Where an audit looks for your address — and what happens when it looks everywhere.
+"""Where an audit looks for your address, and what happens when it looks everywhere.
 
 Promised on the how-to hub. Sourced from `local_seo.py`, registered checks
 `local.nap` and `local.schema`. One continuous story across three docstrings:
 
   * `_address_text` (~306): `page.text` is main content with nav, header,
-    footer, aside and form STRIPPED — right for "what does this page say",
+    footer, aside and form STRIPPED. Right for "what does this page say",
     wrong here, because THE FOOTER IS WHERE A BUSINESS PUTS ITS ADDRESS. The
     four-shape table is published verbatim in words: the only markup the check
     worked on was the least semantic one, so a site following the advice these
     reports give (`<main>`, `<footer>`) was the site that got the false
     positive.
-  * `_address_key` (~1102): the fix — appending chrome — created the next bug.
+  * `_address_key` (~1102): the fix (appending chrome) created the next bug.
     Flattened text has no punctuation between regions, so the breadcrumb ran
     into the footer address and one address published identically on every page
     was reported as thirty-one variations, with the advice to standardise on
     one format. THE FIX FOR THE BLINDNESS CREATED THE OVER-REACH.
   * `_looks_like_street_line` (~1090): "contains a digit anywhere" was not
-    enough — a not-found breadcrumb reads "Home 404". The test is the FIRST
+    enough: a not-found breadcrumb reads "Home 404". The test is the FIRST
     token, digit or a unit word (suite, flat, floor, unit).
   * the rendered fold-in: a site-builder platform drawing its footer in
     JavaScript had no address anywhere the served HTML could show, and the
     report stated as fact that the business published none.
 
-⚠️ NO SITE IS NAMED AND NO ADDRESS IS PRINTED — third-party gate plus
+⚠️ NO SITE IS NAMED AND NO ADDRESS IS PRINTED: third-party gate plus
 verify_numbers. The union is "a membership organisation", the roofing company
 is "a roofing company", the fixture is "a test fixture".
 
@@ -53,7 +53,7 @@ the first one did.</p>
 <h2>The region most likely to hold it was the region nothing could see</h2>
 
 <p>Almost every content check wants the page without its furniture. Strip the navigation, the
-header, the footer, the sidebar and the forms, and what is left is what the page actually says —
+header, the footer, the sidebar and the forms, and what is left is what the page actually says,
 which is the right input for word counts, for readability, for whether a heading describes the
 text beneath it.</p>
 
@@ -68,14 +68,14 @@ tested afterwards, and the address survived into the stripped text in exactly on
 <table>
 <tr><th>Markup</th><th>Address visible to the check</th></tr>
 <tr><td>A <code>&lt;footer&gt;</code> element, page has a <code>&lt;main&gt;</code></td><td>No</td></tr>
-<tr><td>A <code>&lt;footer&gt;</code> element, no <code>&lt;main&gt;</code></td><td>No — stripped as boilerplate</td></tr>
-<tr><td>A plain <code>&lt;div&gt;</code> footer, page has a <code>&lt;main&gt;</code></td><td>No — outside the main container</td></tr>
+<tr><td>A <code>&lt;footer&gt;</code> element, no <code>&lt;main&gt;</code></td><td>No: stripped as boilerplate</td></tr>
+<tr><td>A plain <code>&lt;div&gt;</code> footer, page has a <code>&lt;main&gt;</code></td><td>No: outside the main container</td></tr>
 <tr><td>A plain <code>&lt;div&gt;</code> footer, no <code>&lt;main&gt;</code></td><td>Yes</td></tr>
 </table>
 
 <p>Read that table again. The only markup the check worked on was the least semantic version.
-<strong>A site that followed the advice these very reports hand out — use
-<code>&lt;main&gt;</code>, use <code>&lt;footer&gt;</code> — was the site that got the false
+<strong>A site that followed the advice these very reports hand out (use
+<code>&lt;main&gt;</code>, use <code>&lt;footer&gt;</code>) was the site that got the false
 positive.</strong></p>
 
 <h2>Then it read the whole page, and the nav became part of the address</h2>
@@ -89,7 +89,7 @@ your address are one sentence as far as any pattern is concerned.</p>
 
 <p>Address patterns work backwards from the postcode, walking through comma-separated components.
 Nothing in flattened text marks where a breadcrumb stops and a building name starts. So the first
-component came back as the breadcrumb plus the building name — and because the breadcrumb differs
+component came back as the breadcrumb plus the building name, and because the breadcrumb differs
 on every page, so did the address.</p>
 
 <p>A membership organisation publishes exactly one address, identically, in the footer of every
@@ -100,14 +100,14 @@ advised it to standardise on one exact format everywhere. It already had.</p>
 
 <p>From flattened text you cannot tell where a building name begins. You can tell where the
 <em>street line</em> begins, because it carries the number. So the key became everything from the
-first comma-component that starts with a digit — or with a unit word, since "Suite", "Flat",
-"Floor" and "Unit" start plenty of real street lines — and leading components with neither are
+first comma-component that starts with a digit (or with a unit word, since "Suite", "Flat",
+"Floor" and "Unit" start plenty of real street lines), and leading components with neither are
 dropped.</p>
 
 <p>That has a price, and it is worth naming rather than burying: <strong>a building name present on
 some pages and absent on others is no longer reported as an inconsistency.</strong> Those two forms
-now compare equal. That is not the mismatch this check exists for — the one that matters is a
-street abbreviated one way here and another way there, or two versions of the same phone number —
+now compare equal. That is not the mismatch this check exists for (the one that matters is a
+street abbreviated one way here and another way there, or two versions of the same phone number),
 and it was worth losing to stop telling a site with one address that it had thirty-one.</p>
 
 <p>One more trap inside the fix. "Starts with a digit" is not the same as "contains a digit", and
@@ -135,12 +135,12 @@ right now on a site built with a drag-and-drop platform.</p>
 
 <p>If the footer is drawn by JavaScript after the page loads, the address is in no document a
 crawler receives from the server. A roofing company whose homepage displays its address in the
-footer was told, as a statement of fact, that it published no address anywhere — and that finding
+footer was told, as a statement of fact, that it published no address anywhere, and that finding
 sat third in its report.</p>
 
 <p>The answer was already in the building: a sample of pages is rendered the way a browser builds
 them, and that text is folded in. If your own tooling reports an absence, the first question is
-which document it read — see <a href="/how-to/javascript-seo-audit/">how to audit a JavaScript
+which document it read. See <a href="/how-to/javascript-seo-audit/">how to audit a JavaScript
 site &rarr;</a>.</p>
 
 <h2>Checking your own report</h2>
@@ -179,7 +179,7 @@ afternoon.</li>
 <p>Put your address in an image. Every text-reading check on every tool goes quiet, because there
 is no text to read and none of them can tell the difference between a fact expressed in pixels and
 a fact that is absent. Customers cannot copy it, screen readers cannot announce it, and a search
-engine cannot match it against your business listing — but the report is clean. <strong>An absence
+engine cannot match it against your business listing, but the report is clean. <strong>An absence
 finding is a statement about what the tool read, and that is worth remembering in both
 directions:</strong> when it is wrong about you, and when it is quiet about something it never
 saw.</p>

@@ -10,7 +10,7 @@ Complements /learn/priority-model/, which is about the formula. This is about
 which pages the formula should favour, and why knowing that is the owner's job
 rather than the tool's.
 
-No numeric literals — the multiplier lives in the engine and is published, with
+No numeric literals. The multiplier lives in the engine and is published, with
 its value interpolated, on the priority-model page.
 """
 from __future__ import annotations
@@ -26,13 +26,13 @@ def money_pages() -> Path:
     body = """
 <p class="lede">Most audit tools hand you a list sorted by how broken things are. None of them
 know that one of your pages takes card details and another is a tag archive nobody has opened
-since 2019. A missing title on each is the same finding, ranked the same way — and only one of
+since 2019. A missing title on each is the same finding, ranked the same way, and only one of
 them is why the phone stopped ringing.</p>
 
 <h2>Which pages are your money pages</h2>
 
 <p>The ones where a visitor does the thing you want: buys, books, requests a quote, starts a
-trial, or gets in touch. On most sites that is a short list — pricing, contact, the booking
+trial, or gets in touch. On most sites that is a short list: pricing, contact, the booking
 form, the main service or product pages, and the homepage, which is where the traffic that
 reaches the others usually lands.</p>
 
@@ -60,7 +60,7 @@ the same fault sorts above its twin elsewhere.
 understanding if you are doing this by hand.</p>
 
 <p><strong>An important page does not make a small problem into a big one.</strong> A critical
-fault anywhere on the site — a page that cannot be indexed at all, a server returning errors —
+fault anywhere on the site (a page that cannot be indexed at all, a server returning errors)
 still outranks a medium-severity issue on your pricing page. If the weighting were strong
 enough to reverse that, the plan would contradict the severity printed next to every item, and
 a reader could not tell which of the two labels to believe.</p>
@@ -89,8 +89,8 @@ email to find out what something costs loses the ones who will not.</li>
 
 <p>It does not tell you which pages earn. No crawler can see your revenue, and any tool that
 claims to rank by business value without being told what your business is has guessed. The
-weighting recognises the shape of a commercial page — a path like <code>/pricing</code> or
-<code>/contact</code> — which covers the common case and misses a site that names things
+weighting recognises the shape of a commercial page (a path like <code>/pricing</code> or
+<code>/contact</code>), which covers the common case and misses a site that names things
 differently. That is a floor, not a census: it can miss a money page, and it will not promote
 one that is not.</p>
 
@@ -107,11 +107,11 @@ one that is not.</p>
         faq=[
             ("What is a money page?",
              "A page where a visitor buys, books, requests a quote, starts a trial or gets in "
-             "touch — plus the homepage. A useful test: if it returned an error for a day, "
+             "touch: plus the homepage. A useful test: if it returned an error for a day, "
              "would you notice it in revenue rather than in analytics?"),
             ("Why do audit tools rank a pricing page the same as a tag archive?",
-             "Because the usual priority terms — severity, how many pages are affected, and "
-             "how much work the fix is — are all about the problem. None of them is about "
+             "Because the usual priority terms (severity, how many pages are affected, and "
+             "how much work the fix is) are all about the problem. None of them is about "
              "which page the problem is on."),
             ("Should an important page outrank a more serious problem elsewhere?",
              "No. A critical fault anywhere still comes first. Let page value break ties "
@@ -124,7 +124,7 @@ one that is not.</p>
             ("Can a tool work out which pages earn on its own?",
              "Not really. It can recognise the shape of a commercial page from its path, which "
              "covers the common case and misses sites that name things differently. Keep your "
-             "own list — it is the information you have and the tool does not."),
+             "own list. It is the information you have and the tool does not."),
         ],
     )
 

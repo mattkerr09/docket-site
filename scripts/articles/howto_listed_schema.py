@@ -1,7 +1,7 @@
 """The markup on your page may not be about you.
 
-Promised on the how-to hub. Sourced from `local_seo.py` — registered checks
-`local.schema` and `local.applicable` — whose docstrings record a marketplace
+Promised on the how-to hub. Sourced from `local_seo.py` (registered checks
+`local.schema` and `local.applicable`) whose docstrings record a marketplace
 being told its own address, telephone, opening hours, geo and price range were
 missing, when every one of those facts was about a takeaway it listed.
 
@@ -12,14 +12,14 @@ missing, when every one of those facts was about a takeaway it listed.
     page IS.
   * The sibling error: "Restaurant markup on <url>" was literally true and read
     to the owner as "this tool thinks we are a restaurant".
-  * The repair kept the finding and changed its subject — listing markup is
+  * The repair kept the finding and changed its subject. Listing markup is
     what makes a listing page eligible for rich results, so it is still
     reported, attributed to the businesses it describes.
   * The evidence note worth keeping: six chain store-locators were checked for
-    the nested-own-branches case and none did it — "none of six is a reason to
+    the nested-own-branches case and none did it. "None of six is a reason to
     keep the finding cheap, not a reason to delete it".
 
-⚠️ NO SITE OR CHAIN IS NAMED — third-party gate.
+⚠️ NO SITE OR CHAIN IS NAMED: third-party gate.
 
 ⚠️ Nothing on the site covers `itemListElement` today; checked before writing.
 
@@ -37,14 +37,14 @@ from render import render  # noqa: E402
 def listed_schema() -> Path:
     body = """
 <p class="lede">An audit reports that your address, telephone number, opening hours and price
-range are missing from your structured data — and that two of them are present in the markup but
+range are missing from your structured data, and that two of them are present in the markup but
 carry no value. You check the page. None of those facts was ever about you. They were about a
 takeaway in another city that your page happens to list.</p>
 
 <h2>Why a reader of your markup loses track of whose it is</h2>
 
-<p>Structured data is nested, and a tool that only looks at the top level finds almost nothing —
-most real markup is a single graph with everything inside it. So a JSON-LD reader descends through
+<p>Structured data is nested, and a tool that only looks at the top level finds almost nothing.
+Most real markup is a single graph with everything inside it. So a JSON-LD reader descends through
 every value at any depth. That is the right decision and it is why these tools work at all.</p>
 
 <p><strong>But a walk like that has no idea whose business it just found.</strong> It sees a node
@@ -52,13 +52,13 @@ with a type it recognises and treats it as yours.</p>
 
 <p>There is exactly one property that settles the question, and it is in the vocabulary already:
 <code>itemListElement</code>. Its entries are, by schema.org's own definition, the things a page
-<em>lists</em> — not the thing the page <em>is</em>. Anything reached through it belongs to somebody
+<em>lists</em>, not the thing the page <em>is</em>. Anything reached through it belongs to somebody
 else.</p>
 
 <h2>What that produced</h2>
 
 <p>On a national food-delivery marketplace, the only structured data on the page was a list of
-restaurant nodes — other people's takeaways, each carrying an empty address string and an empty
+restaurant nodes: other people's takeaways, each carrying an empty address string and an empty
 price range. The check judged the first node it reached and reported that the <em>marketplace's</em>
 address, telephone, opening hours, geolocation and price range were missing, and that two fields
 were present but blank.</p>
@@ -72,7 +72,7 @@ finding.</p>
 <p>The same site produced a second sentence worth studying separately, because it was not wrong.</p>
 
 <p>Deciding whether the local-business checks apply at all, the tool said it had found
-<em>restaurant markup on this URL</em>. That is literally correct — the markup is there, and it is
+<em>restaurant markup on this URL</em>. That is literally correct: the markup is there, and it is
 restaurant markup. It reads to the owner as <strong>"this tool thinks we are a restaurant"</strong>,
 which is not what was meant and not true.</p>
 
@@ -82,7 +82,7 @@ correct sentence that invites a wrong inference costs the same as a wrong one.</
 
 <h2>The repair kept the finding and changed its subject</h2>
 
-<p>The obvious fix — ignore anything inside a list — would have been wrong, and this is the part
+<p>The obvious fix (ignore anything inside a list) would have been wrong, and this is the part
 worth copying.</p>
 
 <p>Thin listing markup <em>is</em> a real finding. Complete entries are what make a listing page
@@ -91,7 +91,7 @@ opportunity. It is simply not a statement about the publisher. So the finding st
 subject changed: it now describes the businesses the page lists, rather than the page's own
 premises.</p>
 
-<p>And dropping it outright would have silenced a real case — a chain that publishes its own
+<p>And dropping it outright would have silenced a real case. A chain that publishes its own
 branches inside a list on its store locator.</p>
 
 <h2>The sentence about evidence</h2>
@@ -100,7 +100,7 @@ branches inside a list on its store locator.</p>
 business-type nodes inside a list. That is a useful result and it is not a licence:
 <strong>"none of six" is a reason to keep a finding cheap, not a reason to delete it.</strong></p>
 
-<p>It is worth saying because the opposite reasoning is everywhere in tooling — a small sample
+<p>It is worth saying because the opposite reasoning is everywhere in tooling. A small sample
 that finds nothing gets treated as proof that nothing exists, and a rule is removed on the strength
 of not having seen the case yet.</p>
 
@@ -108,8 +108,8 @@ of not having seen the case yet.</p>
 
 <ul>
 <li><strong>Ask whose data is missing.</strong> If the finding names fields you would never publish
-about yourself — a price range for a company that is not a venue, opening hours for a
-marketplace — the node is probably not yours.</li>
+about yourself (a price range for a company that is not a venue, opening hours for a
+marketplace) the node is probably not yours.</li>
 <li><strong>Look for a list in your markup.</strong> Search the page source for
 <code>itemListElement</code>. Anything under it describes something you are listing.</li>
 <li><strong>Check whether the empty strings are yours.</strong> A node with empty values is
@@ -124,8 +124,8 @@ marketplaces and category pages are the shapes where this goes wrong.</li>
 <p>Two readers should act on a listing-markup finding, and they should do different things:</p>
 
 <ul>
-<li><strong>A publisher of a directory or marketplace.</strong> Complete entries are the point —
-empty address and price fields on listed businesses cost the listing page its eligibility, and the
+<li><strong>A publisher of a directory or marketplace.</strong> Complete entries are the point.
+Empty address and price fields on listed businesses cost the listing page its eligibility, and the
 data usually exists in the database behind the page.</li>
 <li><strong>A chain publishing its own branches in a list.</strong> Here the nodes really are
 yours, and incomplete ones are a genuine local-SEO defect on premises you operate.</li>
@@ -150,7 +150,7 @@ data is policed for.</li>
 
 <p>Remove <code>itemListElement</code> and leave the entries loose in the graph. The nodes are
 still there, the tool can no longer tell they are listings, and it will go back to treating them as
-yours — the finding changes shape rather than disappearing, and you have thrown away the one
+yours. The finding changes shape rather than disappearing, and you have thrown away the one
 signal that made the page legible.</p>
 
 <p><strong>The property that got you a confusing finding is the property that makes the page

@@ -5,7 +5,7 @@ Promised on the how-to hub. Sourced from two registered checks:
 ("Schema price vs visible price").
 
 The archetype this page exists for: adding markup reads as good practice.
-Nobody adds a rating to cheat — a plugin offered, and it filled in a number
+Nobody adds a rating to cheat: a plugin offered, and it filled in a number
 from somewhere the page does not show.
 
 ⚠️ The self-implicating example is real and is in `schema.price`'s own
@@ -28,7 +28,7 @@ def schema_mismatch() -> Path:
     body = """
 <p class="lede">Structured data is a set of claims about a page, made in a language only
 machines read. When those claims stop matching what the page shows, the risk is not a missing
-star rating — it is a manual action that can remove every rich result for the whole site.</p>
+star rating. It is a manual action that can remove every rich result for the whole site.</p>
 
 <h2>Why it happens to careful people</h2>
 
@@ -50,7 +50,7 @@ rating looks like.</p>
 <p><strong>A price the page does not show.</strong> Far more common, and usually accidental: the
 price changes in the database and the JSON-LD keeps the old one. The rich result then advertises
 a number you will not honour. The visitor arrives expecting it, and nobody finds out until
-somebody complains — because the page itself is right.</p>
+somebody complains, because the page itself is right.</p>
 
 <h2>What an audit can and cannot tell you</h2>
 
@@ -60,7 +60,7 @@ showing the same wrong price in the page and the markup agrees with itself and p
 should. No crawler knows what you meant to charge.</p>
 
 <p>It is also worth knowing where the rating rule legitimately does not apply. An app's store
-rating declared on software markup is documented and allowed — the number belongs to the app,
+rating declared on software markup is documented and allowed: the number belongs to the app,
 not to a review widget the page forgot to draw. A check that fired on that would be wrong, and a
 tool that tells you to delete correct markup costs more than it saves.</p>
 
@@ -81,8 +81,8 @@ where a person can read them, then mark up what is there.</p>
 
 <pre><code>curl -s https://example.com/product/ | grep -o '"price":"[^"]*"'</code></pre>
 
-<p>Then look at the page and compare. Do it on a product whose price changed recently — that is
-where the two copies separate — and on anything carrying a rating, where the question is simply
+<p>Then look at the page and compare. Do it on a product whose price changed recently (that is
+where the two copies separate), and on anything carrying a rating, where the question is simply
 whether a reader can see any reviews at all.</p>
 """
     return render(
@@ -106,13 +106,13 @@ whether a reader can see any reviews at all.</p>
             ("Can an audit tell me which one is right?",
              "No, and it should not claim to. It can only say the page and its markup "
              "disagree. A shop showing the same wrong price in both places agrees with itself "
-             "and passes — no crawler knows what you meant to charge."),
+             "and passes. No crawler knows what you meant to charge."),
             ("Is an app store rating in my markup a violation?",
              "Not when it is declared on software markup. That rating belongs to the app and "
              "is documented as allowed. It is not a review widget the page forgot to render."),
             ("Should I delete markup that does not match?",
              "Correct it instead. Deleting ends the mismatch and also ends the rich result you "
-             "were entitled to. Hiding the visible price so it matches is worse again — the "
+             "were entitled to. Hiding the visible price so it matches is worse again: the "
              "claim then has even less supporting it."),
         ],
     )

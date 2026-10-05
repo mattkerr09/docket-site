@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The conversion lane — nine checks, one of which had a page.
+"""The conversion lane. Nine checks, one of which had a page.
 
 The second of the two lanes the gap analysis found uncovered. `cvr.dead_contact`
 had `/learn/dead-contact-address/`; the other eight had nothing but a row in the
@@ -42,7 +42,7 @@ def conversion_audit() -> Path:
     body = f"""
 <p class="lede">Ranking is only half of it. A page that arrives at the top of the results
 and then fails to tell a visitor what to do next has cost you the same money as a page
-nobody found — you simply paid it further down the funnel.</p>
+nobody found. You simply paid it further down the funnel.</p>
 
 <p>Docket runs <strong>{len(rows)} checks</strong> on the pages that have to convert. Not
 one of them tells you whether your offer is good, and none of them can replace testing.
@@ -66,7 +66,7 @@ mechanical kind and it is worth exactly what it says: two pages whose job is to 
 somebody forward offered nothing to click. That is checkable, and it is checkable without
 any opinion about the business.</p>
 
-<p><strong>"No social proof on any conversion page"</strong>, at MEDIUM. Also mechanical —
+<p><strong>"No social proof on any conversion page"</strong>, at MEDIUM. Also mechanical:
 no reviews, testimonials, counts or badges appeared in the markup Docket read. Note the
 scope: <em>in the markup Docket read</em>. A site that loads its reviews from a widget
 after the page renders has social proof that this check cannot see, which is why it sits at
@@ -81,7 +81,7 @@ observation rather than an instruction. You may be running that strategy deliber
 <h2>Message match is the one people fix first</h2>
 
 <p>The check that most often changes something is <code>cvr.message_match</code>: whether
-the promise in your title tag — the words somebody read in the search results and clicked —
+the promise in your title tag (the words somebody read in the search results and clicked)
 is repeated in the headline they land on.</p>
 
 <p>When they differ, the visitor's first act on your page is to check whether they are in
@@ -97,7 +97,7 @@ different person at a different time from the one above it.</p>
 phone: a number printed as text with no <code>tel:</code> link, and an email address on a
 domain that cannot receive mail. Both look perfectly fine to whoever published them,
 because whoever published them never tried to use them from the device their customers
-use. <a href="/learn/dead-contact-address/">The mail one is worth its own page</a> — an
+use. <a href="/learn/dead-contact-address/">The mail one is worth its own page</a>. An
 address on a domain with no MX record bounces to the sender, so you never learn that
 anybody tried.</p>
 
@@ -117,8 +117,8 @@ traffic you already earned.</p>
     return render(
         cat="learn", slug="conversion-audit",
         title="Conversion audit: 9 checks on your landing pages",
-        desc=(f"The {len(rows)} conversion checks in Docket's audit — calls to action, social "
-              "proof, message match, dead contact details — and the judgement calls "
+        desc=(f"The {len(rows)} conversion checks in Docket's audit (calls to action, social "
+              "proof, message match, dead contact details), and the judgement calls "
               "it refuses to make for you."),
         h1="Conversion audit",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Conversion audit',
@@ -135,14 +135,14 @@ traffic you already earned.</p>
              "real visitors. A tool that gives you a conversion score from your HTML is "
              "reporting its own opinion with a number attached."),
             ("What is message match and why does it matter?",
-             "Whether the promise in your title tag — the words somebody read in the "
-             "search results before clicking — is repeated in the headline they land "
+             "Whether the promise in your title tag (the words somebody read in the "
+             "search results before clicking) is repeated in the headline they land "
              "on. When it is not, the visitor's first act is to work out whether they "
              "are in the right place, and some decide they are not. It is usually a "
              "one-line fix."),
             ("Does Docket see reviews loaded by JavaScript?",
              "Not by default. The social proof check reports what appeared in the HTML "
-             "it read, which is why it is reported at medium rather than higher — a "
+             "it read, which is why it is reported at medium rather than higher. A "
              "site whose reviews arrive from a widget after render has social proof "
              "this check cannot see."),
         ],

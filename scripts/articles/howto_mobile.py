@@ -1,9 +1,9 @@
 """Mobile SEO: what a crawl can and cannot check.
 
 Promised on the how-to hub. Sourced from the checks that actually bear on a
-phone — `onpage.lang` (which covers the viewport declaration), `perf.cls_risk`,
+phone (`onpage.lang` (which covers the viewport declaration), `perf.cls_risk`,
 `perf.page_weight`, `perf.render_blocking`, `perf.ttfb` and
-`cvr.unusable_phone` — and, more importantly, from what none of them can see.
+`cvr.unusable_phone`) and, more importantly, from what none of them can see.
 
 The point of the page is the boundary. A crawler can prove some things about a
 mobile page and cannot prove the ones people actually mean by "mobile-friendly",
@@ -23,7 +23,7 @@ from render import render  # noqa: E402
 def mobile() -> Path:
     body = """
 <p class="lede">Google indexes the mobile version of your site. Not a mobile version of your
-desktop site — the mobile page is the page, and the desktop one is the variant nobody ranks.
+desktop site: the mobile page is the page, and the desktop one is the variant nobody ranks.
 That makes "is it mobile-friendly?" an important question and a badly-defined one, because it
 is several different questions and only some of them can be answered without a phone.</p>
 
@@ -78,7 +78,7 @@ presented as a verdict on the thing they do.</p>
 <h2>What to actually do</h2>
 
 <p>Run the crawl for the document facts, because they are cheap, provable and genuinely break
-pages. Fix the viewport tag first if it is missing — it is the only one that makes every other
+pages. Fix the viewport tag first if it is missing. It is the only one that makes every other
 mobile problem worse.</p>
 
 <p>Then pick up a phone. Your own, on mobile data rather than the office wifi, and go through

@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """The AI crawlers Docket checks, and what blocking each one actually costs.
 
-Sourced from `robots.AI_USER_AGENTS` — the same table the checks read, so the
-page and the product cannot disagree about which crawlers were examined — plus
+Sourced from `robots.AI_USER_AGENTS` (the same table the checks read, so the
+page and the product cannot disagree about which crawlers were examined) plus
 `ai_visibility.CITATION_CRITICAL` and `TRAINING_ONLY`, and the published
 robots.txt dataset behind `facts.directives_*`.
 
 ⚠️ NO TYPED AGENT LIST AND NO TYPED COUNT. Every name, owner, purpose and
 impact line comes through `facts.ai_agent_rows()` from `data/ai-agents.json`,
 which `scripts/collect_ai_agents.py` generates. This is the most volatile table
-in the engine — OpenAI split `OAI-SearchBot` out of `GPTBot` after launch,
-Anthropic retired `Claude-Web`, Google added `Google-CloudVertexBot` — and a
+in the engine (OpenAI split `OAI-SearchBot` out of `GPTBot` after launch,
+Anthropic retired `Claude-Web`, Google added `Google-CloudVertexBot`), and a
 count typed beside a table like that is wrong within weeks with nothing
 rendering differently.
 
@@ -24,7 +24,7 @@ rendering differently.
      crawlers. No operator in this table documents support for them. The page
      says what robots.txt does and stops.
   3. Anything about traffic, citations gained, or revenue. The dataset measures
-     ACCESS — whether a file permits a crawler — and nothing downstream of it.
+     ACCESS (whether a file permits a crawler), and nothing downstream of it.
   4. Any site by name. The published figures are counts and categories only.
 """
 from __future__ import annotations
@@ -64,14 +64,14 @@ cost of blocking each one is different.</p>
 writing does not become training data. It does <em>not</em> remove you from any answer.</li>
 <li><strong>Search-index crawlers</strong> build the index an assistant searches when it answers
 a question with live citations. Blocking one removes you from those answers entirely.</li>
-<li><strong>Live-fetch agents</strong> retrieve a page at the moment a user asks about it —
+<li><strong>Live-fetch agents</strong> retrieve a page at the moment a user asks about it,
 usually because someone pasted your URL. Blocking one means the assistant cannot read a page a
 user explicitly asked it to read.</li>
 </ul>
 
 <p>That is why "should I block AI crawlers?" has no single answer. Keeping your writing out of a
 training set while staying quotable in ChatGPT Search is a perfectly coherent position, and it
-is one robots.txt can express precisely — if you know which name does which job.</p>
+is one robots.txt can express precisely. If you know which name does which job.</p>
 
 <h2>What we found in published robots.txt files</h2>
 
@@ -80,19 +80,19 @@ is one robots.txt can express precisely — if you know which name does which jo
 {F.directives_blocks_any():,} block at least one. So far so unsurprising. The number worth
 sitting with is this one:</p>
 
-<p><strong>{F.directives_training_only():,} of those sites —
-{F.directives_training_only_pct():g}% — block only training crawlers</strong>, which is the
+<p><strong>{F.directives_training_only():,} of those sites (
+{F.directives_training_only_pct():g}%) block only training crawlers</strong>, which is the
 decision described above, made deliberately and correctly. The rest did something broader.
 Among sites that block <code>OAI-SearchBot</code> and therefore leave ChatGPT Search,
 {F.oai_overlap_pct():g}% also block <code>GPTBot</code>.</p>
 
-<p>That overlap is the tell. It is consistent with one decision — "block OpenAI" — applied to
+<p>That overlap is the tell. It is consistent with one decision ("block OpenAI") applied to
 every OpenAI user-agent at once, rather than two decisions taken separately. We cannot prove
 intent from a file and we are not going to try: what the number shows is that the two blocks
 travel together almost always, and one of them has a cost the other does not.</p>
 
 <p>One caveat that applies to every figure here. These are measurements of
-<strong>access</strong> — what a file permits — and nothing downstream. We did not measure
+<strong>access</strong> (what a file permits), and nothing downstream. We did not measure
 citations, traffic or revenue, and no figure on this page should be read as measuring them.</p>
 
 <h2>The {F.ai_agents_word()} crawlers, and what each block costs</h2>
@@ -126,8 +126,8 @@ Disallow: /</code></pre>
 <code>User-agent: *</code> block added for some unrelated reason, which catches every crawler in
 the table above including the {len(search)} that decide whether you can be cited. The second is
 blocking at the CDN or firewall instead of in robots.txt: an edge rule that returns 403 to an AI
-crawler is invisible in your robots.txt file, so every tool that reads the file — including the
-robots half of Docket — will tell you the crawler is allowed. Docket checks both, and reports
+crawler is invisible in your robots.txt file, so every tool that reads the file (including the
+robots half of Docket) will tell you the crawler is allowed. Docket checks both, and reports
 them separately, because a file that says yes and a server that says no is a configuration
 nobody chose on purpose.</p>
 
@@ -141,7 +141,7 @@ directive.</p>
 
 <p>And robots.txt says nothing about whether an assistant can make sense of your page once it
 arrives. Most AI crawlers do not run JavaScript, so a page whose content is assembled in the
-browser is effectively blank to them even when every rule permits it —
+browser is effectively blank to them even when every rule permits it.
 <a href="/learn/ai-search-visibility/">AI search visibility</a> covers the rest of that.</p>
 
 <p>To see what your own robots.txt says to each crawler in the table, use the free
@@ -183,7 +183,7 @@ detail, see <a href="/learn/what-is-claudebot/">What is ClaudeBot?</a></p>
             ("Why does Docket say a crawler is blocked when my robots.txt allows it?",
              "Because a CDN or firewall rule can return 403 to that crawler regardless of "
              "what the file says, and the file cannot see it. Docket tests access at the "
-             "edge as well as reading the rules, and reports the two separately — a file "
+             "edge as well as reading the rules, and reports the two separately. A file "
              "that says yes and a server that says no is rarely a configuration anyone "
              "chose deliberately."),
         ],

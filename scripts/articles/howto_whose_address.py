@@ -7,24 +7,24 @@ Promised on the how-to hub. Sourced from `conversion.py`, registered check
     forum's how-to about configuring mailboxes carries placeholder addresses at
     a documentation domain; they were reported as the site's dead contact
     channel with the remedy "add MX records for <that domain>", which the site
-    cannot publish. The guard meant to prevent it — only `mailto:` links count,
-    because prose may hold an example — IS DEFEATED BY ANY PLATFORM WHOSE
+    cannot publish. The guard meant to prevent it (only `mailto:` links count,
+    because prose may hold an example) IS DEFEATED BY ANY PLATFORM WHOSE
     MARKDOWN AUTO-LINKS BARE ADDRESSES, which every forum does. The tool cannot
     tell documentation from a real address; it CAN tell whose domain it is.
     Matched on label boundaries so one domain is not read as a suffix of
     another.
   * ⚠️ A STRING THAT IS NOT A DOMAIN IS NOT A DEAD MAILBOX. `check_domain`
     returns a negative with the reason "not a syntactically valid domain", and
-    the branch tested only the negative — SO THE VERDICT WRITTEN TO SAY THE
+    the branch tested only the negative, SO THE VERDICT WRITTEN TO SAY THE
     TOOL COULD NOT JUDGE THE STRING BECAME A FINDING ABOUT THE READER'S CONTACT
     CHANNEL. Measured on a law firm whose share-by-email widget has a
     deliberately empty recipient. Skipped rather than re-reported as a broken
     link: that would be the same false positive in a new coat.
   * ⚠️ NOT `looks_like_ip`. An address at a bare IP really is a dead mailbox
     and is reported deliberately; skipping on domain validity alone would have
-    silenced it. Caught by a test. ONE SENTENCE ONLY — 539 owns that lesson.
+    silenced it. Caught by a test. ONE SENTENCE ONLY: 539 owns that lesson.
 
-⚠️ NO SITE, VENDOR OR ADDRESS IS NAMED — third-party gate. The forum, the law
+⚠️ NO SITE, VENDOR OR ADDRESS IS NAMED: third-party gate. The forum, the law
 firm and every measured address stay out; the widget is described by shape.
 
 ⚠️ /learn/dead-contact-address/ is the SURVEY (MX records, the two DNS failure
@@ -52,7 +52,7 @@ for something that was never broken.</p>
 <h2>Publish DNS for a domain you do not own</h2>
 
 <p>A software forum runs a how-to about configuring mailboxes. Like every such document it contains
-example addresses at a documentation domain — placeholder words where a real mailbox name would
+example addresses at a documentation domain. Placeholder words where a real mailbox name would
 go.</p>
 
 <p>Those were reported as the site's dead contact channel, with the remedy: add mail records for
@@ -79,7 +79,7 @@ domain the reader can publish records for, matched on label boundaries so one do
 as a suffix of a similarly spelled one.</p>
 
 <p><strong>The finding was right; only the instruction changed.</strong> That distinction is most
-of what separates a report somebody acts on from one they dismiss — a reader who is told to do
+of what separates a report somebody acts on from one they dismiss. A reader who is told to do
 something impossible does not conclude the tool was half-right.</p>
 
 <h2>The verdict that meant "I cannot judge this"</h2>
@@ -107,19 +107,19 @@ being shown a working button and told it is broken.</p>
 
 <p>A <code>mailto:</code> with no recipient and a prefilled subject is the ordinary shape of a
 share widget. Reporting it under a different name would be <strong>the same false positive in a new
-coat</strong> — which is worth watching for whenever a tool "addresses" a complaint about a finding
+coat</strong>, which is worth watching for whenever a tool "addresses" a complaint about a finding
 and the finding is still there under a different heading.</p>
 
 <h2>The one that must still fire</h2>
 
-<p>Not every unusual address is innocent. An address whose domain part is a bare server address —
-digits and dots, or a block of hexadecimal — is a genuinely dead mailbox, because no mail records
+<p>Not every unusual address is innocent. An address whose domain part is a bare server address (
+digits and dots, or a block of hexadecimal) is a genuinely dead mailbox, because no mail records
 can ever be published for it. It is the residue of a site being moved between servers while the old
 host stayed written into the content.</p>
 
 <p>Skipping everything that fails a domain-validity test would have silenced exactly that case
-while fixing the two above. A test caught it, which is the usual way —
-<a href="/how-to/when-a-fix-creates-a-false-negative/">a guard that quietens one false positive can
+while fixing the two above. A test caught it, which is the usual way.
+<a href="/how-to/when-a-fix-creates-a-false-negative/">A guard that quietens one false positive can
 silence a true finding &rarr;</a>.</p>
 
 <h2>Reading this on your own report</h2>
@@ -131,15 +131,15 @@ instruction about mail records applies to you, whatever the finding says.</li>
 quoted message is somebody else's address that your platform turned into a link.</li>
 <li><strong>Look for an empty recipient.</strong> A share button has no address in it at all,
 and it is not a contact channel.</li>
-<li><strong>If it is your domain, test it in one command.</strong> The survey behind this check —
-<a href="/learn/dead-contact-address/">what a dead contact address actually is &rarr;</a> — has
+<li><strong>If it is your domain, test it in one command.</strong> The survey behind this check (
+<a href="/learn/dead-contact-address/">what a dead contact address actually is &rarr;</a>) has
 the command and the two ways mail configuration fails.</li>
 </ol>
 
 <h2>When it is real, and why it is worse than it looks</h2>
 
 <p>Keep the severity where it belongs. A published address at a domain that cannot receive mail
-means every enquiry bounces — <strong>and you get no record that anyone tried.</strong> That last
+means every enquiry bounces, <strong>and you get no record that anyone tried.</strong> That last
 part is what makes it different from a broken form or a dead link: there is no error you will ever
 see, no entry in any log of yours, and no angry follow-up. The people who wrote to you simply
 conclude you did not reply.</p>
@@ -159,7 +159,7 @@ on the pages that carry it, and those are the pages people will use.</li>
 <h2>How to pass this check while staying unreachable</h2>
 
 <p>Publish your address as plain text without a <code>mailto:</code> link. Only linked addresses
-are checked — because an unlinked one might be an example — so the finding disappears and the
+are checked (because an unlinked one might be an example), so the finding disappears and the
 mailbox is exactly as broken as it was.</p>
 
 <p><strong>A check that must avoid other people's examples can only see the addresses you chose to
@@ -185,7 +185,7 @@ links that will not dial &rarr;</a>.</p>
         faq=[
             ("An audit says an email address on my site is dead, but it is not my address. Why?",
              "Because a check that finds published addresses cannot tell documentation from a "
-             "real contact address — that is a judgement about intent and it is not in the page. "
+             "real contact address. That is a judgement about intent and it is not in the page. "
              "It can tell whose domain the address is at, which is enough to stop offering you a "
              "repair you have no access to."),
             ("Why would example addresses in my documentation get reported at all?",
@@ -202,7 +202,7 @@ links that will not dial &rarr;</a>.</p>
              "stays written into the content."),
             ("What does a dead contact address actually cost?",
              "Every enquiry bounces and you get no record that anyone tried. Unlike a broken "
-             "form there is no error you will see and no log of yours to check — the people who "
+             "form there is no error you will see and no log of yours to check: the people who "
              "wrote to you conclude you did not reply."),
         ],
     )

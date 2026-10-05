@@ -52,7 +52,7 @@ sites get wrong by accident: letting the right crawlers in.</p>
 <p>A model has to clear all three before it can name you. They fail in order, so there is no
 point working on the third while the first is broken.</p>
 
-<h3>1. Access — can the crawler fetch the page?</h3>
+<h3>1. Access: can the crawler fetch the page?</h3>
 <p>Every AI search product runs its own crawler, and they are not interchangeable:</p>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Crawler</th><th>Operator</th><th>Blocking it means</th></tr></thead>
@@ -62,7 +62,7 @@ point working on the third while the first is broken.</p>
 <tr><td><code>PerplexityBot</code></td><td>Perplexity</td><td>You are removed from Perplexity's index</td></tr>
 <tr><td><code>Claude-SearchBot</code></td><td>Anthropic</td><td>You are absent from Claude's search results</td></tr>
 <tr><td><code>ClaudeBot</code></td><td>Anthropic</td><td>Your content is not used to train Anthropic's models. Citation is unaffected</td></tr>
-<tr><td><code>Google-Extended</code></td><td>Google</td><td>Out of Gemini training and Vertex grounding. <strong>Not</strong> AI Overviews — those follow your Googlebot rules</td></tr>
+<tr><td><code>Google-Extended</code></td><td>Google</td><td>Out of Gemini training and Vertex grounding. <strong>Not</strong> AI Overviews: those follow your Googlebot rules</td></tr>
 </tbody></table></div>
 
 <p>The distinction between a <em>training</em> crawler and a <em>search</em> crawler is the
@@ -74,11 +74,11 @@ at least one AI search crawler (<a href="/index/">the dataset</a>). Then we read
 robots.txt of the <a href="/index/ai-directives/">Tranco top 10,000</a>, where the picture is
 better: of the {F.directives_blocks_any():,} sites blocking any AI crawler,
 {F.directives_training_only_pct()}% blocked training and left search alone. Large sites mostly
-separate the two. What almost nobody catches is the third case —
+separate the two. What almost nobody catches is the third case:
 {F.directives_dead_pct()}% of sites writing AI rules at all name a user-agent token that no
 crawler uses, so the rule they wrote does nothing.</p>
 
-<h3>2. Rendering — is there anything in the HTML?</h3>
+<h3>2. Rendering: is there anything in the HTML?</h3>
 <p>Google renders JavaScript, eventually. Most AI crawlers do not run it at all. A React or Vue
 page whose content appears only after hydration is, to <code>GPTBot</code> and
 <code>PerplexityBot</code>, an empty document.</p>
@@ -86,11 +86,11 @@ page whose content appears only after hydration is, to <code>GPTBot</code> and
 and perfect to Google. The test is simple: fetch your page with JavaScript disabled and see
 whether the words are there.</p>
 
-<h3>3. Extractability and entity clarity — can it quote you, and does it know who you are?</h3>
+<h3>3. Extractability and entity clarity: can it quote you, and does it know who you are?</h3>
 <p>Once a model can read the page, two things decide whether it uses it. First, whether there
 is a passage it can lift: a question-shaped heading followed by a direct answer in the first
 two sentences is quotable, and eight paragraphs of preamble are not. Second, whether it can
-resolve your site to a real organisation — which is what <code>sameAs</code> in your
+resolve your site to a real organisation, which is what <code>sameAs</code> in your
 Organization schema does, linking you to the LinkedIn, Wikidata or Google Business Profile the
 model already has an entry for.</p>
 
@@ -99,7 +99,7 @@ model already has an entry for.</p>
 search crawlers at {m['news_pct']}%. SaaS companies were at {m['saas_pct']}%. Ecommerce sites
 were at {m['ecommerce_pct']}% and local businesses at {m['local_pct']}%.</p>
 <p>For a business competing for customers rather than readers, that means visibility here is
-not a competitive advantage you can win — it is table stakes you can lose by accident, usually
+not a competitive advantage you can win. It is table stakes you can lose by accident, usually
 via a copied robots.txt block.</p>
 
 <h2>What about llms.txt?</h2>
@@ -130,8 +130,8 @@ blocking and what it costs you. It runs on your Mac, and the crawl and the repor
     return render(
         cat="learn", slug="ai-search-visibility",
         title="AI search visibility: how to get cited by ChatGPT and Claude",
-        desc=("Whether a model can reach, read and quote your site. The three gates — "
-              "crawler access, server-side rendering, entity clarity — with measured "
+        desc=("Whether a model can reach, read and quote your site. The three gates ("
+              "crawler access, server-side rendering, entity clarity) with measured "
               "data."),
         h1="AI search visibility, explained",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / AI search visibility',
@@ -166,14 +166,14 @@ page that cannot be crawled scores zero on everything downstream, however good i
 Each one carries a number from our own surveys, because "check this" is advice and "this is
 broken on half the sites we read" is a reason.</p>
 
-<h3>Crawlability and indexing — the gate</h3>
+<h3>Crawlability and indexing: the gate</h3>
 <p>Can search engines reach the page, and are you telling them to index it? This is where the
 site-killing mistakes live: a <code>noindex</code> left on after a redesign, a robots.txt
 <code>Disallow: /</code> carried over from staging, canonicals pointing at another domain,
 redirect loops. Every one of these is invisible to a visitor and fatal to rankings.</p>
 <p>Two numbers from reading the robots.txt of the Tranco top 10,000. Of the
 {F.directives_ai_sites():,} sites writing a rule aimed at an AI crawler,
-<strong>{F.directives_dead_sites()} — {F.directives_dead_pct()}% — name a user-agent token no
+<strong>{F.directives_dead_sites()} ({F.directives_dead_pct()}%) name a user-agent token no
 crawler answers to</strong>, so the rule they wrote does nothing. And
 {F.directives_edge_denied()} of the 10,000 refused a self-identifying bot at the server before
 robots.txt was even consulted, which no
@@ -184,7 +184,7 @@ here.</a></p>
 <p>Titles, meta descriptions, heading structure, image alt text, internal anchor text. Mostly
 straightforward, but two details matter more than people expect: search engines truncate titles
 by <em>pixel width</em> rather than character count, and <code>alt=""</code> is the correct
-markup for a decorative image — not a missing alt.</p>
+markup for a decorative image, not a missing alt.</p>
 
 <h3>Content</h3>
 <p>Whether pages answer the question someone actually asked. Thin pages, unfinished template copy left
@@ -207,14 +207,14 @@ trouble of describing themselves and then connected it to nothing.
 
 <h3>The three most audits skip</h3>
 <ul>
-<li><strong>Local business signals</strong> — NAP consistency, LocalBusiness schema and its
+<li><strong>Local business signals</strong>: NAP consistency, LocalBusiness schema and its
 subtypes, opening hours, geo targeting. For a plumber or a restaurant this <em>is</em> organic
 search.</li>
-<li><strong>AI search visibility</strong> — per-crawler access, server-side rendering, entity
+<li><strong>AI search visibility</strong>: per-crawler access, server-side rendering, entity
 resolution. <a href="/learn/ai-search-visibility/">Explained here</a>, and the directives
 themselves are on <a href="/how-to/fix-ai-crawler-access/">letting ChatGPT and Perplexity read
 your site</a>.</li>
-<li><strong>Conversion</strong> — whether the traffic you earn has anywhere to go. The most
+<li><strong>Conversion</strong>: whether the traffic you earn has anywhere to go. The most
 expensive failure on any site is a page that ranks and converts nobody:
 <a href="/learn/conversion-audit/">nine checks that apply to a landing page</a> rather than to a
 crawl, and <a href="/learn/marketing-tag-audit/">whether your tracking is on every page</a>,
@@ -223,13 +223,13 @@ which is a different question from whether it is installed.</li>
 
 <h2>How often to run one</h2>
 <p>Quarterly is right for most sites, with lighter monitoring between. Run one immediately
-after a redesign, a migration, a CMS change, or an unexplained traffic drop — those are when
+after a redesign, a migration, a CMS change, or an unexplained traffic drop: those are when
 the fatal, invisible mistakes get introduced.</p>
 
 <h2>What a good audit report looks like</h2>
 <p>Three tests. If a report fails them, it will not get acted on:</p>
 <ol>
-<li><strong>Is there a first task?</strong> Not a category — a specific first thing.</li>
+<li><strong>Is there a first task?</strong> Not a category: a specific first thing.</li>
 <li><strong>Does every finding say what it costs you?</strong> "Missing meta description" is a
 fact. "Google is writing your search snippet from a cookie notice" is a reason.</li>
 <li><strong>Does it admit what it could not check?</strong> A report with no gaps either
@@ -257,7 +257,7 @@ against effort, and marks areas it could not assess as unknown rather than passi
              "crawlers omit."),
             ("How often should I run an SEO audit?",
              "Quarterly for most sites, with lighter monitoring in between. Run one immediately "
-             "after a redesign, migration or unexplained traffic drop — those are when "
+             "after a redesign, migration or unexplained traffic drop: those are when "
              "invisible, fatal mistakes get introduced."),
         ],
     )

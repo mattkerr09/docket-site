@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The tracking lane — six checks, and until now not one page on this site.
+"""The tracking lane: six checks, and until now not one page on this site.
 
 A gap analysis of every capability in the app against every page here found two
 whole lanes with no coverage at all. This is the larger one: six checks that ran
@@ -55,12 +55,12 @@ been for as long as nobody checked.</p>
 <p>Tag managers are installed once, on a template, and then the site grows. A landing page
 built for one campaign gets published from a different template. A checkout flow gets
 rebuilt by a contractor. A blog moves to a subdomain. Each of those is a page where the tag
-is absent, and none of them announce it — the tag is still installed, on the pages it was
+is absent, and none of them announce it: the tag is still installed, on the pages it was
 installed on.</p>
 
 <p>So the check that matters is coverage: of the pages Docket read, how many carried the
 tag. One page missing a pixel in a funnel of four breaks the path rather than a quarter of
-it — a conversion that fires on a page the platform never saw the visitor reach is
+it. A conversion that fires on a page the platform never saw the visitor reach is
 attributed to nobody, and how much that costs depends on which page it is.</p>
 
 <h2>What Docket looks for</h2>
@@ -74,18 +74,18 @@ attributed to nobody, and how much that costs depends on which page it is.</p>
 <p><strong>Consent and privacy compliance</strong> is checked because a tag firing before
 consent is worse than a tag missing. A missing tag costs you data. A tag that fires before
 the visitor agrees is a legal exposure in the EU and the UK, and it is invisible in every
-dashboard — the data arrives and looks perfect.</p>
+dashboard: the data arrives and looks perfect.</p>
 
 <p><strong>UTM tagging hygiene</strong> is about your own links. Inconsistent casing splits
 one campaign into two rows in your reports, and internal links carrying UTM parameters
-overwrite the original source of the session — so a visitor who arrived from search and
+overwrite the original source of the session, so a visitor who arrived from search and
 then clicked your own tagged banner is recorded as arriving from the banner. Your best
 channel gets credited to your worst.</p>
 
 <h2>What we found looking at real sites</h2>
 
-<p>On 2026-08-14 we audited four live business sites — an Italian food retailer, a French
-bakery chain, a US coffee retailer and a US museum — and the tracking lane produced a
+<p>On 2026-08-14 we audited four live business sites (an Italian food retailer, a French
+bakery chain, a US coffee retailer and a US museum), and the tracking lane produced a
 finding on the coffee retailer that is worth quoting exactly as it was written:</p>
 
 <blockquote><p>No analytics tag on any page Docket could see</p></blockquote>
@@ -93,7 +93,7 @@ finding on the coffee retailer that is worth quoting exactly as it was written:<
 <p>The important words are <em>could see</em>. That site renders its pages with JavaScript
 and ships almost no HTML, so a tag injected at runtime would not appear in what Docket read.
 The finding says what was observed and stops there, rather than concluding that a large
-retailer has no analytics — which would be a claim about somebody's business made from an
+retailer has no analytics, which would be a claim about somebody's business made from an
 absence of evidence.</p>
 
 <p>That is deliberate, and it is the same rule everywhere in the product: a check that could
@@ -108,8 +108,8 @@ reported because it shows what the lane does and where it stops.</p>
 <h2>Doing this yourself, without Docket</h2>
 
 <p>You do not need a tool for the first pass. Open your site, view source on five pages
-chosen from different templates — homepage, a product or service page, a blog post, a
-landing page, the thank-you page after a form — and search each for your measurement ID.
+chosen from different templates (homepage, a product or service page, a blog post, a
+landing page, the thank-you page after a form), and search each for your measurement ID.
 The thank-you page is the one to check first: it is the page that proves a conversion
 happened, it is usually built last, and it is the page most often published from a template
 nobody added the tag to.</p>
@@ -119,7 +119,7 @@ found the thing this lane exists for, and it took four minutes.</p>
 
 <h2>What this lane deliberately does not do</h2>
 
-<p>It does not tell you whether your tracking is <em>correct</em> — whether the events fire
+<p>It does not tell you whether your tracking is <em>correct</em>. Whether the events fire
 on the right actions, whether revenue is passed accurately, whether your goals mean what
 you think. Those need to be tested in your analytics account against real sessions, and a
 crawler cannot see them. Docket reports what is present in the pages it read and does not
@@ -141,8 +141,8 @@ guess at the rest.</p>
     return render(
         cat="learn", slug="marketing-tag-audit",
         title="Marketing tag audit: is your tracking on every page?",
-        desc=(f"The {len(rows)} tracking checks in Docket's audit — analytics coverage, ad "
-              "pixels, consent timing, UTM hygiene — and the common failure you "
+        desc=(f"The {len(rows)} tracking checks in Docket's audit (analytics coverage, ad "
+              "pixels, consent timing, UTM hygiene), and the common failure you "
               "can check yourself in four minutes."),
         h1="Marketing tag audit",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Marketing tag audit',
@@ -159,7 +159,7 @@ guess at the rest.</p>
              "to a subdomain are all pages published outside the template the tag was "
              "added to. Nothing errors when it happens."),
             ("Can Docket see tags that JavaScript injects at runtime?",
-             "Not by default — it reports what is present in the HTML it read, and says "
+             "Not by default. It reports what is present in the HTML it read, and says "
              "so rather than concluding a site has no analytics. Running an audit with "
              "--render executes the page's JavaScript in WebKit first and audits what a "
              "browser actually receives."),

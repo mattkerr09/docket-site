@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Content audit — the job, and which Ahrefs tool does which part of it.
+"""Content audit: the job, and which Ahrefs tool does which part of it.
 
 Target query: "ahrefs content audit" (18 impressions, Search Console
 2026-08-10 to 2026-09-05).
@@ -8,7 +8,7 @@ Target query: "ahrefs content audit" (18 impressions, Search Console
 zero occurrences on ahrefs.com/pricing and zero on ahrefs.com/site-audit.
 Ahrefs' named tools are Site Explorer, Keywords Explorer, Site Audit, Rank
 Tracker and Content Explorer. The phrase comes from the searcher, not from
-Ahrefs, so this page is a how-to and not a /vs/ page — a URL or a title
+Ahrefs, so this page is a how-to and not a /vs/ page. A URL or a title
 implying a competitor sells a product they do not sell is a false claim about
 their business, which is the thing this project polices hardest.
 
@@ -27,8 +27,8 @@ from render import N_CHECKS, N_LANES, render  # noqa: E402
 def content_audit() -> Path:
     body = """
 <p class="lede">If you searched for an Ahrefs content audit, the first useful thing to know is
-that Ahrefs does not sell one. There is no product of that name. What exists is a job — going
-through the pages you have published and deciding which to keep, improve, merge or remove — and
+that Ahrefs does not sell one. There is no product of that name. What exists is a job (going
+through the pages you have published and deciding which to keep, improve, merge or remove), and
 several tools that each do a slice of it. Knowing which slice saves you paying for the wrong
 one.</p>
 
@@ -41,7 +41,7 @@ one.</p>
 almost every audit that stalls stalls here.</li>
 <li><strong>What is each page for?</strong> One page per intent. Two pages chasing the same
 thing compete with each other and split whatever authority they earn.</li>
-<li><strong>Is it good enough to rank?</strong> Depth against what already ranks — a judgement,
+<li><strong>Is it good enough to rank?</strong> Depth against what already ranks: a judgement,
 not a measurement, and the part no tool finishes for you.</li>
 <li><strong>Can it be seen at all?</strong> Indexable, in the HTML, not duplicated, not orphaned.
 Entirely mechanical, and where most of the real damage hides.</li>
@@ -53,12 +53,12 @@ worse problem than a mediocre one that it can, and it is far cheaper to fix.</p>
 <h2>What Ahrefs' real tools do for this</h2>
 
 <p><strong>Content Explorer</strong> is described by Ahrefs as a way to "find top-performing
-content, link prospects, and media opportunities in your niche" — content <em>ideas</em> on a
+content, link prospects, and media opportunities in your niche": content <em>ideas</em> on a
 topic. It is an index of what other people have published. That is genuinely useful for deciding
 what to write next, and it is the tool whose name most resembles the phrase people search for.
 It is not looking at your site.</p>
 
-<p><strong>Site Audit</strong> is the one that crawls your own pages — Ahrefs' own summary is
+<p><strong>Site Audit</strong> is the one that crawls your own pages. Ahrefs' own summary is
 "audit &amp; optimize your website". It is a technical crawler: status codes, duplicate titles,
 broken links, the mechanical fourth question above.</p>
 
@@ -66,7 +66,7 @@ broken links, the mechanical fourth question above.</p>
 "which of my pages actually earn anything" comes from.</p>
 
 <p>So the job is split across at least two products and the judgement is still yours. Nobody is
-hiding a Content Audit button — the work simply does not live in one place. If you are weighing
+hiding a Content Audit button: the work simply does not live in one place. If you are weighing
 the crawling half specifically, that comparison is on
 <a href="/vs/ahrefs-site-audit-alternative/">Docket vs Ahrefs Site Audit</a>, with dated prices
 read from their pricing page.</p>
@@ -74,19 +74,19 @@ read from their pricing page.</p>
 <h2>The order that wastes least time</h2>
 
 <p><strong>1. Get the list.</strong> Crawl your own site and export every indexable URL. Not the
-sitemap — the sitemap is what you claim you have. The crawl is what a crawler can actually reach,
+sitemap: the sitemap is what you claim you have. The crawl is what a crawler can actually reach,
 and the difference between those two lists is itself a finding.</p>
 
 <p><strong>2. Separate thin from invisible.</strong> These look identical in a spreadsheet and
 have opposite remedies. A genuinely thin page needs writing or removing. A page whose body
-arrives via JavaScript needs server-rendering — writing more would not help, and deleting it
+arrives via JavaScript needs server-rendering: writing more would not help, and deleting it
 would be a mistake. Docket labels a word count as a count of the HTML as served when a page
 carries a framework's hydration marker, precisely because the two get confused;
 <a href="/how-to/javascript-seo-audit/">the JavaScript SEO audit procedure</a> is how you tell
 them apart on a single URL.</p>
 
 <p><strong>3. Find the pages competing with each other.</strong> Duplicate and near-duplicate
-titles are the cheapest signal — see
+titles are the cheapest signal: see
 <a href="/how-to/fix-duplicate-title-tags/">fixing duplicate title tags</a>. Where two pages
 genuinely serve one intent, merge and redirect rather than rewriting both.</p>
 
@@ -100,7 +100,7 @@ reading a much shorter list, and you are reading it about pages that can actuall
 
 <h2>Index pages are not thin pages</h2>
 
-<p>A category listing, an A–Z, a tag or author page — its job is to point elsewhere, and a low
+<p>A category listing, an A–Z, a tag or author page: its job is to point elsewhere, and a low
 word count is normal. Every automated content audit flags these, and the advice it gives is
 wrong three ways: do not write copy on it, do not merge it, and do not delete it, because other
 pages link to it. Judge it on whether the list is worth having and whether anything links to it.
@@ -126,14 +126,14 @@ the right purchase and Docket is not. The full list of what is and is not covere
 <h2>Doing it more than once</h2>
 
 <p>A content audit is usually run as a one-off and then not again until the next reorganisation,
-which is why the same problems reappear. The mechanical half is worth re-running on a schedule —
+which is why the same problems reappear. The mechanical half is worth re-running on a schedule:
 <a href="/learn/site-monitoring/">site monitoring</a> is that, and it is a different job from a
 crawl in that it tells you what changed rather than what is true today. If you want the
 server's own record of which pages a crawler actually fetched, that is
 <a href="/learn/log-file-analysis/">log file analysis</a>.</p>
 
 <p>And if the reason for the audit is that traffic arrives and does nothing, the content is
-probably not the constraint — <a href="/learn/conversion-audit/">a conversion audit</a> asks a
+probably not the constraint: <a href="/learn/conversion-audit/">a conversion audit</a> asks a
 different question of the same pages.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
@@ -163,12 +163,12 @@ different question of the same pages.</p>
              "crawler can reach, and the gap between the two is a finding in itself."),
             ("Why is a short page not automatically a problem?",
              "Because index pages are short on purpose. A category listing, an A–Z or a tag "
-             "page exists to point elsewhere, and the usual advice — write more, merge it, "
-             "delete it — is wrong for all three. Judge it on whether the list is worth "
+             "page exists to point elsewhere, and the usual advice (write more, merge it, "
+             "delete it) is wrong for all three. Judge it on whether the list is worth "
              "having and whether anything links to it."),
             ("Can a tool tell me whether my content is good?",
              "No, and one that claims to is scoring a proxy. Tools are reliable on the "
-             "mechanical questions — is it indexable, is it duplicated, is it in the HTML "
+             "mechanical questions: is it indexable, is it duplicated, is it in the HTML "
              "— and those are worth clearing first, because they are cheap and they gate "
              "everything else. The judgement about depth stays yours."),
         ],

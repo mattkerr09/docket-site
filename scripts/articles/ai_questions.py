@@ -90,8 +90,8 @@ Disallow: /</code></pre>
 away. If the load is the problem rather than the use, a delay is the gentler answer.</p>
 <p>A group that names <code>ClaudeBot</code> replaces your <code>User-agent: *</code> rules for it
 completely, so anything you disallow for everyone has to be repeated inside the named group if it
-should still apply. And a rule written with a stray character &mdash; a version number, a
-non-breaking hyphen pasted from a document &mdash; can address a name no crawler has; the
+should still apply. And a rule written with a stray character (a version number, a
+non-breaking hyphen pasted from a document) can address a name no crawler has; the
 <a href="/index/ai-directives/">Docket Index</a> found such rules on real sites.</p>
 
 <h2>What most sites that block Anthropic actually do</h2>
@@ -189,7 +189,7 @@ pages.</p>
 <p>Where it can help is the narrower case it was designed for: a tool or an assistant that has
 already decided to read your site, often a developer pointing an agent at documentation. The AI
 labs publish llms.txt files for their own developer docs for exactly that reason. It is cheap to
-make, harmless to have, and worth keeping honest &mdash; a genuine index of your best pages, not a
+make, harmless to have, and worth keeping honest: a genuine index of your best pages, not a
 list of keywords.</p>
 
 <h2>How many sites actually have one</h2>
@@ -197,7 +197,7 @@ list of keywords.</p>
 readable robots.txt in the Tranco top {s['attempted']:,}, <strong>{adoption}% had a real llms.txt</strong>
 ({confirmed} files), and the share is highest among the largest sites. Getting that number right
 took care: a naive check that fetches <code>/llms.txt</code> and calls any 200 a yes found
-{candidates} &ldquo;files&rdquo;, and {false_pos} of them ({false_pct}%) were not one &mdash; soft
+{candidates} &ldquo;files&rdquo;, and {false_pos} of them ({false_pct}%) were not one. Soft
 404 pages, sitemaps, robots.txt served at the wrong path. Any tool that flags a
 &ldquo;missing&rdquo; or &ldquo;present&rdquo; llms.txt without reading the body is wrong about one
 time in six. The <a href="/index/ai-directives/">full breakdown is in the Docket Index</a>.</p>

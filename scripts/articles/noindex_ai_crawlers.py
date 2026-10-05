@@ -15,12 +15,12 @@ blogs; NO OpenAI or Google documentation anywhere on page one, so the query
 passes the drop-rule.
 
 **No existing Docket page owns this question.** "noindex" and "AI crawler"
-co-occur on several pages — the canonicals article, the comparison pages, the
-crawler-directive survey — but in each case the terms meet incidentally inside
+co-occur on several pages (the canonicals article, the comparison pages, the
+crawler-directive survey), but in each case the terms meet incidentally inside
 a broader argument. Nothing here is a second copy of an existing page's spine.
 
 **Demand, recorded before writing:** Bing exact impressions are recorded for
-the 14- and 28-day read and did not gate this decision either way — the point
+the 14- and 28-day read and did not gate this decision either way. The point
 of recording them is to separate "ranked, nobody wanted it" from "did not
 rank", not to decide whether to write. The nine independent sites already
 holding page one are demand evidence of their own.
@@ -65,8 +65,8 @@ def noindex_ai_crawlers() -> Path:
 may be shown in results. It says nothing about whether the page may be retrieved, and a crawler has
 to retrieve the page before it can read the tag at all.</p>
 <p><strong>Access is a separate control with separate levers.</strong> Whether an AI crawler gets your
-pages is decided by the user-agent tokens in robots.txt — <code>GPTBot</code>, <code>ClaudeBot</code>,
-<code>Google-Extended</code> and the rest — and above that by your server or CDN, which can refuse
+pages is decided by the user-agent tokens in robots.txt (<code>GPTBot</code>, <code>ClaudeBot</code>,
+<code>Google-Extended</code> and the rest), and above that by your server or CDN, which can refuse
 the request before any file or tag is consulted.</p>
 <p><strong>Those two layers disagree more often than anyone expects.</strong> In Docket's
 {SURVEYED_HUMAN} survey of the Tranco top {surveyed:,}, <strong>{edge_denied:,} hosts
@@ -109,7 +109,7 @@ removal instruction.</p>
 <td><strong>Yes</strong>, for crawlers that comply</td>
 <td>The crawler, voluntarily, before it requests anything</td></tr>
 <tr><td>Your server or CDN</td>
-<td>Only as a side effect — there is nothing to index</td>
+<td>Only as a side effect: there is nothing to index</td>
 <td><strong>Yes</strong>, for everybody. This is the enforcement layer</td>
 <td>Nobody. The refusal is issued, not requested</td></tr>
 </tbody>
@@ -130,7 +130,7 @@ the second removes you from answers, which is rarely what anyone sat down intend
 
 <p>Across the {hosts:,} hosts in the survey with a parseable robots.txt, <strong>{blocks_training:,}
 block at least one training crawler</strong> and <strong>{blocks_citation:,} block at least one
-citation crawler</strong>. Two checks in the audit cover the two layers separately —
+citation crawler</strong>. Two checks in the audit cover the two layers separately:
 <code>ai.crawler_access</code> reads what the directives say, and <code>ai.edge_access</code> asks the
 server what it actually does. Neither of them is a check on your meta tags, because a meta tag is not
 where this is decided.</p>
@@ -139,7 +139,7 @@ where this is decided.</p>
 
 <p>The survey read robots.txt for the Tranco top {surveyed:,} and, separately, put a request to each
 server as a bot that said who it was. The gap between those two readings is the finding.
-<strong>{edge_denied:,} hosts — {edge_pct}% — returned 401, 403, 406, 429 or 503</strong> to that
+<strong>{edge_denied:,} hosts ({edge_pct}%) returned 401, 403, 406, 429 or 503</strong> to that
 request. None of those refusals was produced by a directive or a tag; the connection was closed before
 either could matter.</p>
 
@@ -169,7 +169,7 @@ attention.</p>
 
 <p>robots.txt has no teeth. It is a published request that well-behaved crawlers choose to honour, and
 a crawler that ignores it faces nothing but its own operator's policy. Anything that must be refused
-rather than asked has to be refused at the server or the CDN — which is exactly why the edge figure
+rather than asked has to be refused at the server or the CDN, which is exactly why the edge figure
 above is the one worth acting on, and why a robots.txt audit on its own cannot tell you what your site
 does.</p>
 
@@ -183,14 +183,14 @@ a reader of your site can inspect.</p>
 <li><strong>Stop treating <code>noindex</code> as an access control.</strong> Use it for what it does:
 keeping a page out of search results. It is not a consent mechanism and was never offered as one.</li>
 <li><strong>Decide per crawler, in robots.txt.</strong> Refusing a training crawler while admitting a
-search crawler is a coherent, statable position. A single category toggle cannot express it — and
+search crawler is a coherent, statable position. A single category toggle cannot express it, and
 check the names you write, because more than half the files that write an AI rule at all
 <a href="/index/ai-directives/">address a crawler that no longer answers to it</a>.</li>
-<li><strong>Test the server, not the file.</strong> Request the same URL twice from one machine — once
-as an ordinary browser, once as the crawler — and compare. A browser 200 against a crawler 403 is the
+<li><strong>Test the server, not the file.</strong> Request the same URL twice from one machine (once
+as an ordinary browser, once as the crawler), and compare. A browser 200 against a crawler 403 is the
 finding, and it is invisible to anything that only reads robots.txt.</li>
 <li><strong>Check that a crawler you admit can read what it gets</strong>, which is a separate failure
-again — see <a href="/learn/javascript-rendering/">JavaScript rendering</a> and
+again. See <a href="/learn/javascript-rendering/">JavaScript rendering</a> and
 <a href="/learn/ai-search-visibility/">AI search visibility</a>.</li>
 <li><strong>Look at your own site the way an assistant does</strong>, rather than the way your CMS
 does: <a href="/how-to/audit-your-site-from-an-ai-assistant/">audit your site from an AI
@@ -224,8 +224,8 @@ assistant</a>.</li>
         published="2026-09-15",
         faq=[
             ("Does noindex stop AI crawlers?",
-             "No. A noindex directive is carried inside the response — either as a robots meta "
-             "element or an X-Robots-Tag header — so the crawler has already requested and "
+             "No. A noindex directive is carried inside the response (either as a robots meta "
+             "element or an X-Robots-Tag header), so the crawler has already requested and "
              "received the page by the time it can read the tag. noindex governs whether a search "
              "engine shows the page in results, not whether anything may fetch it."),
             ("What does stop an AI crawler, then?",
@@ -246,8 +246,8 @@ assistant</a>.</li>
              f"{search_only} gave up search while permitting training."),
             ("My robots.txt allows AI crawlers. Is that the whole answer?",
              f"No. In Docket's {SURVEYED_HUMAN} survey of the Tranco top {surveyed:,}, "
-             f"{edge_denied:,} hosts ({edge_pct}%) refused a self-identifying bot outright — 401, "
-             f"403, 406, 429 or 503 — before any robots rule could apply, and {llms_edge_pct}% of "
+             f"{edge_denied:,} hosts ({edge_pct}%) refused a self-identifying bot outright (401, "
+             f"403, 406, 429 or 503) before any robots rule could apply, and {llms_edge_pct}% of "
              "hosts whose robots.txt explicitly permitted a fetch of /llms.txt were then denied it "
              "by the server. Test the server, not the file."),
         ],

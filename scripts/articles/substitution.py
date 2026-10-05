@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""AI substitution — which of your pages an answer replaces outright.
+"""AI substitution, which of your pages an answer replaces outright.
 
 Numbers are from Docket's own exposure analysis run against two live sites on
 2026-08-07, after three false positives found during that run were fixed. The
@@ -19,7 +19,7 @@ from render import render  # noqa: E402
 def ai_substitution() -> Path:
     body = f"""
 <p class="lede">The AI-search risk to most businesses is not losing rankings. It is keeping
-them and losing the visit, because the answer now appears in the result — so the question
+them and losing the visit, because the answer now appears in the result, so the question
 worth asking about a page is not how it ranks but whether an answer somewhere else delivers
 what it offers.</p>
 
@@ -29,7 +29,7 @@ assessed {F.exposure_assessed('retailer')} pages and found
 {F.exposure_defence('retailer', 'transact')} of them let the visitor do something and
 {F.exposure_defence('retailer', 'operate')} carry something to operate. Run against
 <strong>docketseo.app</strong> it assessed {F.exposure_assessed('docket')} pages and found
-{F.exposure_substitutable_pct('docket')}% too — but the worst page on this site scored 0.85
+{F.exposure_substitutable_pct('docket')}% too, but the worst page on this site scored 0.85
 out of 1 a few hours before this was written, and what changed was mostly the measurement
 rather than the page.</p>
 
@@ -72,7 +72,7 @@ do a thing that has to happen on the page. A model can describe a sandwich. It c
 one.</p>
 
 <p>Our site scores worse, and that is the honest position rather than a modest one. Docket's
-site is mostly explanation — that is what a site selling an audit tool tends to be — and the
+site is mostly explanation (that is what a site selling an audit tool tends to be), and the
 defence holding most of it up is original data. The page most at risk is the one
 explaining what an SEO audit is, which is exactly the shape an assistant answers without a
 click. We know what to do about it and it is not an SEO fix.</p>
@@ -84,7 +84,7 @@ live sites produced three false positives in an afternoon, all of them the same 
 <strong>counting a signal being mentioned as the signal being present.</strong></p>
 
 <p><strong>Our own site scored as a physical business, three times.</strong> The matcher
-looked for phrases like "opening hours" — and Docket's copy explains, at length, that local
+looked for phrases like "opening hours", and Docket's copy explains, at length, that local
 businesses need opening-hours markup. Meanwhile the actual retailer scored zero. The test
 was backwards in both directions at once. It now wants schema.org place markup, or
 first-person prose corroborated by a phone number, and the distinction that fixed it is
@@ -104,14 +104,14 @@ on a known media host. That number is
 
 <p>A fourth turned up when the analysis was finally rendered into a PDF and looked at rather
 than read as code. Our privacy policy and terms of use were sitting in the "most exposed"
-list — accurate, and useless. A privacy policy's reason to exist is not that people read it.
+list: accurate, and useless. A privacy policy's reason to exist is not that people read it.
 Legal and utility pages are now left out of the portfolio, which is why the figure above
 covers {F.exposure_assessed('docket')} of our pages rather than all of them.</p>
 
 <p>Then three more, all the same shape. This article scored as having a login and a
 calculator, because it contains a table explaining that logins and calculators are defences.
 And the SEO-audit explainer scored as having <em>no</em> data of its own while reporting that
-we read the JSON-LD of {F.entity_n()} sites — the verb list did not include "we read".</p>
+we read the JSON-LD of {F.entity_n()} sites: the verb list did not include "we read".</p>
 
 <p>Two others came from the opposite direction. "Download" was not counted as a transaction
 while "sign up" was, which is an inconsistency rather than a principle. Fixing it then made
@@ -120,14 +120,14 @@ text appears on every page are treated as navigation now.</p>
 
 <p>Most of those made a site look safer than it was, which is the failure mode that matters
 here. We are writing them down because a page arguing that you should measure this should say
-what measuring it badly looks like — and because the scores on this page moved while it was
+what measuring it badly looks like, and because the scores on this page moved while it was
 being written, which a reader deserves to know.</p>
 
 <div class="callout">
 <div class="callout-title">The weakest of the six, stated plainly</div>
 <p>Docket cannot tell a button in your site header from one that is a page's whole purpose. It
 drops calls to action whose exact text repeats on every page, which catches a plain
-"Download" in the navigation — and not four spellings of the same closing button. Tightening
+"Download" in the navigation, and not four spellings of the same closing button. Tightening
 it further means guessing at page structure, and tuning a scorer against your own site is how
 a measurement quietly becomes the answer you wanted. Read the transaction count as "pages that
 ask for an action", not "pages whose reason to exist is that action".</p>
@@ -137,7 +137,7 @@ ask for an action", not "pages whose reason to exist is that action".</p>
 
 <p><a href="/vs/">Profound, Otterly and Peec</a> track whether you are actually cited, by
 running prompts against the models and recording what comes back. That is downstream reality
-and Docket cannot produce it — we do not run prompts, and a tool on your Mac has no way to see
+and Docket cannot produce it: we do not run prompts, and a tool on your Mac has no way to see
 what ChatGPT told someone in Ohio. If the question is "am I being cited today", buy one of
 those.</p>
 
@@ -161,7 +161,7 @@ way. That is the uncomfortable part and it is why the fix is structural.</p>
 
 <ol>
 <li><strong>Publish something only you can measure.</strong> The one defence that converts a
-lost click into a citation. It does not have to be big — a survey of 40 customers is data
+lost click into a citation. It does not have to be big: a survey of 40 customers is data
 nobody else has. Ours are <a href="/index/ai-directives/">a robots.txt survey</a> and
 <a href="/learn/sameas-entity-signals/">an entity one</a>, and they are the reason most of
 this site is defended at all.</li>
@@ -191,7 +191,7 @@ number in a sentence cannot tell you when it has stopped being true.</p>
         cat="learn", slug="ai-substitution",
         title="Which of your pages can an AI answer replace?",
         desc=("The AI risk is keeping your rankings and losing the visit. What "
-              "defends a page against an answer, measured on two live sites — "
+              "defends a page against an answer, measured on two live sites, "
               "and six ways we measured it wrong."),
         h1="Which of your pages an AI answer replaces",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / AI substitution',
@@ -201,16 +201,16 @@ number in a sentence cannot tell you when it has stopped being true.</p>
             ("What makes a web page substitutable by AI?",
              "Being purely explanatory. If the page's whole value is telling the reader "
              "something, an assistant can tell them instead and the visit never happens. "
-             "Pages that let someone do something — buy, book, calculate, log in, or turn "
-             "up in person — are not substitutable, however good the model gets."),
+             "Pages that let someone do something (buy, book, calculate, log in, or turn "
+             "up in person) are not substitutable, however good the model gets."),
             ("Does this predict how much traffic I will lose?",
              "No, and nothing can. Docket cannot see your analytics and nobody knows how far "
              "AI answers will erode any particular site. A risk of 0.85 means the page's "
-             "value is 85% deliverable elsewhere — a statement about the page, not a "
+             "value is 85% deliverable elsewhere: a statement about the page, not a "
              "forecast."),
             ("What is the strongest defence against AI substitution?",
              "Data of your own. An assistant answering from your numbers has to name you, "
-             "which turns a lost click into a citation — a better outcome than the visit "
+             "which turns a lost click into a citation: a better outcome than the visit "
              "you were going to lose. On docketseo.app it is the defence holding most "
              "of the site up."),
             ("Will writing better content help?",

@@ -4,7 +4,7 @@ Promised on the how-to hub. Sourced from the registered check
 `brand.positioning` ("Consistent positioning statement").
 
 The archetype: you do not fail this by writing badly. You fail it by writing
-well, one page at a time, each about its own subject — every addition an
+well, one page at a time, each about its own subject: every addition an
 improvement and the aggregate quietly degrading.
 
 ⚠️ The self-implicating example is recent and real: this site failed its own
@@ -15,7 +15,7 @@ on its own. And the wrong fix described here is one I tried first.
 asks why no crawler looks at brand at all; this one is about one measurable
 property and how it decays.
 
-No numeric literals — the check's thresholds live in the engine, and it has
+No numeric literals. The check's thresholds live in the engine, and it has
 already been tuned once for being too strict.
 """
 from __future__ import annotations
@@ -31,7 +31,7 @@ def positioning() -> Path:
     body = """
 <p class="lede">Read any one page of your site and it is fine. Read twenty and you cannot say
 what the company does. No page is wrong, nothing returns an error, and no report you run will
-mention it — because the defect does not exist on a page. It exists between them.</p>
+mention it, because the defect does not exist on a page. It exists between them.</p>
 
 <h2>What is actually being measured</h2>
 
@@ -50,7 +50,7 @@ separately.</p>
 <h2>Why good work causes it</h2>
 
 <p>This is the part worth internalising. You do not arrive here by being careless. You arrive by
-shipping — a page on one topic, then a page on another, each description written to describe
+shipping: a page on one topic, then a page on another, each description written to describe
 that page as precisely as possible.</p>
 
 <p>Every addition improves the site. The aggregate gets worse. There is no moment where somebody
@@ -60,7 +60,7 @@ pages instead of within one.</p>
 <p>This site did it. A run of new pages went up, each written from a different check, each
 description accurate about its own subject and sharing nothing with the others, until the
 site's own check fired on the site. It was caught by a gate that runs the check before every
-deploy — not by anybody reading the pages, because reading the pages tells you nothing.</p>
+deploy, not by anybody reading the pages, because reading the pages tells you nothing.</p>
 
 <h2>The wrong fixes</h2>
 
@@ -78,7 +78,7 @@ decided what you do. Gaming the proxy leaves the actual condition exactly where 
 
 <h2>The fix</h2>
 
-<p><strong>Decide the sentence first.</strong> One plain line that is true of the business —
+<p><strong>Decide the sentence first.</strong> One plain line that is true of the business:
 what it does, for whom, and the thing that distinguishes it. If nobody can write that line, the
 site is not the problem.</p>
 
@@ -99,7 +99,7 @@ company, and no crawler has an opinion on them.</p>
 <p>It is also a measurement with a floor: a site with only a handful of descriptions has not
 said enough for the question to mean anything, and a site covering many subjects spreads its
 terms out legitimately. A check worth trusting here sets its bar at a recognisable thread rather
-than a majority — and the one behind this page was loosened after being unfair to a real site,
+than a majority, and the one behind this page was loosened after being unfair to a real site,
 which is the correct direction for a test to move when it disagrees with reality.</p>
 
 <p>The broader question of why crawlers ignore brand entirely is
@@ -120,7 +120,7 @@ which is the correct direction for a test to move when it disagrees with reality
              "thing to say. One without invents a fresh pitch per page."),
             ("Will putting my company name in every description fix it?",
              "No, and a good check excludes the brand name on purpose. A site repeating its "
-             "own name is not a site saying something — the name recurs even when no idea "
+             "own name is not a site saying something: the name recurs even when no idea "
              "does."),
             ("Is the same description on every page the solution?",
              "That is the opposite defect and it is measured separately. It also puts a claim "

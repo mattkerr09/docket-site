@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Answer extractability — what `ai.extractability` actually computes.
+"""Answer extractability: what `ai.extractability` actually computes.
 
 Everything about the check is read from its source, `ai.extractability` in
 `backend/seo_engine/checks/ai_visibility.py` (registered in the AI lane as
@@ -10,20 +10,20 @@ and `urls_of` in `registry.py`, from the `requires_full_crawl` suppression in
 `audit.py`, and from the test that guards the finding's URL list,
 `tests/test_finding_urls.py`.
 
-The check emits exactly ONE finding id — `ai.no_question_headings`, at MEDIUM.
+The check emits exactly ONE finding id: `ai.no_question_headings`, at MEDIUM.
 The check id and the finding id are different namespaces, which `audit.py`
 records the hard way; both are named on the page so a reader searching their
 own report for either string lands somewhere.
 
 ⚠️ NO FIGURE IS PUBLISHED HERE AND THERE IS NO DATASET BEHIND THIS PAGE. The
-site's AI-crawler datasets measure ACCESS — who is allowed to fetch a page.
+site's AI-crawler datasets measure ACCESS. Who is allowed to fetch a page.
 This page is about EXTRACTION, and no measurement of extraction exists on this
 side or any other. An access percentage carried across into an extraction
 sentence would be the worst thing this page could do, so the page publishes no
 number at all and says why. `/index/ai-directives/` is linked, not quoted.
 
-The thresholds this page describes in words — three hundred words of main text,
-at least three such pages, fewer than a quarter of them — are read from the
+The thresholds this page describes in words (three hundred words of main text,
+at least three such pages, fewer than a quarter of them) are read from the
 check's source and are SPELLED OUT rather than digitised, because
 `verify_numbers.py` refuses a typed figure and there is nothing to derive them
 from: two are local literals inside the function and the third is
@@ -39,12 +39,12 @@ re-read if the check is edited:
      followed by a concise answer, lists, and tables". The body reads headings
      and nothing else. No list, no table, and nothing under the heading. Same
      shape as `ai.entity` at `ai_visibility.py:957` and `_declares_an_author`
-     in `content.py` — a description that names something the implementation
-     never reads — though milder, because here the mismatch is with a docstring
+     in `content.py` (a description that names something the implementation
+     never reads) though milder, because here the mismatch is with a docstring
      rather than with the remedy the finding prints.
   2. `page.headings` is assigned `doc.headings()`, which walks the WHOLE
      document. `page.word_count` is counted over `doc.main_text()`, which
-     strips `BOILERPLATE_TAGS` — nav, header, footer, aside, form. So the
+     strips `BOILERPLATE_TAGS`: nav, header, footer, aside, form. So the
      denominator excludes site chrome and the signal includes it, and one
      footer heading ending in a question mark satisfies the test on every page
      of a site. This is the `chrome_text` problem in `dom.py` pointed the other
@@ -100,9 +100,9 @@ query, for a reader we never meet. A crawler sees your HTML. It does not see the
 
 <p>So what this check measures is the <em>shape</em> of your content against what lifting an
 answer out of it requires. That is a proxy, and the page should say so before it says
-anything else. The reasoning behind the proxy is plain enough — a passage that states a
+anything else. The reasoning behind the proxy is plain enough (a passage that states a
 question and then answers it is a passage something can take whole, and eight paragraphs of
-throat-clearing is not — but reasoning is not evidence, and a page can satisfy this check and
+throat-clearing is not), but reasoning is not evidence, and a page can satisfy this check and
 never be quoted by anything.</p>
 
 <p>The vendors are clearer about this gap than most of the advice written about them.
@@ -113,7 +113,7 @@ structured data that you need to add." That is Google writing about Google's fea
 does not describe ChatGPT or Perplexity. OpenAI's
 <a href="{OPENAI_BOTS}">crawler documentation</a>, read the same day, says
 "<code>OAI-SearchBot</code> is used to surface websites in search results in ChatGPT's search
-features" — and then documents access, user-agents and IP ranges, and nothing whatever about
+features", and then documents access, user-agents and IP ranges, and nothing whatever about
 how one page gets chosen over another.</p>
 
 <p>Nothing on this site will tell you what to do to be cited, because outside those companies
@@ -136,8 +136,8 @@ business site gets no finding here, and no pass either.</li>
 
 <p>For each surviving page it asks one question: does any <code>h2</code> or <code>h3</code>
 end in a question mark? If none does, it joins that page's second- and third-level headings
-into a single lowercased string and looks for a question word — how, what, why, when, where,
-which, can, do, does, is, are — followed within about sixty characters by a question mark.
+into a single lowercased string and looks for a question word (how, what, why, when, where,
+which, can, do, does, is, are) followed within about sixty characters by a question mark.
 Either hit counts the page as asking a question.</p>
 
 <p>Then it divides. If fewer than a quarter of the substantial pages ask a question, the
@@ -147,7 +147,7 @@ check raises one finding. Above that line it says nothing at all.</p>
 
 <p>One finding id, <code>ai.no_question_headings</code>, at <strong>medium severity</strong>,
 titled "Content is not structured as answers to questions". Note that the finding id is not
-the check id — searching your report for <code>ai.extractability</code> will not find it.
+the check id. Searching your report for <code>ai.extractability</code> will not find it.
 Its detail names how many of your substantial pages use question-form headings, and then
 argues the case:</p>
 
@@ -158,11 +158,11 @@ undifferentiated prose does not.</p></blockquote>
 <p>Its fix text asks for two things:</p>
 
 <blockquote><p>Add H2s phrased exactly as customers ask them, and answer each in the first
-two sentences underneath before elaborating. Keep the answer complete on its own — the model
+two sentences underneath before elaborating. Keep the answer complete on its own: the model
 will quote the paragraph, not the page.</p></blockquote>
 
-<p>It prints a worked example of the shape it wants — a question heading, then the specific
-figure or day in the first sentence — and it attaches the URLs of the pages that failed,
+<p>It prints a worked example of the shape it wants (a question heading, then the specific
+figure or day in the first sentence), and it attaches the URLs of the pages that failed,
 capped for readability, with the true total carried alongside. Only the failing pages: it
 used to attach every page considered, which sent people to rewrite pages that were already
 fine, and the test that pins the current behaviour is
@@ -175,7 +175,7 @@ reported as withheld, rather than quietly downgraded into a pass.</p>
 
 <p>The check's own docstring says the signal is question-form headings "followed by a concise
 answer, lists, and tables". The code reads headings. Nothing reads a list, nothing reads a
-table, and — this is the one that matters — <strong>nothing reads the text underneath the
+table, and (this is the one that matters) <strong>nothing reads the text underneath the
 heading.</strong></p>
 
 <p>Which means the fix text asks for two things and the check can only see one of them. Phrase
@@ -185,7 +185,7 @@ at all. The half of the advice that does the actual work is the half nothing ver
 
 <p>We would rather write that down than let a green result be read as a guarantee. It is the
 same family of gap as two others recorded in the engine, where a check's description named
-something its implementation never looked at — milder here, because the mismatch is between
+something its implementation never looked at: milder here, because the mismatch is between
 the code and a docstring rather than between the code and the remedy the report prints, but
 the same shape.</p>
 
@@ -201,8 +201,8 @@ with nav, header, footer and aside stripped out. The headings are collected from
 document, chrome included. The denominator excludes your furniture and the signal does
 not.</p>
 
-<p>So a single heading in a site-wide footer — "Questions?", "Need a hand?", "Ready to get
-started?" — appears on every page of the site and satisfies the test on every page of the
+<p>So a single heading in a site-wide footer: "Questions?", "Need a hand?", "Ready to get
+started?". Appears on every page of the site and satisfies the test on every page of the
 site. Nothing in the check can tell that heading from one over an answer. If your template
 has one, this check is currently telling you nothing about your content.</p>
 
@@ -230,7 +230,7 @@ the second yourself by reading the page.</p>
 </tbody></table></div>
 
 <p>The sibling is the interesting one. <code>ai.citable_facts</code> wants a figure joined to
-an attribution — a measurement someone could dispute, a date, a licence, a price — and it
+an attribution (a measurement someone could dispute, a date, a licence, a price), and it
 counts a bare number as nothing, because "ten tips for this year" is a number with nothing
 behind it. A page can pass extractability and fail that one: perfectly quotable structure
 wrapped around nothing worth quoting. It can also fail extractability and pass that one,
@@ -239,7 +239,7 @@ the same report: the two checks do not agree on where "substantial" starts, and 
 floor belongs to the citable-facts side. That is a divergence in the source rather than a
 decision anybody wrote down.</p>
 
-<p><code>content.ai_slop</code> is in a different lane and answers a different complaint —
+<p><code>content.ai_slop</code> is in a different lane and answers a different complaint:
 <a href="/learn/ai-sounding-copy/">what it detects, and what it cannot</a> is its own page.
 Nothing here is about how your writing sounds.</p>
 
@@ -250,7 +250,7 @@ answer. Making a page maximally liftable also makes it maximally replaceable: a
 self-contained answer under a question-shaped heading is precisely what an assistant can take
 and hand to somebody instead of your page.
 <a href="/learn/ai-substitution/">Which of your pages an AI answer replaces</a> is that
-question, and it comes to the opposite conclusion for purely explanatory pages — which are
+question, and it comes to the opposite conclusion for purely explanatory pages, which are
 the ones that score best here.</p>
 
 <p>The resolution is not to write worse headings. Extractability is the right goal for pages
@@ -260,7 +260,7 @@ whose whole value is the explanation. Both run on every audit. Read them togethe
 <h2>Before any of this, the page has to be fetchable</h2>
 
 <p>This check reads HTML that Docket already has. If a crawler is disallowed in your
-robots.txt or refused at your CDN, it never reaches the question this page is about — and
+robots.txt or refused at your CDN, it never reaches the question this page is about, and
 that is a separate thing Docket measures separately, by reading your robots.txt against each
 crawler by name. <a href="/how-to/fix-ai-crawler-access/">Fixing AI crawler access</a> is the
 one to do first, and <a href="/learn/ai-search-visibility/">the three gates</a> sets out the
@@ -271,7 +271,7 @@ order: access, then rendering, then everything on this page.</p>
 <p>This site publishes surveys of who blocks which AI crawler, including
 <a href="/index/ai-directives/">a reading of robots.txt across the Tranco top ten
 thousand</a>. Those measure <strong>access</strong>. This page is about
-<strong>extraction</strong>, and we have no measurement of extraction — nobody does, for the
+<strong>extraction</strong>, and we have no measurement of extraction: nobody does, for the
 reason in the first section. So no figure appears above, and none is borrowed from the access
 work to stand in for one. A percentage about who can fetch your page tells you nothing about
 what an engine did after it arrived, and a page that let a reader carry one across to the

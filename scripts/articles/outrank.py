@@ -3,7 +3,7 @@
 
 The page exists because two of Docket's features were effectively invisible.
 `docket attack` and its `--demand` flag were named once each in a feature grid
-on the homepage and nowhere else — no page, no output, no explanation of what
+on the homepage and nowhere else: no page, no output, no explanation of what
 the numbers mean or where they come from. A feature nobody can find is a feature
 nobody buys.
 
@@ -39,7 +39,7 @@ worth your afternoon.</p>
 <p>Docket crawls both sites, reads the link graph from
 <a href="https://commoncrawl.org/" rel="noopener">Common Crawl</a>, asks Google's public
 autocomplete what people actually search for in your subject, and returns the openings ranked by
-<strong>winnability</strong> — how little each one depends on authority you do not have.</p>
+<strong>winnability</strong>. How little each one depends on authority you do not have.</p>
 
 <h2>What it says first</h2>
 
@@ -104,7 +104,7 @@ otherwise.</p>
 <li><strong>No rankings.</strong> It does not know where either site ranks for anything and will
 not guess. Every opening is a structural difference measured on the two sites.</li>
 <li><strong>No search volumes.</strong> Autocomplete gives ordering, not counts. Docket reports
-the rank a query sat at and stops there — a monthly volume is a number it does not have, and
+the rank a query sat at and stops there. A monthly volume is a number it does not have, and
 printing one anyway is how this category of tool loses its credibility. Ahrefs and Semrush sell
 volumes; theirs come from clickstream panels Docket has no access to.</li>
 <li><strong>No traffic or revenue projection.</strong> Docket projects its own score and nothing
@@ -118,7 +118,7 @@ the run tells you how many it dropped rather than quietly shortening the list.</
 
 <p>Work the list top-down and stop when the winnability score falls off. The third kind of
 opening is usually the highest-scoring and the least obvious: publishing one page of numbers
-only you have — your own testing, your own customers, your own measurements — earns more
+only you have (your own testing, your own customers, your own measurements) earns more
 citation in AI answers than ten pages summarising what everyone already wrote.</p>
 
 <p>The second kind is the cheapest ground on the board and the easiest to act on this week.
@@ -138,7 +138,7 @@ Write the page, put the question in the heading, answer it in the first paragrap
             ("Can Docket tell me where a competitor ranks?",
              "No. Docket has no index of the web, so it does not know either site's rankings "
              "and will not guess at them. Every opening it reports is a structural difference "
-             "measured by crawling both sites — a rich result they cannot win, a crawler they "
+             "measured by crawling both sites: a rich result they cannot win, a crawler they "
              "have blocked, a question neither of you answers."),
             ("Where do the searches come from?",
              "Google's public autocomplete, which publishes real queries ordered by how "

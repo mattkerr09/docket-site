@@ -1,15 +1,15 @@
-"""When "regenerate your sitemap" is the wrong fix — and once, a destructive one.
+"""When "regenerate your sitemap" is the wrong fix, and once, a destructive one.
 
 Promised on the how-to hub. Sourced from `indexability.py`'s sitemap branch,
 whose docstrings record four causes that were reported as stale sitemap entries
 under advice to regenerate the file:
 
   * an insurer where fourteen URLs answered with a server error and one
-    identical short body, reported by THREE findings at once — following the
+    identical short body, reported by THREE findings at once (following the
     sitemap one would have deleted the evidence of the fault;
   * a food retailer where the audit's own crawl provoked 429s;
   * URLs where nothing came back at all (a status of zero);
-  * docketseo.app on GitHub Pages — the host answered dozens of requests, reset
+  * docketseo.app on GitHub Pages) the host answered dozens of requests, reset
     one connection, and the finding told us to drop a page that answered 200 in
     a browser the same minute.
 
@@ -68,12 +68,12 @@ Removing the entry fixes nothing and deletes the record.</li>
 <ul>
 <li><strong>A rate limit.</strong> On a food retailer, the audit's own crawl provoked 429s and
 the report named three broken sitemap URLs; a re-run minutes later found none. A 429 is the one
-refusal a crawler can cause simply by existing —
+refusal a crawler can cause simply by existing:
 <a href="/how-to/tell-a-rate-limit-from-a-block/">a rate limit is not a block &rarr;</a>.</li>
 <li><strong>Nothing coming back at all.</strong> A status of zero is the crawler's note that it
 stopped waiting, not an answer from your server. Reporting it as "broken" describes one working
-page two contradictory ways in one document —
-<a href="/how-to/pages-an-audit-could-not-reach/">"could not be reached" is not a
+page two contradictory ways in one document.
+<a href="/how-to/pages-an-audit-could-not-reach/">"Could not be reached" is not a
 diagnosis &rarr;</a>.</li>
 <li><strong>A host that hung up once.</strong> This one is ours. Auditing docketseo.app, the host
 answered dozens of requests and reset the connection on a single one. Two findings named that
@@ -91,7 +91,7 @@ sitemap entry is almost certainly fine.</p>
 finding was wrong you have spent an hour and added something harmless.</p>
 
 <p>This one is subtractive. It asks you to remove a URL from the single document that tells search
-engines which pages you have — which is often exactly the document somebody will use later to work
+engines which pages you have, which is often exactly the document somebody will use later to work
 out what went wrong.</p>
 
 <p><strong>A remedy that deletes a record should demand a higher standard of proof than one that
@@ -113,7 +113,7 @@ partly about the run.</li>
 
 <h2>When the advice is exactly right</h2>
 
-<p>Keep the severity in view — this is a real and common defect, and three shapes of it deserve
+<p>Keep the severity in view. This is a real and common defect, and three shapes of it deserve
 the fix as written:</p>
 
 <ul>
@@ -139,7 +139,7 @@ obvious.</li>
 <h2>How to clear this finding completely</h2>
 
 <p>Publish a sitemap containing one URL that works. The finding goes to zero and so does the
-usefulness of the file — a sitemap's job is to list your pages, and a tool counting broken entries
+usefulness of the file. A sitemap's job is to list your pages, and a tool counting broken entries
 cannot notice the ones you never declared.</p>
 
 <p>Which is the honest limit of the check: <strong>it can only be wrong about URLs you told it
@@ -150,7 +150,7 @@ sitemap altogether.</p>
 
 <p>The registered checks are <code>index.sitemap</code>, which reads the file and the URLs in it,
 and <code>index.broken</code>, which owns the server-error and unreachable findings that this one
-kept duplicating. The identifiers on the findings themselves differ from both — worth knowing when
+kept duplicating. The identifiers on the findings themselves differ from both. Worth knowing when
 you search for one by name.</p>
 
 <p>For the outbound version of the same confusion between a refusal and a dead page, see
@@ -177,7 +177,7 @@ not) &rarr;</a>.</p>
             ("Why did three findings name the same URLs?",
              "Because several checks can see the same failed fetch from different angles. When "
              "that happens the loudest finding is usually the true one and the others are "
-             "echoes — act on the one whose remedy addresses the cause."),
+             "echoes. Act on the one whose remedy addresses the cause."),
             ("Should a sitemap list redirecting URLs?",
              "No. A sitemap should list destinations rather than stops on the way, so a URL that "
              "redirects belongs in the file only as the address it redirects to."),

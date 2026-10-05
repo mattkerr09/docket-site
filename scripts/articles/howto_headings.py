@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Heading structure — what `onpage.headings` computes, and where it parts
+"""Heading structure. What `onpage.headings` computes, and where it parts
 company with the HTML specification and with Google's own documentation.
 
 Everything about the check is read from its source, `onpage.headings` in
@@ -18,8 +18,8 @@ WHAT SECTION 9 CAUGHT, all of it in the brief's favour except where noted:
    structure" is the lane's label for all four and is broader than any of them.
    The page names them individually because the remedies are unrelated.
 
-⚠️ `empty_h1` IS COLLECTED AND NEVER EMITTED. The function builds the list —
-   `if h1s and not any(h.strip() for h in h1s)` — and there is no
+⚠️ `empty_h1` IS COLLECTED AND NEVER EMITTED. The function builds the list (
+   `if h1s and not any(h.strip() for h in h1s)`), and there is no
    corresponding `yield`. It is also unreachable: `Document.headings()` appends
    a heading only `if text`, and `text` comes from `text_content()`, which ends
    in `_collapse_ws(...).strip()`. A whitespace-only heading collapses to "" and
@@ -49,8 +49,8 @@ WHAT SECTION 9 CAUGHT, all of it in the brief's favour except where noted:
    least one heading in the outline has level one.
 
 ⚠️ THE BRIEF SAID "DOCKET READS THE HEADING ELEMENTS". The repo is narrower: it
-   reads each heading's collapsed text content, from the WHOLE document —
-   `self.root`, not `self.body`, and with no boilerplate filter — so an h2 in a
+   reads each heading's collapsed text content, from the WHOLE document (
+   `self.root`, not `self.body`, and with no boilerplate filter), so an h2 in a
    `<footer>` clears the "no subheadings" finding and an h1 wrapping a header
    logo counts as the page's H1. Prose checks strip nav, header and footer.
    This one does not.
@@ -189,7 +189,7 @@ and not the one the advice on the web gives.</p>
 <p><strong>The check.</strong> It flags a page with more than one H1 at LOW severity,
 and its own detail text concedes the point: "Multiple H1s blur what the page is primarily about.
 HTML5 permits it, but in practice it usually means the template is using H1 for styling." Its
-fix is to keep one H1 and demote the rest. Note the reasoning — the finding is not "this breaks
+fix is to keep one H1 and demote the rest. Note the reasoning. The finding is not "this breaks
 something", it is "this is usually a symptom", which is a much weaker claim than the rule it
 resembles.</p>
 
@@ -209,8 +209,8 @@ href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide">
 Central, SEO starter guide</a>, read {READ}.</p>
 
 <p>So Docket is stricter than both, and is the only one of the three claiming anything. That gap
-is not a bug — a template emitting three H1s because the designer wanted three big fonts is worth
-seeing — but read it for what it is. If your page has two H1s because it has two subjects, the
+is not a bug (a template emitting three H1s because the designer wanted three big fonts is worth
+seeing), but read it for what it is. If your page has two H1s because it has two subjects, the
 standard is on your side and Google is indifferent.</p>
 
 <h2>Where the standard is stricter than Docket</h2>
@@ -218,33 +218,33 @@ standard is on your side and Google is indifferent.</p>
 <p>The skipped-level finding runs the other way, and this is the part nobody expects.</p>
 
 <p>Docket's condition is a presence test over the whole document: an h3 exists somewhere and no
-h2 exists anywhere. That catches the common template defect — h1 straight to h3 because h3 was
-the right size — and it catches nothing else. An h2 followed by an h4 is not flagged. An h1
+h2 exists anywhere. That catches the common template defect (h1 straight to h3 because h3 was
+the right size), and it catches nothing else. An h2 followed by an h4 is not flagged. An h1
 followed by an h4 with no h3 on the page is not flagged. A page that jumps h1 to h3 halfway down
 but carries an h2 elsewhere is not flagged either.</p>
 
 <p>The standard's rule is per-sequence: each heading following another must have a level that is
 less than, equal to, or one greater than the previous heading's level. Its own non-conforming
-example is an h1 followed by an h3, exactly the case Docket catches — but the rule covers every
+example is an h1 followed by an h3, exactly the case Docket catches, but the rule covers every
 other jump too, and Docket's does not. A clean <code>onpage.heading_skip</code> does not mean
 your outline conforms.</p>
 
 <p>What is the jump worth? Google's answer is above: for Search, not much; for screen readers, a
-great deal. Docket's finding agrees and says nothing about rankings — "H3s appear with no H2
+great deal. Docket's finding agrees and says nothing about rankings. "H3s appear with no H2
 above them, which breaks the document outline for screen readers and parsers." That is the
 honest version of a claim usually sold as a ranking factor.</p>
 
 <h2>"No subheadings" has to mean no subheadings</h2>
 
 <p>The condition used to be "long page, no H2". Run against a publisher's ebook-bundle page —
-one H1, no H2, five H3s and twenty-eight H4s across roughly thirteen thousand words — it
+one H1, no H2, five H3s and twenty-eight H4s across roughly thirteen thousand words. It
 produced two findings from the same loop about the same seven pages: "substantial pages have no
 subheadings", and "pages skip a heading level". The second was true. The first was not: a reader
 can count thirty-three subheadings on that page.</p>
 
 <p>The detail text was right and the headline outran it. "Long pages with no H2s are a wall of
 text" is a claim about H2s and it is fair. Generalised to "no subheadings" it became a different
-claim and a false one — and a reader who catches a tool being wrong about the page in front of
+claim and a false one, and a reader who catches a tool being wrong about the page in front of
 them stops believing the finding that was accurate.</p>
 
 <p>So the condition now requires no heading at any level below H2, with the word floor as its
@@ -258,15 +258,15 @@ other half: a short page needs no sections and is exempt. The id
 <ul>
 <li><strong>A heading is its text.</strong> The extractor records a heading only if it has text
 content after whitespace is collapsed. An <code>&lt;h1&gt;</code> holding only a logo image or an
-inline SVG is not recorded at all, so that page is reported as having no H1 — usually the right
+inline SVG is not recorded at all, so that page is reported as having no H1, usually the right
 answer, and a surprise to anyone who can see a heading on the page.</li>
 <li><strong>Every heading counts, wherever it sits.</strong> The extractor walks the whole
 document, not the main content region, and applies no nav-and-footer filter. An H2 in your footer
 clears the no-subheadings finding. An H1 wrapping your site logo in the header is that page's H1
-on every page of the site — the usual cause of a site-wide "more than one H1".</li>
+on every page of the site: the usual cause of a site-wide "more than one H1".</li>
 <li><strong>Only some pages are asked.</strong> The loop runs over the indexable pages whose
 served HTML carried content. A noindex page is not asked about its H1, nor is a page whose markup
-is essentially empty because the content arrives by JavaScript — reporting "no H1" there would
+is essentially empty because the content arrives by JavaScript. Reporting "no H1" there would
 describe the crawler, not the page.</li>
 </ul>
 
@@ -297,7 +297,7 @@ H1 per page that names the page's topic in plain language", with the markup
 is house preference rather than a requirement of the standard; what is not negotiable is that
 there is one and that it has words in it.</li>
 <li><strong>Break long pages into sections.</strong> The fix text asks for descriptive H2s,
-"ideally phrased as the questions customers ask" — a subheading that states a question is the
+"ideally phrased as the questions customers ask". A subheading that states a question is the
 unit an answer engine can lift.</li>
 <li><strong>Use levels in order.</strong> Cheap to do, and the group it genuinely helps is
 people using a screen reader.</li>

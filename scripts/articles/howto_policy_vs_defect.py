@@ -6,7 +6,7 @@ Promised on the how-to hub. Sourced from `ai_visibility.py`, registered check
   * a national broadcaster names and disallows AI citation crawlers as
     published editorial policy. The check called that CRITICAL and capped an
     otherwise well-run site's score for a decision already made on purpose.
-    Being swept up by a wildcard is a different thing — it may never have been
+    Being swept up by a wildcard is a different thing. It may never have been
     considered, and that one is worth interrupting somebody over.
   * ⚠️ THE MIDDLE CASE LANDED IN THE BRANCH WRITTEN FOR THE EMPTY ONE. The test
     was `all(named)`, false as soon as one crawler is unnamed, so a file naming
@@ -21,7 +21,7 @@ Promised on the how-to hub. Sourced from `ai_visibility.py`, registered check
     including a crawler the survey evidence excludes and crawlers the reader
     had not blocked. It is derived now. A snippet is something people paste.
 
-⚠️ NO SITE OR VENDOR IS NAMED — third-party gate. The broadcaster is "a
+⚠️ NO SITE OR VENDOR IS NAMED: third-party gate. The broadcaster is "a
 national broadcaster"; no user-agent belonging to a measured site is quoted.
 
 ⚠️ /learn/ai-crawler-directives/ owns the taxonomy (training vs search-index vs
@@ -30,7 +30,7 @@ owns how a REPORT should treat a decision, and cross-links rather than
 restating.
 
 ⚠️ The snippet beat is a near neighbour of /how-to/schema-type-is-a-claim/
-(531). Different failure — there the example values read as researched, here
+(531). Different failure. There the example values read as researched, here
 the list did not match the finding above it. Named and linked in one sentence.
 
 Numerals: none. Quantities spelled as words.
@@ -47,7 +47,7 @@ from render import render  # noqa: E402
 def policy_vs_defect() -> Path:
     body = """
 <p class="lede">The hard part of an audit is not finding what is wrong. It is telling a mistake
-from a decision — and in a configuration file those look identical. The same line means "we
+from a decision, and in a configuration file those look identical. The same line means "we
 thought about this and chose it" on one site and "nobody has ever read this line" on another, and
 nothing in the file says which. Getting that wrong in the loud direction is how a tool ends up
 shouting at somebody for doing their job.</p>
@@ -67,8 +67,8 @@ of markup to undo it.</p>
 <h2>And the case that really is worth interrupting someone over</h2>
 
 <p>The opposite situation produces the same line in the file. A blanket
-<code>User-agent: *</code> rule gets added for an unrelated reason — an aggressive scraper, a
-staging leak, advice from years ago — and it sweeps up every crawler, including the ones that
+<code>User-agent: *</code> rule gets added for an unrelated reason (an aggressive scraper, a
+staging leak, advice from years ago), and it sweeps up every crawler, including the ones that
 decide whether an assistant can cite you live.</p>
 
 <p>Nobody decided that. Nobody knows it happened. It is exactly the thing an audit exists to
@@ -84,7 +84,7 @@ typing a specific crawler on purpose. A wildcard is a net.</p>
 
 <p>The check asked whether <em>all</em> the blocked crawlers were named. That question has a
 sensible answer at each end and a dangerous one in the middle. A file that names and disallows two
-crawlers by hand, and lets a wildcard catch a third, answers no — not all of them are named — and
+crawlers by hand, and lets a wildcard catch a third, answers no (not all of them are named), and
 the report that follows was written for a file that named none:</p>
 
 <blockquote><p><strong>robots.txt blocks three AI search crawlers.</strong> None of them is named
@@ -100,7 +100,7 @@ thing by opening the file the report is describing.</p>
 
 <p><strong>"None" is a strong word, and in a report it is usually a mis-stated "not all".</strong>
 When a finding makes a universal claim about your configuration, check it against the
-configuration — a mixed case is the one most likely to be described by a branch written for a pure
+configuration. A mixed case is the one most likely to be described by a branch written for a pure
 one.</p>
 
 <h2>The fix was to stop making it choose</h2>
@@ -128,7 +128,7 @@ file shows the question was ever asked.</p>
 <h2>The paste-ready block that ignored the measurement</h2>
 
 <p>One more, because it rides along with the same finding. The report offers a robots.txt snippet
-to paste. It used to be a fixed list — the same user-agent lines for everybody, including a
+to paste. It used to be a fixed list. The same user-agent lines for everybody, including a
 crawler our own survey evidence says to leave out of that recommendation, and including crawlers
 the reader had not blocked in the first place.</p>
 
@@ -136,7 +136,7 @@ the reader had not blocked in the first place.</p>
 caught, and nothing else. <strong>A snippet is something people paste</strong>, which makes it the
 one part of a report that must never be generic. That is a cousin of
 <a href="/how-to/schema-type-is-a-claim/">a suggested markup block carrying somebody else's facts
-&rarr;</a> — there the example values read as researched; here the list simply did not match the
+&rarr;</a>. There the example values read as researched; here the list simply did not match the
 finding above it.</p>
 
 <h2>Reading this on your own report</h2>
@@ -146,7 +146,7 @@ finding above it.</p>
 it. If only a wildcard covers it, decide now whether you meant to.</li>
 <li><strong>Check any universal claim against the file itself.</strong> "None", "every" and "all"
 are where reports go wrong, and your file is the evidence.</li>
-<li><strong>Decide training and citation separately</strong> — they are different crawlers doing
+<li><strong>Decide training and citation separately</strong>: they are different crawlers doing
 different jobs, and the costs are not comparable:
 <a href="/learn/ai-crawler-directives/">which AI crawler does what &rarr;</a>.</li>
 <li><strong>Check the edge as well as the file.</strong> A file that says yes and a server that
@@ -177,7 +177,7 @@ crawler you actually meant to change.</li>
 <h2>How to make this read as policy without deciding anything</h2>
 
 <p>Name every crawler explicitly in your file. The finding drops from an interruption to a note,
-because naming is the signal of intent — and naming costs you nothing and commits you to nothing.
+because naming is the signal of intent, and naming costs you nothing and commits you to nothing.
 <strong>The check is reading a proxy for deliberateness, not deliberateness</strong>, and no file
 can carry the difference. Worth knowing in both directions: it is why a named block is treated
 gently, and why a wildcard deserves a look even when you are fairly sure you meant it.</p>
@@ -195,7 +195,7 @@ robots.txt rule actually costs &rarr;</a>. For the case where the audit itself w
         cat="how-to", slug="when-a-policy-is-reported-as-a-defect",
         title="When a report calls your decision a defect",
         desc=("An audit called a publisher's deliberate policy a critical defect and capped the "
-              "site's score — then told a reader none of their crawlers were named when two "
+              "site's score, then told a reader none of their crawlers were named when two "
               "were."),
         h1="When a report calls your decision a defect",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Policy or defect',

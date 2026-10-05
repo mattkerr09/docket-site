@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""How to fix redirect problems — the three findings `index.redirects` emits.
+"""How to fix redirect problems: the three findings `index.redirects` emits.
 
 Sourced from `index.redirects` in
 `backend/seo_engine/checks/indexability.py`, the `_redirect_example` helper
@@ -12,7 +12,7 @@ built, and the four tests beside them that record what went wrong:
   * test_one_redirect_closes_sixty_nine_duplicate_groups.py
 
 ⚠️ THE REGISTERED TITLE IS WIDER THAN THE CODE. `index.redirects` is registered
-as "Redirect problems" and emits three findings under three other check ids —
+as "Redirect problems" and emits three findings under three other check ids.
 `index.redirect_loop`, `index.redirect_chain`, `index.internal_link_to_redirect`
 — and none of them is about a status code. `Response.chain` is a list of URLs,
 so the engine does not retain per-hop statuses at all and cannot tell a 301 from
@@ -57,11 +57,11 @@ and which is a redirect doing exactly the job you set it.</p>
 separate findings at three different severities because they are three different jobs:</p>
 
 <ul>
-<li><strong>A redirect loop</strong> — <code>index.redirect_loop</code>, at CRITICAL. Nobody
+<li><strong>A redirect loop</strong>: <code>index.redirect_loop</code>, at CRITICAL. Nobody
 reaches the content. Ever.</li>
-<li><strong>A chain</strong> — <code>index.redirect_chain</code>, at MEDIUM. A URL that
+<li><strong>A chain</strong>: <code>index.redirect_chain</code>, at MEDIUM. A URL that
 redirects more than once before it resolves.</li>
-<li><strong>An internal link pointing at a redirect</strong> —
+<li><strong>An internal link pointing at a redirect</strong>:
 <code>index.internal_link_to_redirect</code>, at LOW. Your own templates linking to the old
 URL.</li>
 </ul>
@@ -85,7 +85,7 @@ fetcher follows redirects by hand so the intermediate URLs survive, and its own 
 why: "the hops are the finding: a 302 where a 301 belongs, or a 4-hop chain burning crawl
 budget, are both invisible if you only see the destination". What it keeps is
 <code>chain</code>, a list of URLs. The statuses are not in it. So no finding under this check
-is about a temporary redirect used where a permanent one was meant — Docket cannot see the
+is about a temporary redirect used where a permanent one was meant. Docket cannot see the
 difference, and a page that told you otherwise would be describing a check that does not
 exist.</p>
 
@@ -96,7 +96,7 @@ page, not for a crawler.</p>
 
 <p>One more, because it changes what a finding means rather than merely limiting it. When a
 redirect leaves your site, the crawler keeps the URL you own and discards the title and body at
-the far end — another site's words must not be attributed to yours. Those URLs still appear in
+the far end. Another site's words must not be attributed to yours. Those URLs still appear in
 the redirect findings, as your signposts pointing off your property, and no claim is made about
 what they point at.</p>
 
@@ -112,7 +112,7 @@ the cycle."</em></p>
 
 <p>There is no threshold on this one. One is enough, because one is a page that cannot be
 reached by anybody, and a loop is almost always two rules written at different times that each
-look correct on their own — a trailing-slash rule and a lowercase rule, a CDN redirect and an
+look correct on their own. A trailing-slash rule and a lowercase rule, a CDN redirect and an
 application redirect, an old rule and its replacement.</p>
 
 <p><a href="{RFC_URL}#section-15.4">{RFC} {S_REDIRECTION}</a> puts the obligation on the
@@ -123,14 +123,14 @@ page nobody reports to you.</p>
 
 <h3>A chain: more than one hop before it resolves</h3>
 
-<p>The rule is exactly as narrow as it sounds — a page whose recorded chain has two or more
+<p>The rule is exactly as narrow as it sounds: a page whose recorded chain has two or more
 hops in it. One redirect is not a chain and is not reported here. The finding is MEDIUM, it
 prints one chain written out with arrows as its example, and its fix text is <em>"Point the
 first URL in each chain straight at the final destination, in one hop."</em></p>
 
 <p>Two bugs in that sentence are worth repeating, because they are the reason to trust the
-current version. The finding used to list the <em>last</em> URL of each chain — the
-destination, which redirects nowhere and needs no change — while its own fix asked you to
+current version. The finding used to list the <em>last</em> URL of each chain (the
+destination, which redirects nowhere and needs no change) while its own fix asked you to
 change the first. And the example was built by slicing the first few hops, which silently
 dropped the destination once a chain got long enough. Both were measured on a real site, both
 are fixed, and both have tests named after them.</p>
@@ -138,7 +138,7 @@ are fixed, and both have tests named after them.</p>
 <p>Chains come from history rather than carelessness: each rule was right when it was written.
 The site moved to HTTPS, then to a new URL structure, then a section was renamed, and each
 change added a hop to redirects that already existed. Collapsing them is the least glamorous
-and most reliable thing on this page — take the first URL, point it at the last, delete the
+and most reliable thing on this page: take the first URL, point it at the last, delete the
 middle.</p>
 
 <h3>An internal link pointing at a redirect</h3>
@@ -150,8 +150,8 @@ on your site links to is reported by none of these three findings, which is corr
 redirect working as intended, catching an old inbound link, and there is nothing to fix.</p>
 
 <p>Reported at LOW, with the fix <em>"Update these internal links to their destination
-URL."</em> The URLs it lists are the redirecting ones, not the destinations — the same
-distinction the chain finding got wrong — because the redirecting URL is the string you have
+URL."</em> The URLs it lists are the redirecting ones, not the destinations (the same
+distinction the chain finding got wrong) because the redirecting URL is the string you have
 to find in your templates.</p>
 
 <h2>The claim this page will not make</h2>
@@ -161,7 +161,7 @@ equity". No figure of that kind appears here. {GOOGLE} does not state one, and a
 repeated without a source is not evidence that it is true.</p>
 
 <p>Being precise about this cuts our own side too. The chain finding's detail text says an
-extra hop "dilutes the signal passed through the redirect" — a claim Docket's own source does
+extra hop "dilutes the signal passed through the redirect". A claim Docket's own source does
 not carry a citation for, and you should weigh it accordingly. The part of that sentence that
 survives scrutiny is the other half: each extra hop is another round trip before any content
 arrives, and that is measurable on your own connection.</p>
@@ -216,17 +216,17 @@ history.</p>
 your time:</p>
 
 <ul>
-<li><strong>Client-side redirects</strong> — <code>index.meta_refresh</code>, at NOTICE. A page
+<li><strong>Client-side redirects</strong>: <code>index.meta_refresh</code>, at NOTICE. A page
 that answers <code>200</code> with a normal body and then moves the visitor with
 <code>&lt;meta http-equiv="refresh"&gt;</code>. It has no chain and no redirect status, so
 everything on this page is blind to it; that is why it needed a check of its own. It is a
 notice rather than an error because static hosting frequently cannot issue a server-side
 redirect at all, and scolding somebody for using the only tool their host gives them is not
 advice.</li>
-<li><strong>Redirect latency</strong> — <code>perf.redirect_volume</code>, in the performance
+<li><strong>Redirect latency</strong>: <code>perf.redirect_volume</code>, in the performance
 lane. It fires on the share of crawled URLs that went through any redirect, one hop included,
 which is a question about cost rather than correctness.</li>
-<li><strong>Canonical conflicts</strong> — the <code>index.canonical</code> check, whose
+<li><strong>Canonical conflicts</strong>: the <code>index.canonical</code> check, whose
 findings include <code>index.canonical_conflict</code>. A redirect and a canonical tag are two
 ways of naming the real URL, and they can contradict each other.</li>
 </ul>
@@ -245,7 +245,7 @@ remedy now reads the flag the crawl had recorded.</p>
 <p>If your audit shows duplicate content and no HTTPS redirect, do the redirect first and
 re-run. <a href="/how-to/redirect-http-to-https/">How to redirect http:// to https://</a>
 covers the rule by host, including the certificate state that blocks the setting on GitHub
-Pages — which we found because Docket reported the same fault on this site.</p>
+Pages, which we found because Docket reported the same fault on this site.</p>
 
 <h2>What to do with the list you have</h2>
 
@@ -273,7 +273,7 @@ is the one part of this no crawl report will do for you.</p>
     return render(
         cat="how-to", slug="fix-redirect-problems",
         title="How to fix redirect problems: loops, chains, links",
-        desc=("Redirect loops, chains and internal links pointing at redirects — what Docket's "
+        desc=("Redirect loops, chains and internal links pointing at redirects. What Docket's "
               "index.redirects check reports, what it cannot see, and which ones cost you."),
         h1="How to fix redirect problems",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / redirect problems',

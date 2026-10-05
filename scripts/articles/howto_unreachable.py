@@ -5,16 +5,16 @@ checks `index.broken` and `index.sitemap` carry four recorded cases in which
 entirely different causes were reported as one unreachable page, under fix text
 sending the reader to DNS and TLS:
 
-  * a cathedral whose pages answered 200 in about sixteen seconds — slow, not
+  * a cathedral whose pages answered 200 in about sixteen seconds (slow, not
     down, and its slowness was already reported elsewhere in the same run;
   * a podcast where two findings in ONE report described the same address as
     both "did not answer in time" and "broken in your sitemap";
   * a restaurant site where a whole paragraph of marketing copy had been pasted
     into a link field, so no request was ever made;
   * a documentation wiki where connection resets began only after hundreds of
-    pages had been read successfully — rate limiting, not an outage.
+    pages had been read successfully) rate limiting, not an outage.
 
-⚠️ NO SITE IS NAMED — third-party gate.
+⚠️ NO SITE IS NAMED: third-party gate.
 
 ⚠️ DO NOT RE-EXPLAIN RATE LIMITING. `/how-to/tell-a-rate-limit-from-a-block/`
 owns that; the fourth case here is about the EVIDENCE already sitting in the
@@ -37,8 +37,8 @@ from render import render  # noqa: E402
 
 def unreachable() -> Path:
     body = """
-<p class="lede">An audit finishes and tells you some of your pages could not be reached at all —
-connection failures, DNS errors, certificate problems — and advises you to check DNS, TLS and
+<p class="lede">An audit finishes and tells you some of your pages could not be reached at all (
+connection failures, DNS errors, certificate problems), and advises you to check DNS, TLS and
 server availability. It is the most expensive sentence a report can contain, because it names
 three things that are almost never the cause, and somebody spends a day in a control panel where
 nothing is wrong.</p>
@@ -50,7 +50,7 @@ each other. Here are four, each recorded from a real run.</p>
 <h2>Slow, not down</h2>
 
 <p>A cathedral's site had a long list of URLs reported as unreachable. Every single one carried
-the timeout string — not one was a DNS failure or a refused connection. Two were fetched by hand
+the timeout string, not one was a DNS failure or a refused connection. Two were fetched by hand
 afterwards and both answered HTTP 200, in about sixteen seconds.</p>
 
 <p>The site was not down. It was slow, and its slowness was <em>already reported two findings
@@ -76,14 +76,14 @@ is not a status; it is the crawler's note to itself that nothing came back.</p>
 
 <p>The repair was to give both checks one shared definition of what a timeout is, so they can
 never drift apart again. A report that contradicts itself costs more than either finding is
-worth — you now have to work out which half to believe, and most people believe the scarier
+worth. You now have to work out which half to believe, and most people believe the scarier
 one.</p>
 
 <h2>A sentence where a URL should be</h2>
 
 <p>A restaurant site had one unreachable URL whose address was an entire paragraph of marketing
 copy about taking bookings for private events. Somebody had pasted prose into the link field in
-their editor. No request was ever made — the address could not be parsed — so there was nothing
+their editor. No request was ever made (the address could not be parsed), so there was nothing
 to say about DNS, TLS or availability, and the report printed several hundred characters of
 someone's copy where a URL belongs.</p>
 
@@ -91,7 +91,7 @@ someone's copy where a URL belongs.</p>
 can never resolve, fixable in the page editor in a minute.</p>
 
 <p>There is a trap in the repair, and it generalises. Once the spaces in that paragraph are
-encoded it becomes a valid request, and it comes back 404 — so a naive fix would re-label it a
+encoded it becomes a valid request, and it comes back 404, so a naive fix would re-label it a
 broken internal link, which is <em>true</em>, and which sends the reader looking for a missing
 page instead of at the link field where their marketing copy is. <strong>Downgrading a false
 claim must not become dropping a true one.</strong></p>
@@ -99,17 +99,17 @@ claim must not become dropping a true one.</strong></p>
 <h2>The host that answered hundreds of times</h2>
 
 <p>A documentation wiki's crawl ended with a long list of unreachable URLs, connection resets,
-and the same advice about DNS and TLS. The site was up throughout — a control page answered 200
-before and after — and the resets began only after several hundred pages had been read
+and the same advice about DNS and TLS. The site was up throughout (a control page answered 200
+before and after), and the resets began only after several hundred pages had been read
 successfully.</p>
 
 <p><strong>A host that answered hundreds of times does not have a DNS problem, and the proof was
 already in the crawl.</strong> If it resolved and its certificate served those requests, the only
 thing left a reset can mean is that it stopped wanting to talk to this crawler. That is a
-different finding with a different severity — nothing is wrong with the site, and the pages are
+different finding with a different severity. Nothing is wrong with the site, and the pages are
 missing from this crawl rather than from anybody's index.</p>
 
-<p>For the general version of that — an audit measuring its own footprint — see
+<p>For the general version of that (an audit measuring its own footprint) see
 <a href="/how-to/tell-a-rate-limit-from-a-block/">a rate limit is not a block &rarr;</a>.</p>
 
 <h2>Telling them apart on your own report</h2>
@@ -163,7 +163,7 @@ unreachable list shrink; on a rate-limited one the second makes it vanish. Nothi
 changed.</p>
 
 <p>Which is the tell. <strong>If a setting on your side of the connection changes the finding,
-the finding was partly about your side of the connection</strong> — and the honest report is one
+the finding was partly about your side of the connection</strong>, and the honest report is one
 that says which part it could not see rather than guessing at a cause.</p>
 
 <h2>Where this sits in an audit</h2>
@@ -171,7 +171,7 @@ that says which part it could not see rather than guessing at a cause.</p>
 <p>The registered checks are <code>index.broken</code>, which covers pages returning errors, and
 <code>index.sitemap</code>. The identifiers you will see on the findings themselves are different
 — the unreachable, timed-out, malformed-link and connection-refused findings all come out of
-<code>index.broken</code> — which matters when you go looking for one by name and find nothing.
+<code>index.broken</code>, which matters when you go looking for one by name and find nothing.
 A finding identifier is not a check identifier.</p>
 
 <p>For the outbound equivalent, where somebody else's server is the one refusing, see
@@ -205,7 +205,7 @@ not) &rarr;</a>.</p>
              "concluded about what the server would have said."),
             ("An unreachable URL in my report is a sentence, not an address. Why?",
              "Somebody pasted prose into a link field. The request was never made, so no "
-             "infrastructure advice applies — open the page containing the link and replace the "
+             "infrastructure advice applies. Open the page containing the link and replace the "
              "destination."),
         ],
     )

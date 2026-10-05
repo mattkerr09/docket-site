@@ -3,7 +3,7 @@
 
 Every figure comes from data/regressions.json through facts.py, which is
 generated from Docket's own test suite. The counting rule is in the dataset and
-it is deliberately conservative — a test file counts only if it names a
+it is deliberately conservative. A test file counts only if it names a
 specific thing Docket got wrong.
 
 The article has to teach, not confess. A reader should finish it able to
@@ -23,8 +23,8 @@ def audit_quality() -> Path:
     body = f"""
 <p class="lede">An SEO audit is a pile of confident sentences about your site, and the useful
 question is which of them the tool actually checked. <strong>At least
-{F.regression_files()} of Docket's {F.test_files()} test files</strong> — more than
-{F.regression_pct()}% — exist because Docket said something that was not true, and every one of
+{F.regression_files()} of Docket's {F.test_files()} test files</strong> (more than
+{F.regression_pct()}%) exist because Docket said something that was not true, and every one of
 those mistakes belongs to a family you can look for in any tool's report. "At least" is meant
 literally: that count comes from searching each test for a phrase naming what went wrong, which
 is deliberately narrow, so it misses files that record a real mistake in different words.</p>
@@ -39,7 +39,7 @@ email capture anywhere on the site". On a site with fewer pages than that, it is
 larger one it is a statement about every page the tool never opened.</p>
 
 <p>The tell is a total claim with no number in it. "No X anywhere", "no Y found", "the site
-has no Z" — those are claims about a population, and a tool that sampled cannot make them.
+has no Z". Those are claims about a population, and a tool that sampled cannot make them.
 Compare with "12 pages have no title tag", which says exactly what it counted.</p>
 
 <p><strong>What to do with it:</strong> when a report tells you something is missing site-wide,
@@ -72,7 +72,7 @@ them to differ. When they do, believe the one with the arithmetic in it.</p>
 <p>Point Docket at a domain that does not exist and it used to report three critical issues:
 that robots.txt blocked Googlebot, that the site was not served over HTTPS, and that no pages
 could be crawled. Only the third was true. There was no robots.txt and nothing was served,
-because there was no site — the tool was reporting its own inability to see anything as a set
+because there was no site. The tool was reporting its own inability to see anything as a set
 of defects in the thing it could not see.</p>
 
 <p>The same shape had already been fixed twice before, by different routes: once when a
@@ -94,7 +94,7 @@ says so and stays at a notice.</p>
 
 <p><strong>What to do with it:</strong> when a tool reports an absence, ask what it saw. If the
 crawl was blocked, rate-limited, or returned nothing, every "missing" finding in that report is
-unsupported — not wrong necessarily, just unevidenced. And if a finding is about what a visitor
+unsupported, not wrong necessarily, just unevidenced. And if a finding is about what a visitor
 sees, ask whether the tool rendered the page or read the HTML. Those are different documents on
 most modern sites, and only one of them is what Google judges.</p>
 
@@ -170,7 +170,7 @@ site.</p>
              "A finding that is confidently stated and not true. The common causes are a "
              "tool sampling part of a site and reporting about all of it, a crawl that was "
              "blocked or returned nothing being read as evidence of absence, and pattern "
-             "matches that fire on the wrong thing — an inline SVG label counted as the "
+             "matches that fire on the wrong thing: an inline SVG label counted as the "
              "page title, for instance."),
             ("Why does a failed crawl produce false findings?",
              "Because 'we did not see it' and 'it is not there' are the same observation to "
@@ -181,8 +181,8 @@ site.</p>
             ("Why does an SEO tool flag things that look fine in my browser?",
              "Usually because it read the HTML your server sent and you are looking at the "
              "page after JavaScript ran. On most modern sites those are different documents. "
-             "Anything a tool says about what a visitor sees — visible prices, review stars, "
-             "headings, body copy — is only trustworthy if it rendered the page. Ask whether "
+             "Anything a tool says about what a visitor sees (visible prices, review stars, "
+             "headings, body copy) is only trustworthy if it rendered the page. Ask whether "
              "the tool rendered, and if it did not, treat those findings as unconfirmed "
              "rather than wrong."),
             ("Should I run an SEO audit in CI?",

@@ -4,8 +4,8 @@ Promised on the how-to hub. Sourced from `brand.py`, registered check
 `brand.name_consistency`:
 
   * a preprint archive's logo link is named "archive home". The raw guard passed
-    it because "archive" is not a weak word; the salvage step stripped "home" —
-    the same salvage that correctly turns "NHS homepage" into "nhs" — and left
+    it because "archive" is not a weak word; the salvage step stripped "home" (
+    the same salvage that correctly turns "NHS homepage" into "nhs"), and left
     "archive", recorded as a second name the site uses for itself.
   * the rule that fixed it: a link's accessible name is the WEAKEST of four
     sources (it describes a destination, not an identity), so the residue has
@@ -14,7 +14,7 @@ Promised on the how-to hub. Sourced from `brand.py`, registered check
     navigation label does not.
   * ⚠️ THE FIRST VERSION REQUIRED CORROBORATION UNCONDITIONALLY AND BROKE A
     POSITIVE CONTROL. A test asserts that a logo naming one institution on a
-    site titled after another IS reported — a real disagreement on a domain
+    site titled after another IS reported: a real disagreement on a domain
     resembling neither. Demanding corroboration everywhere made the logo source
     incapable of ever being the odd one out: one site's false positive traded
     for another site's false negative.
@@ -22,11 +22,11 @@ Promised on the how-to hub. Sourced from `brand.py`, registered check
     was already plain is read as before; one that needed a navigation word
     stripped is a description of a destination.
   * the occurrence floor: a name seen once out of dozens of signals is a single
-    odd page, not a second brand — a tagline in one title reported as a company
+    odd page, not a second brand. A tagline in one title reported as a company
     name is the kind of confident nonsense that discredits a whole report.
     Declared identity still counts at one occurrence.
 
-⚠️ NO SITE OR VENDOR IS NAMED — third-party gate. The archive, the health
+⚠️ NO SITE OR VENDOR IS NAMED: third-party gate. The archive, the health
 service, the two institutions and the delicatessen are described by category.
 
 ⚠️ /how-to/what-your-site-says-you-are-called/ (528) owns four other cases from
@@ -49,7 +49,7 @@ def fix_false_negative() -> Path:
     body = """
 <p class="lede">Every false positive you have ever reported to a tool gets fixed the same way:
 somebody adds a condition. The part nobody sees is what that condition does to every other site
-the check runs on — because the usual way to stop a rule being wrong about you is to make it
+the check runs on, because the usual way to stop a rule being wrong about you is to make it
 quieter about everyone, and quiet is indistinguishable from correct.</p>
 
 <h2>The navigation label that became a company name</h2>
@@ -68,11 +68,11 @@ that was working exactly as designed.</p>
 <h2>The rule that fixed it, and why it is about the domain</h2>
 
 <p>A link's accessible name is the weakest of the four identity sources. Structured data and
-<code>og:site_name</code> are <em>declarations</em> — a site saying who it is. A link name is a
+<code>og:site_name</code> are <em>declarations</em>: a site saying who it is. A link name is a
 <em>description of a destination</em>. So the weak source was made to corroborate against the one
 identity signal a site cannot easily fake: its own domain.</p>
 
-<p>Across crawled sites the pattern held cleanly — every genuine residue resembles the domain, and
+<p>Across crawled sites the pattern held cleanly. Every genuine residue resembles the domain, and
 only the navigation label does not:</p>
 
 <table>
@@ -94,7 +94,7 @@ resembling neither. That is a real disagreement, and it is precisely what this c
 find.</p>
 
 <p>Demanding corroboration everywhere made the logo source <strong>incapable of ever being the odd
-one out</strong>. One site's false positive had been traded for another site's false negative — and
+one out</strong>. One site's false positive had been traded for another site's false negative, and
 a false negative makes no noise at all. Nobody writes in to say a tool failed to tell them
 something.</p>
 
@@ -104,8 +104,8 @@ something.</p>
 all.</strong></p>
 
 <ul>
-<li><strong>An accessible name that was already a plain name</strong> — the company, and nothing
-else — is a declaration in everything but format. It is read as before, corroborated or not.</li>
+<li><strong>An accessible name that was already a plain name</strong> (the company, and nothing
+else) is a declaration in everything but format. It is read as before, corroborated or not.</li>
 <li><strong>One that needed a navigation word stripped off it</strong> was a description of a
 destination, and what remains is as likely to be the section as the company. That residue has to
 resemble the domain before it counts.</li>
@@ -113,12 +113,12 @@ resemble the domain before it counts.</li>
 
 <p>The general form: <strong>when a guard is about to silence a whole source, ask what made this
 case suspicious, and condition on that instead of on the source.</strong> The suspicious thing here
-was never "logo links are unreliable" — it was "this string only became a name because we edited
+was never "logo links are unreliable". It was "this string only became a name because we edited
 it".</p>
 
 <h2>What the rule costs, stated plainly</h2>
 
-<p>A company whose domain does not contain its name — a rebrand still living on the old host —
+<p>A company whose domain does not contain its name (a rebrand still living on the old host)
 loses this one source, and only when a navigation word had to be removed to find the name. Its
 declarations are untouched, so the name is still seen. That is the trade, it was taken
 deliberately, and it is the kind of thing a tool should tell you rather than leave you to
@@ -144,7 +144,7 @@ context.</li>
 rather than a policy.</li>
 <li><strong>Check your declarations first.</strong> Your structured data and
 <code>og:site_name</code> are what you have actually claimed; everything else is inference.</li>
-<li><strong>Do not rewrite a link's accessible name to satisfy a finding</strong> — it is there for
+<li><strong>Do not rewrite a link's accessible name to satisfy a finding</strong>: it is there for
 a reason, and <a href="/how-to/what-your-site-says-you-are-called/">the harm in that is a page of
 its own &rarr;</a>.</li>
 </ol>
@@ -152,7 +152,7 @@ its own &rarr;</a>.</li>
 <h2>When the finding is real</h2>
 
 <p>Two genuinely different names for one organisation, across titles and declarations, is worth
-fixing — it splits the signals that tell a search engine and an assistant that all these pages
+fixing. It splits the signals that tell a search engine and an assistant that all these pages
 belong to one entity. The point of the guards above is that this finding only means something when
 it is rare, and a check that produces it on ordinary sites has made it mean nothing.</p>
 
@@ -172,14 +172,14 @@ picking one is the fix; deleting the page that revealed it is not.</li>
 <p>When you report a false positive and it gets fixed, the honest question to ask is what the fix
 cost. A condition that makes a rule quieter about you probably made it quieter about somebody else
 too. <strong>The only reason the regression above was caught is that a test existed asserting the
-opposite case</strong> — a site where that source <em>should</em> disagree with the rest. Reasoning
+opposite case</strong>: a site where that source <em>should</em> disagree with the rest. Reasoning
 would not have caught it; the suite did.</p>
 
 <h2>Where this sits in an audit</h2>
 
 <p>The registered check is <code>brand.name_consistency</code>, which compares the names your site
-uses for itself. For four other ways it got that wrong — including why rewriting a logo link's
-accessible name is the wrong repair — see
+uses for itself. For four other ways it got that wrong (including why rewriting a logo link's
+accessible name is the wrong repair) see
 <a href="/how-to/what-your-site-says-you-are-called/">what your site says you are called
 &rarr;</a>. For the wider lane, see <a href="/learn/brand-consistency/">brand consistency
 &rarr;</a>.</p>
@@ -187,7 +187,7 @@ accessible name is the wrong repair — see
     return render(
         cat="how-to", slug="when-a-fix-creates-a-false-negative",
         title="A fix that hid a real problem somewhere else",
-        desc=("An audit stopped reading a navigation label as a brand name — and that fix "
+        desc=("An audit stopped reading a navigation label as a brand name, and that fix "
               "left the same check unable to flag a real disagreement on another site."),
         h1="A fix that hid a real problem somewhere else",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Fixes with a cost',
@@ -203,8 +203,8 @@ accessible name is the wrong repair — see
              "have to resemble the domain before it counts."),
             ("Can fixing a false positive cause a false negative?",
              "Yes, and it is the common outcome, because the easy fix is to make a rule quieter. "
-             "A false negative is silent — nobody writes in to report that a tool failed to tell "
-             "them something — so only a test asserting the opposite case catches it."),
+             "A false negative is silent (nobody writes in to report that a tool failed to tell "
+             "them something), so only a test asserting the opposite case catches it."),
             ("An audit says my site uses two brand names. Should I believe it?",
              "Check where the second one came from and how often it appears. A tagline or a "
              "section label appearing once across a whole site is a page, not an identity. What "

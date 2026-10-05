@@ -23,8 +23,8 @@ def utility_pages() -> Path:
     body = """
 <p class="lede">Somebody searches for your brand and lands on your empty cart. Or on a search
 results page for a term nobody sold anything with. Or on the order confirmation that thanks them
-for a purchase they never made. None of those pages is broken — they are all working exactly as
-built — and every one of them is a bad first impression that you did not choose.</p>
+for a purchase they never made. None of those pages is broken (they are all working exactly as
+built), and every one of them is a bad first impression that you did not choose.</p>
 
 <h2>Which pages this is about</h2>
 
@@ -34,8 +34,8 @@ and <strong>order or enquiry confirmations</strong>. They carry almost no conten
 content is not what they are for.</p>
 
 <p>Internal search results are the sharpest case, and the one Google asks site owners to keep
-out of the index by name. A search page can generate an unlimited number of URLs — one per query
-anybody ever types, including the ones typed by bots — and each looks like a real page to a
+out of the index by name. A search page can generate an unlimited number of URLs (one per query
+anybody ever types, including the ones typed by bots), and each looks like a real page to a
 crawler.</p>
 
 <h2>Why it survives review</h2>
@@ -70,7 +70,7 @@ amount of fetching that could have gone to pages you wrote.</li>
 crawled, which matters on a cart or account page that links onwards into the site.</p>
 
 <p><strong>Do not reach for robots.txt instead.</strong> Disallowing a path stops the crawler
-<em>fetching</em> the page — which also stops it seeing the <code>noindex</code> you put there.
+<em>fetching</em> the page, which also stops it seeing the <code>noindex</code> you put there.
 A URL that is linked from somewhere can still end up listed on the strength of the link alone,
 and now there is no way to tell the engine to drop it. Blocking the crawler and asking it to
 forget the page are different requests, and only one of them needs the page to be readable.</p>
@@ -84,7 +84,7 @@ site:example.com inurl:cart
 site:example.com inurl:checkout</code></pre>
 
 <p>Then check the pages themselves for the tag. If your search URLs use a query string rather
-than a path, search for the parameter instead — the shape varies by platform and the fault does
+than a path, search for the parameter instead: the shape varies by platform and the fault does
 not.</p>
 
 <h2>What this does not cover</h2>
@@ -104,7 +104,7 @@ are telling search engines to list them, and one directive stops it.</p>
         faq=[
             ("Should internal search results be indexed?",
              "No. Google asks site owners to keep them out of the index, and a search page can "
-             "generate an unlimited number of URLs — one per query anyone ever types, "
+             "generate an unlimited number of URLs: one per query anyone ever types, "
              "including bots. Each looks like a real page to a crawler."),
             ("What is the fix for indexable cart and login pages?",
              "A robots meta tag with noindex and follow. The noindex takes the page out of the "

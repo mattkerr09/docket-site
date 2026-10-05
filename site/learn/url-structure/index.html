@@ -12,9 +12,9 @@
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>SEO URL structure: what is checked, what is folklore</title>
-<meta name="description" content="What a Docket audit of your site's URLs reports, finding by finding: session IDs, casing, encoded spaces, length and parameters — and the claims with no source.">
+<meta name="description" content="What a Docket audit of your site's URLs reports, finding by finding: session IDs, casing, encoded spaces, length and parameters, and the claims with no source.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/learn/url-structure/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SEO URL structure best practice, minus the folklore">
-<meta property="og:description" content="What a Docket audit of your site's URLs reports, finding by finding: session IDs, casing, encoded spaces, length and parameters — and the claims with no source.">
+<meta property="og:description" content="What a Docket audit of your site's URLs reports, finding by finding: session IDs, casing, encoded spaces, length and parameters, and the claims with no source.">
 <meta property="og:url" content="https://docketseo.app/learn/url-structure/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png?v=20261002-intel">
@@ -30,7 +30,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SEO URL structure best practice, minus the folklore">
-<meta name="twitter:description" content="What a Docket audit of your site's URLs reports, finding by finding: session IDs, casing, encoded spaces, length and parameters — and the claims with no source.">
+<meta name="twitter:description" content="What a Docket audit of your site's URLs reports, finding by finding: session IDs, casing, encoded spaces, length and parameters, and the claims with no source.">
 <meta name="twitter:image" content="https://docketseo.app/og.png?v=20261002-intel">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -773,8 +773,8 @@ nav{z-index:40}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"SEO URL structure best practice, minus the folklore","description":"What a Docket audit of your site's URLs reports, finding by finding: session IDs, casing, encoded spaces, length and parameters — and the claims with no source.","datePublished":"2026-09-16","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/url-structure/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Docket check whether my URLs use hyphens instead of underscores?","acceptedAnswer":{"@type":"Answer","text":"No. Google's URL structure documentation does recommend hyphens over underscores, and gives a legibility reason rather than a ranking one, but no finding in Docket's URL structure check looks at underscores. The check reports session IDs, uppercase letters in the path, encoded spaces, URLs past a length threshold, and a site that is mostly parameterised URLs."}},{"@type":"Question","name":"What is the ideal URL length for SEO?","acceptedAnswer":{"@type":"Answer","text":"There is no published figure, and this page does not invent one. Google's URL structure documentation states no character limit anywhere. Docket does have a length threshold, it is a number we chose rather than one we measured, and the finding it produces is a notice rather than an error for exactly that reason."}},{"@type":"Question","name":"Do keywords in the URL help rankings?","acceptedAnswer":{"@type":"Answer","text":"No source we can cite says so with a measurement attached. Google's guidance is to use readable words rather than long ID numbers, which is an argument about people understanding the URL. Docket never reports a URL for lacking a keyword, and restructuring live URLs on that theory costs you redirects for no known gain."}},{"@type":"Question","name":"Why is a URL flagged for encoded spaces when it has no space in it?","acceptedAnswer":{"@type":"Answer","text":"The rule fires on a literal plus sign in the path as well as on a percent-encoded space, and a plus only means a space inside a query string, where the form-urlencoded format defines that substitution. In a path segment a plus is just a character. The finding is accurate about what it matched and wider than its title suggests, so check the URL before renaming anything."}},{"@type":"Question","name":"My site uses query parameters everywhere and Docket said nothing. Why?","acceptedAnswer":{"@type":"Answer","text":"That finding is the only one in the check with a site-level threshold. A URL has to carry three or more parameters to count at all, and the finding is only reported when the number of such URLs clears both a small floor and a share of the indexable pages the crawl read. A few filtered URLs on a large site stay below it by design."}},{"@type":"Question","name":"Does Docket see URLs it did not crawl?","acceptedAnswer":{"@type":"Answer","text":"No. Every finding here is computed over the pages the crawl fetched that were indexable HTML — so the counts are a floor rather than a census. On a large site with a big parameter space, the more useful signal is whether the crawl kept finding new URL combinations until it ran out of budget."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"SEO URL structure best practice, minus the folklore","description":"What a Docket audit of your site's URLs reports, finding by finding: session IDs, casing, encoded spaces, length and parameters, and the claims with no source.","datePublished":"2026-09-16","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/url-structure/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Docket check whether my URLs use hyphens instead of underscores?","acceptedAnswer":{"@type":"Answer","text":"No. Google's URL structure documentation does recommend hyphens over underscores, and gives a legibility reason rather than a ranking one, but no finding in Docket's URL structure check looks at underscores. The check reports session IDs, uppercase letters in the path, encoded spaces, URLs past a length threshold, and a site that is mostly parameterised URLs."}},{"@type":"Question","name":"What is the ideal URL length for SEO?","acceptedAnswer":{"@type":"Answer","text":"There is no published figure, and this page does not invent one. Google's URL structure documentation states no character limit anywhere. Docket does have a length threshold, it is a number we chose rather than one we measured, and the finding it produces is a notice rather than an error for exactly that reason."}},{"@type":"Question","name":"Do keywords in the URL help rankings?","acceptedAnswer":{"@type":"Answer","text":"No source we can cite says so with a measurement attached. Google's guidance is to use readable words rather than long ID numbers, which is an argument about people understanding the URL. Docket never reports a URL for lacking a keyword, and restructuring live URLs on that theory costs you redirects for no known gain."}},{"@type":"Question","name":"Why is a URL flagged for encoded spaces when it has no space in it?","acceptedAnswer":{"@type":"Answer","text":"The rule fires on a literal plus sign in the path as well as on a percent-encoded space, and a plus only means a space inside a query string, where the form-urlencoded format defines that substitution. In a path segment a plus is just a character. The finding is accurate about what it matched and wider than its title suggests, so check the URL before renaming anything."}},{"@type":"Question","name":"My site uses query parameters everywhere and Docket said nothing. Why?","acceptedAnswer":{"@type":"Answer","text":"That finding is the only one in the check with a site-level threshold. A URL has to carry three or more parameters to count at all, and the finding is only reported when the number of such URLs clears both a small floor and a share of the indexable pages the crawl read. A few filtered URLs on a large site stay below it by design."}},{"@type":"Question","name":"Does Docket see URLs it did not crawl?","acceptedAnswer":{"@type":"Answer","text":"No. Every finding here is computed over the pages the crawl fetched that were indexable HTML, so the counts are a floor rather than a census. On a large site with a big parameter space, the more useful signal is whether the crawl kept finding new URL combinations until it ran out of budget."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -828,7 +828,7 @@ fbq('track','PageView');
 total confidence and no evidence: hyphens beat underscores, keep it under some number of
 characters, get your keyword in the slug. Some of that is in Google's own documentation. Some
 of it has never been published by anyone who measured it. This page separates the two, and
-says plainly which of them Docket checks — because the answer is fewer than you would guess.</p>
+says plainly which of them Docket checks, because the answer is fewer than you would guess.</p>
 
 <p>Docket registers one check here, <code>index.url_hygiene</code>, under the title
 "URL structure", in the crawlability and indexing lane. It emits up to 5 findings.
@@ -838,7 +838,7 @@ Here they are, with the condition that fires each, exactly as the code has it.</
 
 <h3>A session ID in the query string</h3>
 
-<p>Finding <code>index.session_ids</code>, at HIGH — the most severe thing this check can say.
+<p>Finding <code>index.session_ids</code>, at HIGH: the most severe thing this check can say.
 It fires on a URL whose query string matches <code>sid=</code>, <code>sessionid=</code>,
 <code>phpsessid=</code> or <code>jsessionid=</code>, case-insensitively. The detail text is
 blunt about why: a session ID makes a new, unique URL for every visit, which is an effectively
@@ -861,10 +861,10 @@ mixed-case versions permanently.</p>
 <p>Sourced, again on 16 September 2026: "Like any other HTTP client following IETF STD 66, Google
 Search's URL handling is case sensitive (for example, Google treats both <code>/APPLE</code>
 and <code>/apple</code> as distinct URLs with their own content)." The same passage says what
-to do if your server does not care about case — "convert all text to the same case so it's
+to do if your server does not care about case. "Convert all text to the same case so it's
 easier for Google to determine that URLs reference the same page."</p>
 
-<h3>Encoded spaces — and this title is wider than its rule</h3>
+<h3>Encoded spaces: and this title is wider than its rule</h3>
 
 <p>Finding <code>index.url_spaces</code>, at LOW. It fires when the path contains
 <code>%20</code> <strong>or</strong> a literal <code>+</code>. The reasoning given is practical
@@ -873,7 +873,7 @@ get mis-copied. The fix is to use hyphens between words.</p>
 
 <p>The second trigger is looser than the finding's name. A <code>+</code> means a space only
 inside an <code>application/x-www-form-urlencoded</code> payload, which is a query-string
-format — the WHATWG URL Standard spells the substitution out in its parsing steps: "Replace any 0x2B (+) in
+format: the WHATWG URL Standard spells the substitution out in its parsing steps: "Replace any 0x2B (+) in
 name and value with 0x20 (SP)", where name and value are the halves of a query pair. In a path
 segment a plus is just a plus. So a page published at a path containing one gets reported as
 carrying an encoded space when it carries no space at all. Worth knowing before you go and
@@ -881,13 +881,13 @@ rename anything.</p>
 
 <h3>A long URL</h3>
 
-<p>Finding <code>index.url_long</code>, at NOTICE — the lowest severity Docket reports a
+<p>Finding <code>index.url_long</code>, at NOTICE: the lowest severity Docket reports a
 defect at, and correctly so. It fires when the URL is longer than 115 characters. The detail text says
 long URLs get truncated in search results and shared links; the fix says to shorten slugs to
 the two or three words that describe the page.</p>
 
-<p>Two honest caveats. The measurement is taken over the entire absolute URL — scheme, host and
-all — while the advice talks about slugs, so a long hostname spends part of a budget you cannot
+<p>Two honest caveats. The measurement is taken over the entire absolute URL (scheme, host and
+all) while the advice talks about slugs, so a long hostname spends part of a budget you cannot
 edit by renaming a page. And the threshold itself has no outside source. It is a
 house number, chosen by us. Read in full on 16 September 2026, Google's URL structure documentation states no character
 limit for URLs anywhere on the page. That is why this finding is a notice and not an error, and
@@ -898,7 +898,7 @@ why nothing here tells you that a URL over that length will rank worse. Nobody k
 <p>Finding <code>index.url_params</code>, at MEDIUM, and the only one of the five with a
 site-level threshold rather than a per-URL one. A URL counts toward it when its query string
 contains at least 2 ampersands, which means 3 or more key-value
-pairs — two parameters never counts. The finding is then reported only if the number of such
+pairs: two parameters never counts. The finding is then reported only if the number of such
 URLs exceeds both a floor of 3 and 25 per cent of the indexable
 pages in the crawl, whichever is larger. A handful of filtered URLs on a big site stays quiet.
 A site that is mostly filter combinations does not.</p>
@@ -917,7 +917,7 @@ canonical, for spaces you never want crawled at all.</p>
 <p><strong>That hyphens beat underscores for ranking.</strong> Google's URL structure documentation does recommend hyphens
 — "we recommend using hyphens (<code>-</code>) instead of underscores (<code>_</code>) to
 separate words in your URLs, as it helps users and search engines better identify concepts in
-the URL" — and gives a reason that is about legibility and convention, not about a scoring
+the URL", and gives a reason that is about legibility and convention, not about a scoring
 difference: underscores are already used to join words into single names in programming
 languages. No effect size is published. <strong>And Docket does not check for underscores at
 all.</strong> No finding in this check looks at them. A page that told you Docket enforced
@@ -933,7 +933,7 @@ never tell you a slug is missing a keyword.</p>
 house number and is labelled as one, and Google publishes none.</p>
 
 <p>Being precise here cuts our own side too, which is the point of saying it out loud. The
-uppercase finding's premise — that paths are case-sensitive on most servers — is stated as a
+uppercase finding's premise (that paths are case-sensitive on most servers) is stated as a
 general fact by the check and is not measured by it per site; Docket does not probe your server
 to find out whether it folds case. Treat that finding as "these URLs could be a duplicate pair"
 rather than "these URLs are one".</p>
@@ -947,7 +947,7 @@ may not be in them, depending on how far the crawl got. And a parameterised URL 
 already excluded with <code>noindex</code> is correctly invisible here, because it is not a page
 competing for indexing.</p>
 
-<p>So the counts are a floor, not a census — the shape of the problem on the pages Docket read,
+<p>So the counts are a floor, not a census. The shape of the problem on the pages Docket read,
 which on a large site is a sample. If a parameter space is the thing you are worried about, the
 number that matters is not in the finding; it is in whether the crawl kept discovering new
 combinations until it ran out of budget.</p>
@@ -955,7 +955,7 @@ combinations until it ran out of budget.</p>
 <h2>What to do with the list</h2>
 
 <p>In severity order, which is also roughly the order of how much a fix buys you. Session IDs
-first — that is a duplicate-content generator and the only item here Google's documentation
+first. That is a duplicate-content generator and the only item here Google's documentation
 explicitly asks you to remove. Then the parameter finding, if it fired, taking the canonical
 route or the robots.txt route but not both. Then casing, which is a server rule plus redirects
 rather than a URL-by-URL job. The encoded-space and long-URL findings are cosmetic; they are a
@@ -971,7 +971,7 @@ you land on is a redirect, <a href="/how-to/fix-redirect-problems/">redirect loo
 internal links pointing at redirects</a> is the shape to avoid creating on the way.</p>
 
 <aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=learn-url-structure" data-ev="Buy" data-ev-price="349" data-ev-button="learn-url-structure">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-url-structure">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Docket check whether my URLs use hyphens instead of underscores?</h3><p>No. Google's URL structure documentation does recommend hyphens over underscores, and gives a legibility reason rather than a ranking one, but no finding in Docket's URL structure check looks at underscores. The check reports session IDs, uppercase letters in the path, encoded spaces, URLs past a length threshold, and a site that is mostly parameterised URLs.</p></div><div class="faq-item"><h3>What is the ideal URL length for SEO?</h3><p>There is no published figure, and this page does not invent one. Google's URL structure documentation states no character limit anywhere. Docket does have a length threshold, it is a number we chose rather than one we measured, and the finding it produces is a notice rather than an error for exactly that reason.</p></div><div class="faq-item"><h3>Do keywords in the URL help rankings?</h3><p>No source we can cite says so with a measurement attached. Google's guidance is to use readable words rather than long ID numbers, which is an argument about people understanding the URL. Docket never reports a URL for lacking a keyword, and restructuring live URLs on that theory costs you redirects for no known gain.</p></div><div class="faq-item"><h3>Why is a URL flagged for encoded spaces when it has no space in it?</h3><p>The rule fires on a literal plus sign in the path as well as on a percent-encoded space, and a plus only means a space inside a query string, where the form-urlencoded format defines that substitution. In a path segment a plus is just a character. The finding is accurate about what it matched and wider than its title suggests, so check the URL before renaming anything.</p></div><div class="faq-item"><h3>My site uses query parameters everywhere and Docket said nothing. Why?</h3><p>That finding is the only one in the check with a site-level threshold. A URL has to carry three or more parameters to count at all, and the finding is only reported when the number of such URLs clears both a small floor and a share of the indexable pages the crawl read. A few filtered URLs on a large site stay below it by design.</p></div><div class="faq-item"><h3>Does Docket see URLs it did not crawl?</h3><p>No. Every finding here is computed over the pages the crawl fetched that were indexable HTML — so the counts are a floor rather than a census. On a large site with a big parameter space, the more useful signal is whether the crawl kept finding new URL combinations until it ran out of budget.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Docket check whether my URLs use hyphens instead of underscores?</h3><p>No. Google's URL structure documentation does recommend hyphens over underscores, and gives a legibility reason rather than a ranking one, but no finding in Docket's URL structure check looks at underscores. The check reports session IDs, uppercase letters in the path, encoded spaces, URLs past a length threshold, and a site that is mostly parameterised URLs.</p></div><div class="faq-item"><h3>What is the ideal URL length for SEO?</h3><p>There is no published figure, and this page does not invent one. Google's URL structure documentation states no character limit anywhere. Docket does have a length threshold, it is a number we chose rather than one we measured, and the finding it produces is a notice rather than an error for exactly that reason.</p></div><div class="faq-item"><h3>Do keywords in the URL help rankings?</h3><p>No source we can cite says so with a measurement attached. Google's guidance is to use readable words rather than long ID numbers, which is an argument about people understanding the URL. Docket never reports a URL for lacking a keyword, and restructuring live URLs on that theory costs you redirects for no known gain.</p></div><div class="faq-item"><h3>Why is a URL flagged for encoded spaces when it has no space in it?</h3><p>The rule fires on a literal plus sign in the path as well as on a percent-encoded space, and a plus only means a space inside a query string, where the form-urlencoded format defines that substitution. In a path segment a plus is just a character. The finding is accurate about what it matched and wider than its title suggests, so check the URL before renaming anything.</p></div><div class="faq-item"><h3>My site uses query parameters everywhere and Docket said nothing. Why?</h3><p>That finding is the only one in the check with a site-level threshold. A URL has to carry three or more parameters to count at all, and the finding is only reported when the number of such URLs clears both a small floor and a share of the indexable pages the crawl read. A few filtered URLs on a large site stay below it by design.</p></div><div class="faq-item"><h3>Does Docket see URLs it did not crawl?</h3><p>No. Every finding here is computed over the pages the crawl fetched that were indexable HTML, so the counts are a floor rather than a census. On a large site with a big parameter space, the more useful signal is whether the crawl kept finding new URL combinations until it ran out of budget.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

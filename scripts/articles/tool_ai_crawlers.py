@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""/tools/ai-crawler-checker/ — the free AI crawler checker.
+"""/tools/ai-crawler-checker/: the free AI crawler checker.
 
 Matthew, 2026-09-28: "look at the top performing pages for outlier and see
 what we can use to help the other pages and other sites". Outlier's traffic
@@ -201,7 +201,7 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
           if (!r) {{ c.textContent = '—'; return; }}
           c.className = 'verdict ' + (r.allowed ? 'yes' : 'no');
           var how = r.governedBy === 'name' ? 'named in your file' : r.governedBy === 'wildcard' ? 'by your * rules' : r.governedBy === 'status' ? 'by the server’s answer' : 'no rule applies';
-          c.textContent = (r.allowed ? 'Allowed' : 'Blocked') + ' — ' + how + (r.rule ? ' (' + r.rule + ')' : '');
+          c.textContent = (r.allowed ? 'Allowed' : 'Blocked') + ': ' + how + (r.rule ? ' (' + r.rule + ')' : '');
         }});
         var msg = {{ parsed: 'Read ' + j.robots_url + '.', unavailable: j.robots_url + ' was not found (HTTP ' + j.status + '), so every crawler may crawl.', unreachable: j.robots_url + ' could not be read' + (j.status ? ' (HTTP ' + j.status + ')' : '') + ', so crawlers stay out until it can.', blocked: j.note || 'That address could not be checked.' }}[j.state] || '';
         if (j.note && j.state !== 'blocked') msg += ' ' + j.note;

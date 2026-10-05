@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
-"""Site monitoring — the largest feature with no page of its own.
+"""Site monitoring: the largest feature with no page of its own.
 
 The gap analysis found the Watchlist described only inside the sitewide
 `featureList` JSON-LD string and in passing bullets on five pages. It is an
-entire section of the README — scheduled re-audits, change detection, score
-history, competitor tracking — and a reader searching for "SEO monitoring" had
+entire section of the README (scheduled re-audits, change detection, score
+history, competitor tracking), and a reader searching for "SEO monitoring" had
 nowhere on this site to land.
 
 The two refusals are the reason this page is worth writing rather than
 listing. Refusing to diff crawls of very different sizes, and excluding areas
 only one side was evaluated on, are both cases of the product declining to
-produce a number it cannot stand behind — which is the argument the whole site
+produce a number it cannot stand behind, which is the argument the whole site
 makes, in a feature where every competitor produces the number anyway.
 """
 from __future__ import annotations
@@ -24,17 +24,17 @@ from render import render  # noqa: E402
 
 def site_monitoring() -> Path:
     body = """
-<p class="lede">An audit tells you what is wrong today. Monitoring tells you what changed —
+<p class="lede">An audit tells you what is wrong today. Monitoring tells you what changed,
 which is the question you actually have, because a site that was fine last month and is not
 fine now has a cause, and a site that has been failing the same check since 2023 is not
 news.</p>
 
-<p>Docket re-audits on a schedule you set — daily, weekly or monthly — on your own machine,
+<p>Docket re-audits on a schedule you set (daily, weekly or monthly) on your own machine,
 with no account, and the results stay there. Every re-audit is compared against the last one, and
 the comparison leads with what got worse.</p>
 
 <p><strong>It runs while Docket is open, and stops when you quit.</strong> The scheduler is
-a thread inside the app, not a background service and not a server — there is nothing left
+a thread inside the app, not a background service and not a server. There is nothing left
 running on your Mac after you close it, and nothing running anywhere else at any time. A
 site that falls due while Docket is shut is picked up the next time you open it, so you get
 the check late rather than not at all. If you need an audit to run at 3am whether or not
@@ -46,7 +46,7 @@ anybody is logged in, that is a job for the Linux CLI in cron or CI, and
 <p>A snapshot is enough to say what changed and to draw the trend, and it is not enough to
 read: it records which checks fired and how badly, not the detail, the fix or the URLs. So
 each scheduled check now keeps the full report it produced, and the site&rsquo;s page offers
-it &mdash; open it, or download it as PDF, HTML or JSON.</p>
+it. Open it, or download it as PDF, HTML or JSON.</p>
 
 <p>It has to be kept at the moment it is made. A report is rendered from an audit that is
 still in memory, and once the check has finished there is nothing left to render from, so a
@@ -71,8 +71,8 @@ deploy. Only one of those needs you this morning.</p>
 wrong.</p>
 
 <p><strong>It will not diff two audits that crawled very different numbers of pages.</strong>
-It says so instead. If last week reached 50 pages and this week reached 500 — because a
-sitemap appeared, or a crawl budget changed, or a section stopped being blocked — then
+It says so instead. If last week reached 50 pages and this week reached 500 (because a
+sitemap appeared, or a crawl budget changed, or a section stopped being blocked) then
 comparing them invents dozens of "new" issues that were there all along and simply had not
 been reached. Every one of those alerts would be false, and you would spend the morning
 proving it.</p>
@@ -90,20 +90,20 @@ where you lead and trail area by area.</p>
 
 <p>The most useful row is not the score. It is the list of issues <em>every competitor has
 already fixed</em>. That is the clearest evidence you get that something is both achievable
-in your market and expected in it — an issue nobody else has is a standard, not an
+in your market and expected in it: an issue nobody else has is a standard, not an
 opinion.</p>
 
 <h2>Where the history lives</h2>
 
 <p>In <code>~/.docket/</code>, as plain JSON: a watchlist plus one compact snapshot per
 audit, a few kilobytes each. Alongside them sits the full report from each site&rsquo;s most
-recent check &mdash; that one is not a few kilobytes, and it is replaced rather than
+recent check. That one is not a few kilobytes, and it is replaced rather than
 accumulated, so the folder grows with the number of sites you watch and not with the number
 of checks you run. You can read any of it, back it up, put it in version control, or delete
 it. Set <code>DOCKET_HOME</code> to keep it somewhere else.</p>
 
 <p>There is no server of ours in this. The history is never uploaded, there is no account, and if you stop
-using Docket your history is still sitting in a folder you own — which is the difference
+using Docket your history is still sitting in a folder you own, which is the difference
 between monitoring you rent and monitoring you have.</p>
 
 <h2>Scheduled audits are a promise to somebody else's server</h2>
@@ -111,7 +111,7 @@ between monitoring you rent and monitoring you have.</p>
 <p>A monitor is a program that visits a site repeatedly without a person present, so the
 politeness settings matter more than they do for a one-off audit. Docket crawls with the
 same concurrency and delay you set for a manual run, deduplicates URLs, and respects the
-page cap. If you are monitoring a site you do not own — a competitor — those settings are
+page cap. If you are monitoring a site you do not own (a competitor) those settings are
 the difference between research and a nuisance.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
@@ -141,7 +141,7 @@ the difference between research and a nuisance.</p>
         body=body,
         faq=[
             ("How often does Docket re-audit a monitored site?",
-             "Daily, weekly or monthly — you choose per site. The re-audit runs on your "
+             "Daily, weekly or monthly: you choose per site. The re-audit runs on your "
              "own machine with the same crawl settings as a manual run, so a monitored "
              "site is not crawled harder than one you audit by hand."),
             ("Does monitoring keep running when Docket is closed?",
@@ -151,7 +151,7 @@ the difference between research and a nuisance.</p>
              "runs on a schedule, use the Linux CLI in cron or CI."),
             ("Does site monitoring need an account or a server?",
              "No. The re-audits run on your Mac and history is stored in ~/.docket/ as plain "
-             "JSON — a watchlist plus one small snapshot per audit. The history is never "
+             "JSON: a watchlist plus one small snapshot per audit. The history is never "
              "uploaded, and it stays yours if you stop using Docket."),
             ("Why does Docket refuse to compare some audits?",
              "Because comparing a 50-page crawl with a 500-page crawl invents dozens of "

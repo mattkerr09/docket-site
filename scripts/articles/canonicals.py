@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Canonical tags — what rel=canonical does, and how it is usually got wrong.
+"""Canonical tags: what rel=canonical does, and how it is usually got wrong.
 
 Canonicals attract more stale folklore than any other piece of head markup:
 advice written against 2011 behaviour is still repeated as current, and the
-single most consequential fact — that Google treats the tag as a hint and
-overrides it routinely — is the one most often left out.
+single most consequential fact (that Google treats the tag as a hint and
+overrides it routinely) is the one most often left out.
 
 So every claim on this page about Google's actual behaviour is read from
 Google's own documentation on a stated date and carries a link, in the pattern
@@ -56,7 +56,7 @@ VERIFIED: list[tuple[str, str]] = [
      "https://developers.google.com/search/docs/specialty/ecommerce/"
      "pagination-and-incremental-page-loading"),
     ('"While we don\'t recommend using JavaScript for this, it is possible to inject '
-     'a rel="canonical" link tag with JavaScript" — and if you do, it must be the '
+     'a rel="canonical" link tag with JavaScript", and if you do, it must be the '
      "only one on the page",
      "https://developers.google.com/search/docs/crawling-indexing/javascript/"
      "javascript-seo-basics"),
@@ -73,9 +73,9 @@ def _verified_note() -> str:
     )
     return f"""
 <p class="verified-note"><strong>Read from Google's own documentation on
-{CHECKED_ON_HUMAN}.</strong> {items}. Canonical advice ages badly — a great deal
+{CHECKED_ON_HUMAN}.</strong> {items}. Canonical advice ages badly (a great deal
 of what circulates was accurate against a version of Search that no longer
-exists — so if Google has changed any of this since that date,
+exists), so if Google has changed any of this since that date,
 <a href="/about/">tell us</a> and the page will be corrected rather than quietly
 left standing.</p>"""
 
@@ -90,7 +90,7 @@ def canonical_tags() -> Path:
 <p class="lede">A canonical tag tells Google which URL you would prefer it indexed. It does
 not tell Google which URL to index. Google's documentation calls a canonical preference
 a hint rather than a rule and says outright that it may choose a different page than you
-do — so most canonical "bugs" are not broken markup at all. They are Google disagreeing
+do, so most canonical "bugs" are not broken markup at all. They are Google disagreeing
 with you, and the way out is to remove the disagreement rather than to state your
 preference more emphatically.</p>
 
@@ -98,13 +98,13 @@ preference more emphatically.</p>
 
 <p>The sentence worth reading twice sits in Google's canonicalization documentation:
 indicating a canonical preference is a hint, not a rule. The troubleshooting page is
-blunter still — even where you have explicitly designated a canonical page, Google might
+blunter still. Even where you have explicitly designated a canonical page, Google might
 choose a different one, "for various reasons, such as the quality of the content".</p>
 
 <p>That reframes the whole problem. If Google picked a URL you did not nominate, the tag
 in your <code>&lt;head&gt;</code> is usually fine and the site is arguing with itself
 somewhere else: internal links point at one URL, the sitemap lists a second, a redirect
-aims at a third. Google's own docs rank those inputs — a rel=canonical annotation and a
+aims at a third. Google's own docs rank those inputs. A rel=canonical annotation and a
 redirect are strong signals, a sitemap entry is weak. Nothing makes the tag binding, so
 declaring it twice, adding it in the HTTP header as well, and repeating it in the sitemap
 achieves nothing by itself. Point every signal at the same URL and the disagreement
@@ -117,8 +117,8 @@ before deciding it failed and undoing it.</p>
 <h2>What the tag consolidates, and what it leaves alone</h2>
 
 <p>The reason to use one at all is signal consolidation. Google describes canonicalisation
-as letting it merge the information it holds for individual URLs — links to them among
-them — into a single preferred URL. A link earned by <code>?utm_source=newsletter</code>
+as letting it merge the information it holds for individual URLs (links to them among
+them) into a single preferred URL. A link earned by <code>?utm_source=newsletter</code>
 can end up counted towards the clean URL instead of stranded on a variant. Crawling works
 the same way: the canonical is crawled most regularly and the duplicates less often, which
 on a large catalogue decides whether new products are found this week or next month.</p>
@@ -150,7 +150,7 @@ is catastrophic, silent, and takes thirty seconds to rule out.</p>
 
 <h3>Page 2 canonicalises to page 1</h3>
 <p>Received wisdom for years, and Google's current guidance is the opposite: don't use the
-first page of a paginated sequence as the canonical page — give each page its own
+first page of a paginated sequence as the canonical page. Give each page its own
 canonical URL. Page 4 contains items page 1 does not, so pointing page 4 at page 1 asks
 Google to ignore content that exists nowhere else. Google also stopped using
 <code>rel="next"</code> and <code>rel="prev"</code>; ordinary <code>&lt;a href&gt;</code>
@@ -173,7 +173,7 @@ source ship two, and two contradictory hints is a weaker position than one.</p>
 <h3>A cross-domain canonical nobody meant to ship</h3>
 <p>Staging environments pushed to production with their canonicals intact, or a migration
 that left half a site nominating the domain it moved off. Cross-domain canonicals are
-legitimate and useful — they are the correct tool for syndicated content — and they are
+legitimate and useful (they are the correct tool for syndicated content), and they are
 also the one canonical mistake that hands your indexing to somebody else's site.</p>
 
 <h2>Reading the statuses in Search Console</h2>
@@ -187,7 +187,7 @@ This status is the system working, and it accounts for a great many of the "erro
 people set out to fix</td></tr>
 <tr><td>Duplicate, Google chose different canonical than user</td><td>Google read your
 canonical and picked something else. Almost always the two pages are near-identical and
-the other URL carries stronger signals — more internal links, a redirect aimed at it, a
+the other URL carries stronger signals: more internal links, a redirect aimed at it, a
 sitemap entry</td><td>Inspect the URL, read Google's chosen canonical, and decide who is
 right. If you are, point the internal links and the sitemap at your choice. If Google is,
 adopt its choice and move on</td></tr>
@@ -208,7 +208,7 @@ the hint is discarded</td></tr>
 
 <p>The URL Inspection tool is where this gets settled: it reports the user-declared
 canonical and the Google-selected canonical side by side. When they differ, that gap is
-the finding — not the tag.</p>
+the finding, not the tag.</p>
 
 <h2>What a canonical will not fix</h2>
 
@@ -219,7 +219,7 @@ ranking. If only one of the forty deserves to exist, delete thirty-nine and redi
 them.</p>
 
 <p><strong>It does not control which URL a person sees.</strong> Anyone who reaches the
-duplicate stays on it — canonicals affect indexing, not delivery. If a variant must not be
+duplicate stays on it: canonicals affect indexing, not delivery. If a variant must not be
 reachable, that is a redirect. If it must not be indexed at all, that is
 <code>noindex</code>, which is a directive rather than a hint, and the two do not belong on
 the same URL because they ask for different things.</p>
@@ -246,15 +246,15 @@ other end: a redirect, a 404, a different host, a URL differing from the page on
 protocol or trailing slash. Those are verifiable. <code>index.canonical_conflict</code>
 fires when a page declares more than one, which is never deliberate.
 <code>index.www</code> handles apex-versus-www separately, because that is a server
-configuration rather than a markup mistake — and we measured how often it is still wrong in
+configuration rather than a markup mistake, and we measured how often it is still wrong in
 <a href="/learn/www-vs-non-www/">www versus non-www, counted rather than asserted</a>.</p>
 
-<p>A canonical that merely points elsewhere is now reported without a severity — a
+<p>A canonical that merely points elsewhere is now reported without a severity. A
 statement of fact with the resolved target attached, so you can see at a glance whether it
 is your syndication arrangement or your CMS having an opinion. The limit worth stating
 plainly: Docket cannot tell a deliberate cross-domain canonical from an accidental one in
 general, because that distinction lives in a commercial agreement rather than in the
-markup. The one case it can read is a page that <em>declares</em> the arrangement — a
+markup. The one case it can read is a page that <em>declares</em> the arrangement. A
 byline saying the story was co-published with, or first appeared on, the domain the
 canonical names. That is the site telling us, not us guessing, and it is required in both
 halves: the phrase and the canonical's own host in the page's text. A copied template or a
@@ -276,7 +276,7 @@ read your preference and declined it.</li>
 
 <p>Docket does this across a whole site rather than three pages: it checks canonical
 validity, resolves the declared target, and flags the ones landing on redirects, 404s or a
-different host — among {N_CHECKS} checks that run on your Mac, with no account, and the crawl
+different host. Among {N_CHECKS} checks that run on your Mac, with no account, and the crawl
 and the report stay there. Findings come back ranked by cost against effort, each with the exact markup to
 paste.</p>
 

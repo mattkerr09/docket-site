@@ -14,7 +14,7 @@
 <title>What is an SEO audit? What it covers and how to read one</title>
 <meta name="description" content="An SEO audit checks whether search engines can find, understand and choose to show your site. What each area covers, and why they fail in order.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/learn/seo-audit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -774,7 +774,7 @@ nav{z-index:40}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What an SEO audit actually covers","description":"An SEO audit checks whether search engines can find, understand and choose to show your site. What each area covers, and why they fail in order.","datePublished":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/seo-audit/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does an SEO audit include?","acceptedAnswer":{"@type":"Answer","text":"Crawlability and indexing, on-page markup, content quality, speed, structured data, internal and outbound links, and security. A thorough audit also covers local business signals, AI search visibility and conversion, which most technical crawlers omit."}},{"@type":"Question","name":"How often should I run an SEO audit?","acceptedAnswer":{"@type":"Answer","text":"Quarterly for most sites, with lighter monitoring in between. Run one immediately after a redesign, migration or unexplained traffic drop — those are when invisible, fatal mistakes get introduced."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does an SEO audit include?","acceptedAnswer":{"@type":"Answer","text":"Crawlability and indexing, on-page markup, content quality, speed, structured data, internal and outbound links, and security. A thorough audit also covers local business signals, AI search visibility and conversion, which most technical crawlers omit."}},{"@type":"Question","name":"How often should I run an SEO audit?","acceptedAnswer":{"@type":"Answer","text":"Quarterly for most sites, with lighter monitoring in between. Run one immediately after a redesign, migration or unexplained traffic drop: those are when invisible, fatal mistakes get introduced."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -835,14 +835,14 @@ page that cannot be crawled scores zero on everything downstream, however good i
 Each one carries a number from our own surveys, because "check this" is advice and "this is
 broken on half the sites we read" is a reason.</p>
 
-<h3>Crawlability and indexing — the gate</h3>
+<h3>Crawlability and indexing: the gate</h3>
 <p>Can search engines reach the page, and are you telling them to index it? This is where the
 site-killing mistakes live: a <code>noindex</code> left on after a redesign, a robots.txt
 <code>Disallow: /</code> carried over from staging, canonicals pointing at another domain,
 redirect loops. Every one of these is invisible to a visitor and fatal to rankings.</p>
 <p>Two numbers from reading the robots.txt of the Tranco top 10,000. Of the
 1,616 sites writing a rule aimed at an AI crawler,
-<strong>838 — 51.9% — name a user-agent token no
+<strong>838 (51.9%) name a user-agent token no
 crawler answers to</strong>, so the rule they wrote does nothing. And
 643 of the 10,000 refused a self-identifying bot at the server before
 robots.txt was even consulted, which no
@@ -853,7 +853,7 @@ here.</a></p>
 <p>Titles, meta descriptions, heading structure, image alt text, internal anchor text. Mostly
 straightforward, but two details matter more than people expect: search engines truncate titles
 by <em>pixel width</em> rather than character count, and <code>alt=""</code> is the correct
-markup for a decorative image — not a missing alt.</p>
+markup for a decorative image, not a missing alt.</p>
 
 <h3>Content</h3>
 <p>Whether pages answer the question someone actually asked. Thin pages, unfinished template copy left
@@ -876,14 +876,14 @@ trouble of describing themselves and then connected it to nothing.
 
 <h3>The three most audits skip</h3>
 <ul>
-<li><strong>Local business signals</strong> — NAP consistency, LocalBusiness schema and its
+<li><strong>Local business signals</strong>: NAP consistency, LocalBusiness schema and its
 subtypes, opening hours, geo targeting. For a plumber or a restaurant this <em>is</em> organic
 search.</li>
-<li><strong>AI search visibility</strong> — per-crawler access, server-side rendering, entity
+<li><strong>AI search visibility</strong>: per-crawler access, server-side rendering, entity
 resolution. <a href="/learn/ai-search-visibility/">Explained here</a>, and the directives
 themselves are on <a href="/how-to/fix-ai-crawler-access/">letting ChatGPT and Perplexity read
 your site</a>.</li>
-<li><strong>Conversion</strong> — whether the traffic you earn has anywhere to go. The most
+<li><strong>Conversion</strong>: whether the traffic you earn has anywhere to go. The most
 expensive failure on any site is a page that ranks and converts nobody:
 <a href="/learn/conversion-audit/">nine checks that apply to a landing page</a> rather than to a
 crawl, and <a href="/learn/marketing-tag-audit/">whether your tracking is on every page</a>,
@@ -892,13 +892,13 @@ which is a different question from whether it is installed.</li>
 
 <h2>How often to run one</h2>
 <p>Quarterly is right for most sites, with lighter monitoring between. Run one immediately
-after a redesign, a migration, a CMS change, or an unexplained traffic drop — those are when
+after a redesign, a migration, a CMS change, or an unexplained traffic drop: those are when
 the fatal, invisible mistakes get introduced.</p>
 
 <h2>What a good audit report looks like</h2>
 <p>Three tests. If a report fails them, it will not get acted on:</p>
 <ol>
-<li><strong>Is there a first task?</strong> Not a category — a specific first thing.</li>
+<li><strong>Is there a first task?</strong> Not a category: a specific first thing.</li>
 <li><strong>Does every finding say what it costs you?</strong> "Missing meta description" is a
 fact. "Google is writing your search snippet from a cookie notice" is a reason.</li>
 <li><strong>Does it admit what it could not check?</strong> A report with no gaps either
@@ -909,7 +909,7 @@ that has to be on the page.</li>
 <p>Docket is built around those three. It runs 99 checks on your Mac, ranks everything by impact
 against effort, and marks areas it could not assess as unknown rather than passing.</p>
 <aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=learn-seo-audit" data-ev="Buy" data-ev-price="349" data-ev-button="learn-seo-audit">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-seo-audit">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What does an SEO audit include?</h3><p>Crawlability and indexing, on-page markup, content quality, speed, structured data, internal and outbound links, and security. A thorough audit also covers local business signals, AI search visibility and conversion, which most technical crawlers omit.</p></div><div class="faq-item"><h3>How often should I run an SEO audit?</h3><p>Quarterly for most sites, with lighter monitoring in between. Run one immediately after a redesign, migration or unexplained traffic drop — those are when invisible, fatal mistakes get introduced.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What does an SEO audit include?</h3><p>Crawlability and indexing, on-page markup, content quality, speed, structured data, internal and outbound links, and security. A thorough audit also covers local business signals, AI search visibility and conversion, which most technical crawlers omit.</p></div><div class="faq-item"><h3>How often should I run an SEO audit?</h3><p>Quarterly for most sites, with lighter monitoring in between. Run one immediately after a redesign, migration or unexplained traffic drop: those are when invisible, fatal mistakes get introduced.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

@@ -3,21 +3,21 @@
 Promised on the how-to hub. Sourced from the registered check `mar.analytics`
 in `backend/seo_engine/checks/martech.py`, which carries both halves:
 
-  * THE NUMBER WITH NO EVIDENCE UNDER IT — across hundreds of pages the only
+  * THE NUMBER WITH NO EVIDENCE UNDER IT. Across hundreds of pages the only
     analytics-family tag found anywhere was a single session-recording tool on
     one page, and the finding read "analytics is missing from N of N pages",
     which tells a story about deployment gaps rather than about having no
     analytics at all.
-  * TESTING ONE NAME WHILE A SET EXISTED — a job board with a retired analytics
+  * TESTING ONE NAME WHILE A SET EXISTED. A job board with a retired analytics
     tag and no replacement was told it had had no data since, while carrying a
     modern product-analytics tool and a tag manager. The set was already
     defined at the top of the same file and used by the check above it.
 
-⚠️ NO SITE OR VENDOR IS NAMED — third-party gate, and the standing rule not to
+⚠️ NO SITE OR VENDOR IS NAMED: third-party gate, and the standing rule not to
 name vendors. Products are described by category: "a session-recording tool",
 "a retired analytics product and its replacement", "a tag manager".
 
-⚠️ DO NOT URGE CONSENT BANNERS — `mar.no_consent_banner` is unresolved and
+⚠️ DO NOT URGE CONSENT BANNERS: `mar.no_consent_banner` is unresolved and
 awaits Matthew. This page stays off that subject entirely.
 
 ⚠️ /learn/marketing-tag-audit/ covers the lane overall and does NOT cover these
@@ -37,7 +37,7 @@ from render import render  # noqa: E402
 def analytics_findings() -> Path:
     body = """
 <p class="lede">An audit reports that analytics is missing from most of your pages. It sounds
-like a statement about your data. It is not — it is a statement about which tag names were on a
+like a statement about your data. It is not. It is a statement about which tag names were on a
 list, and which of those appeared in the HTML that was fetched. Those are very different claims,
 and the gap between them has produced two instructive mistakes.</p>
 
@@ -47,7 +47,7 @@ and the gap between them has produced two instructive mistakes.</p>
 anywhere in the served HTML was a single session-recording tool, on one page. The finding said
 analytics was missing from almost every page.</p>
 
-<p>Read that sentence as an owner. It describes a <em>deployment with gaps</em> — some pages
+<p>Read that sentence as an owner. It describes a <em>deployment with gaps</em>: some pages
 tagged, some not, sessions breaking as visitors cross the boundary, traffic landing in the wrong
 bucket. That is a real and common problem, and it is not this one. What had actually been measured
 was one stray tag and <strong>no analytics at all</strong>.</p>
@@ -58,7 +58,7 @@ given the first description will go looking for a gap that does not exist.</p>
 
 <p>The repair was to name the tools. <strong>"This tool appears on one page of the crawl, and no
 other analytics tag was found anywhere" is checkable in ten seconds. "Analytics is missing from
-most of your pages" is a number with no evidence under it</strong> — and a reader cannot audit a
+most of your pages" is a number with no evidence under it</strong>, and a reader cannot audit a
 percentage.</p>
 
 <h2>Testing one name when the question was about a category</h2>
@@ -76,7 +76,7 @@ collecting data the whole time.</strong></p>
 <p>The branch had tested for one replacement product <em>by name</em>. The list of every analytics
 tool the check knows about was defined at the top of the same file and used by the check
 immediately above it. <strong>The most common way a check goes wrong is asking about a name when
-the question is about a category</strong> — and the giveaway is a finding that mentions one
+the question is about a category</strong>, and the giveaway is a finding that mentions one
 product where your situation involves another.</p>
 
 <h2>Why a tag manager changes what can be claimed</h2>
@@ -85,7 +85,7 @@ product where your situation involves another.</p>
 
 <p>A tag container collects nothing by itself. Its presence is <em>not</em> evidence that you have
 analytics. But it can load an analytics tag at runtime, where a static fetch of the HTML cannot see
-it — so its presence <strong>is</strong> evidence that absence cannot be concluded.</p>
+it, so its presence <strong>is</strong> evidence that absence cannot be concluded.</p>
 
 <p>That is the whole of it: a container turns "you have no analytics" into "this tool could not
 tell". A report that says the first when the second is true has overstated what it looked at, and
@@ -110,7 +110,7 @@ what a fetcher could see, not about whether you are measuring.</li>
 
 <ul>
 <li><strong>A money page with no tag while the rest of the site has one.</strong> This is the
-genuine deployment gap, and it is usually one template — a checkout, a thank-you page, a landing
+genuine deployment gap, and it is usually one template: a checkout, a thank-you page, a landing
 page built outside the main site.</li>
 <li><strong>A funnel tagged inconsistently.</strong> One missing step in a sequence of four does
 not cost a quarter of your visibility into it; it can cost the attribution for the whole
@@ -137,14 +137,14 @@ load nothing at all.</p>
 
 <p>Which is the argument for the whole page: <strong>a tag in the HTML is evidence that a tag is in
 the HTML.</strong> Whether anything is being recorded, whether it reaches a report you read,
-whether the numbers are right — none of that is visible from outside, and an audit that implies
+whether the numbers are right. None of that is visible from outside, and an audit that implies
 otherwise is selling you a conclusion it did not reach.</p>
 
 <h2>Where this sits in an audit</h2>
 
 <p>The registered check is <code>mar.analytics</code>, which covers whether analytics is installed.
-For the tracking lane as a whole — what the six checks look for, what was found across real sites,
-and what the lane deliberately does not do — see
+For the tracking lane as a whole (what the six checks look for, what was found across real sites,
+and what the lane deliberately does not do) see
 <a href="/learn/marketing-tag-audit/">the marketing tag audit &rarr;</a>.</p>
 
 <p>For the related habit of reading what a finding actually counted, see

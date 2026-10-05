@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""hreflang values that are not valid language codes — `intl.hreflang_codes`.
+"""hreflang values that are not valid language codes: `intl.hreflang_codes`.
 
 Target query: "hreflang wrong language code". Deliberately NOT the same page as
 /how-to/fix-hreflang-return-tags/, which owns reciprocity (a set that is
 complete and correctly spelled and still ignored), or
 /how-to/fix-lang-attribute-mismatch/, which owns "which of three faults do I
 have". This one owns the value inside the attribute: the shape it must take,
-the three findings Docket emits about it, and — the part no other page says —
+the three findings Docket emits about it, and (the part no other page says)
 the four things it does not validate.
 
 Sourced from `intl.hreflang_codes` in
@@ -19,10 +19,10 @@ three tests that record what went wrong:
   * test_a_deprecated_code_is_not_an_unknown_one.py
   * test_a_real_language_is_not_unrecognised.py
 
-⚠️ §9 — THE FINDING'S OWN SENTENCE IS WIDER THAN ITS CODE. The detail text of
+⚠️ §9: THE FINDING'S OWN SENTENCE IS WIDER THAN ITS CODE. The detail text of
 `intl.hreflang_bad_code` says "the country must be a real ISO 3166-1 code",
-which reads as region validation. `_REGION_TYPOS` has exactly three entries —
-`uk`, `eu`, `en` — so `en-XX` and `en-QQ` pass, verified by running the check.
+which reads as region validation. `_REGION_TYPOS` has exactly three entries (
+`uk`, `eu`, `en`), so `en-XX` and `en-QQ` pass, verified by running the check.
 What is actually validated is the *shape*, plus those three strings. The page
 leads with that rather than repeating the wider sentence.
 
@@ -31,8 +31,8 @@ crawl, so each distinct code string is judged once. The count is distinct
 codes, not tags and not pages.
 
 Third: `page.hreflang` is built only from `link rel="alternate"` elements in
-crawled HTML. Google documents two other carriers — the HTTP `Link:` header and
-XML sitemaps — and neither reaches this check.
+crawled HTML. Google documents two other carriers (the HTTP `Link:` header and
+XML sitemaps), and neither reaches this check.
 
 Every figure and date is a constant below and interpolated: the registry counts
 were recomputed from the registry file itself on the read date, not recalled.
@@ -98,7 +98,7 @@ nothing else:</p>
 script     4 letters, optional  Hant  Cyrl
 region     2 letters, or 3 digits, optional   GB  419</code></pre>
 
-<p>Per <a href="{RFC_URL}#section-2.2.1">{RFC} {S_LANG}</a> — the document {BCP} points at —
+<p>Per <a href="{RFC_URL}#section-2.2.1">{RFC} {S_LANG}</a> (the document {BCP} points at)
 two-character language subtags "were defined in the IANA registry according to the assignments
 found in the standard" {ISO_LANG}, and three-character ones come from the other parts of that
 standard. Per <a href="{RFC_URL}#section-2.2.4">{S_REGION}</a>, two-letter regions come from
@@ -128,7 +128,7 @@ naming a real language by a subtag the registry has retired.</p>
 
 <p><strong><code>intl.hreflang_unrecognised_lang</code>, at NOTICE.</strong> A well-formed
 value whose language Docket's table does not contain. It carries the tool-limit flag, scores
-nothing, and stays off the fix list — it is a statement about Docket, not about your markup.</p>
+nothing, and stays off the fix list. It is a statement about Docket, not about your markup.</p>
 
 <h2>What this check does not validate</h2>
 
@@ -139,8 +139,8 @@ says the country "must be a real {ISO_REGION} code", and that is wider than the 
 Docket holds {N_REGION_STRINGS} region strings: <code>uk</code>, which it rewrites to
 <code>GB</code>; <code>eu</code>, which is not a country; and <code>en</code>, which is a
 language sitting in the region slot. Everything else that is two letters passes. Running the
-check over <code>en-XX</code> and <code>en-QQ</code> — both user-assigned in the country
-standard, neither a country — produces no finding at all. Note too that the language-in-the-
+check over <code>en-XX</code> and <code>en-QQ</code> (both user-assigned in the country
+standard, neither a country) produces no finding at all. Note too that the language-in-the-
 region-slot case is caught only when that language is English: <code>de-en</code> is reported,
 <code>de-fr</code> is not.</p>
 
@@ -148,7 +148,7 @@ region-slot case is caught only when that language is English: <code>de-en</code
 {S_CASE} is unambiguous: "At all times, language tags and their subtags, including private use
 and extensions, are to be treated as case insensitive". The standard recommends uppercase
 regions as a convention, and a convention is not a defect. This is in the code because Docket
-got it wrong in public — an earlier table mapped <code>us</code> to <code>US</code> and
+got it wrong in public. An earlier table mapped <code>us</code> to <code>US</code> and
 <code>za</code> to <code>ZA</code>, and because the region is lowercased before the lookup, two
 professionally run sites were told <code>en-US</code> was broken and handed
 <code>en-US</code> as the correction. One of them serves every one of its tags lowercase and
@@ -156,7 +156,7 @@ they work.</p>
 
 <p><strong>Only tags in crawled HTML are seen.</strong> The values come from
 <code>link rel="alternate"</code> elements in the pages the crawl fetched. {GOOGLE} describes
-two other ways to declare the same thing — an HTTP <code>Link:</code> header, which it
+two other ways to declare the same thing: an HTTP <code>Link:</code> header, which it
 recommends for non-HTML files, and annotations in an XML sitemap. Neither reaches this check,
 so a site that declares hreflang in its sitemap gets silence here rather than a clean bill.</p>
 
@@ -168,8 +168,8 @@ only one to fix.</p>
 <h2>The one region typo worth its own paragraph</h2>
 
 <p><code>en-uk</code> is the common one, and it is genuinely wrong rather than
-stylistically wrong. In the {IANA} — the list {BCP} defers to, read on {READ_ON} at the URL
-below, <code>File-Date</code> {REGISTRY_DATE} — the record reading
+stylistically wrong. In the {IANA} (the list {BCP} defers to, read on {READ_ON} at the URL
+below, <code>File-Date</code> {REGISTRY_DATE}) the record reading
 <code>Description: United Kingdom</code> has the subtag <code>GB</code>. There is no
 <code>UK</code> record of any type. {GOOGLE} states the consequence directly: "Only language
 codes listed in {ISO_LANG} and region codes listed in ISO 3166-1 Alpha 2 are supported; other
@@ -193,7 +193,7 @@ ji -&gt; yi   Yiddish         jw -&gt; jv   Javanese
 mo -&gt; ro   Moldavian       bh -&gt; bih  Bihari languages</code></pre>
 
 <p>This finding exists because of a specific piece of dishonesty. A global retailer publishing
-<code>in-ID</code> across its hreflang block was told Docket did not recognise the language —
+<code>in-ID</code> across its hreflang block was told Docket did not recognise the language:
 true of Docket's table, and useless, because <code>in</code> is not an unknown language. It is
 the superseded subtag for Indonesian and the registry names its replacement. A notice saying
 "our fault, nothing to do" was sitting on something with a documented answer.</p>
@@ -212,7 +212,7 @@ current in the registry as of <code>File-Date</code> {REGISTRY_DATE}, plus <code
 which is deprecated rather than unknown. A value whose language is not in that table is
 well-formed, may be entirely correct, and gets a notice that scores zero.</p>
 
-<p>Two real cases explain why it is a notice. Cebuano is <code>ceb</code> — it has no two-letter
+<p>Two real cases explain why it is a notice. Cebuano is <code>ceb</code>. It has no two-letter
 form at all, so no two-letter table can ever contain it, and {RFC} {S_LANG} permits the
 three-letter subtag. Aragonese is <code>an</code>, an ordinary current subtag that was simply
 missing from an earlier, shorter version of the table; a real multilingual site was told its
@@ -234,8 +234,8 @@ for the region separately. A subtag record that carries a <code>Deprecated</code
 replacement on the next line. A region you cannot find at all is the <code>en-uk</code> case:
 the tag is discarded and the page it pointed at is not connected to anything.</p>
 
-<p>If the codes all check out and the set still is not working, the fault is one page over —
-either the cluster is not reciprocal, or the declared language of the page contradicts its own
+<p>If the codes all check out and the set still is not working, the fault is one page over.
+Either the cluster is not reciprocal, or the declared language of the page contradicts its own
 prose. <a href="/how-to/fix-lang-attribute-mismatch/">hreflang and html lang mismatch</a>
 separates those. <a href="/learn/what-docket-checks/">What Docket checks</a> lists the rest of
 the indexing lane these findings sit in.</p>
@@ -266,7 +266,7 @@ rather than from the manual.</p>
              "not a requirement, and af-za and af-ZA are the same tag. Docket reports neither."),
             ("Why does Docket say it does not recognise a language code I know is real?",
              "Because its language table is two-letter only, and some languages have no "
-             "two-letter form — Cebuano is the usual example. That finding is a notice carrying "
+             "two-letter form: Cebuano is the usual example. That finding is a notice carrying "
              "a tool-limit flag: it scores nothing and stays off the fix list, because it is a "
              "statement about the tool rather than about your markup."),
             ("Is a deprecated language subtag like in-ID broken?",

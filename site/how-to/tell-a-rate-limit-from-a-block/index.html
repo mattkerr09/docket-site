@@ -14,7 +14,7 @@
 <title>A rate limit is not a block</title>
 <meta name="description" content="An audit that crawls your site can trip its own rate limit, then report the throttle as a fault. How to tell a wait from a refusal.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/how-to/tell-a-rate-limit-from-a-block/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -825,7 +825,7 @@ fbq('track','PageView');
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Rate limits</div><h1>A rate limit is not a block</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
 <p class="lede">An audit is traffic. It asks for page after page, faster than a person would,
-from one address — which is the exact shape of the thing rate limiting exists to slow down. So
+from one address, which is the exact shape of the thing rate limiting exists to slow down. So
 a crawl can trip a limit, and then every measurement it takes afterwards is a measurement of
 the limit it tripped. The report that comes out says your server is turning crawlers away.
 Nobody is turning anyone away.</p>
@@ -840,7 +840,7 @@ the network it ran from.</p>
 
 <p>A browser from the same machine loaded the page a couple of minutes later, twice, without
 complaint. A re-run of the audit passed clean. Nothing about the site had changed in between,
-because nothing about the site was ever the problem — <strong>the tool had caused the condition
+because nothing about the site was ever the problem. <strong>The tool had caused the condition
 it was reporting</strong>, and then described it as a property of somebody else's server.</p>
 
 <p>This is the shape to keep: <strong>a measurement that a re-run can change is a measurement
@@ -855,7 +855,7 @@ different sentence: it says this requester is not allowed, and it will still say
 at a slower pace.</p>
 
 <p>The tell that settles it is the <code>Retry-After</code> header. A server that sends one is
-naming a time to come back — it is scheduling the crawler, not refusing it. Well-behaved
+naming a time to come back: it is scheduling the crawler, not refusing it. Well-behaved
 crawlers honour it and return. A rate limit with a <code>Retry-After</code> is not a visibility
 problem at all.</p>
 
@@ -894,14 +894,14 @@ When a tool reports a refusal, the first question is what it actually sent.</p>
 <h2>A true observation with a false consequence</h2>
 
 <p>The third variant is the hardest to catch, because the fact is correct. Docket flags AI
-crawler tokens in <code>robots.txt</code> that no longer belong to any crawler — a retired name
+crawler tokens in <code>robots.txt</code> that no longer belong to any crawler: a retired name
 sitting in a file that has not been revisited. On a manufacturer's site it found several, all
 genuinely dead, and said those crawlers were therefore reading pages the owner meant to withhold
 from them.</p>
 
 <p>They were not. A crawler that matches no group of its own falls back to
 <code>User-agent: *</code>, and on that file the wildcard group was the <em>stricter</em> of the
-two — it carried every rule the AI group carried, and more. The dead tokens cost nothing but a
+two. It carried every rule the AI group carried, and more. The dead tokens cost nothing but a
 crawl-delay. The tokens were dead; the consequence was invented; and the severity of the finding
 rested entirely on the consequence.</p>
 
@@ -960,9 +960,9 @@ access without telling you how hard it crawled is handing you a number it cannot
 crawlers, and <code>ai.dead_crawler_directive</code>, which reads retired tokens in
 <code>robots.txt</code>. Both live in Docket's AI search visibility area.</p>
 
-<p>Their findings carry different identifiers from the checks that emit them —
+<p>Their findings carry different identifiers from the checks that emit them (
 <code>ai.throttled_at_the_edge</code> and <code>ai.edge_untestable</code> both come out of
-<code>ai.edge_access</code> — which is worth knowing when you search for one and find nothing. A
+<code>ai.edge_access</code>), which is worth knowing when you search for one and find nothing. A
 finding identifier is not a check identifier.</p>
 
 <p>The untestable one is the useful habit here: when a run cannot measure something, the honest

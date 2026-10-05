@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""How to run a JavaScript SEO audit — the procedure, not the concept.
+"""How to run a JavaScript SEO audit: the procedure, not the concept.
 
 Target query: "javascript seo audit" (22 impressions, Search Console
 2026-08-10 to 2026-09-05). /learn/javascript-rendering/ keeps "javascript
@@ -9,7 +9,7 @@ One query per page.
 Every number here is measured. The served-vs-rendered figures come from a real
 site audited 2026-09-09 while fact-checking Docket 1.3.61; the site is not
 named, because publishing a named company's defect to sell a tool is not a
-trade this project makes. The figures are reported as what they are — a handful
+trade this project makes. The figures are reported as what they are: a handful
 of pages on one site, not a rate.
 """
 from __future__ import annotations
@@ -25,8 +25,8 @@ from render import N_CHECKS, N_LANES, RELEASE, render  # noqa: E402
 def javascript_seo_audit() -> Path:
     body = """
 <p class="lede">A JavaScript SEO audit answers one question: <em>is the thing you wrote in the
-HTML your server sends, or does it only exist after JavaScript runs?</em> Everything else —
-which framework, which rendering mode, whose crawler — follows from that answer, and you can
+HTML your server sends, or does it only exist after JavaScript runs?</em> Everything else (
+which framework, which rendering mode, whose crawler) follows from that answer, and you can
 get it in about ten minutes.</p>
 
 <h2>Why the answer is not obvious from looking at the page</h2>
@@ -37,7 +37,7 @@ real sites, and the disagreement is invisible until you go looking for it.</p>
 
 <p>It matters because the two audiences behave differently. Google renders JavaScript, on a
 delay and with no guarantee about when. The AI crawlers that increasingly decide whether you
-get quoted in an answer mostly do not render at all — to them, the page is whatever the server
+get quoted in an answer mostly do not render at all: to them, the page is whatever the server
 sent. So a page can rank adequately and be invisible to the systems people now ask instead of
 searching. <a href="/learn/ai-search-visibility/">AI search visibility</a> is a separate
 surface with a separate failure mode.</p>
@@ -48,7 +48,7 @@ surface with a separate failure mode.</p>
 
 <pre><code>curl -sS https://example.com/your-page/ | wc -c</code></pre>
 
-<p>Then look at the body text inside those bytes, not the byte count — a big HTML payload with
+<p>Then look at the body text inside those bytes, not the byte count. A big HTML payload with
 almost nothing readable in it is exactly the shape you are hunting. A page can be 200 KB of
 markup and carry forty words a reader would recognise.</p>
 
@@ -68,7 +68,7 @@ against last week's source tells you about the week, not the page.</p>
 <p>There are three outcomes and they have different remedies.</p>
 
 <p><strong>The two views agree.</strong> The page is server-rendered. There is no JavaScript SEO
-problem here and you can stop — resist the urge to find one.</p>
+problem here and you can stop: resist the urge to find one.</p>
 
 <p><strong>The HTML is essentially empty.</strong> A shell, a mount point and a script tag.
 Every crawler that does not render sees nothing, and the fix is server-side rendering or
@@ -76,11 +76,11 @@ prerendering. This is the case most articles describe, and it is the easier one,
 obvious the moment you look.</p>
 
 <p><strong>The chrome is server-rendered and the body is not.</strong> This is the one that
-hides. The navigation, header and footer arrive in the HTML — so the page is plainly not an
-empty shell — while the article itself is fetched after hydration. Measured on one site on
+hides. The navigation, header and footer arrive in the HTML (so the page is plainly not an
+empty shell) while the article itself is fetched after hydration. Measured on one site on
 {GAP_MEASURED}, {GAP_COUNT} pages returned {GAP_SERVED} words of main text as served, and
 {GAP_RENDERED} once rendered. The pages were not thin. The served HTML was. That is
-{GAP_COUNT} pages on one site — an existence proof that the shape occurs and is large when it
+{GAP_COUNT} pages on one site. An existence proof that the shape occurs and is large when it
 does, not a claim about how common it is.</p>
 
 <p>Docket shipped a change for exactly this in {RELEASE}: where a page carries a client-side
@@ -91,7 +91,7 @@ telling you something false in a confident voice.</p>
 <h2>Step 4: check what a non-rendering crawler is allowed to fetch</h2>
 
 <p>Rendering is only half of it. A crawler that renders nothing still has to be let in, and the
-refusal usually happens somewhere your robots.txt never sees — a bot rule at the CDN, returning
+refusal usually happens somewhere your robots.txt never sees: a bot rule at the CDN, returning
 403 to a user-agent the site owner believes is welcome. Send the same request twice, once with
 the crawler's user-agent and once with an ordinary browser's, and compare: if only one is
 refused, the rule is about the crawler.
@@ -102,13 +102,13 @@ side of the same question.</p>
 
 <p>A render tells you what a browser can build. It does not tell you what any crawler did.
 For that you need the server's own record —
-<a href="/learn/log-file-analysis/">log file analysis</a> — which is the only view that
+<a href="/learn/log-file-analysis/">log file analysis</a>, which is the only view that
 distinguishes "Google could reach this" from "Google fetched this". The two disagree constantly,
 and on a JavaScript-heavy site they disagree more.</p>
 
 <h2>What this audit does not tell you</h2>
 
-<p>It does not tell you whether Google rendered your page, or when, or what it saw — nobody
+<p>It does not tell you whether Google rendered your page, or when, or what it saw. Nobody
 outside Google can measure that, and a tool that implies otherwise is selling you a model as a
 measurement. It tells you what the two views contain, which is the part you control.</p>
 
@@ -121,7 +121,7 @@ the gap, and judge the result against what you recorded before you started.</p>
 <p>The steps above are per-URL, which is fine for a spot check and useless for a site with a
 thousand pages. Docket runs the comparison across the crawl and reports the pages where the two
 views disagree, alongside the rest of a
-<a href="/learn/seo-audit/">technical SEO audit</a> —
+<a href="/learn/seo-audit/">technical SEO audit</a>.
 <a href="/learn/what-docket-checks/">{N_CHECKS} checks across {N_LANES} areas</a>, on your machine, with no
 crawl credits. If you would rather see how it compares to the tools you already know, there is
 <a href="/vs/screaming-frog-alternative/">Docket vs Screaming Frog</a> and

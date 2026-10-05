@@ -36,7 +36,7 @@ def byte_cap() -> Path:
 <p class="lede">Googlebot reads at most 2MB of any HTML page, headers included, and hands
 that fragment to indexing as if it were the whole file. We measured the homepages of
 {F.size_fetched()} well-known sites and found <strong>{F.size_over_cap()} already past the
-cutoff</strong> — the largest, {largest['host']}, serving {largest['mb']} MB, which is
+cutoff</strong>: the largest, {largest['host']}, serving {largest['mb']} MB, which is
 {largest['times_cap']} times the limit.</p>
 
 <p>None of those {F.size_over_cap()} is losing markup Google requires. That is the honest headline and it is
@@ -61,11 +61,11 @@ indexed".</li>
 <p>Read those together and the failure mode is specific. Google does not reject an oversized
 page, does not report an error, and does not tell you in Search Console. It reads the first
 2MB, treats it as the document, and moves on. A page whose structured data sits at 2.4 MB does
-not have late structured data — <strong>it has none</strong>, from Google's point of view,
+not have late structured data: <strong>it has none</strong>, from Google's point of view,
 while every tool that reads that page from disk sees it perfectly.</p>
 
 <p>Two limits people conflate with this one: PDFs get 64MB, and any crawler that sets no limit
-of its own gets 15MB. Referenced files — your CSS, your JavaScript, your images — each have
+of its own gets 15MB. Referenced files (your CSS, your JavaScript, your images) each have
 their own separate budget and do not count against the parent page. Moving an inline block
 into a linked file removes it from this problem outright.</p>
 
@@ -77,7 +77,7 @@ canonical, meta robots directive and JSON-LD block sat. {F.size_fetched()} of
 {F.size_attempted()} answered.</p>
 
 <p>The median homepage is <strong>{F.size_median_kb()} KB</strong>, comfortably inside the
-limit. The 90th percentile is <strong>{F.size_p90_kb()} KB</strong> — which is the number
+limit. The 90th percentile is <strong>{F.size_p90_kb()} KB</strong>, which is the number
 worth sitting with, because it means one homepage in ten is already within a third of a cutoff
 nobody mentions.</p>
 
@@ -96,8 +96,8 @@ of this page.</p>
 
 <p>It was wrong. Inline SVG icons carry <code>&lt;title&gt;</code> elements as accessibility
 labels, and the one at 2.48 MB reads "Close icon". Our rule took the <em>last</em> match for
-every element, which is right for JSON-LD — each block is separate content, so a block past
-the cutoff is data Google never gets — and wrong for a document title, which is the first one
+every element, which is right for JSON-LD (each block is separate content, so a block past
+the cutoff is data Google never gets), and wrong for a document title, which is the first one
 and lives in the head. {largest['host']}'s real title is at {largest['critical_kb']} KB.</p>
 
 <p>We are writing that down because it is the same mistake in both directions. The check
@@ -123,7 +123,7 @@ you first.</p>
 inlined into the HTML, large inline CSS or JavaScript blocks, or navigation that renders
 thousands of links before the content starts.</li>
 <li><strong>Move inline blocks into linked files.</strong> They stop counting against the page
-entirely — referenced resources each get their own budget.</li>
+entirely. Referenced resources each get their own budget.</li>
 <li><strong>Put required markup in the head</strong> and keep it there. Structured data
 injected at the end of the body is the common way to lose it.</li>
 <li><strong>Check again after a redesign.</strong> Page weight grows; the limit does not.</li>
@@ -161,7 +161,7 @@ urgency.</p>
              "indexing as if it were the complete file. There is no error and no Search "
              "Console report."),
             ("Is 2MB of HTML a realistic problem?",
-             f"For most sites, no — the median homepage in our sample was "
+             f"For most sites, no: the median homepage in our sample was "
              f"{F.size_median_kb()} KB. But {F.size_over_cap()} of {F.size_fetched()} "
              f"well-known sites we measured were already past it, and the 90th percentile "
              f"was {F.size_p90_kb()} KB, so one in ten is closer than its owners probably "

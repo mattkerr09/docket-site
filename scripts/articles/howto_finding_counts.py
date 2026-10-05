@@ -1,4 +1,4 @@
-"""A finding's count is not decoration — it sorts your work.
+"""A finding's count is not decoration: it sorts your work.
 
 Promised on the how-to hub. Sourced from two recorded cases in the app repo:
 `ai.entity`, whose `ai.weak_sameas` branch badged the COMPLEMENT of what its
@@ -8,7 +8,7 @@ occurrences where the report renders pages.
 The mechanism is one line of the model: `count_unit` defaults to "page", so a
 count of anything else is rendered as a number of pages by every surface that
 reads it. And `scoring._deduction` grows the penalty with the logarithm of the
-count, so a wrong count does not just misinform — it reorders the plan.
+count, so a wrong count does not just misinform: it reorders the plan.
 
 ⚠️ NO SITE IS NAMED. The deploy's third-party gate refuses pages naming sites
 measured without asking, and neither case needs a name.
@@ -32,7 +32,7 @@ from render import render  # noqa: E402
 
 def finding_counts() -> Path:
     body = """
-<p class="lede">Every finding in an audit report carries a small number beside it — a badge, a
+<p class="lede">Every finding in an audit report carries a small number beside it: a badge, a
 tag, a "…and more" under a shortened list of URLs. It looks like a detail. It is not: that
 number is usually what decides how far up your plan the finding sits, so a count of the wrong
 thing quietly moves work you do not need to do above work you do.</p>
@@ -43,7 +43,7 @@ thing quietly moves work you do not need to do above work you do.</p>
 headline <em>Only two recognised profiles in sameAs</em>. Two quantities, one finding, and no
 reader can reconcile them.</p>
 
-<p>The headline counted the profiles the site had. The badge counted the ones it did not — the
+<p>The headline counted the profiles the site had. The badge counted the ones it did not: the
 remainder of the tool's own list of recognised profile types. A complement, presented in the
 place a reader expects a total.</p>
 
@@ -59,7 +59,7 @@ so a finding that claims to affect many things takes a larger bite out of your s
 same finding claiming to affect one.</p>
 
 <p>On that report the effect ran backwards. The inflated count sat on a <strong>low</strong>
-severity finding — you have some profiles, here are more you could add — and pushed its
+severity finding (you have some profiles, here are more you could add), and pushed its
 deduction above the untouched deduction of the <strong>medium</strong> finding for having no
 <code>sameAs</code> at all. The smaller problem outweighed the bigger one, and nothing in the
 report said why.</p>
@@ -73,7 +73,7 @@ so the item could never be described accurately however true it was.</p>
 
 <p>Here is the mechanism, because it tells you what to look for in any tool. A finding's count
 carries a unit, and in Docket that unit <strong>defaults to pages</strong>. Every surface that
-renders a count — the badge, the summary line, the "…and N more" under a truncated URL list —
+renders a count (the badge, the summary line, the "…and N more" under a truncated URL list)
 reads that unit. So a check that counts anything other than pages and forgets to say so does not
 produce a vague number. It produces a confident, specific, wrong sentence about your pages.</p>
 
@@ -85,7 +85,7 @@ one bad number can have that number linked in a header, a footer and a contact b
 page.</p>
 
 <p>Counting the links, the finding said several numbers were affected and offered "for example"
-before one of them — promising a set the reader did not have. And because the count was
+before one of them. Promising a set the reader did not have. And because the count was
 occurrences rather than pages, a single page carrying the number in its header and again in its
 footer produced a finding tagged <em>two pages</em>, with "…and one more" printed underneath a
 list containing the only page there was.</p>
@@ -97,13 +97,13 @@ template, and every part of the report said otherwise.</p>
 
 <ul>
 <li><strong>Read the badge against the headline.</strong> If they disagree, the headline is
-usually the honest one — it was written by a person. The badge came from a variable.</li>
+usually the honest one: it was written by a person. The badge came from a variable.</li>
 <li><strong>Compare the count to the list of URLs.</strong> A count larger than the list is
 either a genuine truncation or a unit error, and the "…and N more" line tells you which: if the
 list is already showing everything, there is no more.</li>
 <li><strong>Ask what one fix would cover.</strong> If the answer is "all of them, in one edit",
 the count is measuring your evidence rather than your work.</li>
-<li><strong>Distrust a count that implies a completion target</strong> — anything phrased as
+<li><strong>Distrust a count that implies a completion target</strong>: anything phrased as
 what you are missing out of a list the tool is holding.</li>
 </ul>
 
@@ -113,7 +113,7 @@ what you are missing out of a list the tool is holding.</li>
 nothing, because you were not going to reach it this quarter and the ordering among items you
 will not do is not worth auditing.</p>
 
-<p>It matters when a count moves something <em>across</em> a boundary — above an item you would
+<p>It matters when a count moves something <em>across</em> a boundary. Above an item you would
 otherwise have done first, or into an earlier phase of a plan. That is the case worth the minute
 it takes to check, and it is almost always a finding whose count is much larger than the number
 of URLs listed beneath it.</p>
@@ -133,7 +133,7 @@ out of a list somebody else wrote, is not a goal.</li>
 <h2>How to move a finding up the plan without fixing anything</h2>
 
 <p>Worth knowing, because it tells you how much weight the ordering can bear. Split one problem
-into more instances — the same bad value in more places, the same broken link on more pages —
+into more instances (the same bad value in more places, the same broken link on more pages),
 and its count rises, its deduction grows, and it climbs. Nothing about the underlying fault
 changed, and the fix is still one edit.</p>
 
@@ -148,8 +148,8 @@ entity definition and <code>sameAs</code>, and <code>cvr.unusable_phone</code>, 
 <code>href</code> of every phone link. Both now count what their headlines count, and the phone
 one names its unit explicitly rather than taking the default.</p>
 
-<p>For how the ordering is actually computed — severity, effort and reach, and where the score
-is deliberately not allowed to decide — see
+<p>For how the ordering is actually computed (severity, effort and reach, and where the score
+is deliberately not allowed to decide) see
 <a href="/learn/priority-model/">how findings are prioritised &rarr;</a>. For the
 related case where a count is right but its unit should have been templates rather than pages,
 see <a href="/how-to/read-findings-that-blame-the-whole-site/">when a finding blames the whole
@@ -165,7 +165,7 @@ site &rarr;</a>.</p>
         body=body,
         faq=[
             ("What does the number next to an audit finding mean?",
-             "Usually how many pages it affects — that is the default unit in Docket and in "
+             "Usually how many pages it affects. That is the default unit in Docket and in "
              "most tools. It also feeds the score and the ordering of your plan, so it is not "
              "only a label."),
             ("The count and the headline of a finding disagree. Which is right?",
@@ -174,7 +174,7 @@ site &rarr;</a>.</p>
              "acting on it."),
             ("Why would a count be larger than the number of pages listed?",
              "Either the list was truncated, which the report should say, or the count is "
-             "measuring something other than pages — link occurrences, or items missing from a "
+             "measuring something other than pages: link occurrences, or items missing from a "
              "list the tool holds."),
             ("Does a wrong count change my score?",
              "Yes. The deduction grows with the count, so an inflated count takes a bigger bite "

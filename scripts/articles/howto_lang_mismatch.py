@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""hreflang and html lang mismatch — four different faults with one name.
+"""hreflang and html lang mismatch: four different faults with one name.
 
 Target query: "hreflang and html lang mismatch" (11 impressions, Search Console
 2026-08-10 to 2026-09-05). Distinct from /how-to/fix-hreflang-return-tags/,
@@ -7,10 +7,10 @@ which owns "hreflang tags with errors" (15) and is about the reciprocity rule.
 One query per page.
 
 ⚠️ WHAT DOCKET ACTUALLY CHECKS, verified in the registry 2026-09-09:
-  content.lang_mismatch  — <html lang> against the language the prose is in
-  onpage.lang_missing    — no lang attribute at all
-  intl.hreflang_bad_code / _unrecognised_lang / _deprecated_lang — the codes
-  intl.hreflang_no_self / _no_return / _bad_target — the cluster
+  content.lang_mismatch  (<html lang> against the language the prose is in
+  onpage.lang_missing   ) no lang attribute at all
+  intl.hreflang_bad_code / _unrecognised_lang / _deprecated_lang (the codes
+  intl.hreflang_no_self / _no_return / _bad_target) the cluster
 There is NO check comparing a page's hreflang self-reference to its own
 <html lang>. The page says so rather than implying otherwise.
 """
@@ -39,11 +39,11 @@ wrong readers instead of reaching its own.</p>
 
 <p><strong>2. The hreflang code contradicts the page's own lang attribute.</strong> The page
 declares <code>lang="en-GB"</code> while its own hreflang entry calls it <code>de-DE</code>. One
-of the two is wrong, and nothing on the page tells you which — you have to read the prose to
+of the two is wrong, and nothing on the page tells you which. You have to read the prose to
 find out, which is why this collapses into fault 1 once you look.</p>
 
 <p><strong>3. The hreflang codes are not valid codes.</strong> <code>hreflang="en-UK"</code> is
-a common one — the country is <code>GB</code>, not <code>UK</code> — as are region codes in the
+a common one (the country is <code>GB</code>, not <code>UK</code>) as are region codes in the
 language slot and vice versa. An invalid code is discarded, silently, and the cluster it was
 part of is weakened.</p>
 
@@ -56,7 +56,7 @@ automated check that reads the body will tell you the page is Dutch. It is not. 
 
 <p>Docket now catches one shape of this and says so: when most of a page's words sit inside
 link text, the page is a listing rather than a piece of writing, and the finding is withheld.
-That covers a catalogue, an index or a directory — the titles are links. <strong>It does not
+That covers a catalogue, an index or a directory: the titles are links. <strong>It does not
 cover foreign prose that is not links</strong>, such as a quoted introduction or a pasted
 review in running text, so the fault above is still one you have to recognise yourself. The
 guard was added because this check was wrong about a real library catalogue.</p>
@@ -65,8 +65,8 @@ guard was added because this check was wrong about a real library catalogue.</p>
 
 <p>Open the page and read three things in this order.</p>
 
-<p><strong>The prose — and whose prose it is.</strong> What language is the body text actually
-in? Not the navigation — the body. Then ask the second question: did you write it? If almost
+<p><strong>The prose, and whose prose it is.</strong> What language is the body text actually
+in? Not the navigation: the body. Then ask the second question: did you write it? If almost
 everything you are reading sits inside links, or is a list of names, titles or addresses, you
 are looking at an index of other people's words, not at a page written in their language. That
 is fault 4, and the fix is to change nothing.</p>
@@ -107,7 +107,7 @@ entries.</li>
 
 <h2>Why the wrong attribute gets changed</h2>
 
-<p>Because the hreflang block is the visible, fiddly part, so it gets the attention — while the
+<p>Because the hreflang block is the visible, fiddly part, so it gets the attention, while the
 single <code>lang</code> attribute sits in the template, was set once years ago, and is copied
 onto every page including the translated ones. When a translation is added by duplicating an
 existing page, the lang attribute comes along for the ride. Every new language multiplies the
@@ -115,32 +115,32 @@ error rather than revealing it.</p>
 
 <p>The reciprocity rule is a separate fault again, and the most common hreflang defect there is:
 if page A declares B, then B must declare A, or the whole declaration is ignored. That one has
-its own page — <a href="/how-to/fix-hreflang-return-tags/">fixing hreflang tags with errors</a>
+its own page. <a href="/how-to/fix-hreflang-return-tags/">Fixing hreflang tags with errors</a>
 — because it cannot be seen by looking at either page alone.</p>
 
 <h2>What Docket checks here, and what it does not</h2>
 
 <p>Docket reads the declared language against the language the prose is actually in, and reports
-the pages where they disagree — fault 1, per page rather than per site, because one translated
+the pages where they disagree: fault 1, per page rather than per site, because one translated
 article among hundreds is the usual shape and it is the page that is wrong rather than the site.
 It also reports pages with no lang attribute at all, invalid and unrecognised hreflang codes,
 deprecated language subtags, missing self-references, missing return tags, and hreflang targets
 that 404, redirect or carry a noindex.</p>
 
 <p><strong>It does not compare a page's hreflang self-reference against its own
-<code>lang</code> attribute</strong> — fault 2 above. That check does not exist today, and this
+<code>lang</code> attribute</strong>: fault 2 above. That check does not exist today, and this
 page is not going to imply it does. Read the two by hand on a sample of pages, or catch it
 through fault 1, which the prose test does find.</p>
 
 <p>The full list is <a href="/learn/what-docket-checks/">what Docket checks</a>, and the wider
 procedure is <a href="/learn/seo-audit/">the technical SEO audit</a>. If your pages are built
 by a framework and the attributes are injected after load, check
-<a href="/how-to/javascript-seo-audit/">what the server actually sends</a> first — an attribute
+<a href="/how-to/javascript-seo-audit/">what the server actually sends</a> first. An attribute
 that only exists after JavaScript runs is not there for the crawlers that do not run it.</p>
 
 <h2>After you change it</h2>
 
-<p>Language declarations are template-level, so a fix is usually one edit affecting many pages —
+<p>Language declarations are template-level, so a fix is usually one edit affecting many pages,
 which is exactly the shape that wants checking afterwards rather than assuming.
 <a href="/learn/site-monitoring/">Monitoring</a> tells you what changed rather than what is true
 today, and a crawl of the affected section confirms the new attribute is on every page you
@@ -178,7 +178,7 @@ expected and none you did not.</p>
             ("Does Docket detect a mismatch between hreflang and the lang attribute?",
              "Not that specific comparison. Docket checks the declared language against the "
              "language the prose is actually in, reports missing lang attributes, and validates "
-             "hreflang codes, self-references, return tags and targets — but it does not compare "
+             "hreflang codes, self-references, return tags and targets, but it does not compare "
              "a page's hreflang self-reference to its own lang attribute."),
         ],
     )

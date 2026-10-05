@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""`docket diff` — mentioned on two pages, explained on none.
+"""`docket diff`. Mentioned on two pages, explained on none.
 
 Every number and every quoted line here was produced by running the shipped
 1.1.16 binary against two local fixture origins on 2026-08-14: a baseline, and a
@@ -28,7 +28,7 @@ def deploy_gate() -> Path:
     body = """
 <p class="lede">A deploy that quietly removes your title tags does not break the build, does
 not throw an error, and does not show up in any dashboard until rankings move weeks later.
-<code>docket diff</code> audits two URLs — usually production and staging — and exits
+<code>docket diff</code> audits two URLs (usually production and staging), and exits
 non-zero when the second one introduced something the first did not have.</p>
 
 <pre><code>docket diff https://example.com https://staging.example.com --fail-on high</code></pre>
@@ -39,7 +39,7 @@ non-zero when the second one introduced something the first did not have.</p>
 <code>&lt;title&gt;</code> stripped, which is what a template edit does when somebody moves
 the head block. The output, verbatim:</p>
 
-<pre><code>1 regression(s) — introduced by the candidate:
+<pre><code>1 regression(s), introduced by the candidate:
   HIGH     onpage.title_missing             new       4 pages have no title tag
 
 3 improvement(s):
@@ -50,9 +50,9 @@ the head block. The output, verbatim:</p>
 <p>Read that again, because it is the whole argument for gating on a diff rather than a
 score. <strong>Deleting every title tag registered as three improvements.</strong> The
 checks for short titles, for titles missing a location, and for titles that do not match
-the page all stopped firing — correctly, since there is no title to be short or wrong.</p>
+the page all stopped firing: correctly, since there is no title to be short or wrong.</p>
 
-<p>And the overall score did not move at all — identical before and after, to the decimal.
+<p>And the overall score did not move at all. Identical before and after, to the decimal.
 A gate watching the number would have let that deploy through, and a report showing three
 fixes against one issue would have looked like a decent week.</p>
 
@@ -61,11 +61,11 @@ fixes against one issue would have looked like a decent week.</p>
 <p>Measured, not quoted from a manual:</p>
 
 <ul>
-<li><strong>2</strong> — a regression at <code>--fail-on</code> or worse. Fails the build.</li>
-<li><strong>0</strong> — nothing introduced.</li>
-<li><strong>0</strong> — with <code>--fail-on never</code>, which reports without failing.
+<li><strong>2</strong>: a regression at <code>--fail-on</code> or worse. Fails the build.</li>
+<li><strong>0</strong>: nothing introduced.</li>
+<li><strong>0</strong>: with <code>--fail-on never</code>, which reports without failing.
 Useful for a first week of watching before you let it block anything.</li>
-<li><strong>1</strong> — the audits are not comparable, and Docket refuses to judge.</li>
+<li><strong>1</strong>: the audits are not comparable, and Docket refuses to judge.</li>
 </ul>
 
 <h2>That last one is the important one</h2>
@@ -79,7 +79,7 @@ changelog.</p></blockquote>
 <p>It exits <strong>1</strong>, not 0. Refusing to judge is not a pass.</p>
 
 <p>This matters more in CI than anywhere else. If staging is behind basic auth for half the
-crawl, or a sitemap has not generated yet, the candidate crawl is smaller — and a naive
+crawl, or a sitemap has not generated yet, the candidate crawl is smaller, and a naive
 comparison reports every page the crawler never reached as a brand-new issue. You would get
 a wall of red on a deploy that changed nothing, chase it for an hour, and then start
 ignoring the gate. The failure that teaches people to ignore a gate is worse than the gate
@@ -104,8 +104,8 @@ person who made it still remembers what they did.</p>
     docket diff "$PROD_URL" "$STAGING_URL" --fail-on high -n 200</code></pre>
 
 <p>Docket's Linux CLI is a single binary with no runtime to install.
-<a href="/for/developers/">The rest of the CI story</a> — SARIF for code scanning, JUnit for
-test panels, the GitHub Action — is here.</p>
+<a href="/for/developers/">The rest of the CI story</a> (SARIF for code scanning, JUnit for
+test panels, the GitHub Action) is here.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
@@ -113,7 +113,7 @@ test panels, the GitHub Action — is here.</p>
         cat="how-to", slug="gate-a-deploy-on-seo-regressions",
         title="Gate a deploy on SEO regressions",
         desc=("docket diff audits production against staging and fails the build on "
-              "what the deploy introduced — including the regression that registers "
+              "what the deploy introduced, including the regression that registers "
               "as three improvements."),
         h1="How to gate a deploy on SEO regressions",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Deploy gate',
@@ -128,7 +128,7 @@ test panels, the GitHub Action — is here.</p>
              "Because a score can hide a regression. Stripping every title tag from a "
              "test site left the score unchanged and registered three "
              "improvements, since the checks for short, mismatched and location-free "
-             "titles all stopped firing — and the overall score did not move at all. "
+             "titles all stopped firing, and the overall score did not move at all. "
              "The diff still reported the high-severity regression."),
             ("What happens if staging is partly unreachable?",
              "Docket refuses to compare crawls that reached very different numbers of "

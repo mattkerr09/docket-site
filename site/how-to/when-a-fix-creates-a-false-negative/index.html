@@ -12,9 +12,9 @@
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>A fix that hid a real problem somewhere else</title>
-<meta name="description" content="An audit stopped reading a navigation label as a brand name — and that fix left the same check unable to flag a real disagreement on another site.">
+<meta name="description" content="An audit stopped reading a navigation label as a brand name, and that fix left the same check unable to flag a real disagreement on another site.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/how-to/when-a-fix-creates-a-false-negative/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A fix that hid a real problem somewhere else">
-<meta property="og:description" content="An audit stopped reading a navigation label as a brand name — and that fix left the same check unable to flag a real disagreement on another site.">
+<meta property="og:description" content="An audit stopped reading a navigation label as a brand name, and that fix left the same check unable to flag a real disagreement on another site.">
 <meta property="og:url" content="https://docketseo.app/how-to/when-a-fix-creates-a-false-negative/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png?v=20261002-intel">
@@ -30,7 +30,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="A fix that hid a real problem somewhere else">
-<meta name="twitter:description" content="An audit stopped reading a navigation label as a brand name — and that fix left the same check unable to flag a real disagreement on another site.">
+<meta name="twitter:description" content="An audit stopped reading a navigation label as a brand name, and that fix left the same check unable to flag a real disagreement on another site.">
 <meta name="twitter:image" content="https://docketseo.app/og.png?v=20261002-intel">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -773,8 +773,8 @@ nav{z-index:40}
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"A fix that hid a real problem somewhere else","description":"An audit stopped reading a navigation label as a brand name — and that fix left the same check unable to flag a real disagreement on another site.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/when-a-fix-creates-a-false-negative/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why did an audit report my navigation label as a company name?","acceptedAnswer":{"@type":"Answer","text":"Because a logo link's accessible name describes where the link goes, and a step that strips navigation words can leave a section name behind. What remains is as likely to be the section as the company."}},{"@type":"Question","name":"How should a tool decide whether a logo link name is a real brand name?","acceptedAnswer":{"@type":"Answer","text":"By whether it had to edit the string to get one. A name that was already plain is close to a declaration; one left over after a navigation word was stripped should have to resemble the domain before it counts."}},{"@type":"Question","name":"Can fixing a false positive cause a false negative?","acceptedAnswer":{"@type":"Answer","text":"Yes, and it is the common outcome, because the easy fix is to make a rule quieter. A false negative is silent — nobody writes in to report that a tool failed to tell them something — so only a test asserting the opposite case catches it."}},{"@type":"Question","name":"An audit says my site uses two brand names. Should I believe it?","acceptedAnswer":{"@type":"Answer","text":"Check where the second one came from and how often it appears. A tagline or a section label appearing once across a whole site is a page, not an identity. What you declared in structured data or og:site_name is the part you actually claimed."}},{"@type":"Question","name":"Should I rename my logo link so it matches my company name?","acceptedAnswer":{"@type":"Answer","text":"No. That name exists so someone using a screen reader knows where the link goes. Put the company name in your declarations instead, where a tool should be reading it from anyway."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"A fix that hid a real problem somewhere else","description":"An audit stopped reading a navigation label as a brand name, and that fix left the same check unable to flag a real disagreement on another site.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/when-a-fix-creates-a-false-negative/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why did an audit report my navigation label as a company name?","acceptedAnswer":{"@type":"Answer","text":"Because a logo link's accessible name describes where the link goes, and a step that strips navigation words can leave a section name behind. What remains is as likely to be the section as the company."}},{"@type":"Question","name":"How should a tool decide whether a logo link name is a real brand name?","acceptedAnswer":{"@type":"Answer","text":"By whether it had to edit the string to get one. A name that was already plain is close to a declaration; one left over after a navigation word was stripped should have to resemble the domain before it counts."}},{"@type":"Question","name":"Can fixing a false positive cause a false negative?","acceptedAnswer":{"@type":"Answer","text":"Yes, and it is the common outcome, because the easy fix is to make a rule quieter. A false negative is silent (nobody writes in to report that a tool failed to tell them something), so only a test asserting the opposite case catches it."}},{"@type":"Question","name":"An audit says my site uses two brand names. Should I believe it?","acceptedAnswer":{"@type":"Answer","text":"Check where the second one came from and how often it appears. A tagline or a section label appearing once across a whole site is a page, not an identity. What you declared in structured data or og:site_name is the part you actually claimed."}},{"@type":"Question","name":"Should I rename my logo link so it matches my company name?","acceptedAnswer":{"@type":"Answer","text":"No. That name exists so someone using a screen reader knows where the link goes. Put the company name in your declarations instead, where a tool should be reading it from anyway."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -826,7 +826,7 @@ fbq('track','PageView');
 
 <p class="lede">Every false positive you have ever reported to a tool gets fixed the same way:
 somebody adds a condition. The part nobody sees is what that condition does to every other site
-the check runs on — because the usual way to stop a rule being wrong about you is to make it
+the check runs on, because the usual way to stop a rule being wrong about you is to make it
 quieter about everyone, and quiet is indistinguishable from correct.</p>
 
 <h2>The navigation label that became a company name</h2>
@@ -845,11 +845,11 @@ that was working exactly as designed.</p>
 <h2>The rule that fixed it, and why it is about the domain</h2>
 
 <p>A link's accessible name is the weakest of the four identity sources. Structured data and
-<code>og:site_name</code> are <em>declarations</em> — a site saying who it is. A link name is a
+<code>og:site_name</code> are <em>declarations</em>: a site saying who it is. A link name is a
 <em>description of a destination</em>. So the weak source was made to corroborate against the one
 identity signal a site cannot easily fake: its own domain.</p>
 
-<p>Across crawled sites the pattern held cleanly — every genuine residue resembles the domain, and
+<p>Across crawled sites the pattern held cleanly. Every genuine residue resembles the domain, and
 only the navigation label does not:</p>
 
 <table>
@@ -871,7 +871,7 @@ resembling neither. That is a real disagreement, and it is precisely what this c
 find.</p>
 
 <p>Demanding corroboration everywhere made the logo source <strong>incapable of ever being the odd
-one out</strong>. One site's false positive had been traded for another site's false negative — and
+one out</strong>. One site's false positive had been traded for another site's false negative, and
 a false negative makes no noise at all. Nobody writes in to say a tool failed to tell them
 something.</p>
 
@@ -881,8 +881,8 @@ something.</p>
 all.</strong></p>
 
 <ul>
-<li><strong>An accessible name that was already a plain name</strong> — the company, and nothing
-else — is a declaration in everything but format. It is read as before, corroborated or not.</li>
+<li><strong>An accessible name that was already a plain name</strong> (the company, and nothing
+else) is a declaration in everything but format. It is read as before, corroborated or not.</li>
 <li><strong>One that needed a navigation word stripped off it</strong> was a description of a
 destination, and what remains is as likely to be the section as the company. That residue has to
 resemble the domain before it counts.</li>
@@ -890,12 +890,12 @@ resemble the domain before it counts.</li>
 
 <p>The general form: <strong>when a guard is about to silence a whole source, ask what made this
 case suspicious, and condition on that instead of on the source.</strong> The suspicious thing here
-was never "logo links are unreliable" — it was "this string only became a name because we edited
+was never "logo links are unreliable". It was "this string only became a name because we edited
 it".</p>
 
 <h2>What the rule costs, stated plainly</h2>
 
-<p>A company whose domain does not contain its name — a rebrand still living on the old host —
+<p>A company whose domain does not contain its name (a rebrand still living on the old host)
 loses this one source, and only when a navigation word had to be removed to find the name. Its
 declarations are untouched, so the name is still seen. That is the trade, it was taken
 deliberately, and it is the kind of thing a tool should tell you rather than leave you to
@@ -921,7 +921,7 @@ context.</li>
 rather than a policy.</li>
 <li><strong>Check your declarations first.</strong> Your structured data and
 <code>og:site_name</code> are what you have actually claimed; everything else is inference.</li>
-<li><strong>Do not rewrite a link's accessible name to satisfy a finding</strong> — it is there for
+<li><strong>Do not rewrite a link's accessible name to satisfy a finding</strong>: it is there for
 a reason, and <a href="/how-to/what-your-site-says-you-are-called/">the harm in that is a page of
 its own &rarr;</a>.</li>
 </ol>
@@ -929,7 +929,7 @@ its own &rarr;</a>.</li>
 <h2>When the finding is real</h2>
 
 <p>Two genuinely different names for one organisation, across titles and declarations, is worth
-fixing — it splits the signals that tell a search engine and an assistant that all these pages
+fixing. It splits the signals that tell a search engine and an assistant that all these pages
 belong to one entity. The point of the guards above is that this finding only means something when
 it is rare, and a check that produces it on ordinary sites has made it mean nothing.</p>
 
@@ -949,18 +949,18 @@ picking one is the fix; deleting the page that revealed it is not.</li>
 <p>When you report a false positive and it gets fixed, the honest question to ask is what the fix
 cost. A condition that makes a rule quieter about you probably made it quieter about somebody else
 too. <strong>The only reason the regression above was caught is that a test existed asserting the
-opposite case</strong> — a site where that source <em>should</em> disagree with the rest. Reasoning
+opposite case</strong>: a site where that source <em>should</em> disagree with the rest. Reasoning
 would not have caught it; the suite did.</p>
 
 <h2>Where this sits in an audit</h2>
 
 <p>The registered check is <code>brand.name_consistency</code>, which compares the names your site
-uses for itself. For four other ways it got that wrong — including why rewriting a logo link's
-accessible name is the wrong repair — see
+uses for itself. For four other ways it got that wrong (including why rewriting a logo link's
+accessible name is the wrong repair) see
 <a href="/how-to/what-your-site-says-you-are-called/">what your site says you are called
 &rarr;</a>. For the wider lane, see <a href="/learn/brand-consistency/">brand consistency
 &rarr;</a>.</p>
-<aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-when-a-fix-creates-a-false-negative" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-when-a-fix-creates-a-false-negative">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-when-a-fix-creates-a-false-negative">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Why did an audit report my navigation label as a company name?</h3><p>Because a logo link's accessible name describes where the link goes, and a step that strips navigation words can leave a section name behind. What remains is as likely to be the section as the company.</p></div><div class="faq-item"><h3>How should a tool decide whether a logo link name is a real brand name?</h3><p>By whether it had to edit the string to get one. A name that was already plain is close to a declaration; one left over after a navigation word was stripped should have to resemble the domain before it counts.</p></div><div class="faq-item"><h3>Can fixing a false positive cause a false negative?</h3><p>Yes, and it is the common outcome, because the easy fix is to make a rule quieter. A false negative is silent — nobody writes in to report that a tool failed to tell them something — so only a test asserting the opposite case catches it.</p></div><div class="faq-item"><h3>An audit says my site uses two brand names. Should I believe it?</h3><p>Check where the second one came from and how often it appears. A tagline or a section label appearing once across a whole site is a page, not an identity. What you declared in structured data or og:site_name is the part you actually claimed.</p></div><div class="faq-item"><h3>Should I rename my logo link so it matches my company name?</h3><p>No. That name exists so someone using a screen reader knows where the link goes. Put the company name in your declarations instead, where a tool should be reading it from anyway.</p></div></div></section>
+<aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-when-a-fix-creates-a-false-negative" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-when-a-fix-creates-a-false-negative">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-when-a-fix-creates-a-false-negative">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Why did an audit report my navigation label as a company name?</h3><p>Because a logo link's accessible name describes where the link goes, and a step that strips navigation words can leave a section name behind. What remains is as likely to be the section as the company.</p></div><div class="faq-item"><h3>How should a tool decide whether a logo link name is a real brand name?</h3><p>By whether it had to edit the string to get one. A name that was already plain is close to a declaration; one left over after a navigation word was stripped should have to resemble the domain before it counts.</p></div><div class="faq-item"><h3>Can fixing a false positive cause a false negative?</h3><p>Yes, and it is the common outcome, because the easy fix is to make a rule quieter. A false negative is silent (nobody writes in to report that a tool failed to tell them something), so only a test asserting the opposite case catches it.</p></div><div class="faq-item"><h3>An audit says my site uses two brand names. Should I believe it?</h3><p>Check where the second one came from and how often it appears. A tagline or a section label appearing once across a whole site is a page, not an identity. What you declared in structured data or og:site_name is the part you actually claimed.</p></div><div class="faq-item"><h3>Should I rename my logo link so it matches my company name?</h3><p>No. That name exists so someone using a screen reader knows where the link goes. Put the company name in your declarations instead, where a tool should be reading it from anyway.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

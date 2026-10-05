@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Security headers — the last uncovered check from the gap analysis.
+"""Security headers: the last uncovered check from the gap analysis.
 
 Written as a self-audit, because running the shipped 1.1.16 binary against
 docketseo.app on 2026-08-14 produced three security findings on this site,
@@ -24,7 +24,7 @@ def security_headers() -> Path:
     body = """
 <p class="lede">Security headers are response headers that tell a browser how carefully to
 treat your site. They cost nothing, they are set once at the server or CDN, and most sites
-have none of them — including, at the time of writing, this one.</p>
+have none of them. Including, at the time of writing, this one.</p>
 
 <h2>What an audit of this site returns</h2>
 
@@ -40,7 +40,7 @@ HTTP/1.1 200 OK
 Server: GitHub.com</code></pre>
 
 <p>Two hundred, over plain http, with no redirect. The <code>www</code> host redirects
-correctly; the apex does not — which is the same half-configured shape Docket found on a
+correctly; the apex does not, which is the same half-configured shape Docket found on a
 French bakery chain the same week, and the reason its redirect finding now names the exact
 host it probed instead of saying "http://".</p>
 
@@ -57,7 +57,7 @@ something you served as text is really a script. One line, no trade-offs.</p>
 
 <p><strong>Referrer-Policy.</strong> Controls how much of the current URL is passed to sites
 you link to. <code>strict-origin-when-cross-origin</code> sends the full path within your
-own site and only the origin to anyone else — which matters if your URLs contain anything
+own site and only the origin to anyone else, which matters if your URLs contain anything
 you would not print on a postcard.</p>
 
 <pre><code>X-Content-Type-Options: nosniff
@@ -80,12 +80,12 @@ so it is fixable. It is on the list.</p>
 <h2>Where to actually set them</h2>
 
 <ul>
-<li><strong>Cloudflare, Fastly, or any CDN</strong> — a rule at the edge, applied to every
+<li><strong>Cloudflare, Fastly, or any CDN</strong>: a rule at the edge, applied to every
 response, no deploy needed.</li>
-<li><strong>Nginx</strong> — <code>add_header</code> in the server block.</li>
-<li><strong>Apache</strong> — <code>Header set</code> in the vhost or .htaccess.</li>
-<li><strong>Netlify, Vercel</strong> — a headers file in the repository.</li>
-<li><strong>GitHub Pages</strong> — not possible, as above.</li>
+<li><strong>Nginx</strong>: <code>add_header</code> in the server block.</li>
+<li><strong>Apache</strong>: <code>Header set</code> in the vhost or .htaccess.</li>
+<li><strong>Netlify, Vercel</strong>: a headers file in the repository.</li>
+<li><strong>GitHub Pages</strong>: not possible, as above.</li>
 </ul>
 
 <h2>How much does this matter for SEO</h2>
@@ -95,7 +95,7 @@ never suggested these headers are. Anyone selling you security headers as a rank
 is guessing.</p>
 
 <p>Indirectly it matters more than the ranking question. A page reachable over plain http
-can be modified between the server and the reader — and on this site, one of those pages
+can be modified between the server and the reader, and on this site, one of those pages
 tells people how to verify a signed and notarised binary. Instructions for checking a
 signature are exactly the instructions worth tampering with. That is the argument for the
 redirect, and it has nothing to do with rankings.</p>

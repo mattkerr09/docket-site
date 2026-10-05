@@ -12,7 +12,7 @@ host often cannot issue a 301 at all, so a refresh stub is sometimes the only
 tool available, and calling that an error would be scolding somebody for their
 hosting.
 
-⚠️ Deliberately does NOT name or link this site's own rename stub — that URL
+⚠️ Deliberately does NOT name or link this site's own rename stub. That URL
 must never be submitted for indexing.
 
 No numeric literals and no dates.
@@ -30,8 +30,8 @@ def meta_refresh() -> Path:
     body = """
 <p class="lede">A meta refresh sends the visitor onward and the browser obeys, so from a chair
 it is indistinguishable from a redirect. It is not one. The page answers 200 with a normal body,
-which means every tool that reads status codes — including your link checker, including most
-audits — sees a page with content on it and moves on.</p>
+which means every tool that reads status codes (including your link checker, including most
+audits) sees a page with content on it and moves on.</p>
 
 <h2>What it looks like</h2>
 
@@ -48,7 +48,7 @@ it. A meta refresh announces itself only in the body, so:</p>
 <ul>
 <li><strong>Your link checker says the link is fine.</strong> It is pointing at a 200.</li>
 <li><strong>Your redirect report is incomplete</strong>, and you have no way of knowing by how
-much — the hops are not in it because they are not hops.</li>
+much: the hops are not in it because they are not hops.</li>
 <li><strong>The page is assessed as a destination.</strong> A thin stub with no content gets
 judged as a page you wrote badly rather than as a signpost.</li>
 </ul>
@@ -59,7 +59,7 @@ quietly stops describing your site accurately, and you keep trusting it.</p>
 <h2>The honest caveat, which most advice skips</h2>
 
 <p>Search engines support meta refresh and follow it. A server-side redirect is preferred
-because it is faster and unambiguous — but <strong>plenty of hosting cannot issue one</strong>.
+because it is faster and unambiguous, but <strong>plenty of hosting cannot issue one</strong>.
 Static hosts commonly have no mechanism to return a 301 for a moved page, and on those a refresh
 stub is the only tool available.</p>
 
@@ -70,7 +70,7 @@ reasonable second best, and it is worth knowing that is what you are relying on.
 <h2>A delay above zero is a different, worse thing</h2>
 
 <p>Zero means the hop is instant. Anything above it leaves a visitor looking at a page that is
-not the page they wanted and is not going to stay — and search engines treat a delayed refresh
+not the page they wanted and is not going to stay, and search engines treat a delayed refresh
 as a weaker signal than an immediate one. If you are stuck with a refresh, set it to zero.</p>
 
 <h2>The wrong fixes</h2>

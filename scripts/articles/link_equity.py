@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Internal link equity — measured on our own site, including where it fails.
+"""Internal link equity: measured on our own site, including where it fails.
 
 Written from real numbers produced by Docket's architecture analyser against
 docketseo.app. Every figure here was measured; the embarrassing one is included
@@ -19,12 +19,12 @@ from render import render  # noqa: E402
 def internal_link_equity() -> Path:
     body = f"""
 <p class="lede">Internal link equity is the ranking signal your own pages pass to each
-other, and it is distributed by where you link — not by what you think matters. Google
+other, and it is distributed by where you link, not by what you think matters. Google
 treats a link from your homepage as a vote, so a page nothing links to reads as a page
 you do not care about, however important it is to your business.</p>
 
 <p>We found this on our own site. Docket crawled docketseo.app, built the internal link graph,
-and ran PageRank across it. The download page — the entire commercial point of the site —
+and ran PageRank across it. The download page (the entire commercial point of the site)
 received <strong>one internal link</strong> and held <strong>1.25% of the internal link
 equity</strong> against a 5.56% average. Our most important page was getting a fifth of what
 a typical page got.</p>
@@ -35,7 +35,7 @@ the footer and reachable in one click, and by every conventional check it was fi
 <p>Then we fixed it, and the interesting part is what happened next. The same measurement
 today: <strong>{F.equity_pages()} pages and {F.equity_edges()} links</strong>, and the
 download page holds <strong>{F.equity_node('/download/')['share_pct']}%</strong> from
-{F.equity_node('/download/')['inlinks']} internal links — {F.equity_node('/download/')['index']}×
+{F.equity_node('/download/')['inlinks']} internal links: {F.equity_node('/download/')['index']}×
 the {F.equity_average_pct()}% average, rather than 0.22×. The problem did not go away. It
 moved.</p>
 
@@ -57,7 +57,7 @@ link from your homepage. A raw count says the first is better.</p>
 
 <h2>Reading the numbers</h2>
 
-<p>Raw PageRank values are awkward — 0.0125 means nothing on its own. Divide by the average
+<p>Raw PageRank values are awkward: 0.0125 means nothing on its own. Divide by the average
 and you get something you can act on. Anything under about 0.5× on a page you actually care
 about is worth an afternoon. On this site today,
 <strong>{F.equity_below_half()} pages sit under it</strong>, and they are the newest ones:
@@ -78,7 +78,7 @@ Docket reports sections that link to nothing outside themselves for this reason.
 
 <h3>The dead end</h3>
 <p>Pages that receive links and contain none. Equity arrives and stops. Usually a
-template that lost its related-content block during a redesign — and it is invisible
+template that lost its related-content block during a redesign, and it is invisible
 unless you are looking at the graph rather than the page.</p>
 
 <h2>What we changed, and what it cost</h2>
@@ -88,7 +88,7 @@ to pass: the ones already holding equity, in body copy where the surrounding tex
 link meaning, with anchor text that says what the destination is rather than "click here".</p>
 
 <p>For us that meant linking the download page from inside the articles people actually
-arrive on, not just from the footer. It worked — 0.22× to
+arrive on, not just from the footer. It worked: 0.22× to
 {F.equity_node('/download/')['index']}×.</p>
 
 <p>It also concentrated equity on the pages already in the navigation, which is why
@@ -99,8 +99,8 @@ publishing, the answer needs revisiting every time it does.</p>
 
 <h2>Where another tool is the better choice</h2>
 
-<p>If you want to <em>explore</em> a large site's structure interactively — click a
-cluster, expand it, follow a branch, rearrange the layout — <a
+<p>If you want to <em>explore</em> a large site's structure interactively (click a
+cluster, expand it, follow a branch, rearrange the layout) <a
 href="/vs/sitebulb-alternative/">Sitebulb</a> is genuinely better at this and it is their
 strongest feature. Their force-directed crawl maps are built for that kind of
 investigation.</p>
@@ -114,7 +114,7 @@ drew the same map. If interactive exploration is what you want, use Sitebulb.</p
 <h2>The caveat that matters</h2>
 
 <p>A link graph is only as good as the crawl behind it. Auditing a law firm's site
-recently, Docket crawled 30 pages and found 935 — and in that fragment, 25 attorney pages
+recently, Docket crawled 30 pages and found 935, and in that fragment, 25 attorney pages
 appeared to have no inbound links at all. They were not orphans. The pages that link to
 them, starting with the attorney index, had simply not been fetched yet.</p>
 
@@ -127,7 +127,7 @@ raise the page limit and run it again.</p>
 
 <ol>
 <li>List the five pages that make you money.</li>
-<li>For each, count how many other pages link to it in body copy — not navigation, not
+<li>For each, count how many other pages link to it in body copy, not navigation, not
 the footer.</li>
 <li>If the answer is zero or one, that page is running on nothing.</li>
 </ol>
@@ -135,7 +135,7 @@ the footer.</li>
 <p>You can do this by hand on a small site in about twenty minutes. Docket does it across
 every page, ranks the results, and shows you the map. The figures on this page come from
 running it against this site on {F.equity()["measured"]}, and they are read from that
-measurement rather than typed — this article quoted an 18-page graph for a while after the
+measurement rather than typed. This article quoted an 18-page graph for a while after the
 site had 23 pages, which is exactly the failure it warns about.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
@@ -154,7 +154,7 @@ site had 23 pages, which is exactly the failure it warns about.</p>
              "links. It is distributed by where you link, so a page nothing links to "
              "reads to a search engine as a page you do not consider important."),
             ("How is it different from counting internal links?",
-             "Counting treats every link as equal. Link equity is recursive — a link "
+             "Counting treats every link as equal. Link equity is recursive. A link "
              "from a page that itself receives no links passes almost nothing, so ten "
              "links from orphaned pages can be worth less than one from your homepage."),
             ("How many internal links should an important page have?",

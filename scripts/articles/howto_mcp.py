@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""`docket mcp` — audit a site from an AI assistant.
+"""`docket mcp`. Audit a site from an AI assistant.
 
 ⚠️ EVERY COMMAND AND EVERY QUOTED LINE ON THIS PAGE WAS RUN AGAINST THE SHIPPED
 BINARY at /Applications/Docket.app/Contents/Resources/docket/docket, installed
-from the notarised 1.3.44 DMG on 2026-09-08 — not against the source tree, which
+from the notarised 1.3.44 DMG on 2026-09-08, not against the source tree, which
 behaves differently in the one way that matters most here.
 
 Measured, in that order:
@@ -18,7 +18,7 @@ Measured, in that order:
     engine registers 99 as of 2026-09-21 and the rendered page reads that
     from facts rather than from here, so the page is right and this line is
     a record of one run. Left as a record rather than bumped, because
-    nobody re-ran `list_checks` today — the count came from the source and
+    nobody re-ran `list_checks` today. The count came from the source and
     from the frozen build's own `docket checks`.
   * ⚠️ AND THE ONE THE SOURCE TREE WOULD HAVE HIDDEN: an unactivated copy
     REFUSES `audit_site` with "This copy of Docket is not activated", while
@@ -35,7 +35,7 @@ editing a customer's assistant config is theirs to do.
 ⚠️ THE PROVENANCE LINE ON THE PAGE CARRIES A DATE AND NO VERSION NUMBER, AND
 THAT IS THE WHOLE DESIGN. The CEO session asked for "measured against 1.3.44
 (build 922) on 2026-09-08" so the page is falsifiable, which is the right
-instinct — but a typed version on a page is what `verify_version_strings`
+instinct, but a typed version on a page is what `verify_version_strings`
 exists to refuse, and its message is "Derive it, or delete it". Deriving it
 from RELEASE would be worse than typing it: at 1.3.45 the page would claim a
 measurement against a build nobody ran these commands on, which is the
@@ -44,7 +44,7 @@ freshness lie rule 5 catches for competitor prices, pointed at ourselves.
 The asymmetry is the way out. **"Last run on 2026-09-08" never becomes false.**
 "Measured against 1.3.44" becomes false the moment 1.3.45 ships. So the page
 carries the date, which stays true forever, and points the reader at their own
-handshake for the version — which is a live product behaviour rather than a
+handshake for the version, which is a live product behaviour rather than a
 claim about a past run, and is a stronger falsifier than our stamp anyway.
 
 The frozen basis lives here instead, where it cannot mislead a customer:
@@ -70,7 +70,7 @@ def mcp_setup() -> Path:
 <p class="lede">Docket speaks the <strong>Model Context Protocol</strong>, the standard AI
 assistants use to reach tools on your own machine. Point an MCP client at the copy of Docket
 you already own and you can ask it to audit a site in conversation, and get the findings back
-as structured data it can reason about &mdash; rather than a screenshot you retype.</p>
+as structured data it can reason about: rather than a screenshot you retype.</p>
 
 <h2>Point your assistant at it</h2>
 
@@ -88,11 +88,11 @@ launches Docket itself. In Claude Desktop, open
 }}</code></pre>
 
 <p>That path is the audit engine inside the installed app, not the app icon you click. Restart
-the client and Docket appears as a tool. Any MCP client works the same way &mdash; the command
+the client and Docket appears as a tool. Any MCP client works the same way: the command
 and the argument are all it needs.</p>
 
 <p class="note"><strong>Every answer on this page was produced by running these commands</strong>
-against a shipped, notarised build on {MEASURED_HUMAN} &mdash; not against a development
+against a shipped, notarised build on {MEASURED_HUMAN}, not against a development
 checkout, which behaves differently in the one way that matters most here (see the licence
 section below). Your own copy reports its version in the MCP handshake, so you can check this
 page against what you actually have; if it disagrees, the page is wrong and we want to hear
@@ -110,16 +110,16 @@ check?&rdquo; without crawling anything. On this copy it returns all {N_CHECKS} 
 across {N_LANES} areas.</p>
 
 <p>Two details worth knowing, because they are choices rather than accidents. The page budget you
-ask for is the page budget you get &mdash; Docket will not quietly crawl five times more because
+ask for is the page budget you get. Docket will not quietly crawl five times more because
 the site answered quickly, which is what its own <code>--adaptive</code> default does when a
-person is watching. And <code>offline</code> turns off the optional checks &mdash; no PageSpeed
-call, no DNS lookup of your mail domains &mdash; though the link check and rendering still reach
+person is watching. And <code>offline</code> turns off the optional checks (no PageSpeed
+call, no DNS lookup of your mail domains) though the link check and rendering still reach
 the sites your pages link to or load.</p>
 
 <h2>It is the same engine, and the same licence</h2>
 
 <p>Nothing about this is a cloud service. The crawl runs on your Mac exactly as it does when you
-click the button, there is no API key, and there is no per-call charge &mdash; your assistant is
+click the button, there is no API key, and there is no per-call charge. Your assistant is
 talking to the app you bought, not to us.</p>
 
 <p>Which also means an unactivated copy gives your assistant the free version: the audit runs,
@@ -140,7 +140,7 @@ is that nobody has yet asked for them through an assistant.</p>
         cat="how-to", slug="audit-your-site-from-an-ai-assistant",
         title="Audit your site from an AI assistant",
         desc=("Docket speaks the Model Context Protocol over stdio. Point Claude Desktop "
-              "at the app you own and ask it to audit a site — no API key, no cloud."),
+              "at the app you own and ask it to audit a site: no API key, no cloud."),
         h1="How to audit your site from an AI assistant",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / MCP',
         body=body,

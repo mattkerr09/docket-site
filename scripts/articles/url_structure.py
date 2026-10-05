@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""URL structure — the five findings `index.url_hygiene` emits, and nothing else.
+"""URL structure: the five findings `index.url_hygiene` emits, and nothing else.
 
 Sourced from `index.url_hygiene` in
 `backend/seo_engine/checks/indexability.py`, from `AuditContext.is_indexable`
@@ -24,12 +24,12 @@ title or the fix text promises more than the code delivers are described on the
 page rather than smoothed over:
 
   * "URLs contain encoded spaces" fires on a literal `+` anywhere in the PATH,
-    where `+` does not mean a space at all — that substitution belongs to
+    where `+` does not mean a space at all. That substitution belongs to
     `application/x-www-form-urlencoded`, which is a query-string format.
   * "URLs carry multiple query parameters" counts ampersands and needs two, so
     two parameters never fires it; three do.
   * The session-ID pattern is an unanchored substring, so a parameter merely
-    ENDING in those letters matches, and it reads `parsed.query` only — the
+    ENDING in those letters matches, and it reads `parsed.query` only. The
     classic `;jsessionid=` in a path segment lands in `ParseResult.params` and
     is not seen.
   * The long-URL rule measures the whole absolute URL, scheme and host
@@ -82,7 +82,7 @@ def url_structure() -> Path:
 total confidence and no evidence: hyphens beat underscores, keep it under some number of
 characters, get your keyword in the slug. Some of that is in Google's own documentation. Some
 of it has never been published by anyone who measured it. This page separates the two, and
-says plainly which of them Docket checks — because the answer is fewer than you would guess.</p>
+says plainly which of them Docket checks, because the answer is fewer than you would guess.</p>
 
 <p>Docket registers one check here, <code>index.url_hygiene</code>, under the title
 "URL structure", in the crawlability and indexing lane. It emits up to {N_FINDINGS} findings.
@@ -92,7 +92,7 @@ Here they are, with the condition that fires each, exactly as the code has it.</
 
 <h3>A session ID in the query string</h3>
 
-<p>Finding <code>index.session_ids</code>, at HIGH — the most severe thing this check can say.
+<p>Finding <code>index.session_ids</code>, at HIGH: the most severe thing this check can say.
 It fires on a URL whose query string matches <code>sid=</code>, <code>sessionid=</code>,
 <code>phpsessid=</code> or <code>jsessionid=</code>, case-insensitively. The detail text is
 blunt about why: a session ID makes a new, unique URL for every visit, which is an effectively
@@ -115,10 +115,10 @@ mixed-case versions permanently.</p>
 <p>Sourced, again on {READ_ON}: "Like any other HTTP client following {STD}, Google
 Search's URL handling is case sensitive (for example, Google treats both <code>/APPLE</code>
 and <code>/apple</code> as distinct URLs with their own content)." The same passage says what
-to do if your server does not care about case — "convert all text to the same case so it's
+to do if your server does not care about case. "Convert all text to the same case so it's
 easier for Google to determine that URLs reference the same page."</p>
 
-<h3>Encoded spaces — and this title is wider than its rule</h3>
+<h3>Encoded spaces: and this title is wider than its rule</h3>
 
 <p>Finding <code>index.url_spaces</code>, at LOW. It fires when the path contains
 <code>%20</code> <strong>or</strong> a literal <code>+</code>. The reasoning given is practical
@@ -127,7 +127,7 @@ get mis-copied. The fix is to use hyphens between words.</p>
 
 <p>The second trigger is looser than the finding's name. A <code>+</code> means a space only
 inside an <code>application/x-www-form-urlencoded</code> payload, which is a query-string
-format — {WHATWG} spells the substitution out in its parsing steps: "Replace any 0x2B (+) in
+format: {WHATWG} spells the substitution out in its parsing steps: "Replace any 0x2B (+) in
 name and value with 0x20 (SP)", where name and value are the halves of a query pair. In a path
 segment a plus is just a plus. So a page published at a path containing one gets reported as
 carrying an encoded space when it carries no space at all. Worth knowing before you go and
@@ -135,13 +135,13 @@ rename anything.</p>
 
 <h3>A long URL</h3>
 
-<p>Finding <code>index.url_long</code>, at NOTICE — the lowest severity Docket reports a
+<p>Finding <code>index.url_long</code>, at NOTICE: the lowest severity Docket reports a
 defect at, and correctly so. It fires when the URL is longer than {URL_LONG} characters. The detail text says
 long URLs get truncated in search results and shared links; the fix says to shorten slugs to
 the two or three words that describe the page.</p>
 
-<p>Two honest caveats. The measurement is taken over the entire absolute URL — scheme, host and
-all — while the advice talks about slugs, so a long hostname spends part of a budget you cannot
+<p>Two honest caveats. The measurement is taken over the entire absolute URL (scheme, host and
+all) while the advice talks about slugs, so a long hostname spends part of a budget you cannot
 edit by renaming a page. And the threshold itself has no outside source. It is a
 house number, chosen by us. Read in full on {READ_ON}, {GOOGLE} states no character
 limit for URLs anywhere on the page. That is why this finding is a notice and not an error, and
@@ -152,7 +152,7 @@ why nothing here tells you that a URL over that length will rank worse. Nobody k
 <p>Finding <code>index.url_params</code>, at MEDIUM, and the only one of the five with a
 site-level threshold rather than a per-URL one. A URL counts toward it when its query string
 contains at least {PARAM_AMPERSANDS} ampersands, which means {PARAM_PAIRS} or more key-value
-pairs — two parameters never counts. The finding is then reported only if the number of such
+pairs: two parameters never counts. The finding is then reported only if the number of such
 URLs exceeds both a floor of {PARAM_FLOOR} and {PARAM_SHARE_PCT} per cent of the indexable
 pages in the crawl, whichever is larger. A handful of filtered URLs on a big site stays quiet.
 A site that is mostly filter combinations does not.</p>
@@ -171,7 +171,7 @@ canonical, for spaces you never want crawled at all.</p>
 <p><strong>That hyphens beat underscores for ranking.</strong> {GOOGLE} does recommend hyphens
 — "we recommend using hyphens (<code>-</code>) instead of underscores (<code>_</code>) to
 separate words in your URLs, as it helps users and search engines better identify concepts in
-the URL" — and gives a reason that is about legibility and convention, not about a scoring
+the URL", and gives a reason that is about legibility and convention, not about a scoring
 difference: underscores are already used to join words into single names in programming
 languages. No effect size is published. <strong>And Docket does not check for underscores at
 all.</strong> No finding in this check looks at them. A page that told you Docket enforced
@@ -187,7 +187,7 @@ never tell you a slug is missing a keyword.</p>
 house number and is labelled as one, and Google publishes none.</p>
 
 <p>Being precise here cuts our own side too, which is the point of saying it out loud. The
-uppercase finding's premise — that paths are case-sensitive on most servers — is stated as a
+uppercase finding's premise (that paths are case-sensitive on most servers) is stated as a
 general fact by the check and is not measured by it per site; Docket does not probe your server
 to find out whether it folds case. Treat that finding as "these URLs could be a duplicate pair"
 rather than "these URLs are one".</p>
@@ -201,7 +201,7 @@ may not be in them, depending on how far the crawl got. And a parameterised URL 
 already excluded with <code>noindex</code> is correctly invisible here, because it is not a page
 competing for indexing.</p>
 
-<p>So the counts are a floor, not a census — the shape of the problem on the pages Docket read,
+<p>So the counts are a floor, not a census. The shape of the problem on the pages Docket read,
 which on a large site is a sample. If a parameter space is the thing you are worried about, the
 number that matters is not in the finding; it is in whether the crawl kept discovering new
 combinations until it ran out of budget.</p>
@@ -209,7 +209,7 @@ combinations until it ran out of budget.</p>
 <h2>What to do with the list</h2>
 
 <p>In severity order, which is also roughly the order of how much a fix buys you. Session IDs
-first — that is a duplicate-content generator and the only item here Google's documentation
+first. That is a duplicate-content generator and the only item here Google's documentation
 explicitly asks you to remove. Then the parameter finding, if it fired, taking the canonical
 route or the robots.txt route but not both. Then casing, which is a server rule plus redirects
 rather than a URL-by-URL job. The encoded-space and long-URL findings are cosmetic; they are a
@@ -230,7 +230,7 @@ internal links pointing at redirects</a> is the shape to avoid creating on the w
         cat="learn", slug="url-structure",
         title="SEO URL structure: what is checked, what is folklore",
         desc=("What a Docket audit of your site's URLs reports, finding by finding: session "
-              "IDs, casing, encoded spaces, length and parameters — and the claims with no source."),
+              "IDs, casing, encoded spaces, length and parameters, and the claims with no source."),
         h1="SEO URL structure best practice, minus the folklore",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / URL structure',
         body=body,
@@ -266,7 +266,7 @@ internal links pointing at redirects</a> is the shape to avoid creating on the w
              "below it by design."),
             ("Does Docket see URLs it did not crawl?",
              "No. Every finding here is computed over the pages the crawl fetched that were "
-             "indexable HTML — so the counts are a floor rather than a census. On a large site "
+             "indexable HTML, so the counts are a floor rather than a census. On a large site "
              "with a big parameter space, the more useful signal is whether the crawl kept "
              "finding new URL combinations until it ran out of budget."),
         ],

@@ -12,7 +12,7 @@ so in its own opening paragraph rather than in a footnote.
 **Page one, checked 2026-09-15 before writing**, for "do AI crawlers read
 sitemaps": trakkr.ai, insidea.com, similar.ai, stridec.com,
 aivisibilitystudio.com, usegrowthos.com, clickrank.ai, ritnerdigital.com. All
-small SEO blogs — **no OpenAI, Anthropic, Google or Cloudflare documentation on
+small SEO blogs: **no OpenAI, Anthropic, Google or Cloudflare documentation on
 page one**, so the query passes the drop-rule. No competitor study larger than
 our sample was found on this question.
 
@@ -34,7 +34,7 @@ The /index/ai-directives/ cross-tab is a DIFFERENT pairing (sitemap against
 llms.txt adoption) and is deliberately not restated here.
 
 **WHY THE HONESTY POINTS ARE IN THE BODY AND NOT IN A CAVEAT BLOCK.** Three of
-them contradict the shape a reader expects — no measured fetch, no leak, and
+them contradict the shape a reader expects: no measured fetch, no leak, and
 blockers that are *less* likely to publish a sitemap rather than more. A page
 that buries those is a page that has quietly manufactured a gotcha out of a
 null result. They lead.
@@ -114,7 +114,7 @@ while withholding it from an AI crawler in the same file.</p>
 <p><strong>Publishing one is close to background behaviour.</strong> {sm_pct}% of the
 {readable:,} readable robots.txt files in our {SURVEYED_HUMAN} survey carry a
 <code>Sitemap:</code> line. Among the {blk_any:,} sites that block at least one of the
-{n_crawlers} AI crawlers we track, {blk_any_pct}% still do — slightly <em>fewer</em>, not more.</p>
+{n_crawlers} AI crawlers we track, {blk_any_pct}% still do: slightly <em>fewer</em>, not more.</p>
 </div>
 
 <h2>What RFC 9309 actually says about sitemaps</h2>
@@ -136,7 +136,7 @@ line or at the end of the file. A <code>Sitemap:</code> line does not end a grou
 rule inside one. No group owns it. It is addressed to the file's readers, all of them, wherever in
 the file you happen to have typed it.</p>
 
-<p>The RFC never uses the word "global", and we are not quoting it as though it did — that word is
+<p>The RFC never uses the word "global", and we are not quoting it as though it did. That word is
 the consequence of the two sentences above rather than a third sentence. The consequence itself is
 firm, though, and it is the thing to take away: <strong>whatever your file says about who may crawl
 what, the sitemap it advertises is the same sitemap for everyone who reads the file.</strong></p>
@@ -168,7 +168,7 @@ limit because the limit is real.</p>
 
 <p>There is an obvious story to tell about those rows and it is not true, so here is the correction
 before the story: <strong>sites that block AI crawlers are not more likely to publish a sitemap than
-everybody else. They are slightly less likely</strong> — {blk_any_pct}% against {sm_pct}%, a gap of
+everybody else. They are slightly less likely</strong>: {blk_any_pct}% against {sm_pct}%, a gap of
 {gap} points running the opposite way from the gotcha.</p>
 
 <p>Two things are worth saying about that gap rather than leaning on it. It is small, and we are not
@@ -189,14 +189,14 @@ up carrying both because nobody ever reads it top to bottom as a single statemen
 <p>The second thing this data must not be read as saying: <strong>a site that blocks a crawler and
 still publishes a <code>Sitemap:</code> line has not left a door open.</strong> If the same file
 carries <code>Disallow: /</code> for that crawler, a crawler that complies does not request
-<code>/sitemap.xml</code> either — the sitemap URL is under the same disallowed path as everything
+<code>/sitemap.xml</code> either: the sitemap URL is under the same disallowed path as everything
 else. The line is addressed to every reader; whether any given reader acts on it depends entirely on
 the rest of the file.</p>
 
 <p>The standing caveat applies to all of this, and it is not a small one: <strong>robots.txt binds
 only the crawlers that read it and choose to comply.</strong> It is a published request, not an
 access control. A crawler that ignores the file ignores the <code>Disallow</code> and the
-<code>Sitemap:</code> line together, and nothing in a robots.txt survey — ours or anyone's — can
+<code>Sitemap:</code> line together, and nothing in a robots.txt survey (ours or anyone's) can
 distinguish a compliant crawler from an absent one.</p>
 
 <h2>What to do with your own file</h2>
@@ -210,7 +210,7 @@ the file that is per-crawler. The sitemap travels with the file, not with the gr
 group, name the token exactly as the vendor documents it, and you are done.</li>
 <li><strong>Deleting the <code>Sitemap:</code> line achieves nothing for you and costs you
 something.</strong> It cannot be aimed at one crawler, so removing it removes it for the search
-engines you want as well — and those are the readers who actually use it for discovery.</li>
+engines you want as well, and those are the readers who actually use it for discovery.</li>
 <li><strong>Do not infer access from the file alone.</strong> A crawler can be allowed in robots.txt
 and refused by your server, which is a different failure at a different layer and needs a different
 test.</li>
@@ -235,7 +235,7 @@ re-survey, and {SPOTCHECK_FILES} files cannot confirm {readable:,}.</p>
 
 <p>Everything else: the denominator throughout is readable, parseable robots.txt files, not the
 {attempted:,} sites attempted, and a site whose robots.txt we could not read contributes to neither
-the numerator nor the denominator. "Blocking" means the file expresses a denial for that token —
+the numerator nor the denominator. "Blocking" means the file expresses a denial for that token:
 the same definition, and the same {n_crawlers} tokens, used across our directives work. No figure on
 this page describes a crawler's behaviour.</p>
 
@@ -273,7 +273,7 @@ visibility</a>.</p>
              f"all."),
             ("Can I give my sitemap to Google but not to GPTBot?",
              f"No. RFC 9309 section {RFC_SECTION} puts a Sitemap: line outside the User-agent group "
-             f"mechanism — it is a non-group record that must not terminate a group — so it is not "
+             f"mechanism (it is a non-group record that must not terminate a group), so it is not "
              f"scoped to any crawler. One file, one sitemap reference, offered to every reader of "
              f"the file. The per-crawler decision you can make is whether that crawler may fetch "
              f"your pages at all, and that lives in the Disallow lines."),
@@ -288,7 +288,7 @@ visibility</a>.</p>
              f"No. If the same file carries Disallow: / for that crawler, a compliant crawler does "
              f"not request your sitemap URL either, because it sits under the same disallowed path. "
              f"The line is addressed to every reader of the file; whether a reader acts on it "
-             f"depends on the rest of the file. The standing limit applies as well — robots.txt "
+             f"depends on the rest of the file. The standing limit applies as well. Robots.txt "
              f"binds only crawlers that read it and choose to comply."),
             ("Should I remove the Sitemap: line to keep AI crawlers out?",
              f"No. It cannot be aimed at one crawler, so removing it removes it for the search "

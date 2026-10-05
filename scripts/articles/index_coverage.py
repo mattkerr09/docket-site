@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Index coverage — what Docket can and cannot tell you about being indexed.
+"""Index coverage. What Docket can and cannot tell you about being indexed.
 
 The feature page for the index-coverage connector
 (`backend/seo_engine/connectors/index_coverage.py` in the app repo). Every
@@ -58,7 +58,7 @@ def index_coverage() -> Path:
     body = f"""
 <p class="lede">You published a page. Is it actually in Google? Is Bing aware of the site at
 all? Did anything ever get told the page changed? A crawler cannot answer any of that by
-reading your HTML, because none of it is a property of your page — it is a property of
+reading your HTML, because none of it is a property of your page. It is a property of
 somebody else's index.</p>
 
 <p>Docket answers it by asking each engine directly, with your own credentials, and the
@@ -75,17 +75,17 @@ claim, and the row says which.</p>
 date for a property you have verified in Search Console. It is the only engine here that
 answers per page, and it can, because the
 <a href="{GOOGLE_LIMITS}">published quota</a> is {GOOGLE_QPD} inspections per site per day and
-{GOOGLE_QPM} per minute — enough for a whole site, every day.</p>
+{GOOGLE_QPM} per minute. Enough for a whole site, every day.</p>
 
 <p>Docket reads the verdict, which is a documented enumeration, and shows Google's own summary
 sentence beside it without interpreting it. That sentence is a plain string in the API, it has
-no published list of values, and the request takes a language code — so the same state arrives
+no published list of values, and the request takes a language code, so the same state arrives
 in different words for different accounts. Matching on the words would report an indexed page
 as missing the day Google rewrote them, or for anyone not working in English. Only the two
 decisive verdicts become a claim; the rest read as unknown rather than being guessed into a
 finding.</p>
 
-<h3>Bing, for the site — not for the page</h3>
+<h3>Bing, for the site: not for the page</h3>
 
 <p>Bing's <a href="{BING_DOCS}">crawl statistics</a> give a count of pages in its index for the
 whole site, one row per day. There is no per-page column, and there is not going to be one:
@@ -101,7 +101,7 @@ their names.</p>
 <h3>Brave, for the site, with the ceiling printed</h3>
 
 <p>Brave can be enumerated by listing the host's results a page at a time, but its API stops at a
-fixed offset — about {BRAVE_WINDOW} results is the entire window that can ever be read for one
+fixed offset. About {BRAVE_WINDOW} results is the entire window that can ever be read for one
 host. Past that point, "not in the results" and "past the end of what I was allowed to read" are
 the same observation.</p>
 
@@ -113,24 +113,24 @@ absence.</p>
 <h3>IndexNow is your outbox, and it is labelled as one</h3>
 
 <p>IndexNow is how a site announces that a URL changed, to
-<a href="{INDEXNOW_FAQ}">the endpoints its FAQ lists</a> — {INDEXNOW_ENGINES}. Docket records
+<a href="{INDEXNOW_FAQ}">the endpoints its FAQ lists</a>: {INDEXNOW_ENGINES}. Docket records
 whether a URL was announced and when.</p>
 
 <p>That is all it records. Announcing is not indexing, and IndexNow's own FAQ says a submission
 "does not guarantee immediate indexing". In a table headed by the question "am I indexed", this
 is the single most misreadable column on the page, so it never counts toward the answer. The
-states it can report do not overlap with the index verdicts at all — it can say announced, or
+states it can report do not overlap with the index verdicts at all: it can say announced, or
 not announced, and nothing else.</p>
 
 <h3>AI crawlers, for the origin</h3>
 
-<p>Docket already checks whether your server actually serves the AI crawlers, by asking it — see
+<p>Docket already checks whether your server actually serves the AI crawlers, by asking it. See
 <a href="/learn/ai-crawlers-and-sitemaps/">AI crawlers and your sitemap</a> and
 <a href="/learn/does-noindex-stop-ai-crawlers/">does noindex stop AI crawlers</a>. That check
 probes your home page once per crawler, which makes it an answer about the origin.</p>
 
 <p>It is joined to this table rather than rebuilt, and it is joined as what it is. It does not
-appear as a per-page verdict, because nothing about it was measured per page — and a column of
+appear as a per-page verdict, because nothing about it was measured per page, and a column of
 crawler names and status codes looks far more specific than it is.</p>
 
 <h2>What this will not tell you</h2>

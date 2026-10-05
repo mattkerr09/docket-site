@@ -2,9 +2,9 @@
 """How to fix structured data errors.
 
 The last of the four guides the how-to hub has been promising. Sourced from
-Docket's own schema checks — `schema.invalid_json`, `schema.no_identity`,
+Docket's own schema checks (`schema.invalid_json`, `schema.no_identity`,
 `schema.none`, `schema.no_breadcrumbs`, `schema.low_coverage` and the
-`schema.incomplete.*` family — including their severities, which carry the
+`schema.incomplete.*` family) including their severities, which carry the
 argument: invalid JSON-LD is HIGH because the markup is not partially working,
 it is absent.
 
@@ -29,7 +29,7 @@ markup is perfect, malformed, or contradicting what a visitor can see.</p>
 <h2>JSON-LD that does not parse</h2>
 
 <p>The most consequential error and the least visible. A trailing comma, a smart quote pasted
-from a document, an unescaped quotation mark inside a description — any one of them makes the
+from a document, an unescaped quotation mark inside a description. Any one of them makes the
 block invalid JSON, and invalid JSON is not partially read. The whole block is discarded.</p>
 
 <p>So a page can carry complete, correct Product markup and be treated exactly like a page
@@ -37,7 +37,7 @@ with no markup at all. Nothing appears in the page, nothing appears in the brows
 rich result you built simply never arrives.</p>
 
 <p><strong>Fix:</strong> validate the rendered output, not the template. The commonest cause
-is a CMS field interpolated straight into JSON without escaping — a product description
+is a CMS field interpolated straight into JSON without escaping. A product description
 containing a <code>"</code> breaks the document, and it breaks only for the products whose
 descriptions happen to contain one, which is why it survives spot-checking.</p>
 
@@ -45,7 +45,7 @@ descriptions happen to contain one, which is why it survives spot-checking.</p>
 
 <p>A site can carry Article markup on every post and Product markup on every listing and still
 never declare the organisation behind them. That is the entity search engines attach
-everything else to — the thing that makes "who published this" answerable.</p>
+everything else to: the thing that makes "who published this" answerable.</p>
 
 <p>Docket reports this at HIGH when a site uses structured data but omits an
 <code>Organization</code> or <code>LocalBusiness</code> node, because the omission is
@@ -73,7 +73,7 @@ real, show it; if it is not shown, remove it from the markup.</p>
 <h2>Required properties missing</h2>
 
 <p>Each rich result type has properties that are required rather than recommended, and a type
-missing one is ineligible — not degraded. Docket reports these per type, because "structured
+missing one is ineligible, not degraded. Docket reports these per type, because "structured
 data errors: 9" does not tell you whether nine pages need one field each or one page needs
 nine.</p>
 
@@ -83,15 +83,15 @@ already qualify.</p>
 
 <h2>Coverage, which is a judgement rather than an error</h2>
 
-<p>Reported at LOW deliberately. A site where a minority of pages carry markup is not broken —
-plenty of pages have no rich result to earn. What the number is for is noticing when the
+<p>Reported at LOW deliberately. A site where a minority of pages carry markup is not broken.
+Plenty of pages have no rich result to earn. What the number is for is noticing when the
 templates that <em>should</em> carry it do not: products, articles, FAQs, the pages with an
 eligible type sitting unclaimed.</p>
 
 <h2>Why the validator and the crawler disagree</h2>
 
 <p>Testing tools check one URL you paste in. The failures above are mostly template-level and
-data-dependent — they appear on the subset of pages whose content happens to break the
+data-dependent. They appear on the subset of pages whose content happens to break the
 template. A single-URL test on a page that works tells you nothing about the ones that do not,
 which is why this is a crawl problem rather than a validation problem.</p>
 
@@ -120,7 +120,7 @@ which is why this is a crawl problem rather than a validation problem.</p>
              "being ignored."),
             ("Does every page need structured data?",
              "No. Plenty of pages have no eligible rich result type. Coverage matters where a "
-             "template should carry it — products, articles, FAQs — not as a number to "
+             "template should carry it (products, articles, FAQs) not as a number to "
              "maximise."),
             ("Why isn't a single-URL validator enough?",
              "Most schema failures are template-level and data-dependent: they appear only on "

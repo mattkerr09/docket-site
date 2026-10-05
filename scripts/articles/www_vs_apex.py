@@ -6,7 +6,7 @@
 searchenginejournal.com, spyfu.com, wpbeginner.com, seranking.com, llmrefs.com,
 seotorontoexperts.ca, seattlenewmedia.com. **No vendor documentation on page
 one**, so the query passes the winnability rule. All nine agree with each other
-— it no longer matters much, pick one and redirect the other — and **not one of
+— it no longer matters much, pick one and redirect the other, and **not one of
 them measures how many sites actually got it wrong.** That gap is the entire
 reason this page exists. The advice is not in dispute; the incidence is simply
 unknown, and an unknown incidence is measurable.
@@ -15,7 +15,7 @@ unknown, and an unknown incidence is measurable.
 top 10,000, 2026-09-15, recorded in `data/www-canonical-2026-09.json`.
 
 ⚠️ WHAT THIS PAGE MUST NOT BECOME. `/learn/canonical-tags/` explicitly punts on
-this — it says `index.www` handles apex-versus-www separately because it is a
+this. It says `index.www` handles apex-versus-www separately because it is a
 server configuration rather than a markup mistake. So this page **links** that
 one and does not re-explain canonical tags.
 `/how-to/redirect-http-to-https/` touches apex/www only where a TLS certificate
@@ -93,16 +93,16 @@ def www_vs_apex() -> Path:
     body = f"""
 <div class="callout">
 <div class="callout-title">Quick answer</div>
-<p><strong>No, it barely matters which one you choose — and yes, you still have to choose one.</strong>
+<p><strong>No, it barely matters which one you choose, and yes, you still have to choose one.</strong>
 That is what every result on page one for this question says, and it is correct. None of them counts
 how many sites actually still have two live copies, so we did.</p>
 <p><strong>In a random sample of {sample} hosts drawn from the Tranco top 10,000 and probed on
-{MEASURED_HUMAN}, {both} still served the site on both spellings</strong> — {pct_sample}% of the
+{MEASURED_HUMAN}, {both} still served the site on both spellings</strong>: {pct_sample}% of the
 sample, {pct_reachable}% of the {reachable} origins that answered at all, {pct_answered}% of the
 {answered} whose other spelling returned a 2xx. Three different denominators, three different
 numbers, and they are not interchangeable.</p>
 <p><strong>Most of the web has already settled it:</strong> {redirects} of {reachable} reachable
-origins — {pct_redirect}% — redirected one spelling onto the other. The advice is not wrong. It is
+origins ({pct_redirect}%) redirected one spelling onto the other. The advice is not wrong. It is
 just aimed at a minority now, and nobody had said how small a minority.</p>
 </div>
 
@@ -122,7 +122,7 @@ mechanism.</p>
 
 <p><strong>Start with the size, because it governs everything below: {sample} hosts.</strong> A random
 sample of the Tranco top 10,000, drawn with a recorded seed, two requests per host, no page crawl.
-This is a sample, not a survey — it is small enough that a reader should treat every share here as an
+This is a sample, not a survey. It is small enough that a reader should treat every share here as an
 indication rather than a census, and every figure on this page is published with the denominator it
 came from.</p>
 
@@ -146,7 +146,7 @@ return 200?", because that question produces false findings on real servers.</p>
 <tbody>
 <tr><td>Did not resolve at all</td><td>{absent}</td><td><strong>No.</strong> There is no second
 hostname, so there is nothing to canonicalise.</td></tr>
-<tr><td>Answered, but not with the site — 404, 403 or another non-2xx</td><td>{non_2xx}</td>
+<tr><td>Answered, but not with the site: 404, 403 or another non-2xx</td><td>{non_2xx}</td>
 <td><strong>No.</strong> A 404 on the other spelling is the correct configuration, and a 403 is
 usually a bot block. Neither is a second copy of anything.</td></tr>
 <tr><td>Answered 2xx and landed back on the canonical host</td><td>{redirects}</td><td><strong>No.</strong>
@@ -161,7 +161,7 @@ This is the resolved state the advice asks for.</td></tr>
 expensive way. An independent-bookshop marketplace answers 403 to everything automated. Both spellings
 returned 403, neither redirected to the other, and the tool reported a duplicate-content finding at
 high severity. There was no duplicate. There were two bot-block pages. A search engine sees no second
-copy of that site, because there is no second copy — there is a door that is shut on both names.</p>
+copy of that site, because there is no second copy. There is a door that is shut on both names.</p>
 
 <p>So a non-2xx on the other spelling is scored as fine here, not as a failure and not as a pass we
 are quietly proud of. Those {non_2xx} hosts are still counted among the {reachable} reachable ones;
@@ -171,14 +171,14 @@ page you did not serve.</p>
 <h2>The first run was wrong by a factor of {inflation}, and the reason is the useful part</h2>
 
 <p>The first version of this probe reported <strong>{first_run_pct}% of sites serving both
-spellings</strong> — roughly half the web, which should have been unbelievable on its face. The
+spellings</strong>: roughly half the web, which should have been unbelievable on its face. The
 shipped figure is {pct_sample}% of the sample. <strong>One missing fetch, {inflation} times the
 answer.</strong></p>
 
 <p>The bug: it compared the <code>www</code> spelling against <strong>the apex it started from</strong>
 instead of resolving the site's final origin first. Consider a site correctly canonicalised on
 <code>www</code>. The probe requested the apex, got redirected to <code>www</code>, then requested
-<code>www</code>, got a 200, observed that this 200 was not the apex it had started at — and scored a
+<code>www</code>, got a 200, observed that this 200 was not the apex it had started at, and scored a
 perfectly configured site as a duplicate. Every site that chose <code>www</code> failed. That is a
 large fraction of the web, which is exactly why the wrong number looked like half of it.</p>
 
@@ -193,12 +193,12 @@ after that is easy.</p>
 above:</p>
 
 <ul>
-<li><strong>{unreachable} of the {sample} sampled origins — {pct_unreachable}% — never answered an
+<li><strong>{unreachable} of the {sample} sampled origins ({pct_unreachable}%) never answered an
 identified bot at all.</strong> They are excluded: not counted as pass, not counted as fail. That is a
 real hole in the denominator, and if hosts that refuse identified bots differ systematically from
 hosts that do not, every share above is drawn from a population that is not quite the web. For scale,
 a separate robots.txt survey of the <em>whole</em> Tranco top 10,000 in {SURVEY_MONTH_HUMAN} found
-{survey_unreachable:,} of {survey_n:,} hosts — {survey_pct_unreachable}% — unreachable to the same
+{survey_unreachable:,} of {survey_n:,} hosts ({survey_pct_unreachable}%) unreachable to the same
 kind of identified request. Same list, different month, a different request, and the same rough
 fifth. That suggests the unreachable share is a property of asking as a named bot rather than an
 accident of a {sample}-host draw; it does not make those hosts' configuration knowable.</li>
@@ -219,15 +219,15 @@ prefers <code>www</code> or the bare apex. That is a different measurement and w
 Anyone quoting a split in that direction is not quoting us.</li>
 </ul>
 
-<p>The whole dataset behind this page — every count, the sampling frame, the method, and the note
-explaining the first run's error — is published as
+<p>The whole dataset behind this page (every count, the sampling frame, the method, and the note
+explaining the first run's error) is published as
 <a href="/data/www-canonical-2026-09.json">www-canonical-2026-09.json</a>. Host names are not in
 it: publishing a named site's misconfiguration to sell a tool is not a trade this project
 makes.</p>
 
 <h2>Run the same two requests on your own site</h2>
 
-<p>You need a terminal and about thirty seconds. Resolve the final origin first — that is the step the
+<p>You need a terminal and about thirty seconds. Resolve the final origin first. That is the step the
 broken run skipped:</p>
 
 <pre><code>curl -sS -L -D - -o /dev/null https://example.com/ \\
@@ -241,8 +241,8 @@ out to be. Now ask the opposite spelling where <em>it</em> lands, using the same
   | grep -iE '^(HTTP/|location:)'</code></pre>
 
 <p>Match the result against the table above. If the last hop is a 2xx on your canonical origin, you
-are done. If the last hop is a 2xx on any other hostname — including the case where it lands on some
-third hostname entirely — you have two copies. If the other spelling 404s, does not resolve, or
+are done. If the last hop is a 2xx on any other hostname (including the case where it lands on some
+third hostname entirely) you have two copies. If the other spelling 404s, does not resolve, or
 answers 403, you have nothing to fix.</p>
 
 <p>Use a real GET rather than <code>curl -I</code>. A HEAD request is a different request, and servers
@@ -266,7 +266,7 @@ with it: internal links, sitemap entries, canonical tags and the address in your
 
 <p>Two adjacent jobs are worth doing in the same sitting. Your TLS certificate has to cover both names
 even after you pick one, because the losing spelling still has to complete a handshake before it can
-serve your redirect — that is covered in
+serve your redirect. That is covered in
 <a href="/how-to/redirect-http-to-https/">redirecting HTTP to HTTPS</a>. And if your pages already
 carry canonical tags, they now need to name the spelling you kept;
 <a href="/how-to/fix-conflicting-canonicals/">conflicting canonical tags</a> is the failure mode where
@@ -280,8 +280,8 @@ server configuration, not a markup mistake, and a tag asking politely for one ho
 happily serves both is a weaker instruction than a redirect that makes the second hostname stop
 existing. Fix it at the server. The tag is for the duplicates a server cannot resolve.</p>
 
-<p>Docket checks this on every audit as part of the crawl setup rather than as a page-level rule —
-the full list of what it looks at is in <a href="/learn/what-docket-checks/">what Docket checks</a>,
+<p>Docket checks this on every audit as part of the crawl setup rather than as a page-level rule.
+The full list of what it looks at is in <a href="/learn/what-docket-checks/">what Docket checks</a>,
 and <a href="/learn/seo-audit/">what an SEO audit is</a> covers where a hostname check sits among the
 rest. The {SURVEY_MONTH_HUMAN} survey quoted above for the unreachable share is published in full in
 the <a href="/index/ai-directives/">AI directives index</a>.</p>
@@ -301,13 +301,13 @@ the <a href="/index/ai-directives/">AI directives index</a>.</p>
             ("Does www vs non-www still matter for SEO?",
              f"Only if you have not picked one, and most sites have. In a random sample of {sample} "
              f"hosts from the Tranco top 10,000 probed on {MEASURED_HUMAN}, {redirects} of the "
-             f"{reachable} origins that answered — {pct_redirect}% — already redirected one spelling "
+             f"{reachable} origins that answered ({pct_redirect}%) already redirected one spelling "
              f"onto the other. Just {both} served the site on both spellings: {pct_sample}% of the "
              f"sample, {pct_reachable}% of reachable origins, {pct_answered}% of the {answered} whose "
              "other spelling returned a 2xx. It is a real defect and it is an uncommon one."),
             ("How do I check whether my own site serves both?",
              f"Two requests, in this order. First fetch your site and follow redirects to find its "
-             f"final origin — that is your canonical hostname, whichever spelling it turned out to be. "
+             f"final origin. That is your canonical hostname, whichever spelling it turned out to be. "
              f"Then fetch the opposite spelling of that origin and see where it lands. A 2xx that ends "
              f"up back on your canonical host is fine. A 2xx that ends up anywhere else, including a "
              f"third hostname, means two copies. Skipping the first fetch is the mistake that made our "
@@ -322,7 +322,7 @@ the <a href="/index/ai-directives/">AI directives index</a>.</p>
              f"are scored as fine."),
             ("Should I use a canonical tag or a redirect?",
              f"A redirect. A site-wide 301 from the spelling you are dropping to the one you are "
-             f"keeping, preserving the path and query string — not a 302, and not a redirect that "
+             f"keeping, preserving the path and query string, not a 302, and not a redirect that "
              f"sends everything to the homepage. A canonical tag asks politely for one hostname while "
              f"your server carries on serving both; a 301 makes the second hostname stop serving. "
              f"Docket's canonical checks deliberately leave apex-versus-www alone for that reason: it "
@@ -332,7 +332,7 @@ the <a href="/index/ai-directives/">AI directives index</a>.</p>
              f"happened, not which direction it resolved, so the {redirects} redirecting origins out "
              f"of {reachable} reachable ones are not split by spelling anywhere in the data. It is a "
              f"measurement we have not taken. Separately, {unreachable} of the {sample} sampled hosts "
-             f"— {pct_unreachable}% — never answered an identified bot at all and are excluded from "
+             f"— {pct_unreachable}%. Never answered an identified bot at all and are excluded from "
              "every figure here, which is a real limit on all of them."),
         ],
     )

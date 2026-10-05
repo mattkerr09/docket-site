@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The social lane — five checks, no page anywhere on this site.
+"""The social lane. Five checks, no page anywhere on this site.
 
 The gap analysis found the social lane apparently covered, because a naive grep
 for "favicon" matches every page: every page on this site has a
@@ -36,7 +36,7 @@ link, and they need different fixes.</p>
 everything after this.</p>
 
 <ul>
-<li><strong>Nothing.</strong> The platform is falling back to whatever it can scrape —
+<li><strong>Nothing.</strong> The platform is falling back to whatever it can scrape,
 usually the title tag and no image. Add the tags below.</li>
 <li><strong>Tags, but no <code>og:image</code>.</strong> You get a small text card instead
 of the large image one. This is the most common state on sites built before previews
@@ -60,7 +60,7 @@ so the feedback never arrives.</p>
 changes, a marketing image gets tidied away, a staging URL was left in the tag and staging
 was decommissioned. The page still works. Only the preview is gone.</p>
 
-<p>Docket fetches the <code>og:image</code> URL and reports a dead one at MEDIUM — higher
+<p>Docket fetches the <code>og:image</code> URL and reports a dead one at MEDIUM: higher
 than a missing tag, because a missing tag is a card you never had and a dead image is one
 you think you have.</p>
 
@@ -77,7 +77,7 @@ you think you have.</p>
 
 <ul>
 <li><strong>The image URL must be absolute.</strong> <code>/share.png</code> is a common
-and total failure — the scraper is not on your site and cannot resolve it.</li>
+and total failure: the scraper is not on your site and cannot resolve it.</li>
 <li><strong>It must be reachable without a login or a cookie.</strong> Scrapers are not
 signed in. An image behind auth is a dead image as far as the preview is concerned.</li>
 <li><strong>Use around 1200×630.</strong> Much smaller and platforms fall back to the small
@@ -93,7 +93,7 @@ large one.</p>
 
 <h2>Check it before you need it</h2>
 
-<p>Each platform has a debugger that re-scrapes on demand — that is what to use after a fix,
+<p>Each platform has a debugger that re-scrapes on demand. That is what to use after a fix,
 because your own paste test will keep showing you the cached card. If you have a Docket
 audit to hand, the social lane already fetched the image and told you whether it resolved.</p>
 
@@ -110,7 +110,7 @@ survives the trip.</p>
         cat="how-to", slug="fix-missing-open-graph-tags",
         title="Fix a link preview that shows no image",
         desc=("No Open Graph tags, a dead og:image, or an image the platform will "
-              "not take — they look identical when you paste a link and need "
+              "not take. They look identical when you paste a link and need "
               "different fixes."),
         h1="How to fix a broken link preview",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Link previews',
@@ -118,7 +118,7 @@ survives the trip.</p>
         faq=[
             ("Why does my link preview show no image?",
              "Either the page has no og:image tag, or it has one pointing at a file that "
-             "no longer exists, or the image is unreachable to a scraper — a relative "
+             "no longer exists, or the image is unreachable to a scraper: a relative "
              "URL, something behind a login, or an http image on an https page. Open "
              "the og:image URL directly in a browser to tell which."),
             ("Why do I still see the old preview after fixing it?",

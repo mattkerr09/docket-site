@@ -2,8 +2,8 @@
 """How to fix phone links that will not dial.
 
 Sourced from Docket's `cvr.unusable_phone` check in
-`backend/seo_engine/checks/conversion.py` — its four branches, their severities
-and the exact wording of their own fix text — and from the tests beside it,
+`backend/seo_engine/checks/conversion.py` (its four branches, their severities
+and the exact wording of their own fix text), and from the tests beside it,
 which record the false positives that shaped each rule.
 
 Every figure and every specification reference is interpolated from a constant
@@ -38,7 +38,7 @@ def phone_links() -> Path:
     body = f"""
 <p class="lede">Somebody reading your site on a phone taps your number. Does it dial? The
 page was written on a desktop and it is checked on a desktop, and on a desktop tapping a
-number is not something anybody does — so the link can be broken for years while every
+number is not something anybody does, so the link can be broken for years while every
 person who looks at the page sees a phone number that is perfectly correct.</p>
 
 <p>Docket's <code>cvr.unusable_phone</code> reads the <code>href</code> of every
@@ -66,7 +66,7 @@ would mean dialling strangers' phones from an audit tool, which we are not going
 <p>Only a <code>tel:</code> link in the markup. A number sitting in prose is not read by
 this check, and the comment in the source says why: a number in prose may be an example, a
 fax, or a customer's. The same reasoning covers a <code>tel:</code> that appears inside a
-JavaScript string — a grep finds it, the parser does not, and the parser is right, because a
+JavaScript string: a grep finds it, the parser does not, and the parser is right, because a
 mention is not a promise.</p>
 
 <p>A printed number with no link on it at all is a different check in a different lane
@@ -94,7 +94,7 @@ printed number can stay exactly as it is. Only the thing behind it changes.</p>
 <h3>HTML where the number should be</h3>
 
 <p>An entire anchor tag pasted into the CMS field that expects a phone number, and escaped
-by the CMS on the way in — so the dialable part of the <code>href</code> is markup. It is
+by the CMS on the way in, so the dialable part of the <code>href</code> is markup. It is
 reported separately, as <code>cvr.phone_href_markup</code>, and the separation was earned.
 The letters rule used to catch this case and tell the owner to "put digits in the href",
 which they already had: the visible text was an ordinary formatted number and the digits
@@ -103,8 +103,8 @@ reader one conclusion, and it is that the tool is broken.</p>
 
 <p>So this finding says, in as many words, that <strong>the page still looks right</strong>,
 and its fix points at the field rather than the copy: <em>"Open the phone-number field in
-your CMS and look at what is actually stored in it. Clear it and type the number by itself —
-digits and separators only, no <code>&lt;a&gt;</code> tag — and let the template build the
+your CMS and look at what is actually stored in it. Clear it and type the number by itself (
+digits and separators only, no <code>&lt;a&gt;</code> tag), and let the template build the
 link around it."</em></p>
 
 <h3>A placeholder nobody filled in</h3>
@@ -114,8 +114,8 @@ still in it, reported at HIGH, and the fix is one line: <em>"Replace it with the
 or remove the link."</em></p>
 
 <p>The length floor is there because of a real accusation. Without it, the rule fired on
-<code>111</code> — a national non-emergency
-health line — and said anyone tapping it reaches nobody. <code>999</code>,
+<code>111</code> (a national non-emergency
+health line), and said anyone tapping it reaches nobody. <code>999</code>,
 <code>911</code>, <code>000</code> and <code>112</code> have exactly the same shape. A
 repeated digit is only evidence of an unfilled template at full number length; shorter than
 that it is a short code, and short codes are precisely the numbers a health or emergency
@@ -127,7 +127,7 @@ service publishes.</p>
 numbers must use the global form unless they cannot be represented that way, and a local
 number must carry a <code>phone-context</code> parameter naming where it is valid. A bare
 national number has neither. It dials correctly from inside the country and incorrectly from
-outside it — a total failure for a visitor abroad and none at all for one already there.</p>
+outside it. A total failure for a visitor abroad and none at all for one already there.</p>
 
 <p>So the severity follows what the site itself declares. LOW by default. MEDIUM where the
 site publishes <code>hreflang</code>, because a site with <code>hreflang</code> has said it
@@ -153,8 +153,8 @@ nothing.</p>
 in international format, and the fix text offered is "prefix the country code". {RFC}
 {S_NUMBERS} says emergency and service numbers cannot be represented in global form and must
 be tagged with a <code>phone-context</code> instead; it points out that
-<code>+1-911</code> is not a valid global number. The finding is defensible — a local
-number with no context genuinely is outside the specification — and its remedy is not the
+<code>+1-911</code> is not a valid global number. The finding is defensible (a local
+number with no context genuinely is outside the specification), and its remedy is not the
 one the specification gives. The placeholder rule was taught about short codes. This branch
 has not been.</p>
 
@@ -172,7 +172,7 @@ what a handset does.</p>
 
 <h2>One number in a template is one number</h2>
 
-<p>A phone number lives in the header, or the footer, or both — which means a site that
+<p>A phone number lives in the header, or the footer, or both, which means a site that
 writes it wrongly writes it wrongly everywhere. The finding therefore names the distinct
 numbers and counts the pages, not the links. That matters for the size of the job it seems
 to describe: the repair is one line of a template, and a finding that counted occurrences
@@ -186,7 +186,7 @@ read as a morning's work.</p>
 
 <p>What you want back is a <code>+</code>, a country code, and digits. What you do not want
 is a letter, an angle bracket, or the same digit over and over. This will also show any
-<code>tel:</code> written inside a script, which Docket ignores — so read what it prints
+<code>tel:</code> written inside a script, which Docket ignores, so read what it prints
 rather than counting it.</p>
 
 <p>Then do the thing the desktop cannot do: open the page on an actual phone and tap the
@@ -197,13 +197,13 @@ number. The whole class of failure exists because that step is the one nobody ta
 <p>An email address on a domain that cannot receive mail fails in the same silent way, and
 that one we have measured. Among UK shop websites sampled from OpenStreetMap,
 {F.small_publishing_pct()}% publish an address in a <code>mailto:</code>, and
-{F.small_dead()} of the {F.small_publishing()} domains publishing one cannot accept mail —
+{F.small_dead()} of the {F.small_publishing()} domains publishing one cannot accept mail:
 <a href="/learn/dead-contact-address/">the survey and its limits are on that page</a>. It
 measured MX records. Nothing in it is a measurement of phone links, and that rate does not
 carry across to them; we have not surveyed phone links at all.</p>
 
-<p>If your customers find you in a map, the rest of that ground — business schema, the name,
-address and phone matching your listing, the place named in your titles — is on
+<p>If your customers find you in a map, the rest of that ground (business schema, the name,
+address and phone matching your listing, the place named in your titles) is on
 <a href="/for/local-business/">why your business is not in the map pack</a>. The lane this
 check sits in, and what else is in it, is on
 <a href="/learn/conversion-audit/">the conversion audit page</a>.</p>
@@ -234,8 +234,8 @@ check sits in, and what else is in it, is on
              "scheme does not support letters, because the mapping from letters to keypad "
              "digits is not the same in every country, so a vanity href dials nothing."),
             ("Do I have to write my number in international format?",
-             "RFC 3966 says all phone numbers must use the global form — a plus and a "
-             "country code — unless they cannot be represented that way, and that a local "
+             "RFC 3966 says all phone numbers must use the global form (a plus and a "
+             "country code) unless they cannot be represented that way, and that a local "
              "number must carry a phone-context parameter saying where it is valid. Docket "
              "reports a number with neither at LOW, or at MEDIUM where the site publishes "
              "hreflang and is therefore asking for visitors who would dial from abroad."),
@@ -247,7 +247,7 @@ check sits in, and what else is in it, is on
              "gap in the check, and it is the reason the placeholder rule ignores anything "
              "shorter than a subscriber number."),
             ("What does phone-context do?",
-             "It names the scope in which a local number is unique — a country dialling "
+             "It names the scope in which a local number is unique: a country dialling "
              "prefix, or a domain you administer. A local number plus its context is "
              "globally unique again, which is what makes the link usable from outside."),
         ],

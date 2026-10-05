@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""`mar.email_capture` — "Email list building", explained from its own source.
+"""`mar.email_capture`: "Email list building", explained from its own source.
 
 ⚠️ WHY THIS PAGE EXISTS AND WHY IT IS NOT THE TRACKING-LANE PAGE.
 `/learn/marketing-tag-audit/` owns the lane: it lists every martech check and
-argues the coverage question — is the tag on every page. This page takes one
+argues the coverage question: is the tag on every page. This page takes one
 check off that list and reads it line by line, because this particular check is
 the one whose *name* misleads. "Email list building" sounds like a judgement
 about a form. It is not one. The two pages link to each other rather than
@@ -15,16 +15,16 @@ from one. Everything on it is a fact about the shipped check, read from
 is `len()` of the same object the page prints.
 
 **No external source, deliberately.** The obvious thing to reach for here is an
-industry statistic about email — return on spend, list value, signup conversion
+industry statistic about email: return on spend, list value, signup conversion
 rates. Not one of the figures in circulation traces to a primary document that
 can be linked and dated, so none of them is on the page. The check itself is
 the citation; that is the whole argument of `docs/PAGE_ANATOMY.md`.
 
-WHERE THE BRIEF WAS WRONG — section 9, and this time it caught the brief twice.
+WHERE THE BRIEF WAS WRONG: section 9, and this time it caught the brief twice.
 
 1. **"Docket can tell that a form exists and roughly what it asks for."** Not
    here. `mar.email_capture` never looks at a form. It reads `page.text`, which
-   is `dom.main_text()` — documented as "Body text minus nav/header/footer/
+   is `dom.main_text()`. Documented as "Body text minus nav/header/footer/
    aside/form", over `BOILERPLATE_TAGS = frozenset("nav header footer aside
    form".split())`. The `<form>` element is one of the five regions that field
    throws away. A different check, `cvr.no_capture` in `checks/conversion.py`,
@@ -33,7 +33,7 @@ WHERE THE BRIEF WAS WRONG — section 9, and this time it caught the brief twice
 2. **"Someone who assumes a footer form counts as a list-building strategy."**
    The reader is real, but the irony runs the other way: a footer signup is
    close to invisible to this check. `<footer>` is stripped by `main_text` as
-   well, so the only route left for it is `page.ctas` — anchors, buttons and
+   well, so the only route left for it is `page.ctas`: anchors, buttons and
    submit inputs from anywhere in the document. The button label is what gets
    seen, never the form.
 
@@ -97,8 +97,8 @@ def email_capture_audit() -> Path:
 
     body = f"""
 <p class="lede">Is your site actually collecting email, or does it only look as though it
-is? Docket has a check called <strong>{row["title"]}</strong> — <code>mar.email_capture</code>,
-in the <strong>{lane_label}</strong> lane — and the honest answer is that it settles
+is? Docket has a check called <strong>{row["title"]}</strong> (<code>mar.email_capture</code>,
+in the <strong>{lane_label}</strong> lane), and the honest answer is that it settles
 a much smaller question than its name suggests.</p>
 
 <p>Here is the whole of it. The check stands down if an email tool's tag is already on the
@@ -115,7 +115,7 @@ in another language. That gate exists across the codebase because English phrase
 against a site that is not in English, find nothing and report the absence as a fact.</p>
 
 <p><strong>Second, the tag.</strong> It collects the site's trackers and stops if any of
-{esps} is among them. That set is not a shortlist of good tools — it is every email
+{esps} is among them. That set is not a shortlist of good tools. It is every email
 platform the tracker table can recognise, all {len(ESPS)} of them. A site running any other
 email service gets no credit for it here and falls through to the word search.</p>
 
@@ -148,8 +148,8 @@ describing the version before it.</p>
 
 <p><code>page.text</code> is built by <code>dom.main_text()</code>, whose docstring reads
 "Body text minus nav/header/footer/aside/form". The footer and the form element are two of
-the regions it discards. So the signup box in your footer — the one with
-the email field and the button — sits inside the two regions this field is defined to
+the regions it discards. So the signup box in your footer (the one with
+the email field and the button) sits inside the two regions this field is defined to
 discard. Its words are not in <code>page.text</code> at all.</p>
 
 <p>The one route that survives is <code>page.ctas</code>, which is collected from anchors,
@@ -165,7 +165,7 @@ write a newsletter has no capture at all and will pass.</p>
 
 <h2>A substring match is a loose match</h2>
 
-<p>The comparison is <code>phrase in low</code> — a bare substring, not a word-boundary
+<p>The comparison is <code>phrase in low</code>: a bare substring, not a word-boundary
 match. The same codebase has a recorded incident about exactly this shape elsewhere: a
 boundary matcher was written for the call-to-action list after ordinary footer links were
 counted as calls to action, and the first example in that comment is that
@@ -189,14 +189,14 @@ the day it was created. A capture that quietly drops every address into a discon
 inbox reads, from the markup, exactly like one that works.</p>
 
 <p>It also says nothing about how many people sign up, and this page will not estimate it.
-No rate appears here, because none was measured — and a number attached to somebody's
+No rate appears here, because none was measured, and a number attached to somebody's
 signup form by a tool that has never seen a single visitor session is an opinion wearing a
 decimal point.</p>
 
 <p>The check itself is less careful about that boundary, and the honest thing is to show
 you where. Its fix text, verbatim from the source, reads:</p>
 
-<blockquote><p>Add a single email capture with a real reason to subscribe — a useful guide, a
+<blockquote><p>Add a single email capture with a real reason to subscribe: a useful guide, a
 price list, an availability alert. A bare 'subscribe to our newsletter' converts poorly;
 offering something specific converts well.</p></blockquote>
 
@@ -217,14 +217,14 @@ property of who owns the address book, and it is true without any figure under i
 <p>Two of them are worth knowing about, because each answers something this one does not.</p>
 
 <p>The tag half of this check reads the same tracker table as the rest of the lane, and that
-table is what the coverage checks work from — whether the tags you believe are running
+table is what the coverage checks work from. Whether the tags you believe are running
 appear on every page rather than on the template they were added to.
 <a href="/learn/marketing-tag-audit/">The tracking lane, and the coverage question it is
 built around.</a></p>
 
 <p>The form half belongs to a different lane entirely. <code>cvr.no_capture</code> is the
 check that does count forms, and <code>mailto:</code>, <code>tel:</code> and
-<code>sms:</code> links, and anything labelled contact, enquire, book or support — and it
+<code>sms:</code> links, and anything labelled contact, enquire, book or support, and it
 fires at high severity when a site has none of them. Its question is whether a visitor can
 reach you at all, not whether you are building a list.
 <a href="/learn/conversion-audit/">What the conversion lane judges, and what it refuses to
@@ -233,7 +233,7 @@ judge for you.</a></p>
 <h2>Checking this yourself</h2>
 
 <p>You do not need the tool for the part that matters, and the part that matters is not the
-markup. Open your own site on a phone, find the signup, and put a real address into it — one
+markup. Open your own site on a phone, find the signup, and put a real address into it: one
 you can read, not the one the form was built to notify. Then wait.</p>
 
 <p>If nothing arrives, you have learned the thing no crawler can tell you. If something
@@ -248,7 +248,7 @@ audience, and no check in any tool will ever report it.</p>
         cat="learn", slug="email-capture-audit",
         title="Email capture audit: the check that ignores your form",
         desc=(f"Docket's email list building check never looks at a form. It looks for an "
-              f"email tool's tag, or {len(PHRASES)} words in your copy — and here is what "
+              f"email tool's tag, or {len(PHRASES)} words in your copy, and here is what "
               f"that can and cannot tell you."),
         h1="Email capture audit",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Email capture',

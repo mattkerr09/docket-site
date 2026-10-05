@@ -15,8 +15,8 @@ to that standard:
 
   - "There is no duplicate content penalty." Widely attributed to Google and the
     sentence it comes from is no longer in the canonicalisation documentation.
-    What replaced it is narrower and checkable — the spam policies enumerate
-    what can trigger an action, and duplicate titles are not enumerated — so
+    What replaced it is narrower and checkable (the spam policies enumerate
+    what can trigger an action, and duplicate titles are not enumerated), so
     that is what the page says instead. Weaker claim, real source.
 
   - "Matching the title to the H1 cuts the rewrite rate to about 20%." The
@@ -54,7 +54,7 @@ VERIFIED: list[tuple[str, str]] = [
      "2021 revision, up from the over-80% figure given when the system launched",
      "https://developers.google.com/search/blog/2021/09/more-info-about-titles"),
     ("a study of 80,959 titles across 2,370 sites found Google rewrote 61.6% of "
-     "them, with the lowest rewrite rates — 39% to 42% — in the 51-to-60-character "
+     "them, with the lowest rewrite rates (39% to 42%) in the 51-to-60-character "
      "band",
      "https://zyppy.com/seo/google-title-rewrite-study/"),
     ("Google confirmed in March 2026 that it is running a limited test of "
@@ -85,7 +85,7 @@ def _verified_note() -> str:
 def duplicate_titles() -> Path:
     body = f"""
 <p class="lede">Duplicate title tags are a real problem, and most of the advice about them is
-wrong about why. They are not a penalty — Google's spam policies enumerate sixteen behaviours
+wrong about why. They are not a penalty. Google's spam policies enumerate sixteen behaviours
 that can cost a site its ranking, and a repeated title is not one of them. The damage is
 quieter than that. Google is left to guess which of several identical-looking pages answers a
 query, and you have given away the one line of the search result you get to write.</p>
@@ -113,27 +113,27 @@ the twenty titles leaves the cause where it was.</p>
 
 <p>Google's documentation is explicit that there is no limit on how long a
 <code>&lt;title&gt;</code> element can be, and that the title link is cut short in results only
-as needed — typically to fit the width of the device. That is a <strong>pixel
+as needed. Typically to fit the width of the device. That is a <strong>pixel
 measurement</strong>, and it has been one for years.</p>
 
 <p>The difference is not academic. <code>WILLIAM WORTHINGTON MACHINERY</code> and
 <code>illinois willow lily tinsmith</code> are within a character of each other and nowhere near
 the same width on a screen. Capitals and wide letters run out of room early; narrow lowercase
 survives well past sixty. Roughly 50 to 60 characters is a useful working range, and the
-dataset below puts the lowest rewrite rates in that band — but it is a proxy for a width you
+dataset below puts the lowest rewrite rates in that band, but it is a proxy for a width you
 should go and look at, not a rule anything is enforcing.</p>
 
 <h3>That the title you write is the title that shows</h3>
 
 <p>Often it is not. Google's own documentation says it "uses a number of different sources to
-automatically determine the title link" and does not publish how often each source wins —
+automatically determine the title link" and does not publish how often each source wins:
 checked 2026-08-10. The best independent measurement is a study of <strong>80,959 titles across
 2,370 sites</strong>, which found the title Google displayed differed from the one written on
 the page <strong>61.6%</strong> of the time.</p>
 
 <p>Read that number carefully: it counts titles <em>identical to</em> yours, so one Google
 merely trimmed or reordered counts as changed even though it started from what you wrote. What
-it says is that Google usually begins with your title and frequently does not finish there — and in March 2026 it confirmed a limited test that generates headlines with
+it says is that Google usually begins with your title and frequently does not finish there, and in March 2026 it confirmed a limited test that generates headlines with
 AI in ordinary web results, which is a different act from shortening one.</p>
 
 <p>None of that argues for skipping the work. Google asks for distinct descriptive text in the
@@ -150,8 +150,8 @@ selling something.</p>
 export by the title string and sort by count descending. The top ten rows are usually the entire
 job, because duplicate titles arrive in template-sized batches rather than one at a time.</li>
 <li><strong>Docket.</strong> Duplicate and near-duplicate titles sit among its {N_CHECKS}
-checks, and the finding is ranked against everything else on the site rather than listed —
-thirty duplicates on archive pages you never wanted indexed is not the same discovery as two on
+checks, and the finding is ranked against everything else on the site rather than listed.
+Thirty duplicates on archive pages you never wanted indexed is not the same discovery as two on
 the pages that sell. The crawl runs on your own Mac and each finding carries the markup to
 paste.</li>
 <li><strong>A <code>site:</code> query, if you have neither.</strong>
@@ -185,7 +185,7 @@ distinct. If nothing on the page is local, the title is not what is wrong</td></
 <tr><td>Two service pages chasing one query</td><td>Merge the weaker into the stronger and 301.
 Two titles competing is two pages competing</td></tr>
 <tr><td>Brand name leading every title</td><td>Put the distinguishing words first and the brand
-last — truncation happens on the right</td></tr>
+last: truncation happens on the right</td></tr>
 <tr><td>The homepage title on every page</td><td>A broken template variable. Fix it once in the
 layout, not four hundred times in a CMS</td></tr>
 </tbody></table></div>
@@ -195,7 +195,7 @@ layout, not four hundred times in a CMS</td></tr>
 <p>Do not write forty descriptive titles for forty pages of an index; appending the page number
 is correct and sufficient. Give each page in the sequence a canonical pointing at itself.
 Google's pagination guidance says in as many words not to use the first page of a sequence as
-the canonical, and that it no longer uses <code>rel="next"</code> and <code>rel="prev"</code> —
+the canonical, and that it no longer uses <code>rel="next"</code> and <code>rel="prev"</code>:
 the relationship is carried by ordinary links now. Canonicalising page 3 to page 1 is the
 common mistake, and it quietly withdraws everything only reachable from page 3.</p>
 
@@ -213,7 +213,7 @@ looks fixed over a site that behaves the same.</p>
 <p>The uncomfortable case, and the usual one on local and service sites. Where two pages differ
 only by a city name or a swapped adjective, giving them distinct titles is cosmetic: you have
 made the strings unique and left two pages competing for one query. Either give each page
-something only it can say — a real address, real prices, work you actually did there — or merge
+something only it can say (a real address, real prices, work you actually did there) or merge
 them and redirect. A unique title on a page with no reason to exist is a unique title on a page
 with no reason to exist.</p>
 
@@ -235,7 +235,7 @@ direction rather than a dial.</p>
 
 <p><strong>Clearing the list is not the goal.</strong> Three hundred duplicate titles on archive
 pages you would rather were not indexed is a day of work with nothing measurable at the end of
-it. The ordering matters more than the count — the useful output is the four that pay, not the
+it. The ordering matters more than the count: the useful output is the four that pay, not the
 number 304.</p>
 
 <h2>Where the claims on this page came from</h2>
@@ -269,7 +269,7 @@ number 304.</p>
              "the lowest measured rewrite rates sit in that band, but a title of wide "
              "capitals runs out of room sooner than a narrow one of the same length."),
             ("Why does Google show a different title than the one I wrote?",
-             "Because it generates its own where it judges yours unhelpful — half-empty, "
+             "Because it generates its own where it judges yours unhelpful: half-empty, "
              "boilerplate, repeated across the site, or a poor description of the page. "
              "Google has put its use of the HTML title element at about 87% of the time; an "
              "independent study of 80,959 titles across 2,370 sites found the displayed "
@@ -278,7 +278,7 @@ number 304.</p>
              "is judging."),
             ("Should paginated pages have unique titles?",
              "Yes, but minimally. Appending the page number is enough, and each page in the "
-             "sequence should carry a canonical pointing at itself — Google's pagination "
+             "sequence should carry a canonical pointing at itself. Google's pagination "
              "guidance says not to use the first page of a sequence as the canonical. "
              "Writing genuinely distinct descriptive titles for pages 2 through 40 of an "
              "archive is work that returns nothing."),
@@ -286,7 +286,7 @@ number 304.</p>
              "They count, and they are the ones most reports miss. Twelve location pages "
              "differing only by city name are twelve distinct strings and one title. Where a "
              "single swapped word is all that separates two pages, the titles are not really "
-             "the problem — the pages are."),
+             "the problem: the pages are."),
         ],
     )
 

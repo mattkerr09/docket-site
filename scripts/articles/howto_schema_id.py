@@ -4,11 +4,11 @@ Promised on the how-to hub. Sourced from the registered check
 `schema.incomplete` in `backend/seo_engine/checks/structured.py`, whose
 docstrings record both halves of this:
 
-  * the FALSE POSITIVE — Docket read each `@id` stub as its own incomplete
+  * the FALSE POSITIVE. Docket read each `@id` stub as its own incomplete
     entity, so a graph that defines an Organization AND references it by typed
     `@id` produced a multi-page "incomplete Organization markup" finding. That
     idiom is what the most widely used SEO plugins emit.
-  * the REAL problem it was hiding — when every block of a type on a page is a
+  * the REAL problem it was hiding. When every block of a type on a page is a
     bare reference and nothing on that page defines the target, "add the
     missing properties" is the wrong repair, because nobody forgot a property.
 
@@ -34,7 +34,7 @@ from render import render  # noqa: E402
 def schema_id() -> Path:
     body = """
 <p class="lede">An audit reports that several of your pages have incomplete Organization markup.
-You open one and the Organization is right there — name, URL, logo, all of it. The blocks the tool
+You open one and the Organization is right there: name, URL, logo, all of it. The blocks the tool
 is complaining about are not incomplete entities. They are references to that one.</p>
 
 <h2>What an @id actually does</h2>
@@ -52,7 +52,7 @@ define your company once, then point at it from everywhere else.</p>
 
 <p>It carries no properties <em>by design</em>. Nobody forgot anything. And because this is what
 the most widely used SEO plugins and CMS platforms emit by default, a check that reads each stub
-as its own half-finished entity will fire on an enormous share of the web — including sites whose
+as its own half-finished entity will fire on an enormous share of the web, including sites whose
 structured data is exactly right.</p>
 
 <h2>The false positive, reproduced on purpose</h2>
@@ -78,7 +78,7 @@ the identifier refers to, the reference resolves to nothing.</p>
 
 <p>And "add the missing properties" is precisely the wrong instruction, because it misdescribes
 what happened. Nobody forgot a property. Somebody wrote a reference, deliberately, believing the
-definition exists somewhere — which it may well do, on a different page, where it cannot help.
+definition exists somewhere, which it may well do, on a different page, where it cannot help.
 Telling them to add a name to each stub asks them to duplicate a definition they think they
 already have.</p>
 
@@ -100,7 +100,7 @@ is the most useful sentence on this page.</p>
 <li><strong>A JSON-LD validator</strong> sees syntactically valid JSON-LD with a valid identifier,
 and passes it.</li>
 <li><strong>A rich-results test</strong> finds no eligible entity and reports that nothing was
-detected — which reads like "you have no markup" rather than "you have a pointer to nowhere", and
+detected, which reads like "you have no markup" rather than "you have a pointer to nowhere", and
 sends you off to add markup you already wrote.</li>
 <li><strong>Your CMS</strong> renders exactly what you configured.</li>
 </ul>
@@ -112,20 +112,20 @@ sends you off to add markup you already wrote.</li>
 <p>Worth stating because it bounds the finding. A crawler reads each page's markup on its own,
 exactly as a search engine does. So it can tell you the target is <strong>absent here</strong>. It
 cannot tell you the target is absent everywhere, because it is not resolving your graph across
-your whole site — and neither is the search engine, which is the entire reason this matters.</p>
+your whole site, and neither is the search engine, which is the entire reason this matters.</p>
 
 <h2>Checking your own markup in five minutes</h2>
 
 <ul>
 <li><strong>View source on a page that was flagged</strong> and search for the identifier from the
-finding. If it appears twice — once as a definition with properties, once as a reference — your
+finding. If it appears twice (once as a definition with properties, once as a reference) your
 markup is fine and the finding is wrong.</li>
 <li><strong>If it appears only as a reference</strong>, the page genuinely defines nothing. That is
 the real version of this problem.</li>
 <li><strong>Check the type matches.</strong> A stub typed <code>Organization</code> pointing at a
 node defined as something else is a third failure, and a quieter one.</li>
 <li><strong>Check the identifier is stable.</strong> An <code>@id</code> that changes between
-pages defeats the purpose — the nodes stop being one node.</li>
+pages defeats the purpose: the nodes stop being one node.</li>
 </ul>
 
 <h2>When this does not matter</h2>
@@ -154,19 +154,19 @@ does not get fetched, and a URL that happens to exist does not make the node res
 <h2>How to clear this finding without improving anything</h2>
 
 <p>Delete the reference blocks. The finding goes away, and so does any chance of the entity being
-understood — you have removed the evidence of an intention rather than completing it. Worth
+understood. You have removed the evidence of an intention rather than completing it. Worth
 knowing, because "it went green" and "it got better" are different outcomes and only one of them
 is visible in a report.</p>
 
 <h2>Where this sits in an audit</h2>
 
 <p>The registered check is <code>schema.incomplete</code>, which covers incomplete structured data
-in the structured data area. For the other ways JSON-LD goes wrong — blocks that do not parse,
-markup contradicting the visible page, required properties genuinely missing — see
+in the structured data area. For the other ways JSON-LD goes wrong (blocks that do not parse,
+markup contradicting the visible page, required properties genuinely missing) see
 <a href="/how-to/fix-structured-data-errors/">how to fix structured data errors &rarr;</a>.</p>
 
-<p>And for the general habit this page is an instance of — a finding whose own advice does not fit
-the case it fired on — see <a href="/how-to/findings-that-flag-correct-pages/">a caveat is not a
+<p>And for the general habit this page is an instance of (a finding whose own advice does not fit
+the case it fired on) see <a href="/how-to/findings-that-flag-correct-pages/">a caveat is not a
 gate &rarr;</a>.</p>
 """
     return render(
@@ -196,7 +196,7 @@ gate &rarr;</a>.</p>
              "missing markup rather than a pointer to nowhere."),
             ("Should I add the missing properties to each reference block?",
              "No. That duplicates a definition rather than fixing one. Either define the entity "
-             "on each page that references it, or remove the stub — as it stands it produces "
+             "on each page that references it, or remove the stub. As it stands it produces "
              "neither a rich result nor an error."),
         ],
     )

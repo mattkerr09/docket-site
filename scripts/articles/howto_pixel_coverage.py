@@ -7,15 +7,15 @@ consequences, and a refusal:
   * a financial institution's report named six advertising pixels as "only on
     part of the site" and printed "(0 pages)" beside every one of them. The
     finding contradicted its own numbers in its own sentence.
-  * the cause: `_site_trackers` merges the served HTML WITH THE RENDERED DOM —
-    that is why it exists — while the coverage loop counted `p.trackers`, the
+  * the cause: `_site_trackers` merges the served HTML WITH THE RENDERED DOM (
+    that is why it exists) while the coverage loop counted `p.trackers`, the
     served HTML alone. A JavaScript-injected pixel therefore lands in the
     inventory and scores zero on every page, and zero is always under the
     seventy-percent bar. The guard was in the neighbouring check and not this
     one.
   * the same seam in `mar.stack` has a worse consequence: a large open-source
     project's site injects its container from a script, so the inventory named
-    three tools with a per-page maximum of zero — and the `>= 8` escalation
+    three tools with a per-page maximum of zero, and the `>= 8` escalation
     that turns the inventory into a script-weight finding reads that same
     number, so a site loading every tag through a container COULD NEVER TRIP
     THE THRESHOLD THAT IS ABOUT EXACTLY THOSE SITES.
@@ -23,14 +23,14 @@ consequences, and a refusal:
     only a sample of pages is rendered. So tags seen only after rendering are
     not judged, and the finding NAMES them and says why.
 
-⚠️ NO SITE OR VENDOR IS NAMED — third-party gate plus the standing no-vendor
+⚠️ NO SITE OR VENDOR IS NAMED. Third-party gate plus the standing no-vendor
 rule. The six platforms are "six advertising pixels from six platforms"; the
 container is "a tag container".
 
 ⚠️ DOES NOT DUPLICATE /how-to/analytics-findings-name-the-tag/, which is about
 ABSENCE ("you have no analytics"). This page is about PARTIAL COVERAGE.
 
-⚠️ THE LANE PAGE'S INVENTED FRACTION was corrected in the same commit — see
+⚠️ THE LANE PAGE'S INVENTED FRACTION was corrected in the same commit: see
 `martech.py` in this directory. It claimed one missing page in a funnel of four
 is "a quarter of your conversions", a statistic nothing measured.
 
@@ -68,7 +68,7 @@ could not count. It was the second one.</p>
 documents.</p>
 
 <p><strong>What is installed on this site?</strong> That inventory is built from the served HTML
-merged with the rendered page — merging is the entire reason the inventory exists, because a tag
+merged with the rendered page. Merging is the entire reason the inventory exists, because a tag
 injected by JavaScript is invisible in the HTML a server sends.</p>
 
 <p><strong>How many pages carry each tag?</strong> That count was reading the served HTML alone.</p>
@@ -84,7 +84,7 @@ lines to its neighbour.</p>
 
 <h2>The same seam, with a consequence worth more than the contradiction</h2>
 
-<p>An always-emitted part of the report simply lists what is running on your site — not a defect,
+<p>An always-emitted part of the report simply lists what is running on your site, not a defect,
 a fact most owners cannot recite about their own property, and the way forgotten agency tags get
 noticed.</p>
 
@@ -95,7 +95,7 @@ contradiction.</p>
 <p>But that inventory has an escalation: past eight separate tools on a single page it stops being
 a list and becomes a real finding, because each third-party script competes with your content for
 the visitor's connection and the page gets slower. <strong>The number that escalation reads was
-the served-HTML count.</strong> So a site that loads every one of its tags through a container —
+the served-HTML count.</strong> So a site that loads every one of its tags through a container,
 which is the recommended practice, and the configuration most likely to accumulate forgotten tags
 — could never reach the threshold. <strong>The gate was unreachable for exactly the population it
 was built for.</strong></p>
@@ -107,7 +107,7 @@ worth borrowing for your own analysis.</p>
 
 <p>Rendering every page of a site is expensive, so a sample is rendered. If the coverage count came
 from the merged map, a pixel found on the rendered sample would be reported as being on that many
-pages — turning <em>we only looked at a few pages properly</em> into <em>it is only on a few
+pages. Turning <em>we only looked at a few pages properly</em> into <em>it is only on a few
 pages</em>. That is a worse error than the one being fixed, because it looks reasonable.</p>
 
 <p><strong>A tag seen only after rendering cannot support a claim about the pages that were not
@@ -127,7 +127,7 @@ static count of it is meaningless.</li>
 <li><strong>Check the platform's own diagnostics.</strong> Every major advertising platform will
 tell you which of your pages fired its pixel in the last day. That is the measurement; a crawl is
 a proxy for it.</li>
-<li><strong>Look hardest at pages built outside your main template</strong> — campaign landing
+<li><strong>Look hardest at pages built outside your main template</strong>: campaign landing
 pages, a checkout rebuilt by someone else, anything on a subdomain. That is where genuine coverage
 gaps live.</li>
 </ol>
@@ -136,7 +136,7 @@ gaps live.</li>
 
 <p>The underlying finding is worth keeping, which is why the noise mattered. A pixel that is
 missing from pages in the conversion path cannot record those conversions or add those visitors to
-a retargeting audience — the event fires on a page the platform never saw the visitor reach.</p>
+a retargeting audience. The event fires on a page the platform never saw the visitor reach.</p>
 
 <p>Notice what that does not say: it does not put a fraction on it. How much a gap costs depends on
 which page is missing the tag and what the platform does with a broken path, and an audit that
@@ -148,7 +148,7 @@ quotes you a percentage of lost conversions has invented it.</p>
 <li><strong>Hard-coding the pixel on every page as well as in your container.</strong> Now it fires
 twice on the pages that had it, your conversion counts inflate, and every comparison you make
 afterwards is against corrupted history.</li>
-<li><strong>Moving everything into a container to make the report clean.</strong> It will work —
+<li><strong>Moving everything into a container to make the report clean.</strong> It will work,
 and you have traded a visible gap for an invisible one, because now nothing outside the browser
 can see any of your tags.</li>
 <li><strong>Chasing a pixel reported on no pages.</strong> Before you touch anything, confirm the
@@ -160,7 +160,7 @@ do not recognise is often the one someone else's reporting depends on.</li>
 <h2>How to make every coverage number perfect</h2>
 
 <p>Load every tag through a container and leave nothing in the served HTML. No static audit can
-find a coverage gap, because none can find anything at all — and the inventory that would have
+find a coverage gap, because none can find anything at all, and the inventory that would have
 warned you about script weight goes quiet at the same time. <strong>A coverage number measures what
 a fetcher could see, not what fired.</strong> Worth holding on to in both directions: it is why the
 finding was wrong here, and why a clean one is not proof that your measurement works.</p>
@@ -189,7 +189,7 @@ audit a JavaScript site &rarr;</a>.</p>
              "The inventory includes tags found after the page was rendered; the count read only "
              "the HTML the server sent, so a tag injected by JavaScript scores zero everywhere."),
             ("Does a pixel loaded through a tag container count as installed?",
-             "For your advertising platform, yes — it fires. For any audit reading served HTML, "
+             "For your advertising platform, yes: it fires. For any audit reading served HTML, "
              "it is invisible, so coverage numbers about it are unsupported rather than wrong. "
              "Check the platform's own diagnostics instead."),
             ("Should I hard-code pixels on every page to fix a coverage finding?",

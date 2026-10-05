@@ -10,17 +10,17 @@ Promised on the how-to hub. Sourced from `structured.py`, registered check
     there was no offer, price or review anywhere in the block, and a Product
     carrying none of those was never going to produce a product rich result
     however many images it gained. FOLLOWING THAT ADVICE COSTS AN AFTERNOON AND
-    CHANGES NOTHING. The guard needs BOTH tells — an Organization-only property
-    present AND every product signal absent — so a real product missing only
+    CHANGES NOTHING. The guard needs BOTH tells (an Organization-only property
+    present AND every product signal absent), so a real product missing only
     its image trips neither.
   * `_miscased` (~736). A large public-sector site's Article blocks declare
     `headLine`. JSON-LD keys are case-sensitive, so the search engine reads no
     headline and the rich result never appears. "Missing headline" is true and
     reads as false. The typo survives review because the eye reads `headLine`
-    as `headline`. Case only, never spelling — `headlin`, `head-line` and
+    as `headline`. Case only, never spelling: `headlin`, `head-line` and
     `title` are guesses about intent.
 
-⚠️ NO SITE OR VENDOR IS NAMED — third-party gate. The portal's own name is in
+⚠️ NO SITE OR VENDOR IS NAMED: third-party gate. The portal's own name is in
 the docstring and must never be published.
 
 ⚠️ DISTINGUISH FROM /how-to/when-a-field-is-there-and-still-missing/ (532),
@@ -47,7 +47,7 @@ def wrong_type_fields() -> Path:
     body = """
 <p class="lede">Every completeness check in every structured-data tool shares one assumption it
 never states: that the type you declared is the type you meant. When that assumption fails, the
-finding is still arithmetically correct — this type requires that property, you do not have it —
+finding is still arithmetically correct (this type requires that property, you do not have it),
 and the work it asks for is worth nothing. Here are the two versions of that, both of which we
 shipped before we caught them.</p>
 
@@ -62,7 +62,7 @@ the completeness check said so and advised adding one and re-testing.</p>
 <p><code>logo</code> is not a property of <code>Product</code> at all. There was no offer, no price
 and no review anywhere in the block. <strong>A product block with none of those was never going to
 produce a product rich result however many images it gained.</strong> Someone follows that advice,
-spends an afternoon wiring the logo into an image field, re-tests, and nothing has changed —
+spends an afternoon wiring the logo into an image field, re-tests, and nothing has changed,
 because nothing could have.</p>
 
 <p>The block was the company's own identity markup wearing the wrong type. <strong>The defect was
@@ -84,7 +84,7 @@ what makes this expensive: nothing about the finding feels wrong while you are d
 product missing only its image must not be told its type is wrong.</p>
 
 <p>So the guard speaks only when both are true: an Organization-only property is present
-<em>and</em> every product signal is absent. One tell is not enough — a real product page trips
+<em>and</em> every product signal is absent. One tell is not enough: a real product page trips
 neither, and that is the point. It is the same principle as
 <a href="/how-to/schema-type-is-a-claim/">being generous about applying a check and strict about
 what to recommend &rarr;</a>, applied to the fields rather than to the type.</p>
@@ -95,13 +95,13 @@ what to recommend &rarr;</a>, applied to the fields rather than to the type.</p>
 <code>headline</code>. JSON-LD keys are case-sensitive, so a search engine reads no headline at
 all and the rich result never appears.</p>
 
-<p>The report said "missing headline". True — and it reads as false to anyone looking at a block
+<p>The report said "missing headline". True, and it reads as false to anyone looking at a block
 that plainly contains the word. <strong>The typo survives review precisely because the eye reads
 <code>headLine</code> as <code>headline</code>.</strong> That site is built by people who know
 exactly what they are doing, which is the argument for catching it rather than against.</p>
 
 <p>Told a property is missing, you go looking for something absent. Told you wrote it with a
-capital letter in the middle, you are done in a minute. Same finding, same severity, same remedy —
+capital letter in the middle, you are done in a minute. Same finding, same severity, same remedy:
 a different sentence.</p>
 
 <p>This is a near neighbour of a property that is present and empty, which is a different defect
@@ -158,7 +158,7 @@ block can be perfectly valid, perfectly complete and about the wrong kind of thi
 <p>Put a value in every property the report names. The finding clears, because a completeness check
 counts properties and cannot ask whether anything you sell is for sale. <strong>Completeness is not
 eligibility.</strong> Whether you get a rich result is decided by whether the markup describes
-something the search engine shows results for — which is a question about the type, and about the
+something the search engine shows results for, which is a question about the type, and about the
 page, and never about the length of the property list.</p>
 
 <h2>Where this sits in an audit</h2>
@@ -175,7 +175,7 @@ structured data errors &rarr;</a>.</p>
         cat="how-to", slug="completeness-findings-assume-your-type",
         title="A completeness check assumes your type is right",
         desc=("An audit told a site to add an image to a Product block that was really its "
-              "company identity — the finding was true, the type was wrong, the fix changes "
+              "company identity: the finding was true, the type was wrong, the fix changes "
               "nothing."),
         h1="A completeness check assumes your type is right",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Completeness findings',

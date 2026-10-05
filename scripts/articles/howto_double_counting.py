@@ -1,14 +1,14 @@
 """When two findings count the same pages twice.
 
 Promised on the how-to hub. Sourced from `schema.incomplete` in
-`structured.py` — a different aspect of the same check used at 524, which
+`structured.py`. A different aspect of the same check used at 524, which
 covered what an `@id` reference is. This page is about arithmetic and
 explanation:
 
   * ONE FINDING PER TYPE, NOT ONE PER MISSING-FIELD COMBINATION. A shoe
     retailer's thirty-page crawl produced two findings with the same check id,
     the same fix, titles differing only by a number, and most pages listed
-    under both — a total larger than the crawl.
+    under both: a total larger than the crawl.
   * THE EXPLANATION WAS A GUESS. "Why are there more blocks than pages" used to
     assert a listing or variant picker for every site; on one site none of the
     blocks was a listing, they were references.
@@ -17,7 +17,7 @@ explanation:
     page shape never got it. The data was computed identically either way;
     only the printing differed.
 
-⚠️ NO SITE OR VENDOR IS NAMED — third-party gate, and the standing rule not to
+⚠️ NO SITE OR VENDOR IS NAMED: third-party gate, and the standing rule not to
 name vendors. The commerce platform is "a common commerce platform".
 
 ⚠️ MUST CROSS-LINK /how-to/schema-id-references/ RATHER THAN REPEAT IT. That
@@ -38,7 +38,7 @@ def double_counting() -> Path:
     body = """
 <p class="lede">A report lists two findings with the same title, the same fix and different
 numbers. You add them up and the total is larger than the number of pages crawled. At that point
-the useful question is not which number is right — it is what the tool split, and why.</p>
+the useful question is not which number is right. It is what the tool split, and why.</p>
 
 <h2>The same job, reported twice</h2>
 
@@ -48,7 +48,7 @@ incomplete product markup. Most of the pages appeared under <em>both</em>. Add t
 have more pages in trouble than the crawl contained.</p>
 
 <p>The cause was the grouping key. Findings were keyed on the type <em>and the list of missing
-fields</em>, so one type split into as many findings as it had field combinations — and a common
+fields</em>, so one type split into as many findings as it had field combinations, and a common
 commerce platform reliably produces two, because the main product block is missing one property
 and the recommendation carousel is missing another.</p>
 
@@ -70,13 +70,13 @@ sentence takes the believable ones down with it.</p>
 
 <p>The same check answers a question readers ask constantly: why are there more markup blocks than
 pages? The count is executed against your markup and is right. The <em>explanation</em> beside it
-used to be a single sentence asserted for every site — that a listing or variant picker repeats
+used to be a single sentence asserted for every site. That a listing or variant picker repeats
 the type, so each copy is read separately.</p>
 
 <p>On one site there were twice as many organisation blocks as pages and <strong>not one of them
 was a listing.</strong> They were references pointing at a definition the page never provided. A
 reader sent looking for a variant picker would have searched their templates for something that
-was not there — and the actual repair is the opposite shape: <em>define the node once</em> rather
+was not there, and the actual repair is the opposite shape: <em>define the node once</em> rather
 than de-duplicate copies.</p>
 
 <p>The tool could tell the two apart from the data it already had. It simply was not looking.
@@ -88,8 +88,8 @@ assumed half is the one nobody tests.</p>
 <p>Sharper still, and the reason this is worth a page rather than a changelog line.</p>
 
 <p>The sentence explaining that blocks were references was attached to the "more blocks than
-pages" branch. So a site with exactly one reference per page — the ordinary shape, and by far the
-commonest — was told only that a property was missing, and never that its blocks were pointers at
+pages" branch. So a site with exactly one reference per page (the ordinary shape, and by far the
+commonest) was told only that a property was missing, and never that its blocks were pointers at
 all.</p>
 
 <p>A hotel group had three pages, three blocks, every one a reference to a definition that did not
@@ -136,7 +136,7 @@ is a property of the data rather than of the work.</p>
 <li><strong>Working both findings as separate tickets.</strong> The second is the first, and you
 will "fix" a template that was already corrected.</li>
 <li><strong>Adding the missing property to the reference blocks.</strong> See
-<a href="/how-to/schema-id-references/">an @id is a pointer, not a definition &rarr;</a> — that
+<a href="/how-to/schema-id-references/">an @id is a pointer, not a definition &rarr;</a>. That
 duplicates a definition rather than completing one.</li>
 <li><strong>Hunting for a listing because the report mentioned one.</strong> If your blocks are
 references, there is no listing to find.</li>
@@ -145,7 +145,7 @@ references, there is no listing to find.</li>
 <h2>How the count gets smaller without anything improving</h2>
 
 <p>Crawl fewer pages. Every page-count finding shrinks, the report reads better, and the templates
-are unchanged — which is the standing hazard of any measure expressed as a number of pages rather
+are unchanged, which is the standing hazard of any measure expressed as a number of pages rather
 than a number of templates. For the general version of that, see
 <a href="/how-to/read-findings-that-blame-the-whole-site/">when a finding blames the whole
 site &rarr;</a>.</p>
@@ -182,7 +182,7 @@ definition &rarr;</a>. For the number attached to any finding and what it feeds,
              "different kind of site."),
             ("Can I trust a finding whose explanation is wrong?",
              "Treat the two separately. The measured part is often right and the narrative around "
-             "it weaker — but an explanation you can disprove will cost the finding its "
+             "it weaker, but an explanation you can disprove will cost the finding its "
              "credibility whether or not it deserves that."),
         ],
     )
