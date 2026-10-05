@@ -204,7 +204,7 @@ def _index_chart(m: dict) -> str:
 {rows}
 <p class="chart-note">Share of sites in each category blocking at least one AI <em>search</em>
 crawler. {m['n']} sites with a robots.txt, measured {m['collected']} with Docket's own parser.
-The script and the site list ship with the dataset — re-run it and check.</p>
+The script and the site list ship with the dataset. Re-run it and check.</p>
 </div>"""
 
 
@@ -234,7 +234,7 @@ def body() -> str:
             f"<strong>{m['cit_pct']}% of the {m['n']} major sites we measured block at least "
             f"one AI search crawler.</strong> Among those blocking any AI crawler, "
             f"{m['conflated_pct']}% also blocked one that decides whether they appear in "
-            f"ChatGPT, Perplexity or Claude — almost certainly without meaning to."
+            f"ChatGPT, Perplexity or Claude, almost certainly without meaning to."
         )
 
     return f"""
@@ -247,7 +247,7 @@ def body() -> str:
   <p class="hero-note">No page meter. No credit counter. Nothing to check before you run an
   audit.</p>
   <p class="hero-sub">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
-  conversion, brand, AI search visibility and campaign tracking — then one ranked plan with the
+  conversion, brand, AI search visibility and campaign tracking, then one ranked plan with the
   markup to paste. Not four tools. One download.</p>
   {buy_block("home-hero", try_app="home-try-free")}
   {BNPL_BLOCK}
@@ -270,8 +270,8 @@ def body() -> str:
     <source src="/assets/app-demo.webm" data-src-hi="/assets/app-demo-hi.webm" type="video/webm">
     <source src="/assets/app-demo.mp4" type="video/mp4">
   </video>
-  <figcaption>Docket auditing this site. <strong>{HERO['pages']}&nbsp;pages, {HERO['seconds']}&nbsp;seconds, {HERO['score']}/100</strong>
-  — screen recording of the shipped app, not a mockup.</figcaption>
+  <figcaption>Docket auditing this site. <strong>{HERO['pages']}&nbsp;pages, {HERO['seconds']}&nbsp;seconds, {HERO['score']}/100</strong>.
+  A screen recording of the shipped app, not a mockup.</figcaption>
 </figure>
 </div>
 <script>
@@ -339,7 +339,7 @@ def body() -> str:
 <section class="sec"><div class="wrap-wide">
 <div class="sec-head">
   <h2>This is the actual report.<br><em>Run against our own site.</em></h2>
-  <p class="sec-sub">Not a mockup and not a marketing render — the file Docket
+  <p class="sec-sub">Not a mockup or a marketing render. It is the file Docket
   writes, opened in a browser. We pointed it at our own agency site rather than
   a competitor's, because publishing someone else's audit without asking is not
   ours to do, and because this is the one report we cannot quietly curate.</p>
@@ -351,7 +351,7 @@ def body() -> str:
             3 high, 7 medium, 11 low and 6 notice findings, and thirteen category scores
             from Crawlability 100 down to Local business SEO 58.">
   <figcaption>Twelve pages crawled in eight seconds. It grades our own site
-  <strong>90/A</strong> and still lists twenty-seven things to fix &mdash; including
+  <strong>90/A</strong> and still lists twenty-seven things to fix, including
   <strong>Local business SEO at 58</strong> on the site of a local business.
   It also excludes two findings from the score because they describe something
   Docket could not measure, rather than anything we did wrong.</figcaption>
@@ -369,7 +369,7 @@ def body() -> str:
        fix first". The difference is real but smaller than the sentence claimed:
        severity buckets against a ranked order with a time on each item. -->
   <p>Semrush publishes 140+ checkpoints and Ahrefs lists 170+, and both sort what they find
-  by severity &mdash; Ahrefs into errors, warnings and notices, Semrush into priorities
+  by severity: Ahrefs into errors, warnings and notices, Semrush into priorities
   &ldquo;based on severity&rdquo;. Docket ranks every finding by impact against the effort of
   fixing it and says how long each fix takes, so the plan answers <em>what first</em> and
   <em>how long</em> together. <a href="/vs/sitebulb-alternative/">Sitebulb</a> prioritises
@@ -379,12 +379,12 @@ def body() -> str:
   <div class="split-col">
     <div class="split-tag">What a crawler gives you</div>
     <ul class="split-list">
-      <li><span class="n">—</span> 412 pages have a short title</li>
-      <li><span class="n">—</span> 38 pages missing meta description</li>
-      <li><span class="n">—</span> 1 page set to noindex</li>
-      <li><span class="n">—</span> 96 images without alt text</li>
-      <li><span class="n">—</span> 12 redirect chains</li>
-      <li><span class="n">—</span> …and 160 more rows</li>
+      <li><span class="n">·</span> 412 pages have a short title</li>
+      <li><span class="n">·</span> 38 pages missing meta description</li>
+      <li><span class="n">·</span> 1 page set to noindex</li>
+      <li><span class="n">·</span> 96 images without alt text</li>
+      <li><span class="n">·</span> 12 redirect chains</li>
+      <li><span class="n">·</span> …and 160 more rows</li>
     </ul>
   </div>
   <div class="split-col good">
@@ -408,7 +408,7 @@ def body() -> str:
             affects, an explanation, and a Fix paragraph with the change to make.">
   <figcaption>The same idea inside the product. Every item is numbered in the order to
   do it, grouped into phases, and carries what it is worth, how long it takes, how many
-  pages it touches &mdash; and the fix, written out.</figcaption>
+  pages it touches, and the fix, written out.</figcaption>
 </figure>
 </section>
 
@@ -418,18 +418,18 @@ def body() -> str:
   <h2>Four things a crawler will not tell you.</h2>
   <p>Technical SEO is table stakes, and it is most of what a crawler is built to return.
   These four are where the money actually leaks. None of them appears in the feature list
-  Screaming Frog or Sitebulb publishes, and elsewhere each is a separate subscription —
-  <a href="/vs/">checked against their own documentation</a>, {HOME_CLAIM_CHECKED_HUMAN}.</p>
+  Screaming Frog or Sitebulb publishes, and elsewhere each is a separate subscription.
+  We <a href="/vs/">checked their own documentation</a> on {HOME_CLAIM_CHECKED_HUMAN}.</p>
 </div>
 <div class="grid-3">
   <div class="card"><div class="card-ico">{ICONS['ai']}</div>
     <h3>AI search visibility</h3>
     <p>Every AI crawler in one pass, because <code>GPTBot</code> trains models and
-    <code>OAI-SearchBot</code> builds the index ChatGPT answers from — blocking them is not
+    <code>OAI-SearchBot</code> builds the index ChatGPT answers from. Blocking them is not
     the same decision. A crawler can answer this one a user-agent at a time: Screaming Frog
     lets you switch agent and follow that agent's <code>robots.txt</code> directives. What it
     reads is the file. Docket also asks the server, as each bot, and tells you when the two
-    disagree — a CDN rule blocking <code>GPTBot</code> is invisible in a
+    disagree. A CDN rule blocking <code>GPTBot</code> is invisible in a
     <code>robots.txt</code> that permits it.</p></div>
   <div class="card"><div class="card-ico">{ICONS['cart']}</div>
     <h3>Conversion &amp; landing pages</h3>
@@ -438,13 +438,13 @@ def body() -> str:
   <div class="card"><div class="card-ico">{ICONS['brand']}</div>
     <h3>Brand consistency</h3>
     <p>Whether your company name is spelled the same way in your title tags, your schema, your
-    og:site_name and your logo alt text — because that is where a knowledge panel and an AI
+    og:site_name and your logo alt text. That is where a knowledge panel and an AI
     citation get it from. Plus typeface and palette sprawl, and whether every page makes the
     same promise or a different one.</p></div>
   <div class="card"><div class="card-ico">{ICONS['pin']}</div>
     <h3>Local business SEO</h3>
     <p>NAP consistency, LocalBusiness schema and its subtypes, opening hours, geo signals,
-    review markup — and it knows a software company with an office is not a local business.</p></div>
+    review markup. It also knows a software company with an office is not a local business.</p></div>
 </div>
 </div></section>
 
@@ -457,8 +457,8 @@ def body() -> str:
 <div class="sec-head">
   <h2>Can an AI answer even reach you?</h2>
   <p class="sec-sub">A crawler reads your <code>robots.txt</code> and believes it. Docket asks
-  your server &mdash; as <code>OAI-SearchBot</code>, as <code>ClaudeBot</code>, as
-  <code>PerplexityBot</code> &mdash; and compares the answer to what the file promises.</p>
+  your server as <code>OAI-SearchBot</code>, as <code>ClaudeBot</code> and as
+  <code>PerplexityBot</code>, and compares the answer to what the file promises.</p>
 </div>
 <div class="grid-3">
   <div class="card"><div class="card-ico">{ICONS['ai']}</div>
@@ -468,7 +468,7 @@ def body() -> str:
     it. Docket makes the request and reports the disagreement.</p></div>
   <div class="card"><div class="card-ico">{ICONS['order']}</div>
     <h3>It knows what you meant</h3>
-    <p>Blocking <code>GPTBot</code> on purpose is a decision, not a defect &mdash; it trains
+    <p>Blocking <code>GPTBot</code> on purpose is a decision, not a defect. It trains
     models. <code>OAI-SearchBot</code> builds the index ChatGPT answers from, which is a
     different decision. Docket only reports the crawlers your own file permits and your server
     refuses anyway.</p></div>
@@ -476,7 +476,7 @@ def body() -> str:
     <h3>{N_AI_CHECKS} checks, not one</h3>
     <p>Whether your content survives without JavaScript, whether your claims are specific
     enough to quote, whether your entity is defined, whether your dates are machine-readable,
-    and one control that <em>cannot</em> be measured from outside &mdash; which Docket says
+    and one control that <em>cannot</em> be measured from outside, which Docket says
     plainly rather than guessing.</p></div>
 </div>
 </div></section>
@@ -487,7 +487,7 @@ def body() -> str:
   <h2>Is the page actually <em>in</em> there?</h2>
   <p class="sec-sub">Being indexed is not a property of your HTML, so no crawler can read it
   off your page. Docket asks Google, Bing and Brave directly, with your own credentials, and
-  records what you announced through IndexNow &mdash; then says which of those answered about
+  records what you announced through IndexNow. Then it says which of those answered about
   the page and which answered about the site.</p>
 </div>
 <div class="grid-3">
@@ -504,7 +504,7 @@ def body() -> str:
   <div class="card"><div class="card-ico">{ICONS['doc']}</div>
     <h3>Announcing is not indexing</h3>
     <p>IndexNow records that you told the search engines a URL changed. That is a real action
-    and a useful one, and it is still your outbox rather than anyone's index &mdash; so it is
+    and a useful one, and it is still your outbox rather than anyone's index, so it is
     labelled a submission and never counted toward whether you are indexed.</p></div>
 </div>
 <p style="text-align:center;margin-top:1.6rem">
@@ -529,21 +529,21 @@ def body() -> str:
   <div class="card"><div class="card-ico">{ICONS['order']}</div>
     <h3>A sequence, not a pile</h3>
     <p>Every finding ranked by impact against effort, in four phases. There is always a
-    defensible first task — and every finding carries its evidence: the page it is on, the
+    defensible first task. Every finding carries its evidence: the page it is on, the
     exact value found there, and the fix.</p></div>
   <div class="card"><div class="card-ico">{ICONS['doc']}</div>
     <h3>Client-ready PDF</h3>
-    <p>Designed to send, not rebuild. Score, scorecard, ranked plan, paste-ready markup — and
+    <p>Designed to send, not rebuild. Score, scorecard, ranked plan, paste-ready markup, and
     a scope page saying exactly what was and was not measured.</p></div>
   <div class="card"><div class="card-ico">{ICONS['clock']}</div>
     <h3>Scheduled monitoring</h3>
-    <p>Re-audits on a cadence and tells you what changed. Regressions first — a site that was
+    <p>Re-audits on a cadence and tells you what changed. Regressions come first, because a site that was
     clean and broke is the thing you need to know. It runs while Docket is open: the schedule is
     a thread inside the app, not a background daemon, so quitting it stops the clock.</p></div>
   <div class="card"><div class="card-ico">{ICONS['eye']}</div>
     <h3>Go on the offensive</h3>
     <p>Against a rival with years and links you cannot match, Docket finds where none of that
-    helps them — crawlers they have blocked, rich results they cannot win, searches neither of
+    helps them: crawlers they have blocked, rich results they cannot win, searches neither of
     you answers. It reads their domain authority from <a href="https://commoncrawl.org/">Common Crawl</a> so the size of the gap is a
     number, not a guess. <a href="/how-to/outrank-a-bigger-competitor/">See what it finds</a>.</p></div>
   <div class="card"><div class="card-ico">{ICONS['lock']}</div>
@@ -555,8 +555,8 @@ def body() -> str:
     {CONNECTORS_WORD} off. The licence is checked with our payment provider about once a day.</p></div>
   <div class="card"><div class="card-ico">{ICONS['order']}</div>
     <h3>A CLI, including <code>docket attack</code></h3>
-    <p><code>docket audit</code> exits non-zero on a critical issue — a noindexed homepage, a
-    5xx — so CI can fail the build before it ships. <code>--fail-on high</code> lowers the bar.
+    <p><code>docket audit</code> exits non-zero on a critical issue, such as a noindexed homepage or a
+    5xx, so CI can fail the build before it ships. <code>--fail-on high</code> lowers the bar.
     <code>docket attack</code> ranks a competitor's weak points by how winnable they are.</p></div>
 </div>
 </div>
@@ -567,7 +567,7 @@ def body() -> str:
             explanation and a Fix reading 'Add a site-wide 301 from http://docketseo.app to
             https://, preserving the path.'">
   <figcaption>One item, as the app writes it: what is wrong, how bad, which area, how long it
-  takes, and the change to make. This one is real and it is ours &mdash; Docket found it auditing
+  takes, and the change to make. This one is real and it is ours. Docket found it auditing
   this site.</figcaption>
 </figure>
 </section>
@@ -590,7 +590,7 @@ def body() -> str:
 
 <div class="sec-head" style="margin-top:3rem"><h3>Or you could pay someone to do it.</h3>
 <p>That table is the wrong comparison for most people. They are not choosing between two
-crawlers &mdash; they are choosing between buying a tool and hiring somebody, and those are
+crawlers. They are choosing between buying a tool and hiring somebody, and those are
 different orders of magnitude.</p></div>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>What you could buy</th><th>Price</th><th>For that you get</th></tr></thead>
@@ -608,7 +608,7 @@ different orders of magnitude.</p></div>
 The bottom of the most common one-off project band is {agency_multiple("ahrefs-survey-project")}.
 Docket is bought once and run as often as you like.</p>
 <p>And what you get back is the thing you were paying for: every finding says how bad it is, how
-long the fix takes and the exact change to make &mdash; naming the pages, where it is a
+long the fix takes and the exact change to make, and names the pages when it is a
 page-level problem rather than a site-wide one. That is why it pays for itself the first time
 you act on one report, instead of the fifth month of a retainer.</p>
 {agency_note_html()}
@@ -625,7 +625,7 @@ comparisons →</a></p>
 one that draws a line.</p></div>
 <div class="grid-3">
   <div class="card"><h3>Per-page backlinks and anchor text</h3><p>Docket reads Common Crawl's
-  hyperlink graph — {F.graph_domains_m()}&nbsp;million domains — so it gives you a domain's authority rank in
+  hyperlink graph ({F.graph_domains_m()}&nbsp;million domains), so it gives you a domain's authority rank in
   about a second, and the full list of domains linking to it in about ten minutes. We measured
   {F.graph_example_referring():,} domains linking to {F.graph_example_host()} that way. Which
   individual <em>page</em>
@@ -643,8 +643,8 @@ one that draws a line.</p></div>
   <div class="card"><h3>{"Windows" if INTEL else "Windows and Intel"}</h3><p>{MAC_HW}, {MACOS} or later. {NO_BUILDS}</p></div>
   <div class="card"><h3>Five things we chose not to build</h3><p>Rank tracking, a cloud
   version, team accounts, server-side scheduling, and white-label or uptime monitoring. Each
-  one needs a machine of ours running every day on your behalf, which is a monthly bill —
-  the thing Docket exists not to send you. They are absent on purpose, not yet to
+  one needs a machine of ours running every day on your behalf, which means a monthly bill.
+  Docket exists so you do not get one. They are absent on purpose, not yet to
   come.</p></div>
 </div>
 <p style="text-align:center;margin-top:1.5rem;font-size:var(--t-md);color:var(--text-dim)">
@@ -686,7 +686,7 @@ FAQ = [
      f"{FREE_LINE} Pro is {PRICE_STR} once, {FOUNDING_NOW} for founding buyers, with a "
      "30-day refund. There is no subscription and nothing to cancel."),
     ("What if it isn't for me?",
-     "Ask for a refund within 30 days of buying and you get your money back — no conditions "
+     "Ask for a refund within 30 days of buying and you get your money back. No conditions "
      f"and no questions. Write to {SUPPORT_EMAIL}, or reply to the receipt the payment "
      "processor emails you. The licence key is revoked, so the copy goes back to the free version."),
     ("How many Macs does one licence cover?",
@@ -697,7 +697,7 @@ FAQ = [
      "app's own updater. Whether a future 2.0 is a paid upgrade has not been decided; if it "
      "ever is, the copy you paid for keeps working."),
     ("Can I use it for client work?",
-     "Yes. Audit any number of sites — yours, a client's, a prospect's or a competitor's — "
+     "Yes. Audit any number of sites (yours, a client's, a prospect's or a competitor's) "
      "and charge clients for the work. The licence belongs to the person or company that "
      "paid; it may not be resold or sublicensed."),
     ("Does it run on Windows?",
@@ -708,7 +708,7 @@ FAQ = [
      "the public issue tracker instead."),
     ("Does Docket send my site data anywhere?",
      "The crawl and the report stay on your Mac, and there is no account and no "
-     f"telemetry. {CONNECTORS_WORD_CAP} optional checks, on by default, reach outside it — "
+     f"telemetry. {CONNECTORS_WORD_CAP} optional checks, on by default, reach outside it: "
      "Core Web Vitals from Google PageSpeed, which is sent the addresses of your homepage "
      "and top pages; a deliverability test on the addresses your site publishes, which "
      "looks up their mail domains in DNS; what your server tells AI crawlers; a knowledge "
@@ -728,8 +728,8 @@ FAQ = [
      "does not. Both run JavaScript: Docket renders a sample of every audit automatically, "
      "in the WebKit engine macOS already ships."),
     ("Can Docket tell me if ChatGPT can see my website?",
-     "Yes. Docket checks each AI crawler separately — OAI-SearchBot for ChatGPT Search, "
-     "PerplexityBot, Claude-SearchBot and Google-Extended — and distinguishes them from "
+     "Yes. Docket checks each AI crawler separately (OAI-SearchBot for ChatGPT Search, "
+     "PerplexityBot, Claude-SearchBot and Google-Extended) and distinguishes them from "
      "training crawlers like GPTBot, which many sites block deliberately."),
 ]
 

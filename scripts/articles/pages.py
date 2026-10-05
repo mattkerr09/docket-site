@@ -71,11 +71,11 @@ def _derived_caveat() -> str:
         + ("quotes" if one else "quote")
         + f" a monthly price and offers a discount for paying yearly, and the "
         + ("figure" if one else "figures")
-        + f" above {'is' if one else 'are'} twelve monthly payments — what you pay without "
+        + f" above {'is' if one else 'are'} twelve monthly payments: what you pay without "
         f"committing to a year. Their annual "
         f"prices are lower. Where we have read one it is on that tool's "
-        f'<a href="/vs/">comparison page</a> — Semrush publishes $117.33 a month billed '
-        f"annually — and where we have not, we leave it out rather than work it out: a figure "
+        f'<a href="/vs/">comparison page</a> (Semrush publishes $117.33 a month billed '
+        f"annually), and where we have not, we leave it out rather than work it out: a figure "
         f"derived from an advertised “save up to” is a guess wearing a discount, and a "
         f"competitor’s price is not ours to estimate.</p>"
     )
@@ -121,7 +121,7 @@ def download() -> Path:
 <ol class="steps" id="buy">
 <li><strong>Buy once.</strong> The licence key
 arrives with your receipt.{buy_block("download-steps", sample=True, big=True)}</li>
-<li><strong>Download</strong> the app &mdash; <a href="{download_url('download-steps')}" data-ev="Download"
+<li><strong>Download</strong> the app: <a href="{download_url('download-steps')}" data-ev="Download"
 data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On an Intel Mac, <a href="{download_url("download-steps-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="download-steps-intel">the Intel version</a>.') if INTEL else ''}</li>
 <li><strong>Paste the key</strong> into the field the app shows, and run your first audit.
 <span class="qual">30-day refund, no conditions.</span></li>
@@ -131,7 +131,7 @@ data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On
 Buy from inside the app and the audit you ran opens in full.</p>
 
 <p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on {MAC_HW}.
-{DMG_SIZE}. No subscription, no crawl credits, no per-seat pricing — audit as many sites as
+{DMG_SIZE}. No subscription, no crawl credits, no per-seat pricing. Audit as many sites as
 you like, for as long as you like. There is no account to create and no telemetry. Activating
 your licence checks the key with our payment provider once, and about once a day after that.
 The crawl and the report stay on your Mac. {CONNECTORS_WORD_CAP} optional checks, on by default,
@@ -153,12 +153,12 @@ top pages, and Google's autocomplete, which is sent your site's topic words;
 
 <p>That is worth stating precisely, because "unlimited" on its own is a promise no program
 keeps. What still stops a crawl is the {F.crawl_minutes()}-minute wall clock, the frontier
-running dry, and — on a genuinely enormous site — your machine's memory, because every page is
+running dry and, on a genuinely enormous site, your machine's memory, because every page is
 held in one list. A crawl that hits the clock stops and tells you it stopped, with everything
 it found so far, rather than pretending it finished.</p>
 
 <p>If your site is larger than that, say so plainly to yourself and use
-<a href="/vs/screaming-frog-alternative/">Screaming Frog</a> — it crawls without a ceiling and
+<a href="/vs/screaming-frog-alternative/">Screaming Frog</a>. It crawls without a ceiling and
 that is a real reason to pick it. Docket is built to read a site closely rather than to survey
 one at that scale. These numbers are generated from the shipped build, not typed here, so they
 cannot drift from what the app does.</p>
@@ -178,15 +178,15 @@ cannot drift from what the app does.</p>
 {price_note_html()}
 
 <p>{PRICE_STR} once is one year of the cheapest serious desktop subscription, or fifteen months
-of Screaming Frog &mdash; and nothing after that. From month sixteen Docket is the cheaper tool and
+of Screaming Frog, and nothing after that. From month sixteen Docket is the cheaper tool and
 stays cheaper every month afterwards. That is the whole pricing argument and it does not need help:
 the tools above are not overpriced for what they do, they are simply rented rather than owned.</p>
 
 <h2>Checking what you downloaded</h2>
 
 <p>The Mac app is signed with a Developer&nbsp;ID and notarised by Apple, so macOS verifies it
-with Apple before it opens and you need do nothing. The Linux tarball has no equivalent — it is
-a plain archive from a URL — so every release publishes
+with Apple before it opens and you need do nothing. The Linux tarball has no equivalent. It is
+a plain archive from a URL, so every release publishes
 <a href="{SUMS}">SHA256SUMS</a> covering all of its artifacts:</p>
 
 <pre><code>curl -LO {LINUX}
@@ -212,7 +212,7 @@ selection, because none of those are necessary for the thing you came to do.</p>
 <p>Without a key the audit runs as the free version. {FREE_LINE} The key arrives with your
 receipt, and <a href="#buy">the buy step is at the top of this page</a>.</p>
 <p>The first launch takes a few seconds longer than later ones. It used to say "while the
-engine unpacks itself" — that was an explanation nobody had measured, and timing the CLI out of
+engine unpacks itself". That was an explanation nobody had measured, and timing the CLI out of
 the shipped bundle put its startup at a fifth of a second with no unpacking step to be found.
 The delay is real and the reason given for it was invented, so the reason is gone.</p>
 
@@ -223,7 +223,7 @@ Apple and opens it.</p>
 <p>The same engine ships as a CLI inside the app bundle. It is the whole product, not a
 cut-down version, and it has six subcommands.</p>
 
-<h3><code>docket audit</code> — the full audit</h3>
+<h3><code>docket audit</code>: the full audit</h3>
 <pre><code>docket audit example.com
 docket audit example.com -o audit.pdf -n 500
 docket audit example.com --render 10        # run each page's JavaScript first
@@ -234,7 +234,7 @@ it in CI against a staging URL fails the build if someone ships a <code>noindex<
 is a mistake that otherwise gets found weeks later by a traffic graph.</p>
 
 <p>There is a full walkthrough for that on
-<a href="/for/developers/">running Docket in a deploy pipeline</a> — where the binary lives
+<a href="/for/developers/">running Docket in a deploy pipeline</a>, where the binary lives
 inside the bundle, a working GitHub Actions job, how long an audit actually takes, and what a
 macOS runner costs you per pull request.</p>
 
@@ -246,30 +246,30 @@ in <code>|| true</code> within a month.</p>
 docket audit https://staging.example.com --fail-on high
 docket audit https://staging.example.com --fail-on never      # report, never fail</code></pre>
 
-<p>Three exit codes, and they are a contract — a pipeline depends on them not moving:</p>
+<p>Three exit codes, and they are a contract. A pipeline depends on them not moving:</p>
 
 <div class="wrap-tbl"><table class="cmp"><thead><tr>
 <th>Code</th><th>Meaning</th></tr></thead><tbody>
 <tr><td><code>0</code></td><td>The audit ran and found nothing at or above the threshold</td></tr>
-<tr><td><code>1</code></td><td>Docket could not run — bad arguments or a crash. A defect in the
+<tr><td><code>1</code></td><td>Docket could not run: bad arguments or a crash. A defect in the
 tool, not in your site</td></tr>
 <tr><td><code>2</code></td><td>The audit ran and the result is bad</td></tr>
 </tbody></table></div>
 
 <p>A site that does not answer is <code>2</code>, not <code>1</code>: Docket ran fine, the site
 was not there, and a staging URL that does not respond should stop a deploy. Keeping those
-two apart matters more than it sounds — "your site is broken" and "the tool is broken" need
+two apart matters more than it sounds. "Your site is broken" and "the tool is broken" need
 opposite responses from whoever reads the log, and a gate that confuses them stops being
 trusted.</p>
 
 <p>That case took a real fix. Auditing a domain that does not resolve used to report three
 critical issues: that robots.txt blocked Googlebot, that the site was not served over HTTPS,
-and that no pages could be crawled. Only the last was true — there was no robots.txt and
+and that no pages could be crawled. Only the last was true. There was no robots.txt and
 nothing was served, because there was no site. A DNS blip in a pipeline would have failed the
 build with two invented criticals and sent somebody hunting for a robots.txt problem that
 never existed. When nothing at all can be read, Docket now reports that and stops.</p>
 
-<h3><code>docket diff</code> — what this deploy broke</h3>
+<h3><code>docket diff</code>: what this deploy broke</h3>
 <pre><code>docket diff https://example.com https://staging.example.com
 docket diff https://example.com https://staging.example.com --fail-on medium</code></pre>
 
@@ -278,17 +278,17 @@ better deploy gate, and the reason is arithmetic: every real site carries standi
 a severity threshold tight enough to catch a regression fails every build, and one loose enough
 to pass catches nothing. A deploy is only answerable for what it changed.</p>
 
-<p>Regressions are new findings <em>and</em> ones that got worse — a check that was MEDIUM
+<p>Regressions are new findings <em>and</em> ones that got worse, such as a check that was MEDIUM
 before and is HIGH now did not appear or disappear, and it is exactly what you want to know.
 Improvements never fail a build, however many there are. The default threshold is
 <code>high</code> rather than <code>critical</code>, deliberately: a standing HIGH finding is
 somebody's backlog, and a HIGH finding that arrived with this deploy is this deploy's fault.</p>
 
 <p>If the two crawls reach very different numbers of pages, Docket refuses to compare them and
-exits <code>1</code> — not <code>0</code>. A build that goes green because the comparison was
+exits <code>1</code>, not <code>0</code>. A build that goes green because the comparison was
 impossible is worse than one that fails, because the team believes the gate ran.</p>
 
-<h3><code>docket logs</code> — what Googlebot actually fetched</h3>
+<h3><code>docket logs</code>: what Googlebot actually fetched</h3>
 <pre><code>docket logs access.log
 docket logs access.log.gz --url https://example.com
 docket logs access.log --verify           # confirm the bot really was Google</code></pre>
@@ -299,7 +299,7 @@ format access log and it reports the response codes Google actually received, th
 fetched most, and how much of its budget went on redirects and errors. Add
 <code>--url</code> and it crawls the site too, then shows the two ways the sets differ: pages
 you link to that Google did not fetch in that period, and pages Google fetches that the crawl
-never found — orphans, retired URLs still being retried, or sitemap-only pages.</p>
+never found: orphans, retired URLs still being retried, or sitemap-only pages.</p>
 
 <p><strong>A user-agent is a header anybody can send</strong>, and scrapers claim to be
 Googlebot constantly. Everything is reported as "claimed" until you pass <code>--verify</code>,
@@ -311,22 +311,22 @@ that quietly drops a third of a file produces confident numbers about the rest.<
 
 <p><a href="/vs/screaming-frog-alternative/">Screaming Frog</a> sells a dedicated
 <a href="https://www.screamingfrog.co.uk/log-file-analyser/">Log File Analyser</a> as a separate
-product at $139 per year, free up to 1,000 log events. It is a much deeper tool than this —
+product at $139 per year, free up to 1,000 log events. It is a much deeper tool than this:
 a real interface, saved projects, and far more than a set difference against one crawl. What
 Docket gives you is the comparison that answers "is Google spending its time on my important
 pages", included in the one-time price rather than as a second subscription.</p>
 
-<h3><code>docket attack</code> — where a competitor's authority does not protect them</h3>
+<h3><code>docket attack</code>: where a competitor's authority does not protect them</h3>
 <pre><code>docket attack yoursite.com theircompetitor.com
 docket attack yoursite.com theirs.com --demand "emergency plumber"</code></pre>
 <p>Audits both sites, compares their link-graph authority, and returns the openings ranked by
 how winnable they are rather than how large they are. An older, better-linked competitor is
-unbeatable on the pages it has held for years and beatable on the ones it never wrote — and
-that distinction is the only part of a competitive analysis that changes what you do on
+unbeatable on the pages it has held for years and beatable on the ones it never wrote.
+That distinction is the only part of a competitive analysis that changes what you do on
 Monday. Add <code>--demand</code> and it pulls what people actually search for from Google's
 public autocomplete, then reports which of those questions neither site answers.</p>
 
-<h3><code>docket backlinks</code> — authority without a subscription</h3>
+<h3><code>docket backlinks</code>: authority without a subscription</h3>
 <pre><code>docket backlinks yoursite.com competitor.com
 docket backlinks yoursite.com --referring</code></pre>
 <p>Domain authority from Common Crawl's public hyperlink graph, which covers 117,963,409
@@ -342,13 +342,13 @@ how you would drive Docket from your own scripts.</p>
 <ul>
 <li><strong>{MACOS} or later, {MAC_HW}</strong> for the desktop app. {NO_BUILDS}</li>
 <li><strong>Linux x86_64 for the command line.</strong>
-{'<a href="' + LINUX + '">Download the ' + LINUX_SIZE + ' tarball</a> — needs' if LINUX else 'A tarball needing'}
-<strong>glibc 2.30</strong> or newer — check yours with <code>ldd --version</code>. That floor
+{'<a href="' + LINUX + '">Download the ' + LINUX_SIZE + ' tarball</a>. It needs' if LINUX else 'A tarball needing'}
+<strong>glibc 2.30</strong> or newer. Check yours with <code>ldd --version</code>. That floor
 is measured from the shipped binary rather than assumed from the machine that built it: the
 launcher itself only needs 2.14, and the bundled Python runtime is what raises it to 2.30.
 It is the same engine and the same checks, verified running in a clean container. Two things
 it is not: there is no Linux desktop app, only the CLI, and <code>--render</code> does not work
-there — the renderer is a WebKit helper that exists only on macOS, so on Linux Docket reports
+there. The renderer is a WebKit helper that exists only on macOS, so on Linux Docket reports
 that rendering was requested and did not happen rather than quietly skipping it.</li>
 <li><strong>An internet connection to the site you are auditing</strong>, and to our payment
 provider when the licence is activated and re-checked.</li>
@@ -358,7 +358,7 @@ size. The defaults are deliberately polite; you can raise them.</li>
 
 <h2>What happens to your data</h2>
 <p>The crawl and every check run on your machine, and Docket identifies itself honestly in
-its user-agent rather than impersonating Googlebot — a spoofed user-agent gets a different,
+its user-agent rather than impersonating Googlebot, because a spoofed user-agent gets a different,
 sometimes cloaked response, which would make every finding a lie.</p>
 
 <p>{CONNECTORS_WORD_CAP} optional checks do reach out, and it is worth being exact rather than reassuring:
@@ -366,7 +366,7 @@ Docket asks your own server what it tells AI crawlers, refreshes its crawler kno
 from this site, checks whether the email addresses you publish can actually receive mail,
 fetches Core Web Vitals from Google PageSpeed Insights, and asks Google's public autocomplete
 for topic suggestions. <code>--offline</code>, or the offline
-tick in the desktop app, turns all {CONNECTORS_WORD} off and the audit still completes — the report then
+tick in the desktop app, turns all {CONNECTORS_WORD} off and the audit still completes. The report then
 says which checks did not run rather than quietly scoring them.</p>
 
 <p>Docket also asks docketseo.app when it opens, and every thirty minutes while it stays open,

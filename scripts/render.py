@@ -145,7 +145,7 @@ def agency_note_html() -> str:
                      f'published {a["checked"]}')
     return ('<p class="note"><strong>Where these come from:</strong> '
             + "; ".join(parts) + '. Docket is not an agency and does not do the '
-            'work an agency does \u2014 it produces the audit, not the fixes.</p>')
+            'work an agency does. It produces the audit, not the fixes.</p>')
 
 
 def price(slug: str) -> str:
@@ -293,7 +293,7 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
     if refund:
         # `refund_link=False` for a page inside a registered link experiment,
         # where a new internal link would change the thing being measured.
-        tail = (' &mdash; <a href="/legal/refunds/">refund policy</a>' if refund_link else "")
+        tail = ('. <a href="/legal/refunds/">Refund policy</a>' if refund_link else "")
         out.append(f'<p class="hero-note"><strong>{REFUND_DAYS} days, no conditions, no questions '
                    f'asked</strong>{tail}</p>')
     out.append('</div>')
@@ -307,7 +307,7 @@ def buy_strip(src: str) -> str:
     sample = (f'<a href="{SAMPLE_REPORT}" data-ev="Sample report" data-ev-button="{src}">'
               f'See a sample report</a> &middot; ' if HAS_SAMPLE else "")
     return (f'<aside class="buy-strip"><p><a href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
-            f'data-ev-button="{src}">Buy once &mdash; {PRICE_STR}{PAY4}</a> &middot; '
+            f'data-ev-button="{src}">Buy once, {PRICE_STR}{PAY4}</a> &middot; '
             f'{sample}founding price {FOUNDING_NOW}{PAY4_FOUNDING}, for the first '
             f'{FOUNDING_SEATS} buyers with <code>{FOUNDING_CODE}</code></p></aside>')
 
@@ -607,7 +607,7 @@ REFUND_DAYS = 30
 BNPL_INSTALMENT = f"${PRICE / 4:.2f}"
 BNPL_NOTE = (
     f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks "
-    f"apart — the last one six weeks after the first, at no extra cost from us. "
+    f"apart. The last one is six weeks after the first, at no extra cost from us. "
     f"Then it stops, and it is yours."
 ) if BNPL_LIVE else ""
 
@@ -1558,7 +1558,7 @@ def _nav(checker: bool) -> str:
 <div class="nav-more-links">
 {links}
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price"> &mdash; ${PRICE}{PAY4}</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, ${PRICE}{PAY4}</span></a>
 </div></nav>"""
 
 
@@ -1617,9 +1617,9 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a>
 <a href="/legal/refunds/">Refunds</a></div>
 <div><h2 class="foot-h">Also by the same maker</h2>
-<a href="https://adplaybook.app/">AdPlaybook — ad campaigns, sourced</a>
-<a href="https://outlier.host/">Outlier — local AI for Mac</a>
-<a href="https://crispvideo.app/">Crisp — offline video upscaler</a></div>
+<a href="https://adplaybook.app/">AdPlaybook: ad campaigns, sourced</a>
+<a href="https://outlier.host/">Outlier: local AI for Mac</a>
+<a href="https://crispvideo.app/">Crisp: offline video upscaler</a></div>
 </div>
 <div class="foot-more">
 {KERR_MORE}

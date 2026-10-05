@@ -93,17 +93,17 @@ Michigan, United States.
   founding buyers, with a 30-day refund. There is no subscription and nothing to
   cancel.
 - What if it isn't for me? Ask for a refund within 30 days of buying and you get your
-  money back — no conditions and no questions. Write to support@docketseo.app, or
-  reply to the receipt the payment processor emails you. The licence key is revoked,
-  so the copy goes back to the free version.
+  money back. No conditions and no questions. Write to support@docketseo.app, or reply
+  to the receipt the payment processor emails you. The licence key is revoked, so the
+  copy goes back to the free version.
 - How many Macs does one licence cover? Up to 3 at a time. Activating Docket on a Mac
   uses one; deactivate it to move the licence to another machine. Apple silicon or
   Intel, macOS 12 or later.
 - Are updates included? Yes. While Docket is on version 1.x, every update is free and
   installs through the app's own updater. Whether a future 2.0 is a paid upgrade has
   not been decided; if it ever is, the copy you paid for keeps working.
-- Can I use it for client work? Yes. Audit any number of sites — yours, a client's, a
-  prospect's or a competitor's — and charge clients for the work. The licence belongs
+- Can I use it for client work? Yes. Audit any number of sites (yours, a client's, a
+  prospect's or a competitor's) and charge clients for the work. The licence belongs
   to the person or company that paid; it may not be resold or sublicensed.
 - Does it run on Windows? No. The app is for Macs with Apple silicon or Intel on macOS
   12 or later. There is no Windows build. A command-line build for Linux x86_64 is on
@@ -112,7 +112,7 @@ Michigan, United States.
   the next person can go on the public issue tracker instead.
 - Does Docket send my site data anywhere? The crawl and the report stay on your Mac,
   and there is no account and no telemetry. Five optional checks, on by default, reach
-  outside it — Core Web Vitals from Google PageSpeed, which is sent the addresses of
+  outside it: Core Web Vitals from Google PageSpeed, which is sent the addresses of
   your homepage and top pages; a deliverability test on the addresses your site
   publishes, which looks up their mail domains in DNS; what your server tells AI
   crawlers; a knowledge refresh from this site; and Google's public autocomplete for
@@ -128,8 +128,8 @@ Michigan, United States.
   renders a sample of every audit automatically, in the WebKit engine macOS already
   ships.
 - Can Docket tell me if ChatGPT can see my website? Yes. Docket checks each AI crawler
-  separately — OAI-SearchBot for ChatGPT Search, PerplexityBot, Claude-SearchBot and
-  Google-Extended — and distinguishes them from training crawlers like GPTBot, which
+  separately (OAI-SearchBot for ChatGPT Search, PerplexityBot, Claude-SearchBot and
+  Google-Extended) and distinguishes them from training crawlers like GPTBot, which
   many sites block deliberately.
 
 ## Key pages
