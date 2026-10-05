@@ -14,7 +14,7 @@
 <title>A caveat is not a gate: findings that flag correct pages</title>
 <meta name="description" content="When an audit's own advice says your case is fine, the finding should not have fired. Two cases where a site was flagged for being right.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/how-to/findings-that-flag-correct-pages/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -774,7 +774,7 @@ nav{z-index:40}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"A caveat is not a gate","description":"When an audit's own advice says your case is fine, the finding should not have fired. Two cases where a site was flagged for being right.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/findings-that-flag-correct-pages/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"My audit flags my thank-you pages as blocked from indexing. Is that a problem?","acceptedAnswer":{"@type":"Answer","text":"No. Confirmation, cart, checkout and internal search pages are supposed to carry noindex. A tool that reports them has not applied the exception its own advice describes."}},{"@type":"Question","name":"Should a multi-branch business use one phone number everywhere?","acceptedAnswer":{"@type":"Answer","text":"No. A number beside each branch address is correct practice and is how each location gets matched to its listing. Collapsing them to one removes a signal rather than tidying it."}},{"@type":"Question","name":"Is it ever right for a finding to state a caveat instead of filtering?","acceptedAnswer":{"@type":"Answer","text":"Yes, when the exception cannot be detected from the outside — a service-area business with no street address, for example. Then the honest form is a stated limit at a lower severity."}},{"@type":"Question","name":"How do I tell a false positive from a real noindex problem?","acceptedAnswer":{"@type":"Answer","text":"Look at what kind of page it is. Confirmation and utility paths are correct; a product, service or article page carrying noindex is one of the most expensive defects there is."}},{"@type":"Question","name":"Should I turn off a check that keeps flagging correct pages?","acceptedAnswer":{"@type":"Answer","text":"No, but do not work through its list either. Read the residue — the flagged pages that are not exceptions — because those are the only ones the check was really for."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"My audit flags my thank-you pages as blocked from indexing. Is that a problem?","acceptedAnswer":{"@type":"Answer","text":"No. Confirmation, cart, checkout and internal search pages are supposed to carry noindex. A tool that reports them has not applied the exception its own advice describes."}},{"@type":"Question","name":"Should a multi-branch business use one phone number everywhere?","acceptedAnswer":{"@type":"Answer","text":"No. A number beside each branch address is correct practice and is how each location gets matched to its listing. Collapsing them to one removes a signal rather than tidying it."}},{"@type":"Question","name":"Is it ever right for a finding to state a caveat instead of filtering?","acceptedAnswer":{"@type":"Answer","text":"Yes, when the exception cannot be detected from the outside: a service-area business with no street address, for example. Then the honest form is a stated limit at a lower severity."}},{"@type":"Question","name":"How do I tell a false positive from a real noindex problem?","acceptedAnswer":{"@type":"Answer","text":"Look at what kind of page it is. Confirmation and utility paths are correct; a product, service or article page carrying noindex is one of the most expensive defects there is."}},{"@type":"Question","name":"Should I turn off a check that keeps flagging correct pages?","acceptedAnswer":{"@type":"Answer","text":"No, but do not work through its list either. Read the residue (the flagged pages that are not exceptions) because those are the only ones the check was really for."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -826,14 +826,14 @@ fbq('track','PageView');
 
 <p class="lede">An audit flags a page. You read the finding, and halfway down its own advice is a
 sentence explaining that your case is probably fine. The tool knew the exception, wrote it down,
-and reported you anyway — leaving you to filter its list by hand. <strong>A caveat is not a
+and reported you anyway. Leaving you to filter its list by hand. <strong>A caveat is not a
 gate</strong>, and a finding that needs one has not finished being written.</p>
 
 <h2>Nearly every flagged page was correct</h2>
 
 <p>On an insurer's site, twenty-one of twenty-five crawled pages were reported as blocked from
 indexing, at the second-highest severity. Every one was a form confirmation sitting under a
-thank-you path — pages that are <em>supposed</em> to carry noindex, because nobody should arrive
+thank-you path. Pages that are <em>supposed</em> to carry noindex, because nobody should arrive
 at a confirmation from a search result.</p>
 
 <p>The check's fix text already said so, in those words: legitimate noindex targets such as cart,
@@ -841,7 +841,7 @@ checkout, thank-you and internal search results are fine. So the tool had the ru
 not apply it before deciding what to report.</p>
 
 <p>The cost is not the reading time. <strong>Reporting correct pages at high severity teaches
-somebody to skip the check</strong> — and a skipped check costs more than the occasional real
+somebody to skip the check</strong>, and a skipped check costs more than the occasional real
 noindex it would have caught, because the real one is the whole reason the check exists.</p>
 
 <h2>The advice that would have removed working signals</h2>
@@ -855,7 +855,7 @@ site-wide. <strong>Following it would have deleted the per-branch numbers that l
 depends on.</strong> And once more, the finding's own text had already conceded the case:
 separate department or location numbers are fine.</p>
 
-<p>The repair in both places was the same — turn the sentence into a condition. Before reporting a
+<p>The repair in both places was the same: turn the sentence into a condition. Before reporting a
 noindex page, check whether its URL is one of the paths where noindex belongs. Before reporting
 several phone numbers, check whether the site has several sets of premises.</p>
 
@@ -865,7 +865,7 @@ several phone numbers, check whether the site has several sets of premises.</p>
 be wrong advice.</p>
 
 <p>The same check reports a local business with no street address at a lower severity, with its
-caveat stated plainly — because a service-area business legitimately has no address, and
+caveat stated plainly, because a service-area business legitimately has no address, and
 <em>nothing in the markup can tell the two apart</em>. There is no condition to write. Stating the
 limit and lowering the severity is the honest thing to do.</p>
 
@@ -873,13 +873,13 @@ limit and lowering the severity is the honest thing to do.</p>
 
 <ul>
 <li><strong>Can the tool detect the exception?</strong> A URL segment, a store locator, a second
-address, a noindex on a checkout path — all detectable. Then it must be a gate, and a finding that
+address, a noindex on a checkout path: all detectable. Then it must be a gate, and a finding that
 fires anyway is a defect.</li>
 <li><strong>Or is the exception invisible from the outside?</strong> Then a stated caveat at a
 lower severity is correct, and the reader is the one who can resolve it.</li>
 </ul>
 
-<p><strong>A caveat at high severity is the combination that should not exist</strong> — it is a
+<p><strong>A caveat at high severity is the combination that should not exist</strong>. It is a
 tool saying "this is urgent, and it may not apply to you" in one breath.</p>
 
 <h2>The detail that makes a gate work or fail</h2>
@@ -916,7 +916,7 @@ single defects there is, because the page is invisible while looking perfectly h
 visitor. The cases that matter:</p>
 
 <ul>
-<li><strong>Noindex on a product, service or article page</strong> — usually left over from a
+<li><strong>Noindex on a product, service or article page</strong>: usually left over from a
 staging environment.</li>
 <li><strong>Noindex on a whole section</strong>, which is a template-level mistake and therefore
 one edit. For why the count in that finding is not the number of fixes, see
@@ -925,8 +925,8 @@ site &rarr;</a>.</li>
 </ul>
 
 <p>And the opposite problem is real too: utility pages that are <em>missing</em> their noindex and
-end up competing with your own content —
-<a href="/how-to/stop-indexing-site-search-and-cart-pages/">stop indexing site search and cart
+end up competing with your own content.
+<a href="/how-to/stop-indexing-site-search-and-cart-pages/">Stop indexing site search and cart
 pages &rarr;</a>. Both pages are about the same set of URLs; the question is only which way round
 yours are wrong.</p>
 
@@ -936,7 +936,7 @@ yours are wrong.</p>
 <li><strong>Removing noindex from confirmation pages to clear the finding.</strong> You have
 added a set of thin, duplicate, un-navigable pages to the index to satisfy a false positive.</li>
 <li><strong>Collapsing branch phone numbers to one.</strong> The finding was wrong and the fix is
-subtractive — see also
+subtractive. See also
 <a href="/how-to/sitemap-urls-that-are-not-stale/">when "regenerate your sitemap" is
 wrong &rarr;</a>.</li>
 <li><strong>Turning the check off.</strong> Which is what the tool is training you to do, and the
@@ -948,7 +948,7 @@ reason this defect is worth naming rather than tolerating.</li>
 <p>The registered checks are <code>index.noindex</code>, which covers pages blocked from indexing,
 and <code>local.nap</code>, which covers name, address and phone consistency. Both now gate on
 the exception their own advice describes.</p>
-<aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-findings-that-flag-correct-pages" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-findings-that-flag-correct-pages">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-findings-that-flag-correct-pages">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>My audit flags my thank-you pages as blocked from indexing. Is that a problem?</h3><p>No. Confirmation, cart, checkout and internal search pages are supposed to carry noindex. A tool that reports them has not applied the exception its own advice describes.</p></div><div class="faq-item"><h3>Should a multi-branch business use one phone number everywhere?</h3><p>No. A number beside each branch address is correct practice and is how each location gets matched to its listing. Collapsing them to one removes a signal rather than tidying it.</p></div><div class="faq-item"><h3>Is it ever right for a finding to state a caveat instead of filtering?</h3><p>Yes, when the exception cannot be detected from the outside — a service-area business with no street address, for example. Then the honest form is a stated limit at a lower severity.</p></div><div class="faq-item"><h3>How do I tell a false positive from a real noindex problem?</h3><p>Look at what kind of page it is. Confirmation and utility paths are correct; a product, service or article page carrying noindex is one of the most expensive defects there is.</p></div><div class="faq-item"><h3>Should I turn off a check that keeps flagging correct pages?</h3><p>No, but do not work through its list either. Read the residue — the flagged pages that are not exceptions — because those are the only ones the check was really for.</p></div></div></section>
+<aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-findings-that-flag-correct-pages" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-findings-that-flag-correct-pages">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-findings-that-flag-correct-pages">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>My audit flags my thank-you pages as blocked from indexing. Is that a problem?</h3><p>No. Confirmation, cart, checkout and internal search pages are supposed to carry noindex. A tool that reports them has not applied the exception its own advice describes.</p></div><div class="faq-item"><h3>Should a multi-branch business use one phone number everywhere?</h3><p>No. A number beside each branch address is correct practice and is how each location gets matched to its listing. Collapsing them to one removes a signal rather than tidying it.</p></div><div class="faq-item"><h3>Is it ever right for a finding to state a caveat instead of filtering?</h3><p>Yes, when the exception cannot be detected from the outside: a service-area business with no street address, for example. Then the honest form is a stated limit at a lower severity.</p></div><div class="faq-item"><h3>How do I tell a false positive from a real noindex problem?</h3><p>Look at what kind of page it is. Confirmation and utility paths are correct; a product, service or article page carrying noindex is one of the most expensive defects there is.</p></div><div class="faq-item"><h3>Should I turn off a check that keeps flagging correct pages?</h3><p>No, but do not work through its list either. Read the residue (the flagged pages that are not exceptions) because those are the only ones the check was really for.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

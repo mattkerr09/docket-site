@@ -14,7 +14,7 @@
 <title>A pixel reported on part of the site, and no pages</title>
 <meta name="description" content="An audit counted tag coverage from one document and the inventory from another, so pixels on a site were reported as partly deployed and on no pages at once.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/how-to/pixels-reported-on-zero-pages/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -774,7 +774,7 @@ nav{z-index:40}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"A pixel on part of the site, and on no pages","description":"An audit counted tag coverage from one document and the inventory from another, so pixels on a site were reported as partly deployed and on no pages at once.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/pixels-reported-on-zero-pages/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does an audit say a pixel is on part of my site and then show zero pages?","acceptedAnswer":{"@type":"Answer","text":"Because the inventory and the coverage count were read from different documents. The inventory includes tags found after the page was rendered; the count read only the HTML the server sent, so a tag injected by JavaScript scores zero everywhere."}},{"@type":"Question","name":"Does a pixel loaded through a tag container count as installed?","acceptedAnswer":{"@type":"Answer","text":"For your advertising platform, yes — it fires. For any audit reading served HTML, it is invisible, so coverage numbers about it are unsupported rather than wrong. Check the platform's own diagnostics instead."}},{"@type":"Question","name":"Should I hard-code pixels on every page to fix a coverage finding?","acceptedAnswer":{"@type":"Answer","text":"No. If the tag also loads through your container it will fire twice, inflating conversions and corrupting the history you compare against."}},{"@type":"Question","name":"How much does a missing pixel actually cost?","acceptedAnswer":{"@type":"Answer","text":"It depends on which page is missing it. The concrete loss is that conversions on that page cannot be recorded and those visitors cannot be added to a retargeting audience. Any audit quoting you a percentage has invented it."}},{"@type":"Question","name":"How can I tell whether a coverage finding is real?","acceptedAnswer":{"@type":"Answer","text":"Open your own platform's reporting. If it shows events from the pages the audit called untagged, the finding is about what a fetcher could see. If it shows a gap on a page in your conversion path, the finding is real and worth fixing today."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does an audit say a pixel is on part of my site and then show zero pages?","acceptedAnswer":{"@type":"Answer","text":"Because the inventory and the coverage count were read from different documents. The inventory includes tags found after the page was rendered; the count read only the HTML the server sent, so a tag injected by JavaScript scores zero everywhere."}},{"@type":"Question","name":"Does a pixel loaded through a tag container count as installed?","acceptedAnswer":{"@type":"Answer","text":"For your advertising platform, yes: it fires. For any audit reading served HTML, it is invisible, so coverage numbers about it are unsupported rather than wrong. Check the platform's own diagnostics instead."}},{"@type":"Question","name":"Should I hard-code pixels on every page to fix a coverage finding?","acceptedAnswer":{"@type":"Answer","text":"No. If the tag also loads through your container it will fire twice, inflating conversions and corrupting the history you compare against."}},{"@type":"Question","name":"How much does a missing pixel actually cost?","acceptedAnswer":{"@type":"Answer","text":"It depends on which page is missing it. The concrete loss is that conversions on that page cannot be recorded and those visitors cannot be added to a retargeting audience. Any audit quoting you a percentage has invented it."}},{"@type":"Question","name":"How can I tell whether a coverage finding is real?","acceptedAnswer":{"@type":"Answer","text":"Open your own platform's reporting. If it shows events from the pages the audit called untagged, the finding is about what a fetcher could see. If it shows a gap on a page in your conversion path, the finding is real and worth fixing today."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -845,7 +845,7 @@ could not count. It was the second one.</p>
 documents.</p>
 
 <p><strong>What is installed on this site?</strong> That inventory is built from the served HTML
-merged with the rendered page — merging is the entire reason the inventory exists, because a tag
+merged with the rendered page. Merging is the entire reason the inventory exists, because a tag
 injected by JavaScript is invisible in the HTML a server sends.</p>
 
 <p><strong>How many pages carry each tag?</strong> That count was reading the served HTML alone.</p>
@@ -861,7 +861,7 @@ lines to its neighbour.</p>
 
 <h2>The same seam, with a consequence worth more than the contradiction</h2>
 
-<p>An always-emitted part of the report simply lists what is running on your site — not a defect,
+<p>An always-emitted part of the report simply lists what is running on your site, not a defect,
 a fact most owners cannot recite about their own property, and the way forgotten agency tags get
 noticed.</p>
 
@@ -872,7 +872,7 @@ contradiction.</p>
 <p>But that inventory has an escalation: past eight separate tools on a single page it stops being
 a list and becomes a real finding, because each third-party script competes with your content for
 the visitor's connection and the page gets slower. <strong>The number that escalation reads was
-the served-HTML count.</strong> So a site that loads every one of its tags through a container —
+the served-HTML count.</strong> So a site that loads every one of its tags through a container,
 which is the recommended practice, and the configuration most likely to accumulate forgotten tags
 — could never reach the threshold. <strong>The gate was unreachable for exactly the population it
 was built for.</strong></p>
@@ -884,7 +884,7 @@ worth borrowing for your own analysis.</p>
 
 <p>Rendering every page of a site is expensive, so a sample is rendered. If the coverage count came
 from the merged map, a pixel found on the rendered sample would be reported as being on that many
-pages — turning <em>we only looked at a few pages properly</em> into <em>it is only on a few
+pages. Turning <em>we only looked at a few pages properly</em> into <em>it is only on a few
 pages</em>. That is a worse error than the one being fixed, because it looks reasonable.</p>
 
 <p><strong>A tag seen only after rendering cannot support a claim about the pages that were not
@@ -904,7 +904,7 @@ static count of it is meaningless.</li>
 <li><strong>Check the platform's own diagnostics.</strong> Every major advertising platform will
 tell you which of your pages fired its pixel in the last day. That is the measurement; a crawl is
 a proxy for it.</li>
-<li><strong>Look hardest at pages built outside your main template</strong> — campaign landing
+<li><strong>Look hardest at pages built outside your main template</strong>: campaign landing
 pages, a checkout rebuilt by someone else, anything on a subdomain. That is where genuine coverage
 gaps live.</li>
 </ol>
@@ -913,7 +913,7 @@ gaps live.</li>
 
 <p>The underlying finding is worth keeping, which is why the noise mattered. A pixel that is
 missing from pages in the conversion path cannot record those conversions or add those visitors to
-a retargeting audience — the event fires on a page the platform never saw the visitor reach.</p>
+a retargeting audience. The event fires on a page the platform never saw the visitor reach.</p>
 
 <p>Notice what that does not say: it does not put a fraction on it. How much a gap costs depends on
 which page is missing the tag and what the platform does with a broken path, and an audit that
@@ -925,7 +925,7 @@ quotes you a percentage of lost conversions has invented it.</p>
 <li><strong>Hard-coding the pixel on every page as well as in your container.</strong> Now it fires
 twice on the pages that had it, your conversion counts inflate, and every comparison you make
 afterwards is against corrupted history.</li>
-<li><strong>Moving everything into a container to make the report clean.</strong> It will work —
+<li><strong>Moving everything into a container to make the report clean.</strong> It will work,
 and you have traded a visible gap for an invisible one, because now nothing outside the browser
 can see any of your tags.</li>
 <li><strong>Chasing a pixel reported on no pages.</strong> Before you touch anything, confirm the
@@ -937,7 +937,7 @@ do not recognise is often the one someone else's reporting depends on.</li>
 <h2>How to make every coverage number perfect</h2>
 
 <p>Load every tag through a container and leave nothing in the served HTML. No static audit can
-find a coverage gap, because none can find anything at all — and the inventory that would have
+find a coverage gap, because none can find anything at all, and the inventory that would have
 warned you about script weight goes quiet at the same time. <strong>A coverage number measures what
 a fetcher could see, not what fired.</strong> Worth holding on to in both directions: it is why the
 finding was wrong here, and why a clean one is not proof that your measurement works.</p>
@@ -951,7 +951,7 @@ analytics" is a claim about a list &rarr;</a>. For the lane as a whole, see
 <a href="/learn/marketing-tag-audit/">the marketing tag audit &rarr;</a>. For why a tag in the HTML
 and a tag on the page are different documents, see <a href="/how-to/javascript-seo-audit/">how to
 audit a JavaScript site &rarr;</a>.</p>
-<aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-pixels-reported-on-zero-pages" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-pixels-reported-on-zero-pages">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-pixels-reported-on-zero-pages">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Why does an audit say a pixel is on part of my site and then show zero pages?</h3><p>Because the inventory and the coverage count were read from different documents. The inventory includes tags found after the page was rendered; the count read only the HTML the server sent, so a tag injected by JavaScript scores zero everywhere.</p></div><div class="faq-item"><h3>Does a pixel loaded through a tag container count as installed?</h3><p>For your advertising platform, yes — it fires. For any audit reading served HTML, it is invisible, so coverage numbers about it are unsupported rather than wrong. Check the platform's own diagnostics instead.</p></div><div class="faq-item"><h3>Should I hard-code pixels on every page to fix a coverage finding?</h3><p>No. If the tag also loads through your container it will fire twice, inflating conversions and corrupting the history you compare against.</p></div><div class="faq-item"><h3>How much does a missing pixel actually cost?</h3><p>It depends on which page is missing it. The concrete loss is that conversions on that page cannot be recorded and those visitors cannot be added to a retargeting audience. Any audit quoting you a percentage has invented it.</p></div><div class="faq-item"><h3>How can I tell whether a coverage finding is real?</h3><p>Open your own platform's reporting. If it shows events from the pages the audit called untagged, the finding is about what a fetcher could see. If it shows a gap on a page in your conversion path, the finding is real and worth fixing today.</p></div></div></section>
+<aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-pixels-reported-on-zero-pages" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-pixels-reported-on-zero-pages">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-pixels-reported-on-zero-pages">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Why does an audit say a pixel is on part of my site and then show zero pages?</h3><p>Because the inventory and the coverage count were read from different documents. The inventory includes tags found after the page was rendered; the count read only the HTML the server sent, so a tag injected by JavaScript scores zero everywhere.</p></div><div class="faq-item"><h3>Does a pixel loaded through a tag container count as installed?</h3><p>For your advertising platform, yes: it fires. For any audit reading served HTML, it is invisible, so coverage numbers about it are unsupported rather than wrong. Check the platform's own diagnostics instead.</p></div><div class="faq-item"><h3>Should I hard-code pixels on every page to fix a coverage finding?</h3><p>No. If the tag also loads through your container it will fire twice, inflating conversions and corrupting the history you compare against.</p></div><div class="faq-item"><h3>How much does a missing pixel actually cost?</h3><p>It depends on which page is missing it. The concrete loss is that conversions on that page cannot be recorded and those visitors cannot be added to a retargeting audience. Any audit quoting you a percentage has invented it.</p></div><div class="faq-item"><h3>How can I tell whether a coverage finding is real?</h3><p>Open your own platform's reporting. If it shows events from the pages the audit called untagged, the finding is about what a fetcher could see. If it shows a gap on a page in your conversion path, the finding is real and worth fixing today.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

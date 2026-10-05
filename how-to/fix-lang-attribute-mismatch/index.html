@@ -14,7 +14,7 @@
 <title>hreflang and html lang mismatch: which one you have</title>
 <meta name="description" content="Three different faults share that description and have three different fixes. How to tell them apart in a minute, and which one to fix first.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-lang-attribute-mismatch/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -774,7 +774,7 @@ nav{z-index:40}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"hreflang and html lang mismatch","description":"Three different faults share that description and have three different fixes. How to tell them apart in a minute, and which one to fix first.","datePublished":"2026-09-09","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-lang-attribute-mismatch/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an hreflang and html lang mismatch?","acceptedAnswer":{"@type":"Answer","text":"Usually one of three things: the lang attribute contradicts the language the page is written in; the page's own hreflang entry uses a different code from its lang attribute; or the hreflang codes are not valid codes. They have different fixes, so it is worth knowing which one you are looking at."}},{"@type":"Question","name":"Which should I fix first, lang or hreflang?","acceptedAnswer":{"@type":"Answer","text":"The lang attribute, if it contradicts the prose. Everything else is a claim about a page whose own declaration of itself is wrong, and a screen reader is already mispronouncing the page for real readers today."}},{"@type":"Question","name":"Is en-UK valid?","acceptedAnswer":{"@type":"Answer","text":"No. The region subtag comes from ISO 3166-1 alpha-2, where the United Kingdom is GB, so en-GB is the valid form. An invalid code is discarded silently, which is why this survives so long in templates."}},{"@type":"Question","name":"Do the lang attribute and hreflang have to match exactly?","acceptedAnswer":{"@type":"Answer","text":"They have to agree about the language. A page declaring lang=&quot;en-gb&quot; whose own hreflang self-reference says de-de is telling two different stories about itself, and one of them is wrong. Reading the body text is what settles which."}},{"@type":"Question","name":"Does Docket detect a mismatch between hreflang and the lang attribute?","acceptedAnswer":{"@type":"Answer","text":"Not that specific comparison. Docket checks the declared language against the language the prose is actually in, reports missing lang attributes, and validates hreflang codes, self-references, return tags and targets — but it does not compare a page's hreflang self-reference to its own lang attribute."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an hreflang and html lang mismatch?","acceptedAnswer":{"@type":"Answer","text":"Usually one of three things: the lang attribute contradicts the language the page is written in; the page's own hreflang entry uses a different code from its lang attribute; or the hreflang codes are not valid codes. They have different fixes, so it is worth knowing which one you are looking at."}},{"@type":"Question","name":"Which should I fix first, lang or hreflang?","acceptedAnswer":{"@type":"Answer","text":"The lang attribute, if it contradicts the prose. Everything else is a claim about a page whose own declaration of itself is wrong, and a screen reader is already mispronouncing the page for real readers today."}},{"@type":"Question","name":"Is en-UK valid?","acceptedAnswer":{"@type":"Answer","text":"No. The region subtag comes from ISO 3166-1 alpha-2, where the United Kingdom is GB, so en-GB is the valid form. An invalid code is discarded silently, which is why this survives so long in templates."}},{"@type":"Question","name":"Do the lang attribute and hreflang have to match exactly?","acceptedAnswer":{"@type":"Answer","text":"They have to agree about the language. A page declaring lang=&quot;en-gb&quot; whose own hreflang self-reference says de-de is telling two different stories about itself, and one of them is wrong. Reading the body text is what settles which."}},{"@type":"Question","name":"Does Docket detect a mismatch between hreflang and the lang attribute?","acceptedAnswer":{"@type":"Answer","text":"Not that specific comparison. Docket checks the declared language against the language the prose is actually in, reports missing lang attributes, and validates hreflang codes, self-references, return tags and targets, but it does not compare a page's hreflang self-reference to its own lang attribute."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -838,11 +838,11 @@ wrong readers instead of reaching its own.</p>
 
 <p><strong>2. The hreflang code contradicts the page's own lang attribute.</strong> The page
 declares <code>lang="en-GB"</code> while its own hreflang entry calls it <code>de-DE</code>. One
-of the two is wrong, and nothing on the page tells you which — you have to read the prose to
+of the two is wrong, and nothing on the page tells you which. You have to read the prose to
 find out, which is why this collapses into fault 1 once you look.</p>
 
 <p><strong>3. The hreflang codes are not valid codes.</strong> <code>hreflang="en-UK"</code> is
-a common one — the country is <code>GB</code>, not <code>UK</code> — as are region codes in the
+a common one (the country is <code>GB</code>, not <code>UK</code>) as are region codes in the
 language slot and vice versa. An invalid code is discarded, silently, and the cluster it was
 part of is weakened.</p>
 
@@ -855,7 +855,7 @@ automated check that reads the body will tell you the page is Dutch. It is not. 
 
 <p>Docket now catches one shape of this and says so: when most of a page's words sit inside
 link text, the page is a listing rather than a piece of writing, and the finding is withheld.
-That covers a catalogue, an index or a directory — the titles are links. <strong>It does not
+That covers a catalogue, an index or a directory: the titles are links. <strong>It does not
 cover foreign prose that is not links</strong>, such as a quoted introduction or a pasted
 review in running text, so the fault above is still one you have to recognise yourself. The
 guard was added because this check was wrong about a real library catalogue.</p>
@@ -864,8 +864,8 @@ guard was added because this check was wrong about a real library catalogue.</p>
 
 <p>Open the page and read three things in this order.</p>
 
-<p><strong>The prose — and whose prose it is.</strong> What language is the body text actually
-in? Not the navigation — the body. Then ask the second question: did you write it? If almost
+<p><strong>The prose, and whose prose it is.</strong> What language is the body text actually
+in? Not the navigation: the body. Then ask the second question: did you write it? If almost
 everything you are reading sits inside links, or is a list of names, titles or addresses, you
 are looking at an index of other people's words, not at a page written in their language. That
 is fault 4, and the fix is to change nothing.</p>
@@ -906,7 +906,7 @@ entries.</li>
 
 <h2>Why the wrong attribute gets changed</h2>
 
-<p>Because the hreflang block is the visible, fiddly part, so it gets the attention — while the
+<p>Because the hreflang block is the visible, fiddly part, so it gets the attention, while the
 single <code>lang</code> attribute sits in the template, was set once years ago, and is copied
 onto every page including the translated ones. When a translation is added by duplicating an
 existing page, the lang attribute comes along for the ride. Every new language multiplies the
@@ -914,39 +914,39 @@ error rather than revealing it.</p>
 
 <p>The reciprocity rule is a separate fault again, and the most common hreflang defect there is:
 if page A declares B, then B must declare A, or the whole declaration is ignored. That one has
-its own page — <a href="/how-to/fix-hreflang-return-tags/">fixing hreflang tags with errors</a>
+its own page. <a href="/how-to/fix-hreflang-return-tags/">Fixing hreflang tags with errors</a>
 — because it cannot be seen by looking at either page alone.</p>
 
 <h2>What Docket checks here, and what it does not</h2>
 
 <p>Docket reads the declared language against the language the prose is actually in, and reports
-the pages where they disagree — fault 1, per page rather than per site, because one translated
+the pages where they disagree: fault 1, per page rather than per site, because one translated
 article among hundreds is the usual shape and it is the page that is wrong rather than the site.
 It also reports pages with no lang attribute at all, invalid and unrecognised hreflang codes,
 deprecated language subtags, missing self-references, missing return tags, and hreflang targets
 that 404, redirect or carry a noindex.</p>
 
 <p><strong>It does not compare a page's hreflang self-reference against its own
-<code>lang</code> attribute</strong> — fault 2 above. That check does not exist today, and this
+<code>lang</code> attribute</strong>: fault 2 above. That check does not exist today, and this
 page is not going to imply it does. Read the two by hand on a sample of pages, or catch it
 through fault 1, which the prose test does find.</p>
 
 <p>The full list is <a href="/learn/what-docket-checks/">what Docket checks</a>, and the wider
 procedure is <a href="/learn/seo-audit/">the technical SEO audit</a>. If your pages are built
 by a framework and the attributes are injected after load, check
-<a href="/how-to/javascript-seo-audit/">what the server actually sends</a> first — an attribute
+<a href="/how-to/javascript-seo-audit/">what the server actually sends</a> first. An attribute
 that only exists after JavaScript runs is not there for the crawlers that do not run it.</p>
 
 <h2>After you change it</h2>
 
-<p>Language declarations are template-level, so a fix is usually one edit affecting many pages —
+<p>Language declarations are template-level, so a fix is usually one edit affecting many pages,
 which is exactly the shape that wants checking afterwards rather than assuming.
 <a href="/learn/site-monitoring/">Monitoring</a> tells you what changed rather than what is true
 today, and a crawl of the affected section confirms the new attribute is on every page you
 expected and none you did not.</p>
 
 <aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-lang-attribute-mismatch" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-lang-attribute-mismatch">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-lang-attribute-mismatch">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is an hreflang and html lang mismatch?</h3><p>Usually one of three things: the lang attribute contradicts the language the page is written in; the page's own hreflang entry uses a different code from its lang attribute; or the hreflang codes are not valid codes. They have different fixes, so it is worth knowing which one you are looking at.</p></div><div class="faq-item"><h3>Which should I fix first, lang or hreflang?</h3><p>The lang attribute, if it contradicts the prose. Everything else is a claim about a page whose own declaration of itself is wrong, and a screen reader is already mispronouncing the page for real readers today.</p></div><div class="faq-item"><h3>Is en-UK valid?</h3><p>No. The region subtag comes from ISO 3166-1 alpha-2, where the United Kingdom is GB, so en-GB is the valid form. An invalid code is discarded silently, which is why this survives so long in templates.</p></div><div class="faq-item"><h3>Do the lang attribute and hreflang have to match exactly?</h3><p>They have to agree about the language. A page declaring lang="en-gb" whose own hreflang self-reference says de-de is telling two different stories about itself, and one of them is wrong. Reading the body text is what settles which.</p></div><div class="faq-item"><h3>Does Docket detect a mismatch between hreflang and the lang attribute?</h3><p>Not that specific comparison. Docket checks the declared language against the language the prose is actually in, reports missing lang attributes, and validates hreflang codes, self-references, return tags and targets — but it does not compare a page's hreflang self-reference to its own lang attribute.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is an hreflang and html lang mismatch?</h3><p>Usually one of three things: the lang attribute contradicts the language the page is written in; the page's own hreflang entry uses a different code from its lang attribute; or the hreflang codes are not valid codes. They have different fixes, so it is worth knowing which one you are looking at.</p></div><div class="faq-item"><h3>Which should I fix first, lang or hreflang?</h3><p>The lang attribute, if it contradicts the prose. Everything else is a claim about a page whose own declaration of itself is wrong, and a screen reader is already mispronouncing the page for real readers today.</p></div><div class="faq-item"><h3>Is en-UK valid?</h3><p>No. The region subtag comes from ISO 3166-1 alpha-2, where the United Kingdom is GB, so en-GB is the valid form. An invalid code is discarded silently, which is why this survives so long in templates.</p></div><div class="faq-item"><h3>Do the lang attribute and hreflang have to match exactly?</h3><p>They have to agree about the language. A page declaring lang="en-gb" whose own hreflang self-reference says de-de is telling two different stories about itself, and one of them is wrong. Reading the body text is what settles which.</p></div><div class="faq-item"><h3>Does Docket detect a mismatch between hreflang and the lang attribute?</h3><p>Not that specific comparison. Docket checks the declared language against the language the prose is actually in, reports missing lang attributes, and validates hreflang codes, self-references, return tags and targets, but it does not compare a page's hreflang self-reference to its own lang attribute.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

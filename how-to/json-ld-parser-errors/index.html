@@ -14,7 +14,7 @@
 <title>Read the JSON-LD error, not the guess</title>
 <meta name="description" content="What each JSON-LD parser message means, and why fixing one error per page can leave an audit's findings true and a site still broken.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/how-to/json-ld-parser-errors/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -774,7 +774,7 @@ nav{z-index:40}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Read the JSON-LD error, not the guess","description":"What each JSON-LD parser message means, and why fixing one error per page can leave an audit's findings true and a site still broken.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/json-ld-parser-errors/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does Invalid control character mean in JSON-LD?","acceptedAnswer":{"@type":"Answer","text":"A literal newline, tab or carriage return inside a string value. JSON forbids them unescaped, and it is almost always a CMS writing a multi-line HTML field straight into the script block."}},{"@type":"Question","name":"My audit lists likely causes that do not match my error. Which do I trust?","acceptedAnswer":{"@type":"Answer","text":"The error message. The tool parsed your block and caught the exact exception; a list of usual suspects beside it is a guess that may predate your case."}},{"@type":"Question","name":"If one block on a page is invalid, does the rest still count?","acceptedAnswer":{"@type":"Answer","text":"Invalid JSON is not partially read — the whole block is discarded. A page can carry several blocks, so fix every one and re-validate rather than stopping at the first."}},{"@type":"Question","name":"Why did fixing the reported error not fix my page?","acceptedAnswer":{"@type":"Answer","text":"Because there was more than one. A check that records a single error per page can report that they all fail the same way when it only ever looked at one of them."}},{"@type":"Question","name":"How do I find which page broke when the template is fine?","acceptedAnswer":{"@type":"Answer","text":"Validate the rendered output rather than the template. These faults come from data interpolated without escaping, so they appear only on the records whose text happens to contain a quote or a line break."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does Invalid control character mean in JSON-LD?","acceptedAnswer":{"@type":"Answer","text":"A literal newline, tab or carriage return inside a string value. JSON forbids them unescaped, and it is almost always a CMS writing a multi-line HTML field straight into the script block."}},{"@type":"Question","name":"My audit lists likely causes that do not match my error. Which do I trust?","acceptedAnswer":{"@type":"Answer","text":"The error message. The tool parsed your block and caught the exact exception; a list of usual suspects beside it is a guess that may predate your case."}},{"@type":"Question","name":"If one block on a page is invalid, does the rest still count?","acceptedAnswer":{"@type":"Answer","text":"Invalid JSON is not partially read: the whole block is discarded. A page can carry several blocks, so fix every one and re-validate rather than stopping at the first."}},{"@type":"Question","name":"Why did fixing the reported error not fix my page?","acceptedAnswer":{"@type":"Answer","text":"Because there was more than one. A check that records a single error per page can report that they all fail the same way when it only ever looked at one of them."}},{"@type":"Question","name":"How do I find which page broke when the template is fine?","acceptedAnswer":{"@type":"Answer","text":"Validate the rendered output rather than the template. These faults come from data interpolated without escaping, so they appear only on the records whose text happens to contain a quote or a line break."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -837,8 +837,8 @@ exception. It is holding the exact reason. Docket printed that exception and <em
 a fixed list of three usual suspects: a trailing comma, an unescaped quote, HTML entities the CMS
 encoded into the block.</p>
 
-<p>On a consumer-rights body's site, every page checked failed with the same message —
-<code>Invalid control character</code> — which is none of those three. The real cause was a raw
+<p>On a consumer-rights body's site, every page checked failed with the same message (
+<code>Invalid control character</code>), which is none of those three. The real cause was a raw
 newline inside a string holding HTML, exactly the shape a CMS produces when it writes a
 multi-line field straight into a script block.</p>
 
@@ -853,22 +853,22 @@ guess while holding the evidence is the defect.</strong></p>
 means for the person fixing it:</p>
 
 <ul>
-<li><strong><code>Invalid control character</code></strong> — a literal newline, tab or carriage
+<li><strong><code>Invalid control character</code></strong>: a literal newline, tab or carriage
 return inside a string value. JSON forbids them unescaped, so write them as <code>\n</code> and
 <code>\t</code>, or strip them. Almost always a CMS writing multi-line HTML into a field.</li>
-<li><strong><code>Expecting property name enclosed in double quotes</code></strong> — a trailing
+<li><strong><code>Expecting property name enclosed in double quotes</code></strong>: a trailing
 comma before a closing brace or bracket, or a key quoted with apostrophes instead of double
 quotes.</li>
-<li><strong><code>Expecting ',' delimiter</code></strong> — an unescaped double quote inside a
+<li><strong><code>Expecting ',' delimiter</code></strong>: an unescaped double quote inside a
 string value. Write it as <code>\"</code>.</li>
-<li><strong><code>Expecting value</code></strong> — an empty field emitted with nothing after the
+<li><strong><code>Expecting value</code></strong>: an empty field emitted with nothing after the
 colon, or HTML entities such as <code>&amp;quot;</code> that the CMS encoded into the script
 block.</li>
-<li><strong><code>Extra data</code></strong> — two JSON documents in one script block. Give each
+<li><strong><code>Extra data</code></strong>: two JSON documents in one script block. Give each
 its own block, or combine them into a single array.</li>
-<li><strong><code>Unterminated string starting at</code></strong> — a string that never closes,
+<li><strong><code>Unterminated string starting at</code></strong>: a string that never closes,
 usually an unescaped quote or a template cut off mid-render.</li>
-<li><strong><code>Invalid \escape</code></strong> — a lone backslash, typically from a Windows
+<li><strong><code>Invalid \escape</code></strong>: a lone backslash, typically from a Windows
 path or a regular expression. Double it.</li>
 </ul>
 
@@ -887,7 +887,7 @@ already-recorded page was never looked at.</p>
 
 <p>On a hardware vendor's site every page carried two JSON-LD blocks, and several had
 <strong>both</strong> broken, with different errors. The report named one missing comma. Somebody
-fixes the comma, re-tests, and the page is still discarded by the search engine — which is exactly
+fixes the comma, re-tests, and the page is still discarded by the search engine, which is exactly
 the outcome the check exists to prevent.</p>
 
 <p><strong>Sampling one instance per page and then summarising across pages produces a claim that
@@ -903,20 +903,20 @@ so the summary describes the site rather than the sample.</p>
 <ul>
 <li><strong>Validate the rendered output, not the template.</strong> The commonest cause is a CMS
 field interpolated into JSON without escaping, so it breaks only for the products whose
-descriptions happen to contain a quote or a line break — which is why it survives
+descriptions happen to contain a quote or a line break, which is why it survives
 spot-checking.</li>
 <li><strong>Fix every block on the page, then re-validate.</strong> One page can carry several,
 and a page is discarded if any block it depends on is invalid.</li>
 <li><strong>Read the parser message first.</strong> Thirty seconds with the list above beats an
 afternoon with a generic checklist.</li>
-<li><strong>Check the records most likely to contain punctuation</strong> — product descriptions
+<li><strong>Check the records most likely to contain punctuation</strong>: product descriptions
 with quotation marks, addresses with line breaks, anything pasted from a word processor.</li>
 </ul>
 
 <h2>When this matters most, and when it does not</h2>
 
-<p>It matters most on templated pages that carry commercial markup — products, events, recipes,
-jobs — because the fault is invisible on the page and total in effect. There is no partial
+<p>It matters most on templated pages that carry commercial markup (products, events, recipes,
+jobs) because the fault is invisible on the page and total in effect. There is no partial
 credit.</p>
 
 <p>It matters least where the block was aspirational: markup added for an entity you were never
@@ -937,19 +937,19 @@ or quote without knowing which one broke tends to produce a second, different pa
 <h2>How to make this finding disappear without fixing anything</h2>
 
 <p>Delete the script block. The finding clears, the page becomes one with no structured data at
-all, and no tool will complain — because an absent block and a discarded block look identical to
+all, and no tool will complain, because an absent block and a discarded block look identical to
 a search engine. That equivalence is the whole reason this fault is worth catching: <strong>you
 already have the outcome of deleting it, and you are paying to generate it.</strong></p>
 
 <h2>Where this sits in an audit</h2>
 
 <p>The registered check is <code>schema.invalid</code>, which covers JSON-LD that does not parse.
-For the other structured-data faults — markup contradicting the visible page, required properties
-genuinely missing, coverage as a judgement rather than an error — see
+For the other structured-data faults (markup contradicting the visible page, required properties
+genuinely missing, coverage as a judgement rather than an error) see
 <a href="/how-to/fix-structured-data-errors/">how to fix structured data errors &rarr;</a>. For
 the case where the block parses perfectly and still resolves to nothing, see
 <a href="/how-to/schema-id-references/">an @id is a pointer, not a definition &rarr;</a>.</p>
-<aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-json-ld-parser-errors" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-json-ld-parser-errors">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-json-ld-parser-errors">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What does Invalid control character mean in JSON-LD?</h3><p>A literal newline, tab or carriage return inside a string value. JSON forbids them unescaped, and it is almost always a CMS writing a multi-line HTML field straight into the script block.</p></div><div class="faq-item"><h3>My audit lists likely causes that do not match my error. Which do I trust?</h3><p>The error message. The tool parsed your block and caught the exact exception; a list of usual suspects beside it is a guess that may predate your case.</p></div><div class="faq-item"><h3>If one block on a page is invalid, does the rest still count?</h3><p>Invalid JSON is not partially read — the whole block is discarded. A page can carry several blocks, so fix every one and re-validate rather than stopping at the first.</p></div><div class="faq-item"><h3>Why did fixing the reported error not fix my page?</h3><p>Because there was more than one. A check that records a single error per page can report that they all fail the same way when it only ever looked at one of them.</p></div><div class="faq-item"><h3>How do I find which page broke when the template is fine?</h3><p>Validate the rendered output rather than the template. These faults come from data interpolated without escaping, so they appear only on the records whose text happens to contain a quote or a line break.</p></div></div></section>
+<aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-json-ld-parser-errors" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-json-ld-parser-errors">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-json-ld-parser-errors">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What does Invalid control character mean in JSON-LD?</h3><p>A literal newline, tab or carriage return inside a string value. JSON forbids them unescaped, and it is almost always a CMS writing a multi-line HTML field straight into the script block.</p></div><div class="faq-item"><h3>My audit lists likely causes that do not match my error. Which do I trust?</h3><p>The error message. The tool parsed your block and caught the exact exception; a list of usual suspects beside it is a guess that may predate your case.</p></div><div class="faq-item"><h3>If one block on a page is invalid, does the rest still count?</h3><p>Invalid JSON is not partially read: the whole block is discarded. A page can carry several blocks, so fix every one and re-validate rather than stopping at the first.</p></div><div class="faq-item"><h3>Why did fixing the reported error not fix my page?</h3><p>Because there was more than one. A check that records a single error per page can report that they all fail the same way when it only ever looked at one of them.</p></div><div class="faq-item"><h3>How do I find which page broke when the template is fine?</h3><p>Validate the rendered output rather than the template. These faults come from data interpolated without escaping, so they appear only on the records whose text happens to contain a quote or a line break.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

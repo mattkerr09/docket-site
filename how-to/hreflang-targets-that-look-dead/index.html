@@ -14,7 +14,7 @@
 <title>Why an hreflang target is reported as dead</title>
 <meta name="description" content="Four reasons an hreflang target is called broken, two of which are facts about the audit rather than about your site.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/how-to/hreflang-targets-that-look-dead/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -774,7 +774,7 @@ nav{z-index:40}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Why an hreflang target is reported as dead","description":"Four reasons an hreflang target is called broken, two of which are facts about the audit rather than about your site.","datePublished":"2026-09-18","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/hreflang-targets-that-look-dead/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"My hreflang targets load fine but the audit calls them unreachable. Why?","acceptedAnswer":{"@type":"Answer","text":"Because the crawler got no response — a refused connection, a DNS hiccup or a timeout. A status of zero is not something your server sent, so nothing has been learned about that URL."}},{"@type":"Question","name":"Is a 403 on an hreflang target a problem?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. A refusal is a fact about the tool that asked, not about what a search engine is served. If the whole site refused the audit, treat target-level findings as unverified."}},{"@type":"Question","name":"Should hreflang point at a URL that redirects?","acceptedAnswer":{"@type":"Answer","text":"No — point it at where the redirect lands, and make sure that page carries the return tag back. A cluster resolves better when every member is a destination."}},{"@type":"Question","name":"Can an hreflang target be noindex?","acceptedAnswer":{"@type":"Answer","text":"It should not be. Naming a page in a language cluster while telling search engines to ignore that page is a contradiction, and the cluster is the easier half to correct."}},{"@type":"Question","name":"One bad target — does it matter?","acceptedAnswer":{"@type":"Answer","text":"More than its severity suggests. An hreflang set is a group of mutual claims, so a member that does not resolve weakens the set rather than only itself."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"My hreflang targets load fine but the audit calls them unreachable. Why?","acceptedAnswer":{"@type":"Answer","text":"Because the crawler got no response: a refused connection, a DNS hiccup or a timeout. A status of zero is not something your server sent, so nothing has been learned about that URL."}},{"@type":"Question","name":"Is a 403 on an hreflang target a problem?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. A refusal is a fact about the tool that asked, not about what a search engine is served. If the whole site refused the audit, treat target-level findings as unverified."}},{"@type":"Question","name":"Should hreflang point at a URL that redirects?","acceptedAnswer":{"@type":"Answer","text":"No: point it at where the redirect lands, and make sure that page carries the return tag back. A cluster resolves better when every member is a destination."}},{"@type":"Question","name":"Can an hreflang target be noindex?","acceptedAnswer":{"@type":"Answer","text":"It should not be. Naming a page in a language cluster while telling search engines to ignore that page is a contradiction, and the cluster is the easier half to correct."}},{"@type":"Question","name":"One bad target: does it matter?","acceptedAnswer":{"@type":"Answer","text":"More than its severity suggests. An hreflang set is a group of mutual claims, so a member that does not resolve weakens the set rather than only itself."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -825,7 +825,7 @@ fbq('track','PageView');
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / hreflang targets</div><h1>Why an hreflang target is reported as dead</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
 <p class="lede">An audit says your hreflang tags point at URLs that do not work. Before you edit a
-single tag, it is worth knowing that "does not work" covers four quite different situations — and
+single tag, it is worth knowing that "does not work" covers four quite different situations, and
 on the two most common ones the honest answer is that the tool learned nothing.</p>
 
 <h2>The four causes, and who each one is about</h2>
@@ -840,21 +840,21 @@ yourself.</li>
 <li><strong>The target refused the crawler.</strong> <em>This is a fact about the audit, not about
 your site.</em> A 403 to one tool says nothing about what a search engine is served, and it is not
 evidence that anything in the cluster is broken.</li>
-<li><strong>The target sent nothing at all.</strong> A status of zero is not a response — it is a
+<li><strong>The target sent nothing at all.</strong> A status of zero is not a response: it is a
 refused connection, a DNS hiccup, a timeout, a dropped packet. The tool has no information
 whatever about that URL.</li>
 </ul>
 
 <p>The last two used to be reported like the first two. The zero case sat inside the
 error branch and produced a medium-severity finding saying the reader's hreflang tags pointed at
-"unusable URLs" that returned "no response" — <strong>from a blip on one machine.</strong></p>
+"unusable URLs" that returned "no response": <strong>from a blip on one machine.</strong></p>
 
 <h2>The refusal that deliberately says nothing</h2>
 
 <p>Worth its own paragraph, because the fix here was to report <em>less</em>.</p>
 
 <p>When a target refuses the crawler, the check could add an "unverified" note of its own. It does
-not — because if the site is refusing the audit at all, the site-level check already says so,
+not, because if the site is refusing the audit at all, the site-level check already says so,
 clearly, once. <strong>Two findings describing one fact are not twice as informative; they are the
 same news twice, and the reader has to work out they are the same thing.</strong></p>
 
@@ -864,27 +864,27 @@ diagnosis &rarr;</a>.</p>
 
 <h2>The redirect test that could only fire on correct sites</h2>
 
-<p>This is the half worth the page. The remaining cause — an hreflang target that redirects
-somewhere else instead of resolving directly — is genuinely worth reporting, because a cluster
+<p>This is the half worth the page. The remaining cause (an hreflang target that redirects
+somewhere else instead of resolving directly) is genuinely worth reporting, because a cluster
 resolves better when every URL in it is a destination rather than a stop on the way.</p>
 
 <p>The old test read the wrong end of the data. A crawler records, for each page it fetched, the
 chain of URLs that <em>led to</em> that page. That chain is non-empty exactly when the crawler
-arrived by being redirected — which makes the page it is attached to the <strong>final
+arrived by being redirected, which makes the page it is attached to the <strong>final
 destination</strong>, the thing hreflang is supposed to point at.</p>
 
 <p>So the check fired when the target was already right. On one site with thousands of distinct
 hreflang targets it produced exactly one finding: a URL that returns 200 and does not redirect
 anywhere, which the crawler had simply reached from a different address. The advice attached was
-<em>point each hreflang at the final destination URL</em> — given to a site that already was.</p>
+<em>point each hreflang at the final destination URL</em>. Given to a site that already was.</p>
 
 <p><strong>A test that fires only on correct input is worse than a test that never fires</strong>,
 because it produces confident work for people who had nothing to fix, and it is invisible in
 aggregate: the finding count looks plausible, the affected sites look unlucky, and nobody
 investigates a rule that is quiet on the sites where the fault is real.</p>
 
-<p>The repair was to collect the URLs that were redirected <em>away from</em> — the first entries
-of those chains — and test membership of that set instead.</p>
+<p>The repair was to collect the URLs that were redirected <em>away from</em> (the first entries
+of those chains), and test membership of that set instead.</p>
 
 <h2>Reading this on your own report</h2>
 
@@ -903,7 +903,7 @@ and check the page you land on carries the return tag back.</li>
 <h2>When this matters</h2>
 
 <p>An hreflang cluster is a set of mutual claims, and one bad member weakens the set rather than
-just itself — which is why a dead target is worth more attention than its severity suggests. But
+just itself, which is why a dead target is worth more attention than its severity suggests. But
 that is true only of the causes that are about your site. A target reported as unreachable by a
 tool that could not connect is not a defect in your markup, and rewriting tags to chase it makes
 a correct cluster wrong.</p>
@@ -922,7 +922,7 @@ should name it directly and usually already does.</li>
 <h2>How to clear this without improving anything</h2>
 
 <p>Delete the hreflang annotations. Every target-health finding disappears, along with any chance
-of the right language version being served — which is the general shape of these pages: <strong>the
+of the right language version being served, which is the general shape of these pages: <strong>the
 fastest way to a clean report is always to remove the thing being measured.</strong></p>
 
 <h2>Where this sits in an audit</h2>
@@ -931,7 +931,7 @@ fastest way to a clean report is always to remove the thing being measured.</str
 health. Its siblings cover the other halves of the subject:
 <a href="/how-to/fix-hreflang-return-tags/">return tags and the four ways a set breaks &rarr;</a>,
 and <a href="/how-to/fix-invalid-hreflang-codes/">invalid language and region codes &rarr;</a>.</p>
-<aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-hreflang-targets-that-look-dead" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-hreflang-targets-that-look-dead">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-hreflang-targets-that-look-dead">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>My hreflang targets load fine but the audit calls them unreachable. Why?</h3><p>Because the crawler got no response — a refused connection, a DNS hiccup or a timeout. A status of zero is not something your server sent, so nothing has been learned about that URL.</p></div><div class="faq-item"><h3>Is a 403 on an hreflang target a problem?</h3><p>Not necessarily. A refusal is a fact about the tool that asked, not about what a search engine is served. If the whole site refused the audit, treat target-level findings as unverified.</p></div><div class="faq-item"><h3>Should hreflang point at a URL that redirects?</h3><p>No — point it at where the redirect lands, and make sure that page carries the return tag back. A cluster resolves better when every member is a destination.</p></div><div class="faq-item"><h3>Can an hreflang target be noindex?</h3><p>It should not be. Naming a page in a language cluster while telling search engines to ignore that page is a contradiction, and the cluster is the easier half to correct.</p></div><div class="faq-item"><h3>One bad target — does it matter?</h3><p>More than its severity suggests. An hreflang set is a group of mutual claims, so a member that does not resolve weakens the set rather than only itself.</p></div></div></section>
+<aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-hreflang-targets-that-look-dead" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-hreflang-targets-that-look-dead">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-hreflang-targets-that-look-dead">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>My hreflang targets load fine but the audit calls them unreachable. Why?</h3><p>Because the crawler got no response: a refused connection, a DNS hiccup or a timeout. A status of zero is not something your server sent, so nothing has been learned about that URL.</p></div><div class="faq-item"><h3>Is a 403 on an hreflang target a problem?</h3><p>Not necessarily. A refusal is a fact about the tool that asked, not about what a search engine is served. If the whole site refused the audit, treat target-level findings as unverified.</p></div><div class="faq-item"><h3>Should hreflang point at a URL that redirects?</h3><p>No: point it at where the redirect lands, and make sure that page carries the return tag back. A cluster resolves better when every member is a destination.</p></div><div class="faq-item"><h3>Can an hreflang target be noindex?</h3><p>It should not be. Naming a page in a language cluster while telling search engines to ignore that page is a contradiction, and the cluster is the easier half to correct.</p></div><div class="faq-item"><h3>One bad target: does it matter?</h3><p>More than its severity suggests. An hreflang set is a group of mutual claims, so a member that does not resolve weakens the set rather than only itself.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

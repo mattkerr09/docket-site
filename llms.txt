@@ -154,13 +154,13 @@ Michigan, United States.
 - [How to fix CLS issues (cumulative layout shift)](https://docketseo.app/how-to/fix-layout-shift/): Layout shift is almost always images with no width and height. The fix, the four other causes, and why a crawler can report the risk but not the score.
 - [How to fix hreflang tags with errors (return tags)](https://docketseo.app/how-to/fix-hreflang-return-tags/): hreflang only works when the link goes both ways. Why one-way declarations are ignored, the four ways a set breaks, and why canonical must agree.
 - [How to fix duplicate title tags — and what it won't fix](https://docketseo.app/how-to/fix-duplicate-title-tags/): Duplicate titles are not a penalty. They let the wrong page on your site win the query and waste the one line of the result you get to write.
-- [How to write title tags that fit (width, not characters)](https://docketseo.app/how-to/write-title-tags-that-fit/): Search engines truncate by pixel width, not character count — which makes the usual advice wrong on any site that is not entirely English.
+- [How to write title tags that fit (width, not characters)](https://docketseo.app/how-to/write-title-tags-that-fit/): Search engines truncate by pixel width, not character count, which makes the usual advice wrong on any site that is not entirely English.
 - [How to run a JavaScript SEO audit (step by step)](https://docketseo.app/how-to/javascript-seo-audit/): A JavaScript SEO audit compares the HTML your server sends against the rendered page, in five steps. Which of the three gaps you have decides the fix.
 - [How to fix conflicting canonical tags](https://docketseo.app/how-to/fix-conflicting-canonicals/): Two canonicals on one page, canonicals pointing at noindex pages or another domain, and the section-wide mistake that can cost a site its long tail.
 - [Content audit with Ahrefs: which tool does what](https://docketseo.app/how-to/content-audit/): Ahrefs sells no product called Content Audit. What the job is, which of their tools covers which part, and the order that wastes least time.
 - [hreflang and html lang mismatch: which one you have](https://docketseo.app/how-to/fix-lang-attribute-mismatch/): Three different faults share that description and have three different fixes. How to tell them apart in a minute, and which one to fix first.
 - [Backlink audit: which questions are worth paying for](https://docketseo.app/how-to/backlink-audit/): Ahrefs sells no product called Backlink Audit. The three questions an audit asks, which tool answers each, and what an open link graph cannot.
-- [How to redirect http:// to https:// — and when it won't](https://docketseo.app/how-to/redirect-http-to-https/): A 301 from http:// to https://, host by host — plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.
+- [How to redirect http:// to https:// — and when it won't](https://docketseo.app/how-to/redirect-http-to-https/): A 301 from http:// to https://, host by host. Plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.
 
 ## Policies
 

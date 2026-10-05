@@ -14,7 +14,7 @@
 <title>AI crawler directives: which to block, which to keep</title>
 <meta name="description" content="Docket checks 19 AI crawlers from 10 companies. Blocking a training bot and blocking a search bot are different decisions with different costs.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/learn/ai-crawler-directives/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -774,7 +774,7 @@ nav{z-index:40}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"AI crawler directives: which to block, which to keep","description":"Docket checks 19 AI crawlers from 10 companies. Blocking a training bot and blocking a search bot are different decisions with different costs.","datePublished":"2026-09-16","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/ai-crawler-directives/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many AI crawlers are there?","acceptedAnswer":{"@type":"Answer","text":"Docket checks 19 by name, operated by 10 companies, and the list changes: OpenAI split OAI-SearchBot out of GPTBot after launch and Anthropic retired Claude-Web. The number on this page is read from the product's own table rather than typed, so it cannot drift away from what Docket actually checks."}},{"@type":"Question","name":"Should I block AI crawlers from my website?","acceptedAnswer":{"@type":"Answer","text":"It depends which one, and that is the point. Blocking a training crawler keeps your writing out of a model and costs you no visibility. Blocking a search-index crawler removes you from the answers that cite live sources. Many sites make the second decision while intending only the first."}},{"@type":"Question","name":"Does blocking GPTBot stop ChatGPT citing my site?","acceptedAnswer":{"@type":"Answer","text":"No. GPTBot collects training data; OAI-SearchBot builds the index ChatGPT Search answers from. They are separate user-agents and a robots.txt rule for one says nothing about the other. In the robots.txt files we read, the two blocks travel together 97.4% of the time."}},{"@type":"Question","name":"Do noai and noimageai meta tags work?","acceptedAnswer":{"@type":"Answer","text":"None of the crawler operators in Docket's table documents support for them, so this page does not tell you they work. robots.txt is the mechanism these operators publish rules for. A request is all any of them is."}},{"@type":"Question","name":"Why does Docket say a crawler is blocked when my robots.txt allows it?","acceptedAnswer":{"@type":"Answer","text":"Because a CDN or firewall rule can return 403 to that crawler regardless of what the file says, and the file cannot see it. Docket tests access at the edge as well as reading the rules, and reports the two separately — a file that says yes and a server that says no is rarely a configuration anyone chose deliberately."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many AI crawlers are there?","acceptedAnswer":{"@type":"Answer","text":"Docket checks 19 by name, operated by 10 companies, and the list changes: OpenAI split OAI-SearchBot out of GPTBot after launch and Anthropic retired Claude-Web. The number on this page is read from the product's own table rather than typed, so it cannot drift away from what Docket actually checks."}},{"@type":"Question","name":"Should I block AI crawlers from my website?","acceptedAnswer":{"@type":"Answer","text":"It depends which one, and that is the point. Blocking a training crawler keeps your writing out of a model and costs you no visibility. Blocking a search-index crawler removes you from the answers that cite live sources. Many sites make the second decision while intending only the first."}},{"@type":"Question","name":"Does blocking GPTBot stop ChatGPT citing my site?","acceptedAnswer":{"@type":"Answer","text":"No. GPTBot collects training data; OAI-SearchBot builds the index ChatGPT Search answers from. They are separate user-agents and a robots.txt rule for one says nothing about the other. In the robots.txt files we read, the two blocks travel together 97.4% of the time."}},{"@type":"Question","name":"Do noai and noimageai meta tags work?","acceptedAnswer":{"@type":"Answer","text":"None of the crawler operators in Docket's table documents support for them, so this page does not tell you they work. robots.txt is the mechanism these operators publish rules for. A request is all any of them is."}},{"@type":"Question","name":"Why does Docket say a crawler is blocked when my robots.txt allows it?","acceptedAnswer":{"@type":"Answer","text":"Because a CDN or firewall rule can return 403 to that crawler regardless of what the file says, and the file cannot see it. Docket tests access at the edge as well as reading the rules, and reports the two separately. A file that says yes and a server that says no is rarely a configuration anyone chose deliberately."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -839,14 +839,14 @@ cost of blocking each one is different.</p>
 writing does not become training data. It does <em>not</em> remove you from any answer.</li>
 <li><strong>Search-index crawlers</strong> build the index an assistant searches when it answers
 a question with live citations. Blocking one removes you from those answers entirely.</li>
-<li><strong>Live-fetch agents</strong> retrieve a page at the moment a user asks about it —
+<li><strong>Live-fetch agents</strong> retrieve a page at the moment a user asks about it,
 usually because someone pasted your URL. Blocking one means the assistant cannot read a page a
 user explicitly asked it to read.</li>
 </ul>
 
 <p>That is why "should I block AI crawlers?" has no single answer. Keeping your writing out of a
 training set while staying quotable in ChatGPT Search is a perfectly coherent position, and it
-is one robots.txt can express precisely — if you know which name does which job.</p>
+is one robots.txt can express precisely. If you know which name does which job.</p>
 
 <h2>What we found in published robots.txt files</h2>
 
@@ -855,19 +855,19 @@ is one robots.txt can express precisely — if you know which name does which jo
 1,381 block at least one. So far so unsurprising. The number worth
 sitting with is this one:</p>
 
-<p><strong>735 of those sites —
-53.2% — block only training crawlers</strong>, which is the
+<p><strong>735 of those sites (
+53.2%) block only training crawlers</strong>, which is the
 decision described above, made deliberately and correctly. The rest did something broader.
 Among sites that block <code>OAI-SearchBot</code> and therefore leave ChatGPT Search,
 97.4% also block <code>GPTBot</code>.</p>
 
-<p>That overlap is the tell. It is consistent with one decision — "block OpenAI" — applied to
+<p>That overlap is the tell. It is consistent with one decision ("block OpenAI") applied to
 every OpenAI user-agent at once, rather than two decisions taken separately. We cannot prove
 intent from a file and we are not going to try: what the number shows is that the two blocks
 travel together almost always, and one of them has a cost the other does not.</p>
 
 <p>One caveat that applies to every figure here. These are measurements of
-<strong>access</strong> — what a file permits — and nothing downstream. We did not measure
+<strong>access</strong> (what a file permits), and nothing downstream. We did not measure
 citations, traffic or revenue, and no figure on this page should be read as measuring them.</p>
 
 <h2>The 19 crawlers, and what each block costs</h2>
@@ -919,8 +919,8 @@ Disallow: /</code></pre>
 <code>User-agent: *</code> block added for some unrelated reason, which catches every crawler in
 the table above including the 5 that decide whether you can be cited. The second is
 blocking at the CDN or firewall instead of in robots.txt: an edge rule that returns 403 to an AI
-crawler is invisible in your robots.txt file, so every tool that reads the file — including the
-robots half of Docket — will tell you the crawler is allowed. Docket checks both, and reports
+crawler is invisible in your robots.txt file, so every tool that reads the file (including the
+robots half of Docket) will tell you the crawler is allowed. Docket checks both, and reports
 them separately, because a file that says yes and a server that says no is a configuration
 nobody chose on purpose.</p>
 
@@ -934,7 +934,7 @@ directive.</p>
 
 <p>And robots.txt says nothing about whether an assistant can make sense of your page once it
 arrives. Most AI crawlers do not run JavaScript, so a page whose content is assembled in the
-browser is effectively blank to them even when every rule permits it —
+browser is effectively blank to them even when every rule permits it.
 <a href="/learn/ai-search-visibility/">AI search visibility</a> covers the rest of that.</p>
 
 <p>To see what your own robots.txt says to each crawler in the table, use the free
@@ -942,7 +942,7 @@ browser is effectively blank to them even when every rule permits it —
 detail, see <a href="/learn/what-is-claudebot/">What is ClaudeBot?</a></p>
 
 <aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=learn-ai-crawler-directives" data-ev="Buy" data-ev-price="349" data-ev-button="learn-ai-crawler-directives">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-ai-crawler-directives">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How many AI crawlers are there?</h3><p>Docket checks 19 by name, operated by 10 companies, and the list changes: OpenAI split OAI-SearchBot out of GPTBot after launch and Anthropic retired Claude-Web. The number on this page is read from the product's own table rather than typed, so it cannot drift away from what Docket actually checks.</p></div><div class="faq-item"><h3>Should I block AI crawlers from my website?</h3><p>It depends which one, and that is the point. Blocking a training crawler keeps your writing out of a model and costs you no visibility. Blocking a search-index crawler removes you from the answers that cite live sources. Many sites make the second decision while intending only the first.</p></div><div class="faq-item"><h3>Does blocking GPTBot stop ChatGPT citing my site?</h3><p>No. GPTBot collects training data; OAI-SearchBot builds the index ChatGPT Search answers from. They are separate user-agents and a robots.txt rule for one says nothing about the other. In the robots.txt files we read, the two blocks travel together 97.4% of the time.</p></div><div class="faq-item"><h3>Do noai and noimageai meta tags work?</h3><p>None of the crawler operators in Docket's table documents support for them, so this page does not tell you they work. robots.txt is the mechanism these operators publish rules for. A request is all any of them is.</p></div><div class="faq-item"><h3>Why does Docket say a crawler is blocked when my robots.txt allows it?</h3><p>Because a CDN or firewall rule can return 403 to that crawler regardless of what the file says, and the file cannot see it. Docket tests access at the edge as well as reading the rules, and reports the two separately — a file that says yes and a server that says no is rarely a configuration anyone chose deliberately.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How many AI crawlers are there?</h3><p>Docket checks 19 by name, operated by 10 companies, and the list changes: OpenAI split OAI-SearchBot out of GPTBot after launch and Anthropic retired Claude-Web. The number on this page is read from the product's own table rather than typed, so it cannot drift away from what Docket actually checks.</p></div><div class="faq-item"><h3>Should I block AI crawlers from my website?</h3><p>It depends which one, and that is the point. Blocking a training crawler keeps your writing out of a model and costs you no visibility. Blocking a search-index crawler removes you from the answers that cite live sources. Many sites make the second decision while intending only the first.</p></div><div class="faq-item"><h3>Does blocking GPTBot stop ChatGPT citing my site?</h3><p>No. GPTBot collects training data; OAI-SearchBot builds the index ChatGPT Search answers from. They are separate user-agents and a robots.txt rule for one says nothing about the other. In the robots.txt files we read, the two blocks travel together 97.4% of the time.</p></div><div class="faq-item"><h3>Do noai and noimageai meta tags work?</h3><p>None of the crawler operators in Docket's table documents support for them, so this page does not tell you they work. robots.txt is the mechanism these operators publish rules for. A request is all any of them is.</p></div><div class="faq-item"><h3>Why does Docket say a crawler is blocked when my robots.txt allows it?</h3><p>Because a CDN or firewall rule can return 403 to that crawler regardless of what the file says, and the file cannot see it. Docket tests access at the edge as well as reading the rules, and reports the two separately. A file that says yes and a server that says no is rarely a configuration anyone chose deliberately.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

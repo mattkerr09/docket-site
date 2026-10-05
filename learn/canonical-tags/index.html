@@ -14,7 +14,7 @@
 <title>Canonical tags are a hint, not an instruction</title>
 <meta name="description" content="Google treats rel=canonical as a hint and regularly picks a different canonical. The failure patterns behind that, and what Search Console is telling you.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/learn/canonical-tags/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -827,7 +827,7 @@ fbq('track','PageView');
 <p class="lede">A canonical tag tells Google which URL you would prefer it indexed. It does
 not tell Google which URL to index. Google's documentation calls a canonical preference
 a hint rather than a rule and says outright that it may choose a different page than you
-do — so most canonical "bugs" are not broken markup at all. They are Google disagreeing
+do, so most canonical "bugs" are not broken markup at all. They are Google disagreeing
 with you, and the way out is to remove the disagreement rather than to state your
 preference more emphatically.</p>
 
@@ -835,13 +835,13 @@ preference more emphatically.</p>
 
 <p>The sentence worth reading twice sits in Google's canonicalization documentation:
 indicating a canonical preference is a hint, not a rule. The troubleshooting page is
-blunter still — even where you have explicitly designated a canonical page, Google might
+blunter still. Even where you have explicitly designated a canonical page, Google might
 choose a different one, "for various reasons, such as the quality of the content".</p>
 
 <p>That reframes the whole problem. If Google picked a URL you did not nominate, the tag
 in your <code>&lt;head&gt;</code> is usually fine and the site is arguing with itself
 somewhere else: internal links point at one URL, the sitemap lists a second, a redirect
-aims at a third. Google's own docs rank those inputs — a rel=canonical annotation and a
+aims at a third. Google's own docs rank those inputs. A rel=canonical annotation and a
 redirect are strong signals, a sitemap entry is weak. Nothing makes the tag binding, so
 declaring it twice, adding it in the HTTP header as well, and repeating it in the sitemap
 achieves nothing by itself. Point every signal at the same URL and the disagreement
@@ -854,8 +854,8 @@ before deciding it failed and undoing it.</p>
 <h2>What the tag consolidates, and what it leaves alone</h2>
 
 <p>The reason to use one at all is signal consolidation. Google describes canonicalisation
-as letting it merge the information it holds for individual URLs — links to them among
-them — into a single preferred URL. A link earned by <code>?utm_source=newsletter</code>
+as letting it merge the information it holds for individual URLs (links to them among
+them) into a single preferred URL. A link earned by <code>?utm_source=newsletter</code>
 can end up counted towards the clean URL instead of stranded on a variant. Crawling works
 the same way: the canonical is crawled most regularly and the duplicates less often, which
 on a large catalogue decides whether new products are found this week or next month.</p>
@@ -887,7 +887,7 @@ is catastrophic, silent, and takes thirty seconds to rule out.</p>
 
 <h3>Page 2 canonicalises to page 1</h3>
 <p>Received wisdom for years, and Google's current guidance is the opposite: don't use the
-first page of a paginated sequence as the canonical page — give each page its own
+first page of a paginated sequence as the canonical page. Give each page its own
 canonical URL. Page 4 contains items page 1 does not, so pointing page 4 at page 1 asks
 Google to ignore content that exists nowhere else. Google also stopped using
 <code>rel="next"</code> and <code>rel="prev"</code>; ordinary <code>&lt;a href&gt;</code>
@@ -910,7 +910,7 @@ source ship two, and two contradictory hints is a weaker position than one.</p>
 <h3>A cross-domain canonical nobody meant to ship</h3>
 <p>Staging environments pushed to production with their canonicals intact, or a migration
 that left half a site nominating the domain it moved off. Cross-domain canonicals are
-legitimate and useful — they are the correct tool for syndicated content — and they are
+legitimate and useful (they are the correct tool for syndicated content), and they are
 also the one canonical mistake that hands your indexing to somebody else's site.</p>
 
 <h2>Reading the statuses in Search Console</h2>
@@ -924,7 +924,7 @@ This status is the system working, and it accounts for a great many of the "erro
 people set out to fix</td></tr>
 <tr><td>Duplicate, Google chose different canonical than user</td><td>Google read your
 canonical and picked something else. Almost always the two pages are near-identical and
-the other URL carries stronger signals — more internal links, a redirect aimed at it, a
+the other URL carries stronger signals: more internal links, a redirect aimed at it, a
 sitemap entry</td><td>Inspect the URL, read Google's chosen canonical, and decide who is
 right. If you are, point the internal links and the sitemap at your choice. If Google is,
 adopt its choice and move on</td></tr>
@@ -945,7 +945,7 @@ the hint is discarded</td></tr>
 
 <p>The URL Inspection tool is where this gets settled: it reports the user-declared
 canonical and the Google-selected canonical side by side. When they differ, that gap is
-the finding — not the tag.</p>
+the finding, not the tag.</p>
 
 <h2>What a canonical will not fix</h2>
 
@@ -956,7 +956,7 @@ ranking. If only one of the forty deserves to exist, delete thirty-nine and redi
 them.</p>
 
 <p><strong>It does not control which URL a person sees.</strong> Anyone who reaches the
-duplicate stays on it — canonicals affect indexing, not delivery. If a variant must not be
+duplicate stays on it: canonicals affect indexing, not delivery. If a variant must not be
 reachable, that is a redirect. If it must not be indexed at all, that is
 <code>noindex</code>, which is a directive rather than a hint, and the two do not belong on
 the same URL because they ask for different things.</p>
@@ -983,15 +983,15 @@ other end: a redirect, a 404, a different host, a URL differing from the page on
 protocol or trailing slash. Those are verifiable. <code>index.canonical_conflict</code>
 fires when a page declares more than one, which is never deliberate.
 <code>index.www</code> handles apex-versus-www separately, because that is a server
-configuration rather than a markup mistake — and we measured how often it is still wrong in
+configuration rather than a markup mistake, and we measured how often it is still wrong in
 <a href="/learn/www-vs-non-www/">www versus non-www, counted rather than asserted</a>.</p>
 
-<p>A canonical that merely points elsewhere is now reported without a severity — a
+<p>A canonical that merely points elsewhere is now reported without a severity. A
 statement of fact with the resolved target attached, so you can see at a glance whether it
 is your syndication arrangement or your CMS having an opinion. The limit worth stating
 plainly: Docket cannot tell a deliberate cross-domain canonical from an accidental one in
 general, because that distinction lives in a commercial agreement rather than in the
-markup. The one case it can read is a page that <em>declares</em> the arrangement — a
+markup. The one case it can read is a page that <em>declares</em> the arrangement. A
 byline saying the story was co-published with, or first appeared on, the domain the
 canonical names. That is the site telling us, not us guessing, and it is required in both
 halves: the phrase and the canonical's own host in the page's text. A copied template or a
@@ -1013,16 +1013,16 @@ read your preference and declined it.</li>
 
 <p>Docket does this across a whole site rather than three pages: it checks canonical
 validity, resolves the declared target, and flags the ones landing on redirects, 404s or a
-different host — among 99 checks that run on your Mac, with no account, and the crawl
+different host. Among 99 checks that run on your Mac, with no account, and the crawl
 and the report stay there. Findings come back ranked by cost against effort, each with the exact markup to
 paste.</p>
 
 <aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=learn-canonical-tags" data-ev="Buy" data-ev-price="349" data-ev-button="learn-canonical-tags">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-canonical-tags">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
 
 <p class="verified-note"><strong>Read from Google's own documentation on
-10 August 2026.</strong> indicating a canonical preference "is a hint, not a rule", and "Google may choose a different page as canonical than you do" (<a href="https://developers.google.com/search/docs/crawling-indexing/canonicalization" rel="nofollow noopener">source</a>); the canonical "will be crawled most regularly; duplicates are crawled less frequently in order to reduce the crawling load on sites" (<a href="https://developers.google.com/search/docs/crawling-indexing/canonicalization" rel="nofollow noopener">source</a>); "even if you explicitly designate a canonical page, Google might choose a different canonical for various reasons, such as the quality of the content", and after a fix "Google might hold pages in a duplicate cluster for up to two weeks" (<a href="https://developers.google.com/search/docs/crawling-indexing/canonicalization-troubleshooting" rel="nofollow noopener">source</a>); canonicalisation lets search engines consolidate the information they hold for individual URLs, such as links to them, into one preferred URL; rel=canonical and a redirect are described as strong signals and a sitemap entry as a weak one, and absolute URLs are recommended over relative ones (<a href="https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls" rel="nofollow noopener">source</a>); "Don't use the first page of a paginated sequence as the canonical page. Instead, give each page its own canonical URL", and Google no longer uses rel=next and rel=prev (<a href="https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading" rel="nofollow noopener">source</a>); "While we don't recommend using JavaScript for this, it is possible to inject a rel="canonical" link tag with JavaScript" — and if you do, it must be the only one on the page (<a href="https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics" rel="nofollow noopener">source</a>); the wording of the three canonical-related page indexing statuses quoted in the table above (<a href="https://support.google.com/webmasters/answer/7440203" rel="nofollow noopener">source</a>). Canonical advice ages badly — a great deal
+10 August 2026.</strong> indicating a canonical preference "is a hint, not a rule", and "Google may choose a different page as canonical than you do" (<a href="https://developers.google.com/search/docs/crawling-indexing/canonicalization" rel="nofollow noopener">source</a>); the canonical "will be crawled most regularly; duplicates are crawled less frequently in order to reduce the crawling load on sites" (<a href="https://developers.google.com/search/docs/crawling-indexing/canonicalization" rel="nofollow noopener">source</a>); "even if you explicitly designate a canonical page, Google might choose a different canonical for various reasons, such as the quality of the content", and after a fix "Google might hold pages in a duplicate cluster for up to two weeks" (<a href="https://developers.google.com/search/docs/crawling-indexing/canonicalization-troubleshooting" rel="nofollow noopener">source</a>); canonicalisation lets search engines consolidate the information they hold for individual URLs, such as links to them, into one preferred URL; rel=canonical and a redirect are described as strong signals and a sitemap entry as a weak one, and absolute URLs are recommended over relative ones (<a href="https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls" rel="nofollow noopener">source</a>); "Don't use the first page of a paginated sequence as the canonical page. Instead, give each page its own canonical URL", and Google no longer uses rel=next and rel=prev (<a href="https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading" rel="nofollow noopener">source</a>); "While we don't recommend using JavaScript for this, it is possible to inject a rel="canonical" link tag with JavaScript", and if you do, it must be the only one on the page (<a href="https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics" rel="nofollow noopener">source</a>); the wording of the three canonical-related page indexing statuses quoted in the table above (<a href="https://support.google.com/webmasters/answer/7440203" rel="nofollow noopener">source</a>). Canonical advice ages badly (a great deal
 of what circulates was accurate against a version of Search that no longer
-exists — so if Google has changed any of this since that date,
+exists), so if Google has changed any of this since that date,
 <a href="/about/">tell us</a> and the page will be corrected rather than quietly
 left standing.</p>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is a canonical tag a directive that Google has to follow?</h3><p>No. Google's documentation describes a canonical preference as a hint rather than a rule, and says it may choose a different page as canonical than you do. The tag is a strong signal weighed against your redirects, internal links and sitemap, not an instruction.</p></div><div class="faq-item"><h3>Why does Search Console say Google chose a different canonical?</h3><p>Because it read your tag and disagreed, usually because a near-identical URL carries stronger signals. The fix is to stop contradicting yourself: point internal links, redirects and the sitemap at the same URL the canonical names, then allow up to two weeks for the cluster to settle.</p></div><div class="faq-item"><h3>Should paginated pages canonicalise to page one?</h3><p>No. Google's guidance is to give each page in a sequence its own canonical URL, because page four contains items that page one does not. Pointing them all at page one asks Google to ignore content that exists nowhere else on the site.</p></div><div class="faq-item"><h3>Do canonical tags fix duplicate content?</h3><p>Only the indexing half of it. A canonical says which URL to index; it does not make the indexed page worth ranking. If forty near-identical pages each add nothing, the answer is to consolidate them with redirects rather than to label them.</p></div></div></section>

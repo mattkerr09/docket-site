@@ -14,7 +14,7 @@
 <title>How to fix broken outbound links (and which are not)</title>
 <meta name="description" content="A dead outbound link and a host that refuses a crawler are not the same audit row. What Docket counts as broken, what it files as unverified, and what each needs.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2726c9d387e2">
+<meta name="build-id" content="ad0278a5116b">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-broken-outbound-links/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -774,7 +774,7 @@ nav{z-index:40}
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.99/Docket-1.3.99-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix broken outbound links","description":"A dead outbound link and a host that refuses a crawler are not the same audit row. What Docket counts as broken, what it files as unverified, and what each needs.","datePublished":"2026-09-15","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-broken-outbound-links/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a 403 or 429 a broken link?","acceptedAnswer":{"@type":"Answer","text":"No. A 403 means the server understood the request and refused it, and a 429 means it thinks you are asking too often. Neither says the page is missing. Docket files 401, 403, 405, 406, 429, 451 and 503 — and 400 and 402 when the host is not yours — under links.unverified_external at NOTICE, with a note that they were neither reported as broken nor counted as working."}},{"@type":"Question","name":"Why does my report list a link that works fine in my browser?","acceptedAnswer":{"@type":"Answer","text":"Because the host answered our crawler differently from the way it answers you. That is common on large social platforms, which refuse automated requests as policy. If the row is in the unverified finding, that is exactly what it is telling you. If it is in the broken finding, open it: Docket confirms every failed HEAD with a GET before counting it, but it still only asked once."}},{"@type":"Question","name":"Does Docket check every outbound link on my site?","acceptedAnswer":{"@type":"Answer","text":"No. It checks a capped sample of the outbound links the crawler met first, and the sample shrinks further if your site asks crawlers to slow down. The finding prints how many it checked and calls it a sample in its own text."}},{"@type":"Question","name":"Do broken outbound links lose me PageRank?","acceptedAnswer":{"@type":"Answer","text":"This page does not make that claim, because we can point to no primary documentation for it. Docket reports dead outbound links at LOW severity and describes them as a small quality signal and a direct annoyance for visitors. The visitor is the reason to fix them."}},{"@type":"Question","name":"What does a status code of zero mean in a link check?","acceptedAnswer":{"@type":"Answer","text":"It is Docket's own marker for a request that never completed — a timeout, a DNS failure, a TLS failure, or a connection the host closed. Those count as broken, because a connection that never completes is a statement about reachability. It is also the one place where a refusal can land in the broken list, so a row with no status is worth opening by hand."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is a 403 or 429 a broken link?","acceptedAnswer":{"@type":"Answer","text":"No. A 403 means the server understood the request and refused it, and a 429 means it thinks you are asking too often. Neither says the page is missing. Docket files 401, 403, 405, 406, 429, 451 and 503, and 400 and 402 when the host is not yours — under links.unverified_external at NOTICE, with a note that they were neither reported as broken nor counted as working."}},{"@type":"Question","name":"Why does my report list a link that works fine in my browser?","acceptedAnswer":{"@type":"Answer","text":"Because the host answered our crawler differently from the way it answers you. That is common on large social platforms, which refuse automated requests as policy. If the row is in the unverified finding, that is exactly what it is telling you. If it is in the broken finding, open it: Docket confirms every failed HEAD with a GET before counting it, but it still only asked once."}},{"@type":"Question","name":"Does Docket check every outbound link on my site?","acceptedAnswer":{"@type":"Answer","text":"No. It checks a capped sample of the outbound links the crawler met first, and the sample shrinks further if your site asks crawlers to slow down. The finding prints how many it checked and calls it a sample in its own text."}},{"@type":"Question","name":"Do broken outbound links lose me PageRank?","acceptedAnswer":{"@type":"Answer","text":"This page does not make that claim, because we can point to no primary documentation for it. Docket reports dead outbound links at LOW severity and describes them as a small quality signal and a direct annoyance for visitors. The visitor is the reason to fix them."}},{"@type":"Question","name":"What does a status code of zero mean in a link check?","acceptedAnswer":{"@type":"Answer","text":"It is Docket's own marker for a request that never completed: a timeout, a DNS failure, a TLS failure, or a connection the host closed. Those count as broken, because a connection that never completes is a statement about reachability. It is also the one place where a refusal can land in the broken list, so a row with no status is worth opening by hand."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -848,7 +848,7 @@ being gone.</td></tr>
 <tr><td><code>links.unverified_external</code></td><td>NOTICE</td><td>The host declined to
 answer an automated request. Reported as a fact about the crawl.</td></tr>
 <tr><td><code>links.broken_own_subdomain</code></td><td>LOW</td><td>The dead host is one of
-yours — not an outbound link, but a service of yours that is down or gone.</td></tr>
+yours, not an outbound link, but a service of yours that is down or gone.</td></tr>
 <tr><td><code>links.doubled_scheme</code></td><td>LOW</td><td>The href carries the scheme
 twice, so the host is the word "https". A typo, not a destination that moved.</td></tr>
 </tbody></table></div>
@@ -866,13 +866,13 @@ your site, takes a capped sample of the ones it met first, and asks each with a
 <code>HEAD</code> request. Any answer that is not a success is then confirmed with a
 <code>GET</code> before it counts. That second request exists because the first one lies:
 plenty of servers, and most firewalls, answer <code>HEAD</code> with a failure while
-<code>GET</code> is fine. Google's own support domain did exactly that — <code>404</code> to
-<code>HEAD</code>, <code>200</code> to <code>GET</code> — and articles on this site link to it,
+<code>GET</code> is fine. Google's own support domain did exactly that (<code>404</code> to
+<code>HEAD</code>, <code>200</code> to <code>GET</code>), and articles on this site link to it,
 so every one of those links was once reported to us as dead.</p>
 
 <p>After that confirmation, a link is called broken when its status is <code>400</code> or
 above, or zero, <em>and</em> it is not on the refusal list below. The wording is the source's:
-<em>"Checked … of the site's outbound links (a sample — not every outbound link on the site)
+<em>"Checked … of the site's outbound links (a sample, not every outbound link on the site)
 and … failed"</em>, with the fix <em>"Update or remove each dead link. If the destination
 moved, link to its new home."</em></p>
 
@@ -902,7 +902,7 @@ treated as a refusal too. RFC 9110 says all valid status codes lie between <code
 and <code>599</code>, and that implementations "often use three-digit integer values outside of
 that range" for their own purposes. A large professional network answers with such a code, and
 the control probes recorded in the check's source on 3 September 2026 show one of its pages
-answering that code to a browser as well — which settles that the number describes the request,
+answering that code to a browser as well, which settles that the number describes the request,
 not the page.</p>
 
 <p>That is deliberately more cautious than the specification's own advice, which tells a client
@@ -916,20 +916,20 @@ because they are not outbound links in the first place.</p>
 
 <ul>
 <li><strong>Share buttons.</strong> A tweet or share widget points at <em>your own page</em>,
-wrapped in someone else's intent URL. The bare share endpoints — no parameters, unquestionably
-live, the ones every share button on the web points at — answer <code>404</code> to our fetcher
+wrapped in someone else's intent URL. The bare share endpoints (no parameters, unquestionably
+live, the ones every share button on the web points at) answer <code>404</code> to our fetcher
 and <code>200</code> to a browser, measured with control probes on 3 September 2026 and recorded in
 the check's source. On one crawled site, most of the reported broken outbound links were a
 single share widget repeated on every page. You can neither fix that host's answer nor drop the
 button without dropping sharing, so the widget is excluded rather than reported.</li>
 <li><strong>Share images.</strong> The <code>og:image</code> a page declares is fetched in the
-same pass, because it is the same kind of request, and read separately — a dead share image is
+same pass, because it is the same kind of request, and read separately: a dead share image is
 a different defect with different advice.</li>
 <li><strong>Your own subdomains.</strong> A link to a host of yours is not outbound. If it is
 dead it is still reported, under a title that says what it actually is.</li>
 <li><strong>A scheme written twice.</strong> An href carrying the protocol twice resolves to a
 URL whose host is the word "https". No such host exists, so it fails the way a dead destination
-does — and the old advice, to find where the page had moved, sent readers hunting for a file
+does, and the old advice, to find where the page had moved, sent readers hunting for a file
 that had never moved. It reports as a typo now, with the address the href meant.</li>
 </ul>
 
@@ -947,7 +947,7 @@ checked and calls it a sample, which is the number to read it against.</li>
 <li><strong>Only the status number survives.</strong> A timeout, a DNS failure, a TLS failure
 or a host that closed the connection all arrive at this check as zero, and zero counts as
 broken. The fetcher can tell a deliberately closed connection from a broken network, and the
-checks that read your own pages use that — this one never sees it, because what is stored per
+checks that read your own pages use that: this one never sees it, because what is stored per
 outbound link is an integer.</li>
 <li><strong>It asks once.</strong> A host having a bad minute is a dead link in your report.</li>
 <li><strong>It reads the HTML it was served.</strong> Links a script writes into the page
@@ -976,21 +976,21 @@ is.</p>
 
 <h2>What to do with the list you have</h2>
 
-<p>Work the accusatory finding only, and open a handful of its URLs in a browser first — a
+<p>Work the accusatory finding only, and open a handful of its URLs in a browser first: a
 minute's work that tells you whether the rows are real. Where the destination moved, link to
 where it went. Where it is gone for good, replace the reference or remove it; a sentence that
 cited something should either cite something else or stop citing. Leave the unverified list
 alone: those hosts declined to talk to an automated client, which large platforms do routinely,
 and the pages are very probably fine.</p>
 
-<p>Own-subdomain breakages are a different afternoon — that is your service, down or retired,
+<p>Own-subdomain breakages are a different afternoon: that is your service, down or retired,
 and the fix is at the host rather than in your copy. A doubled scheme is a moment's edit: delete
 the duplicate protocol, then confirm the repaired address loads, because Docket has not
 requested it. Every check Docket ships is listed in
 <a href="/learn/what-docket-checks/">what Docket checks</a>.</p>
 
 <aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-broken-outbound-links" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-broken-outbound-links">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a> &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-broken-outbound-links">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is a 403 or 429 a broken link?</h3><p>No. A 403 means the server understood the request and refused it, and a 429 means it thinks you are asking too often. Neither says the page is missing. Docket files 401, 403, 405, 406, 429, 451 and 503 — and 400 and 402 when the host is not yours — under links.unverified_external at NOTICE, with a note that they were neither reported as broken nor counted as working.</p></div><div class="faq-item"><h3>Why does my report list a link that works fine in my browser?</h3><p>Because the host answered our crawler differently from the way it answers you. That is common on large social platforms, which refuse automated requests as policy. If the row is in the unverified finding, that is exactly what it is telling you. If it is in the broken finding, open it: Docket confirms every failed HEAD with a GET before counting it, but it still only asked once.</p></div><div class="faq-item"><h3>Does Docket check every outbound link on my site?</h3><p>No. It checks a capped sample of the outbound links the crawler met first, and the sample shrinks further if your site asks crawlers to slow down. The finding prints how many it checked and calls it a sample in its own text.</p></div><div class="faq-item"><h3>Do broken outbound links lose me PageRank?</h3><p>This page does not make that claim, because we can point to no primary documentation for it. Docket reports dead outbound links at LOW severity and describes them as a small quality signal and a direct annoyance for visitors. The visitor is the reason to fix them.</p></div><div class="faq-item"><h3>What does a status code of zero mean in a link check?</h3><p>It is Docket's own marker for a request that never completed — a timeout, a DNS failure, a TLS failure, or a connection the host closed. Those count as broken, because a connection that never completes is a statement about reachability. It is also the one place where a refusal can land in the broken list, so a row with no status is worth opening by hand.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is a 403 or 429 a broken link?</h3><p>No. A 403 means the server understood the request and refused it, and a 429 means it thinks you are asking too often. Neither says the page is missing. Docket files 401, 403, 405, 406, 429, 451 and 503, and 400 and 402 when the host is not yours — under links.unverified_external at NOTICE, with a note that they were neither reported as broken nor counted as working.</p></div><div class="faq-item"><h3>Why does my report list a link that works fine in my browser?</h3><p>Because the host answered our crawler differently from the way it answers you. That is common on large social platforms, which refuse automated requests as policy. If the row is in the unverified finding, that is exactly what it is telling you. If it is in the broken finding, open it: Docket confirms every failed HEAD with a GET before counting it, but it still only asked once.</p></div><div class="faq-item"><h3>Does Docket check every outbound link on my site?</h3><p>No. It checks a capped sample of the outbound links the crawler met first, and the sample shrinks further if your site asks crawlers to slow down. The finding prints how many it checked and calls it a sample in its own text.</p></div><div class="faq-item"><h3>Do broken outbound links lose me PageRank?</h3><p>This page does not make that claim, because we can point to no primary documentation for it. Docket reports dead outbound links at LOW severity and describes them as a small quality signal and a direct annoyance for visitors. The visitor is the reason to fix them.</p></div><div class="faq-item"><h3>What does a status code of zero mean in a link check?</h3><p>It is Docket's own marker for a request that never completed: a timeout, a DNS failure, a TLS failure, or a connection the host closed. Those count as broken, because a connection that never completes is a statement about reachability. It is also the one place where a refusal can land in the broken list, so a row with no status is worth opening by hand.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
