@@ -150,7 +150,7 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "10,000, priced at 99 US dollars a year with one subscription covering "
          "both the CLI and the desktop app",
          "https://crawler.sh"),
-        ('it states its SEO coverage twice and differently — "16-category SEO '
+        ('it states its SEO coverage twice and differently: "16-category SEO '
          'analysis" beside the paid tier, and "24 automated checks" in its '
          "workflow section",
          "https://crawler.sh"),
@@ -181,7 +181,7 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "quarterly, or 549 and 1,089 billed annually, with a third tier "
          'quoted only as "let\'s talk"',
          "https://jetoctopus.com/pricing/"),
-        ("the plans are metered on crawled URLs and log lines per month — one "
+        ("the plans are metered on crawled URLs and log lines per month: one "
          "million URLs and five million log lines on Pro, three million and ten "
          "million on Ultra",
          "https://jetoctopus.com/pricing/"),
@@ -206,7 +206,7 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "https://www.tryprofound.com/pricing"),
         ("its published platform list is Monitor, Answer Engine Insights, "
          "Prompt Volumes, Shopping Agent Analytics, AI Marketer, Agents and "
-         "Context Manager — no site crawler or technical audit appears in it",
+         "Context Manager. No site crawler or technical audit appears in it",
          "https://www.tryprofound.com/pricing"),
     ],
     "sitechecker": [
@@ -217,8 +217,8 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "AI search visibility tracking, GSC and GA4 insights, and a rank tracker "
          "with SERP history",
          "https://sitechecker.pro/account/plans/"),
-        ("its AI visibility tracker covers five models — ChatGPT, Gemini, Google "
-         "AI Mode, Perplexity and Copilot — for brand visibility and for mentions "
+        ("its AI visibility tracker covers five models (ChatGPT, Gemini, Google "
+         "AI Mode, Perplexity and Copilot) for brand visibility and for mentions "
          "and citations",
          "https://sitechecker.pro/account/plans/"),
         ("its core tools are listed as website crawler, website monitoring, rank "
@@ -226,7 +226,7 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "https://sitechecker.pro/account/plans/"),
     ],
     "seoptimer": [
-        ("its three plans are priced 29, 39 and 59 US dollars a month — DIY SEO, "
+        ("its three plans are priced 29, 39 and 59 US dollars a month: DIY SEO, "
          "White Label and Lead Generation",
          "https://www.seoptimer.com/pricing"),
         ("each plan meters crawling by the month: 4 SEO crawls for one website, "
@@ -281,7 +281,7 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     "sitebulb": [
         ('"crawl maps" as an interactive visualisation',
          "https://sitebulb.com/features/"),
-        ('"Prioritized Hints" — a prioritised, categorised issue list where each '
+        ('"Prioritized Hints": a prioritised, categorised issue list where each '
          "entry explains the issue and why it matters",
          "https://sitebulb.com/features/"),
     ],
@@ -295,7 +295,7 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
         ("monthly prices Starter $29, Lite $129, Standard $249, Advanced $449; projects on sites "
          "of unverified ownership 5 on Lite, 20 on Standard, 50 on Advanced",
          "https://ahrefs.com/pricing"),
-        ("crawl credits are listed per plan — Lite 100,000, Standard 500,000, Advanced 1.5M per "
+        ("crawl credits are listed per plan: Lite 100,000, Standard 500,000, Advanced 1.5M per "
          "month, and max pages per project of 25,000, 50,000 and 250,000",
          "https://ahrefs.com/pricing"),
     ],
@@ -309,9 +309,9 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     # SEO category is deliberately shallow, without Lighthouse saying so, would
     # be our opinion against Google's.
     "lighthouse": [
-        ("the SEO category declares ten scored audits — is-crawlable, "
+        ("the SEO category declares ten scored audits (is-crawlable, "
          "document-title, meta-description, http-status-code, link-text, "
-         "crawlable-anchors, robots-txt, image-alt, hreflang and canonical — "
+         "crawlable-anchors, robots-txt, image-alt, hreflang and canonical) "
          "plus one manual entry, structured-data, carrying a weight of zero; "
          "is-crawlable is weighted so that failing it alone fails the category",
          "https://github.com/GoogleChrome/lighthouse/blob/main/core/config/"
@@ -387,8 +387,8 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          'of times", and most reports "only cover a representative sample" of a '
          "site's URLs",
          "https://support.google.com/webmasters/answer/96568"),
-        ('"The data for the Core Web Vitals report comes from the CrUX report" — '
-         "field data from real visitors, reported at the 75th percentile — and "
+        ('"The data for the Core Web Vitals report comes from the CrUX report": '
+         "field data from real visitors, reported at the 75th percentile, and "
          '"A URL group without threshold data for both LCP and CLS will not be '
          'on the report"',
          "https://support.google.com/webmasters/answer/9205520"),
@@ -441,13 +441,13 @@ want to do yourself.</p>
 <p>Three things, and they are real:</p>
 <ul>
 <li><strong>Rendering at scale, in the right engine.</strong> Screaming Frog renders with an
-integrated Chromium engine across an entire crawl — their page calls it the "integrated
-Chromium WRS". Docket renders in WebKit — the engine macOS already ships — and renders a sample, ten
+integrated Chromium engine across an entire crawl. Their page calls it the "integrated
+Chromium WRS". Docket renders in WebKit, the engine macOS already ships, and renders a sample, ten
 pages by default, enough to answer whether the site is client-rendered and what that costs.
 On a large React or Vue site, or for a bug that only appears in Chrome's renderer, Screaming
 Frog is the tool.</li>
 <li><strong>Custom extraction.</strong> XPath, CSS and regex extraction pulls arbitrary fields
-out of a crawl — product prices, author names, whatever you define. Docket has no equivalent.</li>
+out of a crawl: product prices, author names, whatever you define. Docket has no equivalent.</li>
 <li><strong>Scale.</strong> Screaming Frog's paid licence lists no crawl limit; their page says
 the maximum "is dependent on allocated memory and storage", with a hybrid engine that spills to
 disk for large sites. Docket is bounded by design.</li>
@@ -456,16 +456,14 @@ disk for large sites. Docket is bounded by design.</li>
 <h2>What Docket does that Screaming Frog does not</h2>
 <p>Screaming Frog tells you that 412 pages have a short title. It does not tell you whether
 that matters more than the noindex it also found, or which to do on Tuesday morning. Reviewers
-describe its lack of built-in interpretation as simultaneously its greatest strength and its
-most expensive characteristic — the power is proportional to your own skill and your own time.</p>
+describe its lack of built-in interpretation as simultaneously its greatest strength and its most expensive characteristic. The power is proportional to your own skill and your own time.</p>
 
 <p>Docket ranks every finding by impact against effort and sorts them into four phases:
 stop the bleeding, quick wins, build, polish. Each finding states what it costs you in plain
 language and carries the exact markup to paste.</p>
 
 <p>Beyond the ordering, Docket audits three areas that Screaming Frog's own feature list does
-not cover. That is what their page advertises, not proof the tool cannot be made to do it —
-their custom extraction is powerful enough that a determined user could build some of this by
+not cover. That is what their page advertises, not proof the tool cannot be made to do it. Their custom extraction is powerful enough that a determined user could build some of this by
 hand:</p>
 <ul>
 <li><strong>AI search visibility.</strong> Per-crawler access for ChatGPT, Perplexity, Claude
@@ -484,7 +482,7 @@ and UTM parameters on internal links.</li>
 <tbody>
 <tr><td>Price</td><td>One-time</td><td>Free to 500 URLs, then {price("screaming-frog")}</td></tr>
 <tr><td>Who the licence covers</td><td>You, on up to three of your machines</td>
-    <td>One user — their pricing page states that two users need two licences</td></tr>
+    <td>One user. Their pricing page states that two users need two licences</td></tr>
 <tr><td>Runs on</td><td>Your Mac</td><td>Your machine</td></tr>
 <tr><td>Output</td><td>Ranked plan with fixes</td><td>Spreadsheet of crawl data</td></tr>
 <tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>
@@ -506,7 +504,7 @@ declare A back, Google discards the whole cluster. Every tag looks correct in is
 is why this survives review.</li>
 <li><strong>Conflicting canonicals.</strong> An HTML canonical that disagrees with the one in
 the HTTP <code>Link</code> header. The header usually wins, so the page consolidates to a URL
-nobody on the team chose — and the page source looks fine.</li>
+nobody on the team chose, and the page source looks fine.</li>
 </ul>
 <p>Docket's robots.txt parser also does full longest-match resolution with <code>*</code> and
 <code>$</code> support, which matters more than it sounds: the near-universal
@@ -531,7 +529,7 @@ Googlebot actually fetched rather than what your site would serve if asked.</p>
         cat="vs", slug="screaming-frog-alternative",
         title="Docket vs Screaming Frog: which SEO crawler should you use?",
         desc=("Screaming Frog gives you raw crawl data; a Docket audit gives a ranked fix plan. "
-              "Including what Screaming Frog does better — rendering at scale, custom "
+              "Including what Screaming Frog does better: rendering at scale, custom "
               "extraction."),
         h1="Docket vs Screaming Frog",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Screaming Frog',
@@ -539,7 +537,7 @@ Googlebot actually fetched rather than what your site would serve if asked.</p>
         faq=[
             ("Is Docket a Screaming Frog alternative?",
              "For prioritisation, reporting and non-technical users, yes. For JavaScript "
-             "custom XPath extraction, rendering at scale and very large crawls, no — "
+             "custom XPath extraction, rendering at scale and very large crawls, no. "
              "Screaming Frog does those better and Docket does not try to."),
             ("Does Docket render JavaScript like Screaming Frog?",
              "Yes, through a WebKit helper, but only a small automatic sample of each "
@@ -559,7 +557,7 @@ If you need to know what to do on Monday, Docket is more direct about it.</p>
 
 <h2>Sitebulb's real advantage: you can see the site</h2>
 <p>Sitebulb's architecture graph is the strongest thing either tool has that the other does
-not. It draws the site as an interactive map — isolated content clusters, pages buried too
+not. It draws the site as an interactive map: isolated content clusters, pages buried too
 deep, link equity pooling in the wrong places. Some structural problems are genuinely easier
 to see than to read, and a client will understand a picture of their own site faster than a
 table about it.</p>
@@ -569,7 +567,7 @@ it is on the roadmap; until it ships, this is a straightforward reason to choose
 <h2>Where Docket is more useful</h2>
 <p>Sitebulb prioritises issues and explains them in plain English, which is why it is the
 friendlier of the two established crawlers. The remaining complaint in reviews is that its
-hints still need experienced judgement to filter — particularly on large or programmatic
+hints still need experienced judgement to filter, particularly on large or programmatic
 sites, where the volume of surfaced issues is itself the problem.</p>
 
 <p>Docket's answer is to be conservative about what it reports and explicit about what it does
@@ -603,7 +601,7 @@ reporting every English phrase as absent.</li>
 <p>One difference worth drawing out: Docket splits a site into sections itself, inferring them
 from URL structure, on the theory that the people who most need the feature will not sit down
 and write rules. Sitebulb's features page describes a Custom URL explorer where you choose the
-columns, filters and sort — configuring the view rather than having it inferred. That is a
+columns, filters and sort, configuring the view rather than having it inferred. That is a
 trade, and the report says so: inferred sections are less precise than ones you define.</p>
 
 <h2>Which one to pick</h2>
@@ -620,14 +618,14 @@ check".</p>
     return render(
         cat="vs", slug="sitebulb-alternative",
         title="Docket vs Sitebulb: visual reports or a ranked plan? (2026)",
-        desc=("Sitebulb draws your site architecture and Docket does not — a real reason to "
+        desc=("Sitebulb draws your site architecture and Docket does not. That is a real reason to "
               "pick it. Where Docket wins: AI visibility, conversion, and stated limits."),
         h1="Docket vs Sitebulb",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Sitebulb',
         body=body,
         faq=[
             ("Does Docket have site architecture visualisation like Sitebulb?",
-             "Both do. Docket draws a deterministic picture — pages in rings by click depth, sized "
+             "Both do. Docket draws a deterministic picture: pages in rings by click depth, sized "
              "by link equity. Sitebulb's "
              "architecture map is its strongest feature and a legitimate reason to choose it."),
             ("Is Docket cheaper than Sitebulb?",
@@ -650,13 +648,12 @@ def ahrefs() -> Path:
     body = f"""
 <p class="lede">Docket audits any site, including a client's, a prospect's or a competitor's,
 for {PRICE_STR} once. Ahrefs Site Audit is one module of a keyword and backlink platform, and
-where you can point it depends on the plan: Ahrefs Free &mdash; which Ahrefs says is the same
-account as the original Ahrefs Webmaster Tools &mdash; runs it only on sites you verify you own,
+where you can point it depends on the plan: Ahrefs Free (which Ahrefs says is the same
+account as the original Ahrefs Webmaster Tools) runs it only on sites you verify you own,
 and the paid plans that include it run from Starter at ${_AH_LO} a month to Advanced at ${_AH_HI}, with
 Lite allowing {_AH_UNVERIFIED["Lite"]} projects on sites you have not verified, Standard
 {_AH_UNVERIFIED["Standard"]} and Advanced {_AH_UNVERIFIED["Advanced"]}. If you
-need keyword volumes and a backlink index, Docket cannot replace Ahrefs and does not try &mdash;
-that data has to be bought, not built.</p>
+need keyword volumes and a backlink index, Docket cannot replace Ahrefs and does not try. That data has to be bought, not built.</p>
 
 <h2>What Ahrefs has that Docket can never have</h2>
 <p>A crawled index of the web. That is what powers keyword difficulty, search volume, backlink
@@ -676,14 +673,13 @@ estimate of how long the fix takes, so the output is a sequence rather than thre
 buckets.</p>
 
 <p>The cloud model also brings metering. Ahrefs' pricing page lists a monthly crawl-credit
-allowance per plan — 100,000 on Lite, 500,000 on Standard, 1,500,000 on Advanced — so the audit
+allowance per plan (100,000 on Lite, 500,000 on Standard, 1,500,000 on Advanced), so the audit
 you run is shaped partly by what you can afford to spend on it. Docket runs on your machine with
 no per-crawl cost, so auditing a client site twice in a day costs nothing.</p>
 
 <p>And three areas are not listed among the checks on Ahrefs' Site Audit page: per-crawler AI
 search access, landing-page conversion, and marketing tracking coverage. That is what their page
-does and does not advertise, which is not the same as proof the product cannot do it — if you
-need one of these, ask them rather than taking this page's word for it.</p>
+does and does not advertise, which is not the same as proof the product cannot do it. If you need one of these, ask them rather than taking this page's word for it.</p>
 
 <h2>Side by side</h2>
 <div class="wrap-tbl"><table class="cmp">
@@ -705,7 +701,7 @@ need one of these, ask them rather than taking this page's word for it.</p>
 <p>Cloud auditing is priced per crawled URL, and that changes how you work in a way that is
 easy to miss until you hit it. Ahrefs' Lite plan lists 100,000 crawl credits a month. Their
 pricing page does not spell out what spends a credit, so the exact arithmetic is theirs to
-state, not ours — but a monthly allowance means re-auditing a client site after a fix, then
+state, not ours, but a monthly allowance means re-auditing a client site after a fix, then
 again after the next fix, draws down a budget that a larger client might need.</p>
 <p>The practical effect is that people run fewer audits than they should. You verify a change
 once rather than iterating, and you hesitate before crawling a prospect's site to win the
@@ -713,16 +709,16 @@ work. Docket has no equivalent constraint: the crawl happens on your laptop, so 
 twenty times in an afternoon costs nothing but time. For agencies doing pre-sales audits that
 difference compounds quickly.</p>
 
-<h3>Two limits, not one — and the second is a bill</h3>
+<h3>Two limits, not one, and the second is a bill</h3>
 <p>Re-read on {F.credits_read()}: the credit allowances are unchanged, but they are not the only
-ceiling. Each plan also caps <strong>pages per project</strong> — {F.max_pages_for('Lite')} on Lite,
+ceiling. Each plan also caps <strong>pages per project</strong>: {F.max_pages_for('Lite')} on Lite,
 {F.max_pages_for('Standard')} on Standard, {F.max_pages_for('Advanced')} on Advanced. A monthly credit budget and a per-project page cap
 constrain different things: the first limits how often you can re-crawl, the second limits how
 large a single site can be before it will not fit in one project at all.</p>
 <p>And the credit figure is a billing threshold as well as a cap. Ahrefs' own FAQ:
 <em>"Once you enable additional pay-as-you-go credits and data, you'll be automatically charged
 when consumption exceeds your plan's limits."</em> That is opt-in, and it is worth knowing which
-way yours is set before a large re-crawl rather than after — running out and running up a bill
+way yours is set before a large re-crawl rather than after. Running out and running up a bill
 are different outcomes, and only one of them stops.</p>
 <p>Docket has neither limit, because neither is a thing a local crawler needs: there is no
 allowance to draw down and no project size to exceed. The bound is the page and depth caps you
@@ -802,7 +798,7 @@ someone else's logo, dashboards, alerts.</li>
 </ul>
 
 <p>Their knowledge base also says Site Audit can "check over 140+ website issues", against
-Docket's {N_CHECKS}. A count is a weak measure of an audit &mdash; what decides its worth is
+Docket's {N_CHECKS}. A count is a weak measure of an audit. What decides its worth is
 the order the findings arrive in and what each one tells you to do. It is still a larger
 number, and writing around that would be its own kind of tell.</p>
 
@@ -857,8 +853,7 @@ Business, and their knowledge base notes those reset on the 1st rather than roll
 
 <h2>The arithmetic, and why it flatters Docket</h2>
 <p>Semrush's pricing page lists the entry plan at $139 a month, or $117.33 a month billed
-annually. Paid monthly that is $1,668 in the first year and the same again in the second. Docket
-is {PRICE_STR} once — {FREE_CLAUSE} — which works out at roughly five
+annually. Paid monthly that is $1,668 in the first year and the same again in the second. Docket is {PRICE_STR} once ({FREE_CLAUSE}), which works out at roughly five
 weeks of the cheapest Semrush plan.</p>
 <p>Then take the flattery back out. That $139 is not the price of a site audit. It is the price
 of keyword research, rank tracking and a backlink index, with an audit included. If you use
@@ -992,7 +987,7 @@ rather than from anybody's summary of it: <code>is-crawlable</code>,
 <code>document-title</code>, <code>meta-description</code>, <code>http-status-code</code>,
 <code>link-text</code>, <code>crawlable-anchors</code>, <code>robots-txt</code>,
 <code>image-alt</code>, <code>hreflang</code> and <code>canonical</code>. Ten scored audits,
-plus a manual eleventh — <code>structured-data</code> — which carries a weight of zero and
+plus a manual eleventh, <code>structured-data</code>, which carries a weight of zero and
 asks you to go and validate your schema somewhere else.</p>
 
 <p><code>is-crawlable</code> is weighted so heavily that failing it fails the category on its
@@ -1034,8 +1029,7 @@ layout-shift risk inferred from the markup.</p>
 
 <p>Those are the things you change to fix a bad LCP or CLS. They are not the LCP or the CLS.
 Those are field metrics, measured on real users on real connections, which is why Search
-Console's Core Web Vitals report is built from the Chrome UX Report rather than from a lab
-run — and why PageSpeed Insights shows two panels, Lighthouse in a simulated environment on
+Console's Core Web Vitals report is built from the Chrome UX Report rather than from a lab run, and why PageSpeed Insights shows two panels, Lighthouse in a simulated environment on
 one side and CrUX field data on the other.</p>
 
 <p>Docket has one optional check that fetches those field values from the PageSpeed Insights
@@ -1071,7 +1065,7 @@ fix landed.</p>
 ten seconds, and it catches the three faults that stop a page dead: a stray noindex, a
 canonical pointing at the wrong URL, a status code that is not 200.</li>
 <li><strong>Docket across the whole site.</strong> The cross-page checks, the areas Lighthouse
-leaves unscored, and the ordering — findings ranked by impact against effort and sorted into
+leaves unscored, and the ordering: findings ranked by impact against effort and sorted into
 four phases, each carrying the exact markup to paste.</li>
 <li><strong>Search Console once the fix is live.</strong> Field vitals move over a 28-day
 window, so the answer to whether it worked is there and nowhere else.</li>
@@ -1122,9 +1116,9 @@ of forty things do I do first. If you are not at that point yet, the honest answ
         body=body,
         faq=[
             ("Does Docket measure Core Web Vitals?",
-             "Not itself. Docket measures the causes — server response time, compression and "
+             "Not itself. Docket measures the causes (server response time, compression and "
              "caching headers, page weight, render-blocking resources, image formats, redirect "
-             "latency and layout-shift risk in the markup — and one optional check fetches the "
+             "latency and layout-shift risk in the markup), and one optional check fetches the "
              "field values from Google's PageSpeed Insights API, the same Chrome UX Report data "
              "Search Console shows. LCP, INP and CLS come from real users, so confirm them in "
              "Search Console rather than in any lab tool, Docket included."),
@@ -1135,8 +1129,8 @@ of forty things do I do first. If you are not at that point yet, the honest answ
              "additional factors it does not score."),
             ("Can Lighthouse audit a whole site?",
              "Not on its own. You give Lighthouse one URL and it reports on that page. Much of "
-             "what breaks a site is a relationship between pages — hreflang return tags, "
-             "canonical clusters, duplicate titles, click depth — and a single-page run cannot "
+             "what breaks a site is a relationship between pages (hreflang return tags, "
+             "canonical clusters, duplicate titles, click depth), and a single-page run cannot "
              "see a relationship by construction."),
             ("Should I stop running Lighthouse if I buy Docket?",
              "No, and this page would be dishonest if it said otherwise. Lighthouse is free, it "
@@ -1169,8 +1163,7 @@ def search_console() -> Path:
     into a claim about someone else's product.
     """
     body = f"""
-<p class="lede">Search Console is free, it is Google's own data, and no audit tool replaces
-it — this one included. It is the single source of the queries your site actually appeared for,
+<p class="lede">Search Console is free, it is Google's own data, and no audit tool replaces it, this one included. It is the single source of the queries your site actually appeared for,
 the clicks and impressions they earned, Core Web Vitals measured on real visitors, and any
 manual action taken against you. A product sold to you as a Search Console replacement is
 lying. Verify your property first. This page is about the question Search Console does not
@@ -1209,7 +1202,7 @@ Google's published quota for the API is 2,000 queries a day and 600 a minute per
 site of 5,000 pages cannot be inspected in a day even by script.</li>
 <li><strong>A page with no impressions has no row.</strong> The Performance report is built from
 appearances in search results. A page you published this morning, or one Google has never
-indexed, is simply absent — and absence is usually the case you were trying to debug.</li>
+indexed, is simply absent, and absence is usually the case you were trying to debug.</li>
 <li><strong>The tables are truncated on purpose.</strong> Google's own documentation:
 <em>Our tables can show a maximum of 1,000 rows, so some rows might be omitted.</em> The same
 page adds that it <em>might not track some queries that are made a very small number of
@@ -1227,16 +1220,14 @@ None of them is a defect. Together they are the outline of a different question.
 
 <h2>What Docket does to the same site</h2>
 
-<p>Docket crawls the site as it stands right now and runs {N_CHECKS} checks — technical SEO,
-copy, page speed, structured data, local visibility, AI search access and marketing
-conversion — then ranks every finding by impact against effort and sorts them into four phases.
+<p>Docket crawls the site as it stands right now and runs {N_CHECKS} checks (technical SEO,
+copy, page speed, structured data, local visibility, AI search access and marketing conversion), then ranks every finding by impact against effort and sorts them into four phases.
 Each finding states what it costs you in plain language and carries the exact markup to paste.
 It writes a client-ready PDF and can score you against a named competitor. The crawl runs on
 your Mac: no account, no telemetry, results in <code>~/.docket</code>.</p>
 
 <p>The difference is time-shape more than feature list. Search Console answers questions about
-last week, on pages Google has met. Docket answers a question about this minute, on every page
-you have — including the one you published an hour ago.</p>
+last week, on pages Google has met. Docket answers a question about this minute, on every page you have, including the one you published an hour ago.</p>
 
 <h2>A division of labour, question by question</h2>
 
@@ -1265,8 +1256,7 @@ red would be the dishonesty this page opened by refusing.</p>
 
 <h2>Where Docket defers: Core Web Vitals</h2>
 
-<p><strong>Docket does not measure Core Web Vitals.</strong> Its speed checks are causes —
-render-blocking resources, uncompressed images, page weight — and a cause is not a metric. The
+<p><strong>Docket does not measure Core Web Vitals.</strong> Its speed checks are causes (render-blocking resources, uncompressed images, page weight), and a cause is not a metric. The
 metrics come from real visitors, which is why Search Console builds that report from CrUX rather
 than from a lab run. Docket has one optional check that fetches the same CrUX values through the
 PageSpeed Insights API; it is one of four checks that reach off your machine, and
@@ -1382,8 +1372,7 @@ Docket has no answer to:</p>
 <li><strong>Spell checking.</strong> Docket does not check spelling, in any
 language. If proofreading a site is the job in front of you, Docket is the wrong
 purchase.</li>
-<li><strong>HTML validation.</strong> Docket checks specific structural things —
-headings, canonicals, structured data — and does not validate markup against the
+<li><strong>HTML validation.</strong> Docket checks specific structural things (headings, canonicals, structured data) and does not validate markup against the
 specification.</li>
 <li><strong>Site search.</strong> Docket has no equivalent of searching your own
 crawled content.</li>
@@ -1395,8 +1384,7 @@ Docket's {PRICE_STR}.</p>
 <p>The list above names SEO as a single item. What Docket adds is not "more SEO
 checks" but categories that list does not cover: whether your landing pages give
 a visitor a reason and a route to act, whether your brand is presented
-consistently, whether a local business has the markup local results need — and
-whether AI crawlers can reach you at all.</p>
+consistently, whether a local business has the markup local results need, and whether AI crawlers can reach you at all.</p>
 <p>That last one is the axis Docket is actually built on, and it is worth being
 precise about what it means. Reading <code>robots.txt</code> tells you what a
 site <em>permits</em>. Docket asks the server, as each crawler, with that
@@ -1415,8 +1403,7 @@ dataset, a client-ready report, and the AI-visibility and conversion checks that
 Scrutiny's feature list does not name.</p>
 <p>Both run on your own machine and neither wants a subscription, which is more
 than most of this market can say. If buying once is the part that matters,
-<a href="/vs/crawlraven-alternative/">CrawlRaven</a> is the other one-time licence worth knowing
-about — cheaper again, though its own pricing page still marks the technical audit as coming
+<a href="/vs/crawlraven-alternative/">CrawlRaven</a> is the other one-time licence worth knowing about. It is cheaper again, though its own pricing page still marks the technical audit as coming
 soon.</p>
 {_verified_note("scrutiny")}
 {CTA}"""
@@ -1494,14 +1481,14 @@ the shape of every subscription audit tool, and it changes how you work: a crawl
 something you spend rather than something you run.</p>
 
 <p>Docket does not meter anything. There is no page allowance, no crawl count and no project
-limit, because there is no server keeping score — the audit runs on your Mac, and
+limit, because there is no server keeping score. The audit runs on your Mac, and
 <code>-n 0</code> crawls until the site ends. Re-running after every fix costs you nothing but
 the time, which matters more than it sounds: the natural way to use an audit is to fix
 something and immediately check whether you fixed it.</p>
 
 <p>The pricing follows from that. SEOptimer bills monthly and keeps billing.
 Docket is {PRICE_STR} once. Over a year the entry plan costs roughly what Docket does, and after
-that the comparison stops being close — but a year is a long time in software and a subscription
+that the comparison stops being close, but a year is a long time in software and a subscription
 you can cancel is a real advantage if you only need one audit.</p>
 
 <h2>What Docket adds</h2>
@@ -1510,8 +1497,7 @@ you can cancel is a real advantage if you only need one audit.</p>
 SEO at all: conversion, brand consistency, AI search visibility and campaign tracking. The AI
 lane checks {F.ai_agents()} crawlers by name and compares what your robots.txt permits against
 what your server actually returns, because a CDN rule refusing GPTBot is invisible in a file that
-allows it. And every finding lands in a ranked plan rather than a categorised list —
-<a href="/learn/priority-model/">the formula is written out</a> if you want to check the
+allows it. And every finding lands in a ranked plan rather than a categorised list. <a href="/learn/priority-model/">The formula is written out</a> if you want to check the
 ordering yourself.</p>
 
 <h2>Which to buy</h2>
@@ -1526,7 +1512,7 @@ you fix things, and would rather pay once.</li>
 <p>They are not really the same product. One is a reporting and lead product sold to agencies;
 the other is an instrument you point at a site. If the metering is what puts you off,
 <a href="/vs/crawler-sh-alternative/">crawler.sh</a> is worth a look for the same reason and
-against the same limit — it caps pages per session rather than crawls per month.</p>
+against the same limit: it caps pages per session rather than crawls per month.</p>
 
 {_verified_note("seoptimer")}
 {CTA}"""
@@ -1548,7 +1534,7 @@ against the same limit — it caps pages per session rather than crawls per mont
             ("Which is cheaper, Docket or SEOptimer?",
              f"SEOptimer is cheaper to start, at {price('seoptimer')} against Docket's "
              f"{PRICE_STR} one-time. Over roughly a year the entry plan reaches what Docket "
-             "costs, and after that Docket does not cost anything more — but a subscription "
+             "costs, and after that Docket does not cost anything more, but a subscription "
              "you can cancel is genuinely better value if you only need one audit."),
             ("How many crawls does SEOptimer allow?",
              "Its published plans buy four crawls a month for one website, ten across "
@@ -1556,7 +1542,7 @@ against the same limit — it caps pages per session rather than crawls per mont
              "runs on your own Mac and -n 0 crawls a site until it ends, so re-running after "
              "each fix costs nothing."),
             ("Does SEOptimer check AI crawler access?",
-             "This page does not say, because it was not measured — only what the vendor "
+             "This page does not say, because it was not measured. Only what the vendor "
              f"publishes was read. What Docket does here is checked: {F.ai_agents()} AI "
              "crawlers by name, with the server's actual response compared against what "
              "robots.txt permits."),
@@ -1593,8 +1579,7 @@ Docket refuses to answer at all</strong>.</p>
 <li><strong>Rank tracking.</strong> Its rank tracker keeps SERP history for the keywords you
 track. Docket does not track rankings, and says so on its own home page: that needs a crawled
 index of the whole web, which is bought rather than built.</li>
-<li><strong>AI brand visibility.</strong> Its AI visibility tracker covers five models —
-ChatGPT, Gemini, Google AI Mode, Perplexity and Copilot — and reports brand visibility,
+<li><strong>AI brand visibility.</strong> Its AI visibility tracker covers five models (ChatGPT, Gemini, Google AI Mode, Perplexity and Copilot) and reports brand visibility,
 mentions and citations. <strong>This is the one worth reading twice</strong>, because it looks
 like something Docket does and is not.</li>
 <li><strong>Search Console and Analytics dashboards</strong>, and website monitoring that
@@ -1610,8 +1595,7 @@ configuration, and it is answerable from outside with certainty.</p>
 
 <p>Sitechecker is answering a different question: whether an assistant currently mentions you.
 That is a measurement of an outcome, and Docket does not make it. Every AI figure this site
-publishes is about access rather than about being quoted, and we have been careful to say so
-everywhere else — so it would be dishonest to imply the two overlap here. <strong>If what you
+publishes is about access rather than about being quoted, and we have been careful to say so everywhere else, so it would be dishonest to imply the two overlap here. <strong>If what you
 want to know is whether ChatGPT names your brand today, Docket cannot tell you and Sitechecker
 is built to.</strong></p>
 
@@ -1626,8 +1610,7 @@ tracking mentions is the whole of what you need. What Docket checks on the acces
 
 <p>{N_CHECKS} checks across thirteen areas, including conversion and brand consistency, which
 do not appear in Sitechecker's listed core tools. Findings arrive as a ranked plan with the fix
-written out rather than as a dashboard —
-<a href="/learn/priority-model/">the ordering formula is published</a>. It runs on your Mac
+written out rather than as a dashboard. <a href="/learn/priority-model/">The ordering formula is published</a>. It runs on your Mac
 with no account, and the crawl and the report stay there. And it is {PRICE_STR} once rather than
 a monthly bill.</p>
 
@@ -1671,8 +1654,8 @@ measured. Both vendors' published feature lists are what this page is built from
              "crawlers are allowed to reach you in the first place."),
             ("Does Docket track AI visibility like Sitechecker?",
              "No, and the difference is worth being precise about. Sitechecker measures "
-             "whether assistants mention you — an outcome. Docket measures whether their "
-             f"crawlers can read you — {F.ai_agents()} of them by name, comparing your "
+             "whether assistants mention you, which is an outcome. Docket measures whether their "
+             f"crawlers can read you: {F.ai_agents()} of them by name, comparing your "
              "robots.txt against what your server actually returns. Access is a "
              "precondition for citation, not the same thing as it."),
             ("Which is cheaper?",
@@ -1682,7 +1665,7 @@ measured. Both vendors' published feature lists are what this page is built from
              "tool you run on demand cannot provide."),
             ("Does Sitechecker limit how much you can crawl?",
              "Its plans advertise unlimited recrawls, so crawl volume is not the difference "
-             "between these two — unlike SEOptimer, which sells four, ten or fifty crawls a "
+             "between these two, unlike SEOptimer, which sells four, ten or fifty crawls a "
              "month. The limits Sitechecker publishes are on projects and tracked keywords. "
              "Docket has no limits of either kind, because there is no account."),
         ],
@@ -1712,13 +1695,12 @@ def profound() -> Path:
     body = f"""
 <p>Profound tracks whether AI assistants mention your brand. Docket audits whether those
 assistants' crawlers can read your site in the first place. Those sound adjacent and they are
-not the same purchase at all — and the clearest way to see it is that
+not the same purchase at all. The clearest way to see it is that
 <strong>Profound does not publish a price</strong>.</p>
 
 <h2>Two tiers, neither of them a price</h2>
 
-<p>Its pricing page lists a free <strong>Trial</strong> — ten prompts, run once, against
-ChatGPT only, in one language and one region — and <strong>Enterprise</strong>, at custom
+<p>Its pricing page lists a free <strong>Trial</strong> (ten prompts, run once, against ChatGPT only, in one language and one region) and <strong>Enterprise</strong>, at custom
 pricing, reached by booking a demo. Enterprise tracks up to nine answer engines and lists
 SSO/SAML and SOC2 compliance beside dedicated support.</p>
 
@@ -1742,7 +1724,7 @@ cannot tell you whether ChatGPT named you this week, how often, or beside whom.<
 
 <p>The two meet at one specific point, and it is worth being precise about it. Docket checks
 {F.ai_agents()} AI crawlers by name and compares what your robots.txt permits against what your
-server actually returns — because a CDN rule refusing a crawler is invisible in a file that
+server actually returns, because a CDN rule refusing a crawler is invisible in a file that
 allows it. That is the question underneath a visibility report: if a tracker tells you that you
 are not being cited, one possible reason is that the crawler was never allowed to read the page.
 Docket can prove or eliminate that. It cannot tell you whether citation then happens.</p>
@@ -1750,8 +1732,7 @@ Docket can prove or eliminate that. It cannot tell you whether citation then hap
 <h2>Which to buy</h2>
 
 <ul>
-<li><strong>Book the Profound demo</strong> if measuring your presence in AI answers is a
-reporting obligation — you need it across engines, languages and regions, and someone is asking
+<li><strong>Book the Profound demo</strong> if measuring your presence in AI answers is a reporting obligation: you need it across engines, languages and regions, and someone is asking
 for the numbers.</li>
 <li><strong>Buy Docket</strong> if you want to know what is wrong with your site and in what
 order, including whether AI crawlers can reach it, without an account or a sales call.</li>
@@ -1784,8 +1765,8 @@ outside.</p>
              "and checks whether those crawlers are permitted to read it. Neither replaces "
              "the other."),
             ("How much does Profound cost?",
-             "Its pricing page publishes no figure. It lists a free trial — ten prompts run "
-             "once, ChatGPT only — and Enterprise at custom pricing reached through a demo. "
+             "Its pricing page publishes no figure. It lists a free trial (ten prompts run "
+             "once, ChatGPT only) and Enterprise at custom pricing reached through a demo. "
              "Docket is a one-time purchase with the price on the page, which is the "
              "starkest difference between them."),
             ("Can Docket tell me if ChatGPT mentions my brand?",
@@ -1826,7 +1807,7 @@ the most valuable technical-SEO data there is.</p>
 
 <h2>What log analysis gives you that no crawler can</h2>
 
-<p>A crawler — Docket included — tells you what your site serves when something asks. Logs tell
+<p>A crawler, Docket included, tells you what your site serves when something asks. Logs tell
 you what Googlebot actually did: which pages it fetched, how often, which it ignored for months,
 where it spent a crawl budget you did not know you were spending. Those are different questions,
 and the second cannot be inferred from the first. JetOctopus's product list leads with its Log
@@ -1838,7 +1819,7 @@ the answer, and this page is not going to pretend otherwise.</p>
 
 <h2>Where the comparison actually sits: scale</h2>
 
-<p>Their In-House plans are metered in <strong>millions</strong> — one million crawled URLs and
+<p>Their In-House plans are metered in <strong>millions</strong>: one million crawled URLs and
 five million log lines a month on the lower tier, three million and ten million on the upper one,
 with a third tier quoted only as "let's talk". Projects, seats and simultaneous crawls are
 unlimited on every tier. That is a platform for sites with millions of pages and a team around
@@ -1847,14 +1828,12 @@ them.</p>
 <p>Their published rates: {price('jetoctopus')}. That works out at
 {F.rival_annual_low('jetoctopus'):,} US dollars for a year at the cheaper of the two rates.
 Docket is {PRICE_STR} once. Setting those two numbers
-beside each other is close to meaningless, because they are not sold to the same buyer — but it
-does tell you which question you are asking. If a five-figure annual platform fee is a normal
+beside each other is close to meaningless, because they are not sold to the same buyer, but it does tell you which question you are asking. If a five-figure annual platform fee is a normal
 line item, JetOctopus is in your category and Docket is not.</p>
 
 <h2>What Docket does</h2>
 
-<p>{N_CHECKS} checks across thirteen areas, on your own Mac, with no account and no page limit —
-<code>-n 0</code> crawls until the site ends, and re-running after each fix costs nothing because
+<p>{N_CHECKS} checks across thirteen areas, on your own Mac, with no account and no page limit. <code>-n 0</code> crawls until the site ends, and re-running after each fix costs nothing because
 nothing is metered. Four of those areas are not technical SEO at all: conversion, brand
 consistency, AI search visibility and campaign tracking. Findings arrive as a ranked plan with
 the fix written out, and <a href="/learn/priority-model/">the ordering formula is published</a>.</p>
@@ -1896,8 +1875,8 @@ publishes about its own product.</p>
              "instead of an enterprise subscription."),
             ("Does Docket analyse server log files?",
              "No. Docket audits what your site serves to a crawler. Logs record what "
-             "crawlers actually did — which pages Googlebot fetched, how often, and which it "
-             "ignored — and that cannot be inferred from a crawl. On a large site it is the "
+             "crawlers actually did (which pages Googlebot fetched, how often, and which it "
+             "ignored), and that cannot be inferred from a crawl. On a large site it is the "
              "more valuable of the two data sources."),
             ("How much does JetOctopus cost?",
              f"Its published In-House plans are {price('jetoctopus')}, which is "
@@ -1936,8 +1915,7 @@ def crawlraven() -> Path:
     """
     body = f"""
 <p>CrawlRaven is the closest thing on the market to Docket's pitch, and it is much cheaper. Its
-home page says what this one says — every SEO tool tells you what happened, this one tells you
-what to do next — and it is sold as a one-time licence rather than a subscription. If you are
+home page says what this one says: every SEO tool tells you what happened, this one tells you what to do next. It is sold as a one-time licence rather than a subscription. If you are
 comparing the two, that overlap is real and worth saying first.</p>
 
 <h2>What CrawlRaven does that Docket does not</h2>
@@ -1948,7 +1926,7 @@ page performance against what visitors actually did. Docket audits your pages; i
 your Search Console history or your analytics.</li>
 <li><strong>Keyword work.</strong> Keyword maps, clusters, cannibalization flags, content gaps,
 runner-up keywords and decay tracking, plus importing your existing Ahrefs or Semrush lists.
-Docket does none of this — it does not track rankings or research keywords.</li>
+Docket does none of this. It does not track rankings or research keywords.</li>
 <li><strong>White-label reports</strong>, which Docket does not have, and a free tier for one
 site. Docket's free version covers any site but shows only the score and how many problems each
 area has.</li>
@@ -1976,8 +1954,7 @@ left, so the figure is designed to move. Docket is {PRICE_STR} once, for unlimit
 does not change with demand.</p>
 
 <p>Even at the next batch up, CrawlRaven is far cheaper than Docket, and nothing on this page
-argues otherwise. What {PRICE_STR} buys is a shipped technical audit — {N_CHECKS} checks across
-thirteen areas — running locally on your own Mac with no account and no site limit, the crawl
+argues otherwise. What {PRICE_STR} buys is a shipped technical audit ({N_CHECKS} checks across thirteen areas) running locally on your own Mac with no account and no site limit, the crawl
 and the report kept there.</p>
 
 <h2>Which to buy</h2>
@@ -1991,7 +1968,7 @@ in what order to fix it, today.</li>
 
 <p>They are close enough in spirit that owning both is not absurd, and their free tier costs
 nothing to try. If a one-time price is what drew you here, the other one worth knowing about is
-<a href="/vs/scrutiny-alternative/">Scrutiny</a> — a Mac app bought once, cheaper than Docket, and
+<a href="/vs/scrutiny-alternative/">Scrutiny</a>, a Mac app bought once, cheaper than Docket, and
 stronger than either of us at link checking. Nothing here compares the quality of either tool's
 output, which has not been measured.</p>
 
@@ -2054,8 +2031,7 @@ def crawler_sh() -> Path:
     """
     body = f"""
 <p>crawler.sh and Docket agree about almost everything except what a crawler is for. It runs on
-your own machine, needs no account, has no cloud bill and no per-page fee — which is Docket's
-entire argument, made by somebody else. Where they part company is purpose.</p>
+your own machine, needs no account, has no cloud bill and no per-page fee, which is Docket's entire argument, made by somebody else. Where they part company is purpose.</p>
 
 <h2>What crawler.sh is for</h2>
 
@@ -2065,16 +2041,13 @@ corpus or an agent's context, with word count, byline, language and excerpt on e
 <strong>Docket does nothing of the kind.</strong> If you are building a dataset out of web
 content, Docket is the wrong tool and crawler.sh is built for precisely that.</p>
 
-<p>It also does SEO analysis, and describes that coverage in two different ways on the same
-page — "16-category SEO analysis" beside its paid tier, and "24 automated checks" in its
+<p>It also does SEO analysis, and describes that coverage in two different ways on the same page: "16-category SEO analysis" beside its paid tier, and "24 automated checks" in its
 workflow section. The examples it gives are missing titles, duplicate meta descriptions, noindex
 directives, thin content, broken links, long URLs and content-freshness signals.</p>
 
 <h2>What Docket is for</h2>
 
-<p>{N_CHECKS} checks across thirteen areas, four of which are not technical SEO at all —
-conversion, brand consistency, AI search visibility and campaign tracking — arriving as a ranked
-plan rather than a list of issues, with <a href="/learn/priority-model/">the ordering formula
+<p>{N_CHECKS} checks across thirteen areas, four of which are not technical SEO at all (conversion, brand consistency, AI search visibility and campaign tracking), arriving as a ranked plan rather than a list of issues, with <a href="/learn/priority-model/">the ordering formula
 published</a>. The overlap with their SEO feature is real but partial: the technical checks on
 their list are ones Docket also runs, and most of what Docket runs is not on their list.</p>
 
@@ -2100,13 +2073,12 @@ macOS already ships.</p>
 <ul>
 <li><strong>Use crawler.sh</strong> if you want site content as Markdown for an AI pipeline, or
 a free local crawler for a small site with SEO checks attached.</li>
-<li><strong>Buy Docket</strong> if you want the audit itself — what is wrong, across technical,
+<li><strong>Buy Docket</strong> if you want the audit itself: what is wrong, across technical,
 conversion, brand and AI visibility, ranked into the order to fix it, with no page limit.</li>
 </ul>
 
 <p>If running locally is the part that matters to you,
-<a href="/vs/scrutiny-alternative/">Scrutiny</a> is the third tool in that shape — a Mac app,
-bought once, and the strongest link checker of the three. Nothing here compares the quality of
+<a href="/vs/scrutiny-alternative/">Scrutiny</a> is the third tool in that shape: a Mac app, bought once, and the strongest link checker of the three. Nothing here compares the quality of
 either tool's checks, which has not been measured. Both vendors' own published descriptions are
 what this page is built from.</p>
 
@@ -2129,7 +2101,7 @@ what this page is built from.</p>
              "Docket does considerably more."),
             ("Does crawler.sh limit how many pages you can crawl?",
              "Yes. Its free tier is capped at 50 pages a session and its paid tiers at "
-             "10,000. Docket has no cap at all — -n 0 crawls until the site ends, because "
+             "10,000. Docket has no cap at all: -n 0 crawls until the site ends, because "
              "there is no server counting."),
             ("Which is cheaper?",
              f"crawler.sh, at {price('crawler-sh')} against Docket's {PRICE_STR} one-time. It "
@@ -2177,13 +2149,13 @@ features than on that difference, so this starts there.</p>
     <td class="yes">{PRICE_STR} once{PAY4}</td></tr>
 <tr><td>Where the crawl runs</td><td>Their cloud</td><td class="yes">Your machine</td>
     <td class="yes">Your Mac</td></tr>
-<tr><td>Audit volume</td><td>Metered &mdash; the Core plan states
+<tr><td>Audit volume</td><td>Metered: the Core plan states
     &ldquo;250k pages per month in audit&rdquo;</td>
     <td class="yes">Unmetered; free tier stops at 500 URLs</td>
     <td class="yes">Unmetered</td></tr>
 <tr><td>Try before buying</td><td>&ldquo;Start free 14-day trial&rdquo;, &ldquo;No credit card
     required&rdquo;</td><td>Free tier, 500 URLs, permanently</td>
-    <td>No trial &mdash; refund instead</td></tr>
+    <td>No trial, a refund instead</td></tr>
 </tbody></table></div>
 {price_note_html()}
 
@@ -2196,21 +2168,19 @@ a month in audit, and 25K API credits with MCP access. If you want daily rank tr
 locations and devices, that is the product, and neither of the other two here does it at all.</p>
 
 <p>The page meter is the thing to check before you buy. 250k pages a month is generous for one
-site and starts to matter when you are auditing many, or re-auditing the same large site often
-&mdash; and it is a ceiling that exists because the crawl happens on their hardware.</p>
+site and starts to matter when you are auditing many, or re-auditing the same large site often, and it is a ceiling that exists because the crawl happens on their hardware.</p>
 
 <h2>What Screaming Frog is actually selling</h2>
 
 <p>The opposite trade. It audits &ldquo;over 300 SEO issues&rdquo;, it runs on your machine,
-and nothing counts your pages &mdash; their own line is that you can
+and nothing counts your pages. Their own line is that you can
 &ldquo;Download &amp; crawl 500 URLs for free, or buy a licence for &pound;199 Per Year to
 remove the limit &amp; access advanced features&rdquo;. The free tier is genuinely useful and
 genuinely limited: their Free vs Paid table puts Scheduling, Crawl Configuration, Save &amp;
 Open Crawls, JavaScript Rendering, Crawl Comparison and Near Duplicate Content on the paid side
 only, so the free version cannot save a crawl or render JavaScript.</p>
 
-<p>What you get back is data. Screaming Frog is the better tool if you know what you are looking
-for &mdash; custom extraction, very large crawls, a specific hypothesis to test. It does not
+<p>What you get back is data. Screaming Frog is the better tool if you know what you are looking for: custom extraction, very large crawls, a specific hypothesis to test. It does not
 rank what to fix first, and it does not try to.</p>
 
 <h2>Where Docket sits, and where it does not</h2>
@@ -2233,12 +2203,11 @@ Screaming Frog is the right tool.</p>
 <h2>So which one</h2>
 
 <ul>
-<li>You need daily rank tracking and keyword research &mdash; <a href="{sr}"
+<li>You need daily rank tracking and keyword research: <a href="{sr}"
     rel="nofollow noopener">SE Ranking</a>, and the audit comes along with it.</li>
-<li>You crawl very large sites, or you want raw data to interrogate yourself &mdash;
-    <a href="{sf}" rel="nofollow noopener">Screaming Frog</a>.</li>
+<li>You crawl very large sites, or you want raw data to interrogate yourself: <a href="{sf}" rel="nofollow noopener">Screaming Frog</a>.</li>
 <li>You want to know what is wrong with your site and what to do about it, on a Mac, without a
-    subscription or a page meter &mdash; that is what Docket is for.</li>
+    subscription or a page meter: that is what Docket is for.</li>
 </ul>
 """
     return render(

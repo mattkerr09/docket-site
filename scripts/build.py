@@ -223,11 +223,11 @@ def build_hubs() -> list[Path]:
             ("/vs/sitechecker-alternative/", "Docket vs Sitechecker",
              "It tracks rankings and whether five AI models mention your brand; Docket "
              "does neither. What Docket checks is whether those crawlers can reach you "
-             "at all — a precondition rather than the same question."),
+             "at all: a precondition rather than the same question."),
             ("/vs/seoptimer-alternative/", "Docket vs SEOptimer",
              "The cheapest way in, and built for a job Docket does not do: white-label "
              "reports and an embeddable lead-capture audit. The real difference is the "
-             "meter — SEOptimer buys you a set number of crawls a month, Docket does not "
+             "meter: SEOptimer buys you a set number of crawls a month, Docket does not "
              "count them."),
         ],
         intro="""
@@ -237,13 +237,13 @@ def build_hubs() -> list[Path]:
 answer different questions. There are broadly three:</p>
 
 <ul>
-<li><strong>Crawlers</strong> — Screaming Frog, Sitebulb. You point them at a site and they
+<li><strong>Crawlers</strong>: Screaming Frog, Sitebulb. You point them at a site and they
 return everything, at scale, sortable. The question they answer is "what is on my site". They
 are very good at it and Docket does not attempt that scale.</li>
-<li><strong>Platforms</strong> — Ahrefs, Semrush. A web-scale index of links and keywords,
+<li><strong>Platforms</strong>: Ahrefs, Semrush. A web-scale index of links and keywords,
 with a site audit attached. The question is "where do I stand against everyone else", and
 nothing on a desktop can answer it, because the answer requires having crawled the web.</li>
-<li><strong>Auditors</strong> — where Docket sits. The question is "what should I change, in
+<li><strong>Auditors</strong>: where Docket sits. The question is "what should I change, in
 what order", which is a judgement rather than a dataset, and it is the one that needs no
 subscription because the data it needs is your own site.</li>
 </ul>
@@ -253,7 +253,7 @@ It replaces the part of it you open once a month and then export to a spreadshee
 
 <h2>When not to use Docket</h2>
 
-<p>If you need keyword positions or a backlink profile, none of these pages will help — Docket
+<p>If you need keyword positions or a backlink profile, none of these pages will help. Docket
 has neither and is not building either. If your crawl is hundreds of thousands of URLs, use a
 crawler built for it. If you are not on a Mac, Docket will not run at all.</p>
 
@@ -280,12 +280,12 @@ money.</p>
              "It reads body text, and body text is defined as the page minus nav, header, footer, "
              "aside and form. What that means for a footer signup."),
             ("/learn/ai-sounding-copy/", "Does your copy read as AI-written?",
-             "Docket matches a register, not authorship — it cannot tell you who or what "
+             "Docket matches a register, not authorship. It cannot tell you who or what "
              "wrote a page. What it looks for, why it needs more than one tell, and what "
              "that finding is worth."),
             ("/learn/who-blocks-googlebot/", "Who blocks Googlebot, and who blocks GoogleOther",
              "We read robots.txt across a large public sample. A small share deny "
-             "Googlebot and rather more deny GoogleOther — what that can, and cannot, "
+             "Googlebot and rather more deny GoogleOther: what that can, and cannot, "
              "tell you about a site."),
             ("/learn/does-cloudflare-block-gptbot/", "Does Cloudflare block GPTBot?",
              "Cloudflare changed what a new domain does by default, and the answer "

@@ -28,10 +28,10 @@ def free_seo_audit_tools() -> Path:
     body = f"""
 <p class="lede">Three genuinely free tools cover most of what a small site needs, and two of
 them are made by Google. If you are looking for a free SEO audit, start here and stop reading
-when you have enough — this page is on the site of a tool that costs {PRICE_STR}, and most
+when you have enough. This page is on the site of a tool that costs {PRICE_STR}, and most
 readers should not buy it.</p>
 
-<h2>Google Lighthouse — free, open source, already installed</h2>
+<h2>Google Lighthouse: free, open source, already installed</h2>
 
 <p>Lighthouse is "an open-source, automated tool" you can run from Chrome DevTools, the command
 line, a Node module or a web UI. If you use Chrome, you already have it: open DevTools, pick
@@ -44,33 +44,32 @@ free is better.</p>
 
 <p><strong>What it does not do, in its own words:</strong> its SEO category declares ten
 scored audits and describes itself as "basic search engine optimization advice", noting that
-there are more checks it does not perform. It is also <em>per page</em> — it has no concept of
+there are more checks it does not perform. It is also <em>per page</em>. It has no concept of
 your site as a whole, so orphan pages, canonical conflicts across templates and hreflang
 reciprocity are all invisible to it by design.</p>
 
-<h2>Google Search Console — free, and the only source of real Google data</h2>
+<h2>Google Search Console: free, and the only source of real Google data</h2>
 
 <p>Nothing else tells you what Google actually did with your site: which queries brought
 impressions, which pages were indexed and which were not. It is free, and for anything about
 your standing in Google specifically it is the primary source.</p>
 
 <p><strong>The limits are published and worth knowing before you rely on it.</strong> Reports
-show "a maximum of 1,000 rows, so some rows might be omitted". Data is not live — "normally,
+show "a maximum of 1,000 rows, so some rows might be omitted". Data is not live: "normally,
 however, collected data should be available in 2-3 days". Google "might not track some queries
 that are made a very small number of times", so the long tail is partly absent. The URL
 Inspection API is capped at "2000 QPD" and "600 QPM" per property, which means a site of any
 size cannot be inspected page by page even by script.</p>
 
 <p>Its Core Web Vitals report is field data: "the data for the Core Web Vitals report comes
-from the CrUX report", gathered from real visitors. That is more truthful than any simulation —
-and it needs enough traffic to exist. How much is not published: "An exact number is not
+from the CrUX report", gathered from real visitors. That is more truthful than any simulation, and it needs enough traffic to exist. How much is not published: "An exact number is not
 provided."</p>
 
 <p><strong>And it only works on sites you own.</strong> You verify the property first, which
 makes it useless for looking at a competitor, or at a site you are about to take on as a
 client.</p>
 
-<h2>Screaming Frog, free tier — a real crawler, capped</h2>
+<h2>Screaming Frog, free tier: a real crawler, capped</h2>
 
 <p>The free tier is limited to 500 URLs. For a small brochure site that is the whole site, and
 you get an actual crawl rather than a page-at-a-time check: redirect chains, broken links,
@@ -87,7 +86,7 @@ places:</p>
 
 <ul>
 <li><strong>More than 500 URLs</strong>, where the free crawl tier stops.</li>
-<li><strong>Whole-site relationships</strong> — a canonical pointing at a noindex page, an
+<li><strong>Whole-site relationships</strong>: a canonical pointing at a noindex page, an
 hreflang set that is not reciprocated, a page nothing links to. None of these exist on any
 single page, so no per-page tool can see them.</li>
 <li><strong>Being told what to do first.</strong> Every tool above hands you findings. Ordering
@@ -98,7 +97,7 @@ does not attempt.</li>
 <p>Docket is {PRICE_STR} paid once, runs on your Mac, and answers
 that third one: a ranked plan rather than a list. <strong>It is not free, and if your site is
 under 500 URLs and you are comfortable reading Lighthouse and Search Console, you do not need
-it.</strong> That is a real answer, not modesty — buying a tool to tell you what three free
+it.</strong> That is a real answer, not modesty. Buying a tool to tell you what three free
 ones already told you is a waste of {PRICE_STR}.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a> ·
@@ -118,19 +117,19 @@ ones already told you is a waste of {PRICE_STR}.</p>
         body=body,
         faq=[
             ("What is the best free SEO audit tool?",
-             "For a single page, Lighthouse — it is open source, built into Chrome DevTools, "
+             "For a single page, Lighthouse. It is open source, built into Chrome DevTools, "
              "and powers PageSpeed Insights. For how Google actually treats your site, Search "
              "Console. For crawling a small site, Screaming Frog's free tier, capped at 500 "
              "URLs."),
             ("Is Google Lighthouse enough for SEO?",
              "For one page at a time, often. Its SEO category describes itself as “basic "
              "search engine optimization advice” and notes there are checks it does not "
-             "perform, and it has no view of your site as a whole — so canonical conflicts, "
+             "perform, and it has no view of your site as a whole, so canonical conflicts, "
              "hreflang reciprocity and orphan pages are invisible to it."),
             ("Why can't Search Console tell me everything?",
              "Its limits are published: reports show at most 1,000 rows, data lags by about "
              "two to three days, very rare queries may not be tracked, and it only works on "
-             "properties you have verified — so it cannot look at a competitor's site."),
+             "properties you have verified, so it cannot look at a competitor's site."),
             ("When is a paid SEO audit tool worth it?",
              "When a site is bigger than the free crawl tier, when the problems are "
              "relationships between pages rather than faults on one page, or when you need "
@@ -142,8 +141,7 @@ ones already told you is a waste of {PRICE_STR}.</p>
 def best_hub() -> Path:
     body = """
 <p class="lede">Which tool to use, by the job you are actually doing. Every claim about a named
-product here was read from that product's own documentation and is dated on the page — because
-a recommendation that cannot be checked is an advertisement.</p>
+product here was read from that product's own documentation and is dated on the page, because a recommendation that cannot be checked is an advertisement.</p>
 
 <h2>Free SEO audit tools</h2>
 <p>Three genuinely free tools cover most of what a small site needs, and two of them are made
@@ -154,14 +152,14 @@ points where paying starts to help.
 <h2>How a tool gets onto one of these pages</h2>
 <p>There is no scoring formula and no ranking here, because a number invented to order a list is
 still invented. A guide gets written when there is a job worth choosing a tool for, and it names
-the tool that does that job best &mdash; which is regularly not ours.</p>
+the tool that does that job best, which is regularly not ours.</p>
 <ul>
 <li><strong>Every capability claim comes from the vendor.</strong> Not from a review, not from a
 comparison table someone else built, and not from memory. Where a page says a tool does or does
 not do something, it is reading that tool's own documentation or published feature list, with a
 link and the date it was read. Documentation changes; an undated claim is one you cannot check.</li>
 <li><strong>A missing feature is written up as a missing claim.</strong> If a vendor's own pages
-never mention something, that is what the page says &mdash; not that the product is incapable of
+never mention something, that is what the page says, not that the product is incapable of
 it. Those are different statements, and only one of them is evidence.</li>
 <li><strong>Prices are the vendor's, in the vendor's own terms.</strong> Taken from their pricing
 page, in the currency and billing period that page states, and dated like everything else.</li>
@@ -170,11 +168,9 @@ any outbound link here, and nothing paid to be listed.</li>
 </ul>
 
 <h2>We make one of the tools</h2>
-<p>Docket is ours, which is exactly why every sentence about it deserves checking &mdash; so the
-method above is pointed back at us too. Every comparison page on this site names what the other
+<p>Docket is ours, which is exactly why every sentence about it deserves checking, so the method above is pointed back at us too. Every comparison page on this site names what the other
 tool does better than Docket. One of them says plainly that a competitor is cheaper. Where Docket
-has no answer at all &mdash; rendering at scale, Core Web Vitals, backlinks, rank tracking &mdash;
-the page covering that tool says so before it makes any case in our favour. A page here that
+has no answer at all (rendering at scale, Core Web Vitals, backlinks, rank tracking), the page covering that tool says so before it makes any case in our favour. A page here that
 reads like an advertisement is a bug in the page.</p>
 
 <h2>More coming</h2>

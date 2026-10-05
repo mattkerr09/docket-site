@@ -14,7 +14,7 @@
 <title>Docket vs Google Search Console: what each answers</title>
 <meta name="description" content="Search Console is free, it is Google's own data, and nothing replaces it. What it cannot tell you, and where an audit on your own Mac answers instead.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="e07e3e8a4aad">
+<meta name="build-id" content="28d50731d197">
 <link rel="canonical" href="https://docketseo.app/vs/google-search-console/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -824,8 +824,7 @@ fbq('track','PageView');
 </div></nav>
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/vs/">Compare</a> / Search Console</div><h1>Docket vs Google Search Console</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-10">10 August 2026</time></p>
 
-<p class="lede">Search Console is free, it is Google's own data, and no audit tool replaces
-it — this one included. It is the single source of the queries your site actually appeared for,
+<p class="lede">Search Console is free, it is Google's own data, and no audit tool replaces it, this one included. It is the single source of the queries your site actually appeared for,
 the clicks and impressions they earned, Core Web Vitals measured on real visitors, and any
 manual action taken against you. A product sold to you as a Search Console replacement is
 lying. Verify your property first. This page is about the question Search Console does not
@@ -864,7 +863,7 @@ Google's published quota for the API is 2,000 queries a day and 600 a minute per
 site of 5,000 pages cannot be inspected in a day even by script.</li>
 <li><strong>A page with no impressions has no row.</strong> The Performance report is built from
 appearances in search results. A page you published this morning, or one Google has never
-indexed, is simply absent — and absence is usually the case you were trying to debug.</li>
+indexed, is simply absent, and absence is usually the case you were trying to debug.</li>
 <li><strong>The tables are truncated on purpose.</strong> Google's own documentation:
 <em>Our tables can show a maximum of 1,000 rows, so some rows might be omitted.</em> The same
 page adds that it <em>might not track some queries that are made a very small number of
@@ -882,16 +881,14 @@ None of them is a defect. Together they are the outline of a different question.
 
 <h2>What Docket does to the same site</h2>
 
-<p>Docket crawls the site as it stands right now and runs 99 checks — technical SEO,
-copy, page speed, structured data, local visibility, AI search access and marketing
-conversion — then ranks every finding by impact against effort and sorts them into four phases.
+<p>Docket crawls the site as it stands right now and runs 99 checks (technical SEO,
+copy, page speed, structured data, local visibility, AI search access and marketing conversion), then ranks every finding by impact against effort and sorts them into four phases.
 Each finding states what it costs you in plain language and carries the exact markup to paste.
 It writes a client-ready PDF and can score you against a named competitor. The crawl runs on
 your Mac: no account, no telemetry, results in <code>~/.docket</code>.</p>
 
 <p>The difference is time-shape more than feature list. Search Console answers questions about
-last week, on pages Google has met. Docket answers a question about this minute, on every page
-you have — including the one you published an hour ago.</p>
+last week, on pages Google has met. Docket answers a question about this minute, on every page you have, including the one you published an hour ago.</p>
 
 <h2>A division of labour, question by question</h2>
 
@@ -920,8 +917,7 @@ $349 paid once. </p>
 
 <h2>Where Docket defers: Core Web Vitals</h2>
 
-<p><strong>Docket does not measure Core Web Vitals.</strong> Its speed checks are causes —
-render-blocking resources, uncompressed images, page weight — and a cause is not a metric. The
+<p><strong>Docket does not measure Core Web Vitals.</strong> Its speed checks are causes (render-blocking resources, uncompressed images, page weight), and a cause is not a metric. The
 metrics come from real visitors, which is why Search Console builds that report from CrUX rather
 than from a lab run. Docket has one optional check that fetches the same CrUX values through the
 PageSpeed Insights API; it is one of four checks that reach off your machine, and
@@ -953,7 +949,7 @@ place a verdict exists.</li>
 forever, and add the crawler when the question is what to change rather than what happened.</p>
 
 <p class="verified-note"><strong>Checked 10 August 2026.</strong> The factual
-claims about this product were read from its own pages on that date: the URL Inspection API quota is "2000 QPD" and "600 QPM" per site (<a href="https://developers.google.com/webmaster-tools/limits" rel="nofollow noopener">source</a>); "Our tables can show a maximum of 1,000 rows, so some rows might be omitted" (<a href="https://support.google.com/webmasters/answer/96568" rel="nofollow noopener">source</a>); "Normally, however, collected data should be available in 2-3 days" (<a href="https://support.google.com/webmasters/answer/96568" rel="nofollow noopener">source</a>); Google "might not track some queries that are made a very small number of times", and most reports "only cover a representative sample" of a site's URLs (<a href="https://support.google.com/webmasters/answer/96568" rel="nofollow noopener">source</a>); "The data for the Core Web Vitals report comes from the CrUX report" — field data from real visitors, reported at the 75th percentile — and "A URL group without threshold data for both LCP and CLS will not be on the report" (<a href="https://support.google.com/webmasters/answer/9205520" rel="nofollow noopener">source</a>); how much traffic a page needs before CrUX will report on it is not published: "An exact number is not disclosed" (<a href="https://developer.chrome.com/docs/crux/methodology" rel="nofollow noopener">source</a>).
+claims about this product were read from its own pages on that date: the URL Inspection API quota is "2000 QPD" and "600 QPM" per site (<a href="https://developers.google.com/webmaster-tools/limits" rel="nofollow noopener">source</a>); "Our tables can show a maximum of 1,000 rows, so some rows might be omitted" (<a href="https://support.google.com/webmasters/answer/96568" rel="nofollow noopener">source</a>); "Normally, however, collected data should be available in 2-3 days" (<a href="https://support.google.com/webmasters/answer/96568" rel="nofollow noopener">source</a>); Google "might not track some queries that are made a very small number of times", and most reports "only cover a representative sample" of a site's URLs (<a href="https://support.google.com/webmasters/answer/96568" rel="nofollow noopener">source</a>); "The data for the Core Web Vitals report comes from the CrUX report": field data from real visitors, reported at the 75th percentile, and "A URL group without threshold data for both LCP and CLS will not be on the report" (<a href="https://support.google.com/webmasters/answer/9205520" rel="nofollow noopener">source</a>); how much traffic a page needs before CrUX will report on it is not published: "An exact number is not disclosed" (<a href="https://developer.chrome.com/docs/crux/methodology" rel="nofollow noopener">source</a>).
 Google changes its products and its documentation; if something here has gone out of date, <a href="/about/">tell us</a> and it will be corrected. Nothing on this page argues that you should use Docket instead of Search Console, because you should not.</p>
 
 <div class="callout" id="buy">
