@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { checkJsonLd, checkMeta, displayWidth, TITLE_MAX } from '../src/page.js'
-import { handle } from '../src/index.js'
+import { botCheck, handle } from '../src/index.js'
 
 const base = (over = {}) => ({
   url: 'https://example.com/services/', xRobots: '', lang: 'en',
@@ -96,4 +96,14 @@ test('/page refuses what is not a web page, and private hosts', async () => {
   assert.match(j.error, /not a web page/)
   const k = await (await handle(new Request('https://w.example/page?url=localhost/admin'), pdf, {}, null)).json()
   assert.match(k.error, /private|not a public/)
+})
+
+test('a bot check served instead of the page is reported, not graded', async () => {
+  assert.ok(botCheck(202, '<html></html>'))
+  assert.ok(botCheck(200, '<html><title>Just a moment...</title></html>'))
+  assert.ok(!botCheck(200, '<html><title>Kettles</title>' + 'x'.repeat(30000) + 'captcha</html>'))
+  const challenge = async () => new Response('<html>awswaf</html>', { status: 202, headers: { 'Content-Type': 'text/html' } })
+  const j = await (await handle(new Request('https://w.example/page?url=example.com/'), challenge, {}, null)).json()
+  assert.match(j.error, /bot check instead of the page \(HTTP 202\)/)
+  assert.equal(j.meta, undefined)
 })

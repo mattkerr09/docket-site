@@ -165,6 +165,18 @@ export async function fetchRobots(site, fetchImpl = fetch) {
  * followed by hand and re-checked, 2 MiB at most (Google reads the first
  * 2 MB of an HTML file), HTML only. Returns what was read, never the page.
  */
+/**
+ * A challenge page served instead of the page asked for. imdb.com answered
+ * this checker with HTTP 202 and 2 KB of bot check; reading that as the page
+ * reported "no JSON-LD" on a page that has it. A 202, or a small body that
+ * says it is checking the visitor, is reported as what it is.
+ */
+export function botCheck(status, text) {
+  if (status === 202) return true
+  const t = String(text || '')
+  return t.length < 20000 && /captcha|just a moment|checking your browser|verify you are (a )?human|cf-chl|awswaf|challenge-platform|access denied/i.test(t)
+}
+
 export async function fetchPage(start, fetchImpl = fetch) {
   let url = new URL(start.toString())
   const hops = []
@@ -197,6 +209,10 @@ export async function fetchPage(start, fetchImpl = fetch) {
     if (res.status >= 400) return { error: `The page answered HTTP ${res.status}.`, status: res.status, url: url.toString(), hops }
     if (type && !type.includes('html')) return { error: `That address is not a web page (${type.split(';')[0]}).`, status: res.status, url: url.toString(), hops }
     const body = await readCapped(res, MAX_PAGE_BYTES)
+    if (botCheck(res.status, body.text)) {
+      return { error: `The site answered with a bot check instead of the page (HTTP ${res.status}), so its tags cannot be read from here.`,
+        status: res.status, url: url.toString(), hops }
+    }
     return { status: res.status, url: url.toString(), hops, body, xRobots: res.headers.get('X-Robots-Tag') || '' }
   }
   return { error: 'More than five redirects.', url: url.toString(), hops }
