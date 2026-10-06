@@ -321,7 +321,7 @@
  },
  "index.html": {
   "date": "2026-10-06",
-  "hash": "ebd253a4f714f423"
+  "hash": "200c65552d2d319b"
  },
  "index/ai-directives/index.html": {
   "date": "2026-10-05",
@@ -409,7 +409,7 @@
  },
  "learn/internal-link-equity/index.html": {
   "date": "2026-10-06",
-  "hash": "b8f7cad9fafd886f"
+  "hash": "b9611abf96c5b7ec"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-10-05",
@@ -476,8 +476,8 @@
   "hash": "a9c9f2a1fe499571"
  },
  "legal/privacy/index.html": {
-  "date": "2026-10-01",
-  "hash": "35bcd77f9c5100fe"
+  "date": "2026-10-06",
+  "hash": "1297ffb2ed24d236"
  },
  "legal/refunds/index.html": {
   "date": "2026-10-01",
@@ -493,7 +493,15 @@
  },
  "tools/index.html": {
   "date": "2026-10-06",
-  "hash": "6c535c33df0cfef4"
+  "hash": "2cf470ffb9d00370"
+ },
+ "tools/json-ld-checker/index.html": {
+  "date": "2026-10-06",
+  "hash": "fa3222a5c019e60c"
+ },
+ "tools/meta-tag-checker/index.html": {
+  "date": "2026-10-06",
+  "hash": "1e7550a926b754db"
  },
  "tools/robots-txt-tester/index.html": {
   "date": "2026-10-06",

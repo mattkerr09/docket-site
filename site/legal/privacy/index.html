@@ -14,7 +14,7 @@
 <title>Privacy policy — what Docket collects, and what it does not</title>
 <meta name="description" content="Audits run on your Mac and are never uploaded. No account, no telemetry. Six third-party scripts, one an advertising pixel — what each does and how to stop it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b421e37bd79a">
+<meta name="build-id" content="1f1cfa5adfcc">
 <link rel="canonical" href="https://docketseo.app/legal/privacy/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -614,6 +614,16 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
 .tool-list li{margin:.5rem 0}
+.findings{list-style:none;padding:0;margin:1rem 0 1.5rem}
+.findings .finding{display:grid;grid-template-columns:7.5rem 1fr;gap:.15rem .8rem;padding:.65rem .8rem;
+  border:1px solid var(--border);border-radius:var(--radius-md);margin:.45rem 0;background:var(--surface)}
+.finding-level{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;grid-row:span 2}
+.finding.problem .finding-level{color:var(--bad-text)}.finding.warning .finding-level{color:var(--text)}
+.finding.note .finding-level{color:var(--text-mid)}.finding.ok .finding-level{color:var(--ok)}
+.finding-detail{color:var(--text-mid);overflow-wrap:anywhere}
+.meta-summary dl{display:grid;grid-template-columns:7.5rem 1fr;gap:.35rem .8rem;margin:0 0 1rem}
+.meta-summary dt{font-weight:600}.meta-summary dd{margin:0;overflow-wrap:anywhere}
+@media(max-width:600px){.findings .finding,.meta-summary dl{grid-template-columns:1fr}.finding-level{grid-row:auto}}
 .checker-status{margin:.7rem 0 0;color:var(--text-mid);min-height:1.3em;overflow-wrap:anywhere}
 .checker-table .verdict{font-weight:600;overflow-wrap:anywhere}
 .checker-table .verdict.yes{color:var(--ok)}.checker-table .verdict.no{color:var(--bad-text)}
@@ -994,10 +1004,15 @@ enumeration stays complete.</p>
 depends on it loading.</p>
 
 <h2>Data you give us</h2>
-<p>The <a href="/tools/ai-crawler-checker/">AI crawler checker</a> sends the address you type, and
-nothing else about you, to <code>ai-crawler-check.kerrco.workers.dev</code>, a server we run. That
-server fetches the site's robots.txt, answers, and keeps nothing; the page sets no cookie and stores
-nothing in your browser. Nothing is sent until you press the button.</p>
+<p>The <a href="/tools/">free checkers</a> send the address you type, and nothing else about you,
+to <code>ai-crawler-check.kerrco.workers.dev</code>, a server we run. Nothing is sent until you press
+the button. The AI crawler checker and the robots.txt tester make that server fetch the site's
+robots.txt. The title and meta tag checker and the JSON-LD checker make it fetch the page at that
+address, read its title, meta tags, headings and structured data, and send back only the result of
+the checks, not the page. The server names itself in each request, keeps a copy of what it fetched
+for a few minutes so repeated checks do not hit the site again, counts checks per connection for a
+minute to stop floods, and keeps nothing else. The pages set no cookie and store nothing in your
+browser.</p>
 <p>After a purchase, the page you return to asks <code>kerr-affiliate-hub.kerrco.workers.dev</code>,
 a server we run, what that payment came to, sending only the payment&rsquo;s id, so our own sales
 count and advertising records show what you actually paid rather than the list price. Nothing about

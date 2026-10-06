@@ -708,6 +708,10 @@ def write_llms_txt() -> None:
          "and see which AI crawlers its robots.txt lets in, and what each block costs"),
         ("Free robots.txt tester", f"{BASE}/tools/robots-txt-tester/", "paste a page address "
          "and see whether Googlebot, Bingbot and the AI crawlers may crawl it, and which line decides"),
+        ("Free title and meta tag checker", f"{BASE}/tools/meta-tag-checker/", "title and "
+         "description width, noindex, canonical, H1 and Open Graph tags for one page"),
+        ("Free JSON-LD checker", f"{BASE}/tools/json-ld-checker/", "invalid JSON by line and column, "
+         "and the properties each structured data item needs for a rich result"),
         ("Free SEO checkers", f"{BASE}/tools/", "every free checker, each answering one question "
          "about one page"),
         ("AI search visibility", f"{BASE}/learn/ai-search-visibility/", "whether a model "

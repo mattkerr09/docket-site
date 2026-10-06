@@ -26,12 +26,32 @@ from render import (HAS_SAMPLE, INTEL, INTEL_DMG, N_CHECKS, PAY4, PRICE, PRICE_S
 
 WORKER = "https://ai-crawler-check.kerrco.workers.dev"
 
+#: The limits and the schema types, as the Worker applies them
+#: (workers/ai-crawler-check/src/page.js, ported from Docket's engine).
+TITLE_MIN, TITLE_MAX, DESC_MIN, DESC_MAX = 25, 65, 70, 165
+REQUIRED_PROPS = {
+    "Product": ["name", "image"], "Offer": ["price", "priceCurrency"],
+    "Recipe": ["name", "image", "recipeIngredient", "recipeInstructions"],
+    "Event": ["name", "startDate", "location"],
+    "JobPosting": ["title", "datePosted", "hiringOrganization", "jobLocation"],
+    "FAQPage": ["mainEntity"], "HowTo": ["name", "step"], "Article": ["headline"],
+    "BlogPosting": ["headline"], "LocalBusiness": ["name", "address"], "Organization": ["name"],
+    "Review": ["reviewRating", "author"], "BreadcrumbList": ["itemListElement"],
+    "VideoObject": ["name", "thumbnailUrl", "uploadDate"],
+    "SoftwareApplication": ["name", "applicationCategory"],
+}
+REQUIRED_TYPES = list(REQUIRED_PROPS)
+
 #: The free checkers, in the order the hub lists them. (slug, name, question).
 TOOLS = [
     ("ai-crawler-checker", "AI crawler checker",
      "Can ChatGPT, Claude, Perplexity and Google's AI Overviews read your site?"),
     ("robots-txt-tester", "Robots.txt tester",
      "Is this exact page open or blocked for Googlebot, Bingbot and the AI crawlers, and which line decides?"),
+    ("meta-tag-checker", "Title and meta tag checker",
+     "Is this page's title the right length, is it indexable, and what will a shared link show?"),
+    ("json-ld-checker", "JSON-LD structured data checker",
+     "Is this page's structured data valid, and is anything missing that a rich result needs?"),
 ]
 
 
@@ -85,6 +105,13 @@ same file for the crawlers those assistants send, and splits the ones that let a
 you from the ones that only collect training data. Blocking the second kind is a reasonable choice;
 blocking the first kind usually is not.</p>
 
+<p><strong>A search result shows the wrong title, or a cut-off one.</strong> The title and meta tag
+checker measures the title and description the way Docket does, by width rather than character
+count, and checks the tags that decide whether the page can be indexed and what a shared link shows.</p>
+<p><strong>Stars, prices or FAQs never appear under your result.</strong> The JSON-LD checker reads
+every structured data block on the page, says which line breaks the JSON, and lists the properties a
+rich result needs that are missing.</p>
+
 <h2>What a free check can and cannot tell you</h2>
 <p>Each checker reads what a crawler would read at the moment you ask: one robots.txt file, for one
 page. It cannot see a firewall or CDN that refuses a crawler the file allows, and it does not look at
@@ -98,9 +125,9 @@ find the refusals a file cannot show, and ranks what to fix first.</p>
 """
     return render(
         cat="tools", slug="",
-        title="Free SEO checkers: robots.txt, AI crawlers",
-        desc=("Free online SEO checkers: test a page against robots.txt for Googlebot and the AI "
-              "crawlers, and see which AI assistants can read your site. No account."),
+        title="Free SEO checkers: robots.txt, meta tags, schema",
+        desc=("Free online SEO checkers: robots.txt for Googlebot and AI crawlers, title and meta "
+              "tags, and JSON-LD structured data, for any page. No account."),
         h1="Free SEO checkers",
         crumb='<a href="/">Docket</a> / Tools',
         body=body,
@@ -279,7 +306,268 @@ ranks all of it with the rest of its {N_CHECKS} checks.</p>
     )
 
 
-BUILDERS = [hub, robots_tester]
+#: The result renderer both page checkers share: one list of findings, each
+#: with its level, its label and what to do.
+RESULT_JS = """
+  function renderFindings(box, findings) {
+    box.innerHTML = '';
+    var order = { problem: 0, warning: 1, note: 2, ok: 3 };
+    var words = { problem: 'Fix', warning: 'Worth fixing', note: 'Note', ok: 'Fine' };
+    findings.slice().sort(function (a, b) { return order[a.level] - order[b.level]; }).forEach(function (f) {
+      var li = document.createElement('li'); li.className = 'finding ' + f.level;
+      var tag = document.createElement('span'); tag.className = 'finding-level'; tag.textContent = words[f.level] || f.level;
+      var b = document.createElement('strong'); b.textContent = f.label;
+      li.appendChild(tag); li.appendChild(b);
+      if (f.detail) { var p = document.createElement('span'); p.className = 'finding-detail'; p.textContent = f.detail; li.appendChild(p); }
+      box.appendChild(li);
+    });
+  }
+  function checkPage(v, done, say) {
+    say('Reading the page…');
+    fetch(PAGE + '?url=' + encodeURIComponent(v))
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        var j = res.j;
+        if (!res.ok || j.error) { say(j.error || 'That address could not be checked.'); return; }
+        done(j);
+        var next = document.getElementById('checker-next'); if (next) next.hidden = false;
+      })
+      .catch(function () { say('The checker could not be reached. Try again in a minute.'); });
+  }
+"""
+
+
+def _form(button: str, placeholder: str) -> str:
+    return f"""
+<form class="checker-form" id="checker" autocomplete="off" novalidate>
+  <label for="checker-url">Page address</label>
+  <div class="checker-row">
+    <input id="checker-url" name="url" type="text" inputmode="url" placeholder="{placeholder}"
+           spellcheck="false" required>
+    <button class="btn" type="submit">{button}</button>
+  </div>
+  <p class="checker-status" id="checker-status" role="status" aria-live="polite"></p>
+</form>"""
+
+
+def meta_checker() -> Path:
+    body = f"""
+<p class="lede">Paste the address of any page. The checker reads its title, meta description,
+canonical, robots tags, headings and sharing tags, and says what to fix, with the same limits Docket
+uses.</p>
+{_form("Check this page", "yourbusiness.com/services/")}
+<div class="meta-summary" id="meta-summary" hidden>
+  <dl>
+    <dt>Title</dt><dd id="ms-title"></dd>
+    <dt>Description</dt><dd id="ms-desc"></dd>
+    <dt>Canonical</dt><dd id="ms-canon"></dd>
+    <dt>H1</dt><dd id="ms-h1"></dd>
+  </dl>
+</div>
+<ul class="findings" id="findings"></ul>
+{audit_next("tools-meta-checker", what="one page, read once")}
+
+<h2>How long should a title be?</h2>
+<p>Search results cut a title off at about 580 pixels, which is roughly {TITLE_MAX} Latin characters.
+Docket measures width rather than counting characters, because Chinese, Japanese and Korean characters
+render about twice as wide: a 19-character Japanese title is 31 wide and perfectly normal. Below
+{TITLE_MIN} wide, a result has little to show. Put the words that say what the page is first; a
+brand name at the end is the first thing to be cut.</p>
+
+<h2>How long should a meta description be?</h2>
+<p>Between {DESC_MIN} and {DESC_MAX} wide is the range Docket uses. Google writes its own snippet when the
+description does not match what someone searched for, so the description is a suggestion. A good one
+says what the page offers and why to click, in the first sentence.</p>
+
+<h2>What the other checks mean</h2>
+<ul>
+<li><strong>Indexable.</strong> A <code>noindex</code> in a robots meta tag, or in the
+<code>X-Robots-Tag</code> header, keeps the page out of search. The checker reads both.</li>
+<li><strong>Canonical.</strong> It tells search engines which address to show for this page. Pointing at
+another address is fine when it is deliberate, such as a filtered view pointing at the main list.</li>
+<li><strong>H1, language and viewport.</strong> One main heading, a <code>lang</code> on the
+<code>&lt;html&gt;</code> tag, and a viewport tag so phones get a page made for them.</li>
+<li><strong>Open Graph.</strong> <code>og:title</code>, <code>og:description</code> and
+<code>og:image</code> decide what a link shows when it is shared in a chat or on social media.</li>
+</ul>
+
+<h2>What one page cannot tell you</h2>
+<p>Whether two pages share the same title, whether the canonical you point at is itself indexable, and
+whether the page's text matches what its tags promise. Docket checks those across every page of a site,
+with the rest of its {N_CHECKS} checks, and ranks what to fix first.</p>
+{buy_block("tools-meta-checker", try_app="tools-meta-checker-try-free")}
+
+<h2>Related</h2>
+<ul>
+<li><a href="/how-to/write-title-tags-that-fit/">Write title tags that fit</a></li>
+<li><a href="/tools/json-ld-checker/">JSON-LD structured data checker</a></li>
+<li><a href="/tools/robots-txt-tester/">Robots.txt tester</a></li>
+</ul>
+
+<script>
+(function () {{
+  var PAGE = {json.dumps(WORKER + "/page")};
+  {RESULT_JS}
+  var form = document.getElementById('checker');
+  var input = document.getElementById('checker-url');
+  var status = document.getElementById('checker-status');
+  if (!form || !window.fetch) return;
+  function say(t) {{ status.textContent = t; }}
+  function set(id, t) {{ document.getElementById(id).textContent = t; }}
+  form.addEventListener('submit', function (e) {{
+    e.preventDefault();
+    var v = (input.value || '').trim();
+    if (!v) {{ say('Enter a page address.'); return; }}
+    checkPage(v, function (j) {{
+      var m = j.meta;
+      set('ms-title', m.title ? m.title + ' (' + m.titleWidth + ' wide)' : 'none');
+      set('ms-desc', m.description ? m.description + ' (' + m.descriptionWidth + ' wide)' : 'none');
+      set('ms-canon', m.canonical || 'none');
+      set('ms-h1', m.h1 && m.h1.length ? m.h1.join(' | ') : 'none');
+      document.getElementById('meta-summary').hidden = false;
+      renderFindings(document.getElementById('findings'), m.findings);
+      var n = m.findings.filter(function (f) {{ return f.level === 'problem' || f.level === 'warning'; }}).length;
+      say('Read ' + j.final_url + (j.redirects && j.redirects.length ? ' after ' + j.redirects.length + ' redirect(s)' : '') + '. ' + (n ? n + ' thing' + (n === 1 ? '' : 's') + ' to fix.' : 'Nothing to fix on this page.'));
+      if (window.plausible) window.plausible('Checker', {{ props: {{ tool: 'meta', issues: String(n) }} }});
+    }}, say);
+  }});
+}})();
+</script>
+"""
+    return render(
+        cat="tools", slug="meta-tag-checker",
+        title="Title and meta tag checker: length, noindex, OG",
+        desc=("Free title and meta tag checker: paste a page and see its title and description "
+              "width, noindex, canonical, H1 and Open Graph tags, and what to fix."),
+        h1="Title and meta tag checker",
+        crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / Title and meta tag checker',
+        body=body,
+        published="2026-10-06",
+        schema_type="WebPage",
+        faq=[
+            ("How long should a title tag be?",
+             f"Up to about 580 pixels, roughly {TITLE_MAX} Latin characters, before search results "
+             "cut it off. Width matters more than count: East Asian characters are about twice as wide."),
+            ("How long should a meta description be?",
+             f"Between {DESC_MIN} and {DESC_MAX} wide is the range Docket uses. Google may still write "
+             "its own snippet when the description does not match the search."),
+            ("How do I check if a page is set to noindex?",
+             "Paste it into the checker above. It reads the robots meta tag on the page and the "
+             "X-Robots-Tag header the server sends, and reports a noindex in either."),
+        ],
+    )
+
+
+def jsonld_checker() -> Path:
+    types = ", ".join(sorted(REQUIRED_TYPES))
+    body = f"""
+<p class="lede">Paste the address of any page. The checker reads every JSON-LD block on it, says
+which line breaks the JSON if one does, and lists the properties each item needs for a rich result
+that are missing.</p>
+{_form("Check structured data", "yourshop.com/products/kettle/")}
+<div class="wrap-tbl" id="ld-items-wrap" hidden><table class="cmp" id="ld-items">
+<thead><tr><th>Block</th><th>Type</th><th>Name</th><th>Missing</th></tr></thead><tbody></tbody></table></div>
+<ul class="findings" id="findings"></ul>
+{audit_next("tools-jsonld-checker", what="one page, read once")}
+
+<h2>What it checks</h2>
+<ul>
+<li><strong>Whether each block is valid JSON.</strong> One stray comma makes a search engine discard the
+whole block. The checker names the line and column where the parser stopped.</li>
+<li><strong>Whether it says it is schema.org.</strong> A block with no <code>@context</code> declares
+types that mean nothing to a search engine.</li>
+<li><strong>Required properties.</strong> For {len(REQUIRED_TYPES)} types ({types}), the properties Google
+requires for a rich result, from the same table Docket uses. Items inside other items, such as an
+Offer inside a Product, are checked too.</li>
+</ul>
+
+<h2>Which properties each type needs</h2>
+<p>The checker reports a type as incomplete when one of these is missing or empty. The list is the one
+inside Docket, taken from Google's structured data documentation.</p>
+<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Type</th><th>Needs</th></tr></thead><tbody>
+{"".join(f"<tr><td><code>{t}</code></td><td>{', '.join(f'<code>{p}</code>' for p in props)}</td></tr>" for t, props in REQUIRED_PROPS.items())}
+</tbody></table></div>
+<p>An Offer is usually nested inside a Product, and a Review inside a Product or a LocalBusiness. Both
+are checked where they sit, so a Product with a complete name and image can still fail on the price
+of its Offer.</p>
+
+<h2>What it does not check</h2>
+<ul>
+<li><strong>Microdata and RDFa.</strong> It reads JSON-LD, the format Google recommends.</li>
+<li><strong>Whether the markup matches the page.</strong> A price or rating in the markup that the
+visitor cannot see is against Google's guidelines. Docket compares the markup with the visible page;
+one free check cannot.</li>
+<li><strong>Whether Google will show a rich result.</strong> Valid, complete markup makes a page
+eligible. Google decides whether to show it.</li>
+</ul>
+<p>Docket reads the structured data on every page it crawls, compares it with what each page shows,
+and ranks what to fix with the rest of its {N_CHECKS} checks.</p>
+{buy_block("tools-jsonld-checker", try_app="tools-jsonld-checker-try-free")}
+
+<h2>Related</h2>
+<ul>
+<li><a href="/how-to/json-ld-parser-errors/">Fix JSON-LD parser errors</a></li>
+<li><a href="/tools/meta-tag-checker/">Title and meta tag checker</a></li>
+<li><a href="/tools/robots-txt-tester/">Robots.txt tester</a></li>
+</ul>
+
+<script>
+(function () {{
+  var PAGE = {json.dumps(WORKER + "/page")};
+  {RESULT_JS}
+  var form = document.getElementById('checker');
+  var input = document.getElementById('checker-url');
+  var status = document.getElementById('checker-status');
+  if (!form || !window.fetch) return;
+  function say(t) {{ status.textContent = t; }}
+  form.addEventListener('submit', function (e) {{
+    e.preventDefault();
+    var v = (input.value || '').trim();
+    if (!v) {{ say('Enter a page address.'); return; }}
+    checkPage(v, function (j) {{
+      var ld = j.jsonld;
+      var tb = document.querySelector('#ld-items tbody'); tb.innerHTML = '';
+      ld.nodes.forEach(function (n) {{
+        var tr = document.createElement('tr');
+        [String(n.block), n.types.join(', '), n.name || '', n.missing.length ? n.missing.join(', ') : 'nothing'].forEach(function (t, i) {{
+          var td = document.createElement('td'); td.textContent = t; if (i === 3) td.className = n.missing.length ? 'verdict no' : 'verdict yes'; tr.appendChild(td);
+        }});
+        tb.appendChild(tr);
+      }});
+      document.getElementById('ld-items-wrap').hidden = !ld.nodes.length;
+      renderFindings(document.getElementById('findings'), ld.findings);
+      say('Read ' + j.final_url + ': ' + ld.blocks + ' JSON-LD block' + (ld.blocks === 1 ? '' : 's') + ', ' + ld.nodes.length + ' item' + (ld.nodes.length === 1 ? '' : 's') + '.');
+      if (window.plausible) window.plausible('Checker', {{ props: {{ tool: 'jsonld', blocks: String(ld.blocks) }} }});
+    }}, say);
+  }});
+}})();
+</script>
+"""
+    return render(
+        cat="tools", slug="json-ld-checker",
+        title="JSON-LD checker: test structured data on any page",
+        desc=("Free JSON-LD structured data checker: paste a page and see invalid JSON by line and "
+              "column, and which required properties each item is missing."),
+        h1="JSON-LD structured data checker",
+        crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / JSON-LD checker',
+        body=body,
+        published="2026-10-06",
+        schema_type="WebPage",
+        faq=[
+            ("How do I test my structured data?",
+             "Paste the page address into the checker above. It reads every JSON-LD block on the page, "
+             "reports invalid JSON with the line and column, and lists missing required properties."),
+            ("Why is my structured data not showing in Google?",
+             "Usually because the JSON is invalid, a required property is missing, or the marked-up "
+             "content is not visible on the page. Valid, complete markup makes a page eligible; Google "
+             "decides whether to show a rich result."),
+            ("Does this check Microdata or RDFa?",
+             "No. It reads JSON-LD, the format Google recommends for structured data."),
+        ],
+    )
+
+
+BUILDERS = [hub, robots_tester, meta_checker, jsonld_checker]
 
 
 def build_all() -> list[Path]:

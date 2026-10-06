@@ -461,7 +461,9 @@ def body() -> str:
   <code>PerplexityBot</code>, and compares the answer to what the file promises.</p>
   <p class="sec-sub">Try it on your own site now, free:
   <a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="home-ai-section">the AI crawler checker</a>
-  and <a href="/tools/robots-txt-tester/" data-ev="Free check" data-ev-button="home-ai-section">the robots.txt tester</a>.</p>
+  and <a href="/tools/robots-txt-tester/" data-ev="Free check" data-ev-button="home-ai-section">the robots.txt tester</a>,
+  or <a href="/tools/" data-ev="Free check" data-ev-button="home-ai-section">every free checker</a>, including
+  title, meta tag and structured data checks.</p>
 </div>
 <div class="grid-3">
   <div class="card"><div class="card-ico">{ICONS['ai']}</div>

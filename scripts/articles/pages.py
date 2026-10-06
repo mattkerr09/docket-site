@@ -1973,10 +1973,15 @@ enumeration stays complete.</p>
 depends on it loading.</p>
 
 <h2>Data you give us</h2>
-<p>The <a href="/tools/ai-crawler-checker/">AI crawler checker</a> sends the address you type, and
-nothing else about you, to <code>ai-crawler-check.kerrco.workers.dev</code>, a server we run. That
-server fetches the site's robots.txt, answers, and keeps nothing; the page sets no cookie and stores
-nothing in your browser. Nothing is sent until you press the button.</p>
+<p>The <a href="/tools/">free checkers</a> send the address you type, and nothing else about you,
+to <code>ai-crawler-check.kerrco.workers.dev</code>, a server we run. Nothing is sent until you press
+the button. The AI crawler checker and the robots.txt tester make that server fetch the site's
+robots.txt. The title and meta tag checker and the JSON-LD checker make it fetch the page at that
+address, read its title, meta tags, headings and structured data, and send back only the result of
+the checks, not the page. The server names itself in each request, keeps a copy of what it fetched
+for a few minutes so repeated checks do not hit the site again, counts checks per connection for a
+minute to stop floods, and keeps nothing else. The pages set no cookie and store nothing in your
+browser.</p>
 <p>After a purchase, the page you return to asks <code>kerr-affiliate-hub.kerrco.workers.dev</code>,
 a server we run, what that payment came to, sending only the payment&rsquo;s id, so our own sales
 count and advertising records show what you actually paid rather than the list price. Nothing about
