@@ -320,8 +320,8 @@
   "hash": "83f6eefb98e40c8d"
  },
  "index.html": {
-  "date": "2026-10-05",
-  "hash": "5ed2e50b6c6bdf5b"
+  "date": "2026-10-06",
+  "hash": "ebd253a4f714f423"
  },
  "index/ai-directives/index.html": {
   "date": "2026-10-05",
@@ -408,8 +408,8 @@
   "hash": "965812143d0a7ed1"
  },
  "learn/internal-link-equity/index.html": {
-  "date": "2026-10-05",
-  "hash": "c415380044fe713d"
+  "date": "2026-10-06",
+  "hash": "b8f7cad9fafd886f"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-10-05",
@@ -488,8 +488,16 @@
   "hash": "9680f128f8b74ee3"
  },
  "tools/ai-crawler-checker/index.html": {
-  "date": "2026-10-05",
-  "hash": "cacb999e9e41c860"
+  "date": "2026-10-06",
+  "hash": "a2b20fd4543f873e"
+ },
+ "tools/index.html": {
+  "date": "2026-10-06",
+  "hash": "6c535c33df0cfef4"
+ },
+ "tools/robots-txt-tester/index.html": {
+  "date": "2026-10-06",
+  "hash": "2f9cf0fbf1a390bc"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
   "date": "2026-10-05",

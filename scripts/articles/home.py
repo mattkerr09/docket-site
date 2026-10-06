@@ -459,6 +459,9 @@ def body() -> str:
   <p class="sec-sub">A crawler reads your <code>robots.txt</code> and believes it. Docket asks
   your server as <code>OAI-SearchBot</code>, as <code>ClaudeBot</code> and as
   <code>PerplexityBot</code>, and compares the answer to what the file promises.</p>
+  <p class="sec-sub">Try it on your own site now, free:
+  <a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="home-ai-section">the AI crawler checker</a>
+  and <a href="/tools/robots-txt-tester/" data-ev="Free check" data-ev-button="home-ai-section">the robots.txt tester</a>.</p>
 </div>
 <div class="grid-3">
   <div class="card"><div class="card-ico">{ICONS['ai']}</div>

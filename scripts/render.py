@@ -1551,7 +1551,7 @@ _NAV_LINKS = """<a href="/index/">The Index</a>
 #: CEO's revenue pass, 2026-09-29: Docket cannot be tried free, the checker
 #: can, and 5 of 138 pages linked it). Listed first so it is the first thing
 #: in the phone menu too.
-_CHECKER_NAV = '<a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="nav">Free AI check</a>\n'
+_CHECKER_NAV = '<a href="/tools/" data-ev="Free check" data-ev-button="nav">Free tools</a>\n'
 
 #: Pages whose INTERNAL links are frozen by a registered experiment. They get
 #: the menu and footer as they were, without the checker link. The Ahrefs
@@ -1645,8 +1645,8 @@ FOOTER = f"""<footer><div class="wrap-wide">
 FOOTER_ARM = FOOTER.replace("__FOOT_CHECKER__", "").replace(KERR_MORE, KERR_MORE_ARM)
 assert KERR_MORE_ARM in FOOTER_ARM
 FOOTER = FOOTER.replace("__FOOT_CHECKER__",
-                        '<a href="/tools/ai-crawler-checker/" data-ev="Free check" '
-                        'data-ev-button="footer">Free AI crawler checker</a>')
+                        '<a href="/tools/" data-ev="Free check" '
+                        'data-ev-button="footer">Free SEO checkers</a>')
 
 
 def _breadcrumb_schema(crumb: str) -> str:

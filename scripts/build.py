@@ -132,6 +132,7 @@ import howto_broken_links  # noqa: E402
 import howto_compression  # noqa: E402
 import extractability  # noqa: E402
 import tool_ai_crawlers  # noqa: E402
+import tools_free  # noqa: E402
 import ai_questions  # noqa: E402
 
 
@@ -705,6 +706,10 @@ def write_llms_txt() -> None:
          "every claim read from the product's own documentation"),
         ("Free AI crawler checker", f"{BASE}/tools/ai-crawler-checker/", "type an address "
          "and see which AI crawlers its robots.txt lets in, and what each block costs"),
+        ("Free robots.txt tester", f"{BASE}/tools/robots-txt-tester/", "paste a page address "
+         "and see whether Googlebot, Bingbot and the AI crawlers may crawl it, and which line decides"),
+        ("Free SEO checkers", f"{BASE}/tools/", "every free checker, each answering one question "
+         "about one page"),
         ("AI search visibility", f"{BASE}/learn/ai-search-visibility/", "whether a model "
          "can reach, read and quote a site: crawler access, server-side rendering and "
          "entity clarity"),
@@ -1446,6 +1451,7 @@ def main() -> int:
     pages += howto_compression.build_all()
     pages += extractability.build_all()
     pages += tool_ai_crawlers.build_all()
+    pages += tools_free.build_all()
     pages += ai_questions.build_all()
     pages += build_hubs()
 
