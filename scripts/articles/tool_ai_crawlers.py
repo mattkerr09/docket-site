@@ -183,12 +183,13 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
         [].forEach.call(document.querySelectorAll('tr[data-agent]'), function (tr) {{
           var r = by[tr.getAttribute('data-agent')];
           var c = tr.querySelector('.verdict');
+          if (j.state === 'unavailable' && (j.status === 401 || j.status === 403)) {{ c.className = 'verdict'; c.textContent = 'Unknown: the site refused this checker'; return; }}
           if (!r) {{ c.textContent = '—'; return; }}
           c.className = 'verdict ' + (r.allowed ? 'yes' : 'no');
           var how = r.governedBy === 'name' ? 'named in your file' : r.governedBy === 'wildcard' ? 'by your * rules' : r.governedBy === 'status' ? 'by the server’s answer' : 'no rule applies';
           c.textContent = (r.allowed ? 'Allowed' : 'Blocked') + ': ' + how + (r.rule ? ' (' + r.rule + ')' : '');
         }});
-        var msg = {{ parsed: 'Read ' + j.robots_url + '.', unavailable: j.robots_url + ' was not found (HTTP ' + j.status + '), so every crawler may crawl.', unreachable: j.robots_url + ' could not be read' + (j.status ? ' (HTTP ' + j.status + ')' : '') + ', so crawlers stay out until it can.', blocked: j.note || 'That address could not be checked.' }}[j.state] || '';
+        var msg = {{ parsed: 'Read ' + j.robots_url + '.', unavailable: (j.status === 401 || j.status === 403) ? j.robots_url + ' refused this checker (HTTP ' + j.status + '). The site may send crawlers it trusts a file this checker cannot see, so the answer is unknown.' : j.robots_url + ' was not found (HTTP ' + j.status + '), so every crawler may crawl.', unreachable: j.robots_url + ' could not be read' + (j.status ? ' (HTTP ' + j.status + ')' : '') + ', so crawlers stay out until it can.', blocked: j.note || 'That address could not be checked.' }}[j.state] || '';
         if (j.note && j.state !== 'blocked') msg += ' ' + j.note;
         if (j.warnings && j.warnings.length) msg += ' ' + j.warnings[0];
         say(msg);

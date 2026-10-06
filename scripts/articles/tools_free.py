@@ -231,13 +231,15 @@ ranks all of it with the rest of its {N_CHECKS} checks.</p>
       .then(function (res) {{
         var j = res.j;
         if (!res.ok || j.error) {{ say(j.error || 'That address could not be checked.'); return; }}
+        var refused = j.state === 'unavailable' && (j.status === 401 || j.status === 403);
         (j.results || []).forEach(function (r) {{
           var c = row(r.agent).querySelector('.verdict');
+          if (refused) {{ c.className = 'verdict'; c.textContent = 'Unknown: the site refused this tester'; return; }}
           c.className = 'verdict ' + (r.allowed ? 'yes' : 'no');
           var how = r.governedBy === 'name' ? 'named in your file' : r.governedBy === 'wildcard' ? 'by your * rules' : r.governedBy === 'status' ? 'by the server’s answer' : 'no rule matches';
           c.textContent = (r.allowed ? 'Allowed' : 'Blocked') + ': ' + how + (r.rule ? ' (' + r.rule + ')' : '');
         }});
-        var msg = {{ parsed: 'Read ' + j.robots_url + ' for ' + j.path + '.', unavailable: j.robots_url + ' was not found (HTTP ' + j.status + '), so every crawler may crawl.', unreachable: j.robots_url + ' could not be read' + (j.status ? ' (HTTP ' + j.status + ')' : '') + ', so crawlers stay out until it can.', blocked: j.note || 'That address could not be checked.' }}[j.state] || '';
+        var msg = {{ parsed: 'Read ' + j.robots_url + ' for ' + j.path + '.', unavailable: (j.status === 401 || j.status === 403) ? j.robots_url + ' refused this checker (HTTP ' + j.status + '). The site may send crawlers it trusts a file this checker cannot see, so the answer is unknown.' : j.robots_url + ' was not found (HTTP ' + j.status + '), so every crawler may crawl.', unreachable: j.robots_url + ' could not be read' + (j.status ? ' (HTTP ' + j.status + ')' : '') + ', so crawlers stay out until it can.', blocked: j.note || 'That address could not be checked.' }}[j.state] || '';
         if (j.note && j.state !== 'blocked') msg += ' ' + j.note;
         if (j.warnings && j.warnings.length) msg += ' ' + j.warnings.slice(0, 2).join(' ');
         say(msg);
