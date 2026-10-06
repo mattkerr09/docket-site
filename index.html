@@ -14,7 +14,7 @@
 <title>Docket SEO — SEO, copy, conversion and brand audits for Mac</title>
 <meta name="description" content="Docket SEO audits any website on your Mac with 99 checks, ranked into a fix plan. Free to try: your score and problem counts per area. Pro $349 once.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b421e37bd79a">
+<meta name="build-id" content="1f1cfa5adfcc">
 <link rel="canonical" href="https://docketseo.app/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -614,6 +614,16 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
 .tool-list li{margin:.5rem 0}
+.findings{list-style:none;padding:0;margin:1rem 0 1.5rem}
+.findings .finding{display:grid;grid-template-columns:7.5rem 1fr;gap:.15rem .8rem;padding:.65rem .8rem;
+  border:1px solid var(--border);border-radius:var(--radius-md);margin:.45rem 0;background:var(--surface)}
+.finding-level{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;grid-row:span 2}
+.finding.problem .finding-level{color:var(--bad-text)}.finding.warning .finding-level{color:var(--text)}
+.finding.note .finding-level{color:var(--text-mid)}.finding.ok .finding-level{color:var(--ok)}
+.finding-detail{color:var(--text-mid);overflow-wrap:anywhere}
+.meta-summary dl{display:grid;grid-template-columns:7.5rem 1fr;gap:.35rem .8rem;margin:0 0 1rem}
+.meta-summary dt{font-weight:600}.meta-summary dd{margin:0;overflow-wrap:anywhere}
+@media(max-width:600px){.findings .finding,.meta-summary dl{grid-template-columns:1fr}.finding-level{grid-row:auto}}
 .checker-status{margin:.7rem 0 0;color:var(--text-mid);min-height:1.3em;overflow-wrap:anywhere}
 .checker-table .verdict{font-weight:600;overflow-wrap:anywhere}
 .checker-table .verdict.yes{color:var(--ok)}.checker-table .verdict.no{color:var(--bad-text)}
@@ -1084,7 +1094,9 @@ fbq('track','PageView');
   <code>PerplexityBot</code>, and compares the answer to what the file promises.</p>
   <p class="sec-sub">Try it on your own site now, free:
   <a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="home-ai-section">the AI crawler checker</a>
-  and <a href="/tools/robots-txt-tester/" data-ev="Free check" data-ev-button="home-ai-section">the robots.txt tester</a>.</p>
+  and <a href="/tools/robots-txt-tester/" data-ev="Free check" data-ev-button="home-ai-section">the robots.txt tester</a>,
+  or <a href="/tools/" data-ev="Free check" data-ev-button="home-ai-section">every free checker</a>, including
+  title, meta tag and structured data checks.</p>
 </div>
 <div class="grid-3">
   <div class="card"><div class="card-ico"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3.4"/></svg></div>

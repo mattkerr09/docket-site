@@ -14,7 +14,7 @@
 <title>Internal link equity: find the pages your site is starving</title>
 <meta name="description" content="The ranking signal your pages pass to each other. Measured on our own site, where fixing a starved page moved the problem rather than ending it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b421e37bd79a">
+<meta name="build-id" content="1f1cfa5adfcc">
 <link rel="canonical" href="https://docketseo.app/learn/internal-link-equity/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -614,6 +614,16 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
 .tool-list li{margin:.5rem 0}
+.findings{list-style:none;padding:0;margin:1rem 0 1.5rem}
+.findings .finding{display:grid;grid-template-columns:7.5rem 1fr;gap:.15rem .8rem;padding:.65rem .8rem;
+  border:1px solid var(--border);border-radius:var(--radius-md);margin:.45rem 0;background:var(--surface)}
+.finding-level{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;grid-row:span 2}
+.finding.problem .finding-level{color:var(--bad-text)}.finding.warning .finding-level{color:var(--text)}
+.finding.note .finding-level{color:var(--text-mid)}.finding.ok .finding-level{color:var(--ok)}
+.finding-detail{color:var(--text-mid);overflow-wrap:anywhere}
+.meta-summary dl{display:grid;grid-template-columns:7.5rem 1fr;gap:.35rem .8rem;margin:0 0 1rem}
+.meta-summary dt{font-weight:600}.meta-summary dd{margin:0;overflow-wrap:anywhere}
+@media(max-width:600px){.findings .finding,.meta-summary dl{grid-template-columns:1fr}.finding-level{grid-row:auto}}
 .checker-status{margin:.7rem 0 0;color:var(--text-mid);min-height:1.3em;overflow-wrap:anywhere}
 .checker-table .verdict{font-weight:600;overflow-wrap:anywhere}
 .checker-table .verdict.yes{color:var(--ok)}.checker-table .verdict.no{color:var(--bad-text)}
@@ -844,10 +854,10 @@ a typical page got.</p>
 the footer and reachable in one click, and by every conventional check it was fine.</p>
 
 <p>Then we fixed it, and the interesting part is what happened next. The same measurement
-today: <strong>144 pages and 3562 links</strong>, and the
+today: <strong>146 pages and 3613 links</strong>, and the
 download page holds <strong>3.99%</strong> from
-142 internal links: 5.7×
-the 0.7% average, rather than 0.22×. The problem did not go away. It
+144 internal links: 5.78×
+the 0.69% average, rather than 0.22×. The problem did not go away. It
 moved.</p>
 
 <h2>Why counting links is not enough</h2>
@@ -871,7 +881,7 @@ link from your homepage. A raw count says the first is better.</p>
 <p>Raw PageRank values are awkward: 0.0125 means nothing on its own. Divide by the average
 and you get something you can act on. Anything under about 0.5× on a page you actually care
 about is worth an afternoon. On this site today,
-<strong>121 pages sit under it</strong>, and they are the newest ones:
+<strong>123 pages sit under it</strong>, and they are the newest ones:
 <code>/buy/</code> at 0.0×, <code>/learn/what-scout-checks/</code> at 0.0×, <code>/pricing/</code> at 0.0×. Every
 article arrives starved, because nothing links to it until something does.</p>
 
@@ -900,10 +910,10 @@ link meaning, with anchor text that says what the destination is rather than "cl
 
 <p>For us that meant linking the download page from inside the articles people actually
 arrive on, not just from the footer. It worked: 0.22× to
-5.7×.</p>
+5.78×.</p>
 
 <p>It also concentrated equity on the pages already in the navigation, which is why
-121 of 144 pages now sit under 0.5×. There is no version
+123 of 146 pages now sit under 0.5×. There is no version
 of this where every page is above average. The question is never "are any pages starved" —
 some always are — but "are the starved ones the ones that matter", and on a site that keeps
 publishing, the answer needs revisiting every time it does.</p>

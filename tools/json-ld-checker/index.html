@@ -11,26 +11,26 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>How to fix phone links that will not dial</title>
-<meta name="description" content="A tel: link can look perfect on screen and dial nothing when tapped. What Docket's cvr.unusable_phone check reads in the href, and what it cannot tell you.">
+<title>JSON-LD checker: test structured data on any page</title>
+<meta name="description" content="Free JSON-LD structured data checker: paste a page and see invalid JSON by line and column, and which required properties each item is missing.">
 <meta name="theme-color" content="#FBFAF7">
 <meta name="build-id" content="1f1cfa5adfcc">
-<link rel="canonical" href="https://docketseo.app/how-to/fix-phone-links-that-will-not-dial/">
+<link rel="canonical" href="https://docketseo.app/tools/json-ld-checker/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Phone links that will not dial">
-<meta property="og:description" content="A tel: link can look perfect on screen and dial nothing when tapped. What Docket's cvr.unusable_phone check reads in the href, and what it cannot tell you.">
-<meta property="og:url" content="https://docketseo.app/how-to/fix-phone-links-that-will-not-dial/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JSON-LD structured data checker">
+<meta property="og:description" content="Free JSON-LD structured data checker: paste a page and see invalid JSON by line and column, and which required properties each item is missing.">
+<meta property="og:url" content="https://docketseo.app/tools/json-ld-checker/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png?v=20261002-intel">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Phone links that will not dial">
-<meta name="twitter:description" content="A tel: link can look perfect on screen and dial nothing when tapped. What Docket's cvr.unusable_phone check reads in the href, and what it cannot tell you.">
+<meta name="twitter:title" content="JSON-LD structured data checker">
+<meta name="twitter:description" content="Free JSON-LD structured data checker: paste a page and see invalid JSON by line and column, and which required properties each item is missing.">
 <meta name="twitter:image" content="https://docketseo.app/og.png?v=20261002-intel">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -787,9 +787,9 @@ nav{z-index:40}
 </style>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.100/Docket-1.3.100-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Phone links that will not dial","description":"A tel: link can look perfect on screen and dial nothing when tapped. What Docket's cvr.unusable_phone check reads in the href, and what it cannot tell you.","datePublished":"2026-09-15","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-phone-links-that-will-not-dial/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does a tel: link work on my desktop but not on a phone?","acceptedAnswer":{"@type":"Answer","text":"It does not work on either. Nobody taps a phone number on a desktop, so the failure only shows itself on the device you are not testing on."}},{"@type":"Question","name":"Does Docket call the number to check it?","acceptedAnswer":{"@type":"Answer","text":"No. It reads the href and reports whether tapping it would place a call. It cannot tell you the line is answered, that the number is current, or that it is still yours."}},{"@type":"Question","name":"Can I keep a memorable vanity number on the page?","acceptedAnswer":{"@type":"Answer","text":"Yes. Keep it as the visible text and put digits in the href. The tel URI scheme does not support letters, because the mapping from letters to keypad digits is not the same in every country, so a vanity href dials nothing."}},{"@type":"Question","name":"Do I have to write my number in international format?","acceptedAnswer":{"@type":"Answer","text":"RFC 3966 says all phone numbers must use the global form (a plus and a country code) unless they cannot be represented that way, and that a local number must carry a phone-context parameter saying where it is valid. Docket reports a number with neither at LOW, or at MEDIUM where the site publishes hreflang and is therefore asking for visitors who would dial from abroad."}},{"@type":"Question","name":"Why is my emergency or service short code being reported?","acceptedAnswer":{"@type":"Answer","text":"Because it has no country code and no phone-context parameter, so it falls into the not-in-international-format branch. The advice offered there does not fit it: the specification says service and emergency numbers cannot be written in global form and should carry a phone-context instead. It is a gap in the check, and it is the reason the placeholder rule ignores anything shorter than a subscriber number."}},{"@type":"Question","name":"What does phone-context do?","acceptedAnswer":{"@type":"Answer","text":"It names the scope in which a local number is unique: a country dialling prefix, or a domain you administer. A local number plus its context is globally unique again, which is what makes the link usable from outside."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://docketseo.app/tools/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","headline":"JSON-LD structured data checker","description":"Free JSON-LD structured data checker: paste a page and see invalid JSON by line and column, and which required properties each item is missing.","datePublished":"2026-10-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/tools/json-ld-checker/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I test my structured data?","acceptedAnswer":{"@type":"Answer","text":"Paste the page address into the checker above. It reads every JSON-LD block on the page, reports invalid JSON with the line and column, and lists missing required properties."}},{"@type":"Question","name":"Why is my structured data not showing in Google?","acceptedAnswer":{"@type":"Answer","text":"Usually because the JSON is invalid, a required property is missing, or the marked-up content is not visible on the page. Valid, complete markup makes a page eligible; Google decides whether to show a rich result."}},{"@type":"Question","name":"Does this check Microdata or RDFa?","acceptedAnswer":{"@type":"Answer","text":"No. It reads JSON-LD, the format Google recommends for structured data."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
@@ -837,182 +837,142 @@ fbq('track','PageView');
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</span></a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / phone links that will not dial</div><h1>Phone links that will not dial</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/tools/">Tools</a> / JSON-LD checker</div><h1>JSON-LD structured data checker</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-10-06">6 October 2026</time></p>
 
-<p class="lede">Somebody reading your site on a phone taps your number. Does it dial? The
-page was written on a desktop and it is checked on a desktop, and on a desktop tapping a
-number is not something anybody does, so the link can be broken for years while every
-person who looks at the page sees a phone number that is perfectly correct.</p>
+<p class="lede">Paste the address of any page. The checker reads every JSON-LD block on it, says
+which line breaks the JSON if one does, and lists the properties each item needs for a rich result
+that are missing.</p>
 
-<p>Docket's <code>cvr.unusable_phone</code> reads the <code>href</code> of every
-<code>tel:</code> link on the pages it crawls and reports the shapes that cannot place a
-call: letters where the digits should be, markup pasted into the number, a single repeated
-digit at full number length, and a national number with neither a country code nor a
-<code>phone-context</code> parameter. Each is reported as its own finding, at its own
-severity, because the repairs have nothing in common.</p>
+<form class="checker-form" id="checker" autocomplete="off" novalidate>
+  <label for="checker-url">Page address</label>
+  <div class="checker-row">
+    <input id="checker-url" name="url" type="text" inputmode="url" placeholder="yourshop.com/products/kettle/"
+           spellcheck="false" required>
+    <button class="btn" type="submit">Check structured data</button>
+  </div>
+  <p class="checker-status" id="checker-status" role="status" aria-live="polite"></p>
+</form>
+<div class="wrap-tbl" id="ld-items-wrap" hidden><table class="cmp" id="ld-items">
+<thead><tr><th>Block</th><th>Type</th><th>Name</th><th>Missing</th></tr></thead><tbody></tbody></table></div>
+<ul class="findings" id="findings"></ul>
 
-<h2>What this cannot tell you</h2>
+<div class="checker-next" id="checker-next" hidden>
+  <p><strong>That was one page, read once.</strong> Docket runs 99 checks across your whole site, ranked by
+  what to fix first, each with where it is and the change to make. The free download shows your score
+  and how many problems each area has.</p>
+  <div class="buy-block compact">
+    <div class="hero-cta">
+      <a class="btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-jsonld-checker-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.100/Docket-1.3.100-arm64.dmg" data-ev="Download" data-ev-button="tools-jsonld-checker-try-free">Try it free</a>
+      <a class="btn-ghost" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=tools-jsonld-checker" data-ev="Buy" data-ev-price="349"
+         data-ev-button="tools-jsonld-checker">Buy once, $349</a>
+      <a class="btn-ghost" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-jsonld-checker">See a sample report</a>
+    </div>
+    <p class="price-line"><span class="price-big">$349</span><span class="price-pay4">once &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</span></p>
+    <p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later</p>
+    <p class="hero-note">30-day refund, no conditions.</p>
+    <p class="intel-dl">Intel Mac? <a href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-jsonld-checker-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.100/Docket-1.3.100-x86_64.dmg" data-ev="Download" data-ev-button="tools-jsonld-checker-try-free-intel">Get the Intel version</a></p>
+  </div>
+</div>
 
-<p>Said first, because it decides whether the finding is worth anything to you.
-<strong>Docket does not ring the number.</strong> No call is placed, nothing is looked
-up in a numbering plan, and no operator is asked whether the line exists.</p>
+<h2>What it checks</h2>
+<ul>
+<li><strong>Whether each block is valid JSON.</strong> One stray comma makes a search engine discard the
+whole block. The checker names the line and column where the parser stopped.</li>
+<li><strong>Whether it says it is schema.org.</strong> A block with no <code>@context</code> declares
+types that mean nothing to a search engine.</li>
+<li><strong>Required properties.</strong> For 15 types (Article, BlogPosting, BreadcrumbList, Event, FAQPage, HowTo, JobPosting, LocalBusiness, Offer, Organization, Product, Recipe, Review, SoftwareApplication, VideoObject), the properties Google
+requires for a rich result, from the same table Docket uses. Items inside other items, such as an
+Offer inside a Product, are checked too.</li>
+</ul>
 
-<p>So it cannot tell you the number is answered, that it is still yours, that it is current,
-or that the person who used to pick it up still works there. It reads your markup and
-answers one question: <em>will tapping this place a call</em>. A number that is well formed
-and simply wrong — last year's line, two digits transposed, the office you closed — is a
-valid <code>tel:</code> URI and this check has nothing to say about it. Closing that gap
-would mean dialling strangers' phones from an audit tool, which we are not going to do.</p>
+<h2>Which properties each type needs</h2>
+<p>The checker reports a type as incomplete when one of these is missing or empty. The list is the one
+inside Docket, taken from Google's structured data documentation.</p>
+<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Type</th><th>Needs</th></tr></thead><tbody>
+<tr><td><code>Product</code></td><td><code>name</code>, <code>image</code></td></tr><tr><td><code>Offer</code></td><td><code>price</code>, <code>priceCurrency</code></td></tr><tr><td><code>Recipe</code></td><td><code>name</code>, <code>image</code>, <code>recipeIngredient</code>, <code>recipeInstructions</code></td></tr><tr><td><code>Event</code></td><td><code>name</code>, <code>startDate</code>, <code>location</code></td></tr><tr><td><code>JobPosting</code></td><td><code>title</code>, <code>datePosted</code>, <code>hiringOrganization</code>, <code>jobLocation</code></td></tr><tr><td><code>FAQPage</code></td><td><code>mainEntity</code></td></tr><tr><td><code>HowTo</code></td><td><code>name</code>, <code>step</code></td></tr><tr><td><code>Article</code></td><td><code>headline</code></td></tr><tr><td><code>BlogPosting</code></td><td><code>headline</code></td></tr><tr><td><code>LocalBusiness</code></td><td><code>name</code>, <code>address</code></td></tr><tr><td><code>Organization</code></td><td><code>name</code></td></tr><tr><td><code>Review</code></td><td><code>reviewRating</code>, <code>author</code></td></tr><tr><td><code>BreadcrumbList</code></td><td><code>itemListElement</code></td></tr><tr><td><code>VideoObject</code></td><td><code>name</code>, <code>thumbnailUrl</code>, <code>uploadDate</code></td></tr><tr><td><code>SoftwareApplication</code></td><td><code>name</code>, <code>applicationCategory</code></td></tr>
+</tbody></table></div>
+<p>An Offer is usually nested inside a Product, and a Review inside a Product or a LocalBusiness. Both
+are checked where they sit, so a Product with a complete name and image can still fail on the price
+of its Offer.</p>
 
-<h2>What counts as a phone number here</h2>
+<h2>What it does not check</h2>
+<ul>
+<li><strong>Microdata and RDFa.</strong> It reads JSON-LD, the format Google recommends.</li>
+<li><strong>Whether the markup matches the page.</strong> A price or rating in the markup that the
+visitor cannot see is against Google's guidelines. Docket compares the markup with the visible page;
+one free check cannot.</li>
+<li><strong>Whether Google will show a rich result.</strong> Valid, complete markup makes a page
+eligible. Google decides whether to show it.</li>
+</ul>
+<p>Docket reads the structured data on every page it crawls, compares it with what each page shows,
+and ranks what to fix with the rest of its 99 checks.</p>
+<div class="buy-block"><p class="price-line"><span class="price-big">$349</span><span class="price-pay4">once &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</span></p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later</p><div class="hero-cta"><a class="btn btn-lg" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=tools-jsonld-checker" data-ev="Buy" data-ev-price="349" data-ev-button="tools-jsonld-checker">Buy Docket</a><a class="btn-ghost btn-lg" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-jsonld-checker-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.100/Docket-1.3.100-arm64.dmg" data-ev="Download" data-ev-button="tools-jsonld-checker-try-free">Try it free</a><a class="btn-ghost btn-lg" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-jsonld-checker">See a full sample report</a></div><p class="phone-link">On your phone? <button type="button" data-send-mac-link>Send the Mac link to yourself</button></p><p class="hero-note founding-note">Founding price <strong>$174.50 once &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63</strong>, first 25 buyers, then $349. Buy applies the code <code>FOUNDINGDOCKET</code> for you; if the checkout shows $349, enter it under &lsquo;Have a discount code?&rsquo;.</p><p class="hero-note price-anchor">Screaming Frog is $279 a year. Ahrefs plans with Site Audit run $29&ndash;$449 a month. Docket is $349 once. <span class="qual">Their prices read 24 September 2026.</span></p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
 
-<p>Only a <code>tel:</code> link in the markup. A number sitting in prose is not read by
-this check, and the comment in the source says why: a number in prose may be an example, a
-fax, or a customer's. The same reasoning covers a <code>tel:</code> that appears inside a
-JavaScript string: a grep finds it, the parser does not, and the parser is right, because a
-mention is not a promise.</p>
+<h2>Related</h2>
+<ul>
+<li><a href="/how-to/json-ld-parser-errors/">Fix JSON-LD parser errors</a></li>
+<li><a href="/tools/meta-tag-checker/">Title and meta tag checker</a></li>
+<li><a href="/tools/robots-txt-tester/">Robots.txt tester</a></li>
+</ul>
 
-<p>A printed number with no link on it at all is a different check in a different lane
-(<code>local.phone_not_clickable</code>, which only runs for sites that look like a local
-business). This page is about the link that exists and does not work.</p>
+<script>
+(function () {
+  var PAGE = "https://ai-crawler-check.kerrco.workers.dev/page";
+  
+  function renderFindings(box, findings) {
+    box.innerHTML = '';
+    var order = { problem: 0, warning: 1, note: 2, ok: 3 };
+    var words = { problem: 'Fix', warning: 'Worth fixing', note: 'Note', ok: 'Fine' };
+    findings.slice().sort(function (a, b) { return order[a.level] - order[b.level]; }).forEach(function (f) {
+      var li = document.createElement('li'); li.className = 'finding ' + f.level;
+      var tag = document.createElement('span'); tag.className = 'finding-level'; tag.textContent = words[f.level] || f.level;
+      var b = document.createElement('strong'); b.textContent = f.label;
+      li.appendChild(tag); li.appendChild(b);
+      if (f.detail) { var p = document.createElement('span'); p.className = 'finding-detail'; p.textContent = f.detail; li.appendChild(p); }
+      box.appendChild(li);
+    });
+  }
+  function checkPage(v, done, say) {
+    say('Reading the page…');
+    fetch(PAGE + '?url=' + encodeURIComponent(v))
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        var j = res.j;
+        if (!res.ok || j.error) { say(j.error || 'That address could not be checked.'); return; }
+        done(j);
+        var next = document.getElementById('checker-next'); if (next) next.hidden = false;
+      })
+      .catch(function () { say('The checker could not be reached. Try again in a minute.'); });
+  }
 
-<p>Before anything is judged, the <code>href</code> is percent-decoded. That is not
-housekeeping. A site writing <code>tel:0333%200146%20683</code> is writing spaces; filtering
-that for digits without decoding it first turns every <code>%20</code> into a
-<code>2</code> and a <code>0</code> and invents a number nobody published. Anything after a
-semicolon is a parameter and not part of the number.</p>
-
-<h2>The shapes it reports</h2>
-
-<h3>Letters in the href</h3>
-
-<p>A vanity number in the link itself. <a href="https://www.rfc-editor.org/rfc/rfc3966#section-5.1.2">RFC 3966 section 5.1.2</a>
-does not support the notation, because the mapping from letters to keypad digits is not
-uniform internationally, so the link dials nothing anywhere. Reported at HIGH, and the fix
-text is careful about which half is wrong: <em>"Keep the memorable number as the visible
-text and put digits in the href:
-<code>&lt;a href="tel:+YOURPHONENUMBER"&gt;YOUR MEMORABLE NUMBER&lt;/a&gt;</code>."</em> The
-printed number can stay exactly as it is. Only the thing behind it changes.</p>
-
-<h3>HTML where the number should be</h3>
-
-<p>An entire anchor tag pasted into the CMS field that expects a phone number, and escaped
-by the CMS on the way in, so the dialable part of the <code>href</code> is markup. It is
-reported separately, as <code>cvr.phone_href_markup</code>, and the separation was earned.
-The letters rule used to catch this case and tell the owner to "put digits in the href",
-which they already had: the visible text was an ordinary formatted number and the digits
-inside the pasted tag were fine. Advice describing work that is already finished leaves a
-reader one conclusion, and it is that the tool is broken.</p>
-
-<p>So this finding says, in as many words, that <strong>the page still looks right</strong>,
-and its fix points at the field rather than the copy: <em>"Open the phone-number field in
-your CMS and look at what is actually stored in it. Clear it and type the number by itself (
-digits and separators only, no <code>&lt;a&gt;</code> tag), and let the template build the
-link around it."</em></p>
-
-<h3>A placeholder nobody filled in</h3>
-
-<p>Every digit the same, at seven digits or more. A template that shipped with the example
-still in it, reported at HIGH, and the fix is one line: <em>"Replace it with the real number,
-or remove the link."</em></p>
-
-<p>The length floor is there because of a real accusation. Without it, the rule fired on
-<code>111</code> (a national non-emergency
-health line), and said anyone tapping it reaches nobody. <code>999</code>,
-<code>911</code>, <code>000</code> and <code>112</code> have exactly the same shape. A
-repeated digit is only evidence of an unfilled template at full number length; shorter than
-that it is a short code, and short codes are precisely the numbers a health or emergency
-service publishes.</p>
-
-<h3>A national number with no way to reach it from outside</h3>
-
-<p><a href="https://www.rfc-editor.org/rfc/rfc3966#section-5.1">RFC 3966 section 5.1</a> is blunt about this: all phone
-numbers must use the global form unless they cannot be represented that way, and a local
-number must carry a <code>phone-context</code> parameter naming where it is valid. A bare
-national number has neither. It dials correctly from inside the country and incorrectly from
-outside it. A total failure for a visitor abroad and none at all for one already there.</p>
-
-<p>So the severity follows what the site itself declares. LOW by default. MEDIUM where the
-site publishes <code>hreflang</code>, because a site with <code>hreflang</code> has said it
-wants visitors who would be dialling from abroad. That is read from the markup rather than
-guessed from the kind of business. The fix again leaves the printed number alone:
-<em>"Prefix the country code and a plus in the href, leaving the visible text alone:
-<code>&lt;a href="tel:+YOURPHONENUMBER"&gt;YOUR PHONE NUMBER, spaced as you print
-it&lt;/a&gt;</code>."</em></p>
-
-<p>The global form is the <code>+</code> and the country code
-(<a href="https://www.rfc-editor.org/rfc/rfc3966#section-5.1.4">RFC 3966 section 5.1.4</a>). The sanctioned alternative for a
-number that genuinely cannot be written that way is the parameter:
-<code>tel:5551234;phone-context=+1</code>, or a domain you control
-(<a href="https://www.rfc-editor.org/rfc/rfc3966#section-5.1.5">RFC 3966 section 5.1.5</a>). Docket accepts either and says
-nothing.</p>
-
-<h2>Where the check and the specification disagree</h2>
-
-<p>Stated here, because this is the wrong page to hide them.</p>
-
-<p><strong>Short codes get advice the specification says cannot work.</strong> A bare
-<code>111</code> or <code>911</code> in an <code>href</code> is still reported as not being
-in international format, and the fix text offered is "prefix the country code". RFC 3966
-section 5.1 says emergency and service numbers cannot be represented in global form and must
-be tagged with a <code>phone-context</code> instead; it points out that
-<code>+1-911</code> is not a valid global number. The finding is defensible (a local
-number with no context genuinely is outside the specification), and its remedy is not the
-one the specification gives. The placeholder rule was taught about short codes. This branch
-has not been.</p>
-
-<p><strong>Spaces are tolerated and the specification forbids them.</strong>
-<a href="https://www.rfc-editor.org/rfc/rfc3966#section-5.1.1">RFC 3966 section 5.1.1</a> says a <code>tel</code> URI must
-not use spaces as visual separators. Docket reads <code>tel:+44 20 7946 0958</code> and
-reports nothing at all. That is the check being deliberately narrow rather than
-specification-complete: it reports the things that stop a call being placed, and a space
-does not. Worth knowing if you are validating against the standard rather than against
-what a handset does.</p>
-
-<p>Every reading of the specification on this page is from
-<a href="https://www.rfc-editor.org/rfc/rfc3966">RFC 3966, the <code>tel</code> URI scheme</a>, read at rfc-editor.org on
-15 September 2026.</p>
-
-<h2>One number in a template is one number</h2>
-
-<p>A phone number lives in the header, or the footer, or both, which means a site that
-writes it wrongly writes it wrongly everywhere. The finding therefore names the distinct
-numbers and counts the pages, not the links. That matters for the size of the job it seems
-to describe: the repair is one line of a template, and a finding that counted occurrences
-read as a morning's work.</p>
-
-<h2>Checking your own, without a tool</h2>
-
-<p>Read the hrefs rather than the page:</p>
-
-<pre><code>curl -s https://example.com/ | grep -o 'href="tel:[^"]*"'</code></pre>
-
-<p>What you want back is a <code>+</code>, a country code, and digits. What you do not want
-is a letter, an angle bracket, or the same digit over and over. This will also show any
-<code>tel:</code> written inside a script, which Docket ignores, so read what it prints
-rather than counting it.</p>
-
-<p>Then do the thing the desktop cannot do: open the page on an actual phone and tap the
-number. The whole class of failure exists because that step is the one nobody takes.</p>
-
-<h2>The same failure, one channel over</h2>
-
-<p>An email address on a domain that cannot receive mail fails in the same silent way, and
-that one we have measured. Among UK shop websites sampled from OpenStreetMap,
-20.9% publish an address in a <code>mailto:</code>, and
-7 of the 413 domains publishing one cannot accept mail:
-<a href="/learn/dead-contact-address/">the survey and its limits are on that page</a>. It
-measured MX records. Nothing in it is a measurement of phone links, and that rate does not
-carry across to them; we have not surveyed phone links at all.</p>
-
-<p>If your customers find you in a map, the rest of that ground (business schema, the name,
-address and phone matching your listing, the place named in your titles) is on
-<a href="/for/local-business/">why your business is not in the map pack</a>. The lane this
-check sits in, and what else is in it, is on
-<a href="/learn/conversion-audit/">the conversion audit page</a>.</p>
-
-<aside class="buy-strip"><p><a href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-phone-links-that-will-not-dial-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.100/Docket-1.3.100-arm64.dmg" data-ev="Download" data-ev-button="how-to-fix-phone-links-that-will-not-dial-try-free"><strong>Try it free</strong></a> (<a href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-phone-links-that-will-not-dial-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.100/Docket-1.3.100-x86_64.dmg" data-ev="Download" data-ev-button="how-to-fix-phone-links-that-will-not-dial-try-free-intel">Intel Mac</a>): your score and how many problems each area has &middot; <a href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-phone-links-that-will-not-dial" data-ev="Buy" data-ev-price="349" data-ev-button="how-to-fix-phone-links-that-will-not-dial">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-phone-links-that-will-not-dial">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Why does a tel: link work on my desktop but not on a phone?</h3><p>It does not work on either. Nobody taps a phone number on a desktop, so the failure only shows itself on the device you are not testing on.</p></div><div class="faq-item"><h3>Does Docket call the number to check it?</h3><p>No. It reads the href and reports whether tapping it would place a call. It cannot tell you the line is answered, that the number is current, or that it is still yours.</p></div><div class="faq-item"><h3>Can I keep a memorable vanity number on the page?</h3><p>Yes. Keep it as the visible text and put digits in the href. The tel URI scheme does not support letters, because the mapping from letters to keypad digits is not the same in every country, so a vanity href dials nothing.</p></div><div class="faq-item"><h3>Do I have to write my number in international format?</h3><p>RFC 3966 says all phone numbers must use the global form (a plus and a country code) unless they cannot be represented that way, and that a local number must carry a phone-context parameter saying where it is valid. Docket reports a number with neither at LOW, or at MEDIUM where the site publishes hreflang and is therefore asking for visitors who would dial from abroad.</p></div><div class="faq-item"><h3>Why is my emergency or service short code being reported?</h3><p>Because it has no country code and no phone-context parameter, so it falls into the not-in-international-format branch. The advice offered there does not fit it: the specification says service and emergency numbers cannot be written in global form and should carry a phone-context instead. It is a gap in the check, and it is the reason the placeholder rule ignores anything shorter than a subscriber number.</p></div><div class="faq-item"><h3>What does phone-context do?</h3><p>It names the scope in which a local number is unique: a country dialling prefix, or a domain you administer. A local number plus its context is globally unique again, which is what makes the link usable from outside.</p></div></div></section>
+  var form = document.getElementById('checker');
+  var input = document.getElementById('checker-url');
+  var status = document.getElementById('checker-status');
+  if (!form || !window.fetch) return;
+  function say(t) { status.textContent = t; }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = (input.value || '').trim();
+    if (!v) { say('Enter a page address.'); return; }
+    checkPage(v, function (j) {
+      var ld = j.jsonld;
+      var tb = document.querySelector('#ld-items tbody'); tb.innerHTML = '';
+      ld.nodes.forEach(function (n) {
+        var tr = document.createElement('tr');
+        [String(n.block), n.types.join(', '), n.name || '', n.missing.length ? n.missing.join(', ') : 'nothing'].forEach(function (t, i) {
+          var td = document.createElement('td'); td.textContent = t; if (i === 3) td.className = n.missing.length ? 'verdict no' : 'verdict yes'; tr.appendChild(td);
+        });
+        tb.appendChild(tr);
+      });
+      document.getElementById('ld-items-wrap').hidden = !ld.nodes.length;
+      renderFindings(document.getElementById('findings'), ld.findings);
+      say('Read ' + j.final_url + ': ' + ld.blocks + ' JSON-LD block' + (ld.blocks === 1 ? '' : 's') + ', ' + ld.nodes.length + ' item' + (ld.nodes.length === 1 ? '' : 's') + '.');
+      if (window.plausible) window.plausible('Checker', { props: { tool: 'jsonld', blocks: String(ld.blocks) } });
+    }, say);
+  });
+})();
+</script>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I test my structured data?</h3><p>Paste the page address into the checker above. It reads every JSON-LD block on the page, reports invalid JSON with the line and column, and lists missing required properties.</p></div><div class="faq-item"><h3>Why is my structured data not showing in Google?</h3><p>Usually because the JSON is invalid, a required property is missing, or the marked-up content is not visible on the page. Valid, complete markup makes a page eligible; Google decides whether to show a rich result.</p></div><div class="faq-item"><h3>Does this check Microdata or RDFa?</h3><p>No. It reads JSON-LD, the format Google recommends for structured data.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
