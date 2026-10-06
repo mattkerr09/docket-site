@@ -57,7 +57,32 @@ export function displayWidth(text) {
   return total
 }
 
-const clean = (s) => String(s || '').replace(/\s+/g, ' ').trim()
+/**
+ * HTMLRewriter hands text and attribute values over as written, entities and
+ * all. A browser shows "Web Design &amp; SEO" as "Web Design & SEO", and a
+ * search result measures the decoded text, so decode before showing or
+ * measuring anything (builtbykerr.com's title read 4 wider than it is).
+ * JSON-LD is not decoded: a browser does not decode entities inside <script>.
+ */
+const NAMED = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0', ndash: '\u2013',
+  mdash: '\u2014', hellip: '\u2026', lsquo: '\u2018', rsquo: '\u2019', ldquo: '\u201c', rdquo: '\u201d',
+  middot: '\u00b7', bull: '\u2022', copy: '\u00a9', reg: '\u00ae', trade: '\u2122', euro: '\u20ac',
+  pound: '\u00a3', yen: '\u00a5', cent: '\u00a2', times: '\u00d7', laquo: '\u00ab', raquo: '\u00bb',
+  eacute: '\u00e9', egrave: '\u00e8', aacute: '\u00e1', agrave: '\u00e0', oacute: '\u00f3', ouml: '\u00f6',
+  uuml: '\u00fc', auml: '\u00e4', ntilde: '\u00f1', ccedil: '\u00e7', szlig: '\u00df', deg: '\u00b0' }
+
+export function decodeEntities(s) {
+  return String(s || '').replace(/&(#x[0-9a-f]+|#[0-9]+|[a-z][a-z0-9]*);/gi, (m, e) => {
+    if (e[0] === '#') {
+      const n = e[1] === 'x' || e[1] === 'X' ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10)
+      return n > 0 && n <= 0x10ffff ? String.fromCodePoint(n) : m
+    }
+    const v = NAMED[e.toLowerCase()]
+    return v === undefined ? m : v
+  })
+}
+
+const clean = (s) => decodeEntities(s).replace(/\s+/g, ' ').trim()
 
 function directives(value) {
   return clean(value).toLowerCase().split(/[\s,]+/).filter(Boolean)

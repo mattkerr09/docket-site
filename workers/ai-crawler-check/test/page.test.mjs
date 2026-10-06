@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { checkJsonLd, checkMeta, displayWidth, TITLE_MAX } from '../src/page.js'
+import { checkJsonLd, checkMeta, decodeEntities, displayWidth, TITLE_MAX } from '../src/page.js'
 import { botCheck, handle } from '../src/index.js'
 
 const base = (over = {}) => ({
@@ -106,4 +106,14 @@ test('a bot check served instead of the page is reported, not graded', async () 
   const j = await (await handle(new Request('https://w.example/page?url=example.com/'), challenge, {}, null)).json()
   assert.match(j.error, /bot check instead of the page \(HTTP 202\)/)
   assert.equal(j.meta, undefined)
+})
+
+test('entities are decoded before a title or description is shown or measured', () => {
+  assert.equal(decodeEntities('Web Design &amp; SEO &#8211; Leeds &#x2014; &rsquo;s &bogus;'), 'Web Design & SEO \u2013 Leeds \u2014 \u2019s &bogus;')
+  const r = checkMeta(base({ titles: ['Web Design &amp; SEO for small businesses in Leeds'],
+    metas: { ...base().metas, description: ['Fast sites &amp; honest SEO for Leeds businesses, from a local studio that answers the phone.'] } }))
+  assert.equal(r.title, 'Web Design & SEO for small businesses in Leeds')
+  assert.equal(r.titleWidth, 'Web Design & SEO for small businesses in Leeds'.length)
+  assert.ok(!r.description.includes('&amp;'))
+  assert.equal(r.descriptionWidth, r.description.length)
 })
