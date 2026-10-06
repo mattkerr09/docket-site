@@ -29,6 +29,17 @@ WORKER = "https://ai-crawler-check.kerrco.workers.dev"
 #: The limits and the schema types, as the Worker applies them
 #: (workers/ai-crawler-check/src/page.js, ported from Docket's engine).
 TITLE_MIN, TITLE_MAX, DESC_MIN, DESC_MAX = 25, 65, 70, 165
+#: Where a search result cuts a title off (Docket's onpage.py states it).
+TITLE_PX = 580
+#: The engine's own example of a title that is short in characters and normal in
+#: width (words.display_width). Its numbers are computed below, never typed.
+JA_TITLE = "小形羊羹 24本入 | 株式会社 虎屋"
+
+
+def display_width(text: str) -> int:
+    """words.display_width: East Asian wide and fullwidth characters count two."""
+    import unicodedata
+    return sum(2 if unicodedata.east_asian_width(ch) in ("W", "F") else 1 for ch in text)
 REQUIRED_PROPS = {
     "Product": ["name", "image"], "Offer": ["price", "priceCurrency"],
     "Recipe": ["name", "image", "recipeIngredient", "recipeInstructions"],
@@ -368,9 +379,9 @@ uses.</p>
 {audit_next("tools-meta-checker", what="one page, read once")}
 
 <h2>How long should a title be?</h2>
-<p>Search results cut a title off at about 580 pixels, which is roughly {TITLE_MAX} Latin characters.
+<p>Search results cut a title off at about {TITLE_PX} pixels, which is roughly {TITLE_MAX} Latin characters.
 Docket measures width rather than counting characters, because Chinese, Japanese and Korean characters
-render about twice as wide: a 19-character Japanese title is 31 wide and perfectly normal. Below
+render about twice as wide: a {len(JA_TITLE)}-character Japanese title is {display_width(JA_TITLE)} wide and perfectly normal. Below
 {TITLE_MIN} wide, a result has little to show. Put the words that say what the page is first; a
 brand name at the end is the first thing to be cut.</p>
 
@@ -446,7 +457,7 @@ with the rest of its {N_CHECKS} checks, and ranks what to fix first.</p>
         schema_type="WebPage",
         faq=[
             ("How long should a title tag be?",
-             f"Up to about 580 pixels, roughly {TITLE_MAX} Latin characters, before search results "
+             f"Up to about {TITLE_PX} pixels, roughly {TITLE_MAX} Latin characters, before search results "
              "cut it off. Width matters more than count: East Asian characters are about twice as wide."),
             ("How long should a meta description be?",
              f"Between {DESC_MIN} and {DESC_MAX} wide is the range Docket uses. Google may still write "
