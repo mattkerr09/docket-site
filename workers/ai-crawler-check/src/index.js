@@ -23,9 +23,12 @@
  *     only thing CORS protects and a script can fetch robots.txt itself.
  */
 import { evaluate, parseRobots } from './robots.js'
+import { checkJsonLd, checkMeta, extract } from './page.js'
 
 export const ALLOWED_ORIGIN = 'https://docketseo.app'
 export const USER_AGENT = 'DocketRobotsCheck/1.0 (+https://docketseo.app/tools/ai-crawler-checker/)'
+export const PAGE_AGENT = 'DocketPageCheck/1.0 (+https://docketseo.app/tools/)'
+const MAX_PAGE_BYTES = 2 * 1024 * 1024
 const MAX_BYTES = 512 * 1024
 const MAX_REDIRECTS = 5
 const TIMEOUT_MS = 8000
@@ -82,7 +85,7 @@ function json(body, status, origin) {
   })
 }
 
-async function readCapped(response) {
+async function readCapped(response, max = MAX_BYTES) {
   if (!response.body) return { text: '', truncated: false, bytes: 0 }
   const reader = response.body.getReader()
   const chunks = []
@@ -91,7 +94,7 @@ async function readCapped(response) {
   for (;;) {
     const { done, value } = await reader.read()
     if (done) break
-    const room = MAX_BYTES - total
+    const room = max - total
     if (value.byteLength > room) {
       chunks.push(value.slice(0, room)); total += room; truncated = true
       await reader.cancel()
@@ -157,6 +160,48 @@ export async function fetchRobots(site, fetchImpl = fetch) {
   return { state: 'unavailable', status: null, url: url.toString(), hops, note: 'More than five redirects; RFC 9309 lets a crawler treat that as no robots.txt.' }
 }
 
+/**
+ * Fetch one page for the title/meta and JSON-LD checkers: GET, redirects
+ * followed by hand and re-checked, 2 MiB at most (Google reads the first
+ * 2 MB of an HTML file), HTML only. Returns what was read, never the page.
+ */
+export async function fetchPage(start, fetchImpl = fetch) {
+  let url = new URL(start.toString())
+  const hops = []
+  for (let i = 0; i <= MAX_REDIRECTS; i++) {
+    const ctrl = new AbortController()
+    const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS)
+    let res
+    try {
+      res = await fetchImpl(url.toString(), {
+        method: 'GET', redirect: 'manual', signal: ctrl.signal,
+        headers: { 'User-Agent': PAGE_AGENT, Accept: 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.1' },
+        cf: { cacheTtl: 300, cacheEverything: true },
+      })
+    } catch (e) {
+      clearTimeout(timer)
+      return { error: ctrl.signal.aborted ? 'The page did not answer within 8 seconds.' : 'The page could not be reached.', url: url.toString(), hops }
+    }
+    clearTimeout(timer)
+    if (res.status >= 300 && res.status < 400) {
+      const loc = res.headers.get('Location')
+      let next = null
+      try { next = loc ? new URL(loc, url) : null } catch { next = null }
+      if (!next) return { error: `A redirect (HTTP ${res.status}) with no usable destination.`, url: url.toString(), hops }
+      const why = (next.protocol === 'http:' || next.protocol === 'https:') ? unsafeHost(next.hostname) : 'not http or https'
+      if (why) return { error: `The page redirects to ${why}, which this tool will not follow.`, url: url.toString(), hops }
+      hops.push(next.toString()); url = next
+      continue
+    }
+    const type = (res.headers.get('Content-Type') || '').toLowerCase()
+    if (res.status >= 400) return { error: `The page answered HTTP ${res.status}.`, status: res.status, url: url.toString(), hops }
+    if (type && !type.includes('html')) return { error: `That address is not a web page (${type.split(';')[0]}).`, status: res.status, url: url.toString(), hops }
+    const body = await readCapped(res, MAX_PAGE_BYTES)
+    return { status: res.status, url: url.toString(), hops, body, xRobots: res.headers.get('X-Robots-Tag') || '' }
+  }
+  return { error: 'More than five redirects.', url: url.toString(), hops }
+}
+
 export function agentsFrom(param) {
   const list = String(param || '').split(',').map((s) => s.trim()).filter(Boolean)
   const seen = new Set()
@@ -217,7 +262,7 @@ export async function handle(request, fetchImpl = fetch, env = {}, store = undef
   if (request.method !== 'GET') return json({ error: 'GET only.' }, 405, origin)
   const u = new URL(request.url)
   if (u.pathname === '/health') return json({ ok: true }, 200, origin)
-  if (u.pathname !== '/check') return json({ error: 'Not found.' }, 404, origin)
+  if (u.pathname !== '/check' && u.pathname !== '/page') return json({ error: 'Not found.' }, 404, origin)
 
   const ip = request.headers.get('CF-Connecting-IP')
   if (await overLimit(ip, env, store === undefined ? cacheStore() : store)) {
@@ -228,6 +273,16 @@ export async function handle(request, fetchImpl = fetch, env = {}, store = undef
 
   let site
   try { site = siteFrom(u.searchParams.get('url')) } catch (e) { return json({ error: e.message }, 400, origin) }
+  if (u.pathname === '/page') {
+    const got = await fetchPage(site, fetchImpl)
+    const base = { url: site.toString(), final_url: got.url, redirects: got.hops, status: got.status || null,
+      checked_at: new Date().toISOString() }
+    if (got.error) return json({ ...base, error: got.error }, 200, origin)
+    const data = await (env.extract || extract)(got.body.text)
+    return json({ ...base, truncated: got.body.truncated, bytes: got.body.bytes,
+      meta: checkMeta({ ...data, url: got.url, xRobots: got.xRobots }),
+      jsonld: checkJsonLd(data.jsonld) }, 200, origin)
+  }
   const agents = agentsFrom(u.searchParams.get('agents'))
   if (!agents.length) return json({ error: 'No crawlers to check.' }, 400, origin)
   let path = u.searchParams.get('path') || site.pathname || '/'
