@@ -93,8 +93,8 @@ arrive on, not just from the footer. It worked: 0.22× to
 
 <p>It also concentrated equity on the pages already in the navigation, which is why
 {F.equity_below_half()} of {F.equity_pages()} pages now sit under 0.5×. There is no version
-of this where every page is above average. The question is never "are any pages starved" —
-some always are — but "are the starved ones the ones that matter", and on a site that keeps
+of this where every page is above average. The question is never "are any pages starved"
+(some always are) but "are the starved ones the ones that matter", and on a site that keeps
 publishing, the answer needs revisiting every time it does.</p>
 
 <h2>Where another tool is the better choice</h2>

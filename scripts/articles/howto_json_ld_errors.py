@@ -38,7 +38,7 @@ def json_ld_errors() -> Path:
 <p class="lede">Invalid JSON-LD is the most expensive structured-data fault there is, because
 nothing is partially read: one bad character and the whole block is discarded, so a page with
 perfect Product markup is treated exactly like a page with none. The report usually shows you the
-parser's own message — and then, underneath, a list of likely causes that may have nothing to do
+parser's own message, and then, underneath, a list of likely causes that may have nothing to do
 with it.</p>
 
 <h2>The tool had the answer and printed a guess</h2>

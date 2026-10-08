@@ -56,8 +56,8 @@ record is set by whoever controls the address block, so anyone can make their IP
 Docket does both, and there is a test that fails if the forward lookup is ever removed.</p>
 
 <p>Docket's verification was spot-checked against {F.gbot_spot_size()} addresses taken from
-Google's published Googlebot ranges. Addresses that are Googlebot by Google's own definition
-— and accepted {F.gbot_spot_verified()} of {F.gbot_spot_size()}. That is a smoke test against
+Google's published Googlebot ranges. Addresses that are Googlebot by Google's own definition,
+and accepted {F.gbot_spot_verified()} of {F.gbot_spot_size()}. That is a smoke test against
 real DNS rather than a rate; six addresses cannot be turned into a percentage and this page is
 not going to pretend otherwise.</p>
 

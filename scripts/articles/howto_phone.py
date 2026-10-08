@@ -57,7 +57,7 @@ up in a numbering plan, and no operator is asked whether the line exists.</p>
 <p>So it cannot tell you the number is answered, that it is still yours, that it is current,
 or that the person who used to pick it up still works there. It reads your markup and
 answers one question: <em>will tapping this place a call</em>. A number that is well formed
-and simply wrong — last year's line, two digits transposed, the office you closed — is a
+and simply wrong (last year's line, two digits transposed, the office you closed) is a
 valid <code>tel:</code> URI and this check has nothing to say about it. Closing that gap
 would mean dialling strangers' phones from an audit tool, which we are not going to do.</p>
 

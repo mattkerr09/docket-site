@@ -152,7 +152,7 @@ survey could read and parse. The rest split three ways:</p>
 <tr><td>Unreachable: no answer, or an answer we could not use</td><td>{unreachable:,}</td><td>{unreachable_pct}%</td></tr>
 <tr><td>Reachable, but serving no robots.txt at all</td><td>{no_robots:,}</td><td>{no_robots_pct}%</td></tr>
 <tr><td>Excluded as oversize before the readable set was formed</td><td>{oversize:,}</td><td>{oversize_pct}%</td></tr>
-<tr><td><strong>Attempted</strong></td><td><strong>{attempted:,}</strong></td><td><strong>&mdash;</strong></td></tr>
+<tr><td><strong>Attempted</strong></td><td><strong>{attempted:,}</strong></td><td></td></tr>
 </tbody>
 </table>
 

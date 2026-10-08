@@ -272,8 +272,8 @@ but a working mail server on its address record is legal and fine.</p>
              f"{F.mail_attempted()} that answered, {F.mail_publishing()} publish an address "
              f"and every one we could resolve accepts mail. Among {F.small_answered()} UK "
              f"shop websites sampled from OpenStreetMap, {F.small_publishing_pct()}% publish "
-             f"an address and {F.small_dead()} of {F.small_publishing()} cannot receive mail "
-             f"— about {F.small_dead_pct()}%, with a 95% interval of "
+             f"an address and {F.small_dead()} of {F.small_publishing()} cannot receive mail, "
+             f"about {F.small_dead_pct()}%, with a 95% interval of "
              f"{F.small_dead_interval()}."),
             ("My domain has an MX record: is that enough?",
              f"No. An MX record names a host, and the host has to exist. Of the "

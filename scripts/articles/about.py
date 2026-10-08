@@ -119,7 +119,7 @@ authors do.</p>
 """
     return render(
         cat="about", slug="",
-        title="About Docket — who builds it and what it cannot do",
+        title="About Docket: who builds it and what it cannot do",
         desc=(f"Docket is a Mac SEO audit tool with {N_CHECKS} checks, built by one person "
               f"in Grand Rapids, Michigan. What it is bad at, and how to check the download."),
         h1="About Docket",
@@ -228,7 +228,7 @@ the correction gets written down where the mistake was made.</p>
 """
     return render(
         cat="contact", slug="",
-        title="Contact Docket — report a bug or a wrong finding",
+        title="Contact Docket: report a bug or a wrong finding",
         desc=(f"Email {SUPPORT_EMAIL} about your licence or a refund; use the GitHub "
               "issue tracker for bugs, wrong findings and feature requests."),
         h1="Contact",

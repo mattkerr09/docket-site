@@ -156,7 +156,7 @@ allows</a>, and the platform defaults behind it are on
 
 <p>The sharper result in the survey is about what people intended. Of the <strong>{search_blocked}</strong>
 sites refusing <code>OAI-SearchBot</code>, <strong>{both}</strong> refuse <code>GPTBot</code> as well
-— <strong>{overlap}%</strong>. Only <strong>{search_only}</strong> sites in the whole sample gave up
+(<strong>{overlap}%</strong>). Only <strong>{search_only}</strong> sites in the whole sample gave up
 search while still permitting training.</p>
 
 <p>An overlap that tight is not the residue of many separate judgements. It is the signature of a

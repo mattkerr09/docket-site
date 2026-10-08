@@ -157,8 +157,8 @@ a site with both problems is invisible twice over. The full list of what Docket 
              "protection ships with a known-good list, and AI crawlers are newer than most of "
              "those lists."),
             ("How do I check whether my CDN is blocking an AI crawler?",
-             "Request the same URL twice from the same machine — once with the crawler's "
-             "user-agent, once with an ordinary browser's — and compare the status codes. "
+             "Request the same URL twice from the same machine (once with the crawler's "
+             "user-agent, once with an ordinary browser's) and compare the status codes. "
              "Browser 200 with crawler 403 is the finding. Both 403 means your protection is "
              "refusing the tool rather than the crawler, and the answer has to come from your "
              "CDN's logs."),

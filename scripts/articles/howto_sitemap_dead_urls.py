@@ -43,7 +43,7 @@ not, it is the one piece of audit advice that can destroy the evidence you neede
 
 <h2>The case where following it would have hidden a fault</h2>
 
-<p>An insurer's crawl found fourteen URLs answering with a server error — all of them returning
+<p>An insurer's crawl found fourteen URLs answering with a server error, all of them returning
 one identical short body, which is its own tell. Three separate findings named those same fourteen
 URLs: one at critical severity saying the server was failing, one saying the pages were empty
 stand-ins, and the sitemap one saying to regenerate the file.</p>

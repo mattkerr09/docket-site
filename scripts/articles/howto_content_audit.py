@@ -168,8 +168,8 @@ different question of the same pages.</p>
              "having and whether anything links to it."),
             ("Can a tool tell me whether my content is good?",
              "No, and one that claims to is scoring a proxy. Tools are reliable on the "
-             "mechanical questions: is it indexable, is it duplicated, is it in the HTML "
-             "— and those are worth clearing first, because they are cheap and they gate "
+             "mechanical questions: is it indexable, is it duplicated, is it in the HTML, "
+             "and those are worth clearing first, because they are cheap and they gate "
              "everything else. The judgement about depth stays yours."),
         ],
     )

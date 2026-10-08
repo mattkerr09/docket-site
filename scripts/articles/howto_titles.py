@@ -246,7 +246,7 @@ number 304.</p>
 """
     return render(
         cat="how-to", slug="fix-duplicate-title-tags",
-        title="How to fix duplicate title tags — and what it won't fix",
+        title="How to fix duplicate title tags, and what it won't fix",
         desc=("Duplicate titles are not a penalty. They let the wrong page on your site win "
               "the query and waste the one line of the result you get to write."),
         h1="How to fix duplicate title tags",

@@ -49,7 +49,7 @@ part of is weakened.</p>
 
 <p><strong>4. The body is not the page's own writing.</strong> This is the one nobody warns you
 about, and the one that produces the most confident wrong fix. A bookshelf listing Dutch titles,
-a directory of French restaurants, a marketplace page quoting a tutor's introduction in German —
+a directory of French restaurants, a marketplace page quoting a tutor's introduction in German:
 the page is English, written by you, and the foreign words on it belong to someone else. An
 automated check that reads the body will tell you the page is Dutch. It is not. Changing
 <code>lang</code> here makes a correct page wrong.</p>
@@ -115,8 +115,8 @@ error rather than revealing it.</p>
 
 <p>The reciprocity rule is a separate fault again, and the most common hreflang defect there is:
 if page A declares B, then B must declare A, or the whole declaration is ignored. That one has
-its own page. <a href="/how-to/fix-hreflang-return-tags/">Fixing hreflang tags with errors</a>
-— because it cannot be seen by looking at either page alone.</p>
+its own page. <a href="/how-to/fix-hreflang-return-tags/">Fixing hreflang tags with errors</a>,
+because it cannot be seen by looking at either page alone.</p>
 
 <h2>What Docket checks here, and what it does not</h2>
 

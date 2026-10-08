@@ -478,7 +478,7 @@ or a copied gist. If it is not on the vendor's page, the rule does nothing.</li>
 or an invisible character cuts the token short at that point.</li>
 <li>Decide training and citation separately. They are different crawlers and different
 business decisions.</li>
-<li>Then test access from outside the file — fetch your own homepage with the crawler's
+<li>Then test access from outside the file: fetch your own homepage with the crawler's
 user-agent and confirm the server agrees with what you wrote.</li>
 </ol>
 

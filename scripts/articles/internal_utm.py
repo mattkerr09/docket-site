@@ -178,8 +178,8 @@ page is quoted with its denominator for that reason.</p>
 
 <p><strong>Read the page-count column with its ceiling in mind.</strong> We crawled at most
 <strong>{cap}</strong> pages per host, so the number of affected pages cannot exceed
-<strong>{cap}</strong>. <strong>A host showing {cap} means every page we looked at carried such a link
-— not that the site has {cap} pages.</strong> For those hosts the count is a lower bound and
+<strong>{cap}</strong>. <strong>A host showing {cap} means every page we looked at carried such a link,
+not that the site has {cap} pages.</strong> For those hosts the count is a lower bound and
 <strong>the share of the site affected is unmeasured</strong>. <strong>{at_cap}</strong> of the
 affected hosts sit at that ceiling.</p>
 

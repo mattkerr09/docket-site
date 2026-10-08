@@ -130,7 +130,7 @@ describes what happened to <em>this request</em>. It is not a property of the re
 <p><a href="{RFC9110_URL}">{RFC9110}</a> ({RFC9110_PUB}, read {READ_ON}) is explicit about
 several of them. <code>403</code> means the server "understood the request but refuses to
 fulfill it" ({S_403}). <code>400</code> is for "something that is perceived to be a client
-error" ({S_400}) — a rejection of the request, saying nothing about whether the page exists.
+error" ({S_400}): a rejection of the request, saying nothing about whether the page exists.
 <code>402</code> is "reserved for future use" ({S_402}), which is about as far from "this page
 is gone" as a status code gets. <code>429</code> is not in that document at all; it is
 <a href="{RFC6585_URL}">{RFC6585}</a> ({RFC6585_PUB}, read {READ_ON}), {S_429}, and it means
@@ -250,8 +250,8 @@ requested it. Every check Docket ships is listed in
             ("Is a 403 or 429 a broken link?",
              "No. A 403 means the server understood the request and refused it, and a 429 means "
              "it thinks you are asking too often. Neither says the page is missing. Docket files "
-             "401, 403, 405, 406, 429, 451 and 503, and 400 and 402 when the host is not yours "
-             "— under links.unverified_external at NOTICE, with a note that they were neither "
+             "401, 403, 405, 406, 429, 451 and 503, and 400 and 402 when the host is not yours, "
+             "under links.unverified_external at NOTICE, with a note that they were neither "
              "reported as broken nor counted as working."),
             ("Why does my report list a link that works fine in my browser?",
              "Because the host answered our crawler differently from the way it answers you. "

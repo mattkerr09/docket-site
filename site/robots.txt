@@ -1,4 +1,4 @@
-# Docket — docketseo.app
+# Docket. Docketseo.app
 # Everything is open, including AI search and training crawlers.
 # Named individually so the next person to edit this file can see the
 # difference between a search crawler and a training crawler.
@@ -6,7 +6,7 @@
 User-agent: *
 Allow: /
 
-# AI search crawlers — these decide whether we appear in AI answers.
+# AI search crawlers: these decide whether we appear in AI answers.
 User-agent: OAI-SearchBot
 Allow: /
 
@@ -16,7 +16,7 @@ Allow: /
 User-agent: Claude-SearchBot
 Allow: /
 
-# Training crawlers — allowed here; blocking these is a valid choice for others.
+# Training crawlers. Allowed here; blocking these is a valid choice for others.
 User-agent: GPTBot
 Allow: /
 

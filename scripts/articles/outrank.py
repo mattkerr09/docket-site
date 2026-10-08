@@ -128,7 +128,7 @@ Write the page, put the question in the heading, answer it in the first paragrap
         cat="how-to",
         slug="outrank-a-bigger-competitor",
         title="How to find where a bigger competitor is beatable",
-        desc=("Authority is bought with time. Some ranking surfaces are not sold that way — "
+        desc=("Authority is bought with time. Some ranking surfaces are not sold that way: "
               "how to find the ones a bigger competitor's links do not help them win."),
         h1="How to find where a bigger competitor is beatable",
         crumb="How to",

@@ -53,10 +53,10 @@ any severity. A wrong sentence you can argue with. A missing one you cannot even
 not-found and permanently-gone; the two statuses that mean the request was refused; and no response
 at all.</p>
 
-<p>That is a sensible list and it has a hole in it. The rest of the four-hundred range. The
+<p>That is a sensible list and it has a hole in it. The rest of the four-hundred range (the
 statuses that mean the server understood the request and rejected it, that the request took too
-long at the application, that it conflicted with something, that its content type was not accepted
-— <strong>was never asked about.</strong></p>
+long at the application, that it conflicted with something, that its content type was not accepted)
+<strong>was never asked about.</strong></p>
 
 <p>So a URL on an audited site, linked from its own pages, answered with one of those, and the
 report contained <strong>no finding from any registered check</strong>. Not a wrong claim. Not a

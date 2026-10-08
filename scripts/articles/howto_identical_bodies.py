@@ -100,8 +100,8 @@ handing out a placeholder. Nothing is duplicated; the tool simply was not shown 
 
 <p>The filter is deliberately narrow so the ordinary case survives it. A two-URL pair is untouched.
 Several colour variants of one product are untouched, because they sit in one section and carry
-full bodies. So is any large group whose shared body is substantial rather than placeholder-sized
-— a real templated page with real content is a real duplicate-content problem.</p>
+full bodies. So is any large group whose shared body is substantial rather than placeholder-sized:
+a real templated page with real content is a real duplicate-content problem.</p>
 
 <h2>Checking your own group in two minutes</h2>
 

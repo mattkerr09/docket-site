@@ -131,7 +131,7 @@ your own work rather than reading about one.</p>
 """
     return render(
         cat="how-to", slug="redirect-http-to-https",
-        title="How to redirect http:// to https:// — and when it won't",
+        title="How to redirect http:// to https://, and when it won't",
         desc=("A 301 from http:// to https://, host by host. Plus the certificate state "
               "that blocks the Enforce HTTPS setting, and the DNS record that causes it."),
         h1="How to redirect http:// to https://",

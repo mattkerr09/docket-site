@@ -86,8 +86,8 @@ user-agent is irrelevant. That is a different setting entirely.</li>
 </ul>
 
 <p>Docket had this backwards, and the reason is worth more than the fix. Its crawler sends a
-browser-shaped user-agent with an honest suffix naming the tool and linking to a page about it
-— which is precisely the substring a WAF rule matches on. But the check's own text called that
+browser-shaped user-agent with an honest suffix naming the tool and linking to a page about it,
+which is precisely the substring a WAF rule matches on. But the check's own text called that
 "a plain browser request", so when it was refused it concluded the block could not be about
 identity and must therefore be about the network, and it told the reader to try a different
 connection. A clean browser string from the same machine got 200 and a full page. The network

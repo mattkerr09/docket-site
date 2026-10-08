@@ -101,7 +101,7 @@ side of the same question.</p>
 <h2>Step 5: confirm what was actually fetched</h2>
 
 <p>A render tells you what a browser can build. It does not tell you what any crawler did.
-For that you need the server's own record —
+For that you need the server's own record:
 <a href="/learn/log-file-analysis/">log file analysis</a>, which is the only view that
 distinguishes "Google could reach this" from "Google fetched this". The two disagree constantly,
 and on a JavaScript-heavy site they disagree more.</p>

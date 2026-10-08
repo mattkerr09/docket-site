@@ -169,7 +169,7 @@ ROBOTS_AGENTS = [
 def robots_tester() -> Path:
     rows = "".join(
         f'<tr data-agent="{html.escape(a)}"><td><code>{html.escape(a)}</code></td>'
-        f'<td>{html.escape(o)}</td><td>{html.escape(w)}</td><td class="verdict">&mdash;</td></tr>'
+        f'<td>{html.escape(o)}</td><td>{html.escape(w)}</td><td class="verdict"></td></tr>'
         for a, o, w in ROBOTS_AGENTS)
     agents = ",".join(a for a, _, _ in ROBOTS_AGENTS)
     body = f"""

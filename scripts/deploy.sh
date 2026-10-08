@@ -22,6 +22,15 @@ echo "==> build"
 # Any other build writes it to a scratch path so the checkout stays clean.
 DOCKET_DEPLOY=1 "$PY" scripts/build.py >/dev/null
 
+echo "==> em-dash gate"
+# Matthew, 2026-10-05: everything public reads as a person wrote it; the content
+# standard (~/ops/launch/CONTENT-STANDARD.md rule 11) names em-dash chains. 45
+# pages carried 192 visible em-dashes on 2026-10-08 after two passes had cleared
+# most of them, because nothing stopped new ones arriving. This refuses to push
+# a page with one. It reads HTML with a real parser, so a comment is skipped
+# however it is written (a ">" inside one fooled Crisp's regex stripper).
+python3 scripts/verify_no_em_dash.py || { echo "  refusing to deploy: rewrite the em-dashes above"; exit 1; }
+
 echo "==> derived-number gate"
 # The Index published 30% over a 26% dataset because a correction updated the
 # prose and not the stored aggregate. This refuses to ship a measurement that

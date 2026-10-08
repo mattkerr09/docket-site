@@ -198,8 +198,8 @@ the map pack &rarr;</a>.</p>
     return render(
         cat="how-to", slug="where-an-audit-looks-for-your-address",
         title="Where an audit looks for your address",
-        desc=("An audit that strips page furniture cannot see the footer your address sits in "
-              "— and one that reads everything called a site's single address many variations."),
+        desc=("An audit that strips page furniture cannot see the footer your address sits in, "
+              "and one that reads everything called a site's single address many variations."),
         h1="Where an audit looks for your address",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Address findings',
         body=body,

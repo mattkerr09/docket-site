@@ -74,7 +74,7 @@ def _table(rows: list[dict], side: str) -> str:
             continue
         out.append(f'<tr data-agent="{html.escape(r["name"])}"><td><code>{html.escape(r["name"])}</code></td>'
                    f'<td>{html.escape(r["owner"])}</td><td>{html.escape(r["impact"])}</td>'
-                   f'<td class="verdict">&mdash;</td></tr>')
+                   f'<td class="verdict"></td></tr>')
     out.append('</tbody></table></div>')
     return "".join(out)
 
@@ -177,14 +177,14 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
       .then(function (r) {{ return r.json().then(function (j) {{ return {{ ok: r.ok, j: j }}; }}); }})
       .then(function (res) {{
         var j = res.j;
-        if (!res.ok || j.error) {{ say(j.error || 'That address could not be checked.'); [].forEach.call(cells(), function (c) {{ c.textContent = '—'; }}); return; }}
+        if (!res.ok || j.error) {{ say(j.error || 'That address could not be checked.'); [].forEach.call(cells(), function (c) {{ c.textContent = ''; }}); return; }}
         var by = {{}};
         (j.results || []).forEach(function (r) {{ by[r.agent] = r; }});
         [].forEach.call(document.querySelectorAll('tr[data-agent]'), function (tr) {{
           var r = by[tr.getAttribute('data-agent')];
           var c = tr.querySelector('.verdict');
           if (j.state === 'unavailable' && (j.status === 401 || j.status === 403)) {{ c.className = 'verdict'; c.textContent = 'Unknown: the site refused this checker'; return; }}
-          if (!r) {{ c.textContent = '—'; return; }}
+          if (!r) {{ c.textContent = ''; return; }}
           c.className = 'verdict ' + (r.allowed ? 'yes' : 'no');
           var how = r.governedBy === 'name' ? 'named in your file' : r.governedBy === 'wildcard' ? 'by your * rules' : r.governedBy === 'status' ? 'by the server’s answer' : 'no rule applies';
           c.textContent = (r.allowed ? 'Allowed' : 'Blocked') + ': ' + how + (r.rule ? ' (' + r.rule + ')' : '');

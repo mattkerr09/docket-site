@@ -61,7 +61,7 @@ that domain, pointing at a mail host. The site cannot publish DNS for a domain i
 
 <p>The guard that was supposed to prevent this is sensible and is written down: only
 <code>mailto:</code> links count, because an address sitting in prose may be an example, a
-customer's, or a fax number's neighbour. It stopped working for a reason nobody chose —
+customer's, or a fax number's neighbour. It stopped working for a reason nobody chose:
 <strong>any platform whose markdown auto-links bare addresses turns every example in every
 document into a link</strong>, and every forum does that.</p>
 
@@ -92,7 +92,7 @@ it tested the verdict and not the reason. <strong>So the sentence written to say
 judge the string became a finding about the reader's contact channel.</strong></p>
 
 <p>A law firm's site carries a share-by-email button on every page. Its recipient is deliberately
-empty, so a reader's mail client opens with a blank To: field and a subject already filled in —
+empty, so a reader's mail client opens with a blank To: field and a subject already filled in, and
 they type the address of whoever they are sharing with. Perfectly ordinary, working exactly as
 designed.</p>
 

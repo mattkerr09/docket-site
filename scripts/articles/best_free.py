@@ -178,7 +178,7 @@ reads like an advertisement is a bug in the page.</p>
 """
     return render(
         cat="best", slug="",
-        title="Best SEO tools, by the job you are doing — Docket",
+        title="Best SEO tools, by the job you are doing | Docket",
         desc=("Which SEO tool fits which job on your site, with every claim read from the "
               "product's own "
               "documentation and dated on the page."),

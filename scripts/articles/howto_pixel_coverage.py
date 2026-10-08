@@ -96,8 +96,8 @@ contradiction.</p>
 a list and becomes a real finding, because each third-party script competes with your content for
 the visitor's connection and the page gets slower. <strong>The number that escalation reads was
 the served-HTML count.</strong> So a site that loads every one of its tags through a container,
-which is the recommended practice, and the configuration most likely to accumulate forgotten tags
-— could never reach the threshold. <strong>The gate was unreachable for exactly the population it
+which is the recommended practice, and the configuration most likely to accumulate forgotten tags,
+could never reach the threshold. <strong>The gate was unreachable for exactly the population it
 was built for.</strong></p>
 
 <h2>Why counting the rendered pages instead would also have been wrong</h2>

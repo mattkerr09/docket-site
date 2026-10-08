@@ -122,7 +122,7 @@ FINDINGS = [
 ]
 
 _ROWS = "\n".join(
-    f'<li><code>{fid}</code> — <strong>{sev}</strong> — "…{sentence}"</li>'
+    f'<li><code>{fid}</code>, <strong>{sev}</strong>: "…{sentence}"</li>'
     for fid, sev, sentence in FINDINGS
 )
 
@@ -138,7 +138,7 @@ headings. They do not agree, and knowing where they part is more useful than ano
 <h2>Start with what no tool can tell you</h2>
 
 <p>Docket reads your HTML. For this check it reads the text inside your heading elements and
-nothing else — not the paragraphs beneath them, not what the page is for.</p>
+nothing else: not the paragraphs beneath them, not what the page is for.</p>
 
 <p>So it cannot tell you the thing that matters most: <strong>whether a heading describes the
 section under it.</strong> A page can pass every heading finding Docket has and still be
@@ -236,7 +236,7 @@ honest version of a claim usually sold as a ranking factor.</p>
 
 <h2>"No subheadings" has to mean no subheadings</h2>
 
-<p>The condition used to be "long page, no H2". Run against a publisher's ebook-bundle page —
+<p>The condition used to be "long page, no H2". Run against a publisher's ebook-bundle page:
 one H1, no H2, five H3s and twenty-eight H4s across roughly thirteen thousand words. It
 produced two findings from the same loop about the same seven pages: "substantial pages have no
 subheadings", and "pages skip a heading level". The second was true. The first was not: a reader

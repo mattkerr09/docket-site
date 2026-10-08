@@ -117,7 +117,7 @@ rather than a tidy path.</li>
 it is, the finding is wrong and no work is owed.</li>
 <li><strong>Look at what fraction of the flagged pages are exceptions.</strong> When nearly all
 of them are, the finding is describing your site's design rather than a fault in it.</li>
-<li><strong>Do not silence the check — check the residue.</strong> In the insurer's case four
+<li><strong>Do not silence the check. Check the residue.</strong> In the insurer's case four
 pages were not confirmations, and those four were the only ones worth a minute.</li>
 </ul>
 

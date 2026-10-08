@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """Render a Docket page into the site shell.
 
-Same split as Crisp: this file owns the *chrome* — head, styles, nav, footer,
-schema — and never generates prose. Every article's body is authored by hand in
+Same split as Crisp: this file owns the *chrome* (head, styles, nav, footer,
+schema), and never generates prose. Every article's body is authored by hand in
 `scripts/articles/*.py`. Sharing chrome across pages is fine and expected;
 sharing phrasing is what trips the duplicate gate and what actually reads as
 spam, so the body always comes from the caller.
 
 Ships `Organization` + `SoftwareApplication` + `sameAs` on every page. Crisp's
 own strategy audit recorded "no entity schema" as its single highest-ROI gap,
-found months after launch — no reason to repeat that here.
+found months after launch: no reason to repeat that here.
 """
 from __future__ import annotations
 
@@ -60,7 +60,7 @@ def _competitors() -> dict:
     """Every competitor row, keyed by slug.
 
     Same reason as the check count. Competitor prices were written into the
-    prose of six pages, and an August 2026 check found four of them stale — one
+    prose of six pages, and an August 2026 check found four of them stale: one
     quoting a tier that no longer exists. A price is a fact about someone
     else's product, so it lives in one file and is interpolated.
     """
@@ -74,7 +74,7 @@ COMPETITORS = _competitors()
 
 
 def _agencies() -> dict:
-    """Published agency prices, keyed by slug — the OTHER thing a buyer compares against.
+    """Published agency prices, keyed by slug: the OTHER thing a buyer compares against.
 
     The competitor table answers "which tool?". It cannot answer the question
     most people actually arrive with, which is "should I buy a tool at all, or
@@ -84,9 +84,9 @@ def _agencies() -> dict:
     Two kinds of row live here and they are not interchangeable, which is why
     `kind` exists rather than one undifferentiated price column:
 
-      * `published_price` — a named company's own price for its own service. A
+      * `published_price`: a named company's own price for its own service. A
         hard fact with a URL.
-      * `survey_average` / `survey_mode` — what a third party reports about a
+      * `survey_average` / `survey_mode`. What a third party reports about a
         market. Softer, older, and quoted as somebody else's finding.
 
     ⚠️ THE DATE COLUMN MEANS TWO DIFFERENT THINGS AND BOTH ARE HONEST. For a
@@ -153,13 +153,13 @@ def price(slug: str) -> str:
 
     ⚠️ THIS REPLACED EVERY HYPHEN, NOT JUST THE ONE IN A RANGE. The docstring
     has always said "for ranges" and the code said `.replace("-", "–")`, which
-    is a different thing — it just had nothing to bite on, because every note in
+    is a different thing. It just had nothing to bite on, because every note in
     the dataset happened to be digits either side of a dash. The first note
     containing a hyphenated word rendered "one-time" as "one–time" on a live
     page.
 
     A range is a hyphen with a digit before it and a digit or a currency symbol
-    after it — these notes are written "$18-$42", so the character after the
+    after it. These notes are written "$18-$42", so the character after the
     dash is usually "$" rather than a digit. The first attempt at this fix
     required digits on both sides and silently un-dashed ten of the fourteen
     rows; it was caught by diffing every rendered price against the previous
@@ -182,7 +182,7 @@ def price_anchor_html() -> str:
     competitors.csv so it cannot say a number the comparison table does not,
     and dated because a rival price without a date reads as current forever
     (`verify_competitive_claims.py`). Screaming Frog is its one annual tier;
-    Ahrefs is the range of plans that include Site Audit, low end first — the
+    Ahrefs is the range of plans that include Site Audit, low end first. The
     less flattering way to state it, per the file's standing rule.
     """
     sf = COMPETITORS["screaming-frog"]
@@ -333,15 +333,15 @@ def price_note_html() -> str:
     price sits next to Docket's own price and reads as current forever.
 
     Only what was actually read from a vendor's page on a given day is dated
-    here. Sitebulb's desktop pricing defeated every HTTP fetch — the prices are
-    written in by script, so the markup carries placeholders — and it was
+    here. Sitebulb's desktop pricing defeated every HTTP fetch (the prices are
+    written in by script, so the markup carries placeholders), and it was
     listed as unread rather than quietly stamped, because a fetch that returns
     nothing is blindness, not a price. It was read on 2026-08-10 through
     `docket-render`, the WebKit helper Docket ships for JavaScript crawling:
     the tool built to see client-rendered pages can see this one.
 
-    All ten are dated now, which is why the shared-date branch below exists —
-    ten separate "checked on" stamps of the same date is a paragraph nobody
+    All ten are dated now, which is why the shared-date branch below exists.
+    Ten separate "checked on" stamps of the same date is a paragraph nobody
     finishes reading.
 
     **One figure here is derived, not read.** Sitebulb's yearly totals are not
@@ -754,7 +754,7 @@ STYLE = """<style>
    The stylesheet also carried 640, 650, 680, 720 and 750 across ten
    declarations, and none of them could be expressed: with faces at 400-700,
    CSS font matching resolves every weight above 600 to the 700 face. Measured
-   on the live page at 40px — 640, 650, 680, 700, 720 and 750 all render at
+   on the live page at 40px: 640, 650, 680, 700, 720 and 750 all render at
    exactly 323.69px. So the numbers said five things and the page said one, and
    snapping them to 700 changed no pixel. Same drift as the type scale: each
    value picked locally to sit beside its neighbour, nothing keeping the whole
@@ -775,8 +775,8 @@ STYLE = """<style>
 :root{
   /* Ink, and the content lifted off it.
      This replaces the paper ground the site carried until 2026-08-18. That
-     ground had a written thesis — every SEO tool ships a dark dashboard, so
-     don't — and it is worth knowing it was abandoned deliberately rather than
+     ground had a written thesis (every SEO tool ships a dark dashboard, so
+     don't), and it is worth knowing it was abandoned deliberately rather than
      drifted away from. What replaces it is not a neon dashboard: it is a dark
      ground with the reading surfaces raised a few points above it, which is a
      different idea. Nothing glows; the lift does the work.
@@ -785,7 +785,7 @@ STYLE = """<style>
      Measured luminance ratios between neighbours: bg->surface 1.065,
      surface->surface-2 1.046, surface-2->surface-3 1.086. Large enough to read
      as separate planes, small enough that four of them stacked do not band.
-     Every surface is LIGHTER than the ground beneath it, never darker — that
+     Every surface is LIGHTER than the ground beneath it, never darker. That
      is what makes a box read as raised rather than as a hole. */
   --bg:#070C0D;--surface:#0D1517;--surface-2:#111A1D;--surface-3:#172225;
   --text:#EAF2F1;--text-mid:#A9B8B8;--text-dim:#8B9C9C;
@@ -795,20 +795,20 @@ STYLE = """<style>
      the lightness moved, because #134E4A on a near-black ground is 1.6:1 and
      invisible. Measured on --bg / --surface / --surface-2 / --surface-3:
      --brand 10.57/9.92/9.49/8.73, --brand-light 13.30/12.49/11.94/10.99, and
-     --on-accent on --brand is 10.39 — fill, link text and rule all clear AA.
+     --on-accent on --brand is 10.39. Fill, link text and rule all clear AA.
      This is Docket's own teal and NOT the violet of the site this look was
      taken from; two products in one portfolio should not be the same product.
 
      Every published image of the mark is rendered FROM this token by
      scripts/render_brand_assets.py, which is why the favicon cannot go on
-     being indigo eight months after the site stopped being — it did, and
+     being indigo eight months after the site stopped being: it did, and
      nothing noticed until somebody looked at the file. */
   --brand:#2DD4BF;--brand-light:#5EEAD4;--brand-soft:rgba(45,212,191,.10);
   --on-accent:#04100F;
   /* Severity, defined ONCE as a channel triple and derived from there.
      Every tinted background in this stylesheet is the severity colour at low
      alpha, and each one used to be a hand-copied `rgba(74,222,128,.18)` sitting
-     next to `var(--ok)` on the same line — so a token change moved the fill and
+     next to `var(--ok)` on the same line, so a token change moved the fill and
      left the glow behind. That already happened once with amber: eight glows
      survived a token swap because no gate reads colour.
      `rgba(var(--ok-rgb),.18)` cannot drift; there is nothing to forget.
@@ -831,7 +831,7 @@ STYLE = """<style>
   /* THE LIFT. This is the one thing that makes content read as floating above
      the page rather than drawn onto it, and it is three effects stacked, not a
      drop shadow:
-       1. a 1px inset highlight on the TOP edge only — light catching a raised
+       1. a 1px inset highlight on the TOP edge only: light catching a raised
           lip. Without this a card is a flat rectangle no matter how large the
           shadow is; it is the single most load-bearing line here.
        2. a hairline inset ring, so the edge stays defined on any surface.
@@ -852,7 +852,7 @@ STYLE = """<style>
   /* Hard corners. A 16px radius is the house style of every SaaS dashboard;
      4px reads as a printed rule, and 0 on the data surfaces reads as a table. */
   --radius:5px;--radius-sm:3px;
-  /* One type scale, because the drift was not taste — it was arithmetic.
+  /* One type scale, because the drift was not taste: it was arithmetic.
      Measured on the live page at 1440x900 on 2026-08-18: 34 distinct rendered
      font sizes, 19 of them inside the 12.48-17.76px band, with .92/.93/.94/.95
      and 1.02/1.03/1.04/1.05 each sitting inside 0.03rem. Nobody chose those
@@ -864,7 +864,7 @@ STYLE = """<style>
   --t-3xs:0.625rem;--t-2xs:0.6875rem;--t-xs:0.75rem;--t-sm:0.8125rem;--t-base:0.875rem;--t-md:0.9375rem;--t-lg:1.0rem;--t-xl:1.125rem;--t-2xl:1.5rem;
   /* Corner radii, same story: twelve distinct values rendered against two
      tokens. The comment below says a 16px radius is the SaaS-dashboard house
-     style and that this site is not that — and .mock was rendering exactly
+     style and that this site is not that, and .mock was rendering exactly
      16px. These five are every value that was actually in use, rounded to a
      set, so the largest move is 3px. */
   --radius-md:9px;--radius-lg:13px;--radius-pill:99px;
@@ -882,8 +882,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:va
   -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
   font-feature-settings:"ss03"}
 
-/* No scroll-reveal. It was built twice — once hiding content by default, once
-   arming from JavaScript with a timed backstop — and neither could be shown to
+/* No scroll-reveal. It was built twice (once hiding content by default, once
+   arming from JavaScript with a timed backstop), and neither could be shown to
    work: IntersectionObserver does not fire in the webview used to verify this
    site, and nor did the setTimeout fallback.
 
@@ -894,7 +894,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:va
 
    The rule that used to be here left its closing brace behind when it was
    deleted, and a stray `}` at the top level made the browser discard the very
-   next rule — which was the one giving every link its colour. Every body link
+   next rule, which was the one giving every link its colour. Every body link
    on every article rendered in default browser blue on a near-black page for
    as long as that brace survived, and no gate on this site looks at colour. */
 a{color:var(--brand-light);text-decoration:none;transition:color .16s}
@@ -905,8 +905,8 @@ a{color:var(--brand-light);text-decoration:none;transition:color .16s}
    1px line separates better than a 4% wash, and it survives being printed,
    which a report about a website eventually is. */
 .eyebrow,.split-phase,.mock-rank,.rank-row .n,.split-list .n{font-family:var(--mono)}
-/* The two panels are a matched pair by design, so the shorter one has slack —
-   six short rows against five taller ones plus a closing line, measured at
+/* The two panels are a matched pair by design, so the shorter one has slack.
+   Six short rows against five taller ones plus a closing line, measured at
    ~150px of empty panel under the last row. Letting the list absorb it spreads
    the rows instead, which reads as a deliberate rhythm rather than a card that
    ran out of content. */
@@ -945,11 +945,11 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
 
      The first version noted: "The six links total 273px of text at this size.
      At a 1.15rem gap they needed 365px in a 343px rail, so About was clipped
-     to Ab at 375px. Measured: they fit at any gap up to 14px" — and set the gap
+     to Ab at 375px. Measured: they fit at any gap up to 14px", and set the gap
      to 12.8px. Correct, measured, and true of *six* links.
 
      A seventh (Best) was added later. Seven total 307px, which at that same gap
-     needs 383px in the same 343px rail, so About went back off the edge — sitting
+     needs 383px in the same 343px rail, so About went back off the edge. Sitting
      at x=360-399 in a 375px viewport, reachable only by a horizontal swipe with
      nothing on screen suggesting one. The fade that would have hinted at it was
      behind `max-width:359px`, so at 375px there was no affordance at all. The
@@ -962,13 +962,13 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
   .nav-links{order:3;width:100%;gap:.55rem .8rem;font-size:var(--t-base);
     flex-wrap:wrap;padding-bottom:.15rem}
   .nav-links a{white-space:nowrap}
-  /* Stacked CTAs were 200px and 185px against a 343px column — a ragged right
+  /* Stacked CTAs were 200px and 185px against a 343px column: a ragged right
      edge on the most-looked-at element of the page. Full width once they wrap. */
   .hero-cta{gap:.6rem}
   .hero-cta>*{width:100%;text-align:center}
 }
 /* A COMPACT MENU ON PHONES. The wrapped link rows above made the header 168px
-   tall at 375px — 106px of it links, each row 44px for the tap target — and
+   tall at 375px (106px of it links, each row 44px for the tap target), and
    pushed the hero's Buy button down to 732-790px of an 812px screen (the CEO's
    pass, 2026-09-24; measured the same day). The links move behind one 44px
    toggle in the top row; the <details> element needs no script, and the same
@@ -989,7 +989,7 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
     display:grid;padding:.4rem 1rem .8rem;background:var(--bg);border-bottom:1px solid var(--border)}
   .nav-more-links a{min-height:44px;display:flex;align-items:center;color:var(--text-mid)}
 }
-/* One line, always: the gate renders in WebKit — the engine an iPhone uses —
+/* One line, always: the gate renders in WebKit (the engine an iPhone uses)
    where this label measured wider than in Chrome and wrapped to two lines
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
@@ -1021,7 +1021,7 @@ article{padding:2.8rem 0 4.5rem}
    heading run through background-clip:text has `color:transparent`, and the
    deploy's contrast gate reads the COLOUR, not the paint: it measured 1.07:1
    against a 3:1 requirement on all ten article templates and refused. It is
-   right to — transparent text is what a forced-colors mode and an automated
+   right to. Transparent text is what a forced-colors mode and an automated
    checker both see. The homepage accents are safe because they are an <em>
    INSIDE a heading that keeps its own colour; a title has no such half, so the
    choice there is all-or-nothing, and all is wrong. */
@@ -1077,7 +1077,7 @@ footer{border-top:1px solid var(--border);padding:2.6rem 0 3rem;margin-top:3rem;
   color:var(--text-dim);margin-bottom:.6rem;font-weight:700}
 .foot-grid a{display:block;color:var(--text-mid);padding:0.2rem 0;font-size:var(--t-md)}
 /* TOUCH TARGETS, measured at 375px on 2026-08-19 before any ad spend.
-   30 standalone links were under 44px — nav and footer at 23px, barely half
+   30 standalone links were under 44px: nav and footer at 23px, barely half
    the minimum Apple and Google both publish. Inline links inside prose are
    deliberately NOT included: a link in a sentence is text-height by nature and
    padding one to 44px would break the line box it sits in.
@@ -1105,13 +1105,13 @@ body.landing article{padding:0}
 .hero-sec{padding:3.2rem 0 4.5rem;position:relative;overflow:hidden}
 /* Ambient light. A flat dark page reads as unlit; two soft pools give the
    canvas depth without anything on it looking decorated. */
-/* The substrate the hero sits on. This used to be two indigo radial glows —
-   the exact device every dark SaaS homepage uses, and the reason this site was
+/* The substrate the hero sits on. This used to be two indigo radial glows.
+   The exact device every dark SaaS homepage uses, and the reason this site was
    indistinguishable from eight others a buyer had already opened. A ruled grid
    says instrument instead: graph paper under a measurement.
    Kept faint on purpose. It reads at the edges of the type and disappears
    behind it; a grid you notice is a grid competing with the headline.
-   The pseudo-element itself is load-bearing beyond decoration — visual_check
+   The pseudo-element itself is load-bearing beyond decoration. Visual_check
    asserts it generates, because a stray brace once ate this rule silently. */
 .hero-sec::before{content:"";position:absolute;inset:0 -10% auto -10%;height:100%;
   background:
@@ -1122,7 +1122,7 @@ body.landing article{padding:0}
   mask-image:linear-gradient(180deg,#000 55%,transparent);
   pointer-events:none;z-index:0}
 .hero-grid{position:relative;z-index:1}
-/* THE HERO MEDIA. Until 2026-08-18 this slot held `_mockup()` — a hundred lines
+/* THE HERO MEDIA. Until 2026-08-18 this slot held `_mockup()`. A hundred lines
    of CSS pretending to be the results view, tilted with `transform:perspective()`
    so a drawing would read as a photograph. It is now a screen recording of the
    shipped app auditing this site, captured through the e2e harness against the
@@ -1148,7 +1148,7 @@ body.landing article{padding:0}
    that sets transform. */
 /* The offsets are RESET here, not just defaulted. Custom properties inherit, so
    a `.rank-row` nested inside a `.split-col` that carries `--rx:46px` inherited
-   the 46px and translated with it — pushing the document 15px past a 1280px
+   the 46px and translated with it. Pushing the document 15px past a 1280px
    viewport. `var(--rx,0)` does not help: the fallback only applies when the
    property is unset, and an inherited value is set. Declaring them on
    `.will-reveal` means every revealed element starts from zero and only the
@@ -1166,7 +1166,7 @@ body.landing article{padding:0}
 .split > .will-reveal:nth-child(1){--rx:-46px;--ry:0}
 .split > .will-reveal:nth-child(2){--rx:46px;--ry:0}
 /* No sideways travel on a narrow screen. An un-revealed card sits at its
-   offset, so a +38px slide is +38px of document width until it arrives — the
+   offset, so a +38px slide is +38px of document width until it arrives. The
    visual gate measured the homepage at 428px in a 375px viewport and called the
    source unknown, because by the time anything screenshots it the cards have
    usually settled. The offsets are the only thing on the page that can be wider
@@ -1199,13 +1199,13 @@ body.landing article{padding:0}
    right for the HERO: an HTML replica stays sharp, follows the theme, weighs
    nothing, and cannot show last month's interface. That reasoning is untouched
    and the replica above stays.
-   This is a different job. Its entire value is that it IS the artifact — the
+   This is a different job. Its entire value is that it IS the artifact: the
    file the reporter wrote, on a named site, on a stated date. A replica of a
    report cannot demonstrate that the report exists. The staleness risk is
    handled by the caption carrying the date and the site, so it reads as
    evidence from a moment rather than a claim about the current build. */
-/* The plan screenshot sat flush against the comparison panels above it —
-   measured gap 0px — so the two blocks read as one run-on object. */
+/* The plan screenshot sat flush against the comparison panels above it (
+   measured gap 0px), so the two blocks read as one run-on object. */
 .shot{margin:2.6rem auto 0;max-width:min(100%,1100px)}
 .split + .shot,.split + figure{margin-top:2.6rem}
 .shot img{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
@@ -1229,24 +1229,24 @@ body.landing article{padding:0}
 .rank-row.hot .n{background:var(--brand);color:var(--on-accent)}
 .rank-row.hot{color:var(--text);border-color:var(--brand)}
 /* No entrance animation here. It was built, and IntersectionObserver turned out
-   not to fire at all in the webview used to verify it — so the effect could not
+   not to fire at all in the webview used to verify it, so the effect could not
    be confirmed working, only confirmed shipped. A motion effect that cannot be
    verified is a liability on a page whose whole argument is rigour, and a
    static ranked list makes the same point without one.
 
    Second orphaned brace of the same kind, found by the same look. This one was
-   dropping `.hero-sec::before` — the glow behind the homepage hero — so that
+   dropping `.hero-sec::before` (the glow behind the homepage hero), so that
    effect was designed, shipped, and never once rendered.
 
    That repair then went wrong in a quieter way: it wrote a *replacement*
    `.hero-sec::before` here instead of removing the brace that was eating the
    original one above. Both fixes landed, so the page carried two rules for the
-   same pseudo-element and the later one won — a single centred brand ellipse,
+   same pseudo-element and the later one won. A single centred brand ellipse,
    where the rule at the top of this sheet asks for two pools.
    The glow rendered, the brace gate passed, and the design still was not the
    one anybody wrote. The duplicate is gone; the original is the live rule. */
 /* ONE column. The media used to sit in a ~500px second column, too small to
-   read a product UI in — the page rendered the thing it sells illegible. Framer,
+   read a product UI in: the page rendered the thing it sells illegible. Framer,
    Mobbin and Cofounder all give the product the full measure and put the copy
    above it. The copy keeps a prose measure; only the media is full width. */
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:2.2rem;max-width:820px;
@@ -1260,7 +1260,7 @@ body.landing article{padding:0}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
 /* WEIGHT 600, not 700. Measured across the six sites named as the bar:
-   mobbin 652, langchain 300, framer 500, avo 600, outlier 600, cofounder 400 —
+   mobbin 652, langchain 300, framer 500, avo 600, outlier 600, cofounder 400:
    median ~550, and this page was the heaviest in the set at 700. 600 lands on
    the same value as two of them, and Switzer-600 is already shipped, so this
    costs nothing to serve. */
@@ -1269,7 +1269,7 @@ body.landing article{padding:0}
      vw term only governs between roughly 715px and 1000px, so at any desktop
      width this renders at exactly the ceiling.
 
-     It was 4.3rem, which renders 68.8px — above the 38-64px band that
+     It was 4.3rem, which renders 68.8px. Above the 38-64px band that
      bin/hero-scale-gate.py measures across six reference sites (getfernand 38,
      set.space 39, pryzm 48, framer 54, arrakis 56, coderabbit 64). 3.5rem lands
      on arrakis rather than on the boundary, because a value sitting exactly at
@@ -1369,26 +1369,26 @@ ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.step
 .phone-link button{font:inherit;color:var(--text);background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 @media (max-width:760px),(hover:none) and (pointer:coarse){.phone-link{display:block}}
 
-/* Product mockup — an HTML replica of the app, not a screenshot. Stays sharp at
+/* Product mockup: an HTML replica of the app, not a screenshot. Stays sharp at
    any density, weighs nothing, and follows the page theme. */
 .mock-rank{background:var(--brand-soft);color:var(--brand-light);font-size:var(--t-3xs);font-weight:700;
   width:16px;height:16px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
 
 /* Sections */
-/* AMBIENT MESH — ported from outlier-site/index.html rather than guessed at.
+/* AMBIENT MESH. Ported from outlier-site/index.html rather than guessed at.
    Three things do the work there, and building this from screenshots got two
    of them wrong:
 
      1. `filter:blur(120px)` on each orb. Without it a radial-gradient is a
         coloured smudge; with it, it is light. This was the missing piece.
      2. `position:fixed`, so the orbs stay put while the page scrolls past.
-        That is what "the gradient moves with the scrolling" actually is — the
+        That is what "the gradient moves with the scrolling" actually is. The
         content travels THROUGH a light field that does not move with it.
      3. slow drift, 26-38s, a few vw of translate and ~1.1 scale. Long enough
         that nothing appears to move while you look straight at it.
 
    Outlier's hues are purple / magenta / indigo. Docket's are teal, cyan and
-   green — the same three-hue texture in its own palette, and the green is the
+   green. The same three-hue texture in its own palette, and the green is the
    one the product already uses for a lane that passes. */
 .mesh{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .mesh b{position:absolute;border-radius:50%;filter:blur(120px);opacity:.52}
@@ -1410,7 +1410,7 @@ ol.steps{margin:0 0 2rem;padding-left:1.4rem}ol.steps>li{margin:0 0 1rem}ol.step
   -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 0%,transparent 75%);
   mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 0%,transparent 75%)}
 .spectrum{height:1px;width:100%;background:var(--grad-line);opacity:.5;border:0;margin:0}
-/* Every section boundary is a gradient hairline rather than a flat rule — the
+/* Every section boundary is a gradient hairline rather than a flat rule: the
    `.spectrum` idea from outlier-site, applied without touching the markup. */
 .sec::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;
   background:var(--grad-line);opacity:.32;pointer-events:none}
@@ -1478,7 +1478,7 @@ nav{z-index:40}
 .price-caveat,.chart-note,.claims-note,.foot-more{max-width:68ch}
 
 /* Email capture. Quiet on purpose: it sits after the buy CTA and must not
-   compete with it — someone ready to buy should not be diverted into a form. */
+   compete with it. Someone ready to buy should not be diverted into a form. */
 .sub{display:flex;gap:0.55rem;flex-wrap:wrap;align-items:flex-end;margin:1.1rem 0 .6rem}
 .sub-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .sub input[type=email]{flex:1 1 15rem;min-width:0;padding:0.6rem .8rem;
@@ -1697,7 +1697,7 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
     """Organization + SoftwareApplication + sameAs, on every page.
 
     `sameAs` is what lets a language model resolve "Docket" to this specific
-    product rather than the dozen other things called Docket — the single
+    product rather than the dozen other things called Docket: the single
     highest-leverage piece of markup for being cited by name.
 
     Only two entries, both verified to resolve, because /learn/sameas-entity-signals/
@@ -1707,7 +1707,7 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
 
     ⚠️ `with_offer` IS FALSE ON PAGES THAT DO NOT SHOW THE PRICE.
     Found by Docket on this site, 2026-08-25, the first time rendering ran
-    automatically — `schema.price_not_visible`, HIGH, on /for/ and /vs/:
+    automatically: `schema.price_not_visible`, HIGH, on /for/ and /vs/:
 
         Offer markup states a price (199) that appears nowhere in the
         page's visible text.
@@ -1718,7 +1718,7 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
     and the penalty for a mismatch is a manual action against every rich
     result on the domain, not just the offending page.
 
-    The entity itself still appears everywhere — that is what `sameAs` is
+    The entity itself still appears everywhere: that is what `sameAs` is
     for. Only the priced Offer is withheld, and only where the number is
     not on screen.
     """
@@ -2023,7 +2023,7 @@ def _byline(published: str | None, modified: str | None) -> str:
     """The visible byline: who wrote it, when it first shipped, when it changed.
 
     ⚠️ WHY THIS EXISTS. Every page carried `author` and `datePublished` in the
-    Article schema and showed NEITHER to a reader — 0 of 67 pages had a visible
+    Article schema and showed NEITHER to a reader: 0 of 67 pages had a visible
     date anywhere outside the body prose. A machine-readable date a human cannot
     see is a claim made only to crawlers, and the thing a reader uses to judge
     whether a page about a moving subject is still current was missing.
@@ -2299,7 +2299,7 @@ def render(
         so the worst case is an un-animated page, never an empty one. */
 (function () {{
   /* A looping autoplay video is motion nobody asked for, and CSS cannot stop
-     it — `prefers-reduced-motion` can hide or freeze almost anything except a
+     it. `prefers-reduced-motion` can hide or freeze almost anything except a
      playing <video>. So the script pauses it and rewinds to the poster frame,
      which is a real frame of the same run, so nothing is lost.
      builtbykerr.com carries ten prefers-reduced-motion blocks to this file's
@@ -2314,8 +2314,8 @@ def render(
   /* GRANULARITY IS THE EFFECT. Measured on outlier.host: 51 revealed units,
      median height 171px, SIX in view at once. This page had 31 large ones and
      only TWO in flight at any scroll position, which is why it read as sections
-     popping rather than a page assembling itself. Adding the smaller units —
-     the faq rows, the chart rows, the ranked rows, the notes — roughly doubles
+     popping rather than a page assembling itself. Adding the smaller units (
+     the faq rows, the chart rows, the ranked rows, the notes) roughly doubles
      the count without touching any markup. */
   var SEL = '.sec-head, .card, .split-col, .shot, .chart, .stat, .hero-media, .rank-demo,'
           + '.faq-item, .bar-row, .rank-row, .hero-note, .cta-shot, .coverage,'
@@ -2323,8 +2323,8 @@ def render(
           /* ARTICLES ARE 57 OF THE 58 PAGES and were getting almost none of
              this: measured 2-4 reveal units each, none of them in the viewport
              at load, so the 1.4s failsafe revealed them and nothing ever
-             animated. The list above is homepage-shaped — `.card`, `.chart`,
-             `.rank-row` — and an article is <h2>, <h3>, <pre> and prose.
+             animated. The list above is homepage-shaped (`.card`, `.chart`,
+             `.rank-row`), and an article is <h2>, <h3>, <pre> and prose.
 
              HEADINGS AND BLOCKS ONLY, never <p>. Fading in body text as
              somebody reads it is a different and worse thing than a section
@@ -2337,7 +2337,7 @@ def render(
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced || !window.IntersectionObserver) return;
   els.forEach(function (e) {{ e.classList.add('will-reveal'); }});
-  /* Outlier staggers by hand — 15 elements carry .d1, 9 carry .d2, 4 carry .d3,
+  /* Outlier staggers by hand: 15 elements carry .d1, 9 carry .d2, 4 carry .d3,
      at .08/.16/.24s. Deriving it from position in the parent gets the same
      cascade with no markup: the second sibling waits .08s, the third .16s, the
      rest .24s, so a row of cards arrives in sequence rather than as a block. */
@@ -2351,7 +2351,7 @@ def render(
     else if (i === 2) e.classList.add('rd2');
     else if (i > 2) e.classList.add('rd3');
   }});
-  /* TWO-WAY, and the observer is deliberately NOT unobserved — that call is
+  /* TWO-WAY, and the observer is deliberately NOT unobserved. That call is
      what made this one-shot: the page filled in on the way down and stayed
      filled. Outlier toggles on both edges so content leaves the way it came. */
   var ran = false;
@@ -2363,7 +2363,7 @@ def render(
   /* THE FAILSAFE HAD TO GET MORE PRECISE. "nothing is revealed yet" is not the
      same as "the observer never ran": on an article page every revealed unit is
      below the fold at load, so nothing was intersecting, the failsafe concluded
-     the observer was dead and pinned all of them visible permanently — which
+     the observer was dead and pinned all of them visible permanently, which
      silently disabled the two-way behaviour on 57 of the 58 pages.
 
      IntersectionObserver invokes its callback once for every element it is

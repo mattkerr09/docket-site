@@ -2233,7 +2233,7 @@ Screaming Frog is the right tool.</p>
              "Near Duplicate Content on the paid side, so the free version cannot save a "
              "crawl or render JavaScript."),
             ("Which one tracks keyword rankings?",
-             "SE Ranking. Screaming Frog does not, and neither does Docket \u2014 if daily rank "
+             "SE Ranking. Screaming Frog does not, and neither does Docket. If daily rank "
              "tracking is what you need, that is the one of the three that does it."),
         ],
     )

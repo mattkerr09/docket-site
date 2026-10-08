@@ -91,7 +91,7 @@ marker in the list turned up on none of them. That is not a tell; it is a joint 
 
 <p>Because the check fires on a pair, that one entry was enough to turn a single genuine cliché
 into a conviction. On a large tutorial site, one page was reported on the strength of a real
-cliché in the article and the ordinary idiom <em>in a reader's comment underneath it</em> — the
+cliché in the article and the ordinary idiom <em>in a reader's comment underneath it</em>, so the
 page was judged partly on somebody else's writing. The entry is gone, and the test that removed it
 also asserts that no remaining marker fires on plainly-written institutional English, so the next
 addition has to clear the same bar.</p>

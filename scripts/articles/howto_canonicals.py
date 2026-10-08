@@ -130,7 +130,7 @@ you are being asked to do.</p>
              "how a page says the version without tracking parameters, without www, on "
              "https, is the one that should be indexed."),
             ("Is a cross-domain canonical ever correct?",
-             "Yes — for syndicated content. A partner's republished copy canonicalising back "
+             "Yes, for syndicated content. A partner's republished copy canonicalising back "
              "to your original is exactly right. Your own pages canonicalising to a domain "
              "you do not control almost never is."),
         ],

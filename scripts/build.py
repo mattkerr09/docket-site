@@ -142,7 +142,7 @@ def hub(cat: str, title: str, desc: str, h1: str, lede: str,
 
     Entry titles are h2, not h3. Every hub jumped h1 straight to h3, which
     breaks the outline a screen reader announces and the one a search engine
-    reads — and it was purely visual, because the h3 carried an inline style
+    reads, and it was purely visual, because the h3 carried an inline style
     anyway. Nothing about a hub needs a level skipped.
     """
     items = "".join(
@@ -170,7 +170,7 @@ def build_hubs() -> list[Path]:
         "vs",
         "Docket compared with other SEO audit tools (2026)",
         "Honest comparisons of Docket against Screaming Frog, Sitebulb, Ahrefs and Semrush "
-        "Site Audit — including what each of them does better.",
+        "Site Audit, including what each of them does better.",
         "How Docket compares",
         "Each of these names at least one thing the other tool does better, because a "
         "comparison that never concedes anything is an advertisement.",
@@ -179,7 +179,7 @@ def build_hubs() -> list[Path]:
              "Raw crawl data versus a ranked plan. Screaming Frog supports custom "
              "extraction and crawls at far greater scale; Docket does not."),
             ("/vs/sitebulb-alternative/", "Docket vs Sitebulb",
-             "Both draw your site architecture — Sitebulb interactively, Docket as rings by "
+             "Both draw your site architecture: Sitebulb interactively, Docket as rings by "
              "depth sized by link equity. Docket covers "
              "AI visibility, conversion and tracking, which Sitebulb does not."),
             ("/vs/ahrefs-site-audit-alternative/", "Docket vs Ahrefs Site Audit",
@@ -194,7 +194,7 @@ def build_hubs() -> list[Path]:
              "and the two things it does not do."),
             ("/vs/lighthouse-alternative/", "Docket vs Google Lighthouse",
              "The one here that is not an alternative. Lighthouse is free, it is Google's, "
-             "and you should keep running it — its SEO category is ten scored checks on one "
+             "and you should keep running it. Its SEO category is ten scored checks on one "
              "URL, and a crawl is what sits outside that."),
             ("/vs/google-search-console/", "Docket vs Google Search Console",
              "A division of labour rather than a comparison. Search Console holds your real "
@@ -303,16 +303,16 @@ money.</p>
              "layer is refusing yours."),
             ("/learn/click-depth-and-orphan-pages/", "Click depth and orphan pages",
              "How many clicks from the homepage a page sits, and which pages "
-             "nothing links to — plus the crawl conditions under which neither "
+             "nothing links to. Plus the crawl conditions under which neither "
              "number means anything."),
             ("/learn/url-structure/", "URL structure: checked vs folklore",
              "What Docket actually enforces about URLs, and which popular rules "
              "have no published source behind them."),
             ("/learn/page-weight/", "Page weight and how heavy is too heavy",
-             "Docket grades the HTML document, not the whole page — and says "
+             "Docket grades the HTML document, not the whole page, and says "
              "'at least' when the read was capped."),
             ("/learn/priority-model/", "How Docket decides what to fix first",
-             "Severity, impact, reach and effort — the formula an audit ranks "
+             "Severity, impact, reach and effort: the formula an audit ranks "
              "your site with, written out."),
             ("/learn/ai-crawler-directives/", "AI crawler directives: which to block",
              "Training crawlers and search crawlers are different decisions "
@@ -323,13 +323,13 @@ money.</p>
              "it refuses to guess."),
             ("/learn/ai-crawlers-and-sitemaps/", "AI crawlers and your sitemap",
              "A Sitemap: line is a non-group record, so every crawler is offered the "
-             "same one — including the crawlers a site is trying to keep out."),
+             "same one, including the crawlers a site is trying to keep out."),
             ("/learn/www-vs-non-www/", "www or no www, and whether it still matters",
              "Every page-one result agrees you should pick one. None of them counted. "
              "We probed a random sample to see how many hosts still serve both."),
             ("/learn/internal-utm-links/", "Internal links that carry UTM parameters",
              "A site tagging its own internal links splits its analytics and can split "
-             "its canonical signals. We crawled a sample and counted — and the affected "
+             "its canonical signals. We crawled a sample and counted, and the affected "
              "hosts split into two different problems."),
             ("/learn/googlebot-2mb-limit/", "Googlebot's 2MB cutoff",
              "It reads the first 2MB and indexes that as the whole page. We measured "
@@ -365,28 +365,28 @@ money.</p>
              "An address on a domain with no MX record bounces to the sender and never "
              "reaches you, and no tool asks whether yours works."),
             ("/learn/ai-substitution/", "Which pages an AI answer replaces",
-             "Ranking and not being visited. Measured on two live sites — this one at 5% "
-             "fully substitutable, a delicatessen at 0% — and three ways we measured it "
+             "Ranking and not being visited. Measured on two live sites (this one at 5% "
+             "fully substitutable, a delicatessen at 0%), and three ways we measured it "
              "wrong first."),
             ("/learn/ai-search-visibility/", "AI search visibility",
-             "The three gates a model has to clear before it can cite you — access, rendering "
-             "and entity clarity — with measured data on who is blocking what."),
+             "The three gates a model has to clear before it can cite you (access, rendering "
+             "and entity clarity) with measured data on who is blocking what."),
             ("/learn/seo-audit/", "What an SEO audit covers",
              "Every area, in the order they should be worked, and the three tests a report has "
              "to pass to be worth acting on."),
             ("/learn/javascript-rendering/", "JavaScript rendering",
-             "What a crawler that does not run JavaScript misses — measured on a page that "
+             "What a crawler that does not run JavaScript misses. Measured on a page that "
              "serves 0 characters of text and renders 2,068."),
             ("/learn/sameas-entity-signals/", "sameAs and entity signals",
              "The cheapest entity signal there is, and the share of major sites that skip "
-             "it — measured, with the dataset attached."),
+             "it: measured, with the dataset attached."),
             ("/learn/canonical-tags/", "Canonical tags",
              "Google calls rel=canonical a hint and overrules it routinely. The seven "
              "ways it gets set wrong, and what each Search Console status is actually "
              "telling you."),
             ("/learn/internal-link-equity/", "Internal link equity",
-             "The ranking signal your pages pass to each other, measured on our own site — "
-             "where the download page held a fifth of what an average page did."),
+             "The ranking signal your pages pass to each other, measured on our own site. "
+             "Where the download page held a fifth of what an average page did."),
             ("/learn/what-docket-checks/", "What Docket checks",
              "All the checks, by area, with what each one actually looks at."),
         ],
@@ -395,7 +395,7 @@ money.</p>
 
 
 def checks_page() -> Path:
-    """Every check, from the shipped catalogue — not a hand-maintained list.
+    """Every check, from the shipped catalogue, not a hand-maintained list.
 
     Generated from `data/checks.csv`, which is exported from the engine's
     own registry. A hand-written feature list drifts from the product within a
@@ -420,12 +420,12 @@ def checks_page() -> Path:
 
     body = f"""
 <p class="lede">Docket runs {len(rows)} checks across {len(by_lane)} areas. This list is
-generated from the shipped build, so it cannot drift from what the tool actually does — run
+generated from the shipped build, so it cannot drift from what the tool actually does. Run
 <code>docket checks</code> and you will get the same list.</p>
 
 <p>Each check produces a finding only when there is something to report, and each finding
 carries what it costs you, how much work the fix is, and the markup to paste. Areas that do
-not apply to a site — local business checks on a pure SaaS product, for instance — are marked
+not apply to a site (local business checks on a pure SaaS product, for instance) are marked
 not applicable rather than scored as passing.</p>
 
 {''.join(sections)}
@@ -434,17 +434,17 @@ not applicable rather than scored as passing.</p>
 <p>A finding tells you what changed and hands you the markup. For the checks people most often
 arrive here looking for, there is a longer walkthrough with the reasoning behind the fix:</p>
 <ul>
-<li><a href="/how-to/fix-ai-crawler-access/">AI crawler access</a> — which crawler does what, and
+<li><a href="/how-to/fix-ai-crawler-access/">AI crawler access</a>: which crawler does what, and
 how to allow citation while refusing training.</li>
-<li><a href="/how-to/fix-lang-attribute-mismatch/">hreflang and html lang mismatch</a> — the two are
+<li><a href="/how-to/fix-lang-attribute-mismatch/">hreflang and html lang mismatch</a>: the two are
 different declarations and only one of them is usually wrong.</li>
-<li><a href="/how-to/fix-missing-open-graph-tags/">Open Graph tags</a> — why a shared link shows no
+<li><a href="/how-to/fix-missing-open-graph-tags/">Open Graph tags</a>: why a shared link shows no
 image, and what each platform actually reads.</li>
-<li><a href="/how-to/fix-missing-security-headers/">Security headers</a> — which ones a crawler
+<li><a href="/how-to/fix-missing-security-headers/">Security headers</a>: which ones a crawler
 notices and which are for your users.</li>
-<li><a href="/learn/marketing-tag-audit/">Marketing tag audit</a> — whether your tracking is on every
+<li><a href="/learn/marketing-tag-audit/">Marketing tag audit</a>: whether your tracking is on every
 page, which is not the same question as whether it is installed.</li>
-<li><a href="/learn/conversion-audit/">Conversion audit</a> — the nine checks that apply to a landing
+<li><a href="/learn/conversion-audit/">Conversion audit</a>: the nine checks that apply to a landing
 page rather than to a crawl.</li>
 </ul>
 
@@ -453,18 +453,18 @@ page rather than to a crawl.</li>
 are what separate a plan from a list:</p>
 <ul>
 <li><strong>What it costs you</strong>, in plain language. Not "missing meta description" but
-what happens as a result — Google writing your search snippet from whatever text it finds,
+what happens as a result. Google writing your search snippet from whatever text it finds,
 often a cookie notice.</li>
 <li><strong>Severity</strong>, where critical is reserved for things that stop the page
 ranking at all. If everything is critical, nothing is, so the bar is deliberately high.</li>
 <li><strong>Effort</strong>, from minutes to a project. Combined with impact, this is what
-produces the ordering — a trivial fix on an important page outranks a large fix on
+produces the ordering. A trivial fix on an important page outranks a large fix on
 a marginal one.</li>
 <li><strong>The change itself</strong>, as markup you can copy. For structured data that means
 a complete, valid JSON-LD block with your own business details already in the right fields.</li>
 </ul>
 <p>Findings are also capped in reach. An issue affecting every page of a large site does not automatically
-outrank one affecting the homepage, because reach is compressed logarithmically — without
+outrank one affecting the homepage, because reach is compressed logarithmically: without
 that, one trivial nit on a large site drowns out everything that matters.</p>
 
 <h2>What is deliberately not here</h2>
@@ -491,11 +491,11 @@ def write_robots() -> None:
     """Allow everything, and name the AI crawlers explicitly.
 
     Naming them costs nothing and makes the file self-documenting for whoever
-    edits it next — which, given the Index found three quarters of blocking
+    edits it next: which, given the Index found three quarters of blocking
     sites did it by accident, is the entire point.
     """
     lines = [
-        "# Docket — docketseo.app",
+        "# Docket. Docketseo.app",
         "# Everything is open, including AI search and training crawlers.",
         "# Named individually so the next person to edit this file can see the",
         "# difference between a search crawler and a training crawler.",
@@ -503,11 +503,11 @@ def write_robots() -> None:
         "User-agent: *",
         "Allow: /",
         "",
-        "# AI search crawlers — these decide whether we appear in AI answers.",
+        "# AI search crawlers: these decide whether we appear in AI answers.",
     ]
     for bot in ("OAI-SearchBot", "PerplexityBot", "Claude-SearchBot", ):
         lines += [f"User-agent: {bot}", "Allow: /", ""]
-    lines.append("# Training crawlers — allowed here; blocking these is a valid choice for others.")
+    lines.append("# Training crawlers. Allowed here; blocking these is a valid choice for others.")
     for bot in ("GPTBot", "ClaudeBot", "Applebot-Extended", "CCBot"):
         lines += [f"User-agent: {bot}", "Allow: /", ""]
     lines.append(f"Sitemap: {BASE}/sitemap.xml")
@@ -952,7 +952,7 @@ def thank_you() -> Path:
     Three costs, and the third is the expensive one:
       - no sale is countable in analytics, ads or no ads;
       - a Meta `Purchase` event has nowhere to fire, so a campaign has nothing to
-        optimise toward — and the symptom of that reads as "the pixel is broken",
+        optimise toward, and the symptom of that reads as "the pixel is broken",
         which sends somebody to debug the pixel while the real fault is a missing
         page;
       - the buyer is dropped at peak intent with no idea what happens next, which
@@ -962,7 +962,7 @@ def thank_you() -> Path:
 
       - **No licence key, and no activation steps.** Docket's site mentions a key
         exactly zero times, and the shipped 1.1.57 build exposes no licence route
-        at all — every feature is already open. Telling a buyer to "activate" would
+        at all: every feature is already open. Telling a buyer to "activate" would
         describe a mechanism that does not exist in the product they just paid for.
       - **No delivery time.** Not "within a minute", not "shortly". No purchase has
         ever completed on this product, so any number here would be a promise
@@ -977,7 +977,7 @@ def thank_you() -> Path:
     It is what a customer reads in the seconds after the price leaves their account.
 
     It said the receipt comes from POLAR, for days after the checkout moved to
-    Dodo — so a buyer would watch for an email from a company that never took
+    Dodo, so a buyer would watch for an email from a company that never took
     their money, conclude the payment failed, and write in at the moment they
     are most anxious about it.
 
@@ -999,12 +999,12 @@ def thank_you() -> Path:
     """
     body = """
 <p id="ty-lede">Your payment went through. The receipt comes by email from Dodo
-Payments, who handle the checkout — it may land under a different sender name
+Payments, who handle the checkout. It may land under a different sender name
 than Docket.</p>
 
 <!-- The key, straight off the URL Dodo redirects to. Hidden until there is one:
      an empty box under "your payment went through" reads as a failure. Filled
-     with textContent, never innerHTML — the value arrives in a query string, so
+     with textContent, never innerHTML. The value arrives in a query string, so
      it is attacker-controllable and this URL is the kind of thing people forward. -->
 <p id="ty-key-wrap" hidden><strong>Your licence key:</strong>
   <code id="ty-key" style="user-select:all"></code>
@@ -1024,7 +1024,7 @@ happened. If the purchase was a mistake, the
 """
     return render(
         cat="", slug="thank-you",
-        title="Thank you — Docket",
+        title="Thank you | Docket",
         desc="Your Docket purchase is complete. Where to download the app and how to reach us.",
         h1="Thank you",
         crumb='<a href="/">Docket</a> / Thank you',
@@ -1151,7 +1151,7 @@ BUY_ENDPOINT = "https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket"
 
 
 def buy_redirect() -> Path:
-    """/buy/ — a stable address on our own domain that forwards to the buy
+    """/buy/. A stable address on our own domain that forwards to the buy
     endpoint, keeping `src`.
 
     Docket 1.3.95 compiles https://docketseo.app/buy/?src=app-menu into the app.
@@ -1187,7 +1187,7 @@ def buy_redirect() -> Path:
 
 
 def pricing_page() -> Path:
-    """/pricing/ — the address people and AI assistants guess first.
+    """/pricing/: the address people and AI assistants guess first.
 
     It answered 404 until 2026-09-30 (CEO). A small real page, the same shape as
     outlier.host/pricing/: noindexed with a self canonical, one heading, and the
@@ -1240,7 +1240,7 @@ you are unsure, open the full sample report first; it shows what an audit hands 
 """
     return render(
         cat="", slug="pricing",
-        title="Docket pricing — $" + str(PRICE) + " once",
+        title="Docket pricing: $" + str(PRICE) + " once",
         desc=f"Docket SEO costs ${PRICE}, paid once, for {MACS}. No subscription.",
         h1="Docket pricing",
         crumb='<a href="/">Docket</a> / Pricing',
@@ -1252,7 +1252,7 @@ you are unsure, open the full sample report first; it shows what an audit hands 
 
 
 def not_found() -> Path:
-    """/404.html — GitHub Pages serves this for any path that does not exist.
+    """/404.html. GitHub Pages serves this for any path that does not exist.
 
     Written because the default is GitHub's own page: their branding, their
     404 graphic, no way back into the site. A site whose whole argument is that
@@ -1260,7 +1260,7 @@ def not_found() -> Path:
     page to its own visitors.
 
     Noindexed and without a canonical, because a soft 404 that search engines
-    can index is worse than no page — it is the failure mode this site measured
+    can index is worse than no page. It is the failure mode this site measured
     in llms.txt handlers.
     """
     body = """
@@ -1270,21 +1270,21 @@ draft, or a URL that moved when the section was reorganised.</p>
 <p>Everything on the site is one of five things:</p>
 
 <ul>
-<li><a href="/index/">The Index</a> — first-party measurements. Who blocks which AI crawlers,
+<li><a href="/index/">The Index</a>: first-party measurements. Who blocks which AI crawlers,
 and <a href="/index/ai-directives/">which robots.txt rules do nothing</a>.</li>
-<li><a href="/learn/">Learn</a> — what an audit covers, AI search visibility, link equity,
+<li><a href="/learn/">Learn</a>: what an audit covers, AI search visibility, link equity,
 JavaScript rendering, entity signals.</li>
-<li><a href="/vs/">Compare</a> — honest comparisons against Screaming Frog, Sitebulb, Ahrefs
+<li><a href="/vs/">Compare</a>: honest comparisons against Screaming Frog, Sitebulb, Ahrefs
 and Semrush Site Audit, each naming what the other does better.</li>
-<li><a href="/how-to/">Fix it</a> — the exact change to make for a specific finding.</li>
-<li><a href="/download/">Download</a> — the app itself, and the command line inside it.</li>
+<li><a href="/how-to/">Fix it</a>: the exact change to make for a specific finding.</li>
+<li><a href="/download/">Download</a>: the app itself, and the command line inside it.</li>
 </ul>
 
 <p><a class="btn" href="/">Back to the start</a></p>
 """
     return render(
         cat="", slug="",
-        title="Page not found — Docket",
+        title="Page not found | Docket",
         desc="That page does not exist. Where everything on docketseo.app lives.",
         h1="Page not found",
         crumb='<a href="/">Docket</a> / Not found',
@@ -1305,7 +1305,7 @@ def stamp_build_id() -> str:
     still the same or its not updating". Matthew made it rule 0.8 the next day:
     a commit is not a ship.
 
-    A hash of index.html alone cannot see it — the .webp that 404'd is not in
+    A hash of index.html alone cannot see it: the .webp that 404'd is not in
     index.html. So this hashes every file under site/, with the placeholder
     still in place, and rewrites the placeholder afterwards. Nothing is hashed
     twice: the placeholder is a fixed-length constant, so stamping cannot change
@@ -1476,7 +1476,7 @@ def main() -> int:
     stamp_competitor_claims(pages)
 
     build_id = stamp_build_id()
-    print(f"build id {build_id} — stamped into every page and data/build-id.txt")
+    print(f"build id {build_id}. Stamped into every page and data/build-id.txt")
 
     print(f"built {len(pages)} pages")
     for p in sorted(pages):
@@ -1507,7 +1507,7 @@ UNDATED_CLAIMS_NOTE = (
     '<p class="claims-note">Other products here are described from their own '
     'public pages and are <strong>not dated on this page</strong>. The dated '
     'checks, with sources, are on the '
-    '<a href="/vs/">comparison pages</a>. Products change — if something here '
+    '<a href="/vs/">comparison pages</a>. Products change. If something here '
     'about another tool has gone stale, tell us and it will be corrected.</p>'
     '</div></section>'
 )

@@ -79,8 +79,8 @@ page's friendliness overwrite the machine's answer.</p>
 
 <h2>What Docket does</h2>
 
-<p>It requests a URL that cannot exist and reads the status. That is the only way to find this
-— nothing in the markup of a real page reveals how the server treats an unreal one, so a
+<p>It requests a URL that cannot exist and reads the status. That is the only way to find this:
+nothing in the markup of a real page reveals how the server treats an unreal one, so a
 checker that only looks at pages you link to will never see it. It is reported at MEDIUM: the
 site works for visitors, which is why nobody noticed, and it quietly degrades everything a
 crawler concludes.</p>

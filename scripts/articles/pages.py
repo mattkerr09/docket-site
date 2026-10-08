@@ -38,8 +38,8 @@ def _cost_rows() -> str:
 
     ⚠️ TWO OF THESE FOUR ARE NOT ANNUAL PRICES. Ahrefs and Semrush publish a
     monthly price and discount annual billing ("Pay annually, save up to 17%",
-    read 2026-09-09), and both rows carried monthly x12 — the DEARER of the two
-    ways to buy a year — presented as the annual cost in the table that argues
+    read 2026-09-09), and both rows carried monthly x12 (the DEARER of the two
+    ways to buy a year) presented as the annual cost in the table that argues
     Docket is cheaper. Overstating a competitor here is the worst direction for
     the error to run, and `_annual`'s docstring already said to take the cheaper
     one. Sitebulb was corrected for exactly this on 2026-09-08 and the sweep
@@ -87,7 +87,7 @@ def _payment_note() -> str:
     This used to be a hardcoded sentence: "{RELEASE} is free. The beta downloads
     without payment and keeps working; the $79 applies from v1.0." It was true
     while `BETA_FREE` was True, and it went false the moment the version passed
-    v1.0 with the flag flipped — the page then told a reader that the price
+    v1.0 with the flag flipped. The page then told a reader that the price
     applies from v1.0 while offering v1.1.0 for nothing. One fact living in two
     places, and only the constant got updated.
 
@@ -384,7 +384,7 @@ is gone.</p>
 """
     return render(
         cat="download", slug="",
-        title=f"Download Docket for Mac — {PRICE_STR}, paid once",
+        title=f"Download Docket for Mac: {PRICE_STR}, paid once",
         # Two downloads have two sizes, so with Intel the description names neither.
         desc=(f"Docket for {MACOS}+ on {MAC_HW}. "
               + ("No account" if INTEL else f"{DMG_SIZE}, no account")
@@ -460,7 +460,7 @@ be written, and this paragraph will say so rather than promising it indefinitely
     return render(
         cat="for", slug="",
         title="Docket for agencies, local businesses and marketers",
-        desc=("Which audit findings matter most depending on who you are — "
+        desc=("Which audit findings matter most depending on who you are: "
               "agencies, local businesses, and more."),
         h1="Docket for your situation",
         crumb='<a href="/">Docket</a> / For you',
@@ -993,8 +993,8 @@ missing. <a href="/download/">Download it</a> and run one audit. It takes a few 
     return render(
         cat="for", slug="local-business",
         title="Local SEO audit: why you are not in the map pack (2026)",
-        desc=("The four signals that decide map-pack visibility — LocalBusiness schema, NAP "
-              "consistency, geo targeting and review markup — and the mistake franchises make."),
+        desc=("The four signals that decide map-pack visibility (LocalBusiness schema, NAP "
+              "consistency, geo targeting and review markup), and the mistake franchises make."),
         h1="Why your business is not in the map pack",
         crumb='<a href="/">Docket</a> / <a href="/for/">For you</a> / Local business',
         body=body,
@@ -1033,7 +1033,7 @@ def for_saas() -> Path:
     Written from the Index's own SaaS slice rather than from the pitch, and the
     slice contradicts the pitch: essentially nobody in it blocks an answer
     engine. So the page spends its length on the failure that is invisible in
-    robots.txt — a marketing site that is empty until JavaScript runs — and
+    robots.txt (a marketing site that is empty until JavaScript runs), and
     says plainly that the scary version of the story is not what the data says.
 
     Deliberately shares no heading with the other /for/ pages. A SaaS site's
@@ -1290,14 +1290,14 @@ apply it by hand to any tool's output:</p>
            x{F.money_weight():g} if the finding is on a page that sells</code></pre>
 
 <p>Three of those are obvious. The fourth is where most tools go wrong: <strong>reach grows
-sub-linearly</strong> in the number of pages affected — a capped square root rather than a raw
+sub-linearly</strong> in the number of pages affected: a capped square root rather than a raw
 count. Without that damping, a trivial nit on every page of a large site outranks a
 <code>noindex</code> on your homepage, and the report becomes a list you scroll past. Sorting
 by "number of pages affected", which is the default in several crawlers, is exactly that
 failure.</p>
 
 <p>In practice this collapses to a short rule. Fix anything that stops a page being indexed at
-all, first and immediately — those are rare and they are absolute. Then work down by
+all, first and immediately. Those are rare and they are absolute. Then work down by
 priority, which naturally puts small changes on important pages above large changes on
 unimportant ones. A finding marked TRIVIAL or SMALL effort with HIGH severity is almost always
 the best hour you will spend.</p>
@@ -1306,18 +1306,18 @@ the best hour you will spend.</p>
 
 <p>None of these say "improve your content" or "build quality links". If a guide cannot name
 the exact element to change, it has not earned the page. Where a change depends on something
-only you know — whether you want AI engines training on your writing, for instance — the
+only you know (whether you want AI engines training on your writing, for instance) the
 guide sets out the decision rather than making it for you.</p>
 
 <h2><a href="/how-to/fix-ai-crawler-access/">Fix AI crawler access in robots.txt</a></h2>
-<p>How to let ChatGPT, Perplexity and Claude read your site without giving away training data —
-they are separate decisions and need separate rules. Measured against
+<p>How to let ChatGPT, Perplexity and Claude read your site without giving away training data.
+They are separate decisions and need separate rules. Measured against
 {F.directives_hosts()} sites' robots.txt files, most people who block AI crawlers get this
 wrong in the same direction.</p>
 
 <h2>Redirecting http:// to https://</h2>
 <p>The 301 every host configures differently, and the certificate state that makes the
-"Enforce HTTPS" setting refuse to turn on — written from our own site failing this exact
+"Enforce HTTPS" setting refuse to turn on. Written from our own site failing this exact
 check. <a href="/how-to/redirect-http-to-https/">How to redirect http:// to https:// →</a></p>
 
 <h2>hreflang return tags</h2>
@@ -1327,7 +1327,7 @@ declaration that goes one way is ignored entirely, and every tag looks correct i
 
 <h2>Invalid hreflang codes</h2>
 <p>A separate failure from the one above: the tag is present and points both ways, but the
-value inside it is not a language code anyone recognises. What the check really validates —
+value inside it is not a language code anyone recognises. What the check really validates,
 and the region codes it waves through.
 <a href="/how-to/fix-invalid-hreflang-codes/">What is actually checked &rarr;</a></p>
 
@@ -1367,38 +1367,38 @@ general fault behind half the findings phrased as an absence.
 <a href="/how-to/cta-findings-that-miss-the-form/">Why a form counts &rarr;</a></p>
 
 <h2>What your markup says you are called</h2>
-<p>Nothing tells an audit your company's name, so it infers one — and four ordinary sites broke
+<p>Nothing tells an audit your company's name, so it infers one, and four ordinary sites broke
 that inference, including a logo link whose correct accessibility label was read as a brand and
 then advised away.
 <a href="/how-to/what-your-site-says-you-are-called/">Where the guess comes from &rarr;</a></p>
 
 <h2>Reviews you do not have</h2>
-<p>An audit cannot see your reviews, so it matches phrases — and a phrase can mean two things. A
+<p>An audit cannot see your reviews, so it matches phrases, and a phrase can mean two things. A
 site's own sentence saying it has no testimonials, counted as proof that it does; why one of
 these two errors is much worse than the other.
 <a href="/how-to/findings-from-phrase-matching/">Read the evidence first &rarr;</a></p>
 
 <h2>The pages an audit could not reach</h2>
-<p>Four different causes come out as one line telling you to check DNS and TLS — and on a domain
+<p>Four different causes come out as one line telling you to check DNS and TLS, and on a domain
 that served the rest of the crawl, DNS and TLS are the one place nothing is wrong. Four questions
 that tell slow from down in a minute.
 <a href="/how-to/pages-an-audit-could-not-reach/">Before you touch DNS &rarr;</a></p>
 
 <h2>The fix that deletes the evidence</h2>
-<p>"Regenerate your sitemap" is right for a 404 and wrong for four other causes — and on one site
+<p>"Regenerate your sitemap" is right for a 404 and wrong for four other causes, and on one site
 following it would have removed the only list pointing at a server fault. Why a subtractive remedy
 needs a higher standard of proof.
 <a href="/how-to/sitemap-urls-that-are-not-stale/">Before you regenerate &rarr;</a></p>
 
 <h2>When the finding concedes your case and fires anyway</h2>
 <p>Nearly every page an insurer was warned about was a confirmation page doing exactly the right
-thing — and the warning's own advice said so. When an exception belongs in the rule, and when a
+thing, and the warning's own advice said so. When an exception belongs in the rule, and when a
 stated caveat is the honest answer instead.
 <a href="/how-to/findings-that-flag-correct-pages/">Read the fix text first &rarr;</a></p>
 
 <h2>Identical content that is not duplicate content</h2>
 <p>Pages share a body for three reasons and only one of them is duplicate content. The case where
-following the advice would have redirected a site's blog, press page and FAQs into a terms page —
+following the advice would have redirected a site's blog, press page and FAQs into a terms page,
 and the two-minute check that tells them apart.
 <a href="/how-to/identical-content-three-causes/">Check before you redirect &rarr;</a></p>
 
@@ -1410,42 +1410,42 @@ a question about the shape of the text.
 
 <h2>The schema reference that resolves to nothing</h2>
 <p>Two blocks sharing an <code>@id</code> are one node, so a reference carries no properties on
-purpose — and an audit reading it as a half-finished entity is wrong. But a pointer whose target
+purpose, and an audit reading it as a half-finished entity is wrong. But a pointer whose target
 is not on the same page produces neither a rich result nor an error, which is why nothing catches
 it. <a href="/how-to/schema-id-references/">Check the graph first &rarr;</a></p>
 
 <h2>What the JSON-LD error actually says</h2>
-<p>A check that finds invalid markup has just parsed it and caught the exact reason — then prints
+<p>A check that finds invalid markup has just parsed it and caught the exact reason, then prints
 a list of likely causes instead. What each parser message means, and why a report can be right
 that they all fail the same way while the pages stay broken.
 <a href="/how-to/json-ld-parser-errors/">Read the message &rarr;</a></p>
 
 <h2>Which host is that finding about?</h2>
-<p>A certificate warning you can disprove in ten seconds is one you stop investigating — and the
+<p>A certificate warning you can disprove in ten seconds is one you stop investigating, and the
 finding was right about a host you did not check. Why www and the bare domain are separate
 configurations, and the three things "http is still reachable" can mean.
 <a href="/how-to/findings-that-name-no-host/">Find the host first &rarr;</a></p>
 
 <h2>The hreflang target that is not really dead</h2>
 <p>Four reasons a target gets called broken, and on two of them the tool learned nothing. Plus the
-redirect test that could only fire on sites already doing it right — and why that is worse than a
+redirect test that could only fire on sites already doing it right, and why that is worse than a
 test that never fires at all.
 <a href="/how-to/hreflang-targets-that-look-dead/">Read the reason, not the headline &rarr;</a></p>
 
 <h2>"You have no analytics" is a claim about a list</h2>
-<p>A tag in the HTML is evidence that a tag is in the HTML — nothing more. Two cases where a site
+<p>A tag in the HTML is evidence that a tag is in the HTML: nothing more. Two cases where a site
 was measuring the whole time and was told it was not, and why a tag container turns "you have none"
 into "this could not tell".
 <a href="/how-to/analytics-findings-name-the-tag/">Check what it named &rarr;</a></p>
 
 <h2>When the numbers add up to more than your site</h2>
-<p>Two findings, one check, the same fix, overlapping pages — and a total larger than the crawl.
+<p>Two findings, one check, the same fix, overlapping pages, and a total larger than the crawl.
 What a tool split that should not have been split, and why an explanation attached to the wrong
 condition is invisible to the people who need it.
 <a href="/how-to/findings-that-double-count/">Add the counts first &rarr;</a></p>
 
 <h2>When the markup is about somebody else</h2>
-<p>A reader that walks your structured data to any depth cannot tell whose business it just found —
+<p>A reader that walks your structured data to any depth cannot tell whose business it just found,
 and one property settles it. Why a marketplace was told its own address, hours and price range were
 missing when every fact belonged to a shop it listed.
 <a href="/how-to/schema-that-describes-someone-else/">Whose data is it? &rarr;</a></p>
@@ -1457,32 +1457,32 @@ carry somebody else's address just as confidently.
 <a href="/how-to/schema-type-is-a-claim/">Check every value &rarr;</a></p>
 
 <h2>When a field is there and still missing</h2>
-<p>You search your own markup for the property a report called missing, and find it — holding an
+<p>You search your own markup for the property a report called missing, and find it: holding an
 empty value, which a search engine reads as nothing at all. The other half: the phone number
 reported missing because the check read one of the two places it can live.
 <a href="/how-to/when-a-field-is-there-and-still-missing/">Tell the two apart &rarr;</a></p>
 
 <h2>Where a tool looks for your address</h2>
-<p>Strip the page furniture and you strip the footer, which is where a business puts its address —
+<p>Strip the page furniture and you strip the footer, which is where a business puts its address,
 so the most semantic markup got the false positive. Then reading everything turned one address,
 published identically, into dozens of variations.
 <a href="/how-to/where-an-audit-looks-for-your-address/">Both failures, one cause &rarr;</a></p>
 
 <h2>When a pixel is on part of the site and on no pages</h2>
 <p>The inventory of your tags and the count of pages carrying them were read from different
-documents, so anything loaded by JavaScript was reported as a deployment gap — and a script-weight
+documents, so anything loaded by JavaScript was reported as a deployment gap, and a script-weight
 warning could never fire for the sites it was written for.
 <a href="/how-to/pixels-reported-on-zero-pages/">What the count measures &rarr;</a></p>
 
 <h2>When the missing fields belong to the wrong type</h2>
 <p>A completeness check never judges the type you declared, so a company's identity markup labelled
-as a product was told to add an image — correct for the type, and worth nothing. Plus the property
+as a product was told to add an image. Correct for the type, and worth nothing. Plus the property
 that was present all along under one capital letter.
 <a href="/how-to/completeness-findings-assume-your-type/">Read the type first &rarr;</a></p>
 
 <h2>When a dead crawler rule costs nothing</h2>
-<p>A retired crawler name in robots.txt is easy to spot and tells you nothing about what it cost —
-a crawler matching no group falls back to the catch-all, which is often stricter than the group
+<p>A retired crawler name in robots.txt is easy to spot and tells you nothing about what it cost.
+A crawler matching no group falls back to the catch-all, which is often stricter than the group
 written for it. How to tell an inert line from a real exposure.
 <a href="/how-to/what-a-dead-crawler-rule-costs/">Read the other group &rarr;</a></p>
 
@@ -1493,14 +1493,14 @@ that was false about the reader's own file, and why it was the sentence that set
 <a href="/how-to/when-a-policy-is-reported-as-a-defect/">Named, or caught &rarr;</a></p>
 
 <h2>When a check cannot see the markup you wrote</h2>
-<p>Schema types inherit, so a specific business type is an Organization — and a check comparing
+<p>Schema types inherit, so a specific business type is an Organization, and a check comparing
 type names misses every subtype. The finding that fires hardest on whoever marked their business
 up most precisely, and how to tell two checks disagreeing from two checks overlapping.
 <a href="/how-to/when-a-check-cannot-see-your-markup/">Look at the type first &rarr;</a></p>
 
 <h2>The fix that hid a real problem somewhere else</h2>
 <p>A guard added to stop one false positive made the same check unable to flag a genuine
-disagreement on another site — and a false negative makes no noise. What the narrower condition
+disagreement on another site, and a false negative makes no noise. What the narrower condition
 was, and what the trade cost.
 <a href="/how-to/when-a-fix-creates-a-false-negative/">What a fix costs &rarr;</a></p>
 
@@ -1512,18 +1512,18 @@ why one of these was right about the defect and impossible about the repair.
 
 <h2>When a report says nothing at all</h2>
 <p>Checks sort responses into categories, and a status that fits none of them produces no finding
-anywhere — not a zero, not an unclassified row, nothing. How that gap was found, why nobody reports
+anywhere, not a zero, not an unclassified row, nothing. How that gap was found, why nobody reports
 one, and how to work out what your own report is not telling you.
 <a href="/how-to/when-a-report-says-nothing-at-all/">Find the gap &rarr;</a></p>
 
 <h2>Telling your site's furniture from its content</h2>
-<p>Counting links measures your template, not your page — and the fix for that walked into the same
+<p>Counting links measures your template, not your page, and the fix for that walked into the same
 confusion a fifth time, excusing an empty stub as an index. The three tests that separate a
 navigation label from a real entry, and where each one fails.
 <a href="/how-to/telling-furniture-from-content/">Three discriminators &rarr;</a></p>
 
 <h2>When a finding blames the whole site</h2>
-<p>Most findings count pages, but the fault was decided once in a template — so the count is the
+<p>Most findings count pages, but the fault was decided once in a template, so the count is the
 number of pages that template produced. How to find the grouping, why a majority is not a site,
 and the case where this tool got it wrong.
 <a href="/how-to/read-findings-that-blame-the-whole-site/">Read it by the right unit &rarr;</a></p>
@@ -1536,7 +1536,7 @@ to one length is a metronome rather than a voice.
 
 <h2>When the site stops saying one thing</h2>
 <p>Read one page and it is fine; read twenty and you cannot say what the company does. The defect
-does not live on a page, it lives between them — and you get there by shipping good pages one at
+does not live on a page, it lives between them, and you get there by shipping good pages one at
 a time, not by being careless.
 <a href="/how-to/fix-a-site-that-says-something-different-every-page/">Why good work causes it &rarr;</a></p>
 
@@ -1554,31 +1554,31 @@ the case where it is the only option your hosting gives you.
 
 <h2>Search and cart pages in the index</h2>
 <p>Internal search results, carts and order confirmations get indexed because nothing about them
-looks broken — they are working exactly as built. What that costs, the one directive that fixes
+looks broken: they are working exactly as built. What that costs, the one directive that fixes
 it, and why robots.txt is the wrong tool.
 <a href="/how-to/stop-indexing-site-search-and-cart-pages/">Take them out &rarr;</a></p>
 
 <h2>Pagination that hides half your site</h2>
 <p>When pages two and beyond declare page one as their canonical, a crawler is told they are
-duplicates — and everything only reachable from them goes too. The mistake looks like good
+duplicates, and everything only reachable from them goes too. The mistake looks like good
 hygiene, which is why it survives.
 <a href="/how-to/fix-paginated-pages-that-canonicalise-to-page-1/">Spot it in one command &rarr;</a></p>
 
 <h2>Mobile, and what a crawl cannot see</h2>
 <p>Google indexes the mobile page, not the desktop one. Which mobile faults a crawler can
-genuinely prove — the viewport tag, weight, render-blocking, layout shift, numbers that will not
-dial — and which ones still need you to pick up a phone.
+genuinely prove (the viewport tag, weight, render-blocking, layout shift, numbers that will not
+dial), and which ones still need you to pick up a phone.
 <a href="/how-to/check-mobile-seo-from-a-crawl/">What a crawl can and cannot check &rarr;</a></p>
 
 <h2>The pages that make you money</h2>
-<p>Every ranking is built from how broken a thing is, never from which page it is on — so a
+<p>Every ranking is built from how broken a thing is, never from which page it is on, so a
 missing title on your pricing page sorts level with the same fault on a tag archive. How to
 identify yours, and why page value should break ties rather than set the order.
 <a href="/how-to/fix-your-money-pages-first/">Fix your money pages first &rarr;</a></p>
 
 <h2>Pages competing for the same search</h2>
 <p>Two of your own pages aiming at one query split the links and relevance that should back a
-single page, and neither ranks as well as one would. Not duplicate content — genuinely
+single page, and neither ranks as well as one would. Not duplicate content: genuinely
 different pages, often both good, which is why nothing reports them.
 <a href="/how-to/fix-pages-competing-for-one-search/">How to find and fix them &rarr;</a></p>
 
@@ -1611,7 +1611,7 @@ reserving space correctly still leaves the finding standing.
 <a href="/how-to/fix-image-seo-problems/">Which image SEO problems actually matter &rarr;</a></p>
 
 <h2>Redirect problems</h2>
-<p>Loops, chains, and internal links pointing at a redirect — three findings at three severities,
+<p>Loops, chains, and internal links pointing at a redirect. Three findings at three severities,
 and one thing the crawl records that cannot tell you whether a hop was permanent or temporary.
 <a href="/how-to/fix-redirect-problems/">How to fix redirect problems &rarr;</a></p>
 
@@ -1640,7 +1640,7 @@ risk but never the score. <a href="/how-to/fix-layout-shift/">How to fix layout 
 
 <h2>Duplicate title tags</h2>
 <p>Rarely a penalty and routinely misdiagnosed: what duplicate titles actually cost you, the
-character limit that does not exist, and the fix by what caused them — pagination, facets,
+character limit that does not exist, and the fix by what caused them: pagination, facets,
 product variants, near-identical location pages.
 <a href="/how-to/fix-duplicate-title-tags/">How to fix duplicate title tags →</a></p>
 
@@ -1653,7 +1653,7 @@ it is describing and the reason is worth reading.
 <h2>Auditing from an AI assistant</h2>
 <p>Docket speaks the Model Context Protocol over stdio, so an assistant can run an audit on
 your own Mac and read the findings back as structured data. No API key, no cloud, and the
-same one-time licence &mdash; the assistant is talking to the copy you own.
+same one-time licence: the assistant is talking to the copy you own.
 <a href="/how-to/audit-your-site-from-an-ai-assistant/">How to set it up &rarr;</a></p>
 
 <h2>Gating a deploy on regressions</h2>
@@ -1666,17 +1666,17 @@ left the score unchanged and registered three improvements.
 <p>Three different faults look identical when you paste a link: no Open Graph tags, an
 og:image pointing at a file that no longer exists, or an image a scraper cannot reach. The
 dead image is the one nobody catches, because every platform caches the preview it scraped
-first — so the person who broke it is the last to see it broken.
+first, so the person who broke it is the last to see it broken.
 <a href="/how-to/fix-missing-open-graph-tags/">How to fix a broken link preview →</a></p>
 
 <h2>Title tags that fit</h2>
-<p>Search engines truncate by pixel width, not character count — which makes the usual "under
+<p>Search engines truncate by pixel width, not character count, which makes the usual "under
 sixty characters" advice wrong on any site that is not entirely English.
 <a href="/how-to/write-title-tags-that-fit/">How to write title tags that fit →</a></p>
 
 <h2>Where a bigger competitor is beatable</h2>
 <p>Authority is bought with time, and a site that has had more of it will win the
-queries that authority decides. Some ranking surfaces are not sold that way — and
+queries that authority decides. Some ranking surfaces are not sold that way, and
 the openings are structural, which means you can find them by looking rather than
 by guessing at rankings nobody outside Google can see.
 <a href="/how-to/outrank-a-bigger-competitor/">How to find where a bigger competitor is beatable →</a></p>
@@ -1687,7 +1687,7 @@ variations on a template.</p>
 """
     return render(
         cat="how-to", slug="",
-        title="How to fix common SEO problems — Docket",
+        title="How to fix common SEO problems | Docket",
         desc=("Fix guides for the specific issues an audit reports, in the order "
               "worth doing them, with the exact change to make."),
         h1="Fix guides",
@@ -1711,7 +1711,7 @@ difference obvious.</p>
 <tbody>
 <tr><td><code>OAI-SearchBot</code></td><td>Builds ChatGPT Search's index</td><td>You do not want to appear in ChatGPT</td></tr>
 <tr><td><code>GPTBot</code></td><td>Collects training data</td><td>You do not want your content in model weights</td></tr>
-<tr><td><code>ChatGPT-User</code></td><td>Fetches a page when a user asks about it</td><td>Rarely — this is a user acting on your behalf</td></tr>
+<tr><td><code>ChatGPT-User</code></td><td>Fetches a page when a user asks about it</td><td>Rarely: this is a user acting on your behalf</td></tr>
 <tr><td><code>PerplexityBot</code></td><td>Builds Perplexity's index</td><td>You do not want to appear in Perplexity</td></tr>
 <tr><td><code>Claude-SearchBot</code></td><td>Builds Claude's search index</td><td>You do not want to appear in Claude</td></tr>
 <tr><td><code>ClaudeBot</code></td><td>Collects training data</td><td>You do not want your content in model weights</td></tr>
@@ -1757,7 +1757,7 @@ Disallow: /</code></pre>
 applies to all four. This snippet circulated widely in 2024 as "block AI crawlers" and it
 removes you from ChatGPT and Perplexity results as well as from training.</p>
 <p>In our measurement of {F.index_n()} major sites, {F.index_conflated_pct()}% of those
-blocking any AI crawler had also blocked the search crawlers — but reading the robots.txt of
+blocking any AI crawler had also blocked the search crawlers, but reading the robots.txt of
 the Tranco top 10,000 later showed the opposite at scale: of {F.directives_blocks_any():,}
 sites blocking any AI crawler there, {F.directives_training_only_pct()}% blocked training and
 left search alone. <a href="/index/">The data is here</a>.</p>
@@ -1768,7 +1768,7 @@ expectations before you go looking for results.</p>
 <p>Two other things decide whether you actually get quoted. The first is rendering: most AI
 crawlers do not execute JavaScript, so a page whose content appears only after hydration is an
 empty document to them no matter what robots.txt says. The second is whether there is anything
-quotable — a heading phrased as the question someone asked, followed by a direct answer in the
+quotable. A heading phrased as the question someone asked, followed by a direct answer in the
 first two sentences, gets lifted; eight paragraphs of preamble do not.</p>
 <p>There is also a timing reality. Search indexes refresh on their own schedule, so a robots.txt
 change made today does not produce citations tomorrow. Allow the crawlers, then judge it over
@@ -1776,7 +1776,7 @@ weeks rather than days.</p>
 
 <h2>Check it worked</h2>
 <p>Rules resolve by longest match, not by order, so a later <code>Disallow: /</code> under
-<code>User-agent: *</code> does not override an earlier specific <code>Allow</code> — but a
+<code>User-agent: *</code> does not override an earlier specific <code>Allow</code>, but a
 longer path pattern does. This is where hand-checking gets unreliable.</p>
 <p>Docket parses robots.txt the way Google does and tells you, per crawler, whether it can
 reach your site and what blocking it actually costs. That check is one of {N_CHECKS} and runs in the
@@ -1877,7 +1877,7 @@ load, such as analytics or advertising pixels, is requested too.</li>
 <h3>What turns each off</h3>
 <p>The offline switch turns off five of these together: PageSpeed Insights, the deliverability
 lookups, topic suggestions, the knowledge refresh and the edge-access checks. In the app it is
-the box labelled &ldquo;Keep it private &mdash; only contact this site&rdquo;, and on the
+the box labelled &ldquo;Keep it private: only contact this site&rdquo;, and on the
 command line it is <code>--offline</code>. It also keeps stylesheet fetches to the site you
 audit. It does not turn off the licence check, the update check, the link check or rendering.
 Unticking &ldquo;Also check that links to other sites still work&rdquo; in the app, or
@@ -1912,18 +1912,18 @@ removes them permanently.</p>
 <p>This site is static and runs six third-party scripts. The first is
 <a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, which counts page
 views. Plausible states that it uses no cookies, collects no personal data and does not track
-visitors across sites; it is hosted in the EU. Nothing about your audits reaches it &mdash;
-audits run on your Mac and this website never sees them. Standard server logs may record IP
+visitors across sites; it is hosted in the EU. Nothing about your audits reaches it.
+Audits run on your Mac and this website never sees them. Standard server logs may record IP
 addresses and requested URLs, which are used only to keep the site running.</p>
 <p>The second is <a href="https://usesled.com">Sled</a>, which credits the right person when
 somebody recommends Docket. It is conditional: arrive through an affiliate link and a single
 <code>ta_ref</code> cookie records
 which affiliate sent you, so they are paid if you buy. Arrive from a search result, a bookmark
-or a link of ours and no cookie is set at all &mdash; which is what almost every visitor does.
+or a link of ours and no cookie is set at all, which is what almost every visitor does.
 It records which affiliate sent a visit, never who the visitor is.</p>
 <p>The third is the <a href="https://www.facebook.com/business/tools/meta-pixel">Meta
 pixel</a>. It is here because we advertise on Facebook and Instagram, and without it we cannot
-tell which adverts bring people who actually download Docket &mdash; only how much we spent. It
+tell which adverts bring people who actually download Docket: only how much we spent. It
 records that a page was viewed and sets a <code>_fbp</code> cookie, which lets Meta connect a
 visit here to an advert you saw there. Its id is
 <code>2344029433088526</code>, visible in this page's source; that is normal for a pixel and not
@@ -1935,8 +1935,8 @@ content blocker stops it, as does Meta's own
 and nothing here depends on it loading.</p>
 <p>The fourth is the chat assistant in the corner of the page, which answers questions about
 Docket. Its script is loaded from <code>kerr-lead-agent.kerrco.workers.dev</code>, a server we
-run. The assistant stores nothing in your browser &mdash; no cookie of its own, no local
-storage, no session storage &mdash; and it reads nothing about your device. It draws itself in
+run. The assistant stores nothing in your browser (no cookie of its own, no local
+storage, no session storage), and it reads nothing about your device. It draws itself in
 an isolated shadow root, so it cannot see or change the rest of the page. If you type a question
 into it, that question is sent to that server so it can be answered; if you never open it,
 nothing is sent. It knows only published facts about Docket, and the price it quotes comes from
@@ -1945,7 +1945,7 @@ will not honour.</p>
 <p>The fifth is on the front page only, and not on this one: a
 &ldquo;tell me when Windows is ready&rdquo; form, loaded from
 <code>kerr-subscribe.kerrco.workers.dev</code>, a server we run. Like the assistant it draws
-itself in an isolated shadow root and stores nothing in your browser &mdash; no cookie, no local
+itself in an isolated shadow root and stores nothing in your browser: no cookie, no local
 storage, no session storage. Nothing is sent unless you type an address and press the button, and
 what is sent is that address and which site it came from, so the Windows list stays separate from
 every other list. If you never use the form, it makes no request at all.</p>
@@ -1956,16 +1956,16 @@ thing it sends is this site's name. If you close the bar, the time you closed it
 browser's local storage so the bar stays away for seven days; nothing else is stored and it sets
 no cookie. It draws itself in an isolated shadow root, like the assistant.</p>
 <p>One more thing runs here, written into this site's own pages rather than loaded from
-anywhere. If you arrive from a link that says where it was shared &mdash; <code>?ref=producthunt</code>,
-for example, from a fixed list of such names (Product Hunt, Hacker News, Reddit, a newsletter and
-the like) &mdash; the page keeps that one word in your browser's session storage for this visit and
+anywhere. If you arrive from a link that says where it was shared, such as
+<code>?ref=producthunt</code>, from a fixed list of such names (Product Hunt, Hacker News, Reddit, a
+newsletter and the like), the page keeps that one word in your browser's session storage for this visit and
 adds it to its Download and Buy links, so we can count how many downloads came from a launch. It is
 never an affiliate id, nothing else is stored, and it is gone when you close the tab. Arrive any
 other way and it does nothing at all.</p>
 <p>These paragraphs have been rewritten three times as the answer changed. They once said the
 site &ldquo;sets no cookies&rdquo; and runs &ldquo;one third-party script&rdquo;; both were true
 until Sled was added. The line calling Sled the only thing here that can set a cookie was true
-until the Meta pixel was. The count said three until the chat assistant was added, and the description on this page still said three after the body said four &mdash; caught by our own audit and corrected to five, which is when the Windows form on the front page was counted too. It said five while the front page loaded six: the founding-offer bar was missed until a count of every script on every built page was checked against this list, and that count now runs before every deploy. This
+until the Meta pixel was. The count said three until the chat assistant was added, and the description on this page still said three after the body said four. Our own audit caught that, and it was corrected to five, which is when the Windows form on the front page was counted too. It said five while the front page loaded six: the founding-offer bar was missed until a count of every script on every built page was checked against this list, and that count now runs before every deploy. This
 paragraph is the reason that was noticed: each correction is made above rather than quietly
 deleted. A privacy page that enumerates what a site does not do is only worth reading if the
 enumeration stays complete.</p>
@@ -1987,11 +1987,11 @@ a server we run, what that payment came to, sending only the payment&rsquo;s id,
 count and advertising records show what you actually paid rather than the list price. Nothing about
 you is sent or returned.</p>
 <p>The home page has one email field. Leave your address and we will email you once, when the
-free audit is ready &mdash; it is not a newsletter and there is no series to subscribe to. The
+free audit is ready. It is not a newsletter and there is no series to subscribe to. The
 form sends exactly two things, and only when you press the button: the address you type, and a
 hidden field naming which of our sites it came from. Nothing is sent if you never use it.</p>
 <p>What is kept is that address, the site name, and the date. No IP address, no user agent, no
-referer, no fingerprint &mdash; the write stores those three columns and reads nothing from the
+referer, no fingerprint: the write stores those three columns and reads nothing from the
 request. To be removed, <a href="/contact/">ask</a> and the row is deleted.</p>
 <p>This section said &ldquo;there is no contact form and no mailing list&rdquo; until
 2026-08-24. The field went live on 2026-08-18, so the denial stood for six days while addresses
@@ -2009,10 +2009,10 @@ it; we hold nothing separately.</p>
 """
     return render(
         cat="legal", slug="privacy",
-        title="Privacy policy — what Docket collects, and what it does not",
+        title="Privacy policy: what Docket collects, and what it does not",
         desc="Audits run on your Mac and are never uploaded. No account, no "
-             "telemetry. Six third-party scripts, one an advertising pixel — "
-             "what each does and how to stop it.",
+             "telemetry. Six third-party scripts, one an advertising pixel. "
+             "What each does and how to stop it.",
         h1="Privacy policy",
         crumb='<a href="/">Docket</a> / Privacy',
         body=body,
@@ -2023,7 +2023,7 @@ it; we hold nothing separately.</p>
 def terms() -> Path:
     """Terms of use, including the commercial terms of the sale.
 
-    DRAFT — NOT REVIEWED BY A LAWYER. The product facts in it were read out of
+    DRAFT, NOT REVIEWED BY A LAWYER. The product facts in it were read out of
     docket-app and out of this repository; the legal shape of it has had no
     professional eye on it, and the tax section is an open question rather than
     an answer.
@@ -2036,7 +2036,7 @@ def terms() -> Path:
 
     The liability clause was one sentence excluding everything. That is
     unenforceable against a consumer almost everywhere it would be read, and an
-    exclusion a court strikes out protects nobody — so it is now a cap at the
+    exclusion a court strikes out protects nobody, so it is now a cap at the
     amount paid with the usual carve-outs, which is both smaller and likely to
     survive.
     """
@@ -2056,7 +2056,7 @@ date and nothing to cancel, because nothing recurs.</p>
 Activating Docket on a Mac uses one of them; deactivate one to move it to another machine. The
 limit is enforced by the payment provider, so an activation past it is refused.
 This page said &ldquo;no seat count&rdquo; until 2026-08-23, which was wrong from the moment the
-product was configured with a limit of three &mdash; the terms promised something the software
+product was configured with a limit of three: the terms promised something the software
 did not do. If you need more than three, ask and it will be sorted out.</p>"""
 
     # Same escape as on the refunds page, and the same reason.
@@ -2088,7 +2088,7 @@ page</a>.</p>
 <h2>What it costs</h2>
 {price_para}
 <p>One purchase covers you, the person or company that paid, on up to
-{F.licence_activations()} Macs at a time — deactivate one to move it. You may audit any number of
+{F.licence_activations()} Macs at a time: deactivate one to move it. You may audit any number of
 websites with it, including on behalf of clients, and you may charge those clients for the work.
 There is no per-seat price and no crawl allowance.</p>
 
@@ -2101,10 +2101,10 @@ rebrand the CSV and JSON exports, bill for them.</p>
 <p>Delivery is a download. Docket ships as a notarised macOS disk image of {DMG_SIZE} from
 <a href="https://github.com/mattkerr09/docket-site/releases">the releases page</a>{linux_clause}.
 There is nothing to post. The licence key arrives by email with your receipt,
-which is the one thing worth waiting for &mdash; this sentence used to say there was no
+which is the one thing worth waiting for. This sentence used to say there was no
 activation email at all, and licensing made that false.</p>
 <p>Two consequences of how this is sold, both stated because a buyer will meet them. The
-download link is public, so payment is not the thing that makes the file reachable — what payment
+download link is public, so payment is not the thing that makes the file reachable. What payment
 buys is the licence key that lets it run. And updates are published to every copy: while Docket
 is on version 1.x, upgrades cost nothing and install through the app's own updater. Whether a
 future 2.0 is a paid upgrade has not been decided; if it ever is, the copy you paid for keeps
@@ -2120,7 +2120,7 @@ terms.</p>
 
 <h2>Responsible use</h2>
 <p>Docket crawls websites. You are responsible for the sites you point it at. Its defaults are
-deliberately gentle — requests are rate-limited, it honours <code>robots.txt</code> unless you
+deliberately gentle: requests are rate-limited, it honours <code>robots.txt</code> unless you
 turn that off, and it backs off when a server signals it is being asked for too much. Please do
 not raise those limits on sites you do not own or have permission to crawl.</p>
 
@@ -2141,10 +2141,10 @@ Liability for fraud, for fraudulent misrepresentation, and for death or personal
 by negligence is not excluded, because it cannot be.</p>
 
 <h2>Ending the licence</h2>
-<p>Your licence ends if you take a refund — on the day it is issued — or if you break these
+<p>Your licence ends if you take a refund (on the day it is issued) or if you break these
 terms in a way you do not put right after being asked. In either case, delete the application.
 Your licence key stops validating in either case, and the application goes back to the free
-version (the score and how many problems each area has) within about a day of that — the check is daily, and a revoked key is refused immediately
+version (the score and how many problems each area has) within about a day of that: the check is daily, and a revoked key is refused immediately
 rather than being given the offline grace period. Deleting the application is still asked of
 you, but it is no longer the only thing standing between a cancelled licence and continued
 use.</p>
@@ -2167,7 +2167,7 @@ appear on this page and apply from the day they appear, not before.</p>
     return render(
         cat="legal", slug="terms",
         title="Terms of use for Docket and docketseo.app",
-        desc=("Licence, price, delivery, refunds, liability and governing law — plus "
+        desc=("Licence, price, delivery, refunds, liability and governing law. Plus "
               "responsible crawling and the limits of what an audit can promise."),
         h1="Terms of use",
         crumb='<a href="/">Docket</a> / Terms',
@@ -2180,14 +2180,14 @@ appear on this page and apply from the day they appear, not before.</p>
 def refunds() -> Path:
     """The refund and cancellation policy.
 
-    DRAFT — NOT REVIEWED BY A LAWYER. Every fact in it was read out of this
+    DRAFT, NOT REVIEWED BY A LAWYER. Every fact in it was read out of this
     repository or out of docket-app rather than taken from a template, but that
     makes it accurate about the product, not compliant. It needs a lawyer's eye
     on the consumer-law paragraph in particular before it is published.
 
     Written because the page did not exist. `lint.py` has carried the sentence
     "a refund policy should be as short as it can be while staying complete"
-    since legal pages were exempted from the word floor — the exemption was
+    since legal pages were exempted from the word floor. The exemption was
     written for a page nobody had built, which is how a gap survives a year of
     linting.
 
@@ -2243,7 +2243,7 @@ that accepts replies and it quotes the order reference, which is the one detail 
 a payment.</p>
 
 <p>There is no billing address at <code>docketseo.app</code> yet, and the reason is worth having
-rather than hiding. Mail to a domain with no MX record does not bounce back to us — it bounces
+rather than hiding. Mail to a domain with no MX record does not bounce back to us: it bounces
 to you, silently, and we never learn you wrote.
 <a href="/learn/dead-contact-address/">That already happened here once</a>, to
 <code>hello@docketseo.app</code>, on every page of this site. A build check now resolves the
@@ -2251,8 +2251,8 @@ MX of any address this site prints and refuses to publish one that cannot receiv
 why you are not reading an invented address on this page.</p>
 
 <p>What has changed since that was written: <code>docketseo.app</code> now publishes an MX
-record and does accept mail. So the original obstacle is gone, and only a smaller one is left —
-delivery to the domain is not the same as a mailbox existing behind a particular name, and the
+record and does accept mail. So the original obstacle is gone, and only a smaller one is left.
+Delivery to the domain is not the same as a mailbox existing behind a particular name, and the
 address we intend to publish has not yet had a real message sent to it and read. The moment it
 has, it goes on this page. We would rather show you this sentence than an address nobody has
 tested.</p>"""
@@ -2281,7 +2281,7 @@ and how many problems each area has, so the first real look at the findings, the
 the markup happens after the money does. Thirty days with no conditions is what makes that fair: run it on your own sites and your clients', and if it is
 not worth {PRICE_STR} to you, ask for it back.</li>
 <li><strong>Monitoring needs weeks to say anything.</strong> The default re-audit cadence is
-weekly, and the thing being sold — what changed on your site since last time — is empty on the
+weekly, and the thing being sold (what changed on your site since last time) is empty on the
 first run and thin on the second. Thirty days is four of them. A fourteen-day window would end
 before the feature had demonstrated itself, which would make it a policy that quietly excluded
 the reason some people bought.</li>
@@ -2300,14 +2300,14 @@ reason you are unhappy, and none of the three belong on a page anyone can read.<
 <h2>What happens to your copy</h2>
 
 <p>It goes back to the free version. Taking a refund revokes the licence key that came with your
-purchase, and Docket re-checks that key about once a day — so within roughly a day of the refund
+purchase, and Docket re-checks that key about once a day, so within roughly a day of the refund
 being issued, the copy on your Mac shows only the score and how many problems each area has. A revoked key is refused immediately and is not
 given the offline grace period that a merely-unreachable licence server would allow.</p>
 
 <p>This changed when Docket became a licensed product in August 2026. Before that it had no
 licence server at all and a
 refunded copy kept working indefinitely; that is no longer true, and it would be worse to leave
-the old promise standing than to say so plainly. Your audit history is untouched either way — see
+the old promise standing than to say so plainly. Your audit history is untouched either way: see
 below.</p>
 
 <p>What is asked is that you delete the application and stop using it. What that rests on is
@@ -2316,7 +2316,7 @@ the refund is issued; the enforcement of it is a sentence rather than a switch, 
 otherwise would describe software that was not built.</p>
 
 <p>Your audit history is yours and stays yours. It lives on your machine in
-<code>~/.docket/</code> as plain JSON — <code>sites.json</code> for the watchlist and
+<code>~/.docket/</code> as plain JSON: <code>sites.json</code> for the watchlist and
 <code>history/</code> for the snapshots. Nothing there was ever uploaded, so nothing there is
 deleted from our side, because there is no our side. Removing that folder removes it.</p>
 
@@ -2344,7 +2344,7 @@ and every thirty minutes while it stays open, it asks <code>docketseo.app/update
 whether a newer build exists, and stays silent if there is none or there is no network. That
 file is static and served by GitHub Pages. The log behind it records an address and a time,
 the way any page fetch does, and it carries no identifier that could be matched against an
-order — but it is named here rather than left out.</p>
+order, but it is named here rather than left out.</p>
 
 <h2>When the money arrives</h2>
 
@@ -2357,7 +2357,7 @@ unknown.</p>
 
 <h2>Chargebacks</h2>
 
-<p>A chargeback and a refund move the same money in the same direction. Ask first — it is
+<p>A chargeback and a refund move the same money in the same direction. Ask first: it is
 faster for you, and a disputed charge is answered with the same refund plus a copy of this
 page, several weeks later, after a fee. If a refund has been asked for and not answered, raise
 the chargeback; that is what the mechanism is for.</p>
@@ -2384,8 +2384,8 @@ the governing law, are on <a href="/legal/terms/">the terms of use page</a>.</p>
 """
     return render(
         cat="legal", slug="refunds",
-        title="Refund policy — 30 days, no conditions",
-        desc=("Thirty days from purchase, no conditions — Docket collects no usage data it "
+        title="Refund policy: 30 days, no conditions",
+        desc=("Thirty days from purchase, no conditions. Docket collects no usage data it "
               "could condition one on. How to ask, and what happens to your copy after."),
         h1="Refund and cancellation policy",
         crumb='<a href="/">Docket</a> / Refunds',

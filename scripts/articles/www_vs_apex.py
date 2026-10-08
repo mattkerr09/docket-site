@@ -332,7 +332,7 @@ the <a href="/index/ai-directives/">AI directives index</a>.</p>
              f"happened, not which direction it resolved, so the {redirects} redirecting origins out "
              f"of {reachable} reachable ones are not split by spelling anywhere in the data. It is a "
              f"measurement we have not taken. Separately, {unreachable} of the {sample} sampled hosts "
-             f"— {pct_unreachable}%. Never answered an identified bot at all and are excluded from "
+             f"({pct_unreachable}%) never answered an identified bot at all and are excluded from "
              "every figure here, which is a real limit on all of them."),
         ],
     )

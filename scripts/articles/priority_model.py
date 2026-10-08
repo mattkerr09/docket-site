@@ -69,8 +69,8 @@ def priority_model() -> Path:
     w = _worked()
     levels = F.severity_levels()
     body = f"""
-<p class="lede">Every audit tool hands you a list of problems. The hard part is not finding them
-— it is knowing which one to do on Monday morning. Docket answers that with a single number it
+<p class="lede">Every audit tool hands you a list of problems. The hard part is not finding them.
+It is knowing which one to do on Monday morning. Docket answers that with a single number it
 computes for every finding, and this page is that number written out in full, because a
 priority you cannot audit is just an opinion with a sort order.</p>
 

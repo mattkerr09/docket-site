@@ -169,8 +169,8 @@ that says which part it could not see rather than guessing at a cause.</p>
 <h2>Where this sits in an audit</h2>
 
 <p>The registered checks are <code>index.broken</code>, which covers pages returning errors, and
-<code>index.sitemap</code>. The identifiers you will see on the findings themselves are different
-— the unreachable, timed-out, malformed-link and connection-refused findings all come out of
+<code>index.sitemap</code>. The identifiers you will see on the findings themselves are different:
+the unreachable, timed-out, malformed-link and connection-refused findings all come out of
 <code>index.broken</code>, which matters when you go looking for one by name and find nothing.
 A finding identifier is not a check identifier.</p>
 

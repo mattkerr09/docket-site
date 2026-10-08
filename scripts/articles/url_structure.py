@@ -168,8 +168,8 @@ canonical, for spaces you never want crawled at all.</p>
 
 <h2>What this page refuses to tell you</h2>
 
-<p><strong>That hyphens beat underscores for ranking.</strong> {GOOGLE} does recommend hyphens
-— "we recommend using hyphens (<code>-</code>) instead of underscores (<code>_</code>) to
+<p><strong>That hyphens beat underscores for ranking.</strong> {GOOGLE} does recommend hyphens:
+"we recommend using hyphens (<code>-</code>) instead of underscores (<code>_</code>) to
 separate words in your URLs, as it helps users and search engines better identify concepts in
 the URL", and gives a reason that is about legibility and convention, not about a scoring
 difference: underscores are already used to join words into single names in programming

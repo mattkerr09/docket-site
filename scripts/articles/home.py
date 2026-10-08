@@ -775,7 +775,7 @@ needed, and the crawl and the report stay on your Mac.</p>
 def build() -> Path:
     return render(
         cat="", slug="",
-        title="Docket SEO — SEO, copy, conversion and brand audits for Mac",
+        title="Docket SEO: SEO, copy, conversion and brand audits for Mac",
         # 162 characters, and Google renders about 155 — measured with entities
         # decoded, which is the only way to count a description honestly.
         # Dropping "visibility" is the whole edit: 151, brand name still first.
