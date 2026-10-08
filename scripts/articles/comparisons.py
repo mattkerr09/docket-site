@@ -9,6 +9,9 @@ readers and models discount it.
 """
 from __future__ import annotations
 
+import datetime
+import html
+import json
 import sys
 from pathlib import Path
 
@@ -16,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (PAY4, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE_STR, RELEASE,  # noqa: E402
                     price, price_note_html, render, buy_block, rival_monthly_range,
-                    INTEL, INTEL_DMG, download_url)
+                    INTEL, INTEL_DMG, download_url, DATA, REFUND_DAYS)
 
 #: How many optional checks reach the network, spelled, from the engine's own
 #: connector registry. Typed as "four" here and in four other places while the
@@ -39,17 +42,19 @@ turns all {CONNECTORS_WORD} off.</p>
 {('<p class="intel-dl">Intel Mac? <a href="' + download_url("vs-page-try-free-intel", to=INTEL_DMG) + '" data-ev="Download" data-ev-button="vs-page-try-free-intel">Get the Intel version</a></p>') if INTEL else ''}
 </div>"""
 
-#: The same callout for a page inside a registered link experiment
-#: (/vs/ahrefs-site-audit-alternative/, Cycle 33, read 10-06): the price and
-#: an external Buy button, the one internal link it always had, and no new
-#: ones — an added internal link would change what the experiment measures.
+#: The same callout for the Ahrefs page, which was inside a registered link
+#: experiment until its read was scored on 2026-09-21 (~/ops/search). It had a
+#: Buy button and one internal link and nothing else, so an added link would not
+#: change what was being measured. It now gets the standard block, Try it free,
+#: the sample report and the refund link included. The src stays "vs-ahrefs" so
+#: its funnel history is continuous.
 CTA_LINK_EXPERIMENT = f"""
 <div class="callout" id="buy">
 <div class="callout-title">One purchase. No subscription.</div>
 <p>Docket is a one-time purchase for macOS: no account, no crawl credits, and the crawl runs
 on your machine. {CONNECTORS_WORD_CAP} optional checks fetch data it cannot produce alone; <code>--offline</code>
 turns all {CONNECTORS_WORD} off. <a href="/download/">Download Docket →</a></p>
-{buy_block("vs-ahrefs", big=False, sample=False, refund_link=False, try_app="vs-ahrefs-try-free")}
+{buy_block("vs-ahrefs", big=False, try_app="vs-ahrefs-try-free")}
 {('<p class="intel-dl">Intel Mac? <a href="' + download_url("vs-ahrefs-try-free-intel", to=INTEL_DMG) + '" data-ev="Download" data-ev-button="vs-ahrefs-try-free-intel">Get the Intel version</a></p>') if INTEL else ''}
 </div>"""
 
@@ -79,19 +84,19 @@ CHECKED_ON_HUMAN = "10 August 2026"
 #: Found by fetching the deployed page and reading it, not from the source.
 CHECKED_HUMAN: dict[str, str] = {
     "scrutiny": "15 August 2026",
-    "se-ranking-vs-screaming-frog": "8 September 2026",
+    "se-ranking-vs-screaming-frog": "8 October 2026",
     # Re-read 2026-09-14: crawl-credit allowances unchanged since 2026-08-10,
     # plus the per-project page caps and the pay-as-you-go overage clause, which
     # the page had not carried. The competitive gate caught the stamp staying at
     # 10 August while the sentences beneath it changed — "a date that stays put
     # while the sentence under it changes is a false date about somebody else's
     # product", and it was right.
-    "ahrefs": "24 September 2026",
+    "ahrefs": "8 October 2026",
     # Read live 2026-09-16, both tiers and the crawl quotas, from the vendor's
     # own pricing page. The CSV had carried 2026-08-10; re-reading confirmed the
     # prices unchanged and added the monthly crawl allowances, which are the
     # thing this page actually turns on.
-    "seoptimer": "16 September 2026",
+    "seoptimer": "8 October 2026",
     "sitechecker": "16 September 2026",
     "profound": "16 September 2026",
     "jetoctopus": "16 September 2026",
@@ -100,9 +105,9 @@ CHECKED_HUMAN: dict[str, str] = {
 }
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-08-15",
-    "se-ranking-vs-screaming-frog": "2026-09-08",
-    "ahrefs": "2026-09-24",
-    "seoptimer": "2026-09-16",
+    "se-ranking-vs-screaming-frog": "2026-10-08",
+    "ahrefs": "2026-10-08",
+    "seoptimer": "2026-10-08",
     "sitechecker": "2026-09-16",
     "profound": "2026-09-16",
     "jetoctopus": "2026-09-16",
@@ -229,17 +234,18 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "https://sitechecker.pro/account/plans/"),
     ],
     "seoptimer": [
-        ("its three plans are priced 29, 39 and 59 US dollars a month: DIY SEO, "
-         "White Label and Lead Generation",
+        ("its three plans are priced $29, $39 and $59 a month: Starter, Pro and Max",
          "https://www.seoptimer.com/pricing"),
-        ("each plan meters crawling by the month: 4 SEO crawls for one website, "
-         "10 across multiple websites, and 50",
+        ("each plan lists a monthly crawl allowance: Starter 4 SEO crawls for 1 site, "
+         "Pro 10 SEO crawls, Max 50 SEO crawls",
          "https://www.seoptimer.com/pricing"),
-        ("white-label PDF reporting, a custom report domain and report templates "
-         "are named features of the paid plans",
+        ("Pro and Max name white label PDF reporting, and its feature breakdown lists a "
+         "white label custom domain and report templates",
          "https://www.seoptimer.com/pricing"),
-        ("the Lead Generation plan's named purpose is an embeddable audit tool "
-         "for capturing leads",
+        ('Max names a lead generation tool, and its feature list says "Embed an SEO '
+         'Audit Widget into your site"',
+         "https://www.seoptimer.com/pricing"),
+        ("each plan offers a 14 day free trial",
          "https://www.seoptimer.com/pricing"),
     ],
     "scrutiny": [
@@ -266,9 +272,16 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "https://seranking.com/subscription.html"),
         ('Screaming Frog audits "over 300 SEO issues"',
          "https://www.screamingfrog.co.uk/seo-spider/"),
-        ('you can "Download & crawl 500 URLs for free, or buy a licence for '
-         '\u00a3199 Per Year to remove the limit & access advanced features"',
+        ('you can "Download & crawl 500 URLs for free", and its page says "For '
+         'just \u00a3199 per year you can purchase a licence, which removes the 500 '
+         'URL crawl limit"',
          "https://www.screamingfrog.co.uk/seo-spider/"),
+        ('its pricing page lists $279 per licence per year for 1 to 4 licences, '
+         'and says "Licences are per user. 2 users will require 2 individual '
+         'licences."',
+         "https://www.screamingfrog.co.uk/seo-spider/pricing/"),
+        ('SE Ranking\'s Growth plan states "2M pages per month in audit"',
+         "https://seranking.com/subscription.html"),
         ("its Free vs Paid table puts Scheduling, Crawl Configuration, "
          "Save & Open Crawls, JavaScript Rendering, Crawl Comparison and "
          "Near Duplicate Content on the paid side only",
@@ -293,6 +306,9 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          'notices, so you know which ones to fix first"', "https://ahrefs.com/site-audit"),
         ("Ahrefs Free includes Site Audit \"For verified websites\", and Ahrefs says Ahrefs Free "
          "and Ahrefs Webmaster Tools \"are the same account\"", "https://ahrefs.com/free"),
+        ('Site Audit lists finding duplicate content, "Be it title tags, meta '
+         'descriptions, headings, or low-quality content pages"',
+         "https://ahrefs.com/site-audit"),
         ("Site Audit is among the tools on the $29 Starter plan",
          "https://ahrefs.com/blog/starter-plan/"),
         ("monthly prices Starter $29, Lite $129, Standard $249, Advanced $449; projects on sites "
@@ -410,6 +426,116 @@ _DEFAULT_CLOSING = (
     "else on this page is a comparison of approach, not a claim about their "
     "roadmap."
 )
+
+
+_RUN = json.loads((DATA / "vs-run.json").read_text())
+
+
+def _run_date() -> str:
+    d = datetime.date.fromisoformat(_RUN["date"])
+    return f"{d.day} {d.strftime('%B %Y')}"
+
+
+def _top_cta(src: str) -> str:
+    """The next step, in the first screen: Try it free, Buy beside it, and the
+    price, the refund and the Macs it runs on at the button (the content
+    standard, rules 2 and 3). The ending of the page has the longer version."""
+    intel = (f'<p class="intel-dl">Intel Mac? <a href="{download_url(src + "-try-free-intel", to=INTEL_DMG)}" '
+             f'data-ev="Download" data-ev-button="{src}-try-free-intel">Get the Intel version</a></p>'
+             if INTEL else "")
+    return f"""
+<div class="callout compact" id="try">
+{buy_block(src, big=False, try_app=src + "-try-free")}
+{intel}
+</div>"""
+
+
+def _measured(intro: str, view: str = "table") -> str:
+    """Docket run on a real public site, with the figures the engine reported.
+
+    Everything here comes from data/vs-run.json, which docket-app's
+    scripts/shot_vs.mjs writes in the same run that captures the still: the real
+    UI against the real engine, on our own site (publishing someone else's audit
+    is not ours to do). Findings that name other companies or sites, a cookie
+    consent finding among them, are counted and left out, as in the public
+    sample report. Nothing on these pages about the run is typed.
+
+    Three views of one run, because three pages that each carried the same table
+    and caption would be near-duplicates of each other (lint's DUP check said
+    so): "table" is the findings as a table, "list" is the same findings as an
+    ordered list in a sentence each, and "areas" is the area scores with the
+    first three findings in a line.
+    """
+    r = _RUN
+    scores = "; ".join(f"{lane['label']} {lane['score']}" for lane in r["lanes"])
+    alt = (f"Docket's results window after auditing {r['target']}: the area scores are {scores}. "
+           "Areas that do not apply to a site are greyed out.")
+    sev = [f"{r['by_severity'][k]} {k}" for k in ("high", "medium", "low", "notice") if k in r["by_severity"]]
+    sev_text = ", ".join(sev[:-1]) + " and " + sev[-1] if len(sev) > 1 else "".join(sev)
+    top = r["top"]
+    lo = min(lane["score"] for lane in r["lanes"])
+    hi = max(lane["score"] for lane in r["lanes"])
+    full = sum(1 for lane in r["lanes"] if lane["score"] == hi)
+    left = f"{r['left_out']} more name other companies or sites, a cookie-consent finding among them, and are left out here as they are in the public sample report."
+    caption = {
+        "table": (f"The area scoreboard in the Docket {r['engine']} window after a real audit of {r['target']} "
+                  f"on {_run_date()}: {r['pages']} pages crawled in {r['seconds']} seconds, score {r['score']} "
+                  f"out of 100, grade {r['grade']}. It is the shipped interface running against the audit "
+                  "engine, captured from that run, not a mockup."),
+        "list": (f"Docket's results window for the audit below, run on {_run_date()}. Score {r['score']} out of "
+                 f"100, grade {r['grade']}, across {r['pages']} pages in {r['seconds']} seconds, and no crawl "
+                 "credits spent, because there are none to spend."),
+        "areas": (f"One crawl of {r['pages']} pages, finished in {r['seconds']} seconds on a Mac: score "
+                  f"{r['score']}, grade {r['grade']}. On a metered plan that is one crawl spent. Here nothing "
+                  "counted it."),
+    }[view]
+    figure = f"""
+<figure class="shot">
+  <img src="/assets/vs-docket-run.webp" width="1600" height="1000" loading="lazy" decoding="async"
+       alt="{html.escape(alt)}">
+  <figcaption>{caption}</figcaption>
+</figure>"""
+    if view == "table":
+        rows = "".join(
+            f"<tr><td>{html.escape(t['severity'].capitalize())}</td><td>{html.escape(t['title'])}</td>"
+            f"<td>{html.escape(str(t['effort']).capitalize())}</td><td>{t['pages']}</td></tr>"
+            for t in top)
+        after = f"""
+<p>That audit found {r['findings_total']} things to fix: {sev_text}. Below are the ones that do not name
+other companies or sites, in the order Docket ranked them. {left}</p>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Severity</th><th>Finding</th><th>Effort</th><th>Pages</th></tr></thead>
+<tbody>{rows}</tbody></table></div>"""
+    elif view == "list":
+        items = "".join(
+            f"<li><strong>{html.escape(t['severity'].capitalize())}:</strong> {html.escape(t['title'])}. "
+            f"{html.escape(str(t['effort']).capitalize())} effort, {t['pages']} "
+            f"page{'s' if t['pages'] != 1 else ''}.</li>" for t in top)
+        after = f"""
+<p>Docket's findings for that site, {r['findings_total']} in all ({sev_text}), come out as a ranked
+list. This is the order it gave, with the ones that name nobody else:</p>
+<ol>{items}</ol>
+<p>{left}</p>"""
+    else:
+        first = "; ".join(html.escape(t["title"]) for t in top[:3])
+        after = f"""
+<p>The twelve areas scored from {lo} to {hi}, and {full} of them scored {hi}. Of the {r['findings_total']}
+findings ({sev_text}), the first three Docket ranked among those that name nobody else were: {first}.
+{left}</p>"""
+    return f"""
+<h2>Docket on a real site: ours</h2>
+{intro}{figure}{after}
+"""
+
+
+#: SEOptimer's plans as its pricing page lists them (read 2026-10-08).
+#: (name, monthly price, crawls, what the plan names)
+_SEOPT_TRIAL_DAYS = 14
+_SEOPT_PLANS = [
+    ("Starter", 29, "4 crawls, for 1 site", "20 tracked keywords"),
+    ("Pro", 39, "10 crawls", "White label PDF reporting, 3 users"),
+    ("Max", 59, "50 crawls", "White label PDF reporting and a lead generation tool, 6 users"),
+]
 
 
 def _verified_note(key: str, closing: str = _DEFAULT_CLOSING) -> str:
@@ -644,19 +770,48 @@ check".</p>
 #: 2026-09-24 (Enterprise: 100). Verified-ownership projects are unlimited on
 #: every plan. Recorded in VERIFIED["ahrefs"] with the same source and date.
 _AH_UNVERIFIED = {"Lite": 5, "Standard": 20, "Advanced": 50}
+_AH_PRICE = {"Lite": 129, "Standard": 249, "Advanced": 449}
 _AH_LO, _AH_HI = rival_monthly_range("ahrefs-site-audit")
 
 
 def ahrefs() -> Path:
     body = f"""
-<p class="lede">Docket audits any site, including a client's, a prospect's or a competitor's,
-for {PRICE_STR} once. Ahrefs Site Audit is one module of a keyword and backlink platform, and
-where you can point it depends on the plan: Ahrefs Free (which Ahrefs says is the same
-account as the original Ahrefs Webmaster Tools) runs it only on sites you verify you own,
-and the paid plans that include it run from Starter at ${_AH_LO} a month to Advanced at ${_AH_HI}, with
-Lite allowing {_AH_UNVERIFIED["Lite"]} projects on sites you have not verified, Standard
-{_AH_UNVERIFIED["Standard"]} and Advanced {_AH_UNVERIFIED["Advanced"]}. If you
-need keyword volumes and a backlink index, Docket cannot replace Ahrefs and does not try. That data has to be bought, not built.</p>
+<p class="lede"><strong>The short answer:</strong> Ahrefs Site Audit is one module inside a keyword and
+backlink platform. Its page says it &ldquo;scans for 170+ issues&rdquo; and sorts them into errors,
+warnings and notices. Docket is a one-time Mac app whose whole job is the audit: {N_CHECKS} checks,
+ranked by impact against effort. If you also need keyword volumes and a backlink index, you need
+Ahrefs. If you need the audit and a plan, Docket costs {PRICE_STR} once.</p>
+
+<ul class="short-answer">
+<li><strong>Ahrefs suits</strong> someone who does keyword research and link building and wants the
+audit inside the same account.</li>
+<li><strong>Docket suits</strong> someone on a Mac who wants to audit any site, a client's included,
+with a ranked list of fixes and no crawl credits.</li>
+</ul>
+
+<h2>At a glance</h2>
+<p class="table-note">Read from Ahrefs' own pages on {CHECKED_HUMAN["ahrefs"]}.</p>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Plan</th><th>Monthly price</th><th>Site Audit crawl credits a month</th>
+<th>Max pages per project</th><th>Projects on sites you have not verified</th></tr></thead>
+<tbody>
+<tr><td>Ahrefs Lite</td><td>${_AH_PRICE["Lite"]}</td><td>{F.credits_for("Lite")}</td>
+    <td>{F.max_pages_for("Lite")}</td><td>{_AH_UNVERIFIED["Lite"]}</td></tr>
+<tr><td>Ahrefs Standard</td><td>${_AH_PRICE["Standard"]}</td><td>{F.credits_for("Standard")}</td>
+    <td>{F.max_pages_for("Standard")}</td><td>{_AH_UNVERIFIED["Standard"]}</td></tr>
+<tr><td>Ahrefs Advanced</td><td>${_AH_PRICE["Advanced"]}</td><td>{F.credits_for("Advanced")}</td>
+    <td>{F.max_pages_for("Advanced")}</td><td>{_AH_UNVERIFIED["Advanced"]}</td></tr>
+<tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td>
+    <td class="yes">None</td><td class="yes">No page limit</td><td class="yes">Any site</td></tr>
+</tbody></table></div>
+{_top_cta("vs-ahrefs-top")}
+
+<p>Where you can point Site Audit depends on the plan. Ahrefs Free (which Ahrefs says is the same
+account as the original Ahrefs Webmaster Tools) runs it only on sites you verify you own. The paid
+plans that include it run from Starter at ${_AH_LO} a month to Advanced at ${_AH_HI}. Docket audits any
+site, including a client's, a prospect's or a competitor's. If you need keyword volumes and a
+backlink index, Docket cannot replace Ahrefs and does not try. That data has to be bought, not
+built.</p>
 
 <h2>What Ahrefs has that Docket can never have</h2>
 <p>A crawled index of the web. That is what powers keyword difficulty, search volume, backlink
@@ -732,17 +887,27 @@ stops a scheduled audit, and there is no shared workspace for a team to look at 
 results. If either of those matters, cloud is the right architecture and the metering is what
 you pay for it.</p>
 
-<h2>The honest recommendation</h2>
-<p>These tools do not substitute for each other. If you do keyword research and link building,
-you need an index, and Ahrefs or Semrush is how you get one. If what you need is a technical
-and marketing audit with a plan attached, Docket does that for a one-time cost, and the crawl
-and the report stay on your Mac.</p>
+{_measured("<p>Ahrefs sorts what it finds into errors, warnings and notices. Docket ranks every finding by impact against effort. This is what that looks like on a real audit of our own site.</p>", "list")}
+
+<h2>When to pick Ahrefs instead of Docket</h2>
+<ul>
+<li><strong>You do keyword research or link building.</strong> You need an index, and Ahrefs or
+    Semrush is how you get one. Docket has no keyword or backlink index and does not try to build
+    one.</li>
+<li><strong>You want audits running while your laptop is closed, or a team looking at the same
+    results.</strong> Ahrefs crawls in the cloud. Docket's schedule runs only while the app is open,
+    and it has no shared workspace.</li>
+<li><strong>You are not on a Mac.</strong> Docket runs on macOS only.</li>
+<li><strong>You want the audit and a plan, once, on your own machine.</strong> That is Docket, for
+    {PRICE_STR} once.</li>
+</ul>
 <p>Plenty of people run both: an index tool for research, and a local auditor for the work.</p>
 {_verified_note("ahrefs")}
 {CTA_LINK_EXPERIMENT}"""
 
     return render(
         cat="vs", slug="ahrefs-site-audit-alternative",
+        modified="2026-10-08",
         title="Ahrefs Site Audit tool vs Docket: what $129/mo buys (2026)",
         desc=("Ahrefs Site Audit is one module of a keyword and backlink platform. Docket is a "
               "one-time local auditor with a ranked fix plan. What each actually does."),
@@ -750,6 +915,24 @@ and the report stay on your Mac.</p>
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Ahrefs',
         body=body,
         faq=[
+            ("What does the Ahrefs Site Audit tool check?",
+             f"Ahrefs' Site Audit page says it scans for 170+ issues and segments them into errors, "
+             f"warnings and notices. Docket runs {N_CHECKS} checks across thirteen areas and ranks "
+             f"every finding by impact against effort."),
+            ("Is the Ahrefs site audit free?",
+             "Partly. Ahrefs Free includes Site Audit for verified websites, meaning sites you "
+             "prove you own. Auditing a client's or a competitor's site needs a paid plan, where "
+             "the number of projects on unverified sites is capped by plan. Docket's free version "
+             "shows your score and how many problems each area has, on any site, with no key."),
+            ("Does the Ahrefs site audit include a content audit?",
+             "Its Site Audit page lists finding duplicate content, in title tags, meta "
+             "descriptions, headings or low-quality pages, among its checks. This page tested "
+             "nothing beyond what Ahrefs publishes. Docket's content checks cover thin pages, "
+             "competing pages that target the same search, language mismatches and missing "
+             "authorship, and rank them with everything else."),
+            ("Is there a one-time alternative to Ahrefs Site Audit?",
+             f"Docket is a one-time purchase for macOS: {PRICE_STR} once. It audits any site with "
+             "no crawl credits. It does not replace Ahrefs' keyword and backlink data."),
             ("Can Docket replace Ahrefs?",
              "Only for the site audit. Ahrefs' keyword volumes, difficulty scores and backlink "
              "data come from a crawled index of the web, which Docket has no equivalent of and "
@@ -1457,10 +1640,23 @@ def seoptimer() -> Path:
     confined to what each vendor publishes about its own product.
     """
     body = f"""
-<p>SEOptimer is a cloud SEO auditing tool starting at {price('seoptimer')}, which is a
-fraction of what Docket costs in the first year. If you are weighing the two, start with the
-honest part: <strong>SEOptimer does two things Docket does not do at all</strong>, and if
-either is what you came for, buy theirs.</p>
+<p class="lede"><strong>The short answer:</strong> SEOptimer is a cloud audit tool sold by the month
+({price('seoptimer')}), with white-label PDF reports and a lead-capture widget, and every plan buys a
+fixed number of crawls. Docket is an audit you run on your own Mac, bought once, with no crawl
+meter. If you sell audits under your own brand, pick SEOptimer. If you audit your own sites and
+want unlimited re-runs, pick Docket.</p>
+
+<h2>At a glance</h2>
+<p class="table-note">Read from SEOptimer's pricing page on {CHECKED_HUMAN["seoptimer"]}. Each plan
+offers a {_SEOPT_TRIAL_DAYS} day free trial.</p>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Plan</th><th>Monthly price</th><th>Crawls a month</th><th>What the plan names</th></tr></thead>
+<tbody>
+{"".join(f"<tr><td>SEOptimer {n}</td><td>${p}</td><td>{c}</td><td>{f}</td></tr>" for n, p, c, f in _SEOPT_PLANS)}
+<tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td><td class="yes">Unmetered</td>
+    <td>A Docket-branded report. No white-label mode and no lead-capture tool</td></tr>
+</tbody></table></div>
+{_top_cta("vs-seoptimer-top")}
 
 <h2>What SEOptimer does that Docket does not</h2>
 
@@ -1468,9 +1664,9 @@ either is what you came for, buy theirs.</p>
 <li><strong>White-label reports.</strong> Its paid plans name white-label PDF reporting, a
 custom report domain and report templates. An agency can hand a client an audit with its own
 branding on it. Docket produces a Docket-branded report and has no white-label mode.</li>
-<li><strong>Lead generation.</strong> Its top plan is called Lead Generation and exists to
-embed an audit form on your site that captures visitor details. That is a marketing product.
-Docket is a tool you run, and has nothing like it.</li>
+<li><strong>Lead generation.</strong> Its top plan, Max, names a lead generation tool, and its
+feature list says &ldquo;Embed an SEO Audit Widget into your site&rdquo;. That is a marketing
+product. Docket is a tool you run, and has nothing like it.</li>
 </ul>
 
 <p>Those are not small concessions. Selling audits is a real business and SEOptimer is built
@@ -1478,10 +1674,9 @@ for it end to end; Docket is not built for it at all.</p>
 
 <h2>The difference that actually decides it: the meter</h2>
 
-<p>Every SEOptimer plan buys a fixed number of crawls per month. The entry plan is four crawls
-for one website. The middle plan is ten across multiple sites. The top plan is fifty. That is
-the shape of every subscription audit tool, and it changes how you work: a crawl becomes
-something you spend rather than something you run.</p>
+<p>Every SEOptimer plan buys a fixed number of crawls per month. Starter is four crawls for one
+website. Pro is ten. Max is fifty. That is the shape of every subscription audit tool, and it
+changes how you work: a crawl becomes something you spend rather than something you run.</p>
 
 <p>Docket does not meter anything. There is no page allowance, no crawl count and no project
 limit, because there is no server keeping score. The audit runs on your Mac, and
@@ -1503,13 +1698,20 @@ what your server actually returns, because a CDN rule refusing GPTBot is invisib
 allows it. And every finding lands in a ranked plan rather than a categorised list. <a href="/learn/priority-model/">The formula is written out</a> if you want to check the
 ordering yourself.</p>
 
-<h2>Which to buy</h2>
+{_measured("<p>SEOptimer's Starter plan buys four crawls a month for one site. This is a single Docket run, on a real site, with the figures the engine reported.</p>", "areas")}
+
+<h2>When to pick SEOptimer instead of Docket</h2>
 
 <ul>
-<li><strong>Buy SEOptimer</strong> if you sell audits, need your own branding on the report, or
-want an audit form on your site that collects leads.</li>
-<li><strong>Buy Docket</strong> if you are auditing your own sites, want unlimited re-runs while
-you fix things, and would rather pay once.</li>
+<li><strong>You sell audits.</strong> You need your own branding on the report, a custom report
+domain and templates. Docket produces a Docket-branded report.</li>
+<li><strong>You want an audit form on your site that collects leads.</strong> SEOptimer names a tool
+for that. Docket has nothing like it.</li>
+<li><strong>You only need one audit.</strong> A subscription you can cancel is better value than a
+purchase.</li>
+<li><strong>You are not on a Mac.</strong> Docket runs on macOS only.</li>
+<li><strong>You audit your own sites and want unlimited re-runs while you fix things.</strong> That is
+Docket, for {PRICE_STR} once.</li>
 </ul>
 
 <p>They are not really the same product. One is a reporting and lead product sold to agencies;
@@ -1522,14 +1724,26 @@ against the same limit: it caps pages per session rather than crawls per month.<
 
     return render(
         cat="vs", slug="seoptimer-alternative",
-        title="Docket vs SEOptimer: metered crawls or unlimited?",
-        desc=("SEOptimer does white-label reports and lead capture, which Docket does not. "
-              "What Docket adds, and why the monthly crawl allowance is the real "
-              "difference."),
+        modified="2026-10-08",
+        title="SEOptimer alternative: Docket vs SEOptimer, compared",
+        desc=("SEOptimer sells white-label reports, lead capture and a monthly crawl allowance. "
+              "Docket is a one-time Mac audit with no meter. Prices read from both."),
         h1="Docket vs SEOptimer",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / SEOptimer',
         body=body,
         faq=[
+            ("What is a good SEOptimer alternative for Mac?",
+             "Docket, if you audit your own sites and want unlimited re-runs: it runs on your Mac, "
+             "is bought once and has no crawl allowance. It is not an alternative if you sell "
+             "white-label audit reports or need an embeddable lead-capture form, which SEOptimer "
+             "does and Docket does not."),
+            ("Does SEOptimer have a free trial?",
+             f"Its pricing page offers a 14 day free trial on each plan. Docket's free version "
+             f"shows your score and how many problems each area has, with no key and no time "
+             f"limit. The full report is a one-time purchase with a {REFUND_DAYS}-day refund."),
+            ("How much does SEOptimer cost?",
+             f"Its pricing page lists three plans, Starter, Pro and Max, at {price('seoptimer')}. "
+             f"Docket is {PRICE_STR} once."),
             ("Is Docket an SEOptimer alternative?",
              "For auditing your own sites, yes. For selling audits it is not: SEOptimer does "
              "white-label PDF reporting with a custom domain and an embeddable lead-capture "
@@ -1540,8 +1754,8 @@ against the same limit: it caps pages per session rather than crawls per month.<
              "costs, and after that Docket does not cost anything more, but a subscription "
              "you can cancel is genuinely better value if you only need one audit."),
             ("How many crawls does SEOptimer allow?",
-             "Its published plans buy four crawls a month for one website, ten across "
-             "multiple websites, or fifty. Docket does not meter crawls at all: the audit "
+             "Its published plans buy four crawls a month for one website on Starter, ten on Pro "
+             "and fifty on Max. Docket does not meter crawls at all: the audit "
              "runs on your own Mac and -n 0 crawls a site until it ends, so re-running after "
              "each fix costs nothing."),
             ("Does SEOptimer check AI crawler access?",
@@ -2134,15 +2348,26 @@ def se_ranking_vs_screaming_frog() -> Path:
     """
     sr = "https://seranking.com/subscription.html"
     sf = "https://www.screamingfrog.co.uk/seo-spider/"
+    key = "se-ranking-vs-screaming-frog"
     body = f"""
-<p class="lede">These two get compared a lot and they are not the same kind of product. SE
-Ranking is a monthly subscription to a cloud platform whose site audit is <strong>metered by
-pages per month</strong>. Screaming Frog is a licence for a crawler that runs on your own
-machine with <strong>no page meter at all</strong>. Which one is wrong for you depends less on
-features than on that difference, so this starts there.</p>
+<p class="lede"><strong>The short answer:</strong> these are not the same kind of tool. SE Ranking
+is a monthly subscription to a cloud platform, and its site audit is <strong>metered by pages per
+month</strong>. Screaming Frog is a licence for a crawler that runs on your own machine, with
+<strong>no page meter at all</strong> and a free tier. Choose on that difference first and on
+features second.</p>
 
-<h2>The shapes, not the feature lists</h2>
+<ul class="short-answer">
+<li><strong>SE Ranking suits</strong> a marketer who wants rank tracking, keyword research and an
+audit in one place, and is happy to pay monthly for it.</li>
+<li><strong>Screaming Frog suits</strong> an SEO who wants raw crawl data from a desktop tool, on
+very large sites, with no page meter.</li>
+<li><strong>Docket suits</strong> someone on a Mac who wants a ranked list of what to fix, bought
+once, with no meter.</li>
+</ul>
 
+<h2>At a glance</h2>
+<p class="table-note">Every vendor figure here was read from that vendor's own pages on
+{CHECKED_HUMAN[key]}.</p>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>&nbsp;</th><th>SE Ranking</th><th>Screaming Frog</th><th>Docket</th></tr></thead>
 <tbody>
@@ -2150,16 +2375,20 @@ features than on that difference, so this starts there.</p>
     <td class="yes">Once</td></tr>
 <tr><td>Published price</td><td>{price("seranking")}</td><td>{price("screaming-frog")}</td>
     <td class="yes">{PRICE_STR} once{PAY4}</td></tr>
+<tr><td>Plans</td><td>Core and Growth, then an Enterprise tier that says &ldquo;Talk to sales&rdquo;</td>
+    <td>One tier. Licences are per user</td>
+    <td class="yes">One licence, up to three Macs</td></tr>
+<tr><td>Audit volume</td><td>Metered: Core states &ldquo;250k pages per month in audit&rdquo;, Growth
+    &ldquo;2M pages per month in audit&rdquo;</td>
+    <td class="yes">Unmetered; the free tier stops at 500 URLs</td>
+    <td class="yes">Unmetered</td></tr>
 <tr><td>Where the crawl runs</td><td>Their cloud</td><td class="yes">Your machine</td>
     <td class="yes">Your Mac</td></tr>
-<tr><td>Audit volume</td><td>Metered: the Core plan states
-    &ldquo;250k pages per month in audit&rdquo;</td>
-    <td class="yes">Unmetered; free tier stops at 500 URLs</td>
-    <td class="yes">Unmetered</td></tr>
 <tr><td>Try before buying</td><td>&ldquo;Start free 14-day trial&rdquo;, &ldquo;No credit card
     required&rdquo;</td><td>Free tier, 500 URLs, permanently</td>
-    <td>No trial, a refund instead</td></tr>
+    <td>Free: your score and how many problems each area has. Then a {REFUND_DAYS}-day refund</td></tr>
 </tbody></table></div>
+{_top_cta("vs-sr-sf")}
 {price_note_html()}
 
 <h2>What SE Ranking is actually selling</h2>
@@ -2167,8 +2396,10 @@ features than on that difference, so this starts there.</p>
 <p>Not a crawler. The audit is one module inside a rank-tracking and keyword platform, and the
 Core plan's own bullet list makes the proportions clear: ten projects and one manager seat, two
 thousand keywords and a hundred prompts tracked daily, five domains in GEO research, 250k pages
-a month in audit, and 25K API credits with MCP access. If you want daily rank tracking across
-locations and devices, that is the product, and neither of the other two here does it at all.</p>
+a month in audit, and 25K API credits with MCP access. The Growth plan raises the audit to 2M
+pages a month, with thirty projects and three manager seats. If you want daily rank tracking
+across locations and devices, that is the product, and neither of the other two here does it at
+all.</p>
 
 <p>The page meter is the thing to check before you buy. 250k pages a month is generous for one
 site and starts to matter when you are auditing many, or re-auditing the same large site often, and it is a ceiling that exists because the crawl happens on their hardware.</p>
@@ -2176,12 +2407,13 @@ site and starts to matter when you are auditing many, or re-auditing the same la
 <h2>What Screaming Frog is actually selling</h2>
 
 <p>The opposite trade. It audits &ldquo;over 300 SEO issues&rdquo;, it runs on your machine,
-and nothing counts your pages. Their own line is that you can
-&ldquo;Download &amp; crawl 500 URLs for free, or buy a licence for &pound;199 Per Year to
-remove the limit &amp; access advanced features&rdquo;. The free tier is genuinely useful and
-genuinely limited: their Free vs Paid table puts Scheduling, Crawl Configuration, Save &amp;
-Open Crawls, JavaScript Rendering, Crawl Comparison and Near Duplicate Content on the paid side
-only, so the free version cannot save a crawl or render JavaScript.</p>
+and nothing counts your pages. Their page says you can &ldquo;Download &amp; crawl 500 URLs for
+free&rdquo;, and that &ldquo;For just &pound;199 per year you can purchase a licence, which
+removes the 500 URL crawl limit&rdquo;. In US dollars the pricing page lists {price("screaming-frog")}
+per licence, and says licences are per user, so two people need two. The free tier is genuinely
+useful and genuinely limited: their Free vs Paid table puts Scheduling, Crawl Configuration,
+Save &amp; Open Crawls, JavaScript Rendering, Crawl Comparison and Near Duplicate Content on the
+paid side only, so the free version cannot save a crawl or render JavaScript.</p>
 
 <p>What you get back is data. Screaming Frog is the better tool if you know what you are looking for: custom extraction, very large crawls, a specific hypothesis to test. It does not
 rank what to fix first, and it does not try to.</p>
@@ -2203,18 +2435,27 @@ Screaming Frog is the right tool.</p>
 
 <p><strong>Docket is macOS only.</strong> Both of the others run on Windows.</p>
 
-<h2>So which one</h2>
+{_measured("<p>Most of this page is about what the other two do. This is what Docket does: a real audit of our own site, with the figures the engine reported.</p>")}
+
+<h2>When to pick SE Ranking or Screaming Frog instead of Docket</h2>
 
 <ul>
-<li>You need daily rank tracking and keyword research: <a href="{sr}"
-    rel="nofollow noopener">SE Ranking</a>, and the audit comes along with it.</li>
-<li>You crawl very large sites, or you want raw data to interrogate yourself: <a href="{sf}" rel="nofollow noopener">Screaming Frog</a>.</li>
-<li>You want to know what is wrong with your site and what to do about it, on a Mac, without a
-    subscription or a page meter: that is what Docket is for.</li>
+<li><strong>You need daily rank tracking and keyword research.</strong> Pick <a href="{sr}"
+    rel="nofollow noopener">SE Ranking</a>, and the audit comes along with it. Docket does not
+    track rankings.</li>
+<li><strong>You crawl very large sites, or you want raw data to interrogate yourself.</strong>
+    Pick <a href="{sf}" rel="nofollow noopener">Screaming Frog</a>. It handles far larger crawls
+    than Docket and supports custom extraction.</li>
+<li><strong>You are not on a Mac.</strong> Docket runs on macOS only, on Apple silicon or Intel.</li>
+<li><strong>You want to know what is wrong with your site and what to do about it, on a Mac, with
+    no subscription or page meter.</strong> That is what Docket is for.</li>
 </ul>
+{_verified_note(key, closing="SE Ranking and Screaming Frog change their plans without telling anyone, so a figure here can go stale. If one has, <a href='/about/'>tell us</a>.")}
+{CTA}
 """
     return render(
         cat="vs", slug="se-ranking-vs-screaming-frog",
+        modified="2026-10-08",
         title="SE Ranking vs Screaming Frog: metered or unmetered?",
         desc=("SE Ranking meters its audit by pages per month; Screaming Frog licences an "
               "unmetered crawler for your machine. Both prices read from their own "
@@ -2223,6 +2464,16 @@ Screaming Frog is the right tool.</p>
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / SE Ranking vs Screaming Frog',
         body=body,
         faq=[
+            ("Which is better for a site audit, SE Ranking or Screaming Frog?",
+             "It depends on the job. Screaming Frog is a desktop crawler with no page meter and a "
+             "free tier of 500 URLs, for people who want raw crawl data. SE Ranking's audit is one "
+             "module of a subscription platform, metered by pages per month and sold beside rank "
+             "tracking and keyword research. Docket is a third option for Mac users: bought once, "
+             "unmetered, with a ranked list of fixes."),
+            ("How much does SE Ranking cost compared with Screaming Frog?",
+             f"SE Ranking is {price('seranking')}. Screaming Frog is {price('screaming-frog')}, "
+             f"with a free tier up to 500 URLs. Both were read from the vendors' own pages on "
+             f"{CHECKED_HUMAN['se-ranking-vs-screaming-frog']}. Docket is {PRICE_STR} once."),
             ("Is SE Ranking's site audit unlimited?",
              "No. Its Core plan states \u201c250k pages per month in audit\u201d, so the audit "
              "is metered by pages per month. Screaming Frog's paid licence has no page meter, "

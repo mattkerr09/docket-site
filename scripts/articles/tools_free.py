@@ -132,6 +132,19 @@ themselves in the request, keep a copy for a few minutes so repeated checks do n
 and store nothing about the sites checked.</p>
 <p>Docket runs {N_CHECKS} checks across every page of a site, requests pages as each AI crawler to
 find the refusals a file cannot show, and ranks what to fix first.</p>
+<h2>Choosing between audit tools?</h2>
+<p>These pages set Docket beside the tools people most often weigh it against. Each vendor's prices
+and limits are read from its own pages and dated, each page ends with when to pick the other tool
+instead, and each shows a real Docket audit.</p>
+<ul class="tool-list">
+<li><a href="/vs/se-ranking-vs-screaming-frog/"><strong>SE Ranking vs Screaming Frog</strong></a>:
+a cloud audit metered by pages per month against a desktop crawler with no meter.</li>
+<li><a href="/vs/ahrefs-site-audit-alternative/"><strong>Docket vs Ahrefs Site Audit</strong></a>:
+one module of a keyword and backlink platform against a one-time Mac audit.</li>
+<li><a href="/vs/seoptimer-alternative/"><strong>SEOptimer alternative</strong></a>: white-label
+reports and a monthly crawl allowance against an unmetered audit you run yourself.</li>
+</ul>
+
 {buy_block("tools-hub", try_app="tools-hub-try-free")}
 """
     return render(

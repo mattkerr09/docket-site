@@ -1326,6 +1326,9 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
 .tool-list li{margin:.5rem 0}
+.short-answer{margin:1rem 0 1.6rem}.short-answer li{margin:.45rem 0}
+.table-note{color:var(--text-mid);margin:.2rem 0 .8rem}
+.callout.compact{margin:1.2rem 0}
 .findings{list-style:none;padding:0;margin:1rem 0 1.5rem}
 .findings .finding{display:grid;grid-template-columns:7.5rem 1fr;gap:.15rem .8rem;padding:.65rem .8rem;
   border:1px solid var(--border);border-radius:var(--radius-md);margin:.45rem 0;background:var(--surface)}
@@ -1569,10 +1572,12 @@ _NAV_LINKS = """<a href="/index/">The Index</a>
 _CHECKER_NAV = '<a href="/tools/" data-ev="Free check" data-ev-button="nav">Free tools</a>\n'
 
 #: Pages whose INTERNAL links are frozen by a registered experiment. They get
-#: the menu and footer as they were, without the checker link. The Ahrefs
-#: comparison's title and internal links are an arm until 2026-10-06
-#: (~/ops/search ARMS); remove it from here after that read.
-LINK_ARMS = {("vs", "ahrefs-site-audit-alternative")}
+#: the menu and footer as they were, without the checker link. Empty since
+#: 2026-10-08: the Ahrefs comparison was the one arm, and its read was scored and
+#: released on 2026-09-21 (~/ops/search/SEO-ORDERS-2026-09-07.md, "arm 4
+#: scored"), with no docketseo.app line left in ~/ops/search/ARMS.md. Add a page
+#: here only while it is a registered arm.
+LINK_ARMS: set = set()
 
 
 def _nav(checker: bool) -> str:

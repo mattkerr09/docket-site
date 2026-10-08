@@ -474,6 +474,11 @@ what anchor text, lives in archive files far too large to fetch from a laptop. S
 queries people actually type, from Google's public autocomplete, and refuses to print a
 monthly volume it does not have. Each is a real limitation and each is stated in the report
 rather than papered over.</p>
+<p>Comparing audit tools? Each of these pages sets out what the other tool costs and limits, read from
+its own pages, and when to pick it instead of Docket:
+<a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking vs Screaming Frog</a>,
+<a href="/vs/ahrefs-site-audit-alternative/">Docket vs Ahrefs Site Audit</a> and
+<a href="/vs/seoptimer-alternative/">the SEOptimer alternative</a>.</p>
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(

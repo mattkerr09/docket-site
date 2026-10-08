@@ -256,6 +256,11 @@ priority alongside them, so you can recompute any score on this page from the nu
 own report. If our arithmetic and yours disagree, one of us has a bug, and we would like to know
 which.</p>
 
+<p>How other audit tools present their findings is compared in
+<a href="/vs/ahrefs-site-audit-alternative/">Docket against Ahrefs Site Audit</a>,
+<a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking against Screaming Frog</a> and
+<a href="/vs/seoptimer-alternative/">Docket against SEOptimer</a>.</p>
+
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
