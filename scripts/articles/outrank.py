@@ -53,9 +53,9 @@ Link authority
   you:  docketseo.app was not found in the part of the graph scanned.
         It is outside the top ranks rather than absent.
   them: www.screamingfrog.co.uk/seo-spider ranks 2,661 of 117,963,409 domains
-        by harmonic centrality — the top 0.002% of the crawled web.
+        by harmonic centrality: the top 0.002% of the crawled web.
 
-  Their links are a real advantage and not one you close this quarter —
+  Their links are a real advantage and not one you close this quarter,
   which is exactly why the openings below avoid competing on it.</code></pre>
 
 <p>Screaming Frog is genuinely one of the best crawlers ever written, it has been trusted for
@@ -80,7 +80,7 @@ large site, buy it. None of what follows is an argument that they are weak.</p>
      answered. Their authority is irrelevant to it.
 
 3. [worth taking] 4 of their pages contain no figures of their own
-     No percentages, sample sizes or counts — the copy asserts rather
+     No percentages, sample sizes or counts: the copy asserts rather
      than measures.
      Why winnable: assistants quote specific claims. A site with
      nothing quotable cannot be quoted, however authoritative.</code></pre>

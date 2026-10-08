@@ -1723,7 +1723,7 @@ otherwise.</p>
 
 <h2>Allow citation, refuse training</h2>
 <p>This is the configuration most businesses actually want. Paste it above any existing rules:</p>
-<pre><code># AI search crawlers — these decide whether we can be cited.
+<pre><code># AI search crawlers: these decide whether we can be cited.
 User-agent: OAI-SearchBot
 Allow: /
 
@@ -1736,7 +1736,7 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-# Training crawlers — opt out of model training.
+# Training crawlers: opt out of model training.
 User-agent: GPTBot
 Disallow: /
 

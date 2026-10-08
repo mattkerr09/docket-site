@@ -80,7 +80,7 @@ is a worse outcome than the problem.</p>
 <p>This is what actually happened to us. The API refused:</p>
 
 <pre><code>PUT /repos/OWNER/REPO/pages   https_enforced=true
-404 — "The certificate has not finished being issued"</code></pre>
+404: "The certificate has not finished being issued"</code></pre>
 
 <p>HTTPS itself was working. A valid certificate was being served, every page loaded over TLS,
 nothing looked broken. What was stuck was the certificate <em>state</em>: GitHub reported

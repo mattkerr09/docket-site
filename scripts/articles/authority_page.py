@@ -31,12 +31,12 @@ is not the number. It is what it says when it does not know.</p>
 <pre><code>$ docket backlinks wikipedia.org bbc.co.uk example-shop-that-does-not-exist-9134.com
 
 wikipedia.org
-  ranks 14 of 117,963,409 domains by harmonic centrality
-  — the top 0.0000% of the crawled web.
+  ranks 14 of 117,963,409 domains by harmonic centrality:
+  the top 0.0000% of the crawled web.
 
 bbc.co.uk
-  ranks 86 of 117,963,409 domains by harmonic centrality
-  — the top 0.0001% of the crawled web.
+  ranks 86 of 117,963,409 domains by harmonic centrality:
+  the top 0.0001% of the crawled web.
 
 example-shop-that-does-not-exist-9134.com
   was not found in the part of the graph scanned. It is outside the
