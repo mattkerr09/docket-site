@@ -325,6 +325,33 @@ def buy_strip(src: str) -> str:
             f'{FOUNDING_SEATS} buyers with <code>{FOUNDING_CODE}</code></p></aside>')
 
 
+def next_step_block(src: str) -> str:
+    """The next step for a page that has none: Try it free, Buy beside it, and the
+    price, the pay-in-four line, the refund and the Macs it runs on at the button.
+
+    CEO, 2026-10-09 (CONTENT-STANDARD rule 2): /vs/, /how-to/, /learn/, /best/
+    and /for/ each had 0 hub /dl and 0 /buy links. Every article page ends in this
+    block (buy_strip), and the section hubs, which are where a visitor lands to
+    choose, ended in nothing. `src` is the page's tag ("hub-vs"); the free
+    download is counted as `<src>-try-free`, and `<src>-try-free-intel` for Intel."""
+    intel = (f'<p class="intel-dl">Intel Mac? <a href="{download_url(src + "-try-free-intel", to=INTEL_DMG)}" '
+             f'data-ev="Download" data-ev-button="{src}-try-free-intel">Get the Intel version</a></p>'
+             if INTEL else "")
+    return f"""
+<div class="callout compact" id="try">
+{buy_block(src, big=False, try_app=src + "-try-free")}
+{intel}
+</div>"""
+
+
+def with_next_step(body: str, src: str) -> str:
+    """`body` with the next-step block after its opening paragraph, so it is in the
+    first screen of a hub and not at the end of a long list."""
+    i = body.find("</p>")
+    block = next_step_block(src)
+    return body if "id=\"try\"" in body else (body[:i + 4] + block + body[i + 4:] if i != -1 else block + body)
+
+
 def price_note_html() -> str:
     """The dated caveat that must appear wherever competitor prices are shown.
 

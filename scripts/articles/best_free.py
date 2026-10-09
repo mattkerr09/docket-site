@@ -21,7 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from comparisons import _verified_note  # noqa: E402
-from render import PRICE_STR, render  # noqa: E402
+from render import PRICE_STR, render, with_next_step  # noqa: E402
 
 
 def free_seo_audit_tools() -> Path:
@@ -184,7 +184,7 @@ reads like an advertisement is a bug in the page.</p>
               "documentation and dated on the page."),
         h1="Best tools, by job",
         crumb='<a href="/">Docket</a> / Best',
-        body=body,
+        body=with_next_step(body, "hub-best"),
         schema_type="CollectionPage",
     )
 

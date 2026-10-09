@@ -17,7 +17,7 @@ import facts as F  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
-from render import (download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
+from render import (with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
@@ -464,7 +464,7 @@ be written, and this paragraph will say so rather than promising it indefinitely
               "agencies, local businesses, and more."),
         h1="Docket for your situation",
         crumb='<a href="/">Docket</a> / For you',
-        body=body,
+        body=with_next_step(body, "hub-for"),
         schema_type="CollectionPage",
     )
 
@@ -1692,7 +1692,7 @@ variations on a template.</p>
               "worth doing them, with the exact change to make."),
         h1="Fix guides",
         crumb='<a href="/">Docket</a> / Fix it',
-        body=body,
+        body=with_next_step(body, "hub-how-to"),
         schema_type="CollectionPage",
     )
 

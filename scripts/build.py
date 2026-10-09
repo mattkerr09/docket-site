@@ -24,7 +24,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE / "articles"))
 
 import facts as F  # noqa: E402
-from render import BASE, DATA, PRICE, SITE, SUPPORT_EMAIL, render  # noqa: E402
+from render import BASE, DATA, PRICE, SITE, SUPPORT_EMAIL, render, with_next_step  # noqa: E402
 
 import about  # noqa: E402
 import audit_quality  # noqa: E402
@@ -159,7 +159,7 @@ def hub(cat: str, title: str, desc: str, h1: str, lede: str,
         # A hub that only lists its children is a page Google has no reason to
         # rank and a reader has no reason to stay on — Docket flagged all three
         # of ours as thin, correctly.
-        body=f'<p class="lede">{lede}</p>{intro}{items}',
+        body=with_next_step(f'<p class="lede">{lede}</p>{intro}{items}', f"hub-{cat}"),
         schema_type="CollectionPage",
     )
 
