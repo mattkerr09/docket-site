@@ -26,6 +26,34 @@ from render import (with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, I
 )
 
 
+# The free result as a visitor sees it, from one real run (docket-app
+# scripts/shot_free.mjs: the installed free engine on our own site, the figures
+# read from the engine's own result). Every number in the figure comes from
+# data/free-run.json; none is typed here.
+import datetime as _dt  # noqa: E402
+import html as _html  # noqa: E402
+import json as _json  # noqa: E402
+
+_FREE_RUN = _json.loads((Path(__file__).resolve().parent.parent.parent / "data" / "free-run.json").read_text())
+
+
+def free_result_figure() -> str:
+    r = _FREE_RUN
+    d = _dt.date.fromisoformat(r["date"])
+    when = f"{d.day} {d.strftime('%B %Y')}"
+    more = f"{r['more']} more problem{'' if r['more'] == 1 else 's'}"
+    alt = (f"Docket's free result for a real site: score {r['score']}, grade {r['grade']}, the most important "
+           f"problem shown in full with its fix, and a line saying Docket found {more} on this site, with a "
+           f"Buy button, the price and the refund.")
+    caption = (f"The free result in Docket {r['engine']} after a real audit of {r['target']} on {when}: "
+               f"{r['pages']} pages crawled, score {r['score']} out of 100, the most important problem in full "
+               f"with its fix, and the number of others Docket found ({r['more']}). It is the shipped free version "
+               f"running against the audit engine, captured from that run, not a mockup.")
+    return (f'<figure class="shot">\n  <img src="/assets/free-result.webp" width="{r["image"]["width"]}" '
+            f'height="{r["image"]["height"]}" loading="lazy" decoding="async" alt="{_html.escape(alt)}">\n'
+            f'  <figcaption>{_html.escape(caption)}</figcaption>\n</figure>')
+
+
 #: Slugs in the order a buyer meets them, cheapest first. Built from the same
 #: competitors.csv the comparison pages use, so a price correction there moves
 #: this table too.
@@ -211,6 +239,7 @@ press Run audit, and watch it crawl. There is no onboarding, no project setup an
 selection, because none of those are necessary for the thing you came to do.</p>
 <p>Without a key the audit runs as the free version. {FREE_LINE} The key arrives with your
 receipt, and <a href="#buy">the buy step is at the top of this page</a>.</p>
+{free_result_figure()}
 <p>The first launch takes a few seconds longer than later ones. It used to say "while the
 engine unpacks itself". That was an explanation nobody had measured, and timing the CLI out of
 the shipped bundle put its startup at a fifth of a second with no unpacking step to be found.
