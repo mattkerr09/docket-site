@@ -270,8 +270,8 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
            f'<a class="btn{size}" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
            f'data-ev-button="{src}">Buy Docket</a>']
     if try_app:
-        # Since 1.3.96 the app itself is free to try (the score and how many
-        # problems each area has), so that is the free thing beside Buy now.
+        # Since 1.3.96 the app itself is free to try (from 1.3.102: the score, the
+        # per-area counts and the top problem in full), so that is the free thing beside Buy now.
         # `try_app` is the download's tag. CEO, 2026-10-01: Monday's visitors
         # should see the free path above the fold.
         out.append(f'<a class="btn-ghost{size}" href="{download_url(try_app)}" data-ev="Download" '
@@ -318,7 +318,7 @@ def buy_strip(src: str) -> str:
               f'See a sample report</a> &middot; ' if HAS_SAMPLE else "")
     return (f'<aside class="buy-strip"><p><a href="{download_url(try_src)}" data-ev="Download" '
             f'data-ev-button="{try_src}"><strong>Try it free</strong></a>{intel}: your score and '
-            f'how many problems each area has &middot; '
+            f'how many problems each area has, and the top problem in full &middot; '
             f'<a href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
             f'data-ev-button="{src}">Buy once, {PRICE_STR}{PAY4}</a>, {REFUND_DAYS}-day refund &middot; '
             f'{sample}founding price {FOUNDING_NOW}{PAY4_FOUNDING}, for the first '
@@ -689,8 +689,8 @@ FOUNDING_LINE = (f"Founding price <strong>{FOUNDING_NOW} once{PAY4_FOUNDING}</st
 #: What the free version is, in Matthew's words of 2026-10-01 and the app's
 #: (freemode.py preset `basic`, from 1.3.96). One sentence, every page that says
 #: it, so the homepage, the FAQ, the download page and llms.txt cannot drift.
-FREE_LINE = ("Free: your score and how many problems in each category. Pro: what they "
-             "are, the ranked fix plan and the markup to paste.")
+FREE_LINE = ("Free: your score, how many problems in each category, and the top problem in full "
+             "with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to paste.")
 
 # --------------------------------------------------------------------------
 # Who the money is paid to.
@@ -1788,10 +1788,10 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
         # offers both; a page that shows only the price offers only Pro.
         + (('"offers":['
             '{"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD",'
-            '"description":"Your site\'s score and how many problems each area has.",'
+            '"description":"Your site\'s score, how many problems each area has and the top problem in full, with its fix.",'
             '"availability":"https://schema.org/InStock"},'
             '{"@type":"Offer","name":"Pro","price":"' + str(PRICE_TODAY) + '","priceCurrency":"USD",'
-            '"description":"What the problems are, the ranked fix plan and the markup to paste.",'
+            '"description":"The rest of the problems, the ranked fix plan and the markup to paste.",'
             '"availability":"https://schema.org/InStock"}],')
            if with_offer and with_free else
            ('"offers":{"@type":"Offer","price":"' + str(PRICE_TODAY) + '","priceCurrency":"USD",'
@@ -1888,7 +1888,7 @@ PHONE_LINK_JS = (
     "['via','rekomi_ref','affonso_referral','awc','cjevent','irclickid'].forEach(function(k){"
     "if(v[k])q.push(k+'='+encodeURIComponent(v[k]))})}catch(e){}return q.length?u+'&'+q.join('&'):u}"
     "function go(){var url=carry('https://docketseo.app/?utm_source=phone-share&utm_medium=share');"
-    "var text='Docket SEO for Mac is free to try: your site\\'s score and how many problems each area has. "
+    "var text='Docket SEO for Mac is free to try: your site\\'s score, how many problems each area has and the top problem in full. "
     "Open this on your Mac to download it.';"
     "if(typeof plausible==='function'){try{plausible('Send Mac Link')}catch(e){}}"
     "if(navigator.share){navigator.share({title:'Docket SEO for Mac',text:text,url:url}).catch(function(){})}"

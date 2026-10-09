@@ -123,7 +123,7 @@ click the button, there is no API key, and there is no per-call charge. Your ass
 talking to the app you bought, not to us.</p>
 
 <p>Which also means an unactivated copy gives your assistant the free version: the audit runs,
-and the result is the overall score and how many problems each area has, with a note saying
+and the result is the overall score, how many problems each area has and the top problem in full, with a note saying
 what the paid version adds. <code>list_checks</code> works either way, because it crawls
 nothing. Activate once with <code>docket licence --key YOUR-KEY</code>, or in the app, and the
 audit tool returns every finding from then on.

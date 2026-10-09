@@ -256,8 +256,8 @@ def body() -> str:
        the homepage — and ~/ops's shipped-activation and updater-signature
        gates, which test the DMG this page links, with nothing to measure.
        One quiet line keeps both. -->
-  <p class="hero-note">Try it free: the {DMG_SIZE} Mac download audits any site and shows your score
-  and how many problems each area has. Buying opens that same audit in full.{(f' Intel Mac? <a href="{download_url("home-try-free-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="home-try-free-intel">Get the Intel version</a>.') if INTEL else ''}</p>
+  <p class="hero-note">Try it free: the {DMG_SIZE} Mac download audits any site and shows your score,
+  how many problems each area has and the top problem in full. Buying opens that same audit in full.{(f' Intel Mac? <a href="{download_url("home-try-free-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="home-try-free-intel">Get the Intel version</a>.') if INTEL else ''}</p>
   <p class="hero-note">{MACOS}+ · {MAC_HW} · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
 </div>
 </div>
@@ -663,7 +663,7 @@ computed from free public data rather than a bought index.</p>
      Docket is the highest price in the portfolio, so the largest group leaving
      this page is people who are interested and not ready to spend it. Since
      the free version shipped they can try it: the free version runs the full audit and shows the
-     score and how many problems each area has (Matthew, 2026-10-01). This
+     score, how many problems each area has and (from 1.3.102) the top problem in full (Matthew, 2026-10-01; CEO, 2026-10-09). This
      block used to collect addresses for "when the free audit lands"; it has.
      The list is the CEO's to email, once, as it promised. -->
 <section class="sec"><div class="wrap" style="max-width:34rem">
@@ -785,7 +785,7 @@ def build() -> Path:
         # 149 characters. Names the free version (1.3.96) because this line is
         # the Google snippet and every pasted link's preview (CEO, 2026-10-02).
         desc=(f"Docket SEO audits any website on your Mac with {N_CHECKS} checks, ranked into a fix "
-              f"plan. Free to try: your score and problem counts per area. Pro {PRICE_STR} once."),
+              f"plan. Free to try: your score, counts and the top fix. Pro {PRICE_STR} once."),
         h1="SEO audits that tell you what to fix, in order",
         crumb="Docket for Mac",
         body=body(),

@@ -214,7 +214,7 @@ body{{background:{pal['paper']};color:{pal['ink']};
 <div class="row">{bare_shield}<span class="word">Docket</span><span class="chip">SEO</span></div>
 <div class="rule"></div>
 <div class="line">Audits any website on your Mac and ranks what to fix, in order.</div>
-<div class="free">Try it free: your score and how many problems each area has</div>
+<div class="free">Try it free: your score and the top problem in full</div>
 <div class="price">{price}</div>
 <div class="foot"><span>Mac \u00b7 {_site.MAC_HW} \u00b7 {floor}</span><span>docketseo.app</span></div>
 """

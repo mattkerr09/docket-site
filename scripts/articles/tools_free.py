@@ -81,7 +81,7 @@ def audit_next(src: str, *, what: str) -> str:
 <div class="checker-next" id="checker-next" hidden>
   <p><strong>That was {what}.</strong> Docket runs {N_CHECKS} checks across your whole site, ranked by
   what to fix first, each with where it is and the change to make. The free download shows your score
-  and how many problems each area has.</p>
+  and the top problem in full.</p>
   <div class="buy-block compact">
     <div class="hero-cta">
       <a class="btn" href="{download_url(try_src)}" data-ev="Download" data-ev-button="{try_src}">Try it free</a>

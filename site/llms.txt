@@ -57,10 +57,10 @@ Michigan, United States.
   code FOUNDINGDOCKET at checkout (if the checkout shows $349, enter it under "Have a
   discount code?").
 - Or four payments of $87.25 with Klarna or Afterpay, two weeks apart.
-- Free: your score and how many problems in each category. Pro: what they are, the
-  ranked fix plan and the markup to paste. The free version needs no key and no
-  account, and runs the same full audit; buying unlocks the audit already run, with no
-  second crawl.
+- Free: your score, how many problems in each category, and the top problem in full
+  with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to
+  paste. The free version needs no key and no account, and runs the same full audit;
+  buying unlocks the audit already run, with no second crawl.
 - The licence key arrives by email with the receipt and is pasted into the app once.
   One licence covers up to 3 Macs at a time: activating Docket on a Mac uses one, and
   deactivating one moves the licence to another machine.
@@ -88,10 +88,10 @@ Michigan, United States.
 
 ## Frequently asked questions
 
-- Is Docket free? Free: your score and how many problems in each category. Pro: what
-  they are, the ranked fix plan and the markup to paste. Pro is $349 once, $174.50 for
-  founding buyers, with a 30-day refund. There is no subscription and nothing to
-  cancel.
+- Is Docket free? Free: your score, how many problems in each category, and the top
+  problem in full with its fix. Pro: the rest of the problems, the ranked fix plan and
+  the markup to paste. Pro is $349 once, $174.50 for founding buyers, with a 30-day
+  refund. There is no subscription and nothing to cancel.
 - What if it isn't for me? Ask for a refund within 30 days of buying and you get your
   money back. No conditions and no questions. Write to support@docketseo.app, or reply
   to the receipt the payment processor emails you. The licence key is revoked, so the

@@ -1237,7 +1237,7 @@ version.</p>
 
 <h2>What is free</h2>
 <p>{FREE_LINE} The free version needs no key and no account and runs the same full audit, so
-you can see how much is wrong on your site before you pay to see what.</p>
+you can see how much is wrong on your site, and the worst of it, before you pay for the rest.</p>
 
 <h2>Before you buy: what it runs on</h2>
 <p>A Mac with {MAC_HW}, on {MACOS} or later. {NO_BUILDS} If

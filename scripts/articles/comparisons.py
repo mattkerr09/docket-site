@@ -923,7 +923,7 @@ you pay for it.</p>
              "Partly. Ahrefs Free includes Site Audit for verified websites, meaning sites you "
              "prove you own. Auditing a client's or a competitor's site needs a paid plan, where "
              "the number of projects on unverified sites is capped by plan. Docket's free version "
-             "shows your score and how many problems each area has, on any site, with no key."),
+             "shows your score, how many problems each area has and the top problem in full, on any site, with no key."),
             ("Does the Ahrefs site audit include a content audit?",
              "Its Site Audit page lists finding duplicate content, in title tags, meta "
              "descriptions, headings or low-quality pages, among its checks. This page tested "
@@ -1739,7 +1739,7 @@ against the same limit: it caps pages per session rather than crawls per month.<
              "does and Docket does not."),
             ("Does SEOptimer have a free trial?",
              f"Its pricing page offers a 14 day free trial on each plan. Docket's free version "
-             f"shows your score and how many problems each area has, with no key and no time "
+             f"shows your score, how many problems each area has and the top problem in full, with no key and no time "
              f"limit. The full report is a one-time purchase with a {REFUND_DAYS}-day refund."),
             ("How much does SEOptimer cost?",
              f"Its pricing page lists three plans, Starter, Pro and Max, at {price('seoptimer')}. "
@@ -2145,8 +2145,8 @@ your Search Console history or your analytics.</li>
 runner-up keywords and decay tracking, plus importing your existing Ahrefs or Semrush lists.
 Docket does none of this. It does not track rankings or research keywords.</li>
 <li><strong>White-label reports</strong>, which Docket does not have, and a free tier for one
-site. Docket's free version covers any site but shows only the score and how many problems each
-area has.</li>
+site. Docket's free version covers any site but shows only the score, how many problems each
+area has and the top problem in full.</li>
 </ul>
 
 <p>It also lists MCP access to up to thirteen scoped tools. Docket ships an MCP server as well,
@@ -2278,8 +2278,8 @@ hundred pages neither limit matters; past ten thousand, one of them does.</p>
 <p>On price they are not close. crawler.sh is {price('crawler-sh')}, renewed yearly. Docket is
 {PRICE_STR} once. A subscription is better value until roughly the fourth year and worse after
 it. Both can be tried free with no account: crawler.sh's free tier stops at 50 pages a
-session, and Docket's free version runs the whole audit but shows only the score and how many
-problems each area has.</p>
+session, and Docket's free version runs the whole audit but shows only the score, how many
+problems each area has and the top problem in full.</p>
 
 <p>One thing that is <em>not</em> a difference: both render JavaScript. They use their own
 engine rather than headless Chrome; Docket renders a sample of every audit in the WebKit that
@@ -2324,7 +2324,7 @@ what this page is built from.</p>
              f"crawler.sh, at {price('crawler-sh')} against Docket's {PRICE_STR} one-time. It "
              "renews yearly, so a subscription is better value until roughly the fourth year "
              "and worse after it. Both have a free version that needs no account; Docket's "
-             "shows the score and how many problems each area has, not what they are."),
+             "shows the score, how many problems each area has and the top problem in full, not the rest."),
             ("Do both render JavaScript?",
              "Yes, and it is not a difference between them. crawler.sh uses its own render "
              "engine rather than headless Chrome; Docket renders a sample of every audit in "
@@ -2386,7 +2386,7 @@ once, with no meter.</li>
     <td class="yes">Your Mac</td></tr>
 <tr><td>Try before buying</td><td>&ldquo;Start free 14-day trial&rdquo;, &ldquo;No credit card
     required&rdquo;</td><td>Free tier, 500 URLs, permanently</td>
-    <td>Free: your score and how many problems each area has. Then a {REFUND_DAYS}-day refund</td></tr>
+    <td>Free: your score, how many problems each area has and the top problem in full. Then a {REFUND_DAYS}-day refund</td></tr>
 </tbody></table></div>
 {_top_cta("vs-sr-sf")}
 {price_note_html()}
