@@ -1208,7 +1208,7 @@ def pricing_page() -> Path:
     # Every fact is from the terms, the refund policy and the FAQ, re-worded.
     body = f"""
 <p class="lede">One price, paid once. No subscription, no page meter, nothing to cancel.</p>
-{buy_block("pricing-page")}
+{buy_block("pricing-page", try_app="pricing-page-try-free", phone=False)}
 <p class="hero-note">Bought it already? <a href="{download_url('pricing-page')}" data-ev="Download"
 data-ev-button="pricing-page">Get the {DMG_SIZE} Mac download</a> and paste the key from your receipt.</p>
 

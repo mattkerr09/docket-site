@@ -250,7 +250,7 @@ def price_req_html() -> str:
 
 def buy_block(src: str, *, sample: bool = True, big: bool = True,
               anchor: bool = True, refund: bool = True, refund_link: bool = True,
-              try_free: bool = False, try_app: str = "") -> str:
+              try_free: bool = False, try_app: str = "", phone: bool = True) -> str:
     """Buy button, founding offer, what the alternatives cost, the refund.
 
     One definition, because the buy path is now on every kind of page and a
@@ -285,7 +285,7 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
         out.append(f'<a class="btn-ghost{size}" href="{SAMPLE_REPORT}" data-ev="Sample report" '
                    f'data-ev-button="{src}">See a full sample report</a>')
     out.append('</div>')
-    if try_app:
+    if try_app and phone:
         out.append(PHONE_LINK)
     out.append(f'<p class="hero-note founding-note">{FOUNDING_LINE}</p>')
     if anchor:

@@ -113,7 +113,7 @@ the file welcomes, and a bot-protection setting switched on by someone else is t
 site that meant to stay open is not. That is also why the checker below reads the file and says
 plainly what it cannot see.</p>
 {_checker("Most sites have never looked at what their file says to Anthropic&rsquo;s three crawlers.")}
-{buy_block("learn-what-is-claudebot")}
+{buy_block("learn-what-is-claudebot", try_app="learn-what-is-claudebot-try-free")}
 
 <h2>Related</h2>
 <ul>
@@ -208,7 +208,7 @@ time in six. The <a href="/index/ai-directives/">full breakdown is in the Docket
 and the firewall said no. Before writing an llms.txt, make sure the crawlers you are writing it for
 can reach your pages at all.</p>
 {_checker("An llms.txt only matters to a crawler that is allowed in.")}
-{buy_block("learn-what-is-llms-txt")}
+{buy_block("learn-what-is-llms-txt", try_app="learn-what-is-llms-txt-try-free")}
 
 <h2>Related</h2>
 <ul>

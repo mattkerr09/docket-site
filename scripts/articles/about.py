@@ -27,7 +27,7 @@ import facts as F  # noqa: E402
 from render import (
     FREE_CLAUSE,  # noqa: E402
     DMG_NAME, DMG_SIZE, MAC_HW, MACOS, ISSUES, N_CHECKS, N_LANES, PRICE_STR, RELEASE, REPO,
-    VOLUME, render, SELLER, SELLER_CITY, SUPPORT_EMAIL,
+    VOLUME, render, SELLER, SELLER_CITY, SUPPORT_EMAIL, buy_strip,
 )
 
 
@@ -114,6 +114,8 @@ was an inline SVG icon label reading "Close icon" and the real title was fine. T
 written up in full on <a href="/learn/googlebot-2mb-limit/">the page about the check</a>,
 because a tool that hides its mistakes is asking you to trust its output more than its
 authors do.</p>
+
+{buy_strip("about-page")}
 
 <p><a class="btn" href="/contact/">How to get in touch</a></p>
 """
