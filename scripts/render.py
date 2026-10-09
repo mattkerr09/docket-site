@@ -1526,6 +1526,63 @@ nav{z-index:40}
 .faq-item{border-top:1px solid var(--border);padding:1.15rem 0}
 .faq-item h3{font-size:var(--t-lg);margin:0 0 .4rem}
 .faq-item p{font-size:var(--t-md);margin:0}
+
+/* ---- Futuristic touches (Matthew, 2026-10-09) -------------------------------
+   "honestly bookbreaker looks great, make every site just a little bit better":
+   the touches from bookbreaker.bet's stylesheet that this site lacked, in
+   Docket's own teal (~/ops/launch/FUTURISTIC-TOUCHES.md). It reverses the
+   ":root" note above that "nothing glows" on his word. Colours, copy, prices
+   and links are unchanged; all of it is CSS. */
+
+/* 1. Light bleeding down from the top behind the hero, with a fainter pool off
+   to the right. Over the ruled grid, under the type. */
+.hero-sec::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(60% 55% at 50% 0%,rgba(45,212,191,.16),transparent 70%),
+             radial-gradient(35% 40% at 85% 10%,rgba(94,234,212,.06),transparent 70%)}
+
+/* 2. Frosted nav. It stays where it is rather than sticking: the founding-offer
+   bar already sticks to the top of every page, and two sticky bars at top:0 put
+   the nav under it. More see-through, so the glow and the grid show through it. */
+nav{background:rgba(7,12,13,.72);
+  -webkit-backdrop-filter:saturate(1.4) blur(16px);backdrop-filter:saturate(1.4) blur(16px)}
+
+/* 3. Buttons that glow: a top-lit gradient between Docket's two teals, a 1px
+   inset highlight and a soft teal shadow. --on-accent on #5EEAD4 is 13.1:1 and
+   on #2DD4BF 10.4:1, so the label clears AA everywhere on the gradient. */
+.btn{background:linear-gradient(180deg,#5EEAD4 0%,var(--brand) 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 10px 34px -10px rgba(45,212,191,.6);
+  transition:transform .15s ease,filter .15s ease,box-shadow .15s ease}
+.btn:hover{background:linear-gradient(180deg,#5EEAD4 0%,var(--brand) 100%);filter:brightness(1.08);
+  transform:translateY(-1px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 14px 40px -10px rgba(45,212,191,.75)}
+.btn-ghost{background:rgba(255,255,255,.03);transition:transform .15s ease,background .15s ease}
+.btn-ghost:hover{transform:translateY(-1px)}
+
+/* 4. Cards that lift: a faint top-lit fill, and on hover a 2px rise with a teal
+   ring and glow under the existing lift. */
+.card,.split-col{background:linear-gradient(180deg,var(--surface-2) 0%,var(--surface) 100%)}
+.card:hover,.split-col:hover{border-color:rgba(45,212,191,.28);
+  box-shadow:0 0 0 1px rgba(45,212,191,.12),0 30px 80px -30px rgba(45,212,191,.42),var(--lift-lg)}
+.split-col{transition:border-color .18s,transform .18s,box-shadow .18s}
+.split-col:hover{transform:translateY(-2px)}
+
+/* 5. The real report on a 3D stage: tilted back as it comes up the screen,
+   flat by the time it is half in view. Driven by the scroll itself
+   (animation-timeline), so no script is added; a browser without it, a phone
+   (where a tilt costs legibility) and reduced motion all get it flat. The
+   page's reveal script was tried first and flattens it as soon as 8% shows,
+   which is too soon to see. */
+.shot-stage{perspective:1600px}
+.shot-stage img{transform-origin:50% 0;
+  box-shadow:0 0 0 1px rgba(45,212,191,.18),0 40px 120px -30px rgba(45,212,191,.45),0 30px 60px -20px #000}
+@keyframes stage-in{from{transform:rotateX(14deg) scale(.98)}to{transform:none}}
+@supports (animation-timeline:view()){
+  @media(min-width:641px) and (prefers-reduced-motion:no-preference){
+    .shot-stage img{animation:stage-in linear both;animation-timeline:view();
+      animation-range:entry 0% cover 50%}}}
+
+@media(prefers-reduced-motion:reduce){
+  .btn,.btn:hover,.btn-ghost:hover,.split-col:hover{transform:none}}
 </style>
 """
 
@@ -1643,6 +1700,7 @@ KERR_MORE = """<p><strong>More from Kerr &amp; Company</strong><br>
 <a href="https://outlier.host/">Outlier</a>: private, offline AI for your Mac ·
 <a href="https://crispvideo.app/">Crisp Video</a>: restore and upscale video offline on your Mac ·
 <a href="https://adplaybook.app/">AdPlaybook</a>: the ad maker that proves its own claims ·
+<a href="https://bookbreaker.bet/">Bookbreaker</a>: free arbitrage and +EV betting app for Mac ·
 <a href="https://builtbykerr.com/">Built by Kerr</a>: websites and local SEO for Grand Rapids businesses ·
 <a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company LLC</a>: the company behind these apps</p>"""
 
@@ -1679,7 +1737,8 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <div><h2 class="foot-h">Also by the same maker</h2>
 <a href="https://adplaybook.app/">AdPlaybook: ad campaigns, sourced</a>
 <a href="https://outlier.host/">Outlier: local AI for Mac</a>
-<a href="https://crispvideo.app/">Crisp: offline video upscaler</a></div>
+<a href="https://crispvideo.app/">Crisp: offline video upscaler</a>
+<a href="https://bookbreaker.bet/">Bookbreaker: free +EV betting app for Mac</a></div>
 </div>
 <div class="foot-more">
 {KERR_MORE}

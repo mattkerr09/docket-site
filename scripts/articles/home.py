@@ -344,7 +344,7 @@ def body() -> str:
   a competitor's, because publishing someone else's audit without asking is not
   ours to do, and because this is the one report we cannot quietly curate.</p>
 </div>
-<figure class="shot">
+<figure class="shot shot-stage">
   <img src="/assets/real-audit-builtbykerr.webp" width="1280" height="1000"
        loading="lazy" decoding="async"
        alt="A Docket SEO audit of builtbykerr.com scoring 90 out of 100, grade A, with
