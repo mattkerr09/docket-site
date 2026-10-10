@@ -99,6 +99,9 @@ PageSpeed Insights or Search Console. The two findings you may see (one about im
 dimensions, one about layout-shift risk) are the same defect from two sides, and Docket links
 them so the action plan asks for the work once.</p>
 
+<p>A slow first screen has a second common cause: files that block the first paint. That one is
+at <a href="/how-to/fix-render-blocking-resources/">how to fix render-blocking resources</a>.</p>
+
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(

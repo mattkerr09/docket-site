@@ -1667,6 +1667,12 @@ and why a single-URL validator misses most of them.
 content jumps as they load. The fix, the four other causes, and why a crawler can report the
 risk but never the score. <a href="/how-to/fix-layout-shift/">How to fix layout shift →</a></p>
 
+<h2>Render-blocking resources</h2>
+<p>Scripts and stylesheets the browser must fetch before it paints anything. Defer the scripts,
+load the CSS the first screen does not need after it, and see a real before and after from a
+Docket audit, with what the check counts and what it cannot see.
+<a href="/how-to/fix-render-blocking-resources/">How to fix render-blocking resources →</a></p>
+
 <h2>Duplicate title tags</h2>
 <p>Rarely a penalty and routinely misdiagnosed: what duplicate titles actually cost you, the
 character limit that does not exist, and the fix by what caused them: pagination, facets,

@@ -249,7 +249,9 @@ what the engine looks at, lane by lane, is on
 <a href="/learn/what-docket-checks/">what Docket checks</a>. The lane's other markup-level
 finding is written up at <a href="/how-to/fix-layout-shift/">how to fix layout shift</a>, which
 carries the same limit from the other side: Docket infers layout-shift risk from markup and
-cannot measure the metric.</p>
+cannot measure the metric. Scripts and stylesheets that hold back the first paint, the third
+markup-level finding in this lane, are at
+<a href="/how-to/fix-render-blocking-resources/">how to fix render-blocking resources</a>.</p>
 
 <p>The closest relative outside this lane is response headers of a different kind.
 <a href="/how-to/fix-missing-security-headers/">Missing security headers</a> are set in the same

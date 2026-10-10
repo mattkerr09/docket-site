@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-10",
+  "before": {
+    "pages": 3,
+    "blocking_per_page": [
+      7,
+      7,
+      7
+    ],
+    "most_blocking": 7,
+    "finding": {
+      "title": "3 pages load 5+ render-blocking files",
+      "detail": "Worst: 7 blocking stylesheets/scripts on http://127.0.0.1:58410/. The browser cannot paint anything until each one downloads and parses, which is a direct hit to Largest Contentful Paint.",
+      "fix": "Add defer to scripts that are not needed for first paint, load non-critical CSS with media=\"print\" onload, and merge the small files that remain.",
+      "snippet": "<script src=\"/app.js\" defer></script>\n<link rel=\"stylesheet\" href=\"/extra.css\" media=\"print\" onload=\"this.media='all'\">"
+    }
+  },
+  "after": {
+    "pages": 3,
+    "blocking_per_page": [
+      1,
+      1,
+      1
+    ],
+    "most_blocking": 1,
+    "finding": null
+  },
+  "before_head": "<link rel=\"stylesheet\" href=\"/css/reset.css\">\n<link rel=\"stylesheet\" href=\"/css/layout.css\">\n<link rel=\"stylesheet\" href=\"/css/theme.css\">\n<link rel=\"stylesheet\" href=\"/css/widgets.css\">\n<script src=\"/js/vendor.js\"></script>\n<script src=\"/js/app.js\"></script>\n<script src=\"/js/analytics.js\"></script>",
+  "after_head": "<link rel=\"stylesheet\" href=\"/css/layout.css\">\n<link rel=\"stylesheet\" href=\"/css/reset.css\" media=\"print\" onload=\"this.media='all'\">\n<link rel=\"stylesheet\" href=\"/css/theme.css\" media=\"print\" onload=\"this.media='all'\">\n<link rel=\"stylesheet\" href=\"/css/widgets.css\" media=\"print\" onload=\"this.media='all'\">\n<script src=\"/js/vendor.js\" defer></script>\n<script src=\"/js/app.js\" defer></script>\n<script src=\"/js/analytics.js\" defer></script>"
+}
