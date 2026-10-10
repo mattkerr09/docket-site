@@ -140,8 +140,8 @@ is on their own page, at {al["ribbons"]} and {al["ink"]} characters:</p>
 right and still not be the one on screen.</li>
 <li><strong>Whether it is any good.</strong> A description can pass every check and say nothing. The
 test is whether someone choosing between your result and the one above it would pick yours.</li>
-<li><strong>Pixel width.</strong> It counts characters by width, not pixels, so a description of
-150 made of wide letters can still be cut on a phone.</li>
+<li><strong>Pixel width.</strong> It counts characters by width, not pixels, so a description
+inside the bounds that is made of wide letters can still be cut on a phone.</li>
 </ul>
 
 <h2>Where to start</h2>
