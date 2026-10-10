@@ -147,7 +147,6 @@ images that push the page around are covered in
         h1="How to fix render-blocking resources",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / render-blocking resources',
         body=body,
-        published=_RUN["date"],
         faq=[
             ("What does render-blocking mean?",
              "The browser has to download and read the file before it can paint anything. "
