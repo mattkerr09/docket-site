@@ -203,7 +203,8 @@ with the word "image" in them.</p>
 <li><strong>Image formats</strong>: <code>perf.modern_images</code>, in the performance lane.
 It looks at file extensions and reports pages carrying several JPEGs or PNGs where WebP or AVIF
 would do. Nothing to do with alt text; it never opens a file either, so it is reasoning from the
-extension.</li>
+extension. The fix, with a real before and after, is at
+<a href="/how-to/serve-images-in-modern-formats/">how to serve images in modern formats</a>.</li>
 <li><strong>Layout shift risk</strong>: <code>perf.cls_risk</code>, also performance. Same
 missing width and height, seen per page as a proportion rather than a count, and stated as risk
 rather than measurement because a crawl cannot measure Cumulative Layout Shift.</li>

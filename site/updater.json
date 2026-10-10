@@ -1,15 +1,15 @@
 {
-  "version": "1.3.103",
-  "notes": "Docket 1.3.103\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $349, or 4 payments of $87.25, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *The same service in two towns.* A business with a page per location was told\n  its location pages competed for one search. Pages that name different places\n  are now two searches, and a contact page no longer counts as competing with a\n  service page.\n- *Reviews of your own business.* Docket said marking up the reviews a business\n  shows about itself would put stars in search results. Google does not show\n  stars for those, so Docket now asks only for rating markup on pages about a\n  product, recipe, event or similar.\n- *Places of worship.* A church, mosque or synagogue was told to add\n  LocalBusiness markup and that it had no customer reviews. It is now told to\n  use its own type (Church, Mosque, Synagogue), and the customer-review advice\n  is for businesses only.\n\n99 checks across 13 areas.",
-  "pub_date": "2026-10-09T16:27:39Z",
+  "version": "1.3.104",
+  "notes": "Docket 1.3.104\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $349, or 4 payments of $87.25, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *Images in a picture element.* Docket told a site to wrap its photos in a\n  picture element with a WebP source and the JPEG as the fallback, and then still\n  reported the fallback JPEG as an old-format image, so following the advice did\n  not clear the finding. An image whose picture offers a WebP or AVIF source, or\n  whose srcset names only such files, is no longer counted. A picture of JPEG\n  sources, and a plain JPEG, still are.\n\n99 checks across 13 areas.",
+  "pub_date": "2026-10-10T21:01:07Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTNyYmRZdnhwcmNtRmQzSUZHZzB6MFhSMFFLWGtoT2o3Z2wvQW5pc0h3Yy8wR1IyS0pIeHdSZ1hFalRmcGx0cjJoMWk1aDNBNGNyUVV4aXNHV1preHdBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxNTYyNzE3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKdDRIck8rNzRYMG5GV202UWtsVU1oRlN5VjVIVXNmVGtibEpSODZmUTNkMS8rOUFRM2F1c2E1bnNlNWgvRjR1Rml3RGFRd0VBYVBxRjVYb2pnNU9FQ0E9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.103/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStZeDZwUlY2OGlJbUlWL0M1UU9pdlZYRUdqME1UZUJzVFlFMXhiSW0xU1N6eFdoZ1BlZ0J2MGdrV29MS09FTTI4cUxBV2VZVklaWnozM1kxMXRaZ2dBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxNjY1NjIwCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKNzJwcE1PY1haeGtIK3hsYWd6TTJoSklFT1JvRDJIeU8vZG1pK0dHb0Z5SStPL3FpRCs0Z1hFL0NUN3VNaGdDeVltcmVtU25tVlMzNkNjUklGZWtZQ3c9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.104/Docket.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXdHREdzVGNjeWFNYTlpYlBFTzU2NHdjdUxQTXlrOHl0VmQ2dDNZbmZPTVluOFJkVXR2SmpkNXFEc1YwRVVKMlNsTGNnVlJaQWdlM2VjVFllbWNhbWdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxNTYyOTQ5CWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6CnlCV2JQdDAwR1V0eTZ6NXpicUd2SWU0ZVdXWC9VWUlFQWlkUnZVR3MrK0g0OXhjMVAzZUFoUS9hOE5tVzAydXNtL3lhOGZIZHpuSmRDUy9MT05lbER3PT0K",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.103/Docket-x86_64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTkzcEdRa3Q0YXpYbFVPenBSVXRnNnBvUmpCZWVQd05lSGw3ZzJwaVB4dnBLa2Y1SVZuSEhKSXFGMURwenRKblkrOFpsd2x1cjFZVkxobElFMk5ENEF3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxNjY1ODI1CWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6ClNPKy9JbTYzanpVY2QvWnhDRlNwZm5PYmRWZEJSdHphOXhnUlJMNWw3MFh3TTBQUXFWeGJqUm9LVnIxb3VhT0g3N0I5VDc3cVo3cGdRTmdBT3ZNREJRPT0K",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.104/Docket-x86_64.app.tar.gz"
     }
   }
 }

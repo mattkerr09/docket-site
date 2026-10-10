@@ -100,7 +100,9 @@ dimensions, one about layout-shift risk) are the same defect from two sides, and
 them so the action plan asks for the work once.</p>
 
 <p>A slow first screen has a second common cause: files that block the first paint. That one is
-at <a href="/how-to/fix-render-blocking-resources/">how to fix render-blocking resources</a>.</p>
+at <a href="/how-to/fix-render-blocking-resources/">how to fix render-blocking resources</a>, and
+a third, heavy image files, is at
+<a href="/how-to/serve-images-in-modern-formats/">how to serve images in modern formats</a>.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """

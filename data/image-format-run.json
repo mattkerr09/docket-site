@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-10",
+  "before": {
+    "pages": 4,
+    "finding": {
+      "title": "16 images use JPEG/PNG instead of a modern format",
+      "detail": "Across 4 pages. WebP and AVIF are typically 25\u201350% smaller at the same visual quality, and every current browser supports WebP.",
+      "fix": "Convert images to WebP (or AVIF with a WebP fallback). Most CMS platforms and CDNs can do this automatically on upload.",
+      "snippet": "<picture>\n  <source srcset=\"/hero.avif\" type=\"image/avif\">\n  <source srcset=\"/hero.webp\" type=\"image/webp\">\n  <img src=\"/hero.jpg\" alt=\"\u2026\" width=\"1200\" height=\"800\">\n</picture>",
+      "count": 16
+    }
+  },
+  "picture": {
+    "pages": 4,
+    "finding": null
+  },
+  "webp": {
+    "pages": 4,
+    "finding": null
+  },
+  "markup": {
+    "before": "<img src=\"/img/bench.jpg\" alt=\"The bench of a repaired typewriter\" width=\"800\" height=\"600\">",
+    "picture": "<picture><source srcset=\"/img/bench.webp\" type=\"image/webp\"><img src=\"/img/bench.jpg\" alt=\"The bench of a repaired typewriter\" width=\"800\" height=\"600\"></picture>",
+    "webp": "<img src=\"/img/bench.webp\" alt=\"The bench of a repaired typewriter\" width=\"800\" height=\"600\">"
+  }
+}

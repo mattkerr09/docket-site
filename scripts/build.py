@@ -44,6 +44,7 @@ import howto_cls  # noqa: E402
 import howto_render_blocking  # noqa: E402
 import howto_link_text  # noqa: E402
 import howto_meta_descriptions  # noqa: E402
+import howto_image_formats  # noqa: E402
 import howto_hreflang  # noqa: E402
 import howto_js_audit  # noqa: E402
 import howto_content_audit  # noqa: E402
@@ -1425,6 +1426,7 @@ def main() -> int:
               howto_render_blocking.render_blocking(),
               howto_link_text.link_text(),
               howto_meta_descriptions.meta_descriptions(),
+              howto_image_formats.image_formats(),
               howto_mcp.mcp_setup(),
               howto_titles.duplicate_titles(),
               howto_title_width.title_tags(),

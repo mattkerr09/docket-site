@@ -1684,6 +1684,12 @@ real before and after from a Docket audit.
 a different one per page, put the point first, and see what Docket flags, with a real before and
 after. <a href="/how-to/write-meta-descriptions/">How to write meta descriptions →</a></p>
 
+<h2>Image formats</h2>
+<p>JPEG and PNG files are bigger than WebP and AVIF versions of the same picture. Swap the file or
+offer the modern one first with the JPEG as fallback, and see what Docket counts, including a bug in
+its own count that is fixed, with a real before and after.
+<a href="/how-to/serve-images-in-modern-formats/">How to serve images in modern formats →</a></p>
+
 <h2>Duplicate title tags</h2>
 <p>Rarely a penalty and routinely misdiagnosed: what duplicate titles actually cost you, the
 character limit that does not exist, and the fix by what caused them: pagination, facets,
