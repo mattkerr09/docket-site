@@ -1673,6 +1673,12 @@ load the CSS the first screen does not need after it, and see a real before and 
 Docket audit, with what the check counts and what it cannot see.
 <a href="/how-to/fix-render-blocking-resources/">How to fix render-blocking resources →</a></p>
 
+<h2>Vague and empty link text</h2>
+<p>"Click here", "read more" and icon links with no name tell a visitor, a screen reader and
+Google nothing about where they go. The phrases Docket counts, the fix for each pattern, and a
+real before and after from a Docket audit.
+<a href="/how-to/fix-vague-and-empty-link-text/">How to fix vague and empty link text →</a></p>
+
 <h2>Duplicate title tags</h2>
 <p>Rarely a penalty and routinely misdiagnosed: what duplicate titles actually cost you, the
 character limit that does not exist, and the fix by what caused them: pagination, facets,

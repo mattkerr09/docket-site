@@ -232,7 +232,9 @@ and the pages are very probably fine.</p>
 and the fix is at the host rather than in your copy. A doubled scheme is a moment's edit: delete
 the duplicate protocol, then confirm the repaired address loads, because Docket has not
 requested it. Every check Docket ships is listed in
-<a href="/learn/what-docket-checks/">what Docket checks</a>.</p>
+<a href="/learn/what-docket-checks/">what Docket checks</a>. A link that works can still be
+unhelpful: the ones that say only "click here" or "read more" are at
+<a href="/how-to/fix-vague-and-empty-link-text/">how to fix vague and empty link text</a>.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """

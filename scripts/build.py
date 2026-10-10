@@ -42,6 +42,7 @@ import home  # noqa: E402
 import howto_canonicals  # noqa: E402
 import howto_cls  # noqa: E402
 import howto_render_blocking  # noqa: E402
+import howto_link_text  # noqa: E402
 import howto_hreflang  # noqa: E402
 import howto_js_audit  # noqa: E402
 import howto_content_audit  # noqa: E402
@@ -1421,6 +1422,7 @@ def main() -> int:
               howto_schema.structured_data_errors(),
               howto_cls.layout_shift(),
               howto_render_blocking.render_blocking(),
+              howto_link_text.link_text(),
               howto_mcp.mcp_setup(),
               howto_titles.duplicate_titles(),
               howto_title_width.title_tags(),

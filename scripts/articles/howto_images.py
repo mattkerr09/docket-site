@@ -232,6 +232,10 @@ and height everywhere, because it is a find-and-replace and it is the highest-we
 check emits. Lazy-load the images below the fold on your heaviest pages and leave the
 hero eager.</p>
 
+<p>Alt text has a second job on a link that holds only an image: it is the link's name, and with
+none the link has no text at all. That case, and the "read more" links beside it, are at
+<a href="/how-to/fix-vague-and-empty-link-text/">how to fix vague and empty link text</a>.</p>
+
 <p>Everything else in the genre (renaming files to keyword strings, captioning every decorative
 divider, chasing a green tick on an accessibility widget) is work that Docket will not credit
 you for, because there is nothing there to measure.</p>

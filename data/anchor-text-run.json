@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-10",
+  "before": {
+    "onpage.anchor_vague": {
+      "title": "4 links use non-descriptive anchor text",
+      "detail": "Anchor text tells search engines what the linked page is about. Most common here: \"read more\" (2x), \"click here\" (1x), \"learn more\" (1x)",
+      "fix": "Replace with the destination's topic: \"Read more\" becomes \"our drain cleaning service\".",
+      "snippet": "",
+      "count": 4
+    },
+    "onpage.anchor_empty": {
+      "title": "4 links have no anchor text at all",
+      "detail": "Links wrapping only an icon or an image with no alt text carry no meaning for search engines or screen reader users.",
+      "fix": "Add alt text to the wrapped image, or an aria-label on the link.",
+      "snippet": "<a href=\"/contact\" aria-label=\"Contact us\"><svg \u2026></svg></a>",
+      "count": 4
+    },
+    "pages": 5
+  },
+  "after": {
+    "onpage.anchor_vague": null,
+    "onpage.anchor_empty": null,
+    "pages": 5
+  },
+  "before_home": "<ul>\n<li><h2>Servicing</h2><p>A full clean, oil and ribbon.</p><a href=\"/services.html\">Read more</a></li>\n<li><h2>Prices</h2><p>Fixed per machine.</p><a href=\"/prices.html\">Read more</a></li>\n<li><h2>The workshop</h2><p>Who we are.</p><a href=\"/about.html\">Click here</a></li>\n<li><h2>Get in touch</h2><p>Post one or bring one.</p><a href=\"/contact.html\">Learn more</a></li>\n</ul>\n<p class=\"icons\"><a href=\"/contact.html\"><img src=\"/img/mail.svg\"></a>\n<a href=\"/services.html\"><img src=\"/img/tools.svg\"></a>\n<a href=\"/prices.html\"><img src=\"/img/tag.svg\"></a>\n<a href=\"/about.html\"><img src=\"/img/home.svg\"></a></p>",
+  "after_home": "<ul>\n<li><h2><a href=\"/services.html\">Typewriter servicing</a></h2><p>A full clean, oil and ribbon.</p></li>\n<li><h2><a href=\"/prices.html\">What repair costs</a></h2><p>Fixed per machine.</p></li>\n<li><h2><a href=\"/about.html\">About the workshop</a></h2><p>Who we are.</p></li>\n<li><h2><a href=\"/contact.html\">Contact the workshop</a></h2><p>Post one or bring one.</p></li>\n</ul>\n<p class=\"icons\"><a href=\"/contact.html\" aria-label=\"Email the workshop\"><img src=\"/img/mail.svg\" alt=\"\"></a>\n<a href=\"/services.html\" aria-label=\"Typewriter servicing\"><img src=\"/img/tools.svg\" alt=\"\"></a>\n<a href=\"/prices.html\" aria-label=\"What repair costs\"><img src=\"/img/tag.svg\" alt=\"\"></a>\n<a href=\"/about.html\" aria-label=\"About the workshop\"><img src=\"/img/home.svg\" alt=\"\"></a></p>"
+}

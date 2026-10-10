@@ -116,8 +116,8 @@
   "hash": "4f2d6792dfc50dac"
  },
  "how-to/fix-broken-outbound-links/index.html": {
-  "date": "2026-10-09",
-  "hash": "4e847537f3e8bf41"
+  "date": "2026-10-10",
+  "hash": "ff337fbdf0ed54fb"
  },
  "how-to/fix-compression-and-caching/index.html": {
   "date": "2026-10-10",
@@ -140,8 +140,8 @@
   "hash": "2b426104fccad8ff"
  },
  "how-to/fix-image-seo-problems/index.html": {
-  "date": "2026-10-09",
-  "hash": "b183ca017ed1982a"
+  "date": "2026-10-10",
+  "hash": "dd609b09e36d8bb0"
  },
  "how-to/fix-invalid-hreflang-codes/index.html": {
   "date": "2026-10-09",
@@ -207,6 +207,10 @@
   "date": "2026-10-09",
   "hash": "dc55da9b37356cec"
  },
+ "how-to/fix-vague-and-empty-link-text/index.html": {
+  "date": "2026-10-10",
+  "hash": "6ba3edc1a48eff91"
+ },
  "how-to/fix-your-money-pages-first/index.html": {
   "date": "2026-10-09",
   "hash": "cd5233d6ba1a133f"
@@ -225,7 +229,7 @@
  },
  "how-to/index.html": {
   "date": "2026-10-10",
-  "hash": "8d364eea0aedcb92"
+  "hash": "241e44cc953a5980"
  },
  "how-to/javascript-seo-audit/index.html": {
   "date": "2026-10-09",
