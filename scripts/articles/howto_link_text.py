@@ -58,7 +58,7 @@ practices for Google</a>.</p>
 <p>People hit the same wall. Screen readers can read out every link on a page as a list, with the
 sentences around them removed. A list that says &ldquo;read more, read more, click here&rdquo; is
 no use to the person listening. The Web Content Accessibility Guidelines ask that a link's purpose
-be clear from its text together with its surrounding sentence (success criterion 2.4.4), and
+be clear from its text together with its surrounding sentence (the success criterion called Link Purpose, In Context), and
 descriptive text meets that without making anyone read around it.</p>
 
 <h2>What Docket reports</h2>
