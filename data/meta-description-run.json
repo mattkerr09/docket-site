@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-10",
+  "before": {
+    "onpage.description_missing": {
+      "title": "2 pages have no meta description",
+      "detail": "The description is the sales pitch under the headline in search results. Without one Google extracts an arbitrary sentence from the page, often a cookie notice or a nav label.",
+      "fix": "Write a 120\u2013155 character description per page: what the page offers and why to click.",
+      "count": 2
+    },
+    "onpage.description_long": {
+      "title": "1 meta description exceeds 165 characters",
+      "detail": "The tail gets truncated with an ellipsis, so any call to action at the end is lost.",
+      "fix": "Trim to under 165 characters with the key message first.",
+      "count": 1
+    },
+    "onpage.description_short": {
+      "title": "1 meta description is very short",
+      "detail": "Short descriptions leave free advertising space unused in the search result.",
+      "fix": "Expand to 120\u2013155 characters and include a reason to click.",
+      "count": 1
+    },
+    "index.duplicate_descriptions": {
+      "title": "2 pages share a duplicated meta description",
+      "detail": "Duplicate descriptions get rewritten by Google, so you lose control of the snippet.",
+      "fix": "Write a distinct description per page describing that page's specific offer.",
+      "count": 2
+    },
+    "pages": 7
+  },
+  "after": {
+    "onpage.description_missing": null,
+    "onpage.description_long": null,
+    "onpage.description_short": null,
+    "index.duplicate_descriptions": null,
+    "pages": 7
+  },
+  "before_desc": {
+    "index": "Vintage typewriter repair in Grand Rapids: a one-person workshop that cleans, oils and re-ribbons machines, with fixed prices quoted before work starts.",
+    "services": null,
+    "prices": null,
+    "about": "The typewriter workshop in Grand Rapids is one person with a bench, a stack of service manuals and a long waiting list, started after fixing a grandfather's portable, and it now repairs machines posted from all over the country, quoted fixed prices before any work begins.",
+    "contact": "Contact the workshop.",
+    "ribbons": "Typewriter ribbons and ink for vintage machines, explained simply, with fixed prices.",
+    "ink": "Typewriter ribbons and ink for vintage machines, explained simply, with fixed prices."
+  },
+  "after_desc": {
+    "index": "Vintage typewriter repair in Grand Rapids: a one-person workshop that cleans, oils and re-ribbons machines, with fixed prices quoted before work starts.",
+    "services": "What a full typewriter service covers: strip, clean, oil, new ribbon, platen check and margin and tab setting. See what each step does to your machine.",
+    "prices": "Typewriter repair prices, fixed per machine and quoted before we start: a basic clean and oil, a full service, a new platen and postage. See each one.",
+    "about": "One person, one bench, a stack of service manuals and a waiting list: who repairs your typewriter at our Grand Rapids workshop, and how I got started.",
+    "contact": "Book a typewriter in for repair at our Grand Rapids workshop: say the make and model, what it does wrong, and whether you will bring it or post it.",
+    "ribbons": "Which ribbon fits your typewriter: spool or cartridge, how to measure the spool on your machine and what to buy for the most common portables.",
+    "ink": "Can a dry typewriter ribbon be saved? How to tell a dry ribbon from a worn one, and when a few drops of ink will bring it back."
+  },
+  "before_len": {
+    "index": 152,
+    "services": 0,
+    "prices": 0,
+    "about": 272,
+    "contact": 21,
+    "ribbons": 85,
+    "ink": 85
+  },
+  "after_len": {
+    "index": 152,
+    "services": 151,
+    "prices": 150,
+    "about": 150,
+    "contact": 147,
+    "ribbons": 142,
+    "ink": 127
+  }
+}

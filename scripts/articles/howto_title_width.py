@@ -76,7 +76,9 @@ of one word crowding out anything that would make someone click.</p>
 
 <p>They are not a ranking factor and they do decide clicks. Google frequently rewrites them,
 which is not a reason to leave them empty. A rewrite drawn from a page with no description is
-usually a sentence you would not have chosen.</p>
+usually a sentence you would not have chosen. How to write one for every page, with a real
+before and after, is at
+<a href="/how-to/write-meta-descriptions/">how to write meta descriptions</a>.</p>
 
 <p>The same width rule applies, and the same duplication rule: a description repeated across a
 category's worth of pages tells a reader nothing about which result to click.</p>

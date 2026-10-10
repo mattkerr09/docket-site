@@ -1679,6 +1679,11 @@ Google nothing about where they go. The phrases Docket counts, the fix for each 
 real before and after from a Docket audit.
 <a href="/how-to/fix-vague-and-empty-link-text/">How to fix vague and empty link text →</a></p>
 
+<h2>Meta descriptions</h2>
+<p>Google writes most snippets itself and uses yours only when it describes the page better. Write
+a different one per page, put the point first, and see what Docket flags, with a real before and
+after. <a href="/how-to/write-meta-descriptions/">How to write meta descriptions →</a></p>
+
 <h2>Duplicate title tags</h2>
 <p>Rarely a penalty and routinely misdiagnosed: what duplicate titles actually cost you, the
 character limit that does not exist, and the fix by what caused them: pagination, facets,

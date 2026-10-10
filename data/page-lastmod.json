@@ -229,7 +229,7 @@
  },
  "how-to/index.html": {
   "date": "2026-10-10",
-  "hash": "241e44cc953a5980"
+  "hash": "99bcb74edfc443fd"
  },
  "how-to/javascript-seo-audit/index.html": {
   "date": "2026-10-09",
@@ -323,9 +323,13 @@
   "date": "2026-10-09",
   "hash": "63042428b5b9b250"
  },
+ "how-to/write-meta-descriptions/index.html": {
+  "date": "2026-10-10",
+  "hash": "262af3c7a42cb802"
+ },
  "how-to/write-title-tags-that-fit/index.html": {
-  "date": "2026-10-09",
-  "hash": "b3182aa66883dad9"
+  "date": "2026-10-10",
+  "hash": "dda4e74b7b883551"
  },
  "index.html": {
   "date": "2026-10-09",
@@ -508,8 +512,8 @@
   "hash": "33362ed0a20f0e83"
  },
  "tools/meta-tag-checker/index.html": {
-  "date": "2026-10-09",
-  "hash": "2b65d74cf8096de2"
+  "date": "2026-10-10",
+  "hash": "35ee909af208d79b"
  },
  "tools/robots-txt-tester/index.html": {
   "date": "2026-10-09",

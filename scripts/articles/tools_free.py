@@ -424,6 +424,7 @@ with the rest of its {N_CHECKS} checks, and ranks what to fix first.</p>
 <h2>Related</h2>
 <ul>
 <li><a href="/how-to/write-title-tags-that-fit/">Write title tags that fit</a></li>
+<li><a href="/how-to/write-meta-descriptions/">Write meta descriptions for every page</a></li>
 <li><a href="/tools/json-ld-checker/">JSON-LD structured data checker</a></li>
 <li><a href="/tools/robots-txt-tester/">Robots.txt tester</a></li>
 </ul>
