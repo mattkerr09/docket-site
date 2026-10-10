@@ -1,11 +1,12 @@
 {
-  "compiled": "2026-09-23",
+  "compiled": "2026-10-10",
   "dates": {
     ".": "2026-08-06",
     "about": "2026-08-07",
     "best": "2026-08-10",
     "best/free-seo-audit-tools": "2026-08-10",
     "bot": "2026-09-23",
+    "buy": "2026-09-28",
     "contact": "2026-08-07",
     "download": "2026-08-06",
     "for": "2026-08-06",
@@ -50,6 +51,7 @@
     "how-to/fix-paginated-pages-that-canonicalise-to-page-1": "2026-09-18",
     "how-to/fix-phone-links-that-will-not-dial": "2026-09-15",
     "how-to/fix-redirect-problems": "2026-09-15",
+    "how-to/fix-render-blocking-resources": "2026-10-10",
     "how-to/fix-sameas-that-claims-the-wrong-accounts": "2026-09-18",
     "how-to/fix-soft-404s": "2026-08-10",
     "how-to/fix-structured-data-errors": "2026-08-10",
@@ -116,13 +118,21 @@
     "learn/trust-and-authorship-signals": "2026-09-15",
     "learn/url-structure": "2026-09-16",
     "learn/what-docket-checks": "2026-08-08",
+    "learn/what-is-claudebot": "2026-09-28",
+    "learn/what-is-llms-txt": "2026-09-28",
     "learn/what-scout-checks": "2026-08-06",
     "learn/who-blocks-googlebot": "2026-09-15",
     "learn/www-vs-non-www": "2026-09-15",
     "legal/privacy": "2026-08-06",
     "legal/refunds": "2026-08-12",
     "legal/terms": "2026-08-06",
+    "pricing": "2026-09-30",
     "thank-you": "2026-08-19",
+    "tools": "2026-10-06",
+    "tools/ai-crawler-checker": "2026-09-28",
+    "tools/json-ld-checker": "2026-10-06",
+    "tools/meta-tag-checker": "2026-10-06",
+    "tools/robots-txt-tester": "2026-10-06",
     "vs": "2026-08-06",
     "vs/ahrefs-site-audit-alternative": "2026-08-06",
     "vs/crawler-sh-alternative": "2026-09-16",
@@ -139,7 +149,5 @@
     "vs/sitebulb-alternative": "2026-08-06",
     "vs/sitechecker-alternative": "2026-09-16"
   },
-  "uncommitted": [
-    "bot"
-  ]
+  "uncommitted": []
 }
