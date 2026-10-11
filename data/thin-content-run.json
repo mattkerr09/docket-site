@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-11",
+  "before": {
+    "content.very_thin": {
+      "title": "1 page has almost no content",
+      "detail": "Under 60 words of body text. Pages this sparse rarely rank for anything and, in volume, drag down how Google assesses the whole site.",
+      "fix": "For each: either write real content answering what a customer wants to know, merge it into a stronger related page, or remove it and redirect.\n\nOne exception, and Docket cannot tell it apart from the rest: if a page here is an index (a category listing, an A\u2013Z, a tag or author page), its job is to point elsewhere and a low word count is normal. Judge that one on whether the list is worth having and whether anything links to it, not on its length, and do not delete it.",
+      "count": 1
+    },
+    "content.thin": {
+      "title": "3 pages are thin (60\u2013150 words)",
+      "detail": "There is not enough here to answer a search intent fully, so these pages lose to competitors covering the same topic properly.",
+      "fix": "Expand each with the specifics its reader needs: for a commercial page that means what's included, pricing signals, service area and FAQs.\n\nOne exception, and Docket cannot tell it apart from the rest: if a page here is an index (a category listing, an A\u2013Z, a tag or author page), its job is to point elsewhere and a low word count is normal. Judge that one on whether the list is worth having and whether anything links to it, not on its length, and do not expand it into an article.",
+      "count": 3
+    },
+    "content.utility_pages_indexable": {
+      "title": "1 search or utility page is indexable",
+      "detail": "Site search, cart, login and confirmation pages carry almost no content because that is what they are for. These are indexable, so Google can put them in front of someone searching for your brand, and internal search results in particular are something Google asks site owners to keep out of the index.\n\nhttp://127.0.0.1:56983/search.html",
+      "fix": "Add `<meta name=\"robots\" content=\"noindex, follow\">` to these pages. Keep `follow` so the links on them are still crawled. Nothing needs writing. These pages are doing their job.",
+      "count": 1
+    },
+    "content.empty_archive": null,
+    "words": {
+      "/": 311,
+      "/services.html": 295,
+      "/prices.html": 297,
+      "/portable-repair.html": 42,
+      "/ribbon-replacement.html": 95,
+      "/platen-service.html": 117,
+      "/search.html": 40,
+      "/guides/": 34,
+      "/office-machines.html": 62,
+      "/guides/ribbons.html": 294,
+      "/guides/ink.html": 298,
+      "/guides/platens.html": 312
+    }
+  },
+  "after": {
+    "content.very_thin": null,
+    "content.thin": null,
+    "content.utility_pages_indexable": null,
+    "content.empty_archive": null,
+    "words": {
+      "/": 309,
+      "/services.html": 293,
+      "/prices.html": 295,
+      "/portable-repair.html": 227,
+      "/ribbon-replacement.html": 217,
+      "/platen-service.html": 212,
+      "/search.html": 38,
+      "/guides/": 32,
+      "/guides/ribbons.html": 292,
+      "/guides/ink.html": 296,
+      "/guides/platens.html": 310
+    }
+  }
+}

@@ -76,8 +76,8 @@
   "hash": "81c3c11ad6803bf4"
  },
  "how-to/content-audit/index.html": {
-  "date": "2026-10-10",
-  "hash": "2801601468bdc0b7"
+  "date": "2026-10-11",
+  "hash": "705a348b12e46403"
  },
  "how-to/cta-findings-that-miss-the-form/index.html": {
   "date": "2026-10-10",
@@ -172,8 +172,8 @@
   "hash": "e6f3e3b3fe56d6b3"
  },
  "how-to/fix-pages-competing-for-one-search/index.html": {
-  "date": "2026-10-10",
-  "hash": "2c3c2269ebbb75f5"
+  "date": "2026-10-11",
+  "hash": "3cc53feedcfa9b8e"
  },
  "how-to/fix-paginated-pages-that-canonicalise-to-page-1/index.html": {
   "date": "2026-10-10",
@@ -207,6 +207,10 @@
   "date": "2026-10-10",
   "hash": "e9f5a178b89f5174"
  },
+ "how-to/fix-thin-content-pages/index.html": {
+  "date": "2026-10-11",
+  "hash": "dab9b16ac20be1e4"
+ },
  "how-to/fix-vague-and-empty-link-text/index.html": {
   "date": "2026-10-10",
   "hash": "10d9aac91f5159ce"
@@ -228,8 +232,8 @@
   "hash": "b2def6758f12a62e"
  },
  "how-to/index.html": {
-  "date": "2026-10-10",
-  "hash": "9b36656603f40082"
+  "date": "2026-10-11",
+  "hash": "279c0dc97ca395dd"
  },
  "how-to/javascript-seo-audit/index.html": {
   "date": "2026-10-10",
@@ -424,8 +428,8 @@
   "hash": "fb322e002a7db1e1"
  },
  "learn/internal-link-equity/index.html": {
-  "date": "2026-10-10",
-  "hash": "acac8d95c1929cb1"
+  "date": "2026-10-11",
+  "hash": "c290498ae647f5b9"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-10-10",

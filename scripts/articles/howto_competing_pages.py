@@ -96,6 +96,10 @@ prefer, which returns you to the problem you started with.</p>
 
 <p><strong>Do not delete the loser.</strong> Deleting throws away the links along with the
 page. Redirect instead: it is the same outcome for the reader and a better one for the site.</p>
+
+<p>The same move fixes a short page with a stronger neighbour: fold what is worth keeping into it and
+redirect the thin one, as set out in
+<a href="/how-to/fix-thin-content-pages/">how to fix thin content pages</a>.</p>
 """
     return render(
         cat="how-to", slug="fix-pages-competing-for-one-search",

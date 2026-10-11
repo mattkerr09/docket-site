@@ -1690,6 +1690,12 @@ offer the modern one first with the JPEG as fallback, and see what Docket counts
 its own count that is fixed, with a real before and after.
 <a href="/how-to/serve-images-in-modern-formats/">How to serve images in modern formats →</a></p>
 
+<h2>Thin content</h2>
+<p>A short page is a candidate, not a verdict: Google says it has no preferred word count. Decide for
+each page whether to write it out, merge it into a stronger one, keep it out of the index or leave it
+alone, with a real before and after from a Docket audit.
+<a href="/how-to/fix-thin-content-pages/">How to fix thin content pages →</a></p>
+
 <h2>Duplicate title tags</h2>
 <p>Rarely a penalty and routinely misdiagnosed: what duplicate titles actually cost you, the
 character limit that does not exist, and the fix by what caused them: pagination, facets,

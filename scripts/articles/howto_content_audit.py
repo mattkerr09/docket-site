@@ -134,7 +134,8 @@ server's own record of which pages a crawler actually fetched, that is
 
 <p>And if the reason for the audit is that traffic arrives and does nothing, the content is
 probably not the constraint: <a href="/learn/conversion-audit/">a conversion audit</a> asks a
-different question of the same pages.</p>
+different question of the same pages. If the audit turns up short pages, what to do with each
+one is at <a href="/how-to/fix-thin-content-pages/">how to fix thin content pages</a>.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """.replace("{N_CHECKS}", str(N_CHECKS)).replace("{N_LANES}", str(N_LANES))
