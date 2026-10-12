@@ -1,5 +1,5 @@
 {
-  "compiled": "2026-10-11",
+  "compiled": "2026-10-12",
   "dates": {
     ".": "2026-08-06",
     "about": "2026-08-07",
@@ -70,6 +70,7 @@
     "how-to/placeholder-text-findings": "2026-09-18",
     "how-to/read-findings-that-blame-the-whole-site": "2026-09-18",
     "how-to/redirect-http-to-https": "2026-08-10",
+    "how-to/reduce-server-response-time": "2026-10-12",
     "how-to/schema-id-references": "2026-09-18",
     "how-to/schema-that-describes-someone-else": "2026-09-18",
     "how-to/schema-type-is-a-claim": "2026-09-18",
