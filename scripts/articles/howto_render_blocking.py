@@ -133,6 +133,7 @@ detail, and Docket counts the same defect across every page it crawls; see
 <p>A page with two blocking files has little to gain, and the check stays quiet below five for that
 reason. If the finding names a handful of pages on a large site, fix the shared template first,
 since one change in the head fixes all of them. A slow server is a different cause, covered in
+<a href="/how-to/reduce-server-response-time/">how to reduce server response time</a> and
 <a href="/how-to/fix-compression-and-caching/">how to fix compression and caching</a>, and
 images that push the page around are covered in
 <a href="/how-to/fix-layout-shift/">how to fix layout shift</a>.</p>

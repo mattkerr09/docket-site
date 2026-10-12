@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-12",
+  "slow": {
+    "finding": {
+      "check_id": "perf.ttfb_site",
+      "title": "Server responses are slow across the site (median 2.22s)",
+      "detail": "Median time to first byte is 2.22s against a 0.8s target. TTFB is the floor for Largest Contentful Paint: no amount of front-end optimisation can produce a fast page on top of a slow server.",
+      "fix": "In order of typical payoff: enable full-page caching, put a CDN in front of the site, check for slow database queries on the main templates, and move off shared hosting if the host is the bottleneck.",
+      "median": 2.217
+    }
+  },
+  "cached": {
+    "finding": {
+      "check_id": "perf.ttfb_site",
+      "title": "Pages are slow the first time they are requested (median 2.22s); repeated, 0.01s",
+      "detail": "Docket is the first visitor to most pages it reads, and the median first response was 2.22s against a 0.8s target. Asked again, the slowest pages answered in 0.01s: a cache in front of a slow server. Visitors who reach a page the cache already holds get it fast; the first visitor after it expires, and search engine crawlers working through pages nobody else has asked for lately, wait for the server.",
+      "fix": "Keep pages in the cache longer, warm it after publishing or clearing it, and speed up the origin itself: slow database queries on the main templates are the usual cause.",
+      "median": 2.217
+    }
+  },
+  "moderate": {
+    "finding": {
+      "check_id": "perf.ttfb_moderate",
+      "title": "Server response time is above target (median 1.13s)",
+      "detail": "Median TTFB 1.13s; Google's guidance is under 0.8s.",
+      "fix": "Add page caching and a CDN. This is usually a configuration change, not a rebuild.",
+      "median": 1.129
+    }
+  },
+  "fast": {
+    "finding": null
+  }
+}

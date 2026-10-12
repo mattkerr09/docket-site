@@ -120,8 +120,8 @@
   "hash": "ef521d86c203c76f"
  },
  "how-to/fix-compression-and-caching/index.html": {
-  "date": "2026-10-10",
-  "hash": "99ae239d585e5165"
+  "date": "2026-10-12",
+  "hash": "7cc8a9d7bd6971d3"
  },
  "how-to/fix-conflicting-canonicals/index.html": {
   "date": "2026-10-10",
@@ -188,8 +188,8 @@
   "hash": "8db5cab75e1966aa"
  },
  "how-to/fix-render-blocking-resources/index.html": {
-  "date": "2026-10-10",
-  "hash": "131fd71b8405dfd2"
+  "date": "2026-10-12",
+  "hash": "dc606b38264a166d"
  },
  "how-to/fix-sameas-that-claims-the-wrong-accounts/index.html": {
   "date": "2026-10-10",
@@ -232,8 +232,8 @@
   "hash": "b2def6758f12a62e"
  },
  "how-to/index.html": {
-  "date": "2026-10-11",
-  "hash": "279c0dc97ca395dd"
+  "date": "2026-10-12",
+  "hash": "8d6c5752004acd12"
  },
  "how-to/javascript-seo-audit/index.html": {
   "date": "2026-10-10",
@@ -266,6 +266,10 @@
  "how-to/redirect-http-to-https/index.html": {
   "date": "2026-10-10",
   "hash": "7cc1975335f6791b"
+ },
+ "how-to/reduce-server-response-time/index.html": {
+  "date": "2026-10-12",
+  "hash": "08b37b8004d2ebfd"
  },
  "how-to/schema-id-references/index.html": {
   "date": "2026-10-10",
@@ -428,8 +432,8 @@
   "hash": "fb322e002a7db1e1"
  },
  "learn/internal-link-equity/index.html": {
-  "date": "2026-10-11",
-  "hash": "c290498ae647f5b9"
+  "date": "2026-10-12",
+  "hash": "239684f1e9d75f22"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-10-10",

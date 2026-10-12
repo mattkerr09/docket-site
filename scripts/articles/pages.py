@@ -1696,6 +1696,12 @@ each page whether to write it out, merge it into a stronger one, keep it out of 
 alone, with a real before and after from a Docket audit.
 <a href="/how-to/fix-thin-content-pages/">How to fix thin content pages →</a></p>
 
+<h2>Server response time</h2>
+<p>If the server is slow to start sending a page, nothing on the page can make it fast. Cache whole
+pages, add a CDN, find what is slow behind the cache, and see what Docket measures and what it cannot,
+with a real four-way before and after.
+<a href="/how-to/reduce-server-response-time/">How to reduce server response time →</a></p>
+
 <h2>Duplicate title tags</h2>
 <p>Rarely a penalty and routinely misdiagnosed: what duplicate titles actually cost you, the
 character limit that does not exist, and the fix by what caused them: pagination, facets,
