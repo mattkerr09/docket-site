@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-12",
+  "before": {
+    "local.phone_inconsistent": {
+      "title": "4 different phone numbers appear across the site",
+      "detail": "Multiple numbers make it hard for Google to match the site to one business listing. Found: (616) 555-0134, (616) 555-0188, (616) 555-0199, (616) 555-0150. No second set of premises and no locator page could be found on this site, so these read as variants of one line rather than one number per branch.",
+      "fix": "Use one primary number consistently site-wide, matching your Google Business Profile exactly. Put secondary numbers only on the pages they belong to.",
+      "count": 4
+    },
+    "local.address_inconsistent": {
+      "title": "5 address variations appear across the site",
+      "detail": "Different formattings of an address ('St' vs 'Street', 'Ste 210' vs 'Suite 210') weaken the match between your site and your business listing.\n\nThe spellings found, most common first:\n\n* 412 mill street, suite 2 grand rapids 49503\n* 412 mill street\n* 412 mill st\n* 412 mill st ste\n* 412 mill street unit",
+      "fix": "Standardise on one exact format everywhere, matching your Google Business Profile character for character.",
+      "count": 5
+    },
+    "pages": 7
+  },
+  "after": {
+    "local.phone_inconsistent": null,
+    "local.address_inconsistent": null,
+    "pages": 7
+  },
+  "after_footer": "<footer><p>Mill Street Typewriter Repair</p><address>412 Mill Street, Suite 2, Grand Rapids, MI 49503</address><p><a href='tel:+16165550134'>(616) 555-0134</a></p></footer>"
+}

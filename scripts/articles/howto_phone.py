@@ -206,7 +206,9 @@ carry across to them; we have not surveyed phone links at all.</p>
 address and phone matching your listing, the place named in your titles) is on
 <a href="/for/local-business/">why your business is not in the map pack</a>. The lane this
 check sits in, and what else is in it, is on
-<a href="/learn/conversion-audit/">the conversion audit page</a>.</p>
+<a href="/learn/conversion-audit/">the conversion audit page</a>. If the trouble is several
+different numbers rather than a dead one, that is at
+<a href="/how-to/fix-inconsistent-name-address-phone/">how to fix inconsistent name, address and phone</a>.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """

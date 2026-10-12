@@ -193,7 +193,9 @@ the same facts. For the case where a field is present but empty, see
 &rarr;</a>. For judging an absence finding in general, see
 <a href="/learn/audit-tool-accuracy/">how to tell whether an audit tool is lying to you &rarr;</a>.
 For the map-pack signals themselves, see <a href="/for/local-business/">why your business is not in
-the map pack &rarr;</a>.</p>
+the map pack &rarr;</a>. And if the address is there but written several ways, that is at
+<a href="/how-to/fix-inconsistent-name-address-phone/">how to fix inconsistent name, address and phone
+&rarr;</a>.</p>
 """
     return render(
         cat="how-to", slug="where-an-audit-looks-for-your-address",

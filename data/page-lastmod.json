@@ -143,6 +143,10 @@
   "date": "2026-10-10",
   "hash": "d932bfd8fa055596"
  },
+ "how-to/fix-inconsistent-name-address-phone/index.html": {
+  "date": "2026-10-12",
+  "hash": "5c54b0008800f1e9"
+ },
  "how-to/fix-invalid-hreflang-codes/index.html": {
   "date": "2026-10-10",
   "hash": "a337072a41793b75"
@@ -180,8 +184,8 @@
   "hash": "4859800aebe7ac3f"
  },
  "how-to/fix-phone-links-that-will-not-dial/index.html": {
-  "date": "2026-10-10",
-  "hash": "2e1f939b147ad68c"
+  "date": "2026-10-12",
+  "hash": "2b362f5ca4173619"
  },
  "how-to/fix-redirect-problems/index.html": {
   "date": "2026-10-10",
@@ -233,7 +237,7 @@
  },
  "how-to/index.html": {
   "date": "2026-10-12",
-  "hash": "8d6c5752004acd12"
+  "hash": "a7b427f31e3ff181"
  },
  "how-to/javascript-seo-audit/index.html": {
   "date": "2026-10-10",
@@ -332,8 +336,8 @@
   "hash": "2589d50a78f987ac"
  },
  "how-to/where-an-audit-looks-for-your-address/index.html": {
-  "date": "2026-10-10",
-  "hash": "e9562e38c3e6b02c"
+  "date": "2026-10-12",
+  "hash": "30c6ac9cf57e002a"
  },
  "how-to/write-meta-descriptions/index.html": {
   "date": "2026-10-10",
@@ -433,7 +437,7 @@
  },
  "learn/internal-link-equity/index.html": {
   "date": "2026-10-12",
-  "hash": "239684f1e9d75f22"
+  "hash": "4fae18d94ffa2348"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-10-10",

@@ -1702,6 +1702,12 @@ pages, add a CDN, find what is slow behind the cache, and see what Docket measur
 with a real four-way before and after.
 <a href="/how-to/reduce-server-response-time/">How to reduce server response time →</a></p>
 
+<h2>Name, address and phone</h2>
+<p>Pick one exact form of your business name, address and phone, print it from one place and match your
+Google Business Profile. What Docket flags, what Google's local guidance does and does not say, and a real
+before and after.
+<a href="/how-to/fix-inconsistent-name-address-phone/">How to fix inconsistent name, address and phone →</a></p>
+
 <h2>Duplicate title tags</h2>
 <p>Rarely a penalty and routinely misdiagnosed: what duplicate titles actually cost you, the
 character limit that does not exist, and the fix by what caused them: pagination, facets,
