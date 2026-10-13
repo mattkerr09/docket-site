@@ -736,16 +736,11 @@ def write_llms_txt() -> None:
         ("The Docket crawler", f"{BASE}/bot/", "what Docket's audit crawler requests and "
          "the robots.txt rule that asks it to stay out"))
 
-    # The same list as the footer's "More from Kerr & Company", in the shape the
-    # sister sites' llms.txt files use (CEO, 2026-10-09).
-    out += ["", "## More from Kerr & Company", ""]
+    # The footer's one off-site link, and no sibling domains: Bing reads sitewide
+    # links between commonly owned sites as a link scheme (CEO, 2026-10-13).
+    out += ["", "## Made by", ""]
     out += links(
-        ("Outlier", "https://outlier.host/", "private, offline AI for your Mac"),
-        ("Crisp Video", "https://crispvideo.app/", "restore and upscale video offline on your Mac"),
-        ("AdPlaybook", "https://adplaybook.app/", "the ad maker that proves its own claims"),
-        ("Bookbreaker", "https://bookbreaker.bet/", "free arbitrage and +EV betting app for Mac"),
-        ("Built by Kerr", "https://builtbykerr.com/", "websites and local SEO for Grand Rapids businesses"),
-        ("Kerr & Company LLC", "https://kerrandcompanyholdings.com/", "the company behind these apps"))
+        ("Kerr & Company", "https://kerrandcompanyholdings.com/", "the company behind Docket"))
 
     def page_entry(path: str) -> tuple:
         page = (SITE / path.strip("/") / "index.html").read_text(encoding="utf-8")

@@ -255,6 +255,15 @@ if ! python3 scripts/verify_privacy_scripts.py --self-test; then
   exit 1
 fi
 
+echo "==> sibling-link gate"
+# outlier.host lost its Bing impressions (45-89 a day, then 0) within a day of a
+# block of links to every sibling domain reaching 171 of its pages. This site
+# carried the same block on all 155. Only /about/ may link a sibling domain.
+if ! python3 scripts/verify_sibling_links.py --self-test; then
+  echo "FAIL  a page links a sibling domain; Bing reads that as a link scheme"
+  exit 1
+fi
+
 echo "==> vendor-match gate"
 # The site takes the money and the app validates the key. If those name
 # different vendors, a customer pays and the app refuses what they were sent.

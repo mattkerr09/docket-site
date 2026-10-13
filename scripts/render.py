@@ -1682,35 +1682,23 @@ def _nav(checker: bool) -> str:
 NAV = _nav(True)
 NAV_ARM = _nav(False)
 
-#: The Kerr & Company cross-links. Matthew's order, 2026-09-26 01:28Z: every
-#: page's footer, plain followed links, Docket itself left out, in exactly the
-#: wording live on adplaybook.app (its commit 63444be). Keep it byte-for-byte
-#: the same as the sister sites rather than editing it here alone.
+#: The one off-site link in the footer: the company that takes the payment.
+#: Dodo shows buyers "Kerr & Company" and the card statement reads
+#: DODOPAY_KERRANDCOMPANY.
 #:
-#: External links only, on purpose: /vs/ahrefs-site-audit-alternative/ is in a
-#: title experiment until 2026-10-06 and its internal links must not move.
-#: The /learn/what-scout-checks/ redirect stub is not built by render(), so it
-#: carries a hand-typed copy of this paragraph; change both together.
-#: The company that takes the payment. Dodo shows buyers "Kerr & Company" and
-#: the card statement reads DODOPAY_KERRANDCOMPANY, and no product page linked
-#: the company site until 2026-09-29 (CEO; the same words Outlier carries). The
-#: link text is the legal name on the terms page and the company site's title,
-#: "Kerr & Company LLC"; "Holdings" is only in the domain (CEO, 2026-09-29).
-KERR_MORE = """<p><strong>More from Kerr &amp; Company</strong><br>
-<a href="https://outlier.host/">Outlier</a>: private, offline AI for your Mac ·
-<a href="https://crispvideo.app/">Crisp Video</a>: restore and upscale video offline on your Mac ·
-<a href="https://adplaybook.app/">AdPlaybook</a>: the ad maker that proves its own claims ·
-<a href="https://bookbreaker.bet/">Bookbreaker</a>: free arbitrage and +EV betting app for Mac ·
-<a href="https://builtbykerr.com/">Built by Kerr</a>: websites and local SEO for Grand Rapids businesses ·
-<a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company LLC</a>: the company behind these apps</p>"""
+#: This was a block of links to all five sibling domains on every page (Matthew's
+#: order, 2026-09-26). outlier.host's Bing impressions went from 45-89 a day to 8
+#: and then 0 within a day of the same block reaching 171 of its pages (CEO,
+#: 2026-10-13): Bing reads sitewide links between commonly owned sites as a link
+#: scheme, and Bing feeds ChatGPT search. So the footer carries this one link and
+#: no sibling domain is linked anywhere but /about/. scripts/verify_sibling_links.py
+#: fails the build on the first one that is. Do not add the block back.
+#: The /learn/what-scout-checks/ redirect stub is not built by render().
+KERR_MORE = """<p>Made by <a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company</a></p>"""
 
-#: The Ahrefs comparison is an experiment arm until 2026-10-06 and keeps the
-#: footer it had when the arm began. See LINK_ARMS.
-KERR_MORE_ARM = """<p><strong>More from Kerr &amp; Company</strong><br>
-<a href="https://outlier.host/">Outlier</a>: private, offline AI for your Mac ·
-<a href="https://crispvideo.app/">Crisp Video</a>: restore and upscale video offline on your Mac ·
-<a href="https://adplaybook.app/">AdPlaybook</a>: the ad maker that proves its own claims ·
-<a href="https://builtbykerr.com/">Built by Kerr</a>: websites and local SEO for Grand Rapids businesses</p>"""
+#: Kept as a name so FOOTER_ARM still builds; the arm ended and the two footers
+#: are now the same one line.
+KERR_MORE_ARM = KERR_MORE
 
 FOOTER = f"""<footer><div class="wrap-wide">
 <div class="foot-grid">
@@ -1734,11 +1722,6 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <a href="{REPO}/issues">Issue tracker</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a>
 <a href="/legal/refunds/">Refunds</a></div>
-<div><h2 class="foot-h">Also by the same maker</h2>
-<a href="https://adplaybook.app/">AdPlaybook: ad campaigns, sourced</a>
-<a href="https://outlier.host/">Outlier: local AI for Mac</a>
-<a href="https://crispvideo.app/">Crisp: offline video upscaler</a>
-<a href="https://bookbreaker.bet/">Bookbreaker: free +EV betting app for Mac</a></div>
 </div>
 <div class="foot-more">
 {KERR_MORE}

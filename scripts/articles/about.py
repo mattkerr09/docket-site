@@ -115,6 +115,11 @@ written up in full on <a href="/learn/googlebot-2mb-limit/">the page about the c
 because a tool that hides its mistakes is asking you to trust its output more than its
 authors do.</p>
 
+<h2>Who else is behind it</h2>
+
+<p>Kerr &amp; Company also makes Outlier, Crisp Video, AdPlaybook and Bookbreaker. They are
+separate products with their own sites, and none of them shares code or data with Docket.</p>
+
 {buy_strip("about-page")}
 
 <p><a class="btn" href="/contact/">How to get in touch</a></p>
