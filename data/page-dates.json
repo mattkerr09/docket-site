@@ -1,5 +1,5 @@
 {
-  "compiled": "2026-10-12",
+  "compiled": "2026-10-13",
   "dates": {
     ".": "2026-08-06",
     "about": "2026-08-07",
@@ -37,6 +37,7 @@
     "how-to/fix-compression-and-caching": "2026-09-15",
     "how-to/fix-conflicting-canonicals": "2026-08-10",
     "how-to/fix-duplicate-title-tags": "2026-08-10",
+    "how-to/fix-favicon-not-showing-in-search": "2026-10-13",
     "how-to/fix-heading-structure": "2026-09-15",
     "how-to/fix-hreflang-return-tags": "2026-08-10",
     "how-to/fix-image-seo-problems": "2026-09-15",
