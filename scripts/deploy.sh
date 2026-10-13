@@ -264,6 +264,14 @@ if ! python3 scripts/verify_sibling_links.py --self-test; then
   exit 1
 fi
 
+echo "==> hub-link nofollow gate"
+# The hub's /buy and /dl links are redirects to our checkout and the release file.
+# They carry rel="nofollow" (render.py adds it); this refuses a page that slipped by.
+if ! python3 scripts/verify_hub_nofollow.py --self-test; then
+  echo "FAIL  a built page links the hub's /buy or /dl without rel=nofollow"
+  exit 1
+fi
+
 echo "==> vendor-match gate"
 # The site takes the money and the app validates the key. If those name
 # different vendors, a customer pays and the app refuses what they were sent.

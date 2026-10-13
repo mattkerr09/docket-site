@@ -2142,6 +2142,29 @@ _OLD_END_BUTTON = '<p><a class="btn" href="/download/">Download Docket</a></p>'
 _ARTICLE_CATS = ("learn", "how-to", "vs", "best", "for", "tools")
 
 
+#: Our hub's Buy and Download links are redirects to our own checkout and to the
+#: release file, not endorsements. They carry rel="nofollow" so no link value is
+#: sent to a workers.dev host and a crawler does not read hundreds of them as a
+#: network of paid links. Found by the 10-13 audit of all seven sites: outlier.host
+#: had it, this site and two others did not, and Docket read Crisp's 493 hub links
+#: as 73% of its outbound links going to one domain.
+_HUB_LINK = re.compile(
+    r'<a\b(?P<attrs>[^>]*\bhref="' + re.escape(HUB) + r'/(?:buy|dl)/[^"]*"[^>]*)>')
+
+
+def nofollow_hub_links(html: str) -> str:
+    """Add rel="nofollow" to every static link to the hub's /buy and /dl."""
+    def fix(m):
+        attrs = m.group("attrs")
+        rel = re.search(r'\brel="([^"]*)"', attrs)
+        if rel:
+            if "nofollow" in rel.group(1).split():
+                return m.group(0)
+            return "<a" + attrs.replace(rel.group(0), f'rel="{rel.group(1)} nofollow"') + ">"
+        return f'<a rel="nofollow"{attrs}>'
+    return _HUB_LINK.sub(fix, html)
+
+
 def render(
     *,
     cat: str,
@@ -2456,6 +2479,8 @@ def render(
 </body>
 </html>
 """
+
+    html = nofollow_hub_links(html)
 
     out_dir = SITE.joinpath(*path_parts) if path_parts else SITE
     out_dir.mkdir(parents=True, exist_ok=True)
