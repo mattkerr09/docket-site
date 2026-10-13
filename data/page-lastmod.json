@@ -1,15 +1,15 @@
 {
  "about/index.html": {
   "date": "2026-10-13",
-  "hash": "b403b66a0981f211"
+  "hash": "e7942c6fe3a23ede"
  },
  "best/free-seo-audit-tools/index.html": {
   "date": "2026-10-13",
-  "hash": "96ffdd7fa81f8940"
+  "hash": "7573e1767ee4e8c5"
  },
  "best/index.html": {
   "date": "2026-10-13",
-  "hash": "70b87282e924a3be"
+  "hash": "6cb43d0ef229357e"
  },
  "bot/index.html": {
   "date": "2026-10-05",
@@ -21,343 +21,343 @@
  },
  "download/index.html": {
   "date": "2026-10-13",
-  "hash": "8b5085ad70a20b21"
+  "hash": "6a440bb55b5d529e"
  },
  "for/agencies/index.html": {
   "date": "2026-10-13",
-  "hash": "6d0ed3b4dc267039"
+  "hash": "843d50d756c595e0"
  },
  "for/developers/index.html": {
   "date": "2026-10-13",
-  "hash": "8969032b3249fe80"
+  "hash": "9fc427d42503aa95"
  },
  "for/ecommerce/index.html": {
   "date": "2026-10-13",
-  "hash": "3f99fd2cc7391756"
+  "hash": "d80cecbe2e2a186d"
  },
  "for/index.html": {
   "date": "2026-10-13",
-  "hash": "0abb2a154b8edc66"
+  "hash": "d97aa07397c1c642"
  },
  "for/local-business/index.html": {
   "date": "2026-10-13",
-  "hash": "59a9c9afb738abbf"
+  "hash": "c887805f4b38a41a"
  },
  "for/saas/index.html": {
   "date": "2026-10-13",
-  "hash": "073640f96e7b2bcd"
+  "hash": "64a486d72be47d28"
  },
  "how-to/addresses-on-your-site-that-are-not-yours/index.html": {
   "date": "2026-10-13",
-  "hash": "58ae92c19a2674cf"
+  "hash": "06b497576579fd80"
  },
  "how-to/analytics-findings-name-the-tag/index.html": {
   "date": "2026-10-13",
-  "hash": "eceab5fd03d6f43f"
+  "hash": "cbb7d7d0831e3cc0"
  },
  "how-to/audit-your-site-from-an-ai-assistant/index.html": {
   "date": "2026-10-13",
-  "hash": "68d022f3e236c2d7"
+  "hash": "b81326d33e7eb770"
  },
  "how-to/backlink-audit/index.html": {
   "date": "2026-10-13",
-  "hash": "c617d9add1873093"
+  "hash": "68ddad4e5b63827e"
  },
  "how-to/check-mobile-seo-from-a-crawl/index.html": {
   "date": "2026-10-13",
-  "hash": "0a2ee8abb5e9e4b1"
+  "hash": "9a539d8e79623254"
  },
  "how-to/check-the-count-on-a-finding/index.html": {
   "date": "2026-10-13",
-  "hash": "eaca6bb9c295cc61"
+  "hash": "39fabc8e64b3c4a2"
  },
  "how-to/completeness-findings-assume-your-type/index.html": {
   "date": "2026-10-13",
-  "hash": "3f45ba780062b75a"
+  "hash": "2c8da9df9222404d"
  },
  "how-to/content-audit/index.html": {
   "date": "2026-10-13",
-  "hash": "d56fd9914fabc910"
+  "hash": "4e586d874a16c1c9"
  },
  "how-to/cta-findings-that-miss-the-form/index.html": {
   "date": "2026-10-13",
-  "hash": "636d7579f4bb5015"
+  "hash": "e07eb9fbd4d18dbc"
  },
  "how-to/findings-from-phrase-matching/index.html": {
   "date": "2026-10-13",
-  "hash": "17d2e1aa17cf20e0"
+  "hash": "a59d7d705771a9eb"
  },
  "how-to/findings-that-double-count/index.html": {
   "date": "2026-10-13",
-  "hash": "ec7e09ca120cd231"
+  "hash": "d143e127b3030f17"
  },
  "how-to/findings-that-flag-correct-pages/index.html": {
   "date": "2026-10-13",
-  "hash": "326166ae0e747b1a"
+  "hash": "a7b66a7666c2860b"
  },
  "how-to/findings-that-name-no-host/index.html": {
   "date": "2026-10-13",
-  "hash": "1bf6d021c1724262"
+  "hash": "c5626188ecafd86f"
  },
  "how-to/fix-a-site-that-says-something-different-every-page/index.html": {
   "date": "2026-10-13",
-  "hash": "2ee3729be599c20f"
+  "hash": "4e52f345f0572a23"
  },
  "how-to/fix-a-site-that-sounds-like-several-companies/index.html": {
   "date": "2026-10-13",
-  "hash": "600797e7df2392de"
+  "hash": "179f122b263d3437"
  },
  "how-to/fix-ai-crawler-access/index.html": {
   "date": "2026-10-13",
-  "hash": "b93b0ccb8ef91215"
+  "hash": "daaf518ada17cbc2"
  },
  "how-to/fix-ai-crawlers-blocked-by-your-cdn/index.html": {
   "date": "2026-10-13",
-  "hash": "1057240ca33d53b8"
+  "hash": "704437d71112a8bd"
  },
  "how-to/fix-broken-outbound-links/index.html": {
   "date": "2026-10-13",
-  "hash": "46d44f903053def3"
+  "hash": "43100ac8a549db10"
  },
  "how-to/fix-compression-and-caching/index.html": {
   "date": "2026-10-13",
-  "hash": "a7771f3aca9f35ed"
+  "hash": "2f058e612d5578e4"
  },
  "how-to/fix-conflicting-canonicals/index.html": {
   "date": "2026-10-13",
-  "hash": "edb2646ab4342f8b"
+  "hash": "be12a76c8b6b70bc"
  },
  "how-to/fix-duplicate-title-tags/index.html": {
   "date": "2026-10-13",
-  "hash": "e059ddc6896ab504"
+  "hash": "1b5ff165db076976"
  },
  "how-to/fix-favicon-not-showing-in-search/index.html": {
   "date": "2026-10-13",
-  "hash": "d453efa1551c1841"
+  "hash": "4965717d21b51507"
  },
  "how-to/fix-heading-structure/index.html": {
   "date": "2026-10-13",
-  "hash": "c3623880654118d3"
+  "hash": "01ed4afd9f50e301"
  },
  "how-to/fix-hreflang-return-tags/index.html": {
   "date": "2026-10-13",
-  "hash": "a196fe0afc9afe5c"
+  "hash": "f0731e430dc94c63"
  },
  "how-to/fix-image-seo-problems/index.html": {
   "date": "2026-10-13",
-  "hash": "424befa94cfbd31d"
+  "hash": "31ba0c2b3ed7765a"
  },
  "how-to/fix-inconsistent-name-address-phone/index.html": {
   "date": "2026-10-13",
-  "hash": "e2def1199e273c5d"
+  "hash": "0edab9115265d243"
  },
  "how-to/fix-invalid-hreflang-codes/index.html": {
   "date": "2026-10-13",
-  "hash": "896ffb90214d9173"
+  "hash": "5528b64d2e9f0105"
  },
  "how-to/fix-lang-attribute-mismatch/index.html": {
   "date": "2026-10-13",
-  "hash": "09fa410269f1c609"
+  "hash": "37fdd600ba303aa8"
  },
  "how-to/fix-layout-shift/index.html": {
   "date": "2026-10-13",
-  "hash": "2500cb9798cb3d4d"
+  "hash": "0d831a85a8365187"
  },
  "how-to/fix-meta-refresh-redirects/index.html": {
   "date": "2026-10-13",
-  "hash": "8030e1ea7b374112"
+  "hash": "9c9a69d5e5adbb3e"
  },
  "how-to/fix-missing-open-graph-tags/index.html": {
   "date": "2026-10-13",
-  "hash": "d9ef037a7fb54a33"
+  "hash": "869cb1d3f13c1023"
  },
  "how-to/fix-missing-security-headers/index.html": {
   "date": "2026-10-13",
-  "hash": "996954d60ed10624"
+  "hash": "21fb5756b0ef9a78"
  },
  "how-to/fix-navigation-that-needs-javascript/index.html": {
   "date": "2026-10-13",
-  "hash": "c5406e6c12c7da48"
+  "hash": "1b2d0b636cb2c78c"
  },
  "how-to/fix-pages-competing-for-one-search/index.html": {
   "date": "2026-10-13",
-  "hash": "02065111f2111822"
+  "hash": "8bcf4a9b7f1ba11d"
  },
  "how-to/fix-paginated-pages-that-canonicalise-to-page-1/index.html": {
   "date": "2026-10-13",
-  "hash": "b6faccfd696ae3fd"
+  "hash": "58fc3d7eb659d3d0"
  },
  "how-to/fix-phone-links-that-will-not-dial/index.html": {
   "date": "2026-10-13",
-  "hash": "58066cb47cc4fdb8"
+  "hash": "20327d2cd09c984e"
  },
  "how-to/fix-redirect-problems/index.html": {
   "date": "2026-10-13",
-  "hash": "894a342afb808ba0"
+  "hash": "c563dee46f2b610e"
  },
  "how-to/fix-render-blocking-resources/index.html": {
   "date": "2026-10-13",
-  "hash": "816d981ac8060211"
+  "hash": "3e38a36f080c74fc"
  },
  "how-to/fix-sameas-that-claims-the-wrong-accounts/index.html": {
   "date": "2026-10-13",
-  "hash": "8e3e5c28ecce7c1a"
+  "hash": "450182b17acc3863"
  },
  "how-to/fix-soft-404s/index.html": {
   "date": "2026-10-13",
-  "hash": "7ab98f6c67162aa7"
+  "hash": "8f178b7d09a5d730"
  },
  "how-to/fix-structured-data-errors/index.html": {
   "date": "2026-10-13",
-  "hash": "5164d1613245faca"
+  "hash": "63359103ce7ce9f7"
  },
  "how-to/fix-structured-data-that-does-not-match-the-page/index.html": {
   "date": "2026-10-13",
-  "hash": "60aa8ad27a93552c"
+  "hash": "3b383953d2579c2a"
  },
  "how-to/fix-thin-content-pages/index.html": {
   "date": "2026-10-13",
-  "hash": "e5b3663b5ac87424"
+  "hash": "747fd7addeb6abec"
  },
  "how-to/fix-vague-and-empty-link-text/index.html": {
   "date": "2026-10-13",
-  "hash": "df46ea5bb46aaabf"
+  "hash": "a209a70f43e8c625"
  },
  "how-to/fix-your-money-pages-first/index.html": {
   "date": "2026-10-13",
-  "hash": "a3c8493bac91ce0b"
+  "hash": "27d070bd4e22eb3f"
  },
  "how-to/gate-a-deploy-on-seo-regressions/index.html": {
   "date": "2026-10-13",
-  "hash": "12fd46cc2df9087f"
+  "hash": "3c3ce1aee6b1e78e"
  },
  "how-to/hreflang-targets-that-look-dead/index.html": {
   "date": "2026-10-13",
-  "hash": "1117a827dd21711d"
+  "hash": "bceef6626c8b62c7"
  },
  "how-to/identical-content-three-causes/index.html": {
   "date": "2026-10-13",
-  "hash": "5611063a46bc1746"
+  "hash": "42e812b0420f26a9"
  },
  "how-to/index.html": {
   "date": "2026-10-13",
-  "hash": "e7617e75f93b851a"
+  "hash": "8389b1a25b6dab62"
  },
  "how-to/javascript-seo-audit/index.html": {
   "date": "2026-10-13",
-  "hash": "58db4c0f1afe7417"
+  "hash": "b70f1cf0264ec17d"
  },
  "how-to/json-ld-parser-errors/index.html": {
   "date": "2026-10-13",
-  "hash": "eafc0c5c027a1945"
+  "hash": "d9dcf86b9446f3f6"
  },
  "how-to/outrank-a-bigger-competitor/index.html": {
   "date": "2026-10-13",
-  "hash": "d90f0b4ac8284e00"
+  "hash": "79caae21a073a320"
  },
  "how-to/pages-an-audit-could-not-reach/index.html": {
   "date": "2026-10-13",
-  "hash": "966042a5eb59eeca"
+  "hash": "7941f046b22d3237"
  },
  "how-to/pixels-reported-on-zero-pages/index.html": {
   "date": "2026-10-13",
-  "hash": "18e8f544aadf4f6f"
+  "hash": "9fe4f56da45e1507"
  },
  "how-to/placeholder-text-findings/index.html": {
   "date": "2026-10-13",
-  "hash": "7e37999543d265af"
+  "hash": "058b833312253af1"
  },
  "how-to/read-findings-that-blame-the-whole-site/index.html": {
   "date": "2026-10-13",
-  "hash": "ad80ff699861f1c1"
+  "hash": "9a7ed269b8fdfa5a"
  },
  "how-to/redirect-http-to-https/index.html": {
   "date": "2026-10-13",
-  "hash": "3bca21fec0094e08"
+  "hash": "a62a60a5658a3ee3"
  },
  "how-to/reduce-server-response-time/index.html": {
   "date": "2026-10-13",
-  "hash": "ffcd4c053946c43b"
+  "hash": "dd7110cb357b3e20"
  },
  "how-to/schema-id-references/index.html": {
   "date": "2026-10-13",
-  "hash": "db3661e26b59de56"
+  "hash": "fb22b96ac64653b1"
  },
  "how-to/schema-that-describes-someone-else/index.html": {
   "date": "2026-10-13",
-  "hash": "95f9424697843c5c"
+  "hash": "424bd7e05522d8cb"
  },
  "how-to/schema-type-is-a-claim/index.html": {
   "date": "2026-10-13",
-  "hash": "5b6b30f1fb36bac8"
+  "hash": "c4643d10f31b1bdd"
  },
  "how-to/serve-images-in-modern-formats/index.html": {
   "date": "2026-10-13",
-  "hash": "b527cc77fabe6e5e"
+  "hash": "605ca74b3159f054"
  },
  "how-to/sitemap-urls-that-are-not-stale/index.html": {
   "date": "2026-10-13",
-  "hash": "681695efca5a97d9"
+  "hash": "03497cbd011a9b60"
  },
  "how-to/stop-indexing-site-search-and-cart-pages/index.html": {
   "date": "2026-10-13",
-  "hash": "8c6b91701f27de82"
+  "hash": "c96d0fc066c79dc8"
  },
  "how-to/tell-a-rate-limit-from-a-block/index.html": {
   "date": "2026-10-13",
-  "hash": "5a4d2a71e3231efb"
+  "hash": "83b5e62270b64839"
  },
  "how-to/telling-furniture-from-content/index.html": {
   "date": "2026-10-13",
-  "hash": "6c41be1efecbfaa3"
+  "hash": "c1f124034a472a7c"
  },
  "how-to/what-a-dead-crawler-rule-costs/index.html": {
   "date": "2026-10-13",
-  "hash": "763bf305c8d67124"
+  "hash": "af2a1da4dbb57f64"
  },
  "how-to/what-your-site-says-you-are-called/index.html": {
   "date": "2026-10-13",
-  "hash": "150ce9fd3705ccc8"
+  "hash": "be2d103ff59e03e9"
  },
  "how-to/when-a-check-cannot-see-your-markup/index.html": {
   "date": "2026-10-13",
-  "hash": "dfbaa0c503bdf2c9"
+  "hash": "368c3cd86951df60"
  },
  "how-to/when-a-field-is-there-and-still-missing/index.html": {
   "date": "2026-10-13",
-  "hash": "790fbba3740059ba"
+  "hash": "04da25fd4e4a2e94"
  },
  "how-to/when-a-fix-creates-a-false-negative/index.html": {
   "date": "2026-10-13",
-  "hash": "5de18213f53d9212"
+  "hash": "25a56d568ddc9d7c"
  },
  "how-to/when-a-policy-is-reported-as-a-defect/index.html": {
   "date": "2026-10-13",
-  "hash": "96e7fa804f8f8fe4"
+  "hash": "9d94c3a170175ea8"
  },
  "how-to/when-a-report-says-nothing-at-all/index.html": {
   "date": "2026-10-13",
-  "hash": "288b2a17affee567"
+  "hash": "812190306b6ad210"
  },
  "how-to/where-an-audit-looks-for-your-address/index.html": {
   "date": "2026-10-13",
-  "hash": "bbb0acac754cf188"
+  "hash": "628e8c185f5f2f88"
  },
  "how-to/write-meta-descriptions/index.html": {
   "date": "2026-10-13",
-  "hash": "785ffa64bf527d02"
+  "hash": "1b0483aed90eea35"
  },
  "how-to/write-title-tags-that-fit/index.html": {
   "date": "2026-10-13",
-  "hash": "c4b4aabc18219b0a"
+  "hash": "c4bda976d0792da9"
  },
  "index.html": {
   "date": "2026-10-13",
-  "hash": "f81853697ae82638"
+  "hash": "f0e35e82b1e046b1"
  },
  "index/ai-directives/index.html": {
   "date": "2026-10-13",
-  "hash": "20d2e9a0fbb1f5a8"
+  "hash": "4fa4eb14ac755710"
  },
  "index/index.html": {
   "date": "2026-10-05",
@@ -365,147 +365,147 @@
  },
  "learn/ai-crawler-directives/index.html": {
   "date": "2026-10-13",
-  "hash": "51e4983dd0e160d2"
+  "hash": "1018b4e4082e8a84"
  },
  "learn/ai-crawlers-and-sitemaps/index.html": {
   "date": "2026-10-13",
-  "hash": "5e40d240e33c57b6"
+  "hash": "12aa2d1ba179a4d8"
  },
  "learn/ai-search-visibility/index.html": {
   "date": "2026-10-13",
-  "hash": "a0dc12abaa964358"
+  "hash": "db8025e35bf07ed1"
  },
  "learn/ai-sounding-copy/index.html": {
   "date": "2026-10-13",
-  "hash": "e1addb6dabb1e5f6"
+  "hash": "2120f43dcaee7d93"
  },
  "learn/ai-substitution/index.html": {
   "date": "2026-10-13",
-  "hash": "563462c87e24a09b"
+  "hash": "6c12c979d5063f21"
  },
  "learn/answer-extractability/index.html": {
   "date": "2026-10-13",
-  "hash": "2179dbb2c87588c3"
+  "hash": "579924837c1f01e9"
  },
  "learn/audit-tool-accuracy/index.html": {
   "date": "2026-10-13",
-  "hash": "3915d7c07947ceda"
+  "hash": "8e9fa6e16c03a65d"
  },
  "learn/brand-consistency/index.html": {
   "date": "2026-10-13",
-  "hash": "6f1ba057b90731af"
+  "hash": "e5f325940fc34b11"
  },
  "learn/canonical-tags/index.html": {
   "date": "2026-10-13",
-  "hash": "5131d19e58311912"
+  "hash": "6f0b1eec8639e77d"
  },
  "learn/click-depth-and-orphan-pages/index.html": {
   "date": "2026-10-13",
-  "hash": "f3b97e590a4a0298"
+  "hash": "619ec5e83b2340b5"
  },
  "learn/conversion-audit/index.html": {
   "date": "2026-10-13",
-  "hash": "355ef8779cce2aef"
+  "hash": "9301e84d1f09f378"
  },
  "learn/dead-contact-address/index.html": {
   "date": "2026-10-13",
-  "hash": "60d91e415a52edac"
+  "hash": "dac1f002cf479283"
  },
  "learn/does-cloudflare-block-gptbot/index.html": {
   "date": "2026-10-13",
-  "hash": "c130957ace31dbd2"
+  "hash": "72b1837e4e196bf4"
  },
  "learn/does-noindex-stop-ai-crawlers/index.html": {
   "date": "2026-10-13",
-  "hash": "a4acae28497399dd"
+  "hash": "f03394e84e7c4acd"
  },
  "learn/domain-authority-without-a-subscription/index.html": {
   "date": "2026-10-13",
-  "hash": "f6f89416c04cffde"
+  "hash": "db377f751a73ea80"
  },
  "learn/email-capture-audit/index.html": {
   "date": "2026-10-13",
-  "hash": "deac8717a2a7301a"
+  "hash": "f947380369b97fb4"
  },
  "learn/googlebot-2mb-limit/index.html": {
   "date": "2026-10-13",
-  "hash": "9e590b08ae3a3f1b"
+  "hash": "ed3b4db9cd147394"
  },
  "learn/index-coverage/index.html": {
   "date": "2026-10-13",
-  "hash": "b678cf124a9fb193"
+  "hash": "0af812c9c77e885d"
  },
  "learn/index.html": {
   "date": "2026-10-13",
-  "hash": "861c2c2e2a791dbb"
+  "hash": "6f631b7f16dca4d4"
  },
  "learn/internal-link-equity/index.html": {
   "date": "2026-10-13",
-  "hash": "60a55a8c5dc9abe4"
+  "hash": "665e8af31cbdd91e"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-10-13",
-  "hash": "2b46b56413746700"
+  "hash": "4b63fbd7e9318e6b"
  },
  "learn/javascript-rendering/index.html": {
   "date": "2026-10-13",
-  "hash": "579cb41bea9ba981"
+  "hash": "f7760a806a12cb74"
  },
  "learn/log-file-analysis/index.html": {
   "date": "2026-10-13",
-  "hash": "5feeda3ca6f8c182"
+  "hash": "4968f708a03ab59e"
  },
  "learn/marketing-tag-audit/index.html": {
   "date": "2026-10-13",
-  "hash": "3db77710af2846e1"
+  "hash": "383a603b2901bb38"
  },
  "learn/page-weight/index.html": {
   "date": "2026-10-13",
-  "hash": "26e6a3b667d54bd9"
+  "hash": "84ff88ca8bffacf1"
  },
  "learn/priority-model/index.html": {
   "date": "2026-10-13",
-  "hash": "b38ac36a10fa6a3b"
+  "hash": "2267685dfa1b6889"
  },
  "learn/sameas-entity-signals/index.html": {
   "date": "2026-10-13",
-  "hash": "289f405b5ba7bf33"
+  "hash": "d302af87edaadd61"
  },
  "learn/seo-audit/index.html": {
   "date": "2026-10-13",
-  "hash": "fed30a6b8c16b1b6"
+  "hash": "05f0da444838a01a"
  },
  "learn/site-monitoring/index.html": {
   "date": "2026-10-13",
-  "hash": "e759381dd9ce6abc"
+  "hash": "dec27da8f832fc12"
  },
  "learn/trust-and-authorship-signals/index.html": {
   "date": "2026-10-13",
-  "hash": "c337912c5a9b3223"
+  "hash": "a76a1b6f8c40f36b"
  },
  "learn/url-structure/index.html": {
   "date": "2026-10-13",
-  "hash": "82445b6da052d1ba"
+  "hash": "ad09adf346101598"
  },
  "learn/what-docket-checks/index.html": {
   "date": "2026-10-13",
-  "hash": "6e56d1538dd7b139"
+  "hash": "1b5a9a056e4c366b"
  },
  "learn/what-is-claudebot/index.html": {
   "date": "2026-10-13",
-  "hash": "ce284184104f4d0d"
+  "hash": "f1db31e49e0bdaa0"
  },
  "learn/what-is-llms-txt/index.html": {
   "date": "2026-10-13",
-  "hash": "4f37802d3d6bc42c"
+  "hash": "edbd5ceb7d91aadf"
  },
  "learn/who-blocks-googlebot/index.html": {
   "date": "2026-10-13",
-  "hash": "4e548717b2b006b7"
+  "hash": "6d2d38519108cbde"
  },
  "learn/www-vs-non-www/index.html": {
   "date": "2026-10-13",
-  "hash": "5fa68036b801c0d4"
+  "hash": "5965f58f41c5e6f3"
  },
  "legal/privacy/index.html": {
   "date": "2026-10-13",
@@ -521,82 +521,82 @@
  },
  "tools/ai-crawler-checker/index.html": {
   "date": "2026-10-13",
-  "hash": "8e75b53654cc9905"
+  "hash": "777773ebf539df47"
  },
  "tools/index.html": {
   "date": "2026-10-13",
-  "hash": "ed0a45ff1ccb8968"
+  "hash": "499a808b45d29ca8"
  },
  "tools/json-ld-checker/index.html": {
   "date": "2026-10-13",
-  "hash": "e5eba536522d8f74"
+  "hash": "6e575026f51ee03b"
  },
  "tools/meta-tag-checker/index.html": {
   "date": "2026-10-13",
-  "hash": "2c509e8346b957ab"
+  "hash": "acd6380e7b4b2bd7"
  },
  "tools/robots-txt-tester/index.html": {
   "date": "2026-10-13",
-  "hash": "7d4c482b6a31cc7a"
+  "hash": "27e3cf33b2e11dcb"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
   "date": "2026-10-13",
-  "hash": "651f704a918e1b93"
+  "hash": "e36beaf617e8e6cc"
  },
  "vs/crawler-sh-alternative/index.html": {
   "date": "2026-10-13",
-  "hash": "4473e97b0532f848"
+  "hash": "9d477e9b80e39e1d"
  },
  "vs/crawlraven-alternative/index.html": {
   "date": "2026-10-13",
-  "hash": "4f7317bf701e1695"
+  "hash": "d2cb5374e92594b0"
  },
  "vs/google-search-console/index.html": {
   "date": "2026-10-13",
-  "hash": "f19fdc55d41c9687"
+  "hash": "34778e4b7722ba2f"
  },
  "vs/index.html": {
   "date": "2026-10-13",
-  "hash": "07fd87f01a879e17"
+  "hash": "7139e2c2c17e265c"
  },
  "vs/jetoctopus-alternative/index.html": {
   "date": "2026-10-13",
-  "hash": "261a21543c01eb7a"
+  "hash": "57d54ed484788755"
  },
  "vs/lighthouse-alternative/index.html": {
   "date": "2026-10-13",
-  "hash": "1ebc6ad2fc2887fd"
+  "hash": "3ec59211e2188881"
  },
  "vs/profound-alternative/index.html": {
   "date": "2026-10-13",
-  "hash": "c95bfd230db2476e"
+  "hash": "751980cb7cc899ad"
  },
  "vs/screaming-frog-alternative/index.html": {
   "date": "2026-10-13",
-  "hash": "f754e449773d72d3"
+  "hash": "e9c15ca594e0f090"
  },
  "vs/scrutiny-alternative/index.html": {
   "date": "2026-10-13",
-  "hash": "10449503afcb7daa"
+  "hash": "a73f29db17a36a74"
  },
  "vs/se-ranking-vs-screaming-frog/index.html": {
   "date": "2026-10-13",
-  "hash": "26545193c47cacab"
+  "hash": "b3a9ca9a4801e983"
  },
  "vs/semrush-site-audit-alternative/index.html": {
   "date": "2026-10-13",
-  "hash": "911c3dc889d82f8c"
+  "hash": "d564d84612e9b1cf"
  },
  "vs/seoptimer-alternative/index.html": {
   "date": "2026-10-13",
-  "hash": "02e108680b73bc7a"
+  "hash": "cd25391345296b90"
  },
  "vs/sitebulb-alternative/index.html": {
   "date": "2026-10-13",
-  "hash": "41a729affae57a2f"
+  "hash": "f999917d790b706b"
  },
  "vs/sitechecker-alternative/index.html": {
   "date": "2026-10-13",
-  "hash": "81b489f49eac0323"
+  "hash": "23c4268f8c9bc85f"
  }
 }
