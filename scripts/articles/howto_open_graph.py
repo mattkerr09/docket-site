@@ -102,7 +102,8 @@ audit to hand, the social lane already fetched the image and told you whether it
 <p>Open Graph tags are not a ranking signal, and anyone telling you they are is guessing.
 They decide whether a link that somebody chose to share arrives looking like something worth
 clicking. The traffic is already earned at that point; the preview decides how much of it
-survives the trip.</p>
+survives the trip. The small icon beside your name in search results is a separate setting, at
+<a href="/how-to/fix-favicon-not-showing-in-search/">how to fix a favicon that is not showing</a>.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """

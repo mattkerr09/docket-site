@@ -48,6 +48,7 @@ import howto_image_formats  # noqa: E402
 import howto_thin_content  # noqa: E402
 import howto_ttfb  # noqa: E402
 import howto_nap  # noqa: E402
+import howto_favicon  # noqa: E402
 import howto_hreflang  # noqa: E402
 import howto_js_audit  # noqa: E402
 import howto_content_audit  # noqa: E402
@@ -1433,6 +1434,7 @@ def main() -> int:
               howto_thin_content.thin_content(),
               howto_ttfb.ttfb(),
               howto_nap.nap(),
+              howto_favicon.favicon(),
               howto_mcp.mcp_setup(),
               howto_titles.duplicate_titles(),
               howto_title_width.title_tags(),

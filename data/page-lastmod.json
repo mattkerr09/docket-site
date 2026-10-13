@@ -131,6 +131,10 @@
   "date": "2026-10-10",
   "hash": "5cde5a495419c22b"
  },
+ "how-to/fix-favicon-not-showing-in-search/index.html": {
+  "date": "2026-10-13",
+  "hash": "7003b4305fa4eb49"
+ },
  "how-to/fix-heading-structure/index.html": {
   "date": "2026-10-10",
   "hash": "e36a1640e6327594"
@@ -164,8 +168,8 @@
   "hash": "6a624a1c705ab526"
  },
  "how-to/fix-missing-open-graph-tags/index.html": {
-  "date": "2026-10-10",
-  "hash": "77bda488a10a7720"
+  "date": "2026-10-13",
+  "hash": "8bd4ac48682e4f3e"
  },
  "how-to/fix-missing-security-headers/index.html": {
   "date": "2026-10-10",
@@ -236,8 +240,8 @@
   "hash": "b2def6758f12a62e"
  },
  "how-to/index.html": {
-  "date": "2026-10-12",
-  "hash": "a7b427f31e3ff181"
+  "date": "2026-10-13",
+  "hash": "59b59be427260e75"
  },
  "how-to/javascript-seo-audit/index.html": {
   "date": "2026-10-10",
@@ -436,8 +440,8 @@
   "hash": "fb322e002a7db1e1"
  },
  "learn/internal-link-equity/index.html": {
-  "date": "2026-10-12",
-  "hash": "4fae18d94ffa2348"
+  "date": "2026-10-13",
+  "hash": "b50a745f590b7ea2"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-10-10",
@@ -524,12 +528,12 @@
   "hash": "8651a2ef04bd2c37"
  },
  "tools/json-ld-checker/index.html": {
-  "date": "2026-10-10",
+  "date": "2026-10-13",
   "hash": "43b0aea68ea2d4a6"
  },
  "tools/meta-tag-checker/index.html": {
-  "date": "2026-10-10",
-  "hash": "5589dca2447909f9"
+  "date": "2026-10-13",
+  "hash": "7f2cbcc449898da5"
  },
  "tools/robots-txt-tester/index.html": {
   "date": "2026-10-10",

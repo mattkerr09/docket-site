@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-13",
+  "none": {
+    "finding": {
+      "title": "No favicon found",
+      "detail": "Google shows a site's favicon next to its name in mobile search results. Without one you get a generic globe icon, which reads as less established than the competitors around you.",
+      "fix": "Add a favicon at /favicon.ico plus a 180x180 apple-touch-icon, and declare them in the head.",
+      "snippet": "<link rel=\"icon\" href=\"/favicon.ico\" sizes=\"any\">\n<link rel=\"icon\" href=\"/icon.svg\" type=\"image/svg+xml\">\n<link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png\">"
+    }
+  },
+  "broken": {
+    "finding": {
+      "title": "No favicon found",
+      "detail": "Google shows a site's favicon next to its name in mobile search results. Without one you get a generic globe icon, which reads as less established than the competitors around you.",
+      "fix": "Add a favicon at /favicon.ico plus a 180x180 apple-touch-icon, and declare them in the head.",
+      "snippet": "<link rel=\"icon\" href=\"/favicon.ico\" sizes=\"any\">\n<link rel=\"icon\" href=\"/icon.svg\" type=\"image/svg+xml\">\n<link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png\">"
+    }
+  },
+  "declared": {
+    "finding": null
+  },
+  "conventional": {
+    "finding": null
+  },
+  "link": "<link rel=\"icon\" href=\"/img/icon.png\" type=\"image/png\">"
+}

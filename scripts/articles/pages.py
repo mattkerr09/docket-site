@@ -1708,6 +1708,11 @@ Google Business Profile. What Docket flags, what Google's local guidance does an
 before and after.
 <a href="/how-to/fix-inconsistent-name-address-phone/">How to fix inconsistent name, address and phone →</a></p>
 
+<h2>Favicon</h2>
+<p>The small icon beside your name in search results needs a link tag on the home page, a file that loads and
+crawlers that can reach both. What Google requires, what Docket checks, and a real four-way before and after.
+<a href="/how-to/fix-favicon-not-showing-in-search/">How to fix a favicon that is not showing →</a></p>
+
 <h2>Duplicate title tags</h2>
 <p>Rarely a penalty and routinely misdiagnosed: what duplicate titles actually cost you, the
 character limit that does not exist, and the fix by what caused them: pagination, facets,
