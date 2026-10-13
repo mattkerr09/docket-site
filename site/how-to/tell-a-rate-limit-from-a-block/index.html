@@ -14,7 +14,7 @@
 <title>A rate limit is not a block</title>
 <meta name="description" content="An audit that crawls your site can trip its own rate limit, then report the throttle as a fault. How to tell a wait from a refusal.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="c636a8668412">
+<meta name="build-id" content="28e8e5860951">
 <link rel="canonical" href="https://docketseo.app/how-to/tell-a-rate-limit-from-a-block/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -852,6 +852,7 @@ nav{background:rgba(7,12,13,.72);
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is HTTP 429 a block?","acceptedAnswer":{"@type":"Answer","text":"No. It means too many requests, and it is temporary. A server that sends it with a Retry-After header is naming a time to come back rather than turning the crawler away. HTTP 403 is the refusal."}},{"@type":"Question","name":"Why did my audit report crawler blocks that a re-run did not?","acceptedAnswer":{"@type":"Answer","text":"Because the first run probably caused them. A crawl is traffic from one address, which is what rate limiting slows down, so the probes that follow the crawl can all be measuring the limit the crawl tripped."}},{"@type":"Question","name":"My site returns 403 to an audit tool. Is that a problem?","acceptedAnswer":{"@type":"Answer","text":"Only if you did not intend it. Open the same URL in your browser: if it loads, the rule is on the user-agent and lives in your bot protection; if your browser is refused too, the rule is on the network."}},{"@type":"Question","name":"Should I remove retired AI crawler names from robots.txt?","acceptedAnswer":{"@type":"Answer","text":"It is tidiness rather than visibility, unless the wildcard group those crawlers fall back to is more permissive than the group the retired name sat in. Compare the two groups before editing."}},{"@type":"Question","name":"How do I know a crawler-access finding is real?","acceptedAnswer":{"@type":"Answer","text":"Run the audit again, more slowly, and see whether it survives. A measurement that a re-run can change is a measurement about the run rather than about the site."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
+<script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};

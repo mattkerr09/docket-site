@@ -14,7 +14,7 @@
 <title>A pixel reported on part of the site, and no pages</title>
 <meta name="description" content="An audit counted tag coverage from one document and the inventory from another, so pixels on a site were reported as partly deployed and on no pages at once.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="c636a8668412">
+<meta name="build-id" content="28e8e5860951">
 <link rel="canonical" href="https://docketseo.app/how-to/pixels-reported-on-zero-pages/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -852,6 +852,7 @@ nav{background:rgba(7,12,13,.72);
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why does an audit say a pixel is on part of my site and then show zero pages?","acceptedAnswer":{"@type":"Answer","text":"Because the inventory and the coverage count were read from different documents. The inventory includes tags found after the page was rendered; the count read only the HTML the server sent, so a tag injected by JavaScript scores zero everywhere."}},{"@type":"Question","name":"Does a pixel loaded through a tag container count as installed?","acceptedAnswer":{"@type":"Answer","text":"For your advertising platform, yes: it fires. For any audit reading served HTML, it is invisible, so coverage numbers about it are unsupported rather than wrong. Check the platform's own diagnostics instead."}},{"@type":"Question","name":"Should I hard-code pixels on every page to fix a coverage finding?","acceptedAnswer":{"@type":"Answer","text":"No. If the tag also loads through your container it will fire twice, inflating conversions and corrupting the history you compare against."}},{"@type":"Question","name":"How much does a missing pixel actually cost?","acceptedAnswer":{"@type":"Answer","text":"It depends on which page is missing it. The concrete loss is that conversions on that page cannot be recorded and those visitors cannot be added to a retargeting audience. Any audit quoting you a percentage has invented it."}},{"@type":"Question","name":"How can I tell whether a coverage finding is real?","acceptedAnswer":{"@type":"Answer","text":"Open your own platform's reporting. If it shows events from the pages the audit called untagged, the finding is about what a fetcher could see. If it shows a gap on a page in your conversion path, the finding is real and worth fixing today."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
+<script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};

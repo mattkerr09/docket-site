@@ -1984,6 +1984,11 @@ ANALYTICS = (
         # The assistant. One widget served from the worker, one factbase per site,
     # so nothing about prices or terms is duplicated into this repo.
     '<script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>\n'
+    # The hub's click snippet, on every page like the other sites (CEO, 2026-10-13). Without it no
+    # Docket click was ever "confirmed" (funnel.py read 0 of 115 downloads and 0 of 75 buys in a
+    # week, against 20 for Crisp) and affiliate and launch-source ids never reached checkout. The
+    # privacy page names it in the same commit, as the hub plan requires.
+    '<script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>\n'
 '<script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>\n'
     '<script>\n'
     'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},'

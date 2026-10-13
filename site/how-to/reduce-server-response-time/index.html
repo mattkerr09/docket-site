@@ -14,7 +14,7 @@
 <title>How to reduce server response time (TTFB)</title>
 <meta name="description" content="Time to first byte is the floor under every loading number. Cache pages, add a CDN, find what is slow behind the cache, and what a crawler can and cannot tell you.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="c636a8668412">
+<meta name="build-id" content="28e8e5860951">
 <link rel="canonical" href="https://docketseo.app/how-to/reduce-server-response-time/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -852,6 +852,7 @@ nav{background:rgba(7,12,13,.72);
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a good TTFB?","acceptedAnswer":{"@type":"Answer","text":"web.dev calls eight tenths of a second or less good and anything over one and eight tenths poor."}},{"@type":"Question","name":"Is TTFB a Core Web Vital?","acceptedAnswer":{"@type":"Answer","text":"No. web.dev says it is not, so meeting the good bound is not strictly required, but a slow reply sits under every other loading metric."}},{"@type":"Question","name":"What is the quickest way to reduce it?","acceptedAnswer":{"@type":"Answer","text":"Cache whole pages. For pages that are the same for every visitor, the server should not rebuild them on each request."}},{"@type":"Question","name":"Why does Docket report that pages are slow the first time?","acceptedAnswer":{"@type":"Answer","text":"Docket is usually the first visitor to a page, so it sees a cold cache. It asks again for some of the slowest, and if the second answer is fast it reports a cache in front of a slow server."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
+<script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};

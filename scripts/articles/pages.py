@@ -1984,7 +1984,7 @@ requests as any other, and it can ask for offline mode.</li>
 removes them permanently.</p>
 
 <h2>This website</h2>
-<p>This site is static and runs six third-party scripts. The first is
+<p>This site is static and runs seven third-party scripts. The first is
 <a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, which counts page
 views. Plausible states that it uses no cookies, collects no personal data and does not track
 visitors across sites; it is hosted in the EU. Nothing about your audits reaches it.
@@ -2030,6 +2030,17 @@ assistant. When the page loads it asks that server whether the offer is still op
 thing it sends is this site's name. If you close the bar, the time you closed it is kept in your
 browser's local storage so the bar stays away for seven days; nothing else is stored and it sets
 no cookie. It draws itself in an isolated shadow root, like the assistant.</p>
+<p>The seventh is on every page: a small script loaded from
+<code>kerr-affiliate-hub.kerrco.workers.dev</code>, a server we run, which is where our Download and
+Buy links point. It does three things. When you click a Download or Buy link, it marks the click as made
+by a person, because a crawler that only follows the address never makes a click, so we can count people
+apart from crawlers. If you arrive through an affiliate or partner link, with an id such as
+<code>ref</code> or <code>via</code> in the address, it keeps that id in this site's local storage for
+thirty days and adds it to the Buy link, so the person who recommended Docket is credited if you buy; it
+sets no cookie. And it adds where you came from, from the same short list as below, to Download links. It
+sends nothing itself. The server it points at counts downloads and Buy clicks per day, per page tag and
+country, and whether the click looked like a person; it stores no IP address and no user agent. If a
+content blocker stops the script, the links still work.</p>
 <p>One more thing runs here, written into this site's own pages rather than loaded from
 anywhere. If you arrive from a link that says where it was shared, such as
 <code>?ref=producthunt</code>, from a fixed list of such names (Product Hunt, Hacker News, Reddit, a
@@ -2040,7 +2051,8 @@ other way and it does nothing at all.</p>
 <p>These paragraphs have been rewritten three times as the answer changed. They once said the
 site &ldquo;sets no cookies&rdquo; and runs &ldquo;one third-party script&rdquo;; both were true
 until Sled was added. The line calling Sled the only thing here that can set a cookie was true
-until the Meta pixel was. The count said three until the chat assistant was added, and the description on this page still said three after the body said four. Our own audit caught that, and it was corrected to five, which is when the Windows form on the front page was counted too. It said five while the front page loaded six: the founding-offer bar was missed until a count of every script on every built page was checked against this list, and that count now runs before every deploy. This
+until the Meta pixel was. The count said three until the chat assistant was added, and the description on this page still said three after the body said four. Our own audit caught that, and it was corrected to five, which is when the Windows form on the front page was counted too. It said five while the front page loaded six: the founding-offer bar was missed until a count of every script on every built page was checked against this list, and that count now runs before every deploy. It said six
+until the click-counting script was added on every page. This
 paragraph is the reason that was noticed: each correction is made above rather than quietly
 deleted. A privacy page that enumerates what a site does not do is only worth reading if the
 enumeration stays complete.</p>
@@ -2086,7 +2098,7 @@ it; we hold nothing separately.</p>
         cat="legal", slug="privacy",
         title="Privacy policy: what Docket collects, and what it does not",
         desc="Audits run on your Mac and are never uploaded. No account, no "
-             "telemetry. Six third-party scripts, one an advertising pixel. "
+             "telemetry. Seven third-party scripts, one an advertising pixel. "
              "What each does and how to stop it.",
         h1="Privacy policy",
         crumb='<a href="/">Docket</a> / Privacy',
