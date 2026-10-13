@@ -14,7 +14,7 @@
 <title>How to fix render-blocking resources on your site</title>
 <meta name="description" content="Scripts and stylesheets that stop the first paint. Defer the scripts, load the CSS you do not need first, and what a crawler can and cannot tell you about it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="c636a8668412">
+<meta name="build-id" content="28e8e5860951">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-render-blocking-resources/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -852,6 +852,7 @@ nav{background:rgba(7,12,13,.72);
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does render-blocking mean?","acceptedAnswer":{"@type":"Answer","text":"The browser has to download and read the file before it can paint anything. A plain script in the head and a stylesheet with no media restriction both do that."}},{"@type":"Question","name":"Should I use defer or async?","acceptedAnswer":{"@type":"Answer","text":"Use defer for most scripts. It runs them after the page is read, in the order written. Use async only for a script that depends on nothing and that nothing depends on."}},{"@type":"Question","name":"Will loading CSS with media=print and onload break my page without JavaScript?","acceptedAnswer":{"@type":"Answer","text":"It can, so add a noscript link to the same file. Visitors with scripts off then get the stylesheet normally."}},{"@type":"Question","name":"Does Docket measure Largest Contentful Paint?","acceptedAnswer":{"@type":"Answer","text":"No. It counts the blocking files in the markup of every page it crawls. The measured value for a page comes from PageSpeed Insights or Search Console."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
+<script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};

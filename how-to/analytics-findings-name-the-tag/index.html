@@ -14,7 +14,7 @@
 <title>'You have no analytics' is a claim about a list</title>
 <meta name="description" content="An audit checks a list of tag names, not whether you can see your traffic. Two cases where a site had analytics and was told it had none.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="c636a8668412">
+<meta name="build-id" content="28e8e5860951">
 <link rel="canonical" href="https://docketseo.app/how-to/analytics-findings-name-the-tag/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -852,6 +852,7 @@ nav{background:rgba(7,12,13,.72);
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"My audit says I have no analytics but my dashboard has data. Why?","acceptedAnswer":{"@type":"Answer","text":"Because it read the served HTML and looked for known tag names. If your tags load through a container at runtime, or your tool is not on its list, a static fetch cannot see them."}},{"@type":"Question","name":"Does a tag manager mean I have analytics installed?","acceptedAnswer":{"@type":"Answer","text":"No. A container collects nothing by itself. What it does mean is that absence cannot be concluded, because it can load a tag where a static fetch cannot see it."}},{"@type":"Question","name":"Why did my audit only mention one analytics product?","acceptedAnswer":{"@type":"Answer","text":"Some checks test for a specific product by name rather than for the category. If the finding names a tool you do not use and ignores the one you do, that is the failure."}},{"@type":"Question","name":"Is 'analytics missing from most pages' the same as having no analytics?","acceptedAnswer":{"@type":"Answer","text":"No, and the two need opposite work. Missing from some pages is a deployment gap in a template; missing everywhere means nothing is being measured at all."}},{"@type":"Question","name":"Should I add a second analytics tool to clear the finding?","acceptedAnswer":{"@type":"Answer","text":"No. You would gain two sources of truth that disagree and a slower site, because a report did not recognise the one you already had."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
+<script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
 <script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>
 <script>
 window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
