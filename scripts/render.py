@@ -1521,6 +1521,7 @@ nav{z-index:40}
 .cta-band{text-align:center;padding:4.2rem 0}
 .cta-band h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.028em;margin-bottom:.7rem}
 .cta-band p{font-size:var(--t-lg);color:var(--text-mid);max-width:34rem;margin:0 auto 1.6rem}
+.cta-band .founder-note{font-size:var(--t-md);margin:2rem auto 0}
 .faq{padding:var(--sec-y) 0}
 .faq h2{margin:0 0 1.2rem}
 .faq-item{border-top:1px solid var(--border);padding:1.15rem 0}

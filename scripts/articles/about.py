@@ -120,6 +120,12 @@ authors do.</p>
 <p>Kerr &amp; Company also makes Outlier, Crisp Video, AdPlaybook and Bookbreaker. They are
 separate products with their own sites, and none of them shares code or data with Docket.</p>
 
+<h2>Writing or making videos about Docket?</h2>
+<p>Kerr &amp; Company, the company that sells Docket, runs an affiliate programme that pays a
+commission on each sale, using a personal code the buyer enters at checkout instead of a tracking
+link. The rates, the payout terms and the disclosure you owe your readers are on
+<a href="https://kerrandcompanyholdings.com/affiliates/">the affiliates page</a>.</p>
+
 {buy_strip("about-page")}
 
 <p><a class="btn" href="/contact/">How to get in touch</a></p>

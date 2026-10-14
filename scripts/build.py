@@ -1256,6 +1256,12 @@ you can see how much is wrong on your site, and the worst of it, before you pay 
 <h2>Before you buy: what it runs on</h2>
 <p>A Mac with {MAC_HW}, on {MACOS} or later. {NO_BUILDS} If
 you are unsure, open the full sample report first; it shows what an audit hands you.</p>
+
+<h2>Writing or making videos about Docket?</h2>
+<p>Kerr &amp; Company, the company that sells Docket, runs an affiliate programme that pays a
+commission on each sale, using a personal code the buyer enters at checkout instead of a tracking
+link. The rates, the payout terms and the disclosure you owe your readers are on
+<a href="https://kerrandcompanyholdings.com/affiliates/">the affiliates page</a>.</p>
 """
     return render(
         cat="", slug="pricing",

@@ -763,6 +763,8 @@ needed, and the crawl and the report stay on your Mac.</p>
 </figure>
 {buy_block("home-closer")}
 {BNPL_BLOCK}
+<p class="founder-note">I'm Matt Kerr. I build Docket on my own in Grand Rapids, Michigan, and I read the
+support inbox and the issue tracker myself. <a href="/about/">About me, and what Docket cannot do</a>.</p>
 </div>
 <!-- Windows waiting list. The script renders into this div and does nothing
      without it, so placement is decided here rather than guessed. -->
