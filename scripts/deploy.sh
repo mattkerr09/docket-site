@@ -45,6 +45,16 @@ echo "==> derived-data freshness gate"
 # "17 of the 35 test files" for six days against a repo with 74 of 145.
 "$PY" scripts/verify_derived_data.py
 
+echo "==> recordings gate"
+# The home page showed a 1.3.94 recording ("136 pages, 112 seconds") while the
+# build audited 152 pages in about 54: no gate compared a recording with the
+# build it claims to show. Re-record with docket-app/scripts/record_hero.mjs and
+# record_demo.mjs (--site) when this fails.
+if ! python3 scripts/verify_recordings_fresh.py --self-test; then
+  echo "FAIL  a front-page recording is older than the build it claims to show"
+  exit 1
+fi
+
 echo "==> quality gate"
 # Runs against the built HTML. A failure here must stop the deploy: this is the
 # only thing standing between a bad edit and the live site.
