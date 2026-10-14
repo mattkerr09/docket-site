@@ -1220,9 +1220,23 @@ def pricing_page() -> Path:
     # judged the first version (the buy block alone) a copy of 18 pages,
     # rightly: a page that is only the shared block says nothing of its own.
     # Every fact is from the terms, the refund policy and the FAQ, re-worded.
+    bundle = json.loads((DATA / "bundle.json").read_text(encoding="utf-8"))
+    # The founding bundle price is promised only until the founding codes end;
+    # after that date the page states the standard price instead, so a rebuild is
+    # all it takes to stop quoting a price the checkout no longer gives.
+    founding = datetime.date.today() <= datetime.date.fromisoformat(bundle["founding_ends"])
+    apps = ", ".join(bundle["apps"][:-1]) + " and " + bundle["apps"][-1]
+    bundle_line = (
+        f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
+        f'All three apps, {apps}, for ${bundle["founding_price"]} once while founding prices last.</a> '
+        f'It becomes ${bundle["standard_price"]} after founding.'
+        if founding else
+        f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
+        f'All three apps, {apps}, for ${bundle["standard_price"]} once.</a>')
     body = f"""
 <p class="lede">One price, paid once. No subscription, no page meter, nothing to cancel.</p>
 {buy_block("pricing-page", try_app="pricing-page-try-free", phone=False)}
+<p class="hero-note">{bundle_line}</p>
 <p class="hero-note">Bought it already? <a href="{download_url('pricing-page')}" data-ev="Download"
 data-ev-button="pricing-page">Get the {DMG_SIZE} Mac download</a> and paste the key from your receipt.</p>
 
