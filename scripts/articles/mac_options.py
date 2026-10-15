@@ -177,5 +177,4 @@ not compared here.</p>
              "Yes. A full audit runs with no key and shows your score, the number of problems in each area and the "
              "most important problem in full with its fix."),
         ],
-        modified=_DATA["read"],
     )
