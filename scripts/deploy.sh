@@ -55,6 +55,15 @@ if ! python3 scripts/verify_recordings_fresh.py --self-test; then
   exit 1
 fi
 
+echo "==> corrections gate"
+# /learn/what-docket-got-wrong/ says "fixed in <release> on <day>" and names the
+# tests that hold each fix. Each release must be a published GitHub release on
+# that day, with a commit and tracked tests in the app repo, and on the built page.
+if ! python3 scripts/verify_corrections.py --self-test; then
+  echo "FAIL  the corrections page does not match the releases it describes"
+  exit 1
+fi
+
 echo "==> quality gate"
 # Runs against the built HTML. A failure here must stop the deploy: this is the
 # only thing standing between a bad edit and the live site.

@@ -1,5 +1,5 @@
 {
-  "compiled": "2026-10-14",
+  "compiled": "2026-10-15",
   "dates": {
     ".": "2026-08-06",
     "about": "2026-08-07",
@@ -125,6 +125,7 @@
     "learn/trust-and-authorship-signals": "2026-09-15",
     "learn/url-structure": "2026-09-16",
     "learn/what-docket-checks": "2026-08-08",
+    "learn/what-docket-got-wrong": "2026-10-15",
     "learn/what-is-claudebot": "2026-09-28",
     "learn/what-is-llms-txt": "2026-09-28",
     "learn/what-scout-checks": "2026-08-06",
@@ -157,5 +158,7 @@
     "vs/sitebulb-alternative": "2026-08-06",
     "vs/sitechecker-alternative": "2026-09-16"
   },
-  "uncommitted": []
+  "uncommitted": [
+    "learn/what-docket-got-wrong"
+  ]
 }

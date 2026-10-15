@@ -30,7 +30,8 @@ literally: that count comes from searching each test for a phrase naming what we
 is deliberately narrow, so it misses files that record a real mistake in different words.</p>
 
 <p>This is not a confession. It is the four questions worth asking of any finding, each of
-which we learned by getting it wrong first.</p>
+which we learned by getting it wrong first. The dated list of what we fixed, release by release,
+is <a href="/learn/what-docket-got-wrong/">on its own page</a>.</p>
 
 <h2>Did it look at what it says it looked at?</h2>
 

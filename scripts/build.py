@@ -50,6 +50,7 @@ import howto_ttfb  # noqa: E402
 import howto_nap  # noqa: E402
 import howto_favicon  # noqa: E402
 import mac_options  # noqa: E402
+import corrections  # noqa: E402
 import howto_hreflang  # noqa: E402
 import howto_js_audit  # noqa: E402
 import howto_content_audit  # noqa: E402
@@ -346,6 +347,9 @@ money.</p>
             ("/learn/audit-tool-accuracy/", "How to tell whether an audit tool is lying to you",
              "Four questions to ask of any SEO finding, each of them learned here by "
              "getting it wrong first."),
+            ("/learn/what-docket-got-wrong/", "What Docket got wrong, and the release that fixed it",
+             "A dated list of the findings Docket got wrong, how each was found, which release "
+             "fixed it and the tests that hold it."),
             ("/learn/log-file-analysis/", "Log file analysis: what Googlebot actually fetched",
              f"A user-agent proves nothing, which is why Google publishes "
              f"{F.gbot_total_prefixes():,} crawler IP prefixes. Reading a log honestly, "
@@ -1489,6 +1493,7 @@ def main() -> int:
     pages += __import__('pages').build_all()
     pages += about.build_all()
     pages += audit_quality.build_all()
+    pages += corrections.build_all()
     pages += brand_article.build_all()
     pages += logs_article.build_all()
     pages += mailcheck.build_all()

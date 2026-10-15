@@ -113,7 +113,8 @@ reported a major news site's title tag as past Googlebot's cutoff, when what it 
 was an inline SVG icon label reading "Close icon" and the real title was fine. That is
 written up in full on <a href="/learn/googlebot-2mb-limit/">the page about the check</a>,
 because a tool that hides its mistakes is asking you to trust its output more than its
-authors do.</p>
+authors do. The fixes that have shipped, with the release and the day, are on
+<a href="/learn/what-docket-got-wrong/">the page of corrections</a>.</p>
 
 <h2>Who else is behind it</h2>
 

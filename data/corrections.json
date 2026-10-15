@@ -1,0 +1,110 @@
+{
+  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
+  "entries": [
+    {
+      "release": "1.3.110",
+      "date": "2026-10-14",
+      "title": "The installed app kept no record of what its helpers did",
+      "wrong": "The desktop app starts Docket's engine with its output going nowhere. If the helper that renders pages in a browser was missing or broken, nothing said so: rendering was skipped, the checks that need it reported that they could not confirm, and the report looked like an audit where rendering had simply found nothing. Starting the installed engine with an empty home folder left no log at all.",
+      "found": "Another of our apps found a doubling in speed by reading its log. Docket had no log to read, so a support question would have been answered from the customer's description of it.",
+      "fixed": "The engine now writes a log file in the .docket folder in your home folder: the version, the licence mode (never the key), and for the render helper whether it was found, where, and whether it runs. It adds a line for each audit that names the host and nothing more. The file stays on your Mac and nothing sends it. The build now starts the finished app with an empty home folder and refuses to ship unless the log says the render helper runs. It then points the engine at a file that cannot run and requires the log to say so.",
+      "tests": ["test_the_installed_engine_keeps_a_log_that_names_its_helpers.py"]
+    },
+    {
+      "release": "1.3.107",
+      "date": "2026-10-13",
+      "title": "Five wrong findings, found by auditing our own sites",
+      "wrong": "Docket read a date followed by a sentence (\"last updated 2026-09-15 The fastest way:\") as the street address \"15 The fastest way\". That made a Mac app a local business, and its two top findings were high severity: no phone number and no LocalBusiness markup. It read a licence date followed by a year range as a phone number. It treated the home city in a person's markup as a business address. It counted pages whose canonical tag names a different page as competing with that page. And one index page could pull a whole series into one \"target the same search\" group: a page for each of 29 states and their index counted as one search.",
+      "found": "We audited all seven of our own sites and read every finding against the live page. Five findings were Docket's mistake, not the site's.",
+      "fixed": "A day in an ISO or written date, a month and year, and a run of years are no longer an address or a phone number. A person's address no longer makes a local business. A page that names another as its canonical stops competing with it. A section index no longer glues its pages into one group, and Virginia and West Virginia are two places.",
+      "result": "On the same crawl before and after, the app site's score went from 89.9 to 92.3 and its four local findings went. A portfolio site went from 91.8 to 98.0. The series site's competing-pages finding fell from 53 pages in 6 groups to 13 in 6; the pairs left are calculators that share a title ending and two overlaps that look real.",
+      "tests": [
+        "test_a_date_and_a_sentence_are_not_a_street_address.py",
+        "test_a_licence_date_and_a_year_range_are_not_a_phone_number.py",
+        "test_where_a_person_lives_is_not_a_local_business.py",
+        "test_a_page_that_names_another_as_its_canonical_does_not_compete_with_it.py",
+        "test_a_hub_does_not_glue_a_series_into_one_search.py"
+      ]
+    },
+    {
+      "release": "1.3.106",
+      "date": "2026-10-13",
+      "title": "The link check looked at one host thirty times, and the topic step threw away its answers",
+      "wrong": "The outbound link check took the first 60 links in page order. On our own site 30 of its 61 targets were Buy and Download links to the same host, so the sample said little about the rest. Separately, the step that suggests topics asked a search engine's autocomplete for 18 commercial phrasings for each seed word and then discarded every answer. The stage between the link check and rendering took 30 to 34 seconds on the installed copy.",
+      "found": "Measuring the installed copy one stage at a time. With a counting wrapper on the same code, two seed words made 62 requests and spent 32.3 seconds in that step.",
+      "fixed": "The sample takes at most 8 links to any one site, and the report says \"at most 8 to any one site\" so it does not claim to have checked more. The topic step now asks only for the phrasings it keeps.",
+      "result": "Side by side against the live search engine, the same seeds made 62 calls in 38.3 seconds before and 26 calls in 13.0 seconds after, and the suggestions kept were identical in both pairs of runs (112 and 212). Dropping the commercial phrasings could in principle hide a later question behind an earlier completion; we did not see it in either pair.",
+      "tests": [
+        "test_the_topic_suggestions_connector_asks_only_for_what_it_keeps.py",
+        "test_the_outbound_sample_is_spread_over_hosts_not_taken_in_page_order.py"
+      ]
+    },
+    {
+      "release": "1.3.105",
+      "date": "2026-10-13",
+      "title": "Outbound links waited in line behind the audited site's pace",
+      "wrong": "Every outbound link check went through the gap meant to protect the site being audited, so 60 requests to 60 other servers queued behind a pace of four a second. The stage took 16.8 seconds of a 101-second audit. On a site whose robots.txt asked for ten seconds between requests it would have taken 600 seconds for 60 one-off links, which is why the check had a time budget that left links unchecked.",
+      "found": "Measuring the installed copy one stage at a time.",
+      "fixed": "Each other host now gets its own clock and its own gap, so different hosts are checked side by side. The audited site's own links keep the polite gap. A link the clock had no time for is now left out of the results, not recorded as status 0, which the report would have called unreachable.",
+      "result": "Installed, the links stage took 11.0 and 10.4 seconds against 16.8, and the whole audit 96.9 and 96.7 against 101 to 105. It is not under 5 seconds because 30 of the 61 targets went to one host, which 1.3.106 addresses.",
+      "tests": ["test_outbound_links_are_paced_per_host_not_by_the_audited_site.py"]
+    },
+    {
+      "release": "1.3.104",
+      "date": "2026-10-10",
+      "title": "A page that followed Docket's own advice was still flagged",
+      "wrong": "The finding about old image formats prints a picture element with a WebP source and the JPEG kept as the fallback. A four-page test site with exactly that markup still had all 16 of its images reported as old formats, because the check read each image's src, and in that markup the src is the fallback by design. Following the tool's advice did not clear the tool's finding.",
+      "found": "Writing the how-to guide for that finding, we audited a four-page test site with plain image tags and again with the picture markup. Plain tags reported 16 images, correctly. The picture markup also reported 16.",
+      "fixed": "An image in a picture element with a WebP or AVIF source, or with a srcset that names only such files, now counts as modern. A picture of JPEG sources, a mixed srcset and a plain image are still reported. JPEG XL is not counted: MDN, read on 10 October 2026, says its browser support is not yet universal.",
+      "see": [{"href": "/how-to/serve-images-in-modern-formats/", "text": "The guide for that finding, which says the bug existed"}],
+      "tests": ["test_a_picture_with_a_webp_source_is_a_modern_image.py"]
+    },
+    {
+      "release": "1.3.103",
+      "date": "2026-10-09",
+      "title": "A franchise and a church: four findings that were false",
+      "wrong": "On a plumbing franchise with a section for each location, Docket said 309 pages in 69 groups targeted the same search. They were the same services in different towns, each location writing its own template around the place name. It also told that site that marking up its reviews of itself would earn stars in search, which Google's review-snippet guidelines (read 9 October 2026) rule out for a business reviewing itself. On a church site it said there was no LocalBusiness markup on a local business, gave it a LocalBusiness block to paste, and told it that it had no customer reviews.",
+      "found": "Two offline audits of real sites, each finding read against the pages. The rest of what Docket reported on both sites was true.",
+      "fixed": "A town, county or state named in a title now sets two pages apart, and a contact page no longer competes with a service page. Reviews count only on a page about a thing, such as a product, a recipe or an event. A place of worship is recognised from its name and is offered Church markup, and the no-reviews finding applies to businesses only.",
+      "result": "On the same crawl the franchise went from 309 pages in 69 groups to 13 in 6. The 13 include one town's service written twice, which do compete.",
+      "tests": [
+        "test_the_same_service_in_two_towns_is_two_searches.py",
+        "test_a_business_reviewing_itself_cannot_earn_stars.py",
+        "test_a_church_is_not_a_local_business.py"
+      ]
+    },
+    {
+      "release": "1.3.102",
+      "date": "2026-10-09",
+      "title": "Refresh said everything was up to date over rows that were a week old",
+      "wrong": "Refresh answered \"Up to date: 4 sites, nothing changed\" while every row on the watch list read \"7d ago\" on a daily schedule. The button compared the lengths of two lists. The scheduler runs only while the app is open and took one overdue site a minute, so a copy that had been closed for a week was minutes from current and said nothing.",
+      "found": "From a screenshot of the watch list.",
+      "fixed": "Refresh now checks every overdue site, one after another, and says how many it started. An overdue row says so, a check that failed shows its reason on its row, and the header says checks run while the app is open and catch up when it opens.",
+      "unproven": "We could not read the copy in the screenshot, so we do not know whether it had been closed or was failing. The new row text shows which.",
+      "tests": ["test_pressing_refresh_on_overdue_sites_checks_them.py"]
+    },
+    {
+      "release": "1.3.97",
+      "date": "2026-10-02",
+      "title": "A text-message number was called not clickable, and a business with no shop was asked for an address",
+      "wrong": "A business that publishes its number only as sms: links, by design, was told the number was not clickable and to wrap it in tel: links, which invites calls the business does not take. A service-area business that declares where it serves was told to put a street address in its footer, the opposite of Google's guidance for such a business.",
+      "found": "Both showed up in the top five findings of the business in our own public sample report. Read against its live pages, the home page had six sms: links, no tel: link and a declared service area.",
+      "fixed": "sms: and smsto: links now count as click-to-contact, and where the finding still applies its fix offers an sms: link for a number that takes texts. A service-area business is no longer asked for an address. Both were tested in both directions: the real case is left alone and the same site without the sms: link, or without the service-area signal, is still reported.",
+      "tests": ["test_a_text_only_number_and_a_service_area_are_not_gaps.py"]
+    },
+    {
+      "release": "1.3.80",
+      "date": "2026-09-23",
+      "title": "Tags added by JavaScript were reported as missing",
+      "wrong": "Docket told a games publisher that analytics was missing from 30 of 30 pages and that no other analytics ran anywhere. The site loads Tag Manager, GA4, Google Ads and the Meta pixel with JavaScript, so the served HTML had none of them and a browser had all of them. Two checks about JavaScript also flagged a framework's login page as invisible to AI crawlers and a password-reset page as very thin, though nobody searches for either.",
+      "found": "A sweep of well-built sites, with a deliberately defective control site that had to fire and did. Each high-severity finding was read against the live page. Most of the others were true: one browser maker's home page really does carry no structured data.",
+      "fixed": "When a render finds tags on a page whose served HTML showed none, the served-only gap is stood down. Login and password pages are skipped by both JavaScript checks. The release also fixed a case where a render cleared the flag on a page that is an empty single-page-app shell, which is still one word of content after rendering.",
+      "unproven": "One payments company's very-thin finding could not be rechecked that day, because the audit refused to run while a build was in progress. It was carried to the next round.",
+      "tests": [
+        "test_a_tag_the_render_found_is_not_a_gap.py",
+        "test_a_login_page_is_not_owed_to_ai_crawlers.py",
+        "test_a_short_page_is_not_a_javascript_page.py"
+      ]
+    }
+  ]
+}

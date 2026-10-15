@@ -1,7 +1,7 @@
 {
  "about/index.html": {
-  "date": "2026-10-14",
-  "hash": "bf905124b2ca8537"
+  "date": "2026-10-15",
+  "hash": "a2860f0353381480"
  },
  "best/free-seo-audit-tools/index.html": {
   "date": "2026-10-14",
@@ -388,8 +388,8 @@
   "hash": "96cf09b73b0601e8"
  },
  "learn/audit-tool-accuracy/index.html": {
-  "date": "2026-10-14",
-  "hash": "756eeaed0683fa04"
+  "date": "2026-10-15",
+  "hash": "c280486544af4a84"
  },
  "learn/brand-consistency/index.html": {
   "date": "2026-10-14",
@@ -436,12 +436,12 @@
   "hash": "3ac10abf8a43cdcc"
  },
  "learn/index.html": {
-  "date": "2026-10-14",
-  "hash": "1314bb3dd001b01c"
+  "date": "2026-10-15",
+  "hash": "77e55e70dbefd088"
  },
  "learn/internal-link-equity/index.html": {
-  "date": "2026-10-14",
-  "hash": "5c70936a17be57e8"
+  "date": "2026-10-15",
+  "hash": "24b338481a6a146a"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-10-14",
@@ -490,6 +490,10 @@
  "learn/what-docket-checks/index.html": {
   "date": "2026-10-14",
   "hash": "bc8b5e45b5d551b0"
+ },
+ "learn/what-docket-got-wrong/index.html": {
+  "date": "2026-10-15",
+  "hash": "021af34dd7443130"
  },
  "learn/what-is-claudebot/index.html": {
   "date": "2026-10-14",
