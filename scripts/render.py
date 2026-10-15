@@ -1711,7 +1711,8 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <a href="/vs/sitebulb-alternative/">vs Sitebulb</a>
 <a href="/vs/ahrefs-site-audit-alternative/">vs Ahrefs</a>
 <a href="/vs/semrush-site-audit-alternative/">vs Semrush</a>
-<a href="/vs/">All comparisons</a></div>
+<a href="/vs/">All comparisons</a>
+<a href="/mac-seo-audit-tool/">SEO audit tools for Mac</a></div>
 <div><h2 class="foot-h">Learn</h2>
 <a href="/learn/ai-search-visibility/">AI search visibility</a>
 <a href="/learn/seo-audit/">What an SEO audit is</a>

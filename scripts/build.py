@@ -49,6 +49,7 @@ import howto_thin_content  # noqa: E402
 import howto_ttfb  # noqa: E402
 import howto_nap  # noqa: E402
 import howto_favicon  # noqa: E402
+import mac_options  # noqa: E402
 import howto_hreflang  # noqa: E402
 import howto_js_audit  # noqa: E402
 import howto_content_audit  # noqa: E402
@@ -1450,6 +1451,7 @@ def main() -> int:
               howto_ttfb.ttfb(),
               howto_nap.nap(),
               howto_favicon.favicon(),
+              mac_options.mac_options(),
               howto_mcp.mcp_setup(),
               howto_titles.duplicate_titles(),
               howto_title_width.title_tags(),

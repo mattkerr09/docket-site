@@ -133,6 +133,7 @@
     "legal/privacy": "2026-08-06",
     "legal/refunds": "2026-08-12",
     "legal/terms": "2026-08-06",
+    "mac-seo-audit-tool": "2026-10-14",
     "pricing": "2026-09-30",
     "thank-you": "2026-08-19",
     "tools": "2026-10-06",
@@ -156,5 +157,7 @@
     "vs/sitebulb-alternative": "2026-08-06",
     "vs/sitechecker-alternative": "2026-09-16"
   },
-  "uncommitted": []
+  "uncommitted": [
+    "mac-seo-audit-tool"
+  ]
 }

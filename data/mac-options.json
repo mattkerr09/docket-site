@@ -1,0 +1,56 @@
+{
+  "read": "2026-10-14",
+  "note": "Every row read from the vendor's own pages on this date. Prices are USD list prices for one person, no discounts. Currency or terms the page did not state are recorded as not stated, never guessed.",
+  "options": [
+    {
+      "slug": "scrutiny", "name": "Scrutiny",
+      "on_mac": "Mac only. The current release needs macOS 11.5 or later",
+      "sold": "$149 once",
+      "annual": 0, "once": 149,
+      "free": "30-day trial with export switched off",
+      "refund": "Not stated on the page read",
+      "better_when": "you want spell checking, HTML validation and site search, or the lowest one-time price in this table",
+      "source": "https://peacockmedia.software/mac/scrutiny/",
+      "page": "/vs/scrutiny-alternative/"
+    },
+    {
+      "slug": "screaming-frog", "name": "Screaming Frog SEO Spider",
+      "on_mac": "Mac (Apple silicon and Intel), Windows and Linux",
+      "sold": "$279 a year per person (£199, €245); a renewal costs the same",
+      "annual": 279, "once": 0,
+      "free": "Crawls up to 500 URLs, with some settings locked",
+      "refund": "14 days, if you contact them",
+      "better_when": "you want raw crawl data, JavaScript rendering across a whole crawl, or custom extraction",
+      "source": "https://www.screamingfrog.co.uk/seo-spider/faq/",
+      "page": "/vs/screaming-frog-alternative/"
+    },
+    {
+      "slug": "sitebulb", "name": "Sitebulb",
+      "on_mac": "Desktop app for Mac or Windows, and a separate cloud product",
+      "sold": "Lite $180 a year ($18 a month); Pro $425 a year for one user",
+      "annual": 180, "annual_pro": 425, "once": 0,
+      "free": "14-day trial of the Pro desktop app, no card",
+      "refund": "Not stated on the pages read",
+      "better_when": "you want visual site maps, scheduled audits, audit comparisons and PDF reports for clients",
+      "source": "https://sitebulb.com/subscriptions/pricing/index/?annual=true",
+      "page": "/vs/sitebulb-alternative/"
+    },
+    {
+      "slug": "seo-powersuite", "name": "SEO PowerSuite (WebSite Auditor)",
+      "on_mac": "Lists Windows, Apple and Linux builds",
+      "sold": "Professional $349 a year, $558 for two years or $717 for three; WebSite Auditor on its own from $149 a year",
+      "annual": 349, "annual_alone": 149, "prepaid_three": 717, "once": 0,
+      "free": "500 URLs, and one project that is not saved",
+      "refund": "None: \"will not provide you any refunds at any time\"",
+      "better_when": "you also want rank checking and backlink tools in the same suite",
+      "source": "https://www.link-assistant.com/website-auditor/comparison.html",
+      "page": ""
+    }
+  ],
+  "sources_extra": [
+    ["SEO PowerSuite refund policy", "https://www.link-assistant.com/return-policy.html"],
+    ["SEO PowerSuite platforms", "https://www.link-assistant.com/website-auditor/"],
+    ["Screaming Frog pricing and platforms", "https://www.screamingfrog.co.uk/seo-spider/pricing/"],
+    ["Sitebulb platforms and trial", "https://sitebulb.com/pricing/"]
+  ]
+}

@@ -417,6 +417,23 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     ],
 }
 
+# The Mac options page (/mac-seo-audit-tool/): every fact about a rival on it is a row of
+# data/mac-options.json with its own source, and the date the row was read. Registered here, not
+# in the builder, so the competitive-claims gate sees the claim set whether or not the page's
+# builder has been imported.
+import json as _json
+from datetime import date as _date
+
+_MAC = _json.loads((Path(__file__).resolve().parent.parent.parent / "data" / "mac-options.json")
+                   .read_text(encoding="utf-8"))
+VERIFIED["mac-options"] = (
+    [(f"{o['name']}: {o['sold']}; free: {o['free']}; refund: {o['refund']}", o["source"])
+     for o in _MAC["options"]]
+    + [(what, url) for what, url in _MAC["sources_extra"]])
+CHECKED_ISO["mac-options"] = _MAC["read"]
+_d = _date.fromisoformat(_MAC["read"])
+CHECKED_HUMAN["mac-options"] = f"{_d.day} {_d.strftime('%B %Y')}"
+
 #: The closing sentence of a verification note. Written for a competitor with a
 #: price list and a roadmap, which Search Console has neither of, so that page
 #: passes its own.
