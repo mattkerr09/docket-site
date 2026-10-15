@@ -37,6 +37,7 @@ silently.
 from __future__ import annotations
 
 import ast
+import json
 import re
 import subprocess
 import sys
@@ -174,7 +175,7 @@ def _wording(value):
     return value
 
 
-def _facts_last_edited(current):
+def _facts_last_edited(current, data_sets=None):
     """Per competitor, the day its fact list last changed. (edits, unreadable).
 
     A revision that cannot be read is *reported*, never skipped silently — an
@@ -202,11 +203,55 @@ def _facts_last_edited(current):
                 previous[key] = _wording(facts)
     # An edit sitting in the working tree has not been committed yet, so its day
     # is today — which is the case a deploy is most likely to be publishing.
+    data_sets = data_sets or {}
     if seen:
         for key, facts in current.items():
+            if key in data_sets:
+                continue  # replayed from its data file below
             if previous.get(key) != _wording(facts):
                 edits[key] = date.today().isoformat()
+    for key, (path, build) in data_sets.items():
+        revisions = subprocess.run(
+            ["git", "-C", str(ROOT), "log", "--format=%H %cI", "--reverse", "--", path],
+            capture_output=True, text=True).stdout.strip().splitlines()
+        history = []
+        for line in revisions:
+            sha, iso = line.split(" ", 1)
+            blob = subprocess.run(["git", "-C", str(ROOT), "show", f"{sha}:{path}"],
+                                  capture_output=True, text=True).stdout
+            history.append((iso[:10], blob))
+        working = (ROOT / path).read_text(encoding="utf-8") if (ROOT / path).is_file() else None
+        day, bad = _replay_data_set(history, working, build, date.today().isoformat())
+        unreadable.extend(f"{path} {b}" for b in bad)
+        if day:
+            edits[key] = day
+            seen += 1
     return edits, unreadable, seen
+
+
+def _replay_data_set(history, working, build, today):
+    """(day the claim list last changed, [unreadable revisions]) for a claim set built from a data file.
+
+    `history` is [(committed day, file text)] oldest first and `working` the text on disk. Wording is
+    compared the way the VERIFIED literal is, so a restyle is not an edit. A change sitting in the
+    working tree has not been committed, so its day is today."""
+    day, bad, previous = None, [], None
+    for iso, blob in history:
+        try:
+            facts = _wording(build(json.loads(blob)))
+        except (ValueError, KeyError, TypeError):
+            bad.append(iso)
+            continue
+        if previous is not None and facts != previous:
+            day = iso
+        previous = facts
+    if working is not None:
+        try:
+            if previous is not None and _wording(build(json.loads(working))) != previous:
+                day = today
+        except (ValueError, KeyError, TypeError):
+            bad.append("working tree")
+    return day, bad
 
 
 def _stale_dates(verified, advertised, edited):
@@ -242,7 +287,26 @@ def _self_check() -> int:
     reworded = "plans are metered on crawled pages per month — Lite 100,000, Advanced 1.5M"
     wording_ok = (_wording(said) == _wording(restyled) and _wording(said) != _wording(renumbered)
                   and _wording(said) != _wording(reworded))
-    ok = len(caught) == 1 and not clean and not same_day and wording_ok
+    # A claim set built from a data file: a changed fact is dated by the revision that changed it, a
+    # restyle is not an edit, an untouched file is no edit however many days pass, and an uncommitted
+    # change is today. The first of these is what a deploy a day after the read date used to get wrong.
+    def _build(d):
+        return [(f"{r['name']}: {r['price']}", "https://example.invalid/") for r in d["rows"]]
+
+    def _txt(price, name="Tool"):
+        return json.dumps({"rows": [{"name": name, "price": price}]})
+
+    same, _ = _replay_data_set([("2026-10-01", _txt("$10 once")), ("2026-10-05", _txt("$10 once"))],
+                               _txt("$10 once"), _build, "2026-10-20")
+    changed, _ = _replay_data_set([("2026-10-01", _txt("$10 once")), ("2026-10-05", _txt("$12 once"))],
+                                  _txt("$12 once"), _build, "2026-10-20")
+    restyled, _ = _replay_data_set([("2026-10-01", _txt("$10 once")), ("2026-10-05", _txt("$10 Once."))],
+                                   _txt("$10 once"), _build, "2026-10-20")
+    pending, _ = _replay_data_set([("2026-10-01", _txt("$10 once"))], _txt("$15 once"), _build, "2026-10-20")
+    _, bad = _replay_data_set([("2026-10-01", "not json")], None, _build, "2026-10-20")
+    replay_ok = (same is None and changed == "2026-10-05" and restyled is None
+                 and pending == "2026-10-20" and bad == ["2026-10-01"])
+    ok = len(caught) == 1 and not clean and not same_day and wording_ok and replay_ok
     print("SELF-CHECK " + ("ok — a fact edited after its date fails; edited on or "
                            "before it passes" if ok else "FAIL — the rule does not fire"))
     return 0 if ok else 1
@@ -449,7 +513,8 @@ def main() -> int:
         # The homepage prints its own constant; rule 4's pair is not what a
         # reader sees there.
         advertised["home-four-lanes"] = comparisons.HOME_CLAIM_CHECKED
-    edited, unreadable, revisions = _facts_last_edited(comparisons.VERIFIED)
+    edited, unreadable, revisions = _facts_last_edited(
+        comparisons.VERIFIED, getattr(comparisons, "DATA_CLAIM_SETS", {}))
     failures.extend(_stale_dates(comparisons.VERIFIED, advertised, edited))
     if unreadable:
         failures.append(

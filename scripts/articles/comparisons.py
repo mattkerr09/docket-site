@@ -426,10 +426,22 @@ from datetime import date as _date
 
 _MAC = _json.loads((Path(__file__).resolve().parent.parent.parent / "data" / "mac-options.json")
                    .read_text(encoding="utf-8"))
-VERIFIED["mac-options"] = (
-    [(f"{o['name']}: {o['sold']}; free: {o['free']}; refund: {o['refund']}", o["source"])
-     for o in _MAC["options"]]
-    + [(what, url) for what, url in _MAC["sources_extra"]])
+
+
+def _mac_facts(data: dict) -> list:
+    """The claim list for data/mac-options.json. Pure, so the competitive-claims gate can rebuild it from any
+    old revision of that file and learn the day a fact last changed."""
+    return ([(f"{o['name']}: {o['sold']}; free: {o['free']}; refund: {o['refund']}", o["source"])
+             for o in data["options"]]
+            + [(what, url) for what, url in data["sources_extra"]])
+
+
+VERIFIED["mac-options"] = _mac_facts(_MAC)
+#: Claim sets whose facts live in a data file rather than in the VERIFIED literal above, as
+#: {key: (path from the repo root, builder from the parsed file to the claim list)}. The gate cannot
+#: read these out of comparisons.py's history (they are assigned at import), so it replays the data
+#: file instead. Without this a data-backed set read as "edited today" on every day after its date.
+DATA_CLAIM_SETS = {"mac-options": ("data/mac-options.json", _mac_facts)}
 CHECKED_ISO["mac-options"] = _MAC["read"]
 _d = _date.fromisoformat(_MAC["read"])
 CHECKED_HUMAN["mac-options"] = f"{_d.day} {_d.strftime('%B %Y')}"
