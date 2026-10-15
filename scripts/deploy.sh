@@ -16,6 +16,11 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 PY="${PYTHON:-python3}"
 
+# A gate that requests a live hub or GitHub URL can lose to a read timeout (seen twice on
+# the contact gate and once on the download-path gate, each passing on the next run). Those
+# two get one more try before they stop a deploy. A real fault fails both times.
+retry_once() { "$@" || { echo "  (first attempt failed; trying once more)"; sleep 5; "$@"; }; }
+
 echo "==> build"
 # DOCKET_DEPLOY=1 is what licences build.py to write data/build-id.txt, the
 # anchor the deployed-matches-committed gate compares the live build against.
@@ -74,7 +79,7 @@ echo "==> contact gate"
 # no MX record, so every message anyone sent bounced to them silently. A dead
 # mailbox is worse than a broken link: a 404 tells the visitor it failed. This
 # resolves every mailto domain and requests every advertised contact URL.
-"$PY" scripts/verify_contact.py
+retry_once "$PY" scripts/verify_contact.py
 
 echo "==> competitive-claim gate"
 # The homepage said "Four things crawler tools ignore" — unsourced, undated, on
@@ -194,7 +199,7 @@ echo "==> release gate"
 # leaves every one of them green. Cheap tier here; `--full` downloads the DMG
 # and is for a release rather than a deploy.
 echo "==> download-path gate"
-"$PY" scripts/verify_download_path.py || exit 1
+retry_once "$PY" scripts/verify_download_path.py || exit 1
 
 if [ -f scripts/publish_knowledge.py ]; then
   echo "==> knowledge feed gate"
