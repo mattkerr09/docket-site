@@ -25,6 +25,7 @@ different question from this one.
 """
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -53,7 +54,42 @@ def visible(html: str) -> str:
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", _TAGS.sub(" ", html)))
 
 
+#: The one page that is a record of past releases. It may name a release that is not the current one, and
+#: only the releases it lists in data/corrections.json, each of which scripts/verify_corrections.py checks
+#: against GitHub on every deploy. Any other old version on that page, or any old version on any other page,
+#: still fails: the exemption is a list of verified releases, not a blind spot.
+HISTORY_PAGE = "learn/what-docket-got-wrong/index.html"
+
+
+def past_releases() -> set:
+    try:
+        data = json.loads((SITE.parent / "data" / "corrections.json").read_text(encoding="utf-8"))
+        return {e["release"] for e in data["entries"]}
+    except (OSError, ValueError, KeyError):
+        return set()
+
+
+def stale(rel: str, text: str, release: str, past: set) -> list:
+    """Versions on page `rel` that are neither the release nor a verified past release on the history page."""
+    allowed = past if rel == HISTORY_PAGE else set()
+    return sorted(m for m in set(_VERSION.findall(text)) if m != release and m not in allowed)
+
+
+def _self_test() -> int:
+    past = {"1.3.80", "1.3.97"}
+    text = "fixed in 1.3.80 and v1.3.97"
+    ok = (not stale(HISTORY_PAGE, text, "1.3.110", past)
+          and stale(HISTORY_PAGE, text + " and 1.3.5", "1.3.110", past) == ["1.3.5"]
+          and stale("about/index.html", text, "1.3.110", past) == ["1.3.80", "1.3.97"]
+          and not stale("about/index.html", "1.3.110", "1.3.110", past))
+    if not ok:
+        print("VERSION FAIL — self-test: the history-page exemption is not exactly the listed releases")
+    return 0 if ok else 1
+
+
 def main() -> int:
+    if _self_test():
+        return 1
     pages = sorted(SITE.rglob("*.html"))
     if not pages:
         print("VERSION FAIL — no built pages; run scripts/build.py first")
@@ -66,6 +102,7 @@ def main() -> int:
     release = render.RELEASE.lstrip("v")
     problems: list[str] = []
     seen = 0
+    past = past_releases()
 
     for path in pages:
         raw = path.read_text(encoding="utf-8", errors="replace")
@@ -74,13 +111,12 @@ def main() -> int:
         # stripped by `visible()`. The pattern is narrow enough that CSS
         # and script bodies do not trip it.
         text = raw
-        for match in set(_VERSION.findall(text)):
-            seen += 1
-            if match != release:
-                rel = path.relative_to(SITE)
-                problems.append(
-                    f"    {rel} says {match} — the release is {release}. "
-                    f"A reader is being told about a build they cannot download.")
+        rel = path.relative_to(SITE)
+        seen += len(set(_VERSION.findall(text)))
+        for match in stale(str(rel), text, release, past):
+            problems.append(
+                f"    {rel} says {match} — the release is {release}. "
+                f"A reader is being told about a build they cannot download.")
 
     if problems:
         print(f"VERSION FAIL — {len(problems)} page(s) name a version that is "
