@@ -1,7 +1,7 @@
 {
   "site": "docketseo.app",
   "pages": 156,
-  "edges": 4043,
+  "edges": 4047,
   "average_share_pct": 0.64,
   "below_half": 132,
   "nodes": [
@@ -217,9 +217,9 @@
     },
     {
       "path": "/how-to/fix-duplicate-title-tags/",
-      "inlinks": 3,
-      "share_pct": 0.07,
-      "index": 0.11
+      "inlinks": 6,
+      "share_pct": 0.15,
+      "index": 0.23
     },
     {
       "path": "/how-to/fix-favicon-not-showing-in-search/",
@@ -661,9 +661,9 @@
     },
     {
       "path": "/learn/googlebot-2mb-limit/",
-      "inlinks": 5,
-      "share_pct": 0.12,
-      "index": 0.19
+      "inlinks": 6,
+      "share_pct": 0.15,
+      "index": 0.23
     },
     {
       "path": "/learn/index-coverage/",
@@ -942,5 +942,5 @@
       "index": 0.19
     }
   ],
-  "measured": "2026-10-15"
+  "measured": "2026-10-16"
 }

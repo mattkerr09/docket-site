@@ -416,7 +416,7 @@ another address is fine when it is deliberate, such as a filtered view pointing 
 </ul>
 
 <h2>What one page cannot tell you</h2>
-<p>Whether two pages share the same title, whether the canonical you point at is itself indexable, and
+<p>Whether two pages <a href="/how-to/fix-duplicate-title-tags/">share the same title</a>, whether the canonical you point at is itself indexable, and
 whether the page's text matches what its tags promise. Docket checks those across every page of a site,
 with the rest of its {N_CHECKS} checks, and ranks what to fix first.</p>
 {buy_block("tools-meta-checker", try_app="tools-meta-checker-try-free")}

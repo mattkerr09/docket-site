@@ -71,15 +71,34 @@ VERIFIED: list[tuple[str, str]] = [
 ]
 
 
+#: Read on the day named, separately from the list above, which was read on CHECKED_ON. Same contract: anything
+#: not in a list is not stated on the page as a fact about Google or about WordPress.
+LATER_ON_HUMAN = "16 October 2026"
+VERIFIED_LATER: list[tuple[str, str]] = [
+    ("Google's page on title links, which it dates 10 December 2025, suggests putting the title text in the first "
+     "visible h1, lists headings among the sources a title link can be built from, and does not say what Google "
+     "does with a second title element",
+     "https://developers.google.com/search/docs/appearance/title-link"),
+    ("WordPress's theme review handbook, last modified 11 August 2021, says document titles must not be hard "
+     "coded and that a theme should use add_theme_support( \"title-tag\" ) instead",
+     "https://make.wordpress.org/themes/handbook/review/recommended/"),
+]
+
+
 def _verified_note() -> str:
     items = "; ".join(f'{what} (<a href="{url}" rel="nofollow noopener">source</a>)'
                       for what, url in VERIFIED)
+    later = "; ".join(f'{what} (<a href="{url}" rel="nofollow noopener">source</a>)'
+                      for what, url in VERIFIED_LATER)
     return (f'<p class="verified-note"><strong>Read {CHECKED_ON_HUMAN}.</strong> '
             f'Every statement above about how Google behaves was read from these '
             f'pages on that date: {items}. Search behaviour moves and these will '
             f'age. Where a number here is contested, both numbers are on the page '
             f'with the reason they differ, rather than the one that argues better.'
-            f'</p>')
+            f'</p>'
+            f'<p class="verified-note"><strong>Read {LATER_ON_HUMAN}.</strong> '
+            f'The sections on a second title element, on the h1, and on WordPress were added '
+            f'later and read from these pages that day: {later}.</p>')
 
 
 def duplicate_titles() -> Path:
@@ -217,6 +236,36 @@ something only it can say (a real address, real prices, work you actually did th
 them and redirect. A unique title on a page with no reason to exist is a unique title on a page
 with no reason to exist.</p>
 
+<h2>More than one title element on a page</h2>
+
+<p>Search the page's source for <code>&lt;title</code>. A page has one document title, in the head.
+Two matches usually mean one of two things.</p>
+
+<ul>
+<li><strong>An icon with a name.</strong> An inline SVG can carry its own <code>&lt;title&gt;</code> so
+a screen reader can say what the icon is, such as a close button. It sits in the body and is not the
+document title. A script that matches every <code>&lt;title&gt;</code> string in the HTML counts it
+anyway, and reports two. Docket's own byte-cap check once reported one of these labels as a page's title,
+which <a href="/learn/googlebot-2mb-limit/">is written up in full</a>, so it is worth looking at where
+the second one is before you change anything.</li>
+<li><strong>A theme and a plugin both printing a title.</strong> WordPress's theme review handbook says a
+theme's document title must not be hard coded and that it should declare <code>title-tag</code> support
+instead. A theme that does both, or an older one that prints its own beside what the SEO plugin writes,
+ends up with two in the head. The fix is to remove the hard-coded one from the theme's
+<code>header.php</code>, in a child theme so an update does not bring it back, and keep the support
+declaration.</li>
+</ul>
+
+<p>What Google does with a second title element in the head is not something its page on title links
+says, so this page does not claim to know. Emit one.</p>
+
+<h2>The h1 and the title can say the same thing</h2>
+
+<p>An h1 that matches the title is not a duplicate to fix. Google's page on title links suggests putting
+the title text in the first visible h1, and lists headings among the places a title link can be built
+from. What is worth finding is the same h1 on many pages, which is the same problem one element down:
+the export that groups titles by string takes a second column for the h1 and the same pivot.</p>
+
 <h2>What this will not fix</h2>
 
 <p><strong>Duplicate titles are not why a thin page fails to rank.</strong> A page carrying
@@ -252,8 +301,23 @@ number 304.</p>
         h1="How to fix duplicate title tags",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / duplicate titles',
         published=CHECKED_ON,
+        modified="2026-10-16",
         body=body,
         faq=[
+            ("How do I fix duplicate title tags in WordPress?",
+             "Find which of two causes you have. Many pages sharing one title means the title template in "
+             "your SEO plugin or theme has no variable that changes per page, so give each type of page a "
+             "template with its own name in it. Two title elements in one page means the theme prints one "
+             "and something else prints another; WordPress's theme handbook says a theme should not hard "
+             "code the title and should declare title-tag support, so remove the hard-coded one from header.php."),
+            ("Is it a problem if my h1 and title tag are the same?",
+             "No. Google's page on title links suggests putting the title text in the first visible h1. "
+             "The thing to find is the same h1 or the same title repeated across many pages."),
+            ("Can a page have two title tags?",
+             "It should not. A page has one document title, in the head. A second match for the title "
+             "element is often an SVG icon's accessible name in the body, which is not the document title. "
+             "Google's page on title links does not say what it does with a second title element, so the "
+             "safe course is to emit one."),
             ("Do duplicate title tags cause a Google penalty?",
              "No. Google's spam policies enumerate sixteen behaviours that can lower a "
              "ranking or trigger a manual action, and duplicate or repeated titles is not "

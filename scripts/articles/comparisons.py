@@ -1301,7 +1301,7 @@ valid. Whether the page it names points back is a two-page question, and Google 
 whole cluster when the answer is no.</li>
 <li><strong>Canonical clusters.</strong> A well-formed <code>rel=canonical</code> passes.
 Forty pages all canonicalising to the same URL also passes, forty separate times.</li>
-<li><strong>Duplicate and templated titles.</strong> <code>document-title</code> asks whether
+<li><strong><a href="/how-to/fix-duplicate-title-tags/">Duplicate and templated titles</a>.</strong> <code>document-title</code> asks whether
 a title exists, not whether it is the same title as three hundred other pages.</li>
 <li><strong>Click depth and internal link equity.</strong> Both are properties of the link
 graph, and there is no graph in one page load.</li>

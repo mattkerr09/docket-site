@@ -73,7 +73,7 @@ client.</p>
 
 <p>The free tier is limited to 500 URLs. For a small brochure site that is the whole site, and
 you get an actual crawl rather than a page-at-a-time check: redirect chains, broken links,
-duplicate titles across pages.</p>
+<a href="/how-to/fix-duplicate-title-tags/">duplicate titles across pages</a>.</p>
 
 <p>It is the right free answer for anyone comfortable reading crawl data and deciding what
 matters. If a spreadsheet of every URL and its status codes is a useful artefact to you rather
