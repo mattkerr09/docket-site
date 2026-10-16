@@ -200,6 +200,23 @@ def main() -> None:
             "signature": sig_x86,
             "url": f"{RELEASE}/{args.tag}/{TGZ_X86.name}",
         }
+    # windows-x86_64 only from this version's NSIS installer and the update signature made for it on the
+    # Mac (docket-app/scripts/windows_release.py, which takes the installer from CI only when it is signed
+    # by Kerr & Company and passed the customer path). Absent until a Windows build ships, so the
+    # manifest is exactly the Mac one until then. The url is the installer itself: Tauri 2's updater
+    # downloads it and runs it, so there is no zip.
+    win = APP / "dist" / f"Docket-{args.version}-x64-setup.exe"
+    win_sig = win.with_name(win.name + ".sig")
+    if win.is_file() and win_sig.is_file():
+        sig_win = win_sig.read_text().strip()
+        if not sig_win:
+            sys.exit(f"{win_sig} is empty; refusing to publish a Windows entry that rejects every update")
+        data["platforms"]["windows-x86_64"] = {
+            "signature": sig_win,
+            "url": f"{RELEASE}/{args.tag}/{win.name}",
+        }
+    elif win.is_file() != win_sig.is_file():
+        sys.exit(f"{win.name} and its .sig must both exist or neither; refusing a half Windows entry")
     OUT.write_text(json.dumps(data, indent=2) + "\n")
 
     # The download size, recorded so the site cannot claim one and ship
