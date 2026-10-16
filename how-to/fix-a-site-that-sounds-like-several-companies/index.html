@@ -14,7 +14,7 @@
 <title>When your site sounds like several companies wrote it</title>
 <meta name="description" content="Sentence length across your pages is a proxy for one voice. What an audit of your site can see, what it refuses to judge, and the wrong fixes.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="8c61773ef255">
+<meta name="build-id" content="aa0512006b1d">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-a-site-that-sounds-like-several-companies/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -779,6 +779,17 @@ nav{z-index:40}
 .sub .btn{flex:0 0 auto}
 .sub-fine{font-size:var(--t-sm);color:var(--text-dim);line-height:1.55;margin:.2rem 0 0}
 @media(max-width:34rem){.sub input[type=email]{flex:1 1 100%}.sub .btn{width:100%}}
+.win-wait{max-width:34rem;margin:1.6rem auto;padding:1rem 1.1rem;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface)}
+.win-wait[hidden],.win-wait-row[hidden]{display:none}
+.win-wait-ask{display:block;font-size:var(--t-md);color:var(--text);margin:0 0 .7rem;line-height:1.5}
+.win-wait-row{display:flex;gap:.55rem;flex-wrap:wrap}
+.win-wait-row input[type=email]{flex:1 1 15rem;min-width:0;padding:.6rem .8rem;border:1px solid var(--border-strong);border-radius:var(--radius);background:var(--bg);color:var(--text);font:inherit}
+.win-wait-row input[type=email]:focus-visible{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
+.win-wait-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.win-wait-msg{font-size:var(--t-sm);color:var(--text-dim);margin:.5rem 0 0;min-height:1.2em}
+.win-wait-msg.is-bad{color:var(--bad-text)}
+@media(max-width:34rem){.win-wait-row input[type=email]{flex:1 1 100%}.win-wait-row .btn{width:100%}}
+.win-wait .btn,.win-wait-row input[type=email]{min-height:44px}
 .cta-band{text-align:center;padding:4.2rem 0}
 .cta-band h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.028em;margin-bottom:.7rem}
 .cta-band p{font-size:var(--t-lg);color:var(--text-mid);max-width:34rem;margin:0 auto 1.6rem}
