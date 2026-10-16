@@ -442,6 +442,67 @@ MAC_HW = "Apple silicon or Intel" if INTEL else "Apple Silicon"
 MACS = "Macs with Apple silicon or Intel" if INTEL else "Apple Silicon Macs"
 #: What there is no build of.
 NO_BUILDS = "There is no Windows build." if INTEL else "There is no Windows or Intel build."
+
+#: Where a Windows waiting-list sign-up is posted and under which source. The source is the one the shared
+#: widget this replaces used (host + "-windows"), so earlier sign-ups and new ones are ONE list, kept apart from
+#: every other list on that server. See ~/ops/subscribe-worker/README.md.
+WIN_WAIT_ENDPOINT = "https://kerr-subscribe.kerrco.workers.dev"
+WIN_WAIT_SOURCE = "docketseo.app-windows"
+WIN_WAIT_LINE = "Docket for Windows is on the way. Leave your email and we\u2019ll write once, the day it\u2019s ready."
+WIN_WAIT_DONE = "Done. We\u2019ll write once, the day it\u2019s ready, and send nothing else."
+
+_WIN_WAIT_JS = """(function () {
+  var forms = document.querySelectorAll('form[data-win-wait]');
+  if (!forms.length) return;
+  // Only a visitor on Windows is shown it: everyone else gets no form, no request and no layout change.
+  var uad = navigator.userAgentData, plat = (uad && uad.platform) || navigator.platform || '';
+  if (!(/^win/i.test(plat) || /Windows NT/.test(navigator.userAgent || ''))) return;
+  Array.prototype.forEach.call(forms, function (f) {
+    var input = f.querySelector('input[type="email"]'), go = f.querySelector('button'),
+        msg = f.querySelector('.win-wait-msg'), trap = f.querySelector('.win-wait-hp input');
+    function say(t, bad) { msg.textContent = t; msg.className = 'win-wait-msg' + (bad ? ' is-bad' : ' is-ok'); }
+    f.hidden = false;
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = (input.value || '').trim();
+      if (!email || email.indexOf('@') < 1) { say('That address looks incomplete.', true); input.focus(); return; }
+      if (trap && trap.value) { say(f.getAttribute('data-done'), false); return; }
+      go.disabled = true; say('Saving\u2026', false);
+      fetch(f.getAttribute('data-endpoint'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: f.getAttribute('data-source') })
+      }).then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (d) { return r.ok && !!d && d.ok === true; });
+      }).then(function (ok) {
+        if (!ok) { say('That did not save. Try again in a moment.', true); go.disabled = false; return; }
+        f.querySelector('.win-wait-row').hidden = true;
+        say(f.getAttribute('data-done'), false);
+      }).catch(function () {
+        say('Could not reach us just now. Check your connection and try again.', true);
+        go.disabled = false;
+      });
+    });
+  });
+})();"""
+
+
+def windows_waitlist(placement: str) -> str:
+    """The Windows waiting-list form, for the home, download and pricing pages. Hidden until the script has
+    seen a Windows visitor; posts only when the button is pressed, to the subscribe worker, with the
+    address and the source and nothing else. `placement` only makes the field ids unique."""
+    return f"""<form class="win-wait" data-win-wait data-endpoint="{WIN_WAIT_ENDPOINT}" data-source="{WIN_WAIT_SOURCE}"
+  data-done="{WIN_WAIT_DONE}" novalidate hidden>
+  <label class="win-wait-ask" for="win-wait-{placement}">{WIN_WAIT_LINE}</label>
+  <div class="win-wait-row">
+    <input id="win-wait-{placement}" name="email" type="email" inputmode="email" autocomplete="email"
+      placeholder="you@example.com" required>
+    <button type="submit" class="btn btn-ghost btn-sm">Tell me</button>
+  </div>
+  <div class="win-wait-hp" aria-hidden="true"><input name="website" type="text" tabindex="-1" autocomplete="off"></div>
+  <p class="win-wait-msg" role="status" aria-live="polite"></p>
+</form>
+<script>{_WIN_WAIT_JS}</script>"""
 #: The Linux CLI. Empty when the release carries none, so a page can ask
 #: rather than promise — the download page described a Linux tarball in
 #: detail for seven releases during which none was published.
@@ -1518,6 +1579,17 @@ nav{z-index:40}
 .sub .btn{flex:0 0 auto}
 .sub-fine{font-size:var(--t-sm);color:var(--text-dim);line-height:1.55;margin:.2rem 0 0}
 @media(max-width:34rem){.sub input[type=email]{flex:1 1 100%}.sub .btn{width:100%}}
+.win-wait{max-width:34rem;margin:1.6rem auto;padding:1rem 1.1rem;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface)}
+.win-wait[hidden],.win-wait-row[hidden]{display:none}
+.win-wait-ask{display:block;font-size:var(--t-md);color:var(--text);margin:0 0 .7rem;line-height:1.5}
+.win-wait-row{display:flex;gap:.55rem;flex-wrap:wrap}
+.win-wait-row input[type=email]{flex:1 1 15rem;min-width:0;padding:.6rem .8rem;border:1px solid var(--border-strong);border-radius:var(--radius);background:var(--bg);color:var(--text);font:inherit}
+.win-wait-row input[type=email]:focus-visible{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
+.win-wait-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.win-wait-msg{font-size:var(--t-sm);color:var(--text-dim);margin:.5rem 0 0;min-height:1.2em}
+.win-wait-msg.is-bad{color:var(--bad-text)}
+@media(max-width:34rem){.win-wait-row input[type=email]{flex:1 1 100%}.win-wait-row .btn{width:100%}}
+.win-wait .btn,.win-wait-row input[type=email]{min-height:44px}
 .cta-band{text-align:center;padding:4.2rem 0}
 .cta-band h2{font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-.028em;margin-bottom:.7rem}
 .cta-band p{font-size:var(--t-lg);color:var(--text-mid);max-width:34rem;margin:0 auto 1.6rem}

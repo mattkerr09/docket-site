@@ -1220,7 +1220,7 @@ def pricing_page() -> Path:
     article.
     """
     from render import (BNPL_INSTALMENT, DMG_SIZE, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, PRICE_STR, REFUND_DAYS,
-                        buy_block, download_url)
+                        buy_block, download_url, windows_waitlist)
     # The prose below is this page's own. The quality gate's duplicate check
     # judged the first version (the buy block alone) a copy of 18 pages,
     # rightly: a page that is only the shared block says nothing of its own.
@@ -1275,6 +1275,7 @@ you can see how much is wrong on your site, and the worst of it, before you pay 
 <h2>Before you buy: what it runs on</h2>
 <p>A Mac with {MAC_HW}, on {MACOS} or later. {NO_BUILDS} If
 you are unsure, open the full sample report first; it shows what an audit hands you.</p>
+{windows_waitlist("pricing")}
 
 <h2>Writing or making videos about Docket?</h2>
 <p>Kerr &amp; Company, the company that sells Docket, runs an affiliate programme that pays a

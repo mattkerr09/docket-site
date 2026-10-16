@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
+from render import (windows_waitlist, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
@@ -766,10 +766,8 @@ needed, and the crawl and the report stay on your Mac.</p>
 <p class="founder-note">I'm Matt Kerr. I build Docket on my own in Grand Rapids, Michigan, and I read the
 support inbox and the issue tracker myself. <a href="/about/">About me, and what Docket cannot do</a>.</p>
 </div>
-<!-- Windows waiting list. The script renders into this div and does nothing
-     without it, so placement is decided here rather than guessed. -->
-<div data-win-notify style="max-width:520px;margin:1.5rem auto 0"></div>
-<script src="https://kerr-subscribe.kerrco.workers.dev/notify.js" defer></script>
+<!-- Windows waiting list: first-party, shown only to a visitor on Windows (render.windows_waitlist). -->
+<div class="wrap">{windows_waitlist("home")}</div>
 <script>{PHONE_LINK_JS}</script>
 </section>"""
 

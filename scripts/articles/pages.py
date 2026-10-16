@@ -17,7 +17,7 @@ import facts as F  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
-from render import (with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
+from render import (windows_waitlist, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
@@ -157,6 +157,7 @@ data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On
 </ol>
 <p>Or start with step 2: without a key, Docket runs the same full audit for free. {FREE_LINE}
 Buy from inside the app and the audit you ran opens in full.</p>
+{windows_waitlist("download")}
 
 <p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on {MAC_HW}.
 {DMG_SIZE}. No subscription, no crawl credits, no per-seat pricing. Audit as many sites as
@@ -1984,7 +1985,7 @@ requests as any other, and it can ask for offline mode.</li>
 removes them permanently.</p>
 
 <h2>This website</h2>
-<p>This site is static and runs seven third-party scripts. The first is
+<p>This site is static and runs six third-party scripts. The first is
 <a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, which counts page
 views. Plausible states that it uses no cookies, collects no personal data and does not track
 visitors across sites; it is hosted in the EU. Nothing about your audits reaches it.
@@ -2017,20 +2018,13 @@ into it, that question is sent to that server so it can be answered; if you neve
 nothing is sent. It knows only published facts about Docket, and the price it quotes comes from
 the payment provider rather than from this page, so it cannot quote you a price the checkout
 will not honour.</p>
-<p>The fifth is on the front page only, and not on this one: a
-&ldquo;tell me when Windows is ready&rdquo; form, loaded from
-<code>kerr-subscribe.kerrco.workers.dev</code>, a server we run. Like the assistant it draws
-itself in an isolated shadow root and stores nothing in your browser: no cookie, no local
-storage, no session storage. Nothing is sent unless you type an address and press the button, and
-what is sent is that address and which site it came from, so the Windows list stays separate from
-every other list. If you never use the form, it makes no request at all.</p>
-<p>The sixth is also on the front page only: the founding-offer bar across the top of the
+<p>The fifth is also on the front page only: the founding-offer bar across the top of the
 page, loaded from <code>kerr-lead-agent.kerrco.workers.dev</code>, the same server as the
 assistant. When the page loads it asks that server whether the offer is still open, and the only
 thing it sends is this site's name. If you close the bar, the time you closed it is kept in your
 browser's local storage so the bar stays away for seven days; nothing else is stored and it sets
 no cookie. It draws itself in an isolated shadow root, like the assistant.</p>
-<p>The seventh is on every page: a small script loaded from
+<p>The sixth is on every page: a small script loaded from
 <code>kerr-affiliate-hub.kerrco.workers.dev</code>, a server we run, which is where our Download and
 Buy links point. It does three things. When you click a Download or Buy link, it marks the click as made
 by a person, because a crawler that only follows the address never makes a click, so we can count people
@@ -2041,6 +2035,12 @@ sets no cookie. And it adds where you came from, from the same short list as bel
 sends nothing itself. The server it points at counts downloads and Buy clicks per day, per page tag and
 country, and whether the click looked like a person; it stores no IP address and no user agent. If a
 content blocker stops the script, the links still work.</p>
+<p>A form for visitors on Windows is written into this site's own pages, on the front page, the
+download page and the pricing page, rather than loaded from anywhere. It is shown only if your browser
+says it is running on Windows, and to nobody else. It makes no request unless you type an address and
+press the button; then it sends that address, and the name of this site's Windows list, to
+<code>kerr-subscribe.kerrco.workers.dev</code>, a server we run. It stores nothing in your browser. We
+use the address once, to write to you the day Docket for Windows is ready, and for nothing else.</p>
 <p>One more thing runs here, written into this site's own pages rather than loaded from
 anywhere. If you arrive from a link that says where it was shared, such as
 <code>?ref=producthunt</code>, from a fixed list of such names (Product Hunt, Hacker News, Reddit, a
@@ -2098,7 +2098,7 @@ it; we hold nothing separately.</p>
         cat="legal", slug="privacy",
         title="Privacy policy: what Docket collects, and what it does not",
         desc="Audits run on your Mac and are never uploaded. No account, no "
-             "telemetry. Seven third-party scripts, one an advertising pixel. "
+             "telemetry. Six third-party scripts, one an advertising pixel. "
              "What each does and how to stop it.",
         h1="Privacy policy",
         crumb='<a href="/">Docket</a> / Privacy',
