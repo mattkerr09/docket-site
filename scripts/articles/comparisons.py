@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import (PAY4, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE_STR, RELEASE,  # noqa: E402
+from render import (PAY4, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, RELEASE,  # noqa: E402
                     price, price_note_html, render, buy_block, rival_monthly_range,
                     INTEL, INTEL_DMG, download_url, DATA, REFUND_DAYS)
 
@@ -91,7 +91,7 @@ CHECKED_HUMAN: dict[str, str] = {
     # 10 August while the sentences beneath it changed — "a date that stays put
     # while the sentence under it changes is a false date about somebody else's
     # product", and it was right.
-    "ahrefs": "8 October 2026",
+    "ahrefs": "16 October 2026",
     # Read live 2026-09-16, both tiers and the crawl quotas, from the vendor's
     # own pricing page. The CSV had carried 2026-08-10; re-reading confirmed the
     # prices unchanged and added the monthly crawl allowances, which are the
@@ -106,7 +106,7 @@ CHECKED_HUMAN: dict[str, str] = {
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-08-15",
     "se-ranking-vs-screaming-frog": "2026-10-08",
-    "ahrefs": "2026-10-08",
+    "ahrefs": "2026-10-16",
     "seoptimer": "2026-10-08",
     "sitechecker": "2026-09-16",
     "profound": "2026-09-16",
@@ -304,8 +304,8 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     "ahrefs": [
         ('Site Audit "scans for 170+ issues", and "segments issues into errors, warnings, and '
          'notices, so you know which ones to fix first"', "https://ahrefs.com/site-audit"),
-        ("Ahrefs Free includes Site Audit \"For verified websites\", and Ahrefs says Ahrefs Free "
-         "and Ahrefs Webmaster Tools \"are the same account\"", "https://ahrefs.com/free"),
+        ("Ahrefs Free includes Site Audit \"For verified websites\", and Ahrefs says of Ahrefs Free "
+         "and Ahrefs Webmaster Tools: \"They\u2019re the same account\"", "https://ahrefs.com/free"),
         ('Site Audit lists finding duplicate content, "Be it title tags, meta '
          'descriptions, headings, or low-quality content pages"',
          "https://ahrefs.com/site-audit"),
@@ -317,6 +317,14 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
         ("crawl credits are listed per plan: Lite 100,000, Standard 500,000, Advanced 1.5M per "
          "month, and max pages per project of 25,000, 50,000 and 250,000",
          "https://ahrefs.com/pricing"),
+        ("only internal HTML pages that return a 200 (OK) status spend a crawl credit; redirects, error "
+         "pages, images, CSS and JavaScript files and links to other sites do not, and each verified project's "
+         "first 5,000 crawl credits a month are free on every plan",
+         "https://help.ahrefs.com/en/articles/3119402-how-are-crawl-credits-in-site-audit-spent"),
+        ("pay-as-you-go purchases of report credits, export rows, crawl credits and API units last three "
+         "billing months, and pay-as-you-go additional credits are disabled by default; no price for "
+         "extra crawl credits is given",
+         "https://help.ahrefs.com/en/articles/6061657-ahrefs-usage-based-pricing-for-credit-based-plans"),
     ],
     # Lighthouse is the one entry here whose source is not a marketing page but
     # a configuration file, which is the strongest form this claim can take:
@@ -803,7 +811,27 @@ _AH_PRICE = {"Lite": 129, "Standard": 249, "Advanced": 449}
 _AH_LO, _AH_HI = rival_monthly_range("ahrefs-site-audit")
 
 
+def _months_past_docket(monthly: int) -> int:
+    """The first month in which paying `monthly` a month has cost more than Docket's one price."""
+    m = 1
+    while monthly * m <= PRICE:
+        m += 1
+    return m
+
+
+def _credit_rows() -> str:
+    """One row a plan: price, credits, and the plan price spread over its credits (per 1,000)."""
+    rows = []
+    for tier in ("Lite", "Standard", "Advanced"):
+        price, credits = _AH_PRICE[tier], F.credits_as_int(tier)
+        rows.append(f"<tr><td>Ahrefs {tier}</td><td>${price}</td><td>{F.credits_for(tier)}</td>"
+                    f"<td>${price / credits * 1000:.2f}</td><td>month {_months_past_docket(price)}</td></tr>")
+    return "\n".join(rows)
+
+
 def ahrefs() -> Path:
+    rules = F.credit_rules()
+    help_a, help_b = F.credit_help_centre()
     body = f"""
 <p class="lede"><strong>The short answer:</strong> Ahrefs Site Audit is one module inside a keyword and
 backlink platform. Its page says it &ldquo;scans for 170+ issues&rdquo; and sorts them into errors,
@@ -817,6 +845,42 @@ audit inside the same account.</li>
 <li><strong>Docket suits</strong> someone on a Mac who wants to audit any site, a client's included,
 with a ranked list of fixes and no crawl credits.</li>
 </ul>
+
+<h2>Ahrefs Site Audit credits: what spends one, and what they cost</h2>
+<p><strong>The short answer:</strong> an Ahrefs Site Audit crawl credit is spent each time the crawler
+reads one internal HTML page that returns a 200 status. Redirects, error pages, images, CSS and
+JavaScript files and links to other sites do not spend one. Credits come with the plan:
+{F.credits_for("Lite")} a month on Lite at ${_AH_PRICE["Lite"]} a month, {F.credits_for("Standard")} on Standard at
+${_AH_PRICE["Standard"]}, {F.credits_for("Advanced")} on Advanced at ${_AH_PRICE["Advanced"]}. Ahrefs does not
+publish a price for buying more crawl credits. Docket has no credits: it is {PRICE_STR} once.</p>
+<p class="table-note">Read from Ahrefs' pricing page and help centre on {CHECKED_HUMAN["ahrefs"]}. The last column
+is arithmetic on those prices: the first month in which paying that plan monthly has cost more than
+Docket's one price.</p>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Plan</th><th>Price a month</th><th>Site Audit crawl credits a month</th>
+<th>Plan price per 1,000 credits</th><th>Costs more than Docket from</th></tr></thead>
+<tbody>
+{_credit_rows()}
+</tbody></table></div>
+<p>The price per 1,000 credits is the whole plan's price spread over its credits. It is not what Ahrefs
+charges for Site Audit on its own: the same plan also covers the keyword and backlink tools, so
+read it as an upper bound on what the audit costs and not as a rate Ahrefs publishes.</p>
+<ul>
+<li><strong>What spends a credit.</strong> Ahrefs' help centre article
+<a href="{help_a["url"]}" rel="noopener">{help_a["title"]}</a> (dated by Ahrefs {help_a["dated_by_ahrefs"]}) says
+only {rules["spends_a_credit"]} spends one. It lists {", ".join(rules["free_to_crawl"][:-1])} and {rules["free_to_crawl"][-1]} as free to crawl.</li>
+<li><strong>A free allowance.</strong> The first {rules["free_credits_per_verified_project_per_month"]:,} crawl credits
+a month spent on a project whose ownership you have verified are free, on every plan.</li>
+<li><strong>When the credits run out.</strong> Pay-as-you-go additional credits are off by default. If you turn
+them on, you are charged automatically when use passes the plan's limit, and what you buy lasts
+{rules["pay_as_you_go_credits_last_billing_months"]} billing months. In
+<a href="{help_b["url"]}" rel="noopener">their article on usage-based pricing</a> and on the pricing page, we
+found no rate for extra crawl credits, so we cannot tell you what a re-crawl past the limit would cost.</li>
+</ul>
+<p>Paying monthly, Ahrefs Lite costs more than Docket's one price from month {_months_past_docket(_AH_PRICE["Lite"])},
+Standard from month {_months_past_docket(_AH_PRICE["Standard"])} and Advanced from month
+{_months_past_docket(_AH_PRICE["Advanced"])}. That compares two different things: Ahrefs also sells keyword and
+backlink data that Docket does not have, as the sections below say.</p>
 
 <h2>At a glance</h2>
 <p class="table-note">Read from Ahrefs' own pages on {CHECKED_HUMAN["ahrefs"]}.</p>
@@ -886,10 +950,9 @@ does and does not advertise, which is not the same as proof the product cannot d
 
 <h2>The metering problem, concretely</h2>
 <p>Cloud auditing is priced per crawled URL, and that changes how you work in a way that is
-easy to miss until you hit it. Ahrefs' Lite plan lists 100,000 crawl credits a month. Their
-pricing page does not spell out what spends a credit, so the exact arithmetic is theirs to
-state, not ours, but a monthly allowance means re-auditing a client site after a fix, then
-again after the next fix, draws down a budget that a larger client might need.</p>
+easy to miss until you hit it. Ahrefs' Lite plan lists {F.credits_for("Lite")} crawl credits a month, and a
+credit is one internal page crawled, as set out above, so a monthly allowance means re-auditing a client
+site after a fix, then again after the next fix, draws down a budget that a larger client might need.</p>
 <p>The practical effect is that people run fewer audits than they should. You verify a change
 once rather than iterating, and you hesitate before crawling a prospect's site to win the
 work. Docket has no equivalent constraint: the crawl happens on your laptop, so running it
@@ -936,14 +999,24 @@ you pay for it.</p>
 
     return render(
         cat="vs", slug="ahrefs-site-audit-alternative",
-        modified="2026-10-08",
-        title="Ahrefs Site Audit tool vs Docket: what $129/mo buys (2026)",
-        desc=("Ahrefs Site Audit is one module of a keyword and backlink platform. Docket is a "
-              "one-time local auditor with a ranked fix plan. What each actually does."),
+        modified="2026-10-16",
+        title="Ahrefs Site Audit credits and cost, against Docket (2026)",
+        desc=("What an Ahrefs Site Audit crawl credit is, what spends one and what the plans cost, read from "
+              "Ahrefs' own pages, against Docket's one-time price."),
         h1="Docket vs Ahrefs Site Audit",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Ahrefs',
         body=body,
         faq=[
+            ("What is a crawl credit in Ahrefs Site Audit?",
+             "One internal HTML page that returns a 200 status, crawled once. Ahrefs' help centre says "
+             "redirects, error pages, images, CSS and JavaScript files and links to other sites do not spend "
+             f"credits, and that each verified project's first {F.credit_rules()['free_credits_per_verified_project_per_month']:,} "
+             "credits a month are free."),
+            ("How much do extra Ahrefs Site Audit credits cost?",
+             "Ahrefs does not publish a price for extra crawl credits on its pricing page or in its help "
+             "centre articles on crawl credits and usage-based pricing, as read on "
+             f"{CHECKED_HUMAN['ahrefs']}. Pay-as-you-go additional credits are off by default, and if you turn "
+             "them on you are charged automatically when use passes your plan's limit."),
             ("What does the Ahrefs Site Audit tool check?",
              f"Ahrefs' Site Audit page says it scans for 170+ issues and segments them into errors, "
              f"warnings and notices. Docket runs {N_CHECKS} checks across thirteen areas and ranks "

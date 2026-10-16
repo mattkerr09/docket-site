@@ -1,20 +1,50 @@
 {
-  "read": "2026-10-08",
-  "source": "https://ahrefs.com/pricing",
-  "method": "Read from the page's served HTML (monthly view). Not derived, not inferred from tier prices.",
-  "site_audit_crawl_credits_per_month": {
-    "Lite": "100,000",
-    "Standard": "500,000",
-    "Advanced": "1.5M",
-    "Enterprise": "From 5M"
+ "read": "2026-10-16",
+ "source": "https://ahrefs.com/pricing",
+ "method": "Plan prices, credits and project caps read from the page's rendered text (monthly view) on 2026-10-16; the crawl-credit rules from Ahrefs' help centre. Not derived, not inferred from tier prices.",
+ "site_audit_crawl_credits_per_month": {
+  "Lite": "100,000",
+  "Standard": "500,000",
+  "Advanced": "1.5M",
+  "Enterprise": "From 5M"
+ },
+ "max_pages_per_project": {
+  "Lite": "25,000",
+  "Standard": "50,000",
+  "Advanced": "250,000",
+  "Enterprise": "5M"
+ },
+ "overage": "Ahrefs' own FAQ: \"Once you enable additional pay-as-you-go credits and data, you'll be automatically charged when consumption exceeds your plan's limits.\" So the credit figure is a threshold for billing as well as a cap, when pay-as-you-go is switched on.",
+ "not_claimed": "Which tiers include Site Audit at all is NOT resolved here. Their feature grid uses no table rows and did not resolve per-tier; see competitors.csv's ahrefs-site-audit row, where the entry tier is recorded as unverified.",
+ "why_stored": "A competitor's limits change without telling us. Dated here so the page quotes a reading rather than a memory, and so one edit updates every place that cites it.",
+ "help_centre": [
+  {
+   "url": "https://help.ahrefs.com/en/articles/3119402-how-are-crawl-credits-in-site-audit-spent",
+   "title": "How are Crawl Credits in Site Audit spent?",
+   "dated_by_ahrefs": "3 September 2026"
   },
-  "max_pages_per_project": {
-    "Lite": "25,000",
-    "Standard": "50,000",
-    "Advanced": "250,000",
-    "Enterprise": "5M"
-  },
-  "overage": "Ahrefs' own FAQ: \"Once you enable additional pay-as-you-go credits and data, you'll be automatically charged when consumption exceeds your plan's limits.\" So the credit figure is a threshold for billing as well as a cap, when pay-as-you-go is switched on.",
-  "not_claimed": "Which tiers include Site Audit at all is NOT resolved here. Their feature grid uses no table rows and did not resolve per-tier; see competitors.csv's ahrefs-site-audit row, where the entry tier is recorded as unverified.",
-  "why_stored": "A competitor's limits change without telling us. Dated here so the page quotes a reading rather than a memory, and so one edit updates every place that cites it."
+  {
+   "url": "https://help.ahrefs.com/en/articles/6061657-ahrefs-usage-based-pricing-for-credit-based-plans",
+   "title": "Ahrefs' usage-based pricing for credit-based plans",
+   "dated_by_ahrefs": "3 September 2026"
+  }
+ ],
+ "credit_rules": {
+  "spends_a_credit": "an internal HTML page that returns a 200 (OK) status",
+  "free_to_crawl": [
+   "redirects",
+   "pages that return an error",
+   "images, CSS and JavaScript files",
+   "links to other sites"
+  ],
+  "free_credits_per_verified_project_per_month": 5000,
+  "pay_as_you_go_off_by_default": true,
+  "pay_as_you_go_credits_last_billing_months": 3,
+  "price_of_extra_crawl_credits": "not published on the three Ahrefs pages read"
+ },
+ "plan_price_per_month_usd": {
+  "Lite": 129,
+  "Standard": 249,
+  "Advanced": 449
+ }
 }

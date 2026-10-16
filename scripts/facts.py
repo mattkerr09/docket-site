@@ -1260,6 +1260,20 @@ def max_pages_for(tier: str) -> str:
     return ahrefs_credits()["max_pages_per_project"][tier]
 
 
+def credit_rules() -> dict:
+    return ahrefs_credits()["credit_rules"]
+
+
+def credit_help_centre() -> list:
+    return ahrefs_credits()["help_centre"]
+
+
+def credits_as_int(tier: str) -> int:
+    """'100,000' -> 100000, '1.5M' -> 1500000: the stored strings are what Ahrefs prints."""
+    raw = credits_for(tier).replace(",", "").strip()
+    return int(float(raw[:-1]) * 1_000_000) if raw.upper().endswith("M") else int(raw)
+
+
 @lru_cache(maxsize=None)
 def rendering_gap() -> dict:
     """Served-vs-rendered word counts measured on one site, 2026-09-09.
