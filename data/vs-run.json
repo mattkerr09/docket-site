@@ -1,18 +1,18 @@
 {
   "target": "docketseo.app",
-  "engine": "1.3.110",
+  "engine": "1.3.111",
   "checks": 99,
-  "date": "2026-10-14",
-  "pages": 152,
-  "seconds": 57,
+  "date": "2026-10-17",
+  "pages": 154,
+  "seconds": 53,
   "score": 99,
   "grade": "A",
-  "findings_total": 7,
+  "findings_total": 8,
   "by_severity": {
-    "low": 3,
+    "low": 4,
     "notice": 4
   },
-  "left_out": 1,
+  "left_out": 2,
   "lanes": [
     {
       "label": "Crawlability & indexing",
@@ -41,8 +41,8 @@
     },
     {
       "label": "Links",
-      "score": 100,
-      "findings": 1
+      "score": 98,
+      "findings": 2
     },
     {
       "label": "Security & trust",
@@ -101,7 +101,7 @@
       "phase": "Polish"
     },
     {
-      "rank": 4,
+      "rank": 5,
       "title": "Missing 1 baseline security header",
       "severity": "notice",
       "effort": "trivial",
@@ -109,7 +109,7 @@
       "phase": "Polish"
     },
     {
-      "rank": 5,
+      "rank": 6,
       "title": "2 marketing and analytics tools detected",
       "severity": "notice",
       "effort": "trivial",
@@ -117,7 +117,7 @@
       "phase": "Polish"
     },
     {
-      "rank": 7,
+      "rank": 8,
       "title": "One AI visibility control cannot be checked from outside, including by Docket",
       "severity": "notice",
       "effort": "trivial",
