@@ -14,7 +14,7 @@
 <title>Docket SEO: SEO, copy, conversion and brand audits for Mac</title>
 <meta name="description" content="Docket SEO audits any website on your Mac with 99 checks, ranked into a fix plan. Free to try: your score, counts and the top fix. Pro $349 once.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2ec4229621cc">
+<meta name="build-id" content="cf9c26c310d6">
 <link rel="canonical" href="https://docketseo.app/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -540,6 +540,20 @@ body.landing article{padding:0}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:2.2rem;max-width:820px;
   align-items:center;position:relative}
 @media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:2.4rem}}
+/* The first screen shows what the free audit gives: the words on the left, the real result on the right
+   (CEO, 2026-10-17: 46 real visitors, no confirmed downloads). Beside the copy only on a wide screen;
+   below it on a phone, where the one-line version above the buttons does the work. */
+.hero-free-line{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1.1rem;max-width:34rem}
+.hero-free-line strong{color:var(--brand-light);font-weight:600}
+.hero-free{margin:0;align-self:center}
+.hero-free img{display:block;width:100%;height:auto;border:1px solid var(--border-strong);border-radius:var(--radius-md);
+  box-shadow:var(--lift)}
+.hero-free figcaption{margin-top:.7rem;font-size:var(--t-sm);color:var(--text-dim);line-height:1.5}
+.hero-free figcaption strong{color:var(--text-mid);font-weight:600}
+@media(min-width:941px){
+  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start}
+  .hero-grid .hero-h1{font-size:clamp(2.4rem,3.8vw,3.4rem)}
+}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
   font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
   background:var(--brand-soft);
@@ -922,6 +936,8 @@ fbq('track','PageView');
   <p class="hero-sub">Point Docket at any site. 99 checks across technical SEO, copy,
   conversion, brand, AI search visibility and campaign tracking, then one ranked plan with the
   markup to paste. Not four tools. One download.</p>
+  <p class="hero-free-line"><strong>Free to try, with no account and no key.</strong> You get your score,
+  how many problems each area has, and the worst problem in full with its fix. Buying opens the rest.</p>
   <div class="buy-block"><p class="price-line"><span class="price-big">$349</span><span class="price-pay4">once &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</span></p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later</p><div class="hero-cta"><a rel="nofollow" class="btn btn-lg" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=home-hero" data-ev="Buy" data-ev-price="349" data-ev-button="home-hero">Buy Docket</a><a rel="nofollow" class="btn-ghost btn-lg" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=home-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.111/Docket-1.3.111-arm64.dmg" data-ev="Download" data-ev-button="home-try-free">Try it free</a><a class="btn-ghost btn-lg" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="home-hero">See a full sample report</a></div><p class="phone-link">On your phone? <button type="button" data-send-mac-link>Send the Mac link to yourself</button></p><p class="hero-note founding-note">Founding price <strong>$174.50 once &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63</strong>, first 25 buyers, then $349. Buy applies the code <code>FOUNDINGDOCKET</code> for you; if the checkout shows $349, enter it under &lsquo;Have a discount code?&rsquo;.</p><p class="hero-note price-anchor">Screaming Frog is $279 a year. Ahrefs plans with Site Audit run $29&ndash;$449 a month. Docket is $349 once. <span class="qual">Their prices read 8 October 2026.</span></p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
   <p class="hero-note"><strong class="pay4-em">Or four payments of $87.25</strong> with Klarna or Afterpay, two weeks apart. The last one is six weeks after the first, at no extra cost from us. Then it stops, and it is yours.</p>
   <!-- The hero's second button became "See a full sample report" (Matthew's
@@ -929,21 +945,26 @@ fbq('track','PageView');
        the homepage — and ~/ops's shipped-activation and updater-signature
        gates, which test the DMG this page links, with nothing to measure.
        One quiet line keeps both. -->
-  <p class="hero-note">Try it free: the 22.0 MB Mac download audits any site and shows your score,
-  how many problems each area has and the top problem in full. Buying opens that same audit in full. Intel Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=home-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.111/Docket-1.3.111-x86_64.dmg" data-ev="Download" data-ev-button="home-try-free-intel">Get the Intel version</a>.</p>
+  <p class="hero-note">The free version is the 22.0 MB Mac download. Intel Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=home-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.111/Docket-1.3.111-x86_64.dmg" data-ev="Download" data-ev-button="home-try-free-intel">Get the Intel version</a>.</p>
   <p class="hero-note">macOS 12+ · Apple silicon or Intel · 22.0 MB · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
 </div>
+<figure class="hero-free">
+  <img src="/assets/free-result.webp" width="1600" height="1125"
+       alt="Docket's free result for docketseo.app: a score of 99 out of 100, grade A, 8 problems found, and the most important one shown in full with its fix, with 7 more to unlock."
+       decoding="async" fetchpriority="high">
+  <figcaption>The free audit of this site, in the shipped app. <strong>99/100, 8 problems, the first one in full.</strong></figcaption>
+</figure>
 </div>
 <div class="wrap-wide hero-media-wrap">
 <figure class="hero-media">
   <video class="hero-video" autoplay loop muted playsinline preload="metadata"
          poster="/assets/app-demo-poster.jpg" width="1280" height="800"
-         aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs across 152 pages,
+         aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs across 154 pages,
                      and a report appears scoring 99 out of 100, grade A.">
     <source src="/assets/app-demo.webm" data-src-hi="/assets/app-demo-hi.webm" type="video/webm">
     <source src="/assets/app-demo.mp4" type="video/mp4">
   </video>
-  <figcaption>Docket auditing this site. <strong>152&nbsp;pages, 62&nbsp;seconds, 99/100</strong>.
+  <figcaption>Docket auditing this site. <strong>154&nbsp;pages, 56&nbsp;seconds, 99/100</strong>.
   A screen recording of the shipped app, not a mockup.</figcaption>
 </figure>
 </div>
@@ -987,14 +1008,14 @@ fbq('track','PageView');
 <section class="sec" id="watch"><div class="wrap-wide">
 <div class="sec-head">
   <h2>One real audit.<br><em>Start to finish.</em></h2>
-  <p class="sec-sub">Docket auditing this site: 152&nbsp;pages crawled in 67&nbsp;seconds,
+  <p class="sec-sub">Docket auditing this site: 154&nbsp;pages crawled in 57&nbsp;seconds,
   a score of 99, then the fix list narrowed to one area and one finding opened with the
   markup to paste. A screen recording of the real app; the crawl is sped up.</p>
 </div>
 <figure class="shot demo-shot">
   <video class="demo-video" muted playsinline loop preload="none" controls
          poster="/assets/demo-run-poster.jpg" width="1280" height="720"
-         aria-label="Docket auditing docketseo.app: the address typed, the crawl running across 152 pages, a score of 99, the fix list filtered to Security &amp; trust, and the finding 'Missing 1 baseline security header' opened with its fix.">
+         aria-label="Docket auditing docketseo.app: the address typed, the crawl running across 154 pages, a score of 99, the fix list filtered to Security &amp; trust, and the finding 'Missing 1 baseline security header' opened with its fix.">
     <source src="/assets/demo-run.webm" type="video/webm">
     <source src="/assets/demo-run.mp4" type="video/mp4">
   </video>
@@ -1271,10 +1292,12 @@ The script and the site list ship with the dataset. Re-run it and check.</p>
     Google's autocomplete your site's topic words; <code>--offline</code> turns all
     five off. The licence is checked with our payment provider about once a day.</p></div>
   <div class="card"><div class="card-ico"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h13M3 12h9M3 18h5"/><path d="M17 14l3 3 4-5"/></svg></div>
-    <h3>A CLI, including <code>docket attack</code></h3>
+    <h3>A CLI, and an MCP server for your AI assistant</h3>
     <p><code>docket audit</code> exits non-zero on a critical issue, such as a noindexed homepage or a
-    5xx, so CI can fail the build before it ships. <code>--fail-on high</code> lowers the bar.
-    <code>docket attack</code> ranks a competitor's weak points by how winnable they are.</p></div>
+    5xx, so CI can fail the build before it ships. <code>docket mcp</code> speaks the Model Context
+    Protocol over stdio, so Claude Desktop or any MCP client can audit a site and read the findings
+    back as data: two tools, no server, no API key. <a href="/for/developers/#mcp">The config to
+    paste</a>. <code>docket attack</code> ranks a competitor's weak points by how winnable they are.</p></div>
 </div>
 </div>
 <figure class="shot shot-finding">
