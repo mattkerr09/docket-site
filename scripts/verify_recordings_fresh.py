@@ -19,10 +19,14 @@ whose `engine` is more than MAX_RELEASES patch releases behind the current build
 is more than MAX_DAYS days ago. It names the recorder to run:
 `docket-app/scripts/record_hero.mjs` and `record_demo.mjs`, each with `--site`.
 
-Both limits are deliberate. Eight releases is about a week at the pace of the
-past two, so a recording survives a normal week and not a month; 21 days stops a
-quiet period from making an old recording look current. A recording made by an
-engine that predates a change the page now describes is the case this exists for.
+Both limits are deliberate. Two releases (CEO, 2026-10-17: Docket turned 46 real
+visitors into no confirmed downloads, and a front page that shows an old build is one
+reason a visitor does not trust the page; it was eight releases before). "Release" here
+is the patch number: the minor has been 3 for months, so a limit counted in minors
+would never fire. A recording is one command to re-make (below), so a tight limit costs
+little. 21 days stops a quiet period from making an old recording look current. A
+recording made by an engine that predates a change the page now describes is the case
+this exists for.
 
 --self-test plants a stale and a fresh pair of recordings and requires the gate
 to refuse the first and pass the second, then requires the real data to pass.
@@ -37,7 +41,7 @@ import sys
 
 DATA = pathlib.Path(__file__).resolve().parent.parent / "data"
 RECORDINGS = ("hero-recording.json", "demo-recording.json")
-MAX_RELEASES = 8
+MAX_RELEASES = 2
 MAX_DAYS = 21
 
 
@@ -84,8 +88,8 @@ def load() -> tuple:
 def self_test() -> int:
     today = dt.date(2026, 10, 14)
     fresh = {"hero.json": {"engine": "1.3.109", "recorded": "2026-10-14"},
-             "demo.json": {"engine": "1.3.103", "recorded": "2026-10-01"}}
-    stale = {"hero.json": {"engine": "1.3.94", "recorded": "2026-09-25"},
+             "demo.json": {"engine": "1.3.107", "recorded": "2026-10-01"}}
+    stale = {"hero.json": {"engine": "1.3.106", "recorded": "2026-09-25"},
              "demo.json": {"engine": "1.3.109", "recorded": "2026-09-01"},
              "old_minor.json": {"engine": "1.2.109", "recorded": "2026-10-14"}}
     if problems(fresh, "1.3.109", today):

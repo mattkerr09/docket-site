@@ -14,7 +14,7 @@
 <title>About Docket: who builds it and what it cannot do</title>
 <meta name="description" content="Docket is a Mac SEO audit tool with 99 checks, built by one person in Grand Rapids, Michigan. What it is bad at, and how to check the download.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2ec4229621cc">
+<meta name="build-id" content="cf9c26c310d6">
 <link rel="canonical" href="https://docketseo.app/about/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -540,6 +540,20 @@ body.landing article{padding:0}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:2.2rem;max-width:820px;
   align-items:center;position:relative}
 @media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:2.4rem}}
+/* The first screen shows what the free audit gives: the words on the left, the real result on the right
+   (CEO, 2026-10-17: 46 real visitors, no confirmed downloads). Beside the copy only on a wide screen;
+   below it on a phone, where the one-line version above the buttons does the work. */
+.hero-free-line{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1.1rem;max-width:34rem}
+.hero-free-line strong{color:var(--brand-light);font-weight:600}
+.hero-free{margin:0;align-self:center}
+.hero-free img{display:block;width:100%;height:auto;border:1px solid var(--border-strong);border-radius:var(--radius-md);
+  box-shadow:var(--lift)}
+.hero-free figcaption{margin-top:.7rem;font-size:var(--t-sm);color:var(--text-dim);line-height:1.5}
+.hero-free figcaption strong{color:var(--text-mid);font-weight:600}
+@media(min-width:941px){
+  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start}
+  .hero-grid .hero-h1{font-size:clamp(2.4rem,3.8vw,3.4rem)}
+}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
   font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
   background:var(--brand-soft);

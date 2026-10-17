@@ -54,6 +54,11 @@ DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
 #: status bar stops matching the one this page prints.
 HERO = json.loads((DATA.parent / "hero-recording.json").read_text())
 
+#: The still of the free result beside the headline, and the figures in its caption, read off the same
+#: run: `docket-app/scripts/shot_free.mjs` writes this file in the same pass as the picture
+#: (site/assets/free-result.webp), so a re-shoot re-captions itself.
+FREE = json.loads((DATA.parent / "free-run.json").read_text())
+
 #: The ~35-second demo: one real audit through to one fix, recorded by
 #: docket-app/scripts/record_demo.mjs --site, which writes this file off the
 #: screen in the same run. The section is left out entirely until it exists.
@@ -249,6 +254,8 @@ def body() -> str:
   <p class="hero-sub">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
   conversion, brand, AI search visibility and campaign tracking, then one ranked plan with the
   markup to paste. Not four tools. One download.</p>
+  <p class="hero-free-line"><strong>Free to try, with no account and no key.</strong> You get your score,
+  how many problems each area has, and the worst problem in full with its fix. Buying opens the rest.</p>
   {buy_block("home-hero", try_app="home-try-free")}
   {BNPL_BLOCK}
   <!-- The hero's second button became "See a full sample report" (Matthew's
@@ -256,10 +263,15 @@ def body() -> str:
        the homepage — and ~/ops's shipped-activation and updater-signature
        gates, which test the DMG this page links, with nothing to measure.
        One quiet line keeps both. -->
-  <p class="hero-note">Try it free: the {DMG_SIZE} Mac download audits any site and shows your score,
-  how many problems each area has and the top problem in full. Buying opens that same audit in full.{(f' Intel Mac? <a href="{download_url("home-try-free-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="home-try-free-intel">Get the Intel version</a>.') if INTEL else ''}</p>
+  <p class="hero-note">The free version is the {DMG_SIZE} Mac download.{(f' Intel Mac? <a href="{download_url("home-try-free-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="home-try-free-intel">Get the Intel version</a>.') if INTEL else ''}</p>
   <p class="hero-note">{MACOS}+ · {MAC_HW} · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
 </div>
+<figure class="hero-free">
+  <img src="/assets/free-result.webp" width="{FREE['image']['width']}" height="{FREE['image']['height']}"
+       alt="Docket's free result for {FREE['target']}: a score of {FREE['score']} out of 100, grade {FREE['grade']}, {FREE['problems']} problems found, and the most important one shown in full with its fix, with {FREE['more']} more to unlock."
+       decoding="async" fetchpriority="high">
+  <figcaption>The free audit of this site, in the shipped app. <strong>{FREE['score']}/100, {FREE['problems']} problems, the first one in full.</strong></figcaption>
+</figure>
 </div>
 <div class="wrap-wide hero-media-wrap">
 <figure class="hero-media">
@@ -559,10 +571,12 @@ def body() -> str:
     Google's autocomplete your site's topic words; <code>--offline</code> turns all
     {CONNECTORS_WORD} off. The licence is checked with our payment provider about once a day.</p></div>
   <div class="card"><div class="card-ico">{ICONS['order']}</div>
-    <h3>A CLI, including <code>docket attack</code></h3>
+    <h3>A CLI, and an MCP server for your AI assistant</h3>
     <p><code>docket audit</code> exits non-zero on a critical issue, such as a noindexed homepage or a
-    5xx, so CI can fail the build before it ships. <code>--fail-on high</code> lowers the bar.
-    <code>docket attack</code> ranks a competitor's weak points by how winnable they are.</p></div>
+    5xx, so CI can fail the build before it ships. <code>docket mcp</code> speaks the Model Context
+    Protocol over stdio, so Claude Desktop or any MCP client can audit a site and read the findings
+    back as data: two tools, no server, no API key. <a href="/for/developers/#mcp">The config to
+    paste</a>. <code>docket attack</code> ranks a competitor's weak points by how winnable they are.</p></div>
 </div>
 </div>
 <figure class="shot shot-finding">

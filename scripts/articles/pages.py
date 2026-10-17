@@ -30,6 +30,10 @@ from render import (windows_waitlist, with_next_step, download_url, FREE_LINE, I
 # scripts/shot_free.mjs: the installed free engine on our own site, the figures
 # read from the engine's own result). Every number in the figure comes from
 # data/free-run.json; none is typed here.
+
+#: The day the MCP config and behaviour on /for/developers/ were last run against the installed app
+#: (handshake, tools/list, an audit on an unactivated copy). A date, not a version: it stays true.
+MCP_CHECKED_HUMAN = "17 October 2026"
 import datetime as _dt  # noqa: E402
 import html as _html  # noqa: E402
 import json as _json  # noqa: E402
@@ -781,6 +785,40 @@ and which are for your users.</p>
 through WebKit and it is much slower than the numbers above, which were measured without it.
 Turn it on for the pages that need it, or on a nightly job rather than a per-PR one.</p>
 
+<h2 id="mcp">Ask an AI assistant to run it</h2>
+
+<p>Docket also speaks the Model Context Protocol, the standard AI assistants use to reach tools on
+your own machine. It is served over stdio, so there is no server to run and no port to open: the
+client starts Docket itself. In Claude Desktop, add this to
+<code>~/Library/Application&nbsp;Support/Claude/claude_desktop_config.json</code> and restart it:</p>
+
+<pre><code>{{
+  "mcpServers": {{
+    "docket": {{
+      "command": "/Applications/Docket.app/Contents/Resources/docket/docket",
+      "args": ["mcp"]
+    }}
+  }}
+}}</code></pre>
+
+<p>Any MCP client takes the same command and argument. There are two tools.
+<code>audit_site</code> takes a <code>url</code> and optionally <code>max_pages</code>,
+<code>max_seconds</code> and <code>offline</code>, crawls the site on your Mac and returns the result as
+JSON. <code>list_checks</code> takes no arguments and lists the {N_CHECKS} checks without crawling anything.</p>
+
+<p>What the assistant gets depends on the copy. An unactivated copy returns the free version: the
+score, how many problems each of the {N_LANES} areas has, and the most important problem in full with
+its fix. With a licence the same call returns every finding and the ranked plan. There is no API key
+and no per-call charge, because the audit runs in the app you installed.</p>
+
+<p class="note"><strong>Checked on {MCP_CHECKED_HUMAN}</strong> against the installed, notarised app, by
+speaking the protocol to it directly: the handshake names <code>docket</code> and the app's own version,
+<code>tools/list</code> returns exactly these two tools, and an <code>audit_site</code> call on an
+unactivated copy returned the score, the counts for all {N_LANES} areas and the top problem in full.
+We did not run it inside any particular assistant, so if your client reads the config differently,
+tell us. The <a href="/how-to/audit-your-site-from-an-ai-assistant/">full walkthrough</a> has the
+rest, including what the tools do not do.</p>
+
 <h2>Where this is thin</h2>
 
 <p>SARIF gets findings onto the Security tab but not onto the pull request diff, for the reason above. That one is structural rather than unfinished. `docket diff` is not wired into
@@ -794,10 +832,10 @@ benchmark, and measure your own.</p>
 """
     return render(
         cat="for", slug="developers",
-        title="SEO checks in your deploy pipeline: Docket's CLI as a gate",
-        desc=(f"Docket's CLI exits 2 on a critical audit finding, so it gates a deploy in one "
-              f"line. {F.ci_page_cap()} pages in a median {F.ci_median_seconds()}s across "
-              f"{F.ci_sites()} sites. On macOS runners."),
+        title="SEO checks in your pipeline: a CLI gate and an MCP server",
+        desc=(f"Docket's CLI exits 2 on a critical finding, so it gates a deploy. "
+              f"{F.ci_page_cap()} pages in a median {F.ci_median_seconds()}s across "
+              f"{F.ci_sites()} sites. It also serves MCP to AI assistants."),
         h1="SEO checks in your deploy pipeline",
         crumb='<a href="/">Docket</a> / <a href="/for/">For you</a> / Developers',
         body=body,
