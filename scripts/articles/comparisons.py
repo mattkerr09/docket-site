@@ -91,7 +91,10 @@ CHECKED_HUMAN: dict[str, str] = {
     # 10 August while the sentences beneath it changed — "a date that stays put
     # while the sentence under it changes is a false date about somebody else's
     # product", and it was right.
-    "ahrefs": "16 October 2026",
+    # Re-read 2026-10-19: every source below again (prices, credits, max pages per project, the credit-spend and
+    # pay-as-you-go articles, the Site Audit page, the Starter post), plus the FAQ's export formats and the
+    # Looker Studio connector article, which the page now answers "ahrefs site audit export" and "lookerstudio" from.
+    "ahrefs": "19 October 2026",
     # Read live 2026-09-16, both tiers and the crawl quotas, from the vendor's
     # own pricing page. The CSV had carried 2026-08-10; re-reading confirmed the
     # prices unchanged and added the monthly crawl allowances, which are the
@@ -106,7 +109,7 @@ CHECKED_HUMAN: dict[str, str] = {
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-08-15",
     "se-ranking-vs-screaming-frog": "2026-10-08",
-    "ahrefs": "2026-10-16",
+    "ahrefs": "2026-10-19",
     "seoptimer": "2026-10-08",
     "sitechecker": "2026-09-16",
     "profound": "2026-09-16",
@@ -330,6 +333,12 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "billing months, and pay-as-you-go additional credits are disabled by default; no price for "
          "extra crawl credits is given",
          "https://help.ahrefs.com/en/articles/6061657-ahrefs-usage-based-pricing-for-credit-based-plans"),
+        ("Site Audit overview reports export as PDFs through the built-in Print option, and most raw data "
+         "exports come as CSV files",
+         "https://ahrefs.com/faq"),
+        ("Ahrefs offers a Site Audit connector for Looker Studio; the connectors need the Advanced plan or "
+         "higher, and the Site Audit connector consumes no credits",
+         "https://help.ahrefs.com/en/articles/9229306-how-can-i-use-ahrefs-with-looker-studio"),
     ],
     # Lighthouse is the one entry here whose source is not a marketing page but
     # a configuration file, which is the strongest form this claim can take:
@@ -952,11 +961,11 @@ page lists finding duplicate content among its checks, &ldquo;Be it title tags, 
 low-quality content pages&rdquo;, as read on {CHECKED_HUMAN["ahrefs"]}. Content Explorer is an index of what other
 people have published. This page tested nothing beyond what Ahrefs publishes. For the steps of a content audit,
 with or without Ahrefs, see <a href="/how-to/content-audit/">how to do a content audit</a>.</p>
-<p><strong>Exports and Looker Studio.</strong> We did not read Ahrefs' export or Looker Studio documentation for this
-page, so it does not say which formats Ahrefs exports or whether Site Audit connects to Looker Studio. Ahrefs' help
-centre is the place to check. What we did read is the article on usage-based pricing, which names export rows as one of
-the units pay-as-you-go credits buy, next to crawl credits. Docket's exports are a PDF report and CSV and JSON files,
-and none of them is metered.</p>
+<p><strong>Exports and Looker Studio.</strong> Ahrefs' FAQ says Site Audit overview reports export as PDFs through
+the built-in Print option, and that most raw data exports come as CSV files. For dashboards, Ahrefs has a Site Audit
+connector for Looker Studio: its help article says the connectors need the Advanced plan or higher, and that the Site
+Audit connector consumes no credits. Export rows are also one of the units Ahrefs' pay-as-you-go credits buy, next to
+crawl credits. Docket's exports are a PDF report and CSV and JSON files, and none of them is metered.</p>
 
 <h2>Side by side</h2>
 <div class="wrap-tbl"><table class="cmp">
@@ -1070,10 +1079,10 @@ you pay for it.</p>
              "Ahrefs publishes. Docket's content checks cover thin pages, competing pages that target the same "
              "search, language mismatches and missing authorship, and rank them with everything else."),
             ("Can you export an Ahrefs site audit or send it to Looker Studio?",
-             "This page does not say. We did not read Ahrefs' export or Looker Studio documentation, so it makes no "
-             "claim about which formats Ahrefs offers or whether Site Audit connects to Looker Studio. Ahrefs' article "
-             "on usage-based pricing names export rows among the units pay-as-you-go credits buy, next to crawl "
-             "credits. Docket's exports are a PDF report and CSV and JSON files, and none of them is metered."),
+             "Yes to both. Ahrefs' FAQ says Site Audit overview reports export as PDFs through the Print option, "
+             "and most raw data exports come as CSV files. Its Site Audit connector for Looker Studio needs the "
+             "Advanced plan or higher and consumes no credits, per Ahrefs' help article. Docket's exports are a PDF "
+             "report and CSV and JSON files, and none of them is metered."),
             ("Can I run an Ahrefs website audit on any site?",
              "Not on every plan. Ahrefs Free runs Site Audit only on sites you verify you own. The paid plans allow "
              f"projects on sites you have not verified: {_AH_UNVERIFIED['Lite']} on Lite, {_AH_UNVERIFIED['Standard']} "
