@@ -426,6 +426,33 @@ def price_note_html() -> str:
 #: The current build. One place, because a download link that 404s is the
 #: single worst bug a product site can have.
 RELEASE = _facts.release_tag()
+
+
+#: Releases with a known issue in the AI-crawler server check, and the note the
+#: pages about that check show while one of them is the current release.
+#: ⚠️ THE NOTE NAMES NO LATER VERSION and switches itself off: the version gate
+#: refuses any version string but the current one, and a note that outlived the
+#: fix would tell readers the fixed release has the bug. When the fix ships,
+#: RELEASE moves on, the note goes, and the corrections page takes the entry.
+EDGE_CLOUDFLARE_ISSUE_IN = ("v1.3.111",)
+
+
+def known_issue_edge_cloudflare() -> str:
+    """Docket 1.3.111's server check can call AI crawlers refused on a Cloudflare
+    site that is only verifying where the request comes from (measured 19 October
+    2026; fixed in the next release)."""
+    if RELEASE not in EDGE_CLOUDFLARE_ISSUE_IN:
+        return ""
+    v = RELEASE.lstrip("v")
+    return (
+        '<div class="callout">\n<div class="callout-title">Known issue in Docket ' + v + '</div>\n'
+        "<p>On some Cloudflare sites, Docket " + v + " can report AI crawlers as refused when Cloudflare "
+        "is only checking where the request comes from. Cloudflare checks real crawlers by their network "
+        "address, so Docket's test request, sent from your own computer, can be challenged or turned away "
+        "while the real crawler is served. The fix is in the next release. Until then, if Docket says AI "
+        "crawlers are refused on a Cloudflare site, and Googlebot was refused too or the answers were "
+        "challenges, look at Cloudflare's security events before you change anything.</p>\n</div>\n"
+    )
 REPO = "https://github.com/mattkerr09/docket-site"
 #: The contact channel, and the only one verified to receive anything. The
 #: footer advertised hello@docketseo.app on all 25 pages; the domain has no MX

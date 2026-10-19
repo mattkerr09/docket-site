@@ -27,7 +27,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import render  # noqa: E402
+from render import known_issue_edge_cloudflare, render  # noqa: E402
 
 #: When Cloudflare's own pages were read for this article.
 CHECKED_HUMAN = "15 September 2026"
@@ -49,7 +49,7 @@ def cloudflare_gptbot() -> Path:
     overlap = F.oai_overlap_pct()
     llms_edge_pct = F._d()["pct_llms_edge_denied"]
 
-    body = f"""
+    body = known_issue_edge_cloudflare() + f"""
 <div class="callout">
 <div class="callout-title">Quick answer</div>
 <p><strong>It depends which OpenAI crawler, and since {DEFAULTS_CHANGED_HUMAN} it also depends on the

@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import render  # noqa: E402
+from render import known_issue_edge_cloudflare, render  # noqa: E402
 
 
 def cdn_blocks_ai_crawlers() -> Path:
@@ -29,6 +29,7 @@ def cdn_blocks_ai_crawlers() -> Path:
 still refuse them at the door. The refusal happens before robots.txt is ever read, it produces
 no entry in any SEO tool's report, and the only way to find it is to ask your own server the
 same question twice.</p>
+""" + known_issue_edge_cloudflare() + """
 
 <h2>Why robots.txt cannot tell you</h2>
 

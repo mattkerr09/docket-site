@@ -112,8 +112,8 @@
   "hash": "dcaad7bb3f922760"
  },
  "how-to/fix-ai-crawlers-blocked-by-your-cdn/index.html": {
-  "date": "2026-10-16",
-  "hash": "674a1e1e86d79334"
+  "date": "2026-10-19",
+  "hash": "069e54316916dc71"
  },
  "how-to/fix-broken-outbound-links/index.html": {
   "date": "2026-10-16",
@@ -416,8 +416,8 @@
   "hash": "00cba74b8cffb6c7"
  },
  "learn/does-cloudflare-block-gptbot/index.html": {
-  "date": "2026-10-16",
-  "hash": "b4cc6ec20dbb6520"
+  "date": "2026-10-19",
+  "hash": "529be308f3ae1a74"
  },
  "learn/does-noindex-stop-ai-crawlers/index.html": {
   "date": "2026-10-16",
@@ -445,7 +445,7 @@
  },
  "learn/internal-link-equity/index.html": {
   "date": "2026-10-19",
-  "hash": "0f39dd6b371c970f"
+  "hash": "f55aca477bd73beb"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-10-16",
