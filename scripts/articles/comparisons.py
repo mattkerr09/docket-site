@@ -1000,9 +1000,10 @@ you pay for it.</p>
     return render(
         cat="vs", slug="ahrefs-site-audit-alternative",
         modified="2026-10-16",
-        title="Ahrefs Site Audit credits and cost, against Docket (2026)",
-        desc=("What an Ahrefs Site Audit crawl credit is, what spends one and what the plans cost, read from "
-              "Ahrefs' own pages, against Docket's one-time price."),
+        title="Ahrefs Site Audit credits: what spends one and plan limits",
+        desc=("One crawl credit is one internal page that returns a 200. "
+              f"Lite gives {F.credits_for('Lite')} a month, Standard {F.credits_for('Standard')}, "
+              f"Advanced {F.credits_for('Advanced')}. Ahrefs publishes no price for extra credits."),
         h1="Docket vs Ahrefs Site Audit",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Ahrefs',
         body=body,
