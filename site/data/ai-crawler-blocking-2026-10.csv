@@ -1,0 +1,21 @@
+measure,august_sites,august_pct,october_sites,october_pct,same_sites_august,same_sites_october,started_blocking,stopped_blocking
+Sites in the list,10000,,10000,,,,,
+Sites with a readable robots.txt (the base of every percentage),6236,,6039,,5763,5763,,
+Sites that refused our bot before any robots.txt rule applied,643,,776,,,,,
+Blocks at least one AI training crawler,1371,21.99,1180,19.54,1226,1123,64,167
+Blocks at least one AI search crawler,646,10.36,634,10.50,605,602,30,33
+Blocks Google-Extended,933,14.96,734,12.15,806,689,55,172
+Blocks at least one of the nine AI crawlers,1381,22.15,1196,19.80,1235,1138,68,165
+Blocks a training crawler and no search crawler,735,11.79,562,9.31,630,536,63,157
+Blocks GPTBot,1093,17.53,888,14.70,956,836,48,168
+Blocks ClaudeBot,1023,16.40,818,13.55,896,776,50,170
+Blocks CCBot,1147,18.39,927,15.35,1012,877,51,186
+Blocks Applebot-Extended,869,13.94,681,11.28,750,643,54,161
+Blocks Bytespider,1096,17.58,912,15.10,965,867,66,164
+Blocks meta-externalagent,931,14.93,723,11.97,808,683,61,186
+Blocks Amazonbot,897,14.38,705,11.67,770,662,57,165
+Blocks OAI-SearchBot,425,6.82,417,6.91,392,389,22,25
+Blocks PerplexityBot,626,10.04,609,10.08,585,578,28,35
+Blocks Claude-SearchBot,411,6.59,409,6.77,383,382,22,23
+Files with Cloudflare's BEGIN marker (October text),,,57,0.94,,,,
+Files matching the August Cloudflare pattern (Content-signal plus all eight documented crawlers disallowed),276,4.43,69,1.14,194,63,14,145

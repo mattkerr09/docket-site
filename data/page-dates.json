@@ -1,5 +1,5 @@
 {
-  "compiled": "2026-10-17",
+  "compiled": "2026-10-19",
   "dates": {
     ".": "2026-08-06",
     "about": "2026-08-07",
@@ -92,6 +92,7 @@
     "how-to/write-meta-descriptions": "2026-10-10",
     "how-to/write-title-tags-that-fit": "2026-08-10",
     "index": "2026-08-06",
+    "index/ai-crawler-blocking-2026-10": "2026-10-19",
     "index/ai-directives": "2026-08-07",
     "learn": "2026-08-06",
     "learn/ai-crawler-directives": "2026-09-16",
@@ -158,5 +159,7 @@
     "vs/sitebulb-alternative": "2026-08-06",
     "vs/sitechecker-alternative": "2026-09-16"
   },
-  "uncommitted": []
+  "uncommitted": [
+    "index/ai-crawler-blocking-2026-10"
+  ]
 }

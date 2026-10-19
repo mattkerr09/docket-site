@@ -156,6 +156,15 @@ block them, wrote the rule, and got no rule. The file parses, the syntax is vali
 warns, and the crawler walks past the directive because the name in it does not match its
 own.</p>
 
+<div class="callout">
+<div class="callout-title">Read again in October</div>
+<p>The figures on this page are from {collected}. We read the same list again on
+{F.blk_date('oct')}. Blocking of AI training crawlers fell from {F.blk_pct('training', 'aug')}%
+to {F.blk_pct('training', 'oct')}% of readable files, and most of the fall looks like
+Cloudflare's managed block coming off. See
+<a href="/index/ai-crawler-blocking-2026-10/">AI crawler blocking, August to October 2026</a>.</p>
+</div>
+
 <h2>Three ways a directive dies</h2>
 
 <p><strong>Retired.</strong> The vendor documented the token once and has since replaced it.

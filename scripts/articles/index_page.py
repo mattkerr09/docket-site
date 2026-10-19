@@ -218,6 +218,14 @@ matter, and none of them are in this dataset.</li>
 change; this one will be re-run and the figures will move.</li>
 </ul>
 
+<h2>The top 10,000, read again</h2>
+<p>This sample is {s['attempted']} sites. A larger one, the <a href="/index/ai-directives/">Tranco top
+10,000</a>, was read in August and again on {F.blk_date('oct')}. Blocking of AI training crawlers
+fell from {F.blk_pct('training', 'aug')}% to {F.blk_pct('training', 'oct')}% of readable files,
+and most of the fall looks like Cloudflare's managed block coming off. The sites are not named
+and the search crawlers hardly moved. See
+<a href="/index/ai-crawler-blocking-2026-10/">AI crawler blocking, August to October 2026</a>.</p>
+
 <h2>Get the data</h2>
 <p>The full dataset, the collection script and the exact site list are in the repository.
 Re-run it yourself and you should get the same answer. That is the point of publishing the

@@ -1622,3 +1622,93 @@ def ai_agent_rows() -> list:
     """Every agent as (name, owner, purpose, impact), for a table."""
     return [(n, m["owner"], m["purpose"], m["impact"])
             for n, m in _ai_agents()["agents"].items()]
+
+
+# -- The October 2026 re-run of the AI-crawler survey -----------------------
+#
+# One derived file, data/ai-crawler-blocking-2026-10.json, built by
+# scripts/build_ai_crawler_blocking.py from the two raw surveys. It holds
+# aggregates only (no host appears in it), and a page on that survey quotes
+# nothing that does not come through here. `blk("a", "b")` walks the file; the
+# named helpers below are the ones that need arithmetic or a date.
+
+_MONTHS = ("January", "February", "March", "April", "May", "June", "July",
+           "August", "September", "October", "November", "December")
+
+
+@lru_cache(maxsize=None)
+def blocking() -> dict:
+    path = ROOT / "data" / "ai-crawler-blocking-2026-10.json"
+    if not path.is_file():
+        raise SystemExit("facts.blocking: data/ai-crawler-blocking-2026-10.json is "
+                         "missing; run scripts/build_ai_crawler_blocking.py")
+    return json.loads(path.read_text())
+
+
+def blk(*path):
+    """A value from the derived survey file, by key path."""
+    node = blocking()
+    for key in path:
+        node = node[key]
+    return node
+
+
+def blk_iso(month: str) -> str:
+    """The day a survey was collected: month is "aug" or "oct"."""
+    return blocking()["meta"][f"{month}_collected"][:10]
+
+
+def blk_date(month: str) -> str:
+    """"7 August 2026" """
+    year, mon, day = (int(x) for x in blk_iso(month).split("-"))
+    return f"{day} {_MONTHS[mon - 1]} {year}"
+
+
+def blk_month(month: str) -> str:
+    """"August 2026" """
+    year, mon, _ = (int(x) for x in blk_iso(month).split("-"))
+    return f"{_MONTHS[mon - 1]} {year}"
+
+
+def blk_minutes(month: str) -> int:
+    return round(blocking()["meta"][f"{month}_duration_s"] / 60)
+
+
+def blk_base(key: str) -> int:
+    """The number of sites a count under `key` is a share of."""
+    b = blocking()
+    return b["panel"]["n"] if key.endswith("_panel") else b[key.split("_")[0]]["readable"]
+
+
+def blk_count(metric: str, key: str) -> int:
+    return blocking()["shares"][metric][key]
+
+
+def blk_pct(metric: str, key: str) -> float:
+    """Share of sites, one decimal. key: aug, oct, aug_panel, oct_panel."""
+    return round(100 * blk_count(metric, key) / blk_base(key), 1)
+
+
+def blk_points(metric: str, a: str = "aug_panel", b: str = "oct_panel") -> float:
+    """Change in share, in percentage points, one decimal, signed positive when it rose."""
+    return round(100 * blk_count(metric, b) / blk_base(b)
+                 - 100 * blk_count(metric, a) / blk_base(a), 1)
+
+
+def blk_change(metric: str, which: str) -> int:
+    """gained / lost / both / neither, on the sites readable in both months."""
+    return blocking()["change"][metric][which]
+
+
+def blk_fmt(iso: str) -> str:
+    """"2026-10-08" -> "8 October 2026". For a date recorded in the derived file."""
+    year, mon, day = (int(x) for x in iso.split("-"))
+    return f"{day} {_MONTHS[mon - 1]} {year}"
+
+
+def blk_top(metric_prefix: str = "bot:", key: str = "oct") -> tuple:
+    """(crawler, sites) with the most blocks among the crawlers shown one by one."""
+    shares = blocking()["shares"]
+    shown = blocking()["crawlers"]["shown"]
+    best = max(shown, key=lambda b: shares[f"{metric_prefix}{b}"][key])
+    return best, shares[f"{metric_prefix}{best}"][key]

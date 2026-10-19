@@ -12,8 +12,8 @@
   "hash": "b31404b213b625ba"
  },
  "bot/index.html": {
-  "date": "2026-10-05",
-  "hash": "0bd17d00a8cccebf"
+  "date": "2026-10-19",
+  "hash": "55d0da64ecd5de4f"
  },
  "contact/index.html": {
   "date": "2026-10-07",
@@ -355,13 +355,17 @@
   "date": "2026-10-19",
   "hash": "a8a87e7f23aac2bb"
  },
+ "index/ai-crawler-blocking-2026-10/index.html": {
+  "date": "2026-10-19",
+  "hash": "59a7ac280520490e"
+ },
  "index/ai-directives/index.html": {
-  "date": "2026-10-16",
-  "hash": "96451380fb7ebb24"
+  "date": "2026-10-19",
+  "hash": "8755d306aa59a0a6"
  },
  "index/index.html": {
-  "date": "2026-10-05",
-  "hash": "f7b0edb9587a26e0"
+  "date": "2026-10-19",
+  "hash": "067f536d2023d9cb"
  },
  "learn/ai-crawler-directives/index.html": {
   "date": "2026-10-16",

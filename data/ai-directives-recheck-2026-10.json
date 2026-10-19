@@ -1,0 +1,13 @@
+{
+ "checked": "2026-10-19",
+ "gone": {
+  "asked": 40,
+  "same_file": 39
+ },
+ "kept": {
+  "asked": 15,
+  "same_file": 15
+ },
+ "of_gone_population": 145,
+ "of_kept_population": 49
+}

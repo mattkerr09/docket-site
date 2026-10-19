@@ -1,0 +1,537 @@
+{
+ "aug": {
+  "attempted": 10000,
+  "no_robots": 1316,
+  "oversize": 116,
+  "readable": 6236,
+  "refused": 643,
+  "unreachable": 2332
+ },
+ "august_reproduced": {
+  "blocks_any": 1381,
+  "blocks_citation": 646,
+  "blocks_training": 1371,
+  "claude_search_blocked": 411,
+  "oai_search_blocked": 425,
+  "parseable_robots": 6236,
+  "training_only": 735
+ },
+ "change": {
+  "any_of_nine": {
+   "both": 1070,
+   "gained": 68,
+   "lost": 165,
+   "neither": 4460
+  },
+  "bot:Amazonbot": {
+   "both": 605,
+   "gained": 57,
+   "lost": 165,
+   "neither": 4936
+  },
+  "bot:Applebot-Extended": {
+   "both": 589,
+   "gained": 54,
+   "lost": 161,
+   "neither": 4959
+  },
+  "bot:Bytespider": {
+   "both": 801,
+   "gained": 66,
+   "lost": 164,
+   "neither": 4732
+  },
+  "bot:CCBot": {
+   "both": 826,
+   "gained": 51,
+   "lost": 186,
+   "neither": 4700
+  },
+  "bot:Claude-SearchBot": {
+   "both": 360,
+   "gained": 22,
+   "lost": 23,
+   "neither": 5358
+  },
+  "bot:ClaudeBot": {
+   "both": 726,
+   "gained": 50,
+   "lost": 170,
+   "neither": 4817
+  },
+  "bot:GPTBot": {
+   "both": 788,
+   "gained": 48,
+   "lost": 168,
+   "neither": 4759
+  },
+  "bot:Google-Extended": {
+   "both": 634,
+   "gained": 55,
+   "lost": 172,
+   "neither": 4902
+  },
+  "bot:OAI-SearchBot": {
+   "both": 367,
+   "gained": 22,
+   "lost": 25,
+   "neither": 5349
+  },
+  "bot:PerplexityBot": {
+   "both": 550,
+   "gained": 28,
+   "lost": 35,
+   "neither": 5150
+  },
+  "bot:meta-externalagent": {
+   "both": 622,
+   "gained": 61,
+   "lost": 186,
+   "neither": 4894
+  },
+  "google_extended": {
+   "both": 634,
+   "gained": 55,
+   "lost": 172,
+   "neither": 4902
+  },
+  "search": {
+   "both": 572,
+   "gained": 30,
+   "lost": 33,
+   "neither": 5128
+  },
+  "search_and_training": {
+   "both": 561,
+   "gained": 26,
+   "lost": 35,
+   "neither": 5141
+  },
+  "training": {
+   "both": 1059,
+   "gained": 64,
+   "lost": 167,
+   "neither": 4473
+  },
+  "training_only": {
+   "both": 473,
+   "gained": 63,
+   "lost": 157,
+   "neither": 5070
+  }
+ },
+ "cloudflare": {
+  "august": {
+   "content_signal_all": 384,
+   "largest_cluster": {
+    "bytes": 1836,
+    "files": 152,
+    "names_beyond_the_documented_eight": [
+     "cloudflarebrowserrenderingcrawler"
+    ],
+    "user_agent_lines": 10
+   },
+   "signature_all": 276,
+   "signature_panel": 194
+  },
+  "doc": {
+   "begin_marker": "# BEGIN Cloudflare Managed content",
+   "end_marker": "# END Cloudflare Managed Content",
+   "page_dated": "2026-10-08",
+   "read": "2026-10-19",
+   "url": "https://developers.cloudflare.com/bots/additional-configurations/managed-robots-txt/"
+  },
+  "documented_agents": [
+   "Amazonbot",
+   "Applebot-Extended",
+   "Bytespider",
+   "CCBot",
+   "ClaudeBot",
+   "Google-Extended",
+   "GPTBot",
+   "meta-externalagent"
+  ],
+  "effect": {
+   "any_of_nine": {
+    "gained": 68,
+    "gained_with_marker": 7,
+    "gained_with_marker_or_signature": 8,
+    "gained_without": 60,
+    "lost": 165,
+    "lost_with_august_signature": 125,
+    "lost_without": 40,
+    "net": -97,
+    "net_without_cloudflare": 20
+   },
+   "google_extended": {
+    "gained": 55,
+    "gained_with_marker": 8,
+    "gained_with_marker_or_signature": 10,
+    "gained_without": 45,
+    "lost": 172,
+    "lost_with_august_signature": 136,
+    "lost_without": 36,
+    "net": -117,
+    "net_without_cloudflare": 9
+   },
+   "search": {
+    "gained": 30,
+    "gained_with_marker": 1,
+    "gained_with_marker_or_signature": 1,
+    "gained_without": 29,
+    "lost": 33,
+    "lost_with_august_signature": 1,
+    "lost_without": 32,
+    "net": -3,
+    "net_without_cloudflare": -3
+   },
+   "training": {
+    "gained": 64,
+    "gained_with_marker": 7,
+    "gained_with_marker_or_signature": 8,
+    "gained_without": 56,
+    "lost": 167,
+    "lost_with_august_signature": 126,
+    "lost_without": 41,
+    "net": -103,
+    "net_without_cloudflare": 15
+   }
+  },
+  "october": {
+   "agents_in_block": {
+    "7": 1,
+    "8": 1,
+    "9": 1,
+    "10": 1,
+    "31": 48,
+    "44": 1,
+    "45": 4
+   },
+   "content_signal_all": 200,
+   "kinds": {
+    "eight": 1,
+    "eight_plus_rendering": 1,
+    "longer": 54,
+    "other": 1
+   },
+   "largest_cluster": {
+    "bytes": 2676,
+    "files": 32,
+    "names_beyond_the_documented_eight": [
+     "anthropic-ai",
+     "atlassian-bot",
+     "awariorssbot",
+     "awariosmartbot",
+     "baiduspider",
+     "borderxbot",
+     "citibotsitecrawler",
+     "claude-web",
+     "cohere-ai",
+     "cotoyogi",
+     "diffbot",
+     "fishbot",
+     "google-cloudvertexbot",
+     "googleother",
+     "icc-crawler",
+     "kimibot",
+     "magpie-crawler",
+     "mistralai-training",
+     "navubot",
+     "omgili",
+     "petalbot",
+     "qualifiedbot",
+     "semrushbot-swa",
+     "wardbot"
+    ],
+    "user_agent_lines": 33
+   },
+   "marker_all": 57,
+   "modal_block": {
+    "crawlers": 31,
+    "files": 48
+   },
+   "policy_comment_only": 53,
+   "signals": {
+    "None": 1,
+    "search=yes,ai-train=no": 2,
+    "search=yes,ai-train=no,use=reference": 54
+   },
+   "signature_all": 69,
+   "signature_panel": 63,
+   "verbatim_documented": 1
+  },
+  "signature_flow": {
+   "gained_signature": 14,
+   "gone_no_robots_other": 20,
+   "gone_oversize": 3,
+   "gone_refused": 41,
+   "gone_still_readable": 145,
+   "gone_still_readable_no_marker": 145,
+   "gone_unreachable": 18,
+   "kept": 49
+  }
+ },
+ "crawlers": {
+  "cloudflare_eight": [
+   "Amazonbot",
+   "Applebot-Extended",
+   "Bytespider",
+   "CCBot",
+   "ClaudeBot",
+   "Google-Extended",
+   "GPTBot",
+   "meta-externalagent"
+  ],
+  "search": [
+   "OAI-SearchBot",
+   "PerplexityBot",
+   "Claude-SearchBot"
+  ],
+  "shown": [
+   "GPTBot",
+   "ClaudeBot",
+   "CCBot",
+   "Applebot-Extended",
+   "Bytespider",
+   "meta-externalagent",
+   "Amazonbot",
+   "Google-Extended",
+   "OAI-SearchBot",
+   "PerplexityBot",
+   "Claude-SearchBot"
+  ],
+  "training": [
+   "GPTBot",
+   "ClaudeBot",
+   "Applebot-Extended",
+   "Bytespider",
+   "meta-externalagent",
+   "CCBot"
+  ]
+ },
+ "llms": {
+  "present_aug": 866,
+  "present_oct": 948
+ },
+ "meta": {
+  "aug_collected": "2026-08-07T06:42:01+00:00",
+  "aug_duration_s": 968.8,
+  "aug_input": "55574c5ac31e8aeb",
+  "hosts": 10000,
+  "oct_collected": "2026-10-19T16:18:12+00:00",
+  "oct_duration_s": 1565.6,
+  "oct_finished": "2026-10-19T16:46:15+00:00",
+  "oct_input": "c9c4b570f2e310a5",
+  "oversize_bytes": 262144,
+  "population": "Tranco top 10000 (list PYG5J, https://tranco-list.eu/download/PYG5J/10000)",
+  "probed_crawlers": 40,
+  "timeout_s": 8.0,
+  "user_agent": "Docket-SEO-Audit-Survey/1.0 (+https://docketseo.app/bot/; research survey: one robots.txt request per site, no crawling; contact support@docketseo.app)",
+  "workers": 16
+ },
+ "movement": {
+  "fewer_blocked": 226,
+  "mixed": 24,
+  "more_blocked": 207,
+  "same": 5306
+ },
+ "naming": {
+  "aug": 2323,
+  "aug_panel": 2126,
+  "oct": 2141,
+  "oct_panel": 2066,
+  "reference_tokens": 193
+ },
+ "oct": {
+  "attempted": 10000,
+  "no_robots": 1601,
+  "oversize": 118,
+  "readable": 6039,
+  "refused": 776,
+  "unreachable": 2242
+ },
+ "panel": {
+  "n": 5763,
+  "readable_aug_only": 473,
+  "readable_oct_only": 276
+ },
+ "parser": {
+  "any_aug_parser": 1196,
+  "any_current_parser": 1221,
+  "files_read_differently": 33,
+  "files_with_bom": 46,
+  "search_aug_parser": 634,
+  "search_current_parser": 656,
+  "training_aug_parser": 1180,
+  "training_current_parser": 1207
+ },
+ "recheck": {
+  "checked": "2026-10-19",
+  "gone": {
+   "asked": 40,
+   "same_file": 39
+  },
+  "kept": {
+   "asked": 15,
+   "same_file": 15
+  },
+  "of_gone_population": 145,
+  "of_kept_population": 49
+ },
+ "refusal": {
+  "aug": 643,
+  "oct": 776,
+  "other_readable": 5960,
+  "other_readable_now_refused": 166,
+  "readable_aug_now_refused": 207,
+  "refused_403_aug": 598,
+  "refused_403_oct": 725,
+  "refused_aug_now_readable": 78,
+  "signature_hosts_now_refused": 41
+ },
+ "shares": {
+  "any_of_nine": {
+   "aug": 1381,
+   "aug_panel": 1235,
+   "oct": 1196,
+   "oct_current_parser": 1221,
+   "oct_panel": 1138
+  },
+  "bot:Amazonbot": {
+   "aug": 897,
+   "aug_panel": 770,
+   "oct": 705,
+   "oct_current_parser": 730,
+   "oct_panel": 662
+  },
+  "bot:Applebot-Extended": {
+   "aug": 869,
+   "aug_panel": 750,
+   "oct": 681,
+   "oct_current_parser": 704,
+   "oct_panel": 643
+  },
+  "bot:Bytespider": {
+   "aug": 1096,
+   "aug_panel": 965,
+   "oct": 912,
+   "oct_current_parser": 937,
+   "oct_panel": 867
+  },
+  "bot:CCBot": {
+   "aug": 1147,
+   "aug_panel": 1012,
+   "oct": 927,
+   "oct_current_parser": 951,
+   "oct_panel": 877
+  },
+  "bot:Claude-SearchBot": {
+   "aug": 411,
+   "aug_panel": 383,
+   "oct": 409,
+   "oct_current_parser": 430,
+   "oct_panel": 382
+  },
+  "bot:ClaudeBot": {
+   "aug": 1023,
+   "aug_panel": 896,
+   "oct": 818,
+   "oct_current_parser": 844,
+   "oct_panel": 776
+  },
+  "bot:GPTBot": {
+   "aug": 1093,
+   "aug_panel": 956,
+   "oct": 888,
+   "oct_current_parser": 912,
+   "oct_panel": 836
+  },
+  "bot:Google-Extended": {
+   "aug": 933,
+   "aug_panel": 806,
+   "oct": 734,
+   "oct_current_parser": 754,
+   "oct_panel": 689
+  },
+  "bot:OAI-SearchBot": {
+   "aug": 425,
+   "aug_panel": 392,
+   "oct": 417,
+   "oct_current_parser": 436,
+   "oct_panel": 389
+  },
+  "bot:PerplexityBot": {
+   "aug": 626,
+   "aug_panel": 585,
+   "oct": 609,
+   "oct_current_parser": 630,
+   "oct_panel": 578
+  },
+  "bot:meta-externalagent": {
+   "aug": 931,
+   "aug_panel": 808,
+   "oct": 723,
+   "oct_current_parser": 745,
+   "oct_panel": 683
+  },
+  "google_extended": {
+   "aug": 933,
+   "aug_panel": 806,
+   "oct": 734,
+   "oct_current_parser": 754,
+   "oct_panel": 689
+  },
+  "search": {
+   "aug": 646,
+   "aug_panel": 605,
+   "oct": 634,
+   "oct_current_parser": 656,
+   "oct_panel": 602
+  },
+  "search_and_training": {
+   "aug": 636,
+   "aug_panel": 596,
+   "oct": 618,
+   "oct_current_parser": 642,
+   "oct_panel": 587
+  },
+  "training": {
+   "aug": 1371,
+   "aug_panel": 1226,
+   "oct": 1180,
+   "oct_current_parser": 1207,
+   "oct_panel": 1123
+  },
+  "training_only": {
+   "aug": 735,
+   "aug_panel": 630,
+   "oct": 562,
+   "oct_current_parser": 565,
+   "oct_panel": 536
+  }
+ },
+ "size": {
+  "largest_readable_aug": 246207,
+  "largest_readable_oct": 260088,
+  "oversize_oct": 118,
+  "smallest_oversize_oct": 263266
+ },
+ "state_transitions": {
+  "no_robots>no_robots": 1128,
+  "no_robots>ok": 129,
+  "no_robots>oversize": 2,
+  "no_robots>unreachable": 57,
+  "ok>no_robots": 352,
+  "ok>ok": 5763,
+  "ok>oversize": 11,
+  "ok>unreachable": 110,
+  "oversize>no_robots": 10,
+  "oversize>ok": 9,
+  "oversize>oversize": 91,
+  "oversize>unreachable": 6,
+  "unreachable>no_robots": 111,
+  "unreachable>ok": 138,
+  "unreachable>oversize": 14,
+  "unreachable>unreachable": 2069
+ }
+}

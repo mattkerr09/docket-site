@@ -61,6 +61,11 @@ DERIVED = [
     # Anthropic retired Claude-Web, Google added Google-CloudVertexBot —
     # and the home page promises "every AI crawler in one pass".
     ("collect_ai_agents.py", "data/ai-agents.json"),
+    # Added 2026-10-19 with /index/ai-crawler-blocking-2026-10/. The page quotes
+    # nothing that is not in this file, and this file is a pure function of the
+    # raw surveys committed beside it: rerunning it is a correction, never a
+    # fresh measurement (that is collect_ai_directives.py, which is not here).
+    ("build_ai_crawler_blocking.py", "data/ai-crawler-blocking-2026-10.json"),
 ]
 
 #: Checks run from the *app* repo, which owns the fact. `--check` reports

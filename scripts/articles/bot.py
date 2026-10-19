@@ -35,7 +35,9 @@ def bot() -> Path:
     body = f"""
 <p class="lede">If <code>{escape(token)}</code> is in your logs, somebody audited your site with
 Docket from their own computer. There is no Docket crawler farm and no scheduled sweep of the web:
-every request under this name belongs to one audit that one person started.</p>
+every request under this name belongs to one audit that one person started. The one other thing
+that sends requests from Docket is an occasional research survey, which has its own name and is
+described below.</p>
 
 <h2>How it identifies itself</h2>
 
@@ -73,6 +75,25 @@ the audit can switch robots.txt off, which exists for auditing their own staging
 matters to you, refuse the user agent at your server as well; that is the only rule a crawler
 cannot choose to ignore.</p>
 
+<h2>The research survey</h2>
+
+<p>Now and then we read the robots.txt files of a published list of popular sites and report
+what they say, as counts on <a href="/index/">the Index</a>. That survey does not use the audit
+name above. It sends this user agent:</p>
+
+<pre><code>{escape(F.blk("meta", "user_agent"))}</code></pre>
+
+<p>It asks each site for <code>/robots.txt</code> once. It asks for <code>/llms.txt</code> only
+when the robots.txt it just read allows it, and if a real file answers there it makes one more
+request, for a path that cannot exist, to tell a real file from a page that answers everything.
+It works through the list about {F.blk("meta", "workers")} different sites at a time, with one
+request in flight per site and a short pause between the requests it makes to the same one. The
+latest survey is described in
+<a href="/index/ai-crawler-blocking-2026-10/">AI crawler blocking, August to October 2026</a>,
+which names no site. To be left out of the next one, add a group for
+<code>{escape(F.blk("meta", "user_agent").split("/")[0])}</code> with
+<code>Disallow: /</code>, or <a href="/contact/">write to us</a>.</p>
+
 <h2>If it misbehaved on your site</h2>
 
 <p>Tell us, with the time and the address it requested, and we will find out why.</p>
@@ -88,6 +109,7 @@ cannot choose to ignore.</p>
         crumb='<a href="/">Docket</a> / Crawler',
         body=body,
         published="2026-09-23",
+        modified="2026-10-19",
         faq=[
             ("Is Docket a search engine?",
              "No. Nothing it reads is indexed or published. Each request belongs to an audit "

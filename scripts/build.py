@@ -136,6 +136,7 @@ import url_structure  # noqa: E402
 import howto_hreflang_codes  # noqa: E402
 import page_weight  # noqa: E402
 import ai_directives  # noqa: E402
+import ai_crawler_blocking  # noqa: E402
 import priority_model  # noqa: E402
 import howto_headings  # noqa: E402
 import howto_broken_links  # noqa: E402
@@ -711,6 +712,9 @@ def write_llms_txt() -> None:
          "measured with Docket's own parser; method and dataset included"),
         ("The AI rules in robots.txt that do nothing", f"{BASE}/index/ai-directives/",
          "which AI crawler rules in robots.txt name a token no crawler uses"),
+        ("AI crawler blocking, August to October 2026", f"{BASE}/index/ai-crawler-blocking-2026-10/",
+         "the same 10,000 sites read again two months later: who blocks which AI crawler, "
+         "what changed, and how much of it is Cloudflare's managed robots.txt"),
         ("Learn", f"{BASE}/learn/", "plain explanations of what an SEO audit covers, how "
          "AI search visibility works, and what Docket checks"),
         ("Fix guides", f"{BASE}/how-to/", "the specific problems Docket reports, what "
@@ -912,7 +916,8 @@ def write_static() -> None:
     LINKED = ("ai-directives-2026-08.json", "entity-2026-08.json",
               "index-2026-08.json", "knowledge.json",
               "www-canonical-2026-09.json",
-              "utm-internal-2026-09.json")
+              "utm-internal-2026-09.json",
+              "ai-crawler-blocking-2026-10.csv")
     #: Not linked, published on purpose: the Index states its population, and
     #: the list of sites IS that statement.
     ALSO_PUBLISHED = ("sites.txt",)
@@ -1485,6 +1490,7 @@ def main() -> int:
     pages += page_weight.build_all()
     pages += priority_model.build_all()
     pages += ai_directives.build_all()
+    pages += ai_crawler_blocking.build_all()
     pages += noindex_ai_crawlers.build_all()
     pages += sitemaps_ai_crawlers.build_all()
     pages += googlebot_robots_blocks.build_all()
