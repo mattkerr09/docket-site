@@ -48,6 +48,10 @@ it, and quote it when someone asks a question your business could answer. It is 
 as ranking in Google, it is measured differently, and the first requirement is the one most
 sites get wrong by accident: letting the right crawlers in.</p>
 
+<p>Docket can't tell you whether AI answers mention you. It tells you whether AI search can reach and read you.
+That means crawler access in your robots.txt, what your server answers AI crawlers, whether the content is readable
+without JavaScript, and the entity and extractability checks below.</p>
+
 <h2>The three gates</h2>
 <p>A model has to clear all three before it can name you. They fail in order, so there is no
 point working on the third while the first is broken.</p>
@@ -129,6 +133,7 @@ blocking and what it costs you. It runs on your Mac, and the crawl and the repor
 """
     return render(
         cat="learn", slug="ai-search-visibility",
+        modified="2026-10-19",
         title="AI search visibility: how to get cited by ChatGPT and Claude",
         desc=("Whether a model can reach, read and quote your site. The three gates ("
               "crawler access, server-side rendering, entity clarity) with measured "
@@ -145,6 +150,12 @@ blocking and what it costs you. It runs on your Mac, and the crawl and the repor
              "No. GPTBot collects training data. OAI-SearchBot builds the index ChatGPT searches "
              "when answering a question. Blocking GPTBot keeps you out of training; blocking "
              "OAI-SearchBot keeps you out of the answers."),
+            ("Can Docket tell me whether ChatGPT mentions my site?",
+             "No. Docket can't tell you whether AI answers mention you. It tells you whether AI search can "
+             "reach and read you. That means crawler access in robots.txt, what your server answers AI crawlers, "
+             "whether your content is readable without JavaScript, and the entity and extractability checks this "
+             "page lists. It cannot see what ChatGPT or any other AI answer says, so it cannot tell you whether "
+             "they mention or cite your site."),
             ("Does llms.txt improve AI visibility?",
              "Nobody has published evidence that it does. Google's documentation says you "
              "don't need AI text files to appear in AI Overviews or AI Mode. Crawler access, "

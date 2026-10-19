@@ -220,9 +220,9 @@ def build_hubs() -> list[Path]:
              "except purpose: crawler.sh turns sites into Markdown for AI training, and "
              "caps pages per session."),
             ("/vs/crawlraven-alternative/", "Docket vs CrawlRaven",
-             "The closest thing to Docket's pitch, sold once and far cheaper. Its own "
-             "pricing page marks the technical audit coming soon, which is the whole "
-             "difference today."),
+             "Close to Docket's pitch and far cheaper to start. It joins Search Console "
+             "and GA4 to a technical audit sold by the month, with a lifetime plan beside "
+             "it; Docket's audit is bought once and has no page allowance."),
             ("/vs/jetoctopus-alternative/", "Docket vs JetOctopus",
              "It reads your server logs, which Docket cannot do at all, and meters "
              "crawling in millions of URLs. An enterprise platform against a Mac app you "

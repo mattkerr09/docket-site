@@ -1,7 +1,7 @@
 {
   "site": "docketseo.app",
   "pages": 156,
-  "edges": 4048,
+  "edges": 4054,
   "average_share_pct": 0.64,
   "below_half": 132,
   "nodes": [
@@ -25,9 +25,9 @@
     },
     {
       "path": "/best/free-seo-audit-tools/",
-      "inlinks": 3,
-      "share_pct": 0.07,
-      "index": 0.11
+      "inlinks": 4,
+      "share_pct": 0.1,
+      "index": 0.16
     },
     {
       "path": "/bot/",
@@ -139,9 +139,9 @@
     },
     {
       "path": "/how-to/content-audit/",
-      "inlinks": 3,
-      "share_pct": 0.07,
-      "index": 0.11
+      "inlinks": 4,
+      "share_pct": 0.1,
+      "index": 0.16
     },
     {
       "path": "/how-to/cta-findings-that-miss-the-form/",
@@ -746,8 +746,8 @@
     {
       "path": "/learn/what-docket-checks/",
       "inlinks": 155,
-      "share_pct": 3.83,
-      "index": 5.98
+      "share_pct": 3.82,
+      "index": 5.97
     },
     {
       "path": "/learn/what-docket-got-wrong/",
@@ -913,9 +913,9 @@
     },
     {
       "path": "/vs/se-ranking-vs-screaming-frog/",
-      "inlinks": 4,
-      "share_pct": 0.1,
-      "index": 0.16
+      "inlinks": 6,
+      "share_pct": 0.15,
+      "index": 0.23
     },
     {
       "path": "/vs/semrush-site-audit-alternative/",
@@ -925,9 +925,9 @@
     },
     {
       "path": "/vs/seoptimer-alternative/",
-      "inlinks": 8,
-      "share_pct": 0.2,
-      "index": 0.31
+      "inlinks": 9,
+      "share_pct": 0.22,
+      "index": 0.34
     },
     {
       "path": "/vs/sitebulb-alternative/",
@@ -937,10 +937,10 @@
     },
     {
       "path": "/vs/sitechecker-alternative/",
-      "inlinks": 5,
-      "share_pct": 0.12,
-      "index": 0.19
+      "inlinks": 6,
+      "share_pct": 0.15,
+      "index": 0.23
     }
   ],
-  "measured": "2026-10-17"
+  "measured": "2026-10-19"
 }

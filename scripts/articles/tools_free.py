@@ -376,9 +376,9 @@ def _form(button: str, placeholder: str) -> str:
 
 def meta_checker() -> Path:
     body = f"""
-<p class="lede">Paste the address of any page. The checker reads its title, meta description,
-canonical, robots tags, headings and sharing tags, and says what to fix, with the same limits Docket
-uses.</p>
+<p class="lede">Paste the address of any page. The checker measures its title tag and meta description against
+the limits Docket uses (a title of about {TITLE_MAX} characters, a description of {DESC_MIN} to {DESC_MAX}
+wide), then reads the canonical, robots tags, headings and sharing tags, and says what to fix.</p>
 {_form("Check this page", "yourbusiness.com/services/")}
 <div class="meta-summary" id="meta-summary" hidden>
   <dl>
@@ -462,10 +462,11 @@ with the rest of its {N_CHECKS} checks, and ranks what to fix first.</p>
 """
     return render(
         cat="tools", slug="meta-tag-checker",
-        title="Title and meta tag checker: length, noindex, OG",
-        desc=("Free title and meta tag checker: paste a page and see its title and description "
-              "width, noindex, canonical, H1 and Open Graph tags, and what to fix."),
-        h1="Title and meta tag checker",
+        modified="2026-10-19",
+        title="Title tag length checker (free): meta, noindex, OG",
+        desc=(f"Free title tag length checker: paste a page to see if its title (about {TITLE_MAX} characters) and "
+              "meta description fit, plus noindex, canonical, H1 and Open Graph tags."),
+        h1="Title tag and meta description length checker",
         crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / Title and meta tag checker',
         body=body,
         published="2026-10-06",

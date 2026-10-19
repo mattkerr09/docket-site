@@ -9,18 +9,35 @@ doing their job. The fault is only that they are in an index, which makes it
 invisible to anyone reviewing the pages on their merits.
 
 No numeric literals.
+
+The worked example comes from data/thin-content-run.json (a real Docket audit of a small
+fixture site of ours, before and after), the same file /how-to/fix-thin-content-pages/ reads.
 """
 from __future__ import annotations
 
+import datetime
+import html
+import json
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import render  # noqa: E402
 
+_RUN = json.loads((Path(__file__).resolve().parent.parent.parent / "data" / "thin-content-run.json").read_text())
+
+
+def _when() -> str:
+    d = datetime.date.fromisoformat(_RUN["date"])
+    return f"{d.day} {d.strftime('%B %Y')}"
+
 
 def utility_pages() -> Path:
-    body = """
+    found = _RUN["before"]["content.utility_pages_indexable"]
+    cleared = ("After the search page was set to <code>noindex, follow</code> and the site was audited "
+               "again, the finding was gone. " if _RUN["after"]["content.utility_pages_indexable"] is None else "")
+    esc = html.escape
+    body = f"""
 <p class="lede">Somebody searches for your brand and lands on your empty cart. Or on a search
 results page for a term nobody sold anything with. Or on the order confirmation that thanks them
 for a purchase they never made. None of those pages is broken (they are all working exactly as
@@ -33,10 +50,9 @@ the <strong>cart</strong>, <strong>login</strong> and account screens, <strong>w
 and <strong>order or enquiry confirmations</strong>. They carry almost no content because
 content is not what they are for.</p>
 
-<p>Internal search results are the sharpest case, and the one Google asks site owners to keep
-out of the index by name. A search page can generate an unlimited number of URLs (one per query
-anybody ever types, including the ones typed by bots), and each looks like a real page to a
-crawler.</p>
+<p>Internal search results are the sharpest case. A search page can generate an unlimited number
+of URLs (one per query anybody ever types, including the ones typed by bots), and each looks like
+a real page to a crawler.</p>
 
 <h2>Why it survives review</h2>
 
@@ -87,6 +103,12 @@ site:example.com inurl:checkout</code></pre>
 than a path, search for the parameter instead: the shape varies by platform and the fault does
 not.</p>
 
+<h2>What Docket reports for it</h2>
+
+<p>Docket checks for this on every crawl. On {_when()} we ran it against a small fixture site of ours
+that has an indexable search page, and it reported <strong>&ldquo;{esc(found["title"])}&rdquo;</strong>, naming the
+page and giving the one-line fix above. {cleared}Nothing about a third-party site is in that run.</p>
+
 <h2>What this does not cover</h2>
 
 <p>Whether these pages should exist, or how faceted navigation ought to be handled, are design
@@ -95,6 +117,7 @@ are telling search engines to list them, and one directive stops it.</p>
 """
     return render(
         cat="how-to", slug="stop-indexing-site-search-and-cart-pages",
+        modified="2026-10-19",
         title="Site search and cart pages in Google: take them out",
         desc=("Search results, carts and confirmations get indexed because nothing looks "
               "broken. What an audit of your site finds, and why robots.txt cannot fix it."),
@@ -103,9 +126,9 @@ are telling search engines to list them, and one directive stops it.</p>
         body=body,
         faq=[
             ("Should internal search results be indexed?",
-             "No. Google asks site owners to keep them out of the index, and a search page can "
-             "generate an unlimited number of URLs: one per query anyone ever types, "
-             "including bots. Each looks like a real page to a crawler."),
+             "Usually not. A search page can generate an unlimited number of URLs: one per query "
+             "anyone ever types, including bots. Each looks like a real page to a crawler, and a "
+             "visitor who lands on one finds results for a search they did not make."),
             ("What is the fix for indexable cart and login pages?",
              "A robots meta tag with noindex and follow. The noindex takes the page out of the "
              "index; keeping follow means the links on it are still crawled, which matters on "

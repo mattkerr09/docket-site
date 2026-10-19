@@ -18,7 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (speed_words, PAY4, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, RELEASE,  # noqa: E402
-                    price, price_note_html, render, buy_block, rival_monthly_range,
+                    price, price_note_html, render, buy_block, rival_monthly_range, COMPETITORS,
                     INTEL, INTEL_DMG, download_url, DATA, REFUND_DAYS)
 
 #: How many optional checks reach the network, spelled, from the engine's own
@@ -100,7 +100,7 @@ CHECKED_HUMAN: dict[str, str] = {
     "sitechecker": "16 September 2026",
     "profound": "16 September 2026",
     "jetoctopus": "16 September 2026",
-    "crawlraven": "16 September 2026",
+    "crawlraven": "19 October 2026",
     "crawler-sh": "16 September 2026",
 }
 CHECKED_ISO: dict[str, str] = {
@@ -111,7 +111,7 @@ CHECKED_ISO: dict[str, str] = {
     "sitechecker": "2026-09-16",
     "profound": "2026-09-16",
     "jetoctopus": "2026-09-16",
-    "crawlraven": "2026-09-16",
+    "crawlraven": "2026-10-19",
     "crawler-sh": "2026-09-16",
 }
 
@@ -168,20 +168,25 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "https://crawler.sh"),
     ],
     "crawlraven": [
-        ("its pricing page lists a free tier for one site and one-time lifetime "
-         "licences at 39, 79 and 129 US dollars for one, three and ten sites",
+        ("its plans are billed monthly: Starter 29 US dollars for one site, Pro 39 for three sites "
+         "with 10 a month for each extra site, Agency from 199 for twenty sites, and Enterprise by "
+         "quote; a 7-day free trial on one site asks for no credit card",
          "https://crawlraven.com/pricing"),
-        ('those prices are a batch: the page states "price steps up every 10 '
-         'licences", showed ten remaining when read, and names the next batch '
-         "as 49, 89 and 139",
+        ("its cost comparison lists a Pro lifetime plan for 3 websites at 390 US dollars one-time, and "
+         "its FAQ says lifetime is a single payment for a fixed number of sites",
          "https://crawlraven.com/pricing"),
-        ('every paid tier lists "Technical SEO audit — coming soon"',
+        ("a technical SEO audit is listed among the Starter features, which Pro and Agency include, and its "
+         "FAQ says it is included on eligible paid or trial websites within a monthly page allowance, with "
+         "a CSV findings export; the page describes a 200-point technical audit",
          "https://crawlraven.com/pricing"),
-        ("the shipped features it lists are Search Console insights, linked GA4 "
-         "reporting, keyword and page performance, Ahrefs/Semrush list import, "
-         "keyword maps and cannibalization flags, content gaps and decay "
-         "tracking, prioritised action items, white-label reports, and MCP "
-         "access to up to 13 scoped tools",
+        ("MCP access to up to 30 tools across approved scopes is listed, and its FAQ says MCP can read "
+         "stored audits but cannot start them",
+         "https://crawlraven.com/pricing"),
+        ("the other features it lists are Search Console insights, linked GA4 reporting, keyword and "
+         "page performance, keyword maps and cannibalization flags, content gaps and decay tracking, "
+         "prioritised action items and, on Pro, import of Ahrefs and Semrush keyword lists",
+         "https://crawlraven.com/pricing"),
+        ("its FAQ says CrawlRaven offers a free audit tool for up to 100 pages with no account required",
          "https://crawlraven.com/pricing"),
     ],
     "jetoctopus": [
@@ -573,6 +578,8 @@ _SEOPT_PLANS = [
     ("Pro", 39, "10 crawls", "White label PDF reporting, 3 users"),
     ("Max", 59, "50 crawls", "White label PDF reporting and a lead generation tool, 6 users"),
 ]
+_SEOPT_LO, _SEOPT_HI = _SEOPT_PLANS[0][1], _SEOPT_PLANS[-1][1]
+_SEOPT_CRAWLS_LO, _SEOPT_CRAWLS_HI = (int(_SEOPT_PLANS[0][2].split()[0]), int(_SEOPT_PLANS[-1][2].split()[0]))
 
 
 def _verified_note(key: str, closing: str = _DEFAULT_CLOSING) -> str:
@@ -684,7 +691,9 @@ URLs. It is the deeper instrument and its price-to-power ratio is unmatched.</p>
 <p><strong>Choose Docket</strong> if you need to hand someone a plan rather than a dataset, if
 you care about AI search visibility or whether your landing pages convert, or if you want a
 client-ready PDF without building one.</p>
-<p>They are not mutually exclusive, and plenty of people will want both. If the site is large
+<p>They are not mutually exclusive, and plenty of people will want both. If the other name on your list
+is a cloud platform that meters its audit, <a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking against
+Screaming Frog</a> sets out that trade with both prices read from their own pages. If the site is large
 enough that crawl budget is the real question, the tool that answers it is neither of these:
 <a href="/vs/jetoctopus-alternative/">JetOctopus</a> reads your server logs, which shows what
 Googlebot actually fetched rather than what your site would serve if asked.</p>
@@ -833,11 +842,15 @@ def ahrefs() -> Path:
     rules = F.credit_rules()
     help_a, help_b = F.credit_help_centre()
     body = f"""
-<p class="lede"><strong>The short answer:</strong> Ahrefs Site Audit is one module inside a keyword and
-backlink platform. Its page says it &ldquo;scans for 170+ issues&rdquo; and sorts them into errors,
-warnings and notices. Docket is a one-time Mac app whose whole job is the audit: {N_CHECKS} checks,
-ranked by impact against effort. If you also need keyword volumes and a backlink index, you need
-Ahrefs. If you need the audit and a plan, Docket costs {PRICE_STR} once.</p>
+<p class="lede"><strong>The short answer:</strong> Ahrefs Site Audit is the website crawler inside Ahrefs, a keyword
+and backlink platform. It runs in Ahrefs' cloud, and its page says it &ldquo;scans for 170+ issues&rdquo; and
+sorts them into errors, warnings and notices. It spends one crawl credit for each internal page it reads:
+{F.credits_for("Lite")} a month on Lite (${_AH_PRICE["Lite"]}), {F.credits_for("Standard")} on Standard
+(${_AH_PRICE["Standard"]}) and {F.credits_for("Advanced")} on Advanced (${_AH_PRICE["Advanced"]}), as read on
+{CHECKED_HUMAN["ahrefs"]}. The paid plans that include it run from ${_AH_LO} to ${_AH_HI} a month, and Ahrefs Free
+runs it only on sites you verify you own. Docket is a one-time Mac app whose whole job is the audit:
+{N_CHECKS} checks, ranked by impact against effort, {PRICE_STR} once and no crawl credits. If you also need keyword
+volumes and a backlink index, you need Ahrefs.</p>
 
 <ul class="short-answer">
 <li><strong>Ahrefs suits</strong> someone who does keyword research and link building and wants the
@@ -932,6 +945,19 @@ no per-crawl cost, so auditing a client site twice in a day costs nothing.</p>
 search access, landing-page conversion, and marketing tracking coverage. That is what their page
 does and does not advertise, which is not the same as proof the product cannot do it. If you need one of these, ask them rather than taking this page's word for it.</p>
 
+<h2>Ahrefs content audit, exports and Looker Studio</h2>
+<p><strong>Content audit.</strong> Ahrefs does not sell a product called Content Audit: our check of its pricing and
+Site Audit pages on 9 September 2026 found no such name. The job is split. Site Audit crawls your own pages, and its
+page lists finding duplicate content among its checks, &ldquo;Be it title tags, meta descriptions, headings, or
+low-quality content pages&rdquo;, as read on {CHECKED_HUMAN["ahrefs"]}. Content Explorer is an index of what other
+people have published. This page tested nothing beyond what Ahrefs publishes. For the steps of a content audit,
+with or without Ahrefs, see <a href="/how-to/content-audit/">how to do a content audit</a>.</p>
+<p><strong>Exports and Looker Studio.</strong> We did not read Ahrefs' export or Looker Studio documentation for this
+page, so it does not say which formats Ahrefs exports or whether Site Audit connects to Looker Studio. Ahrefs' help
+centre is the place to check. What we did read is the article on usage-based pricing, which names export rows as one of
+the units pay-as-you-go credits buy, next to crawl credits. Docket's exports are a PDF report and CSV and JSON files,
+and none of them is metered.</p>
+
 <h2>Side by side</h2>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th></th><th>Docket</th><th>Ahrefs</th></tr></thead>
@@ -999,15 +1025,25 @@ you pay for it.</p>
 
     return render(
         cat="vs", slug="ahrefs-site-audit-alternative",
-        modified="2026-10-16",
-        title="Ahrefs Site Audit credits: what spends one and plan limits",
-        desc=("One crawl credit is one internal page that returns a 200. "
-              f"Lite gives {F.credits_for('Lite')} a month, Standard {F.credits_for('Standard')}, "
-              f"Advanced {F.credits_for('Advanced')}. Ahrefs publishes no price for extra credits."),
-        h1="Docket vs Ahrefs Site Audit",
+        modified="2026-10-19",
+        title="Ahrefs Site Audit: what it checks, credits and cost",
+        desc=(f"Ahrefs Site Audit scans for 170+ issues. A crawl credit is one internal page: Lite gives "
+              f"{F.credits_for('Lite')} a month, Standard {F.credits_for('Standard')}, Advanced {F.credits_for('Advanced')}. "
+              f"Docket is {PRICE_STR} once."),
+        h1="Ahrefs Site Audit: what it checks, what it costs, and how Docket compares",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Ahrefs',
         body=body,
         faq=[
+            ("What is Ahrefs Site Audit?",
+             "The website crawler inside Ahrefs. It runs in Ahrefs' cloud, and its page says it scans for 170+ "
+             "issues and sorts them into errors, warnings and notices. It spends one crawl credit for each internal "
+             f"page it reads. Ahrefs Free runs it only on sites you verify you own, and the paid plans that include it "
+             f"run from ${_AH_LO} to ${_AH_HI} a month, as read on {CHECKED_HUMAN['ahrefs']}."),
+            ("How much does Ahrefs Site Audit cost?",
+             "Ahrefs sells Site Audit as part of its plans, not on its own. Ahrefs Free includes it for verified "
+             f"sites. The paid plans that include it run from ${_AH_LO} to ${_AH_HI} a month, and the Lite plan at "
+             f"${_AH_PRICE['Lite']} a month gives {F.credits_for('Lite')} crawl credits. Extra credits have no "
+             f"published price. Docket is {PRICE_STR} once, with no credits."),
             ("What is a crawl credit in Ahrefs Site Audit?",
              "One internal HTML page that returns a 200 status, crawled once. Ahrefs' help centre says "
              "redirects, error pages, images, CSS and JavaScript files and links to other sites do not spend "
@@ -1027,12 +1063,21 @@ you pay for it.</p>
              "prove you own. Auditing a client's or a competitor's site needs a paid plan, where "
              "the number of projects on unverified sites is capped by plan. Docket's free version "
              "shows your score, how many problems each area has and the top problem in full, on any site, with no key."),
-            ("Does the Ahrefs site audit include a content audit?",
-             "Its Site Audit page lists finding duplicate content, in title tags, meta "
-             "descriptions, headings or low-quality pages, among its checks. This page tested "
-             "nothing beyond what Ahrefs publishes. Docket's content checks cover thin pages, "
-             "competing pages that target the same search, language mismatches and missing "
-             "authorship, and rank them with everything else."),
+            ("Does Ahrefs have a content audit?",
+             "Not under that name. Our check of Ahrefs' pricing and Site Audit pages on 9 September 2026 found no "
+             "product called Content Audit. Its Site Audit page lists finding duplicate content, in title tags, meta "
+             "descriptions, headings or low-quality pages, among its checks, and this page tested nothing beyond what "
+             "Ahrefs publishes. Docket's content checks cover thin pages, competing pages that target the same "
+             "search, language mismatches and missing authorship, and rank them with everything else."),
+            ("Can you export an Ahrefs site audit or send it to Looker Studio?",
+             "This page does not say. We did not read Ahrefs' export or Looker Studio documentation, so it makes no "
+             "claim about which formats Ahrefs offers or whether Site Audit connects to Looker Studio. Ahrefs' article "
+             "on usage-based pricing names export rows among the units pay-as-you-go credits buy, next to crawl "
+             "credits. Docket's exports are a PDF report and CSV and JSON files, and none of them is metered."),
+            ("Can I run an Ahrefs website audit on any site?",
+             "Not on every plan. Ahrefs Free runs Site Audit only on sites you verify you own. The paid plans allow "
+             f"projects on sites you have not verified: {_AH_UNVERIFIED['Lite']} on Lite, {_AH_UNVERIFIED['Standard']} "
+             f"on Standard and {_AH_UNVERIFIED['Advanced']} on Advanced. Docket audits any site, a client's included."),
             ("Is there a one-time alternative to Ahrefs Site Audit?",
              f"Docket is a one-time purchase for macOS: {PRICE_STR} once. It audits any site with "
              "no crawl credits. It does not replace Ahrefs' keyword and backlink data."),
@@ -1196,6 +1241,7 @@ stand; the local tool answers what to change next.</p>
 <li><a href="/vs/profound-alternative/">Docket vs Profound</a></li>
 <li><a href="/vs/seoptimer-alternative/">Docket vs SEOptimer</a></li>
 <li><a href="/vs/sitechecker-alternative/">Docket vs Sitechecker</a></li>
+<li><a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking vs Screaming Frog</a></li>
 </ul>
 """
     return render(
@@ -1692,8 +1738,9 @@ dataset, a client-ready report, and the AI-visibility and conversion checks that
 Scrutiny's feature list does not name.</p>
 <p>Both run on your own machine and neither wants a subscription, which is more
 than most of this market can say. If buying once is the part that matters,
-<a href="/vs/crawlraven-alternative/">CrawlRaven</a> is the other one-time licence worth knowing about. It is cheaper again, though its own pricing page still marks the technical audit as coming
-soon.</p>
+<a href="/vs/crawlraven-alternative/">CrawlRaven</a> is the other name worth knowing about. It sells mainly by
+the month now, with a lifetime plan beside it, and its pricing page includes a technical audit within a monthly
+page allowance.</p>
 {_verified_note("scrutiny")}
 {CTA}"""
 
@@ -1743,11 +1790,11 @@ def seoptimer() -> Path:
     confined to what each vendor publishes about its own product.
     """
     body = f"""
-<p class="lede"><strong>The short answer:</strong> SEOptimer is a cloud audit tool sold by the month
-({price('seoptimer')}), with white-label PDF reports and a lead-capture widget, and every plan buys a
-fixed number of crawls. Docket is an audit you run on your own Mac, bought once, with no crawl
-meter. If you sell audits under your own brand, pick SEOptimer. If you audit your own sites and
-want unlimited re-runs, pick Docket.</p>
+<p class="lede"><strong>The short answer:</strong> the SEOptimer alternative that fits depends on what you use SEOptimer
+for. It is a cloud audit tool sold by the month ({price('seoptimer')}), with white-label PDF reports and a
+lead-capture widget, and every plan buys a fixed number of crawls. Docket is an audit you run on your own Mac, bought
+once for {PRICE_STR}, with no crawl meter and a free version. If you sell audits under your own brand, stay with
+SEOptimer. If you audit your own sites and want unlimited re-runs, pick Docket.</p>
 
 <h2>At a glance</h2>
 <p class="table-note">Read from SEOptimer's pricing page on {CHECKED_HUMAN["seoptimer"]}. Each plan
@@ -1822,15 +1869,31 @@ the other is an instrument you point at a site. If the metering is what puts you
 <a href="/vs/crawler-sh-alternative/">crawler.sh</a> is worth a look for the same reason and
 against the same limit: it caps pages per session rather than crawls per month.</p>
 
+<h2>Other SEOptimer alternatives, by what you need</h2>
+<ul>
+<li><strong>A free one.</strong> Docket's free version shows your score, how many problems each area has and the top
+problem in full, on any site, with no key. <a href="/best/free-seo-audit-tools/">The free SEO audit tools we compared</a>
+are the other place to start.</li>
+<li><strong>White-label reports and a team.</strong> That is what a platform subscription bundles. Our
+<a href="/vs/semrush-site-audit-alternative/">Semrush comparison</a> lists seats and white-label reports among what it
+buys. Docket does neither.</li>
+<li><strong>Visual reports an agency can present.</strong> <a href="/vs/sitebulb-alternative/">Sitebulb</a> turns crawl
+data into reports of that kind.</li>
+<li><strong>A desktop crawler for raw data.</strong> <a href="/vs/screaming-frog-alternative/">Screaming Frog</a> gives
+you the crawl data and leaves the reading to you.</li>
+<li><strong>Another cloud tool that bills by the month.</strong> <a href="/vs/sitechecker-alternative/">Sitechecker</a>
+is the one we compare, and that page says it does not meter crawling.</li>
+</ul>
+
 {_verified_note("seoptimer")}
 {CTA}"""
 
     return render(
         cat="vs", slug="seoptimer-alternative",
-        modified="2026-10-08",
-        title="SEOptimer alternative: Docket vs SEOptimer, compared",
-        desc=("SEOptimer sells white-label reports, lead capture and a monthly crawl allowance. "
-              "Docket is a one-time Mac audit with no meter. Prices read from both."),
+        modified="2026-10-19",
+        title=f"SEOptimer alternative for Mac: {PRICE_STR} once, no crawl limit",
+        desc=(f"SEOptimer's plans run ${_SEOPT_LO} to ${_SEOPT_HI} a month for {_SEOPT_CRAWLS_LO} to {_SEOPT_CRAWLS_HI} "
+              f"crawls and add white-label reports. Docket is {PRICE_STR} once for any site, with a free version and no crawl meter."),
         h1="Docket vs SEOptimer",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / SEOptimer',
         body=body,
@@ -1851,6 +1914,15 @@ against the same limit: it caps pages per session rather than crawls per month.<
              "For auditing your own sites, yes. For selling audits it is not: SEOptimer does "
              "white-label PDF reporting with a custom domain and an embeddable lead-capture "
              "audit form, and Docket has no equivalent to either."),
+            ("Is there a free SEOptimer alternative?",
+             "Docket's free version shows your score, how many problems each area has and the top "
+             "problem in full, on any site, with no key and no time limit. It is not the full "
+             f"report, which is {PRICE_STR} once. Our guide to free SEO audit tools compares the "
+             "other free options we looked at."),
+            ("Can I get white-label reports from a SEOptimer alternative?",
+             "Not from Docket. Its PDF carries Docket's branding, and its CSV and JSON exports "
+             "carry none. SEOptimer names white-label PDF reporting on its Pro and Max plans, and "
+             "a platform such as Semrush bundles white-label reports with seats."),
             ("Which is cheaper, Docket or SEOptimer?",
              f"SEOptimer is cheaper to start, at {price('seoptimer')} against Docket's "
              f"{PRICE_STR} one-time. Over roughly a year the entry plan reaches what Docket "
@@ -2211,32 +2283,40 @@ publishes about its own product.</p>
     )
 
 
+#: CrawlRaven's plans as its pricing page lists them, read 2026-10-19 and recorded in
+#: VERIFIED["crawlraven"] and data/competitors.csv. Kept as named values so the prose
+#: interpolates them rather than typing them.
+_CR_STARTER, _CR_PRO, _CR_AGENCY = 29, 39, 199
+_CR_PRO_SITES, _CR_AGENCY_SITES, _CR_EXTRA_SITE = 3, 20, 10
+_CR_LIFETIME = 390
+_CR_TRIAL_DAYS, _CR_FREE_PAGES = 7, 100
+_CR_AUDIT_POINTS, _CR_MCP_TOOLS = 200, 30
+
+
 def crawlraven() -> Path:
-    """The closest thing to Docket's pitch, cheaper, and its audit is not built yet.
+    """The closest thing to Docket's pitch among the cheaper tools, and it now has an audit.
 
-    CrawlRaven's own headline is almost this site's: every tool tells you what
-    happened, it tells you what to do next, and hands back one ranked plan. It
-    is sold once rather than monthly, like Docket. It costs a fraction of
-    Docket. All of that is conceded first, because a reader who has seen both
-    home pages will notice the overlap and any page pretending otherwise loses
-    them.
+    ⚠️ THIS PAGE WAS OUT OF DATE ON 2026-10-19 AND WAS REWRITTEN, NOT PATCHED. It said
+    CrawlRaven sold one-time licences in batches that step up every ten, that every
+    paid tier marked its technical audit "coming soon", that it had a free tier for one
+    site and white-label reports, and that its MCP listed 13 tools. Read again on
+    2026-10-19, its pricing page shows monthly plans (Starter, Pro, Agency) with a
+    fixed-site lifetime plan beside them, the technical audit included within a monthly
+    page allowance, a 7-day trial, and MCP of up to 30 tools that can read stored audits
+    but not start them. The page had slid from position 8 to 19 for "crawlraven" in the
+    week of 10-11, and a comparison whose central claim the vendor's page no longer makes
+    is a plausible reason.
 
-    The one fact that separates them is on CrawlRaven's own pricing page, in
-    their words rather than ours: every paid tier lists "Technical SEO audit —
-    coming soon". Today it is a Search Console and GA4 content-insights tool.
-    That is stated as their label, never as a judgement about the product.
-
-    ⚠️ THE BATCH PRICE IS A SCARCITY MECHANIC AND IS DATED AS SUCH. Their page
-    steps the price up every ten licences and showed ten remaining when read.
-    Quoting it as a standing price would be quoting a number designed to change.
-
-    ⚠️ MCP IS NOT A DIFFERENTIATOR. They list up to 13 scoped tools; Docket
-    ships an MCP server too.
+    What stays: the overlap in pitch is conceded first, and nothing is claimed about the
+    quality of either audit, because neither was measured.
     """
+    r = _RUN
+    first = r["top"][0]
     body = f"""
-<p>CrawlRaven is the closest thing on the market to Docket's pitch, and it is much cheaper. Its
-home page says what this one says: every SEO tool tells you what happened, this one tells you what to do next. It is sold as a one-time licence rather than a subscription. If you are
-comparing the two, that overlap is real and worth saying first.</p>
+<p class="lede">CrawlRaven is the closest tool to Docket's pitch among the cheaper ones: it joins Search
+Console and GA4 to a technical audit and hands back prioritised action items. It is sold by the month, with a
+fixed-site lifetime plan beside it, and its audit runs within a monthly page allowance. Docket is a Mac app
+bought once, with no allowance. The overlap is real, so it is said first.</p>
 
 <h2>What CrawlRaven does that Docket does not</h2>
 
@@ -2245,80 +2325,101 @@ comparing the two, that overlap is real and worth saying first.</p>
 page performance against what visitors actually did. Docket audits your pages; it does not pull
 your Search Console history or your analytics.</li>
 <li><strong>Keyword work.</strong> Keyword maps, clusters, cannibalization flags, content gaps,
-runner-up keywords and decay tracking, plus importing your existing Ahrefs or Semrush lists.
+runner-up keywords and decay tracking, and on Pro an import of your Ahrefs or Semrush keyword lists.
 Docket does none of this. It does not track rankings or research keywords.</li>
-<li><strong>White-label reports</strong>, which Docket does not have, and a free tier for one
-site. Docket's free version covers any site but shows only the score, how many problems each
-area has and the top problem in full.</li>
+<li><strong>A trial and a free tool.</strong> A {_CR_TRIAL_DAYS} day free trial of everything in Pro on one site,
+with no card, and a free audit tool for up to {_CR_FREE_PAGES} pages with no account. Docket's free version covers
+any site but shows only the score, how many problems each area has and the top problem in full.</li>
 </ul>
 
-<p>It also lists MCP access to up to thirteen scoped tools. Docket ships an MCP server as well,
-so that is not a difference between them.</p>
+<p>It also lists MCP access to up to {_CR_MCP_TOOLS} tools across approved scopes, and its FAQ says MCP can read
+stored audits but cannot start them. Docket ships an MCP server so an assistant can run an audit.</p>
 
-<h2>The one thing that separates them, in their words</h2>
+<h2>The technical audit is there now, within an allowance</h2>
 
-<p>Every paid tier on CrawlRaven's pricing page carries the line <strong>"Technical SEO audit —
-coming soon"</strong>. That is their label, not our assessment. What it means for a buyer today
-is that the two tools overlap far less than the two home pages suggest: CrawlRaven is a Search
-Console and GA4 content-insights tool with the audit still ahead of it, and Docket is
-{N_CHECKS} technical, conversion, brand and AI-visibility checks that run now.</p>
+<p>An earlier version of this page said CrawlRaven's pricing page marked the technical audit &ldquo;coming
+soon&rdquo;. Read on {CHECKED_HUMAN["crawlraven"]}, it no longer does. The audit is listed among the Starter
+features, and the FAQ says it is included on eligible paid or trial websites within a monthly page allowance, with
+a CSV export of findings. The page describes a {_CR_AUDIT_POINTS}-point technical audit.</p>
 
-<p>If that line disappears from their pricing page, this comparison changes, and the date above
-the sources below is when it was read.</p>
+<p>Docket runs {N_CHECKS} checks across thirteen areas, four of them not technical SEO at all: conversion, brand
+consistency, AI search visibility and campaign tracking. It has no page allowance, and the crawl and the report stay
+on your Mac. A count of checks is a weak measure, and nothing here compares the quality of either tool's output,
+which has not been measured.</p>
+
+<h2>What one Docket run looks like</h2>
+
+<p>CrawlRaven's audit is measured against a monthly page allowance. For scale, one Docket run on our own site,
+{_run_date()}: {r["pages"]} pages crawled in {speed_words(r["seconds"])} on a Mac, score {r["score"]} out of 100,
+grade {r["grade"]}, {r["findings_total"]} things to fix, and nothing spent because there is nothing to spend. The
+finding Docket ranked first among those that name nobody else was &ldquo;{html.escape(first["title"])}&rdquo;,
+{first["effort"]} effort, on {first["pages"]} page{"s" if first["pages"] != 1 else ""}.</p>
 
 <h2>On the price</h2>
 
-<p>Their licences are {price('crawlraven')}. Read honestly, that is a scarcity mechanic rather
-than a list price: the page states the price steps up every ten licences and shows how many are
-left, so the figure is designed to move. Docket is {PRICE_STR} once, for unlimited sites, and
-does not change with demand.</p>
+<p class="table-note">Read from CrawlRaven's pricing page on {CHECKED_HUMAN["crawlraven"]}. Its cost comparison
+lists the lifetime plan; the monthly plans are the ones it leads with.</p>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Plan</th><th>Price</th><th>Sites included</th></tr></thead>
+<tbody>
+<tr><td>CrawlRaven Starter</td><td>${_CR_STARTER} a month</td><td>1</td></tr>
+<tr><td>CrawlRaven Pro</td><td>${_CR_PRO} a month, plus ${_CR_EXTRA_SITE} a month for each extra site</td><td>{_CR_PRO_SITES}</td></tr>
+<tr><td>CrawlRaven Agency</td><td>From ${_CR_AGENCY} a month</td><td>{_CR_AGENCY_SITES}</td></tr>
+<tr><td>CrawlRaven Pro lifetime</td><td>${_CR_LIFETIME} as a single payment</td><td>{_CR_PRO_SITES}, fixed</td></tr>
+<tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td><td class="yes">Any site</td></tr>
+</tbody></table></div>
 
-<p>Even at the next batch up, CrawlRaven is far cheaper than Docket, and nothing on this page
-argues otherwise. What {PRICE_STR} buys is a shipped technical audit ({N_CHECKS} checks across thirteen areas) running locally on your own Mac with no account and no site limit, the crawl
-and the report kept there.</p>
+<p>CrawlRaven is far cheaper to start, and nothing here argues otherwise. Twelve months of Starter come to
+${_CR_STARTER * 12} for one site, against {PRICE_STR} once for any site; the lifetime plan is
+${_CR_LIFETIME} for {_CR_PRO_SITES}. They are not the same purchase: one is a content-insights platform with a
+metered audit, the other is the audit, running locally on your own Mac with no account and no site limit.</p>
 
 <h2>Which to buy</h2>
 
 <ul>
 <li><strong>Buy CrawlRaven</strong> if your question is which content to write and update, you
-want Search Console and GA4 in one view, and you want it cheaply.</li>
+want Search Console and GA4 in one view, and you are happy to pay by the month for it.</li>
 <li><strong>Buy Docket</strong> if your question is what is technically wrong with the site and
-in what order to fix it, today.</li>
+in what order to fix it, with a price that stops and no allowance to watch.</li>
 </ul>
 
-<p>They are close enough in spirit that owning both is not absurd, and their free tier costs
-nothing to try. If a one-time price is what drew you here, the other one worth knowing about is
-<a href="/vs/scrutiny-alternative/">Scrutiny</a>, a Mac app bought once, cheaper than Docket, and
-stronger than either of us at link checking. Nothing here compares the quality of either tool's
-output, which has not been measured.</p>
+<p>They are close enough in spirit that owning both is not absurd. If a one-time price is what drew you here,
+the other one worth knowing about is <a href="/vs/scrutiny-alternative/">Scrutiny</a>, a Mac app bought once,
+cheaper than Docket, and stronger than either of us at link checking.</p>
 
 {_verified_note("crawlraven")}
 {CTA}"""
 
     return render(
         cat="vs", slug="crawlraven-alternative",
-        title="Docket vs CrawlRaven: a shipped audit, or coming soon?",
-        desc=("CrawlRaven is cheaper, sold once, and pitches a ranked plan like Docket. Its "
-              "own pricing page marks the technical audit 'coming soon'. What each does "
-              "today."),
+        modified="2026-10-19",
+        title="CrawlRaven vs Docket: price, technical audit, MCP",
+        desc=(f"CrawlRaven joins Search Console and GA4 to a technical audit from ${_CR_STARTER} a month. "
+              f"Docket is {PRICE_STR} once, any site. What each does, read from CrawlRaven's pricing page."),
         h1="Docket vs CrawlRaven",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / CrawlRaven',
         body=body,
         faq=[
             ("Is Docket a CrawlRaven alternative?",
-             "They overlap in pitch more than in function today. CrawlRaven connects Search "
-             "Console and GA4 and works on keywords and content; its pricing page marks the "
-             "technical SEO audit as coming soon. Docket is the technical audit, shipped, "
-             "with conversion, brand and AI-visibility checks alongside it."),
+             "For the audit, yes. CrawlRaven joins Search Console and GA4 to a technical audit sold by the "
+             "month; Docket is the technical audit, bought once, with conversion, brand and AI-visibility "
+             "checks alongside it. It is not an alternative if you need Search Console and GA4 data or "
+             "keyword work, which Docket does not do."),
             ("Which is cheaper, Docket or CrawlRaven?",
-             f"CrawlRaven, considerably. Its licences are {price('crawlraven')} against "
-             f"Docket's {PRICE_STR}, and it has a free tier for one site. Its prices step up "
-             "every ten licences sold, so the figure quoted here is the batch that was "
-             "current on the date below, not a standing price."),
+             f"CrawlRaven to start. Its Starter plan is ${_CR_STARTER} a month for one site, against Docket's "
+             f"{PRICE_STR} once for any site. Twelve months of Starter come to ${_CR_STARTER * 12}, and its "
+             f"lifetime plan for {_CR_PRO_SITES} sites is ${_CR_LIFETIME}, as read on {CHECKED_HUMAN['crawlraven']}."),
+            ("Does CrawlRaven have a technical SEO audit?",
+             f"Yes. On {CHECKED_HUMAN['crawlraven']} its pricing page listed it among the Starter features, and "
+             "its FAQ said it is included on eligible paid or trial websites within a monthly page allowance. "
+             "An earlier reading of that page marked it coming soon."),
             ("Do both have an MCP integration?",
-             "Yes. CrawlRaven lists MCP access to up to thirteen scoped tools, and Docket "
-             "ships an MCP server so an assistant can run an audit. It is not a difference "
-             "between them."),
+             f"Yes. CrawlRaven lists MCP access to up to {_CR_MCP_TOOLS} tools and says MCP can read stored "
+             "audits but cannot start them. Docket ships an MCP server so an assistant can run an audit."),
+            ("Does CrawlRaven have a free version?",
+             f"It offers a {_CR_TRIAL_DAYS} day free trial on one site and a free audit tool for up to "
+             f"{_CR_FREE_PAGES} pages with no account. Docket's free version shows your score, how many "
+             "problems each area has and the top problem in full, on any site, with no key."),
             ("Does Docket connect to Google Search Console?",
              "Not for the keyword and traffic history CrawlRaven reports. Docket audits what "
              "your pages contain and how your server is configured, on your own machine, "
@@ -2436,6 +2537,9 @@ what this page is built from.</p>
     )
 
 
+_SR_LO, _SR_HI = rival_monthly_range("seranking")
+
+
 def se_ranking_vs_screaming_frog() -> Path:
     """Two tools people compare that are not the same KIND of thing.
 
@@ -2540,6 +2644,13 @@ Screaming Frog is the right tool.</p>
 
 {_measured("<p>Most of this page is about what the other two do. This is what Docket does: a real audit of our own site, with the figures the engine reported.</p>")}
 
+<h2>Can you use both?</h2>
+
+<p>Yes, because they do different jobs. SE Ranking tracks rankings and keywords and meters its audit by pages per
+month. Screaming Frog crawls on your own machine and returns raw data, with no page meter. Nothing about one stops you
+running the other, and the price table above is the whole cost of doing so, as read on {CHECKED_HUMAN[key]}. If you
+add a third tool for the part neither does, a ranked list of what to fix first, that is where Docket sits.</p>
+
 <h2>When to pick SE Ranking or Screaming Frog instead of Docket</h2>
 
 <ul>
@@ -2558,11 +2669,10 @@ Screaming Frog is the right tool.</p>
 """
     return render(
         cat="vs", slug="se-ranking-vs-screaming-frog",
-        modified="2026-10-08",
-        title="SE Ranking vs Screaming Frog: metered or unmetered?",
-        desc=("SE Ranking meters its audit by pages per month; Screaming Frog licences an "
-              "unmetered crawler for your machine. Both prices read from their own "
-              "purchase pages."),
+        modified="2026-10-19",
+        title="SE Ranking vs Screaming Frog: price, audit limits, use",
+        desc=(f"SE Ranking is ${_SR_LO} to ${_SR_HI} a month and meters its audit by pages. Screaming Frog is "
+              f"${COMPETITORS['screaming-frog']['annual_low']} a year, unmetered, free to 500 URLs. Read from their own pages."),
         h1="SE Ranking vs Screaming Frog",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / SE Ranking vs Screaming Frog',
         body=body,
@@ -2586,6 +2696,11 @@ Screaming Frog is the right tool.</p>
              "Configuration, Save & Open Crawls, JavaScript Rendering, Crawl Comparison and "
              "Near Duplicate Content on the paid side, so the free version cannot save a "
              "crawl or render JavaScript."),
+            ("Can I use SE Ranking and Screaming Frog together?",
+             "Yes. They do different jobs: SE Ranking tracks rankings and keywords and meters its audit "
+             "by pages per month, while Screaming Frog crawls on your own machine and returns raw data "
+             "with no page meter. Neither ranks what to fix first, which is the gap Docket fills for Mac "
+             "users."),
             ("Which one tracks keyword rankings?",
              "SE Ranking. Screaming Frog does not, and neither does Docket. If daily rank "
              "tracking is what you need, that is the one of the three that does it."),

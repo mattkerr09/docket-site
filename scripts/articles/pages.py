@@ -558,7 +558,9 @@ export exists: it drops straight into a Jira or Linear import without anyone ret
 
 <h2>What to tell clients it cannot do</h2>
 <p>Say it early rather than being asked. Docket has no per-page backlink or anchor-text data
-and no search volumes. You will still need an index tool for keyword research. Rendering runs
+and no search volumes. You will still need an index tool for keyword research. Its PDF carries Docket's
+branding, so if you sell audits under your own name with white-label reports, a tool built for that fits better:
+<a href="/vs/seoptimer-alternative/">the SEOptimer comparison</a> shows what one names. Rendering runs
 automatically on a small sample of each crawl rather than on every page, and the sample is
 drawn from the shallowest pages once utility pages such as cart, checkout and login are set
 aside, so a very large single-page application still wants a dedicated rendering crawl.</p>

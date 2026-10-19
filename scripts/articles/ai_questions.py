@@ -50,6 +50,48 @@ and which rule decided it.</p>
 """
 
 
+def _own_robots_example() -> str:
+    """What this site's own robots.txt says to Anthropic's three crawlers, read from the file.
+
+    Read from site/robots.txt (written by build.py, committed) rather than typed, so it cannot
+    disagree with the file. Emits nothing unless the file still has the shape the sentence
+    describes: ClaudeBot and Claude-SearchBot named with only Allow: /, Claude-User not named,
+    and a * group that also allows everything.
+    """
+    path = Path(__file__).resolve().parent.parent.parent / "site" / "robots.txt"
+    if not path.exists():
+        return ""
+    groups: dict[str, list] = {}
+    current: list[str] = []
+    after_rule = False
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.split("#", 1)[0].strip()
+        if not line or ":" not in line:
+            continue
+        key, _, value = (part.strip() for part in line.partition(":"))
+        key = key.lower()
+        if key == "user-agent":
+            if after_rule:
+                current, after_rule = [], False
+            current.append(value.lower())
+        elif key in ("allow", "disallow"):
+            after_rule = True
+            for agent in current:
+                groups.setdefault(agent, []).append((key, value))
+    open_all = [("allow", "/")]
+    if (groups.get("claudebot") != open_all or groups.get("claude-searchbot") != open_all
+            or "claude-user" in groups or groups.get("*") != open_all):
+        return ""
+    return """
+<h2>What this site&rsquo;s own robots.txt says</h2>
+<p>Docket&rsquo;s own file, read when this page was built, names <code>ClaudeBot</code> and
+<code>Claude-SearchBot</code> separately and gives each <code>Allow: /</code>. It does not name
+<code>Claude-User</code>, so the <code>User-agent: *</code> group applies to it, and that group allows
+everything too. All three Anthropic crawlers may fetch this site, and the file keeps the search
+crawlers and the training crawlers in separate groups so the next person to edit it can see the difference.</p>
+"""
+
+
 def what_is_claudebot() -> Path:
     blocked = F.claude_search_blocked()
     both = F.claude_search_and_claudebot()
@@ -64,7 +106,7 @@ crawlers, Claude-SearchBot and Claude-User.</p>
 
 <h2>Anthropic runs three crawlers, not one</h2>
 <p>Anthropic&rsquo;s <a href="{ANTHROPIC_BOTS}" rel="nofollow noopener">own help article</a>
-(updated 2026-04-07, read 2026-09-28) names three, and each one answers a different question
+(dated 2026-04-07 on the article, re-read 2026-10-19) names three, and each one answers a different question
 about your site:</p>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Crawler</th><th>What Anthropic says it does</th><th>What blocking it does</th></tr></thead>
@@ -107,6 +149,7 @@ thing rather than a decision to disappear from answers.</p>
 its crawlers use at <a href="{ANTHROPIC_IPS}" rel="nofollow noopener">claude.com/crawling/bots.json</a>,
 so a request can be checked against that list before you block or allow it at your server.</p>
 
+{_own_robots_example()}
 <h2>robots.txt is a request, not a lock</h2>
 <p>Everything above is about what your file asks. Your CDN or firewall can refuse a crawler
 the file welcomes, and a bot-protection setting switched on by someone else is the usual reason a
@@ -124,6 +167,7 @@ plainly what it cannot see.</p>
 """
     return render(
         cat="learn", slug="what-is-claudebot",
+        modified="2026-10-19",
         title="What is ClaudeBot? What blocking it does, and doesn't",
         desc=("ClaudeBot is Anthropic's training crawler. Blocking it keeps your pages out of "
               "training, not out of Claude's answers. The three Anthropic bots, and how to block one."),
