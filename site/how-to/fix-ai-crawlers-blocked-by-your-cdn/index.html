@@ -14,7 +14,7 @@
 <title>AI crawlers getting 403 when robots.txt allows them</title>
 <meta name="description" content="Your CDN can refuse GPTBot and ClaudeBot before robots.txt is ever read. The two-request test that proves it, and the trap that makes one request useless.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="5a7bee978b18">
+<meta name="build-id" content="e5d39dff2e04">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-ai-crawlers-blocked-by-your-cdn/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -930,6 +930,11 @@ fbq('track','PageView');
 still refuse them at the door. The refusal happens before robots.txt is ever read, it produces
 no entry in any SEO tool's report, and the only way to find it is to ask your own server the
 same question twice.</p>
+<div class="callout">
+<div class="callout-title">Known issue in Docket 1.3.111</div>
+<p>On some Cloudflare sites, Docket 1.3.111 can report AI crawlers as refused when Cloudflare is only checking where the request comes from. Cloudflare checks real crawlers by their network address, so Docket's test request, sent from your own computer, can be challenged or turned away while the real crawler is served. The fix is in the next release. Until then, if Docket says AI crawlers are refused on a Cloudflare site, and Googlebot was refused too or the answers were challenges, look at Cloudflare's security events before you change anything.</p>
+</div>
+
 
 <h2>Why robots.txt cannot tell you</h2>
 
