@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import (PAY4, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, RELEASE,  # noqa: E402
+from render import (speed_words, PAY4, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, RELEASE,  # noqa: E402
                     price, price_note_html, render, buy_block, rival_monthly_range,
                     INTEL, INTEL_DMG, download_url, DATA, REFUND_DAYS)
 
@@ -516,13 +516,13 @@ def _measured(intro: str, view: str = "table") -> str:
     left = f"{r['left_out']} more name other companies or sites, a cookie-consent finding among them, and are left out here as they are in the public sample report."
     caption = {
         "table": (f"The area scoreboard in the Docket {r['engine']} window after a real audit of {r['target']} "
-                  f"on {_run_date()}: {r['pages']} pages crawled in {r['seconds']} seconds, score {r['score']} "
+                  f"on {_run_date()}: {r['pages']} pages crawled in {speed_words(r['seconds'])}, score {r['score']} "
                   f"out of 100, grade {r['grade']}. It is the shipped interface running against the audit "
                   "engine, captured from that run, not a mockup."),
         "list": (f"Docket's results window for the audit below, run on {_run_date()}. Score {r['score']} out of "
-                 f"100, grade {r['grade']}, across {r['pages']} pages in {r['seconds']} seconds, and no crawl "
+                 f"100, grade {r['grade']}, across {r['pages']} pages in {speed_words(r['seconds'])}, and no crawl "
                  "credits spent, because there are none to spend."),
-        "areas": (f"One crawl of {r['pages']} pages, finished in {r['seconds']} seconds on a Mac: score "
+        "areas": (f"One crawl of {r['pages']} pages, finished in {speed_words(r['seconds'])} on a Mac: score "
                   f"{r['score']}, grade {r['grade']}. On a metered plan that is one crawl spent. Here nothing "
                   "counted it."),
     }[view]

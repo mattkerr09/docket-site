@@ -56,6 +56,14 @@ def _check_counts() -> tuple:
 N_CHECKS, N_LANES, N_AI_CHECKS = _check_counts()
 
 
+def speed_words(seconds: float) -> str:
+    """How long an audit of this site took, in the one form the site uses everywhere (CEO, 19 October 2026). The
+    site cites several real runs of the same site (53 to 57 s on 17 October; 53.8 s on the installed 1.3.111 on 19
+    October), so quoting each run's own seconds put two numbers in front of one reader. "Under a minute" is true of
+    every one of them; a run of a minute or more says its real seconds instead of claiming it."""
+    return "under a minute" if seconds < 60 else f"{round(seconds)} seconds"
+
+
 def _competitors() -> dict:
     """Every competitor row, keyed by slug.
 
