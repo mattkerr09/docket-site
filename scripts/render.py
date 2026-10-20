@@ -1957,8 +1957,9 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
         '"name":"Docket SEO","url":"' + BASE + '/",'
         '"logo":"' + BASE + '/icon.png",'
         '"description":"Docket makes local SEO and marketing audit software for Mac.",'
-        '"sameAs":["https://github.com/mattkerr09",'
-        '"https://github.com/mattkerr09/docket-site",'
+        # No personal account: /learn/entity-and-sameas/ says a founder's profile does not identify the company
+        # (CEO, 20 October 2026: being right beats a count). The site's own repo and the Product Hunt page are Docket's.
+        '"sameAs":["https://github.com/mattkerr09/docket-site",'
         '"https://www.producthunt.com/products/docket-seo"]},'
         '{"@type":"WebSite","@id":"' + BASE + '/#site",'
         '"url":"' + BASE + '/","name":"Docket SEO",'

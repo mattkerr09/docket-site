@@ -229,6 +229,13 @@ The script and the site list ship with the dataset. Re-run it and check.</p>
 #
 # If the screenshot is regenerated, re-read every number in the caption and alt
 # text off the new image by eye. That is the only check that can fail on this.
+# ⚠️ THE H1 AND THE TITLE SHARE NO WORDS, AND THAT IS A KNOWN TRADE-OFF, NOT A MISS. Docket's own audit of this
+# site (dogfood, 20 October 2026) reports cvr.message_mismatch (LOW): the title says "SEO, copy, conversion and brand
+# audits for Mac", the H1 says "Everything that's wrong. In the order to fix it." The CEO kept the H1 (20 October):
+# the Reddit D2 ads quote it word for word from 28 October and the click must land on the same words, and the site
+# benchmark rates it our strongest headline. The line under it (hero-sub) restates the title's promise. Do not
+# "fix" the H1 to clear the finding; the check compares title and H1 only, so the finding stays and is accepted.
+
 def body() -> str:
     m = _index()
     chart = _index_chart(m)
