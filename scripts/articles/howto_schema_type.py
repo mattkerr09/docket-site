@@ -155,7 +155,7 @@ which is exactly why the recommendation has to be careful in a way the validatio
 
 <p>The registered check is <code>local.schema</code>, which covers local-business structured data.
 For the case where the markup on your page describes businesses you list rather than your own, see
-<a href="/how-to/schema-that-describes-someone-else/">the markup on your page may not be about
+<a href="/learn/what-docket-got-wrong/#case-someone-elses-markup">the markup on your page may not be about
 you &rarr;</a>. For the other ways structured data goes wrong, see
 <a href="/how-to/fix-structured-data-errors/">how to fix structured data errors &rarr;</a>.</p>
 """

@@ -306,11 +306,11 @@ being worse.</li>
 <h2>Further reading</h2>
 <ul>
 <li><a href="/how-to/schema-type-is-a-claim/">A schema type is a claim about what you are</a></li>
-<li><a href="/how-to/schema-id-references/">An @id is a pointer, not a definition</a></li>
-<li><a href="/how-to/schema-that-describes-someone-else/">The markup on your page may not be about you</a></li>
+<li><a href="/learn/what-docket-got-wrong/#case-id-pointer">An @id is a pointer, not a definition</a></li>
+<li><a href="/learn/what-docket-got-wrong/#case-someone-elses-markup">The markup on your page may not be about you</a></li>
 <li><a href="/how-to/json-ld-parser-errors/">Read the JSON-LD error, not the guess</a></li>
 <li><a href="/how-to/fix-structured-data-that-does-not-match-the-page/">Structured data that says what the page does not</a></li>
-<li><a href="/how-to/completeness-findings-assume-your-type/">A completeness check assumes your type is right</a></li>
+<li><a href="/learn/what-docket-got-wrong/#case-wrong-type">A completeness check assumes your type is right</a></li>
 <li><a href="/how-to/when-a-field-is-there-and-still-missing/">When a field is there and still missing</a></li>
 </ul>
 """

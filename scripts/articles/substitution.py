@@ -135,7 +135,7 @@ ask for an action", not "pages whose reason to exist is that action".</p>
 
 <h2>Where another tool is better</h2>
 
-<p><a href="/vs/">Profound, Otterly and Peec</a> track whether you are actually cited, by
+<p><a href="/vs/profound-alternative/">Profound</a>, Otterly and Peec track whether you are actually cited, by
 running prompts against the models and recording what comes back. That is downstream reality
 and Docket cannot produce it: we do not run prompts, and a tool on your Mac has no way to see
 what ChatGPT told someone in Ohio. If the question is "am I being cited today", buy one of

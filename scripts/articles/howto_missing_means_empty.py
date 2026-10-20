@@ -153,7 +153,7 @@ finding says.</p>
 and <code>local.nap</code>, which compares your name, address and phone across the site. For what
 the type declaration itself claims, see <a href="/how-to/schema-type-is-a-claim/">a schema type is
 a claim about what you are &rarr;</a>. For the number beside a finding, see
-<a href="/how-to/check-the-count-on-a-finding/">check the count on a finding &rarr;</a>. For the
+<a href="/learn/what-docket-got-wrong/#case-count-badge">check the count on a finding &rarr;</a>. For the
 rest of structured data, see <a href="/how-to/fix-structured-data-errors/">how to fix structured
 data errors &rarr;</a>.</p>
 """

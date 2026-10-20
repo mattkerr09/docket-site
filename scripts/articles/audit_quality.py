@@ -15,7 +15,9 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import facts as F  # noqa: E402
+from corrections_cases import CASES  # noqa: E402
 from render import N_CHECKS, render  # noqa: E402
 
 
@@ -31,7 +33,9 @@ is deliberately narrow, so it misses files that record a real mistake in differe
 
 <p>This is not a confession. It is the four questions worth asking of any finding, each of
 which we learned by getting it wrong first. The dated list of what we fixed, release by release,
-is <a href="/learn/what-docket-got-wrong/">on its own page</a>.</p>
+is <a href="/learn/what-docket-got-wrong/">on its own page</a>, which also holds {len(CASES)}
+<a href="/learn/what-docket-got-wrong/#worked-cases">worked cases</a> of findings that looked wrong and what to
+check on your own report.</p>
 
 <h2>Did it look at what it says it looked at?</h2>
 

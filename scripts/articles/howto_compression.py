@@ -279,10 +279,9 @@ urgent. Spend the rest of the afternoon on
 """
     return render(
         cat="how-to", slug="fix-compression-and-caching",
-        title="Fix compression and caching headers",
-        desc=("What Docket's perf.compression check reads, the Brotli quirk "
-              "that makes it report a site that already compresses, and which "
-              "half is worth your time."),
+        title="Enable gzip compression and caching headers",
+        desc=("How to turn on gzip in nginx or Apache and set Cache-Control, after one check "
+              "first: a Brotli-only site can be reported as uncompressed."),
         h1="How to fix compression and caching headers",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / compression and caching',
         body=body,

@@ -470,7 +470,7 @@ read from the dead line alone. A crawler matching no group falls back to
 fallback group does not already carry that rule, and a retired name sharing a group with its
 live replacement costs nothing at all. Where a rule really is lost, that is reported at medium;
 where the fallback covers it, or nothing but <code>Allow</code> sits under the dead name, it is
-a note. <a href="/how-to/what-a-dead-crawler-rule-costs/">What a dead rule actually costs
+a note. <a href="/learn/what-docket-got-wrong/#case-dead-crawler-rule">What a dead rule actually costs
 &rarr;</a></p>
 
 <p>The same survey answers a question people ask far more often about a crawler that is not an AI

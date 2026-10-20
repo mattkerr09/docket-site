@@ -78,7 +78,9 @@ everywhere to fix one false positive would be the worse trade.</p>
 <ul>
 <li><strong>A newsletter box alone still counts as no call to action.</strong> An email signup
 is a real thing to want, but it is not the action a page selling something exists for, and a
-page whose only ask is "join our list" is usually a page that forgot to ask for the sale.</li>
+page whose only ask is "join our list" is usually a page that forgot to ask for the sale. The
+separate email list building check does not read forms either;
+<a href="/learn/email-capture-audit/">what it looks at instead</a>.</li>
 <li><strong>Docket does not read your field labels to decide what your form is for.</strong> It
 could guess, and a guess that is right most of the time would produce confident wrong sentences
 the rest of the time. Field count is blunt, it is stated plainly, and you can overrule it in a
@@ -155,7 +157,7 @@ missing-contact-route finding. Both live in the conversion and landing pages are
 not &rarr;</a>.</p>
 
 <p>For the related habit of reading the number attached to a finding before acting on it, see
-<a href="/how-to/check-the-count-on-a-finding/">a finding's count is not decoration &rarr;</a>.</p>
+<a href="/learn/what-docket-got-wrong/#case-count-badge">a finding's count is not decoration &rarr;</a>.</p>
 """
     return render(
         cat="how-to", slug="cta-findings-that-miss-the-form",

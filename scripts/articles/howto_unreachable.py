@@ -180,9 +180,9 @@ not) &rarr;</a>.</p>
 """
     return render(
         cat="how-to", slug="pages-an-audit-could-not-reach",
-        title="'Could not be reached' is not a diagnosis",
-        desc=("An audit reports one thing for four causes, then sends you to DNS. How to tell "
-              "slow from down on your own site in a minute."),
+        title="Audit says pages 'could not be reached': slow or down?",
+        desc=("An audit says pages could not be reached and sends you to DNS. Four different "
+              "causes get that one line. How to tell slow from down on your own site."),
         h1="'Could not be reached' is not a diagnosis",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Unreachable pages',
         body=body,

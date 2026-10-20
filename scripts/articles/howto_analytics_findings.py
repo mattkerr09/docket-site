@@ -148,7 +148,7 @@ and what the lane deliberately does not do) see
 <a href="/learn/marketing-tag-audit/">the marketing tag audit &rarr;</a>.</p>
 
 <p>For the related habit of reading what a finding actually counted, see
-<a href="/how-to/check-the-count-on-a-finding/">a finding's count is not decoration &rarr;</a>.</p>
+<a href="/learn/what-docket-got-wrong/#case-count-badge">a finding's count is not decoration &rarr;</a>.</p>
 """
     return render(
         cat="how-to", slug="analytics-findings-name-the-tag",

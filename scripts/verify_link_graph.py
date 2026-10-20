@@ -34,7 +34,13 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
 DATASET = ROOT / "data" / "link-equity.json"
 
-HREF = re.compile(r'href="(/[^"#?]*)"')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lint import is_redirect_stub  # noqa: E402
+
+#: A link to a section (/page/#part) is a link to the page; the part and any query string are dropped.
+#: The pattern used to require the closing quote straight after the path, so every anchored link was
+#: silently not counted, and a page that sections link to read as one nobody links to.
+HREF = re.compile(r'href="(/[^"#?]*)(?:[#?][^"]*)?"')
 
 #: Markup a reader cannot click, stripped before hrefs are counted.
 #:
@@ -75,7 +81,14 @@ def measure() -> tuple[dict, dict[str, set[str]]]:
     live linking to /learn/entity-schema/ — a page that has never existed, at a
     guessed path, past every gate. Docket found it on the deployed site.
     """
-    pages = sorted(SITE.rglob("index.html"))
+    # A redirect stub (noindex plus a zero-delay refresh, the shape lint.py exempts) is an old address
+    # that forwards, not a page. Counted as one it is a node nobody links to, which is what its job is,
+    # and it would sit at the bottom of "the weakest pages" in /learn/internal-link-equity/ as though it
+    # were a new article. Its own outgoing link is a forward, not editorial, so it is not an edge either.
+    # An internal link that points AT a stub is a defect: it should name the destination.
+    every = sorted(SITE.rglob("index.html"))
+    stubs = {path_of(p) for p in every if is_redirect_stub(p.read_text())}
+    pages = [p for p in every if path_of(p) not in stubs]
     paths = {path_of(p) for p in pages}
     pairs: set[tuple[str, str]] = set()
     broken: dict[str, set[str]] = {}
@@ -83,6 +96,9 @@ def measure() -> tuple[dict, dict[str, set[str]]]:
         src = path_of(page)
         for href in HREF.findall(UNCLICKABLE.sub(" ", page.read_text())):
             target = href if href.endswith("/") else href + "/"
+            if target in stubs:
+                broken.setdefault(href + " (a redirect stub: link to where it forwards)", set()).add(src)
+                continue
             if target not in paths:
                 # A direct file reference (/sitemap.xml, /robots.txt) is a link
                 # to a thing on disk rather than to a page in the graph.

@@ -82,6 +82,11 @@ overwrite the original source of the session, so a visitor who arrived from sear
 then clicked your own tagged banner is recorded as arriving from the banner. Your best
 channel gets credited to your worst.</p>
 
+<p><strong>Email list building</strong> is narrower than its name. It looks for an email tool's tag
+or a few phrases in your copy and never looks at a form, so
+<a href="/learn/email-capture-audit/">what a pass or a miss there tells you</a> is smaller than it
+sounds.</p>
+
 <h2>What we found looking at real sites</h2>
 
 <p>On 2026-08-14 we audited four live business sites (an Italian food retailer, a French
@@ -135,7 +140,7 @@ guess at the rest.</p>
 <h2>Further reading</h2>
 <ul>
 <li><a href="/how-to/analytics-findings-name-the-tag/">'You have no analytics' is a claim about a list</a></li>
-<li><a href="/how-to/pixels-reported-on-zero-pages/">A pixel on part of the site, and on no pages</a></li>
+<li><a href="/learn/what-docket-got-wrong/#case-pixel-zero-pages">A pixel on part of the site, and on no pages</a></li>
 </ul>
 """
     return render(

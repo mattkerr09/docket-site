@@ -20,7 +20,9 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import facts as F  # noqa: E402
+from corrections_cases import CASES, GROUPS  # noqa: E402
 from render import buy_block, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parent.parent.parent / "data" / "corrections.json"
@@ -64,14 +66,44 @@ def _entry(e: dict) -> str:
     return "\n".join(parts)
 
 
+def _cases() -> str:
+    """The worked cases: fifteen former guides, one short section each (see corrections_cases.py)."""
+    esc = html.escape
+    k = len(CASES)
+    toc = "\n".join(f'<li><a href="#{c["id"]}">{esc(c["title"])}</a></li>' for c in CASES)
+    out = [
+        f'<h2 id="worked-cases">{k} cases where a finding looked wrong</h2>',
+        f"<p>The releases above say what changed. These {k} cases say what the mistake looked like to the person "
+        f"reading the report, and what to check on your own. They were first published as separate guides and are "
+        f"collected here. They are not release records: none carries a release number or a test list, because the "
+        f"guides never claimed either. No site is named.</p>",
+        f"<ul>\n{toc}\n</ul>",
+    ]
+    for group, cases in GROUPS:
+        out.append(f"<h2>{esc(group)}</h2>")
+        for c in cases:
+            parts = [f'<section id="{c["id"]}">', f"<h3>{esc(c['title'])}</h3>"]
+            parts += [f"<p>{esc(p)}</p>" for p in c["body"]]
+            parts.append(f"<p><strong>On your own report.</strong> {esc(c['try'])}</p>")
+            if c["checks"]:
+                label = "Registered check" if len(c["checks"]) == 1 else "Registered checks"
+                parts.append(f"<p><strong>{label}.</strong> " + ", ".join(f"<code>{esc(x)}</code>" for x in c["checks"]) + ".</p>")
+            if c["see"]:
+                parts.append("<p>See also: " + ", ".join(f'<a href="{esc(h)}">{esc(t)}</a>' for h, t in c["see"]) + ".</p>")
+            parts.append("</section>")
+            out.append("\n".join(parts))
+    return "\n".join(out)
+
+
 def corrections() -> Path:
     entries = load()
     n = len(entries)
     n_tests = len({t for e in entries for t in e["tests"]})
     first, last = entries[-1]["date"], entries[0]["date"]
     body_entries = "\n".join(_entry(e) for e in entries)
-    desc = (f"The releases that fixed something Docket got wrong, newest first: what was wrong, how we found it, "
-            f"what changed, and the tests that hold it.")
+    k = len(CASES)
+    desc = (f"The releases that fixed something Docket got wrong, newest first, with the tests that hold each fix, "
+            f"and {k} worked cases of findings that looked wrong.")
     assert len(desc) <= 165, len(desc)
 
     body = f"""
@@ -83,7 +115,9 @@ and which tests now hold the fix in place. Where we could not prove something, t
 <p>This is the part of our log that has shipped as a release. It is not a list of every mistake, only of the ones we
 found and fixed. For the questions to ask of any tool's report, ours included, see
 <a href="/learn/audit-tool-accuracy/">how to tell whether an audit tool is lying to you</a>; it counts
-{F.regression_files()} of Docket's {F.test_files()} test files that record a past mistake in their own words.</p>
+{F.regression_files()} of Docket's {F.test_files()} test files that record a past mistake in their own words.
+After the releases, {k} <a href="#worked-cases">worked cases</a> show what such mistakes look like from the reader's
+side.</p>
 
 <h2>How to check an entry</h2>
 <p>The release link under each heading goes to the public release on GitHub, which shows the day it was published.
@@ -93,6 +127,8 @@ results out.</p>
 
 {body_entries}
 
+{_cases()}
+
 <h2>If a finding on your site looks wrong</h2>
 <p>Send us the address of the page and the text of the finding through <a href="/contact/">the contact page</a>. We
 read the finding against the page itself. If Docket was wrong, the fix gets a test like the ones above.</p>
@@ -101,6 +137,7 @@ read the finding against the page itself. If Docket was wrong, the fix gets a te
 """
     return render(
         cat="learn", slug=SLUG,
+        modified="2026-10-19",
         title="What Docket got wrong, and the release that fixed it",
         desc=desc,
         h1="What Docket got wrong, and when it was fixed",
@@ -110,6 +147,14 @@ read the finding against the page itself. If Docket was wrong, the fix gets a te
             ("Has Docket ever reported something that was not true?",
              f"Yes. This page lists {n} releases that fixed findings or behaviour that were wrong, each with the "
              f"day it was published and the tests that hold the fix."),
+            ("Why would an audit report a problem my site does not have?",
+             f"Usually because a check inferred something from text, a count, a tag or a name, and the inference "
+             f"failed on a site shaped differently from the ones it was written for. The {k} worked cases on this "
+             f"page are {k} such failures in Docket's own checks, each with what to check on your own report."),
+            ("A finding's count and its headline disagree. Which is right?",
+             "Usually the headline, because a person wrote it and the badge came from a variable. Compare the count "
+             "with the list of URLs under the finding before acting on it. One worked case here shows a count of the "
+             "wrong thing lifting a minor finding above a more serious one."),
             ("What should I do if a Docket finding looks wrong on my site?",
              "Send the address of the page and the finding to us through the contact page. We read the finding "
              "against the page, and if Docket was wrong the fix gets a test."),

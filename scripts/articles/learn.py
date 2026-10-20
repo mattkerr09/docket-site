@@ -50,7 +50,9 @@ sites get wrong by accident: letting the right crawlers in.</p>
 
 <p>Docket can't tell you whether AI answers mention you. It tells you whether AI search can reach and read you.
 That means crawler access in your robots.txt, what your server answers AI crawlers, whether the content is readable
-without JavaScript, and the entity and extractability checks below.</p>
+without JavaScript, and the entity and extractability checks below. Tools that track what AI answers say about a
+brand are a different purchase; <a href="/vs/profound-alternative/">Docket against Profound</a> sets the two side by
+side.</p>
 
 <h2>The three gates</h2>
 <p>A model has to clear all three before it can name you. They fail in order, so there is no
@@ -122,7 +124,8 @@ it needs to is a different question, and it is the one with the uncomfortable an
 <h2>How to check your own site</h2>
 <ol>
 <li>Open <code>yoursite.com/robots.txt</code> and look for each crawler above by name. If you
-only see <code>User-agent: *</code>, whatever it says applies to all of them.</li>
+only see <code>User-agent: *</code>, whatever it says applies to all of them. The free
+<a href="/tools/ai-crawler-checker/">AI crawler checker</a> does this reading for one address.</li>
 <li>Load a key page with JavaScript disabled. If the content vanishes, AI crawlers see nothing.</li>
 <li>Check that your homepage has Organization schema with a <code>sameAs</code> array.</li>
 </ol>

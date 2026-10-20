@@ -221,7 +221,9 @@ page rather than asserted here.</li>
 
 <p>Docket's audit carries an XML sitemap check in the indexability lane and separate per-crawler
 robots.txt and server-access checks in the AI lane, which is the split this page argues for: the
-sitemap is a file-level fact, access is a per-crawler one. The full list is on
+sitemap is a file-level fact, access is a per-crawler one. When that sitemap check reports URLs as
+broken, <a href="/how-to/sitemap-urls-that-are-not-stale/">read the cause before you regenerate
+the file</a>. The full list is on
 <a href="/learn/what-docket-checks/">what Docket checks</a>.</p>
 
 <h2>Method note, and what it cannot support</h2>

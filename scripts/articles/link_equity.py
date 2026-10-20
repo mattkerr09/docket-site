@@ -132,6 +132,10 @@ the footer.</li>
 <li>If the answer is zero or one, that page is running on nothing.</li>
 </ol>
 
+<p>The same graph answers two other questions: how many clicks from the homepage a page sits, and
+whether anything links to it at all. <a href="/learn/click-depth-and-orphan-pages/">Click depth and
+orphan pages</a> explains how Docket measures both, and when it refuses to call a page an orphan.</p>
+
 <p>You can do this by hand on a small site in about twenty minutes. Docket does it across
 every page, ranks the results, and shows you the map. The figures on this page come from
 running it against this site on {F.equity()["measured"]}, and they are read from that

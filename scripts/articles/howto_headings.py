@@ -321,7 +321,7 @@ href="/learn/what-docket-checks/">what Docket checks</a>.</p>
 <li><a href="/how-to/fix-a-site-that-says-something-different-every-page/">When your site stops saying one thing about itself</a></li>
 <li><a href="/how-to/fix-a-site-that-sounds-like-several-companies/">When your site sounds like several companies wrote it</a></li>
 <li><a href="/how-to/what-your-site-says-you-are-called/">What your site says your company is called</a></li>
-<li><a href="/how-to/addresses-on-your-site-that-are-not-yours/">Not every address on your site is yours</a></li>
+<li><a href="/learn/what-docket-got-wrong/#case-not-your-address">Not every address on your site is yours</a></li>
 <li><a href="/how-to/where-an-audit-looks-for-your-address/">Where an audit looks for your address</a></li>
 <li><a href="/how-to/fix-sameas-that-claims-the-wrong-accounts/">Not every social link on your site is yours</a></li>
 </ul>

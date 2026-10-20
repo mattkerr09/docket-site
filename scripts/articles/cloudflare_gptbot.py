@@ -158,7 +158,9 @@ without you, and AI crawlers are newer than most of those lists.</li>
 <p>If your crawlers are already getting a 403 while robots.txt allows them, the diagnosis and fix are
 on <a href="/how-to/fix-ai-crawlers-blocked-by-your-cdn/">when your CDN blocks AI crawlers your
 robots.txt allows</a>. The directive side (which tokens are live, which are retired and which do
-nothing) is <a href="/how-to/fix-ai-crawler-access/">AI crawler access</a>. A crawler you let in still has
+nothing) is <a href="/how-to/fix-ai-crawler-access/">AI crawler access</a>, and the free
+<a href="/tools/ai-crawler-checker/">AI crawler checker</a> reads that file for one address, though it
+cannot see an edge refusal, which is why the two-request test above exists. A crawler you let in still has
 to be able to read the page, which is <a href="/how-to/javascript-seo-audit/">the JavaScript SEO
 audit</a>.</p>
 
@@ -173,7 +175,7 @@ audit</a>.</p>
 <ul>
 <li><a href="/how-to/tell-a-rate-limit-from-a-block/">A rate limit is not a block</a></li>
 <li><a href="/how-to/pages-an-audit-could-not-reach/">'Could not be reached' is not a diagnosis</a></li>
-<li><a href="/how-to/when-a-policy-is-reported-as-a-defect/">When a report calls your decision a defect</a></li>
+<li><a href="/learn/what-docket-got-wrong/#case-policy-or-defect">When a report calls your decision a defect</a></li>
 </ul>
 """
     return render(

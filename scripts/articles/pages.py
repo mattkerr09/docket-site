@@ -12,6 +12,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from corrections_cases import CASES  # noqa: E402
 
 #: The optional checks that reach the network, spelled, from the engine's
 #: registry. It was the word "four" here while the registry held five.
@@ -1248,7 +1250,7 @@ Google API key it will read Chrome UX Report data, which is Google measuring, no
 <li><strong>It does not see behind your login.</strong> The product is not audited. The
 marketing site, docs, blog and pricing page are.</li>
 <li><strong>It does not run prompts against models,</strong> so it cannot tell you whether
-ChatGPT named you this morning. <a href="/vs/">Profound, Otterly and Peec</a> do that.</li>
+ChatGPT named you this morning. <a href="/vs/profound-alternative/">Profound</a>, Otterly and Peec do that.</li>
 <li><strong>Rendering is a sample</strong>: ten of the shallowest pages by default, which
 answers "is this client-rendered and what is it costing me" without turning a five-minute
 audit into an hour. It is not a full rendered crawl of a large application.</li>
@@ -1424,11 +1426,12 @@ throttle from a refusal, the one-click test that says whether a 403 is about you
 your network, and why a re-run is the only thing that makes the finding real.
 <a href="/how-to/tell-a-rate-limit-from-a-block/">Tell a wait from a refusal &rarr;</a></p>
 
-<h2>The number badged on a finding</h2>
-<p>It feeds the score and decides where the finding sits in your plan, so a count of the wrong
-thing moves work you do not need to do above work you do. Two cases where the badge argued with
-its own headline, and the four questions that catch it.
-<a href="/how-to/check-the-count-on-a-finding/">Check the count &rarr;</a></p>
+<h2>When the finding is the mistake</h2>
+<p>{len(CASES)} cases where an audit reported something that was not true of the site, or said nothing
+about something that was: a count of the wrong thing, a phrase read as a review, markup about somebody
+else, a policy called a defect, a fix that hid a real problem somewhere else. Each says what the report
+claimed, what was true, and what to check on your own.
+<a href="/learn/what-docket-got-wrong/#worked-cases">The worked cases &rarr;</a></p>
 
 <h2>When the form is the call to action</h2>
 <p>A page whose whole content is a quote form can be reported as having nothing to click,
@@ -1441,12 +1444,6 @@ general fault behind half the findings phrased as an absence.
 that inference, including a logo link whose correct accessibility label was read as a brand and
 then advised away.
 <a href="/how-to/what-your-site-says-you-are-called/">Where the guess comes from &rarr;</a></p>
-
-<h2>Reviews you do not have</h2>
-<p>An audit cannot see your reviews, so it matches phrases, and a phrase can mean two things. A
-site's own sentence saying it has no testimonials, counted as proof that it does; why one of
-these two errors is much worse than the other.
-<a href="/how-to/findings-from-phrase-matching/">Read the evidence first &rarr;</a></p>
 
 <h2>The pages an audit could not reach</h2>
 <p>Four different causes come out as one line telling you to check DNS and TLS, and on a domain
@@ -1478,23 +1475,11 @@ documenting the filler template it ships. Why both repairs replaced a question a
 a question about the shape of the text.
 <a href="/how-to/placeholder-text-findings/">Read the quoted sentence &rarr;</a></p>
 
-<h2>The schema reference that resolves to nothing</h2>
-<p>Two blocks sharing an <code>@id</code> are one node, so a reference carries no properties on
-purpose, and an audit reading it as a half-finished entity is wrong. But a pointer whose target
-is not on the same page produces neither a rich result nor an error, which is why nothing catches
-it. <a href="/how-to/schema-id-references/">Check the graph first &rarr;</a></p>
-
 <h2>What the JSON-LD error actually says</h2>
 <p>A check that finds invalid markup has just parsed it and caught the exact reason, then prints
 a list of likely causes instead. What each parser message means, and why a report can be right
 that they all fail the same way while the pages stay broken.
 <a href="/how-to/json-ld-parser-errors/">Read the message &rarr;</a></p>
-
-<h2>Which host is that finding about?</h2>
-<p>A certificate warning you can disprove in ten seconds is one you stop investigating, and the
-finding was right about a host you did not check. Why www and the bare domain are separate
-configurations, and the three things "http is still reachable" can mean.
-<a href="/how-to/findings-that-name-no-host/">Find the host first &rarr;</a></p>
 
 <h2>The hreflang target that is not really dead</h2>
 <p>Four reasons a target gets called broken, and on two of them the tool learned nothing. Plus the
@@ -1507,18 +1492,6 @@ test that never fires at all.
 was measuring the whole time and was told it was not, and why a tag container turns "you have none"
 into "this could not tell".
 <a href="/how-to/analytics-findings-name-the-tag/">Check what it named &rarr;</a></p>
-
-<h2>When the numbers add up to more than your site</h2>
-<p>Two findings, one check, the same fix, overlapping pages, and a total larger than the crawl.
-What a tool split that should not have been split, and why an explanation attached to the wrong
-condition is invisible to the people who need it.
-<a href="/how-to/findings-that-double-count/">Add the counts first &rarr;</a></p>
-
-<h2>When the markup is about somebody else</h2>
-<p>A reader that walks your structured data to any depth cannot tell whose business it just found,
-and one property settles it. Why a marketplace was told its own address, hours and price range were
-missing when every fact belonged to a shop it listed.
-<a href="/how-to/schema-that-describes-someone-else/">Whose data is it? &rarr;</a></p>
 
 <h2>The type you declare is a claim</h2>
 <p>A university is not a LocalBusiness in schema.org's hierarchy, so "add LocalBusiness or a
@@ -1538,65 +1511,11 @@ so the most semantic markup got the false positive. Then reading everything turn
 published identically, into dozens of variations.
 <a href="/how-to/where-an-audit-looks-for-your-address/">Both failures, one cause &rarr;</a></p>
 
-<h2>When a pixel is on part of the site and on no pages</h2>
-<p>The inventory of your tags and the count of pages carrying them were read from different
-documents, so anything loaded by JavaScript was reported as a deployment gap, and a script-weight
-warning could never fire for the sites it was written for.
-<a href="/how-to/pixels-reported-on-zero-pages/">What the count measures &rarr;</a></p>
-
-<h2>When the missing fields belong to the wrong type</h2>
-<p>A completeness check never judges the type you declared, so a company's identity markup labelled
-as a product was told to add an image. Correct for the type, and worth nothing. Plus the property
-that was present all along under one capital letter.
-<a href="/how-to/completeness-findings-assume-your-type/">Read the type first &rarr;</a></p>
-
-<h2>When a dead crawler rule costs nothing</h2>
-<p>A retired crawler name in robots.txt is easy to spot and tells you nothing about what it cost.
-A crawler matching no group falls back to the catch-all, which is often stricter than the group
-written for it. How to tell an inert line from a real exposure.
-<a href="/how-to/what-a-dead-crawler-rule-costs/">Read the other group &rarr;</a></p>
-
-<h2>When a report calls your decision a defect</h2>
-<p>A deliberate policy and an accident look identical in a configuration file, and a tool that
-cannot tell them apart will shout at one and stay quiet about the other. Plus the universal claim
-that was false about the reader's own file, and why it was the sentence that set the severity.
-<a href="/how-to/when-a-policy-is-reported-as-a-defect/">Named, or caught &rarr;</a></p>
-
 <h2>When a check cannot see the markup you wrote</h2>
 <p>Schema types inherit, so a specific business type is an Organization, and a check comparing
 type names misses every subtype. The finding that fires hardest on whoever marked their business
 up most precisely, and how to tell two checks disagreeing from two checks overlapping.
 <a href="/how-to/when-a-check-cannot-see-your-markup/">Look at the type first &rarr;</a></p>
-
-<h2>The fix that hid a real problem somewhere else</h2>
-<p>A guard added to stop one false positive made the same check unable to flag a genuine
-disagreement on another site, and a false negative makes no noise. What the narrower condition
-was, and what the trade cost.
-<a href="/how-to/when-a-fix-creates-a-false-negative/">What a fix costs &rarr;</a></p>
-
-<h2>Not every address on your site is yours</h2>
-<p>Example addresses in your documentation, and a share button with no recipient, both look like
-published contact channels to a checker. What it can tell about an address, what it cannot, and
-why one of these was right about the defect and impossible about the repair.
-<a href="/how-to/addresses-on-your-site-that-are-not-yours/">Whose domain is it &rarr;</a></p>
-
-<h2>When a report says nothing at all</h2>
-<p>Checks sort responses into categories, and a status that fits none of them produces no finding
-anywhere, not a zero, not an unclassified row, nothing. How that gap was found, why nobody reports
-one, and how to work out what your own report is not telling you.
-<a href="/how-to/when-a-report-says-nothing-at-all/">Find the gap &rarr;</a></p>
-
-<h2>Telling your site's furniture from its content</h2>
-<p>Counting links measures your template, not your page, and the fix for that walked into the same
-confusion a fifth time, excusing an empty stub as an index. The three tests that separate a
-navigation label from a real entry, and where each one fails.
-<a href="/how-to/telling-furniture-from-content/">Three discriminators &rarr;</a></p>
-
-<h2>When a finding blames the whole site</h2>
-<p>Most findings count pages, but the fault was decided once in a template, so the count is the
-number of pages that template produced. How to find the grouping, why a majority is not a site,
-and the case where this tool got it wrong.
-<a href="/how-to/read-findings-that-blame-the-whole-site/">Read it by the right unit &rarr;</a></p>
 
 <h2>When the site sounds like several companies</h2>
 <p>Sentence length across your pages is a crude proxy for one voice, and it works better than it
@@ -1894,6 +1813,9 @@ weeks rather than days.</p>
 <p>Rules resolve by longest match, not by order, so a later <code>Disallow: /</code> under
 <code>User-agent: *</code> does not override an earlier specific <code>Allow</code>, but a
 longer path pattern does. This is where hand-checking gets unreliable.</p>
+<p>For one site and no download, the <a href="/tools/ai-crawler-checker/">free AI crawler
+checker</a> reads your robots.txt and shows, crawler by crawler, which of the ones above may fetch
+your page and which line decides.</p>
 <p>Docket parses robots.txt the way Google does and tells you, per crawler, whether it can
 reach your site and what blocking it actually costs. That check is one of {N_CHECKS} and runs in the
 first few seconds of any audit.</p>

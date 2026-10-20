@@ -120,7 +120,7 @@ to a static crawl and letting you believe otherwise.</p>
 <li><a href="/how-to/cta-findings-that-miss-the-form/">A form is a call to action</a></li>
 <li><a href="/how-to/check-mobile-seo-from-a-crawl/">Mobile SEO: what a crawl can and cannot check</a></li>
 <li><a href="/learn/page-weight/">Page weight: how heavy is too heavy?</a></li>
-<li><a href="/how-to/telling-furniture-from-content/">Telling your site's furniture from its content</a></li>
+<li><a href="/learn/what-docket-got-wrong/#case-furniture-content">Telling your site's furniture from its content</a></li>
 </ul>
 """
     return render(

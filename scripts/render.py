@@ -1726,8 +1726,9 @@ def _mark(size: int = 22, color: str = "var(--brand)") -> str:
 #: home pages" — it loaded on the homepage only, 0 of 14 inner pages. The worker's
 #: script mounts a sticky bar at the top of <body> itself; this element only
 #: supplies the prices. Left off /thank-you/: someone who has just paid full
-#: price must not be shown a discount. The one redirect stub
-#: (/learn/what-scout-checks/) is not built through render() and gets nothing.
+#: price must not be shown a discount. The redirect stubs (/learn/what-scout-checks/
+#: and the retired /how-to/ addresses folded into /learn/what-docket-got-wrong/) are not
+#: built through render() and get nothing.
 #: `data-pay4` is the founding price's pay-in-four for the shared bar to print
 #: beside `data-now`. It is its own attribute because `data-now` must stay a bare
 #: price: ops/bin/founding-bar-gate.py parses it as money against Dodo.
@@ -1815,7 +1816,7 @@ NAV_ARM = _nav(False)
 #: scheme, and Bing feeds ChatGPT search. So the footer carries this one link and
 #: no sibling domain is linked anywhere but /about/. scripts/verify_sibling_links.py
 #: fails the build on the first one that is. Do not add the block back.
-#: The /learn/what-scout-checks/ redirect stub is not built by render().
+#: The redirect stubs (see BING_SITE_VERIFICATION below) are not built by render().
 KERR_MORE = """<p>Made by <a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company</a></p>"""
 
 #: Kept as a name so FOOTER_ARM still builds; the arm ended and the two footers
@@ -1856,7 +1857,17 @@ FOOTER = f"""<footer><div class="wrap-wide">
 
 FOOTER_ARM = FOOTER.replace("__FOOT_CHECKER__", "").replace(KERR_MORE, KERR_MORE_ARM)
 assert KERR_MORE_ARM in FOOTER_ARM
+#: The footer links the AI crawler checker itself, and the hub beside it. On
+#: 2026-10-06 the menu and footer link that had pointed at the checker on every
+#: page was repointed at the /tools/ hub, which took the checker from 140 of 142
+#: pages linking it to 7 of 157. Its Google impressions went from 23 in the week
+#: of 10-04 to none in the week of 10-11, with its title, description, canonical
+#: and robots meta unchanged since 09-28 and the page still indexed (search
+#: health 10-19). The hub stays in the menu and the footer; the checker, the one
+#: tool Google had indexed, gets its own link back.
 FOOTER = FOOTER.replace("__FOOT_CHECKER__",
+                        '<a href="/tools/ai-crawler-checker/" data-ev="Free check" '
+                        'data-ev-button="footer-checker">Free AI crawler checker</a>'
                         '<a href="/tools/" data-ev="Free check" '
                         'data-ev-button="footer">Free SEO checkers</a>')
 
@@ -2153,10 +2164,14 @@ OG_VERSION = "20261002" + ("-intel" if INTEL else "")
 #: ("AI-search visibility"): exactly this tag, in the <head> of every page.
 #:
 #: It lives in the shared head, so every page render() writes carries it —
-#: /404.html and /thank-you/ included. The one HTML file NOT written by
-#: render() is the /learn/what-scout-checks/ redirect stub, a hand-written file
-#: in site/ that the build never touches, so it carries a copy of this line
-#: typed into it. Add the tag to any other hand-written page the same way.
+#: /404.html and /thank-you/ included. The HTML files NOT written by render()
+#: are the redirect stubs: /learn/what-scout-checks/ and, since 2026-10-19, the
+#: fifteen retired /how-to/ addresses whose guides became sections of
+#: /learn/what-docket-got-wrong/ (articles/corrections_cases.py lists them). Each is
+#: a hand-written file in site/ that the build never touches (a zero-delay meta
+#: refresh, a canonical to the destination page and noindex,follow, the shape
+#: lint.py exempts), so each carries a copy of this line typed into it. Add the
+#: tag to any other hand-written page the same way.
 BING_SITE_VERIFICATION = '<meta name="msvalidate.01" content="34D102FD9C044A2BDA597B176842725B" />'
 
 

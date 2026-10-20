@@ -159,9 +159,9 @@ not) &rarr;</a>.</p>
 """
     return render(
         cat="how-to", slug="sitemap-urls-that-are-not-stale",
-        title="When 'regenerate your sitemap' is wrong",
-        desc=("A sitemap finding says regenerate. For a 404 that is right; for four other causes "
-              "on a site an audit can make it destructive."),
+        title="Sitemap URLs flagged as broken? Check before you regenerate",
+        desc=("An audit says regenerate your sitemap. For a 404 that is right; for four other "
+              "causes it can destroy the evidence. How to tell which one you have."),
         h1="When 'regenerate your sitemap' is wrong",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Sitemap URLs',
         body=body,

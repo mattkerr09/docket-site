@@ -2128,7 +2128,10 @@ cannot tell you whether ChatGPT named you this week, how often, or beside whom.<
 server actually returns, because a CDN rule refusing a crawler is invisible in a file that
 allows it. That is the question underneath a visibility report: if a tracker tells you that you
 are not being cited, one possible reason is that the crawler was never allowed to read the page.
-Docket can prove or eliminate that. It cannot tell you whether citation then happens.</p>
+Docket can prove or eliminate that. It cannot tell you whether citation then happens. The
+robots.txt half of the question, for one address and without installing anything, is the free
+<a href="/tools/ai-crawler-checker/">AI crawler checker</a>; it cannot see a server refusing a crawler,
+which is the part Docket adds.</p>
 
 <h2>Which to buy</h2>
 
@@ -2152,10 +2155,9 @@ outside.</p>
 
     return render(
         cat="vs", slug="profound-alternative",
-        title="Docket vs Profound: mentions tracked, or access checked?",
-        desc=("Profound tracks whether AI assistants mention your brand, by demo and custom "
-              "pricing. Docket checks whether their crawlers can reach you. Different "
-              "purchases."),
+        title="Profound alternative? Docket checks AI access, not mentions",
+        desc=(f"Profound tracks whether AI assistants mention your brand and publishes no price. "
+              f"Docket checks whether their crawlers can reach your site, for {PRICE_STR} once."),
         h1="Docket vs Profound",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Profound',
         body=body,

@@ -90,6 +90,12 @@ too: its write-out option has a variable called <code>time_starttransfer</code>.
 <p>Load the page a few times. If the first load is slow and the next ones are fast, you have the cache case
 below. If every load is slow, the server is slow on every request.</p>
 
+<p>Two neighbours are easy to confuse with this one. A response that is large or uncompressed is a
+different finding, with <a href="/how-to/fix-compression-and-caching/">its own page on enabling gzip and
+setting caching headers</a>. And a server that answers only after many seconds can make an audit list
+pages as unreachable because its timeout ran out first; <a href="/how-to/pages-an-audit-could-not-reach/">how
+to tell slow from down</a> covers that.</p>
+
 <h2>A real before and after</h2>
 
 <p>I wrote a small fixture site for this page: six pages of a typewriter repair workshop, served by a local

@@ -159,7 +159,7 @@ For the other structured-data faults (markup contradicting the visible page, req
 genuinely missing, coverage as a judgement rather than an error) see
 <a href="/how-to/fix-structured-data-errors/">how to fix structured data errors &rarr;</a>. For
 the case where the block parses perfectly and still resolves to nothing, see
-<a href="/how-to/schema-id-references/">an @id is a pointer, not a definition &rarr;</a>.</p>
+<a href="/learn/what-docket-got-wrong/#case-id-pointer">an @id is a pointer, not a definition &rarr;</a>.</p>
 """
     return render(
         cat="how-to", slug="json-ld-parser-errors",

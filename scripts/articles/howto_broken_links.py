@@ -137,7 +137,9 @@ is gone" as a status code gets. <code>429</code> is not in that document at all;
 the client "has sent too many requests in a given amount of time". The full refusal list for a
 third-party host is <code>400</code>, <code>401</code>, <code>402</code>, <code>403</code>,
 <code>405</code>, <code>406</code>, <code>429</code>, <code>451</code> and <code>503</code>.
-Every one of them goes to the unverified finding, with an example.</p>
+Every one of them goes to the unverified finding, with an example. The same trap with your own
+server as the one answering <code>429</code> is on <a href="/how-to/tell-a-rate-limit-from-a-block/">a rate
+limit is not a block</a>.</p>
 
 <p>Two details in that rule are not obvious from the outside. <code>400</code> and
 <code>402</code> count as refusals <em>only</em> for third-party links: the same list is read

@@ -185,7 +185,8 @@ keeping a page out of search results. It is not a consent mechanism and was neve
 <li><strong>Decide per crawler, in robots.txt.</strong> Refusing a training crawler while admitting a
 search crawler is a coherent, statable position. A single category toggle cannot express it, and
 check the names you write, because more than half the files that write an AI rule at all
-<a href="/index/ai-directives/">address a crawler that no longer answers to it</a>.</li>
+<a href="/index/ai-directives/">address a crawler that no longer answers to it</a>. The free
+<a href="/tools/ai-crawler-checker/">AI crawler checker</a> shows what your file says to each one.</li>
 <li><strong>Test the server, not the file.</strong> Request the same URL twice from one machine (once
 as an ordinary browser, once as the crawler), and compare. A browser 200 against a crawler 403 is the
 finding, and it is invisible to anything that only reads robots.txt.</li>
@@ -208,7 +209,7 @@ assistant</a>.</li>
 <ul>
 <li><a href="/learn/ai-crawler-directives/">AI crawler directives: which to block, which to keep</a></li>
 <li><a href="/how-to/fix-ai-crawler-access/">How to fix AI crawler access</a></li>
-<li><a href="/how-to/what-a-dead-crawler-rule-costs/">What a dead robots.txt rule actually costs</a></li>
+<li><a href="/learn/what-docket-got-wrong/#case-dead-crawler-rule">What a dead robots.txt rule actually costs</a></li>
 <li><a href="/how-to/stop-indexing-site-search-and-cart-pages/">Site search and cart pages that ended up in Google</a></li>
 <li><a href="/learn/index-coverage/">Checking whether your pages are actually indexed</a></li>
 </ul>

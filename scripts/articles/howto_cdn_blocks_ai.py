@@ -87,7 +87,8 @@ ordinary crawler both received 200, while <strong>seven AI crawlers received 403
 OAI-SearchBot, GPTBot, ChatGPT-User, PerplexityBot, Perplexity-User, ClaudeBot and
 Claude-SearchBot. Its robots.txt allowed every one of them, with a single
 <code>User-agent: *</code> group disallowing only a search path and an API path. Re-tested
-minutes later from the same address, so it was user-agent based rather than rate limiting. The
+minutes later from the same address, so it was user-agent based rather than
+<a href="/how-to/tell-a-rate-limit-from-a-block/">rate limiting</a>. The
 site is not named here; the shape is the point.</p>
 
 <h2>Which refusals actually cost you</h2>
@@ -129,7 +130,9 @@ above, and reports it against what your robots.txt claims, which is why it can s
 robots.txt allows these and your server refuses them" rather than either half alone. The
 robots.txt side of the question is <a href="/how-to/fix-ai-crawler-access/">fixing AI crawler
 access</a>, and the wider surface is <a href="/learn/ai-search-visibility/">AI search
-visibility</a>.</p>
+visibility</a>. The free <a href="/tools/ai-crawler-checker/">AI crawler checker</a> reads the
+robots.txt half for one site and says on the page that it cannot see a CDN refusal, which is the
+half this page is about.</p>
 
 <p>Worth pairing it with one other question, because they compound: a crawler that is let in
 still has to be able to read the page. If your content arrives after JavaScript runs, the

@@ -88,6 +88,10 @@ response, no deploy needed.</li>
 <li><strong>GitHub Pages</strong>: not possible, as above.</li>
 </ul>
 
+<p>If you are in that file or dashboard anyway, compression and caching headers are set in the same
+place: <a href="/how-to/fix-compression-and-caching/">enable gzip compression and caching
+headers</a>.</p>
+
 <h2>How much does this matter for SEO</h2>
 
 <p>Directly, almost nothing. Google has said https is a lightweight ranking signal and has
@@ -109,9 +113,9 @@ redirect, and it has nothing to do with rankings.</p>
     body += """
 <h2>Further reading</h2>
 <ul>
-<li><a href="/how-to/findings-that-name-no-host/">Which host is that finding about?</a></li>
-<li><a href="/how-to/when-a-fix-creates-a-false-negative/">A fix that hid a real problem somewhere else</a></li>
-<li><a href="/how-to/findings-from-phrase-matching/">Why an audit finds reviews you do not have</a></li>
+<li><a href="/learn/what-docket-got-wrong/#case-which-host">Which host is that finding about?</a></li>
+<li><a href="/learn/what-docket-got-wrong/#case-fix-false-negative">A fix that hid a real problem somewhere else</a></li>
+<li><a href="/learn/what-docket-got-wrong/#case-phrase-matching">Why an audit finds reviews you do not have</a></li>
 <li><a href="/how-to/placeholder-text-findings/">Mentioning filler is not shipping filler</a></li>
 </ul>
 """

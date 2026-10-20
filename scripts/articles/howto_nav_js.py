@@ -253,7 +253,9 @@ content, not your menu, exists before JavaScript runs) that is a different proce
 comparing the served HTML against the rendered page. If you want the rest of what Docket looks
 at while it is in there, <a href="/learn/what-docket-checks/">the full check list</a> is
 published, and <a href="/learn/seo-audit/">what a technical SEO audit covers</a> sets the
-context.</p>
+context. A page that nothing links to in the HTML is what the orphan finding reports, and
+<a href="/learn/click-depth-and-orphan-pages/">click depth and orphan pages</a> explains how that
+answer is measured and when it is withheld.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """

@@ -176,9 +176,9 @@ could not measure is not a pass &rarr;</a></p>
 """
     return render(
         cat="how-to", slug="tell-a-rate-limit-from-a-block",
-        title="A rate limit is not a block",
+        title="Crawl got 429 or 403? A rate limit is not a block",
         desc=("An audit that crawls your site can trip its own rate limit, then report the "
-              "throttle as a fault. How to tell a wait from a refusal."),
+              "throttle as a fault. How to tell a 429 wait from a 403 refusal."),
         h1="A rate limit is not a block",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Rate limits',
         body=body,

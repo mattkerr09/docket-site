@@ -103,7 +103,7 @@ brand lived, and it offered "Contact", "Disclaimer", "Athletics" and "Cookie Set
 owner as their company's name.</p>
 
 <p>Counted by occurrence the same data says the opposite, immediately and unambiguously. This is
-the same defect that shows up in finding badges. <a href="/how-to/check-the-count-on-a-finding/">A
+the same defect that shows up in finding badges. <a href="/learn/what-docket-got-wrong/#case-count-badge">A
 count is a claim about units before it is a claim about size &rarr;</a>.</p>
 
 <h2>An initialism is not a second name</h2>

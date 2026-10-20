@@ -99,7 +99,7 @@ designed.</p>
 
 <p><strong>Two checks overlapping is fine. Two checks disagreeing is the bug.</strong> If a report
 describes the same page two different ways, one of them is reading something the other is not, and
-that is the thing to chase. See <a href="/how-to/findings-that-double-count/">when the numbers add
+that is the thing to chase. See <a href="/learn/what-docket-got-wrong/#case-double-count">when the numbers add
 up to more than your site &rarr;</a> for the arithmetic version of the same problem.</p>
 
 <h2>This is not the same as declaring the wrong type</h2>

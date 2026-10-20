@@ -51,6 +51,7 @@ import howto_nap  # noqa: E402
 import howto_favicon  # noqa: E402
 import mac_options  # noqa: E402
 import corrections  # noqa: E402
+import corrections_cases  # noqa: E402
 import howto_hreflang  # noqa: E402
 import howto_js_audit  # noqa: E402
 import howto_content_audit  # noqa: E402
@@ -75,36 +76,21 @@ import howto_meta_refresh  # noqa: E402
 import howto_positioning  # noqa: E402
 import howto_rate_limits  # noqa: E402
 import howto_brand_name  # noqa: E402
-import howto_phrase_matching  # noqa: E402
 import howto_caveat_gate  # noqa: E402
 import howto_identical_bodies  # noqa: E402
 import howto_placeholder_text  # noqa: E402
 import howto_json_ld_errors  # noqa: E402
 import howto_analytics_findings  # noqa: E402
-import howto_double_counting  # noqa: E402
-import howto_listed_schema  # noqa: E402
 import howto_schema_type  # noqa: E402
 import howto_missing_means_empty  # noqa: E402
 import howto_address_region  # noqa: E402
-import howto_pixel_coverage  # noqa: E402
-import howto_wrong_type_fields  # noqa: E402
-import howto_dead_crawler_rules  # noqa: E402
-import howto_policy_vs_defect  # noqa: E402
 import howto_type_matching  # noqa: E402
-import howto_fix_false_negative  # noqa: E402
-import howto_whose_address  # noqa: E402
-import howto_silent_gap  # noqa: E402
-import howto_furniture_content  # noqa: E402
 import bot  # noqa: E402
 import howto_hreflang_targets  # noqa: E402
-import howto_which_host  # noqa: E402
-import howto_schema_id  # noqa: E402
 import howto_sitemap_dead_urls  # noqa: E402
 import howto_unreachable  # noqa: E402
 import howto_cta_forms  # noqa: E402
-import howto_finding_counts  # noqa: E402
 import howto_sameas  # noqa: E402
-import howto_template_findings  # noqa: E402
 import howto_voice  # noqa: E402
 import howto_schema_mismatch  # noqa: E402
 import howto_utility_pages  # noqa: E402
@@ -276,9 +262,9 @@ money.</p>
     ))
     out.append(hub(
         "learn",
-        "Learn: SEO audits, AI search visibility and technical SEO",
-        "Plain explanations of what an SEO audit covers, how AI search visibility works, and "
-        "what Docket checks.",
+        "SEO audit guides: AI crawlers, canonicals, page weight",
+        "Guides to what an SEO audit checks and why: AI crawler access, canonical tags, "
+        "JavaScript rendering, page weight, URL structure and how findings are ranked.",
         "Learn",
         "Reference pages, written to be read rather than skimmed for keywords.",
         [
@@ -349,8 +335,9 @@ money.</p>
              "Four questions to ask of any SEO finding, each of them learned here by "
              "getting it wrong first."),
             ("/learn/what-docket-got-wrong/", "What Docket got wrong, and the release that fixed it",
-             "A dated list of the findings Docket got wrong, how each was found, which release "
-             "fixed it and the tests that hold it."),
+             f"A dated list of the findings Docket got wrong, how each was found, which release "
+             f"fixed it and the tests that hold it, then {len(corrections_cases.CASES)} worked cases of "
+             f"findings that looked wrong."),
             ("/learn/log-file-analysis/", "Log file analysis: what Googlebot actually fetched",
              f"A user-agent proves nothing, which is why Google publishes "
              f"{F.gbot_total_prefixes():,} crawler IP prefixes. Reading a log honestly, "
@@ -460,6 +447,16 @@ notices and which are for your users.</li>
 page, which is not the same question as whether it is installed.</li>
 <li><a href="/learn/conversion-audit/">Conversion audit</a>: the nine checks that apply to a landing
 page rather than to a crawl.</li>
+<li><a href="/learn/email-capture-audit/">Email list building</a>: the check that never looks at a
+form, and what it reads instead.</li>
+<li><a href="/learn/click-depth-and-orphan-pages/">Click depth and orphan pages</a>: two findings from
+one crawl, and the one that is withheld when the crawl was too partial.</li>
+<li><a href="/how-to/fix-compression-and-caching/">Compression and caching headers</a>: what the check
+reads, and the Brotli-only site it can report wrongly.</li>
+<li><a href="/how-to/pages-an-audit-could-not-reach/">Pages that could not be reached</a>, with
+<a href="/how-to/tell-a-rate-limit-from-a-block/">rate limits</a> and
+<a href="/how-to/sitemap-urls-that-are-not-stale/">sitemap URLs</a>: three findings whose usual advice
+is wrong for some sites.</li>
 </ul>
 
 <h2>How a finding is put together</h2>
@@ -497,9 +494,10 @@ its own pages, and when to pick it instead of Docket:
 """
     return render(
         cat="learn", slug="what-docket-checks",
-        title=f"All {len(rows)} checks Docket runs, by area (2026)",
-        desc=(f"The complete list of {len(rows)} checks Docket runs across {len(by_lane)} areas, "
-              "generated from the shipped build so it cannot drift from the product."),
+        title=f"SEO audit checklist: all {len(rows)} checks by area (2026)",
+        desc=(f"Every check in a Docket audit, by area: crawlability, AI search visibility, content, "
+              f"structured data and speed. {len(rows)} checks across {len(by_lane)} areas, "
+              "from the shipped build."),
         h1=f"All {len(rows)} checks, by area",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What Docket checks',
         body=body,
@@ -1415,37 +1413,22 @@ def main() -> int:
               howto_schema_mismatch.schema_mismatch(),
               howto_positioning.positioning(),
               howto_voice.voice(),
-              howto_template_findings.template_findings(),
               howto_sameas.sameas(),
               howto_rate_limits.rate_limits(),
-              howto_finding_counts.finding_counts(),
               howto_cta_forms.cta_forms(),
               howto_brand_name.brand_name(),
-              howto_phrase_matching.phrase_matching(),
               howto_unreachable.unreachable(),
               howto_sitemap_dead_urls.sitemap_dead_urls(),
               howto_caveat_gate.caveat_gate(),
               howto_identical_bodies.identical_bodies(),
               howto_placeholder_text.placeholder_text(),
-              howto_schema_id.schema_id(),
               howto_json_ld_errors.json_ld_errors(),
-              howto_which_host.which_host(),
               howto_hreflang_targets.hreflang_targets(),
               howto_analytics_findings.analytics_findings(),
-              howto_double_counting.double_counting(),
-              howto_listed_schema.listed_schema(),
               howto_schema_type.schema_type(),
               howto_missing_means_empty.missing_means_empty(),
               howto_address_region.address_region(),
-              howto_pixel_coverage.pixel_coverage(),
-              howto_wrong_type_fields.wrong_type_fields(),
-              howto_dead_crawler_rules.dead_crawler_rules(),
-              howto_policy_vs_defect.policy_vs_defect(),
               howto_type_matching.type_matching(),
-              howto_fix_false_negative.fix_false_negative(),
-              howto_whose_address.whose_address(),
-              howto_silent_gap.silent_gap(),
-              howto_furniture_content.furniture_content(),
               bot.bot(),
               howto_soft404.soft_404s(),
               howto_open_graph.howto_open_graph(),

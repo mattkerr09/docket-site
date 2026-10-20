@@ -132,7 +132,7 @@ visitor. The cases that matter:</p>
 staging environment.</li>
 <li><strong>Noindex on a whole section</strong>, which is a template-level mistake and therefore
 one edit. For why the count in that finding is not the number of fixes, see
-<a href="/how-to/read-findings-that-blame-the-whole-site/">when a finding blames the whole
+<a href="/learn/what-docket-got-wrong/#case-one-template">when a finding blames the whole
 site &rarr;</a>.</li>
 </ul>
 

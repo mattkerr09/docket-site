@@ -141,7 +141,7 @@ writing about a thing from doing it, and only the shape of the text can.</strong
 <p>The registered check is <code>content.placeholder</code>, which covers placeholder content in
 the content quality area. For the same failure in a different lane (a phrase that is a signal in
 one context and ordinary English in another) see
-<a href="/how-to/findings-from-phrase-matching/">why an audit finds reviews you do not
+<a href="/learn/what-docket-got-wrong/#case-phrase-matching">why an audit finds reviews you do not
 have &rarr;</a>. For why a finding that keeps needing exceptions should be gated rather than
 caveated, see <a href="/how-to/findings-that-flag-correct-pages/">a caveat is not a
 gate &rarr;</a>.</p>
