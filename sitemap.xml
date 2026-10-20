@@ -16,7 +16,7 @@
   <url><loc>https://docketseo.app/how-to/audit-your-site-from-an-ai-assistant/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/backlink-audit/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/check-mobile-seo-from-a-crawl/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docketseo.app/how-to/content-audit/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docketseo.app/how-to/content-audit/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/cta-findings-that-miss-the-form/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/findings-that-flag-correct-pages/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-a-site-that-says-something-different-every-page/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
@@ -26,13 +26,13 @@
   <url><loc>https://docketseo.app/how-to/fix-broken-outbound-links/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-compression-and-caching/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-conflicting-canonicals/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docketseo.app/how-to/fix-duplicate-title-tags/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docketseo.app/how-to/fix-duplicate-title-tags/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-favicon-not-showing-in-search/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-heading-structure/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-hreflang-return-tags/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docketseo.app/how-to/fix-image-seo-problems/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docketseo.app/how-to/fix-image-seo-problems/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-inconsistent-name-address-phone/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docketseo.app/how-to/fix-invalid-hreflang-codes/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docketseo.app/how-to/fix-invalid-hreflang-codes/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-lang-attribute-mismatch/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-layout-shift/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-meta-refresh-redirects/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
@@ -41,8 +41,8 @@
   <url><loc>https://docketseo.app/how-to/fix-navigation-that-needs-javascript/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-pages-competing-for-one-search/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-paginated-pages-that-canonicalise-to-page-1/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docketseo.app/how-to/fix-phone-links-that-will-not-dial/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docketseo.app/how-to/fix-redirect-problems/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docketseo.app/how-to/fix-phone-links-that-will-not-dial/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docketseo.app/how-to/fix-redirect-problems/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-render-blocking-resources/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-sameas-that-claims-the-wrong-accounts/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/how-to/fix-soft-404s/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
@@ -86,7 +86,7 @@
   <url><loc>https://docketseo.app/learn/answer-extractability/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/audit-tool-accuracy/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/brand-consistency/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docketseo.app/learn/canonical-tags/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docketseo.app/learn/canonical-tags/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/click-depth-and-orphan-pages/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/conversion-audit/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/dead-contact-address/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
@@ -95,25 +95,25 @@
   <url><loc>https://docketseo.app/learn/domain-authority-without-a-subscription/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/email-capture-audit/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/googlebot-2mb-limit/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docketseo.app/learn/index-coverage/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docketseo.app/learn/index-coverage/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/internal-link-equity/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/internal-utm-links/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/javascript-rendering/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docketseo.app/learn/log-file-analysis/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docketseo.app/learn/log-file-analysis/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/marketing-tag-audit/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/page-weight/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/priority-model/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/sameas-entity-signals/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/seo-audit/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/site-monitoring/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docketseo.app/learn/trust-and-authorship-signals/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docketseo.app/learn/url-structure/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docketseo.app/learn/trust-and-authorship-signals/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docketseo.app/learn/url-structure/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/what-docket-checks/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/what-docket-got-wrong/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/what-is-claudebot/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/what-is-llms-txt/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
-  <url><loc>https://docketseo.app/learn/who-blocks-googlebot/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
+  <url><loc>https://docketseo.app/learn/who-blocks-googlebot/</loc><lastmod>2026-10-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/learn/www-vs-non-www/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/legal/privacy/</loc><lastmod>2026-10-16</lastmod><priority>0.7</priority></url>
   <url><loc>https://docketseo.app/legal/refunds/</loc><lastmod>2026-10-09</lastmod><priority>0.7</priority></url>

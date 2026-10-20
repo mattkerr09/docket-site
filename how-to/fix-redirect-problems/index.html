@@ -14,7 +14,7 @@
 <title>How to fix redirect problems: loops, chains, links</title>
 <meta name="description" content="Redirect loops, chains and internal links pointing at redirects. What Docket's index.redirects check reports, what it cannot see, and which ones cost you.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="cdb2c5029b33">
+<meta name="build-id" content="b756ed13046c">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-redirect-problems/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -1044,7 +1044,7 @@ not carry a citation for, and you should weigh it accordingly. The part of that 
 survives scrutiny is the other half: each extra hop is another round trip before any content
 arrives, and that is measurable on your own connection.</p>
 
-<p>What Google's redirect documentation does say, read on 15 September 2026, is about signals rather than percentages:
+<p>What Google's redirect documentation does say, read on 19 October 2026, is about signals rather than percentages:
 for a permanent redirect, "Googlebot follows the redirect, and the indexing pipeline uses the
 redirect as a signal that the redirect target should be canonical". For a temporary one,
 "Googlebot follows the redirect, but the indexing pipeline doesn't use the redirect as a signal
@@ -1071,7 +1071,7 @@ your audit will catch for you.</p>
 resource has been assigned a new permanent URI and any future references to this resource ought
 to use one of the enclosed URIs"; per <a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-15.4.3">section 15.4.3</a>,
 <code>302</code> means only that "the target resource resides temporarily under a different
-URI". Both read at rfc-editor.org on 15 September 2026. The default in a lot of framework helpers and
+URI". Both read at rfc-editor.org on 19 October 2026. The default in a lot of framework helpers and
 control panels is the temporary one, which is how sites end up declaring a permanent move in
 words and a temporary one in the header.</p>
 
