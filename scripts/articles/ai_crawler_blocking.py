@@ -404,7 +404,8 @@ the August Cloudflare pattern, {ref['signature_hosts_now_refused']}
 
 <p>We did not count a refusing host as blocking. A refusal says nothing about what the file
 says, and <a href="https://www.rfc-editor.org/rfc/rfc9309" rel="noopener">RFC 9309</a> lets a
-crawler that meets an unavailable robots.txt treat the site as having no rules. Refusing hosts
+crawler that meets a client error such as 403 on robots.txt treat the site as having no rules, while a
+server error such as 503 tells it to assume everything is disallowed. Refusing hosts
 are not in the same-sites comparison above. They matter because the other way to keep AI out is
 the server, and that route is
 <a href="/how-to/fix-ai-crawlers-blocked-by-your-cdn/">a CDN rule can do it with no trace in the file</a>.</p>

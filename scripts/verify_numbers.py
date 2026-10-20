@@ -106,11 +106,11 @@ ALLOWED = {
     "2000": ('Google\'s published URL Inspection API quota, quoted verbatim as '
              '"2000 QPD" — their string, without the thousands separator, so it '
              "is a different literal from the 2,000 above"),
-    # -- the title-rewrite study, re-verified 2026-08-10 -------------------
-    # Read from zyppy.com/seo/google-title-rewrites/ on 2026-08-10: "80,959
+    # -- the title-rewrite study, re-verified 2026-10-19 -------------------
+    # Read from zyppy.com/seo/google-title-rewrite-study/ on 2026-10-19: "80,959
     # title tags across 2370 sites in early 2022 from across the globe", and
     # "Google rewrote 61.6% of the titles". Their numbers, not ours.
-    "80,959": "titles in the Zyppy title-rewrite study, read 2026-08-10",
+    "80,959": "titles in the Zyppy title-rewrite study, read 2026-10-19",
     "2,370": "sites in that same study, same reading",
     "61.6": "the share of titles it found rewritten, same reading",
     # -- Semrush, read from their own pages and quoted in VERIFIED ----------
@@ -161,7 +161,7 @@ ALLOWED = {
     "1,500,000": ("Ahrefs' Advanced plan crawl-credit allowance, same source "
                   "and date"),
     "139": ("Screaming Frog's Log File Analyser licence, $139 per year, read "
-            "from their own pricing page on 2026-08-07 and linked in the "
+            "from their own page (dollar view) on 2026-10-19 and linked in the "
             "prose. A competitor's price for a SEPARATE product from the SEO "
             "Spider, so it does not belong in competitors.csv, which is keyed "
             "on the main products."),

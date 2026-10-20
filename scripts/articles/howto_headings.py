@@ -105,7 +105,10 @@ from render import render  # noqa: E402
 #: The day all three external sources were read, in the form the prose prints.
 #: Typed here rather than in the body because the derived-number gate reads a
 #: date in prose as a typed figure.
-READ = "15 September 2026"
+# Re-read 2026-10-19: the WHATWG headings section (multiple top-level headings, the level-1 and "less than, equal to,
+# or 1 greater" rules, the title note), the Google SEO starter guide headings passage and the title links page.
+# Unchanged.
+READ = "19 October 2026"
 
 #: (finding id, severity, the finding's own sentence). Quoted from the `yield`
 #: blocks of `onpage.headings`. The list below and the count above it are both

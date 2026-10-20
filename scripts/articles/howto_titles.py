@@ -37,8 +37,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import N_CHECKS, render  # noqa: E402
 
 #: The day every claim below was read from the source named beside it.
-CHECKED_ON = "2026-08-10"
-CHECKED_ON_HUMAN = "10 August 2026"
+# Re-read 2026-10-19: the title links page, the September 2021 titles post, the spam policies (still sixteen
+# behaviours, none of them a repeated title), the pagination page and the Zyppy study (same figures). The
+# AI-headlines source moved from Search Engine Land, which answers scripts and browsers with a block, to Search
+# Engine Journal, which reports the same March 2026 confirmation and which was read.
+CHECKED_ON = "2026-10-19"
+CHECKED_ON_HUMAN = "19 October 2026"
+#: The day the page was first written. The read date above moves; this does not.
+PUBLISHED = "2026-08-10"
 
 #: (what was read, where it was read). Same contract as comparisons.VERIFIED:
 #: anything not in here is not stated on the page as a fact about Google.
@@ -51,7 +57,7 @@ VERIFIED: list[tuple[str, str]] = [
      "descriptive text in the title element of every page on a site",
      "https://developers.google.com/search/docs/appearance/title-link"),
     ("Google put its use of the HTML title element at around 87% after a September "
-     "2021 revision, up from the over-80% figure given when the system launched",
+     "2021 revision, up from around 80% before",
      "https://developers.google.com/search/blog/2021/09/more-info-about-titles"),
     ("a study of 80,959 titles across 2,370 sites found Google rewrote 61.6% of "
      "them, with the lowest rewrite rates (39% to 42%) in the 51-to-60-character "
@@ -59,7 +65,7 @@ VERIFIED: list[tuple[str, str]] = [
      "https://zyppy.com/seo/google-title-rewrite-study/"),
     ("Google confirmed in March 2026 that it is running a limited test of "
      "AI-generated headlines in web search results",
-     "https://searchengineland.com/google-search-ai-headline-rewrites-test-472146"),
+     "https://www.searchenginejournal.com/google-ai-headlines-in-search/570208/"),
     ("Google's spam policies enumerate sixteen behaviours that can lower a ranking "
      "or trigger a manual action, and duplicate or repeated titles is not one",
      "https://developers.google.com/search/docs/essentials/spam-policies"),
@@ -146,7 +152,7 @@ should go and look at, not a rule anything is enforcing.</p>
 
 <p>Often it is not. Google's own documentation says it "uses a number of different sources to
 automatically determine the title link" and does not publish how often each source wins:
-checked 2026-08-10. The best independent measurement is a study of <strong>80,959 titles across
+checked {CHECKED_ON}. The best independent measurement is a study of <strong>80,959 titles across
 2,370 sites</strong>, which found the title Google displayed differed from the one written on
 the page <strong>61.6%</strong> of the time.</p>
 
@@ -279,8 +285,8 @@ day it fell.</p>
 
 <p><strong>It will not stop the rewriting.</strong> Distinct titles improve your odds and settle
 nothing. Keeping the title close to the page's H1 is the one lever with published evidence
-behind it, and the study that found it declined to put a number on the effect, so treat it as a
-direction rather than a dial.</p>
+behind it, and the study that found it reported no overall figure for the effect, only one worked
+example, so treat it as a direction rather than a dial.</p>
 
 <p><strong>Clearing the list is not the goal.</strong> Three hundred duplicate titles on archive
 pages you would rather were not indexed is a day of work with nothing measurable at the end of
@@ -300,8 +306,8 @@ number 304.</p>
               "the query and waste the one line of the result you get to write."),
         h1="How to fix duplicate title tags",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / duplicate titles',
-        published=CHECKED_ON,
-        modified="2026-10-16",
+        published=PUBLISHED,
+        modified="2026-10-19",
         body=body,
         faq=[
             ("How do I fix duplicate title tags in WordPress?",

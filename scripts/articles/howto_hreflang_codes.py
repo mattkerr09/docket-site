@@ -59,7 +59,8 @@ IANA = "IANA language subtag registry"
 GOOGLE_URL = ("https://developers.google.com/search/docs/"
               "specialty/international/localized-versions")
 GOOGLE = "Google's localized-versions documentation"
-READ_ON = "16 September 2026"
+# Re-read 2026-10-19: RFC 5646 (2.1.1, 2.2.1, 2.2.4, 3.1.6), the IANA registry (File-Date now 2026-09-17; the 190, 6 and 184 counts, the six pairings and GB are unchanged) and Google's localized-versions page (updated 2026-09-21). Four sentences corrected below.
+READ_ON = "19 October 2026"
 
 #: Standards named in the body. They carry digits, so they live here.
 ISO_LANG = "ISO 639-1"
@@ -70,7 +71,7 @@ M49 = "UN M.49"
 #: Recomputed from the registry file on READ_ON by parsing every `Type:
 #: language` record: 190 two-letter subtags, of which 6 carry `Deprecated:`.
 #: The `File-Date` header of the copy read is REGISTRY_DATE.
-REGISTRY_DATE = "2026-08-08"
+REGISTRY_DATE = "2026-09-17"
 N_CURRENT_TWO_LETTER = 184
 N_DEPRECATED = 6
 #: Docket's own table, reconciled against that set: the 184 current subtags plus
@@ -157,7 +158,7 @@ they work.</p>
 <p><strong>Only tags in crawled HTML are seen.</strong> The values come from
 <code>link rel="alternate"</code> elements in the pages the crawl fetched. {GOOGLE} describes
 two other ways to declare the same thing: an HTTP <code>Link:</code> header, which it
-recommends for non-HTML files, and annotations in an XML sitemap. Neither reaches this check,
+describes as useful for non-HTML files, and annotations in an XML sitemap. Neither reaches this check,
 so a site that declares hreflang in its sitemap gets silence here rather than a clean bill.</p>
 
 <p><strong>The count is distinct codes.</strong> Each value string is judged once for the whole
@@ -171,7 +172,8 @@ only one to fix.</p>
 stylistically wrong. In the {IANA} (the list {BCP} defers to, read on {READ_ON} at the URL
 below, <code>File-Date</code> {REGISTRY_DATE}) the record reading
 <code>Description: United Kingdom</code> has the subtag <code>GB</code>. There is no
-<code>UK</code> record of any type. {GOOGLE} states the consequence directly: "Only language
+region record for <code>UK</code>; the only <code>uk</code> in the registry is the language
+Ukrainian. {GOOGLE} states the consequence directly: "Only language
 codes listed in {ISO_LANG} and region codes listed in ISO 3166-1 Alpha 2 are supported; other
 codes that aren't listed in those standards, such as es-419, aren't supported."</p>
 
@@ -185,8 +187,7 @@ it.</p>
 <h2>Retired subtags: a tidy-up, not a fault</h2>
 
 <p>{N_DEPRECATED} two-letter language subtags in the registry carry both a deprecation and a
-replacement, and every one of them still turns up in production. The registry's own pairings,
-read on {READ_ON}:</p>
+replacement. The registry's own pairings, read on {READ_ON}:</p>
 
 <pre><code>in -&gt; id   Indonesian      iw -&gt; he   Hebrew
 ji -&gt; yi   Yiddish         jw -&gt; jv   Javanese
@@ -230,9 +231,11 @@ a browser.</p>
 <pre><code>curl -s https://example.com/ | grep -o 'hreflang="[^"]*"' | sort -u</code></pre>
 
 <p>Then, for each value you are unsure of, search the registry file for the language subtag and
-for the region separately. A subtag record that carries a <code>Deprecated</code> line names its
-replacement on the next line. A region you cannot find at all is the <code>en-uk</code> case:
-the tag is discarded and the page it pointed at is not connected to anything.</p>
+for the region separately. A record that carries both a <code>Deprecated</code> line and a <code>Preferred-Value</code>
+line names its replacement there; a deprecated record with no <code>Preferred-Value</code> has no
+replacement mapping. A region you cannot find at all is the <code>en-uk</code> case: Google's
+documentation says codes outside those standards are not supported, so do not expect that tag to
+connect the page to anything.</p>
 
 <p>If the codes all check out and the set still is not working, the fault is one page over.
 Either the cluster is not reciprocal, or the declared language of the page contradicts its own
@@ -254,12 +257,13 @@ rather than from the manual.</p>
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Invalid hreflang codes',
         body=body,
         published="2026-09-16",
+        modified="2026-10-19",
         faq=[
             ("Is en-UK a valid hreflang value?",
              "No. The region subtag comes from the country standard, where the United Kingdom "
-             "is GB, and there is no UK record of any type in the IANA language subtag "
-             "registry. Google's own documentation says region codes outside that standard are "
-             "not supported, so en-uk connects the page to nothing."),
+             "is GB, and the IANA language subtag registry has no UK "
+             "region record. Google's own documentation says region codes outside that standard are "
+             "not supported, so do not expect en-uk to connect the page to anything."),
             ("Does hreflang have to be uppercase for the country?",
              "No. The standard states that language tags and their subtags are to be treated as "
              "case insensitive at all times. Uppercase regions are a recommended convention, "

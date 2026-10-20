@@ -12,9 +12,9 @@
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Log file analysis for SEO: what Googlebot actually fetched</title>
-<meta name="description" content="Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 1,641 crawler IP prefixes; a user-agent proves nothing.">
+<meta name="description" content="Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 2,181 crawler IP prefixes; a user-agent proves nothing.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="cdb2c5029b33">
+<meta name="build-id" content="b756ed13046c">
 <link rel="canonical" href="https://docketseo.app/learn/log-file-analysis/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Log file analysis: what Googlebot actually fetched">
-<meta property="og:description" content="Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 1,641 crawler IP prefixes; a user-agent proves nothing.">
+<meta property="og:description" content="Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 2,181 crawler IP prefixes; a user-agent proves nothing.">
 <meta property="og:url" content="https://docketseo.app/learn/log-file-analysis/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png?v=20261002-intel">
@@ -30,7 +30,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Log file analysis: what Googlebot actually fetched">
-<meta name="twitter:description" content="Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 1,641 crawler IP prefixes; a user-agent proves nothing.">
+<meta name="twitter:description" content="Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 2,181 crawler IP prefixes; a user-agent proves nothing.">
 <meta name="twitter:image" content="https://docketseo.app/og.png?v=20261002-intel">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -874,8 +874,8 @@ nav{background:rgba(7,12,13,.72);
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.111/Docket-1.3.111-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Log file analysis: what Googlebot actually fetched","description":"Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 1,641 crawler IP prefixes; a user-agent proves nothing.","datePublished":"2026-08-08","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/log-file-analysis/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I know if it was really Googlebot in my logs?","acceptedAnswer":{"@type":"Answer","text":"Not from the user-agent, which is a header anybody can send. Either check the client IP against Google's published crawler ranges (1,641 prefixes across 3 lists as of 2026-08-08) or do a reverse DNS lookup on the IP followed by a forward lookup on the hostname it returns, confirming the original address comes back. The second step matters: a PTR record is set by whoever controls the address block, so a reverse lookup alone proves nothing."}},{"@type":"Question","name":"What can a server log tell me that a crawl cannot?","acceptedAnswer":{"@type":"Answer","text":"Which pages a search engine actually fetched and how often, which is a different question from which pages it could reach. That surfaces orphan pages with no internal links, retired URLs still being retried, and the share of requests that returned a redirect or an error: crawl budget spent on nothing indexable."}},{"@type":"Question","name":"If a page is missing from my logs, can Google not see it?","acceptedAnswer":{"@type":"Answer","text":"No, and treating it that way sends you fixing a problem you may not have. A log covers a period. A page absent from one week of logs was not fetched that week; it may be crawled rarely because it changes rarely. Look for it across a longer window before concluding anything."}},{"@type":"Question","name":"Does Docket replace a dedicated log file analyser?","acceptedAnswer":{"@type":"Answer","text":"No. Screaming Frog's Log File Analyser is a separate product at $139 per year and is much deeper: a real interface, saved projects, more formats, analysis over time. Docket does one comparison, log against crawl, included in its one-time price. If log analysis is a regular part of your work, the dedicated tool is the right purchase."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Log file analysis: what Googlebot actually fetched","description":"Verify Googlebot with reverse then forward DNS, then compare the log against a crawl. Google publishes 2,181 crawler IP prefixes; a user-agent proves nothing.","datePublished":"2026-08-08","dateModified":"2026-10-19","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/log-file-analysis/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I know if it was really Googlebot in my logs?","acceptedAnswer":{"@type":"Answer","text":"Not from the user-agent, which is a header anybody can send. Either check the client IP against Google's published crawler ranges (2,181 prefixes across 5 lists as of 2026-10-19) or do a reverse DNS lookup on the IP followed by a forward lookup on the hostname it returns, confirming the original address comes back. The second step matters: a PTR record is set by whoever controls the address block, so a reverse lookup alone proves nothing."}},{"@type":"Question","name":"What can a server log tell me that a crawl cannot?","acceptedAnswer":{"@type":"Answer","text":"Which pages a search engine actually fetched and how often, which is a different question from which pages it could reach. That surfaces orphan pages with no internal links, retired URLs still being retried, and the share of requests that returned a redirect or an error: crawl budget spent on nothing indexable."}},{"@type":"Question","name":"If a page is missing from my logs, can Google not see it?","acceptedAnswer":{"@type":"Answer","text":"No, and treating it that way sends you fixing a problem you may not have. A log covers a period. A page absent from one week of logs was not fetched that week; it may be crawled rarely because it changes rarely. Look for it across a longer window before concluding anything."}},{"@type":"Question","name":"Does Docket replace a dedicated log file analyser?","acceptedAnswer":{"@type":"Answer","text":"No. Screaming Frog's Log File Analyser is a separate product at $139 per year (dollar view of its own page, 19 October 2026) and is much deeper: a real interface, saved projects, more formats, analysis over time. Docket does one comparison, log against crawl, included in its one-time price. If log analysis is a regular part of your work, the dedicated tool is the right purchase."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -924,14 +924,14 @@ fbq('track','PageView');
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</span></a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Log file analysis</div><h1>Log file analysis: what Googlebot actually fetched</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-08">8 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Log file analysis</div><h1>Log file analysis: what Googlebot actually fetched</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-08">8 August 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-19">19 October 2026</time></p>
 
 <p class="lede">A crawl tells you what a search engine <em>could</em> reach on your site; a
 server log tells you what it actually fetched, how often, and what it wasted requests on. The
 two disagree constantly, and the single most common mistake in reading a log is trusting the
 user-agent, which is why Google publishes
-<strong>1,641 IP prefixes</strong> across
-3 lists so you can check.</p>
+<strong>2,181 IP prefixes</strong> across
+5 lists so you can check.</p>
 
 <h2>The user-agent is a claim, not an identity</h2>
 
@@ -945,12 +945,12 @@ requests claimed to be Googlebot". Those are different numbers and only one of t
 anything about your crawl budget.</p>
 
 <p>There are two honest ways to resolve it. Google
-<a href="https://developers.google.com/search/apis/ipranges/googlebot.json">publishes its
-crawler ranges as JSON</a>: as of 2026-08-08, <strong>315</strong>
-prefixes for Googlebot itself (169 IPv4 and 146 IPv6), plus separate
-lists for special-case crawlers and user-triggered fetches, 1,641 in
-total. Or you do the check Google
-<a href="https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot">documents</a>:
+<a href="https://developers.google.com/static/crawling/ipranges/common-crawlers.json">publishes its
+crawler ranges as JSON</a>: as of 2026-10-19, <strong>317</strong>
+prefixes for the common crawlers such as Googlebot (170 IPv4 and 147 IPv6), plus
+separate lists for special-case crawlers, user-triggered fetchers and user-triggered agents,
+2,181 in total. Or you do the check Google
+<a href="https://developers.google.com/crawling/docs/crawlers-fetchers/verify-google-requests">documents</a>:
 a reverse DNS lookup on the client IP, then a forward lookup on the hostname it returns, and
 the original address has to come back.</p>
 
@@ -1023,7 +1023,7 @@ trend. If what you want is "did this change after Tuesday's deploy", that is
 
 <p>Screaming Frog sells a
 <a href="https://www.screamingfrog.co.uk/log-file-analyser/">Log File Analyser</a> as a separate
-product, $139 per year with a free tier capped at 1,000 log events. It is a much deeper tool
+product: $139 per year in the dollar view of its own page on 19 October 2026, with a free tier capped at 1,000 log events. It is a much deeper tool
 than what Docket does: a real interface for exploring the data, saved projects, imports that
 handle far more formats, and analysis over time rather than a single comparison. If log
 analysis is a regular part of your work, buy it. It is built for that and Docket is not.</p>
@@ -1045,7 +1045,7 @@ distinct address, so it is off by default and everything says "claiming to be Go
 you turn it on.</p>
 
 <aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-log-file-analysis-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.111/Docket-1.3.111-arm64.dmg" data-ev="Download" data-ev-button="learn-log-file-analysis-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-log-file-analysis-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.111/Docket-1.3.111-x86_64.dmg" data-ev="Download" data-ev-button="learn-log-file-analysis-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=learn-log-file-analysis" data-ev="Buy" data-ev-price="349" data-ev-button="learn-log-file-analysis">Buy once, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-log-file-analysis">See a sample report</a> &middot; founding price $174.50 &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63, for the first 25 buyers with <code>FOUNDINGDOCKET</code></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I know if it was really Googlebot in my logs?</h3><p>Not from the user-agent, which is a header anybody can send. Either check the client IP against Google's published crawler ranges (1,641 prefixes across 3 lists as of 2026-08-08) or do a reverse DNS lookup on the IP followed by a forward lookup on the hostname it returns, confirming the original address comes back. The second step matters: a PTR record is set by whoever controls the address block, so a reverse lookup alone proves nothing.</p></div><div class="faq-item"><h3>What can a server log tell me that a crawl cannot?</h3><p>Which pages a search engine actually fetched and how often, which is a different question from which pages it could reach. That surfaces orphan pages with no internal links, retired URLs still being retried, and the share of requests that returned a redirect or an error: crawl budget spent on nothing indexable.</p></div><div class="faq-item"><h3>If a page is missing from my logs, can Google not see it?</h3><p>No, and treating it that way sends you fixing a problem you may not have. A log covers a period. A page absent from one week of logs was not fetched that week; it may be crawled rarely because it changes rarely. Look for it across a longer window before concluding anything.</p></div><div class="faq-item"><h3>Does Docket replace a dedicated log file analyser?</h3><p>No. Screaming Frog's Log File Analyser is a separate product at $139 per year and is much deeper: a real interface, saved projects, more formats, analysis over time. Docket does one comparison, log against crawl, included in its one-time price. If log analysis is a regular part of your work, the dedicated tool is the right purchase.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I know if it was really Googlebot in my logs?</h3><p>Not from the user-agent, which is a header anybody can send. Either check the client IP against Google's published crawler ranges (2,181 prefixes across 5 lists as of 2026-10-19) or do a reverse DNS lookup on the IP followed by a forward lookup on the hostname it returns, confirming the original address comes back. The second step matters: a PTR record is set by whoever controls the address block, so a reverse lookup alone proves nothing.</p></div><div class="faq-item"><h3>What can a server log tell me that a crawl cannot?</h3><p>Which pages a search engine actually fetched and how often, which is a different question from which pages it could reach. That surfaces orphan pages with no internal links, retired URLs still being retried, and the share of requests that returned a redirect or an error: crawl budget spent on nothing indexable.</p></div><div class="faq-item"><h3>If a page is missing from my logs, can Google not see it?</h3><p>No, and treating it that way sends you fixing a problem you may not have. A log covers a period. A page absent from one week of logs was not fetched that week; it may be crawled rarely because it changes rarely. Look for it across a longer window before concluding anything.</p></div><div class="faq-item"><h3>Does Docket replace a dedicated log file analyser?</h3><p>No. Screaming Frog's Log File Analyser is a separate product at $139 per year (dollar view of its own page, 19 October 2026) and is much deeper: a real interface, saved projects, more formats, analysis over time. Docket does one comparison, log against crawl, included in its one-time price. If log analysis is a regular part of your work, the dedicated tool is the right purchase.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

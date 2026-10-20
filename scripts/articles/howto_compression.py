@@ -63,7 +63,8 @@ S_CACHE_CONTROL = "section 5.2"
 
 NGINX_URL = "https://nginx.org/en/docs/http/ngx_http_gzip_module.html"
 APACHE_URL = "https://httpd.apache.org/docs/2.4/mod/mod_deflate.html"
-READ_ON = "15 September 2026"
+# Re-read 2026-10-19: RFC 9110 (8.4, 8.8.2, 8.8.3, 12.5.3), RFC 9111 (3, 4.3, 5.2), the nginx gzip module page and the Apache mod_deflate page (AddOutputFilterByType is documented in mod_filter for vhost and .htaccess). Unchanged.
+READ_ON = "19 October 2026"
 
 #: The findings this check can emit. Counted, never typed — see PAGE_ANATOMY.
 FINDINGS = ("perf.no_compression", "perf.no_cache_headers")

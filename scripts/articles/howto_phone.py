@@ -26,7 +26,8 @@ from render import render  # noqa: E402
 #: correction is one edit and the prose cannot drift away from the reading.
 RFC_URL = "https://www.rfc-editor.org/rfc/rfc3966"
 RFC = "RFC 3966"
-READ_ON = "15 September 2026"
+# Re-read 2026-10-19: RFC 3966 sections 5.1, 5.1.1, 5.1.2, 5.1.4, 5.1.5. Two wordings tightened to the text (the +1-911 remark is in 5.1.5; the letter mapping is "not completely uniform").
+READ_ON = "19 October 2026"
 S_NUMBERS = "section 5.1"
 S_SEPARATORS = "section 5.1.1"
 S_ALPHA = "section 5.1.2"
@@ -85,7 +86,7 @@ semicolon is a parameter and not part of the number.</p>
 
 <p>A vanity number in the link itself. <a href="{RFC_URL}#section-5.1.2">{RFC} {S_ALPHA}</a>
 does not support the notation, because the mapping from letters to keypad digits is not
-uniform internationally, so the link dials nothing anywhere. Reported at HIGH, and the fix
+completely uniform internationally, so the link dials nothing anywhere. Reported at HIGH, and the fix
 text is careful about which half is wrong: <em>"Keep the memorable number as the visible
 text and put digits in the href:
 <code>&lt;a href="tel:+YOURPHONENUMBER"&gt;YOUR MEMORABLE NUMBER&lt;/a&gt;</code>."</em> The
@@ -152,7 +153,7 @@ nothing.</p>
 <code>111</code> or <code>911</code> in an <code>href</code> is still reported as not being
 in international format, and the fix text offered is "prefix the country code". {RFC}
 {S_NUMBERS} says emergency and service numbers cannot be represented in global form and must
-be tagged with a <code>phone-context</code> instead; it points out that
+be tagged with a <code>phone-context</code> instead; {RFC} {S_LOCAL} points out that
 <code>+1-911</code> is not a valid global number. The finding is defensible (a local
 number with no context genuinely is outside the specification), and its remedy is not the
 one the specification gives. The placeholder rule was taught about short codes. This branch
@@ -223,6 +224,7 @@ different numbers rather than a dead one, that is at
               'phone links that will not dial',
         body=body,
         schema_type="Article",
+        modified="2026-10-19",
         faq=[
             ("Why does a tel: link work on my desktop but not on a phone?",
              "It does not work on either. Nobody taps a phone number on a desktop, so "

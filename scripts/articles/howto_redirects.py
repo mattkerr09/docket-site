@@ -43,7 +43,8 @@ S_302 = "section 15.4.3"
 GOOGLE_URL = ("https://developers.google.com/search/docs/"
               "crawling-indexing/301-redirects")
 GOOGLE = "Google's redirect documentation"
-READ_ON = "15 September 2026"
+# Re-read 2026-10-19: Google's redirect page (page updated 2026-04-14; both quoted sentences) and RFC 9110 15.4, 15.4.2, 15.4.3. Unchanged.
+READ_ON = "19 October 2026"
 
 
 def redirect_problems() -> Path:

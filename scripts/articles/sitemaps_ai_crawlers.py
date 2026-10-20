@@ -3,7 +3,7 @@
 
 ⚠️ WHY THIS PAGE EXISTS AND WHAT IT MUST NOT BECOME. The spine is a fact about
 the FILE FORMAT, not about crawler behaviour: a `Sitemap:` line is a non-group
-record (RFC 9309 §2.2.4, read at the source on 2026-09-15), so it sits outside
+record (RFC 9309 §2.2.4, read at the source on 2026-10-19), so it sits outside
 the `User-agent` group mechanism and there is no such thing as a per-crawler
 sitemap. The measurement shows how many sites are in a position where that
 matters. It does NOT show that any crawler fetched anything, and the page says
@@ -55,7 +55,8 @@ from render import render  # noqa: E402
 SURVEYED_HUMAN = "August 2026"
 
 #: When RFC 9309 was read at rfc-editor.org for the quotations below.
-RFC_READ_HUMAN = "15 September 2026"
+# Re-read 2026-10-19: RFC 9309 section 2.2.4 "Other Records" (both quoted sentences and the "Sitemaps" example), section 2.1 (a group is terminated by a user-agent line or end of file). Unchanged.
+RFC_READ_HUMAN = "19 October 2026"
 
 #: The section of RFC 9309 that governs Sitemap: lines. A section number is not
 #: a measurement, but it is a digit sequence in prose, so it interpolates like

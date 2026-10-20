@@ -61,6 +61,7 @@ CONVENTIONAL = {
 #: list does not contain. Naming one of these is correct behaviour, so they must
 #: not be counted as dead — the reference list being stale is not the site
 #: owner's mistake. Each was read on the vendor's own page on 2026-08-07:
+# Re-read 2026-10-19: all four pages still document the tokens (webz.io/bot.html now redirects to Webz.io's 17 July 2024 Webzio Duo post; the Meta page has moved to developers.facebook.com/documentation/sharing/webmasters/web-crawlers). Unchanged.
 #:
 #:   kagibot         kagi.com/bot
 #:   webzio          webz.io/bot.html  (the "Webzio Duo" that replaced Omgilibot)
@@ -101,6 +102,7 @@ RETIRED = _retired()
 #: is the whole point; the survey exists because most robots.txt files do not.
 #: Mirrors `RobotsMatcher::ExtractUserAgent` in Google's open-source robots.txt
 #: parser (google/robotstxt, read 2026-08-07):
+# Re-read 2026-10-19: robots.cc ExtractUserAgent and HandleUserAgent are as quoted (last commit to the file 2026-02-27). Unchanged.
 #:
 #:     // Allowed characters in user-agent are [a-zA-Z_-].
 #:     while (absl::ascii_isalpha(*end) || *end == '-' || *end == '_') ++end;

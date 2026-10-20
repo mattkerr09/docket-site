@@ -1029,7 +1029,7 @@ does and does not advertise, which is not the same as proof the product cannot d
 
 <h2>Ahrefs content audit, exports and Looker Studio</h2>
 <p><strong>Content audit.</strong> Ahrefs does not sell a product called Content Audit: our check of its pricing and
-Site Audit pages on 9 September 2026 found no such name. The job is split. Site Audit crawls your own pages, and its
+Site Audit pages on {CHECKED_HUMAN["ahrefs"]} found no such name. The job is split. Site Audit crawls your own pages, and its
 page lists finding duplicate content among its checks, &ldquo;Be it title tags, meta descriptions, headings, or
 low-quality content pages&rdquo;, as read on {CHECKED_HUMAN["ahrefs"]}. Content Explorer is an index of what other
 people have published. This page tested nothing beyond what Ahrefs publishes. For the steps of a content audit,
@@ -1146,7 +1146,7 @@ you pay for it.</p>
              "the number of projects on unverified sites is capped by plan. Docket's free version "
              "shows your score, how many problems each area has and the top problem in full, on any site, with no key."),
             ("Does Ahrefs have a content audit?",
-             "Not under that name. Our check of Ahrefs' pricing and Site Audit pages on 9 September 2026 found no "
+             f"Not under that name. Our check of Ahrefs' pricing and Site Audit pages on {CHECKED_HUMAN['ahrefs']} found no "
              "product called Content Audit. Its Site Audit page lists finding duplicate content, in title tags, meta "
              "descriptions, headings or low-quality pages, among its checks, and this page tested nothing beyond what "
              "Ahrefs publishes. Docket's content checks cover thin pages, competing pages that target the same "

@@ -27,8 +27,13 @@ from render import N_CHECKS, render  # noqa: E402
 #: own pages. Canonical advice ages badly and most of what circulates was true
 #: of a different decade, so an undated claim here would be the exact failure
 #: the page is written against.
-CHECKED_ON = "2026-08-10"
-CHECKED_ON_HUMAN = "10 August 2026"
+# Re-read 2026-10-19: the canonicalization, troubleshooting, consolidate-duplicate-urls, pagination and JavaScript SEO
+# pages and the Search Console page indexing help page. The troubleshooting quote now continues "or technical
+# signals", and the methods "can stack"; the page is corrected for both. The rest is unchanged.
+CHECKED_ON = "2026-10-19"
+CHECKED_ON_HUMAN = "19 October 2026"
+#: The day the page was first written. The read date above moves; this does not.
+PUBLISHED = "2026-08-10"
 
 #: (what was read, where it was read). Anything not in this list is not stated
 #: on the page as a fact about how Google behaves — it is either a description
@@ -41,7 +46,8 @@ VERIFIED: list[tuple[str, str]] = [
      'frequently in order to reduce the crawling load on sites"',
      "https://developers.google.com/search/docs/crawling-indexing/canonicalization"),
     ('"even if you explicitly designate a canonical page, Google might choose a '
-     'different canonical for various reasons, such as the quality of the content", '
+     'different canonical for various reasons, such as the quality of the content or '
+     'technical signals", '
      'and after a fix "Google might hold pages in a duplicate cluster for up to two weeks"',
      "https://developers.google.com/search/docs/crawling-indexing/"
      "canonicalization-troubleshooting"),
@@ -49,6 +55,10 @@ VERIFIED: list[tuple[str, str]] = [
      "individual URLs, such as links to them, into one preferred URL; rel=canonical "
      "and a redirect are described as strong signals and a sitemap entry as a weak "
      "one, and absolute URLs are recommended over relative ones",
+     "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"),
+    ('the canonical methods "can stack and thus become more effective when combined", and '
+     'using two or more of them "will increase the chance of your preferred canonical URL '
+     'appearing in search results"',
      "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"),
     ('"Don\'t use the first page of a paginated sequence as the canonical page. '
      'Instead, give each page its own canonical URL", and Google no longer uses '
@@ -99,16 +109,17 @@ preference more emphatically.</p>
 <p>The sentence worth reading twice sits in Google's canonicalization documentation:
 indicating a canonical preference is a hint, not a rule. The troubleshooting page is
 blunter still. Even where you have explicitly designated a canonical page, Google might
-choose a different one, "for various reasons, such as the quality of the content".</p>
+choose a different one, "for various reasons, such as the quality of the content or technical signals".</p>
 
 <p>That reframes the whole problem. If Google picked a URL you did not nominate, the tag
 in your <code>&lt;head&gt;</code> is usually fine and the site is arguing with itself
 somewhere else: internal links point at one URL, the sitemap lists a second, a redirect
 aims at a third. Google's own docs rank those inputs. A rel=canonical annotation and a
 redirect are strong signals, a sitemap entry is weak. Nothing makes the tag binding, so
-declaring it twice, adding it in the HTTP header as well, and repeating it in the sitemap
-achieves nothing by itself. Point every signal at the same URL and the disagreement
-usually resolves.</p>
+repeating the same signal harder achieves nothing by itself. Google says its methods stack,
+and that using two or more of them raises the chance that your preferred URL is the one
+shown. They only help one another when they name the same URL, so point every signal at
+the same URL and the disagreement usually resolves.</p>
 
 <p>Then wait. Google says it may keep pages in a duplicate cluster for up to two weeks
 after the underlying issue is fixed, which is longer than most people give a change
@@ -292,7 +303,8 @@ paste.</p>
         h1="Canonical tags, and the ways they get set wrong",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Canonical tags',
         body=body,
-        published=CHECKED_ON,
+        published=PUBLISHED,
+        modified="2026-10-19",
         faq=[
             ("Is a canonical tag a directive that Google has to follow?",
              "No. Google's documentation describes a canonical preference as a hint "

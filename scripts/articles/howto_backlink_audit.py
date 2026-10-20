@@ -4,9 +4,10 @@
 Target query: "ahrefs backlink audit" (11 impressions, Search Console
 2026-08-10 to 2026-09-05).
 
-⚠️ THERE IS NO AHREFS PRODUCT CALLED "BACKLINK AUDIT". Checked 2026-09-09:
-zero occurrences across ahrefs.com/pricing, /site-audit, /backlink-checker and
-/site-explorer. Their tools are Backlink Checker and Site Explorer. Second
+⚠️ THERE IS NO AHREFS PRODUCT CALLED "BACKLINK AUDIT". Checked 2026-09-09 and
+again 2026-10-19: zero occurrences across ahrefs.com/pricing, /site-audit,
+/backlink-checker and /site-explorer. The Backlink Checker and Site Explorer
+descriptions quoted on the page are unchanged. Their tools are Backlink Checker and Site Explorer. Second
 phantom product name in one batch: see UPGRADES.md 2026-09-14.
 
 ⚠️ DISTINCT FROM /learn/domain-authority-without-a-subscription/, which explains

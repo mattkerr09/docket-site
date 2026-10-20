@@ -51,7 +51,8 @@ INDEXNOW_ENGINES = "Amazon, Bing, Naver, Seznam.cz, Yandex and Yep"
 #: nine, so this many results is the whole enumerable window for one host.
 BRAVE_WINDOW = "200"
 
-READ_ON = "16 September 2026"
+# Re-read 2026-10-19: Google's index.inspect and UrlInspectionResult references, the Search Console usage-limits page (2000 QPD, 600 QPM per site), Microsoft's GetCrawlStats reference, IndexNow's FAQ and Brave's web-search pagination note (count max 20, offset max 9). Unchanged.
+READ_ON = "19 October 2026"
 
 
 def index_coverage() -> Path:

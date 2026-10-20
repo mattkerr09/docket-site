@@ -58,7 +58,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import render  # noqa: E402
 
 #: The day both external sources were read, in the form the prose prints.
-READ = "15 September 2026"
+# Re-read 2026-10-19: both W3C WAI quotes on decorative images and both Google Images passages (alt text with
+# computer vision, keyword stuffing and spam). Unchanged.
+READ = "19 October 2026"
 
 
 def howto_images() -> Path:

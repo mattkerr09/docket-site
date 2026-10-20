@@ -50,7 +50,7 @@ re-read if the check is edited:
      of a site. This is the `chrome_text` problem in `dom.py` pointed the other
      way: there a check that needed the footer could not see it.
 
-Two external sources, both vendors' own, read 2026-09-15 (READ_ON below):
+Two external sources, both vendors' own, read 2026-10-19 (READ_ON below):
 
   * https://developers.google.com/search/docs/appearance/ai-features
     "There are no additional requirements to appear in AI Overviews or AI Mode,
@@ -77,7 +77,8 @@ from render import render  # noqa: E402
 
 #: The day both vendor pages above were fetched and read. One constant so the
 #: date is interpolated rather than typed into prose.
-READ_ON = "2026-09-15"
+# Re-read 2026-10-19: Google "AI features and your website" (page last updated 2025-12-10) and OpenAI's crawler page. Unchanged.
+READ_ON = "2026-10-19"
 
 GOOGLE_AI = "https://developers.google.com/search/docs/appearance/ai-features"
 OPENAI_BOTS = "https://developers.openai.com/api/docs/bots"

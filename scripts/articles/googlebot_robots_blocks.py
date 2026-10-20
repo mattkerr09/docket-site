@@ -58,15 +58,17 @@ PAGE_ONE = ("malcare.com", "embarque.io", "feedthebot.org", "blog.photobiz.com",
             "onely.com", "rankmath.com", "wp-firewall.com")
 
 #: Google's documented robots.txt parse cap, in KiB. Verified at source on
-#: 2026-09-15 at developers.google.com/search/docs/crawling-indexing/robots/
-#: robots_txt, which reads: "Google enforces a robots.txt file size limit of
-#: 500 kibibytes (KiB)."
+#: 2026-10-19 at developers.google.com/crawling/docs/robots-txt/robots-txt-spec
+#: (the old developers.google.com/search/docs/crawling-indexing/robots/robots_txt
+#: URL now redirects there; page last updated 2026-08-31), which reads: "Google
+#: enforces a robots.txt file size limit of 500 kibibytes (KiB)."
 #:
 #: ⚠️ Quoted ONLY as a documented limit, and that limit is the ONLY size fact
 #: this page may state. Nothing here says how many files approach it, exceed it
 #: or sit under it: `pop_oversize` hosts were dropped BEFORE the readable set
 #: was formed, on a threshold that is not in this repository, so no statistic
 #: computed over the files we did read can speak for them. See the docstring.
+# Re-read 2026-10-19: the size-limit sentence on Google's robots.txt specification page. Unchanged.
 PARSE_CAP_KIB = 500
 
 
@@ -204,9 +206,10 @@ survey</a>, and the smaller hand-checked sample behind it is <a href="/index/">t
 
 <h2>GoogleOther is the sharper half of this</h2>
 
-<p><code>GoogleOther</code> is Google's general-purpose fetcher: the crawler used for product and
-research work other than building the Search index. It shares Googlebot's infrastructure and obeys
-its own token in robots.txt. Denying it does not remove a site from Search.</p>
+<p><code>GoogleOther</code> is Google's generic crawler. Google says it "may be used by various product
+teams for fetching publicly accessible content from sites", for example one-off crawls for internal
+research and development, and that crawling preferences addressed to it "don't affect any specific
+product". It obeys its own token in robots.txt. Denying it does not remove a site from Search.</p>
 
 <p>More files deny it than deny <code>Googlebot</code>: {gother:,} against {gbot:,}, about
 {gother_ratio} times as many. We cannot show why, and will not guess, but the two tokens are

@@ -11,7 +11,7 @@ own comment and in that test; it is described here in words, and the corpus
 sites are not named, because they are third parties who did not ask to be
 measured in public: see verify_no_named_third_parties.py.
 
-Two external sources, both Google's own, read 2026-09-15:
+Two external sources, both Google's own, re-read 2026-10-19 (unchanged since 2026-09-15):
 
   * https://developers.google.com/search/docs/fundamentals/creating-helpful-content
     "If you use automation, including AI-generation, to produce content for the

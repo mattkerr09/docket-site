@@ -60,7 +60,8 @@ RFC6585 = "RFC 6585"
 RFC6585_URL = "https://www.rfc-editor.org/rfc/rfc6585.html"
 RFC6585_PUB = "April 2012"
 S_429 = "section 4"
-READ_ON = "15 September 2026"
+# Re-read 2026-10-19: RFC 9110 (15.5.1, 15.5.3, 15.5.4, the 100 to 599 range and the invalid-code advice) and RFC 6585 section 4. Unchanged.
+READ_ON = "19 October 2026"
 
 #: The date the control probes quoted below were taken, as recorded in the
 #: check's own source. Ours, not a third party's publication date.

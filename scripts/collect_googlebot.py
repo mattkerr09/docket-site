@@ -30,13 +30,17 @@ import urllib.request
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "googlebot.json"
-BASE = "https://developers.google.com/static/search/apis/ipranges"
+BASE = "https://developers.google.com/static/crawling/ipranges"
 
-#: The three lists Google publishes, and what each is for.
+#: The five lists Google's "Verify requests from Google crawlers and fetchers"
+#: page links today (checked 2026-10-19). "common-crawlers" is the list that
+#: used to be called "googlebot": same 317 prefixes on 2026-10-19.
 LISTS = {
-    "googlebot": "Googlebot itself — the crawler that builds the search index",
+    "common-crawlers": "The common crawlers used for Google's products, such as Googlebot",
     "special-crawlers": "AdsBot, APIs-Google and the other special-case crawlers",
-    "user-triggered-fetchers": "fetches a user asked for, such as Search Console live tests",
+    "user-triggered-fetchers": "fetches a user asked for, resolving to gae.googleusercontent.com",
+    "user-triggered-fetchers-google": "fetches a user asked for, from Google-controlled addresses",
+    "user-triggered-agents": "agents acting for a user, such as Google-Agent",
 }
 
 #: How many addresses to actually resolve. Small on purpose.
@@ -74,7 +78,7 @@ def main() -> None:
         print(f"  {name}: {len(prefixes)} prefixes ({len(v4)} v4, {len(v6)} v6)")
 
     # Spot check against addresses that are Googlebot by Google's definition.
-    googlebot = _fetch("googlebot")
+    googlebot = _fetch("common-crawlers")
     v4 = [p["ipv4Prefix"] for p in googlebot["prefixes"] if "ipv4Prefix" in p]
     sample = [str(next(ipaddress.ip_network(c).hosts())) for c in v4[:SPOT_CHECK]]
     verified = [ip for ip in sample if verify_ip(ip)]
@@ -84,9 +88,9 @@ def main() -> None:
         "measured": time.strftime("%Y-%m-%d"),
         "lists": lists,
         "total_prefixes": total,
-        "googlebot_prefixes": lists["googlebot"]["prefixes"],
-        "googlebot_ipv4": lists["googlebot"]["ipv4"],
-        "googlebot_ipv6": lists["googlebot"]["ipv6"],
+        "googlebot_prefixes": lists["common-crawlers"]["prefixes"],
+        "googlebot_ipv4": lists["common-crawlers"]["ipv4"],
+        "googlebot_ipv6": lists["common-crawlers"]["ipv6"],
         "spot_check_size": len(sample),
         "spot_check_verified": len(verified),
         "note": (

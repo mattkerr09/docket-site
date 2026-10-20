@@ -180,9 +180,10 @@ The old name is inert. The crawler now identifies itself as something else, so a
 sites in this sample. Every one of those sites believes it has made a decision about
 Anthropic that it has not made.</p>
 
-<p><code>Google-NotebookLM</code> is the live one. Google renamed it to
-<code>Google-GeminiNotebook</code> and says the old token is supported until August 2026:
-this month. {d['retired_tokens']['google-notebooklm']['count']} sites in our sample name the
+<p><code>Google-NotebookLM</code> is the one whose time has just run out. Google renamed it to
+<code>Google-GeminiNotebook</code>, and its crawler documentation lists the old token as a former
+agent "supported until August 2026". That month has passed, and Google's page does not say the old
+token still works. {d['retired_tokens']['google-notebooklm']['count']} sites in our sample name the
 old token, including amazon.com, pinterest.com and tiktok.com.
 <strong>Zero name the new one.</strong></p>
 
@@ -205,10 +206,12 @@ token carrying one, which caught <code>ChatGPT-User/2.0</code>, written by
 
 <p>It is not dead. We read Google's open-source robots.txt parser rather than reasoning
 about it further, and <code>RobotsMatcher::ExtractUserAgent</code> answers the question in one
-line:</p>
+short loop:</p>
 
 <pre><code>// Allowed characters in user-agent are [a-zA-Z_-].
-while (absl::ascii_isalpha(*end) || *end == '-' || *end == '_') ++end;</code></pre>
+while (absl::ascii_isalpha(*end) || *end == '-' || *end == '_') {{
+  ++end;
+}}</code></pre>
 
 <p>That runs against the value written in <em>your file</em>, not only against the crawler's
 own string. <code>ChatGPT-User/2.0</code> is therefore cut to <code>ChatGPT-User</code> and
@@ -404,11 +407,12 @@ check. On Nature it reports one finding, not four.</p>
 
 <h2>Where someone else's data is better</h2>
 
-<p>Ahrefs published an llms.txt study in June 2026 across 137,210 domains (thirteen times our
+<p>Ahrefs published an llms.txt study in June 2026 across 137,210 domains (nearly fourteen times our
 population) and, more importantly, with server-log request data we have no way to obtain.
 They found 97% of llms.txt files received no requests at all in May 2026, and that AI
 retrieval bots were 1.1% of requests to the ones that did. That is a stronger claim than ours
-about whether llms.txt is read, because it measures reading rather than presence. Our
+about whether llms.txt is fetched, because it counts requests to the file rather than its
+presence. Ahrefs itself notes that a fetch is not a read, so its figures are a ceiling on use. Our
 measurement covers a different question (who writes directives that cannot work), and the
 two agree in direction.</p>
 
@@ -434,15 +438,15 @@ robots.txt read once is a snapshot, and none of this says what any crawler actua
 against the community
 <a href="https://github.com/ai-robots-txt/ai.robots.txt">ai.robots.txt</a> set, and that set
 is itself behind vendor documentation. We read six vendor pages on {collected} and found
-<code>{'</code>, <code>'.join(d['list_gap'])}</code> all currently documented and all missing
+<code>{'</code>, <code>'.join(d['list_gap'])}</code> all documented by their vendors that day and all missing
 from it. Naming one of those is correct behaviour, so we excluded them rather than count them
 as dead. We also removed Awario's crawlers from the population: they are real, and our own
 pattern for "AI-intent" had swept them in, which would have inflated this page's headline by
 close to 300 sites.</p>
 
 <p>Both corrections cut against the finding and it survives them. The direction is worth
-noticing anyway: the canonical list most people copy their block rules from is stale in both
-directions at once.</p>
+noticing anyway: the canonical list most people copy their block rules from was stale in both
+directions at once when we read it.</p>
 
 <p><a href="/data/ai-directives-2026-08.json">The full dataset is here</a>: every host, its
 AI tokens, which of them are dead, which crawlers it blocks, and whether it has a confirmed
@@ -465,8 +469,9 @@ rule is dead on an assumption is the error the whole check exists to catch.</p>
 
 <p>Their own sitemap had it.
 <a href="https://docs.cohere.com/docs/cohere-web-crawlers">docs.cohere.com/docs/cohere-web-crawlers</a>
-says more than we expected: Cohere's bot table reads <strong>"N/A"</strong> (they operate no
-crawler at all), and the blocking example they publish names <code>Coherebot</code>, which is
+says more than we expected: Cohere's bot table reads <strong>"N/A"</strong> (they say they do not
+use bots or user agents to crawl or scrape web content to train generative AI foundation models
+"at this time"), and the blocking example they publish names <code>Coherebot</code>, which is
 the token to write if they ever do. This page previously showed
 <code>cohere-training-data-crawler</code> as the replacement, which came from a table of ours
 rather than from Cohere, and is corrected above. The two tables are now one file.</p>

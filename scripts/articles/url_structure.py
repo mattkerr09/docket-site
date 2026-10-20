@@ -73,7 +73,8 @@ WHATWG = "the WHATWG URL Standard"
 #: The URI standard Google's sentence names. A constant so the quotation can be
 #: reproduced verbatim without a typed figure reaching the page.
 STD = "IETF STD 66"
-READ_ON = "16 September 2026"
+# Re-read 2026-10-19: Google's URL structure page (updated 2025-12-10) and the WHATWG URL Standard's application/x-www-form-urlencoded parsing step. Three sentences corrected below.
+READ_ON = "19 October 2026"
 
 
 def url_structure() -> Path:
@@ -99,8 +100,7 @@ blunt about why: a session ID makes a new, unique URL for every visit, which is 
 infinite duplicate-content space. The fix is to move session state into cookies and strip the
 parameter from crawlable URLs.</p>
 
-<p>This one has a source, and it is the only finding in the check that Google's own
-documentation addresses head-on. Read on {READ_ON}, {GOOGLE} lists session IDs among the
+<p>This one has a source in Google's own documentation. Read on {READ_ON}, {GOOGLE} lists session IDs among the
 irrelevant parameters that inflate a site's URL count, and says: "Wherever possible, avoid the
 use of session IDs in URLs and consider using cookies instead."</p>
 
@@ -115,8 +115,9 @@ mixed-case versions permanently.</p>
 <p>Sourced, again on {READ_ON}: "Like any other HTTP client following {STD}, Google
 Search's URL handling is case sensitive (for example, Google treats both <code>/APPLE</code>
 and <code>/apple</code> as distinct URLs with their own content)." The same passage says what
-to do if your server does not care about case. "Convert all text to the same case so it's
-easier for Google to determine that URLs reference the same page."</p>
+to do: "If upper and lower case text in a URL is treated the same by your web server, convert
+all text to the same case so it's easier for Google to determine that URLs reference the same
+page."</p>
 
 <h3>Encoded spaces: and this title is wider than its rule</h3>
 
@@ -209,8 +210,8 @@ combinations until it ran out of budget.</p>
 <h2>What to do with the list</h2>
 
 <p>In severity order, which is also roughly the order of how much a fix buys you. Session IDs
-first. That is a duplicate-content generator and the only item here Google's documentation
-explicitly asks you to remove. Then the parameter finding, if it fired, taking the canonical
+first. That is a duplicate-content generator, and Google's documentation asks you to avoid
+them wherever possible. Then the parameter finding, if it fired, taking the canonical
 route or the robots.txt route but not both. Then casing, which is a server rule plus redirects
 rather than a URL-by-URL job. The encoded-space and long-URL findings are cosmetic; they are a
 notice and a low for a reason, and renaming live URLs to satisfy them costs you redirects you
@@ -234,6 +235,7 @@ internal links pointing at redirects</a> is the shape to avoid creating on the w
         h1="SEO URL structure best practice, minus the folklore",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / URL structure',
         body=body,
+        modified="2026-10-19",
         faq=[
             ("Does Docket check whether my URLs use hyphens instead of underscores?",
              "No. Google's URL structure documentation does recommend hyphens over "

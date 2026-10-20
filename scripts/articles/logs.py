@@ -19,6 +19,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import PRICE_STR, RELEASE, render  # noqa: E402
 
+#: When Screaming Frog's Log File Analyser page was read, dollar view.
+# Re-read 2026-10-19: screamingfrog.co.uk/log-file-analyser/ in USD ($139 Per Year; free version "Log Event Limit - 1,000 Lines"). Unchanged.
+SF_READ_HUMAN = "19 October 2026"
+
 
 def log_file_analysis() -> Path:
     body = f"""
@@ -41,12 +45,12 @@ requests claimed to be Googlebot". Those are different numbers and only one of t
 anything about your crawl budget.</p>
 
 <p>There are two honest ways to resolve it. Google
-<a href="https://developers.google.com/search/apis/ipranges/googlebot.json">publishes its
+<a href="https://developers.google.com/static/crawling/ipranges/common-crawlers.json">publishes its
 crawler ranges as JSON</a>: as of {F.gbot_measured()}, <strong>{F.gbot_prefixes()}</strong>
-prefixes for Googlebot itself ({F.gbot_ipv4()} IPv4 and {F.gbot_ipv6()} IPv6), plus separate
-lists for special-case crawlers and user-triggered fetches, {F.gbot_total_prefixes():,} in
-total. Or you do the check Google
-<a href="https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot">documents</a>:
+prefixes for the common crawlers such as Googlebot ({F.gbot_ipv4()} IPv4 and {F.gbot_ipv6()} IPv6), plus
+separate lists for special-case crawlers, user-triggered fetchers and user-triggered agents,
+{F.gbot_total_prefixes():,} in total. Or you do the check Google
+<a href="https://developers.google.com/crawling/docs/crawlers-fetchers/verify-google-requests">documents</a>:
 a reverse DNS lookup on the client IP, then a forward lookup on the hostname it returns, and
 the original address has to come back.</p>
 
@@ -119,7 +123,7 @@ trend. If what you want is "did this change after Tuesday's deploy", that is
 
 <p>Screaming Frog sells a
 <a href="https://www.screamingfrog.co.uk/log-file-analyser/">Log File Analyser</a> as a separate
-product, $139 per year with a free tier capped at 1,000 log events. It is a much deeper tool
+product: $139 per year in the dollar view of its own page on {SF_READ_HUMAN}, with a free tier capped at 1,000 log events. It is a much deeper tool
 than what Docket does: a real interface for exploring the data, saved projects, imports that
 handle far more formats, and analysis over time rather than a single comparison. If log
 analysis is a regular part of your work, buy it. It is built for that and Docket is not.</p>
@@ -152,6 +156,7 @@ you turn it on.</p>
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Log file analysis',
         body=body,
         published="2026-08-08",
+        modified="2026-10-19",
         faq=[
             ("How do I know if it was really Googlebot in my logs?",
              "Not from the user-agent, which is a header anybody can send. Either check the "
@@ -173,8 +178,8 @@ you turn it on.</p>
              "it may be crawled rarely because it changes rarely. Look for it across a longer "
              "window before concluding anything."),
             ("Does Docket replace a dedicated log file analyser?",
-             "No. Screaming Frog's Log File Analyser is a separate product at $139 per year "
-             "and is much deeper: a real interface, saved projects, more formats, analysis "
+             f"No. Screaming Frog's Log File Analyser is a separate product at $139 per year "
+             f"(dollar view of its own page, {SF_READ_HUMAN}) and is much deeper: a real interface, saved projects, more formats, analysis "
              "over time. Docket does one comparison, log against crawl, included in its "
              "one-time price. If log analysis is a regular part of your work, the dedicated "
              "tool is the right purchase."),

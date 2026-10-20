@@ -105,7 +105,8 @@ RENDER_HEAVY_KB = 643
 
 #: Dates the sources were read, so a re-reading is one edit.
 CAP_FOUND_ON = "8 September 2026"
-READ_ON = "16 September 2026"
+# Re-read 2026-10-19: Google's Googlebot page (2MB, already-downloaded part sent on, limit applied to uncompressed data) and the Search Central crawler post of 2026-03-31 (headers included, passed on as if the complete file). Unchanged.
+READ_ON = "19 October 2026"
 
 #: `AuditContext.urls_of` caps the URL list attached to any finding; `count`
 #: keeps the true total and the report says "showing N of M".

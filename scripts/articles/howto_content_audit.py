@@ -4,16 +4,20 @@
 Target query: "ahrefs content audit" (18 impressions, Search Console
 2026-08-10 to 2026-09-05).
 
-⚠️ THERE IS NO AHREFS PRODUCT CALLED "CONTENT AUDIT". Checked 2026-09-09:
-zero occurrences on ahrefs.com/pricing and zero on ahrefs.com/site-audit.
-Ahrefs' named tools are Site Explorer, Keywords Explorer, Site Audit, Rank
-Tracker and Content Explorer. The phrase comes from the searcher, not from
+⚠️ THERE IS NO AHREFS PRODUCT CALLED "CONTENT AUDIT". Checked 2026-09-09 and
+again 2026-10-19: zero occurrences on ahrefs.com/pricing and zero on
+ahrefs.com/site-audit. Ahrefs' core tools include Site Explorer, Keywords
+Explorer, Site Audit, Rank Tracker and Content Explorer; the pricing page now
+also lists Brand Radar, Web Analytics and others, and a Content Kit add-on
+(AI Content Helper, AI Content Grader). The phrase comes from the searcher, not from
 Ahrefs, so this page is a how-to and not a /vs/ page. A URL or a title
 implying a competitor sells a product they do not sell is a false claim about
 their business, which is the thing this project polices hardest.
 
 Everything said about Ahrefs' tools here is quoted from their own pages, read
-2026-09-09, and nothing is inferred about features that were not read.
+2026-09-09 and again 2026-10-19 (the Content Explorer, Site Audit and Site Explorer
+descriptions quoted below are unchanged), and nothing is inferred about features
+that were not read.
 """
 from __future__ import annotations
 
@@ -22,6 +26,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import N_CHECKS, N_LANES, render  # noqa: E402
+
+#: The day the Ahrefs pricing and Site Audit pages were last searched for a product called Content Audit.
+CHECKED_HUMAN = "19 October 2026"
 
 
 def content_audit() -> Path:
@@ -148,11 +155,13 @@ one is at <a href="/how-to/fix-thin-content-pages/">how to fix thin content page
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Content audit',
         body=body,
         published="2026-09-09",
+        modified="2026-10-19",
         faq=[
             ("Does Ahrefs have a content audit tool?",
-             "Not under that name. Checked on their pricing and Site Audit pages, Ahrefs' named "
-             "tools are Site Explorer, Keywords Explorer, Site Audit, Rank Tracker and Content "
-             "Explorer. The work people mean by “content audit” is split across Site "
+             f"Not under that name. Checked on their pricing and Site Audit pages on {CHECKED_HUMAN}, none "
+             "of Ahrefs' tools is called Content Audit. Its core tools include Site Explorer, Keywords "
+             "Explorer, Site Audit, Rank Tracker and Content Explorer, and its Content Kit add-on lists "
+             "AI Content Helper and AI Content Grader. The work people mean by “content audit” is split across Site "
              "Audit for the technical side and Content Explorer for what others have published."),
             ("What is the difference between Content Explorer and Site Audit?",
              "Content Explorer indexes what other people have published, for finding ideas and "

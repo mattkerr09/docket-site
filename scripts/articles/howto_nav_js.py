@@ -32,8 +32,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import render  # noqa: E402
 
 #: The day Google's documentation was read for this page.
-CHECKED_ON = "2026-09-15"
-CHECKED_ON_HUMAN = "15 September 2026"
+# Re-read 2026-10-19: Google's links-crawlable page (updated 2025-12-10) and JavaScript SEO basics (updated 2026-03-04). The first quote now keeps its "Generally," and the not-recommended list its hedge.
+CHECKED_ON = "2026-10-19"
+CHECKED_ON_HUMAN = "19 October 2026"
 
 #: (what was read, where it was read). Nothing outside this list is stated on
 #: the page as a fact about how Google behaves.
@@ -43,13 +44,13 @@ VERIFIED: list[tuple[str, str]] = [
      'crawling and rendering", with rendering happening after the crawl',
      "https://developers.google.com/search/docs/crawling-indexing/javascript/"
      "javascript-seo-basics"),
-    ('"Google can only crawl your link if it\'s an &lt;a&gt; HTML element (also '
+    ('"Generally, Google can only crawl your link if it\'s an &lt;a&gt; HTML element (also '
      'known as anchor element) with an href attribute", and that Google '
      '"can\'t reliably extract URLs from &lt;a&gt; elements that don\'t have an '
      'href attribute or other tags that perform as links because of script '
-     'events". The examples given as not recommended being an anchor with no '
-     'href, a span carrying an href, and an anchor whose destination is in an '
-     'onclick handler',
+     'events". The examples given under "Not recommended (but Google may still '
+     'attempt to parse this)" being an anchor with no href, a span carrying an '
+     'href, and an anchor whose destination is in an onclick handler',
      "https://developers.google.com/search/docs/crawling-indexing/links-crawlable"),
 ]
 
@@ -79,8 +80,8 @@ license you to conclude.</p>
 <p>If your navigation ends up as real anchor elements with <code>href</code> attributes after
 JavaScript runs, Google can follow them, but only after it renders, and rendering is a
 separate, later stage. If your navigation is made of clickable divs, spans, or router
-components that never emit an <code>href</code>, it is not a set of links to Google at any
-stage, rendered or not. A crawler that does not render at all sees both cases as the same
+components that never emit an <code>href</code>, Google generally does not treat it as a set of
+links at any stage, rendered or not. A crawler that does not render at all sees both cases as the same
 thing: nothing.</p>
 
 <p>Docket's check cannot tell those two cases apart for you. What it can tell you is whether
@@ -181,7 +182,8 @@ a property of markup, not of frameworks: a link is an anchor element with an
 <code>href</code>. Injecting links with JavaScript is explicitly allowed provided the result is
 that shape. The documentation's own examples of markup it does not recommend are an anchor
 with no <code>href</code>, a <code>span</code> carrying an <code>href</code>, and an anchor
-whose destination lives in an <code>onclick</code> handler.</p>
+whose destination lives in an <code>onclick</code> handler, though it adds that Google may
+still attempt to parse them.</p>
 
 <p>Google also describes crawling and rendering as separate queues, with rendering after the
 crawl. That ordering is the whole reason this finding carries a HIGH severity rather than a
@@ -269,7 +271,8 @@ answer is measured and when it is withheld.</p>
         crumb=('<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / '
                'navigation that needs JavaScript'),
         body=body,
-        published=CHECKED_ON,
+        published="2026-09-15",
+        modified="2026-10-19",
         schema_type="Article",
         faq=[
             ("My menu is built by JavaScript. Can Google follow it?",
@@ -277,7 +280,8 @@ answer is measured and when it is withheld.</p>
              "documentation says a link is an anchor with an href, and injecting one with "
              "JavaScript is allowed. The catch is timing: crawling and rendering are separate "
              "queues, so those links are found on a later pass. If the menu is made of "
-             "clickable divs or spans with no href, it is not a link at any stage."),
+             "clickable divs or spans with no href, Google generally does not treat it as a link at any "
+             "stage."),
             ("What does the nav_not_in_html check actually count?",
              "Distinct internal destinations reachable from an anchor element with an href, in "
              "the HTML the server returned, deduplicated per page and averaged across every "

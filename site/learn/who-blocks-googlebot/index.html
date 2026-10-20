@@ -14,7 +14,7 @@
 <title>How many sites disallow Googlebot in robots.txt?</title>
 <meta name="description" content="We read robots.txt for the Tranco top 10,000. Of the readable files, 2.08% deny Googlebot and more deny GoogleOther. What that can, and cannot, tell you.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="cdb2c5029b33">
+<meta name="build-id" content="b756ed13046c">
 <link rel="canonical" href="https://docketseo.app/learn/who-blocks-googlebot/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -1020,9 +1020,10 @@ survey</a>, and the smaller hand-checked sample behind it is <a href="/index/">t
 
 <h2>GoogleOther is the sharper half of this</h2>
 
-<p><code>GoogleOther</code> is Google's general-purpose fetcher: the crawler used for product and
-research work other than building the Search index. It shares Googlebot's infrastructure and obeys
-its own token in robots.txt. Denying it does not remove a site from Search.</p>
+<p><code>GoogleOther</code> is Google's generic crawler. Google says it "may be used by various product
+teams for fetching publicly accessible content from sites", for example one-off crawls for internal
+research and development, and that crawling preferences addressed to it "don't affect any specific
+product". It obeys its own token in robots.txt. Denying it does not remove a site from Search.</p>
 
 <p>More files deny it than deny <code>Googlebot</code>: 305 against 130, about
 2.3 times as many. We cannot show why, and will not guess, but the two tokens are

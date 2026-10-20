@@ -1093,7 +1093,9 @@ missing. <a href="/download/">Download it</a> and run one audit. It takes a few 
 #: prose cannot drift away from what was read.
 VERCEL_CRAWLER = {
     "url": "https://vercel.com/blog/the-rise-of-the-ai-crawler",
-    "read_on": "10 August 2026",
+    # Re-read 2026-10-19: the Vercel post, figures and the list of crawlers that do not render. Unchanged. The post itself is dated 17 December 2024.
+    "published": "17 December 2024",
+    "read_on": "19 October 2026",
     "chatgpt_js": "11.50",
     "claude_js": "23.84",
 }
@@ -1170,7 +1172,7 @@ Docket reads both in the same pass as everything else: one check, not a strategy
 JavaScript</a>. ChatGPT's crawler fetched JavaScript files in {v['chatgpt_js']}% of requests
 and Claude's in {v['claude_js']}%, and neither executed them. Applebot and Gemini are the
 exceptions, because both sit on infrastructure that already renders. That is their
-measurement, read on {v['read_on']}; we cannot reproduce it, and if crawler behaviour has
+measurement, published {v['published']} and read on {v['read_on']}; we cannot reproduce it, and if crawler behaviour has
 moved since, the argument below moves with it.</p>
 
 <p>What Docket shows you is your own side of that. It fetched notion.so twice, once as a
@@ -1306,6 +1308,7 @@ to happen whether or not anyone is at the machine, that is what a hosted crawler
         crumb='<a href="/">Docket</a> / <a href="/for/">For you</a> / SaaS',
         body=body,
         published="2026-08-10",
+        modified="2026-10-19",
         faq=[
             ("Will Docket tell me if ChatGPT mentions my product?",
              "No. Docket does not run prompts against any model, so it cannot see what an "
@@ -1315,7 +1318,7 @@ to happen whether or not anyone is at the machine, that is what a hosted crawler
              "makes it clear which company you are. Profound, Otterly and Peec track "
              "citations themselves."),
             ("Do AI crawlers read JavaScript-rendered pages?",
-             f"Mostly not. Vercel measured this across its own network and found that none of "
+             f"Mostly not. Vercel measured this across its own network (post of {v['published']}) and found that none of "
              f"the major AI crawlers render JavaScript: ChatGPT's crawler fetched JavaScript "
              f"files in {v['chatgpt_js']}% of requests and Claude's in {v['claude_js']}%, and "
              f"neither executed them. Applebot and Gemini are the exceptions, because both "

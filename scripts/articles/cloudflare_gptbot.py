@@ -30,7 +30,8 @@ import facts as F  # noqa: E402
 from render import known_issue_edge_cloudflare, render  # noqa: E402
 
 #: When Cloudflare's own pages were read for this article.
-CHECKED_HUMAN = "15 September 2026"
+# Re-read 2026-10-19: Cloudflare's 1 July 2026 changelog entry and blog post, its Block AI Bots page, the 1 July 2025 press release and OpenAI's crawler page. Dates and defaults unchanged; ChatGPT-User, the existing-domain sentence and the OpenAI crawler count corrected.
+CHECKED_HUMAN = "19 October 2026"
 
 #: The two dated policy changes, from Cloudflare's own pages. Single-sourced so a
 #: change has to be made once and cannot go stale in one place while staying
@@ -57,7 +58,8 @@ page.</strong> Cloudflare asks every new domain at sign-up whether to allow AI c
 {DEFAULTS_CHANGED_HUMAN} new domains onboard with bots classified <em>Training</em> or <em>Agent</em>
 blocked on pages that display ads, while <em>Search</em> stays allowed.</p>
 <p><strong>GPTBot is the training crawler</strong>, so on a new ad-supported Cloudflare domain it is
-blocked by default. <strong>OAI-SearchBot is not</strong>, and that is the one that decides whether
+blocked by default. So is <strong>ChatGPT-User</strong>, which Cloudflare gives as an example of an
+Agent bot. <strong>OAI-SearchBot is not</strong>, and that is the one that decides whether
 you can be cited.</p>
 <p><strong>And the setting is not the whole answer.</strong> Your robots.txt can say yes while your
 edge says no, and nothing in the file reveals it.</p>
@@ -65,8 +67,8 @@ edge says no, and nothing in the file reveals it.</p>
 
 <h2>The three OpenAI crawlers are not one thing</h2>
 
-<p>Almost every page written about this treats "AI crawler" as a single switch. OpenAI ships three,
-and they do different jobs:</p>
+<p>Almost every page written about this treats "AI crawler" as a single switch. OpenAI's crawler
+page lists four user agents, and three of them matter here. They do different jobs:</p>
 
 <table>
 <thead><tr><th>Crawler</th><th>What it is for</th><th>What blocking it costs you</th></tr></thead>
@@ -79,6 +81,9 @@ ChatGPT's search results.</strong> This is the expensive one.</td></tr>
 fetched and read back to them.</td></tr>
 </tbody>
 </table>
+
+<p>The fourth, <code>OAI-AdsBot</code>, only visits pages submitted as ads in ChatGPT, and OpenAI says the
+data it collects is not used to train its models. It does not bear on this question.</p>
 
 <p>Blocking training is a legitimate editorial decision and plenty of publishers make it on purpose.
 Blocking search is almost never what someone meant to do. The question "does Cloudflare block GPTBot
@@ -94,13 +99,16 @@ crawlers by default where there is no permission or compensation, and <strong>ev
 asked at sign-up</strong> whether to allow them. The choice is presented; it is not silently made.</li>
 <li><strong>{DEFAULTS_CHANGED_HUMAN}</strong>. New domains onboarding get updated defaults: bots classified
 <strong>Training or Agent are blocked on pages that display ads</strong>, and <strong>Search remains
-allowed</strong>.</li>
+allowed</strong>. Cloudflare's own post lists <code>ChatGPT-User</code> as an example of an Agent bot.</li>
 </ul>
 
 <p>So the flat sentence "Cloudflare blocks AI bots by default", which is what every result on page one
 for this question says today, is no longer the whole answer. The default is now scoped by
-<em>classification</em> and by <em>whether the page carries ads</em>. An existing domain is wherever
-its owner left it, which is usually wherever the sign-up prompt was answered.</p>
+<em>classification</em> and by <em>whether the page carries ads</em>. Cloudflare describes these
+defaults as applying to new domains, so an existing domain starts from whatever its owner set. One
+related change does reach existing domains: from {DEFAULTS_CHANGED_HUMAN}, a crawler that does both
+Search and Training is also blocked by any setting that blocks Training, unless its owner opted out
+before that date.</p>
 
 <h2>The measurement: what sites actually do, and the mistake in it</h2>
 
@@ -187,13 +195,15 @@ audit</a>.</p>
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Cloudflare and GPTBot',
         body=body,
         published="2026-09-15",
+        modified="2026-10-19",
         faq=[
             ("Does Cloudflare block GPTBot by default?",
              f"On a new domain onboarding from {DEFAULTS_CHANGED_HUMAN}, bots classified Training or Agent "
              "are blocked on pages that display ads, and GPTBot is the training crawler, so yes, "
-             "there. Search-classified bots such as OAI-SearchBot stay allowed. Every new domain "
-             f"has also been asked the question at sign-up since {ASKED_FROM_HUMAN}, so an existing domain "
-             "is wherever its owner left that prompt."),
+             "there. ChatGPT-User, which Cloudflare gives as an example of an Agent bot, is blocked "
+             "on those pages too. Search-classified bots such as OAI-SearchBot stay allowed. Every new domain "
+             f"has also been asked the question at sign-up since {ASKED_FROM_HUMAN}. Cloudflare describes "
+             "the new defaults as applying to new domains, so for an existing domain, look at its own setting."),
             ("Does blocking GPTBot stop me appearing in ChatGPT?",
              "No. GPTBot is the training crawler. OAI-SearchBot builds the search index and "
              "ChatGPT-User fetches pages a user asks about. Blocking GPTBot alone keeps your "

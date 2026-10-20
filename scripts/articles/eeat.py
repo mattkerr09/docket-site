@@ -53,7 +53,9 @@ from render import render  # noqa: E402
 #: the reading, and so `verify_numbers.py` sees a derived value.
 G_URL = "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
 SCHEMA_AUTHOR_URL = "https://schema.org/author"
-READ_ON = "15 September 2026"
+# Re-read 2026-10-19: schema.org/author (a property, expected types Organization and Person) and the three Google
+# passages quoted below (E-E-A-T not a ranking factor, raters, bylines, "trust is most important"). Unchanged.
+READ_ON = "19 October 2026"
 
 
 def _body() -> str:
