@@ -95,9 +95,10 @@ or wrong on any site large enough to care. The row says site-level, and carries 
 reading, because a count without its date is how a number goes stale while everything on screen
 agrees with it.</p>
 
-<p>It is worth showing at all because Bing's index is not only Bing's. Several other search
-surfaces are served from it, which is also why Docket does not print the same figure again under
-their names.</p>
+<p>It is worth showing at all because Bing's index is not only Bing's. Other search surfaces draw
+on it: DuckDuckGo, for one, says <a href="https://duckduckgo.com/duckduckgo-help-pages/results/sources">it
+largely sources its traditional links from Bing</a>. That is also why Docket does not print the same
+figure again under their names.</p>
 
 <h3>Brave, for the site, with the ceiling printed</h3>
 

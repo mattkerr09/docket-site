@@ -37,8 +37,8 @@ real sites, and the disagreement is invisible until you go looking for it.</p>
 
 <p>It matters because the two audiences behave differently. Google renders JavaScript, on a
 delay and with no guarantee about when. The AI crawlers that increasingly decide whether you
-get quoted in an answer mostly do not render at all: to them, the page is whatever the server
-sent. So a page can rank adequately and be invisible to the systems people now ask instead of
+get quoted in an answer mostly do not render at all (<a href="https://vercel.com/blog/the-rise-of-the-ai-crawler">Vercel found</a> none of the major
+ones did, apart from Google's and Apple's): to them, the page is whatever the server sent. So a page can rank adequately and be invisible to the systems people now ask instead of
 searching. <a href="/learn/ai-search-visibility/">AI search visibility</a> is a separate
 surface with a separate failure mode.</p>
 
