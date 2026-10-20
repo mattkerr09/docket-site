@@ -866,6 +866,19 @@ def seller_address() -> str:
 # HIGH-severity colour, so brand chrome was indistinguishable from alarm.
 # --warn stays amber, which is the semantic that colour should have had
 # all along.
+#
+# ⚠️ DOCKET'S OWN AUDIT OF THIS SITE (2026-10-20) REPORTS brand.colour_drift FOR TWO
+# PAIRS, AND BOTH ARE LEFT AS THEY ARE. This note is a Python comment on purpose: a
+# CSS comment in the string below ships to every page.
+#   #04100F (--on-accent) and #070C0D (--bg). One is the ink on the teal fill, the
+#     other is the page ground. They sit a few points apart today and are different
+#     jobs, so changing the ground must not move the label on a button.
+#   #0D1517 (--surface) and #111A1D (--surface-2). Neighbouring rungs of the
+#     elevation ladder, deliberately 1.046 apart in luminance (see the ladder note in
+#     :root). Merging them would delete a plane.
+# Docket's own advice for this finding is to leave a ramp step or a different job
+# alone, and it cannot tell those from a copied value. If a third value ever lands
+# within a few points of one of these, that is real drift: fold it into the token.
 # --------------------------------------------------------------------------
 STYLE = """<style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
