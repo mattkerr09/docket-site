@@ -123,7 +123,10 @@ def self_test() -> int:
     broken = good.replace('"@graph"', '"@graph" x')
     assert any("does not parse" in p for p in problems(broken)), problems(broken)
     # Must pass: an answer whose visible text has inline markup in it, read verbatim.
-    priced = good.replace("Yes, the first audit is free.", "From <strong>$999</strong>, a standard rate.")
+    # The markup holds the plain sentence; the page shows the same words with inline tags in them.
+    priced = (good.replace('"text": "Yes, the first audit is free."', '"text": "From $999, a standard rate."')
+              .replace("<p>Yes, the first audit is free.</p>", "<p>From <strong>$999</strong>, a standard rate.</p>"))
+    assert "From $999, a standard rate." in priced and "<strong>$999</strong>" in priced, "the case did not build"
     assert problems(priced) == [], problems(priced)
     # Must pass: a byline with the short month.
     short = good.replace("Published 19 October 2026", "Published 19 Oct 2026")
