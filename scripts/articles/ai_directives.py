@@ -47,6 +47,7 @@ def _rows_html() -> str:
 
 
 def ai_directives() -> Path:
+    from pages import VERCEL_CRAWLER as VC  # the study's URL and date, kept in one place
     search = F.ai_agents_for("search index")
     body = f"""
 <p class="lede">Blocking <code>GPTBot</code> and blocking <code>OAI-SearchBot</code> look like the
@@ -140,8 +141,8 @@ work. If you need a guarantee rather than a request, the honest answer is authen
 directive.</p>
 
 <p>And robots.txt says nothing about whether an assistant can make sense of your page once it
-arrives. Most AI crawlers do not run JavaScript: <a href="https://vercel.com/blog/the-rise-of-the-ai-crawler">Vercel's measurement of its own
-network</a> found none of the major ones did, apart from Google's and Apple's. So a page whose content is
+arrives. Most AI crawlers do not run JavaScript: <a href="{VC['url']}">Vercel's measurement of its own
+network</a>, published {VC['published']}, found none of the major ones did, apart from Google's and Apple's. So a page whose content is
 assembled in the browser is effectively blank to them even when every rule permits it.
 <a href="/learn/ai-search-visibility/">AI search visibility</a> covers the rest of that.</p>
 
