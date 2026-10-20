@@ -97,6 +97,12 @@ echo "==> competitive-claim gate"
 # rest of the site meet the same standard.
 "$PY" scripts/verify_competitive_claims.py
 
+echo "==> structured data gate"
+# FAQPage questions and answers, Article headlines and dates may only say what the reader can see (Google's
+# structured-data guidelines). A sister site found 34 pages breaking this on 19 October 2026; this one was clean.
+"$PY" scripts/verify_structured_data_matches_page.py --self-test
+"$PY" scripts/verify_structured_data_matches_page.py
+
 echo "==> claim freshness gate"
 # A claim set whose date only gets older is the stale-date problem the gate above cannot see (19 October 2026: four
 # of five sets read in August or mid-September had changed underneath us). Over 30 days: listed, to be re-read on the
