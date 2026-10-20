@@ -14,7 +14,7 @@
 <title>How to reduce server response time (TTFB)</title>
 <meta name="description" content="Time to first byte is the floor under every loading number. Cache pages, add a CDN, find what is slow behind the cache, and what a crawler can and cannot tell you.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="e5d39dff2e04">
+<meta name="build-id" content="b764fbdd0ebc">
 <link rel="canonical" href="https://docketseo.app/how-to/reduce-server-response-time/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -980,6 +980,12 @@ too: its write-out option has a variable called <code>time_starttransfer</code>.
 <p>Load the page a few times. If the first load is slow and the next ones are fast, you have the cache case
 below. If every load is slow, the server is slow on every request.</p>
 
+<p>Two neighbours are easy to confuse with this one. A response that is large or uncompressed is a
+different finding, with <a href="/how-to/fix-compression-and-caching/">its own page on enabling gzip and
+setting caching headers</a>. And a server that answers only after many seconds can make an audit list
+pages as unreachable because its timeout ran out first; <a href="/how-to/pages-an-audit-could-not-reach/">how
+to tell slow from down</a> covers that.</p>
+
 <h2>A real before and after</h2>
 
 <p>I wrote a small fixture site for this page: six pages of a typewriter repair workshop, served by a local
@@ -1028,7 +1034,7 @@ with <a href="/vs/">other audit tools</a>.</p>
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>
 <a href="/">Overview</a><a href="/download/">Download Docket SEO for Mac</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
+<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/sitebulb-alternative/">vs Sitebulb</a>

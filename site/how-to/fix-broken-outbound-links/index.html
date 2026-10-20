@@ -14,7 +14,7 @@
 <title>How to fix broken outbound links (and which are not)</title>
 <meta name="description" content="A dead outbound link and a host that refuses a crawler are not the same audit row. What Docket counts as broken, what it files as unverified, and what each needs.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="e5d39dff2e04">
+<meta name="build-id" content="b764fbdd0ebc">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-broken-outbound-links/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -994,7 +994,9 @@ is gone" as a status code gets. <code>429</code> is not in that document at all;
 the client "has sent too many requests in a given amount of time". The full refusal list for a
 third-party host is <code>400</code>, <code>401</code>, <code>402</code>, <code>403</code>,
 <code>405</code>, <code>406</code>, <code>429</code>, <code>451</code> and <code>503</code>.
-Every one of them goes to the unverified finding, with an example.</p>
+Every one of them goes to the unverified finding, with an example. The same trap with your own
+server as the one answering <code>429</code> is on <a href="/how-to/tell-a-rate-limit-from-a-block/">a rate
+limit is not a block</a>.</p>
 
 <p>Two details in that rule are not obvious from the outside. <code>400</code> and
 <code>402</code> count as refusals <em>only</em> for third-party links: the same list is read
@@ -1100,7 +1102,7 @@ unhelpful: the ones that say only "click here" or "read more" are at
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>
 <a href="/">Overview</a><a href="/download/">Download Docket SEO for Mac</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
+<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/sitebulb-alternative/">vs Sitebulb</a>

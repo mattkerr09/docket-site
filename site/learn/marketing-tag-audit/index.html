@@ -14,7 +14,7 @@
 <title>Marketing tag audit: is your tracking on every page?</title>
 <meta name="description" content="The 6 tracking checks in Docket's audit (analytics coverage, ad pixels, consent timing, UTM hygiene), and the common failure you can check yourself in four minutes.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="e5d39dff2e04">
+<meta name="build-id" content="b764fbdd0ebc">
 <link rel="canonical" href="https://docketseo.app/learn/marketing-tag-audit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -974,6 +974,11 @@ overwrite the original source of the session, so a visitor who arrived from sear
 then clicked your own tagged banner is recorded as arriving from the banner. Your best
 channel gets credited to your worst.</p>
 
+<p><strong>Email list building</strong> is narrower than its name. It looks for an email tool's tag
+or a few phrases in your copy and never looks at a form, so
+<a href="/learn/email-capture-audit/">what a pass or a miss there tells you</a> is smaller than it
+sounds.</p>
+
 <h2>What we found looking at real sites</h2>
 
 <p>On 2026-08-14 we audited four live business sites (an Italian food retailer, a French
@@ -1022,7 +1027,7 @@ guess at the rest.</p>
 <h2>Further reading</h2>
 <ul>
 <li><a href="/how-to/analytics-findings-name-the-tag/">'You have no analytics' is a claim about a list</a></li>
-<li><a href="/how-to/pixels-reported-on-zero-pages/">A pixel on part of the site, and on no pages</a></li>
+<li><a href="/learn/what-docket-got-wrong/#case-pixel-zero-pages">A pixel on part of the site, and on no pages</a></li>
 </ul>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is a marketing tag audit?</h3><p>A check that the analytics and advertising tags you believe are running actually appear on every page, for every visitor, and fire at the right time. It is different from checking a tag is installed: tags are installed on templates, and sites grow pages that use other templates.</p></div><div class="faq-item"><h3>Why would a page be missing my analytics tag?</h3><p>Because tags are added to a template, not to a site. Landing pages built for a campaign, checkout flows rebuilt by a contractor, and blogs moved to a subdomain are all pages published outside the template the tag was added to. Nothing errors when it happens.</p></div><div class="faq-item"><h3>Can Docket see tags that JavaScript injects at runtime?</h3><p>Not by default. It reports what is present in the HTML it read, and says so rather than concluding a site has no analytics. Running an audit with --render executes the page's JavaScript in WebKit first and audits what a browser actually receives.</p></div><div class="faq-item"><h3>Does Docket check whether my tracking is correct?</h3><p>No. It checks what is present in the pages it read. Whether events fire on the right actions and whether revenue is passed accurately can only be tested against real sessions in your analytics account, and a crawler cannot see them.</p></div></div></section>
 </div></article>
@@ -1030,7 +1035,7 @@ guess at the rest.</p>
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>
 <a href="/">Overview</a><a href="/download/">Download Docket SEO for Mac</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
+<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/sitebulb-alternative/">vs Sitebulb</a>
