@@ -1908,10 +1908,18 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
     product rather than the dozen other things called Docket: the single
     highest-leverage piece of markup for being cited by name.
 
-    Only two entries, both verified to resolve, because /learn/sameas-entity-signals/
+    Only three entries, each verified to resolve, because /learn/sameas-entity-signals/
     says on this same site that padding the array with URLs you do not control
-    weakens the signal. There is no social presence yet; when there is, it goes
-    here and nowhere else.
+    weakens the signal. The third is the Product Hunt page for Docket SEO (checked
+    2026-10-20 in a browser: it is ours, and its "Visit website" button goes to this
+    site). There is no LinkedIn, Crunchbase, YouTube or X profile yet. Docket's own
+    ai.weak_sameas check wants three recognised profiles from its list (those four,
+    Facebook, Instagram, GitHub and a few more); it counts both github.com URLs as one
+    and does not recognise Product Hunt, so that finding stays at "1 recognised
+    profile" until real ones exist, and when they do they go here and nowhere else.
+    Do not add a profile to raise a count: one that cannot be opened and shown to be
+    ours does not belong. Checked and rejected on 2026-10-20:
+    linkedin.com/company/kerr-and-company is an estate agent, not us.
 
     ⚠️ `with_offer` IS FALSE ON PAGES THAT DO NOT SHOW THE PRICE.
     Found by Docket on this site, 2026-08-25, the first time rendering ran
@@ -1937,7 +1945,8 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
         '"logo":"' + BASE + '/icon.png",'
         '"description":"Docket makes local SEO and marketing audit software for Mac.",'
         '"sameAs":["https://github.com/mattkerr09",'
-        '"https://github.com/mattkerr09/docket-site"]},'
+        '"https://github.com/mattkerr09/docket-site",'
+        '"https://www.producthunt.com/products/docket-seo"]},'
         '{"@type":"WebSite","@id":"' + BASE + '/#site",'
         '"url":"' + BASE + '/","name":"Docket SEO",'
         '"publisher":{"@id":"' + BASE + '/#org"}},'
