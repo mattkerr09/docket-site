@@ -2,8 +2,9 @@
 """/index/ai-crawler-blocking-2026-10/: the Tranco top 10,000 read again.
 
 The August 2026 survey (`/index/ai-directives/`) read the robots.txt of the
-Tranco top 10,000. This page is the same list, the same method and the same
-definitions, two months on, and what moved.
+Tranco top 10,000. This page is the same list and the same definitions, two months
+on, read with the method as far as the August record lets us repeat it, and what moved.
+Where the two runs differ, or may, the page says so (see `_differences` below).
 
 Every number is read out of data/ai-crawler-blocking-2026-10.json through
 `facts.blk*`, which scripts/build_ai_crawler_blocking.py derives from the two
@@ -104,6 +105,114 @@ def _crawler_rows() -> str:
     return "".join(rows)
 
 
+def _updated() -> str:
+    """The dated correction: what the re-reads changed, old figure beside new.
+
+    The survey keeps, per host, the record a re-read replaced, so the figures as first
+    published on 19 October are rebuilt from those (build_ai_crawler_blocking.py) rather
+    than typed here. A headline whose percentage moved is named "now X (was Y)"; one that
+    did not is named as unchanged, with its counts, because the counts did move.
+    """
+    rr = F.blk("reread")
+    passes, fp = rr["passes"], rr["first_published"]
+    upd = F.blk_fmt(max(p["date"] for p in passes))
+    first = F.blk_date("oct")
+    p308 = next(p for p in passes if p["kind"] == "308")
+    pconn = next(p for p in passes if p["kind"] == "connect")
+    ro_old, ro = fp["oct"]["readable"], F.blk("oct", "readable")
+    changed, same = [], []
+    for key, label in (("training", "training-crawler blocking"),
+                       ("search", "search-crawler blocking"),
+                       ("google_extended", "Google-Extended blocking")):
+        old_n, new_n = fp["shares"][key], F.blk("shares", key, "oct")
+        old_p, new_p = _pct(old_n, ro_old), _pct(new_n, ro)
+        if old_p != new_p:
+            changed.append(f"{label} is now {new_p}% ({_c(new_n)} of {_c(ro)}), was {old_p}% "
+                           f"({_c(old_n)} of {_c(ro_old)}) on {first}")
+        else:
+            same.append(f"{label} at {new_p}% ({_c(new_n)} of {_c(ro)}, was {_c(old_n)} of {_c(ro_old)})")
+    old_e, new_e = fp["effect"]["training"], F.blk("cloudflare", "effect", "training")
+    old_cf = f"{old_e['lost_with_august_signature']} of {old_e['lost']}"
+    new_cf = f"{new_e['lost_with_august_signature']} of {new_e['lost']}"
+    if old_cf != new_cf:
+        changed.append(f"the sites that stopped blocking a training crawler and had the August "
+                       f"Cloudflare pattern are now {new_cf}, were {old_cf}")
+    else:
+        same.append(f"the Cloudflare-pattern share of the sites that stopped, {new_cf}")
+    if old_e["net_without_cloudflare"] != new_e["net_without_cloudflare"]:
+        changed.append(f"the net rise in training-crawler blocking without the Cloudflare-pattern sites is now "
+                       f"{new_e['net_without_cloudflare']}, was {old_e['net_without_cloudflare']}")
+    else:
+        same.append(f"the net rise without the Cloudflare-pattern sites, {new_e['net_without_cloudflare']}")
+    moved = ("What moved: " + "; ".join(changed) + "." if changed
+             else "No percentage on this page changed.")
+    stayed = (" Unchanged at one decimal, though their counts moved: " + "; ".join(same) + "."
+              if same else "")
+    return f"""<div class="callout">
+<div class="callout-title">Updated {upd}</div>
+<p>On {first} the collector stopped at a <code>308</code> redirect it did not follow for
+{p308['was_robots_308']} <code>/robots.txt</code> requests and {p308['was_llms_308']}
+<code>/llms.txt</code> requests. Another {_c(pconn['hosts'])} sites had not connected, or had fallen
+back to plain http, under an older Python and TLS library that may have read them wrongly. We read
+all {_c(p308['hosts'] + pconn['hosts'])} again on {upd}, under Python <code>3.11</code>, with
+redirects followed. The figures on this page include the new reads. The readable base is now
+{_c(ro)} files, was {_c(ro_old)}. {moved}{stayed}</p>
+<p>The new reads made {_c(p308['became_readable'] + pconn['became_readable'])} sites readable that were
+not, and {pconn['stopped_readable']} that were readable were not reached the second time. The sites
+that read fine on {first} were not read again.</p>
+</div>"""
+
+
+def _differences() -> str:
+    """One plain line for each way the two runs differ, or may, that a re-read cannot remove."""
+    sens = F.blk("sensitivity")
+    http, big, base = sens["http_read"], sens["above_august_largest"], sens["as_published"]
+    size = F.blk("size")
+
+    def tr(block):
+        return _pct(block["training"], block["readable"])
+
+    def without(block):
+        """"Without them, X% instead of Y%", or "still Y%" when the tenth did not move."""
+        if tr(block) == tr(base):
+            return f"Without them, training-crawler blocking is still {tr(base)}%."
+        return (f"Without them, training-crawler blocking is {tr(block)}% "
+                f"instead of {tr(base)}%.")
+
+    return f"""<h3>Where October may differ from August</h3>
+
+<p>We compared the two runs point by point. These are the same: the host list and its rank order,
+the {F.blk('meta', 'probed_crawlers')} crawlers asked about (the same names), the parser, the
+{timeout_text()}-second timeout and no retries as August's published method states, and how an answer
+becomes a state (a 200 is readable, any other status is no robots.txt, no answer is unreachable).
+These differ, or may:</p>
+
+<ul>
+<li><strong>The user agent.</strong> October's is explained on <a href="/bot/">the bot page</a>.
+August's string was not kept, so we cannot say the two were the same. A site that answers
+different agents differently would show it, most of all in the refusals.</li>
+<li><strong>Pace and order.</strong> October asked {F.blk('meta', 'workers')} sites at a time in a
+shuffled order and took {F.blk_minutes('oct')} minutes. August's pace and order were not recorded;
+it took {F.blk_minutes('aug')}.</li>
+<li><strong>Plain http.</strong> October tried plain http when https could not connect:
+{_c(http['hosts'])} sites, {_c(http['readable'])} of them readable. August's record does not say
+whether it did. {without(http['without']).replace('Without them', 'Without those ' + _c(http['readable']))}</li>
+<li><strong>The file-size cutoff.</strong> October did not parse files above
+{_c(F.blk('meta', 'oversize_bytes'))} bytes. August's cutoff was not kept, and lay above
+{_c(size['largest_readable_aug'])}. {big['files']} October files are larger than anything August
+parsed. {without(big['without'])}</li>
+<li><strong>The Python that ran it.</strong> October's main run used Python <code>3.9</code> and
+an older TLS library. August's records read as a newer Python's: they hold no unfollowed
+<code>308</code>. That is why the redirects and the sites that had not connected were read again
+(see the update above). A site that the older library reached and the newer one would not is
+still counted, because sites that read fine were not read again.</li>
+</ul>"""
+
+
+def timeout_text() -> str:
+    return str(int(F.blk("meta", "timeout_s")))
+
+
 def ai_crawler_blocking() -> Path:
     att = F.blk("oct", "attempted")
     ra, ro = F.blk("aug", "readable"), F.blk("oct", "readable")
@@ -155,7 +264,8 @@ def ai_crawler_blocking() -> Path:
 
     body = f"""
 <p class="lede">In {aug_month} we read the robots.txt of the Tranco top 10,000 sites. On
-{oct_date} we read the same list again, the same way. <strong>{tr_o}% of the files we could read
+{oct_date} we read the same list again, as close to the same way as the August record allows.
+<strong>{tr_o}% of the files we could read
 now block at least one AI training crawler, down from {tr_a}%.</strong> The share blocking an AI
 search crawler is {se_o}%, against {se_a}% before. The drop in training-crawler blocking has a
 clear shape: {eff_tr['lost_with_august_signature']} of the {_c(eff_tr['lost'])} sites that stopped
@@ -167,6 +277,8 @@ blocking one had, in August, the pattern of Cloudflare's managed robots.txt bloc
 <div class="stat"><b>{ge_o}%</b><span>block Google-Extended (was {ge_a}%)</span></div>
 <div class="stat"><b>{cf_share_of_lost}%</b><span>of the sites that stopped blocking training looked like Cloudflare's block</span></div>
 </div>
+
+{_updated()}
 
 <h2>The headline numbers</h2>
 
@@ -310,7 +422,8 @@ at all. The user agent names this survey and links to <a href="/bot/">the page t
 A timeout of {timeout_s} seconds, no retries, {F.blk('meta', 'workers')} different hosts at a time. Where the file
 let our user agent fetch <code>/llms.txt</code> we asked for that too, with one extra request
 for a path that cannot exist; those results are kept in the raw survey and are not reported on this page. The run took
-{F.blk_minutes('oct')} minutes. The {aug_month} run took {F.blk_minutes('aug')}.</p>
+{F.blk_minutes('oct')} minutes. The {aug_month} run took {F.blk_minutes('aug')}. The sites counted in the update at
+the top were read again with the same user agent and the same rules.</p>
 
 <p><strong>Reading the files.</strong> Docket's robots.txt parser was fixed in two ways after
 the August survey. A comment line or a blank line used to end a group, so the rules after it were
@@ -330,6 +443,8 @@ outcomes. {_pct(F.blk('aug', 'unreachable'), att)}% of hosts were unreachable in
 {_pct(unreach_o, att)}% in October; {_pct(ra, att)}% had a readable file in August and
 {_pct(ro, att)}% in October.</p>
 
+{_differences()}
+
 <h2>What this does not tell you</h2>
 
 <ul>
@@ -341,9 +456,9 @@ the size limit.</li>
 <li><strong>A readable file is not always a real one.</strong> A 200 response that turns out to
 be an error page or an empty body counts as readable and blocks nothing, as it did in August.</li>
 <li><strong>August's Cloudflare evidence is a pattern.</strong> Only October has the text.</li>
-<li><strong>The size limit was reconstructed.</strong> Files above {_c(F.blk('meta', 'oversize_bytes'))}
-bytes were not parsed. The largest readable file was {_c(size['largest_readable_aug'])} bytes in
-August and {_c(size['largest_readable_oct'])} in October.</li>
+<li><strong>The size limit was reconstructed.</strong> The largest readable file was
+{_c(size['largest_readable_aug'])} bytes in August and {_c(size['largest_readable_oct'])} in
+October.</li>
 <li><strong>One vantage point.</strong> One computer asked on one day. A site that serves
 different files to different visitors would not show it.</li>
 <li><strong>Requests, not behaviour.</strong> Nothing here says whether any crawler obeyed any
@@ -397,6 +512,7 @@ search crawlers your site blocks, and whether the server agrees with the file. T
         crumb='<a href="/">Docket</a> / <a href="/index/">The Index</a> / AI crawler blocking, October 2026',
         body=body,
         published="2026-10-19",
+        modified="2026-10-20",
         faq=faq,
     )
 

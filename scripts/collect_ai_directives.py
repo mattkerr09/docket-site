@@ -1,12 +1,41 @@
 #!/usr/bin/env python3
 """Re-run the AI-crawler directives survey on the same ten thousand hosts.
 
-    python3 scripts/collect_ai_directives.py --self-test
-    python3 scripts/collect_ai_directives.py --fetch-reference
-    python3 scripts/collect_ai_directives.py --max-hosts 400     # pilot
-    python3 scripts/collect_ai_directives.py                     # the rest
-    python3 scripts/collect_ai_directives.py --finalize
-    python3 scripts/collect_ai_directives.py --recheck
+    python3 scripts/collect_ai_directives.py --self-test         # any Python; a gate
+    PY=/Users/matthewkerr/Projects/docket-app/.venv/bin/python   # 3.11 or newer
+    $PY scripts/collect_ai_directives.py --fetch-reference
+    $PY scripts/collect_ai_directives.py --max-hosts 400         # pilot
+    $PY scripts/collect_ai_directives.py                         # the rest
+    $PY scripts/collect_ai_directives.py --finalize
+    $PY scripts/collect_ai_directives.py --recheck
+    $PY scripts/collect_ai_directives.py --reread 308            # see REREADS below
+
+PYTHON 3.11 OR NEWER, OR IT REFUSES TO COLLECT. The October 2026 run was started
+with the system `python3` on the collecting Mac, which is 3.9.6 linked to
+LibreSSL 2.8.3. Two things about that interpreter changed what the survey saw,
+and the August run (a newer Python, by its records) did not have either:
+
+  * urllib follows an HTTP 308 redirect only from Python 3.11. 108 robots.txt
+    requests and 10 /llms.txt requests ended at an unfollowed 308 and were
+    recorded as "no robots.txt" and "no file". August's records hold none.
+  * LibreSSL 2.8.3 has no TLS 1.3 and 3.9 does not raise the TLS floor to 1.2,
+    so which hosts a connection reaches differs from a Python 3.11 / OpenSSL 3 run.
+
+So collection modes exit unless sys.version_info >= (3, 11), and redirects no
+longer depend on the version at all: FollowRedirects follows 301, 302, 303, 307
+and 308 the same way, with urllib's own limits. `--self-test` runs on any
+Python, because it is what proves the redirect handler works without help from
+the interpreter.
+
+REREADS. `--reread 308` reads again, with the redirect followed, only the hosts
+whose October robots.txt or /llms.txt request answered 308. `--reread connect`
+reads again only the hosts whose October request never connected or fell back to
+plain http, because those are the hosts the older TLS stack could have got wrong.
+Both use the same user agent, the same rules (robots.txt, then /llms.txt and the
+control path only where robots.txt allows our agent) and the probe lists stored
+in the survey. Each replaces those hosts' records and validation entries in the
+committed files and records, in the survey's `reread` list, which hosts were read
+again, when (UTC) and why, with the record each one replaced.
 
 WHY THIS FILE EXISTS. The August 2026 survey (data/ai-directives-survey-2026-08
 .json.gz) was collected by a script that is in no repo and on no disk we could
@@ -82,8 +111,10 @@ import gzip
 import hashlib
 import importlib.util
 import json
+import platform
 import random
 import re
+import ssl
 import sys
 import threading
 import time
@@ -114,6 +145,22 @@ VALIDATION_BYTES = 8000
 SEED = 20261019
 WORKERS = 16
 PAUSE_BETWEEN_REQUESTS = 0.25
+MIN_PYTHON = (3, 11)
+PYTHON_HINT = "/Users/matthewkerr/Projects/docket-app/.venv/bin/python"
+
+
+def python_ok(version=None) -> bool:
+    return tuple((version or sys.version_info)[:2]) >= MIN_PYTHON
+
+
+def python_message(version=None) -> str:
+    v = ".".join(str(x) for x in tuple((version or sys.version_info)[:3]))
+    return (f"collect_ai_directives.py collects only under Python "
+            f"{MIN_PYTHON[0]}.{MIN_PYTHON[1]} or newer; this is Python {v} "
+            f"({ssl.OPENSSL_VERSION}). Older Pythons do not follow an HTTP 308 redirect and "
+            f"older TLS stacks reach different hosts, which is how the October 2026 survey "
+            f"misread 108 robots.txt files. Run it with {PYTHON_HINT}, or any 3.11 venv.")
+
 
 #: robots.py at 07104ff, and the app's current one.
 AUG_PARSER = Path(__file__).resolve().parent / "robots_2026_08_06.py"
@@ -235,12 +282,32 @@ def probe_lists(cur) -> tuple[list[str], list[str]]:
 
 # -- fetching --------------------------------------------------------------
 
+class FollowRedirects(urllib.request.HTTPRedirectHandler):
+    """Follow 301, 302, 303, 307 and 308 the same way on every Python.
+
+    urllib followed 308 only from Python 3.11, so the October 2026 survey saw 308
+    as a final answer on whichever interpreter ran it. 308 is 307's permanent
+    twin and means the same thing to a client: repeat the request, same method,
+    at the new address. So it is handled as 307 is, by urllib's own code and with
+    urllib's own limits (a repeated address, or ten hops, ends in an HTTPError).
+    """
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return super().redirect_request(req, fp, 307 if code == 308 else code,
+                                        msg, headers, newurl)
+
+    http_error_308 = urllib.request.HTTPRedirectHandler.http_error_302
+
+
+OPENER = urllib.request.build_opener(FollowRedirects())
+
+
 def get(url: str, cap: int):
     """(status, content_type, body, error). Exactly one of status/error is set."""
     req = urllib.request.Request(
         url, headers={"User-Agent": UA, "Accept": "text/plain,*/*;q=0.5"})
     try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+        with OPENER.open(req, timeout=TIMEOUT) as resp:
             body = resp.read(cap + 1)
             ctype = (resp.headers.get("Content-Type") or "").split(";")[0].strip().lower()
             return resp.status, ctype, body, None
@@ -454,7 +521,9 @@ def finalize(args) -> int:
         "probe_bots": probes,
         "ext_bots": extra,
         "method": {
-            "user_agent": UA, "timeout_s": TIMEOUT, "scheme": "https, then plain http only if https could not connect; redirects followed",
+            "user_agent": UA, "timeout_s": TIMEOUT, "scheme": "https, then plain http only if https could not connect",
+            "redirects": "301, 302, 303, 307 and 308 followed (FollowRedirects), urllib's limits",
+            "python": platform.python_version(), "tls": ssl.OPENSSL_VERSION,
             "oversize_bytes": OVERSIZE, "read_cap_bytes": READ_CAP, "seed": SEED,
             "parser": "scripts/robots_2026_08_06.py (robots.py at app commit 07104ff)",
             "cloudflare_agents": list(CF_AGENTS), "cloudflare_signals": list(CF_SIGNALS),
@@ -473,6 +542,93 @@ def finalize(args) -> int:
         scratch = args.checkpoint.with_suffix(".partial.json")
         scratch.write_text(json.dumps(out))
         print(f"partial: {len(rows)} records -> {scratch}")
+    return 0
+
+
+def _utc() -> str:
+    return time.strftime("%Y-%m-%dT%H:%M:%S+00:00", time.gmtime())
+
+
+#: The reasons recorded in the survey, one per kind of re-read.
+REREAD_WHY = {
+    "308": ("308 not followed under Python 3.9 on 19 October: urllib follows a 308 only "
+            "from Python 3.11, so the request ended at the redirect and was recorded as "
+            "no robots.txt (or no llms.txt)"),
+    "connect": ("never connected, or fell back to plain http, under Python 3.9 with "
+                "LibreSSL 2.8.3 on 19 October: that stack has no TLS 1.3 and a lower TLS "
+                "floor than Python 3.11 with OpenSSL 3, so these are the hosts it could "
+                "have read differently"),
+}
+
+
+def pick_reread(records: list[dict], which: str, already: set[str]) -> list[dict]:
+    """The October records to read again, by rule. Never a host already re-read."""
+    if which == "308":
+        chosen = [r for r in records if r.get("robots_status") == 308
+                  or r.get("llms_status") == 308]
+    elif which == "connect":
+        chosen = [r for r in records if r["state"] == "unreachable" or r.get("scheme") == "http"]
+    else:
+        raise SystemExit(f"--reread takes one of {sorted(REREAD_WHY)}")
+    return [r for r in chosen if r["host"] not in already]
+
+
+def reread(args) -> int:
+    """Read some hosts of the October survey again and merge them into the files."""
+    aug, cur = load_parsers()
+    survey = json.loads(gzip.decompress(args.out_survey.read_bytes()))
+    vals = json.loads(gzip.decompress(args.out_validation.read_bytes()))
+    passes = survey.setdefault("reread", [])
+    already = {h["host"] for p in passes for h in p["hosts"]}
+    todo = pick_reread(survey["records"], args.reread, already)
+    method = survey["method"]
+    # What the main run was, recorded once and after the fact: the system python3 of the
+    # collecting Mac (finalize() renames `timeout` errors, which is the 3.9 spelling).
+    method.setdefault("python", "3.9.6")
+    method.setdefault("tls", "LibreSSL 2.8.3 (no TLS 1.3)")
+    method["scheme"] = "https, then plain http only if https could not connect"
+    method["redirects"] = ("main run: urllib's 301, 302, 303 and 307, not 308; hosts that "
+                           "answered 308 were read again with FollowRedirects (see reread)")
+    print(f"reread {args.reread}: {len(todo)} hosts ({args.workers} workers, "
+          f"{TIMEOUT:.0f}s timeout, Python {platform.python_version()}, {ssl.OPENSSL_VERSION})",
+          flush=True)
+    if not todo:
+        return 0
+    began = _utc()
+    by_host = {r["host"]: r for r in todo}
+    probes, extra = survey["probe_bots"], survey["ext_bots"]
+    results = {}
+    t0 = time.time()
+    with ThreadPoolExecutor(args.workers) as pool:
+        futures = {pool.submit(survey_host, r["host"], r["rank"], aug, cur, probes, extra):
+                   r["host"] for r in todo}
+        for fut in as_completed(futures):
+            rec, val, _text = fut.result()
+            if rec.get("error") == "timeout":
+                rec["error"] = "TimeoutError"
+            results[futures[fut]] = (rec, val)
+    survey["records"] = [results[r["host"]][0] if r["host"] in results else r
+                         for r in survey["records"]]
+    rank = {r["host"]: r["rank"] for r in survey["records"]}
+    kept = [v for v in vals if v["host"] not in results]
+    vals = sorted(kept + [v for _, v in results.values() if v], key=lambda v: rank[v["host"]])
+    passes.append({
+        "kind": args.reread, "why": REREAD_WHY[args.reread],
+        "at": began, "finished": _utc(), "seconds": round(time.time() - t0, 1),
+        "python": platform.python_version(), "tls": ssl.OPENSSL_VERSION,
+        "user_agent": UA, "timeout_s": TIMEOUT, "workers": args.workers,
+        "hosts": [{"host": h, "rank": by_host[h]["rank"], "was": by_host[h]}
+                  for h in sorted(by_host, key=lambda h: by_host[h]["rank"])],
+    })
+    args.out_survey.write_bytes(gzip.compress(
+        json.dumps(survey, separators=(",", ":")).encode(), mtime=0))
+    args.out_validation.write_bytes(gzip.compress(
+        json.dumps(vals, separators=(",", ":")).encode(), mtime=0))
+    states = {}
+    for rec, _ in results.values():
+        states[rec["state"]] = states.get(rec["state"], 0) + 1
+    print(f"read again in {time.time() - t0:.0f}s: {states}; "
+          f"{len(vals)} llms.txt candidates in the validation file", flush=True)
     return 0
 
 
@@ -543,6 +699,101 @@ def _managed(signal="search=yes, ai-train=no, use=reference", extra=""):
     return "\n".join(lines) + "\n"
 
 
+def redirect_checks(aug, cur, probes, extra) -> list[str]:
+    """Serve real redirects from a local server and read them through survey_host.
+
+    No third-party host is involved. Every code a client has to follow is tried on
+    /robots.txt and on /llms.txt, because the October survey failed on the first for
+    108 hosts and on the second for 10 when urllib did not follow a 308. `https://`
+    is tried first against a server that speaks plain http, which is also the
+    https-then-http fallback working.
+    """
+    import http.server
+
+    mode = {"code": 308, "robots": True, "llms": True}
+    seen: list[str] = []
+
+    class Handler(http.server.BaseHTTPRequestHandler):
+        def log_message(self, *a):          # keep the test quiet
+            pass
+
+        def do_GET(self):
+            seen.append(self.path)
+            path = self.path
+            if path in ("/robots.txt", "/llms.txt"):
+                if mode["code"] == "loop":
+                    self.send_response(308)
+                    self.send_header("Location", path)
+                    self.send_header("Content-Length", "0")
+                    self.end_headers()
+                    return
+                if (path == "/robots.txt" and mode["robots"]) or (
+                        path == "/llms.txt" and mode["llms"]):
+                    self.send_response(mode["code"])
+                    self.send_header("Location", "/final" + path)
+                    self.send_header("Content-Length", "0")
+                    self.end_headers()
+                    return
+            bodies = {"/final/robots.txt": b"User-agent: *\nDisallow: /private\n"
+                                           b"\nSitemap: http://x.test/s.xml\n",
+                      "/final/llms.txt": b"# Name\n\n> A summary\n",
+                      "/robots.txt": b"User-agent: *\nDisallow: /private\n",
+                      "/llms.txt": b"# Name\n\n> A summary\n"}
+            body = bodies.get(path)
+            if body is None:
+                self.send_response(404)
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+                return
+            self.send_response(200)
+            self.send_header("Content-Type", "text/plain")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+    server = http.server.ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    host = f"127.0.0.1:{server.server_address[1]}"
+    bad: list[str] = []
+    try:
+        global PAUSE_BETWEEN_REQUESTS
+        pause, PAUSE_BETWEEN_REQUESTS = PAUSE_BETWEEN_REQUESTS, 0.0
+        for code in (301, 302, 303, 307, 308):
+            mode.update(code=code, robots=True, llms=True)
+            rec, val, text = survey_host(host, 1, aug, cur, probes, extra)
+            label = f"a {code} on robots.txt and llms.txt"
+            if rec["state"] != "ok" or rec["robots_status"] != 200:
+                bad.append(f"{label} is followed to the robots.txt "
+                           f"(got state {rec['state']}, status {rec['robots_status']})")
+            elif "Disallow: /private" not in (text or ""):
+                bad.append(f"{label} is followed, but the body read is not the file")
+            if not rec.get("llms_present") or rec.get("llms_status") != 200:
+                bad.append(f"{label} is followed to the llms.txt "
+                           f"(got status {rec.get('llms_status')})")
+            if not val or val["ctrl_status"] != 404:
+                bad.append(f"{label}: the control path was not asked, or did not 404")
+        mode.update(code=308, robots=True, llms=False)
+        rec, _, _ = survey_host(host, 1, aug, cur, probes, extra)
+        if rec["state"] != "ok":
+            bad.append("a 308 on robots.txt alone is followed (the October failure)")
+        mode.update(code=308, robots=False, llms=True)
+        rec, _, _ = survey_host(host, 1, aug, cur, probes, extra)
+        if not rec.get("llms_present"):
+            bad.append("a 308 on llms.txt alone is followed (the October failure)")
+        mode["code"] = "loop"
+        seen.clear()
+        rec, _, _ = survey_host(host, 1, aug, cur, probes, extra)
+        if rec["state"] != "no_robots" or rec["robots_status"] != 308 or len(seen) > 12:
+            bad.append(f"a 308 loop ends at urllib's limit, not forever "
+                       f"(state {rec['state']}, {len(seen)} requests)")
+    finally:
+        PAUSE_BETWEEN_REQUESTS = pause
+        server.shutdown()
+        server.server_close()
+    return bad
+
+
 def self_test() -> int:
     aug, cur = load_parsers()
     probes, extra = probe_lists(cur)
@@ -606,6 +857,13 @@ def self_test() -> int:
     check("llms: empty is not", not llms_present(200, b""))
     check("the 40 August probes are all there", len(probes) == 40)
 
+    check("python 3.9 is refused", not python_ok((3, 9, 6)))
+    check("python 3.10 is refused", not python_ok((3, 10, 14)))
+    check("python 3.11 is accepted", python_ok((3, 11, 0)))
+    check("the refusal names the venv and 3.11",
+          PYTHON_HINT in python_message((3, 9, 6)) and "3.11" in python_message((3, 9, 6)))
+    bad.extend(redirect_checks(aug, cur, probes, extra))
+
     if bad:
         print("SELF-TEST FAILED:")
         for b in bad:
@@ -621,6 +879,8 @@ def main() -> int:
     ap.add_argument("--fetch-reference", action="store_true")
     ap.add_argument("--finalize", action="store_true")
     ap.add_argument("--recheck", action="store_true")
+    ap.add_argument("--reread", choices=sorted(REREAD_WHY), default=None,
+                    help="read some October hosts again and merge them into the committed files")
     ap.add_argument("--allow-partial", action="store_true")
     ap.add_argument("--max-hosts", type=int, default=None)
     ap.add_argument("--workers", type=int, default=WORKERS)
@@ -631,6 +891,11 @@ def main() -> int:
     args = ap.parse_args()
     if args.self_test:
         return self_test()
+    if not python_ok():
+        print(python_message(), file=sys.stderr)
+        return 2
+    if args.reread:
+        return reread(args)
     if args.fetch_reference:
         return fetch_reference()
     if args.recheck:

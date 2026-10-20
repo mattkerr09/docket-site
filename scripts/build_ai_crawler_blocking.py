@@ -161,8 +161,12 @@ def verify_august(aug_ok: list[dict]) -> dict:
     return {k: got[k] for k in got}
 
 
-def build() -> dict:
-    aug_raw, oct_raw, ref = _read(AUG), _read(OCT), _read(REF)
+def build(oct_raw: dict | None = None, _inner: bool = False) -> dict:
+    """Every figure the page quotes. `oct_raw` is only passed to rebuild the figures as
+    first published, from the records the re-reads replaced (see `reread` below)."""
+    aug_raw, ref = _read(AUG), _read(REF)
+    if oct_raw is None:
+        oct_raw = _read(OCT)
     A = {r["host"]: r for r in aug_raw["records"]}
     O = {r["host"]: r for r in oct_raw["records"]}
     if set(A) != set(O):
@@ -371,7 +375,70 @@ def build() -> dict:
         t = Counter((A[h]["state"], O[h]["state"]) for h in A)
         return {f"{a}>{o}": n for (a, o), n in sorted(t.items())}
 
+    # -- re-reads, and what the figures were before them --------------------
+    #
+    # Hosts the October run read wrongly (a 308 not followed, a connection the older
+    # Python could not make) were read again and their records replaced; the survey
+    # keeps, per host, the record it replaced. The figures as first published on
+    # 19 October are rebuilt from those, so the page can say old and new side by side.
+    passes = oct_raw.get("reread", [])
+    first: dict = {}
+    for p in passes:
+        for h in p["hosts"]:
+            first.setdefault(h["host"], h["was"])
+    reread = {"hosts": len(first),
+              "passes": [{"kind": p["kind"], "at": p["at"], "date": p["at"][:10],
+                          "hosts": len(p["hosts"]), "python": p["python"], "tls": p["tls"],
+                          "was": dict(sorted(Counter(h["was"]["state"] for h in p["hosts"]).items())),
+                          "now": dict(sorted(Counter(O[h["host"]]["state"] for h in p["hosts"]).items())),
+                          "was_robots_308": sum(1 for h in p["hosts"] if h["was"].get("robots_status") == 308),
+                          "was_llms_308": sum(1 for h in p["hosts"] if h["was"].get("llms_status") == 308),
+                          "became_readable": sum(1 for h in p["hosts"]
+                                                 if h["was"]["state"] != "ok" and O[h["host"]]["state"] == "ok"),
+                          "stopped_readable": sum(1 for h in p["hosts"]
+                                                  if h["was"]["state"] == "ok" and O[h["host"]]["state"] != "ok"),
+                          "was_http": sum(1 for h in p["hosts"] if h["was"].get("scheme") == "http"),
+                          "now_http": sum(1 for h in p["hosts"] if O[h["host"]].get("scheme") == "http")}
+                         for p in passes]}
+    if passes and not _inner:
+        raw0 = {k: v for k, v in oct_raw.items() if k != "reread"}
+        raw0["records"] = [first.get(r["host"], r) for r in oct_raw["records"]]
+        b = build(oct_raw=raw0, _inner=True)
+        reread["first_published"] = {
+            "oct": b["oct"], "panel": b["panel"],
+            "shares": {k: v["oct"] for k, v in b["shares"].items()},
+            "change": b["change"], "effect": b["cloudflare"]["effect"],
+            "marker_all": b["cloudflare"]["october"]["marker_all"],
+            "signature_all": b["cloudflare"]["october"]["signature_all"],
+            "refusal": b["refusal"], "llms": b["llms"]}
+
+    # -- two differences from August that a re-read cannot remove ----------------
+    #
+    # October read some hosts over plain http after https failed to connect; the
+    # August records do not say whether August did. And October's file-size cutoff is
+    # a rebuild. Each is quantified here, so the page can say how far it could move.
+    http_ok = [r for r in oct_ok if r.get("scheme") == "http"]
+    http_all = [r for r in O.values() if r.get("scheme") == "http"]
+    above = [r for r in oct_ok if r["robots_bytes"] > size["largest_readable_aug"]]
+
+    def block(group):
+        return {"readable": len(group), "training": count(group, METRICS["training"]),
+                "search": count(group, METRICS["search"]),
+                "google_extended": count(group, METRICS["google_extended"])}
+
+    sensitivity = {
+        "http_read": {"hosts": len(http_all), "readable": len(http_ok),
+                      "unreachable_in_august": sum(1 for r in http_all if A[r["host"]]["state"] == "unreachable"),
+                      "readable_in_august": sum(1 for r in http_all if A[r["host"]]["state"] == "ok"),
+                      "without": block([r for r in oct_ok if r.get("scheme") != "http"])},
+        "above_august_largest": {"files": len(above),
+                                 "without": block([r for r in oct_ok
+                                                   if r["robots_bytes"] <= size["largest_readable_aug"]])},
+        "as_published": block(oct_ok),
+    }
+
     return {
+        "reread": reread, "sensitivity": sensitivity,
         "meta": {
             "aug_collected": aug_raw["collected"], "oct_collected": oct_raw["collected"],
             "oct_finished": oct_raw.get("finished"), "oct_duration_s": oct_raw["duration_s"],

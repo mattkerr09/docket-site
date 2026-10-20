@@ -18,106 +18,106 @@
  },
  "change": {
   "any_of_nine": {
-   "both": 1070,
-   "gained": 68,
-   "lost": 165,
-   "neither": 4460
+   "both": 1089,
+   "gained": 69,
+   "lost": 169,
+   "neither": 4562
   },
   "bot:Amazonbot": {
-   "both": 605,
+   "both": 617,
    "gained": 57,
-   "lost": 165,
-   "neither": 4936
+   "lost": 169,
+   "neither": 5046
   },
   "bot:Applebot-Extended": {
-   "both": 589,
+   "both": 600,
    "gained": 54,
-   "lost": 161,
-   "neither": 4959
+   "lost": 165,
+   "neither": 5070
   },
   "bot:Bytespider": {
-   "both": 801,
+   "both": 816,
    "gained": 66,
-   "lost": 164,
-   "neither": 4732
+   "lost": 168,
+   "neither": 4839
   },
   "bot:CCBot": {
-   "both": 826,
+   "both": 841,
    "gained": 51,
-   "lost": 186,
-   "neither": 4700
+   "lost": 190,
+   "neither": 4807
   },
   "bot:Claude-SearchBot": {
-   "both": 360,
+   "both": 366,
    "gained": 22,
    "lost": 23,
-   "neither": 5358
+   "neither": 5478
   },
   "bot:ClaudeBot": {
-   "both": 726,
+   "both": 740,
    "gained": 50,
-   "lost": 170,
-   "neither": 4817
+   "lost": 173,
+   "neither": 4926
   },
   "bot:GPTBot": {
-   "both": 788,
-   "gained": 48,
-   "lost": 168,
-   "neither": 4759
+   "both": 804,
+   "gained": 49,
+   "lost": 171,
+   "neither": 4865
   },
   "bot:Google-Extended": {
-   "both": 634,
+   "both": 647,
    "gained": 55,
-   "lost": 172,
-   "neither": 4902
+   "lost": 176,
+   "neither": 5011
   },
   "bot:OAI-SearchBot": {
-   "both": 367,
+   "both": 376,
    "gained": 22,
    "lost": 25,
-   "neither": 5349
+   "neither": 5466
   },
   "bot:PerplexityBot": {
-   "both": 550,
+   "both": 562,
    "gained": 28,
    "lost": 35,
-   "neither": 5150
+   "neither": 5264
   },
   "bot:meta-externalagent": {
-   "both": 622,
+   "both": 635,
    "gained": 61,
-   "lost": 186,
-   "neither": 4894
+   "lost": 190,
+   "neither": 5003
   },
   "google_extended": {
-   "both": 634,
+   "both": 647,
    "gained": 55,
-   "lost": 172,
-   "neither": 4902
+   "lost": 176,
+   "neither": 5011
   },
   "search": {
-   "both": 572,
+   "both": 584,
    "gained": 30,
    "lost": 33,
-   "neither": 5128
+   "neither": 5242
   },
   "search_and_training": {
-   "both": 561,
+   "both": 572,
    "gained": 26,
    "lost": 35,
-   "neither": 5141
+   "neither": 5256
   },
   "training": {
-   "both": 1059,
-   "gained": 64,
-   "lost": 167,
-   "neither": 4473
+   "both": 1077,
+   "gained": 65,
+   "lost": 171,
+   "neither": 4576
   },
   "training_only": {
-   "both": 473,
-   "gained": 63,
-   "lost": 157,
-   "neither": 5070
+   "both": 480,
+   "gained": 64,
+   "lost": 161,
+   "neither": 5184
   }
  },
  "cloudflare": {
@@ -132,7 +132,7 @@
     "user_agent_lines": 10
    },
    "signature_all": 276,
-   "signature_panel": 194
+   "signature_panel": 198
   },
   "doc": {
    "begin_marker": "# BEGIN Cloudflare Managed content",
@@ -153,14 +153,14 @@
   ],
   "effect": {
    "any_of_nine": {
-    "gained": 68,
+    "gained": 69,
     "gained_with_marker": 7,
     "gained_with_marker_or_signature": 8,
-    "gained_without": 60,
-    "lost": 165,
-    "lost_with_august_signature": 125,
-    "lost_without": 40,
-    "net": -97,
+    "gained_without": 61,
+    "lost": 169,
+    "lost_with_august_signature": 128,
+    "lost_without": 41,
+    "net": -100,
     "net_without_cloudflare": 20
    },
    "google_extended": {
@@ -168,11 +168,11 @@
     "gained_with_marker": 8,
     "gained_with_marker_or_signature": 10,
     "gained_without": 45,
-    "lost": 172,
-    "lost_with_august_signature": 136,
-    "lost_without": 36,
-    "net": -117,
-    "net_without_cloudflare": 9
+    "lost": 176,
+    "lost_with_august_signature": 139,
+    "lost_without": 37,
+    "net": -121,
+    "net_without_cloudflare": 8
    },
    "search": {
     "gained": 30,
@@ -186,14 +186,14 @@
     "net_without_cloudflare": -3
    },
    "training": {
-    "gained": 64,
+    "gained": 65,
     "gained_with_marker": 7,
     "gained_with_marker_or_signature": 8,
-    "gained_without": 56,
-    "lost": 167,
-    "lost_with_august_signature": 126,
-    "lost_without": 41,
-    "net": -103,
+    "gained_without": 57,
+    "lost": 171,
+    "lost_with_august_signature": 129,
+    "lost_without": 42,
+    "net": -106,
     "net_without_cloudflare": 15
    }
   },
@@ -201,16 +201,16 @@
    "agents_in_block": {
     "7": 1,
     "8": 1,
-    "9": 1,
+    "9": 2,
     "10": 1,
     "31": 48,
     "44": 1,
     "45": 4
    },
-   "content_signal_all": 200,
+   "content_signal_all": 205,
    "kinds": {
     "eight": 1,
-    "eight_plus_rendering": 1,
+    "eight_plus_rendering": 2,
     "longer": 54,
     "other": 1
    },
@@ -245,7 +245,7 @@
     ],
     "user_agent_lines": 33
    },
-   "marker_all": 57,
+   "marker_all": 58,
    "modal_block": {
     "crawlers": 31,
     "files": 48
@@ -253,22 +253,22 @@
    "policy_comment_only": 53,
    "signals": {
     "None": 1,
-    "search=yes,ai-train=no": 2,
+    "search=yes,ai-train=no": 3,
     "search=yes,ai-train=no,use=reference": 54
    },
-   "signature_all": 69,
-   "signature_panel": 63,
+   "signature_all": 70,
+   "signature_panel": 64,
    "verbatim_documented": 1
   },
   "signature_flow": {
    "gained_signature": 14,
-   "gone_no_robots_other": 20,
+   "gone_no_robots_other": 18,
    "gone_oversize": 3,
-   "gone_refused": 41,
-   "gone_still_readable": 145,
-   "gone_still_readable_no_marker": 145,
-   "gone_unreachable": 18,
-   "kept": 49
+   "gone_refused": 42,
+   "gone_still_readable": 148,
+   "gone_still_readable_no_marker": 148,
+   "gone_unreachable": 15,
+   "kept": 50
   }
  },
  "crawlers": {
@@ -311,7 +311,7 @@
  },
  "llms": {
   "present_aug": 866,
-  "present_oct": 948
+  "present_oct": 984
  },
  "meta": {
   "aug_collected": "2026-08-07T06:42:01+00:00",
@@ -321,7 +321,7 @@
   "oct_collected": "2026-10-19T16:18:12+00:00",
   "oct_duration_s": 1565.6,
   "oct_finished": "2026-10-19T16:46:15+00:00",
-  "oct_input": "c9c4b570f2e310a5",
+  "oct_input": "9ec064086921c5ff",
   "oversize_bytes": 262144,
   "population": "Tranco top 10000 (list PYG5J, https://tranco-list.eu/download/PYG5J/10000)",
   "probed_crawlers": 40,
@@ -330,40 +330,40 @@
   "workers": 16
  },
  "movement": {
-  "fewer_blocked": 226,
+  "fewer_blocked": 230,
   "mixed": 24,
-  "more_blocked": 207,
-  "same": 5306
+  "more_blocked": 212,
+  "same": 5423
  },
  "naming": {
   "aug": 2323,
-  "aug_panel": 2126,
-  "oct": 2141,
-  "oct_panel": 2066,
+  "aug_panel": 2165,
+  "oct": 2186,
+  "oct_panel": 2106,
   "reference_tokens": 193
  },
  "oct": {
   "attempted": 10000,
-  "no_robots": 1601,
-  "oversize": 118,
-  "readable": 6039,
-  "refused": 776,
-  "unreachable": 2242
+  "no_robots": 1510,
+  "oversize": 122,
+  "readable": 6171,
+  "refused": 785,
+  "unreachable": 2197
  },
  "panel": {
-  "n": 5763,
-  "readable_aug_only": 473,
-  "readable_oct_only": 276
+  "n": 5889,
+  "readable_aug_only": 347,
+  "readable_oct_only": 282
  },
  "parser": {
-  "any_aug_parser": 1196,
-  "any_current_parser": 1221,
+  "any_aug_parser": 1219,
+  "any_current_parser": 1244,
   "files_read_differently": 33,
   "files_with_bom": 46,
-  "search_aug_parser": 634,
-  "search_current_parser": 656,
-  "training_aug_parser": 1180,
-  "training_current_parser": 1207
+  "search_aug_parser": 648,
+  "search_current_parser": 670,
+  "training_aug_parser": 1202,
+  "training_current_parser": 1229
  },
  "recheck": {
   "checked": "2026-10-19",
@@ -380,158 +380,443 @@
  },
  "refusal": {
   "aug": 643,
-  "oct": 776,
+  "oct": 785,
   "other_readable": 5960,
-  "other_readable_now_refused": 166,
-  "readable_aug_now_refused": 207,
+  "other_readable_now_refused": 167,
+  "readable_aug_now_refused": 209,
   "refused_403_aug": 598,
-  "refused_403_oct": 725,
-  "refused_aug_now_readable": 78,
-  "signature_hosts_now_refused": 41
+  "refused_403_oct": 734,
+  "refused_aug_now_readable": 81,
+  "signature_hosts_now_refused": 42
+ },
+ "reread": {
+  "first_published": {
+   "change": {
+    "any_of_nine": {
+     "both": 1070,
+     "gained": 68,
+     "lost": 165,
+     "neither": 4460
+    },
+    "bot:Amazonbot": {
+     "both": 605,
+     "gained": 57,
+     "lost": 165,
+     "neither": 4936
+    },
+    "bot:Applebot-Extended": {
+     "both": 589,
+     "gained": 54,
+     "lost": 161,
+     "neither": 4959
+    },
+    "bot:Bytespider": {
+     "both": 801,
+     "gained": 66,
+     "lost": 164,
+     "neither": 4732
+    },
+    "bot:CCBot": {
+     "both": 826,
+     "gained": 51,
+     "lost": 186,
+     "neither": 4700
+    },
+    "bot:Claude-SearchBot": {
+     "both": 360,
+     "gained": 22,
+     "lost": 23,
+     "neither": 5358
+    },
+    "bot:ClaudeBot": {
+     "both": 726,
+     "gained": 50,
+     "lost": 170,
+     "neither": 4817
+    },
+    "bot:GPTBot": {
+     "both": 788,
+     "gained": 48,
+     "lost": 168,
+     "neither": 4759
+    },
+    "bot:Google-Extended": {
+     "both": 634,
+     "gained": 55,
+     "lost": 172,
+     "neither": 4902
+    },
+    "bot:OAI-SearchBot": {
+     "both": 367,
+     "gained": 22,
+     "lost": 25,
+     "neither": 5349
+    },
+    "bot:PerplexityBot": {
+     "both": 550,
+     "gained": 28,
+     "lost": 35,
+     "neither": 5150
+    },
+    "bot:meta-externalagent": {
+     "both": 622,
+     "gained": 61,
+     "lost": 186,
+     "neither": 4894
+    },
+    "google_extended": {
+     "both": 634,
+     "gained": 55,
+     "lost": 172,
+     "neither": 4902
+    },
+    "search": {
+     "both": 572,
+     "gained": 30,
+     "lost": 33,
+     "neither": 5128
+    },
+    "search_and_training": {
+     "both": 561,
+     "gained": 26,
+     "lost": 35,
+     "neither": 5141
+    },
+    "training": {
+     "both": 1059,
+     "gained": 64,
+     "lost": 167,
+     "neither": 4473
+    },
+    "training_only": {
+     "both": 473,
+     "gained": 63,
+     "lost": 157,
+     "neither": 5070
+    }
+   },
+   "effect": {
+    "any_of_nine": {
+     "gained": 68,
+     "gained_with_marker": 7,
+     "gained_with_marker_or_signature": 8,
+     "gained_without": 60,
+     "lost": 165,
+     "lost_with_august_signature": 125,
+     "lost_without": 40,
+     "net": -97,
+     "net_without_cloudflare": 20
+    },
+    "google_extended": {
+     "gained": 55,
+     "gained_with_marker": 8,
+     "gained_with_marker_or_signature": 10,
+     "gained_without": 45,
+     "lost": 172,
+     "lost_with_august_signature": 136,
+     "lost_without": 36,
+     "net": -117,
+     "net_without_cloudflare": 9
+    },
+    "search": {
+     "gained": 30,
+     "gained_with_marker": 1,
+     "gained_with_marker_or_signature": 1,
+     "gained_without": 29,
+     "lost": 33,
+     "lost_with_august_signature": 1,
+     "lost_without": 32,
+     "net": -3,
+     "net_without_cloudflare": -3
+    },
+    "training": {
+     "gained": 64,
+     "gained_with_marker": 7,
+     "gained_with_marker_or_signature": 8,
+     "gained_without": 56,
+     "lost": 167,
+     "lost_with_august_signature": 126,
+     "lost_without": 41,
+     "net": -103,
+     "net_without_cloudflare": 15
+    }
+   },
+   "llms": {
+    "present_aug": 866,
+    "present_oct": 948
+   },
+   "marker_all": 57,
+   "oct": {
+    "attempted": 10000,
+    "no_robots": 1601,
+    "oversize": 118,
+    "readable": 6039,
+    "refused": 776,
+    "unreachable": 2242
+   },
+   "panel": {
+    "n": 5763,
+    "readable_aug_only": 473,
+    "readable_oct_only": 276
+   },
+   "refusal": {
+    "aug": 643,
+    "oct": 776,
+    "other_readable": 5960,
+    "other_readable_now_refused": 166,
+    "readable_aug_now_refused": 207,
+    "refused_403_aug": 598,
+    "refused_403_oct": 725,
+    "refused_aug_now_readable": 78,
+    "signature_hosts_now_refused": 41
+   },
+   "shares": {
+    "any_of_nine": 1196,
+    "bot:Amazonbot": 705,
+    "bot:Applebot-Extended": 681,
+    "bot:Bytespider": 912,
+    "bot:CCBot": 927,
+    "bot:Claude-SearchBot": 409,
+    "bot:ClaudeBot": 818,
+    "bot:GPTBot": 888,
+    "bot:Google-Extended": 734,
+    "bot:OAI-SearchBot": 417,
+    "bot:PerplexityBot": 609,
+    "bot:meta-externalagent": 723,
+    "google_extended": 734,
+    "search": 634,
+    "search_and_training": 618,
+    "training": 1180,
+    "training_only": 562
+   },
+   "signature_all": 69
+  },
+  "hosts": 2694,
+  "passes": [
+   {
+    "at": "2026-10-20T01:44:50+00:00",
+    "became_readable": 93,
+    "date": "2026-10-20",
+    "hosts": 118,
+    "kind": "308",
+    "now": {
+     "no_robots": 6,
+     "ok": 103,
+     "oversize": 2,
+     "unreachable": 7
+    },
+    "now_http": 1,
+    "python": "3.11.16",
+    "stopped_readable": 0,
+    "tls": "OpenSSL 3.5.8 25 Aug 2026",
+    "was": {
+     "no_robots": 108,
+     "ok": 10
+    },
+    "was_http": 4,
+    "was_llms_308": 10,
+    "was_robots_308": 108
+   },
+   {
+    "at": "2026-10-20T01:46:00+00:00",
+    "became_readable": 43,
+    "date": "2026-10-20",
+    "hosts": 2576,
+    "kind": "connect",
+    "now": {
+     "no_robots": 174,
+     "ok": 194,
+     "oversize": 18,
+     "unreachable": 2190
+    },
+    "now_http": 317,
+    "python": "3.11.16",
+    "stopped_readable": 4,
+    "tls": "OpenSSL 3.5.8 25 Aug 2026",
+    "was": {
+     "no_robots": 163,
+     "ok": 155,
+     "oversize": 16,
+     "unreachable": 2242
+    },
+    "was_http": 334,
+    "was_llms_308": 0,
+    "was_robots_308": 0
+   }
+  ]
+ },
+ "sensitivity": {
+  "above_august_largest": {
+   "files": 7,
+   "without": {
+    "google_extended": 748,
+    "readable": 6164,
+    "search": 648,
+    "training": 1202
+   }
+  },
+  "as_published": {
+   "google_extended": 748,
+   "readable": 6171,
+   "search": 648,
+   "training": 1202
+  },
+  "http_read": {
+   "hosts": 318,
+   "readable": 146,
+   "readable_in_august": 67,
+   "unreachable_in_august": 160,
+   "without": {
+    "google_extended": 729,
+    "readable": 6025,
+    "search": 630,
+    "training": 1180
+   }
+  }
  },
  "shares": {
   "any_of_nine": {
    "aug": 1381,
-   "aug_panel": 1235,
-   "oct": 1196,
-   "oct_current_parser": 1221,
-   "oct_panel": 1138
+   "aug_panel": 1258,
+   "oct": 1219,
+   "oct_current_parser": 1244,
+   "oct_panel": 1158
   },
   "bot:Amazonbot": {
    "aug": 897,
-   "aug_panel": 770,
-   "oct": 705,
-   "oct_current_parser": 730,
-   "oct_panel": 662
+   "aug_panel": 786,
+   "oct": 719,
+   "oct_current_parser": 744,
+   "oct_panel": 674
   },
   "bot:Applebot-Extended": {
    "aug": 869,
-   "aug_panel": 750,
-   "oct": 681,
-   "oct_current_parser": 704,
-   "oct_panel": 643
+   "aug_panel": 765,
+   "oct": 694,
+   "oct_current_parser": 717,
+   "oct_panel": 654
   },
   "bot:Bytespider": {
    "aug": 1096,
-   "aug_panel": 965,
-   "oct": 912,
-   "oct_current_parser": 937,
-   "oct_panel": 867
+   "aug_panel": 984,
+   "oct": 930,
+   "oct_current_parser": 955,
+   "oct_panel": 882
   },
   "bot:CCBot": {
    "aug": 1147,
-   "aug_panel": 1012,
-   "oct": 927,
-   "oct_current_parser": 951,
-   "oct_panel": 877
+   "aug_panel": 1031,
+   "oct": 945,
+   "oct_current_parser": 969,
+   "oct_panel": 892
   },
   "bot:Claude-SearchBot": {
    "aug": 411,
-   "aug_panel": 383,
-   "oct": 409,
-   "oct_current_parser": 430,
-   "oct_panel": 382
+   "aug_panel": 389,
+   "oct": 417,
+   "oct_current_parser": 438,
+   "oct_panel": 388
   },
   "bot:ClaudeBot": {
    "aug": 1023,
-   "aug_panel": 896,
-   "oct": 818,
-   "oct_current_parser": 844,
-   "oct_panel": 776
+   "aug_panel": 913,
+   "oct": 835,
+   "oct_current_parser": 861,
+   "oct_panel": 790
   },
   "bot:GPTBot": {
    "aug": 1093,
-   "aug_panel": 956,
-   "oct": 888,
-   "oct_current_parser": 912,
-   "oct_panel": 836
+   "aug_panel": 975,
+   "oct": 906,
+   "oct_current_parser": 930,
+   "oct_panel": 853
   },
   "bot:Google-Extended": {
    "aug": 933,
-   "aug_panel": 806,
-   "oct": 734,
-   "oct_current_parser": 754,
-   "oct_panel": 689
+   "aug_panel": 823,
+   "oct": 748,
+   "oct_current_parser": 768,
+   "oct_panel": 702
   },
   "bot:OAI-SearchBot": {
    "aug": 425,
-   "aug_panel": 392,
-   "oct": 417,
-   "oct_current_parser": 436,
-   "oct_panel": 389
+   "aug_panel": 401,
+   "oct": 427,
+   "oct_current_parser": 446,
+   "oct_panel": 398
   },
   "bot:PerplexityBot": {
    "aug": 626,
-   "aug_panel": 585,
-   "oct": 609,
-   "oct_current_parser": 630,
-   "oct_panel": 578
+   "aug_panel": 597,
+   "oct": 622,
+   "oct_current_parser": 643,
+   "oct_panel": 590
   },
   "bot:meta-externalagent": {
    "aug": 931,
-   "aug_panel": 808,
-   "oct": 723,
-   "oct_current_parser": 745,
-   "oct_panel": 683
+   "aug_panel": 825,
+   "oct": 738,
+   "oct_current_parser": 760,
+   "oct_panel": 696
   },
   "google_extended": {
    "aug": 933,
-   "aug_panel": 806,
-   "oct": 734,
-   "oct_current_parser": 754,
-   "oct_panel": 689
+   "aug_panel": 823,
+   "oct": 748,
+   "oct_current_parser": 768,
+   "oct_panel": 702
   },
   "search": {
    "aug": 646,
-   "aug_panel": 605,
-   "oct": 634,
-   "oct_current_parser": 656,
-   "oct_panel": 602
+   "aug_panel": 617,
+   "oct": 648,
+   "oct_current_parser": 670,
+   "oct_panel": 614
   },
   "search_and_training": {
    "aug": 636,
-   "aug_panel": 596,
-   "oct": 618,
-   "oct_current_parser": 642,
-   "oct_panel": 587
+   "aug_panel": 607,
+   "oct": 631,
+   "oct_current_parser": 655,
+   "oct_panel": 598
   },
   "training": {
    "aug": 1371,
-   "aug_panel": 1226,
-   "oct": 1180,
-   "oct_current_parser": 1207,
-   "oct_panel": 1123
+   "aug_panel": 1248,
+   "oct": 1202,
+   "oct_current_parser": 1229,
+   "oct_panel": 1142
   },
   "training_only": {
    "aug": 735,
-   "aug_panel": 630,
-   "oct": 562,
-   "oct_current_parser": 565,
-   "oct_panel": 536
+   "aug_panel": 641,
+   "oct": 571,
+   "oct_current_parser": 574,
+   "oct_panel": 544
   }
  },
  "size": {
   "largest_readable_aug": 246207,
   "largest_readable_oct": 260088,
-  "oversize_oct": 118,
+  "oversize_oct": 122,
   "smallest_oversize_oct": 263266
  },
  "state_transitions": {
-  "no_robots>no_robots": 1128,
-  "no_robots>ok": 129,
-  "no_robots>oversize": 2,
-  "no_robots>unreachable": 57,
-  "ok>no_robots": 352,
-  "ok>ok": 5763,
+  "no_robots>no_robots": 1134,
+  "no_robots>ok": 133,
+  "no_robots>oversize": 3,
+  "no_robots>unreachable": 46,
+  "ok>no_robots": 262,
+  "ok>ok": 5889,
   "ok>oversize": 11,
-  "ok>unreachable": 110,
-  "oversize>no_robots": 10,
-  "oversize>ok": 9,
-  "oversize>oversize": 91,
-  "oversize>unreachable": 6,
-  "unreachable>no_robots": 111,
-  "unreachable>ok": 138,
-  "unreachable>oversize": 14,
-  "unreachable>unreachable": 2069
+  "ok>unreachable": 74,
+  "oversize>no_robots": 7,
+  "oversize>ok": 10,
+  "oversize>oversize": 96,
+  "oversize>unreachable": 3,
+  "unreachable>no_robots": 107,
+  "unreachable>ok": 139,
+  "unreachable>oversize": 12,
+  "unreachable>unreachable": 2074
  }
 }

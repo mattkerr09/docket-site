@@ -50,6 +50,13 @@ echo "==> derived-data freshness gate"
 # "17 of the 35 test files" for six days against a repo with 74 of 145.
 "$PY" scripts/verify_derived_data.py
 
+echo "==> collector gate"
+# The October 2026 survey ran under Python 3.9, whose urllib does not follow an HTTP 308
+# redirect, and read 108 robots.txt files as "no robots.txt". This serves real redirects
+# from a local server (no third-party host) and asserts the collector reads through each,
+# on whatever Python runs this gate; the collector itself refuses to collect below 3.11.
+"$PY" scripts/collect_ai_directives.py --self-test
+
 echo "==> recordings gate"
 # The home page showed a 1.3.94 recording ("136 pages, 112 seconds") while the
 # build audited 152 pages in about 54: no gate compared a recording with the
