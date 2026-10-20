@@ -865,6 +865,10 @@ def rival_annual_low(slug: str) -> int:
     return _annual(slug)[0]
 
 
+def rival_annual_high(slug: str) -> int:
+    return _annual(slug)[1]
+
+
 def annual_is_derived(slug: str) -> bool:
     """True when `annual_low` is monthly x12 rather than a price the vendor charges.
 

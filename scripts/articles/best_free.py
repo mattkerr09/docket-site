@@ -63,7 +63,7 @@ size cannot be inspected page by page even by script.</p>
 
 <p>Its Core Web Vitals report is field data: "the data for the Core Web Vitals report comes
 from the CrUX report", gathered from real visitors. That is more truthful than any simulation, and it needs enough traffic to exist. How much is not published: "An exact number is not
-provided."</p>
+disclosed."</p>
 
 <p><strong>And it only works on sites you own.</strong> You verify the property first, which
 makes it useless for looking at a competitor, or at a site you are about to take on as a

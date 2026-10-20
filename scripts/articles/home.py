@@ -429,8 +429,9 @@ def body() -> str:
 <div class="sec-head">
   <h2>Four things a crawler will not tell you.</h2>
   <p>Technical SEO is table stakes, and it is most of what a crawler is built to return.
-  These four are where the money actually leaks. None of them appears in the feature list
-  Screaming Frog or Sitebulb publishes, and elsewhere each is a separate subscription.
+  These four are where the money actually leaks. Three of them appear in neither the Screaming Frog
+  nor the Sitebulb feature list, and the fourth appears in Screaming Frog's only as a user-agent
+  setting. Elsewhere each is a separate subscription.
   We <a href="/vs/">checked their own documentation</a> on {HOME_CLAIM_CHECKED_HUMAN}.</p>
 </div>
 <div class="grid-3">

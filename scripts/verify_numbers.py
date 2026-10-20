@@ -115,7 +115,9 @@ ALLOWED = {
     "61.6": "the share of titles it found rewritten, same reading",
     # -- Semrush, read from their own pages and quoted in VERIFIED ----------
     "20,000": ("Semrush's per-audit crawl allowance on Pro and Guru, from "
-               "their KB article 338, quoted and linked in comparisons.VERIFIED"),
+               "their Site Audit KB article (kb/31-site-audit, which the older "
+               "kb/338 address now redirects to), quoted and linked in "
+               "comparisons.VERIFIED"),
     "300,000": ("Semrush's monthly page allowance on Guru, same KB article and "
                 "the same VERIFIED entry"),
     "1,000,000": ("Semrush's monthly page allowance on Business, same source"),
@@ -123,6 +125,15 @@ ALLOWED = {
                "pricing page as quoted in VERIFIED"),
     "1,668": ("$139 x 12 — arithmetic on the monthly price above, shown in the "
               "prose so a reader can check the multiplication"),
+    # -- vendor figures re-read on 2026-10-19 and quoted in VERIFIED --------
+    "50,000": ("Sitechecker's Standard-plan crawl-page total, read from the "
+               "rendered plan table at sitechecker.pro/account/plans/ and "
+               "recorded in comparisons.VERIFIED['sitechecker']"),
+    "200,000": ("Sitechecker's Premium-plan crawl-page total, same source and "
+                "same VERIFIED entry"),
+    "399": ("Profound's agencies-view price for a full client workspace "
+            "add-on, $399 a month, read from tryprofound.com/pricing and "
+            "recorded in comparisons.VERIFIED['profound']"),
     # -- Google Search Console's published API limits ----------------------
     "2,000": ('the URL Inspection API quota, "2000 QPD", from Google\'s '
               "published limits page and quoted in VERIFIED"),

@@ -83,7 +83,9 @@ CHECKED_ON_HUMAN = "10 August 2026"
 #:
 #: Found by fetching the deployed page and reading it, not from the source.
 CHECKED_HUMAN: dict[str, str] = {
-    "scrutiny": "15 August 2026",
+    # Re-read 2026-10-19: the product page's own SoftwareApplication schema again (operatingSystem "MacOS", the
+    # "There are no plans" answer for Windows, the 149 USD offer, the featureList). Unchanged.
+    "scrutiny": "19 October 2026",
     "se-ranking-vs-screaming-frog": "8 October 2026",
     # Re-read 2026-09-14: crawl-credit allowances unchanged since 2026-08-10,
     # plus the per-project page caps and the pay-as-you-go overage clause, which
@@ -100,22 +102,58 @@ CHECKED_HUMAN: dict[str, str] = {
     # prices unchanged and added the monthly crawl allowances, which are the
     # thing this page actually turns on.
     "seoptimer": "8 October 2026",
-    "sitechecker": "16 September 2026",
-    "profound": "16 September 2026",
-    "jetoctopus": "16 September 2026",
+    # Re-read 2026-10-19 on the rendered plans page: the three plan prices and their annual rates, the "all plans
+    # include" list, the five AI models and the core tools were unchanged. The detailed plan table also lists a
+    # crawl-page total per plan, which the page had said Sitechecker does not publish; that is now stated and sourced.
+    "sitechecker": "19 October 2026",
+    # Re-read 2026-10-19, both the brands and the agencies views: the free Trial is now 50 prompts a day for 7 days
+    # across three engines (it was 10 prompts run once on ChatGPT), and the agencies view prints add-on prices
+    # (the brands view still prints none). Both are corrected below.
+    "profound": "19 October 2026",
+    # Re-read 2026-10-19, both the In-House and the Agencies tabs, billed annually and quarterly: the plans are now
+    # Growth, Pro and Ultra plus Unlimited, at different prices and allowances from the two tiers read on 16 September.
+    # Every claim below was rewritten from that read.
+    "jetoctopus": "19 October 2026",
     "crawlraven": "19 October 2026",
-    "crawler-sh": "16 September 2026",
+    # Re-read 2026-10-19: the home page's own text (the free and Pro tiers, the 50 and 10,000 page caps, the $99 a
+    # year price for the CLI and for the desktop app, the 16-category and 24-check wording, the JavaScript engine and
+    # robots.txt paragraphs). The paid cap is stated against the CLI tier only, which is all the page states.
+    "crawler-sh": "19 October 2026",
+    # Re-read 2026-10-19 from each source named in the claim list. Until now these had no date of their own and
+    # printed the shared 10 August 2026 date.
+    # Screaming Frog: the product page (Chromium WRS, 500 URLs, Unlimited with its memory footnote, the Free vs Paid
+    # table, and its User-Agent line, which now names AI crawlers and is sourced below) and the pricing page in its
+    # USD view ($279 a licence for 1 to 4, per user).
+    "screaming-frog": "19 October 2026",
+    # Sitebulb: the features page (crawl maps, Prioritized Hints). The prices were read on the rendered pricing
+    # page: Lite $18 a month or $180 a year, Pro $42 a month or $425 a year.
+    "sitebulb": "19 October 2026",
+    # Semrush: the pricing page (the Advanced plan is now sold by demo, so the top published plan is Pro+ at $299),
+    # the Site Audit issues list, the Site Audit knowledge base article (its old address now redirects), the Site
+    # Audit feature page and the technical SEO page.
+    "semrush": "19 October 2026",
+    # Lighthouse: the repository's default config (the SEO category is unchanged; there is now also an agentic
+    # browsing category), the Lighthouse overview, the PageSpeed Insights page and the Core Web Vitals report page.
+    "lighthouse": "19 October 2026",
+    # Search Console: the API limits page, the two Search Console help pages, the Core Web Vitals report page and the
+    # Chrome UX Report methodology page. All unchanged.
+    "search-console": "19 October 2026",
 }
 CHECKED_ISO: dict[str, str] = {
-    "scrutiny": "2026-08-15",
+    "scrutiny": "2026-10-19",
     "se-ranking-vs-screaming-frog": "2026-10-08",
     "ahrefs": "2026-10-19",
     "seoptimer": "2026-10-08",
-    "sitechecker": "2026-09-16",
-    "profound": "2026-09-16",
-    "jetoctopus": "2026-09-16",
+    "sitechecker": "2026-10-19",
+    "profound": "2026-10-19",
+    "jetoctopus": "2026-10-19",
     "crawlraven": "2026-10-19",
-    "crawler-sh": "2026-09-16",
+    "crawler-sh": "2026-10-19",
+    "screaming-frog": "2026-10-19",
+    "sitebulb": "2026-10-19",
+    "semrush": "2026-10-19",
+    "lighthouse": "2026-10-19",
+    "search-console": "2026-10-19",
 }
 
 #: What was actually read, and where. Anything not sourced here is not stated as
@@ -131,8 +169,13 @@ CHECKED_ISO: dict[str, str] = {
 #: quotes its source. It was also wrong on its sharpest point — see the third
 #: entry below, which is the vendor describing a capability we said they
 #: lacked.
-HOME_CLAIM_CHECKED = "2026-08-13"
-HOME_CLAIM_CHECKED_HUMAN = "13 August 2026"
+#:
+#: Re-read 2026-10-19: Screaming Frog's product page (its feature list still names no conversion or landing-page
+#: auditing, brand consistency or local-business SEO; the Google Analytics item pulls conversion data in, it does
+#: not audit conversion), Sitebulb's features page (none of the four) and Screaming Frog's user guide sentence on the
+#: user-agent setting (verbatim as quoted). Unchanged.
+HOME_CLAIM_CHECKED = "2026-10-19"
+HOME_CLAIM_CHECKED_HUMAN = "19 October 2026"
 
 VERIFIED: dict[str, list[tuple[str, str]]] = {
     "home-four-lanes": [
@@ -146,6 +189,9 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          'the HTTP requests made by the SEO Spider and which robots.txt '
          'directives are followed"',
          "https://www.screamingfrog.co.uk/seo-spider/user-guide/configuration/"),
+        ('Screaming Frog\'s feature list describes its User-Agent setting as crawling "as a '
+         'search bot such as Googlebot or Bingbot, AI crawlers, or your own custom UA"',
+         "https://www.screamingfrog.co.uk/seo-spider/"),
     ],
     # Read 2026-08-15 from the SoftwareApplication JSON-LD on the vendor's own
     # product page, which is machine-readable and unambiguous. The visible page
@@ -157,9 +203,10 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "RAG-ready Markdown for AI training, fine-tuning and agent context, "
          "built in Rust and running on your own machine",
          "https://crawler.sh"),
-        ("its free tier is capped at 50 pages a session and its paid tiers at "
-         "10,000, priced at 99 US dollars a year with one subscription covering "
-         "both the CLI and the desktop app",
+        ("its free tier is capped at 50 pages a session and its paid CLI tier at "
+         "10,000; both CLI Pro and Desktop Pro are priced at 99 US dollars a year, "
+         "and the page says one subscription covers both the CLI and the desktop "
+         "app",
          "https://crawler.sh"),
         ('it states its SEO coverage twice and differently: "16-category SEO '
          'analysis" beside the paid tier, and "24 automated checks" in its '
@@ -193,35 +240,42 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "https://crawlraven.com/pricing"),
     ],
     "jetoctopus": [
-        ("its In-House plans are priced 689 and 1,369 US dollars a month "
-         "quarterly, or 549 and 1,089 billed annually, with a third tier "
-         'quoted only as "let\'s talk"',
+        ("its In-House plans are Growth, Pro and Ultra, priced 459, 1,089 and "
+         "2,069 US dollars a month quarterly, or 349, 809 and 1,559 billed "
+         'annually, with an Unlimited tier quoted only as "Let\'s talk"',
          "https://jetoctopus.com/pricing/"),
-        ("the plans are metered on crawled URLs and log lines per month: one "
-         "million URLs and five million log lines on Pro, three million and ten "
-         "million on Ultra",
+        ("the plans are metered on crawled URLs and log lines per month: 500,000 "
+         "URLs and 2 million log lines on Growth, 2 million and 8 million on Pro, "
+         "5 million and 25 million on Ultra, and custom on Unlimited",
          "https://jetoctopus.com/pricing/"),
-        ("projects, seats and simultaneous crawls are unlimited on every tier, "
-         "and the Agencies tab prices the same while halving the crawled-URL "
-         "allowance",
+        ("projects, seats and simultaneous crawls are unlimited on every tier, and "
+         "the Agencies tab lists the same crawled-URL allowances with prices of its "
+         "own, from 549 a month quarterly or 409 billed annually for Growth",
          "https://jetoctopus.com/pricing/"),
         ("its published product list leads with a Log Analyzer that tracks how "
          "Google and AI bots navigate a site, alongside a JavaScript crawler, "
-         "GSC and GA4 integration, position tracking and an MCP integration",
+         "GSC integration, AI search visibility, alerts and an MCP integration; "
+         "its plan table adds GA4 integration and position tracking",
          "https://jetoctopus.com/pricing/"),
     ],
     "profound": [
-        ("its pricing page publishes two tiers and no price: a free Trial, and "
-         "Enterprise at custom pricing reached through a demo",
+        ("its pricing page for brands publishes two tiers and no price: a free "
+         "Trial, and Enterprise at custom pricing reached through a demo",
          "https://www.tryprofound.com/pricing"),
-        ("the free Trial is limited to 10 prompts run once, against ChatGPT "
-         "only, in one language and one region",
+        ("its agencies view names an Agency Growth plan with no price beside it, "
+         "and prints two add-on prices: full client workspaces at 399 US dollars "
+         "a month and 5 trial workspaces at 199 US dollars a month; Agency "
+         "Enterprise is custom",
+         "https://www.tryprofound.com/pricing"),
+        ("the free Trial runs 50 unique prompts daily for 7 days, against "
+         "ChatGPT, Gemini and Google AI Overviews, in one language and one "
+         "region",
          "https://www.tryprofound.com/pricing"),
         ("Enterprise tracks up to 9 answer engines, with SSO/SAML and SOC2 "
          "compliance listed alongside dedicated support",
          "https://www.tryprofound.com/pricing"),
         ("its published platform list is Monitor, Answer Engine Insights, "
-         "Prompt Volumes, Shopping Agent Analytics, AI Marketer, Agents and "
+         "Prompt Volumes, Shopping, Agent Analytics, AI Marketer, Agents and "
          "Context Manager. No site crawler or technical audit appears in it",
          "https://www.tryprofound.com/pricing"),
     ],
@@ -239,6 +293,11 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "https://sitechecker.pro/account/plans/"),
         ("its core tools are listed as website crawler, website monitoring, rank "
          "tracker, GSC dashboard, SEO dashboard and AI visibility tracker",
+         "https://sitechecker.pro/account/plans/"),
+        ("its plan table lists the total pages crawled across an account: 10,000 on "
+         "Basic, 50,000 on Standard, 200,000 on Premium and unlimited on Enterprise, "
+         "beside unlimited site recrawls on every plan; the other published limits "
+         "are on websites, tracked keywords and AI prompts",
          "https://sitechecker.pro/account/plans/"),
     ],
     "seoptimer": [
@@ -260,8 +319,7 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
         ('the vendor\'s own product schema gives operatingSystem "MacOS", with '
          '"There are no plans" for Windows',
          "https://peacockmedia.software/mac/scrutiny/"),
-        ("that schema's offer states a price of 149 USD, fifty dollars less "
-         "than Docket",
+        ("that schema's offer states a price of 149 USD",
          "https://peacockmedia.software/mac/scrutiny/"),
         ('its published featureList is "Link checking, html validation, XML '
          'Sitemap generation, SEO, spell checking, site search"',
@@ -297,6 +355,9 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     ],
     "screaming-frog": [
         ('renders with the "integrated Chromium WRS"',
+         "https://www.screamingfrog.co.uk/seo-spider/"),
+        ('its feature list describes the User-Agent setting as crawling "as a search bot such '
+         'as Googlebot or Bingbot, AI crawlers, or your own custom UA"',
          "https://www.screamingfrog.co.uk/seo-spider/"),
         ('free tier limited to 500 URLs; paid crawl limit "Unlimited", with the maximum '
          '"dependent on allocated memory and storage"',
@@ -364,9 +425,17 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "default-config.js"),
         ('it is "an open-source, automated tool" run from Chrome DevTools, the '
          "command line, a Node module or PageSpeed Insights; you give it a URL "
-         "to audit, and the categories are performance, accessibility, best "
-         "practices and SEO",
+         "to audit, and its documentation lists five sets of audits: "
+         "performance, accessibility, best practices, SEO and agentic browsing",
          "https://developer.chrome.com/docs/lighthouse/overview"),
+        ("the same config declares an agentic browsing category, shown as a "
+         "fraction rather than a score out of 100, whose audits are "
+         "agent-accessibility-tree, three WebMCP audits (form coverage, "
+         "registered tools, schema validity), cumulative-layout-shift, llms-txt "
+         "and ard-schema (an Agentic Resource Discovery manifest); none of them "
+         "is named for a per-crawler robots.txt check",
+         "https://github.com/GoogleChrome/lighthouse/blob/main/core/config/"
+         "default-config.js"),
         ('PageSpeed Insights "uses Lighthouse to analyze the given URL in a '
          'simulated environment" for its lab data, while its field data is '
          '"powered by the Chrome User Experience Report (CrUX) dataset"',
@@ -384,8 +453,9 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     # tier gets which allowance would be inventing a fact about someone else's
     # product in order to finish a sentence.
     "semrush": [
-        ('the entry plan is listed at $139/mo, or $117.33/mo billed annually, '
-         'and the top standard plan at $549/mo; the entry plan lists '
+        ('the entry plan is listed at $139/mo, or $117.33/mo billed annually; '
+         'Starter is $199/mo and Pro+ is $299/mo, and the Advanced plan above '
+         'them is custom, reached by a demo request; the entry plan lists '
          '"500 keywords to track daily"',
          "https://www.semrush.com/pricing/"),
         ('Site Audit can "check over 140+ website issues", ordered '
@@ -394,8 +464,11 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "https://www.semrush.com/kb/542-site-audit-issues-list"),
         ("the crawl allowance is 20,000 pages per audit on Pro and Guru and "
          "100,000 on Business, against 100,000 / 300,000 / 1,000,000 pages a "
-         "month, resetting on the 1st rather than rolling over",
-         "https://www.semrush.com/kb/338-how-many-pages-can-i-crawl-in-an-audit"),
+         "month, resetting on the 1st rather than rolling over; the same article "
+         "says Semrush One Starter includes the Pro SEO Toolkit, Pro+ the Guru "
+         "one and Advanced the Business one (the address this claim was first "
+         "read at, kb/338, now redirects here)",
+         "https://www.semrush.com/kb/31-site-audit"),
         ("AI crawler access is checked per bot, naming ChatGPT-User, "
          "OAI-SearchBot, Googlebot, Google-Extended, Perplexity-User, "
          "PerplexityBot, Claude-User and Claude-SearchBot",
@@ -645,8 +718,8 @@ stop the bleeding, quick wins, build, polish. Each finding states what it costs 
 language and carries the exact markup to paste.</p>
 
 <p>Beyond the ordering, Docket audits three areas that Screaming Frog's own feature list does
-not cover. That is what their page advertises, not proof the tool cannot be made to do it. Their custom extraction is powerful enough that a determined user could build some of this by
-hand:</p>
+not cover as checks. That is what their page advertises, not proof the tool cannot be made to do it. Their custom extraction is powerful enough that a determined user could build some of this by
+hand, and their user-agent setting names AI crawlers, so you can crawl as one and see what comes back:</p>
 <ul>
 <li><strong>AI search visibility.</strong> Per-crawler access for ChatGPT, Perplexity, Claude
 and Gemini, separating search crawlers from training crawlers. Whether pages are
@@ -670,7 +743,7 @@ and UTM parameters on internal links.</li>
 <tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>
 <tr><td>Custom XPath extraction</td><td class="no">No</td><td class="yes">Yes</td></tr>
 <tr><td>hreflang reciprocity</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-<tr><td>AI crawler audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
+<tr><td>AI crawler audit</td><td class="yes">Yes</td><td class="no">Not listed as a check. Its user-agent setting names AI crawlers</td></tr>
 <tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
 <tr><td>Local business SEO</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
 <tr><td>Client-ready PDF</td><td class="yes">Built in</td><td>Export and build it yourself</td></tr>
@@ -1101,6 +1174,13 @@ you pay for it.</p>
     )
 
 
+#: The entry plan's monthly price and how many weeks of it Docket's one-time price equals. Derived from
+#: competitors.csv and PRICE, because "roughly five weeks" was typed when Docket cost far less and stayed on the
+#: page after the price moved to $349 (it is about eleven weeks of $139 a month).
+_SEM_LO, _SEM_HI = rival_monthly_range("semrush-site-audit")
+_SEM_WEEKS = round(PRICE / (int(_SEM_LO) * 12 / 52))
+
+
 def semrush() -> Path:
     """Docket against the audit module of the larger of the two platforms.
 
@@ -1115,7 +1195,7 @@ def semrush() -> Path:
 <p class="lede">Semrush sells an index of the web with an audit tool attached. Docket sells the
 audit tool and nothing else. If Site Audit is the part of Semrush you actually open, you are
 renting the index to get at it, and the question on this page is whether that trade is worth
-{price("semrush-site-audit")} to you. For a lot of people it is.</p>
+${_SEM_LO} a month or more to you. For a lot of people it is.</p>
 
 <h2>What the subscription buys that a download cannot</h2>
 <p>The concessions come first because they settle the question for most readers. Six things
@@ -1196,17 +1276,19 @@ Business, and their knowledge base notes those reset on the 1st rather than roll
 
 <h2>The arithmetic, and why it flatters Docket</h2>
 <p>Semrush's pricing page lists the entry plan at $139 a month, or $117.33 a month billed
-annually. Paid monthly that is $1,668 in the first year and the same again in the second. Docket is {PRICE_STR} once ({FREE_CLAUSE}), which works out at roughly five
+annually. Paid monthly that is $1,668 in the first year and the same again in the second. Docket is {PRICE_STR} once ({FREE_CLAUSE}), which works out at roughly {_SEM_WEEKS}
 weeks of the cheapest Semrush plan.</p>
 <p>Then take the flattery back out. That $139 is not the price of a site audit. It is the price
 of keyword research, rank tracking and a backlink index, with an audit included. If you use
 those three, cancelling to save on the audit saves nothing, because the rest of the platform
 still costs $139. The comparison only runs one way: when Site Audit is the tool you open and
 the remainder is shelfware.</p>
-<p>One caveat we could not resolve and are not going to paper over. Their pricing page currently
-sells SEO, Starter, Pro+ and Advanced. Their knowledge base still documents crawl limits under
-Pro, Guru and Business. We have not worked out which new name inherits which old allowance, so
-read the limits on the plan in front of you rather than trusting the row above.</p>
+<p>One caveat we are not going to paper over. Their pricing page currently sells SEO, Starter,
+Pro+ and Advanced, and Advanced is custom: you ask for a demo rather than see a price. Their
+knowledge base documents crawl limits under Pro, Guru and Business, and says that Semrush One
+Starter includes the Pro toolkit, Pro+ the Guru one and Advanced the Business one. It does not
+name the $139 SEO plan, so we have not guessed which allowance that one carries. Read the limits on
+the plan in front of you rather than trusting the row above.</p>
 
 <h2>Reasons to buy Semrush instead</h2>
 <p>Docket is the wrong purchase, and a cheap wrong purchase is still wrong, if any of this is
@@ -1271,7 +1353,7 @@ stand; the local tool answers what to change next.</p>
             ("How much cheaper is Docket than Semrush?",
              "Semrush's pricing page lists its entry plan at $139 a month, or $117.33 a month "
              "billed annually, which is $1,668 in a year paid monthly. Docket is " + PRICE_STR
-             + " paid once, about five weeks of that plan. The saving is only real if the "
+             + f" paid once, about {_SEM_WEEKS} weeks of that plan. The saving is only real if the "
              "site audit is the part of Semrush you use."),
             ("Does Docket have crawl limits like Semrush?",
              "Not monthly ones. Semrush's knowledge base lists 20,000 pages per audit on Pro "
@@ -1344,6 +1426,13 @@ checks follow basic search engine optimisation advice, and that there are many a
 factors Lighthouse does not score which may affect your ranking. That is Google marking the
 edge of its own tool, and the useful question is what sits outside the line.</p>
 
+<p>One addition since this page was first written: Lighthouse's documentation now lists a fifth set
+of audits, agentic browsing. In the repository config it is shown as a fraction rather than a
+score out of 100, and its audits cover WebMCP tools and forms, an accessibility tree for agents, an
+<code>llms.txt</code> file and an Agentic Resource Discovery manifest. None of them is named for
+whether a particular AI crawler is allowed in by your robots.txt or by your server, which is the
+question Docket's AI crawler check answers.</p>
+
 <h2>One URL is the unit</h2>
 
 <p>You give Lighthouse a URL and it reports on that page. Run it against your homepage and you
@@ -1396,9 +1485,9 @@ fix landed.</p>
 <tr><td>Accessibility scoring</td><td class="no">No</td><td class="yes">A full category</td></tr>
 <tr><td>Cross-page checks</td><td class="yes">hreflang reciprocity, canonical conflicts, click depth</td><td class="no">Not possible in one run</td></tr>
 <tr><td>Structured data</td><td class="yes">Parsed, validated, and generated for you</td><td>Manual audit, weight 0</td></tr>
-<tr><td>AI crawler access</td><td class="yes">Per crawler</td><td class="no">Not scored</td></tr>
+<tr><td>AI crawler access</td><td class="yes">Per crawler</td><td class="no">No per-crawler check. Its agentic browsing audits cover llms.txt, WebMCP and an agent manifest</td></tr>
 <tr><td>Conversion and copy</td><td class="yes">Yes</td><td class="no">Not scored</td></tr>
-<tr><td>Output</td><td>Ranked plan with markup to paste</td><td>Four scores out of 100 and a list</td></tr>
+<tr><td>Output</td><td>Ranked plan with markup to paste</td><td>Four scores out of 100, an agentic browsing fraction and a list</td></tr>
 <tr><td>Report</td><td class="yes">Client-ready PDF</td><td>HTML or JSON</td></tr>
 <tr><td>Runs on</td><td>Your Mac, no account</td><td class="yes">Chrome, CLI, Node, or the web</td></tr>
 </tbody></table></div>
@@ -1891,7 +1980,7 @@ data into reports of that kind.</li>
 <li><strong>A desktop crawler for raw data.</strong> <a href="/vs/screaming-frog-alternative/">Screaming Frog</a> gives
 you the crawl data and leaves the reading to you.</li>
 <li><strong>Another cloud tool that bills by the month.</strong> <a href="/vs/sitechecker-alternative/">Sitechecker</a>
-is the one we compare, and that page says it does not meter crawling.</li>
+is the one we compare, and that page says its plans advertise unlimited recrawls.</li>
 </ul>
 
 {_verified_note("seoptimer")}
@@ -1961,13 +2050,19 @@ def sitechecker() -> Path:
     publish is about access, never extraction. The same distinction cuts the
     other way here, and the page says so rather than blurring it.
 
-    ⚠️ THE CRAWL-METER ARGUMENT DOES NOT APPLY HERE AND IS NOT REUSED. Its
+    ⚠️ THE CRAWL-METER ARGUMENT DOES NOT APPLY HERE IN THE SAME FORM. Its
     plans advertise unlimited recrawls, so the point made on
-    /vs/seoptimer-alternative/ would be false about this vendor. Each rival gets
-    the comparison that is true of it.
+    /vs/seoptimer-alternative/ (a count of crawls a month) would be false about
+    this vendor. But the plan table also caps the total pages crawled across an
+    account (10,000, 50,000 and 200,000 on the first three plans), which this
+    page said it did not publish until the 2026-10-19 re-read found the row.
+    The rendered table fills the Basic and Standard cells from the page's own
+    styles, so a plain fetch of the HTML shows them blank. Each rival gets the
+    comparison that is true of it.
 
-    Read live 2026-09-16 from the vendor's own plans page. Nothing about output
-    quality is claimed in either direction: it has not been measured.
+    Read live 2026-10-19 from the vendor's own plans page, rendered in a
+    browser. Nothing about output quality is claimed in either direction: it
+    has not been measured.
     """
     body = f"""
 <p>Sitechecker is a cloud SEO platform from {price('sitechecker')}. It overlaps with Docket on
@@ -2029,9 +2124,11 @@ whether AI assistants are mentioning your brand.</li>
 order, including conversion and brand, without an account or a recurring bill.</li>
 </ul>
 
-<p>One contrast worth carrying away: Sitechecker does not meter crawling, and most of this
-market does. <a href="/vs/seoptimer-alternative/">SEOptimer</a> sells four, ten or fifty crawls a
-month depending on the tier, which changes how you work far more than any feature list does.
+<p>One contrast worth carrying away: Sitechecker does not count how often you crawl, and much of this
+market does. Its plans advertise unlimited recrawls, and cap the pages tracked across an account at
+10,000, 50,000 and 200,000 on the first three plans. <a href="/vs/seoptimer-alternative/">SEOptimer</a>
+sells four, ten or fifty crawls a month depending on the tier, which changes how you work far more than
+any feature list does.
 Nothing here compares the quality of the two crawlers' output, because that has not been
 measured. Both vendors' published feature lists are what this page is built from.</p>
 
@@ -2065,10 +2162,12 @@ measured. Both vendors' published feature lists are what this page is built from
              "the subscription buys is continuous monitoring and rank history, which a "
              "tool you run on demand cannot provide."),
             ("Does Sitechecker limit how much you can crawl?",
-             "Its plans advertise unlimited recrawls, so crawl volume is not the difference "
-             "between these two, unlike SEOptimer, which sells four, ten or fifty crawls a "
-             "month. The limits Sitechecker publishes are on projects and tracked keywords. "
-             "Docket has no limits of either kind, because there is no account."),
+             "Not how often. Its plans advertise unlimited recrawls, unlike SEOptimer, which "
+             "sells four, ten or fifty crawls a month. They do cap the total pages crawled "
+             "across an account: 10,000 on Basic, 50,000 on Standard and 200,000 on Premium, "
+             "unlimited on Enterprise. The other limits it publishes are on websites, tracked "
+             "keywords and AI prompts. Docket has no limits of any of those kinds, because "
+             "there is no account."),
         ],
     )
 
@@ -2080,14 +2179,19 @@ def profound() -> Path:
     answer engines. Docket measures whether those crawlers can reach the site at
     all. The Sitechecker page already makes an access-versus-mentions argument,
     so this page deliberately makes a DIFFERENT one: Profound's published
-    platform list contains no crawler and no technical audit, and it has no
-    self-serve price — the two tiers are a free trial and "get a demo".
+    platform list contains no crawler and no technical audit, and its plan for
+    brands has no price on the page: the two tiers are a free trial and "get a
+    demo".
 
-    ⚠️ NO PRICE IS QUOTED, because none is published. This row carried
+    ⚠️ NO PLAN PRICE IS QUOTED, because none is published. This row carried
     "$99-$399/mo billed yearly" from 2026-08-10 and its own source no longer
     supports it; the figure was removed from `competitors.csv` rather than
-    printed here. A page arguing that Docket's price is on the page cannot
-    invent one for the company it is comparing against.
+    printed here. The re-read of 2026-10-19 found that the AGENCIES view does
+    print two add-on amounts ($399 a month for a full client workspace, $199
+    for five trial workspaces), so "publishes no price" would now be false as
+    a flat sentence; the page says it for brands and names the agencies
+    amounts. A page arguing that Docket's price is on the page cannot invent a
+    plan price for the company it is comparing against.
 
     ⚠️ NOTHING IS CLAIMED ABOUT WHAT PROFOUND CANNOT DO — only about what its
     own pricing page lists. "No crawler appears in the published platform list"
@@ -2097,13 +2201,18 @@ def profound() -> Path:
 <p>Profound tracks whether AI assistants mention your brand. Docket audits whether those
 assistants' crawlers can read your site in the first place. Those sound adjacent and they are
 not the same purchase at all. The clearest way to see it is that
-<strong>Profound does not publish a price</strong>.</p>
+<strong>Profound does not publish a price for its brand plans</strong>.</p>
 
 <h2>Two tiers, neither of them a price</h2>
 
-<p>Its pricing page lists a free <strong>Trial</strong> (ten prompts, run once, against ChatGPT only, in one language and one region) and <strong>Enterprise</strong>, at custom
+<p>Its pricing page lists a free <strong>Trial</strong> (50 prompts a day for 7 days, against ChatGPT, Gemini and Google AI Overviews, in one language and one region) and <strong>Enterprise</strong>, at custom
 pricing, reached by booking a demo. Enterprise tracks up to nine answer engines and lists
 SSO/SAML and SOC2 compliance beside dedicated support.</p>
+
+<p>Switch the same page to its agencies view and it does print some money: full client workspaces
+are an add-on at $399 a month each, and five trial workspaces are $199 a month. The Agency Growth
+plan they attach to has no price beside it, and Agency Enterprise is custom, so there is still no
+plan price to set against anything.</p>
 
 <p>That is an enterprise sales motion, and the compliance line tells you who it is for. It is
 not a criticism: tracking nine answer engines across languages and regions is genuinely
@@ -2113,7 +2222,7 @@ The other is a {PRICE_STR} download with the price on the page.</p>
 
 <h2>What Profound does that Docket does not</h2>
 
-<p>Its published platform names Monitor, Answer Engine Insights, Prompt Volumes, Shopping Agent
+<p>Its published platform names Monitor, Answer Engine Insights, Prompt Volumes, Shopping, Agent
 Analytics, AI Marketer, Agents and Context Manager. Answer Engine Insights analyses how your
 brand and your competitors appear in AI platforms. <strong>Docket does none of this.</strong> It
 cannot tell you whether ChatGPT named you this week, how often, or beside whom.</p>
@@ -2156,7 +2265,7 @@ outside.</p>
     return render(
         cat="vs", slug="profound-alternative",
         title="Profound alternative? Docket checks AI access, not mentions",
-        desc=(f"Profound tracks whether AI assistants mention your brand and publishes no price. "
+        desc=(f"Profound tracks whether AI assistants mention your brand and quotes its brand plans by demo. "
               f"Docket checks whether their crawlers can reach your site, for {PRICE_STR} once."),
         h1="Docket vs Profound",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Profound',
@@ -2168,8 +2277,11 @@ outside.</p>
              "and checks whether those crawlers are permitted to read it. Neither replaces "
              "the other."),
             ("How much does Profound cost?",
-             "Its pricing page publishes no figure. It lists a free trial (ten prompts run "
-             "once, ChatGPT only) and Enterprise at custom pricing reached through a demo. "
+             "Its pricing page for brands publishes no figure. It lists a free trial (50 "
+             "prompts a day for 7 days, across ChatGPT, Gemini and Google AI Overviews) and "
+             "Enterprise at custom pricing reached through a demo. Only its agencies view "
+             "prints amounts: $399 a month for a full client workspace and $199 a month for "
+             "five trial workspaces, with no price for the Agency Growth plan itself. "
              "Docket is a one-time purchase with the price on the page, which is the "
              "starkest difference between them."),
             ("Can Docket tell me if ChatGPT mentions my brand?",
@@ -2215,23 +2327,24 @@ you what Googlebot actually did: which pages it fetched, how often, which it ign
 where it spent a crawl budget you did not know you were spending. Those are different questions,
 and the second cannot be inferred from the first. JetOctopus's product list leads with its Log
 Analyzer for that reason, and adds a JavaScript crawler, GSC and GA4 integration, position
-tracking and alerts.</p>
+tracking, alerts and its own AI search visibility product.</p>
 
 <p>If crawl budget on a large catalogue is your problem, a tool that cannot see your logs is not
 the answer, and this page is not going to pretend otherwise.</p>
 
 <h2>Where the comparison actually sits: scale</h2>
 
-<p>Their In-House plans are metered in <strong>millions</strong>: one million crawled URLs and
-five million log lines a month on the lower tier, three million and ten million on the upper one,
-with a third tier quoted only as "let's talk". Projects, seats and simultaneous crawls are
-unlimited on every tier. That is a platform for sites with millions of pages and a team around
-them.</p>
+<p>Their In-House plans are metered in crawled URLs and log lines a month: 500,000 URLs and two
+million log lines on Growth, two million and eight million on Pro, five million and twenty-five
+million on Ultra, with an Unlimited tier quoted only as "Let's talk". Projects, seats and
+simultaneous crawls are unlimited on every tier. That is a platform for sites with hundreds of
+thousands to millions of pages and a team around them.</p>
 
 <p>Their published rates: {price('jetoctopus')}. That works out at
-{F.rival_annual_low('jetoctopus'):,} US dollars for a year at the cheaper of the two rates.
-Docket is {PRICE_STR} once. Setting those two numbers
-beside each other is close to meaningless, because they are not sold to the same buyer, but it does tell you which question you are asking. If a five-figure annual platform fee is a normal
+{F.rival_annual_low('jetoctopus'):,} US dollars for a year on the entry plan at the cheaper of the
+two rates, and {F.rival_annual_high('jetoctopus'):,} on the top priced plan.
+Docket is {PRICE_STR} once. Setting those numbers
+beside each other is close to meaningless, because they are not sold to the same buyer, but it does tell you which question you are asking. If a platform fee of several thousand dollars a year is a normal
 line item, JetOctopus is in your category and Docket is not.</p>
 
 <h2>What Docket does</h2>
@@ -2265,7 +2378,7 @@ publishes about its own product.</p>
     return render(
         cat="vs", slug="jetoctopus-alternative",
         title="Docket vs JetOctopus: logs at scale, or an audit you own",
-        desc=("JetOctopus reads your server logs and meters crawling in millions of URLs. "
+        desc=("JetOctopus reads your server logs and meters crawling by the URLs a month. "
               "Docket cannot read logs at all. Which question you are asking decides it."),
         h1="Docket vs JetOctopus",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / JetOctopus',
@@ -2283,8 +2396,8 @@ publishes about its own product.</p>
              "more valuable of the two data sources."),
             ("How much does JetOctopus cost?",
              f"Its published In-House plans are {price('jetoctopus')}, which is "
-             f"{F.rival_annual_low('jetoctopus'):,} US dollars for a year at the cheaper "
-             f"annual rate, with a third tier quoted only on request. Docket is {PRICE_STR} "
+             f"{F.rival_annual_low('jetoctopus'):,} US dollars for a year on the entry plan at the "
+             f"cheaper annual rate, with an Unlimited tier quoted only on request. Docket is {PRICE_STR} "
              "once. They are not sold to the same buyer."),
             ("Do both have an MCP integration?",
              "Yes. Docket ships an MCP server so an assistant can run an audit, and "
@@ -2486,7 +2599,7 @@ their list are ones Docket also runs, and most of what Docket runs is not on the
 <h2>The page cap</h2>
 
 <p>This is the one measurable difference between two tools that both run locally. crawler.sh's
-free tier is capped at 50 pages a session and its paid tiers at 10,000. Docket has no cap:
+free tier is capped at 50 pages a session and its paid CLI tier at 10,000. Docket has no cap:
 <code>-n 0</code> crawls until the site ends, because nothing is counting. On a site of a few
 hundred pages neither limit matters; past ten thousand, one of them does.</p>
 
@@ -2532,7 +2645,7 @@ what this page is built from.</p>
              "training corpus. For auditing and prioritising what is wrong with a site, "
              "Docket does considerably more."),
             ("Does crawler.sh limit how many pages you can crawl?",
-             "Yes. Its free tier is capped at 50 pages a session and its paid tiers at "
+             "Yes. Its free tier is capped at 50 pages a session and its paid CLI tier at "
              "10,000. Docket has no cap at all: -n 0 crawls until the site ends, because "
              "there is no server counting."),
             ("Which is cheaper?",

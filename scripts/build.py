@@ -212,8 +212,8 @@ def build_hubs() -> list[Path]:
              "it; Docket's audit is bought once and has no page allowance."),
             ("/vs/jetoctopus-alternative/", "Docket vs JetOctopus",
              "It reads your server logs, which Docket cannot do at all, and meters "
-             "crawling in millions of URLs. An enterprise platform against a Mac app you "
-             "buy once."),
+             "crawling in hundreds of thousands to millions of URLs. An enterprise platform "
+             "against a Mac app you buy once."),
             ("/vs/profound-alternative/", "Docket vs Profound",
              "An answer-engine tracker sold by demo, with no crawler in its published "
              "platform list. It reports whether AI assistants mention you; Docket checks "
