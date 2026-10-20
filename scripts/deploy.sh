@@ -90,6 +90,13 @@ echo "==> competitive-claim gate"
 # rest of the site meet the same standard.
 "$PY" scripts/verify_competitive_claims.py
 
+echo "==> claim freshness gate"
+# A claim set whose date only gets older is the stale-date problem the gate above cannot see (19 October 2026: four
+# of five sets read in August or mid-September had changed underneath us). Over 30 days: listed, to be re-read on the
+# Monday search-health pass. Over 45 days: the deploy stops.
+"$PY" scripts/verify_claim_freshness.py --self-test
+"$PY" scripts/verify_claim_freshness.py
+
 echo "==> checkout gate"
 # Every "Buy Docket · $79 once" button points at one Polar checkout link and
 # nothing checked it still existed, still belonged to the right organisation,
