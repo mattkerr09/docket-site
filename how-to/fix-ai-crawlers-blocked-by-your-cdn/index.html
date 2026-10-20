@@ -14,7 +14,7 @@
 <title>AI crawlers getting 403 when robots.txt allows them</title>
 <meta name="description" content="Your CDN can refuse GPTBot and ClaudeBot before robots.txt is ever read. The two-request test that proves it, and the trap that makes one request useless.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="e5d39dff2e04">
+<meta name="build-id" content="b764fbdd0ebc">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-ai-crawlers-blocked-by-your-cdn/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -992,7 +992,8 @@ ordinary crawler both received 200, while <strong>seven AI crawlers received 403
 OAI-SearchBot, GPTBot, ChatGPT-User, PerplexityBot, Perplexity-User, ClaudeBot and
 Claude-SearchBot. Its robots.txt allowed every one of them, with a single
 <code>User-agent: *</code> group disallowing only a search path and an API path. Re-tested
-minutes later from the same address, so it was user-agent based rather than rate limiting. The
+minutes later from the same address, so it was user-agent based rather than
+<a href="/how-to/tell-a-rate-limit-from-a-block/">rate limiting</a>. The
 site is not named here; the shape is the point.</p>
 
 <h2>Which refusals actually cost you</h2>
@@ -1034,7 +1035,9 @@ above, and reports it against what your robots.txt claims, which is why it can s
 robots.txt allows these and your server refuses them" rather than either half alone. The
 robots.txt side of the question is <a href="/how-to/fix-ai-crawler-access/">fixing AI crawler
 access</a>, and the wider surface is <a href="/learn/ai-search-visibility/">AI search
-visibility</a>.</p>
+visibility</a>. The free <a href="/tools/ai-crawler-checker/">AI crawler checker</a> reads the
+robots.txt half for one site and says on the page that it cannot see a CDN refusal, which is the
+half this page is about.</p>
 
 <p>Worth pairing it with one other question, because they compound: a crawler that is let in
 still has to be able to read the page. If your content arrives after JavaScript runs, the
@@ -1051,7 +1054,7 @@ a site with both problems is invisible twice over. The full list of what Docket 
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>
 <a href="/">Overview</a><a href="/download/">Download Docket SEO for Mac</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
+<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/sitebulb-alternative/">vs Sitebulb</a>

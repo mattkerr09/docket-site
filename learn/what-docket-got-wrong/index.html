@@ -12,9 +12,9 @@
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>What Docket got wrong, and the release that fixed it</title>
-<meta name="description" content="The releases that fixed something Docket got wrong, newest first: what was wrong, how we found it, what changed, and the tests that hold it.">
+<meta name="description" content="The releases that fixed something Docket got wrong, newest first, with the tests that hold each fix, and 15 worked cases of findings that looked wrong.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="e5d39dff2e04">
+<meta name="build-id" content="b764fbdd0ebc">
 <link rel="canonical" href="https://docketseo.app/learn/what-docket-got-wrong/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="What Docket got wrong, and when it was fixed">
-<meta property="og:description" content="The releases that fixed something Docket got wrong, newest first: what was wrong, how we found it, what changed, and the tests that hold it.">
+<meta property="og:description" content="The releases that fixed something Docket got wrong, newest first, with the tests that hold each fix, and 15 worked cases of findings that looked wrong.">
 <meta property="og:url" content="https://docketseo.app/learn/what-docket-got-wrong/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png?v=20261002-intel">
@@ -30,7 +30,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="What Docket got wrong, and when it was fixed">
-<meta name="twitter:description" content="The releases that fixed something Docket got wrong, newest first: what was wrong, how we found it, what changed, and the tests that hold it.">
+<meta name="twitter:description" content="The releases that fixed something Docket got wrong, newest first, with the tests that hold each fix, and 15 worked cases of findings that looked wrong.">
 <meta name="twitter:image" content="https://docketseo.app/og.png?v=20261002-intel">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -874,8 +874,8 @@ nav{background:rgba(7,12,13,.72);
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac.","sameAs":["https://github.com/mattkerr09","https://github.com/mattkerr09/docket-site"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your Mac.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.111/Docket-1.3.111-arm64.dmg","offers":{"@type":"Offer","price":"349","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What Docket got wrong, and when it was fixed","description":"The releases that fixed something Docket got wrong, newest first: what was wrong, how we found it, what changed, and the tests that hold it.","datePublished":"2026-10-15","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/what-docket-got-wrong/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Has Docket ever reported something that was not true?","acceptedAnswer":{"@type":"Answer","text":"Yes. This page lists 9 releases that fixed findings or behaviour that were wrong, each with the day it was published and the tests that hold the fix."}},{"@type":"Question","name":"What should I do if a Docket finding looks wrong on my site?","acceptedAnswer":{"@type":"Answer","text":"Send the address of the page and the finding to us through the contact page. We read the finding against the page, and if Docket was wrong the fix gets a test."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What Docket got wrong, and when it was fixed","description":"The releases that fixed something Docket got wrong, newest first, with the tests that hold each fix, and 15 worked cases of findings that looked wrong.","datePublished":"2026-10-15","dateModified":"2026-10-19","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/what-docket-got-wrong/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Has Docket ever reported something that was not true?","acceptedAnswer":{"@type":"Answer","text":"Yes. This page lists 9 releases that fixed findings or behaviour that were wrong, each with the day it was published and the tests that hold the fix."}},{"@type":"Question","name":"Why would an audit report a problem my site does not have?","acceptedAnswer":{"@type":"Answer","text":"Usually because a check inferred something from text, a count, a tag or a name, and the inference failed on a site shaped differently from the ones it was written for. The 15 worked cases on this page are 15 such failures in Docket's own checks, each with what to check on your own report."}},{"@type":"Question","name":"A finding's count and its headline disagree. Which is right?","acceptedAnswer":{"@type":"Answer","text":"Usually the headline, because a person wrote it and the badge came from a variable. Compare the count with the list of URLs under the finding before acting on it. One worked case here shows a count of the wrong thing lifting a minor finding above a more serious one."}},{"@type":"Question","name":"What should I do if a Docket finding looks wrong on my site?","acceptedAnswer":{"@type":"Answer","text":"Send the address of the page and the finding to us through the contact page. We read the finding against the page, and if Docket was wrong the fix gets a test."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -924,7 +924,7 @@ fbq('track','PageView');
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $349 &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</span></a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / What Docket got wrong</div><h1>What Docket got wrong, and when it was fixed</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-10-15">15 October 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / What Docket got wrong</div><h1>What Docket got wrong, and when it was fixed</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-10-15">15 October 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-19">19 October 2026</time></p>
 
 <p class="lede">An audit tool that is wrong sends you after a problem you do not have. This page lists
 9 releases of Docket, from 23 September 2026 to 14 October 2026, that fixed something it got wrong. Each entry
@@ -934,7 +934,9 @@ and which tests now hold the fix in place. Where we could not prove something, t
 <p>This is the part of our log that has shipped as a release. It is not a list of every mistake, only of the ones we
 found and fixed. For the questions to ask of any tool's report, ours included, see
 <a href="/learn/audit-tool-accuracy/">how to tell whether an audit tool is lying to you</a>; it counts
-195 of Docket's 527 test files that record a past mistake in their own words.</p>
+195 of Docket's 527 test files that record a past mistake in their own words.
+After the releases, 15 <a href="#worked-cases">worked cases</a> show what such mistakes look like from the reader's
+side.</p>
 
 <h2>How to check an entry</h2>
 <p>The release link under each heading goes to the public release on GitHub, which shows the day it was published.
@@ -1022,18 +1024,160 @@ results out.</p>
 <p><strong>Tests that hold it.</strong> <code>test_a_tag_the_render_found_is_not_a_gap.py</code>, <code>test_a_login_page_is_not_owed_to_ai_crawlers.py</code>, <code>test_a_short_page_is_not_a_javascript_page.py</code></p>
 </section>
 
+<h2 id="worked-cases">15 cases where a finding looked wrong</h2>
+<p>The releases above say what changed. These 15 cases say what the mistake looked like to the person reading the report, and what to check on your own. They were first published as separate guides and are collected here. They are not release records: none carries a release number or a test list, because the guides never claimed either. No site is named.</p>
+<ul>
+<li><a href="#case-count-badge">A finding&#x27;s count is not decoration</a></li>
+<li><a href="#case-double-count">When two findings count the same pages twice</a></li>
+<li><a href="#case-pixel-zero-pages">A pixel on part of the site, and on no pages</a></li>
+<li><a href="#case-one-template">When an audit blames the site for one template</a></li>
+<li><a href="#case-phrase-matching">Why an audit finds reviews you do not have</a></li>
+<li><a href="#case-furniture-content">Telling your site&#x27;s furniture from its content</a></li>
+<li><a href="#case-not-your-address">Not every address on your site is yours</a></li>
+<li><a href="#case-which-host">Which host is that finding about?</a></li>
+<li><a href="#case-id-pointer">An @id is a pointer, not a definition</a></li>
+<li><a href="#case-someone-elses-markup">The markup on your page may not be about you</a></li>
+<li><a href="#case-wrong-type">A completeness check assumes your type is right</a></li>
+<li><a href="#case-dead-crawler-rule">What a dead robots.txt rule actually costs</a></li>
+<li><a href="#case-policy-or-defect">When a report calls your decision a defect</a></li>
+<li><a href="#case-fix-false-negative">A fix that hid a real problem somewhere else</a></li>
+<li><a href="#case-silent-gap">When a report says nothing at all</a></li>
+</ul>
+<h2>A number that counted the wrong thing</h2>
+<section id="case-count-badge">
+<h3>A finding&#x27;s count is not decoration</h3>
+<p>On a hospital&#x27;s report, a finding&#x27;s badge read sixteen profiles directly above the headline “Only two recognised profiles in sameAs”. The headline counted the profiles the site had. The badge counted the ones it did not: the rest of the tool&#x27;s own list. That is more than a wording problem, because the count feeds the score. The deduction grows with the logarithm of the count, so the inflated badge lifted a low severity finding above the medium one for having no sameAs at all.</p>
+<p>The phone check had the same fault in another form. It counted links, not pages, so one bad number in a header and a footer became two pages, with “and one more” printed under a list that showed the only page there was. Both checks now count what their headlines count.</p>
+<p><strong>On your own report.</strong> Read the badge against the headline and the count against the URLs listed, then ask what one fix would cover. If one edit to one template clears every instance, the count is measuring evidence, not work.</p>
+<p><strong>Registered checks.</strong> <code>ai.entity</code>, <code>cvr.unusable_phone</code>.</p>
+<p>See also: <a href="/learn/priority-model/">How findings are ordered</a>.</p>
+</section>
+<section id="case-double-count">
+<h3>When two findings count the same pages twice</h3>
+<p>On a shoe retailer&#x27;s crawl of about thirty pages, the report carried two findings with the same check, the same fix and titles that differed only by a count of pages with incomplete product markup. Most pages sat under both, so the total was larger than the crawl. The findings were keyed on the type and the list of missing fields, so one type split into as many findings as it had field combinations. It is now one finding per type, with the combinations in the detail.</p>
+<p>The explanation beside the count had two faults of its own. It asserted that a listing or variant picker repeats the type, and on a site where the blocks were references it sent readers hunting for something that was not there. And the sentence that does say the blocks are references was shown only when blocks outnumbered pages, so the ordinary shape of one reference per page never got it.</p>
+<p><strong>On your own report.</strong> Add the counts. If the total is bigger than the pages crawled, two findings overlap: compare their URL lists and their fixes before treating them as two jobs.</p>
+<p><strong>Registered check.</strong> <code>schema.incomplete</code>.</p>
+<p>See also: <a href="#case-id-pointer">An @id is a pointer, not a definition</a>.</p>
+</section>
+<section id="case-pixel-zero-pages">
+<h3>A pixel on part of the site, and on no pages</h3>
+<p>A financial institution&#x27;s report listed six advertising pixels as installed on only part of the site, each with a page count of zero. A pixel on no pages is either absent or somewhere the check could not count, and here it was the second. The installed list merged the served HTML with the rendered page, so it saw tags that JavaScript adds. The per-page count read the served HTML alone, so the same tags scored zero, which is below every coverage threshold. The same seam kept a site that loads every tag through a container from ever reaching the warning about too many tools on one page.</p>
+<p>Counting from the rendered pages instead would have been worse, because only a sample is rendered and “we only looked at a few pages” would become “it is only on a few pages”. Coverage is now judged only for tags visible in the served HTML, and the finding names the tags it did not judge.</p>
+<p><strong>On your own report.</strong> When a headline says part of the site and the number says zero pages, believe the number and distrust the headline. View source to see whether the tag is in the HTML at all, and ask the ad platform which pages fired its pixel.</p>
+<p><strong>Registered checks.</strong> <code>mar.ad_pixels</code>, <code>mar.stack</code>.</p>
+<p>See also: <a href="/learn/marketing-tag-audit/">The tracking checks</a>.</p>
+</section>
+<section id="case-one-template">
+<h3>When an audit blames the site for one template</h3>
+<p>A tool reported that a site had no share cards. The pages people actually share already had complete card markup; the ones without were a listing, an archive and other pages made by a different template. The count was accurate and the verdict was not. Nearly everything an audit measures is set once, in a layout, a partial or a component, so findings cluster by template, and a count with no location both overstates the work and understates the danger. A majority is not a site.</p>
+<p>The check now tells every page from most of them. A tool should also give a proportion and name the URLs, so the grouping shows without an export.</p>
+<p><strong>On your own report.</strong> Sort the affected URLs by path: the grouping usually falls out at once. Then look at one page that was not flagged. If a page of the same kind is correct, the template was fixed once and not everywhere.</p>
+<p>See also: <a href="/learn/audit-tool-accuracy/">How to tell whether an audit tool is lying to you</a>.</p>
+</section>
+<h2>A finding inferred from text, markup or a name</h2>
+<section id="case-phrase-matching">
+<h3>Why an audit finds reviews you do not have</h3>
+<p>A software foundation was told “Reviews are shown but not marked up”. The evidence was the word review used as an ordinary verb, and the site&#x27;s own sentence saying it does not provide testimonials, counted as proof that it does. A wildlife charity&#x27;s joke about five-star accommodation for bees was quoted back as displayed customer ratings. One mistake was ours alone: a street-address pattern matched “that way” in this project&#x27;s own marketing copy, decided a Mac software company was a local business, and produced six findings, two of them false at high severity.</p>
+<p>The phrase list is short and specific now, and the address pattern needs a capitalised street name, which knowingly misses some real addresses. The two errors are not equal. A missed review section gives advice you can ignore. A false match sends you looking for a section you do not have.</p>
+<p><strong>On your own report.</strong> Read the quoted evidence before the headline, and ask whether the page is about the thing or doing it. A policy page about reviews matches every phrase list and is not the signal.</p>
+<p><strong>Registered checks.</strong> <code>local.reviews</code>, <code>local.applicable</code>.</p>
+</section>
+<section id="case-furniture-content">
+<h3>Telling your site&#x27;s furniture from its content</h3>
+<p>Almost every judgement about what a page says depends on telling its furniture (navigation, header, footer, share buttons) from its content. We got it wrong five times in five checks, the fifth in the fix for the fourth. Counting links measures the template: an author archive carries dozens of links and only a few are the author&#x27;s articles. The share of words inside links is better, until a page carries bare anchor tags with no navigation element around them. Then nothing is stripped, a genuine stub looks like an index, and an empty page is excused as an archive.</p>
+<p>What separates a label from an entry is length: an anchor needs at least four words to count as an entry. So there are three tests, each failing somewhere: repetition across pages, position inside a navigation element, and length.</p>
+<p><strong>On your own report.</strong> When a tool calls a listing page thin, ask what it counted. If it counted links, it counted your template.</p>
+<p><strong>Registered check.</strong> <code>content.thin</code>.</p>
+<p>See also: <a href="/how-to/content-audit/">How to run a content audit</a>.</p>
+</section>
+<section id="case-not-your-address">
+<h3>Not every address on your site is yours</h3>
+<p>The check that tests whether published email addresses can receive mail has to decide which addresses are yours. A software forum&#x27;s how-to contained example addresses at a documentation domain, which the platform turned into links, so the site was told to publish mail records for a domain it does not own. The finding was true and the instruction was impossible. The remedy is now offered only for a domain the reader can publish records for.</p>
+<p>A law firm&#x27;s share-by-email button has an empty recipient on purpose, but a branch tested the verdict and not the reason, so “not a domain” became “cannot receive mail”. That case is skipped, not renamed, because it is not an address. The case that must still fire is a bare server address, which can never have mail records.</p>
+<p><strong>On your own report.</strong> Look at the domain in the address. If it is not yours, no instruction about mail records applies to you.</p>
+<p><strong>Registered check.</strong> <code>cvr.dead_contact</code>.</p>
+<p>See also: <a href="/learn/dead-contact-address/">What a dead contact address is</a>.</p>
+</section>
+<section id="case-which-host">
+<h3>Which host is that finding about?</h3>
+<p>An audit said a streaming service&#x27;s certificate was close to expiry. The crawl began at the www address and followed a redirect, and it was the destination host&#x27;s certificate that was expiring. Checking the address that had been typed showed months left, so the sentence read as false. The finding now names the host.</p>
+<p>The same shape appeared in two more places. A bakery chain was told its plain-http address did not redirect to https, true of the www spelling and not of the bare domain, which are separate hosts with their own certificates and redirect rules. And on a large retail site the plain-http address returned an error, which the report called an insecure copy of every page. Reachable, answering and refusing are three situations, and only the first is the problem it described.</p>
+<p><strong>On your own report.</strong> Find the host before you check the claim, and test both spellings over plain http by hand.</p>
+<p><strong>Registered check.</strong> <code>security.https</code>.</p>
+<p>See also: <a href="/how-to/redirect-http-to-https/">How to redirect http to https</a>, <a href="/learn/www-vs-non-www/">www or no www</a>.</p>
+</section>
+<h2>Structured data read as something it was not</h2>
+<section id="case-id-pointer">
+<h3>An @id is a pointer, not a definition</h3>
+<p>An audit reported several pages as having incomplete Organization markup, but the Organization was defined once, with its name, URL and logo, and the flagged blocks were references to it by @id. Two nodes with the same @id are one node, and a bare reference is complete as written; the most used SEO plugins emit it by default. Reproduced with a controlled graph, the check counted the reference as a second, worse copy of the thing it pointed at.</p>
+<p>The real defect looks the same from outside. A search engine reads one page at a time, so if every block of a type on a page is a bare reference and nothing there defines it, it resolves to nothing, and neither a validator nor a rich result test says so. The repair is to define the entity on every page that references it, or to remove the stub, not to add a name to each stub.</p>
+<p><strong>On your own report.</strong> View source on a flagged page and search for the identifier. If it appears once as a definition and once as a reference, your markup is fine and the finding is wrong.</p>
+<p><strong>Registered check.</strong> <code>schema.incomplete</code>.</p>
+<p>See also: <a href="/how-to/fix-structured-data-errors/">How to fix structured data errors</a>.</p>
+</section>
+<section id="case-someone-elses-markup">
+<h3>The markup on your page may not be about you</h3>
+<p>An audit said a national food-delivery marketplace was missing its address, telephone, opening hours and price range, with two fields present but blank. The only structured data on the page was a list of restaurants, other people&#x27;s takeaways, and the check had judged the first node it reached as if it belonged to the publisher. One property settles whose data it is: itemListElement, whose entries are the things a page lists, not the thing it is.</p>
+<p>The finding stayed and changed its subject, because thin listing markup is real and a chain publishing its own branches in a list still needs complete entries. It now describes the businesses the page lists. A second sentence, that the tool had found restaurant markup, was literally true and read as “we think you are a restaurant”.</p>
+<p><strong>On your own report.</strong> Ask whose data is missing. If the finding names fields you would never publish about yourself, the node is probably not yours: search the page source for itemListElement.</p>
+<p><strong>Registered checks.</strong> <code>local.schema</code>, <code>local.applicable</code>.</p>
+<p>See also: <a href="#case-id-pointer">An @id is a pointer, not a definition</a>.</p>
+</section>
+<section id="case-wrong-type">
+<h3>A completeness check assumes your type is right</h3>
+<p>A property portal&#x27;s homepage declared a Product node that held the company&#x27;s name, address on the web, logo and profile links. It had no image, so the check advised adding one. The advice was correct for the type and the type was wrong: logo is not a property of Product, and with no offer, price or review the block was never going to produce a product rich result. A completeness check works by lookup, so the type is an input it never judges. It now speaks up only when an Organization-only property is present and every product signal is absent.</p>
+<p>The same shape in miniature: a large public-sector site wrote headLine for headline. JSON-LD keys are case sensitive, so no headline was read at all. The check matches on case and never on spelling, because a confident wrong guess is worse than a generic sentence.</p>
+<p><strong>On your own report.</strong> Read the type before the missing fields, and search your block for the property without regard to case.</p>
+<p><strong>Registered check.</strong> <code>schema.incomplete</code>.</p>
+<p>See also: <a href="/how-to/fix-structured-data-errors/">How to fix structured data errors</a>.</p>
+</section>
+<h2>A decision called a defect, a fix with a cost, a gap nobody reported</h2>
+<section id="case-dead-crawler-rule">
+<h3>What a dead robots.txt rule actually costs</h3>
+<p>A computer manufacturer&#x27;s robots.txt named six retired AI crawler tokens, and we reported at medium severity that those crawlers were reading pages it meant to withhold. That was false. The catch-all group carried seventeen Disallow rules, and all seven in the AI group were repeated there. A crawler that matches no group falls back to User-agent: *, so these fell back to a stricter group and lost no coverage. Only a Crawl-delay went unheard.</p>
+<p>A rule&#x27;s effect belongs to the group, not to the token. A dead name costs nothing when the catch-all is stricter or carries the same rules, or when a live replacement sits in the same group. It is a real exposure only when the catch-all is looser. The comparison is an exact match on the rules, deliberately crude, so the uncertain case stays reported.</p>
+<p><strong>On your own report.</strong> Compare the AI group&#x27;s rules with the catch-all&#x27;s. If every rule also appears under *, the dead name has cost you nothing.</p>
+<p><strong>Registered check.</strong> <code>ai.dead_crawler_directive</code>.</p>
+<p>See also: <a href="/index/ai-directives/">How often AI rules name a crawler that no longer answers</a>, <a href="/learn/ai-crawler-directives/">Which AI crawlers to block</a>.</p>
+</section>
+<section id="case-policy-or-defect">
+<h3>When a report calls your decision a defect</h3>
+<p>A national broadcaster names the AI crawlers that decide whether it can be cited and disallows them, on purpose, as editorial policy. We called that critical and capped its score. The opposite case writes the same line: a blanket User-agent: * rule added for an unrelated reason sweeps up every crawler, and nobody decided it. What separates them is whether the crawler is named.</p>
+<p>Then a worse failure. For a file that named two crawlers and let a wildcard catch a third, the report said none of them was named, a sentence that set the severity and told the reader to re-allow two crawlers they had just blocked deliberately. The set is now split: named blocks are a notice, wildcard-caught ones are the interruption, and an allowlist that names the AI crawlers it admits counts as policy. The paste-ready block is derived from what was found.</p>
+<p><strong>On your own report.</strong> Open the file and look for the name. Check any report sentence that says none or every against the file itself, because that is where reports go wrong.</p>
+<p><strong>Registered check.</strong> <code>ai.crawler_access</code>.</p>
+<p>See also: <a href="/how-to/fix-ai-crawler-access/">How to fix AI crawler access</a>, <a href="/how-to/tell-a-rate-limit-from-a-block/">A rate limit is not a block</a>.</p>
+</section>
+<section id="case-fix-false-negative">
+<h3>A fix that hid a real problem somewhere else</h3>
+<p>A preprint archive&#x27;s logo link is named “archive home”. The brand-name check strips navigation words from such a name, so “home” came off and “archive” was recorded as a second name for the organisation. The fix made the weakest source, a link name, agree with the one signal a site cannot easily fake: its own domain. The first version asked that of every residue, and it broke a case a test in the suite holds, a logo naming one institution on a site titled after another, which is exactly the disagreement the check exists to find. One site&#x27;s false positive had been traded for another site&#x27;s false negative, and a false negative makes no noise.</p>
+<p>The narrower condition applies only when a navigation word had to be removed, because that is what made the string suspicious. A company whose domain does not contain its name loses that one source in that case, and its declarations still count. A related guard: a name seen once across dozens of signals is a single odd page, not a second identity.</p>
+<p><strong>On your own report.</strong> When a false positive you reported gets fixed, ask what the fix cost. A condition that makes a rule quieter about you probably made it quieter about someone else.</p>
+<p><strong>Registered check.</strong> <code>brand.name_consistency</code>.</p>
+<p>See also: <a href="/how-to/what-your-site-says-you-are-called/">Where the name guess comes from</a>, <a href="/learn/brand-consistency/">Brand consistency</a>.</p>
+</section>
+<section id="case-silent-gap">
+<h3>When a report says nothing at all</h3>
+<p>Broken-page checks sort responses into buckets: server errors, not found and gone, refused requests, and no response at all. The rest of the four-hundred range, where the server understood the request and rejected it, was never asked about. So a URL on an audited site, linked from its own pages and rejected by its own server, produced no finding from any registered check. It was found by accident, while checking that a change to the external link rule had not silenced the internal one.</p>
+<p>Nobody complains about silence. The page is not a not-found, so every report that counts those shows the site clean while a search engine gets the same refusal as the visitor. Statuses that mean the crawler itself was turned away, such as a rate limit, stay out on purpose.</p>
+<p><strong>On your own report.</strong> Compare the statuses your site really returns, from logs or a crawl export, with the ones your report names. Anything in the first list and not the second is a blind spot.</p>
+<p><strong>Registered check.</strong> <code>index.broken</code>.</p>
+<p>See also: <a href="/how-to/pages-an-audit-could-not-reach/">Pages an audit could not reach</a>, <a href="/how-to/tell-a-rate-limit-from-a-block/">A rate limit is not a block</a>.</p>
+</section>
+
 <h2>If a finding on your site looks wrong</h2>
 <p>Send us the address of the page and the text of the finding through <a href="/contact/">the contact page</a>. We
 read the finding against the page itself. If Docket was wrong, the fix gets a test like the ones above.</p>
 
 <div class="buy-block"><p class="price-line"><span class="price-big">$349</span><span class="price-pay4">once &middot; or&nbsp;4&nbsp;&times;&nbsp;$87.25</span></p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later</p><div class="hero-cta"><a rel="nofollow" class="btn btn-lg" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=corrections-page" data-ev="Buy" data-ev-price="349" data-ev-button="corrections-page">Buy Docket</a><a rel="nofollow" class="btn-ghost btn-lg" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=corrections-page-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.111/Docket-1.3.111-arm64.dmg" data-ev="Download" data-ev-button="corrections-page-try-free">Try it free</a><a class="btn-ghost btn-lg" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="corrections-page">See a full sample report</a></div><p class="hero-note founding-note">Founding price <strong>$174.50 once &middot; or&nbsp;4&nbsp;&times;&nbsp;$43.63</strong>, first 25 buyers, then $349. Buy applies the code <code>FOUNDINGDOCKET</code> for you; if the checkout shows $349, enter it under &lsquo;Have a discount code?&rsquo;.</p><p class="hero-note price-anchor">Screaming Frog is $279 a year. Ahrefs plans with Site Audit run $29&ndash;$449 a month. Docket is $349 once. <span class="qual">Their prices read 8 October 2026.</span></p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Has Docket ever reported something that was not true?</h3><p>Yes. This page lists 9 releases that fixed findings or behaviour that were wrong, each with the day it was published and the tests that hold the fix.</p></div><div class="faq-item"><h3>What should I do if a Docket finding looks wrong on my site?</h3><p>Send the address of the page and the finding to us through the contact page. We read the finding against the page, and if Docket was wrong the fix gets a test.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Has Docket ever reported something that was not true?</h3><p>Yes. This page lists 9 releases that fixed findings or behaviour that were wrong, each with the day it was published and the tests that hold the fix.</p></div><div class="faq-item"><h3>Why would an audit report a problem my site does not have?</h3><p>Usually because a check inferred something from text, a count, a tag or a name, and the inference failed on a site shaped differently from the ones it was written for. The 15 worked cases on this page are 15 such failures in Docket's own checks, each with what to check on your own report.</p></div><div class="faq-item"><h3>A finding's count and its headline disagree. Which is right?</h3><p>Usually the headline, because a person wrote it and the badge came from a variable. Compare the count with the list of URLs under the finding before acting on it. One worked case here shows a count of the wrong thing lifting a minor finding above a more serious one.</p></div><div class="faq-item"><h3>What should I do if a Docket finding looks wrong on my site?</h3><p>Send the address of the page and the finding to us through the contact page. We read the finding against the page, and if Docket was wrong the fix gets a test.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>
 <a href="/">Overview</a><a href="/download/">Download Docket SEO for Mac</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
+<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/sitebulb-alternative/">vs Sitebulb</a>
