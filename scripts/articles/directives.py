@@ -302,9 +302,9 @@ steadily with rank.</p>
 
 {_band_table(d)}
 
-<p>Getting to a trustworthy number took two extra requests per host. A naive check (fetch
-<code>/llms.txt</code>, call a 200 a yes) returned {s['llms_candidates']} candidates. Two
-things were wrong with that number.</p>
+<p>Getting to a trustworthy number took two extra requests per host. The survey's first pass
+had already set aside most of the sites that answered 200 with an ordinary web page, and it left
+{s['llms_candidates']} candidates. Two things were wrong with that number.</p>
 
 <p>First, we fetched a control path on each host that cannot exist.
 <strong>{s['llms_soft404']} hosts ({s['pct_llms_soft404']}%) answered 200 with a body for that
@@ -323,10 +323,17 @@ count.</p>
 <p>{s['llms_false_positive']} of {s['llms_candidates']} apparent llms.txt files (
 <strong>{s['pct_llms_false_positive']}%</strong>) were not one. Semrush's Site Audit flags a
 missing llms.txt as an issue; any "does this file exist" test without a control fetch inherits
-that error rate, because a soft-404 handler answers yes to every question. Docket issues the
-control request and reads the first bytes, and reports the file as unconfirmed rather than
-present when either test fails.</p>
+at least that error rate, because a soft-404 handler answers yes to every question. Docket's own
+check is simpler than the survey's: it treats a response served as an HTML page as no file, and
+when the server refuses the request it says it could not check instead of calling the file
+missing. It does not make the control request.</p>
 </div>
+
+<p>We asked again on {F.lt_date('oct')}. {F.lt('oct', 'confirmed')} sites had a confirmed file,
+{F.lt_pct(F.lt('oct', 'confirmed'), F.lt('oct', 'readable'))}% of the readable robots.txt files,
+against {F.lt_pct(F.lt('aug', 'confirmed'), F.lt('aug', 'readable'))}% here. See
+<a href="/index/llms-txt-adoption-2026-10/">llms.txt in the top 10,000 sites, August to October
+2026</a>.</p>
 
 <p>The correlation is the interesting part, and it does not point where the advocacy does.
 Sites with an llms.txt block a citation crawler at <strong>{s['cit_rate_llms']}%</strong>
@@ -506,6 +513,7 @@ prints the replacement rules to paste.</p>
         crumb='<a href="/">Docket</a> / <a href="/index/">The Index</a> / Dead AI directives',
         body=body,
         published="2026-08-07",
+        modified="2026-10-19",
         faq=[
             ("What is a dead robots.txt directive?",
              "A User-agent rule naming a token that no crawler identifies itself with: "

@@ -94,6 +94,7 @@
     "index": "2026-08-06",
     "index/ai-crawler-blocking-2026-10": "2026-10-19",
     "index/ai-directives": "2026-08-07",
+    "index/llms-txt-adoption-2026-10": "2026-10-19",
     "learn": "2026-08-06",
     "learn/ai-crawler-directives": "2026-09-16",
     "learn/ai-crawlers-and-sitemaps": "2026-09-15",
@@ -160,6 +161,6 @@
     "vs/sitechecker-alternative": "2026-09-16"
   },
   "uncommitted": [
-    "index/ai-crawler-blocking-2026-10"
+    "index/llms-txt-adoption-2026-10"
   ]
 }

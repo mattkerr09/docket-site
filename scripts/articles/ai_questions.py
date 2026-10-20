@@ -240,11 +240,15 @@ list of keywords.</p>
 <p>More than you would guess. In Docket&rsquo;s {SURVEYED_HUMAN} survey of {n:,} sites with a
 readable robots.txt in the Tranco top {s['attempted']:,}, <strong>{adoption}% had a real llms.txt</strong>
 ({confirmed} files), and the share is highest among the largest sites. Getting that number right
-took care: a naive check that fetches <code>/llms.txt</code> and calls any 200 a yes found
-{candidates} &ldquo;files&rdquo;, and {false_pos} of them ({false_pct}%) were not one. Soft
-404 pages, sitemaps, robots.txt served at the wrong path. Any tool that flags a
-&ldquo;missing&rdquo; or &ldquo;present&rdquo; llms.txt without reading the body is wrong about one
-time in six. The <a href="/index/ai-directives/">full breakdown is in the Docket Index</a>.</p>
+took care: our first pass found {candidates} apparent &ldquo;files&rdquo;, and {false_pos} of
+them ({false_pct}%) were not one. Soft 404 pages, sitemaps, robots.txt served at the wrong path.
+Any tool that flags a &ldquo;missing&rdquo; or &ldquo;present&rdquo; llms.txt without reading the
+body, or without asking for a path that cannot exist, is wrong at least one time in six. The
+<a href="/index/ai-directives/">full breakdown is in the Docket Index</a>.</p>
+<p>We read the same list again on {F.lt_date('oct')}, and
+<strong>{F.lt_pct(F.lt('oct', 'confirmed'), F.lt('oct', 'readable'))}%</strong> had a real
+llms.txt ({F.lt('oct', 'confirmed')} files). <a href="/index/llms-txt-adoption-2026-10/">The
+change since August is on its own page</a>.</p>
 
 <h2>The file is useless if the crawler cannot fetch it</h2>
 <p>The same survey found that among sites whose robots.txt allowed a fetch of
@@ -263,6 +267,7 @@ can reach your pages at all.</p>
 """
     return render(
         cat="learn", slug="what-is-llms-txt",
+        modified="2026-10-19",
         title="What is llms.txt, and does it do anything?",
         desc=("llms.txt is a Markdown map of your site for language models. Google says you don't "
               "need it for AI Overviews. What goes in it, who has one, and when it helps."),

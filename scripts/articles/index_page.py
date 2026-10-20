@@ -224,7 +224,10 @@ change; this one will be re-run and the figures will move.</li>
 fell from {F.blk_pct('training', 'aug')}% to {F.blk_pct('training', 'oct')}% of readable files,
 and most of the fall looks like Cloudflare's managed block coming off. The sites are not named
 and the search crawlers hardly moved. See
-<a href="/index/ai-crawler-blocking-2026-10/">AI crawler blocking, August to October 2026</a>.</p>
+<a href="/index/ai-crawler-blocking-2026-10/">AI crawler blocking, August to October 2026</a>. The
+same two reads also counted llms.txt files, from {F.lt('aug', 'confirmed')} in August to
+{F.lt('oct', 'confirmed')} in October, in
+<a href="/index/llms-txt-adoption-2026-10/">llms.txt in the top 10,000 sites</a>.</p>
 
 <h2>Get the data</h2>
 <p>The full dataset, the collection script and the exact site list are in the repository.

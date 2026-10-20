@@ -1716,3 +1716,56 @@ def blk_top(metric_prefix: str = "bot:", key: str = "oct") -> tuple:
     shown = blocking()["crawlers"]["shown"]
     best = max(shown, key=lambda b: shares[f"{metric_prefix}{b}"][key])
     return best, shares[f"{metric_prefix}{best}"][key]
+
+
+# -- llms.txt adoption, August and October 2026 -----------------------------
+#
+# One derived file, data/llms-adoption-2026-10.json, built by
+# scripts/build_llms_adoption.py from the two raw surveys and their llms.txt
+# validation files. Aggregates only: no host appears in it. A page on that
+# survey quotes nothing that does not come through here. `lt("aug", "readable")`
+# walks the file; the helpers below are the ones that need arithmetic or a date.
+
+@lru_cache(maxsize=None)
+def llms_adoption() -> dict:
+    path = ROOT / "data" / "llms-adoption-2026-10.json"
+    if not path.is_file():
+        raise SystemExit("facts.llms_adoption: data/llms-adoption-2026-10.json is "
+                         "missing; run scripts/build_llms_adoption.py")
+    return json.loads(path.read_text())
+
+
+def lt(*path):
+    """A value from the derived llms.txt file, by key path."""
+    node = llms_adoption()
+    for key in path:
+        node = node[key]
+    return node
+
+
+def lt_iso(month: str) -> str:
+    """The day a survey was collected: month is "aug" or "oct"."""
+    return llms_adoption()["meta"][f"{month}_collected"][:10]
+
+
+def lt_date(month: str) -> str:
+    """"7 August 2026" """
+    year, mon, day = (int(x) for x in lt_iso(month).split("-"))
+    return f"{day} {_MONTHS[mon - 1]} {year}"
+
+
+def lt_month(month: str) -> str:
+    """"August 2026" """
+    year, mon, _ = (int(x) for x in lt_iso(month).split("-"))
+    return f"{_MONTHS[mon - 1]} {year}"
+
+
+def lt_fmt(iso: str) -> str:
+    """"2026-10-20" -> "20 October 2026". For a date recorded in the derived file."""
+    year, mon, day = (int(x) for x in iso.split("-"))
+    return f"{day} {_MONTHS[mon - 1]} {year}"
+
+
+def lt_pct(count: int, base: int) -> str:
+    """A share, one decimal, from the counts and not from a stored rounding."""
+    return f"{100 * count / base:.1f}"

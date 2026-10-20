@@ -123,6 +123,7 @@ import howto_hreflang_codes  # noqa: E402
 import page_weight  # noqa: E402
 import ai_directives  # noqa: E402
 import ai_crawler_blocking  # noqa: E402
+import llms_adoption  # noqa: E402
 import priority_model  # noqa: E402
 import howto_headings  # noqa: E402
 import howto_broken_links  # noqa: E402
@@ -713,6 +714,10 @@ def write_llms_txt() -> None:
         ("AI crawler blocking, August to October 2026", f"{BASE}/index/ai-crawler-blocking-2026-10/",
          "the same 10,000 sites read again two months later: who blocks which AI crawler, "
          "what changed, and how much of it is Cloudflare's managed robots.txt"),
+        ("llms.txt in the top 10,000 sites, August to October 2026",
+         f"{BASE}/index/llms-txt-adoption-2026-10/",
+         "how many of the same 10,000 sites have a real llms.txt, how that moved in two "
+         "months, and why a 200 answer is not proof of a file"),
         ("Learn", f"{BASE}/learn/", "plain explanations of what an SEO audit covers, how "
          "AI search visibility works, and what Docket checks"),
         ("Fix guides", f"{BASE}/how-to/", "the specific problems Docket reports, what "
@@ -915,7 +920,8 @@ def write_static() -> None:
               "index-2026-08.json", "knowledge.json",
               "www-canonical-2026-09.json",
               "utm-internal-2026-09.json",
-              "ai-crawler-blocking-2026-10.csv")
+              "ai-crawler-blocking-2026-10.csv",
+              "llms-adoption-2026-10.csv")
     #: Not linked, published on purpose: the Index states its population, and
     #: the list of sites IS that statement.
     ALSO_PUBLISHED = ("sites.txt",)
@@ -1474,6 +1480,7 @@ def main() -> int:
     pages += priority_model.build_all()
     pages += ai_directives.build_all()
     pages += ai_crawler_blocking.build_all()
+    pages += llms_adoption.build_all()
     pages += noindex_ai_crawlers.build_all()
     pages += sitemaps_ai_crawlers.build_all()
     pages += googlebot_robots_blocks.build_all()

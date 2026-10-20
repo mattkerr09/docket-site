@@ -297,15 +297,19 @@
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "date": "2026-10-19",
-  "hash": "d74d7f1a8212e5ed"
+  "hash": "3162dabd00c5b468"
  },
  "index/ai-directives/index.html": {
   "date": "2026-10-19",
-  "hash": "c213503a1b0ba5c1"
+  "hash": "1af19c123bf9072c"
  },
  "index/index.html": {
   "date": "2026-10-19",
-  "hash": "cbca6cd5c427a9c9"
+  "hash": "de626fc79d49dc72"
+ },
+ "index/llms-txt-adoption-2026-10/index.html": {
+  "date": "2026-10-19",
+  "hash": "d9b675195fdd6522"
  },
  "learn/ai-crawler-directives/index.html": {
   "date": "2026-10-16",
@@ -444,8 +448,8 @@
   "hash": "d4b5fe11e94763bf"
  },
  "learn/what-is-llms-txt/index.html": {
-  "date": "2026-10-16",
-  "hash": "a7952c081fe3415d"
+  "date": "2026-10-19",
+  "hash": "5905ed523122fb96"
  },
  "learn/who-blocks-googlebot/index.html": {
   "date": "2026-10-16",

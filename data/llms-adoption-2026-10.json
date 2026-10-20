@@ -1,0 +1,362 @@
+{
+ "aug": {
+  "answered_200": 1676,
+  "answered_200_empty": 19,
+  "answered_200_html": 793,
+  "answers": {
+   "gone": 3928,
+   "no_answer": 33,
+   "ok_200": 1676,
+   "other": 49,
+   "redirect": 11,
+   "refused": 283
+  },
+  "asked": 5980,
+  "bands": [
+   {
+    "confirmed": 85,
+    "from": 1,
+    "pct": 15.18,
+    "readable": 560,
+    "to": 1000
+   },
+   {
+    "confirmed": 147,
+    "from": 1001,
+    "pct": 11.76,
+    "readable": 1250,
+    "to": 3000
+   },
+   {
+    "confirmed": 239,
+    "from": 3001,
+    "pct": 13.23,
+    "readable": 1806,
+    "to": 6000
+   },
+   {
+    "confirmed": 193,
+    "from": 6001,
+    "pct": 9.79,
+    "readable": 1972,
+    "to": 9000
+   },
+   {
+    "confirmed": 50,
+    "from": 9001,
+    "pct": 7.72,
+    "readable": 648,
+    "to": 10000
+   }
+  ],
+  "blocking": {
+   "rr_search": {
+    "events_control": 437,
+    "events_exposed": 9,
+    "hi": 0.29,
+    "lo": 0.08,
+    "rr": 0.152
+   },
+   "rr_training": {
+    "events_control": 1071,
+    "events_exposed": 72,
+    "hi": 0.62,
+    "lo": 0.4,
+    "rr": 0.496
+   },
+   "search_rate_with": 1.26,
+   "search_rate_without": 8.3,
+   "search_with": 9,
+   "search_without": 437,
+   "training_rate_with": 10.08,
+   "training_rate_without": 20.34,
+   "training_with": 72,
+   "training_without": 1071,
+   "with": 714,
+   "without": 5266
+  },
+  "candidates": 866,
+  "confirmed": 714,
+  "files": {
+   "confirmed": 714,
+   "h1": 664,
+   "h1_blockquote": 507,
+   "median_bytes": 7539,
+   "other_type": 3,
+   "over_100kb": 62,
+   "text_markdown": 30,
+   "text_plain": 681,
+   "under_1kb": 19
+  },
+  "gone_pct": 65.69,
+  "not_200_on_recheck": 6,
+  "not_asked_disallowed": 256,
+  "pct_of_200": 42.6,
+  "pct_of_asked": 11.94,
+  "pct_of_readable": 11.45,
+  "readable": 6236,
+  "refused_pct": 4.73,
+  "soft404": 133,
+  "wrong_kind": 13,
+  "wrong_kind_by": {
+   "compressed": 6,
+   "html": 2,
+   "json": 1,
+   "robots": 3,
+   "xml": 1
+  }
+ },
+ "august_reproduced": {
+  "cit_rate_llms": 1.26,
+  "cit_rate_no_llms": 8.3,
+  "llms_candidates": 866,
+  "llms_confirmed": 714,
+  "llms_edge_denied": 283,
+  "llms_false_positive": 146,
+  "llms_soft404": 133,
+  "llms_wrong_kind": 13,
+  "pct_llms_adoption": 11.45,
+  "pct_llms_edge_denied": 4.73,
+  "probed_for_llms": 5980,
+  "train_rate_llms": 10.08,
+  "train_rate_no_llms": 20.34
+ },
+ "meta": {
+  "aug_collected": "2026-08-07T06:42:01+00:00",
+  "head_chars": 300,
+  "hosts": 10000,
+  "inputs": {
+   "aug": "55574c5ac31e8aeb",
+   "aug_validation": "5a02931cc3406300",
+   "oct": "9ec064086921c5ff",
+   "oct_validation": "df16d4dc2e25d51e"
+  },
+  "oct_collected": "2026-10-19T16:18:12+00:00",
+  "oct_finished": "2026-10-19T16:46:15+00:00",
+  "population": "Tranco top 10000 (list PYG5J, https://tranco-list.eu/download/PYG5J/10000)",
+  "timeout_s": 8.0,
+  "user_agent": "Docket-SEO-Audit-Survey/1.0 (+https://docketseo.app/bot/; research survey: one robots.txt request per site, no crawling; contact support@docketseo.app)"
+ },
+ "oct": {
+  "answered_200": 1767,
+  "answered_200_empty": 16,
+  "answered_200_html": 765,
+  "answers": {
+   "gone": 3704,
+   "no_answer": 37,
+   "ok_200": 1767,
+   "other": 42,
+   "redirect": 9,
+   "refused": 302
+  },
+  "asked": 5861,
+  "bands": [
+   {
+    "confirmed": 101,
+    "from": 1,
+    "pct": 18.3,
+    "readable": 552,
+    "to": 1000
+   },
+   {
+    "confirmed": 170,
+    "from": 1001,
+    "pct": 13.74,
+    "readable": 1237,
+    "to": 3000
+   },
+   {
+    "confirmed": 250,
+    "from": 3001,
+    "pct": 14.01,
+    "readable": 1785,
+    "to": 6000
+   },
+   {
+    "confirmed": 244,
+    "from": 6001,
+    "pct": 12.41,
+    "readable": 1966,
+    "to": 9000
+   },
+   {
+    "confirmed": 63,
+    "from": 9001,
+    "pct": 9.98,
+    "readable": 631,
+    "to": 10000
+   }
+  ],
+  "blocking": {
+   "rr_search": {
+    "events_control": 430,
+    "events_exposed": 6,
+    "hi": 0.19,
+    "lo": 0.04,
+    "rr": 0.085
+   },
+   "rr_training": {
+    "events_control": 870,
+    "events_exposed": 73,
+    "hi": 0.64,
+    "lo": 0.41,
+    "rr": 0.51
+   },
+   "search_rate_with": 0.72,
+   "search_rate_without": 8.54,
+   "search_with": 6,
+   "search_without": 430,
+   "training_rate_with": 8.82,
+   "training_rate_without": 17.29,
+   "training_with": 73,
+   "training_without": 870,
+   "with": 828,
+   "without": 5033
+  },
+  "candidates": 984,
+  "confirmed": 828,
+  "files": {
+   "confirmed": 828,
+   "h1": 789,
+   "h1_blockquote": 640,
+   "median_bytes": 8302,
+   "other_type": 3,
+   "over_100kb": 68,
+   "text_markdown": 33,
+   "text_plain": 792,
+   "under_1kb": 16
+  },
+  "gone_pct": 63.2,
+  "not_200_on_recheck": 0,
+  "not_asked_disallowed": 310,
+  "pct_of_200": 46.86,
+  "pct_of_asked": 14.13,
+  "pct_of_readable": 13.42,
+  "readable": 6171,
+  "refused_pct": 5.15,
+  "soft404": 144,
+  "wrong_kind": 12,
+  "wrong_kind_by": {
+   "compressed": 6,
+   "html": 2,
+   "json": 1,
+   "robots": 2,
+   "xml": 1
+  }
+ },
+ "panel": {
+  "asked_both": 5595,
+  "aug_total": 686,
+  "bands": [
+   {
+    "asked": 488,
+    "aug": 81,
+    "from": 1,
+    "oct": 101,
+    "to": 1000
+   },
+   {
+    "asked": 1105,
+    "aug": 141,
+    "from": 1001,
+    "oct": 167,
+    "to": 3000
+   },
+   {
+    "asked": 1629,
+    "aug": 228,
+    "from": 3001,
+    "oct": 243,
+    "to": 6000
+   },
+   {
+    "asked": 1804,
+    "aug": 187,
+    "from": 6001,
+    "oct": 233,
+    "to": 9000
+   },
+   {
+    "asked": 569,
+    "aug": 49,
+    "from": 9001,
+    "oct": 58,
+    "to": 10000
+   }
+  ],
+  "both": 665,
+  "neither": 4772,
+  "oct_total": 802,
+  "rule_sensitive": {
+   "started": 3,
+   "stopped": 2
+  },
+  "started": 137,
+  "started_from": {
+   "gone": 110,
+   "no_answer": 2,
+   "other": 2,
+   "other_kind": 2,
+   "page": 3,
+   "refused": 6,
+   "soft404": 10,
+   "unconfirmed": 2
+  },
+  "stopped": 21,
+  "stopped_to": {
+   "gone": 6,
+   "no_answer": 1,
+   "other": 1,
+   "page": 2,
+   "refused": 3,
+   "soft404": 8
+  }
+ },
+ "reconcile": {
+  "aug_confirmed": 714,
+  "aug_left_out_why": {
+   "disallows_our_agent": 4,
+   "no_robots": 1,
+   "oversize": 0,
+   "refused": 22,
+   "robots_308": 0,
+   "unreachable": 1
+  },
+  "aug_not_asked_in_oct": 28,
+  "oct_confirmed": 828,
+  "oct_new_left_out_why": {
+   "disallows_our_agent": 0,
+   "no_robots": 4,
+   "oversize": 1,
+   "refused": 9,
+   "robots_308": 0,
+   "unreachable": 12
+  },
+  "oct_not_asked_in_aug": 26
+ },
+ "redirects": {
+  "llms_308_oct": 0,
+  "robots_308_aug": 0,
+  "robots_308_oct": 1
+ },
+ "reread": {
+  "became_readable": 136,
+  "confirmed_among": 46,
+  "connect_hosts": 2576,
+  "date": "2026-10-20",
+  "hosts": 2694,
+  "python_major_minor": "3.11",
+  "robots_308_aug_confirmed": 21,
+  "robots_308_readable_in_aug": 91,
+  "was_llms_308": 10,
+  "was_robots_308": 108
+ },
+ "sensitivity": {
+  "http_read": {
+   "confirmed": 14,
+   "confirmed_total": 828,
+   "readable": 146,
+   "readable_total": 6171
+  }
+ }
+}

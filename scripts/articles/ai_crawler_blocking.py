@@ -421,7 +421,7 @@ here. {_c(att)} hosts were attempted in both months.</p>
 at all. The user agent names this survey and links to <a href="/bot/">the page that explains it</a>.
 A timeout of {timeout_s} seconds, no retries, {F.blk('meta', 'workers')} different hosts at a time. Where the file
 let our user agent fetch <code>/llms.txt</code> we asked for that too, with one extra request
-for a path that cannot exist; those results are kept in the raw survey and are not reported on this page. The run took
+for a path that cannot exist; those results have <a href="/index/llms-txt-adoption-2026-10/">a page of their own</a> and are not reported here. The run took
 {F.blk_minutes('oct')} minutes. The {aug_month} run took {F.blk_minutes('aug')}. The sites counted in the update at
 the top were read again with the same user agent and the same rules.</p>
 

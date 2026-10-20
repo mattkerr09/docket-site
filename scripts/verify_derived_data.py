@@ -66,6 +66,10 @@ DERIVED = [
     # raw surveys committed beside it: rerunning it is a correction, never a
     # fresh measurement (that is collect_ai_directives.py, which is not here).
     ("build_ai_crawler_blocking.py", "data/ai-crawler-blocking-2026-10.json"),
+    # Added 2026-10-19 with /index/llms-txt-adoption-2026-10/, on the same terms:
+    # a pure function of the raw surveys and their validation files committed
+    # beside it, and it recomputes August's published llms.txt figures first.
+    ("build_llms_adoption.py", "data/llms-adoption-2026-10.json"),
 ]
 
 #: Checks run from the *app* repo, which owns the fact. `--check` reports
