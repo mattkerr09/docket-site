@@ -34,8 +34,14 @@ ARTICLE_TYPES = ("Article", "BlogPosting", "TechArticle", "NewsArticle")
 ANSWER_PREFIX = 80
 
 
+#: Inline tags are dropped with no space, so "<strong>$999</strong>, a" reads "$999, a" as the reader sees it; every
+#: other tag becomes a space (a sister site's verbatim FAQ answers failed when every tag became one, 19 October 2026).
+INLINE = r"(?:strong|em|b|i|a|span|code|mark|u|small|sup|sub|abbr|time|q|s|del|ins|kbd|var|cite|dfn)"
+
+
 def norm(x: str) -> str:
-    x = html.unescape(re.sub(r"<[^>]+>", " ", x or ""))
+    x = re.sub(r"</?" + INLINE + r"(?:\s[^>]*)?/?>", "", x or "", flags=re.I)
+    x = html.unescape(re.sub(r"<[^>]+>", " ", x))
     x = x.replace("’", "'").replace("‘", "'").replace("“", '"').replace("”", '"')
     return re.sub(r"\s+", " ", x).strip().lower()
 
@@ -90,7 +96,9 @@ def problems(page: str) -> list:
                     except ValueError:
                         out.append(f"{key} is not a date: {value!r}")
                         continue
-                    if f"{d.day} {d.strftime('%B %Y')}".lower() not in vis:
+                    # The day as a reader would see it: "6 August 2026" or "6 Aug 2026" (both are bylines in use).
+                    shown = {f"{d.day} {d.strftime(fmt)}".lower() for fmt in ("%B %Y", "%b %Y")}
+                    if not any(form in vis for form in shown):
                         out.append(f"{key} {value} is not shown on the page")
     return out
 
@@ -114,6 +122,12 @@ def self_test() -> int:
     assert any("datePublished" in p for p in problems(wrong_date)), problems(wrong_date)
     broken = good.replace('"@graph"', '"@graph" x')
     assert any("does not parse" in p for p in problems(broken)), problems(broken)
+    # Must pass: an answer whose visible text has inline markup in it, read verbatim.
+    priced = good.replace("Yes, the first audit is free.", "From <strong>$999</strong>, a standard rate.")
+    assert problems(priced) == [], problems(priced)
+    # Must pass: a byline with the short month.
+    short = good.replace("Published 19 October 2026", "Published 19 Oct 2026")
+    assert problems(short) == [], problems(short)
     only_in_script = good.replace("<h3>Is it free?</h3>", "<script>var q='Is it free?'</script>")
     assert any("question not visible" in p for p in problems(only_in_script)), "text inside a script is not visible"
     print("STRUCTURED DATA self-test ok")
