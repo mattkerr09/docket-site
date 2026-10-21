@@ -4,12 +4,11 @@
   "checks": 99,
   "date": "2026-10-21",
   "pages": 143,
-  "seconds": 56,
-  "score": 97,
+  "seconds": 57,
+  "score": 99,
   "grade": "A",
-  "findings_total": 9,
+  "findings_total": 8,
   "by_severity": {
-    "high": 1,
     "low": 4,
     "notice": 4
   },
@@ -27,8 +26,8 @@
     },
     {
       "label": "Content quality",
-      "score": 82,
-      "findings": 1
+      "score": 100,
+      "findings": 0
     },
     {
       "label": "Speed & Core Web Vitals",
@@ -79,14 +78,6 @@
   "top": [
     {
       "rank": 1,
-      "title": "1 page contains placeholder or template text",
-      "severity": "high",
-      "effort": "medium",
-      "pages": 1,
-      "phase": "Build"
-    },
-    {
-      "rank": 2,
       "title": "2 groups of near-identical colours in your CSS",
       "severity": "low",
       "effort": "medium",
@@ -94,7 +85,7 @@
       "phase": "Build"
     },
     {
-      "rank": 3,
+      "rank": 2,
       "title": "Only 1 recognised profile in sameAs",
       "severity": "low",
       "effort": "trivial",
@@ -102,7 +93,7 @@
       "phase": "Polish"
     },
     {
-      "rank": 4,
+      "rank": 3,
       "title": "1 page promises one thing in search and another on the page",
       "severity": "low",
       "effort": "small",
@@ -110,7 +101,7 @@
       "phase": "Polish"
     },
     {
-      "rank": 6,
+      "rank": 5,
       "title": "Missing 1 baseline security header",
       "severity": "notice",
       "effort": "trivial",
@@ -118,7 +109,7 @@
       "phase": "Polish"
     },
     {
-      "rank": 7,
+      "rank": 6,
       "title": "2 marketing and analytics tools detected",
       "severity": "notice",
       "effort": "trivial",
@@ -126,7 +117,7 @@
       "phase": "Polish"
     },
     {
-      "rank": 9,
+      "rank": 8,
       "title": "One AI visibility control cannot be checked from outside, including by Docket",
       "severity": "notice",
       "effort": "trivial",
