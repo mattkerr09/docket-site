@@ -14,7 +14,7 @@
 <title>AI crawler checker: can ChatGPT read your site?</title>
 <meta name="description" content="Free check of your robots.txt against 21 crawlers: which let ChatGPT, Claude, Perplexity, AI Overviews and Copilot read and cite you, and which only train.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="d0d30ea387fd">
+<meta name="build-id" content="40c80de984f9">
 <link rel="canonical" href="https://docketseo.app/tools/ai-crawler-checker/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -642,6 +642,15 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .meta-summary dt{font-weight:600}.meta-summary dd{margin:0;overflow-wrap:anywhere}
 @media(max-width:600px){.findings .finding,.meta-summary dl{grid-template-columns:1fr}.finding-level{grid-row:auto}}
 .checker-status{margin:.7rem 0 0;color:var(--text-mid);min-height:1.3em;overflow-wrap:anywhere}
+.checker-share{margin:-1rem 0 2rem;padding:1rem 1.2rem;border:1px solid var(--border-strong);
+  border-radius:var(--radius-lg);background:var(--surface)}
+.checker-share p{margin:.3rem 0 .5rem}
+.checker-share-row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin:0 0 .9rem}
+.checker-share input,.checker-share textarea{flex:1 1 14rem;min-width:0;padding:.55rem .75rem;
+  border-radius:var(--radius-md);border:1px solid var(--border-strong);background:var(--surface-2);
+  color:var(--text);font:inherit;font-size:.88rem}
+.checker-share textarea{display:block;width:100%;box-sizing:border-box;margin:0 0 .6rem;resize:vertical;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 .checker-table .verdict{font-weight:600;overflow-wrap:anywhere}
 .checker-table .verdict.yes{color:var(--ok)}.checker-table .verdict.no{color:var(--bad-text)}
 /* On a phone each crawler is a card: its name, then the answer, then what a
@@ -940,6 +949,18 @@ first, and the ones that only collect training data come second.</p>
   <p class="checker-status" id="checker-status" role="status" aria-live="polite"></p>
 </form>
 
+<div class="checker-share" id="checker-share" hidden>
+  <p><strong>Share this result.</strong> The link runs the check again when it is opened, so it shows your
+  file as it is that day.</p>
+  <div class="checker-share-row"><input id="share-url" type="text" readonly aria-label="Link to this result">
+    <button class="btn-ghost" type="button" data-copy="share-url" data-what="link">Copy link</button></div>
+  <p><strong>Show visitors you checked.</strong> Paste this on your site. It links to the live result and says
+  only that the check was made with Docket, not what it found.</p>
+  <textarea id="share-badge" readonly rows="3" aria-label="Badge code to paste on your site"></textarea>
+  <div class="checker-share-row"><button class="btn-ghost" type="button" data-copy="share-badge"
+    data-what="badge">Copy badge code</button><span id="share-preview"></span></div>
+</div>
+
 
 <div class="checker-next" id="checker-next" hidden>
   <p><strong>That was one file, read for one page.</strong> Docket runs 99 checks across your whole site, ranked by
@@ -996,6 +1017,15 @@ it answers "not found", they may crawl everything.</p>
 <p>The checker fetches only your robots.txt, names itself in the request, keeps a copy for a few
 minutes so repeated checks do not hit your server, and stores nothing about you or your site.</p>
 
+<h2>Sharing a result</h2>
+<p>After a check, the page gives you a link to it, such as
+<code>/tools/ai-crawler-checker/?d=yourbusiness.com</code>. Opening the link runs the check again, so the
+person you send it to sees your robots.txt as it is when they look, not a saved copy. The link carries only
+the address, and nothing is kept on our side to make it work.</p>
+<p>It also gives you a small badge to paste on your own site. The badge says your AI crawler access was
+checked with Docket and links to the live result. It does not say what the check found, so it cannot go
+out of date.</p>
+
 <h2>Checking every page, and your server</h2>
 <p>Docket checks all of this from your Mac, on every page it crawls: it requests pages as each AI
 crawler and reports when your server refuses one that robots.txt permits, reads the tags on every
@@ -1015,14 +1045,47 @@ to five optional outside checks and the rest of the audit.</p>
 (function () {
   var ENDPOINT = "https://ai-crawler-check.kerrco.workers.dev/check";
   var AGENTS = "Googlebot,Bingbot,Google-CloudVertexBot,ChatGPT-User,OAI-SearchBot,Claude-SearchBot,Claude-User,Perplexity-User,PerplexityBot,Amazonbot,Meta-ExternalFetcher,MistralAI-Index,Google-Extended,GoogleOther,GPTBot,ClaudeBot,Applebot-Extended,Bytespider,CCBot,meta-externalagent,MistralAI-Training";
+  var SHARE = "https://docketseo.app/tools/ai-crawler-checker/";
   var form = document.getElementById('checker');
   var input = document.getElementById('checker-url');
   var status = document.getElementById('checker-status');
+  var shareBox = document.getElementById('checker-share');
   if (!form || !window.fetch) return;
   function cells() { return document.querySelectorAll('tr[data-agent] .verdict'); }
   function say(text) { status.textContent = text; }
+  // A shareable result is the address and nothing else: ?d=<host>, re-checked when opened.
+  // Only a plain host name is accepted, so nothing a link carries reaches the page as markup.
+  var HOST = /^(?=.{1,253}$)[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+$/;
+  function badge(url) {
+    return '<a href="' + url + '" style="display:inline-block;padding:5px 10px;border:1px solid #14b8a6;' +
+      'border-radius:6px;background:#f0fdfa;color:#115e59;font:600 13px/1.3 system-ui,-apple-system,sans-serif;' +
+      'text-decoration:none">AI crawler access checked with Docket</a>';
+  }
+  function share(host) {
+    if (!shareBox || !HOST.test(host)) return;
+    var url = SHARE + '?d=' + host;
+    document.getElementById('share-url').value = url;
+    document.getElementById('share-badge').value = badge(url);
+    document.getElementById('share-preview').innerHTML = badge(url);
+    shareBox.hidden = false;
+    try { history.replaceState(null, '', location.pathname + '?d=' + host + location.hash); } catch (e) {}
+  }
+  [].forEach.call(document.querySelectorAll('[data-copy]'), function (b) {
+    b.addEventListener('click', function () {
+      var el = document.getElementById(b.getAttribute('data-copy'));
+      var done = function () { var t = b.textContent; b.textContent = 'Copied'; setTimeout(function () { b.textContent = t; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(el.value).then(done, function () {});
+      else { el.select(); try { document.execCommand('copy'); done(); } catch (e) {} }
+      if (window.plausible) window.plausible('Checker share', { props: { what: b.getAttribute('data-what') } });
+    });
+  });
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    run();
+  });
+  var asked = (new URLSearchParams(location.search).get('d') || '').trim().toLowerCase();
+  if (HOST.test(asked)) { input.value = asked; run(); }
+  function run() {
     var v = (input.value || '').trim();
     if (!v) { say('Enter your website address.'); return; }
     [].forEach.call(cells(), function (c) { c.textContent = '…'; c.className = 'verdict'; });
@@ -1049,10 +1112,11 @@ to five optional outside checks and the rest of the audit.</p>
         say(msg);
         var next = document.getElementById('checker-next');
         if (next) next.hidden = false;
+        if (j.state !== 'blocked' && j.robots_url) { try { share(new URL(j.robots_url).hostname); } catch (e) {} }
         if (window.plausible) window.plausible('Checker', { props: { state: j.state } });
       })
       .catch(function () { say('The checker could not be reached. Try again in a minute.'); });
-  });
+  }
 })();
 </script>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is ChatGPT allowed to crawl my website?</h3><p>Check OAI-SearchBot and ChatGPT-User in the table above. OAI-SearchBot builds the index ChatGPT Search cites from, and ChatGPT-User fetches a page when someone asks about it. GPTBot is OpenAI's training crawler; blocking it does not remove you from ChatGPT's answers.</p></div><div class="faq-item"><h3>Does blocking Google-Extended keep me out of AI Overviews?</h3><p>No. Google-Extended governs Gemini training and grounding in Gemini Apps and Vertex AI. AI Overviews and AI Mode follow your Googlebot rules.</p></div><div class="faq-item"><h3>My robots.txt allows every AI crawler. Am I visible?</h3><p>Not necessarily. A CDN, firewall or bot-protection setting can refuse a crawler that robots.txt allows, and this checker cannot see that. Docket requests pages as each crawler to find out.</p></div></div></section>
