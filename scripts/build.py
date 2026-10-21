@@ -574,7 +574,7 @@ def write_llms_txt() -> None:
     from collections import OrderedDict
 
     from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS,
-                        FOUNDING_NOW, FOUNDING_SEATS, HAS_SAMPLE, LINUX, MACOS,
+                        FOUNDING_NOW, FOUNDING_OPEN, FOUNDING_SEATS, HAS_SAMPLE, LINUX, MACOS,
                         N_CHECKS, N_LANES, PRICE_STR, REPO, SAMPLE_REPORT, SELLER,
                         seller_address)
 
@@ -658,9 +658,9 @@ def write_llms_txt() -> None:
     out += facts(
         f"{PRICE_STR}, paid once, in US dollars. Not a subscription: there is no renewal "
         f"date and nothing to cancel.",
-        f"Founding price {FOUNDING_NOW} once, first {FOUNDING_SEATS} buyers, then {PRICE_STR}: "
-        f"the Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
-        f"{PRICE_STR}, enter it under \"Have a discount code?\").",
+        (f"Founding price {FOUNDING_NOW} once, first {FOUNDING_SEATS} buyers, then {PRICE_STR}: "
+         f"the Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
+         f"{PRICE_STR}, enter it under \"Have a discount code?\")." if FOUNDING_OPEN else ""),
         (f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks "
          f"apart." if BNPL_LIVE else ""),
         f"{FREE_LINE} The free version needs no key and no account, and runs the same "
@@ -795,6 +795,11 @@ def page_fingerprint(html: str) -> str:
     comparisons.py re-dated all fourteen /vs/ pages and nearly every URL read
     09-23. Nav and footer are outside the article and do not count; a change
     to them is not a change to the page's content.
+
+    ⚠️ THE TEXT, NOT THE MARKUP (2026-10-21): the founding offer's switch added
+    an attribute and a span around words that did not change, and every page
+    with a Buy button was re-dated that day. Tags are dropped before hashing,
+    so only a change a reader can see moves the date.
     """
     import re as _re
     title = _re.search(r"<title>(.*?)</title>", html, _re.S)
@@ -802,6 +807,7 @@ def page_fingerprint(html: str) -> str:
     art = _re.search(r"<article\b.*</article>", html, _re.S)
     part = art.group(0) if art else html
     part = _re.sub(r"<script\b.*?</script>|<style\b.*?</style>", "", part, flags=_re.S)
+    part = _re.sub(r"<[^>]+>", " ", part)
     blob = "\n".join([title.group(1) if title else "", desc.group(1) if desc else "",
                       _re.sub(r"\s+", " ", part)])
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:16]
@@ -858,7 +864,7 @@ def write_offer() -> None:
     the site, and the app falls back to the list price alone when it cannot
     read it.
     """
-    from render import (BNPL_LIVE, CHECKOUT, FOUNDING_CODE, FOUNDING_PCT, FOUNDING_SEATS,
+    from render import (BNPL_LIVE, CHECKOUT, FOUNDING_CODE, FOUNDING_OPEN, FOUNDING_PCT, FOUNDING_SEATS,
                         HAS_SAMPLE, REFUND_DAYS, SAMPLE_REPORT)
     import math
     price_cents = PRICE * 100
@@ -870,9 +876,10 @@ def write_offer() -> None:
         "instalments": ({"count": 4, "cents": math.ceil(price_cents / 4),
                          "providers": ["Klarna", "Afterpay"], "every_days": 14}
                         if BNPL_LIVE else None),
-        "founding": {"price_cents": founding_cents,
-                     "instalment_cents": math.ceil(founding_cents / 4) if BNPL_LIVE else None,
-                     "code": FOUNDING_CODE, "seats": FOUNDING_SEATS},
+        # null once the offer has ended; the app then shows the list price alone (offer.py).
+        "founding": ({"price_cents": founding_cents,
+                      "instalment_cents": math.ceil(founding_cents / 4) if BNPL_LIVE else None,
+                      "code": FOUNDING_CODE, "seats": FOUNDING_SEATS} if FOUNDING_OPEN else None),
         "refund_days": REFUND_DAYS,
         "checkout_url": CHECKOUT,
         # Our buy endpoint: makes the Dodo checkout with the founding code
@@ -1236,9 +1243,12 @@ def pricing_page() -> Path:
     # Every fact is from the terms, the refund policy and the FAQ, re-worded.
     bundle = json.loads((DATA / "bundle.json").read_text(encoding="utf-8"))
     # The founding bundle price is promised only until the founding codes end;
-    # after that date the page states the standard price instead, so a rebuild is
-    # all it takes to stop quoting a price the checkout no longer gives.
-    founding = datetime.date.today() <= datetime.date.fromisoformat(bundle["founding_ends"])
+    # after that moment the page states the standard price instead, so a rebuild is
+    # all it takes to stop quoting a price the checkout no longer gives. The moment,
+    # not the day: the codes expire at 01:26:53Z on 25 November, and a date compare
+    # kept the founding price on the page for the rest of that day.
+    founding = (datetime.datetime.now(datetime.timezone.utc)
+                < datetime.datetime.fromisoformat(bundle["founding_ends_at"].replace("Z", "+00:00")))
     apps = ", ".join(bundle["apps"][:-1]) + " and " + bundle["apps"][-1]
     bundle_line = (
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
@@ -1250,7 +1260,7 @@ def pricing_page() -> Path:
     body = f"""
 <p class="lede">One price, paid once. No subscription, no page meter, nothing to cancel.</p>
 {buy_block("pricing-page", try_app="pricing-page-try-free", phone=False)}
-<p class="hero-note">{bundle_line}</p>
+<p class="hero-note"{' data-founding-until="' + bundle["founding_ends_at"] + '"' if founding else ""}>{bundle_line}</p>
 <p class="hero-note">Bought it already? <a href="{download_url('pricing-page')}" data-ev="Download"
 data-ev-button="pricing-page">Get the {DMG_SIZE} Mac download</a> and paste the key from your receipt.</p>
 

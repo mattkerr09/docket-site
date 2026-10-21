@@ -3,8 +3,8 @@
   "founding_price": 299,
   "standard_price": 399,
   "separate_total": 727,
-  "founding_ends": "2026-11-25",
+  "founding_ends_at": "2026-11-25T01:26:53Z",
   "url": "https://kerr-affiliate-hub.kerrco.workers.dev/buy/bundle",
   "recorded": "2026-10-14",
-  "source": "~/ops/launch/BUNDLE-2026-10-14.md (Matthew approved in chat 2026-10-14); checkout read back at $299.00 by the CEO 2026-10-14. The hub moves to the standard price by itself when the founding codes run out or expire at 2026-11-25T01:26:53Z; this page flips at the next build after founding_ends."
+  "source": "~/ops/launch/BUNDLE-2026-10-14.md (Matthew approved in chat 2026-10-14); checkout read back at $299.00 by the CEO 2026-10-14. The hub moves to the standard price by itself when the founding codes run out or expire at 2026-11-25T01:26:53Z; this page flips at the next build after founding_ends_at."
 }

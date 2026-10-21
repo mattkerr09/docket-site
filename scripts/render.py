@@ -295,7 +295,8 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
     out.append('</div>')
     if try_app and phone:
         out.append(PHONE_LINK)
-    out.append(f'<p class="hero-note founding-note">{FOUNDING_LINE}</p>')
+    if FOUNDING_LINE:
+        out.append(f'<p class="hero-note founding-note"{FOUNDING_UNTIL}>{FOUNDING_LINE}</p>')
     if anchor:
         out.append(price_anchor_html())
     if refund:
@@ -322,15 +323,17 @@ def buy_strip(src: str) -> str:
     try_src = f"{src}-try-free"
     intel = (f' (<a href="{download_url(try_src + "-intel", to=INTEL_DMG)}" data-ev="Download" '
              f'data-ev-button="{try_src}-intel">Intel Mac</a>)' if INTEL else "")
-    sample = (f'<a href="{SAMPLE_REPORT}" data-ev="Sample report" data-ev-button="{src}">'
-              f'See a sample report</a> &middot; ' if HAS_SAMPLE else "")
+    sample = (f' &middot; <a href="{SAMPLE_REPORT}" data-ev="Sample report" data-ev-button="{src}">'
+              f'See a sample report</a>' if HAS_SAMPLE else "")
+    # The founding part carries its own separator, so the page's switch can remove it whole at FOUNDING_ENDS_AT.
+    founding = (f'<span{FOUNDING_UNTIL}> &middot; founding price {FOUNDING_NOW}{PAY4_FOUNDING}, for the first '
+                f'{FOUNDING_SEATS} buyers with <code>{FOUNDING_CODE}</code></span>' if FOUNDING_OPEN else "")
     return (f'<aside class="buy-strip"><p><a href="{download_url(try_src)}" data-ev="Download" '
             f'data-ev-button="{try_src}"><strong>Try it free</strong></a>{intel}: your score and '
             f'how many problems each area has, and the top problem in full &middot; '
             f'<a href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
-            f'data-ev-button="{src}">Buy once, {PRICE_STR}{PAY4}</a>, {REFUND_DAYS}-day refund &middot; '
-            f'{sample}founding price {FOUNDING_NOW}{PAY4_FOUNDING}, for the first '
-            f'{FOUNDING_SEATS} buyers with <code>{FOUNDING_CODE}</code></p></aside>')
+            f'data-ev-button="{src}">Buy once, {PRICE_STR}{PAY4}</a>, {REFUND_DAYS}-day refund'
+            f'{sample}{founding}</p></aside>')
 
 
 def next_step_block(src: str) -> str:
@@ -619,6 +622,27 @@ PRICE_STR = f"${PRICE}"
 #: discount code?".
 FOUNDING_CODE = "FOUNDINGDOCKET"
 FOUNDING_SEATS = 25
+#: When the founding offer stops: FOUNDINGDOCKET's expires_at, read from Dodo on 2026-10-21 (50% off, 0 of 25 used,
+#: restricted to Docket). CEO, 2026-10-21: every founding-price line, the auto-applied code and the ads switch off by
+#: that moment. So every founding line this site writes (the note under each Buy button, the guide strips, the FAQ
+#: answers, llms.txt, prices.json and the bar's mount) is built only while FOUNDING_OPEN. A deployed page cannot
+#: rebuild itself, so the note and the strip also carry data-founding-until and remove themselves in the browser at
+#: the moment; the first build after it drops the rest. verify_founding_offer.py fails any deploy that still shows the
+#: founding price after the moment, or once Dodo's times_used reaches the limit: then set FOUNDING_SOLD_OUT = True.
+FOUNDING_ENDS_AT = "2026-11-25T01:26:53Z"
+FOUNDING_SOLD_OUT = False
+
+
+def founding_open(now: "_dt.datetime | None" = None) -> bool:
+    """True while the founding offer may be shown: before FOUNDING_ENDS_AT and not sold out."""
+    now = now or _dt.datetime.now(_dt.timezone.utc)
+    ends = _dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00"))
+    return not FOUNDING_SOLD_OUT and now < ends
+
+
+FOUNDING_OPEN = founding_open()
+#: On an element that holds founding text and nothing else: the page's switch removes it at FOUNDING_ENDS_AT.
+FOUNDING_UNTIL = f' data-founding-until="{FOUNDING_ENDS_AT}"'
 #: Beside every buy button, as page text — the founding bar is a script that
 #: can fail to load, and a visitor at the button should not need it to know the
 #: offer exists or how to claim it. Says "first 25 buyers", never how many are
@@ -780,7 +804,7 @@ BNPL_NOTE_HTML = BNPL_NOTE.replace(
 FOUNDING_LINE = (f"Founding price <strong>{FOUNDING_NOW} once{PAY4_FOUNDING}</strong>, first "
                  f"{FOUNDING_SEATS} buyers, then {PRICE_STR}. Buy applies the code "
                  f"<code>{FOUNDING_CODE}</code> for you; if the checkout shows {PRICE_STR}, "
-                 f"enter it under &lsquo;Have a discount code?&rsquo;.")
+                 f"enter it under &lsquo;Have a discount code?&rsquo;." if FOUNDING_OPEN else "")
 
 #: What the free version is, in Matthew's words of 2026-10-01 and the app's
 #: (freemode.py preset `basic`, from 1.3.96). One sentence, every page that says
@@ -1770,10 +1794,17 @@ RETURN_URL_SCRUB = """<script>
 })();
 </script>"""
 
-FOUNDING_MOUNT = (f'<div data-founding data-was="{FOUNDING_WAS}" data-now="{FOUNDING_NOW}"'
-                  + (f' data-pay4="or 4 &times; {BNPL_FOUNDING_INSTALMENT}"' if BNPL_LIVE else '')
-                  + ' hidden></div>\n'
-                  '<script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>')
+#: The switch runs where the mount sits, after the footer, so every founding element is already parsed. It removes
+#: them once FOUNDING_ENDS_AT has passed; the bar itself goes when the lead agent's /founding says soldOut, which it
+#: does at the code's expires_at.
+FOUNDING_SWITCH = ('<script>(function(){if(Date.now()<Date.parse("' + FOUNDING_ENDS_AT + '"))return;'
+                   'document.querySelectorAll("[data-founding-until]").forEach(function(e){e.remove();});})();'
+                   '</script>\n')
+FOUNDING_MOUNT = ((f'<div data-founding data-was="{FOUNDING_WAS}" data-now="{FOUNDING_NOW}"'
+                   + (f' data-pay4="or 4 &times; {BNPL_FOUNDING_INSTALMENT}"' if BNPL_LIVE else '')
+                   + ' hidden></div>\n' + FOUNDING_SWITCH
+                   + '<script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>')
+                  if FOUNDING_OPEN else "")
 
 #: The section links, written once: the desktop row and the phone menu both
 #: print them, and two hand-kept lists are how one of them loses a link.

@@ -128,6 +128,12 @@ echo "==> price-claim gate"
 # SaaS page and the download page. A site selling an instrument for catching
 # stale copy cannot be the counterexample on its own pricing page.
 "$PY" scripts/verify_price_claims.py || exit 1
+echo "==> founding-offer gate"
+# FOUNDINGDOCKET expires at 2026-11-25T01:26:53Z and has 25 seats (Dodo, read 2026-10-21). The site builds its
+# founding lines only while render.founding_open(); this refuses a deploy that would still show the founding price
+# once the code has expired, or once Dodo's times_used has reached the limit.
+"$PY" scripts/verify_founding_offer.py --self-test || exit 1
+"$PY" scripts/verify_founding_offer.py || exit 1
 echo "==> capability-claims gate"
 "$PY" scripts/verify_capability_claims.py || exit 1
 

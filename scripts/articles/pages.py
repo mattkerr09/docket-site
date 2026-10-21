@@ -24,7 +24,7 @@ from render import (windows_waitlist, with_next_step, download_url, FREE_LINE, I
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
     RELEASE, SELLER, SELLER_REG_NO, SUMS, price_note_html, render,
-    seller_address, buy_block, FOUNDING_NOW, SUPPORT_EMAIL, SELLER_CITY,
+    seller_address, buy_block, FOUNDING_NOW, FOUNDING_OPEN, SUPPORT_EMAIL, SELLER_CITY,
 )
 
 
@@ -581,7 +581,8 @@ claims everything invites the client to test the claim.</p>
         body=body,
         faq=[
             ("Can I use Docket for client work?",
-             "Yes. Docket is " + PRICE_STR + " once (" + FOUNDING_NOW + " for founding buyers), "
+             "Yes. Docket is " + PRICE_STR + " once"
+             + (" (" + FOUNDING_NOW + " for founding buyers)" if FOUNDING_OPEN else "") + ", "
              "with no per-seat or per-crawl limits, so you can audit as many client and "
              "prospect sites as you like and charge for the work."),
             ("Can I white-label the report?",
@@ -1338,7 +1339,8 @@ to happen whether or not anyone is at the machine, that is what a hosted crawler
              "field data if you add your own Google API key, which is Google measuring rather "
              "than Docket measuring."),
             ("Is Docket really a one-time purchase?",
-             f"Yes. {PRICE_STR} once, or {FOUNDING_NOW} for the first founding buyers, and "
+             f"Yes. {PRICE_STR} once, "
+             + (f"or {FOUNDING_NOW} for the first founding buyers, " if FOUNDING_OPEN else "") + f"and "
              f"every 1.x update is included. There are no seats, no crawl credits, no account "
              f"and no telemetry, and audit history is stored on your Mac in ~/.docket/ as "
              f"plain JSON."),
