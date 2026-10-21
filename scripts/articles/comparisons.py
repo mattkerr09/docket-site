@@ -2461,8 +2461,8 @@ stored audits but cannot start them. Docket ships an MCP server so an assistant 
 
 <h2>The technical audit is there now, within an allowance</h2>
 
-<p>An earlier version of this page said CrawlRaven's pricing page marked the technical audit &ldquo;coming
-soon&rdquo;. Read on {CHECKED_HUMAN["crawlraven"]}, it no longer does. The audit is listed among the Starter
+<p>An earlier version of this page said CrawlRaven's pricing page listed the technical audit as not yet
+available. Read on {CHECKED_HUMAN["crawlraven"]}, it no longer does. The audit is listed among the Starter
 features, and the FAQ says it is included on eligible paid or trial websites within a monthly page allowance, with
 a CSV export of findings. The page describes a {_CR_AUDIT_POINTS}-point technical audit.</p>
 
@@ -2536,7 +2536,7 @@ cheaper than Docket, and stronger than either of us at link checking.</p>
             ("Does CrawlRaven have a technical SEO audit?",
              f"Yes. On {CHECKED_HUMAN['crawlraven']} its pricing page listed it among the Starter features, and "
              "its FAQ said it is included on eligible paid or trial websites within a monthly page allowance. "
-             "An earlier reading of that page marked it coming soon."),
+             "When we read their pricing in September, the audit was not yet available."),
             ("Do both have an MCP integration?",
              f"Yes. CrawlRaven lists MCP access to up to {_CR_MCP_TOOLS} tools and says MCP can read stored "
              "audits but cannot start them. Docket ships an MCP server so an assistant can run an audit."),

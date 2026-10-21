@@ -1,5 +1,5 @@
 {
-  "compiled": "2026-10-19",
+  "compiled": "2026-10-20",
   "dates": {
     ".": "2026-08-06",
     "about": "2026-08-07",
@@ -160,7 +160,5 @@
     "vs/sitebulb-alternative": "2026-08-06",
     "vs/sitechecker-alternative": "2026-09-16"
   },
-  "uncommitted": [
-    "index/llms-txt-adoption-2026-10"
-  ]
+  "uncommitted": []
 }
