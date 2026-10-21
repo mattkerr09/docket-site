@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (speed_words, windows_waitlist, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
+from render import (_human_date, speed_words, windows_waitlist, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
@@ -78,14 +78,14 @@ def _demo_section() -> str:
 <section class="sec" id="watch"><div class="wrap-wide">
 <div class="sec-head">
   <h2>One real audit.<br><em>Start to finish.</em></h2>
-  <p class="sec-sub">Docket auditing this site: {d['pages']}&nbsp;pages crawled in {speed_words(d['seconds'])},
-  a score of {d['score']}, then the fix list narrowed to one area and one finding opened with the
+  <p class="sec-sub">Docket auditing this site, recorded {_human_date(d['recorded'])}: the crawl in
+  {speed_words(d['seconds'])}, a score of {d['score']}, then the fix list narrowed to one area and one finding opened with the
   markup to paste. A screen recording of the real app; the crawl is sped up.</p>
 </div>
 <figure class="shot demo-shot">
   <video class="demo-video" muted playsinline loop preload="none" controls
          poster="/assets/demo-run-poster.jpg" width="1280" height="720"
-         aria-label="Docket auditing docketseo.app: the address typed, the crawl running across {d['pages']} pages, a score of {d['score']}, the fix list filtered to {d['area']}, and the finding '{d['held']}' opened with its fix.">
+         aria-label="Docket auditing docketseo.app: the address typed, the crawl running, a score of {d['score']}, the fix list filtered to {d['area']}, and the finding '{d['held']}' opened with its fix.">
     <source src="/assets/demo-run.webm" type="video/webm">
     <source src="/assets/demo-run.mp4" type="video/mp4">
   </video>
@@ -284,12 +284,12 @@ def body() -> str:
 <figure class="hero-media">
   <video class="hero-video" autoplay loop muted playsinline preload="metadata"
          poster="/assets/app-demo-poster.jpg" width="1280" height="800"
-         aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs across {HERO['pages']} pages,
+         aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs,
                      and a report appears scoring {HERO['score']} out of 100, grade {HERO['grade']}.">
     <source src="/assets/app-demo.webm" data-src-hi="/assets/app-demo-hi.webm" type="video/webm">
     <source src="/assets/app-demo.mp4" type="video/mp4">
   </video>
-  <figcaption>Docket auditing this site. <strong>{HERO['pages']}&nbsp;pages in {speed_words(HERO['seconds']).replace(' ', '&nbsp;')}, {HERO['score']}/100</strong>.
+  <figcaption>Docket auditing this site, recorded {_human_date(HERO['recorded'])}. <strong>Done in {speed_words(HERO['seconds']).replace(' ', '&nbsp;')}, {HERO['score']}/100</strong>.
   A screen recording of the shipped app, not a mockup.</figcaption>
 </figure>
 </div>
