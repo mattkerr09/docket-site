@@ -34,6 +34,10 @@ from render import (DATA, HAS_SAMPLE, N_CHECKS, PAY4, PRICE, PRICE_STR, SAMPLE_R
 
 #: The Worker the form calls. `workers/ai-crawler-check/wrangler.toml` names it.
 CHECKER_ENDPOINT = "https://ai-crawler-check.kerrco.workers.dev/check"
+#: A shared result (CEO, 2026-10-21: a free tool earns links when a result can be passed on): this page with
+#: ?d=<host>, which runs the check again in the visitor's browser. Nothing is stored to make it work; the
+#: canonical stays the bare page, and the Worker's own per-IP limit and ten-minute cache apply as for any check.
+SHARE_BASE = "https://docketseo.app/tools/ai-crawler-checker/"
 SURVEYED_HUMAN = "August 2026"
 
 #: The two search crawlers that decide the AI-feature questions. Worded from
@@ -103,6 +107,18 @@ first, and the ones that only collect training data come second.</p>
   <p class="checker-status" id="checker-status" role="status" aria-live="polite"></p>
 </form>
 
+<div class="checker-share" id="checker-share" hidden>
+  <p><strong>Share this result.</strong> The link runs the check again when it is opened, so it shows your
+  file as it is that day.</p>
+  <div class="checker-share-row"><input id="share-url" type="text" readonly aria-label="Link to this result">
+    <button class="btn-ghost" type="button" data-copy="share-url" data-what="link">Copy link</button></div>
+  <p><strong>Show visitors you checked.</strong> Paste this on your site. It links to the live result and says
+  only that the check was made with Docket, not what it found.</p>
+  <textarea id="share-badge" readonly rows="3" aria-label="Badge code to paste on your site"></textarea>
+  <div class="checker-share-row"><button class="btn-ghost" type="button" data-copy="share-badge"
+    data-what="badge">Copy badge code</button><span id="share-preview"></span></div>
+</div>
+
 {audit_next("tools-checker-result", what="one file, read for one page")}
 
 <h2>Crawlers that decide whether AI can cite you</h2>
@@ -142,6 +158,15 @@ it answers "not found", they may crawl everything.</p>
 <p>The checker fetches only your robots.txt, names itself in the request, keeps a copy for a few
 minutes so repeated checks do not hit your server, and stores nothing about you or your site.</p>
 
+<h2>Sharing a result</h2>
+<p>After a check, the page gives you a link to it, such as
+<code>/tools/ai-crawler-checker/?d=yourbusiness.com</code>. Opening the link runs the check again, so the
+person you send it to sees your robots.txt as it is when they look, not a saved copy. The link carries only
+the address, and nothing is kept on our side to make it work.</p>
+<p>It also gives you a small badge to paste on your own site. The badge says your AI crawler access was
+checked with Docket and links to the live result. It does not say what the check found, so it cannot go
+out of date.</p>
+
 <h2>Checking every page, and your server</h2>
 <p>Docket checks all of this from your Mac, on every page it crawls: it requests pages as each AI
 crawler and reports when your server refuses one that robots.txt permits, reads the tags on every
@@ -161,14 +186,47 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
 (function () {{
   var ENDPOINT = {json.dumps(CHECKER_ENDPOINT)};
   var AGENTS = {json.dumps(agents)};
+  var SHARE = {json.dumps(SHARE_BASE)};
   var form = document.getElementById('checker');
   var input = document.getElementById('checker-url');
   var status = document.getElementById('checker-status');
+  var shareBox = document.getElementById('checker-share');
   if (!form || !window.fetch) return;
   function cells() {{ return document.querySelectorAll('tr[data-agent] .verdict'); }}
   function say(text) {{ status.textContent = text; }}
+  // A shareable result is the address and nothing else: ?d=<host>, re-checked when opened.
+  // Only a plain host name is accepted, so nothing a link carries reaches the page as markup.
+  var HOST = /^(?=.{{1,253}}$)[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+$/;
+  function badge(url) {{
+    return '<a href="' + url + '" style="display:inline-block;padding:5px 10px;border:1px solid #14b8a6;' +
+      'border-radius:6px;background:#f0fdfa;color:#115e59;font:600 13px/1.3 system-ui,-apple-system,sans-serif;' +
+      'text-decoration:none">AI crawler access checked with Docket</a>';
+  }}
+  function share(host) {{
+    if (!shareBox || !HOST.test(host)) return;
+    var url = SHARE + '?d=' + host;
+    document.getElementById('share-url').value = url;
+    document.getElementById('share-badge').value = badge(url);
+    document.getElementById('share-preview').innerHTML = badge(url);
+    shareBox.hidden = false;
+    try {{ history.replaceState(null, '', location.pathname + '?d=' + host + location.hash); }} catch (e) {{}}
+  }}
+  [].forEach.call(document.querySelectorAll('[data-copy]'), function (b) {{
+    b.addEventListener('click', function () {{
+      var el = document.getElementById(b.getAttribute('data-copy'));
+      var done = function () {{ var t = b.textContent; b.textContent = 'Copied'; setTimeout(function () {{ b.textContent = t; }}, 1500); }};
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(el.value).then(done, function () {{}});
+      else {{ el.select(); try {{ document.execCommand('copy'); done(); }} catch (e) {{}} }}
+      if (window.plausible) window.plausible('Checker share', {{ props: {{ what: b.getAttribute('data-what') }} }});
+    }});
+  }});
   form.addEventListener('submit', function (e) {{
     e.preventDefault();
+    run();
+  }});
+  var asked = (new URLSearchParams(location.search).get('d') || '').trim().toLowerCase();
+  if (HOST.test(asked)) {{ input.value = asked; run(); }}
+  function run() {{
     var v = (input.value || '').trim();
     if (!v) {{ say('Enter your website address.'); return; }}
     [].forEach.call(cells(), function (c) {{ c.textContent = '…'; c.className = 'verdict'; }});
@@ -195,10 +253,11 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
         say(msg);
         var next = document.getElementById('checker-next');
         if (next) next.hidden = false;
+        if (j.state !== 'blocked' && j.robots_url) {{ try {{ share(new URL(j.robots_url).hostname); }} catch (e) {{}} }}
         if (window.plausible) window.plausible('Checker', {{ props: {{ state: j.state }} }});
       }})
       .catch(function () {{ say('The checker could not be reached. Try again in a minute.'); }});
-  }});
+  }}
 }})();
 </script>
 """
