@@ -3,6 +3,19 @@
  "entries": [
   {
    "date": "2026-10-21",
+   "release": "1.3.113",
+   "title": "A link whose server hung up on Docket was reported as broken",
+   "wrong": "Docket checks a sample of the links a site makes to other sites. Some servers accept the connection and then close it without answering when the request comes from an audit tool, while a browser gets the page. Docket recorded that the same way as a server it could not reach at all, and told the site that working links were broken and should be updated or removed.",
+   "found": "Auditing a travel blog from source and reading every finding against the page. Both of its broken links opened in a browser, and the same request carrying Docket's name got no answer at all.",
+   "fixed": "Docket now tells a server that hung up from one it could not reach. A hang-up is listed with the links that refused an automated request, as links Docket could not check, and a link whose server cannot be reached at all is still reported as broken. The same release fixes two other wrong findings: a page quoting the words coming soon was read as unfinished, and a page whose two H1s say the same thing was counted as having more than one.",
+   "tests": [
+    "test_a_server_that_hangs_up_is_refusing_not_gone.py",
+    "test_two_h1s_that_say_the_same_thing_are_one_topic.py",
+    "test_a_quoted_coming_soon_beside_this_page_is_not_a_placeholder.py"
+   ]
+  },
+  {
+   "date": "2026-10-21",
    "release": "1.3.112",
    "title": "A Cloudflare site's bot check was reported as AI crawlers refused",
    "wrong": "Docket asks a site's server for the homepage as each AI crawler, from the user's own computer. Cloudflare checks real crawlers by the network address they come from, so to Cloudflare those requests are crawlers pretending, and it may challenge or turn them away while serving the real crawlers normally. Docket reported that as AI crawlers refused by the server, on two sites at critical severity and with a warning that search was blocked too, although the real crawlers read both. A server that asked a crawler to pay, with HTTP 402, was counted as having served the page.",

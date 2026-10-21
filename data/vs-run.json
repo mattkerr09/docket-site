@@ -1,10 +1,10 @@
 {
   "target": "docketseo.app",
-  "engine": "1.3.112",
+  "engine": "1.3.113",
   "checks": 99,
   "date": "2026-10-21",
   "pages": 143,
-  "seconds": 57,
+  "seconds": 60,
   "score": 99,
   "grade": "A",
   "findings_total": 8,
@@ -12,7 +12,7 @@
     "low": 4,
     "notice": 4
   },
-  "left_out": 2,
+  "left_out": 1,
   "lanes": [
     {
       "label": "Crawlability & indexing",
@@ -31,8 +31,8 @@
     },
     {
       "label": "Speed & Core Web Vitals",
-      "score": 100,
-      "findings": 0
+      "score": 98,
+      "findings": 1
     },
     {
       "label": "Structured data",
@@ -41,8 +41,8 @@
     },
     {
       "label": "Links",
-      "score": 98,
-      "findings": 2
+      "score": 100,
+      "findings": 1
     },
     {
       "label": "Security & trust",
@@ -97,6 +97,14 @@
       "title": "1 page promises one thing in search and another on the page",
       "severity": "low",
       "effort": "small",
+      "pages": 1,
+      "phase": "Polish"
+    },
+    {
+      "rank": 4,
+      "title": "1 page is much slower than the rest of the site",
+      "severity": "low",
+      "effort": "medium",
       "pages": 1,
       "phase": "Polish"
     },
