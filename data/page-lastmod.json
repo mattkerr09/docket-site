@@ -1,7 +1,7 @@
 {
  "about/index.html": {
-  "date": "2026-10-21",
-  "hash": "1b4c564934e75246"
+  "date": "2026-10-22",
+  "hash": "ca118a95ce62c431"
  },
  "best/free-seo-audit-tools/index.html": {
   "date": "2026-10-20",
@@ -20,16 +20,16 @@
   "hash": "4b03fd0eddc4ae36"
  },
  "download/index.html": {
-  "date": "2026-10-21",
-  "hash": "306463d8aabbaa2e"
+  "date": "2026-10-22",
+  "hash": "f12c991cdf11e4d4"
  },
  "for/agencies/index.html": {
   "date": "2026-10-20",
   "hash": "2aa83a495ef081b1"
  },
  "for/developers/index.html": {
-  "date": "2026-10-21",
-  "hash": "ec247203380a1209"
+  "date": "2026-10-22",
+  "hash": "d36d8b0d0c69cfa3"
  },
  "for/ecommerce/index.html": {
   "date": "2026-10-20",
@@ -128,8 +128,8 @@
   "hash": "33dff61dae3425f7"
  },
  "how-to/fix-invalid-hreflang-codes/index.html": {
-  "date": "2026-10-21",
-  "hash": "d056bfd5e85c35d9"
+  "date": "2026-10-22",
+  "hash": "5d5c984aa3ad8420"
  },
  "how-to/fix-lang-attribute-mismatch/index.html": {
   "date": "2026-10-20",
@@ -220,8 +220,8 @@
   "hash": "445db7528e82bbdd"
  },
  "how-to/javascript-seo-audit/index.html": {
-  "date": "2026-10-21",
-  "hash": "66c6d3f2278f2532"
+  "date": "2026-10-22",
+  "hash": "fa717f5feb89983b"
  },
  "how-to/json-ld-parser-errors/index.html": {
   "date": "2026-10-20",
@@ -337,7 +337,7 @@
  },
  "learn/audit-tool-accuracy/index.html": {
   "date": "2026-10-22",
-  "hash": "700805ee4bf91472"
+  "hash": "463208be68dd7638"
  },
  "learn/brand-consistency/index.html": {
   "date": "2026-10-20",
@@ -441,7 +441,7 @@
  },
  "learn/what-docket-got-wrong/index.html": {
   "date": "2026-10-22",
-  "hash": "c6378e17c7b16500"
+  "hash": "c01a1c269cde840e"
  },
  "learn/what-is-claudebot/index.html": {
   "date": "2026-10-20",
@@ -496,16 +496,16 @@
   "hash": "e27ac3c041c53e0f"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
-  "date": "2026-10-21",
-  "hash": "bd00f797daaf440f"
+  "date": "2026-10-22",
+  "hash": "7355e9bf485fdc54"
  },
  "vs/crawler-sh-alternative/index.html": {
   "date": "2026-10-20",
   "hash": "fb069c66ea4b7f82"
  },
  "vs/crawlraven-alternative/index.html": {
-  "date": "2026-10-21",
-  "hash": "e771ba709bbf3bd2"
+  "date": "2026-10-22",
+  "hash": "68944c2c15762287"
  },
  "vs/google-search-console/index.html": {
   "date": "2026-10-20",
@@ -536,16 +536,16 @@
   "hash": "5111dab440e98ee3"
  },
  "vs/se-ranking-vs-screaming-frog/index.html": {
-  "date": "2026-10-21",
-  "hash": "b28f4ce421031b78"
+  "date": "2026-10-22",
+  "hash": "c5b80ed9a2bfd5ef"
  },
  "vs/semrush-site-audit-alternative/index.html": {
   "date": "2026-10-20",
   "hash": "442b6b594cd9bfb5"
  },
  "vs/seoptimer-alternative/index.html": {
-  "date": "2026-10-21",
-  "hash": "219e95e472d03a0a"
+  "date": "2026-10-22",
+  "hash": "a4a5ae66a3659912"
  },
  "vs/sitebulb-alternative/index.html": {
   "date": "2026-10-20",

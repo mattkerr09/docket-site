@@ -2,6 +2,19 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "date": "2026-10-22",
+   "release": "1.3.114",
+   "title": "Template text a page hides from everyone was reported as live and unfinished",
+   "wrong": "Page builders can leave unused template blocks in a page, with words like Lorem ipsum and Heading 2 text goes here, and switch them off in the page's own stylesheet so that no visitor ever sees them. Docket read the words in the HTML and reported, at high severity, that unfinished content was live and indexable, with advice to replace it or take the page out of search.",
+   "found": "Auditing a charity's site from source and reading every finding against the page. In a browser every one of the blocks was switched off and took up no space.",
+   "fixed": "Text the page hides from every visitor, with the hidden attribute, an inline style or a rule in its own stylesheet that applies at every screen size, is no longer read as placeholder text. The same words where a visitor can see them, including a block shown only on phones, are still reported. The same release fixes two other wrong findings: a docs site's section label read as a second brand name, and the weights of one font counted as separate typefaces.",
+   "tests": [
+    "test_a_template_block_the_page_hides_is_not_live_placeholder.py",
+    "test_a_section_label_beside_the_logo_is_not_a_brand.py",
+    "test_the_cuts_of_one_typeface_are_one_typeface.py"
+   ]
+  },
+  {
    "date": "2026-10-21",
    "release": "1.3.113",
    "title": "A link whose server hung up on Docket was reported as broken",
