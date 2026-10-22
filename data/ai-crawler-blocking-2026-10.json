@@ -1,4 +1,38 @@
 {
+ "all_of_shown": {
+  "aug": {
+   "all": 235,
+   "any": 1403,
+   "readable": 6236
+  },
+  "crawlers": 11,
+  "oct": {
+   "all": 237,
+   "all_googlebot_open": 109,
+   "any": 1244,
+   "readable": 6171
+  },
+  "oct_bands": [
+   {
+    "all": 30,
+    "from": 1,
+    "readable": 552,
+    "to": 1000
+   },
+   {
+    "all": 60,
+    "from": 1001,
+    "readable": 1237,
+    "to": 3000
+   },
+   {
+    "all": 147,
+    "from": 3001,
+    "readable": 4382,
+    "to": 10000
+   }
+  ]
+ },
  "aug": {
   "attempted": 10000,
   "no_robots": 1316,

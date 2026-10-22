@@ -437,8 +437,32 @@ def build(oct_raw: dict | None = None, _inner: bool = False) -> dict:
         "as_published": block(oct_ok),
     }
 
+    # ALMOST NOBODY BLOCKS THEM ALL (CEO, 2026-10-21). One definition: a readable file that disallows
+    # "/" for every one of the SHOWN crawlers, whatever it says to Googlebot; the same August-era
+    # parser as every other figure here. Rank bands are the Tranco ranks the records carry.
+    def any_shown(r):
+        return any(blocked(r, b) for b in SHOWN)
+
+    def all_shown(r):
+        return all(blocked(r, b) for b in SHOWN)
+
+    def googlebot_open(r):
+        return (r.get("access") or {}).get("Googlebot") is True
+
+    bands = ((1, 1000), (1001, 3000), (3001, len(A)))
+    all_of_shown = {
+        "crawlers": len(SHOWN),
+        "aug": {"readable": len(aug_ok), "any": count(aug_ok, any_shown), "all": count(aug_ok, all_shown)},
+        "oct": {"readable": len(oct_ok), "any": count(oct_ok, any_shown), "all": count(oct_ok, all_shown),
+                "all_googlebot_open": count(oct_ok, lambda r: all_shown(r) and googlebot_open(r))},
+        "oct_bands": [{"from": lo, "to": hi,
+                       "readable": sum(1 for r in oct_ok if lo <= r["rank"] <= hi),
+                       "all": sum(1 for r in oct_ok if lo <= r["rank"] <= hi and all_shown(r))}
+                      for lo, hi in bands],
+    }
+
     return {
-        "reread": reread, "sensitivity": sensitivity,
+        "reread": reread, "sensitivity": sensitivity, "all_of_shown": all_of_shown,
         "meta": {
             "aug_collected": aug_raw["collected"], "oct_collected": oct_raw["collected"],
             "oct_finished": oct_raw.get("finished"), "oct_duration_s": oct_raw["duration_s"],

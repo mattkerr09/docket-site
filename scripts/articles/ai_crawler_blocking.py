@@ -105,6 +105,34 @@ def _crawler_rows() -> str:
     return "".join(rows)
 
 
+def _all_of_them() -> str:
+    """Almost nobody blocks them all (CEO, 2026-10-21): of the sites that block any of the crawlers in
+    the table, how many block every one. One definition, from build_ai_crawler_blocking.py's
+    `all_of_shown`: the file disallows "/" for all of them, whatever it says to Googlebot."""
+    a = F.blk("all_of_shown")
+    n, o, g = a["crawlers"], a["oct"], a["aug"]
+    some = o["any"] - o["all"]
+    closed = o["all"] - o["all_googlebot_open"]
+    bands = a["oct_bands"]
+    band_text = "; ".join(
+        f"{_pct(b['all'], b['readable'])}% ranked {_c(b['from'])} to {_c(b['to'])} "
+        f"({_c(b['all'])} of {_c(b['readable'])})" for b in bands)
+    return f"""<h2>Almost nobody blocks them all</h2>
+
+<p>Of the {_c(o['any'])} sites whose file blocks any of the {n} crawlers in the table above,
+<strong>{_pct(some, o['any'])}% still let at least one of them in</strong>. Only {_c(o['all'])}
+({_pct(o['all'], o['any'])}%) block all {n}, and {_c(closed)} of those block Googlebot too, so they are
+closed to crawlers in general rather than to AI in particular. {_c(o['all_googlebot_open'])}
+({_pct(o['all_googlebot_open'], o['any'])}%) block every one of the {n} while letting Google's search
+crawler in.</p>
+
+<p>Across all {_c(o['readable'])} readable files, blocking all {n} is {_pct(o['all'], o['readable'])}%,
+{"the same as in" if _pct(o['all'], o['readable']) == _pct(g['all'], g['readable']) else "against " + _pct(g['all'], g['readable']) + "% in"}
+August ({_c(g['all'])} of {_c(g['readable'])}). It is a little more common near the top of the list:
+{band_text}.</p>
+"""
+
+
 def _updated() -> str:
     """The dated correction: what the re-reads changed, old figure beside new.
 
@@ -327,6 +355,8 @@ both. <code>{top_o}</code> is the name blocked most often in October, by {_c(top
 <thead><tr><th>Crawler</th><th>Operator</th><th>Group</th><th>August</th><th>October</th><th>Started</th><th>Stopped</th></tr></thead>
 <tbody>{_crawler_rows()}</tbody></table></div>
 
+{_all_of_them()}
+
 <h2>How much of this is Cloudflare's managed robots.txt</h2>
 
 <p>Cloudflare can put a block of lines at the top of a site's robots.txt. Its
@@ -513,7 +543,7 @@ search crawlers your site blocks, and whether the server agrees with the file. T
         crumb='<a href="/">Docket</a> / <a href="/index/">The Index</a> / AI crawler blocking, October 2026',
         body=body,
         published="2026-10-19",
-        modified="2026-10-20",
+        modified="2026-10-22",
         faq=faq,
     )
 
