@@ -2,6 +2,19 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "date": "2026-10-23",
+   "release": "1.3.115",
+   "title": "Icon links named by the heading beside them were reported as having no text",
+   "wrong": "Accessible sites often build a card as an icon link that takes its name from the card's heading, with aria-labelledby. A screen reader announces the heading as the link's name. Docket did not read that attribute, so it counted every such link as having no anchor text at all, and told the site to add text that was already there.",
+   "found": "Auditing a city government's site from source and reading every finding against the page. On one page, all eighteen links Docket counted as empty were icon links named by the heading beside them.",
+   "fixed": "Docket now reads a link's name from aria-labelledby first, the way a screen reader does. A link that points at nothing still counts as empty. The same release fixes two other wrong findings: a favicon check the site refused was reported as a missing favicon, and one dropdown repeated once per location was counted as many form fields.",
+   "tests": [
+    "test_a_link_named_by_aria_labelledby_has_a_name.py",
+    "test_a_refused_favicon_probe_is_not_a_missing_favicon.py",
+    "test_one_question_asked_per_location_is_one_field.py"
+   ]
+  },
+  {
    "date": "2026-10-22",
    "release": "1.3.114",
    "title": "Template text a page hides from everyone was reported as live and unfinished",
