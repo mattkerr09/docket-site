@@ -2,6 +2,19 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "date": "2026-10-24",
+   "release": "1.3.116",
+   "title": "A page written in two languages was reported as a mislabelled translation",
+   "wrong": "Docket compares the language a page declares with the language its text reads as. An English page that lists events in Spanish, with English headings and English description, was reported as reading as Spanish under an English label, and described as a translation competing with its original for the wrong readers.",
+   "found": "Auditing a public library's site from source and reading every finding against the page. English carried about three fifths as much of the page's text as Spanish did; a real translation carries none of its original language.",
+   "fixed": "When the declared language carries a good share of the page as well, Docket treats the page as bilingual and says nothing. A translation labelled as its original is still reported. The same release corrects two other findings: a phone link written as a row of X's is called a placeholder rather than a vanity number, and a sitemap entry with the site's address written twice is named for what it is.",
+   "tests": [
+    "test_a_page_written_in_both_languages_is_not_in_the_wrong_one.py",
+    "test_a_row_of_xs_is_a_placeholder_not_a_vanity_number.py",
+    "test_a_sitemap_entry_with_the_address_twice_is_not_a_doubled_slash.py"
+   ]
+  },
+  {
    "date": "2026-10-23",
    "release": "1.3.115",
    "title": "Icon links named by the heading beside them were reported as having no text",
