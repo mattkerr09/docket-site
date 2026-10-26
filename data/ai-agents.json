@@ -21,7 +21,7 @@
       "purpose": "open corpus"
     },
     "ChatGPT-User": {
-      "impact": "Stops ChatGPT fetching your page when a user asks about you.",
+      "impact": "Fetches a page when a ChatGPT user asks about it. OpenAI says that because a user starts these requests, robots.txt rules may not apply, so a block here may not stop ChatGPT reading your page on a user's behalf.",
       "owner": "OpenAI",
       "purpose": "live fetch"
     },
@@ -61,7 +61,7 @@
       "purpose": "research / product fetch"
     },
     "Meta-ExternalFetcher": {
-      "impact": "Stops Meta AI fetching your page on a user's behalf.",
+      "impact": "Fetches a page when a Meta AI user asks for it. Meta says that because the user requested the fetch, it may bypass robots.txt, so a block here may not stop it.",
       "owner": "Meta",
       "purpose": "live fetch"
     },
@@ -81,7 +81,7 @@
       "purpose": "search index"
     },
     "Perplexity-User": {
-      "impact": "Stops Perplexity fetching your page on a user's behalf.",
+      "impact": "Fetches a page when a Perplexity user asks about it. Perplexity says that because a user requested the fetch, it generally ignores robots.txt rules, so a block here does not reliably stop it.",
       "owner": "Perplexity",
       "purpose": "live fetch"
     },

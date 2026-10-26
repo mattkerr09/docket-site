@@ -66,8 +66,9 @@ writing does not become training data. It does <em>not</em> remove you from any 
 <li><strong>Search-index crawlers</strong> build the index an assistant searches when it answers
 a question with live citations. Blocking one removes you from those answers entirely.</li>
 <li><strong>Live-fetch agents</strong> retrieve a page at the moment a user asks about it,
-usually because someone pasted your URL. Blocking one means the assistant cannot read a page a
-user explicitly asked it to read.</li>
+usually because someone pasted your URL. A robots.txt block may not stop them: OpenAI, Perplexity
+and Meta each say a fetch a user starts may not follow robots.txt. Anthropic says a block does stop
+Claude-User.</li>
 </ul>
 
 <p>That is why "should I block AI crawlers?" has no single answer. Keeping your writing out of a

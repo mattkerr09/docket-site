@@ -123,7 +123,8 @@ first, and the ones that only collect training data come second.</p>
 
 <h2>Crawlers that decide whether AI can cite you</h2>
 <p>Block one of these and that assistant cannot read your pages when it answers a question, so it
-cannot quote or link you. For most businesses these should be open.</p>
+cannot quote or link you. The exception is a fetch a user starts: some operators say those may not
+follow robots.txt, and each row says which. For most businesses these should be open.</p>
 {_table(rows, "cite")}
 
 <h2>Crawlers that collect training data</h2>
