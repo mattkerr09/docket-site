@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "compiled": "2026-10-05",
-  "revision": 6,
+  "compiled": "2026-10-26",
+  "revision": 7,
   "ai_crawlers": {
     "GPTBot": {
       "owner": "OpenAI",
@@ -16,7 +16,7 @@
     "ChatGPT-User": {
       "owner": "OpenAI",
       "purpose": "live fetch",
-      "impact": "Stops ChatGPT fetching your page when a user asks about you."
+      "impact": "Fetches a page when a ChatGPT user asks about it. OpenAI says that because a user starts these requests, robots.txt rules may not apply, so a block here may not stop ChatGPT reading your page on a user's behalf."
     },
     "ClaudeBot": {
       "owner": "Anthropic",
@@ -41,7 +41,7 @@
     "Perplexity-User": {
       "owner": "Perplexity",
       "purpose": "live fetch",
-      "impact": "Stops Perplexity fetching your page on a user's behalf."
+      "impact": "Fetches a page when a Perplexity user asks about it. Perplexity says that because a user requested the fetch, it generally ignores robots.txt rules, so a block here does not reliably stop it."
     },
     "Google-Extended": {
       "owner": "Google",
@@ -266,8 +266,8 @@
     }
   ],
   "sources": {
-    "ai_crawlers": "Each operator's published crawler documentation, cross-checked against robots.txt directives observed in the Scout Index.",
+    "ai_crawlers": "Each operator's published crawler documentation, re-read 2026-10-26 (Anthropic, Google, OpenAI, Perplexity), cross-checked against robots.txt directives observed in the Scout Index.",
     "web_vitals": "Google's published Core Web Vitals thresholds (web.dev).",
-    "algorithm_notes": "Google Search Status Dashboard (developers.google.com/search/updates/ranking) and Search Central / blog.google announcements, each read on the date in the entry. Durations are Google's own."
+    "algorithm_notes": "Google Search Status Dashboard (developers.google.com/search/updates/ranking) and Search Central / blog.google announcements, each read on the date in the entry. Durations are Google's own. The ranking dashboard was re-read 2026-10-26; its newest entry is the September 2026 spam update."
   }
 }

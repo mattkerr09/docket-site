@@ -1,43 +1,43 @@
 {
   "anthropic-crawlers": {
-    "length": 4938,
-    "seen": "2026-10-05",
-    "sha256": "b9e5b6e2191ca04740bb61f57e1715d7a1f8012bfe95d4bfac4d1239b739ae4f",
+    "length": 4823,
+    "seen": "2026-10-26",
+    "sha256": "fc5c68b5fb7f43e8e8060455313b72a985f3303eaf53ec3b0c9b5f187c04ae41",
     "url": "https://support.anthropic.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler"
   },
   "google-crawlers": {
-    "length": 11215,
-    "seen": "2026-10-05",
-    "sha256": "093c9a546561883abea6cd2f38844ca99cbfe56463bf07d4536df5bae734f0a2",
+    "length": 11211,
+    "seen": "2026-10-26",
+    "sha256": "cc4ee4a8ea64f6357c0243d629d77a77587808d02677ffce46df58105a86576e",
     "url": "https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers"
   },
   "google-ranking-updates": {
-    "length": 4365,
-    "seen": "2026-10-05",
-    "sha256": "50d27e1d986093129947615b8a701dafb60faf1e537cb2fdcd59f16290e3c5f2",
+    "length": 4371,
+    "seen": "2026-10-26",
+    "sha256": "9dede5cc635e3f1e46f21b52d85ff91f1e625fe756eaee721ac7d33a502c2686",
     "url": "https://developers.google.com/search/updates/ranking"
   },
   "google-search-central-blog": {
-    "length": 83954,
-    "seen": "2026-10-05",
-    "sha256": "12cf61103ca7d21c8dcde212cd134eb21ad7e89e99b969292ffe1339735360da",
+    "length": 84050,
+    "seen": "2026-10-26",
+    "sha256": "5c171ddd30e4e6bcabd7090ff7b6cd57d7a481d3e3c28cc462369995882b335a",
     "url": "https://developers.google.com/search/blog"
   },
   "openai-crawlers": {
-    "length": 17108,
-    "seen": "2026-10-05",
-    "sha256": "4eb9c4fa58d1307b293109eb7bc5a9af760c91355789f1753dce28010a549467",
+    "length": 17280,
+    "seen": "2026-10-26",
+    "sha256": "744e15ac1ef75f1f53ad37e2b9c822fcbb170b5786a22ccbb5ed6672e8a67161",
     "url": "https://platform.openai.com/docs/bots"
   },
   "perplexity-crawlers": {
-    "length": 5814,
-    "seen": "2026-10-05",
-    "sha256": "5a26a0ff4e0083a30d319bff23357a5b177e6b581c86ebff2fe67ed463a11e49",
+    "length": 5883,
+    "seen": "2026-10-26",
+    "sha256": "38f0ee22ebce881587ea13ecb0d30ae2bcf907b324798e391ee4968308a64c23",
     "url": "https://docs.perplexity.ai/guides/bots"
   },
   "web-vitals-thresholds": {
     "length": 16896,
-    "seen": "2026-10-05",
+    "seen": "2026-10-26",
     "sha256": "b13ee9ef866d129d538ed5ed28ad07d504c5c708b78524518de6c52169121da5",
     "url": "https://web.dev/articles/vitals"
   }
