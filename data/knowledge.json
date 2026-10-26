@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "compiled": "2026-10-26",
-  "revision": 7,
+  "revision": 8,
   "ai_crawlers": {
     "GPTBot": {
       "owner": "OpenAI",
@@ -46,7 +46,7 @@
     "Google-Extended": {
       "owner": "Google",
       "purpose": "training / Gemini Apps grounding",
-      "impact": "Blocks Gemini model training and grounding in Gemini Apps and Vertex AI. Does NOT affect AI Overviews, AI Mode or classic Google Search — those follow your Googlebot rules."
+      "impact": "Blocks Gemini model training and grounding in Gemini Apps and Vertex AI. Does NOT affect AI Overviews, AI Mode or classic Google Search. Those follow your Googlebot rules."
     },
     "Applebot-Extended": {
       "owner": "Apple",
@@ -76,7 +76,7 @@
     "Meta-ExternalFetcher": {
       "owner": "Meta",
       "purpose": "live fetch",
-      "impact": "Stops Meta AI fetching your page on a user's behalf."
+      "impact": "Fetches a page when a Meta AI user asks for it. Meta says that because the user requested the fetch, it may bypass robots.txt, so a block here may not stop it."
     },
     "MistralAI-Index": {
       "owner": "Mistral",
@@ -102,6 +102,16 @@
       "owner": "OpenAI",
       "purpose": "ads landing-page review",
       "impact": "Affects advertising on ChatGPT, not organic or AI-answer visibility. OpenAI's documentation says it only visits pages submitted as ads, to check they comply with their policies, and that what it collects is not used to train their foundation models. Blocking it is the right call for most sites and costs nothing in search; it matters only if you advertise on ChatGPT."
+    },
+    "Meta-WebIndexer": {
+      "owner": "Meta",
+      "purpose": "search index",
+      "impact": "Indexes pages to improve Meta AI's search results. Meta says allowing it helps Meta AI cite and link to your content in its responses."
+    },
+    "Meta-ExternalAds": {
+      "owner": "Meta",
+      "purpose": "advertising",
+      "impact": "Crawls for Meta's advertising and other business products. Meta's documentation does not tie it to Meta AI answers or citations."
     }
   },
   "web_vitals": {
@@ -266,7 +276,7 @@
     }
   ],
   "sources": {
-    "ai_crawlers": "Each operator's published crawler documentation, re-read 2026-10-26 (Anthropic, Google, OpenAI, Perplexity), cross-checked against robots.txt directives observed in the Scout Index.",
+    "ai_crawlers": "Each operator's published crawler documentation, re-read 2026-10-26 (Anthropic, Google, Meta, OpenAI, Perplexity), cross-checked against robots.txt directives observed in the Scout Index.",
     "web_vitals": "Google's published Core Web Vitals thresholds (web.dev).",
     "algorithm_notes": "Google Search Status Dashboard (developers.google.com/search/updates/ranking) and Search Central / blog.google announcements, each read on the date in the entry. Durations are Google's own. The ranking dashboard was re-read 2026-10-26; its newest entry is the September 2026 spam update."
   }
