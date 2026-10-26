@@ -3,6 +3,19 @@
  "entries": [
   {
    "date": "2026-10-26",
+   "release": "1.3.118",
+   "title": "A robots.txt block was said to stop AI assistants fetching a page a user asked about",
+   "wrong": "Docket's crawler list, and the AI crawler checker and the AI crawler directives article on this site, said that blocking ChatGPT-User, Perplexity-User or Meta-ExternalFetcher in robots.txt stops that assistant fetching your page when someone asks about it. The operators say otherwise: OpenAI says robots.txt rules may not apply to requests a user starts, Perplexity says its user fetcher generally ignores them, and Meta says its fetcher may bypass them. No audit finding printed the sentence, but the list shipped in every copy of Docket and these pages showed it.",
+   "found": "Re-reading each operator's own crawler documentation after the sources behind Docket's knowledge feed changed, then checking whether the app said the same as the feed.",
+   "fixed": "The list, the knowledge feed and both pages now say what each operator says. Claude-User is still described as stopped by a robots.txt block, because Anthropic says it is. The same release adds Meta-WebIndexer, Meta AI's search crawler, to the crawlers Docket checks, and stops the competitor comparison calling a site that blocks Google-Extended absent from AI answers: Google's AI Overviews and AI Mode follow the Googlebot rules.",
+   "tests": [
+    "test_a_user_started_fetch_may_not_follow_robots_txt.py",
+    "test_meta_webindexer_is_a_citation_crawler.py",
+    "test_a_competitor_blocking_google_extended_is_still_in_ai_answers.py"
+   ]
+  },
+  {
+   "date": "2026-10-26",
    "release": "1.3.117",
    "title": "Structured data in an old CDATA wrapper was said to be thrown away by search engines",
    "wrong": "Some sites still write their structured data inside an XHTML-era CDATA comment. Docket reported a complete block written that way at high severity, as data that search engines discard entirely. It is not valid JSON as written, but we could not find a source showing what search engines do with it, so the claim went further than we could support.",

@@ -65,6 +65,11 @@
       "owner": "Meta",
       "purpose": "live fetch"
     },
+    "Meta-WebIndexer": {
+      "impact": "Indexes pages to improve Meta AI's search results. Meta says allowing it helps Meta AI cite and link to your content in its responses.",
+      "owner": "Meta",
+      "purpose": "search index"
+    },
     "MistralAI-Index": {
       "impact": "Removes you from Le Chat's search index and citations.",
       "owner": "Mistral",
@@ -103,7 +108,7 @@
     "ByteDance": 1,
     "Common Crawl": 1,
     "Google": 3,
-    "Meta": 2,
+    "Meta": 3,
     "Mistral": 2,
     "OpenAI": 3,
     "Perplexity": 2
@@ -113,12 +118,12 @@
     "live fetch": 4,
     "open corpus": 1,
     "research / product fetch": 1,
-    "search index": 5,
+    "search index": 6,
     "training": 6,
     "training / Gemini Apps grounding": 1
   },
   "collected_by": "scripts/collect_ai_agents.py",
-  "count": 19,
+  "count": 20,
   "note": "Generated. Do not edit by hand.",
   "owner_count": 10,
   "source": "seo_engine.robots.AI_USER_AGENTS, the table the checks read"
