@@ -1,6 +1,6 @@
 {
-  "recorded": "2026-10-23",
-  "engine": "1.3.115",
+  "recorded": "2026-10-26",
+  "engine": "1.3.117",
   "target": "https://docketseo.app",
   "area": "Security & trust",
   "held": "Missing 1 baseline security header",
@@ -11,5 +11,5 @@
   "score": 99,
   "grade": "A",
   "pages": 143,
-  "seconds": 48
+  "seconds": 54
 }
