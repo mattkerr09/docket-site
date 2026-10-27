@@ -2,6 +2,20 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "date": "2026-10-27",
+   "release": "1.3.119",
+   "title": "A page was called a layout-shift risk because of a logo on every page",
+   "wrong": "A site's logo, with no declared size, sat in its header and again in its footer on every page. On a page whose one picture had its size declared, that made two unsized images out of three, and Docket said the page was at high risk of layout shift. Measured in a browser, nothing on the page moved. Image-heavy pages with the same logo were not flagged, so the verdict tracked how few pictures a page had.",
+   "found": "Auditing a law firm's site from source, reading every finding against the page, and measuring the layout shift of the flagged pages in a browser.",
+   "fixed": "A picture that appears on most pages is read as part of the site's template, and a page is called high risk only when one of its own pictures has no size. A page whose own picture is unsized is still reported. The same release fixes two wrong findings from a blog audit: a theme's site-name heading was compared with a contact page's title instead of the page's own heading, and an avatar beside the author's reply in the comments was taken for the logo. It also starts asking servers for the homepage as Meta's search crawler, so a firewall refusing it is no longer reported as clean.",
+   "tests": [
+    "test_a_template_logo_does_not_make_a_page_a_layout_shift_risk.py",
+    "test_the_theme_s_h1_is_not_the_page_s_headline.py",
+    "test_a_comment_avatar_is_not_the_logo.py",
+    "test_meta_webindexer_is_probed_at_the_edge.py"
+   ]
+  },
+  {
    "date": "2026-10-26",
    "release": "1.3.118",
    "title": "A robots.txt block was said to stop AI assistants fetching a page a user asked about",
