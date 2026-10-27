@@ -3,6 +3,19 @@
  "entries": [
   {
    "date": "2026-10-27",
+   "release": "1.3.120",
+   "title": "A dental practice showing dozens of patient reviews was told it had none",
+   "wrong": "A dental practice's reviews page shows dozens of patient reviews, each signed \"- Name\" with an ordinary hyphen. Docket said the site had no customer reviews or testimonials on the pages it checked, the reviews page among them, and told the practice to add a testimonials section.",
+   "found": "Auditing a dental practice's site from source and reading every finding against the page.",
+   "fixed": "Docket recognised a signature only after a long dash, and the first signature sat further below the reviews heading than it looked. A hyphen now signs a review after the end of a sentence, never before a day or \"Noon\", and a run of signed reviews below a reviews heading counts. The same release stops auditing a sitemap plugin's browser view of the sitemap as a page, and stops calling a short notice with two links out a category listing.",
+   "tests": [
+    "test_a_review_signed_with_a_hyphen_is_a_review.py",
+    "test_a_sitemap_view_is_not_a_page.py",
+    "test_a_short_notice_with_links_out_is_not_an_archive.py"
+   ]
+  },
+  {
+   "date": "2026-10-27",
    "release": "1.3.119",
    "title": "A page was called a layout-shift risk because of a logo on every page",
    "wrong": "A site's logo, with no declared size, sat in its header and again in its footer on every page. On a page whose one picture had its size declared, that made two unsized images out of three, and Docket said the page was at high risk of layout shift. Measured in a browser, nothing on the page moved. Image-heavy pages with the same logo were not flagged, so the verdict tracked how few pictures a page had.",
