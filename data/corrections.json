@@ -3,6 +3,20 @@
  "entries": [
   {
    "date": "2026-10-28",
+   "release": "1.3.122",
+   "title": "A vet's homepage with an appointment link and a phone link was told it asked visitors to do nothing",
+   "wrong": "A veterinary hospital's homepage carries \"Request an Appointment\" and a tap-to-call \"Call Us\" link near the top. Docket said, at high severity, that no button or link on it asked the visitor to do anything, and, also at high severity, that the homepage did not state what the business does, because the first main heading held only the logo.",
+   "found": "Auditing three local businesses from source (a landscaper, a plumber and a veterinary hospital) and reading every finding against the page.",
+   "fixed": "Docket now reads \"request an\", \"book an\", \"make an appointment\" and \"call us\" as actions, counts any phone or text link as one, and takes the first main heading with words in it as the headline. The same release stops telling Wix sites that nothing about their visitors is recorded, since Wix records visits itself, and stops counting an image's file name in a logo's alt text as a second spelling of the business name.",
+   "tests": [
+    "test_request_an_appointment_is_a_call_to_action.py",
+    "test_a_logo_h1_is_not_the_headline.py",
+    "test_a_wix_site_records_visits_without_a_tag.py",
+    "test_a_logo_alt_that_is_a_file_name_is_not_a_brand.py"
+   ]
+  },
+  {
+   "date": "2026-10-28",
    "release": "1.3.121",
    "title": "An online job board was treated as a local business because of its mailing address",
    "wrong": "A job board's contact page gives a mailing address, under a line about liking post, and nothing else local: no phone number, no opening hours, no local business markup. Docket treated the site as a local business on that address alone, reported at high severity that it had no local business markup and no phone number, and added three more local findings about a storefront that does not exist.",
