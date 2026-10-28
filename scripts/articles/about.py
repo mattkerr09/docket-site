@@ -28,8 +28,25 @@ from render import (
     FREE_CLAUSE,  # noqa: E402
     DMG_NAME, DMG_SIZE, MAC_HW, MACOS, ISSUES, N_CHECKS, N_LANES, PRICE_STR, RELEASE, REPO,
     VOLUME, render, SELLER, SELLER_CITY, SUPPORT_EMAIL, buy_strip,
+    WINDOWS, WIN_PUBLISHER,
 )
 
+
+
+def _platforms_item() -> str:
+    """Which computers the desktop app runs on, for the honest list. Before WINDOWS it is the old item."""
+    if not WINDOWS:
+        return f"""<li><strong>The desktop app is Mac only.</strong> {MAC_HW}, {MACOS} or later. There is
+no Windows build and no web version, and neither is planned while it is one person. The same
+engine ships as a <a href="/download/">Linux x86_64 command line build</a>, without the
+desktop app and without <code>--render</code>. This page denied that entirely until
+2026-08-10, when the download page had been describing it for weeks.</li>"""
+    return f"""<li><strong>The desktop app is for Mac and 64-bit Windows, and nothing else.</strong> {MAC_HW},
+{MACOS} or later, or a 64-bit Windows PC, with an installer signed by {WIN_PUBLISHER}. There is no
+web version. The same engine ships as a <a href="/download/">Linux x86_64 command line build</a>,
+without the desktop app and without <code>--render</code>. This page said there was no Windows
+build, and that none was planned while it is one person, until Docket {RELEASE}; it denied the
+Linux build entirely until 2026-08-10, when the download page had been describing it for weeks.</li>"""
 
 def about() -> Path:
     body = f"""
@@ -77,11 +94,7 @@ on this site is derived from it rather than typed into a sentence.</p>
 <p>The honest list, because you will find it out in the first hour anyway:</p>
 
 <ul>
-<li><strong>The desktop app is Mac only.</strong> {MAC_HW}, {MACOS} or later. There is
-no Windows build and no web version, and neither is planned while it is one person. The same
-engine ships as a <a href="/download/">Linux x86_64 command line build</a>, without the
-desktop app and without <code>--render</code>. This page denied that entirely until
-2026-08-10, when the download page had been describing it for weeks.</li>
+{_platforms_item()}
 <li><strong>It is not a rank tracker.</strong> No keyword positions, no search volume, no
 backlink index. <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs</a> and Semrush have
 spent years and a great deal of money building those, and Docket has no answer to them.</li>
@@ -154,7 +167,9 @@ link. The rates, the payout terms and the disclosure you owe your readers are on
              "auditing, and PageSpeed Insights (off unless you add your own Google API "
              "key) necessarily sends Google the URL you asked it to measure."),
             ("What can Docket not do?",
-             f"It is macOS only ({MAC_HW}), it does not track keyword rankings or "
+             (f"It runs on Macs ({MAC_HW}) and 64-bit Windows, with no web version; it does not "
+              if WINDOWS else f"It is macOS only ({MAC_HW}), it does not ")
+             + "track keyword rankings or "
              "backlinks, and it is not built for crawling hundreds of thousands of URLs. "
              "The application source is not public, though the website's datasets are."),
         ],

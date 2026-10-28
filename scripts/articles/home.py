@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (_human_date, speed_words, windows_waitlist, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
+from render import (_human_date, speed_words, windows_waitlist, WINDOWS, WIN_SETUP_SIZE, WIN_PUBLISHER, RELEASE, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, FOUNDING_OPEN, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
@@ -672,7 +672,7 @@ one that draws a line.</p></div>
   address detection reads English and French word order only. On other languages both stand down
   and the report says which ones did, rather than telling a business it publishes no address when
   the truth is that Docket cannot read the page. Everything technical works in any language.</p></div>
-  <div class="card"><h3>{"Windows" if INTEL else "Windows and Intel"}</h3><p>{MAC_HW}, {MACOS} or later. {NO_BUILDS}</p></div>
+  {"" if WINDOWS else f'<div class="card"><h3>{"Windows" if INTEL else "Windows and Intel"}</h3><p>{MAC_HW}, {MACOS} or later. {NO_BUILDS}</p></div>'}
   <div class="card"><h3>Five things we chose not to build</h3><p>Rank tracking, a cloud
   version, team accounts, server-side scheduling, and white-label or uptime monitoring. Each
   one needs a machine of ours running every day on your behalf, which means a monthly bill.
@@ -734,6 +734,10 @@ FAQ = [
      "and charge clients for the work. The licence belongs to the person or company that "
      "paid; it may not be resold or sublicensed."),
     ("Does it run on Windows?",
+     (f"Yes. Docket {RELEASE} has an installer for 64-bit Windows, {WIN_SETUP_SIZE}, signed by "
+      f"{WIN_PUBLISHER}. It is on the download page beside the Mac app and a command-line build "
+      "for Linux x86_64.")
+     if WINDOWS else
      f"No. The app is for {MACS} on {MACOS} or later. {NO_BUILDS} A command-line build for "
      "Linux x86_64 is on the download page."),
     ("How do I get help?",
@@ -794,7 +798,7 @@ needed, and the crawl and the report stay on your Mac.</p>
 <p class="founder-note">I'm Matt Kerr. I build Docket on my own in Grand Rapids, Michigan, and I read the
 support inbox and the issue tracker myself. <a href="/about/">About me, and what Docket cannot do</a>.</p>
 </div>
-<!-- Windows waiting list: first-party, shown only to a visitor on Windows (render.windows_waitlist). -->
+<!-- Windows: the waiting list (first-party, shown only to a visitor on Windows) until the installer ships, then its download line (render.windows_waitlist). -->
 <div class="wrap">{windows_waitlist("home")}</div>
 <script>{PHONE_LINK_JS}</script>
 </section>"""

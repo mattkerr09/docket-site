@@ -138,7 +138,11 @@ def main() -> None:
              f"{tag} links on every page that mentions downloading")
 
     published = {a["name"]: a for a in release.get("assets", [])}
-    expected = [n for n in (data.get("dmg_name", ""), data.get("linux_name", ""))
+    # Every file a page links: the Mac DMG, the Linux tarball, and (when download.json records them)
+    # the Intel DMG and the Windows installer. The last two were offered on the pages without being
+    # checked here until the Windows installer was added, 2026-10-28.
+    expected = [n for n in (data.get("dmg_name", ""), data.get("linux_name", ""),
+                            data.get("intel_dmg_name", ""), data.get("win_setup_name", ""))
                 if n] + list(FIXED)
 
     missing = [n for n in expected if n not in published]
@@ -161,7 +165,9 @@ def main() -> None:
 
     # An asset under the right name can still be the previous build.
     for name, key in ((data.get("dmg_name", ""), "dmg_bytes"),
-                      (data.get("linux_name", ""), "linux_bytes")):
+                      (data.get("linux_name", ""), "linux_bytes"),
+                      (data.get("intel_dmg_name", ""), "intel_dmg_bytes"),
+                      (data.get("win_setup_name", ""), "win_setup_bytes")):
         want = data.get(key)
         if not name or not want:
             continue

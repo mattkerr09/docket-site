@@ -1406,6 +1406,18 @@ def intel_dmg_size_str() -> str:
     return f"{mb:.1f} MB" if mb else ""
 
 
+def win_setup_name() -> str:
+    """The Windows installer, or "" until a release publishes one and collect_updater.py records it
+    (which it does only alongside the windows-x86_64 updater entry, and that only from a signed
+    build that passed the customer path)."""
+    return download().get("win_setup_name", "")
+
+
+def win_setup_size_str() -> str:
+    mb = download().get("win_setup_mb")
+    return f"{mb:.1f} MB" if mb else ""
+
+
 def linux_name() -> str:
     """The published Linux CLI tarball, or empty when none was built."""
     return download().get("linux_name", "")

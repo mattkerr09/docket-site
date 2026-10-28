@@ -19,7 +19,7 @@ from corrections_cases import CASES  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
-from render import (windows_waitlist, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
+from render import (windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
@@ -156,7 +156,7 @@ def download() -> Path:
 <li><strong>Buy once.</strong> The licence key
 arrives with your receipt.{buy_block("download-steps", sample=True, big=True)}</li>
 <li><strong>Download</strong> the app: <a href="{download_url('download-steps')}" data-ev="Download"
-data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On an Intel Mac, <a href="{download_url("download-steps-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="download-steps-intel">the Intel version</a>.') if INTEL else ''}</li>
+data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On an Intel Mac, <a href="{download_url("download-steps-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="download-steps-intel">the Intel version</a>.') if INTEL else ''}{(f' On Windows, <a href="{download_url("download-steps-windows", to=WIN_SETUP)}" data-ev="Download" data-ev-button="download-steps-windows">the Windows installer</a>, {WIN_SETUP_SIZE}.') if WINDOWS else ''}</li>
 <li><strong>Paste the key</strong> into the field the app shows, and run your first audit.
 <span class="qual">30-day refund, no conditions.</span></li>
 
@@ -165,11 +165,11 @@ data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On
 Buy from inside the app and the audit you ran opens in full.</p>
 {windows_waitlist("download")}
 
-<p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on {MAC_HW}.
-{DMG_SIZE}. No subscription, no crawl credits, no per-seat pricing. Audit as many sites as
+<p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on {MAC_HW}{' and for 64-bit Windows' if WINDOWS else ''}.
+{DMG_SIZE}{(' for the Mac, ' + WIN_SETUP_SIZE + ' for Windows') if WINDOWS else ''}. No subscription, no crawl credits, no per-seat pricing. Audit as many sites as
 you like, for as long as you like. There is no account to create and no telemetry. Activating
 your licence checks the key with our payment provider once, and about once a day after that.
-The crawl and the report stay on your Mac. {CONNECTORS_WORD_CAP} optional checks, on by default,
+The crawl and the report stay on your {'computer' if WINDOWS else 'Mac'}. {CONNECTORS_WORD_CAP} optional checks, on by default,
 reach outside it, among them Google PageSpeed, which is sent the addresses of your homepage and
 top pages, and Google's autocomplete, which is sent your site's topic words;
 <code>--offline</code> turns all {CONNECTORS_WORD} off.</p>
@@ -376,7 +376,7 @@ how you would drive Docket from your own scripts.</p>
 
 <h2>Requirements and limits</h2>
 <ul>
-<li><strong>{MACOS} or later, {MAC_HW}</strong> for the desktop app. {NO_BUILDS}</li>
+<li><strong>{MACOS} or later, {MAC_HW}</strong> for the desktop app{(', or <strong>64-bit Windows</strong> (the installer is signed by ' + WIN_PUBLISHER + ')') if WINDOWS else ''}. {NO_BUILDS}</li>
 <li><strong>Linux x86_64 for the command line.</strong>
 {'<a href="' + LINUX + '">Download the ' + LINUX_SIZE + ' tarball</a>. It needs' if LINUX else 'A tarball needing'}
 <strong>glibc 2.30</strong> or newer. Check yours with <code>ldd --version</code>. That floor
@@ -1257,8 +1257,8 @@ ChatGPT named you this morning. <a href="/vs/profound-alternative/">Profound</a>
 <li><strong>Rendering is a sample</strong>: ten of the shallowest pages by default, which
 answers "is this client-rendered and what is it costing me" without turning a five-minute
 audit into an hour. It is not a full rendered crawl of a large application.</li>
-<li><strong>It is macOS on {MAC_HW}.</strong> No Windows, no Linux desktop, no web
-version. The CLI inside the bundle runs on <a href="/for/developers/">macOS CI runners</a>.</li>
+{('<li><strong>It is macOS on ' + MAC_HW + ', or 64-bit Windows.</strong> No Linux desktop, no web version.') if WINDOWS else ('<li><strong>It is macOS on ' + MAC_HW + '.</strong> No Windows, no Linux desktop, no web version.')}
+The CLI inside the bundle runs on <a href="/for/developers/">macOS CI runners</a>.</li>
 </ul>
 
 <h2>When Docket is the wrong tool for you</h2>
@@ -1847,10 +1847,36 @@ first few seconds of any audit.</p>
     )
 
 
+
+def _windows_same_app() -> str:
+    """Once WINDOWS: the Windows app is the same engine and makes the same requests (licence.py names a
+    machine by socket.gethostname() on every system), so the policy says so once rather than twice."""
+    if not WINDOWS:
+        return ""
+    return ("<p>Docket for Windows is the same application and makes the same requests. Where this "
+            "policy says Mac, read the Windows PC you run it on.</p>\n")
+
+
+def _windows_form_privacy() -> str:
+    """The Windows waiting-list form, while there is one; afterwards what became of the addresses."""
+    if WINDOWS:
+        return ("<p>Until Docket for Windows was released, a form for visitors on Windows was written "
+                "into this site's front page, download page and pricing page. It sent an address only "
+                "when one was typed and the button pressed, to <code>kerr-subscribe.kerrco.workers.dev</code>, "
+                "a server we run. The form is gone. The addresses it collected are used once, to say "
+                "Docket for Windows is ready, and for nothing else.</p>")
+    return ("<p>A form for visitors on Windows is written into this site's own pages, on the front page, the\n"
+            "download page and the pricing page, rather than loaded from anywhere. It is shown only if your browser\n"
+            "says it is running on Windows, and to nobody else. It makes no request unless you type an address and\n"
+            "press the button; then it sends that address, and the name of this site's Windows list, to\n"
+            "<code>kerr-subscribe.kerrco.workers.dev</code>, a server we run. It stores nothing in your browser. We\n"
+            "use the address once, to write to you the day Docket for Windows is ready, and for nothing else.</p>")
+
 def privacy() -> Path:
     body = """
 <p>Docket is desktop software that runs on your Mac. This policy covers both the application
 and this website.</p>
+<!-- windows-same-app -->
 
 <h2>The application</h2>
 <p>Nothing about the sites you audit reaches us, Kerr &amp; Company: the crawl and the report
@@ -2002,12 +2028,7 @@ sets no cookie. And it adds where you came from, from the same short list as bel
 sends nothing itself. The server it points at counts downloads and Buy clicks per day, per page tag and
 country, and whether the click looked like a person; it stores no IP address and no user agent. If a
 content blocker stops the script, the links still work.</p>
-<p>A form for visitors on Windows is written into this site's own pages, on the front page, the
-download page and the pricing page, rather than loaded from anywhere. It is shown only if your browser
-says it is running on Windows, and to nobody else. It makes no request unless you type an address and
-press the button; then it sends that address, and the name of this site's Windows list, to
-<code>kerr-subscribe.kerrco.workers.dev</code>, a server we run. It stores nothing in your browser. We
-use the address once, to write to you the day Docket for Windows is ready, and for nothing else.</p>
+<!-- windows-form-privacy -->
 <p>One more thing runs here, written into this site's own pages rather than loaded from
 anywhere. If you arrive from a link that says where it was shared, such as
 <code>?ref=producthunt</code>, from a fixed list of such names (Product Hunt, Hacker News, Reddit, a
@@ -2061,6 +2082,8 @@ it; we hold nothing separately.</p>
 <h2>Contact</h2>
 <p>Questions about privacy or anything else: <a href="/contact/">get in touch</a>.</p>
 """
+    body = (body.replace("<!-- windows-form-privacy -->", _windows_form_privacy())
+                .replace("<!-- windows-same-app -->\n", _windows_same_app()))
     return render(
         cat="legal", slug="privacy",
         title="Privacy policy: what Docket collects, and what it does not",

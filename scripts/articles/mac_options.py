@@ -19,7 +19,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import speed_words, BNPL_INSTALMENT, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, REFUND_DAYS, buy_block, render  # noqa: E402
+from render import speed_words, WINDOWS, BNPL_INSTALMENT, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, REFUND_DAYS, buy_block, render  # noqa: E402
 
 import comparisons  # noqa: E402
 
@@ -80,7 +80,7 @@ def mac_options() -> Path:
     assert sb["annual"] < PRICE < 2 * sb["annual"] and ps["annual"] <= PRICE < 2 * ps["annual"]
 
     side_rows = [
-        ("Docket SEO", f"Mac only: {MAC_HW}, {MACOS} or later",
+        ("Docket SEO", f"Mac ({MAC_HW}, {MACOS} or later) and 64-bit Windows" if WINDOWS else f"Mac only: {MAC_HW}, {MACOS} or later",
          f"{PRICE_STR} once, or four payments of {BNPL_INSTALMENT}",
          "A full audit with no key: the score, the number of problems in each area and the most important one in full",
          f"{REFUND_DAYS} days, no conditions",
@@ -142,7 +142,7 @@ price. <a href="/vs/scrutiny-alternative/">The two compared</a>.</li>
 </ul>
 
 <h2>What Docket does not do</h2>
-<p>Docket runs only on a Mac. It does not track where you rank for a keyword. It is lighter than Screaming Frog
+<p>{'Docket runs on a Mac or a 64-bit Windows PC.' if WINDOWS else 'Docket runs only on a Mac.'} It does not track where you rank for a keyword. It is lighter than Screaming Frog
 on custom extraction and on rendering JavaScript across a crawl, and it says so on the comparison page. It
 runs {N_CHECKS} checks on every page it reads, including whether AI crawlers such as GPTBot and ClaudeBot can reach your
 site, and puts what it found in the order to fix it. Its last audit of this site covered {_RUN["pages"]} pages in

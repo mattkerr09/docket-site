@@ -325,6 +325,21 @@ def main() -> None:
             for k in ("intel_dmg_name", "intel_dmg_bytes", "intel_dmg_mb", "intel_macos_min"):
                 sizes.pop(k, None)
             print("  intel dmg : not offered" + (" (--no-intel)" if args.no_intel else ""))
+        # The Windows installer, measured like the others, and only when the manifest has its
+        # windows-x86_64 entry: the site offers a Windows download exactly when the updater serves
+        # Windows copies, and the installer is only here when windows_release.py took it from a
+        # SIGNED run that passed the customer path. Otherwise the keys go, as Linux's do above.
+        if "windows-x86_64" in data["platforms"]:
+            sizes.update({
+                "win_setup_name": win.name,
+                "win_setup_bytes": win.stat().st_size,
+                "win_setup_mb": round(win.stat().st_size / 1_000_000, 1),
+            })
+            print(f"  windows   : {win.stat().st_size / 1_000_000:.1f} MB ({win.name})")
+        else:
+            for k in ("win_setup_name", "win_setup_bytes", "win_setup_mb"):
+                sizes.pop(k, None)
+            print("  windows   : not offered")
         size_path.write_text(json.dumps(sizes, indent=2) + "\n")
 
     digest = hashlib.sha256(TGZ.read_bytes()).hexdigest()[:16]

@@ -253,7 +253,7 @@ def price_req_html() -> str:
     could reach Buy without ever reading it. The price is where the decision
     is made, so the requirement sits there, wherever a price is shown.
     """
-    return f'<p class="price-req">For {MACS}, {MACOS} or later</p>'
+    return f'<p class="price-req">For {PLATFORMS}</p>'
 
 
 def buy_block(src: str, *, sample: bool = True, big: bool = True,
@@ -478,8 +478,30 @@ INTEL_DMG_SIZE = _facts.intel_dmg_size_str()
 MAC_HW = "Apple silicon or Intel" if INTEL else "Apple Silicon"
 #: "For {MACS}, {MACOS} or later"
 MACS = "Macs with Apple silicon or Intel" if INTEL else "Apple Silicon Macs"
+#: THE WINDOWS INSTALLER. Empty until a release publishes one and collect_updater.py records it,
+#: which happens only when docket-app's windows_release.py took it from a run that was SIGNED
+#: (every executable Valid, signer CN exactly Kerr & Company LLC) and passed the customer path on a
+#: clean Windows machine (install, free audit, a bad key answered by the licence server,
+#: uninstall). Every sentence about Windows reads WINDOWS, so they all change together, in the same
+#: deploy as the download link, and never before it. What the gate proved is all the pages say:
+#: 64-bit Windows and the signature. Not a Windows version floor, not ARM, not SmartScreen.
+WIN_SETUP_NAME = _facts.win_setup_name()
+WINDOWS = bool(WIN_SETUP_NAME)
+WIN_SETUP = f"{REPO}/releases/download/{RELEASE}/{WIN_SETUP_NAME}" if WINDOWS else ""
+WIN_SETUP_SIZE = _facts.win_setup_size_str()
+WIN_PUBLISHER = "Kerr & Company LLC"
 #: What there is no build of.
-NO_BUILDS = "There is no Windows build." if INTEL else "There is no Windows or Intel build."
+NO_BUILDS = ("" if WINDOWS else
+             "There is no Windows build." if INTEL else "There is no Windows or Intel build.")
+
+
+def windows_download(src: str, *, lead: str = "On Windows?") -> str:
+    """One line offering the Windows installer, through the counted /dl link. "" before WINDOWS."""
+    if not WINDOWS:
+        return ""
+    return (f'<p class="win-dl">{lead} <a href="{download_url(src + "-windows", to=WIN_SETUP)}" '
+            f'data-ev="Download" data-ev-button="{src}-windows">Download Docket {RELEASE} for Windows</a> '
+            f'({WIN_SETUP_SIZE}, 64-bit, signed by {WIN_PUBLISHER}).</p>')
 
 #: Where a Windows waiting-list sign-up is posted and under which source. The source is the one the shared
 #: widget this replaces used (host + "-windows"), so earlier sign-ups and new ones are ONE list, kept apart from
@@ -528,7 +550,10 @@ _WIN_WAIT_JS = """(function () {
 def windows_waitlist(placement: str) -> str:
     """The Windows waiting-list form, for the home, download and pricing pages. Hidden until the script has
     seen a Windows visitor; posts only when the button is pressed, to the subscribe worker, with the
-    address and the source and nothing else. `placement` only makes the field ids unique."""
+    address and the source and nothing else. `placement` only makes the field ids unique.
+    Once WINDOWS, there is nothing to wait for: the same spot offers the installer instead."""
+    if WINDOWS:
+        return windows_download(placement)
     return f"""<form class="win-wait" data-win-wait data-endpoint="{WIN_WAIT_ENDPOINT}" data-source="{WIN_WAIT_SOURCE}"
   data-done="{WIN_WAIT_DONE}" novalidate hidden>
   <label class="win-wait-ask" for="win-wait-{placement}">{WIN_WAIT_LINE}</label>
@@ -567,6 +592,9 @@ DMG_SIZE = _facts.dmg_size_str()
 #: "macOS <N>" — the floor the shipped bundle declares, read from it by
 #: collect_updater.py. It was typed in nine sentences; now none.
 MACOS = f"macOS {_facts.macos_floor()}"
+#: "For {PLATFORMS}" under every price: the requirement where the decision is made.
+PLATFORMS = (f"{MACS}, {MACOS} or later, and 64-bit Windows" if WINDOWS
+             else f"{MACS}, {MACOS} or later")
 
 #: One-time price, in USD. Declared once so the schema, the comparison table and
 #: the download page cannot drift apart — which is exactly what happened to the
@@ -1996,7 +2024,7 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
         '{"@type":"Organization","@id":"' + BASE + '/#org",'
         '"name":"Docket SEO","url":"' + BASE + '/",'
         '"logo":"' + BASE + '/icon.png",'
-        '"description":"Docket makes local SEO and marketing audit software for Mac.",'
+        '"description":"Docket makes local SEO and marketing audit software for Mac' + (' and Windows' if WINDOWS else '') + '.",'
         # No personal account: /learn/entity-and-sameas/ says a founder's profile does not identify the company
         # (CEO, 20 October 2026: being right beats a count). The site's own repo and the Product Hunt page are Docket's.
         '"sameAs":["https://github.com/mattkerr09/docket-site",'
@@ -2007,11 +2035,11 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
         '{"@type":"SoftwareApplication","@id":"' + BASE + '/#app",'
         '"name":"Docket SEO","applicationCategory":"BusinessApplication",'
         '"applicationSubCategory":"SEO audit software",'
-        '"operatingSystem":"' + MACOS + ' or later, ' + MAC_HW + '",'
+        '"operatingSystem":"' + MACOS + ' or later, ' + MAC_HW + ('; Windows, 64-bit' if WINDOWS else '') + '",'
         '"description":"Docket crawls a website, runs ' + str(N_CHECKS) + ' checks across SEO, copy, '
         'speed, structured data, local visibility, AI search visibility and marketing '
         'conversion, and returns a ranked list of what to fix. The crawl and the report stay '
-        'on your Mac.",'
+        'on your ' + ('computer' if WINDOWS else 'Mac') + '.",'
         # The file itself, direct. Search engines read downloadUrl for software,
         # and it sits in <head>, so the ops release gates, which take the first
         # .dmg URL on the homepage, test the real file rather than the counter.

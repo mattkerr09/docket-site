@@ -19,7 +19,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import (speed_words, PAY4, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, RELEASE,  # noqa: E402
                     price, price_note_html, render, buy_block, rival_monthly_range, COMPETITORS,
-                    INTEL, INTEL_DMG, download_url, DATA, REFUND_DAYS)
+                    INTEL, INTEL_DMG, download_url, DATA, REFUND_DAYS, WINDOWS)
+
+#: "Choose the other tool when..." items about which computers Docket runs on. Derived, because one of them
+#: still said an Intel Mac could not start Docket after the Intel build shipped.
+WRONG_COMPUTER = ("<li><strong>You are on Linux, or want it in a browser.</strong> Docket's desktop app runs on "
+                  "Macs and 64-bit Windows only.</li>" if WINDOWS else
+                  "<li><strong>You are not on a Mac.</strong> Docket runs on macOS only.</li>")
+WONT_START = ("Linux, where only the command-line build runs" if WINDOWS else
+              "Windows or Linux, where Docket will not start" if INTEL else
+              "Windows, Linux, or an Intel Mac, where Docket will not start")
 
 #: How many optional checks reach the network, spelled, from the engine's own
 #: connector registry. Typed as "four" here and in four other places while the
@@ -1106,7 +1115,7 @@ you pay for it.</p>
 <li><strong>You want audits running while your laptop is closed, or a team looking at the same
     results.</strong> Ahrefs crawls in the cloud. Docket's schedule runs only while the app is open,
     and it has no shared workspace.</li>
-<li><strong>You are not on a Mac.</strong> Docket runs on macOS only.</li>
+{WRONG_COMPUTER}
 <li><strong>You want the audit and a plan, once, on your own machine.</strong> That is Docket, for
     {PRICE_STR} once.</li>
 </ul>
@@ -1310,7 +1319,7 @@ your week:</p>
 branding.</li>
 <li>Audits have to run on a schedule whether or not your machine is awake.</li>
 <li>Somebody wants a twelve-month trend line for a board deck.</li>
-<li>You are on Windows, Linux, or an Intel Mac, where Docket will not start.</li>
+<li>You are on {WONT_START}.</li>
 <li>Your crawls run to hundreds of thousands of URLs.</li>
 </ul>
 <p>Two of those and it is not a close call. There is no version of this page where Docket wins
@@ -1870,9 +1879,11 @@ page allowance.</p>
              f"Scrutiny, at {price('scrutiny')} against Docket's {PRICE_STR}. Both "
              "are one-time purchases rather than subscriptions."),
             ("Does Scrutiny run on Windows?",
-             "No. Its product page says there are no plans for Windows. Docket's "
-             "desktop app is macOS-only too, though its audit engine also ships as a "
-             "Linux command-line build."),
+             "No. Its product page says there are no plans for Windows. "
+             + ("Docket's desktop app has an installer for 64-bit Windows as well as the Mac app, and its "
+                "audit engine also ships as a Linux command-line build." if WINDOWS else
+                "Docket's desktop app is macOS-only too, though its audit engine also ships as a "
+                "Linux command-line build.")),
         ],
     )
 
@@ -1966,7 +1977,7 @@ domain and templates. Docket produces a Docket-branded report.</li>
 for that. Docket has nothing like it.</li>
 <li><strong>You only need one audit.</strong> A subscription you can cancel is better value than a
 purchase.</li>
-<li><strong>You are not on a Mac.</strong> Docket runs on macOS only.</li>
+{WRONG_COMPUTER}
 <li><strong>You audit your own sites and want unlimited re-runs while you fix things.</strong> That is
 Docket, for {PRICE_STR} once.</li>
 </ul>
@@ -2773,7 +2784,7 @@ sites, renders JavaScript across a whole crawl in its integrated Chromium, and s
 XPath extraction. Docket renders a sample by default. On a large single-page application,
 Screaming Frog is the right tool.</p>
 
-<p><strong>Docket is macOS only.</strong> Both of the others run on Windows.</p>
+{'<p><strong>All three run on Windows.</strong> Docket also runs on Macs, with Apple silicon or Intel.</p>' if WINDOWS else '<p><strong>Docket is macOS only.</strong> Both of the others run on Windows.</p>'}
 
 {_measured("<p>Most of this page is about what the other two do. This is what Docket does: a real audit of our own site, with the figures the engine reported.</p>")}
 
@@ -2793,7 +2804,7 @@ add a third tool for the part neither does, a ranked list of what to fix first, 
 <li><strong>You crawl very large sites, or you want raw data to interrogate yourself.</strong>
     Pick <a href="{sf}" rel="nofollow noopener">Screaming Frog</a>. It handles far larger crawls
     than Docket and supports custom extraction.</li>
-<li><strong>You are not on a Mac.</strong> Docket runs on macOS only, on Apple silicon or Intel.</li>
+{WRONG_COMPUTER}
 <li><strong>You want to know what is wrong with your site and what to do about it, on a Mac, with
     no subscription or page meter.</strong> That is what Docket is for.</li>
 </ul>

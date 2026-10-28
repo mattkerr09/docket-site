@@ -574,6 +574,7 @@ def write_llms_txt() -> None:
     from collections import OrderedDict
 
     from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS,
+                        WINDOWS, WIN_PUBLISHER, WIN_SETUP_SIZE,
                         FOUNDING_NOW, FOUNDING_OPEN, FOUNDING_SEATS, HAS_SAMPLE, LINUX, MACOS,
                         N_CHECKS, N_LANES, PRICE_STR, REPO, SAMPLE_REPORT, SELLER,
                         seller_address)
@@ -652,6 +653,8 @@ def write_llms_txt() -> None:
         f"A Mac with {MAC_HW} running {MACOS} or later. {NO_BUILDS}",
         f"The Mac app is a {DMG_SIZE} download, signed with a Developer ID and notarised "
         f"by Apple.",
+        (f"Or a PC with 64-bit Windows: the installer is a {WIN_SETUP_SIZE} download, signed by "
+         f"{WIN_PUBLISHER}.") if WINDOWS else "",
         "A command-line build for Linux x86_64 is on the download page." if LINUX else "")
 
     out += ["", "## Price and licence", ""]
@@ -1236,7 +1239,7 @@ def pricing_page() -> Path:
     article.
     """
     from render import (BNPL_INSTALMENT, DMG_SIZE, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, PRICE_STR, REFUND_DAYS,
-                        buy_block, download_url, windows_waitlist)
+                        WINDOWS, buy_block, download_url, windows_waitlist)
     # The prose below is this page's own. The quality gate's duplicate check
     # judged the first version (the buy block alone) a copy of 18 pages,
     # rightly: a page that is only the shared block says nothing of its own.
@@ -1292,7 +1295,7 @@ version.</p>
 you can see how much is wrong on your site, and the worst of it, before you pay for the rest.</p>
 
 <h2>Before you buy: what it runs on</h2>
-<p>A Mac with {MAC_HW}, on {MACOS} or later. {NO_BUILDS} If
+<p>A Mac with {MAC_HW}, on {MACOS} or later{', or a PC with 64-bit Windows' if WINDOWS else ''}. {NO_BUILDS} If
 you are unsure, open the full sample report first; it shows what an audit hands you.</p>
 {windows_waitlist("pricing")}
 
