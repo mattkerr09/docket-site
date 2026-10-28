@@ -2,6 +2,19 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "date": "2026-10-28",
+   "release": "1.3.121",
+   "title": "An online job board was treated as a local business because of its mailing address",
+   "wrong": "A job board's contact page gives a mailing address, under a line about liking post, and nothing else local: no phone number, no opening hours, no local business markup. Docket treated the site as a local business on that address alone, reported at high severity that it had no local business markup and no phone number, and added three more local findings about a storefront that does not exist.",
+   "found": "Auditing a job board from source and reading every finding against the page.",
+   "fixed": "An address labelled as being for post (mailing, postal, registered, billing or correspondence) no longer makes a site local on its own; a street address people are invited to visit still does. The same release stops calling an http:// link broken when a browser would reach it over https, and stops saying pages with Twitter/X tags have no card markup when only the card type is missing.",
+   "tests": [
+    "test_a_mailing_address_is_not_a_storefront.py",
+    "test_an_http_link_a_browser_upgrades_is_not_broken.py",
+    "test_twitter_tags_without_a_card_type_are_not_no_markup.py"
+   ]
+  },
+  {
    "date": "2026-10-27",
    "release": "1.3.120",
    "title": "A dental practice showing dozens of patient reviews was told it had none",
