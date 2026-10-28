@@ -1,7 +1,7 @@
 {
- "read": "2026-10-16",
+ "read": "2026-10-28",
  "source": "https://ahrefs.com/pricing",
- "method": "Plan prices, credits and project caps read from the page's rendered text (monthly view) on 2026-10-16; the crawl-credit rules from Ahrefs' help centre. Not derived, not inferred from tier prices.",
+ "method": "Plan prices, credits and project caps read from the page's rendered text (monthly view) on 2026-10-16 and again on 2026-10-28, unchanged; the crawl-credit rules from Ahrefs' help centre. Not derived, not inferred from tier prices.",
  "site_audit_crawl_credits_per_month": {
   "Lite": "100,000",
   "Standard": "500,000",

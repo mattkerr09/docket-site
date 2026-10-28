@@ -96,7 +96,12 @@ CHECKED_HUMAN: dict[str, str] = {
     # Re-read 2026-10-19: every source below again (prices, credits, max pages per project, the credit-spend and
     # pay-as-you-go articles, the Site Audit page, the Starter post), plus the FAQ's export formats and the
     # Looker Studio connector article, which the page now answers "ahrefs site audit export" and "lookerstudio" from.
-    "ahrefs": "19 October 2026",
+    # Re-read 2026-10-28 (CEO search-health job): prices, credits, pages per project and project counts on the
+    # pricing page, both credit articles, the Looker Studio connector article and the export article. All
+    # unchanged. Added from the same reading: the export article's limit (one issue's page list at a time,
+    # "no way of exporting detailed list of all issues with specific pages in a single go") and the pricing
+    # page's AI content tools, one of them, AI Content Inventory, marked "Soon".
+    "ahrefs": "28 October 2026",
     # Read live 2026-09-16, both tiers and the crawl quotas, from the vendor's
     # own pricing page. The CSV had carried 2026-08-10; re-reading confirmed the
     # prices unchanged and added the monthly crawl allowances, which are the
@@ -142,7 +147,7 @@ CHECKED_HUMAN: dict[str, str] = {
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-10-19",
     "se-ranking-vs-screaming-frog": "2026-10-08",
-    "ahrefs": "2026-10-19",
+    "ahrefs": "2026-10-28",
     "seoptimer": "2026-10-08",
     "sitechecker": "2026-10-19",
     "profound": "2026-10-19",
@@ -1032,10 +1037,14 @@ does and does not advertise, which is not the same as proof the product cannot d
 Site Audit pages on {CHECKED_HUMAN["ahrefs"]} found no such name. The job is split. Site Audit crawls your own pages, and its
 page lists finding duplicate content among its checks, &ldquo;Be it title tags, meta descriptions, headings, or
 low-quality content pages&rdquo;, as read on {CHECKED_HUMAN["ahrefs"]}. Content Explorer is an index of what other
-people have published. This page tested nothing beyond what Ahrefs publishes. For the steps of a content audit,
+people have published. The pricing page also lists AI Content Helper and AI Content Grader, and an AI Content
+Inventory marked &ldquo;Soon&rdquo;; none of them is called a content audit. This page tested nothing beyond what
+Ahrefs publishes. For the steps of a content audit,
 with or without Ahrefs, see <a href="/how-to/content-audit/">how to do a content audit</a>.</p>
 <p><strong>Exports and Looker Studio.</strong> Ahrefs' FAQ says Site Audit overview reports export as PDFs through
-the built-in Print option, and that most raw data exports come as CSV files. For dashboards, Ahrefs has a Site Audit
+the built-in Print option, and that most raw data exports come as CSV files. The pages behind each issue export one
+issue at a time: Ahrefs' help article on exporting Site Audit says &ldquo;there's currently no way of exporting
+detailed list of all issues with specific pages in a single go&rdquo;. For dashboards, Ahrefs has a Site Audit
 connector for Looker Studio: its help article says the connectors need the Advanced plan or higher, and that the Site
 Audit connector consumes no credits. Export rows are also one of the units Ahrefs' pay-as-you-go credits buy, next to
 crawl credits. Docket's exports are a PDF report and CSV and JSON files, and none of them is metered.</p>
@@ -1107,7 +1116,7 @@ you pay for it.</p>
 
     return render(
         cat="vs", slug="ahrefs-site-audit-alternative",
-        modified="2026-10-19",
+        modified="2026-10-28",
         title="Ahrefs Site Audit: what it checks, credits and cost",
         desc=(f"Ahrefs Site Audit scans for 170+ issues. A crawl credit is one internal page: Lite gives "
               f"{F.credits_for('Lite')} a month, Standard {F.credits_for('Standard')}, Advanced {F.credits_for('Advanced')}. "
