@@ -3,6 +3,20 @@
  "entries": [
   {
    "date": "2026-10-28",
+   "release": "1.3.124",
+   "title": "A property manager was offered video-game topics because of a word in its name",
+   "wrong": "With no topic typed, Docket works out what a site is about from its pages. On a property-management firm whose pages had nothing in common but the firm's name, it took a word from the name as the subject and suggested a dozen articles about video games. In the same report, five empty pages were described as a response a rate limiter or bot filter might hand out, an insecure embedded frame was called scripts or styles, and the first finding listed a blocked crawler among the possible causes when the pages were failing with server errors.",
+   "found": "Fact-checking a real report against the live site, page by page, before it went to a client.",
+   "fixed": "A word now counts as a site's subject only if the site uses it in its own words, not just inside its name; when nothing qualifies, Docket says so. Empty pages that each carry their own title are judged as the site's pages. The insecure-content finding names what it found and quotes one. When most of what could not be read came back as server errors, the first finding names them as the cause.",
+   "tests": [
+    "test_a_brand_word_used_only_in_the_name_is_not_the_subject.py",
+    "test_empty_pages_with_their_own_titles_are_not_a_standin.py",
+    "test_mixed_content_names_what_it_found.py",
+    "test_a_crawl_cut_short_by_server_errors_says_so.py"
+   ]
+  },
+  {
+   "date": "2026-10-28",
    "release": "1.3.122",
    "title": "A vet's homepage with an appointment link and a phone link was told it asked visitors to do nothing",
    "wrong": "A veterinary hospital's homepage carries \"Request an Appointment\" and a tap-to-call \"Call Us\" link near the top. Docket said, at high severity, that no button or link on it asked the visitor to do anything, and, also at high severity, that the homepage did not state what the business does, because the first main heading held only the logo.",
