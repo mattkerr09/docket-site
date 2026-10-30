@@ -239,6 +239,9 @@ which is a different question from whether it is installed.</li>
 <p>Quarterly is right for most sites, with lighter monitoring between. Run one immediately
 after a redesign, a migration, a CMS change, or an unexplained traffic drop: those are when
 the fatal, invisible mistakes get introduced.</p>
+<p>How often you can run one also depends on how the tool is paid for. If you already pay for
+Ahrefs, its crawler is <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs Site Audit</a>; our comparison sets out what it checks and how a crawl
+is paid for.</p>
 
 <h2>What a good audit report looks like</h2>
 <p>Three tests. If a report fails them, it will not get acted on:</p>

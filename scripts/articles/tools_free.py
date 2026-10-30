@@ -242,6 +242,7 @@ ranks all of it with the rest of its {N_CHECKS} checks.</p>
 <li><a href="/tools/ai-crawler-checker/">AI crawler checker: can ChatGPT read your site?</a></li>
 <li><a href="/learn/ai-crawler-directives/">Which AI crawlers to block and which to keep</a></li>
 <li><a href="/learn/does-noindex-stop-ai-crawlers/">Does noindex stop AI crawlers?</a></li>
+<li><a href="/vs/ahrefs-site-audit-alternative/">Ahrefs Site Audit</a>: what a paid crawler checks, and how a crawl is paid for</li>
 </ul>
 
 <script>

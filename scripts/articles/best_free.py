@@ -94,6 +94,9 @@ them by what they cost you is the part that takes an expert, and it is the part 
 does not attempt.</li>
 </ul>
 
+<p>If the paid tool you already have is Ahrefs, its crawler is <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs Site Audit</a>; our comparison
+sets out what it checks and how a crawl is paid for.</p>
+
 <p>Docket is {PRICE_STR} paid once, runs on your Mac, and answers
 that third one: a ranked plan rather than a list. <strong>It is not free, and if your site is
 under 500 URLs and you are comfortable reading Lighthouse and Search Console, you do not need

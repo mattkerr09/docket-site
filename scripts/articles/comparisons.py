@@ -789,7 +789,8 @@ you care about AI search visibility or whether your landing pages convert, or if
 client-ready PDF without building one.</p>
 <p>They are not mutually exclusive, and plenty of people will want both. If the other name on your list
 is a cloud platform that meters its audit, <a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking against
-Screaming Frog</a> sets out that trade with both prices read from their own pages. If the site is large
+Screaming Frog</a> sets out that trade with both prices read from their own pages, and if that platform is
+Ahrefs, our page on <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs Site Audit</a> does the same for its crawl credits. If the site is large
 enough that crawl budget is the real question, the tool that answers it is neither of these:
 <a href="/vs/jetoctopus-alternative/">JetOctopus</a> reads your server logs, which shows what
 Googlebot actually fetched rather than what your site would serve if asked.</p>
@@ -2794,6 +2795,9 @@ Screaming Frog is the right tool.</p>
 month. Screaming Frog crawls on your own machine and returns raw data, with no page meter. Nothing about one stops you
 running the other, and the price table above is the whole cost of doing so, as read on {CHECKED_HUMAN[key]}. If you
 add a third tool for the part neither does, a ranked list of what to fix first, that is where Docket sits.</p>
+
+<p>If the platform you already pay for is Ahrefs rather than SE Ranking, <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs Site Audit</a> is set out the same way,
+with what it checks and how a crawl is paid for.</p>
 
 <h2>When to pick SE Ranking or Screaming Frog instead of Docket</h2>
 
