@@ -3,6 +3,17 @@
  "entries": [
   {
    "date": "2026-10-30",
+   "release": "1.3.127",
+   "title": "One broken structured-data mistake was reported as two, with advice that pointed elsewhere",
+   "wrong": "When the same JSON-LD mistake appeared on several pages at different places, such as a trailing comma, the report counted it as different kinds of error and said fixing one would not make the pages valid, although one fix covered them all; it then offered a general list of possible causes instead of the specific one. When a page's template printed its own tag into the structured data instead of a value, the report quoted the parser's message and suggested looking for a trailing comma.",
+   "found": "Rebuilding the list of gaps a paying user would notice first from two weeks of audits of real sites, and measuring the structured-data finding against test pages.",
+   "fixed": "Errors are grouped by cause rather than by where they occur, so the specific fix is given. When the parse fails inside an unfilled template tag, the finding names the tag and its line and says to fix the template.",
+   "tests": [
+    "test_a_json_ld_error_is_named_by_its_cause_not_its_column.py"
+   ]
+  },
+  {
+   "date": "2026-10-30",
    "release": "1.3.126",
    "title": "A theme's menu icon and its code-block fonts were counted as brand typefaces",
    "wrong": "The brand check told the same property manager its site used 11 different typefaces, 10 of them site-wide, and that each was a font file visitors download. Three were not typefaces a brand chose: the theme's icon font, whose only use is drawing the menu button, and two system fonts the theme sets for code blocks, which are already on the visitor's computer. A run an hour earlier had said 8 site-wide.",

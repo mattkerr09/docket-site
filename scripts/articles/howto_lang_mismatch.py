@@ -24,7 +24,7 @@ from render import _human_date, render  # noqa: E402
 
 #: Google's page on localized versions, as read for the section on search: the day it was read and the
 #: 'last updated' date the page itself showed. Re-read it before changing either.
-GOOGLE_LOCALIZED_READ = "2026-10-31"
+GOOGLE_LOCALIZED_READ = "2026-10-30"
 GOOGLE_LOCALIZED_UPDATED = "2026-09-21"
 
 
