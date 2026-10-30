@@ -1,7 +1,7 @@
 {
   "site": "docketseo.app",
   "pages": 142,
-  "edges": 3876,
+  "edges": 3878,
   "average_share_pct": 0.7,
   "below_half": 116,
   "nodes": [
@@ -757,9 +757,9 @@
     },
     {
       "path": "/tools/meta-tag-checker/",
-      "inlinks": 3,
-      "share_pct": 0.08,
-      "index": 0.11
+      "inlinks": 5,
+      "share_pct": 0.13,
+      "index": 0.19
     },
     {
       "path": "/tools/robots-txt-tester/",
@@ -858,5 +858,5 @@
       "index": 0.21
     }
   ],
-  "measured": "2026-10-20"
+  "measured": "2026-10-31"
 }

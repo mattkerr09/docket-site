@@ -20,7 +20,12 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import render  # noqa: E402
+from render import _human_date, render  # noqa: E402
+
+#: Google's page on localized versions, as read for the section on search: the day it was read and the
+#: 'last updated' date the page itself showed. Re-read it before changing either.
+GOOGLE_LOCALIZED_READ = "2026-10-31"
+GOOGLE_LOCALIZED_UPDATED = "2026-09-21"
 
 
 def lang_attribute_mismatch() -> Path:
@@ -32,10 +37,11 @@ minute and saves you changing the wrong attribute.</p>
 <h2>The four mismatches</h2>
 
 <p><strong>1. The declaration contradicts the prose.</strong> The page says
-<code>lang="en"</code> and the text is Spanish. This is the one that does immediate damage: a
-screen reader switches pronunciation on that attribute, and a search engine reads it to decide
-who the page is for. A translation labelled as the original competes with the original for the
-wrong readers instead of reaching its own.</p>
+<code>lang="en"</code> and the text is Spanish. This is the one that does immediate damage to
+people: a screen reader switches pronunciation on that attribute, so a Spanish page labelled
+English is read aloud with English pronunciation. Google says it works out a page's language from
+the page itself rather than from this attribute (see below), so its search cost sits in the
+hreflang entries around it.</p>
 
 <p><strong>2. The hreflang code contradicts the page's own lang attribute.</strong> The page
 declares <code>lang="en-GB"</code> while its own hreflang entry calls it <code>de-DE</code>. One
@@ -105,6 +111,32 @@ visitors none of your versions target, and it belongs in the cluster alongside t
 entries.</li>
 </ul>
 
+<h2>Does the mismatch hurt you in search?</h2>
+
+<p>Less than the description makes it sound, and not through the <code>lang</code> attribute.
+Google's page on localized versions says it does not use hreflang or the HTML lang attribute to
+detect the language of a page: it works the language out from the page itself. A wrong
+<code>lang</code> does not change which language Google takes your page to be in.</p>
+
+<p>hreflang does a different job. Google uses it to understand which pages are localized versions
+of the same content, and that is where these faults cost something in search:</p>
+
+<ul>
+<li><strong>A code reserved for something else is ignored.</strong> Google's own example is that
+<code>UK</code>, <code>EU</code> or <code>UN</code> in an hreflang annotation has no effect, which
+is what happens to <code>en-UK</code>.</li>
+<li><strong>A one-way declaration is ignored.</strong> If two pages do not both point to each
+other, Google ignores the tags.</li>
+</ul>
+
+<p>So faults 1 and 2 are fixed first for readers, because a screen reader is getting them wrong
+today, and fault 3 and missing return tags are the ones that change what Google does. Read on
+@@GOOGLE_READ@@ from Google's documentation,
+<a href="https://developers.google.com/search/docs/specialty/international/localized-versions">Tell
+Google about localized versions of your page</a> (last updated @@GOOGLE_UPDATED@@). We found no
+current documentation from another search engine saying what it does with the lang attribute, so
+this page does not claim one.</p>
+
 <h2>Why the wrong attribute gets changed</h2>
 
 <p>Because the hreflang block is the visible, fiddly part, so it gets the attention, while the
@@ -148,6 +180,8 @@ expected and none you did not.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
+    body = (body.replace("@@GOOGLE_READ@@", _human_date(GOOGLE_LOCALIZED_READ))
+                .replace("@@GOOGLE_UPDATED@@", _human_date(GOOGLE_LOCALIZED_UPDATED)))
     return render(
         cat="how-to", slug="fix-lang-attribute-mismatch",
         title="hreflang and html lang mismatch: which one you have",

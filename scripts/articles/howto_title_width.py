@@ -51,6 +51,10 @@ exist and miss ones that do.</p>
 <p>Long enough to say what the page is, short enough to survive the results page. A title that
 gets cut mid-word loses the words you chose most carefully, which are usually at the end.</p>
 
+<p>To see where a live page stands, paste its address into the free <a href="/tools/meta-tag-checker/">title tag length checker</a>. It
+measures the title and the meta description by width, the way this page describes, rather than
+counting characters.</p>
+
 <p>Two things that matter more than hitting a number:</p>
 
 <ul>

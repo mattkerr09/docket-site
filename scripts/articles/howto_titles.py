@@ -242,6 +242,9 @@ something only it can say (a real address, real prices, work you actually did th
 them and redirect. A unique title on a page with no reason to exist is a unique title on a page
 with no reason to exist.</p>
 
+<p>When a title does need rewriting, check that the new one still fits before it ships: the free
+<a href="/tools/meta-tag-checker/">title tag length checker</a> measures a live page's title by width rather than character count.</p>
+
 <h2>More than one title element on a page</h2>
 
 <p>Search the page's source for <code>&lt;title</code>. A page has one document title, in the head.
