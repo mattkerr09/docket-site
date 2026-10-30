@@ -2,6 +2,17 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "date": "2026-10-30",
+   "release": "1.3.126",
+   "title": "A theme's menu icon and its code-block fonts were counted as brand typefaces",
+   "wrong": "The brand check told the same property manager its site used 11 different typefaces, 10 of them site-wide, and that each was a font file visitors download. Three were not typefaces a brand chose: the theme's icon font, whose only use is drawing the menu button, and two system fonts the theme sets for code blocks, which are already on the visitor's computer. A run an hour earlier had said 8 site-wide.",
+   "found": "Fact-checking a second copy of the same client report, reading the site's own stylesheets.",
+   "fixed": "A font every use of which draws an icon glyph is recognised as an icon font, whatever it is called, and the system fonts used for code are left out like other system fonts. A monospace web font a brand does choose still counts. The same site now reads 8 typefaces, all web fonts its pages load.",
+   "tests": [
+    "test_an_icon_font_or_a_code_font_is_not_a_typeface.py"
+   ]
+  },
+  {
    "date": "2026-10-28",
    "release": "1.3.124",
    "title": "A property manager was offered video-game topics because of a word in its name",

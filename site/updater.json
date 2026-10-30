@@ -1,19 +1,19 @@
 {
-  "version": "1.3.125",
-  "notes": "Docket 1.3.125\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $349, or 4 payments of $87.25, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *Docket for Windows.* An installer for 64-bit Windows, `Docket-1.3.125-x64-setup.exe`, signed by\n  Kerr & Company LLC. It is the same app, with the same 99 checks, as the Mac one. Before it was released\n  it was installed on a clean Windows machine, ran a free audit, was given a wrong licence key and told so\n  by the licence server, and was uninstalled; every program inside the installer was checked as validly\n  signed.\n- *Nothing changes on a Mac.* This is 1.3.124's audit engine with the Windows installer added.\n\n99 checks across 13 areas.",
-  "pub_date": "2026-10-28T20:15:18Z",
+  "version": "1.3.126",
+  "notes": "Docket 1.3.126\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $349, or 4 payments of $87.25, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *Typefaces are counted as a reader sees them.* The brand check counted a theme's icon font (used only to\n  draw the menu button) and the system fonts a site uses for code blocks as typefaces, which pushed one\n  site's count from 8 to 11. Icon fonts are now recognised by what they draw, and the system code fonts are\n  left out like other system fonts, so the count is of fonts that set text and that a visitor downloads.\n- *Docket for Windows updates itself.* Before this release, an installed 1.3.125 on a clean Windows machine\n  was offered a newer test build, downloaded it, checked its signature, installed it and reopened as the new\n  version. The update log now also records how much it downloaded (it said 0 bytes).\n\n99 checks across 13 areas.",
+  "pub_date": "2026-10-30T04:53:56Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTRCOVBVa1JqNmRjRXJ0TXlkcGlQYnNPSWV4SEtZWmxsZENwakhrcG5Pa2RQK1B3U25vQ29RSllSL0NmSEx3SFpGYjNkWUhERXA3L2ZSRTNFWUZROEFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzMjE3ODM3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKa1c0OEZhbVBiZUZYbHhNVWlUNElDVVNqTDlXZWxoRFFlMmQrR2o4TWZrTytaOHZuM1BoUzdLUlhjZzk2YkZXd0N1WVlWQXV6QUN2d3NIeUhLRFNWREE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.125/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTBkVDF4SDVPK2hhNGNkb0ZlMEJBVC9VZUpTQ0VMSm5JSHdMV0R5R3oweEJEVzcwMGRhQ3FUYzFieDRwLzRPS20rNG5tR0RXajlTQ0lHaUtiemtSQmc0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzMzM1NTExCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKdkY3WEJpU2ZqY1BZVFgwS1VKQ3dlR05vakhXNnhKWmovdDV6R2xsaCs0N1VzMGFDSFNHYTdZZ3htd3ZvVHJYNU9WUWFBUkVpTHc2YlFzTDRFTStxQlE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.126/Docket.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJVT01BOURmNFFNUExGVFZFOWtqOHJKb2ZEUFlGWGdldnk1Q3lobGpmdGZvcHY2blZvOUxpT2o4Q1htaGlxeTMvdXgyTlBBQW1ERHZJYzJUUUZOTlFZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzMjE4MDk4CWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6Cldwdzc0NEY0bVFObWVoV25YZlc0ZG9BR3ZuMnRYVm5CMG1uNGVTS0xEY05ZWkphWDBhYnlvN2FEOXB6ekRQLzVLK3kxR25ZL1lCQ3B3OUN0OXc1M0JBPT0K",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.125/Docket-x86_64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXhqbUVzMHJuL3ordUROZGxjZC92UVR6ajFUeVNqemFNQy9ZRkt6dFRwRHhZUUplcC9KcDNkM1JoWDJlQ2UzVUQyYjVQZmc4TktOSWRraVdWU20wZFFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzMzM1NzQzCWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6CmtDa1lPNlNMZVlCU0diRVpWSlJIL1hZbXJNOXN2ZDFYSktKZzZ6NHkzbXFrN2ZxZzcrcjdLRFc3R3RmeitORzdNV3Azd0FCTzhZcjB2NFMydTdKaENnPT0K",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.126/Docket-x86_64.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaThsbk5pNHhrZ25oa3B6ejU0ajNveWxOV3RweTZJcC9tZVlLeTNlUmtSNWVGbGI1eEVXM1NFZW12YXRsRkRhVmQrU2M4blUxYzhCd28zSFJYWllMVHd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzMjE4MjIwCWZpbGU6RG9ja2V0LTEuMy4xMjUteDY0LXNldHVwLmV4ZQo2MHgvd052eDJZZktpMWtUUlNVZ0NpZUFiSWFZUFA1bElnb3AvcUFVb3ZUMEhZTEkyd1I0UURoSzBid3BBSkJDZVVvbDlOOVc2N3JWZSszYlBlYlhEZz09Cg==",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.125/Docket-1.3.125-x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTNMQll5M0dxT21iak83a0hhWmdPZzQ5Ym5LN1h1OGw3Y3ZQdzgxazNxQWRWZ3Mwd1JvSXcvdkxmeTVWSlVDMXZJNlNZMGx2aTZ0dkNtMXlSU29TS3dNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzMzM1ODYwCWZpbGU6RG9ja2V0LTEuMy4xMjYteDY0LXNldHVwLmV4ZQpTb1BUU3VuOU1xQkFQVWUyNjVVS3c5T2dvbjBseTVMV2lPZ2Fld0p6ZG1DVkVVTGoyTng4WlZ3STRJVG9XekhmS1NucmZKZWNpa2pEUkhBcHV0Y05BZz09Cg==",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.126/Docket-1.3.126-x64-setup.exe"
     }
   }
 }
