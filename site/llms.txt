@@ -106,7 +106,7 @@ Michigan, United States.
 - Can I use it for client work? Yes. Audit any number of sites (yours, a client's, a
   prospect's or a competitor's) and charge clients for the work. The licence belongs
   to the person or company that paid; it may not be resold or sublicensed.
-- Does it run on Windows? Yes. Docket v1.3.127 has an installer for 64-bit Windows,
+- Does it run on Windows? Yes. Docket v1.3.128 has an installer for 64-bit Windows,
   17.6 MB, signed by Kerr & Company LLC. It is on the download page beside the Mac app
   and a command-line build for Linux x86_64.
 - How do I get help? Email support@docketseo.app. Questions whose answers would help

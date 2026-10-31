@@ -2,6 +2,17 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "date": "2026-10-31",
+   "release": "1.3.128",
+   "title": "Structured data naming a business after its template's own tag was not reported",
+   "wrong": "When a page's template failed to fill a value inside quotes, such as the business name, the structured data was still valid JSON, so Docket said nothing while the markup told every reader the business was called something like {{ studio.name }}.",
+   "found": "Working through the list of gaps a paying user would notice first, rebuilt from two weeks of audits of real sites.",
+   "fixed": "A value that is wholly a template tag, or a field that names or locates the business holding one, is reported with the field and the tag. A tag inside running text, such as a code example in an article, is not.",
+   "tests": [
+    "test_a_template_tag_in_a_quoted_value_is_not_silent.py"
+   ]
+  },
+  {
    "date": "2026-10-30",
    "release": "1.3.127",
    "title": "One broken structured-data mistake was reported as two, with advice that pointed elsewhere",
