@@ -7,6 +7,8 @@
   "max_depth_default": 5,
   "wall_clock_seconds": 900,
   "wall_clock_minutes": 15,
+  "everything_seconds": 86400,
+  "everything_hours": 24,
   "delay_seconds": 0.25,
   "concurrency": 4,
   "user_agent_token": "Docket-SEO-Audit",

@@ -187,10 +187,11 @@ top pages, and Google's autocomplete, which is sent your site's topic words;
 {F.crawl_depth()} clicks, and setting the page count to 0 removes the limit entirely.</p>
 
 <p>That is worth stating precisely, because "unlimited" on its own is a promise no program
-keeps. What still stops a crawl is the {F.crawl_minutes()}-minute wall clock, the frontier
-running dry and, on a genuinely enormous site, your machine's memory, because every page is
-held in one list. A crawl that hits the clock stops and tells you it stopped, with everything
-it found so far, rather than pretending it finished.</p>
+keeps. What still stops a crawl is the wall clock ({F.crawl_minutes()} minutes, or
+{F.everything_hours()} hours when you choose “Everything”), the frontier running dry and, on a
+genuinely enormous site, your machine's memory, because every page is held in one list. A crawl
+that hits the clock stops and tells you it stopped, with everything it found so far, rather than
+pretending it finished, and Finish now ends a long one early the same way.</p>
 
 <p>If your site is larger than that, say so plainly to yourself and use
 <a href="/vs/screaming-frog-alternative/">Screaming Frog</a>. It crawls without a ceiling and

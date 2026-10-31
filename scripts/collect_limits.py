@@ -35,6 +35,15 @@ def _ui_clamp() -> tuple[int, int]:
     return int(m.group(1)), int(m.group(2))
 
 
+def _everything_seconds() -> int:
+    """The time limit the app's "Everything" scope sends (EVERYTHING_SECONDS in ui/src/app.js, 1.3.130)."""
+    src = (APP / "ui" / "src" / "app.js").read_text()
+    m = re.search(r"const EVERYTHING_SECONDS = (\d+);", src)
+    if not m:
+        raise SystemExit("could not read EVERYTHING_SECONDS from app.js")
+    return int(m.group(1))
+
+
 def main() -> None:
     from seo_engine.crawler import CrawlConfig, Crawler
     from seo_engine.fetcher import DOCKET_TOKEN, USER_AGENT
@@ -53,6 +62,8 @@ def main() -> None:
         "max_depth_default": cfg.max_depth,
         "wall_clock_seconds": int(cfg.max_seconds),
         "wall_clock_minutes": round(cfg.max_seconds / 60),
+        "everything_seconds": _everything_seconds(),
+        "everything_hours": round(_everything_seconds() / 3600),
         "delay_seconds": cfg.delay,
         "concurrency": cfg.concurrency,
         # For /bot/: the name a robots.txt group can address, the full string

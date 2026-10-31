@@ -3,6 +3,17 @@
  "entries": [
   {
    "date": "2026-10-31",
+   "release": "1.3.130",
+   "title": "Docket said Google slows down for a site's crawl-delay rule; Google ignores it",
+   "wrong": "When an audit ran out of time on a site whose robots.txt asks for a delay between requests, the report said such a site is read slowly by every crawler, Google included. Google's robots.txt documentation lists crawl-delay among the rules it does not support.",
+   "found": "A whole-site audit of a large furniture retailer that stopped at the 15-minute limit, read against Google's own documentation.",
+   "fixed": "The report now says that crawlers which honour the rule, Docket among them, read such a site slowly, and that Google does not read it at all. Choosing Everything now allows an audit up to a day, and Finish now keeps the pages already read.",
+   "tests": [
+    "test_a_whole_site_audit_is_not_cut_off_at_fifteen_minutes.py"
+   ]
+  },
+  {
+   "date": "2026-10-31",
    "release": "1.3.129",
    "title": "A Squarespace site was told nothing about its visitors was being recorded",
    "wrong": "A photographer's portfolio on Squarespace had no third-party analytics tag, and Docket said at high priority that nothing about visitor numbers, traffic sources, or which pages generate enquiries was being recorded. Squarespace's own Traffic panel counts unique visitors, visits and pageviews on every plan, without a tag.",

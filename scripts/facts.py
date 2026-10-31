@@ -813,6 +813,11 @@ def crawl_minutes() -> int:
     return limits()["wall_clock_minutes"]
 
 
+def everything_hours() -> int:
+    """How long an audit may run when "Everything" is chosen (the app's EVERYTHING_SECONDS)."""
+    return limits()["everything_hours"]
+
+
 def crawl_depth() -> int:
     return limits()["max_depth_default"]
 
