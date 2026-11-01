@@ -44,7 +44,7 @@ inputs:
       Docket release tag to install, e.g. v0.1.46. The DMG filename is derived
       from it, so any published tag works.
     required: false
-    default: 'v1.3.135'
+    default: 'v1.3.136'
 
 outputs:
   exit-code:
