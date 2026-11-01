@@ -3,6 +3,18 @@
  "entries": [
   {
    "date": "2026-11-01",
+   "release": "1.3.135",
+   "title": "A winery's reviews page was not counted as showing reviews",
+   "wrong": "A family winery whose reviews page shows quoted reviews signed by its customers was told at medium severity that it had no customer reviews or testimonials on the pages checked, that page among them. An auto repair shop built on Kukui, a website platform for repair shops, showed no platform at all.",
+   "found": "False-positive hunts on a family winery's site and an auto repair shop's site, with every finding read against the live pages.",
+   "fixed": "A page named Reviews or Testimonials by its address or its main heading now counts as labelled, and it still has to show a quoted review, a star rating or two signed reviews; a reviews page with nothing on it, and quotes on a page about something else, still do not count. Kukui is recognised from the address its files load from.",
+   "tests": [
+    "test_a_page_called_reviews_is_its_own_label.py",
+    "test_a_duda_site_is_named_duda.py"
+   ]
+  },
+  {
+   "date": "2026-11-01",
    "release": "1.3.134",
    "title": "An accounting firm was told it was not a local business, and an inn that its titles named no place",
    "wrong": "An accounting firm whose header gives its full street address, with the town in capital letters, on every page was told it did not look like a local business, so none of the local checks ran for an office its clients visit. A country inn whose every page title names its state, the state of its own address, was told at medium severity that no page title mentioned a location.",
