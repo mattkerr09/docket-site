@@ -3,6 +3,18 @@
  "entries": [
   {
    "date": "2026-11-01",
+   "release": "1.3.134",
+   "title": "An accounting firm was told it was not a local business, and an inn that its titles named no place",
+   "wrong": "An accounting firm whose header gives its full street address, with the town in capital letters, on every page was told it did not look like a local business, so none of the local checks ran for an office its clients visit. A country inn whose every page title names its state, the state of its own address, was told at medium severity that no page title mentioned a location.",
+   "found": "False-positive hunts on an accounting firm's site and a country inn's site, with every finding read against the live pages.",
+   "fixed": "A whole US address line ending in a town, a two-letter state code and a ZIP code now counts as an address however it is capitalised, both for deciding that the local checks apply and in the address check itself, without counting one address twice. The state of a site's own address, written as a code before its ZIP or in its markup, now counts as a location in its titles. A town and ZIP with no street, a year and a mailing address still do not count as a place to visit.",
+   "tests": [
+    "test_an_address_in_capitals_is_an_address.py",
+    "test_a_title_naming_the_state_names_a_location.py"
+   ]
+  },
+  {
+   "date": "2026-11-01",
    "release": "1.3.133",
    "title": "A law firm was told it had no map, stray typefaces and no recognised profiles",
    "wrong": "A family-law firm's site was told it had no map, though its directions page embeds a Google map that loads as the visitor scrolls. It was told none of its typefaces was used site-wide and that the rest pointed to an old template or an embedded widget, when Docket had read the stylesheets of only a few of its pages; Font Awesome was counted as one of the typefaces. Its structured data links its Martindale, Avvo and Lawyers.com profiles, and it was told it linked none Docket recognised.",
