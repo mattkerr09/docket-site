@@ -3,6 +3,19 @@
  "entries": [
   {
    "date": "2026-11-01",
+   "release": "1.3.133",
+   "title": "A law firm was told it had no map, stray typefaces and no recognised profiles",
+   "wrong": "A family-law firm's site was told it had no map, though its directions page embeds a Google map that loads as the visitor scrolls. It was told none of its typefaces was used site-wide and that the rest pointed to an old template or an embedded widget, when Docket had read the stylesheets of only a few of its pages; Font Awesome was counted as one of the typefaces. Its structured data links its Martindale, Avvo and Lawyers.com profiles, and it was told it linked none Docket recognised.",
+   "found": "A false-positive hunt on a family-law firm's site, with each finding read against the live pages and the site's stylesheets measured by hand.",
+   "fixed": "A frame whose address waits in a lazy-loading attribute is read the way lazy images already were. Pages whose stylesheets were left unread by Docket's size limit are no longer counted, and the finding says how many were left out. Font Awesome is recognised as an icon font under its hyphenated name. Martindale, Avvo and Lawyers.com count as recognised profiles, and a site with none is no longer told it has only zero.",
+   "tests": [
+    "test_a_lazy_loaded_map_frame_is_a_map.py",
+    "test_typefaces_are_counted_only_where_the_css_was_read.py",
+    "test_a_law_firms_directory_profiles_are_recognised.py"
+   ]
+  },
+  {
+   "date": "2026-11-01",
    "release": "1.3.132",
    "title": "Two builder-made sites were told they lacked a postcode, a map and proof they showed, and named the wrong platform",
    "wrong": "An electrician's site with its full address and postcode in the footer of every page was told no postcode appeared anywhere and to put one in the footer; its contact page map, a builder's map widget, was reported as no map; and its typeface count included three stand-in fonts that are Arial sized to match the real ones. A plumber's homepage saying it is licensed and insured and recognised by the state board that licenses it was told it showed no certifications. Duda sites showed no platform, and GoDaddy sites would have shown the name of a GoDaddy subsidiary on the report cover.",
