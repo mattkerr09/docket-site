@@ -14,7 +14,9 @@ WHAT IT REFUSES, for each entry:
   * a release with no commit in the app repo whose subject begins with that version, or one committed more than a
     day from the entry's date;
   * a test file that is not tracked in the app repo's tests/ folder, or that was added after the release's commit
-    (a test cannot hold a fix that had not shipped);
+    (a test cannot hold a fix that had not shipped); when the entry names the `build` the release was made
+    from, after that build instead, and only if that build carries the version, contains its commit, is on
+    main and has a green Windows run (`Lookups.build_problem`);
   * an entry that is missing its title, what was wrong, how it was found, what changed or its tests; two entries
     for one release; entries not newest first;
   * a built page (site/learn/what-docket-got-wrong/index.html) that lacks any entry's anchor or its published day.
@@ -86,6 +88,35 @@ class Lookups:
     def is_ancestor(self, older: str, newer: str) -> bool:
         return _run(["git", "merge-base", "--is-ancestor", older, newer], cwd=APP).returncode == 0
 
+    def build_problem(self, release: str, build: str, release_sha: str, offline: bool = False) -> str:
+        """Why `build` cannot be the commit release `release` was built from, or "" when it can.
+
+        ⚠️ THE VERSION COMMIT IS NOT ALWAYS THE BUILD. 1.3.131 (2026-11-01) was bumped at d4865b1, then three
+        fixes and their tests were committed on top, and the release was built from b21f007, which is what
+        its engine reports as its build. Anchored on the version commit, every one of those tests read as
+        "added after the release". An entry may name its build; it counts only when that commit carries
+        this version, contains the version commit, is on main, and has the green Windows run that ship.sh
+        requires of the exact commit it ships (skipped, and said, under --offline)."""
+        if _run(["git", "rev-parse", "--verify", "--quiet", f"{build}^{{commit}}"], cwd=APP).returncode != 0:
+            return "is not a commit in the app repo"
+        if not self.is_ancestor(release_sha, build):
+            return f"does not contain the release commit {release_sha}"
+        if not self.is_ancestor(build, "origin/main"):
+            return "is not on the app repo's main branch"
+        init = _run(["git", "show", f"{build}:backend/seo_engine/__init__.py"], cwd=APP).stdout
+        if f'__version__ = "{release}"' not in init:
+            return f"is not version {release}"
+        if offline:
+            return ""
+        full = _run(["git", "rev-parse", build], cwd=APP).stdout.strip()
+        p = _run(["gh", "run", "list", "-R", "mattkerr09/docket-app", "--workflow", "windows-build.yml",
+                  "--commit", full, "--status", "success", "--json", "databaseId", "-q", "length"])
+        if p.returncode != 0:
+            raise RuntimeError(f"gh run list for {build}: {(p.stderr or p.stdout).strip() or 'no answer'}")
+        if p.stdout.strip() in ("", "0"):
+            return "has no green Windows build, so ship.sh would not have shipped it"
+        return ""
+
 
 def problems(entries: list, look, offline: bool = False) -> list:
     out = []
@@ -128,12 +159,20 @@ def problems(entries: list, look, offline: bool = False) -> list:
         sha, cday = commit
         if abs((dt.date.fromisoformat(cday) - day).days) > 1:
             out.append(f"{tag}: the release commit {sha} is dated {cday}, the entry says {day.isoformat()}")
+        anchor, what = sha, "release commit"
+        build = str(e.get("build") or "").strip()
+        if build:
+            why = look.build_problem(rel, build, sha, offline)
+            if why:
+                out.append(f"{tag}: build {build} {why}")
+                continue
+            anchor, what = build, "build"
         for t in tests:
             added = look.test_added(t)
             if added is None:
                 out.append(f"{tag}: tests/{t} is not tracked in the app repo")
-            elif added != sha and not look.is_ancestor(added, sha):
-                out.append(f"{tag}: tests/{t} was added after the release commit {sha}")
+            elif added != anchor and not look.is_ancestor(added, anchor):
+                out.append(f"{tag}: tests/{t} was added after the {what} {anchor}")
     return out
 
 
@@ -167,7 +206,11 @@ class _Fake:
         return self.TESTS.get(name)
 
     def is_ancestor(self, older, newer):
-        return (older, newer) in {("aaa", "bbb")}
+        return (older, newer) in {("aaa", "bbb"), ("bbb", "ddd"), ("ccc", "ddd"), ("aaa", "ddd")}
+
+    def build_problem(self, release, build, release_sha, offline=False):
+        """ddd is 1.3.2's build, made after test_later.py was added on top of the version commit bbb."""
+        return "" if (release, build) == ("1.3.2", "ddd") else "is not version " + release
 
 
 def self_test() -> int:
@@ -194,6 +237,14 @@ def self_test() -> int:
         if not problems(planted, _Fake()):
             print(f"FAIL  self-test: {name} was not refused")
             return 1
+    built = [dict(good[0], tests=["test_later.py"], build="ddd"), dict(good[1])]
+    if problems(built, _Fake()):
+        print("FAIL  self-test: a test added before the named build was refused:", problems(built, _Fake()))
+        return 1
+    wrong_build = [dict(good[0], tests=["test_later.py"], build="eee"), dict(good[1])]
+    if not problems(wrong_build, _Fake()):
+        print("FAIL  self-test: a build that is not the release was not refused")
+        return 1
     flipped = [dict(good[1]), dict(good[0])]
     if not problems(flipped, _Fake()):
         print("FAIL  self-test: entries oldest first were not refused")

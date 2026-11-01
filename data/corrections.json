@@ -2,6 +2,21 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "date": "2026-11-01",
+   "release": "1.3.131",
+   "build": "b21f007",
+   "title": "Four corrections from two sites: a robots.txt the owner cannot edit, the wrong platform, reviews not seen, and the wrong cause for broken markup",
+   "wrong": "On a Squarespace site, a finding about AI crawler names their makers no longer use gave a block to paste into robots.txt; Squarespace's own help says its users cannot access or edit that file, and the lines come from Squarespace's setting for blocking AI crawlers. A site built with Webflow was reported as running on WordPress, because its structured data, pasted from a template, pointed at a WordPress-style image folder; a second Webflow site showed no platform at all. The same Webflow site's homepage shows 24 Google reviews under a line counting more than two thousand, and was told at medium severity that it had no customer reviews. Its high-severity structured-data finding said three blocks each held two separate JSON documents; each held one document followed by three closing brackets that closed nothing.",
+   "found": "False-positive hunts on a photographer's Squarespace portfolio and a dental practice's Webflow site, with every finding read against the live pages, Squarespace's help pages on robots.txt and on asking AI models to exclude a site, and the homepages of three real Webflow sites.",
+   "fixed": "On Squarespace the robots.txt finding still lists the retired names, and its fix now names the setting and links Squarespace's help page instead of offering markup. Docket now reads Webflow's own markup first, and text inside structured data no longer decides the platform. Two or more different first-name-and-initial names near a reviews label now count as reviews, as two dash signatures already did; one such name, or names with no reviews label, still do not. When what is left after a complete block starts with a closing bracket, the finding says the block closes more brackets than it opens and gives the line where the leftover starts; two documents in one block keep the two-documents advice.",
+   "tests": [
+    "test_a_squarespace_robots_file_is_not_the_owners_to_edit.py",
+    "test_a_webflow_site_is_named_webflow.py",
+    "test_reviews_signed_name_first_are_reviews.py",
+    "test_leftover_closing_brackets_are_not_a_second_document.py"
+   ]
+  },
+  {
    "date": "2026-10-31",
    "release": "1.3.130",
    "title": "Docket said Google slows down for a site's crawl-delay rule; Google ignores it",
