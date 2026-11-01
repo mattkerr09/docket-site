@@ -3,6 +3,21 @@
  "entries": [
   {
    "date": "2026-11-01",
+   "release": "1.3.132",
+   "title": "Two builder-made sites were told they lacked a postcode, a map and proof they showed, and named the wrong platform",
+   "wrong": "An electrician's site with its full address and postcode in the footer of every page was told no postcode appeared anywhere and to put one in the footer; its contact page map, a builder's map widget, was reported as no map; and its typeface count included three stand-in fonts that are Arial sized to match the real ones. A plumber's homepage saying it is licensed and insured and recognised by the state board that licenses it was told it showed no certifications. Duda sites showed no platform, and GoDaddy sites would have shown the name of a GoDaddy subsidiary on the report cover.",
+   "found": "False-positive hunts on a plumber's GoDaddy site and an electrician's Duda site, with every finding read against the live pages, and the homepages of four Duda sites and several GoDaddy sites from public lists.",
+   "fixed": "The postcode check now reads the footer, as Docket's other address checks already did. An element named as a map that holds a latitude and a longitude counts as a map. Licence phrases such as licensed and insured count as proof; the word licensed alone does not. A font face whose only source is a font already on the computer is not counted as a typeface. Duda is recognised from its own markup, and GoDaddy's builder is named GoDaddy.",
+   "tests": [
+    "test_a_footer_postcode_and_a_map_widget_are_seen.py",
+    "test_a_trade_licence_is_proof.py",
+    "test_a_metric_fallback_face_is_not_a_typeface.py",
+    "test_a_duda_site_is_named_duda.py",
+    "test_a_godaddy_site_is_named_godaddy.py"
+   ]
+  },
+  {
+   "date": "2026-11-01",
    "release": "1.3.131",
    "build": "b21f007",
    "title": "Four corrections from two sites: a robots.txt the owner cannot edit, the wrong platform, reviews not seen, and the wrong cause for broken markup",
