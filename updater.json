@@ -1,19 +1,19 @@
 {
-  "version": "1.3.137",
-  "notes": "Docket 1.3.137\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $349, or 4 payments of $87.25, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *Every kind of local business is recognised in your markup.* Docket recognised a short list of local\n  business types, so a gym marked up as a gym was told it had no local business markup at all, and so\n  would a winery, a brewery, a car dealer or a bed and breakfast. It now recognises every local business\n  type in schema.org's own vocabulary.\n- *When a page describes your business twice, the fuller description is the one checked.* A homepage\n  with a short and a full description of the same business was told the full one's details were missing.\n- *A phone extension is not a vanity number.* A phone link with an extension written as a letter and\n  digits was described as a number spelled in letters that dials nothing. It is now described as an\n  extension, with the standard way to write one.\n\n99 checks across 13 areas.",
-  "pub_date": "2026-11-02T17:07:35Z",
+  "version": "1.3.138",
+  "notes": "Docket 1.3.138\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $59, or $29.50 at the Black Friday price until 30 November, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *Audit your own large site in hours, not a day.* Some sites ask crawlers, in robots.txt, to wait several\n  seconds between pages. Docket waits, so a large shop asking for 4 seconds could take longer than the day\n  an audit may run. If the site is yours, tick \"This is my site: skip the crawl delay\" (or use\n  --skip-crawl-delay) and Docket reads it at its normal pace. Every page your robots.txt blocks still stays\n  unread, and the report says the delay was skipped.\n\n99 checks across 13 areas.",
+  "pub_date": "2026-11-02T18:48:01Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVJak9URHdDbnZMRjNkRndUNGRtV1M5akI2cjNFVGVPZVVVMHRPQyt2NVZ5bStqWm80Y1BXcnJoUW1vS2lEMXlYS0VtYUtqWVNVbU85YjlrWWVqMFEwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNjM4Njk3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKQm9wTlVOZXlmeEQ5K1BRbkNtVStiZzMxK3ZRa3hFV2NIS3p5MFA4R201OEVlVzBKTEtRVVB3cmZpbmRMb1pqMG52TDZ6UThTbjNnWGZYMzVuMnE2Qmc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.137/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTM4QTZOWmM0czhrd2xPbHI2UEFzekdFbHBZZ29UZmlrYzRqV0laayt0TGN2dFpWazZZRkRIRC9meWc2VnlPbTRncEhSdS8xVzU5Slh4bjJBa2V1U1FBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNjQzMjM0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKSjk1aXY4UjM4MEhROGZvajFtK3hLcGYvbE9HQnJBQjVvbTl1Q3ZwN2RlMHM4NzY2d1BtMGhZZjZYV1cvZk9xYkhNVEJKbzBXTHRaOGlSaC9SWit3RFE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.138/Docket.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXlSMmRKQVErc2REblc2RWZBNFJmQVZSOHVxOXRycGxCcktlSWNDUE5EN3NvdUU1Qkp0REtQR0dmOURLcVBoUSszM3JJNno0S0dIUFpNUU5EcFg5YVFJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNjM4OTU0CWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6ClNSYzU1QkpyN3QxT3A5NzFhSk9JWEpBRWVCdDkrODBtUURTOVdCU2Qya3NZeURtSHVjclFjZkZKbURvdnVYN2lRTGpDMTN6OWZCMUxzcmE3c1pkakRBPT0K",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.137/Docket-x86_64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJZbEFnYzNjc1J4VSs1blZid1FhSlJqQXVUYTRXTTV2OG1rRkdsU2JSQW04cHViMHFLQjVvakVqWmp1YVE3NVQ5ellKKytGc09XcmdXSFppVGQyL2dvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNjQzNTAwCWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6Ck5iaDJkNGRvQmx3c0R6NEJPaXJtdlgzcG5vOXh5Q05OVnFuRFZGcXp1L28wcnMwZjlBU3VxUUh4OW5MMklQalRYeE0vYWpNVEtQZ1FzaWY2TEh3ZER3PT0K",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.138/Docket-x86_64.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXp6dVhGZ3lFR3RNV05kSVk3YnlPTHpIdU05NmF1aEc0REZEdXRnSDR5dVR5TXlpRjlpS0JtMFhhVDAra2thSUdKQUZpRm90b0hWVjQ1TmdQL1QrQ3drPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNjM5MDYwCWZpbGU6RG9ja2V0LTEuMy4xMzcteDY0LXNldHVwLmV4ZQpBYU9UcGtLVnl3RXNqVnVBVEF4dmVKUkNCc2JyK0VncnZlSnBMS2tTWkJGcnRkRFYvZS9sbThZOUdNVTBKM3VTSEV2QzMvVzQ1TUFzY0hOTFUrb1BEdz09Cg==",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.137/Docket-1.3.137-x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStYaXhrd0lpV1VtNHN1enRDR0xQbENNMy9mZWtRdkdoMit0cU93Zm9UTGF4VUxzZE5qeDNydDJrNW1IcEVZZnVnWFdUUi9RandVUmNJWXUxRzZ2ZEFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNjQzNjIxCWZpbGU6RG9ja2V0LTEuMy4xMzgteDY0LXNldHVwLmV4ZQo0dnIxNUNGNlRoQktMZ2pwaVJzTkFkenBPSWg1UkdsR3hPalpXVDlpTGd3SWVZMkRLSzZ6dmR4bVo3b2tub3VjV3ZRcWIvWVB3ak1wWkFLQ2hVbGhBdz09Cg==",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.138/Docket-1.3.138-x64-setup.exe"
     }
   }
 }

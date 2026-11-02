@@ -15,7 +15,8 @@
   "price_cents": 2950,
   "instalment_cents": null,
   "code": "FOUNDINGDOCKET",
-  "seats": 25
+  "label": "Black Friday price, all of November",
+  "ends_at": "2026-12-01T07:59:59Z"
  },
  "refund_days": 30,
  "checkout_url": "https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F",

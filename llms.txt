@@ -46,7 +46,7 @@ Michigan, United States.
 - A Mac with Apple silicon or Intel running macOS 12 or later.
 - The Mac app is a 22.1 MB download, signed with a Developer ID and notarised by
   Apple.
-- Or a PC with 64-bit Windows: the installer is a 17.6 MB download, signed by Kerr &
+- Or a PC with 64-bit Windows: the installer is a 17.7 MB download, signed by Kerr &
   Company LLC.
 - A command-line build for Linux x86_64 is on the download page.
 
@@ -54,9 +54,9 @@ Michigan, United States.
 
 - $59, paid once, in US dollars. Not a subscription: there is no renewal date and
   nothing to cancel.
-- Founding price $29.50 once, first 25 buyers, until 24 November, then $59: the Buy
-  link applies the code FOUNDINGDOCKET at checkout (if the checkout shows $59, enter
-  it under "Have a discount code?").
+- Black Friday price, all of November: Docket SEO $29.50 once, until 30 November. From
+  1 December it's $59. The Buy link applies the code FOUNDINGDOCKET at checkout (if
+  the checkout shows $59, enter it under "Have a discount code?").
 - Or four payments of $14.75 with Klarna or Afterpay, two weeks apart.
 - Free: your score, how many problems in each category, and the top problem in full
   with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to
@@ -91,8 +91,8 @@ Michigan, United States.
 
 - Is Docket free? Free: your score, how many problems in each category, and the top
   problem in full with its fix. Pro: the rest of the problems, the ranked fix plan and
-  the markup to paste. Pro is $59 once, $29.50 for founding buyers until 24 November,
-  with a 30-day refund. There is no subscription and nothing to cancel.
+  the markup to paste. Pro is $59 once, $29.50 at the Black Friday price until 30
+  November, with a 30-day refund. There is no subscription and nothing to cancel.
 - What if it isn't for me? Ask for a refund within 30 days of buying and you get your
   money back. No conditions and no questions. Write to support@docketseo.app, or reply
   to the receipt the payment processor emails you. The licence key is revoked, so the
@@ -106,8 +106,8 @@ Michigan, United States.
 - Can I use it for client work? Yes. Audit any number of sites (yours, a client's, a
   prospect's or a competitor's) and charge clients for the work. The licence belongs
   to the person or company that paid; it may not be resold or sublicensed.
-- Does it run on Windows? Yes. Docket v1.3.137 has an installer for 64-bit Windows,
-  17.6 MB, signed by Kerr & Company LLC. It is on the download page beside the Mac app
+- Does it run on Windows? Yes. Docket v1.3.138 has an installer for 64-bit Windows,
+  17.7 MB, signed by Kerr & Company LLC. It is on the download page beside the Mac app
   and a command-line build for Linux x86_64.
 - How do I get help? Email support@docketseo.app. Questions whose answers would help
   the next person can go on the public issue tracker instead.
