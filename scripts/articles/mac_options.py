@@ -113,7 +113,7 @@ prices for one person.</p>
 <th>More than Docket over {YEARS} years</th></tr></thead><tbody>
 {cost}
 </tbody></table></div>
-<p>Docket costs less than every other tool here from the first day: {PRICE_STR} once, against
+<p>Docket costs less than Screaming Frog, Sitebulb, Scrutiny and SEO PowerSuite from the first day: {PRICE_STR} once, against
 {_usd(scr["once"])} once for Scrutiny and {_usd(sf["annual"])} a year for Screaming Frog. It is cheap because one
 person in Grand Rapids builds it, with no investors to repay and no sales team, not because it does less. Docket's
 one price includes every 1.x release, and Scrutiny's page does not say how long its free updates last.</p>
