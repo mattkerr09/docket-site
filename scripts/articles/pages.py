@@ -1979,19 +1979,13 @@ requests as any other, and it can ask for offline mode.</li>
 removes them permanently.</p>
 
 <h2>This website</h2>
-<p>This site is static and runs six third-party scripts. The first is
+<p>This site is static and runs five third-party scripts. The first is
 <a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, which counts page
 views. Plausible states that it uses no cookies, collects no personal data and does not track
 visitors across sites; it is hosted in the EU. Nothing about your audits reaches it.
 Audits run on your Mac and this website never sees them. Standard server logs may record IP
 addresses and requested URLs, which are used only to keep the site running.</p>
-<p>The second is <a href="https://usesled.com">Sled</a>, which credits the right person when
-somebody recommends Docket. It is conditional: arrive through an affiliate link and a single
-<code>ta_ref</code> cookie records
-which affiliate sent you, so they are paid if you buy. Arrive from a search result, a bookmark
-or a link of ours and no cookie is set at all, which is what almost every visitor does.
-It records which affiliate sent a visit, never who the visitor is.</p>
-<p>The third is the <a href="https://www.facebook.com/business/tools/meta-pixel">Meta
+<p>The second is the <a href="https://www.facebook.com/business/tools/meta-pixel">Meta
 pixel</a>. It is here because we advertise on Facebook and Instagram, and without it we cannot
 tell which adverts bring people who actually download Docket: only how much we spent. It
 records that a page was viewed and sets a <code>_fbp</code> cookie, which lets Meta connect a
@@ -2003,7 +1997,7 @@ never uploaded.</p>
 content blocker stops it, as does Meta's own
 <a href="https://www.facebook.com/adpreferences/ad_settings">off-Facebook activity</a> setting,
 and nothing here depends on it loading.</p>
-<p>The fourth is the chat assistant in the corner of the page, which answers questions about
+<p>The third is the chat assistant in the corner of the page, which answers questions about
 Docket. Its script is loaded from <code>kerr-lead-agent.kerrco.workers.dev</code>, a server we
 run. The assistant stores nothing in your browser (no cookie of its own, no local
 storage, no session storage), and it reads nothing about your device. It draws itself in
@@ -2012,13 +2006,13 @@ into it, that question is sent to that server so it can be answered; if you neve
 nothing is sent. It knows only published facts about Docket, and the price it quotes comes from
 the payment provider rather than from this page, so it cannot quote you a price the checkout
 will not honour.</p>
-<p>The fifth is also on the front page only: the founding-offer bar across the top of the
+<p>The fourth is on the front page only: the founding-offer bar across the top of the
 page, loaded from <code>kerr-lead-agent.kerrco.workers.dev</code>, the same server as the
 assistant. When the page loads it asks that server whether the offer is still open, and the only
 thing it sends is this site's name. If you close the bar, the time you closed it is kept in your
 browser's local storage so the bar stays away for seven days; nothing else is stored and it sets
 no cookie. It draws itself in an isolated shadow root, like the assistant.</p>
-<p>The sixth is on every page: a small script loaded from
+<p>The fifth is on every page: a small script loaded from
 <code>kerr-affiliate-hub.kerrco.workers.dev</code>, a server we run, which is where our Download and
 Buy links point. It does three things. When you click a Download or Buy link, it marks the click as made
 by a person, because a crawler that only follows the address never makes a click, so we can count people
@@ -2041,7 +2035,8 @@ other way and it does nothing at all.</p>
 site &ldquo;sets no cookies&rdquo; and runs &ldquo;one third-party script&rdquo;; both were true
 until Sled was added. The line calling Sled the only thing here that can set a cookie was true
 until the Meta pixel was. The count said three until the chat assistant was added, and the description on this page still said three after the body said four. Our own audit caught that, and it was corrected to five, which is when the Windows form on the front page was counted too. It said five while the front page loaded six: the founding-offer bar was missed until a count of every script on every built page was checked against this list, and that count now runs before every deploy. It said six
-until the click-counting script was added on every page. This
+until the click-counting script was added on every page. It went back to five on 2 November 2026,
+when Sled was retired; affiliate credit is kept by the click-counting script, without a cookie. This
 paragraph is the reason that was noticed: each correction is made above rather than quietly
 deleted. A privacy page that enumerates what a site does not do is only worth reading if the
 enumeration stays complete.</p>
@@ -2133,6 +2128,8 @@ date and nothing to cancel, because nothing recurs.</p>
 <p><strong>One licence covers up to {F.licence_activations()} Macs at a time.</strong>
 Activating Docket on a Mac uses one of them; deactivate one to move it to another machine. The
 limit is enforced by the payment provider, so an activation past it is refused.
+If a Mac or PC is lost or dies before you deactivate it, email <a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a>
+and we release the seat.
 This page said &ldquo;no seat count&rdquo; until 2026-08-23, which was wrong from the moment the
 product was configured with a limit of three: the terms promised something the software
 did not do. If you need more than three, ask and it will be sorted out.</p>"""
