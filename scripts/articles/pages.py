@@ -590,7 +590,7 @@ claims everything invites the client to test the claim.</p>
         faq=[
             ("Can I use Docket for client work?",
              "Yes. Docket is " + PRICE_STR + " once"
-             + (" (" + FOUNDING_NOW + " for founding buyers until " + FOUNDING_END_DAY + ")" if FOUNDING_OPEN else "") + ", "
+             + (" (" + FOUNDING_NOW + " at the Black Friday price until " + FOUNDING_END_DAY + ")" if FOUNDING_OPEN else "") + ", "
              "with no per-seat or per-crawl limits, so you can audit as many client and "
              "prospect sites as you like and charge for the work."),
             ("Can I white-label the report?",
@@ -1348,7 +1348,7 @@ to happen whether or not anyone is at the machine, that is what a hosted crawler
              "than Docket measuring."),
             ("Is Docket really a one-time purchase?",
              f"Yes. {PRICE_STR} once, "
-             + (f"or {FOUNDING_NOW} for the first founding buyers until {FOUNDING_END_DAY}, " if FOUNDING_OPEN else "") + f"and "
+             + (f"or {FOUNDING_NOW} at the Black Friday price until {FOUNDING_END_DAY}, " if FOUNDING_OPEN else "") + f"and "
              f"every 1.x update is included. There are no seats, no crawl credits, no account "
              f"and no telemetry, and audit history is stored on your Mac in ~/.docket/ as "
              f"plain JSON."),

@@ -2,6 +2,17 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "release": "1.3.138",
+   "date": "2026-11-02",
+   "title": "A large site that asks crawlers to wait could not be audited whole in a day",
+   "wrong": "Docket waits the delay a site's robots.txt asks for between requests. A furniture retailer with about 23,000 pages asking for 4 seconds would have taken about 26 hours, longer than the day an audit may run, so even its owner could not audit the whole site.",
+   "found": "A whole-site audit of a large furniture retailer, with its robots.txt asking for a 4-second wait, stopped long before the end.",
+   "fixed": "An owner auditing their own site can now choose not to wait the delay. Every page robots.txt blocks is still left unread, and the report says the delay was skipped and that Google does not read it at all. By default the delay is kept, as before.",
+   "tests": [
+    "test_an_owner_can_skip_the_crawl_delay_on_their_own_site.py"
+   ]
+  },
+  {
    "date": "2026-11-02",
    "release": "1.3.137",
    "title": "A gym marked up as a gym was told it had no local business markup",

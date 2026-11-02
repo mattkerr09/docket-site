@@ -67,17 +67,18 @@ def shows_founding(name: str, text: str, price: str, code: str) -> str:
         if needle in seen:
             return f"{needle!r} in its text"
     # The bundle's "while founding prices last" and any other founding-price sentence without the figure.
-    if re.search(r"founding price", seen, flags=re.I):
-        return "'founding price' in its text"
+    if re.search(r"founding price|black friday price", seen, flags=re.I):
+        return "'founding price' or 'Black Friday price' in its text"
     return ""
 
 
 def problems(files: dict, dodo, now: dt.datetime, ends_at: str, price: str, code: str,
-             end_day: str = "") -> tuple[list, list]:
+             end_day: str = "", after_day: str = "") -> tuple[list, list]:
     """(failures, notes). `dodo` is the code's Dodo record, "missing" for a 404, or None when it can't be read.
 
     With `end_day` ("24 November"), an open offer also has to say when it ends wherever its price is shown
-    (CEO, 2026-11-02: "for the first 25 buyers" with no date, while the code ends on a fixed day)."""
+    (CEO, 2026-11-02: "for the first 25 buyers" with no date, while the code ends on a fixed day). From the Black Friday
+    wording of the same day, "From <after_day> it's $59" dates it too."""
     fails, notes = [], []
     shown = [(n, why) for n, t in sorted(files.items()) if (why := shows_founding(n, t, price, code))]
     expires = when(ends_at)
@@ -112,9 +113,12 @@ def problems(files: dict, dodo, now: dt.datetime, ends_at: str, price: str, code
     if not over:
         notes.append(f"{len(shown)} built file(s) show the founding offer, which is open")
         if end_day:
+            def dated(text: str) -> bool:
+                low = text.lower()
+                return f"until {end_day}".lower() in low or bool(after_day and f"from {after_day}".lower() in low)
             undated = [n for n, t in sorted(files.items())
                        if (n.endswith((".html", ".txt")) and price in (visible(t) if n.endswith(".html") else t)
-                           and f"until {end_day}" not in (visible(t) if n.endswith(".html") else t))]
+                           and not dated(visible(t) if n.endswith(".html") else t))]
             if undated:
                 fails.append(f"{len(undated)} built file(s) show the founding price without its end date "
                              f"(\"until {end_day}\"); first: " + ", ".join(f"/{n}" for n in undated[:5]))
@@ -180,6 +184,14 @@ def self_test() -> int:
     assert any("without its end date" in f
                for f in problems({"index.html": page}, open_rec, before, ends, price, code, "24 November")[0]), \
         "an undated founding price fails while the offer is open"
+    friday = ("<html><body><p>Black Friday price, all of November: <strong>Docket SEO $174.50 once</strong>. "
+              "From 1 December it&rsquo;s $349.</p></body></html>")
+    assert problems({"index.html": friday}, open_rec, before, ends, price, code, "30 November", "1 December")[0] == [], \
+        "'From 1 December' dates the Black Friday line"
+    assert problems({"index.html": friday.replace("From 1 December", "Soon")}, open_rec, before, ends, price, code,
+                    "30 November", "1 December")[0], "the Black Friday line without a date fails"
+    named = "<html><body><p>The Black Friday price ends soon.</p></body></html>"
+    assert fails({"index.html": named}, open_rec, after), "'Black Friday price' counts as showing the offer"
     print("FOUNDING OFFER self-test ok")
     return 0
 
@@ -193,7 +205,7 @@ def main() -> int:
              and (p.suffix != ".json" or p.name == "offer.json")}
     dodo = read_dodo(R.FOUNDING_CODE)
     fails, notes = problems(files, dodo, dt.datetime.now(dt.timezone.utc), R.FOUNDING_ENDS_AT,
-                            R.FOUNDING_NOW, R.FOUNDING_CODE, R.FOUNDING_END_DAY)
+                            R.FOUNDING_NOW, R.FOUNDING_CODE, R.FOUNDING_END_DAY, R.FOUNDING_AFTER_DAY)
     for n in notes:
         print(f"  {n}")
     for f in fails:

@@ -326,8 +326,8 @@ def buy_strip(src: str) -> str:
     sample = (f' &middot; <a href="{SAMPLE_REPORT}" data-ev="Sample report" data-ev-button="{src}">'
               f'See a sample report</a>' if HAS_SAMPLE else "")
     # The founding part carries its own separator, so the page's switch can remove it whole at FOUNDING_ENDS_AT.
-    founding = (f'<span{FOUNDING_UNTIL}> &middot; founding price {FOUNDING_NOW}{PAY4_FOUNDING}, for the first '
-                f'{FOUNDING_SEATS} buyers {FOUNDING_END_HTML} with <code>{FOUNDING_CODE}</code></span>'
+    founding = (f'<span{FOUNDING_UNTIL}> &middot; {SALE_NAME} {FOUNDING_NOW}{PAY4_FOUNDING} '
+                f'{FOUNDING_END_HTML} with <code>{FOUNDING_CODE}</code>, then {PRICE_STR}</span>'
                 if FOUNDING_OPEN else "")
     return (f'<aside class="buy-strip"><p><a href="{download_url(try_src)}" data-ev="Download" '
             f'data-ev-button="{try_src}"><strong>Try it free</strong></a>{intel}: your score and '
@@ -656,7 +656,11 @@ PRICE_STR = f"${PRICE}"
 #: wording for the field, read on the live session the same day: "Have a
 #: discount code?".
 FOUNDING_CODE = "FOUNDINGDOCKET"
-FOUNDING_SEATS = 25
+#: No cap since 2026-11-02 ("Everyone, all of November"), so no page says "first N buyers" any more.
+FOUNDING_SEATS = None
+#: What the sale is called on every page, in Matthew's framing. Not "50% off": $59 has not been charged to anyone yet,
+#: so a discount against it would be a former price nobody paid (CEO, 2026-11-02, on the FTC's former-price rules).
+SALE_NAME = "Black Friday price"
 #: When the founding offer stops: FOUNDINGDOCKET's expires_at, read from Dodo on 2026-10-21 (50% off, 0 of 25 used,
 #: restricted to Docket). CEO, 2026-10-21: every founding-price line, the auto-applied code and the ads switch off by
 #: that moment. So every founding line this site writes (the note under each Buy button, the guide strips, the FAQ
@@ -664,7 +668,10 @@ FOUNDING_SEATS = 25
 #: rebuild itself, so the note and the strip also carry data-founding-until and remove themselves in the browser at
 #: the moment; the first build after it drops the rest. verify_founding_offer.py fails any deploy that still shows the
 #: founding price after the moment, or once Dodo's times_used reaches the limit: then set FOUNDING_SOLD_OUT = True.
-FOUNDING_ENDS_AT = "2026-11-25T01:26:53Z"
+#: 2026-11-02, Matthew via the CEO: "Make it go for the whole month of November and say it's like a Black Friday thing
+#: too", then "Everyone, all of November": FOUNDINGDOCKET read from Dodo at 18:42Z, 50%, usage_limit 100000, expires
+#: 2026-12-01T07:59:59Z (the end of 30 November in US Pacific time). The lead agent's /founding answers unlimited.
+FOUNDING_ENDS_AT = "2026-12-01T07:59:59Z"
 FOUNDING_SOLD_OUT = False
 
 
@@ -682,8 +689,8 @@ FOUNDING_UNTIL = f' data-founding-until="{FOUNDING_ENDS_AT}"'
 
 def founding_end_day() -> str:
     """The last day of the founding offer as a buyer anywhere in the US would put it: the date it still is in
-    Hawaii (UTC-10) when the code expires. FOUNDINGDOCKET expires 01:26 UTC on 25 November, which is the evening
-    of 24 November across the US, so "until 25 November" would promise most of a day it does not have; this date
+    Hawaii (UTC-10) when the code expires. FOUNDINGDOCKET expires 07:59 UTC on 1 December, which is the evening
+    of 30 November across the US, so "until 1 December" would promise most of a day it does not have; this date
     can only be earlier than a buyer's own, never later. The page's switch replaces it with the visitor's own
     date and time."""
     ends = _dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00"))
@@ -697,6 +704,9 @@ def founding_end_day() -> str:
 FOUNDING_END_DAY = founding_end_day()
 FOUNDING_END_HTML = (f'<span class="founding-end" data-founding-end="{FOUNDING_ENDS_AT}">'
                      f'until {FOUNDING_END_DAY}</span>')
+#: The first day at the full price, as the sale line says it: "From 1 December it's $59".
+FOUNDING_AFTER_DAY = (lambda d: f"{d.day} {d.strftime('%B')}")(
+    _dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00")) - _dt.timedelta(hours=10) + _dt.timedelta(days=1))
 #: Beside every buy button, as page text — the founding bar is a script that
 #: can fail to load, and a visitor at the button should not need it to know the
 #: offer exists or how to claim it. Says "first 25 buyers", never how many are
@@ -861,9 +871,11 @@ BNPL_NOTE_HTML = BNPL_NOTE.replace(
 #: rehearsal of 2026-09-30 opened it and Dodo showed $174.50 with the code
 #: already in. Typing it is only the fallback, for a checkout that opens at
 #: the full price (the hub falls back to the plain link if Dodo is down).
-FOUNDING_LINE = (f"Founding price <strong>{FOUNDING_NOW} once{PAY4_FOUNDING}</strong>, first "
-                 f"{FOUNDING_SEATS} buyers, {FOUNDING_END_HTML}, then {PRICE_STR}. Buy applies the code "
-                 f"<code>{FOUNDING_CODE}</code> for you; if the checkout shows {PRICE_STR}, "
+#: The sale line, in the words the CEO relayed from Matthew on 2026-11-02: "Black Friday price, all of November:
+#: Docket SEO $29.50 once. From 1 December it's $59, or 4 × $14.75."
+FOUNDING_LINE = (f"{SALE_NAME}, all of November: <strong>Docket SEO {FOUNDING_NOW} once{PAY4_FOUNDING}</strong>. "
+                 f"From {FOUNDING_AFTER_DAY} it&rsquo;s {PRICE_STR}{', or 4&nbsp;&times;&nbsp;' + BNPL_INSTALMENT if PAY4 else ''}. "
+                 f"Buy applies the code <code>{FOUNDING_CODE}</code> for you; if the checkout shows {PRICE_STR}, "
                  f"enter it under &lsquo;Have a discount code?&rsquo;." if FOUNDING_OPEN else "")
 
 #: What the free version is, in Matthew's words of 2026-10-01 and the app's
@@ -1872,9 +1884,11 @@ FOUNDING_SWITCH = ('<script>(function(){var end=Date.parse("' + FOUNDING_ENDS_AT
                    'month:"long",hour:"numeric",minute:"2-digit"});}catch(x){}});return;}'
                    'document.querySelectorAll("[data-founding-until]").forEach(function(e){e.remove();});})();'
                    '</script>\n')
-FOUNDING_MOUNT = ((f'<div data-founding data-was="{FOUNDING_WAS}" data-now="{FOUNDING_NOW}"'
-                   + (f' data-pay4="or 4 &times; {BNPL_FOUNDING_INSTALMENT}"' if BNPL_FOUNDING_OK else '')
-                   + ' hidden></div>\n' + FOUNDING_SWITCH
+#: No data-was, data-now or data-pay4 since 2026-11-02. founding.js prints data-was struck through beside data-now,
+#: a former price ($59) that nobody has paid, and without data-pay4 it computes four payments from data-now ($7.38),
+#: which Dodo would not offer under its $50.01 floor. The bar keeps the code and the worker's "Black Friday sale,
+#: until ..." text; the price is on the page beside every Buy button.
+FOUNDING_MOUNT = (('<div data-founding hidden></div>\n' + FOUNDING_SWITCH
                    + '<script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>')
                   if FOUNDING_OPEN else "")
 

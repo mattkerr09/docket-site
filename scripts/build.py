@@ -575,7 +575,7 @@ def write_llms_txt() -> None:
 
     from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS,
                         WINDOWS, WIN_PUBLISHER, WIN_SETUP_SIZE,
-                        FOUNDING_END_DAY, FOUNDING_NOW, FOUNDING_OPEN, FOUNDING_SEATS, HAS_SAMPLE, LINUX, MACOS,
+                        FOUNDING_AFTER_DAY, FOUNDING_END_DAY, FOUNDING_NOW, FOUNDING_OPEN, HAS_SAMPLE, LINUX, MACOS, SALE_NAME,
                         N_CHECKS, N_LANES, PRICE_STR, REPO, SAMPLE_REPORT, SELLER,
                         seller_address)
 
@@ -661,8 +661,8 @@ def write_llms_txt() -> None:
     out += facts(
         f"{PRICE_STR}, paid once, in US dollars. Not a subscription: there is no renewal "
         f"date and nothing to cancel.",
-        (f"Founding price {FOUNDING_NOW} once, first {FOUNDING_SEATS} buyers, until {FOUNDING_END_DAY}, then {PRICE_STR}: "
-         f"the Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
+        (f"{SALE_NAME}, all of November: Docket SEO {FOUNDING_NOW} once, until {FOUNDING_END_DAY}. From "
+         f"{FOUNDING_AFTER_DAY} it's {PRICE_STR}. The Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
          f"{PRICE_STR}, enter it under \"Have a discount code?\")." if FOUNDING_OPEN else ""),
         (f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks "
          f"apart." if BNPL_LIVE else ""),
@@ -868,7 +868,7 @@ def write_offer() -> None:
     read it.
     """
     from render import (BNPL_FOUNDING_OK, BNPL_LIVE, BNPL_MIN_CENTS, CHECKOUT, FOUNDING_CODE, FOUNDING_OPEN,
-                        FOUNDING_PCT, FOUNDING_SEATS, HAS_SAMPLE, REFUND_DAYS, SAMPLE_REPORT)
+                        FOUNDING_ENDS_AT, FOUNDING_PCT, HAS_SAMPLE, REFUND_DAYS, SALE_NAME, SAMPLE_REPORT)
     import math
     price_cents = PRICE * 100
     founding_cents = price_cents * (100 - FOUNDING_PCT) // 100
@@ -884,7 +884,10 @@ def write_offer() -> None:
                       # null under Dodo's pay-in-four floor ($29.50 from 2026-11-02): the app then shows no
                       # instalment beside the founding price, as the checkout would offer none.
                       "instalment_cents": math.ceil(founding_cents / 4) if BNPL_FOUNDING_OK else None,
-                      "code": FOUNDING_CODE, "seats": FOUNDING_SEATS} if FOUNDING_OPEN else None),
+                      # No "seats" since 2026-11-02: the sale is uncapped. Builds up to 1.3.138 required it, but
+                      # they also hold the old $349 list price, so they show no sale line from this file either way.
+                      "code": FOUNDING_CODE, "label": SALE_NAME + ", all of November", "ends_at": FOUNDING_ENDS_AT}
+                     if FOUNDING_OPEN else None),
         "refund_days": REFUND_DAYS,
         "checkout_url": CHECKOUT,
         # Our buy endpoint: makes the Dodo checkout with the founding code
@@ -1240,7 +1243,7 @@ def pricing_page() -> Path:
     as every other price on the site. Not in the sitemap: it is a door, not an
     article.
     """
-    from render import (BNPL_INSTALMENT, DMG_SIZE, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, PRICE_STR, REFUND_DAYS,
+    from render import (BNPL_INSTALMENT, DMG_SIZE, FOUNDING_AFTER_DAY, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, PRICE_STR, REFUND_DAYS,
                         WINDOWS, buy_block, download_url, windows_waitlist)
     # The prose below is this page's own. The quality gate's duplicate check
     # judged the first version (the buy block alone) a copy of 18 pages,
@@ -1260,8 +1263,8 @@ def pricing_page() -> Path:
         return f"${x:,.2f}" if x != int(x) else f"${int(x):,}"
     bundle_line = (
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
-        f'All three apps, {apps}, for {usd(bundle["founding_price"])} once while founding prices last.</a> '
-        f'It becomes {usd(bundle["standard_price"])} after founding.'
+        f'All three apps, {apps}, for {usd(bundle["founding_price"])} once: the Black Friday price, all of November.</a> '
+        f'From {FOUNDING_AFTER_DAY} it is {usd(bundle["standard_price"])}.'
         if founding else
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
         f'All three apps, {apps}, for {usd(bundle["standard_price"])} once.</a>')
