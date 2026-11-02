@@ -1,19 +1,19 @@
 {
-  "version": "1.3.138",
-  "notes": "Docket 1.3.138\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $59, or $29.50 at the Black Friday price until 30 November, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *Audit your own large site in hours, not a day.* Some sites ask crawlers, in robots.txt, to wait several\n  seconds between pages. Docket waits, so a large shop asking for 4 seconds could take longer than the day\n  an audit may run. If the site is yours, tick \"This is my site: skip the crawl delay\" (or use\n  --skip-crawl-delay) and Docket reads it at its normal pace. Every page your robots.txt blocks still stays\n  unread, and the report says the delay was skipped.\n\n99 checks across 13 areas.",
-  "pub_date": "2026-11-02T18:48:01Z",
+  "version": "1.3.139",
+  "notes": "Docket 1.3.139\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $59, or $29.50 at the Black Friday price until 30 November, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *The new price, in the app.* Black Friday price, all of November: Docket SEO $29.50 once. From 1 December it's\n  $59, or four payments of $14.75. It is priced like a video game because one person builds it, in Grand Rapids,\n  with no investors, no sales team and no app store cut. Earlier versions still showed the old price of $349; this\n  one shows $59, and the sale under the name the website gives it. The sale is open to everyone, with no limit on\n  buyers. Four payments are not offered on $29.50, because the checkout does not split an amount that small.\n\n99 checks across 13 areas.",
+  "pub_date": "2026-11-02T19:36:11Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTM4QTZOWmM0czhrd2xPbHI2UEFzekdFbHBZZ29UZmlrYzRqV0laayt0TGN2dFpWazZZRkRIRC9meWc2VnlPbTRncEhSdS8xVzU5Slh4bjJBa2V1U1FBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNjQzMjM0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKSjk1aXY4UjM4MEhROGZvajFtK3hLcGYvbE9HQnJBQjVvbTl1Q3ZwN2RlMHM4NzY2d1BtMGhZZjZYV1cvZk9xYkhNVEJKbzBXTHRaOGlSaC9SWit3RFE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.138/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTZMblhpdGdmQlFPRkJGaGM4dkxvaHZ6bnpvRDFMWmpEWmQzZ0x1UDJ1c0MvVUV3Mk9WcEMrOVFSek5oSVZEbVNZQTVmMGZEQ3FvbWgyUUpTZW1GblFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNjQ3NTc4CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKbXRvUEk0NjdpRlhyQWY0d2dPQVBNYTZQY1VPVzA5N1E4MUpoM2VDSTJvU2RQT3poeXE2eWJvVnprbENyY2diZDNSNGJKYkl6VVNOcmJqMDQwelhiQ1E9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.139/Docket.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJZbEFnYzNjc1J4VSs1blZid1FhSlJqQXVUYTRXTTV2OG1rRkdsU2JSQW04cHViMHFLQjVvakVqWmp1YVE3NVQ5ellKKytGc09XcmdXSFppVGQyL2dvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNjQzNTAwCWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6Ck5iaDJkNGRvQmx3c0R6NEJPaXJtdlgzcG5vOXh5Q05OVnFuRFZGcXp1L28wcnMwZjlBU3VxUUh4OW5MMklQalRYeE0vYWpNVEtQZ1FzaWY2TEh3ZER3PT0K",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.138/Docket-x86_64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTV1Q1pHa09ub0xYc2t5bFo3amRhSmw5OXQ0dFVWb2o0cWl2cXhVWFJiSXhLQzZKVmpHOWxkeTZGcHpvRHdER3k3aHdoWTJMaGsvZ0N5TlVPSEQwRFE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNjQ3ODIwCWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6CitaUnRaaGVBRWxUOWJUcjc4Zkx1cTgxNGlVV3FlV2Eyb2VHWU0yRVkrRzNoUjg4eWVQcDJnSmE5anRrZ0dyZ1E3WEYzR3EyakErOWwxQWNRYlk1MERBPT0K",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.139/Docket-x86_64.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStYaXhrd0lpV1VtNHN1enRDR0xQbENNMy9mZWtRdkdoMit0cU93Zm9UTGF4VUxzZE5qeDNydDJrNW1IcEVZZnVnWFdUUi9RandVUmNJWXUxRzZ2ZEFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNjQzNjIxCWZpbGU6RG9ja2V0LTEuMy4xMzgteDY0LXNldHVwLmV4ZQo0dnIxNUNGNlRoQktMZ2pwaVJzTkFkenBPSWg1UkdsR3hPalpXVDlpTGd3SWVZMkRLSzZ6dmR4bVo3b2tub3VjV3ZRcWIvWVB3ak1wWkFLQ2hVbGhBdz09Cg==",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.138/Docket-1.3.138-x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaThOWlR3aWJhc05GT3RVa0hzL0RQU0ZYOGRVajhlckhXcVN4a3M3SGJGRXorem9uS3k4UFRkZTNLZmVxNkF1SHpER2k3alBCd3VRVlZlUFVjL1hNNkFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNjQ3OTMyCWZpbGU6RG9ja2V0LTEuMy4xMzkteDY0LXNldHVwLmV4ZQpHclpjQjVlUnh3bXVyVjhiRDQ0cmdDTFRmK29SQk9kekpybjFOVFpJQWhEbjEycmFJSXZVWlROL2J3aFRkY2hialdlUnJhWFRuWDRYVExZQURrOVBEdz09Cg==",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.139/Docket-1.3.139-x64-setup.exe"
     }
   }
 }
