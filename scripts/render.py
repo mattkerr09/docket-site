@@ -1884,11 +1884,13 @@ FOUNDING_SWITCH = ('<script>(function(){var end=Date.parse("' + FOUNDING_ENDS_AT
                    'month:"long",hour:"numeric",minute:"2-digit"});}catch(x){}});return;}'
                    'document.querySelectorAll("[data-founding-until]").forEach(function(e){e.remove();});})();'
                    '</script>\n')
-#: No data-was, data-now or data-pay4 since 2026-11-02. founding.js prints data-was struck through beside data-now,
-#: a former price ($59) that nobody has paid, and without data-pay4 it computes four payments from data-now ($7.38),
-#: which Dodo would not offer under its $50.01 floor. The bar keeps the code and the worker's "Black Friday sale,
-#: until ..." text; the price is on the page beside every Buy button.
-FOUNDING_MOUNT = (('<div data-founding hidden></div>\n' + FOUNDING_SWITCH
+#: The bar reads "Sale price: $29.50, then $59 · until Nov 30". The mount was bare for an hour on 2026-11-02 while
+#: founding.js still struck data-was through (a former price nobody had paid) and computed four payments from data-now
+#: under Dodo's $50.01 floor; lead-agent 0eafcffe/5fdcc840 (read 2026-11-02) prints data-was as "then $59" and computes
+#: no instalment under 5001 cents. data-pay4 is sent only when the sale price clears the floor.
+FOUNDING_MOUNT = ((f'<div data-founding data-was="{FOUNDING_WAS}" data-now="{FOUNDING_NOW}"'
+                   + (f' data-pay4="or 4 &times; {BNPL_FOUNDING_INSTALMENT}"' if BNPL_FOUNDING_OK else '')
+                   + ' hidden></div>\n' + FOUNDING_SWITCH
                    + '<script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>')
                   if FOUNDING_OPEN else "")
 
