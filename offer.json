@@ -1,10 +1,10 @@
 {
  "schema": 1,
- "price_cents": 34900,
+ "price_cents": 5900,
  "currency": "USD",
  "instalments": {
   "count": 4,
-  "cents": 8725,
+  "cents": 1475,
   "providers": [
    "Klarna",
    "Afterpay"
@@ -12,8 +12,8 @@
   "every_days": 14
  },
  "founding": {
-  "price_cents": 17450,
-  "instalment_cents": 4363,
+  "price_cents": 2950,
+  "instalment_cents": null,
   "code": "FOUNDINGDOCKET",
   "seats": 25
  },
