@@ -72,8 +72,12 @@ def shows_founding(name: str, text: str, price: str, code: str) -> str:
     return ""
 
 
-def problems(files: dict, dodo, now: dt.datetime, ends_at: str, price: str, code: str) -> tuple[list, list]:
-    """(failures, notes). `dodo` is the code's Dodo record, "missing" for a 404, or None when it can't be read."""
+def problems(files: dict, dodo, now: dt.datetime, ends_at: str, price: str, code: str,
+             end_day: str = "") -> tuple[list, list]:
+    """(failures, notes). `dodo` is the code's Dodo record, "missing" for a 404, or None when it can't be read.
+
+    With `end_day` ("24 November"), an open offer also has to say when it ends wherever its price is shown
+    (CEO, 2026-11-02: "for the first 25 buyers" with no date, while the code ends on a fixed day)."""
     fails, notes = [], []
     shown = [(n, why) for n, t in sorted(files.items()) if (why := shows_founding(n, t, price, code))]
     expires = when(ends_at)
@@ -107,6 +111,13 @@ def problems(files: dict, dodo, now: dt.datetime, ends_at: str, price: str, code
                      + "; ".join(f"/{n} ({why})" for n, why in shown[:5]))
     if not over:
         notes.append(f"{len(shown)} built file(s) show the founding offer, which is open")
+        if end_day:
+            undated = [n for n, t in sorted(files.items())
+                       if (n.endswith((".html", ".txt")) and price in (visible(t) if n.endswith(".html") else t)
+                           and f"until {end_day}" not in (visible(t) if n.endswith(".html") else t))]
+            if undated:
+                fails.append(f"{len(undated)} built file(s) show the founding price without its end date "
+                             f"(\"until {end_day}\"); first: " + ", ".join(f"/{n}" for n in undated[:5]))
     return fails, notes
 
 
@@ -143,8 +154,8 @@ def self_test() -> int:
     open_rec = {"code": code, "usage_limit": 25, "times_used": 3, "expires_at": ends}
     full_rec = dict(open_rec, times_used=25)
 
-    def fails(files, dodo, now, ends_at=ends):
-        return problems(files, dodo, now, ends_at, price, code)[0]
+    def fails(files, dodo, now, ends_at=ends, end_day=""):
+        return problems(files, dodo, now, ends_at, price, code, end_day)[0]
 
     assert fails({"index.html": page}, open_rec, before) == [], "open offer, before the moment"
     assert any("expired" in f for f in fails({"index.html": page}, open_rec, after)), "shown at the moment"
@@ -164,6 +175,11 @@ def self_test() -> int:
     assert fails({"offer.json": json.dumps({"founding": None})}, open_rec, after) == [], "a null founding is closed"
     late = dict(open_rec, expires_at="2026-11-24T00:00:00Z")
     assert any("later than Dodo" in f for f in fails({"index.html": plain}, late, before)), "a late switch fails"
+    dated = page.replace("once</strong>", "once</strong>, until 24 November")
+    assert fails({"index.html": dated}, open_rec, before, ends, "24 November") == [], "dated price passes"
+    assert any("without its end date" in f
+               for f in problems({"index.html": page}, open_rec, before, ends, price, code, "24 November")[0]), \
+        "an undated founding price fails while the offer is open"
     print("FOUNDING OFFER self-test ok")
     return 0
 
@@ -177,7 +193,7 @@ def main() -> int:
              and (p.suffix != ".json" or p.name == "offer.json")}
     dodo = read_dodo(R.FOUNDING_CODE)
     fails, notes = problems(files, dodo, dt.datetime.now(dt.timezone.utc), R.FOUNDING_ENDS_AT,
-                            R.FOUNDING_NOW, R.FOUNDING_CODE)
+                            R.FOUNDING_NOW, R.FOUNDING_CODE, R.FOUNDING_END_DAY)
     for n in notes:
         print(f"  {n}")
     for f in fails:

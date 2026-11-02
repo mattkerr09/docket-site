@@ -27,7 +27,7 @@ import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
 from render import (_human_date, speed_words, windows_waitlist, WINDOWS, WIN_SETUP_SIZE, WIN_PUBLISHER, RELEASE, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
-                    FOUNDING_NOW, FOUNDING_OPEN, agency_amount, agency_multiple, agency_note_html,
+                    FOUNDING_NOW, FOUNDING_OPEN, FOUNDING_END_DAY, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
                     N_LANES, PRICE_STR,
                     price, price_note_html, render)  # noqa: E402
@@ -716,7 +716,7 @@ data-ev-button="home-free-block">Download Docket for Mac</a></p>
 FAQ = [
     ("Is Docket free?",
      f"{FREE_LINE} Pro is {PRICE_STR} once, "
-     + (f"{FOUNDING_NOW} for founding buyers, " if FOUNDING_OPEN else "")
+     + (f"{FOUNDING_NOW} for founding buyers until {FOUNDING_END_DAY}, " if FOUNDING_OPEN else "")
      + "with a 30-day refund. There is no subscription and nothing to cancel."),
     ("What if it isn't for me?",
      "Ask for a refund within 30 days of buying and you get your money back. No conditions "

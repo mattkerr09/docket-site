@@ -575,7 +575,7 @@ def write_llms_txt() -> None:
 
     from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS,
                         WINDOWS, WIN_PUBLISHER, WIN_SETUP_SIZE,
-                        FOUNDING_NOW, FOUNDING_OPEN, FOUNDING_SEATS, HAS_SAMPLE, LINUX, MACOS,
+                        FOUNDING_END_DAY, FOUNDING_NOW, FOUNDING_OPEN, FOUNDING_SEATS, HAS_SAMPLE, LINUX, MACOS,
                         N_CHECKS, N_LANES, PRICE_STR, REPO, SAMPLE_REPORT, SELLER,
                         seller_address)
 
@@ -661,7 +661,7 @@ def write_llms_txt() -> None:
     out += facts(
         f"{PRICE_STR}, paid once, in US dollars. Not a subscription: there is no renewal "
         f"date and nothing to cancel.",
-        (f"Founding price {FOUNDING_NOW} once, first {FOUNDING_SEATS} buyers, then {PRICE_STR}: "
+        (f"Founding price {FOUNDING_NOW} once, first {FOUNDING_SEATS} buyers, until {FOUNDING_END_DAY}, then {PRICE_STR}: "
          f"the Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
          f"{PRICE_STR}, enter it under \"Have a discount code?\")." if FOUNDING_OPEN else ""),
         (f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks "

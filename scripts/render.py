@@ -327,7 +327,8 @@ def buy_strip(src: str) -> str:
               f'See a sample report</a>' if HAS_SAMPLE else "")
     # The founding part carries its own separator, so the page's switch can remove it whole at FOUNDING_ENDS_AT.
     founding = (f'<span{FOUNDING_UNTIL}> &middot; founding price {FOUNDING_NOW}{PAY4_FOUNDING}, for the first '
-                f'{FOUNDING_SEATS} buyers with <code>{FOUNDING_CODE}</code></span>' if FOUNDING_OPEN else "")
+                f'{FOUNDING_SEATS} buyers {FOUNDING_END_HTML} with <code>{FOUNDING_CODE}</code></span>'
+                if FOUNDING_OPEN else "")
     return (f'<aside class="buy-strip"><p><a href="{download_url(try_src)}" data-ev="Download" '
             f'data-ev-button="{try_src}"><strong>Try it free</strong></a>{intel}: your score and '
             f'how many problems each area has, and the top problem in full &middot; '
@@ -671,6 +672,25 @@ def founding_open(now: "_dt.datetime | None" = None) -> bool:
 FOUNDING_OPEN = founding_open()
 #: On an element that holds founding text and nothing else: the page's switch removes it at FOUNDING_ENDS_AT.
 FOUNDING_UNTIL = f' data-founding-until="{FOUNDING_ENDS_AT}"'
+
+
+def founding_end_day() -> str:
+    """The last day of the founding offer as a buyer anywhere in the US would put it: the date it still is in
+    Hawaii (UTC-10) when the code expires. FOUNDINGDOCKET expires 01:26 UTC on 25 November, which is the evening
+    of 24 November across the US, so "until 25 November" would promise most of a day it does not have; this date
+    can only be earlier than a buyer's own, never later. The page's switch replaces it with the visitor's own
+    date and time."""
+    ends = _dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00"))
+    day = ends - _dt.timedelta(hours=10)
+    return f"{day.day} {day.strftime('%B')}"
+
+
+#: CEO, 2026-11-02, from Matthew's order on turning visitors into sales: the founding line said "first 25 buyers"
+#: and no end date, while FOUNDINGDOCKET ends at FOUNDING_ENDS_AT. A true end date beside the price is honest
+#: urgency. FOUNDING_ENDS_AT is the date verify_founding_offer.py checks against Dodo's expires_at on every deploy.
+FOUNDING_END_DAY = founding_end_day()
+FOUNDING_END_HTML = (f'<span class="founding-end" data-founding-end="{FOUNDING_ENDS_AT}">'
+                     f'until {FOUNDING_END_DAY}</span>')
 #: Beside every buy button, as page text — the founding bar is a script that
 #: can fail to load, and a visitor at the button should not need it to know the
 #: offer exists or how to claim it. Says "first 25 buyers", never how many are
@@ -830,7 +850,7 @@ BNPL_NOTE_HTML = BNPL_NOTE.replace(
 #: already in. Typing it is only the fallback, for a checkout that opens at
 #: the full price (the hub falls back to the plain link if Dodo is down).
 FOUNDING_LINE = (f"Founding price <strong>{FOUNDING_NOW} once{PAY4_FOUNDING}</strong>, first "
-                 f"{FOUNDING_SEATS} buyers, then {PRICE_STR}. Buy applies the code "
+                 f"{FOUNDING_SEATS} buyers, {FOUNDING_END_HTML}, then {PRICE_STR}. Buy applies the code "
                  f"<code>{FOUNDING_CODE}</code> for you; if the checkout shows {PRICE_STR}, "
                  f"enter it under &lsquo;Have a discount code?&rsquo;." if FOUNDING_OPEN else "")
 
@@ -1834,7 +1854,10 @@ RETURN_URL_SCRUB = """<script>
 #: The switch runs where the mount sits, after the footer, so every founding element is already parsed. It removes
 #: them once FOUNDING_ENDS_AT has passed; the bar itself goes when the lead agent's /founding says soldOut, which it
 #: does at the code's expires_at.
-FOUNDING_SWITCH = ('<script>(function(){if(Date.now()<Date.parse("' + FOUNDING_ENDS_AT + '"))return;'
+FOUNDING_SWITCH = ('<script>(function(){var end=Date.parse("' + FOUNDING_ENDS_AT + '");'
+                   'if(Date.now()<end){document.querySelectorAll("[data-founding-end]").forEach(function(e){'
+                   'try{e.textContent="until "+new Date(end).toLocaleString(undefined,{day:"numeric",'
+                   'month:"long",hour:"numeric",minute:"2-digit"});}catch(x){}});return;}'
                    'document.querySelectorAll("[data-founding-until]").forEach(function(e){e.remove();});})();'
                    '</script>\n')
 FOUNDING_MOUNT = ((f'<div data-founding data-was="{FOUNDING_WAS}" data-now="{FOUNDING_NOW}"'

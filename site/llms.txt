@@ -54,9 +54,9 @@ Michigan, United States.
 
 - $349, paid once, in US dollars. Not a subscription: there is no renewal date and
   nothing to cancel.
-- Founding price $174.50 once, first 25 buyers, then $349: the Buy link applies the
-  code FOUNDINGDOCKET at checkout (if the checkout shows $349, enter it under "Have a
-  discount code?").
+- Founding price $174.50 once, first 25 buyers, until 24 November, then $349: the Buy
+  link applies the code FOUNDINGDOCKET at checkout (if the checkout shows $349, enter
+  it under "Have a discount code?").
 - Or four payments of $87.25 with Klarna or Afterpay, two weeks apart.
 - Free: your score, how many problems in each category, and the top problem in full
   with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to
@@ -91,8 +91,8 @@ Michigan, United States.
 
 - Is Docket free? Free: your score, how many problems in each category, and the top
   problem in full with its fix. Pro: the rest of the problems, the ranked fix plan and
-  the markup to paste. Pro is $349 once, $174.50 for founding buyers, with a 30-day
-  refund. There is no subscription and nothing to cancel.
+  the markup to paste. Pro is $349 once, $174.50 for founding buyers until 24
+  November, with a 30-day refund. There is no subscription and nothing to cancel.
 - What if it isn't for me? Ask for a refund within 30 days of buying and you get your
   money back. No conditions and no questions. Write to support@docketseo.app, or reply
   to the receipt the payment processor emails you. The licence key is revoked, so the
