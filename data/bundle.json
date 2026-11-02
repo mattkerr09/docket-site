@@ -1,10 +1,14 @@
 {
-  "apps": ["Docket SEO", "Crisp", "Outlier"],
-  "founding_price": 299,
-  "standard_price": 399,
-  "separate_total": 727,
+  "apps": [
+    "Docket SEO",
+    "Crisp",
+    "Outlier"
+  ],
+  "founding_price": 49.5,
+  "standard_price": 99,
+  "separate_total": 137,
   "founding_ends_at": "2026-11-25T01:26:53Z",
   "url": "https://kerr-affiliate-hub.kerrco.workers.dev/buy/bundle",
-  "recorded": "2026-10-14",
-  "source": "~/ops/launch/BUNDLE-2026-10-14.md (Matthew approved in chat 2026-10-14); checkout read back at $299.00 by the CEO 2026-10-14. The hub moves to the standard price by itself when the founding codes run out or expire at 2026-11-25T01:26:53Z; this page flips at the next build after founding_ends_at."
+  "recorded": "2026-11-02",
+  "source": "Matthew in chat 2026-11-02, relayed by the CEO: one price each (Crisp $29, Outlier $49, Docket $59), bundle $99, $49.50 while founding. Read back from Dodo at 18:22:47Z: products 2900 + 4900 + 5900 = 13700 cents; ALLTHREE flat -3800 gives $99; FOUNDINGBUNDLE flat -8750 gives $49.50, expiring 2026-11-25T01:26:53Z. The hub moves to the standard price by itself when the founding codes expire; this page flips at the next build after founding_ends_at."
 }

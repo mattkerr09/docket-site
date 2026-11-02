@@ -208,7 +208,7 @@ def build_hubs() -> list[Path]:
              "except purpose: crawler.sh turns sites into Markdown for AI training, and "
              "caps pages per session."),
             ("/vs/crawlraven-alternative/", "Docket vs CrawlRaven",
-             "Close to Docket's pitch and far cheaper to start. It joins Search Console "
+             "Close to Docket's pitch, and cheaper only in its first months. It joins Search Console "
              "and GA4 to a technical audit sold by the month, with a lifetime plan beside "
              "it; Docket's audit is bought once and has no page allowance."),
             ("/vs/jetoctopus-alternative/", "Docket vs JetOctopus",
@@ -867,8 +867,8 @@ def write_offer() -> None:
     the site, and the app falls back to the list price alone when it cannot
     read it.
     """
-    from render import (BNPL_LIVE, CHECKOUT, FOUNDING_CODE, FOUNDING_OPEN, FOUNDING_PCT, FOUNDING_SEATS,
-                        HAS_SAMPLE, REFUND_DAYS, SAMPLE_REPORT)
+    from render import (BNPL_FOUNDING_OK, BNPL_LIVE, BNPL_MIN_CENTS, CHECKOUT, FOUNDING_CODE, FOUNDING_OPEN,
+                        FOUNDING_PCT, FOUNDING_SEATS, HAS_SAMPLE, REFUND_DAYS, SAMPLE_REPORT)
     import math
     price_cents = PRICE * 100
     founding_cents = price_cents * (100 - FOUNDING_PCT) // 100
@@ -878,10 +878,12 @@ def write_offer() -> None:
         "currency": "USD",
         "instalments": ({"count": 4, "cents": math.ceil(price_cents / 4),
                          "providers": ["Klarna", "Afterpay"], "every_days": 14}
-                        if BNPL_LIVE else None),
+                        if BNPL_LIVE and price_cents >= BNPL_MIN_CENTS else None),
         # null once the offer has ended; the app then shows the list price alone (offer.py).
         "founding": ({"price_cents": founding_cents,
-                      "instalment_cents": math.ceil(founding_cents / 4) if BNPL_LIVE else None,
+                      # null under Dodo's pay-in-four floor ($29.50 from 2026-11-02): the app then shows no
+                      # instalment beside the founding price, as the checkout would offer none.
+                      "instalment_cents": math.ceil(founding_cents / 4) if BNPL_FOUNDING_OK else None,
                       "code": FOUNDING_CODE, "seats": FOUNDING_SEATS} if FOUNDING_OPEN else None),
         "refund_days": REFUND_DAYS,
         "checkout_url": CHECKOUT,
@@ -1253,13 +1255,16 @@ def pricing_page() -> Path:
     founding = (datetime.datetime.now(datetime.timezone.utc)
                 < datetime.datetime.fromisoformat(bundle["founding_ends_at"].replace("Z", "+00:00")))
     apps = ", ".join(bundle["apps"][:-1]) + " and " + bundle["apps"][-1]
+    # $49.50 since 2026-11-02: a whole-dollar format printed "$49.5".
+    def usd(x):
+        return f"${x:,.2f}" if x != int(x) else f"${int(x):,}"
     bundle_line = (
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
-        f'All three apps, {apps}, for ${bundle["founding_price"]} once while founding prices last.</a> '
-        f'It becomes ${bundle["standard_price"]} after founding.'
+        f'All three apps, {apps}, for {usd(bundle["founding_price"])} once while founding prices last.</a> '
+        f'It becomes {usd(bundle["standard_price"])} after founding.'
         if founding else
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
-        f'All three apps, {apps}, for ${bundle["standard_price"]} once.</a>')
+        f'All three apps, {apps}, for {usd(bundle["standard_price"])} once.</a>')
     body = f"""
 <p class="lede">One price, paid once. No subscription, no page meter, nothing to cancel.</p>
 {buy_block("pricing-page", try_app="pricing-page-try-free", phone=False)}

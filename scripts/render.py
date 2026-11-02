@@ -619,7 +619,13 @@ PLATFORMS = (f"{MACS}, {MACOS} or later, and 64-bit Windows" if WINDOWS
 # year of SEO PowerSuite Professional ($349/yr), and fifteen months of Screaming
 # Frog ($279/yr = $23.25/mo; 15 x 23.25 = $348.75), so Docket is cheaper than
 # Screaming Frog from month 16 onwards. The prose on /download/ says that now.
-PRICE = 349
+#
+# $59 FROM 2026-11-02 18:21Z. Matthew, in chat, relayed by the CEO: "$30-60 each for any of these programs would be
+# fine", for "numbers and volume", then one price each: Crisp $29, Outlier $49, Docket $59, with the founding offers
+# kept. Read back from Dodo at 18:22:47Z: product 5900, FOUNDINGDOCKET 50%, ALLTHREE -$38, FOUNDINGBUNDLE -$87.50.
+# Every comparison that used to say Docket costs "fifteen months of" a rival is computed from this number, so at $59
+# it says a little over two months of Screaming Frog by itself.
+PRICE = 59
 
 #: No price transition is open. `verify_checkout.py` reads this and, when it is
 #: None, requires the live checkout to charge exactly PRICE.
@@ -801,6 +807,10 @@ CHECKOUT = ("https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79"
 #: appear at the payment screen, after the buyer's details, which is where he
 #: has seen them. Restored exactly as it was.
 BNPL_LIVE = True
+#: Klarna's and Afterpay's floor on Dodo, in cents. A price under it gets no pay-in-four line anywhere, because the
+#: checkout would not offer it. At $59 the full price clears it ($59 = 4 x $14.75); the founding price of $29.50 does
+#: not, so from 2026-11-02 the founding price is shown without an instalment.
+BNPL_MIN_CENTS = 5001
 #: The refund window, stated beside every buy button and in /offer.json, which
 #: the app's activation screen reads.
 REFUND_DAYS = 30
@@ -835,9 +845,11 @@ BNPL_FOUNDING_INSTALMENT = (
     f"${math.ceil(PRICE * (100 - FOUNDING_PCT) / 4) / 100:.2f}")
 #: Non-breaking inside "or 4 × $87.25": a phone may wrap before "or", never
 #: between "4 ×" and the amount (measured at 375px on 2026-09-28, it did).
-PAY4 = f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_INSTALMENT}" if BNPL_LIVE else ""
+PAY4 = (f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_INSTALMENT}"
+        if BNPL_LIVE and PRICE * 100 >= BNPL_MIN_CENTS else "")
+BNPL_FOUNDING_OK = BNPL_LIVE and PRICE * (100 - FOUNDING_PCT) >= BNPL_MIN_CENTS
 PAY4_FOUNDING = (f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_FOUNDING_INSTALMENT}"
-                 if BNPL_LIVE else "")
+                 if BNPL_FOUNDING_OK else "")
 #: The same sentence for a page, with its instalment set in full-strength text
 #: at weight 600: under the pricing heading it sat in the dim note colour,
 #: which is exactly the "BNPL only in small print" Matthew objected to.
@@ -1861,7 +1873,7 @@ FOUNDING_SWITCH = ('<script>(function(){var end=Date.parse("' + FOUNDING_ENDS_AT
                    'document.querySelectorAll("[data-founding-until]").forEach(function(e){e.remove();});})();'
                    '</script>\n')
 FOUNDING_MOUNT = ((f'<div data-founding data-was="{FOUNDING_WAS}" data-now="{FOUNDING_NOW}"'
-                   + (f' data-pay4="or 4 &times; {BNPL_FOUNDING_INSTALMENT}"' if BNPL_LIVE else '')
+                   + (f' data-pay4="or 4 &times; {BNPL_FOUNDING_INSTALMENT}"' if BNPL_FOUNDING_OK else '')
                    + ' hidden></div>\n' + FOUNDING_SWITCH
                    + '<script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>')
                   if FOUNDING_OPEN else "")

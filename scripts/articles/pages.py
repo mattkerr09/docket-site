@@ -65,6 +65,13 @@ def free_result_figure() -> str:
 #: this table too.
 _COST_SLUGS = ("sitebulb", "screaming-frog", "ahrefs-site-audit",
                "semrush-site-audit")
+#: From 2026-11-02 Docket is $59, less than one year of any tool in the cost table, and the paragraph under the table
+#: says so: this stops the build if a price change makes that untrue. At $349 the same paragraph said "fifteen months
+#: of Screaming Frog", typed, and would have gone on saying it at $59.
+import render as _R  # noqa: E402
+assert all(_R.PRICE < F.rival_annual_low(s) for s in _COST_SLUGS), "rewrite the paragraph under the cost table"
+#: Whole months of Screaming Frog that Docket's one price is less than (2.5 months at $59 and $279 a year, so 3).
+_SF_MONTHS = -(-_R.PRICE * 12 // F.rival_annual_low("screaming-frog"))
 
 
 def _cost_rows() -> str:
@@ -213,10 +220,10 @@ cannot drift from what the app does.</p>
 {_derived_caveat()}
 {price_note_html()}
 
-<p>{PRICE_STR} once is one year of the cheapest serious desktop subscription, or fifteen months
-of Screaming Frog, and nothing after that. From month sixteen Docket is the cheaper tool and
-stays cheaper every month afterwards. That is the whole pricing argument and it does not need help:
-the tools above are not overpriced for what they do, they are simply rented rather than owned.</p>
+<p>{PRICE_STR} once is less than {_SF_MONTHS} months of Screaming Frog and less than one year of any tool in
+this table, and nothing after that. It is priced like a video game rather than like software for businesses,
+because one person in Grand Rapids builds it, with no investors, no sales team and no app store cut. The tools
+above are not overpriced for what they do; they are rented rather than owned.</p>
 
 <h2>Checking what you downloaded</h2>
 

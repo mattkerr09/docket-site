@@ -8,8 +8,9 @@ three-year cost and the refund terms. This page does, and it concedes where a ri
 Every fact about a rival is a row of data/mac-options.json, read from the vendor's own pages on the date
 stored with it; comparisons.py registers that file as a claim set ("mac-options") so the competitive-claims
 gate checks that each fact has a source and the page carries the date. No price is typed here: the costs over
-three years and the year from which Docket costs less are computed from the rows. Docket is not the cheapest
-tool in the table and the page says which one costs less.
+three years and how much more each costs than Docket are computed from the rows. Until 2026-11-02 Docket cost
+$349 and Scrutiny cost less; at $59 Docket costs less than every tool in the table from the first year, and the
+asserts in mac_options() stop the build if a price change makes that untrue again.
 """
 from __future__ import annotations
 
@@ -36,36 +37,33 @@ def _usd(n: int) -> str:
     return f"${n:,}"
 
 
-def _first_year_docket_costs_less(annual: int) -> int:
-    """The first year in which paying `annual` a year has cost more than Docket's one price."""
-    year = 1
-    while annual * year <= PRICE:
-        year += 1
-    return year
+def _more_than_docket(total: int) -> str:
+    """How much more `total` is than Docket's one price, in words for the table."""
+    return f"{_usd(total - PRICE)} more"
 
 
 def _cost_rows() -> list:
-    """(sort key, tool, first year, over three years, from which year Docket costs less)."""
+    """(sort key, tool, first year, over three years, how much more than Docket over three years)."""
     rows = []
     scr = _OPTIONS["scrutiny"]
     rows.append((scr["once"] * 1, scr["name"], _usd(scr["once"]), _usd(scr["once"]),
-                 "never: it costs less than Docket"))
-    rows.append((PRICE, "Docket SEO", _usd(PRICE), _usd(PRICE), "this is Docket"))
+                 _more_than_docket(scr["once"])))
+    rows.append((PRICE, "Docket SEO", PRICE_STR, PRICE_STR, "this is Docket"))
     ps = _OPTIONS["seo-powersuite"]
     wsa = ps["annual_alone"]
     rows.append((wsa * YEARS, "SEO PowerSuite, WebSite Auditor alone", _usd(wsa), _usd(wsa * YEARS),
-                 f"year {_first_year_docket_costs_less(wsa)}"))
+                 _more_than_docket(wsa * YEARS)))
     sb = _OPTIONS["sitebulb"]
     rows.append((sb["annual"] * YEARS, "Sitebulb Lite", _usd(sb["annual"]), _usd(sb["annual"] * YEARS),
-                 f"year {_first_year_docket_costs_less(sb['annual'])}"))
+                 _more_than_docket(sb["annual"] * YEARS)))
     rows.append((ps["prepaid_three"], "SEO PowerSuite Professional", _usd(ps["annual"]),
                  f"{_usd(ps['prepaid_three'])} prepaid for three years, or {_usd(ps['annual'] * YEARS)} paid yearly",
-                 f"year {_first_year_docket_costs_less(ps['annual'])}"))
+                 _more_than_docket(ps["prepaid_three"])))
     sf = _OPTIONS["screaming-frog"]
     rows.append((sf["annual"] * YEARS, sf["name"], _usd(sf["annual"]), _usd(sf["annual"] * YEARS),
-                 f"year {_first_year_docket_costs_less(sf['annual'])}"))
+                 _more_than_docket(sf["annual"] * YEARS)))
     rows.append((sb["annual_pro"] * YEARS, "Sitebulb Pro", _usd(sb["annual_pro"]),
-                 _usd(sb["annual_pro"] * YEARS), f"year {_first_year_docket_costs_less(sb['annual_pro'])}"))
+                 _usd(sb["annual_pro"] * YEARS), _more_than_docket(sb["annual_pro"] * YEARS)))
     return sorted(rows, key=lambda r: r[0])
 
 
@@ -74,10 +72,8 @@ def mac_options() -> Path:
     scr, sf, sb, ps = (_OPTIONS[k] for k in ("scrutiny", "screaming-frog", "sitebulb", "seo-powersuite"))
     # The claims below depend on the order of these numbers. If a price change breaks one, the build stops
     # here rather than publishing a sentence the table no longer supports.
-    assert scr["once"] < PRICE, "Scrutiny no longer costs less than Docket: rewrite the sentence below"
-    assert sf["annual"] < PRICE and 2 * sf["annual"] > PRICE
-    assert ps["annual_alone"] * 2 < PRICE < ps["annual_alone"] * 3
-    assert sb["annual"] < PRICE < 2 * sb["annual"] and ps["annual"] <= PRICE < 2 * ps["annual"]
+    cheapest = min(scr["once"], sf["annual"], sb["annual"], ps["annual_alone"], ps["annual"])
+    assert PRICE < cheapest, "a tool in the table now costs less than Docket in year one: rewrite the prose below"
 
     side_rows = [
         ("Docket SEO", f"Mac ({MAC_HW}, {MACOS} or later) and 64-bit Windows" if WINDOWS else f"Mac only: {MAC_HW}, {MACOS} or later",
@@ -114,14 +110,13 @@ prices for one person.</p>
 <p>Add up what you would have paid at list price, with no discount codes, if you kept using the tool for
 {YEARS} years. A subscription is paid again every year; Docket and Scrutiny are not.</p>
 <div class="wrap-tbl"><table class="cmp"><thead><tr><th>Tool</th><th>Year one</th><th>Over {YEARS} years</th>
-<th>Docket costs less from</th></tr></thead><tbody>
+<th>More than Docket over {YEARS} years</th></tr></thead><tbody>
 {cost}
 </tbody></table></div>
-<p>Scrutiny costs less than Docket whatever the period, so if price is the only thing that matters to you and
-you do not need what Docket adds, buy Scrutiny. The yearly tools cost less than Docket at first. Docket's price
-is lower from the second year for Screaming Frog, Sitebulb Lite and SEO PowerSuite Professional, and from the
-third for WebSite Auditor on its own. Docket's one price includes every 1.x release, and Scrutiny's page does
-not say how long its free updates last.</p>
+<p>Docket costs less than every other tool here from the first day: {PRICE_STR} once, against
+{_usd(scr["once"])} once for Scrutiny and {_usd(sf["annual"])} a year for Screaming Frog. It is cheap because one
+person in Grand Rapids builds it, with no investors to repay and no sales team, not because it does less. Docket's
+one price includes every 1.x release, and Scrutiny's page does not say how long its free updates last.</p>
 
 <h2>If you want your money back</h2>
 <p>Docket refunds the whole price within {REFUND_DAYS} days of the receipt, with no conditions and no form.
@@ -136,8 +131,7 @@ need JavaScript rendered across a whole crawl. Docket gives you a ranked answer 
 <a href="/vs/screaming-frog-alternative/">The two compared in detail</a>.</li>
 <li><strong>Sitebulb</strong> if you work for clients and want visual site maps, scheduled audits, audit
 comparisons and branded PDF reports. <a href="/vs/sitebulb-alternative/">The two compared</a>.</li>
-<li><strong>Scrutiny</strong> if you want spell checking, HTML validation or site search, or the lowest one-time
-price. <a href="/vs/scrutiny-alternative/">The two compared</a>.</li>
+<li><strong>Scrutiny</strong> if you want spell checking, HTML validation or site search. <a href="/vs/scrutiny-alternative/">The two compared</a>.</li>
 <li><strong>SEO PowerSuite</strong> if you also want rank checking and backlink tools from the same company.</li>
 </ul>
 

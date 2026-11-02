@@ -1805,16 +1805,18 @@ def scrutiny() -> Path:
     the kind of omission a reader notices on their own and reads as evasion.
 
     Every fact below is from the vendor's own `SoftwareApplication` JSON-LD,
-    read 2026-08-15 — machine-readable, so there is nothing to misread. It is
-    cheaper than Docket and its published feature list contains three things
-    Docket does not do at all. Both are said plainly.
+    read 2026-08-15 — machine-readable, so there is nothing to misread. It cost
+    less than Docket until 2026-11-02, when Docket went to $59; its published
+    feature list contains three things Docket does not do at all. Both are said
+    plainly, and the assert below stops the build if the price order flips again.
     """
+    assert PRICE < int(COMPETITORS["scrutiny"]["annual_low"]), "Scrutiny costs less than Docket again: rewrite this page"
     body = f"""
 <p>Scrutiny is a macOS desktop SEO tool sold for a one-time fee, which makes it
 the closest thing to Docket on the market: no account, no subscription, runs on
 your own Mac. If you are choosing between the two, the honest summary is that
-<strong>Scrutiny is cheaper and does several things Docket does not do at
-all</strong>.</p>
+<strong>Docket costs less, and Scrutiny does several things Docket does not do
+at all</strong>.</p>
 
 <h2>What Scrutiny does that Docket does not</h2>
 <p>Its published feature list names <strong>link checking, HTML validation, XML
@@ -1829,8 +1831,8 @@ specification.</li>
 <li><strong>Site search.</strong> Docket has no equivalent of searching your own
 crawled content.</li>
 </ul>
-<p>It is also <strong>cheaper</strong>: {price('scrutiny')} against
-Docket's {PRICE_STR}.</p>
+<p>On price, Docket is the cheaper of the two: {PRICE_STR} against Scrutiny's
+{price('scrutiny')}, both paid once.</p>
 
 <h2>What Docket does that Scrutiny's feature list does not name</h2>
 <p>The list above names SEO as a single item. What Docket adds is not "more SEO
@@ -1864,9 +1866,9 @@ page allowance.</p>
     return render(
         cat="vs", slug="scrutiny-alternative",
         title="Docket vs Scrutiny: two paid Mac SEO tools compared",
-        desc=("Scrutiny is cheaper and does spell checking, HTML validation and site "
-              "search, which Docket does not. What Docket adds, and when to buy theirs "
-              "instead."),
+        desc=("Scrutiny does spell checking, HTML validation and site search, which "
+              "Docket does not; Docket costs less. What Docket adds, and when to buy "
+              "theirs instead."),
         h1="Docket vs Scrutiny",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Scrutiny',
         body=body,
@@ -1877,7 +1879,7 @@ page allowance.</p>
              "which Docket does. Docket adds AI-crawler access, conversion and "
              "local-business checks, and produces a ranked fix plan."),
             ("Which is cheaper?",
-             f"Scrutiny, at {price('scrutiny')} against Docket's {PRICE_STR}. Both "
+             f"Docket, at {PRICE_STR} against Scrutiny's {price('scrutiny')}. Both "
              "are one-time purchases rather than subscriptions."),
             ("Does Scrutiny run on Windows?",
              "No. Its product page says there are no plans for Windows. "
@@ -2043,10 +2045,10 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
              "carry none. SEOptimer names white-label PDF reporting on its Pro and Max plans, and "
              "a platform such as Semrush bundles white-label reports with seats."),
             ("Which is cheaper, Docket or SEOptimer?",
-             f"SEOptimer is cheaper to start, at {price('seoptimer')} against Docket's "
-             f"{PRICE_STR} one-time. Over roughly a year the entry plan reaches what Docket "
-             "costs, and after that Docket does not cost anything more, but a subscription "
-             "you can cancel is genuinely better value if you only need one audit."),
+             f"SEOptimer's Starter plan, for its first {_months_past_docket(_SEOPT_LO) - 1} months: "
+             f"${_SEOPT_LO} a month against Docket's {PRICE_STR} once. From month "
+             f"{_months_past_docket(_SEOPT_LO)} it has cost more, and Docket never costs anything again, "
+             "but a subscription you can cancel is genuinely better value if you only need one audit."),
             ("How many crawls does SEOptimer allow?",
              "Its published plans buy four crawls a month for one website on Starter, ten on Pro "
              "and fifty on Max. Docket does not meter crawls at all: the audit "
@@ -2514,7 +2516,8 @@ lists the lifetime plan; the monthly plans are the ones it leads with.</p>
 <tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td><td class="yes">Any site</td></tr>
 </tbody></table></div>
 
-<p>CrawlRaven is far cheaper to start, and nothing here argues otherwise. Twelve months of Starter come to
+<p>CrawlRaven's Starter plan costs less than Docket for its first {_months_past_docket(_CR_STARTER) - 1} months, at
+${_CR_STARTER} a month; from month {_months_past_docket(_CR_STARTER)} it has cost more. Twelve months of Starter come to
 ${_CR_STARTER * 12} for one site, against {PRICE_STR} once for any site; the lifetime plan is
 ${_CR_LIFETIME} for {_CR_PRO_SITES}. They are not the same purchase: one is a content-insights platform with a
 metered audit, the other is the audit, running locally on your own Mac with no account and no site limit.</p>
@@ -2529,8 +2532,8 @@ in what order to fix it, with a price that stops and no allowance to watch.</li>
 </ul>
 
 <p>They are close enough in spirit that owning both is not absurd. If a one-time price is what drew you here,
-the other one worth knowing about is <a href="/vs/scrutiny-alternative/">Scrutiny</a>, a Mac app bought once,
-cheaper than Docket, and stronger than either of us at link checking.</p>
+the other one worth knowing about is <a href="/vs/scrutiny-alternative/">Scrutiny</a>, a Mac app bought once
+for {price('scrutiny')}, and stronger than either of us at link checking.</p>
 
 {_verified_note("crawlraven")}
 {CTA}"""
@@ -2551,8 +2554,8 @@ cheaper than Docket, and stronger than either of us at link checking.</p>
              "checks alongside it. It is not an alternative if you need Search Console and GA4 data or "
              "keyword work, which Docket does not do."),
             ("Which is cheaper, Docket or CrawlRaven?",
-             f"CrawlRaven to start. Its Starter plan is ${_CR_STARTER} a month for one site, against Docket's "
-             f"{PRICE_STR} once for any site. Twelve months of Starter come to ${_CR_STARTER * 12}, and its "
+             f"CrawlRaven for its first {_months_past_docket(_CR_STARTER) - 1} months, then Docket. Its Starter "
+             f"plan is ${_CR_STARTER} a month for one site, against Docket's {PRICE_STR} once for any site. Twelve months of Starter come to ${_CR_STARTER * 12}, and its "
              f"lifetime plan for {_CR_PRO_SITES} sites is ${_CR_LIFETIME}, as read on {CHECKED_HUMAN['crawlraven']}."),
             ("Does CrawlRaven have a technical SEO audit?",
              f"Yes. On {CHECKED_HUMAN['crawlraven']} its pricing page listed it among the Starter features, and "
@@ -2670,9 +2673,8 @@ what this page is built from.</p>
              "10,000. Docket has no cap at all: -n 0 crawls until the site ends, because "
              "there is no server counting."),
             ("Which is cheaper?",
-             f"crawler.sh, at {price('crawler-sh')} against Docket's {PRICE_STR} one-time. It "
-             "renews yearly, so a subscription is better value until roughly the fourth year "
-             "and worse after it. Both have a free version that needs no account; Docket's "
+             f"Docket, at {PRICE_STR} once against crawler.sh's {price('crawler-sh')}, which "
+             "renews every year. Both have a free version that needs no account; Docket's "
              "shows the score, how many problems each area has and the top problem in full, not the rest."),
             ("Do both render JavaScript?",
              "Yes, and it is not a difference between them. crawler.sh uses its own render "
