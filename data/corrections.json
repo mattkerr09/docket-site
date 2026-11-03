@@ -2,6 +2,18 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "release": "1.3.140",
+   "date": "2026-11-03",
+   "title": "A site with no business markup scored 100 for AI search visibility",
+   "wrong": "A six-page property manager's site with no structured data at all scored 100 for AI search visibility, in a report whose own text said structured data is where the gains in AI answers come from. A site that had added business markup but no profile links lost points in the same area, so doing less scored better. The same audit gave Structured data 77 with no structured data on any page.",
+   "found": "The owner of the report asked how AI visibility could be 100 with no structured data. A bare test site then showed the same shape in four more areas: Social and sharing 94 with no Open Graph tags, Tracking 72.5 with no analytics, and Security 58 with no HTTPS.",
+   "fixed": "No business markup now costs the AI area as well, as the same job as the Structured data finding. An area whose whole subject is missing holds at 45, in the red, wherever Docket can be sure of the absence.",
+   "tests": [
+    "test_a_site_with_no_business_markup_is_not_perfectly_visible_to_ai.py",
+    "test_a_lane_whose_subject_is_missing_cannot_pass.py"
+   ]
+  },
+  {
    "release": "1.3.139",
    "date": "2026-11-02",
    "title": "The app quoted the old price after Docket became $59",
