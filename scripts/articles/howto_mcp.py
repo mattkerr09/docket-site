@@ -64,6 +64,10 @@ CEO's order from Matthew ("make sure all of our apps are easily usable by Claude
     "The ChatGPT desktop app, Codex CLI, and IDE extension support MCP servers", including stdio servers "that run
     as a local process" (learn.chatgpt.com/docs/extend/mcp). So the page says the desktop app can run Docket and
     the web cannot, and claims nothing it has not read.
+
+RE-MEASURED 2026-11-04 on a temp copy of the live v1.3.141 DMG, temp HOME, no key: tools/list = audit_site,
+get_last_report, explain_finding, compare_audits, list_checks; get_last_report on an empty store answers "No kept
+audit yet. Run audit_site with an activated copy, or run an audit in the Docket app; free audits are not kept."
 """
 from __future__ import annotations
 
@@ -140,12 +144,21 @@ way that matters most here (see the licence section below). Your own copy report
 page against what you actually have; if it disagrees, the page is wrong and we want to hear
 about it.</p>
 
-<h2>The two tools</h2>
+<h2>The tools</h2>
 
 <p><code>audit_site</code> crawls a site and returns the score and every finding: how bad it is,
 which pages it affects, how long the fix takes and the change to make. It takes a
 <code>url</code>, and optionally <code>max_pages</code>, <code>max_seconds</code> and
-<code>offline</code>.</p>
+<code>offline</code>. A full audit is kept, exactly as one run in the app is, and appears in
+Reports.</p>
+
+<p>Three more answer the questions people ask next, from the audits Docket has kept, without
+crawling again. <code>get_last_report</code> returns the most recent audit, or the most recent of
+one site. <code>explain_finding</code> takes a check id or a few words of a problem's title and
+returns that one problem in full: what is wrong, which pages, the fix and the markup to paste.
+<code>compare_audits</code> takes two audits of the same site, by default the two most recent,
+and says how the score and each area moved and which problems are new, fixed, worse or
+better.</p>
 
 <p><code>list_checks</code> takes no arguments and answers &ldquo;what does Docket actually
 check?&rdquo; without crawling anything. On this copy it returns all {N_CHECKS} checks
@@ -167,16 +180,17 @@ talking to the app you bought, not to us.</p>
 <p>Which also means an unactivated copy gives your assistant the free version: the audit runs,
 and the result is the overall score, how many problems each area has and the top problem in full, with a note saying
 what the paid version adds. <code>list_checks</code> works either way, because it crawls
-nothing. Activate once with <code>docket licence --key YOUR-KEY</code>, or in the app, and the
+nothing. A free audit is not kept, so the three tools that read kept audits have nothing to read
+until the copy is activated, and they say so. Activate once with <code>docket licence --key YOUR-KEY</code>, or in the app, and the
 audit tool returns every finding from then on.
 Docket is {PRICE_STR} once, so there is no seat to add for the assistant.</p>
 
 <h2>What it does not do</h2>
 
-<p>The MCP surface is deliberately small: two tools, not a wrapper around every command. It does
-not schedule audits, compare two crawls the way <code>docket diff</code> does, or expose the
-site-history features. If you want those, they are in the app and the CLI, and the honest answer
-is that nobody has yet asked for them through an assistant.</p>
+<p>The MCP surface is deliberately small: five tools, not a wrapper around every command. It does
+not schedule audits or manage the watchlist, and it compares only audits Docket has kept, not
+two live sites side by side the way <code>docket diff</code> does. Those are in the app and the
+command line.</p>
 """
     return render(
         cat="how-to", slug="audit-your-site-from-an-ai-assistant",

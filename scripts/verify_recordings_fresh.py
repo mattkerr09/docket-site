@@ -113,7 +113,9 @@ def main() -> int:
     except (OSError, KeyError, ValueError) as exc:
         print(f"FAIL  the recordings or the current version could not be read: {exc}")
         return 1
-    found = problems(recs, current, dt.date.today())
+    # UTC, because the recorders stamp `new Date().toISOString().slice(0, 10)`, a UTC date. The local date failed a
+    # recording made after 19:00 Eastern as "in the future" (2026-11-04 04:17Z, still the 3rd in Michigan).
+    found = problems(recs, current, dt.datetime.now(dt.timezone.utc).date())
     if found:
         print("FAIL  a front-page recording is older than the build it claims to show:")
         for line in found:

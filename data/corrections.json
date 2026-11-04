@@ -2,6 +2,17 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "release": "1.3.141",
+   "date": "2026-11-04",
+   "title": "Reports listed an audit Docket could not judge with an ordinary score",
+   "wrong": "When Docket could not read enough of a site to judge it, the report itself said to treat the score as unknown, but the Reports list showed the kept audit with a plain number beside every other audit. Every kept report was also stored with no grade.",
+   "found": "Building the tools that let an AI assistant read kept audits: the list was fed the score without the two facts that say whether it is a verdict on the site.",
+   "fixed": "A kept audit now keeps its grade and whether its score speaks for the site, and the Reports list marks it the way the results screen does. Audits kept before this keep their old row.",
+   "tests": [
+    "test_a_kept_report_says_when_its_score_is_not_a_verdict.py"
+   ]
+  },
+  {
    "release": "1.3.140",
    "date": "2026-11-03",
    "title": "A site with no business markup scored 100 for AI search visibility",
