@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import (speed_words, PAY4, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, RELEASE,  # noqa: E402
+from render import (_human_date, speed_words, PAY4, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, RELEASE,  # noqa: E402
                     price, price_note_html, render, buy_block, rival_monthly_range, COMPETITORS,
                     INTEL, INTEL_DMG, download_url, DATA, REFUND_DAYS, WINDOWS)
 
@@ -137,8 +137,8 @@ CHECKED_HUMAN: dict[str, str] = {
     # printed the shared 10 August 2026 date.
     # Screaming Frog: the product page (Chromium WRS, 500 URLs, Unlimited with its memory footnote, the Free vs Paid
     # table, and its User-Agent line, which now names AI crawlers and is sourced below) and the pricing page in its
-    # USD view ($279 a licence for 1 to 4, per user).
-    "screaming-frog": "19 October 2026",
+    # USD view ($279 a licence for 1 to 4, per user). Re-read 2026-11-04, every claim unchanged.
+    "screaming-frog": "4 November 2026",
     # Sitebulb: the features page (crawl maps, Prioritized Hints). The prices were read on the rendered pricing
     # page: Lite $18 a month or $180 a year, Pro $42 a month or $425 a year.
     "sitebulb": "19 October 2026",
@@ -163,7 +163,7 @@ CHECKED_ISO: dict[str, str] = {
     "jetoctopus": "2026-10-19",
     "crawlraven": "2026-10-19",
     "crawler-sh": "2026-10-19",
-    "screaming-frog": "2026-10-19",
+    "screaming-frog": "2026-11-04",
     "sitebulb": "2026-10-19",
     "semrush": "2026-10-19",
     "lighthouse": "2026-10-19",
@@ -700,11 +700,31 @@ claims about this product were read from its own pages on that date: {checks}.
 
 
 def screaming_frog() -> Path:
+    # WHAT-WORKS-2026-11-02 pass (CEO, 2026-11-04: "screaming frog alternative", about 880 searches a month, rated
+    # easy). The lede answers the search in full with numbers measured on this site by the shipped app; the price
+    # comparison is computed from Screaming Frog's own pricing page, re-read 2026-11-04.
+    sf = COMPETITORS["screaming-frog"]
+    sf_year = int(sf["annual_low"])
+    year = sf["price_checked"][:4]
+    run = json.loads((DATA / "free-run.json").read_text())
     body = f"""
-<p class="lede">Screaming Frog is the better tool if you want raw crawl data and know exactly
-what to do with it. Docket is the better tool if you want to be told what to fix first. That is
-the whole difference, and which one is right depends on how much of the interpretation you
-want to do yourself.</p>
+<p class="lede">Docket is a Screaming Frog alternative for people who want to be told what to fix
+first rather than handed the crawl data. It is {PRICE_STR} once, where Screaming Frog is ${sf_year} a
+year for each user, and when we pointed the free version at this site it read {run["pages"]} pages in
+{run["seconds"]} seconds and put the most important of its {run["problems"]} problems first, with the fix.
+Screaming Frog is still the better tool for raw crawl data, custom extraction and very large sites.</p>
+
+<h2>What each costs, from their own price</h2>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th></th><th>Docket</th><th>Screaming Frog</th></tr></thead>
+<tbody>
+<tr><td>The first year</td><td class="yes">{PRICE_STR}</td><td>${sf_year}</td></tr>
+<tr><td>Three years</td><td class="yes">{PRICE_STR}</td><td>${sf_year * 3:,}</td></tr>
+<tr><td>Two people, one year</td><td class="yes">{PRICE_STR} ({F.licence_covers()})</td><td>${sf_year * 2:,} (two licences)</td></tr>
+</tbody></table></div>
+<p>Screaming Frog's figure is its own, for one to four licences, read from its pricing page on
+{_human_date(sf["price_checked"])}; it is free up to 500 URLs a crawl. Docket's free version runs the full
+audit and shows the score, the count in each area and the top problem in full.</p>
 
 <h2>What Screaming Frog does that Docket does not</h2>
 <p>Three things, and they are real:</p>
@@ -760,7 +780,7 @@ and UTM parameters on internal links.</li>
 <tr><td>AI crawler audit</td><td class="yes">Yes</td><td class="no">Not listed as a check. Its user-agent setting names AI crawlers</td></tr>
 <tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
 <tr><td>Local business SEO</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
-<tr><td>Client-ready PDF</td><td class="yes">Built in</td><td>Export and build it yourself</td></tr>
+<tr><td>Client-ready PDF</td><td class="yes">Built in, with Docket's name on it (not white-label)</td><td>Export and build it yourself</td></tr>
 <tr><td>Scheduled re-audits</td><td class="yes">Yes, while the app is open</td><td>Scheduling in the paid tier, and it runs headless</td></tr>
 </tbody></table></div>
 
@@ -799,10 +819,10 @@ Googlebot actually fetched rather than what your site would serve if asked.</p>
 
     return render(
         cat="vs", slug="screaming-frog-alternative",
-        title="Docket vs Screaming Frog: which SEO crawler should you use?",
-        desc=("Screaming Frog gives you raw crawl data; a Docket audit gives a ranked fix plan. "
-              "Including what Screaming Frog does better: rendering at scale, custom "
-              "extraction."),
+        title=f"Screaming Frog alternative ({year}): Docket vs Screaming Frog",
+        modified="2026-11-04",  # the WHAT-WORKS pass above
+        desc=(f"Docket is {PRICE_STR} once; Screaming Frog is ${sf_year} a year per user. A ranked fix "
+              "plan instead of raw crawl data, and what Screaming Frog still does better."),
         h1="Docket vs Screaming Frog",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Screaming Frog',
         body=body,

@@ -698,10 +698,10 @@ one that draws a line.</p></div>
   the truth is that Docket cannot read the page. Everything technical works in any language.</p></div>
   {"" if WINDOWS else f'<div class="card"><h3>{"Windows" if INTEL else "Windows and Intel"}</h3><p>{MAC_HW}, {MACOS} or later. {NO_BUILDS}</p></div>'}
   <div class="card"><h3>Five things we chose not to build</h3><p>Rank tracking, a cloud
-  version, team accounts, server-side scheduling, and white-label or uptime monitoring. Each
-  one needs a machine of ours running every day on your behalf, which means a monthly bill.
-  Docket exists so you do not get one. They are absent on purpose, not yet to
-  come.</p></div>
+  version, team accounts, server-side scheduling and uptime monitoring. Each one needs a
+  machine of ours running every day on your behalf, which means a monthly bill. Docket exists
+  so you do not get one. They are absent on purpose, not yet to come. Reports are not
+  white-label either: the PDF carries Docket's name.</p></div>
 </div>
 <p style="text-align:center;margin-top:1.5rem;font-size:var(--t-md);color:var(--text-dim)">
 This list keeps getting shorter. <a href="/learn/javascript-rendering/">JavaScript rendering,
