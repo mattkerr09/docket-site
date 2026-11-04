@@ -1,10 +1,10 @@
 {
   "target": "docketseo.app",
-  "engine": "1.3.142",
+  "engine": "1.3.143",
   "checks": 99,
   "date": "2026-11-04",
   "pages": 143,
-  "seconds": 40,
+  "seconds": 42,
   "score": 99,
   "grade": "A",
   "findings_total": 7,
