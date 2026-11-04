@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
-from render import (_human_date, speed_words, windows_waitlist, WINDOWS, WIN_SETUP_SIZE, WIN_PUBLISHER, RELEASE, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
+from render import (_human_date, SAMPLE_REPORT, speed_words, windows_waitlist, WINDOWS, WIN_SETUP_SIZE, WIN_PUBLISHER, RELEASE, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, PAY4, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, FOUNDING_OPEN, FOUNDING_END_DAY, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
@@ -58,6 +58,49 @@ HERO = json.loads((DATA.parent / "hero-recording.json").read_text())
 #: run: `docket-app/scripts/shot_free.mjs` writes this file in the same pass as the picture
 #: (site/assets/free-result.webp), so a re-shoot re-captions itself.
 FREE = json.loads((DATA.parent / "free-run.json").read_text())
+
+#: The "This is the actual report" image is page 1 of the sample PDF, and these are the figures that page prints:
+#: scripts/make_sample_report.py writes both in the same run, on every ship, so a new report re-captions itself.
+#: verify_recordings_fresh.py refuses the file once it is more than two releases behind the build. It replaced a
+#: screenshot of a 1.1.44 report from 17 August that stood here for eleven weeks (full audit, 2026-11-04, row 5).
+SAMPLE = json.loads((DATA.parent / "sample-run.json").read_text())
+
+
+def _sample_section() -> str:
+    """Our own site's audit, page 1 of the PDF Docket writes, captioned from the run that made it."""
+    import html as _html
+    s = SAMPLE
+    chips = [f"{s['counts'][k]} {k + 's' if k == 'notice' and s['counts'][k] != 1 else k}"
+             for k in ("critical", "high", "medium", "low", "notice") if s["counts"].get(k)]
+    chip_words = (", ".join(chips[:-1]) + " and " + chips[-1]) if len(chips) > 1 else (chips[0] if chips else "")
+    pl = lambda n, one, many: one if n == 1 else many  # noqa: E731
+    fix = (f", and says fixing {s['actionable']} of them would take it to {s['ceiling']}/100"
+           if s.get("ceiling") and s["ceiling"] > s["score"] and s.get("actionable") else "")
+    excluded = (f" It leaves {s['excluded']} {pl(s['excluded'], 'finding', 'findings')} out of that sum, because "
+                f"{pl(s['excluded'], 'it describes', 'they describe')} something Docket could not measure rather than "
+                "anything we did wrong." if fix and s["excluded"] else "")
+    host = _html.escape(s["url"].split("//", 1)[-1].strip("/"))
+    alt = (f"Page one of a Docket SEO audit of {host}, made by Docket {s['engine']}: a score of {s['score']} out "
+           f"of 100, grade {s['grade']}" + (f", with {chip_words}" if chip_words else "") +
+           f"; {s['pages']} pages crawled, {s['issues']} {pl(s['issues'], 'issue', 'issues')} found, "
+           f"{s['seconds']} seconds to audit.")
+    return f"""<section class="sec"><div class="wrap-wide">
+<div class="sec-head">
+  <h2>This is the actual report.<br><em>Run against our own site.</em></h2>
+  <p class="sec-sub">Not a mockup or a marketing render. It is page one of the PDF Docket writes, from an audit
+  of our own agency site made by Docket {s['engine']} on {_human_date(s['recorded'])}. We pointed it at our own site
+  rather than a competitor's, because publishing someone else's audit without asking is not ours to do, and
+  because this is the one report we cannot quietly curate. <a href="{SAMPLE_REPORT}" data-ev="Sample report"
+  data-ev-button="home-actual-report">Read the whole report</a>.</p>
+</div>
+<figure class="shot shot-stage">
+  <img src="{s['image']['src']}" width="{s['image']['width']}" height="{s['image']['height']}"
+       loading="lazy" decoding="async"
+       alt="{alt}">
+  <figcaption>{s['pages']} pages crawled in {s['seconds']} seconds. It grades our own site
+  <strong>{s['score']}/{s['grade']}</strong> and still lists {s['issues']} {pl(s['issues'], 'issue', 'issues')}{fix}.{excluded}</figcaption>
+</figure>
+</div></section>"""
 
 #: The ~35-second demo: one real audit through to one fix, recorded by
 #: docket-app/scripts/record_demo.mjs --site, which writes this file off the
@@ -335,8 +378,9 @@ def body() -> str:
 </section>
 {_demo_section()}
 <!-- ================= THE REAL ARTIFACT =================
-     This section is Docket run against our own site, rendered by the app's own
-     HTML reporter, not rebuilt in CSS.
+     This section is Docket run against our own site: page 1 of the PDF the
+     engine writes, made by scripts/make_sample_report.py with the sample, not
+     rebuilt in CSS (see SAMPLE above).
 
      This comment used to open "the hero above is an HTML replica ... a drawing
      of the product rather than the product". That stopped being true when the
@@ -360,27 +404,7 @@ def body() -> str:
      Our own site on purpose. Publishing a critical audit of someone else's
      property without asking is not ours to do, and auditing ourselves is the
      stronger demonstration anyway — it is the report we cannot quietly curate. -->
-<section class="sec"><div class="wrap-wide">
-<div class="sec-head">
-  <h2>This is the actual report.<br><em>Run against our own site.</em></h2>
-  <p class="sec-sub">Not a mockup or a marketing render. It is the file Docket
-  writes, opened in a browser. We pointed it at our own agency site rather than
-  a competitor's, because publishing someone else's audit without asking is not
-  ours to do, and because this is the one report we cannot quietly curate.</p>
-</div>
-<figure class="shot shot-stage">
-  <img src="/assets/real-audit-builtbykerr.webp" width="1280" height="1000"
-       loading="lazy" decoding="async"
-       alt="A Docket SEO audit of builtbykerr.com scoring 90 out of 100, grade A, with
-            3 high, 7 medium, 11 low and 6 notice findings, and thirteen category scores
-            from Crawlability 100 down to Local business SEO 58.">
-  <figcaption>Twelve pages crawled in eight seconds. It grades our own site
-  <strong>90/A</strong> and still lists twenty-seven things to fix, including
-  <strong>Local business SEO at 58</strong> on the site of a local business.
-  It also excludes two findings from the score because they describe something
-  Docket could not measure, rather than anything we did wrong.</figcaption>
-</figure>
-</div></section>
+{_sample_section()}
 
 <!-- ================= THE DIFFERENCE ================= -->
 <section class="sec"><div class="wrap-wide">

@@ -40,7 +40,10 @@ import re
 import sys
 
 DATA = pathlib.Path(__file__).resolve().parent.parent / "data"
-RECORDINGS = ("hero-recording.json", "demo-recording.json")
+#: sample-run.json is the home page's "This is the actual report" image (page 1 of the sample PDF) and its
+#: caption, written by scripts/make_sample_report.py. It is here because that block showed a 1.1.44 report from
+#: 17 August for eleven weeks while the build moved to 1.3.141 (Matthew's full audit, 2026-11-04, row 5).
+RECORDINGS = ("hero-recording.json", "demo-recording.json", "sample-run.json")
 MAX_RELEASES = 2
 MAX_DAYS = 21
 
@@ -123,6 +126,8 @@ def main() -> int:
         print("    Re-record: start a dev engine, then in docket-app/ui run")
         print("      node ../scripts/record_hero.mjs OUT --site ../../docket-site --api-port 8811")
         print("      node ../scripts/record_demo.mjs OUT --site ../../docket-site --api-port 8811")
+        print("    and, for sample-run.json, in docket-site:")
+        print("      HOME=$(mktemp -d) python3 scripts/make_sample_report.py --engine ../docket-app/backend")
         return 1
     ages = ", ".join(f"{n.split('-')[0]} {r['engine']} on {r['recorded']}" for n, r in sorted(recs.items()))
     print(f"  ok: recordings fresh against {current} ({ages})" + (" (self-test passed)" if "--self-test" in sys.argv else ""))

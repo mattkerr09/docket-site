@@ -67,23 +67,11 @@ ALLOWED = {
     "500": ("Screaming Frog's own free-tier limit of 500 URLs, quoted verbatim "
             "on the same page and sourced in VERIFIED"),
     # -- standards, specs and versions ------------------------------------
-    # -- figures read off a dated specimen image ---------------------------
-    # These two describe the audit screenshot on the homepage, not the product's
-    # current behaviour. They CANNOT be interpolated: the image is a frozen
-    # artifact from a named run against builtbykerr.com on 2026-08-17, and a
-    # caption that silently tracked a live dataset would eventually describe a
-    # picture that shows something else — the exact failure this file prevents,
-    # pointed the wrong way.
-    #
-    # The coupling is the safeguard: if site/assets/real-audit-builtbykerr.webp
-    # is ever regenerated, these numbers must be re-read off the new image and
-    # changed here. That is a deliberate speed bump, not an oversight.
-    "90": ("the overall grade in the audit screenshot on the homepage — read "
-           "off the image, which is a specimen from a real run against "
-           "builtbykerr.com on 2026-08-17, not a live figure"),
-    "58": ("the Local business SEO lane score in that same screenshot. Quoted "
-           "because it is the least flattering number in our own report and "
-           "the caption's point is that Docket does not hide it"),
+    # -- figures read off a dated specimen image: none, any more ----------
+    # "90" and "58" were typed here for a 1.1.44 screenshot of our own site's
+    # report from 2026-08-17, which stood on the homepage for eleven weeks.
+    # That block is now page 1 of the sample PDF, and its caption comes from
+    # data/sample-run.json, written by make_sample_report.py in the same run.
     # -- figures read off the HERO RECORDING: none, any more ---------------
     # The caption's pages, seconds and score were typed here as ALLOWED
     # constants, re-read by hand off each new take. They now come from

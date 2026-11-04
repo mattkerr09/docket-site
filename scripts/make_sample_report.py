@@ -38,6 +38,10 @@ URL = "https://builtbykerr.com/"
 HOST = "builtbykerr.com"
 SUBJECTS = ["web design", "local seo"]
 _URL_RE = re.compile(r"https?://[^\s\"'<>)]+")
+DEFAULT_OUT = ROOT / "site" / "assets" / "docket-sample-report.pdf"
+COVER = ROOT / "site" / "assets" / "sample-report-cover.webp"
+COVER_WIDTH = 1280
+SAMPLE_RUN = ROOT / "data" / "sample-run.json"
 
 
 def _own(url: str) -> bool:
@@ -91,10 +95,74 @@ def public_copy(result):
                           "full_findings": total}
 
 
+def _cut_below_facts(im) -> int:
+    """Where to end the cover still: the first white band at least 3.5% of the width tall, searched from two
+    thirds of the width down. On page 1 that is the gap under the facts strip (pages crawled, checks run, issues
+    found, audit time). The gap between the strip's numbers and its labels is about 2%, so it is never taken for
+    it; a longer summary only moves the strip, and the band with it."""
+    gray = im.convert("L")
+    w, h = gray.size
+    x0, x1 = int(w * 0.05), int(w * 0.95)
+    need, run = int(w * 0.035), 0
+    for y in range(int(w * 0.66), int(h * 0.9)):
+        row = gray.crop((x0, y, x1, y + 1))
+        run = run + 1 if row.getextrema()[0] >= 245 else 0
+        if run >= need:
+            return y - run + int(w * 0.03)
+    raise SystemExit("make_sample_report: no white band under the cover's facts strip; the cover layout changed, "
+                     "so look at page 1 and set the cut again")
+
+
+def write_cover(result, pdf_path: Path, version: str) -> None:
+    """The home page's 'This is the actual report' image and its caption's figures, from this run.
+
+    That block showed a screenshot of a Docket 1.1.44 report from 17 August (12 pages, 8 seconds, 90/A) under prose
+    calling it the file Docket writes, while the build was 1.3.141 and its report a different layout (Matthew's
+    full audit, 2026-11-04, row 5). The picture is now page 1 of the PDF this script has just written,
+    and data/sample-run.json carries what that page prints, so the caption re-captions itself on every ship and
+    verify_recordings_fresh.py refuses it once it falls behind the build."""
+    import datetime as dt
+    import os
+    import pwd
+    import subprocess
+    import tempfile
+    try:
+        from PIL import Image
+    except ImportError:
+        # This script runs under a temp HOME so the engine never sees the licence, which also hides the user
+        # site-packages where Pillow is installed. Pillow is not the engine; look for it under the real home.
+        real = pwd.getpwuid(os.getuid()).pw_dir
+        sys.path.append(f"{real}/Library/Python/{sys.version_info[0]}.{sys.version_info[1]}/lib/python/site-packages")
+        from PIL import Image
+    from seo_engine.words import local_date
+
+    with tempfile.TemporaryDirectory() as tmp:
+        # Quick Look renders the PDF exactly as Preview shows it: page 1, 2200 px tall.
+        subprocess.run(["qlmanage", "-t", "-s", "2200", "-o", tmp, str(pdf_path)], check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        page = Image.open(Path(tmp) / (pdf_path.name + ".png")).convert("RGB")
+    still = page.crop((0, 0, page.width, _cut_below_facts(page)))
+    still = still.resize((COVER_WIDTH, round(COVER_WIDTH * still.height / still.width)), Image.LANCZOS)
+    still.save(COVER, "WEBP", quality=86)
+    d = result.score.to_dict()
+    projection = getattr(result, "projection", None)
+    run = {"engine": version, "recorded": dt.datetime.now(dt.timezone.utc).date().isoformat(),
+           "report_date": local_date(result.finished_at), "url": URL,
+           "score": round(result.score.overall), "grade": d["grade"], "pages": len(result.crawl.pages),
+           "seconds": round(result.duration), "issues": result.score.total_findings,
+           "counts": {k: v for k, v in d["counts"].items() if v},
+           # The cover's "Fix everything in this report and this becomes {ceiling}/100: {actionable} items".
+           "ceiling": round(projection.ceiling) if projection else None,
+           "actionable": projection.actionable if projection else None,
+           "excluded": projection.blocked if projection else 0,
+           "image": {"src": "/assets/" + COVER.name, "width": still.width, "height": still.height}}
+    SAMPLE_RUN.write_text(json.dumps(run, indent=1) + "\n", encoding="utf-8")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--engine", required=True, help="the release's backend/ directory")
-    ap.add_argument("--out", default=str(ROOT / "site" / "assets" / "docket-sample-report.pdf"))
+    ap.add_argument("--out", default=str(DEFAULT_OUT))
     args = ap.parse_args()
     sys.path.insert(0, str(Path(args.engine).resolve()))
 
@@ -117,6 +185,8 @@ def main() -> int:
     finally:
         report_pdf._draw_cover = draw_cover
     Path(args.out).write_bytes(pdf)
+    if Path(args.out).resolve() == DEFAULT_OUT.resolve():
+        write_cover(result, Path(args.out), __version__)
     summary = {"engine": __version__, "url": URL, "score": round(result.score.overall, 1),
                "grade": result.score.to_dict()["grade"], "pages": len(result.crawl.pages),
                "bytes": len(pdf), "note": note, **facts}
