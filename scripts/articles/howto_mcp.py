@@ -49,6 +49,21 @@ claim about a past run, and is a stronger falsifier than our stamp anyway.
 
 The frozen basis lives here instead, where it cannot mislead a customer:
 1.3.44, build 922, measured 2026-09-08.
+
+RE-MEASURED 2026-11-03 on a temp copy of the live v1.3.140 DMG (build d34e7d0, 1459), temp HOME, no key, for the
+CEO's order from Matthew ("make sure all of our apps are easily usable by Claude and ChatGPT"):
+  * initialize: serverInfo {"name": "docket", "version": "1.3.140"}; tools/list: audit_site (url, max_pages,
+    max_seconds, offline) and list_checks.
+  * ⚠️ audit_site on the UNACTIVATED copy now returns the free version (score, area counts, one worked fix,
+    `free.counts_only` true), not "not activated". The FAQ said it refused, which stopped being true when the free
+    version shipped in 1.3.96, while this page's own body already said the free version runs. Fixed here.
+  * Windows: the installer puts the engine at %LOCALAPPDATA%\\Docket\\docket\\docket.exe (signed CI run 41709362986,
+    "installed to C:\\Users\\runneradmin\\AppData\\Local\\Docket").
+  * ChatGPT, from OpenAI's own pages read the same day: on the web, custom MCP connections are for Business and
+    Enterprise/Edu workspaces and need "your server's public HTTPS MCP endpoint URL" (help.openai.com 12584461);
+    "The ChatGPT desktop app, Codex CLI, and IDE extension support MCP servers", including stdio servers "that run
+    as a local process" (learn.chatgpt.com/docs/extend/mcp). So the page says the desktop app can run Docket and
+    the web cannot, and claims nothing it has not read.
 """
 from __future__ import annotations
 
@@ -59,10 +74,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import N_CHECKS, N_LANES, PRICE_STR, render  # noqa: E402
 
 SIDECAR = "/Applications/Docket.app/Contents/Resources/docket/docket"
+#: The engine on Windows, under the per-user install folder. Written with YOU for the account name: the folder is
+#: the reader's own AppData, which this page cannot know.
+WIN_ENGINE = r"C:\Users\YOU\AppData\Local\Docket\docket\docket.exe"
 
 #: The day these commands were last run against a shipped build. It is a
 #: DATE and not a version on purpose — see the module docstring.
-MEASURED_HUMAN = "8 September 2026"
+MEASURED_HUMAN = "3 November 2026"
 
 
 def mcp_setup() -> Path:
@@ -75,7 +93,21 @@ as structured data it can reason about: rather than a screenshot you retype.</p>
 <h2>Point your assistant at it</h2>
 
 <p>Docket serves MCP over stdio, so there is no server to run and no port to open. The client
-launches Docket itself. In Claude Desktop, open
+launches Docket itself, with one command and one argument.</p>
+
+<h3>Claude Code</h3>
+
+<p>One line in a terminal:</p>
+
+<pre><code>claude mcp add docket -- {SIDECAR} mcp</code></pre>
+
+<p>On Windows, use the engine inside your install folder instead:
+<code>claude mcp add docket -- "{WIN_ENGINE}" mcp</code>, with your own account name in place of
+<code>YOU</code>.</p>
+
+<h3>Claude Desktop</h3>
+
+<p>On a Mac, open
 <code>~/Library/Application&nbsp;Support/Claude/claude_desktop_config.json</code> and add:</p>
 
 <pre><code>{{
@@ -87,14 +119,24 @@ launches Docket itself. In Claude Desktop, open
   }}
 }}</code></pre>
 
-<p>That path is the audit engine inside the installed app, not the app icon you click. Restart
-the client and Docket appears as a tool. Any MCP client works the same way: the command
-and the argument are all it needs.</p>
+<p>That path is the audit engine inside the installed app, not the app icon you click. On Windows
+the file is <code>%APPDATA%\\Claude\\claude_desktop_config.json</code> and the command is
+<code>{WIN_ENGINE.replace(chr(92), chr(92) * 2)}</code>, with each backslash doubled because the
+file is JSON. Restart the client and Docket appears as a tool. Any MCP client works the same
+way: the command and the argument are all it needs.</p>
 
-<p class="note"><strong>Every answer on this page was produced by running these commands</strong>
-against a shipped, notarised build on {MEASURED_HUMAN}, not against a development
-checkout, which behaves differently in the one way that matters most here (see the licence
-section below). Your own copy reports its version in the MCP handshake, so you can check this
+<h3>ChatGPT</h3>
+
+<p>The ChatGPT desktop app can run it: OpenAI's documentation says the desktop app supports MCP
+servers, including ones that run as a local command. Open Settings, then MCP servers, add a
+server, choose STDIO, and give it the same command and the argument <code>mcp</code>. ChatGPT
+on the web cannot. There, custom connections are for business workspaces and need a public
+HTTPS server, and Docket runs on your own computer rather than on the internet.</p>
+
+<p class="note"><strong>Every tool answer on this page was produced by calling a shipped,
+notarised build</strong> on {MEASURED_HUMAN} (the handshake, the tool list and what an
+unactivated copy returns), not a development checkout, which behaves differently in the one
+way that matters most here (see the licence section below). Your own copy reports its version in the MCP handshake, so you can check this
 page against what you actually have; if it disagrees, the page is wrong and we want to hear
 about it.</p>
 
@@ -154,8 +196,13 @@ is that nobody has yet asked for them through an assistant.</p>
              "the assistant is talking to the copy of Docket you bought, and the licence is "
              "the same one-time purchase."),
             ("Can an assistant audit a site if Docket is not activated?",
-             "No. Asking it to audit returns 'This copy of Docket is not activated'. Listing "
-             "the checks still works, because that crawls nothing. The licence gate is the "
-             "same one the app and the command line use, so MCP is not a way around it."),
+             "Yes, the free version. The audit runs, and the assistant gets the overall score, how "
+             "many problems each area has and the top problem in full with its fix. Activating the "
+             "copy, in the app or with docket licence, makes the same tool return every finding."),
+            ("Does Docket work with ChatGPT?",
+             "In the ChatGPT desktop app, yes: add Docket under Settings, MCP servers, as a STDIO "
+             "server with the command above and the argument mcp. ChatGPT on the web cannot run "
+             "it, because there custom connections need a public HTTPS server and Docket runs on "
+             "your own computer."),
         ],
     )

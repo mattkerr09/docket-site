@@ -655,7 +655,12 @@ def write_llms_txt() -> None:
         f"by Apple.",
         (f"Or a PC with 64-bit Windows: the installer is a {WIN_SETUP_SIZE} download, signed by "
          f"{WIN_PUBLISHER}.") if WINDOWS else "",
-        "A command-line build for Linux x86_64 is on the download page." if LINUX else "")
+        "A command-line build for Linux x86_64 is on the download page." if LINUX else "",
+        # CEO's order from Matthew, 2026-11-03: Claude and ChatGPT should know how to use the product.
+        ("AI assistants can run it: Docket speaks MCP over stdio, so Claude Code "
+         "(claude mcp add docket -- /Applications/Docket.app/Contents/Resources/docket/docket mcp), "
+         "Claude Desktop and the ChatGPT desktop app can audit a site with it. Setup: "
+         "https://docketseo.app/how-to/audit-your-site-from-an-ai-assistant/"))
 
     out += ["", "## Price and licence", ""]
     out += facts(

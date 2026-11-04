@@ -49,6 +49,10 @@ Michigan, United States.
 - Or a PC with 64-bit Windows: the installer is a 17.6 MB download, signed by Kerr &
   Company LLC.
 - A command-line build for Linux x86_64 is on the download page.
+- AI assistants can run it: Docket speaks MCP over stdio, so Claude Code (claude mcp
+  add docket -- /Applications/Docket.app/Contents/Resources/docket/docket mcp), Claude
+  Desktop and the ChatGPT desktop app can audit a site with it. Setup:
+  https://docketseo.app/how-to/audit-your-site-from-an-ai-assistant/
 
 ## Price and licence
 
