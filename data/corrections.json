@@ -2,6 +2,18 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "release": "1.3.145",
+   "date": "2026-11-04",
+   "title": "The PDF cover showed an old logo, and its severity counts crossed the score panel's edge",
+   "wrong": "Every exported PDF's cover drew an old mark, a line climbing to a flag, in dark teal on the black header, where it read as a faint stroke; the app and this site use a shield with a rising arrow. On a cover whose note about excluded findings ran to three lines, the medium, low and notice counts sat across the score panel's bottom border. Both showed in this site's own sample report and in the home page's picture of it.",
+   "found": "Looking at the home page's new picture of the sample report's first page, the day it went up.",
+   "fixed": "The cover draws the app's own shield and arrow, in the app's teal for dark backgrounds. The score panel is measured against everything written in it and grows to hold it.",
+   "tests": [
+    "test_the_pdf_cover_draws_the_apps_mark.py",
+    "test_the_pdf_score_panel_holds_its_own_text.py"
+   ]
+  },
+  {
    "release": "1.3.144",
    "date": "2026-11-04",
    "title": "A free result's first Buy box left out the Black Friday price",

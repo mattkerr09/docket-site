@@ -1,19 +1,19 @@
 {
-  "version": "1.3.144",
-  "notes": "Docket 1.3.144\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $59, or $29.50 at the Black Friday price until 30 November, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *The Black Friday price shows in both buy boxes.* A free result has two. The one right under the top problem,\n  \"Docket found \u2026 more problems on this site\", quoted $59 once or 4 \u00d7 $14.75 and left the sale out, while the one\n  below it gave the Black Friday price. Both now say \"Black Friday price, all of November: $29.50 once\" with the\n  code Buy applies, and both drop the line when the sale ends.\n\n99 checks across 13 areas.",
-  "pub_date": "2026-11-04T13:27:22Z",
+  "version": "1.3.145",
+  "notes": "Docket 1.3.145\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $59, or $29.50 at the Black Friday price until 30 November, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *The PDF cover carries Docket's mark.* The top of every exported PDF showed an old logo, a thin line climbing to a\n  flag in dark teal on the black header, where it was hard to see. It is now the shield with the rising arrow that\n  the app and the site use, in a teal that reads on the header.\n- *The severity counts stay inside the score panel.* When the note under \"Fix everything in this report\" ran to\n  three lines, the medium, low and notice counts sat across the panel's bottom edge. The panel now grows to hold\n  everything written in it.\n\n99 checks across 13 areas.",
+  "pub_date": "2026-11-04T17:09:15Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTNoNzFrSFU4blpmbFhNVnhIZU9QMHh6MFlwbVAwcm1Edm9HR0NkaUkveldxOFFQQTlyTHhuanp5NXZJVys0TEJad2Vkb2xyZ1I5elpsU3FvbXBoV3dFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNzk4NDA4CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKNzFHN2NLaGJ1SGhWMy9oMmx4Z3RYdk15czdWckRNdHZaajlkYm1oWGhpc2NoOXIzL2lJRWtsejdLeHl5N0xuZUtzM2tydnlJcG5NWEZrRlRaTzhyQVE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.144/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTQycURYMkY4OWRUMW1OYnJQNzFFRHVhVU9qcWhwREpHL0N1RzZac0dSY1VIc2paN20yd0tDTGxDeDRvNnMxY1hYUUk3aWMrRHRTa2JPODcxR3BUUWdRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODExNjI5CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKbVdoZzQreWdoSWtLOG1adkpmYXV4QmNFdW9SYXphbnBMeFBGNThxTzlFd2UxZnpYTjlQWTVIS2NPcXh5MzRQMkVieTFkc3J4L2k3MUNwVnk5ajlIQkE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.145/Docket.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVxem8waHQ1bnFRaU0yNDJnc2FSRC9ETmlXdFc3c3dXQS91dWx6aTFIMGtTUEFEMklmYzVFUExHRXZQMmkrU2VoZ2JNT21EL25LVzRVbjBtYkd6ZFFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNzk4NjIwCWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6CjhLZzZmV2hDN3RBaVZhVXRVazRYTnBXTWhRRTFCMHBJTTgrSCtBYzlnVk5VWXowZ0hYd3FZQVlYL2xKN3phRjRYTERDUmN3WVlsUVpsRkhzdGdza0JnPT0K",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.144/Docket-x86_64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJUNFJ2SjdLd2w4THdkSm9RSTEzSnNaS3NTNEtrVVFOM1o0TmtXYmlvT3hDdnJEbjh1d0RLamtMVVo3M3NJelJscWRWU2gwRnJ1VWM1NUxqRi84YkFNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODExODU3CWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6Cm9MRitaeFJSWTBGYnk5VnY1ZVNlaUVKalJ1MVl6a09ma1hIKyt2bXpaUVE0V25HMkt6a09GRTJ3cXpiZGFvQXlxL2dldkpqRVo5NmpXQkVSSjRZMkR3PT0K",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.145/Docket-x86_64.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTBva0RSS2tyemROTmNhN3hXamFHYWxUSCtoTFI4UktHdWN1Q3dXVVp6SE1QTGw0SnpEVHI0UE50YmJiSVNiOVlTcjVMYUZuS2hPTHZkL0t2ODZaL3djPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzNzk4NzIwCWZpbGU6RG9ja2V0LTEuMy4xNDQteDY0LXNldHVwLmV4ZQpNc2pKcXAvN1h2RXNGL2dMbnJEc24yMk1BU01LNFdrakg5Z2dPZGtvQ04zQi8rZDRPMEYxZUJSSUorSWlBdXFsTER6R0dkaVlocEZRQ3V1SjJnVVNBQT09Cg==",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.144/Docket-1.3.144-x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJhbXExY0NEVGhXL3ZROHVZTlZTOFR6Szg1Y3k5UVNMcjZOYzZlbUtYbGFqZllLVEhkRkw1YjBjSXVvZTIxSmpscFlIdnAyU3R3d3ZkTjhXSjQ4QVFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODExOTY1CWZpbGU6RG9ja2V0LTEuMy4xNDUteDY0LXNldHVwLmV4ZQpuaEZHYlBHdmZjWkFsZXdFSUNFSVdlblMya1NrQ0xxVHd6NWxsRUE1Q1Nxbk1GUCtaZVpBTjIrNFVtYnVjaXg2c0NtVWZRbjhxVnMyODBESzdGU1NCdz09Cg==",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.145/Docket-1.3.145-x64-setup.exe"
     }
   }
 }
