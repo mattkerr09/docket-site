@@ -14,7 +14,7 @@
 <title>Docket's crawler: what it requests and how to stop it</title>
 <meta name="description" content="What Docket's audit crawler does on your site, how fast it goes, and the robots.txt rule that asks it to stay out.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="15203bd496c9">
+<meta name="build-id" content="46f7f1834c39">
 <link rel="canonical" href="https://docketseo.app/bot/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -946,8 +946,22 @@ described below.</p>
 
 <pre><code>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 Docket-SEO-Audit/1.0 (+https://docketseo.app/bot/)</code></pre>
 
-<p>Pages that are also opened in a browser engine (to see what JavaScript builds) carry the same name and the same link back to this page. Docket never claims to be Googlebot or any other
-search engine's crawler.</p>
+<p>Pages that are also opened in a browser engine (to see what JavaScript builds) carry the same name and the same link back to this page.</p>
+
+<h2>One check borrows crawlers' names, and says so</h2>
+
+<p>Unless the audit runs offline, one check asks your server how it treats the crawlers that
+decide whether you are found. It requests your homepage once under each of these user agents:
+<code>Googlebot</code>, <code>OAI-SearchBot</code>, <code>GPTBot</code>, <code>ChatGPT-User</code>, <code>PerplexityBot</code>, <code>Perplexity-User</code>, <code>ClaudeBot</code>, <code>Claude-SearchBot</code>, <code>Claude-User</code> and <code>Meta-WebIndexer</code>. Each is that crawler's own published string, with this added to the
+end so your logs show the request was Docket's:</p>
+
+<pre><code>Docket-SEO-Audit/1.0 (+https://docketseo.app/bot; owner-initiated access check)</code></pre>
+
+<p>The crawler's name stays at the front because that is what a firewall or CDN rule matches.
+Without it, the answer would be the one your server gives Docket rather than the one it gives
+Googlebot, and the check exists to find servers that turn those crawlers away. These requests go
+only to the site being audited. An offline audit (<code>docket audit --offline</code>, or
+&ldquo;Keep it private&rdquo; in the app) sends none of them.</p>
 
 <h2>How hard it pushes</h2>
 
