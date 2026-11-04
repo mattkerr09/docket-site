@@ -674,8 +674,8 @@ def write_llms_txt() -> None:
         f"{FREE_LINE} The free version needs no key and no account, and runs the same "
         f"full audit; buying unlocks the audit already run, with no second crawl.",
         f"The licence key arrives by email with the receipt and is pasted into the app "
-        f"once. One licence covers up to {seats} Macs at a time: activating Docket on a "
-        f"Mac uses one, and deactivating one moves the licence to another machine.",
+        f"once. One licence covers {F.licence_covers()}: activating Docket on a "
+        f"computer uses one, and deactivating one moves the licence to another.",
         "The licence belongs to the person or company that paid. It covers any number of "
         "websites, including clients' sites, and the work can be billed to those clients. "
         "The application itself may not be resold, sublicensed or redistributed.")
@@ -1067,7 +1067,7 @@ than Docket.</p>
 <p>Docket needs it before it will run an audit. Open the app, click
 <strong>Enter licence key</strong> in the title bar, and paste it in. From a
 terminal, <code>docket licence --key YOUR-KEY</code> does the same thing.</p>
-<p>One licence covers up to three machines. The key is stored on your own Mac.</p>
+<p>One licence covers __COVERS__. The key is stored on your own computer.</p>
 <p><a class="btn" href="/download/">Download Docket</a></p>
 
 <h2>If something is wrong</h2>
@@ -1081,7 +1081,7 @@ happened. If the purchase was a mistake, the
         desc="Your Docket purchase is complete. Where to download the app and how to reach us.",
         h1="Thank you",
         crumb='<a href="/">Docket</a> / Thank you',
-        body=body.replace("__SUPPORT__", SUPPORT_EMAIL),
+        body=body.replace("__SUPPORT__", SUPPORT_EMAIL).replace("__COVERS__", F.licence_covers()),
         # ⚠️ This page told buyers to email hello@docketseo.app — the address
         # Matthew replaced with support@ on 2026-08-13 and ~/ops/bin/contact-gate
         # lists as DISOWNED. The gate never saw it: /thank-you/ is noindexed and
@@ -1282,8 +1282,8 @@ data-ev-button="pricing-page">Get the {DMG_SIZE} Mac download</a> and paste the 
 
 <h2>What {PRICE_STR} gets you</h2>
 <ul>
-<li>A Docket licence for life, in US dollars, with no renewal date. Use it on up to three
-Macs at once, and move it by deactivating one.</li>
+<li>A Docket licence for life, in US dollars, with no renewal date. Use it on {F.licence_covers()},
+and move it by deactivating one.</li>
 <li>No limit on sites. Audit your own, a client's or a prospect's, as often as you want, and
 bill clients for the work. Nothing is counted per page or per site.</li>
 <li>Every 1.x release, delivered by the updater inside the app. If a 2.0 ever costs money,

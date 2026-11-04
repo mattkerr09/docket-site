@@ -722,9 +722,9 @@ FAQ = [
      "Ask for a refund within 30 days of buying and you get your money back. No conditions "
      f"and no questions. Write to {SUPPORT_EMAIL}, or reply to the receipt the payment "
      "processor emails you. The licence key is revoked, so the copy goes back to the free version."),
-    ("How many Macs does one licence cover?",
-     f"Up to 3 at a time. Activating Docket on a Mac uses one; deactivate it to move the "
-     f"licence to another machine. {MAC_HW}, {MACOS} or later."),
+    ("How many computers does one licence cover?",
+     f"{F.licence_covers()[0].upper()}{F.licence_covers()[1:]}. Activating Docket on a computer uses one; "
+     f"deactivate it to move the licence to another. On a Mac: {MAC_HW}, {MACOS} or later."),
     ("Are updates included?",
      "Yes. While Docket is on version 1.x, every update is free and installs through the "
      "app's own updater. Whether a future 2.0 is a paid upgrade has not been decided; if it "

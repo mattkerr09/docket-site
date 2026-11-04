@@ -147,8 +147,8 @@ def _payment_note() -> str:
     # a page telling buyers they need not pay yet, beside a button that charges.
     return (
         f'<p><strong>{RELEASE} runs free without a key.</strong> {FREE_LINE} '
-        f'Pro is {PRICE_STR}, paid once: the key arrives with your receipt, covers up '
-        f'to three machines, and pasted into the app it opens the audit you already '
+        f'Pro is {PRICE_STR}, paid once: the key arrives with your receipt, covers '
+        f'{F.licence_covers()}, and pasted into the app it opens the audit you already '
         f'ran in full.</p>')
 
 
@@ -777,7 +777,9 @@ hundred pull requests in a month.</p>
 
 <p>Worth saying plainly: that is a recurring cost on a tool sold as a one-time
 {PRICE_STR}, and it is GitHub's, not ours. If it bothers you, gate on merges to main rather
-than every push, or run the job on a Mac you already own. Docket has no seat count, so a self-hosted runner is free.</p>
+than every push, or run the job on a computer you already own. There is no per-seat price, but a licence
+covers {F.licence_covers()}, and a runner that activates the key uses one of them: keep one self-hosted
+runner, or deactivate the key when a runner is retired.</p>
 
 <h2>Three things not to do</h2>
 
@@ -1292,8 +1294,8 @@ years.</p>
 
 <h2>Why the price is a number rather than a plan</h2>
 
-<p>{PRICE_STR}, once, from v1.0, and {FREE_CLAUSE}. No seats, no
-crawl credits, no renewal date. You price a SaaS product yourself, so you know what a
+<p>{PRICE_STR}, once, from v1.0, and {FREE_CLAUSE}. No per-seat price, no
+crawl credits, no renewal date: one licence covers {F.licence_covers()}. You price a SaaS product yourself, so you know what a
 recurring line item does to a buying decision at a company that already has eleven of
 them.</p>
 
@@ -1349,7 +1351,8 @@ to happen whether or not anyone is at the machine, that is what a hosted crawler
             ("Is Docket really a one-time purchase?",
              f"Yes. {PRICE_STR} once, "
              + (f"or {FOUNDING_NOW} at the Black Friday price until {FOUNDING_END_DAY}, " if FOUNDING_OPEN else "") + f"and "
-             f"every 1.x update is included. There are no seats, no crawl credits, no account "
+             f"every 1.x update is included. One licence covers {F.licence_covers()}, and there is no "
+             f"per-seat price, no crawl credits, no account "
              f"and no telemetry, and audit history is stored on your Mac in ~/.docket/ as "
              f"plain JSON."),
         ],
@@ -2132,8 +2135,8 @@ machines.</p>"""
         price_para = f"""
 <p>Docket costs {PRICE_STR} in US dollars, paid once. Not a subscription: there is no renewal
 date and nothing to cancel, because nothing recurs.</p>
-<p><strong>One licence covers up to {F.licence_activations()} Macs at a time.</strong>
-Activating Docket on a Mac uses one of them; deactivate one to move it to another machine. The
+<p><strong>One licence covers {F.licence_covers()}.</strong>
+Activating Docket on a computer uses one of them; deactivate one to move it to another. The
 limit is enforced by the payment provider, so an activation past it is refused.
 If a Mac or PC is lost or dies before you deactivate it, email <a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a>
 and we release the seat.
@@ -2169,8 +2172,8 @@ page</a>.</p>
 
 <h2>What it costs</h2>
 {price_para}
-<p>One purchase covers you, the person or company that paid, on up to
-{F.licence_activations()} Macs at a time: deactivate one to move it. You may audit any number of
+<p>One purchase covers you, the person or company that paid, on
+{F.licence_covers()}: deactivate one to move it. You may audit any number of
 websites with it, including on behalf of clients, and you may charge those clients for the work.
 There is no per-seat price and no crawl allowance.</p>
 

@@ -2,7 +2,7 @@
   "activations_limit": 3,
   "product_id": "pdt_0Nlgdu6xbdzeG5tDAWx79",
   "product_name": "Docket SEO \u2014 Lifetime Licence",
-  "read_at": "2026-09-16T05:26:47Z",
+  "read_at": "2026-11-04T09:29:49Z",
   "source": "live.dodopayments.com /products/<id> (product field and entitlements[0].integration_config)",
   "collected_by": "scripts/collect_licence.py from ops/launch/dodo-facts.json",
   "note": "Generated. Do not edit by hand \u2014 re-run the collector. The seat count appears in prose only through facts.licence_activations()."

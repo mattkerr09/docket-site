@@ -1385,6 +1385,14 @@ def licence_activations() -> int:
     return int(json.loads((ROOT / "data" / "licence.json").read_text())["activations_limit"])
 
 
+def licence_covers() -> str:
+    """What one licence covers, in the words Docket's Dodo licence email uses (read back 2026-11-04T09:29:49Z: "Covers
+    up to 3 computers at a time, Mac or Windows."). One phrase for every page, because the site said "3 Macs" in some
+    places, "three machines" in others and "no seats" in three, while a licence activates on a Mac or a Windows PC
+    and the limit is enforced (Matthew's full audit, 2026-11-04, row 2)."""
+    return f"up to {licence_activations()} computers at a time, Mac or Windows"
+
+
 def app_version() -> str:
     """The version actually published, from the artifact the build produced."""
     return download()["version"]

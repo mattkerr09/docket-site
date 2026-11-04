@@ -67,8 +67,8 @@ Michigan, United States.
   paste. The free version needs no key and no account, and runs the same full audit;
   buying unlocks the audit already run, with no second crawl.
 - The licence key arrives by email with the receipt and is pasted into the app once.
-  One licence covers up to 3 Macs at a time: activating Docket on a Mac uses one, and
-  deactivating one moves the licence to another machine.
+  One licence covers up to 3 computers at a time, Mac or Windows: activating Docket on
+  a computer uses one, and deactivating one moves the licence to another.
 - The licence belongs to the person or company that paid. It covers any number of
   websites, including clients' sites, and the work can be billed to those clients. The
   application itself may not be resold, sublicensed or redistributed.
@@ -101,9 +101,9 @@ Michigan, United States.
   money back. No conditions and no questions. Write to support@docketseo.app, or reply
   to the receipt the payment processor emails you. The licence key is revoked, so the
   copy goes back to the free version.
-- How many Macs does one licence cover? Up to 3 at a time. Activating Docket on a Mac
-  uses one; deactivate it to move the licence to another machine. Apple silicon or
-  Intel, macOS 12 or later.
+- How many computers does one licence cover? Up to 3 computers at a time, Mac or
+  Windows. Activating Docket on a computer uses one; deactivate it to move the licence
+  to another. On a Mac: Apple silicon or Intel, macOS 12 or later.
 - Are updates included? Yes. While Docket is on version 1.x, every update is free and
   installs through the app's own updater. Whether a future 2.0 is a paid upgrade has
   not been decided; if it ever is, the copy you paid for keeps working.
