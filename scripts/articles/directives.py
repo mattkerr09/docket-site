@@ -428,7 +428,9 @@ Collected in {int(d['duration_s'] / 60)} minutes on {collected}.</p>
 <p><strong>We did not impersonate any vendor's crawler.</strong> Sending a forged
 <code>OAI-SearchBot</code> header to 10,000 third-party servers to see what they return is
 deception, and it would have produced better data. Docket runs the same test inside the
-product, against a site the person running it owns, where it is not deception.</p>
+product, once per crawler and only against the one site being audited, with Docket's name added
+to every request, so the operator reading their logs can see it was not the crawler
+(<a href="/bot/">how</a>).</p>
 
 <p>Limits worth stating. {s['attempted'] - n:,} of the 10,000 hosts did not return a parseable
 robots.txt. Tranco contains CDN and infrastructure hostnames that are not websites. A

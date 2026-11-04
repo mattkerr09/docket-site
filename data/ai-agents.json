@@ -126,5 +126,26 @@
   "count": 20,
   "note": "Generated. Do not edit by hand.",
   "owner_count": 10,
+  "probes": {
+    "ai": [
+      "OAI-SearchBot",
+      "GPTBot",
+      "ChatGPT-User",
+      "PerplexityBot",
+      "Perplexity-User",
+      "ClaudeBot",
+      "Claude-SearchBot",
+      "Claude-User",
+      "Meta-WebIndexer"
+    ],
+    "ai_owners": [
+      "Anthropic",
+      "Meta",
+      "OpenAI",
+      "Perplexity"
+    ],
+    "search": "Googlebot",
+    "tag": "Docket-SEO-Audit/1.0 (+https://docketseo.app/bot; owner-initiated access check)"
+  },
   "source": "seo_engine.robots.AI_USER_AGENTS, the table the checks read"
 }

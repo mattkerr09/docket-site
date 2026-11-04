@@ -54,12 +54,25 @@ def read() -> dict:
     owners = Counter(m["owner"] for m in agents.values())
     purposes = Counter(m["purpose"] for m in agents.values())
 
+    # The crawlers whose names Docket's edge-access check sends, from the connector itself. /bot/, /download/,
+    # /about/ and the privacy page said Docket never presents another crawler's user agent, while this check
+    # requests the audited homepage once as Googlebot and once as each of these, each string with Docket's tag
+    # appended (Matthew's full audit, 2026-11-04, row 6). The pages now print this list rather than a summary of it.
+    from seo_engine.connectors.edge_access import CRAWLER_AGENTS, DOCKET_TAG, SEARCH_CONTROL  # noqa: PLC0415
+    missing = [n for n in CRAWLER_AGENTS if n not in agents]
+    if missing:
+        raise SystemExit(f"collect_ai_agents: the edge-access check probes {', '.join(missing)}, which "
+                         "robots.AI_USER_AGENTS does not describe; the pages could not say whose they are")
+    probes = {"search": SEARCH_CONTROL["name"], "ai": list(CRAWLER_AGENTS), "tag": DOCKET_TAG,
+              "ai_owners": sorted({agents[n]["owner"] for n in CRAWLER_AGENTS})}
+
     return {
         "count": len(agents),
         "owner_count": len(owners),
         "agents": dict(sorted(agents.items())),
         "by_owner": dict(sorted(owners.items())),
         "by_purpose": dict(sorted(purposes.items())),
+        "probes": probes,
         "source": "seo_engine.robots.AI_USER_AGENTS, the table the checks read",
         "collected_by": "scripts/collect_ai_agents.py",
         "note": "Generated. Do not edit by hand.",
@@ -74,6 +87,10 @@ def main(argv: list) -> int:
                   f"scripts/collect_ai_agents.py")
             return 1
         held = json.loads(OUT.read_text())
+        if held.get("probes") != fresh["probes"]:
+            print("AI AGENTS stale — the edge-access check now probes a different set of crawlers or tags them "
+                  "differently. Re-run scripts/collect_ai_agents.py")
+            return 1
         if held.get("agents") != fresh["agents"]:
             was, now = set(held.get("agents") or {}), set(fresh["agents"])
             added, gone = sorted(now - was), sorted(was - now)

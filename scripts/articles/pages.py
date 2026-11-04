@@ -401,9 +401,10 @@ size. The defaults are deliberately polite; you can raise them.</li>
 </ul>
 
 <h2>What happens to your data</h2>
-<p>The crawl and every check run on your machine, and Docket identifies itself honestly in
-its user-agent rather than impersonating Googlebot, because a spoofed user-agent gets a different,
-sometimes cloaked response, which would make every finding a lie.</p>
+<p>The crawl and every check run on your machine, and the crawl names itself as Docket in its
+user-agent. One check asks your homepage once as Googlebot and as each AI crawler that matters,
+with Docket's name added to every request, to see whether your server turns them away;
+<a href="/bot/">the bot page</a> lists them, and an offline audit sends none.</p>
 
 <p>{CONNECTORS_WORD_CAP} optional checks do reach out, and it is worth being exact rather than reassuring:
 Docket asks your own server what it tells AI crawlers, refreshes its crawler knowledge file
@@ -1944,8 +1945,8 @@ thresholds and ranking notes. It is a plain request for one public file. Its use
 Docket, and it carries nothing about you or what you are auditing.</li>
 <li><strong>The site you asked it to audit.</strong> The crawl itself, from your machine,
 naming itself as Docket, and the edge-access checks, which request your homepage again as
-Docket, as Googlebot and as each AI crawler Docket knows (OpenAI's, Perplexity's and
-Anthropic's), naming Docket in each, to see what your server tells them.</li>
+Docket and once as each of <!-- edge-probes -->, naming Docket in each, to see what your
+server tells them.</li>
 <li><strong>Other sites your pages point to.</strong> Docket checks that a sample of your links
 to other sites still work, and that the share images your pages name load, with a request to
 each address and a second if the first fails. It fetches the stylesheets your pages link,
@@ -2089,7 +2090,8 @@ it; we hold nothing separately.</p>
 <p>Questions about privacy or anything else: <a href="/contact/">get in touch</a>.</p>
 """
     body = (body.replace("<!-- windows-form-privacy -->", _windows_form_privacy())
-                .replace("<!-- windows-same-app -->\n", _windows_same_app()))
+                .replace("<!-- windows-same-app -->\n", _windows_same_app())
+                .replace("<!-- edge-probes -->", F.probe_names_html()))
     return render(
         cat="legal", slug="privacy",
         title="Privacy policy: what Docket collects, and what it does not",

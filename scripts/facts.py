@@ -1647,6 +1647,24 @@ def ai_agents_for(purpose: str) -> list:
     return found
 
 
+def probes() -> dict:
+    """What the edge-access check sends: {search, ai, tag, ai_owners}, read from the connector.
+
+    `search` is the one search crawler (the control), `ai` the AI crawlers in the order they are asked, `tag` the
+    text appended to every one of their user agents."""
+    p = _ai_agents().get("probes")
+    if not p or not p.get("ai"):
+        raise SystemExit("facts.probes: no probe list — run scripts/collect_ai_agents.py")
+    return p
+
+
+def probe_names_html() -> str:
+    """'<code>Googlebot</code>, <code>OAI-SearchBot</code>, … and <code>Meta-WebIndexer</code>'."""
+    p = probes()
+    names = [f"<code>{n}</code>" for n in [p["search"]] + p["ai"]]
+    return ", ".join(names[:-1]) + " and " + names[-1]
+
+
 def ai_agent_rows() -> list:
     """Every agent as (name, owner, purpose, impact), for a table."""
     return [(n, m["owner"], m["purpose"], m["impact"])

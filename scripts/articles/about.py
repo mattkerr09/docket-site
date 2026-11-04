@@ -74,10 +74,10 @@ counting, because there is nobody to count.</p>
 <h2>What that changes about the findings</h2>
 
 <p>Running locally is not only a pricing decision. A crawler farm sees your site as an
-anonymous datacentre IP; your Mac sees it the way a person does, and can be told to
-introduce itself as any crawler you like. That is how Docket can tell you what your CDN
-returns to <code>GPTBot</code> specifically, rather than what your robots.txt claims it
-should.</p>
+anonymous datacentre IP; your Mac sees it the way a person does. It also asks your homepage
+once as each of the crawlers that matter, with Docket's name added to every request
+(<a href="/bot/">the list</a>). That is how Docket can tell you what your CDN returns to
+<code>GPTBot</code> specifically, rather than what your robots.txt claims it should.</p>
 
 <p>It is also why the awkward findings are possible. Docket will tell you your AI opt-out is
 unenforceable, that your directive names a crawler that has been retired, or that the

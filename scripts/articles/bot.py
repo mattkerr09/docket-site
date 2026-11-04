@@ -45,8 +45,22 @@ described below.</p>
 
 <pre><code>{escape(lim["user_agent"])}</code></pre>
 
-<p>Pages that are also opened in a browser engine (to see what JavaScript builds) carry the same name and the same link back to this page. Docket never claims to be Googlebot or any other
-search engine's crawler.</p>
+<p>Pages that are also opened in a browser engine (to see what JavaScript builds) carry the same name and the same link back to this page.</p>
+
+<h2>One check borrows crawlers' names, and says so</h2>
+
+<p>Unless the audit runs offline, one check asks your server how it treats the crawlers that
+decide whether you are found. It requests your homepage once under each of these user agents:
+{F.probe_names_html()}. Each is that crawler's own published string, with this added to the
+end so your logs show the request was Docket's:</p>
+
+<pre><code>{escape(F.probes()["tag"])}</code></pre>
+
+<p>The crawler's name stays at the front because that is what a firewall or CDN rule matches.
+Without it, the answer would be the one your server gives Docket rather than the one it gives
+Googlebot, and the check exists to find servers that turn those crawlers away. These requests go
+only to the site being audited. An offline audit (<code>docket audit --offline</code>, or
+&ldquo;Keep it private&rdquo; in the app) sends none of them.</p>
 
 <h2>How hard it pushes</h2>
 
