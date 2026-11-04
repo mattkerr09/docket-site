@@ -2,6 +2,17 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "release": "1.3.146",
+   "date": "2026-11-04",
+   "title": "A site whose robots.txt shut Docket out still had its sitemap, llms.txt and favicon fetched",
+   "wrong": "With robots.txt disallowing everything, to every crawler or to Docket by name, Docket stopped crawling at the address typed, as this site says, but then requested three sitemap locations, /llms.txt, /favicon.ico, a made-up address and the start page up to three more times. The bot page said the address typed is requested once and nothing beyond it.",
+   "found": "An independent full audit of the product and this site, ordered by the owner, logged every request an offline audit made of a local site whose robots.txt said Disallow: /.",
+   "fixed": "Every request an audit makes for itself now asks robots.txt first; only robots.txt and the address typed are exempt. A file it was told not to fetch is not reported missing. The crawler fetches the start page once and reuses that copy.",
+   "tests": [
+    "test_robots_txt_governs_every_request_but_the_address_typed.py"
+   ]
+  },
+  {
    "release": "1.3.145",
    "date": "2026-11-04",
    "title": "The PDF cover showed an old logo, and its severity counts crossed the score panel's edge",

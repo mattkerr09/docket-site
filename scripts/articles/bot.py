@@ -84,7 +84,11 @@ ask it to stay out of your site:</p>
 <pre><code>User-agent: {escape(token)}
 Disallow: /</code></pre>
 
-<p>Two limits, stated plainly rather than discovered. The address the person typed is still requested once (they asked for that page by name), but nothing beyond it. And the person running
+<p>Two limits, stated plainly rather than discovered. The address the person typed is still
+read, because they asked for that page by name: once by the crawl, again in a browser engine
+when the audit renders pages (which loads what that page itself loads, as any browser would),
+and once as each crawler above unless the audit runs offline. Nothing else on your site is
+requested: no other page, no sitemap, no <code>llms.txt</code> and no favicon. And the person running
 the audit can switch robots.txt off, which exists for auditing their own staging sites. If that
 matters to you, refuse the user agent at your server as well; that is the only rule a crawler
 cannot choose to ignore.</p>
