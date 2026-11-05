@@ -13,7 +13,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import N_CHECKS, render  # noqa: E402
+from render import FREE_LINE, INTEL, INTEL_DMG, N_CHECKS, PLATFORMS, download_url, render  # noqa: E402
 
 
 def _index_numbers() -> dict:
@@ -167,8 +167,25 @@ blocking and what it costs you. It runs on your Mac, and the crawl and the repor
     )
 
 
+#: The tag the audit box's download link carries, so the hub counts people who came from this box (the CEO's order,
+#: 2026-11-05: this page earns the site's clicks and none of its downloads).
+SEO_AUDIT_BOX = "learn-seo-audit-box"
+
+
 def seo_audit() -> Path:
     body = f"""
+<div class="callout" id="answer">
+<div class="callout-title">The short answer</div>
+<p>An SEO audit is a check of whether search engines can find your pages, understand them and choose to
+show them. A useful one ends with a short, ordered list of what to change first.</p>
+<p>The quickest way to see what one finds on your own site is to run one. Docket runs {N_CHECKS} checks
+on your own computer, with no account and no sign-up:</p>
+<p><a class="btn" href="{download_url(SEO_AUDIT_BOX)}" data-ev="Download"
+data-ev-button="{SEO_AUDIT_BOX}">Run a free audit of your site</a></p>
+<p class="hero-note">{FREE_LINE} For {PLATFORMS}.
+{('<a href="' + download_url(SEO_AUDIT_BOX + "-intel", to=INTEL_DMG) + '" data-ev="Download" data-ev-button="' + SEO_AUDIT_BOX + '-intel">Intel Mac download</a>, ') if INTEL else ''}<a href="/download/">Windows and other downloads</a>.</p>
+</div>
+
 <p class="lede">An SEO audit is a systematic check of everything about a website that
 determines whether search engines can find it, understand it, and choose to show it. A useful
 audit ends with a short ordered list of things to change. An unhelpful one ends with a
@@ -260,6 +277,7 @@ against effort, and marks areas it could not assess as unknown rather than passi
 """
     return render(
         cat="learn", slug="seo-audit",
+        modified="2026-11-05",  # the answer-first box with the free-audit download (src learn-seo-audit-box)
         title="What is an SEO audit? What it covers and how to read one",
         desc=("An SEO audit checks whether search engines can find, understand and choose to "
               "show your site. What each area covers, and why they fail in order."),
