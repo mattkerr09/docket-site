@@ -147,12 +147,13 @@ link. The rates, the payout terms and the disclosure you owe your readers are on
     return render(
         cat="about", slug="",
         title="About Docket: who builds it and what it cannot do",
-        desc=(f"Docket is a Mac SEO audit tool with {N_CHECKS} checks, built by one person "
-              f"in Grand Rapids, Michigan. What it is bad at, and how to check the download."),
+        desc=(f"Docket is an SEO audit app for {'Mac and Windows' if WINDOWS else 'Mac'} with {N_CHECKS} checks, built by one "
+              f"person in Grand Rapids, Michigan. What it is bad at, and how to check the download."),
         h1="About Docket",
         crumb='<a href="/">Docket</a> / About',
         body=body,
         published="2026-08-07",
+        modified="2026-11-05",  # the data FAQ: five default-on checks, PageSpeed needs no key
         schema_type="AboutPage",
         faq=[
             ("Who makes Docket?",
@@ -161,11 +162,14 @@ link. The rates, the payout terms and the disclosure you owe your readers are on
              "the legal name on the certificate can be checked with codesign before you "
              "install anything."),
             ("Does Docket send my site data anywhere?",
-             "No. The crawl runs on your Mac and results are stored in ~/.docket/ as plain "
-             "JSON. Two optional connectors do reach outside: the knowledge refresh fetches "
-             "one public file from docketseo.app and tells it nothing about what you are "
-             "auditing, and PageSpeed Insights (off unless you add your own Google API "
-             "key) necessarily sends Google the URL you asked it to measure."),
+             "The audit and its results stay on your computer, in ~/.docket/ as plain JSON. "
+             f"{F.optional_connectors_word().capitalize()} optional checks, on by default, do "
+             "reach out: Docket asks your own server what it tells AI crawlers, refreshes its "
+             "crawler knowledge file from docketseo.app (which learns nothing about what you "
+             "audit), checks whether the email addresses your site publishes can receive mail, "
+             "sends Google PageSpeed Insights the address you are measuring (no API key needed), "
+             "and asks Google's public autocomplete for topic suggestions. --offline, or "
+             "\"Keep it private\" in the app, turns all of them off and the audit still completes."),
             ("What can Docket not do?",
              (f"It runs on Macs ({MAC_HW}) and 64-bit Windows, with no web version; it does not "
               if WINDOWS else f"It is macOS only ({MAC_HW}), it does not ")
