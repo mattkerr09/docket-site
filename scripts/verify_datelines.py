@@ -118,6 +118,26 @@ def published_pairs(html: str):
                 yield (node.get("datePublished"), node.get("dateModified"))
 
 
+BYLINE = re.compile(r'<p class="byline">.*?</p>', re.S)
+
+
+def own_date(html: str):
+    """(date shown in the byline, newest date the page's own content states), or None for a page with no byline.
+
+    Recomputed with `render.content_date`, the function `render` used, over what the article shows under its byline.
+    Matthew's full audit, 2026-11-04, row 19: 55 of 139 pages showed a date older than their own content.
+    """
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from render import content_date  # noqa: PLC0415
+
+    m = BYLINE.search(html)
+    if not m:
+        return None
+    shown = max(re.findall(r'datetime="(\d{4}-\d{2}-\d{2})"', m.group(0)) or [""])
+    end = html.find("</article>", m.end())
+    return shown, content_date(html[m.end(): end if end > 0 else len(html)])
+
+
 def audit(extra_html: dict[str, str] | None = None):
     """(failures, pages_seen, dated_nodes). `extra_html` is for --self-check."""
     allowed = supplied_dates()
@@ -128,6 +148,10 @@ def audit(extra_html: dict[str, str] | None = None):
     documents.update(extra_html or {})
     for name, html in documents.items():
         pages += 1
+        own = own_date(html)
+        if own and own[1] and own[1] > own[0]:
+            failures.append(f"{name}: shows {own[0]} but its own content states {own[1]}; the page changed "
+                            f"after the date it shows.")
         for pub, mod in published_pairs(html):
             dated += 1
             # ⚠️ CHECKED BEFORE THE `mod is None` SKIP, AND THAT ORDER IS THE
@@ -145,7 +169,7 @@ def audit(extra_html: dict[str, str] | None = None):
             if mod == "<unparseable>":
                 failures.append(f"{name}: a JSON-LD block could not be parsed")
                 continue
-            if mod not in allowed:
+            if mod not in allowed and not (own and mod == own[1]):
                 failures.append(
                     f"{name}: publishes dateModified {mod}, which no article "
                     f"source supplies with modified=\"…\"."
@@ -186,6 +210,13 @@ def main() -> int:
             print("DATELINE SELF-CHECK FAILED — a fabricated datePublished was "
                   "not rejected on a page carrying no dateModified, which is "
                   "the shape of almost every page on this site.")
+            return 1
+        # THE ROW 19 HALF NEEDS ITS OWN PLANT: a byline older than a date the page itself states.
+        stale = ('<article><p class="byline">Published <time datetime="1999-01-02">2 January 1999</time></p>'
+                 '<p>Read again on 3 January 2000.</p></article>')
+        failures, _, _ = audit({"<planted-stale>": stale})
+        if not any("<planted-stale>" in f and "changed after" in f for f in failures):
+            print("DATELINE SELF-CHECK FAILED — a byline older than the page's own content was not rejected.")
             return 1
         clean, _, _ = audit()
         print("DATELINE self-check ok — the planted fabrication is rejected and "

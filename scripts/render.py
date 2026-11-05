@@ -2389,6 +2389,40 @@ def page_sources() -> dict[str, str]:
     return dict(_PAGE_SOURCE)
 
 
+_MONTHS = ("January February March April May June July August September October November December").split()
+_CONTENT_DATE = re.compile(r"\b(20\d\d)-([01]\d)-([0-3]\d)\b|\b([0-3]?\d) (" + "|".join(_MONTHS) + r") (20\d\d)\b")
+#: Shared or sample markup whose dates are not the page's own: the buy block's notes (the rival prices' reading dates
+#: and the sale line), the buy strip, and code, which carries example dates.
+_NOT_THE_PAGES_OWN = re.compile(r'(?is)<p class="hero-note[^"]*"[^>]*>.*?</p>|<aside class="buy-strip">.*?</aside>'
+                                r"|<pre\b.*?</pre>|<code\b.*?</code>|<script\b.*?</script>|<style\b.*?</style>")
+
+
+def content_date(html: str, today=None) -> str | None:
+    """The newest date, up to today, that a page's own prose states: when it was last changed, at the latest.
+
+    ⚠️ WHY (Matthew's full audit, 2026-11-04, row 19): 55 of 139 pages showed a Published or Updated date older than
+    their own content. /how-to/fix-heading-structure/ said "Published 15 September" over "read 19 October 2026";
+    /vs/crawlraven-alternative/ "Updated 19 October" over a run "on 5 November 2026". A page cannot state a date that
+    had not happened when it was written, so its newest past date is a floor for when it last changed, derived
+    from the page itself. `render` shows it as "Updated" when it is later than the date supplied, and
+    `verify_datelines` recomputes it from the built page. Dates after today are left out (a sale's end, a deadline).
+    """
+    import datetime as _dt
+
+    today = today or _dt.datetime.now(_dt.timezone.utc).date()
+    text = re.sub(r"<[^>]+>", " ", _NOT_THE_PAGES_OWN.sub(" ", html))
+    best = None
+    for m in _CONTENT_DATE.finditer(text):
+        try:
+            d = (_dt.date(int(m.group(1)), int(m.group(2)), int(m.group(3))) if m.group(1)
+                 else _dt.date(int(m.group(6)), _MONTHS.index(m.group(5)) + 1, int(m.group(4))))
+        except ValueError:
+            continue
+        if d <= today and (best is None or d > best):
+            best = d
+    return best.isoformat() if best else None
+
+
 def _byline(published: str | None, modified: str | None) -> str:
     """The visible byline: who wrote it, when it first shipped, when it changed.
 
@@ -2528,6 +2562,11 @@ def render(
     # top would move those two pages a day later than their author put them.
     if published is None:
         published = _published_for("/".join(path_parts) or ".")
+    # The page's own newest date is a floor for when it last changed (row 19; see `content_date`). Read from what the
+    # article shows under its byline: the body, the FAQ and the closer.
+    _own = content_date(body + " ".join(f"{q} {a}" for q, a in (faq or [])) + closer)
+    if _own and published and _own > max(published, modified or ""):
+        modified = _own
     url = BASE + "/" + ("/".join(path_parts) + "/" if path_parts else "")
     esc = lambda s: s.replace('"', "&quot;")  # noqa: E731
 

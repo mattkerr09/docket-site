@@ -5,7 +5,7 @@
  },
  "best/free-seo-audit-tools/index.html": {
   "date": "2026-11-05",
-  "hash": "9340455ff985c9c7"
+  "hash": "36754e70307d5d01"
  },
  "best/index.html": {
   "date": "2026-11-05",
@@ -93,7 +93,7 @@
  },
  "how-to/fix-broken-outbound-links/index.html": {
   "date": "2026-11-05",
-  "hash": "edc009c1d766f1fc"
+  "hash": "ba31003689004b70"
  },
  "how-to/fix-compression-and-caching/index.html": {
   "date": "2026-11-05",
@@ -113,7 +113,7 @@
  },
  "how-to/fix-heading-structure/index.html": {
   "date": "2026-11-05",
-  "hash": "2723ce65ce237e55"
+  "hash": "bf585efd5076ea8d"
  },
  "how-to/fix-hreflang-return-tags/index.html": {
   "date": "2026-11-05",
@@ -121,7 +121,7 @@
  },
  "how-to/fix-image-seo-problems/index.html": {
   "date": "2026-11-05",
-  "hash": "5f91cb82643281d6"
+  "hash": "e132ff9e969a9eeb"
  },
  "how-to/fix-inconsistent-name-address-phone/index.html": {
   "date": "2026-11-05",
@@ -133,7 +133,7 @@
  },
  "how-to/fix-lang-attribute-mismatch/index.html": {
   "date": "2026-11-05",
-  "hash": "d5ad08334087a311"
+  "hash": "e0038f5f27aa3ac8"
  },
  "how-to/fix-layout-shift/index.html": {
   "date": "2026-11-05",
@@ -169,7 +169,7 @@
  },
  "how-to/fix-redirect-problems/index.html": {
   "date": "2026-11-05",
-  "hash": "bc8b6dce9e8d7137"
+  "hash": "07e7d536598af407"
  },
  "how-to/fix-render-blocking-resources/index.html": {
   "date": "2026-11-05",
@@ -304,12 +304,12 @@
   "hash": "1233cd7a1e3fd106"
  },
  "index/index.html": {
-  "date": "2026-10-19",
-  "hash": "0a5a08d587794826"
+  "date": "2026-11-05",
+  "hash": "f9dc66bba1106f6c"
  },
  "index/llms-txt-adoption-2026-10/index.html": {
   "date": "2026-11-05",
-  "hash": "1193cb4156487ee2"
+  "hash": "8503354f4d20383f"
  },
  "learn/ai-crawler-directives/index.html": {
   "date": "2026-11-05",
@@ -317,7 +317,7 @@
  },
  "learn/ai-crawlers-and-sitemaps/index.html": {
   "date": "2026-11-05",
-  "hash": "0935f2e8e9738714"
+  "hash": "518b35d1035f7f3a"
  },
  "learn/ai-search-visibility/index.html": {
   "date": "2026-11-05",
@@ -333,11 +333,11 @@
  },
  "learn/answer-extractability/index.html": {
   "date": "2026-11-05",
-  "hash": "9c0446b09d02773e"
+  "hash": "7aa8ea22e663e639"
  },
  "learn/audit-tool-accuracy/index.html": {
   "date": "2026-11-05",
-  "hash": "df7c5217bb03fb43"
+  "hash": "5f6fa8964e5434b8"
  },
  "learn/brand-consistency/index.html": {
   "date": "2026-11-05",
@@ -381,7 +381,7 @@
  },
  "learn/index-coverage/index.html": {
   "date": "2026-11-05",
-  "hash": "05c0b1633b3724a5"
+  "hash": "ea91b8e7e853d23a"
  },
  "learn/index.html": {
   "date": "2026-11-05",
@@ -389,7 +389,7 @@
  },
  "learn/internal-link-equity/index.html": {
   "date": "2026-11-05",
-  "hash": "36f8dc6076071827"
+  "hash": "f130eeeed65dbad7"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-11-05",
@@ -429,7 +429,7 @@
  },
  "learn/trust-and-authorship-signals/index.html": {
   "date": "2026-11-05",
-  "hash": "549bb49d62bdea99"
+  "hash": "355808f84868f892"
  },
  "learn/url-structure/index.html": {
   "date": "2026-11-05",
@@ -441,7 +441,7 @@
  },
  "learn/what-docket-got-wrong/index.html": {
   "date": "2026-11-05",
-  "hash": "5ea747f4460964f6"
+  "hash": "9505cfa64dd44be7"
  },
  "learn/what-is-claudebot/index.html": {
   "date": "2026-11-05",
@@ -497,19 +497,19 @@
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
   "date": "2026-11-05",
-  "hash": "e90dc5c1155b3ce1"
+  "hash": "f2536c2f59412975"
  },
  "vs/crawler-sh-alternative/index.html": {
   "date": "2026-11-05",
-  "hash": "3403ee0b0c32256e"
+  "hash": "04166bd8a9a0d092"
  },
  "vs/crawlraven-alternative/index.html": {
   "date": "2026-11-05",
-  "hash": "a53513e0820e4282"
+  "hash": "5990a01300a2e01b"
  },
  "vs/google-search-console/index.html": {
   "date": "2026-11-05",
-  "hash": "7723f98cda6136ac"
+  "hash": "2b691fcc48825a7c"
  },
  "vs/index.html": {
   "date": "2026-11-05",
@@ -517,15 +517,15 @@
  },
  "vs/jetoctopus-alternative/index.html": {
   "date": "2026-11-05",
-  "hash": "5c021f5cdcbd38b1"
+  "hash": "a3c35143914599ab"
  },
  "vs/lighthouse-alternative/index.html": {
   "date": "2026-11-05",
-  "hash": "cd9cee072ff27c7a"
+  "hash": "cd03f69edc5869d8"
  },
  "vs/profound-alternative/index.html": {
   "date": "2026-11-05",
-  "hash": "cd3e121e9409e282"
+  "hash": "7bf7d257404744e5"
  },
  "vs/screaming-frog-alternative/index.html": {
   "date": "2026-11-05",
@@ -533,15 +533,15 @@
  },
  "vs/scrutiny-alternative/index.html": {
   "date": "2026-11-05",
-  "hash": "59a9e50aa047741d"
+  "hash": "172e310c135f9f56"
  },
  "vs/se-ranking-vs-screaming-frog/index.html": {
   "date": "2026-11-05",
-  "hash": "2c4179b68ff99d9f"
+  "hash": "7eaed8829210e9ad"
  },
  "vs/semrush-site-audit-alternative/index.html": {
   "date": "2026-11-05",
-  "hash": "a2efd932baccd388"
+  "hash": "a94ee5661cc14cdb"
  },
  "vs/seoptimer-alternative/index.html": {
   "date": "2026-11-05",
@@ -549,10 +549,10 @@
  },
  "vs/sitebulb-alternative/index.html": {
   "date": "2026-11-05",
-  "hash": "8357233245605b1a"
+  "hash": "ff9eba6993c60e95"
  },
  "vs/sitechecker-alternative/index.html": {
   "date": "2026-11-05",
-  "hash": "14ea51fb8ff702ea"
+  "hash": "d2136ac7dba526d9"
  }
 }
