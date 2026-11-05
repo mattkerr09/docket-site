@@ -19,7 +19,7 @@ from corrections_cases import CASES  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
-from render import (windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
+from render import (_human_date, windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
@@ -515,8 +515,45 @@ be written, and this paragraph will say so rather than promising it indefinitely
 
 
 def for_agencies() -> Path:
+    # WHAT-WORKS pass for "white label seo audit tool" (CEO, 2026-11-05: about 1,600 searches a month, little
+    # advertiser competition), made only once 1.3.147 shipped Report branding. This page already served agencies,
+    # so it is improved rather than twinned. The picture is our own site's sample report with the branding set to
+    # a placeholder (make_sample_report.py), and every figure comes from data/sample-run.json or COMPETITORS.
+    from comparisons import _SEOPT_PLANS
+    run = _json.loads((Path(__file__).resolve().parent.parent.parent / "data" / "sample-run.json").read_text())
+    br = run["branded_image"]
+    so = COMPETITORS["seoptimer"]
+    so_plans = {n: p for n, p, *_ in _SEOPT_PLANS}
+    year = run["recorded"][:4]
     body = """
-<p class="lede">The cost that hurts an agency is not the licence. It is the per-seat and
+<p class="lede">Docket is a white-label SEO audit tool you buy once. In the paid version its PDF
+and HTML reports carry your agency's name and logo in place of Docket's and say &ldquo;Prepared
+by&rdquo; you, and you can audit as many client sites as you like for __PRICE__, on __COVERS__.
+The report below is a real one, of our own site: __PAGES__ pages audited in __SECONDS__ seconds,
+__ISSUES__ issues found, shown here with a placeholder in place of your name and logo.</p>
+
+<figure class="shot">
+  <img src="__BR_SRC__" width="__BR_W__" height="__BR_H__" loading="lazy" decoding="async"
+       alt="Page one of a Docket audit report with Report branding set: a placeholder logo reading YOUR LOGO and the name __BR_NAME__ where Docket's mark and name would be.">
+  <figcaption>Page one of the PDF, with Report branding set to a placeholder. Without branding
+  the same page carries Docket's shield and name.</figcaption>
+</figure>
+
+<h2>What it costs against a white-label subscription</h2>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th></th><th>Docket</th><th>SEOptimer Pro</th><th>SEOptimer Max</th></tr></thead>
+<tbody>
+<tr><td>Price</td><td class="yes">__PRICE__ once</td><td>$__SO_PRO__ a month</td><td>$__SO_MAX__ a month</td></tr>
+<tr><td>The first year</td><td class="yes">__PRICE__</td><td>$__SO_PRO_YEAR__</td><td>$__SO_MAX_YEAR__</td></tr>
+<tr><td>Your name and logo on the PDF</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+<tr><td>Custom report domain and templates</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+<tr><td>Audits</td><td class="yes">Unmetered</td><td>A monthly crawl allowance</td><td>A monthly crawl allowance</td></tr>
+</tbody></table></div>
+<p>SEOptimer's prices and features are its own, read from its pricing page on __SO_READ__; our
+<a href="/vs/seoptimer-alternative/">SEOptimer comparison</a> sets them out in full. If you sell
+audits from your own report address, or want report templates, that is what the subscription buys.</p>
+
+<p>The cost that hurts an agency is usually not the licence. It is the per-seat and
 per-crawl metering that makes you think twice before auditing a prospect. Docket is a one-time
 download that runs on your machine, so a pre-sales audit costs you nothing but the ten minutes
 it takes.</p>
@@ -589,13 +626,23 @@ claims everything invites the client to test the claim.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
+    for key, value in {
+        "__PRICE__": PRICE_STR, "__COVERS__": F.licence_covers(), "__PAGES__": str(run["pages"]),
+        "__SECONDS__": str(run["seconds"]), "__ISSUES__": str(run["issues"]), "__BR_SRC__": br["src"],
+        "__BR_W__": str(br["width"]), "__BR_H__": str(br["height"]), "__BR_NAME__": _html.escape(br["name"]),
+        "__SO_PRO__": str(so_plans["Pro"]), "__SO_MAX__": str(so_plans["Max"]),
+        "__SO_PRO_YEAR__": f"{so_plans['Pro'] * 12:,}", "__SO_MAX_YEAR__": f"{so_plans['Max'] * 12:,}",
+        "__SO_READ__": _human_date(so["price_checked"]),
+    }.items():
+        assert key in body, key
+        body = body.replace(key, value)
     return render(
         cat="for", slug="agencies",
-        title=f"Docket for SEO agencies: unlimited client audits for {PRICE_STR}",
-        modified="2026-11-05",  # report branding (1.3.147)
-        desc=("Per-crawl metering makes agencies ration audits. Docket runs locally with no "
-              "per-seat or per-crawl cost, and re-audits on a schedule while the app is open."),
-        h1="Docket for SEO agencies",
+        title=f"White-label SEO audit tool for agencies ({year}): {PRICE_STR} once",
+        modified="2026-11-05",  # report branding (1.3.147), and the white-label pass above
+        desc=(f"Put your agency's name and logo on every audit report. {PRICE_STR} once for unlimited client "
+              f"audits, against ${so_plans['Pro']} to ${so_plans['Max']} a month for a white-label subscription."),
+        h1="A white-label SEO audit tool for agencies",
         crumb='<a href="/">Docket</a> / <a href="/for/">For you</a> / Agencies',
         body=body,
         faq=[

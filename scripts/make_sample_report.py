@@ -40,6 +40,7 @@ SUBJECTS = ["web design", "local seo"]
 _URL_RE = re.compile(r"https?://[^\s\"'<>)]+")
 DEFAULT_OUT = ROOT / "site" / "assets" / "docket-sample-report.pdf"
 COVER = ROOT / "site" / "assets" / "sample-report-cover.webp"
+BRANDED_COVER = ROOT / "site" / "assets" / "sample-report-branded-cover.webp"
 COVER_WIDTH = 1280
 SAMPLE_RUN = ROOT / "data" / "sample-run.json"
 
@@ -113,7 +114,60 @@ def _cut_below_facts(im) -> int:
                      "so look at page 1 and set the cut again")
 
 
-def write_cover(result, pdf_path: Path, version: str) -> None:
+def _pil():
+    """Pillow's Image. This script runs under a temp HOME so the engine never sees the licence, which also hides the
+    user site-packages where Pillow is installed. Pillow is not the engine; look for it under the real home."""
+    import os
+    import pwd
+    try:
+        from PIL import Image
+    except ImportError:
+        real = pwd.getpwuid(os.getuid()).pw_dir
+        sys.path.append(f"{real}/Library/Python/{sys.version_info[0]}.{sys.version_info[1]}/lib/python/site-packages")
+        from PIL import Image
+    return Image
+
+
+def _cover_still(pdf_path: Path):
+    """Page 1 of the PDF at `pdf_path`, cut below the facts strip and scaled to COVER_WIDTH."""
+    import subprocess
+    import tempfile
+    Image = _pil()
+    with tempfile.TemporaryDirectory() as tmp:
+        # Quick Look renders the PDF exactly as Preview shows it: page 1, 2200 px tall.
+        subprocess.run(["qlmanage", "-t", "-s", "2200", "-o", tmp, str(pdf_path)], check=True,
+                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        page = Image.open(Path(tmp) / (pdf_path.name + ".png")).convert("RGB")
+    still = page.crop((0, 0, page.width, _cut_below_facts(page)))
+    return still.resize((COVER_WIDTH, round(COVER_WIDTH * still.height / still.width)), Image.LANCZOS)
+
+
+#: The branded variant on /for/agencies/ shows Report branding with a placeholder, never a real agency's name: a
+#: picture of a report "prepared by" a firm that did not prepare it would be a testimonial nobody gave.
+PLACEHOLDER_NAME = "Your agency name"
+
+
+def placeholder_brand():
+    """A Branding with PLACEHOLDER_NAME and a drawn "YOUR LOGO" JPEG."""
+    import io
+    from seo_engine import branding
+    Image = _pil()
+    from PIL import ImageDraw
+    im = Image.new("RGB", (420, 140), (236, 238, 242))
+    g = ImageDraw.Draw(im)
+    g.rectangle((6, 6, 413, 133), outline=(150, 156, 168), width=4)
+    try:
+        from PIL import ImageFont
+        font = ImageFont.truetype("/System/Library/Fonts/Supplemental/Arial Bold.ttf", 54)
+    except OSError:
+        font = None
+    g.text((210, 70), "YOUR LOGO", fill=(90, 96, 110), font=font, anchor="mm")
+    out = io.BytesIO()
+    im.save(out, "JPEG", quality=90)
+    return branding.validate(PLACEHOLDER_NAME, out.getvalue())
+
+
+def write_cover(result, pdf_path: Path, version: str, branded_pdf: bytes = b"") -> None:
     """The home page's 'This is the actual report' image and its caption's figures, from this run.
 
     That block showed a screenshot of a Docket 1.1.44 report from 17 August (12 pages, 8 seconds, 90/A) under prose
@@ -122,28 +176,20 @@ def write_cover(result, pdf_path: Path, version: str) -> None:
     and data/sample-run.json carries what that page prints, so the caption re-captions itself on every ship and
     verify_recordings_fresh.py refuses it once it falls behind the build."""
     import datetime as dt
-    import os
-    import pwd
-    import subprocess
     import tempfile
-    try:
-        from PIL import Image
-    except ImportError:
-        # This script runs under a temp HOME so the engine never sees the licence, which also hides the user
-        # site-packages where Pillow is installed. Pillow is not the engine; look for it under the real home.
-        real = pwd.getpwuid(os.getuid()).pw_dir
-        sys.path.append(f"{real}/Library/Python/{sys.version_info[0]}.{sys.version_info[1]}/lib/python/site-packages")
-        from PIL import Image
     from seo_engine.words import local_date
 
-    with tempfile.TemporaryDirectory() as tmp:
-        # Quick Look renders the PDF exactly as Preview shows it: page 1, 2200 px tall.
-        subprocess.run(["qlmanage", "-t", "-s", "2200", "-o", tmp, str(pdf_path)], check=True,
-                       stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        page = Image.open(Path(tmp) / (pdf_path.name + ".png")).convert("RGB")
-    still = page.crop((0, 0, page.width, _cut_below_facts(page)))
-    still = still.resize((COVER_WIDTH, round(COVER_WIDTH * still.height / still.width)), Image.LANCZOS)
+    still = _cover_still(pdf_path)
     still.save(COVER, "WEBP", quality=86)
+    branded = None
+    if branded_pdf:
+        with tempfile.TemporaryDirectory() as tmp:
+            bp = Path(tmp) / "branded.pdf"
+            bp.write_bytes(branded_pdf)
+            b = _cover_still(bp)
+        b.save(BRANDED_COVER, "WEBP", quality=86)
+        branded = {"src": "/assets/" + BRANDED_COVER.name, "width": b.width, "height": b.height,
+                   "name": PLACEHOLDER_NAME}
     d = result.score.to_dict()
     projection = getattr(result, "projection", None)
     run = {"engine": version, "recorded": dt.datetime.now(dt.timezone.utc).date().isoformat(),
@@ -155,7 +201,9 @@ def write_cover(result, pdf_path: Path, version: str) -> None:
            "ceiling": round(projection.ceiling) if projection else None,
            "actionable": projection.actionable if projection else None,
            "excluded": projection.blocked if projection else 0,
-           "image": {"src": "/assets/" + COVER.name, "width": still.width, "height": still.height}}
+           "image": {"src": "/assets/" + COVER.name, "width": still.width, "height": still.height},
+           # The same report with Report branding set to a placeholder (PLACEHOLDER_NAME), for /for/agencies/.
+           "branded_image": branded}
     SAMPLE_RUN.write_text(json.dumps(run, indent=1) + "\n", encoding="utf-8")
 
 
@@ -180,13 +228,15 @@ def main() -> int:
         layout.paragraph(note)
 
     report_pdf._draw_cover = cover_with_note
+    default_out = Path(args.out).resolve() == DEFAULT_OUT.resolve()
     try:
         pdf = report_pdf.build(result)
+        branded_pdf = report_pdf.build(result, branding=placeholder_brand()) if default_out else b""
     finally:
         report_pdf._draw_cover = draw_cover
     Path(args.out).write_bytes(pdf)
-    if Path(args.out).resolve() == DEFAULT_OUT.resolve():
-        write_cover(result, Path(args.out), __version__)
+    if default_out:
+        write_cover(result, Path(args.out), __version__, branded_pdf)
     summary = {"engine": __version__, "url": URL, "score": round(result.score.overall, 1),
                "grade": result.score.to_dict()["grade"], "pages": len(result.crawl.pages),
                "bytes": len(pdf), "note": note, **facts}

@@ -6,7 +6,7 @@
  "score": 95,
  "grade": "A",
  "pages": 74,
- "seconds": 35,
+ "seconds": 31,
  "issues": 18,
  "counts": {
   "medium": 4,
@@ -20,5 +20,11 @@
   "src": "/assets/sample-report-cover.webp",
   "width": 1280,
   "height": 959
+ },
+ "branded_image": {
+  "src": "/assets/sample-report-branded-cover.webp",
+  "width": 1280,
+  "height": 959,
+  "name": "Your agency name"
  }
 }
