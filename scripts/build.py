@@ -628,8 +628,9 @@ def write_llms_txt() -> None:
         "Every finding is ranked by impact against the effort of fixing it, and carries "
         "its evidence: the page it is on, the exact value found there, and the fix.",
         "AI search visibility: each AI crawler is checked separately (OAI-SearchBot for "
-        "ChatGPT Search, PerplexityBot, Claude-SearchBot and Google-Extended) and kept "
-        "apart from training crawlers such as GPTBot. Docket also requests pages as each "
+        "ChatGPT Search, PerplexityBot, Claude-SearchBot) and kept apart from training "
+        "crawlers such as GPTBot. Google-Extended is reported as what it is: Gemini training "
+        "and Gemini Apps grounding, with no effect on AI Overviews. Docket also requests pages as each "
         "crawler and reports when a server refuses one that robots.txt permits.",
         "A command-line interface ships inside the app. `docket audit` exits non-zero on a "
         "critical issue, so CI can fail a build before it ships.")

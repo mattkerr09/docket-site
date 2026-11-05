@@ -14,7 +14,7 @@
 <title>Let ChatGPT and Perplexity read your site (robots.txt, 2026)</title>
 <meta name="description" content="Search and training crawlers are separate decisions. The robots.txt that allows citation while opting out of training, and the shared snippet that gets it wrong.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="b76391d99517">
+<meta name="build-id" content="8321048d8b44">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-ai-crawler-access/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -883,7 +883,7 @@ nav{background:rgba(7,12,13,.72);
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac and Windows.","sameAs":["https://github.com/mattkerr09/docket-site","https://www.producthunt.com/products/docket-seo"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel; Windows, 64-bit","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket-1.3.147-arm64.dmg","offers":{"@type":"Offer","price":"59","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix AI crawler access","description":"Search and training crawlers are separate decisions. The robots.txt that allows citation while opting out of training, and the shared snippet that gets it wrong.","datePublished":"2026-08-06","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-ai-crawler-access/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix AI crawler access","description":"Search and training crawlers are separate decisions. The robots.txt that allows citation while opting out of training, and the shared snippet that gets it wrong.","datePublished":"2026-08-06","dateModified":"2026-11-05","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-ai-crawler-access/","inLanguage":"en"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I let ChatGPT read my website?","acceptedAnswer":{"@type":"Answer","text":"Allow OAI-SearchBot in robots.txt. That is the crawler that builds ChatGPT Search's index. GPTBot is a separate crawler used for training and can be blocked without affecting whether ChatGPT can cite you."}},{"@type":"Question","name":"Does blocking GPTBot stop ChatGPT citing my site?","acceptedAnswer":{"@type":"Answer","text":"No. GPTBot collects training data. Citation in ChatGPT Search depends on OAI-SearchBot, which is a separate user-agent and needs its own rule."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
@@ -933,7 +933,7 @@ fbq('track','PageView');
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59 &middot; or&nbsp;4&nbsp;&times;&nbsp;$14.75</span></a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / AI crawler access</div><h1>How to fix AI crawler access</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-06">6 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / AI crawler access</div><h1>How to fix AI crawler access</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-06">6 August 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-05">5 November 2026</time></p>
 
 <p class="lede">To let AI assistants cite you while keeping your content out of model training,
 you need separate robots.txt rules for the search crawlers and the training crawlers. Most
@@ -951,11 +951,12 @@ difference obvious.</p>
 <tr><td><code>PerplexityBot</code></td><td>Builds Perplexity's index</td><td>You do not want to appear in Perplexity</td></tr>
 <tr><td><code>Claude-SearchBot</code></td><td>Builds Claude's search index</td><td>You do not want to appear in Claude</td></tr>
 <tr><td><code>ClaudeBot</code></td><td>Collects training data</td><td>You do not want your content in model weights</td></tr>
-<tr><td><code>Google-Extended</code></td><td>Gemini and AI Overviews grounding</td><td>You do not want to appear in AI Overviews</td></tr>
+<tr><td><code>Google-Extended</code></td><td>Gemini training, and grounding in Gemini Apps</td><td>You do not want your content used for Gemini. It does not affect AI Overviews</td></tr>
 </tbody></table></div>
-<p><code>Google-Extended</code> is worth singling out: blocking it has no effect on your normal
-Google Search ranking, which is governed by <code>Googlebot</code>. People block it fearing
-otherwise.</p>
+<p><code>Google-Extended</code> is worth singling out. Blocking it has no effect on Google Search,
+AI Overviews or AI Mode, which all follow your <code>Googlebot</code> rules. It controls whether
+Gemini trains on your pages and grounds answers in Gemini Apps, and nothing else. People block it
+fearing otherwise, and others leave it open thinking it is how they get into AI Overviews.</p>
 
 <h2>Allow citation, refuse training</h2>
 <p>This is the configuration most businesses actually want. Paste it above any existing rules:</p>
@@ -969,10 +970,11 @@ Allow: /
 User-agent: Claude-SearchBot
 Allow: /
 
-User-agent: Google-Extended
-Allow: /
-
 # Training crawlers: opt out of model training.
+# Google-Extended is Gemini training and Gemini Apps grounding. AI Overviews follow Googlebot.
+User-agent: Google-Extended
+Disallow: /
+
 User-agent: GPTBot
 Disallow: /
 

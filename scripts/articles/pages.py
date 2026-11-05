@@ -1824,11 +1824,12 @@ difference obvious.</p>
 <tr><td><code>PerplexityBot</code></td><td>Builds Perplexity's index</td><td>You do not want to appear in Perplexity</td></tr>
 <tr><td><code>Claude-SearchBot</code></td><td>Builds Claude's search index</td><td>You do not want to appear in Claude</td></tr>
 <tr><td><code>ClaudeBot</code></td><td>Collects training data</td><td>You do not want your content in model weights</td></tr>
-<tr><td><code>Google-Extended</code></td><td>Gemini and AI Overviews grounding</td><td>You do not want to appear in AI Overviews</td></tr>
+<tr><td><code>Google-Extended</code></td><td>Gemini training, and grounding in Gemini Apps</td><td>You do not want your content used for Gemini. It does not affect AI Overviews</td></tr>
 </tbody></table></div>
-<p><code>Google-Extended</code> is worth singling out: blocking it has no effect on your normal
-Google Search ranking, which is governed by <code>Googlebot</code>. People block it fearing
-otherwise.</p>
+<p><code>Google-Extended</code> is worth singling out. Blocking it has no effect on Google Search,
+AI Overviews or AI Mode, which all follow your <code>Googlebot</code> rules. It controls whether
+Gemini trains on your pages and grounds answers in Gemini Apps, and nothing else. People block it
+fearing otherwise, and others leave it open thinking it is how they get into AI Overviews.</p>
 
 <h2>Allow citation, refuse training</h2>
 <p>This is the configuration most businesses actually want. Paste it above any existing rules:</p>
@@ -1842,10 +1843,11 @@ Allow: /
 User-agent: Claude-SearchBot
 Allow: /
 
-User-agent: Google-Extended
-Allow: /
-
 # Training crawlers: opt out of model training.
+# Google-Extended is Gemini training and Gemini Apps grounding. AI Overviews follow Googlebot.
+User-agent: Google-Extended
+Disallow: /
+
 User-agent: GPTBot
 Disallow: /
 
@@ -1898,6 +1900,7 @@ first few seconds of any audit.</p>
     return render(
         cat="how-to", slug="fix-ai-crawler-access",
         title="Let ChatGPT and Perplexity read your site (robots.txt, 2026)",
+        modified="2026-11-05",  # Google-Extended: Gemini training and Gemini Apps, not AI Overviews
         desc=("Search and training crawlers are separate decisions. The robots.txt that allows "
               "citation while opting out of training, and the shared snippet that gets it "
               "wrong."),

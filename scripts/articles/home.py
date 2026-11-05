@@ -789,8 +789,9 @@ FAQ = [
      "in the WebKit engine macOS already ships."),
     ("Can Docket tell me if ChatGPT can see my website?",
      "Yes. Docket checks each AI crawler separately (OAI-SearchBot for ChatGPT Search, "
-     "PerplexityBot, Claude-SearchBot and Google-Extended) and distinguishes them from "
-     "training crawlers like GPTBot, which many sites block deliberately."),
+     "PerplexityBot and Claude-SearchBot) and distinguishes them from training crawlers "
+     "like GPTBot, which many sites block deliberately. It also says what Google-Extended "
+     "does: it governs Gemini training and Gemini Apps, not AI Overviews, which follow Googlebot."),
 ]
 
 
