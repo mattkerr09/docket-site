@@ -14,7 +14,7 @@
 <title>SEO checks in your pipeline: a CLI gate and an MCP server</title>
 <meta name="description" content="Docket's CLI exits 2 on a critical finding, so it gates a deploy. 25 pages in a median 24.9s across 6 sites. It also serves MCP to AI assistants.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="5ac851b93a68">
+<meta name="build-id" content="7550e24e80ee">
 <link rel="canonical" href="https://docketseo.app/for/developers/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -883,8 +883,8 @@ nav{background:rgba(7,12,13,.72);
 
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac and Windows.","sameAs":["https://github.com/mattkerr09/docket-site","https://www.producthunt.com/products/docket-seo"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel; Windows, 64-bit","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket-1.3.147-arm64.dmg","offers":{"@type":"Offer","price":"59","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"For you","item":"https://docketseo.app/for/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"SEO checks in your deploy pipeline","description":"Docket's CLI exits 2 on a critical finding, so it gates a deploy. 25 pages in a median 24.9s across 6 sites. It also serves MCP to AI assistants.","datePublished":"2026-08-07","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/for/developers/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I run an SEO audit in CI?","acceptedAnswer":{"@type":"Answer","text":"Yes, and it is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Docket's CLI exits 0 when clean, 2 when it finds something at or above your threshold, and 1 only when the tool itself could not run."}},{"@type":"Question","name":"Does Docket run on GitHub Actions?","acceptedAnswer":{"@type":"Answer","text":"On macos-latest, which is arm64. The action installs the Apple silicon build, so it will not run on ubuntu-latest. If your pipeline is Linux-only, Screaming Frog's CLI runs on Windows, Mac and Ubuntu Linux and is the better fit."}},{"@type":"Question","name":"How long does a Docket audit take in a pipeline?","acceptedAnswer":{"@type":"Answer","text":"A median of 24.9 seconds for 25 pages across 6 real sites measured on 2026-08-07, or roughly 1.0 seconds per page. Process startup was 0.2s, so almost all of it is the crawl. Rendering with --render is considerably slower and was not included."}},{"@type":"Question","name":"Can Docket output SARIF for GitHub code scanning?","acceptedAnswer":{"@type":"Answer","text":"Yes. docket audit -f sarif writes SARIF 2.1.0, which you can hand to github/codeql-action/upload-sarif. The findings appear as alerts on the Security tab with their severity and fix. They do not annotate the pull request diff: SARIF locations are files and lines, and an SEO finding is about a URL, which cannot generally be mapped back to a source file."}},{"@type":"Question","name":"Does Docket have a GitHub Action?","acceptedAnswer":{"@type":"Answer","text":"Yes. Reference mattkerr09/docket-site in a `uses:` step. It installs Docket, runs the audit and exits with the same codes as the CLI, and it checks the runner first so a Linux job fails with a sentence you can act on rather than a confusing disk-image error. It is not on the GitHub Marketplace; reference it by repository."}},{"@type":"Question","name":"Can Docket write JUnit output for my CI test panel?","acceptedAnswer":{"@type":"Answer","text":"Yes, with -f junit. One testcase per check, so the panel reads as a test run. A check that ran and found nothing passes; one that could not run is skipped, never passed; and if the crawl reached no pages, every check is skipped and none is green. A passing test report is read as a guarantee."}},{"@type":"Question","name":"Should the build fail on the SEO score?","acceptedAnswer":{"@type":"Answer","text":"No. The score is a weighted composite and moves when the weighting changes. Gate on severities with --fail-on, or better, use docket diff to fail only on findings this deploy introduced or made worse. Every real site carries standing findings, so an absolute threshold either fails every build or none of them."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"SEO checks in your deploy pipeline","description":"Docket's CLI exits 2 on a critical finding, so it gates a deploy. 25 pages in a median 24.9s across 6 sites. It also serves MCP to AI assistants.","datePublished":"2026-08-07","dateModified":"2026-11-05","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/for/developers/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I run an SEO audit in CI?","acceptedAnswer":{"@type":"Answer","text":"Yes, and it is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Docket's CLI exits 0 when clean, 2 when it finds something at or above your threshold, and 1 only when the tool itself could not run."}},{"@type":"Question","name":"Does Docket run on GitHub Actions?","acceptedAnswer":{"@type":"Answer","text":"Yes, on ubuntu-latest and macos-latest. mattkerr09/docket-audit-action installs the right build for the runner, runs the free version, which needs no key, and fails the job at the severity you set. There is no Linux ARM or Windows build of the command line yet."}},{"@type":"Question","name":"How long does a Docket audit take in a pipeline?","acceptedAnswer":{"@type":"Answer","text":"A median of 24.9 seconds for 25 pages across 6 real sites measured on 2026-08-07, or roughly 1.0 seconds per page. Process startup was 0.2s, so almost all of it is the crawl. Rendering with --render is considerably slower and was not included."}},{"@type":"Question","name":"Can Docket output SARIF for GitHub code scanning?","acceptedAnswer":{"@type":"Answer","text":"Yes. docket audit -f sarif writes SARIF 2.1.0, which you can hand to github/codeql-action/upload-sarif. The findings appear as alerts on the Security tab with their severity and fix. They do not annotate the pull request diff: SARIF locations are files and lines, and an SEO finding is about a URL, which cannot generally be mapped back to a source file."}},{"@type":"Question","name":"Does Docket have a GitHub Action?","acceptedAnswer":{"@type":"Answer","text":"Yes. Reference mattkerr09/docket-site in a `uses:` step. It installs Docket, runs the audit and exits with the same codes as the CLI, and it checks the runner first so a Linux job fails with a sentence you can act on rather than a confusing disk-image error. It is not on the GitHub Marketplace; reference it by repository."}},{"@type":"Question","name":"Can Docket write JUnit output for my CI test panel?","acceptedAnswer":{"@type":"Answer","text":"Yes, with -f junit. One testcase per check, so the panel reads as a test run. A check that ran and found nothing passes; one that could not run is skipped, never passed; and if the crawl reached no pages, every check is skipped and none is green. A passing test report is read as a guarantee."}},{"@type":"Question","name":"Should the build fail on the SEO score?","acceptedAnswer":{"@type":"Answer","text":"No. The score is a weighted composite and moves when the weighting changes. Gate on severities with --fail-on, or better, use docket diff to fail only on findings this deploy introduced or made worse. Every real site carries standing findings, so an absolute threshold either fails every build or none of them."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -933,7 +933,7 @@ fbq('track','PageView');
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59 &middot; or&nbsp;4&nbsp;&times;&nbsp;$14.75</span></a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/for/">For you</a> / Developers</div><h1>SEO checks in your deploy pipeline</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-07">7 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/for/">For you</a> / Developers</div><h1>SEO checks in your deploy pipeline</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-07">7 August 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-05">5 November 2026</time></p>
 
 <p class="lede">Docket's CLI exits <code>2</code> when it finds a critical issue, so
 <code>docket audit https://staging.example.com</code> is a complete deploy gate in one line and
@@ -942,19 +942,20 @@ nothing else has to be installed. Auditing 25 pages took a median of
 (17.0s to 36.1s, measured 2026-08-07), which is
 short enough to sit on every pull request without anyone noticing the build got slower.</p>
 
-<h2>Read this first: your runners are probably Linux</h2>
+<h2>Linux and macOS runners</h2>
 
-<p>The action installs the Apple silicon build of the macOS app, and the Linux CLI is
-x86_64, so the action needs a macOS runner. It runs on GitHub Actions'
-<a href="https://docs.github.com/en/actions/reference/runners/github-hosted-runners"><code>macos-latest</code></a>,
-which is arm64, and it does not run on <code>ubuntu-latest</code> at all. If your pipeline is
-Linux and you are not willing to add a macOS job to it, stop reading and use
-<a href="https://www.screamingfrog.co.uk/seo-spider/user-guide/general/">Screaming Frog's
-command line interface</a> instead: it is available for Windows, Mac and Ubuntu Linux, it runs
-headless, and for a Linux-only pipeline it is simply the right tool. That is a real advantage
-and there is no version of this page where it is not.</p>
+<p>The command line ships as a Linux build (x86_64) as well as inside the Mac app, so it runs on
+GitHub Actions' <code>ubuntu-latest</code> and <code>macos-latest</code>. The simplest way in is
+the action, <a href="https://github.com/mattkerr09/docket-audit-action"><code>mattkerr09/docket-audit-action</code></a>:
+it downloads the build the runner needs, checks it against the release's checksums, runs the
+audit and fails the job at the severity you set. There is no Linux ARM or Windows build of the
+command line yet.</p>
 
-<p>Everything below assumes you are willing to run one macOS job. It costs more than a Linux one (see the arithmetic further down), and it is the whole of the catch.</p>
+<p>On a hosted runner it runs Docket's free version, which needs no key: the score, the count of
+problems in each area, the most important problem in full, and the exit code. That is enough to
+gate a deploy. The full findings and the SARIF and JUnit files below need a licence key, and a
+licence activates on up to 3 computers at a time, Mac or Windows. A fresh hosted runner is a new computer each time, so
+use the key on a self-hosted runner, which keeps its one activation.</p>
 
 <h2>Where the binary actually is</h2>
 
@@ -974,20 +975,15 @@ on: [pull_request]
 
 jobs:
   seo:
-    runs-on: macos-latest          # arm64. ubuntu-latest will not work.
+    runs-on: ubuntu-latest
     steps:
-      - name: Install Docket
-        run: |
-          curl -sL -o docket.dmg https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket-1.3.147-arm64.dmg
-          hdiutil attach -nobrowse -quiet docket.dmg -mountpoint /Volumes/Docket
-          cp -R /Volumes/Docket/Docket.app /Applications/
-          echo "/Applications/Docket.app/Contents/Resources/docket" &gt;&gt; "$GITHUB_PATH"
+      - uses: mattkerr09/docket-audit-action@v1
+        with:
+          url: https://staging.example.com
+          fail-on: critical</code></pre>
 
-      - name: Audit staging
-        run: docket audit https://staging.example.com -n 100 --fail-on critical</code></pre>
-
-<p>No runtime to install, no <code>pip install</code>, no lockfile to resolve. The download is
-22.1 MB and it is notarised by Apple, so nothing has to be talked past Gatekeeper. Process
+<p>No runtime to install, no <code>pip install</code>, no lockfile to resolve. On macOS the
+download is the 22.1 MB app, notarised by Apple, so nothing has to be talked past Gatekeeper. Process
 overhead was 0.2s of the wall-clock in every run measured; effectively all
 of the time is the crawl itself, at about 1.0 seconds per page.</p>
 
@@ -1037,7 +1033,7 @@ was impossible is worse than one that fails, because the team believes the gate 
 <h2>Findings on the Security tab instead of in the log</h2>
 
 <p>An exit code tells a build to stop and nothing else, so whoever sees red opens the log and
-reads text. <code>-f sarif</code> writes SARIF 2.1.0, the format GitHub, GitLab and Azure all
+reads text. With a licence key in <code>DOCKET_LICENCE_KEY</code>, <code>-f sarif</code> writes SARIF 2.1.0, the format GitHub, GitLab and Azure all
 ingest, and the findings become listed alerts with their severity, their description and the
 fix attached:</p>
 
@@ -1064,7 +1060,7 @@ nonsense, so those travel as the rule's <code>helpUri</code> instead.</p>
 
 <h2>Findings in the test-report panel</h2>
 
-<p><code>-f junit</code> writes JUnit XML, which is the report widget every CI system already has: GitLab, Jenkins, Azure, Buildkite, CircleCI. The shape is one testcase per check, so the
+<p>With a key, <code>-f junit</code> writes JUnit XML, which is the report widget every CI system already has: GitLab, Jenkins, Azure, Buildkite, CircleCI. The shape is one testcase per check, so the
 panel reads like a test run ( 99 tests, four failed) rather than handing
 you a wall of text.</p>
 
@@ -1074,28 +1070,30 @@ passed. And if the crawl reached no pages at all, every check is skipped and non
 one. Failures use the same threshold as the exit code, so a build cannot go green while showing
 red tests.</p>
 
-<h2>A GitHub Action, so you do not maintain the shell</h2>
+<h2>The older action, for SARIF and JUnit on macOS</h2>
 
-<p>The four lines above work and will keep working. If you would rather not own them:</p>
+<p><code>mattkerr09/docket-audit-action</code> is the one to use. This site's own repository also
+carries an action, for an Apple silicon macOS runner with a licence key, that writes the SARIF or
+JUnit file for you:</p>
 
 <pre><code>      - uses: mattkerr09/docket-site@v1.3.147
+        env:
+          DOCKET_LICENCE_KEY: ${{ secrets.DOCKET_LICENCE_KEY }}
         with:
           url: https://staging.example.com
           fail-on: critical
           format: junit          # or sarif, or text</code></pre>
 
-<p>It checks the runner first and fails with a sentence you can act on if it is not Apple
-Silicon macOS, rather than letting you find out inside an <code>hdiutil</code> error. Full
-inputs and exit codes are in
-<a href="https://github.com/mattkerr09/docket-site/blob/main/ACTION.md">ACTION.md</a>. It is
-not published to the GitHub Marketplace. Reference it by repository as shown.</p>
+<p>It checks the runner first and stops with a sentence you can act on if it is not Apple
+silicon macOS. Full inputs and exit codes are in
+<a href="https://github.com/mattkerr09/docket-site/blob/main/ACTION.md">ACTION.md</a>.</p>
 
 <h2>What it costs to run</h2>
 
-<p>macOS minutes are the expensive ones. GitHub
+<p>On <code>ubuntu-latest</code> a run is billed at GitHub's Linux rate. GitHub
 <a href="https://docs.github.com/en/billing/reference/actions-minute-multipliers">publishes</a>
-$0.062 per minute for a standard macOS runner against $0.006
-for Linux ( about 10 times), and billed minutes round up. The measured
+$0.006 per minute for Linux against $0.062 for a standard macOS
+runner (about 10 times), and billed minutes round up. On macOS the measured
 audit is well under a minute, so a run bills as one: roughly
 <strong>6 cents per gate</strong>, or $12.40 for two
 hundred pull requests in a month.</p>
@@ -1169,7 +1167,7 @@ fifteen seconds between two consecutive runs. Treat them as an order of magnitud
 benchmark, and measure your own.</p>
 
 <aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=for-developers-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket-1.3.147-arm64.dmg" data-ev="Download" data-ev-button="for-developers-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=for-developers-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket-1.3.147-x86_64.dmg" data-ev="Download" data-ev-button="for-developers-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=for-developers" data-ev="Buy" data-ev-price="59" data-ev-button="for-developers">Buy once, $59 &middot; or&nbsp;4&nbsp;&times;&nbsp;$14.75</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="for-developers">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Black Friday price $29.50 <span class="founding-end" data-founding-end="2026-12-01T07:59:59Z">until 30 November</span> with <code>FOUNDINGDOCKET</code>, then $59</span></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can I run an SEO audit in CI?</h3><p>Yes, and it is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Docket's CLI exits 0 when clean, 2 when it finds something at or above your threshold, and 1 only when the tool itself could not run.</p></div><div class="faq-item"><h3>Does Docket run on GitHub Actions?</h3><p>On macos-latest, which is arm64. The action installs the Apple silicon build, so it will not run on ubuntu-latest. If your pipeline is Linux-only, Screaming Frog's CLI runs on Windows, Mac and Ubuntu Linux and is the better fit.</p></div><div class="faq-item"><h3>How long does a Docket audit take in a pipeline?</h3><p>A median of 24.9 seconds for 25 pages across 6 real sites measured on 2026-08-07, or roughly 1.0 seconds per page. Process startup was 0.2s, so almost all of it is the crawl. Rendering with --render is considerably slower and was not included.</p></div><div class="faq-item"><h3>Can Docket output SARIF for GitHub code scanning?</h3><p>Yes. docket audit -f sarif writes SARIF 2.1.0, which you can hand to github/codeql-action/upload-sarif. The findings appear as alerts on the Security tab with their severity and fix. They do not annotate the pull request diff: SARIF locations are files and lines, and an SEO finding is about a URL, which cannot generally be mapped back to a source file.</p></div><div class="faq-item"><h3>Does Docket have a GitHub Action?</h3><p>Yes. Reference mattkerr09/docket-site in a `uses:` step. It installs Docket, runs the audit and exits with the same codes as the CLI, and it checks the runner first so a Linux job fails with a sentence you can act on rather than a confusing disk-image error. It is not on the GitHub Marketplace; reference it by repository.</p></div><div class="faq-item"><h3>Can Docket write JUnit output for my CI test panel?</h3><p>Yes, with -f junit. One testcase per check, so the panel reads as a test run. A check that ran and found nothing passes; one that could not run is skipped, never passed; and if the crawl reached no pages, every check is skipped and none is green. A passing test report is read as a guarantee.</p></div><div class="faq-item"><h3>Should the build fail on the SEO score?</h3><p>No. The score is a weighted composite and moves when the weighting changes. Gate on severities with --fail-on, or better, use docket diff to fail only on findings this deploy introduced or made worse. Every real site carries standing findings, so an absolute threshold either fails every build or none of them.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can I run an SEO audit in CI?</h3><p>Yes, and it is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Docket's CLI exits 0 when clean, 2 when it finds something at or above your threshold, and 1 only when the tool itself could not run.</p></div><div class="faq-item"><h3>Does Docket run on GitHub Actions?</h3><p>Yes, on ubuntu-latest and macos-latest. mattkerr09/docket-audit-action installs the right build for the runner, runs the free version, which needs no key, and fails the job at the severity you set. There is no Linux ARM or Windows build of the command line yet.</p></div><div class="faq-item"><h3>How long does a Docket audit take in a pipeline?</h3><p>A median of 24.9 seconds for 25 pages across 6 real sites measured on 2026-08-07, or roughly 1.0 seconds per page. Process startup was 0.2s, so almost all of it is the crawl. Rendering with --render is considerably slower and was not included.</p></div><div class="faq-item"><h3>Can Docket output SARIF for GitHub code scanning?</h3><p>Yes. docket audit -f sarif writes SARIF 2.1.0, which you can hand to github/codeql-action/upload-sarif. The findings appear as alerts on the Security tab with their severity and fix. They do not annotate the pull request diff: SARIF locations are files and lines, and an SEO finding is about a URL, which cannot generally be mapped back to a source file.</p></div><div class="faq-item"><h3>Does Docket have a GitHub Action?</h3><p>Yes. Reference mattkerr09/docket-site in a `uses:` step. It installs Docket, runs the audit and exits with the same codes as the CLI, and it checks the runner first so a Linux job fails with a sentence you can act on rather than a confusing disk-image error. It is not on the GitHub Marketplace; reference it by repository.</p></div><div class="faq-item"><h3>Can Docket write JUnit output for my CI test panel?</h3><p>Yes, with -f junit. One testcase per check, so the panel reads as a test run. A check that ran and found nothing passes; one that could not run is skipped, never passed; and if the crawl reached no pages, every check is skipped and none is green. A passing test report is read as a guarantee.</p></div><div class="faq-item"><h3>Should the build fail on the SEO score?</h3><p>No. The score is a weighted composite and moves when the weighting changes. Gate on severities with --fail-on, or better, use docket diff to fail only on findings this deploy introduced or made worse. Every real site carries standing findings, so an absolute threshold either fails every build or none of them.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">

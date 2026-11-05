@@ -1,31 +1,24 @@
-# Docket SEO audit — GitHub Action
+# Docket SEO audit: GitHub Action
 
 Crawl a site and fail the build on SEO regressions. Wraps the CLI that ships
-inside [Docket](https://docketseo.app), so the four lines of shell you would
-otherwise maintain live here instead.
+inside [Docket](https://docketseo.app), so the shell you would otherwise
+maintain lives here instead.
 
-**Read this first: this action installs the macOS build**, so it needs
-`runs-on: macos-latest` (arm64) and fails on `ubuntu-latest` with a sentence
-saying so, rather than letting you find out inside a confusing `hdiutil` error.
+**For Linux runners, use [mattkerr09/docket-audit-action](https://github.com/mattkerr09/docket-audit-action).**
+It installs Docket's Linux build on `ubuntu-latest`, or the macOS build on a
+macOS runner, runs the free version, which needs no key, and fails the job at
+the severity you set.
 
-There **is** a Linux CLI — `docket-0.1.0-linux-x86_64.tar.gz` on the release,
-glibc 2.31+ — and on a Linux runner you can use it directly today:
+This action installs the Apple silicon macOS build, so it needs
+`runs-on: macos-latest` and stops on any other runner with a sentence saying
+so. It can also write SARIF or JUnit, which needs a licence key in
+`DOCKET_LICENCE_KEY`. A licence activates on up to 3 computers at a time and a
+fresh hosted runner counts as a new one, so use the key on a self-hosted runner.
 
-```yaml
-      - run: |
-          curl -sSL -o docket.tgz https://github.com/mattkerr09/docket-site/releases/download/v0.1.0/docket-0.1.0-linux-x86_64.tar.gz
-          mkdir -p docket && tar -xzf docket.tgz -C docket
-          ./docket/docket audit https://staging.example.com --fail-on critical
-```
+`--render` does not work on Linux: the renderer is a WebKit helper that exists
+only on macOS. There is no Windows build of the command line yet.
 
-Two limits on that path, both deliberate: `--render` does not work on Linux
-(the renderer is a WebKit helper that exists only on macOS, and Docket says so
-rather than skipping quietly), and this action does not wrap it yet. If you
-need rendering in CI, use a macOS job. If you need Windows,
-[Screaming Frog's CLI](https://www.screamingfrog.co.uk/seo-spider/user-guide/general/)
-runs there and Docket does not.
-
-macOS runner minutes also cost about ten times Linux ones. See
+macOS runner minutes cost about ten times Linux ones. See
 [the cost arithmetic](https://docketseo.app/for/developers/).
 
 ## Use it
@@ -38,7 +31,7 @@ jobs:
   seo:
     runs-on: macos-latest
     steps:
-      - uses: mattkerr09/docket-site@v0.1.0
+      - uses: mattkerr09/docket-site@v1.3.147
         with:
           url: https://staging.example.com
           fail-on: critical
@@ -47,7 +40,9 @@ jobs:
 ### Findings on the Security tab
 
 ```yaml
-      - uses: mattkerr09/docket-site@v0.1.0
+      - uses: mattkerr09/docket-site@v1.3.147
+        env:
+          DOCKET_LICENCE_KEY: ${{ secrets.DOCKET_LICENCE_KEY }}   # SARIF needs a licence
         with:
           url: https://staging.example.com
           format: sarif
@@ -64,7 +59,9 @@ URL, and there is no general way to map one to the other.
 ### Findings in the test-report panel
 
 ```yaml
-      - uses: mattkerr09/docket-site@v0.1.0
+      - uses: mattkerr09/docket-site@v1.3.147
+        env:
+          DOCKET_LICENCE_KEY: ${{ secrets.DOCKET_LICENCE_KEY }}   # JUNIT needs a licence
         with:
           url: https://staging.example.com
           format: junit
@@ -78,7 +75,7 @@ URL, and there is no general way to map one to the other.
 One testcase per check, so the panel reads "93 tests, 4 failed". A check that
 ran and found nothing passes; a check that could not run is **skipped**, never
 passed. If the crawl reached no pages at all, every check is skipped and none
-is green — a passing test report is read as a guarantee, and an audit that
+is green: a passing test report is read as a guarantee, and an audit that
 read nothing has not earned one.
 
 ## Inputs
@@ -91,7 +88,7 @@ read nothing has not earned one.
 | `format` | `text` | `text`, `sarif` or `junit`. |
 | `output-file` | `docket-report` | Base name for the `sarif`/`junit` file. |
 | `render` | `0` | Pages to run through WebKit first. Much slower. |
-| `version` | `v0.1.0` | Docket release tag to install. |
+| `version` | the latest release when this file was published | Docket release tag to install. |
 
 `fail-on` defaults to `critical` deliberately. Almost every real site carries
 HIGH findings, and a gate that fails on ordinary work gets wrapped in
@@ -102,7 +99,7 @@ HIGH findings, and a gate that fails on ordinary work gets wrapped in
 | Code | Meaning |
 |---|---|
 | `0` | Ran, found nothing at or above the threshold |
-| `1` | Docket could not run — a tool failure, not a finding about your site |
+| `1` | Docket could not run: a tool failure, not a finding about your site |
 | `2` | Ran, found something at or above the threshold |
 
 `1` and `2` are deliberately distinct. "Your site is broken" and "the tool is
@@ -112,7 +109,7 @@ that should stop a deploy.
 
 ## Gating on what this deploy broke
 
-An absolute threshold is the wrong question for a pipeline — every real site
+An absolute threshold is the wrong question for a pipeline: every real site
 carries standing findings, so a bar tight enough to catch a regression fails
 every build and one loose enough to pass catches nothing. `docket diff` compares
 two audits and fails only on what is new or worse. It is not wired into this
@@ -125,6 +122,6 @@ action yet; run it directly for now:
 ## What this action deliberately does not do
 
 It does not cache the download between runs, does not post a PR comment, and
-does not upload anything anywhere — it installs, audits, and exits with a code.
+does not upload anything anywhere. It installs, audits, and exits with a code.
 It is not published to the GitHub Marketplace; reference it by repository as
 shown above.

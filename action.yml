@@ -1,5 +1,5 @@
 name: 'Docket SEO audit'
-description: 'Crawl a site and fail the build on SEO regressions. Apple Silicon macOS runners only.'
+description: 'Crawl a site and fail the build on SEO regressions, on Apple silicon macOS. For Linux runners use mattkerr09/docket-audit-action.'
 author: 'docketseo.app'
 
 branding:
@@ -54,15 +54,16 @@ outputs:
 runs:
   using: composite
   steps:
-    # Docket is Apple Silicon only. Failing here with a sentence someone can act
-    # on beats failing later inside hdiutil with a message about a corrupt
-    # image, which is what an ubuntu-latest run would otherwise produce.
+    # This action installs the Apple silicon DMG. Failing here with a sentence
+    # someone can act on beats failing later inside hdiutil with a message about
+    # a corrupt image. Docket also ships a Linux build, and
+    # mattkerr09/docket-audit-action installs whichever one the runner needs.
     - name: Check the runner
       shell: bash
       run: |
         if [ "$(uname -s)" != "Darwin" ] || [ "$(uname -m)" != "arm64" ]; then
-          echo "::error::Docket runs on Apple Silicon macOS only. This runner is $(uname -s)/$(uname -m)."
-          echo "::error::Use 'runs-on: macos-latest'. For a Linux-only pipeline, Screaming Frog's CLI is the right tool."
+          echo "::error::This action installs Docket for Apple silicon macOS. This runner is $(uname -s)/$(uname -m)."
+          echo "::error::For Linux or Intel runners use mattkerr09/docket-audit-action@v1, which runs Docket's Linux build."
           exit 1
         fi
 

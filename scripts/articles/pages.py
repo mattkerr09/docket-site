@@ -663,11 +663,10 @@ claims everything invites the client to test the claim.</p>
 def for_developers() -> Path:
     """The deploy gate, for the people who own the pipeline.
 
-    Every figure here is measured or quoted, and the platform limitation leads
-    rather than hides at the bottom: a developer whose runners are Ubuntu needs
-    to know in the first paragraph that this will not work, because the only
-    thing worse than losing that reader is wasting twenty minutes of their time
-    first.
+    Every figure here is measured or quoted, and what runs where leads rather
+    than hides at the bottom. Until 2026-11-05 this page told Ubuntu users the
+    action would not work and sent them to another tool; Docket's Linux build
+    had shipped by then, and mattkerr09/docket-audit-action installs it.
     """
     body = f"""
 <p class="lede">Docket's CLI exits <code>2</code> when it finds a critical issue, so
@@ -677,19 +676,20 @@ nothing else has to be installed. Auditing {F.ci_page_cap()} pages took a median
 ({F.ci_fastest_seconds()}s to {F.ci_slowest_seconds()}s, measured {F.ci_measured()}), which is
 short enough to sit on every pull request without anyone noticing the build got slower.</p>
 
-<h2>Read this first: your runners are probably Linux</h2>
+<h2>Linux and macOS runners</h2>
 
-<p>The action installs the Apple silicon build of the macOS app, and the Linux CLI is
-x86_64, so the action needs a macOS runner. It runs on GitHub Actions'
-<a href="https://docs.github.com/en/actions/reference/runners/github-hosted-runners"><code>macos-latest</code></a>,
-which is arm64, and it does not run on <code>ubuntu-latest</code> at all. If your pipeline is
-Linux and you are not willing to add a macOS job to it, stop reading and use
-<a href="https://www.screamingfrog.co.uk/seo-spider/user-guide/general/">Screaming Frog's
-command line interface</a> instead: it is available for Windows, Mac and Ubuntu Linux, it runs
-headless, and for a Linux-only pipeline it is simply the right tool. That is a real advantage
-and there is no version of this page where it is not.</p>
+<p>The command line ships as a Linux build (x86_64) as well as inside the Mac app, so it runs on
+GitHub Actions' <code>ubuntu-latest</code> and <code>macos-latest</code>. The simplest way in is
+the action, <a href="https://github.com/mattkerr09/docket-audit-action"><code>mattkerr09/docket-audit-action</code></a>:
+it downloads the build the runner needs, checks it against the release's checksums, runs the
+audit and fails the job at the severity you set. There is no Linux ARM or Windows build of the
+command line yet.</p>
 
-<p>Everything below assumes you are willing to run one macOS job. It costs more than a Linux one (see the arithmetic further down), and it is the whole of the catch.</p>
+<p>On a hosted runner it runs Docket's free version, which needs no key: the score, the count of
+problems in each area, the most important problem in full, and the exit code. That is enough to
+gate a deploy. The full findings and the SARIF and JUnit files below need a licence key, and a
+licence activates on {F.licence_covers()}. A fresh hosted runner is a new computer each time, so
+use the key on a self-hosted runner, which keeps its one activation.</p>
 
 <h2>Where the binary actually is</h2>
 
@@ -709,20 +709,15 @@ on: [pull_request]
 
 jobs:
   seo:
-    runs-on: macos-latest          # arm64. ubuntu-latest will not work.
+    runs-on: ubuntu-latest
     steps:
-      - name: Install Docket
-        run: |
-          curl -sL -o docket.dmg {DMG}
-          hdiutil attach -nobrowse -quiet docket.dmg -mountpoint /Volumes/Docket
-          cp -R /Volumes/Docket/Docket.app /Applications/
-          echo "/Applications/Docket.app/Contents/Resources/docket" &gt;&gt; "$GITHUB_PATH"
+      - uses: mattkerr09/docket-audit-action@v1
+        with:
+          url: https://staging.example.com
+          fail-on: critical</code></pre>
 
-      - name: Audit staging
-        run: docket audit https://staging.example.com -n 100 --fail-on critical</code></pre>
-
-<p>No runtime to install, no <code>pip install</code>, no lockfile to resolve. The download is
-{DMG_SIZE} and it is notarised by Apple, so nothing has to be talked past Gatekeeper. Process
+<p>No runtime to install, no <code>pip install</code>, no lockfile to resolve. On macOS the
+download is the {DMG_SIZE} app, notarised by Apple, so nothing has to be talked past Gatekeeper. Process
 overhead was {F.ci_overhead_seconds()}s of the wall-clock in every run measured; effectively all
 of the time is the crawl itself, at about {F.ci_seconds_per_page()} seconds per page.</p>
 
@@ -772,7 +767,7 @@ was impossible is worse than one that fails, because the team believes the gate 
 <h2>Findings on the Security tab instead of in the log</h2>
 
 <p>An exit code tells a build to stop and nothing else, so whoever sees red opens the log and
-reads text. <code>-f sarif</code> writes SARIF 2.1.0, the format GitHub, GitLab and Azure all
+reads text. With a licence key in <code>DOCKET_LICENCE_KEY</code>, <code>-f sarif</code> writes SARIF 2.1.0, the format GitHub, GitLab and Azure all
 ingest, and the findings become listed alerts with their severity, their description and the
 fix attached:</p>
 
@@ -799,7 +794,7 @@ nonsense, so those travel as the rule's <code>helpUri</code> instead.</p>
 
 <h2>Findings in the test-report panel</h2>
 
-<p><code>-f junit</code> writes JUnit XML, which is the report widget every CI system already has: GitLab, Jenkins, Azure, Buildkite, CircleCI. The shape is one testcase per check, so the
+<p>With a key, <code>-f junit</code> writes JUnit XML, which is the report widget every CI system already has: GitLab, Jenkins, Azure, Buildkite, CircleCI. The shape is one testcase per check, so the
 panel reads like a test run ( {N_CHECKS} tests, four failed) rather than handing
 you a wall of text.</p>
 
@@ -809,28 +804,30 @@ passed. And if the crawl reached no pages at all, every check is skipped and non
 one. Failures use the same threshold as the exit code, so a build cannot go green while showing
 red tests.</p>
 
-<h2>A GitHub Action, so you do not maintain the shell</h2>
+<h2>The older action, for SARIF and JUnit on macOS</h2>
 
-<p>The four lines above work and will keep working. If you would rather not own them:</p>
+<p><code>mattkerr09/docket-audit-action</code> is the one to use. This site's own repository also
+carries an action, for an Apple silicon macOS runner with a licence key, that writes the SARIF or
+JUnit file for you:</p>
 
 <pre><code>      - uses: mattkerr09/docket-site@{RELEASE}
+        env:
+          DOCKET_LICENCE_KEY: ${{{{ secrets.DOCKET_LICENCE_KEY }}}}
         with:
           url: https://staging.example.com
           fail-on: critical
           format: junit          # or sarif, or text</code></pre>
 
-<p>It checks the runner first and fails with a sentence you can act on if it is not Apple
-Silicon macOS, rather than letting you find out inside an <code>hdiutil</code> error. Full
-inputs and exit codes are in
-<a href="https://github.com/mattkerr09/docket-site/blob/main/ACTION.md">ACTION.md</a>. It is
-not published to the GitHub Marketplace. Reference it by repository as shown.</p>
+<p>It checks the runner first and stops with a sentence you can act on if it is not Apple
+silicon macOS. Full inputs and exit codes are in
+<a href="https://github.com/mattkerr09/docket-site/blob/main/ACTION.md">ACTION.md</a>.</p>
 
 <h2>What it costs to run</h2>
 
-<p>macOS minutes are the expensive ones. GitHub
+<p>On <code>ubuntu-latest</code> a run is billed at GitHub's Linux rate. GitHub
 <a href="https://docs.github.com/en/billing/reference/actions-minute-multipliers">publishes</a>
-{F.gh_macos_per_min()} per minute for a standard macOS runner against {F.gh_linux_per_min()}
-for Linux ( about {F.gh_macos_multiple()} times), and billed minutes round up. The measured
+{F.gh_linux_per_min()} per minute for Linux against {F.gh_macos_per_min()} for a standard macOS
+runner (about {F.gh_macos_multiple()} times), and billed minutes round up. On macOS the measured
 audit is well under a minute, so a run bills as one: roughly
 <strong>{F.gh_gate_cost_cents()} cents per gate</strong>, or {F.gh_monthly_cost(200)} for two
 hundred pull requests in a month.</p>
@@ -908,6 +905,7 @@ benchmark, and measure your own.</p>
     return render(
         cat="for", slug="developers",
         title="SEO checks in your pipeline: a CLI gate and an MCP server",
+        modified="2026-11-05",  # Linux runners via mattkerr09/docket-audit-action
         desc=(f"Docket's CLI exits 2 on a critical finding, so it gates a deploy. "
               f"{F.ci_page_cap()} pages in a median {F.ci_median_seconds()}s across "
               f"{F.ci_sites()} sites. It also serves MCP to AI assistants."),
@@ -922,9 +920,9 @@ benchmark, and measure your own.</p>
              "clean, 2 when it finds something at or above your threshold, and 1 only when "
              "the tool itself could not run."),
             ("Does Docket run on GitHub Actions?",
-             "On macos-latest, which is arm64. The action installs the Apple silicon build, "
-             "so it will not run on ubuntu-latest. If your pipeline is Linux-only, Screaming Frog's CLI runs "
-             "on Windows, Mac and Ubuntu Linux and is the better fit."),
+             "Yes, on ubuntu-latest and macos-latest. mattkerr09/docket-audit-action installs the right "
+             "build for the runner, runs the free version, which needs no key, and fails the job at the "
+             "severity you set. There is no Linux ARM or Windows build of the command line yet."),
             ("How long does a Docket audit take in a pipeline?",
              f"A median of {F.ci_median_seconds()} seconds for {F.ci_page_cap()} pages across "
              f"{F.ci_sites()} real sites measured on {F.ci_measured()}, or roughly "
