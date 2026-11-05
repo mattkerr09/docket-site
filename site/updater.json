@@ -1,19 +1,19 @@
 {
-  "version": "1.3.146",
-  "notes": "Docket 1.3.146\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $59, or $29.50 at the Black Friday price until 30 November, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *A robots.txt that shuts Docket out is obeyed in full.* When a site's robots.txt disallows everything, Docket\n  already stopped crawling at the address you typed. It still went on to ask for the site's sitemap locations,\n  llms.txt, favicon and a test address. It no longer does: it reads robots.txt and the address you typed, and the\n  checks that would have needed those files say nothing rather than calling them missing.\n- *The crawler fetches your starting page once.* It used to request the page you typed up to three times in one\n  audit, for the crawl and its own checks. It now requests it once and reuses that copy, on every site.\n\n99 checks across 13 areas.",
-  "pub_date": "2026-11-04T23:12:48Z",
+  "version": "1.3.147",
+  "notes": "Docket 1.3.147\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $59, or $29.50 at the Black Friday price until 30 November, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *Put your own name and logo on your reports.* In Reports, open Report branding, type your agency's name and pick\n  your logo. From then on the PDF and HTML reports you export carry your name and logo in place of Docket's, say\n  \"Prepared by\" you, and refer to \"this audit\" rather than to Docket. Part of the paid version. From the command\n  line, `--brand-name` and `--brand-logo` (a JPEG) brand one report.\n- *\"1 item\", not \"1 items\".* The line under the score now counts a single fixable item correctly.\n\n99 checks across 13 areas.",
+  "pub_date": "2026-11-05T01:53:30Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTZGbGJZTmdmSXNNSW9PWDM1Umc3TnA2bGplVG9sUGlPMHFHMDhHd1A5QUtLNm9NT3NXbUVEQ2Fwck9XbW5TMDFRZ2dVZkQ2bnZhdm5FOEU0d0psaEFjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODMzNDA0CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKbDh0RjRSd1JNeGNVNnlpMVlGUlh1Z0pKUVE2VXBFdmFsV0RaaFpDcGlYZit2dkcyQUxvVGU0ZjdiVEdmUG1uUldZenJVelk0RGlQRjBlMXM4d3lNQ3c9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.146/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTh2TEpzT2pYMkwvcnV6RWdrRitReGRwZTcxVllVK1RXNkh1ajBpMjZJbkFWREJCOXZMZmFFNW8wQkZydXhPc3Mwa25iUUdRMlJrQ0Y0OWNoa0hKRUFNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODQzMDMzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKNUt6b215OXRvRW1IclNZWmhTbGFWRG1KdDdHWkJlckc1SWJkUmNQa0RsTWxmM0NsSERoSHQ1OXN6Qi80QjhMMHoyOVZvdlJ5ZllGR0luZTFhVVZSQlE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTlTSFdGQUNIVUdCbHQ0c0VRSEhJZEF0VzJDT2tXV0tVT2E5R3VpU1NYMWQ2ZDZUeGZhdkhtWDRzUlhFMm9rYmZhcDlUU2lMSDFtc0pUWkhtdUZEZndZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODMzNjYxCWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6Cjl1amIrMjNVMUduaFlha1JkaWxzSThUZHVNVCt5d2NlYjVueCthSElYb2JlZDJJUE5kajQ5eTVTcWJNMlNUa01Da3BXTWF6NXZoRGVOV2t6ZW5EN0FnPT0K",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.146/Docket-x86_64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTk3eTBCU0NFVGd6cnVPcHFKZjNjMTBZRm9YUWJSMHRWVXl1czc2NFJYRnhTZStWdEZTdVFSdDVRRncyVVlNZzFlT21sUExqNDJUWU5qQjEzYlFtdUE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODQzMzExCWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6CkxoTkh0SzdOdGtTSSthMGx1emZuYXdGbE1mUHZ1TDE0VzBDV3BONkNVbWR1b1FQUC9iYnZTWEdZUHlEL05lcnlhYTR2SzJaQVJpK2VoOHEwZlhyWUNRPT0K",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket-x86_64.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXd0Y1pVaWtIRDdDQnludXI4a0lRR2dkUXl1ckIya0xtNE9GaVUrSVRUcjE4QTNqWkRsaTM4UnhNZERPV096S3puTlRJbE1xNlZaSlJtZFdJcXVZUUFFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODMzNzcwCWZpbGU6RG9ja2V0LTEuMy4xNDYteDY0LXNldHVwLmV4ZQpqTUFnZ25BRG42enhRazByRUhqRXFFUzdmVHpHVldhNGYwclIxdG1VMWtUaEpaT1dDMnhuaDlnc0srUldkWTNiYVBzMlo3d0g3ZDZkeC95Nllmd2xEUT09Cg==",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.146/Docket-1.3.146-x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTYzaTlFdDF4K2FXN09ybDVkQ1MyRlYxVGRUT0VYQjRrbWtVaStrcWZSdjdSL0NpcWlvckxiSTV1WWZiNU1QMS9oWk5PRWlxL1BjR3BEMHVvSzIwSUFVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODQzNDE2CWZpbGU6RG9ja2V0LTEuMy4xNDcteDY0LXNldHVwLmV4ZQpRd09qRFZMQWVzbVFpWXE1cDRyNmVoR1pqU2x4ZDcySUN5MkFZZDNZdzkyVjlLZGMvdmZOalM1QVB0RnEyeTJnaDJwV0g4NjJCTTc3cFhmYmlZeXFCUT09Cg==",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket-1.3.147-x64-setup.exe"
     }
   }
 }

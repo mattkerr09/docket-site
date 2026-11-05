@@ -567,11 +567,20 @@ already in the right fields will paste it in the same afternoon.</p>
 <p>That is why every finding carries the change rather than the category, and why the CSV
 export exists: it drops straight into a Jira or Linear import without anyone retyping it.</p>
 
+<h2>Reports under your own name</h2>
+<p>In the paid version, open Reports and then Report branding, and add your agency's name and logo.
+From then on the PDF and HTML reports carry your logo and name in place of Docket's, say
+&ldquo;Prepared by&rdquo; you, and refer to &ldquo;this audit&rdquo; rather than to Docket. The CSV
+and JSON exports carry no branding at all. From the command line, <code>--brand-name</code> and
+<code>--brand-logo</code> do the same for one report. One thing stays: when a finding quotes
+Docket's user agent, <code>Docket-SEO-Audit</code>, it says so, because that is the name in your
+client's server logs.</p>
+
 <h2>What to tell clients it cannot do</h2>
 <p>Say it early rather than being asked. Docket has no per-page backlink or anchor-text data
-and no search volumes. You will still need an index tool for keyword research. Its PDF carries Docket's
-branding, so if you sell audits under your own name with white-label reports, a tool built for that fits better:
-<a href="/vs/seoptimer-alternative/">the SEOptimer comparison</a> shows what one names. Rendering runs
+and no search volumes. You will still need an index tool for keyword research. Reports use one layout and
+have no custom report domain; if you need either, <a href="/vs/seoptimer-alternative/">the SEOptimer comparison</a>
+shows a tool that names both. Rendering runs
 automatically on a small sample of each crawl rather than on every page, and the sample is
 drawn from the shallowest pages once utility pages such as cart, checkout and login are set
 aside, so a very large single-page application still wants a dedicated rendering crawl.</p>
@@ -583,6 +592,7 @@ claims everything invites the client to test the claim.</p>
     return render(
         cat="for", slug="agencies",
         title=f"Docket for SEO agencies: unlimited client audits for {PRICE_STR}",
+        modified="2026-11-05",  # report branding (1.3.147)
         desc=("Per-crawl metering makes agencies ration audits. Docket runs locally with no "
               "per-seat or per-crawl cost, and re-audits on a schedule while the app is open."),
         h1="Docket for SEO agencies",
@@ -595,7 +605,9 @@ claims everything invites the client to test the claim.</p>
              "with no per-seat or per-crawl limits, so you can audit as many client and "
              "prospect sites as you like and charge for the work."),
             ("Can I white-label the report?",
-             "The PDF is Docket-branded. The CSV and JSON exports carry no branding and can be "
+             "Yes, in the paid version. Add your agency's name and logo under Reports, then Report "
+             "branding, and the PDF and HTML reports carry them in place of Docket's. The CSV and "
+             "JSON exports carry no branding and can be "
              "dropped into your own template."),
         ],
     )

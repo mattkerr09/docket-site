@@ -780,7 +780,7 @@ and UTM parameters on internal links.</li>
 <tr><td>AI crawler audit</td><td class="yes">Yes</td><td class="no">Not listed as a check. Its user-agent setting names AI crawlers</td></tr>
 <tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
 <tr><td>Local business SEO</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
-<tr><td>Client-ready PDF</td><td class="yes">Built in, with Docket's name on it (not white-label)</td><td>Export and build it yourself</td></tr>
+<tr><td>Client-ready PDF</td><td class="yes">Built in, with your name and logo if you add them</td><td>Export and build it yourself</td></tr>
 <tr><td>Scheduled re-audits</td><td class="yes">Yes, while the app is open</td><td>Scheduling in the paid tier, and it runs headless</td></tr>
 </tbody></table></div>
 
@@ -1255,8 +1255,7 @@ bought something. Docket has no equivalent view.</li>
 <li><strong>Crawling somewhere other than your desk.</strong> Audits scheduled daily, weekly or
 monthly run on their machines whether your laptop is open or shut, at 20,000 pages an audit on
 Pro and Guru and 100,000 on Business.</li>
-<li><strong>More than one person.</strong> Seats, shared projects, white-label reports carrying
-someone else's logo, dashboards, alerts.</li>
+<li><strong>More than one person.</strong> Seats, shared projects, dashboards, alerts.</li>
 </ul>
 
 <p>Their knowledge base also says Site Audit can "check over 140+ website issues", against
@@ -1307,7 +1306,8 @@ Business, and their knowledge base notes those reset on the 1st rather than roll
 <tr><td>Keyword volume &amp; difficulty</td><td class="no">None</td><td class="yes">Yes</td></tr>
 <tr><td>Rank tracking</td><td class="no">No</td><td class="yes">500 keywords daily on the entry plan</td></tr>
 <tr><td>Trending over time</td><td>Each run kept locally as JSON</td><td class="yes">Charted by issue category</td></tr>
-<tr><td>Seats and white-label reports</td><td class="no">No</td><td class="yes">Yes</td></tr>
+<tr><td>Seats</td><td class="no">No</td><td class="yes">Yes</td></tr>
+<tr><td>Reports with your own name and logo</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
 <tr><td>AI crawler access</td><td class="yes">Per bot, split search from training</td><td class="yes">Per bot</td></tr>
 <tr><td>Account required</td><td class="yes">None</td><td>Yes</td></tr>
 <tr><td>Runs on</td><td>macOS on {MAC_HW}</td><td class="yes">Any browser</td></tr>
@@ -1915,10 +1915,10 @@ def seoptimer() -> Path:
     """The cheapest subscription a buyer comparing Docket will find, and it wins on one thing.
 
     SEOptimer starts at a third of what Docket costs per month and is built for
-    a job Docket has no answer to: white-label audit reports an agency puts its
-    own branding on, and an embeddable audit form that captures leads. Both are
-    said before anything else, because a reader who wants either should buy
-    theirs and this page should tell them so.
+    selling audits: white-label reports with a custom report domain and
+    templates, and an embeddable audit form that captures leads. Since 1.3.147
+    Docket puts an agency's name and logo on its reports, but has no report
+    domain, templates or lead form, and the page says so before anything else.
 
     The honest comparison is not features, it is the meter. Every plan buys a
     fixed number of crawls per month; Docket's crawl limit is the machine. Read
@@ -1932,10 +1932,11 @@ def seoptimer() -> Path:
     """
     body = f"""
 <p class="lede"><strong>The short answer:</strong> the SEOptimer alternative that fits depends on what you use SEOptimer
-for. It is a cloud audit tool sold by the month ({price('seoptimer')}), with white-label PDF reports and a
-lead-capture widget, and every plan buys a fixed number of crawls. Docket is an audit you run on your own Mac, bought
-once for {PRICE_STR}, with no crawl meter and a free version. If you sell audits under your own brand, stay with
-SEOptimer. If you audit your own sites and want unlimited re-runs, pick Docket.</p>
+for. It is a cloud audit tool sold by the month ({price('seoptimer')}), with white-label PDF reports on a custom
+domain and a lead-capture widget, and every plan buys a fixed number of crawls. Docket is an audit you run on your own
+Mac, bought once for {PRICE_STR}, with no crawl meter, a free version, and reports that can carry your name and logo.
+If you sell audits from your own report address or collect leads with an audit form, stay with SEOptimer. If you want
+to hand clients a report under your own name, or re-run audits as often as you like, pick Docket.</p>
 
 <h2>At a glance</h2>
 <p class="table-note">Read from SEOptimer's pricing page on {CHECKED_HUMAN["seoptimer"]}. Each plan
@@ -1945,16 +1946,16 @@ offers a {_SEOPT_TRIAL_DAYS} day free trial.</p>
 <tbody>
 {"".join(f"<tr><td>SEOptimer {n}</td><td>${p}</td><td>{c}</td><td>{f}</td></tr>" for n, p, c, f in _SEOPT_PLANS)}
 <tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td><td class="yes">Unmetered</td>
-    <td>A Docket-branded report. No white-label mode and no lead-capture tool</td></tr>
+    <td>Reports with your name and logo. No custom report domain and no lead-capture tool</td></tr>
 </tbody></table></div>
 {_top_cta("vs-seoptimer-top")}
 
 <h2>What SEOptimer does that Docket does not</h2>
 
 <ul>
-<li><strong>White-label reports.</strong> Its paid plans name white-label PDF reporting, a
-custom report domain and report templates. An agency can hand a client an audit with its own
-branding on it. Docket produces a Docket-branded report and has no white-label mode.</li>
+<li><strong>A report domain and templates.</strong> Its paid plans name white-label PDF reporting, a
+custom report domain and report templates. Docket puts your name and logo on its PDF and HTML
+reports, in one layout, and has no report domain.</li>
 <li><strong>Lead generation.</strong> Its top plan, Max, names a lead generation tool, and its
 feature list says &ldquo;Embed an SEO Audit Widget into your site&rdquo;. That is a marketing
 product. Docket is a tool you run, and has nothing like it.</li>
@@ -1994,8 +1995,8 @@ ordering yourself.</p>
 <h2>When to pick SEOptimer instead of Docket</h2>
 
 <ul>
-<li><strong>You sell audits.</strong> You need your own branding on the report, a custom report
-domain and templates. Docket produces a Docket-branded report.</li>
+<li><strong>You sell audits from your own web address.</strong> You need a custom report domain
+or your own report templates. Docket's reports carry your name and logo in one fixed layout.</li>
 <li><strong>You want an audit form on your site that collects leads.</strong> SEOptimer names a tool
 for that. Docket has nothing like it.</li>
 <li><strong>You only need one audit.</strong> A subscription you can cancel is better value than a
@@ -2015,9 +2016,9 @@ against the same limit: it caps pages per session rather than crawls per month.<
 <li><strong>A free one.</strong> Docket's free version shows your score, how many problems each area has and the top
 problem in full, on any site, with no key. <a href="/best/free-seo-audit-tools/">The free SEO audit tools we compared</a>
 are the other place to start.</li>
-<li><strong>White-label reports and a team.</strong> That is what a platform subscription bundles. Our
-<a href="/vs/semrush-site-audit-alternative/">Semrush comparison</a> lists seats and white-label reports among what it
-buys. Docket does neither.</li>
+<li><strong>A team.</strong> That is what a platform subscription bundles. Our
+<a href="/vs/semrush-site-audit-alternative/">Semrush comparison</a> lists seats among what it buys. Docket has no
+team accounts, though its reports can carry your name and logo.</li>
 <li><strong>Visual reports an agency can present.</strong> <a href="/vs/sitebulb-alternative/">Sitebulb</a> turns crawl
 data into reports of that kind.</li>
 <li><strong>A desktop crawler for raw data.</strong> <a href="/vs/screaming-frog-alternative/">Screaming Frog</a> gives
@@ -2031,7 +2032,7 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
 
     return render(
         cat="vs", slug="seoptimer-alternative",
-        modified="2026-10-19",
+        modified="2026-11-05",  # report branding (1.3.147): Docket's reports can carry your name and logo
         title=f"SEOptimer alternative for Mac: {PRICE_STR} once, no crawl limit",
         desc=(f"SEOptimer's plans run ${_SEOPT_LO} to ${_SEOPT_HI} a month for {_SEOPT_CRAWLS_LO} to {_SEOPT_CRAWLS_HI} "
               f"crawls and add white-label reports. Docket is {PRICE_STR} once for any site, with a free version and no crawl meter."),
@@ -2041,9 +2042,9 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
         faq=[
             ("What is a good SEOptimer alternative for Mac?",
              "Docket, if you audit your own sites and want unlimited re-runs: it runs on your Mac, "
-             "is bought once and has no crawl allowance. It is not an alternative if you sell "
-             "white-label audit reports or need an embeddable lead-capture form, which SEOptimer "
-             "does and Docket does not."),
+             "is bought once and has no crawl allowance, and its reports can carry your name and logo. "
+             "It is not the one to pick if you need a custom report domain or an embeddable "
+             "lead-capture form, which SEOptimer has and Docket does not."),
             ("Does SEOptimer have a free trial?",
              f"Its pricing page offers a 14 day free trial on each plan. Docket's free version "
              f"shows your score, how many problems each area has and the top problem in full, with no key and no time "
@@ -2052,18 +2053,19 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
              f"Its pricing page lists three plans, Starter, Pro and Max, at {price('seoptimer')}. "
              f"Docket is {PRICE_STR} once."),
             ("Is Docket an SEOptimer alternative?",
-             "For auditing your own sites, yes. For selling audits it is not: SEOptimer does "
-             "white-label PDF reporting with a custom domain and an embeddable lead-capture "
-             "audit form, and Docket has no equivalent to either."),
+             "For auditing sites and handing clients a report under your own name and logo, yes. "
+             "If you sell audits from a custom report domain or collect leads with an embedded "
+             "audit form, no: SEOptimer has both and Docket has neither."),
             ("Is there a free SEOptimer alternative?",
              "Docket's free version shows your score, how many problems each area has and the top "
              "problem in full, on any site, with no key and no time limit. It is not the full "
              f"report, which is {PRICE_STR} once. Our guide to free SEO audit tools compares the "
              "other free options we looked at."),
             ("Can I get white-label reports from a SEOptimer alternative?",
-             "Not from Docket. Its PDF carries Docket's branding, and its CSV and JSON exports "
-             "carry none. SEOptimer names white-label PDF reporting on its Pro and Max plans, and "
-             "a platform such as Semrush bundles white-label reports with seats."),
+             "Yes. In the paid version, Docket's PDF and HTML reports can carry your agency's name "
+             "and logo in place of Docket's (Reports, then Report branding), and its CSV and JSON "
+             "exports carry no branding at all. SEOptimer also names a custom report domain and "
+             "report templates on its Pro and Max plans."),
             ("Which is cheaper, Docket or SEOptimer?",
              f"SEOptimer's Starter plan, for its first {_months_past_docket(_SEOPT_LO) - 1} months: "
              f"${_SEOPT_LO} a month against Docket's {PRICE_STR} once. From month "

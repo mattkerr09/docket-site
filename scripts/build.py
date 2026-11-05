@@ -224,8 +224,8 @@ def build_hubs() -> list[Path]:
              "does neither. What Docket checks is whether those crawlers can reach you "
              "at all: a precondition rather than the same question."),
             ("/vs/seoptimer-alternative/", "Docket vs SEOptimer",
-             "The cheapest way in, and built for a job Docket does not do: white-label "
-             "reports and an embeddable lead-capture audit. The real difference is the "
+             "The cheapest way in, and built for selling audits: reports on a custom "
+             "domain and an embeddable lead-capture audit. The real difference is the "
              "meter: SEOptimer buys you a set number of crawls a month, Docket does not "
              "count them."),
         ],
@@ -694,7 +694,9 @@ def write_llms_txt() -> None:
         "No per-page backlinks or anchor text, and no monthly search volumes.",
         "Copy-quality checks are English-only; the technical checks work in any language.",
         "Not built, on purpose: rank tracking, a cloud version, team accounts, server-side "
-        "scheduling, and white-label or uptime monitoring.",
+        "scheduling and uptime monitoring.",
+        "Reports can carry your own name and logo in place of Docket's (paid version: Reports, "
+        "then Report branding; or docket audit --brand-name and --brand-logo).",
         "Scheduled re-audits run only while Docket is open: the schedule is a thread "
         "inside the app, so quitting it stops the clock.")
 
