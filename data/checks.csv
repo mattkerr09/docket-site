@@ -56,8 +56,8 @@ intl.hreflang_self,indexability,Crawlability & indexing,hreflang self-reference
 intl.hreflang_targets,indexability,Crawlability & indexing,hreflang target health
 links.broken_external,links,Links,Broken outbound links
 links.http_on_https,links,Links,Insecure internal links
-links.internal_volume,links,Links,Internal linking
-links.money_page_weak_inlinks,links,Links,Internal linking
+links.internal_volume,links,Links,Internal links into and out of each page
+links.money_page_weak_inlinks,links,Links,Internal links to the pages that sell
 links.nav_not_in_html,links,Links,Navigation reachable without JavaScript
 links.outbound_quality,links,Links,Outbound link handling
 links.pagination,links,Links,Pagination handling

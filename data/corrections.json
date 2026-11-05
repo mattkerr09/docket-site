@@ -2,6 +2,24 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "release": "1.3.149",
+   "date": "2026-11-05",
+   "title": "Notes were counted as problems, and error pages were called refusals",
+   "wrong": "Findings that say \"No action needed\" were counted as problems in every count a reader sees: per area, in \"Docket found N more problems\" and in the report's \"issues found\", so an offline run, which does less, showed more. A site whose pages all answered with a server error, \"not found\" or JSON was told every page refused Docket access, and the free version's one problem in full was an unrelated HTTPS finding. On a site whose content is built by script, unread areas said \"not applicable\" beside a plain score. A redirect used up two places in the page limit, a site on one port could be crawled through another port on the same host, and reports said Core Web Vitals were not measured when Google's field data had been read.",
+   "found": "An independent full audit of the product and this site, ordered by the owner, ran each case against local test sites.",
+   "fixed": "Counts of problems leave notes out, and notes keep their own label. The verdict names what came back, and the free version shows the problem that explains it. Unread areas say \"not assessed\" and the score says when it is not a verdict on the site. The page limit counts pages kept, the port is part of what makes a site, and reports say what this run found about Core Web Vitals.",
+   "tests": [
+    "test_a_notice_is_not_a_problem.py",
+    "test_an_error_homepage_is_not_a_refusal.py",
+    "test_the_page_budget_counts_pages_not_requests.py",
+    "test_another_port_on_the_same_host_is_another_site.py",
+    "test_a_report_that_read_core_web_vitals_says_so.py",
+    "test_a_log_list_says_how_many_it_left_out.py",
+    "test_no_two_checks_share_a_title.py",
+    "test_a_free_copy_is_told_only_activation_keeps_audits.py"
+   ]
+  },
+  {
    "release": "1.3.148",
    "date": "2026-11-05",
    "title": "A site that blocked Google was told to unblock AI crawlers first, and software companies were scored as local businesses",
