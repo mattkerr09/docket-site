@@ -87,7 +87,9 @@ Michigan, United States.
 - No per-page backlinks or anchor text, and no monthly search volumes.
 - Copy-quality checks are English-only; the technical checks work in any language.
 - Not built, on purpose: rank tracking, a cloud version, team accounts, server-side
-  scheduling, and white-label or uptime monitoring.
+  scheduling and uptime monitoring.
+- Reports can carry your own name and logo in place of Docket's (paid version:
+  Reports, then Report branding; or docket audit --brand-name and --brand-logo).
 - Scheduled re-audits run only while Docket is open: the schedule is a thread inside
   the app, so quitting it stops the clock.
 
@@ -110,7 +112,7 @@ Michigan, United States.
 - Can I use it for client work? Yes. Audit any number of sites (yours, a client's, a
   prospect's or a competitor's) and charge clients for the work. The licence belongs
   to the person or company that paid; it may not be resold or sublicensed.
-- Does it run on Windows? Yes. Docket v1.3.146 has an installer for 64-bit Windows,
+- Does it run on Windows? Yes. Docket v1.3.147 has an installer for 64-bit Windows,
   17.7 MB, signed by Kerr & Company LLC. It is on the download page beside the Mac app
   and a command-line build for Linux x86_64.
 - How do I get help? Email support@docketseo.app. Questions whose answers would help
