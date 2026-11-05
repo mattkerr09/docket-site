@@ -66,8 +66,10 @@ domain, a queue somewhere fetches it, and you pay monthly for the privilege of b
 what your own HTML says. The crawl is the cheap part. The recurring bill is for the servers,
 and the servers exist because the tool was built as a service rather than as software.</p>
 
-<p>Docket is the other shape. The audit engine is Python with no third-party dependencies at
-all, frozen into the app, and it runs on your Mac. There is no account, no crawl credit, no
+<p>Docket is the other shape. The audit engine is Python, frozen into the app, and it runs on
+your Mac. The crawler and the checks are written on Python's own standard library, with one outside
+package for the list of trusted certificates; the app's window talks to the engine through a small
+web server on your Mac, which brings its own few packages. There is no account, no crawl credit, no
 per-seat price and no queue. Audit the same site forty times in an afternoon; nobody is
 counting, because there is nobody to count.</p>
 

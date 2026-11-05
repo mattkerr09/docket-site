@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import (HAS_SAMPLE, INTEL, INTEL_DMG, N_CHECKS, PAY4, PRICE, PRICE_STR,  # noqa: E402
+from render import (HAS_SAMPLE, INTEL, INTEL_DMG, N_CHECKS, PAY4_BUY, PRICE, PRICE_STR,  # noqa: E402
                     REFUND_DAYS, SAMPLE_REPORT, buy_block, checkout_url, download_url,
                     price_req_html, render)
 
@@ -89,7 +89,7 @@ def audit_next(src: str, *, what: str) -> str:
          data-ev-button="{src}">Buy once, {PRICE_STR}</a>
       {sample}
     </div>
-    <p class="price-line"><span class="price-big">{PRICE_STR}</span><span class="price-pay4">once{PAY4}</span></p>
+    <p class="price-line"><span class="price-big">{PRICE_STR}</span><span class="price-pay4">once{PAY4_BUY}</span></p>
     {price_req_html()}
     <p class="hero-note">{REFUND_DAYS}-day refund, no conditions.</p>
     {intel}

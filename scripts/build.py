@@ -574,7 +574,7 @@ def write_llms_txt() -> None:
     from collections import OrderedDict
 
     from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS,
-                        WINDOWS, WIN_PUBLISHER, WIN_SETUP_SIZE,
+                        SALE_UNDER_FLOOR, WINDOWS, WIN_PUBLISHER, WIN_SETUP_SIZE,
                         FOUNDING_AFTER_DAY, FOUNDING_END_DAY, FOUNDING_NOW, FOUNDING_OPEN, HAS_SAMPLE, LINUX, MACOS, SALE_NAME,
                         N_CHECKS, N_LANES, PRICE_STR, REPO, SAMPLE_REPORT, SELLER,
                         seller_address)
@@ -670,8 +670,11 @@ def write_llms_txt() -> None:
         (f"{SALE_NAME}, all of November: Docket SEO {FOUNDING_NOW} once, until {FOUNDING_END_DAY}. From "
          f"{FOUNDING_AFTER_DAY} it's {PRICE_STR}. The Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
          f"{PRICE_STR}, enter it under \"Have a discount code?\")." if FOUNDING_OPEN else ""),
-        (f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks "
-         f"apart." if BNPL_LIVE else ""),
+        # Audit row 29: at the sale price the checkout offers no instalments, so they are dated, not offered now.
+        ((f"From {FOUNDING_AFTER_DAY}, at {PRICE_STR}, four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, "
+          f"two weeks apart. The {SALE_NAME} of {FOUNDING_NOW} is paid in one payment: the checkout offers no instalments under $50.01."
+          if SALE_UNDER_FLOOR else
+          f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks apart.") if BNPL_LIVE else ""),
         f"{FREE_LINE} The free version needs no key and no account, and runs the same "
         f"full audit; buying unlocks the audit already run, with no second crawl.",
         f"The licence key arrives by email with the receipt and is pasted into the app "
@@ -1252,7 +1255,7 @@ def pricing_page() -> Path:
     article.
     """
     from render import (BNPL_INSTALMENT, DMG_SIZE, FOUNDING_AFTER_DAY, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, PRICE_STR, REFUND_DAYS,
-                        WINDOWS, buy_block, download_url, windows_waitlist)
+                        FOUNDING_NOW, SALE_NAME, SALE_UNDER_FLOOR, WINDOWS, buy_block, download_url, windows_waitlist)
     # The prose below is this page's own. The quality gate's duplicate check
     # judged the first version (the buy block alone) a copy of 18 pages,
     # rightly: a page that is only the shared block says nothing of its own.
@@ -1296,8 +1299,12 @@ the version you bought keeps running.</li>
 
 <h2>How paying works</h2>
 <p>The checkout belongs to Dodo Payments, the reseller and merchant of record for the sale.
-Pay the whole amount at once, or split it with Klarna or Afterpay into four instalments of
-{BNPL_INSTALMENT} a fortnight apart, at no extra charge from us. Once the fourth is paid, nothing
+{(f'''The {SALE_NAME} of {FOUNDING_NOW} is paid at once: the checkout offers no instalments
+on a total under $50.01. From {FOUNDING_AFTER_DAY}, at {PRICE_STR}, you can pay the whole amount at once,
+or split it with Klarna or Afterpay into four instalments of {BNPL_INSTALMENT} a fortnight apart,
+at no extra charge from us.''' if SALE_UNDER_FLOOR else
+f'''Pay the whole amount at once, or split it with Klarna or Afterpay into four instalments of
+{BNPL_INSTALMENT} a fortnight apart, at no extra charge from us.''')} Once the fourth is paid, nothing
 further is ever taken.</p>
 
 <h2>If Docket turns out not to suit you</h2>

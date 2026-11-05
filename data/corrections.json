@@ -2,6 +2,18 @@
  "note": "Each entry is a release that fixed something Docket got wrong. 'release' is a public GitHub release of this site's repo and 'date' is the day it was published (UTC). 'tests' are files in Docket's tests/ folder that fail on the code from before the fix. scripts/verify_corrections.py checks the release, the date and the tests against GitHub and the app repo on every deploy. Newest first. Written from docs/IMPROVEMENT_LOG.md in the app repo; nothing here is added unless the log or a commit says it.",
  "entries": [
   {
+   "release": "1.3.148",
+   "date": "2026-11-05",
+   "title": "A site that blocked Google was told to unblock AI crawlers first, and software companies were scored as local businesses",
+   "wrong": "Under a robots.txt that blocked every crawler, the top problem, the one the free version shows in full, was \"robots.txt blocks 4 AI search crawlers\", with a fix that let those in and left Google blocked. Separately, a software company with its office address and phone in the footer had the Local business SEO area switched on and scored, with or without software schema, while the home page said Docket knows the difference.",
+   "found": "An independent full audit of the product and this site, ordered by the owner, ran both cases against local test sites.",
+   "fixed": "When Google is blocked from the whole site, that problem comes first and the AI crawler problem says it is the same fix. A software site, by its schema or its wording, is not treated as a local business unless something says it serves customers in a place.",
+   "tests": [
+    "test_a_site_that_blocks_google_too_is_told_that_first.py",
+    "test_a_software_company_with_an_office_is_not_a_local_business.py"
+   ]
+  },
+  {
    "release": "1.3.147",
    "date": "2026-11-05",
    "title": "The report cover said \"1 items\"",

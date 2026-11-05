@@ -33,9 +33,9 @@ from render import (_human_date, windows_waitlist, windows_download, WINDOWS, WI
 # read from the engine's own result). Every number in the figure comes from
 # data/free-run.json; none is typed here.
 
-#: The day the MCP config and behaviour on /for/developers/ were last run against the installed app
+#: The day the MCP config and behaviour on /for/developers/ were last run against a notarised copy of the live DMG
 #: (handshake, tools/list, an audit on an unactivated copy). A date, not a version: it stays true.
-MCP_CHECKED_HUMAN = "17 October 2026"
+MCP_CHECKED_HUMAN = "5 November 2026"
 import datetime as _dt  # noqa: E402
 import html as _html  # noqa: E402
 import json as _json  # noqa: E402
@@ -265,7 +265,7 @@ Apple and opens it.</p>
 
 <h2>The command line</h2>
 <p>The same engine ships as a CLI inside the app bundle. It is the whole product, not a
-cut-down version, and it has six subcommands.</p>
+cut-down version, and it has ten subcommands.</p>
 
 <h3><code>docket audit</code>: the full audit</h3>
 <pre><code>docket audit example.com
@@ -379,10 +379,13 @@ takes longer, and if it is outside the part of the ranks Docket reads, Docket sa
 inventing a number. <code>--referring</code> streams the whole graph, several gigabytes, to list the
 domains linking in; it takes minutes and writes nothing to disk.</p>
 
-<h3><code>docket checks</code> and <code>docket serve</code></h3>
-<p><code>checks</code> prints every check the engine runs with its lane and severity.
+<h3><code>docket checks</code>, <code>serve</code>, <code>mcp</code>, <code>licence</code> and <code>version</code></h3>
+<p><code>checks</code> prints every check the engine runs, grouped by area, with its id and title.
 <code>serve</code> runs the local API the desktop app talks to, on 127.0.0.1, which is also
-how you would drive Docket from your own scripts.</p>
+how you would drive Docket from your own scripts. <code>mcp</code> speaks the Model Context
+Protocol over stdio, so an AI assistant can run audits and read kept ones
+(<a href="/for/developers/#mcp">the config to paste</a>). <code>licence --key</code> activates this
+copy and <code>licence</code> on its own shows its state. <code>version</code> prints the version.</p>
 
 <h2>Requirements and limits</h2>
 <ul>
@@ -440,6 +443,7 @@ is gone.</p>
         h1="Download Docket for Mac",
         crumb='<a href="/">Docket</a> / Download',
         body=body,
+        modified="2026-11-05",  # ten subcommands; checks prints area, id and title
         schema_type="WebPage",
     )
 
@@ -875,19 +879,22 @@ client starts Docket itself. In Claude Desktop, add this to
   }}
 }}</code></pre>
 
-<p>Any MCP client takes the same command and argument. There are two tools.
+<p>Any MCP client takes the same command and argument. There are five tools.
 <code>audit_site</code> takes a <code>url</code> and optionally <code>max_pages</code>,
 <code>max_seconds</code> and <code>offline</code>, crawls the site on your Mac and returns the result as
-JSON. <code>list_checks</code> takes no arguments and lists the {N_CHECKS} checks without crawling anything.</p>
+JSON. Three read the audits Docket has kept, without crawling again: <code>get_last_report</code>
+returns the most recent one, <code>explain_finding</code> returns one problem in full with its fix,
+and <code>compare_audits</code> says what changed between two audits of the same site.
+<code>list_checks</code> takes no arguments and lists the {N_CHECKS} checks without crawling anything.</p>
 
 <p>What the assistant gets depends on the copy. An unactivated copy returns the free version: the
 score, how many problems each of the {N_LANES} areas has, and the most important problem in full with
 its fix. With a licence the same call returns every finding and the ranked plan. There is no API key
 and no per-call charge, because the audit runs in the app you installed.</p>
 
-<p class="note"><strong>Checked on {MCP_CHECKED_HUMAN}</strong> against the installed, notarised app, by
+<p class="note"><strong>Checked on {MCP_CHECKED_HUMAN}</strong> against a notarised copy of the current download, by
 speaking the protocol to it directly: the handshake names <code>docket</code> and the app's own version,
-<code>tools/list</code> returns exactly these two tools, and an <code>audit_site</code> call on an
+<code>tools/list</code> returns exactly these five tools, and an <code>audit_site</code> call on an
 unactivated copy returned the score, the counts for all {N_LANES} areas and the top problem in full.
 We did not run it inside any particular assistant, so if your client reads the config differently,
 tell us. The <a href="/how-to/audit-your-site-from-an-ai-assistant/">full walkthrough</a> has the
@@ -2158,11 +2165,14 @@ it; we hold nothing separately.</p>
         cat="legal", slug="privacy",
         title="Privacy policy: what Docket collects, and what it does not",
         desc="Audits run on your Mac and are never uploaded. No account, no "
-             "telemetry. Six third-party scripts, one an advertising pixel. "
+             "telemetry. Five third-party scripts, one an advertising pixel. "
              "What each does and how to stop it.",
         h1="Privacy policy",
         crumb='<a href="/">Docket</a> / Privacy',
         body=body,
+        # From git: 884a2caee, 2026-11-04 (the crawler names the edge-access check sends). Before this the page showed
+        # only "Published 6 August 2026" over changes dated 2 November (Matthew's full audit, 2026-11-04, row 19).
+        modified="2026-11-04",
         schema_type="WebPage",
     )
 
@@ -2321,7 +2331,7 @@ appear on this page and apply from the day they appear, not before.</p>
         h1="Terms of use",
         crumb='<a href="/">Docket</a> / Terms',
         body=body,
-        modified="2026-08-11",
+        modified="2026-11-04",  # from git: 82f9687e6, one licence covers up to 3 computers (audit row 19: read 08-11)
         schema_type="WebPage",
     )
 
@@ -2540,6 +2550,7 @@ the governing law, are on <a href="/legal/terms/">the terms of use page</a>.</p>
         crumb='<a href="/">Docket</a> / Refunds',
         body=body,
         published="2026-08-11",
+        modified="2026-11-02",  # the price it quotes became $59 on 2026-11-02 (render.PRICE); audit row 19
         schema_type="WebPage",
     )
 

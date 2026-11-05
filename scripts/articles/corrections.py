@@ -137,7 +137,10 @@ read the finding against the page itself. If Docket was wrong, the fix gets a te
 """
     return render(
         cat="learn", slug=SLUG,
-        modified="2026-10-19",
+        # The page changes when an entry is added, so its date is the newest entry's. A typed "2026-10-19" stood over
+        # entries through 4 November (Matthew's full audit, 2026-11-04, row 19). verify_datelines accepts dates from
+        # data/corrections.json as a source for this reason.
+        modified=max([e["date"] for e in load()] + ["2026-10-19"]),
         title="What Docket got wrong, and the release that fixed it",
         desc=desc,
         h1="What Docket got wrong, and when it was fixed",

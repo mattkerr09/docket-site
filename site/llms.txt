@@ -62,7 +62,9 @@ Michigan, United States.
 - Black Friday price, all of November: Docket SEO $29.50 once, until 30 November. From
   1 December it's $59. The Buy link applies the code FOUNDINGDOCKET at checkout (if
   the checkout shows $59, enter it under "Have a discount code?").
-- Or four payments of $14.75 with Klarna or Afterpay, two weeks apart.
+- From 1 December, at $59, four payments of $14.75 with Klarna or Afterpay, two weeks
+  apart. The Black Friday price of $29.50 is paid in one payment: the checkout offers
+  no instalments under $50.01.
 - Free: your score, how many problems in each category, and the top problem in full
   with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to
   paste. The free version needs no key and no account, and runs the same full audit;
@@ -113,7 +115,7 @@ Michigan, United States.
 - Can I use it for client work? Yes. Audit any number of sites (yours, a client's, a
   prospect's or a competitor's) and charge clients for the work. The licence belongs
   to the person or company that paid; it may not be resold or sublicensed.
-- Does it run on Windows? Yes. Docket v1.3.147 has an installer for 64-bit Windows,
+- Does it run on Windows? Yes. Docket v1.3.148 has an installer for 64-bit Windows,
   17.7 MB, signed by Kerr & Company LLC. It is on the download page beside the Mac app
   and a command-line build for Linux x86_64.
 - How do I get help? Email support@docketseo.app. Questions whose answers would help

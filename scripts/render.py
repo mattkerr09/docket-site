@@ -196,13 +196,21 @@ def price_anchor_html() -> str:
     sf = COMPETITORS["screaming-frog"]
     ah = COMPETITORS["ahrefs-site-audit"]
     lo, hi = rival_monthly_range("ahrefs-site-audit")
-    when = max(sf["price_checked"], ah["price_checked"])
+    # Each price with its own reading date. This took max() of the two and printed one date, so a price read on
+    # 8 October was labelled "read 28 October" (Matthew's full audit, 2026-11-04, row 19).
     import datetime as _dt
-    day = _dt.date.fromisoformat(when)
+
+    def _day(iso):
+        d = _dt.date.fromisoformat(iso)
+        return f"{d.day} {d:%B %Y}"
+    if sf["price_checked"] == ah["price_checked"]:
+        when = f"Their prices read {_day(sf['price_checked'])}."
+    else:
+        when = (f"Screaming Frog&rsquo;s price read {_day(sf['price_checked'])}, "
+                f"Ahrefs&rsquo; {_day(ah['price_checked'])}.")
     return (f'<p class="hero-note price-anchor">Screaming Frog is ${sf["annual_low"]} a year. '
             f'Ahrefs plans with Site Audit run ${lo}&ndash;${hi} a month. '
-            f'Docket is {PRICE_STR} once. <span class="qual">Their prices read '
-            f'{day.day} {day:%B %Y}.</span></p>')
+            f'Docket is {PRICE_STR} once. <span class="qual">{when}</span></p>')
 
 
 #: A real report, exported from a real audit by the shipped app's own PDF
@@ -273,7 +281,7 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
     # "Buy Docket · $349 once · or 4 × $87.25" broke over two lines.
     out = [f'<div class="buy-block{"" if big else " compact"}">'
            f'<p class="price-line"><span class="price-big">{PRICE_STR}</span>'
-           f'<span class="price-pay4">once{PAY4}</span></p>{price_req_html()}'
+           f'<span class="price-pay4">once{PAY4_BUY}</span></p>{price_req_html()}'
            f'<div class="hero-cta">'
            f'<a class="btn{size}" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
            f'data-ev-button="{src}">Buy Docket</a>']
@@ -333,7 +341,7 @@ def buy_strip(src: str) -> str:
             f'data-ev-button="{try_src}"><strong>Try it free</strong></a>{intel}: your score and '
             f'how many problems each area has, and the top problem in full &middot; '
             f'<a href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
-            f'data-ev-button="{src}">Buy once, {PRICE_STR}{PAY4}</a>, {REFUND_DAYS}-day refund'
+            f'data-ev-button="{src}">Buy once, {PRICE_STR}{PAY4_BUY}</a>, {REFUND_DAYS}-day refund'
             f'{sample}{founding}</p></aside>')
 
 
@@ -837,7 +845,7 @@ BNPL_NOTE = (
     f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks "
     f"apart. The last one is six weeks after the first, at no extra cost from us. "
     f"Then it stops, and it is yours."
-) if BNPL_LIVE else ""
+) if BNPL_LIVE and not (FOUNDING_OPEN and PRICE * (100 - FOUNDING_PCT) < BNPL_MIN_CENTS) else ""
 
 #: PAY-IN-FOUR ON THE SAME LINE AS THE PRICE, IN THE PRICE'S OWN FONT. Matthew,
 #: 2026-09-28: "it needs to say the bnpl price right next to the full price in
@@ -860,6 +868,15 @@ PAY4 = (f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_INSTALMENT}"
 BNPL_FOUNDING_OK = BNPL_LIVE and PRICE * (100 - FOUNDING_PCT) >= BNPL_MIN_CENTS
 PAY4_FOUNDING = (f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_FOUNDING_INSTALMENT}"
                  if BNPL_FOUNDING_OK else "")
+#: ⚠️ THE INSTALMENT BESIDE A BUY BUTTON IS THE ONE THE CHECKOUT BEHIND IT OFFERS. Matthew's full audit, 2026-11-04,
+#: row 29: while the sale ran, the hero read "$59 once · or 4 × $14.75" and "Or four payments of $14.75 with Klarna or
+#: Afterpay" beside the $29.50 line, but Buy opens a checkout with the sale code applied, and at $29.50 Dodo offers
+#: no pay-in-four. So while a sale under BNPL_MIN_CENTS is open, every price a visitor is asked to pay (the buy
+#: block, the buy strip, the nav button, the free tools' price line) carries no instalment, and the four payments
+#: are said once, where they are true: "From 1 December it's $59, or 4 × $14.75" in the sale line. Comparison
+#: tables state the list price and keep PAY4. After the sale this is PAY4 again (rebuild at its end).
+SALE_UNDER_FLOOR = FOUNDING_OPEN and not BNPL_FOUNDING_OK
+PAY4_BUY = "" if SALE_UNDER_FLOOR else PAY4
 #: The same sentence for a page, with its instalment set in full-strength text
 #: at weight 600: under the pricing heading it sat in the dim note colour,
 #: which is exactly the "BNPL only in small print" Matthew objected to.
@@ -1930,7 +1947,7 @@ def _nav(checker: bool) -> str:
 <div class="nav-more-links">
 {links}
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, ${PRICE}{PAY4}</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, ${PRICE}{PAY4_BUY}</span></a>
 </div></nav>"""
 
 

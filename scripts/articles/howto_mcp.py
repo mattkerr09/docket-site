@@ -8,6 +8,7 @@ behaves differently in the one way that matters most here.
 
 Measured, in that order:
 
+  * (A record of the 1.3.44 run. Since 1.3.141 `tools/list` returns five; the page reads them from the body below.)
   * `docket mcp` `tools/list` returns exactly two tools: `audit_site`
     (required: url; optional max_pages, max_seconds, offline) and `list_checks`
     (no arguments).
@@ -200,6 +201,7 @@ command line.</p>
         h1="How to audit your site from an AI assistant",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / MCP',
         body=body,
+        modified="2026-11-03",  # from git: 2939a5ae7 and 1356ecf37, five tools and the client set-ups (audit row 19)
         faq=[
             ("Does Docket work with Claude Desktop?",
              "Yes. Add Docket to mcpServers in claude_desktop_config.json with the command "

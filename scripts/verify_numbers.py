@@ -219,7 +219,7 @@ ALLOWED = {
     "2,068": "notion.so rendered character count, measured 2026-08-06",
     "106": "notion.so rendered link count, measured 2026-08-06",
     "54": "scripts GTM injected on notion.so, measured 2026-08-06",
-    "112": "the render helper is 112 KB — a build artefact, checked by hand",
+    "142": "the render helper is 142 KB (142,112 bytes) — a build artefact, checked by hand",
     "9.8": "the Common Crawl link graph is 9.8 GB",
     "117,963,409": "domains in the Common Crawl release; the app reads this "
                    "live, the prose quotes the release we measured against",

@@ -37,9 +37,9 @@ rendering is not an optimisation, it is the entry fee. We measured
 <h2>How Docket does it</h2>
 
 <p>macOS ships a browser engine. WebKit is a system framework, so Docket renders through a
-112 KB helper built against it rather than bundling a browser: the download is still {DMG_SIZE},
-and nothing is fetched at install time. The audit engine stays what it was: dependency-free
-Python that never needed a browser to do most of its job.</p>
+142 KB helper built against it rather than bundling a browser: the download is still {DMG_SIZE},
+and nothing is fetched at install time. The audit engine stays what it was: Python on its own
+standard library, which never needed a browser to do most of its job.</p>
 
 <p>Rendering is <strong>not off by default, and this page used to say it was</strong>.
 A small sample of every audit is rendered whenever the WebKit helper is present, because a
@@ -132,13 +132,14 @@ to a static crawl and letting you believe otherwise.</p>
         h1="Auditing what a browser actually sees",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / JavaScript rendering',
         body=body,
+        modified="2026-11-05",  # the helper is 142 KB (142,112 bytes), not 112
         faq=[
             ("Do search engines run JavaScript?",
              "Google does, on a second pass that can lag the first crawl by days. Most AI "
              "crawlers do not render at all, so a client-rendered page is blank to the "
              "crawlers behind ChatGPT and Perplexity."),
             ("Does Docket bundle a browser?",
-             "No. macOS ships WebKit as a system framework, so rendering is a 112 KB helper "
+             "No. macOS ships WebKit as a system framework, so rendering is a 142 KB helper "
              "built against it. The download is " + DMG_SIZE + " and nothing is fetched at install."),
             ("Is rendering off by default?",
              "No, and this page said it was until the claim was checked against the engine. "

@@ -13,12 +13,17 @@ the request headers are actually set), and the tests beside them:
 
 ⚠️ FOUR PLACES THE CODE IS NARROWER THAN "COMPRESSION AND CACHING HEADERS".
 
-1. Docket's own request advertises `gzip, deflate` and never `br`. The
+1. Docket's page fetches advertise `gzip, deflate` and never `br`. The
    `_decompress` docstring says so in terms: "Docket never advertises `br`, so
    brotli cannot arrive from a spec-abiding server." A Brotli-only origin that
-   obeys RFC 9110 will therefore hand our crawler an uncompressed document, and
-   `perf.no_compression` will fire on a site that compresses correctly for
-   every real browser. This is the page's lead, not a footnote.
+   obeys RFC 9110 hands those fetches an uncompressed document. Since
+   2026-09-23 the crawler then asks the first such page again for `br` and
+   reads only the headers (`Fetcher.encoding_offered`, stored as
+   `SiteContext.compression_probe`): an encoding in that answer drops
+   `perf.no_compression`, "" adds "Docket also asked for Brotli, and that came
+   back uncompressed too", and None (an error or a redirect) keeps the older
+   wording that names the Brotli-only case. Rewritten 2026-11-05 from Matthew's
+   full audit, row 15: the page still said the false positive fired.
 2. Compression is tested as the PRESENCE of a `content-encoding` header, never
    its value. No algorithm is checked and no saving is measured.
 3. Caching is tested as the presence of any ONE of `cache-control`, `etag` or
@@ -107,11 +112,13 @@ anything felt.</strong> There is no browser, no paint, no device and no network 
 finding here is a fact about the response that arrived at our crawler, and most of this page is
 about the distance between that and your site.</p>
 
-<p><strong>It cannot measure Core Web Vitals, and nothing that runs on one machine can.</strong>
-Largest Contentful Paint, Interaction to Next Paint and Cumulative Layout Shift come from real
-people on real connections. The check module says so in its own opening comment. That it
+<p><strong>This check does not measure Core Web Vitals, and nothing that runs on one machine
+can.</strong> Largest Contentful Paint, Interaction to Next Paint and Cumulative Layout Shift come
+from real people on real connections. The check module says so in its own opening comment. That it
 measures the network and the document, not a rendered browser, and that "a number invented from
-static analysis would be worse than no number". Confirm the field values in Search Console.</p>
+static analysis would be worse than no number". The field values come from Google's Chrome UX
+Report, which Docket's optional PageSpeed check reads for sites with enough traffic to be in it,
+and which Search Console shows too.</p>
 
 <p><strong>It does not measure how much compression saved you</strong>, and
 <strong>it only looked at HTML.</strong> Nothing is compressed twice and nothing is compared;
@@ -119,29 +126,38 @@ the check asks whether a <code>Content-Encoding</code> header was present and st
 stylesheets, scripts and JSON endpoints were never fetched for it, so it has no opinion about
 those. Even though its own fix text asks you to turn compression on for them.</p>
 
-<h2>The false positive you should check before you change anything</h2>
+<h2>Brotli, and the one extra request Docket makes</h2>
 
-<p>This one matters, and it is ours rather than yours. Docket's crawler sends <code>Accept-Encoding: gzip, deflate</code>. It does not advertise
-Brotli, because there is no Brotli decoder in the Python standard library and the engine is kept
-dependency-free. The fetcher says so in its own comment: Docket never advertises
-<code>br</code>, so Brotli cannot arrive from a specification-abiding server.</p>
+<p>Docket's crawler fetches pages with <code>Accept-Encoding: gzip, deflate</code>. It does not
+advertise Brotli on those fetches, because there is no Brotli decoder in the Python standard
+library and the crawler reads pages with the standard library alone. The fetcher says so in its
+own comment: Docket never advertises <code>br</code>, so Brotli cannot arrive from a
+specification-abiding server.</p>
 
 <p>Now read that against the specification. Under
 <a href="{SEMANTICS_URL}#section-12.5.3">{SEMANTICS} {S_ACCEPT_ENCODING}</a>, the
 <code>Accept-Encoding</code> request header is how a client states which content codings it
 will accept, and a server that respects it will not send one that was not offered. So an origin
-or CDN configured to serve Brotli and nothing else, behaving correctly, answers our crawler with
-an uncompressed document and no <code>Content-Encoding</code> header. Docket then reports
-<code>perf.no_compression</code> at <code>high</code> against a site whose real visitors have
-had compressed HTML all along.</p>
+or CDN configured to serve Brotli and nothing else, behaving correctly, answers those fetches with
+an uncompressed document and no <code>Content-Encoding</code> header, while its real visitors
+have had compressed HTML all along.</p>
 
-<p>Check before you touch a configuration file, with the request a browser actually makes:</p>
+<p>So when a page over the size floor arrives uncompressed, Docket asks that one URL again, this
+time for Brotli, and reads only the response headers; the body is never decoded. If the answer
+carries a <code>Content-Encoding</code>, the server compresses for the clients that ask for it,
+browsers and Googlebot among them, and <code>perf.no_compression</code> is not reported. If it
+comes back uncompressed too, the finding says so in its own words: "Docket also asked for Brotli,
+and that came back uncompressed too." One request is made, for the first such page, and its answer
+stands for the site.</p>
+
+<p>If that request could not be made (an error, or a redirect), the finding keeps an older
+sentence instead, saying a server that offers only Brotli cannot be told apart. Then check before
+you touch a configuration file, with the request a browser actually makes:</p>
 
 <pre><code>curl -sI -H 'Accept-Encoding: gzip, deflate, br' https://example.com/ | grep -i content-encoding</code></pre>
 
 <p>If that prints <code>content-encoding: br</code> and the same request without
-<code>br</code> prints nothing, the finding is about our request rather than your server and
-there is nothing to fix. The general form holds in both directions: a managed host or CDN can
+<code>br</code> prints nothing, compression is on and there is nothing to fix. The general form holds in both directions: a managed host or CDN can
 compress for real visitors while answering an unfamiliar client differently, and the response we
 got is the only thing this check ever saw.</p>
 
@@ -163,7 +179,8 @@ never reads what the header says, so it cannot distinguish gzip from Brotli from
 <code>html_bytes</code> is documented in the model as the raw HTML byte length before any
 transfer encoding, and is assigned after the fetcher has unpacked the body. It is the size of
 your markup, not of what crossed the wire. A page under the floor is never reported however it
-is served, because the saving on a small document does not justify a finding.</p>
+is served, because the saving on a small document does not justify a finding. If the list is not
+empty, the one Brotli request described above decides whether it is reported.</p>
 
 <p><strong>Caching.</strong> Here the shape is different, and this is the part most likely to
 surprise you. A page counts as having no caching headers only when <em>all</em> of
@@ -263,9 +280,9 @@ both.</p>
 
 <h2>So which is worth an afternoon</h2>
 
-<p>Neither, on the check's own grading, and that is the useful answer. Confirm the compression
-finding with the <code>curl</code> above, because a Brotli-only host produces it falsely. If it
-holds, turn compression on: one line, and the largest single win this check can point at. Then
+<p>Neither, on the check's own grading, and that is the useful answer. If the compression
+finding does not say Docket also asked for Brotli, confirm it with the <code>curl</code> above
+first. If it holds, turn compression on: one line, and the largest single win this check can point at. Then
 set a <code>Cache-Control</code> value and make sure a validator is present: worth doing, not
 urgent. Spend the rest of the afternoon on
 <a href="/how-to/">something else on the list</a>.</p>
@@ -281,20 +298,21 @@ urgent. Spend the rest of the afternoon on
     return render(
         cat="how-to", slug="fix-compression-and-caching",
         title="Enable gzip compression and caching headers",
-        desc=("How to turn on gzip in nginx or Apache and set Cache-Control, after one check "
-              "first: a Brotli-only site can be reported as uncompressed."),
+        desc=("How to turn on gzip in nginx or Apache and set Cache-Control, and how Docket "
+              "tells a Brotli-only server from one that compresses nothing."),
         h1="How to fix compression and caching headers",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / compression and caching',
         body=body,
+        modified="2026-11-05",  # the Brotli re-ask (since 2026-09-23); audit row 15
         faq=[
             ("Does Docket check for Brotli?",
-             "No, and this is the check's most important limit. Docket's crawler sends "
-             "Accept-Encoding: gzip, deflate and never advertises br, because there is no "
-             "Brotli decoder in the Python standard library. A server that only offers "
-             "Brotli and obeys RFC 9110 will send our crawler an uncompressed document, so "
-             "perf.no_compression can fire on a site that compresses perfectly for real "
-             "browsers. Confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' "
-             "before changing anything."),
+             "With one request. Page fetches advertise only gzip and deflate, because there "
+             "is no Brotli decoder in the Python standard library. When a large page arrives "
+             "uncompressed, Docket asks that URL again for Brotli and reads only the headers. "
+             "If an encoding comes back, the server compresses for the clients that ask and "
+             "perf.no_compression is not reported. If that request fails, the finding says a "
+             "Brotli-only server cannot be told apart; confirm with curl -sI -H "
+             "'Accept-Encoding: gzip, deflate, br' before changing anything."),
             ("What counts as compressed?",
              "The presence of a Content-Encoding header on the response, whatever its "
              "value. The check never reads the algorithm, never compares sizes and makes no "
@@ -311,10 +329,11 @@ urgent. Spend the rest of the afternoon on
              "of pages. The value is never read, so Cache-Control: no-store clears the "
              "check as thoroughly as a good policy would."),
             ("Will fixing this improve my Core Web Vitals score?",
-             "It may improve the experience, but Docket cannot tell you, and neither can "
+             "It may improve the experience, but this check cannot tell you, and neither can "
              "any tool running on one machine. LCP, INP and CLS come from real visitors on "
-             "real connections. Docket measures the causes; the field values belong in "
-             "Search Console."),
+             "real connections. This check measures causes; the field values come from the "
+             "Chrome UX Report, which Docket's optional PageSpeed check reads when Google has "
+             "data for your site, and which Search Console shows too."),
             ("Does compression affect rankings directly?",
              "Not as a header. Nothing in the check claims a ranking effect and this page "
              "will not invent one. Smaller responses arrive faster, which is worth having "

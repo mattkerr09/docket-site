@@ -611,8 +611,8 @@ def body() -> str:
     <h3>A CLI, and an MCP server for your AI assistant</h3>
     <p><code>docket audit</code> exits non-zero on a critical issue, such as a noindexed homepage or a
     5xx, so CI can fail the build before it ships. <code>docket mcp</code> speaks the Model Context
-    Protocol over stdio, so Claude Desktop or any MCP client can audit a site and read the findings
-    back as data: two tools, no server, no API key. <a href="/for/developers/#mcp">The config to
+    Protocol over stdio, so Claude Desktop or any MCP client can audit a site, read back a kept
+    audit or compare two: five tools, no server, no API key. <a href="/for/developers/#mcp">The config to
     paste</a>. <code>docket attack</code> ranks a competitor's weak points by how winnable they are.</p></div>
 </div>
 </div>

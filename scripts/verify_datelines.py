@@ -61,11 +61,24 @@ PUBLISHED = re.compile(r'published\s*=\s*"(\d{4}-\d{2}-\d{2})"')
 PAGE_DATES = ROOT / "data" / "page-dates.json"
 
 
+CORRECTIONS = ROOT / "data" / "corrections.json"
+
+
 def supplied_dates() -> set[str]:
-    """Every modification date a human wrote down in an article source."""
+    """Every modification date a human wrote down in an article source.
+
+    Plus the dates of the corrections log (data/corrections.json): /learn/what-docket-got-wrong/ is updated by adding
+    an entry, each entry carries the day its release was published (checked against GitHub by verify_corrections), and
+    the page's dateModified is the newest of them. Added 2026-11-05 (Matthew's full audit, row 19): the typed date
+    stood a fortnight behind the entries under it.
+    """
     out: set[str] = set()
     for path in sorted(ARTICLES.glob("*.py")):
         out |= set(SUPPLIED.findall(path.read_text()))
+    try:
+        out |= {e["date"] for e in json.loads(CORRECTIONS.read_text())["entries"]}
+    except (OSError, ValueError, KeyError):
+        pass
     return out
 
 
