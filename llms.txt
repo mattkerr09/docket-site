@@ -29,9 +29,10 @@ Michigan, United States.
 - Every finding is ranked by impact against the effort of fixing it, and carries its
   evidence: the page it is on, the exact value found there, and the fix.
 - AI search visibility: each AI crawler is checked separately (OAI-SearchBot for
-  ChatGPT Search, PerplexityBot, Claude-SearchBot and Google-Extended) and kept apart
-  from training crawlers such as GPTBot. Docket also requests pages as each crawler
-  and reports when a server refuses one that robots.txt permits.
+  ChatGPT Search, PerplexityBot, Claude-SearchBot) and kept apart from training
+  crawlers such as GPTBot. Google-Extended is reported as what it is: Gemini training
+  and Gemini Apps grounding, with no effect on AI Overviews. Docket also requests
+  pages as each crawler and reports when a server refuses one that robots.txt permits.
 - A command-line interface ships inside the app. `docket audit` exits non-zero on a
   critical issue, so CI can fail a build before it ships.
 - [All 99 checks, by area](https://docketseo.app/learn/what-docket-checks/): the complete list, generated from the shipped build so it cannot drift from the product
@@ -135,9 +136,10 @@ Michigan, United States.
   renders a sample of every audit automatically, in the WebKit engine macOS already
   ships.
 - Can Docket tell me if ChatGPT can see my website? Yes. Docket checks each AI crawler
-  separately (OAI-SearchBot for ChatGPT Search, PerplexityBot, Claude-SearchBot and
-  Google-Extended) and distinguishes them from training crawlers like GPTBot, which
-  many sites block deliberately.
+  separately (OAI-SearchBot for ChatGPT Search, PerplexityBot and Claude-SearchBot)
+  and distinguishes them from training crawlers like GPTBot, which many sites block
+  deliberately. It also says what Google-Extended does: it governs Gemini training and
+  Gemini Apps, not AI Overviews, which follow Googlebot.
 
 ## Key pages
 
