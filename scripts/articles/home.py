@@ -681,10 +681,10 @@ comparisons →</a></p>
 one that draws a line.</p></div>
 <div class="grid-3">
   <div class="card"><h3>Per-page backlinks and anchor text</h3><p>Docket reads Common Crawl's
-  hyperlink graph ({F.graph_domains_m()}&nbsp;million domains), so it gives you a domain's authority rank in
-  about a second, and the full list of domains linking to it in about ten minutes. We measured
-  {F.graph_example_referring():,} domains linking to {F.graph_example_host()} that way. Which
-  individual <em>page</em>
+  hyperlink graph ({F.graph_domains_m()}&nbsp;million domains in the {F.graph_release_human()} release), so it
+  gives you a domain's authority rank: in seconds for a large site, longer for a small one, which sits further
+  down the ranks and may be reported as outside the part Docket reads. It also lists the domains linking to a
+  site, which takes minutes. Which individual <em>page</em>
   links to you, and with what anchor text, lives in archive files far too large to stream from a
   laptop. Ahrefs and
   Semrush sell that, and it is worth paying for if you need it.</p></div>

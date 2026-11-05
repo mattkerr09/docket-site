@@ -973,20 +973,37 @@ def graph_release() -> str:
     return authority()["release"]
 
 
-def graph_example_host() -> str:
-    return authority()["example_host"]
+_GRAPH_MONTHS = {"jan": "January", "feb": "February", "mar": "March", "apr": "April", "may": "May",
+                 "jun": "June", "jul": "July", "aug": "August", "sep": "September", "oct": "October",
+                 "nov": "November", "dec": "December"}
+
+
+def release_human(release: str) -> str:
+    """'cc-main-2026-aug-sep-oct' -> 'August to October 2026'."""
+    parts = release.split("-")
+    year, months = parts[2], parts[3:]
+    return f"{_GRAPH_MONTHS[months[0]]} to {_GRAPH_MONTHS[months[-1]]} {year}"
+
+
+def graph_release_human() -> str:
+    return release_human(graph_release())
 
 
 def graph_example_referring() -> int:
-    """Referring domains for the example host.
+    """Referring domains for one large, well-linked site, counted in full on `graph_example_release()`.
 
-    Only written when `complete` is true — a capped scan of the edge file
-    undercounts, and an undercount published as a measurement is worse than no
-    figure at all. The full read takes about eleven minutes.
+    Only published when `complete` is true: a capped scan of the edge file undercounts, and an undercount
+    published as a measurement is worse than no figure at all. The site is a third party we measured, so no page
+    names it (it used to: the home page and /how-to/audit-backlinks-free/ printed its host).
     """
-    if not authority().get("complete"):
+    ex = authority().get("example") or {}
+    if not ex.get("complete"):
         raise ValueError("authority.json holds an incomplete scan; do not publish it")
-    return authority()["example_referring_domains"]
+    return ex["referring_domains"]
+
+
+def graph_example_release_human() -> str:
+    return release_human((authority().get("example") or {})["release"])
 
 
 # -- how long an audit takes in a pipeline -----------------------------------

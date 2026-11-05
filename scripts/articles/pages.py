@@ -373,9 +373,11 @@ public autocomplete, then reports which of those questions neither site answers.
 <h3><code>docket backlinks</code>: authority without a subscription</h3>
 <pre><code>docket backlinks yoursite.com competitor.com
 docket backlinks yoursite.com --referring</code></pre>
-<p>Domain authority from Common Crawl's public hyperlink graph, which covers 117,963,409
-domains. <code>--referring</code> streams the 9.8 GB graph to list the domains linking in;
-it takes minutes and writes nothing to disk.</p>
+<p>Domain authority from Common Crawl's public hyperlink graph, which ranks {F.graph_domains():,}
+domains in its {F.graph_release_human()} release. A large site's rank comes back in seconds; a small one
+takes longer, and if it is outside the part of the ranks Docket reads, Docket says so rather than
+inventing a number. <code>--referring</code> streams the whole graph, several gigabytes, to list the
+domains linking in; it takes minutes and writes nothing to disk.</p>
 
 <h3><code>docket checks</code> and <code>docket serve</code></h3>
 <p><code>checks</code> prints every check the engine runs with its lane and severity.

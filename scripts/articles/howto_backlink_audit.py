@@ -72,8 +72,8 @@ pretend otherwise.</p>
 <pre><code>docket backlinks example.com --referring</code></pre>
 
 <p>It streams the graph rather than downloading it, so nothing is written to disk, one pass
-serves every domain you pass on the command line, and there are no credits to spend. On a real
-site ({GRAPH_HOST}) the graph shows {GRAPH_REFERRING:,} referring domains.</p>
+serves every domain you pass on the command line, and there are no credits to spend. On one large,
+well-linked site, the {GRAPH_EXAMPLE_RELEASE} graph showed {GRAPH_REFERRING:,} referring domains.</p>
 
 <p><strong>The limit, stated plainly: this is a domain-level graph.</strong> It tells you that
 one domain links to another. It does not give you the linking page, the anchor text, the link's
@@ -125,8 +125,8 @@ a backlink costume.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """.replace("{GRAPH_DOMAINS_M}", F.graph_domains_m()) \
-   .replace("{GRAPH_RELEASE}", F.graph_release()) \
-   .replace("{GRAPH_HOST}", F.graph_example_host()) \
+   .replace("{GRAPH_RELEASE}", F.graph_release_human()) \
+   .replace("{GRAPH_EXAMPLE_RELEASE}", F.graph_example_release_human()) \
    .replace("{GRAPH_REFERRING:,}", f"{F.graph_example_referring():,}")
     # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
     # Inspection: "unknown to Google"), linked from this page because Google
@@ -144,6 +144,7 @@ a backlink costume.</p>
     return render(
         cat="how-to", slug="backlink-audit",
         title="Backlink audit: which questions are worth paying for",
+        modified="2026-11-05",  # graph figures from collect_authority.py; the measured site no longer named
         desc=("Ahrefs sells no product called Backlink Audit. The three questions an audit "
               "asks, which tool answers each, and what an open link graph cannot."),
         h1="How to do a backlink audit",
