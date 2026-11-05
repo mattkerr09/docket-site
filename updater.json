@@ -1,19 +1,19 @@
 {
-  "version": "1.3.147",
-  "notes": "Docket 1.3.147\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $59, or $29.50 at the Black Friday price until 30 November, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *Put your own name and logo on your reports.* In Reports, open Report branding, type your agency's name and pick\n  your logo. From then on the PDF and HTML reports you export carry your name and logo in place of Docket's, say\n  \"Prepared by\" you, and refer to \"this audit\" rather than to Docket. Part of the paid version. From the command\n  line, `--brand-name` and `--brand-logo` (a JPEG) brand one report.\n- *\"1 item\", not \"1 items\".* The line under the score now counts a single fixable item correctly.\n\n99 checks across 13 areas.",
-  "pub_date": "2026-11-05T01:53:30Z",
+  "version": "1.3.148",
+  "notes": "Docket 1.3.148\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $59, or $29.50 at the Black Friday price until 30 November, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *A site that blocks Google comes first.* When robots.txt shut out every crawler, Google included, the most\n  important problem was the one about AI crawlers, and its fix let those in while Google stayed blocked. The site\n  being closed to Google now comes first, and the AI crawler problem says the same fix covers it.\n- *A software company with an office is not a local business.* An app or software site with its office address and\n  phone number in the footer was scored as a local business, with local problems it does not have. It now gets\n  the local checks only if something says it serves customers in a place, such as opening hours or a local\n  business type.\n\n99 checks across 13 areas.",
+  "pub_date": "2026-11-05T10:42:21Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTh2TEpzT2pYMkwvcnV6RWdrRitReGRwZTcxVllVK1RXNkh1ajBpMjZJbkFWREJCOXZMZmFFNW8wQkZydXhPc3Mwa25iUUdRMlJrQ0Y0OWNoa0hKRUFNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODQzMDMzCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKNUt6b215OXRvRW1IclNZWmhTbGFWRG1KdDdHWkJlckc1SWJkUmNQa0RsTWxmM0NsSERoSHQ1OXN6Qi80QjhMMHoyOVZvdlJ5ZllGR0luZTFhVVZSQlE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXlDWUZjbndmdmRLY1dyNytqN2dBYVlYVFJGaEdvakxabERQeWEraEtKcHZFOFRwODVNUFJzMGd2S2Jma09iZjhhb1hjczE5enZyYk5JakxKbVN1ZFF3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODc0ODU3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZmZCTktQR3F5cHk3UG4xT3l0UGV2TUxqM1V0SnFQOWpHRlc2NjFxYXFTTitsQmRrK1oxTVRQWWllbVpNYWtKVHlINVRjdXVxcWxpazJXdmpmT0VEQlE9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.148/Docket.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTk3eTBCU0NFVGd6cnVPcHFKZjNjMTBZRm9YUWJSMHRWVXl1czc2NFJYRnhTZStWdEZTdVFSdDVRRncyVVlNZzFlT21sUExqNDJUWU5qQjEzYlFtdUE4PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODQzMzExCWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6CkxoTkh0SzdOdGtTSSthMGx1emZuYXdGbE1mUHZ1TDE0VzBDV3BONkNVbWR1b1FQUC9iYnZTWEdZUHlEL05lcnlhYTR2SzJaQVJpK2VoOHEwZlhyWUNRPT0K",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket-x86_64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaS8xbWpRYVNQb2xnbTZWbkg5YW8yYTRRdEdsaXBIdUtoS1RidXltWEJlZ1ZDODFqSzRSbHlLS3ZsM3MrN2tpSkJTY0xHVzBaa0M5VnNPeWtCL285d1FrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODc1MDk2CWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6CmxQdDQzRDZqdjcrWEZSdDR2aWl6ODBhNmxzV2pKZHV4K01OQVlyVm84MnVUY2ZqRjFzUDNqbVp1dkxZczA2WmtBMnM1elNmTk15OGc5Q09wRFRYekFRPT0K",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.148/Docket-x86_64.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTYzaTlFdDF4K2FXN09ybDVkQ1MyRlYxVGRUT0VYQjRrbWtVaStrcWZSdjdSL0NpcWlvckxiSTV1WWZiNU1QMS9oWk5PRWlxL1BjR3BEMHVvSzIwSUFVPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODQzNDE2CWZpbGU6RG9ja2V0LTEuMy4xNDcteDY0LXNldHVwLmV4ZQpRd09qRFZMQWVzbVFpWXE1cDRyNmVoR1pqU2x4ZDcySUN5MkFZZDNZdzkyVjlLZGMvdmZOalM1QVB0RnEyeTJnaDJwV0g4NjJCTTc3cFhmYmlZeXFCUT09Cg==",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket-1.3.147-x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTFGSGVlalQwRkg3b2M3OEgzSitVenV5Q2FZUk91eVhGd3luSmdRSWU5R3FGblc3UE9oVW9RWkZaa05HbjhHeTNQT2J4ajU5eG1lNXR0NUFOZjFIb2dZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzODc1MTkzCWZpbGU6RG9ja2V0LTEuMy4xNDgteDY0LXNldHVwLmV4ZQpYek1pZUpQb1FGdXJzNEJlYmh6eGt3bCtnaG9hTnRxRHR6ZEdhNEU4ZWtWRnhmRXQramg1NDZITXg1RnVTT2pEYytUK0Uzc25vbDQ0S1d0aHkzcy9CQT09Cg==",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.148/Docket-1.3.148-x64-setup.exe"
     }
   }
 }

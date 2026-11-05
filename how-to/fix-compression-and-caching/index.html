@@ -12,9 +12,9 @@
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Enable gzip compression and caching headers</title>
-<meta name="description" content="How to turn on gzip in nginx or Apache and set Cache-Control, after one check first: a Brotli-only site can be reported as uncompressed.">
+<meta name="description" content="How to turn on gzip in nginx or Apache and set Cache-Control, and how Docket tells a Brotli-only server from one that compresses nothing.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="afd97fdfb65b">
+<meta name="build-id" content="0908f48c89e7">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-compression-and-caching/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -22,7 +22,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to fix compression and caching headers">
-<meta property="og:description" content="How to turn on gzip in nginx or Apache and set Cache-Control, after one check first: a Brotli-only site can be reported as uncompressed.">
+<meta property="og:description" content="How to turn on gzip in nginx or Apache and set Cache-Control, and how Docket tells a Brotli-only server from one that compresses nothing.">
 <meta property="og:url" content="https://docketseo.app/how-to/fix-compression-and-caching/">
 <meta property="og:site_name" content="Docket SEO">
 <meta property="og:image" content="https://docketseo.app/og.png?v=20261002-intel">
@@ -30,7 +30,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="How to fix compression and caching headers">
-<meta name="twitter:description" content="How to turn on gzip in nginx or Apache and set Cache-Control, after one check first: a Brotli-only site can be reported as uncompressed.">
+<meta name="twitter:description" content="How to turn on gzip in nginx or Apache and set Cache-Control, and how Docket tells a Brotli-only server from one that compresses nothing.">
 <meta name="twitter:image" content="https://docketseo.app/og.png?v=20261002-intel">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -881,10 +881,10 @@ nav{background:rgba(7,12,13,.72);
   .btn,.btn:hover,.btn-ghost:hover,.split-col:hover{transform:none}}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac and Windows.","sameAs":["https://github.com/mattkerr09/docket-site","https://www.producthunt.com/products/docket-seo"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel; Windows, 64-bit","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket-1.3.147-arm64.dmg","offers":{"@type":"Offer","price":"59","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac and Windows.","sameAs":["https://github.com/mattkerr09/docket-site","https://www.producthunt.com/products/docket-seo"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel; Windows, 64-bit","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.148/Docket-1.3.148-arm64.dmg","offers":{"@type":"Offer","price":"59","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix compression and caching headers","description":"How to turn on gzip in nginx or Apache and set Cache-Control, after one check first: a Brotli-only site can be reported as uncompressed.","datePublished":"2026-09-15","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-compression-and-caching/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Docket check for Brotli?","acceptedAnswer":{"@type":"Answer","text":"No, and this is the check's most important limit. Docket's crawler sends Accept-Encoding: gzip, deflate and never advertises br, because there is no Brotli decoder in the Python standard library. A server that only offers Brotli and obeys RFC 9110 will send our crawler an uncompressed document, so perf.no_compression can fire on a site that compresses perfectly for real browsers. Confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' before changing anything."}},{"@type":"Question","name":"What counts as compressed?","acceptedAnswer":{"@type":"Answer","text":"The presence of a Content-Encoding header on the response, whatever its value. The check never reads the algorithm, never compares sizes and makes no claim about how much was saved. It is a presence test, not a measurement."}},{"@type":"Question","name":"Why does the compression finding only cover some pages?","acceptedAnswer":{"@type":"Answer","text":"There is a size floor, and it is measured on the decompressed HTML rather than on what crossed the wire. Pages whose markup is smaller than the floor are never reported however they are served, because the saving on a small document does not justify a finding."}},{"@type":"Question","name":"What counts as a caching header?","acceptedAnswer":{"@type":"Answer","text":"Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare when all three are absent, and the finding is only raised when more than half the crawled pages are bare, so it is a statement about the site, not a count of pages. The value is never read, so Cache-Control: no-store clears the check as thoroughly as a good policy would."}},{"@type":"Question","name":"Will fixing this improve my Core Web Vitals score?","acceptedAnswer":{"@type":"Answer","text":"It may improve the experience, but Docket cannot tell you, and neither can any tool running on one machine. LCP, INP and CLS come from real visitors on real connections. Docket measures the causes; the field values belong in Search Console."}},{"@type":"Question","name":"Does compression affect rankings directly?","acceptedAnswer":{"@type":"Answer","text":"Not as a header. Nothing in the check claims a ranking effect and this page will not invent one. Smaller responses arrive faster, which is worth having on its own terms."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix compression and caching headers","description":"How to turn on gzip in nginx or Apache and set Cache-Control, and how Docket tells a Brotli-only server from one that compresses nothing.","datePublished":"2026-09-15","dateModified":"2026-11-05","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-compression-and-caching/","inLanguage":"en"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Docket check for Brotli?","acceptedAnswer":{"@type":"Answer","text":"With one request. Page fetches advertise only gzip and deflate, because there is no Brotli decoder in the Python standard library. When a large page arrives uncompressed, Docket asks that URL again for Brotli and reads only the headers. If an encoding comes back, the server compresses for the clients that ask and perf.no_compression is not reported. If that request fails, the finding says a Brotli-only server cannot be told apart; confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' before changing anything."}},{"@type":"Question","name":"What counts as compressed?","acceptedAnswer":{"@type":"Answer","text":"The presence of a Content-Encoding header on the response, whatever its value. The check never reads the algorithm, never compares sizes and makes no claim about how much was saved. It is a presence test, not a measurement."}},{"@type":"Question","name":"Why does the compression finding only cover some pages?","acceptedAnswer":{"@type":"Answer","text":"There is a size floor, and it is measured on the decompressed HTML rather than on what crossed the wire. Pages whose markup is smaller than the floor are never reported however they are served, because the saving on a small document does not justify a finding."}},{"@type":"Question","name":"What counts as a caching header?","acceptedAnswer":{"@type":"Answer","text":"Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare when all three are absent, and the finding is only raised when more than half the crawled pages are bare, so it is a statement about the site, not a count of pages. The value is never read, so Cache-Control: no-store clears the check as thoroughly as a good policy would."}},{"@type":"Question","name":"Will fixing this improve my Core Web Vitals score?","acceptedAnswer":{"@type":"Answer","text":"It may improve the experience, but this check cannot tell you, and neither can any tool running on one machine. LCP, INP and CLS come from real visitors on real connections. This check measures causes; the field values come from the Chrome UX Report, which Docket's optional PageSpeed check reads when Google has data for your site, and which Search Console shows too."}},{"@type":"Question","name":"Does compression affect rankings directly?","acceptedAnswer":{"@type":"Answer","text":"Not as a header. Nothing in the check claims a ranking effect and this page will not invent one. Smaller responses arrive faster, which is worth having on its own terms."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -931,9 +931,9 @@ fbq('track','PageView');
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59 &middot; or&nbsp;4&nbsp;&times;&nbsp;$14.75</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
 </div></nav>
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / compression and caching</div><h1>How to fix compression and caching headers</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / compression and caching</div><h1>How to fix compression and caching headers</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-05">5 November 2026</time></p>
 
 <p class="lede">Your audit came back with a heading reading "Compression and caching headers"
 and a list of URLs under it, and the two halves of that heading sound like the same afternoon of
@@ -959,11 +959,13 @@ anything felt.</strong> There is no browser, no paint, no device and no network 
 finding here is a fact about the response that arrived at our crawler, and most of this page is
 about the distance between that and your site.</p>
 
-<p><strong>It cannot measure Core Web Vitals, and nothing that runs on one machine can.</strong>
-Largest Contentful Paint, Interaction to Next Paint and Cumulative Layout Shift come from real
-people on real connections. The check module says so in its own opening comment. That it
+<p><strong>This check does not measure Core Web Vitals, and nothing that runs on one machine
+can.</strong> Largest Contentful Paint, Interaction to Next Paint and Cumulative Layout Shift come
+from real people on real connections. The check module says so in its own opening comment. That it
 measures the network and the document, not a rendered browser, and that "a number invented from
-static analysis would be worse than no number". Confirm the field values in Search Console.</p>
+static analysis would be worse than no number". The field values come from Google's Chrome UX
+Report, which Docket's optional PageSpeed check reads for sites with enough traffic to be in it,
+and which Search Console shows too.</p>
 
 <p><strong>It does not measure how much compression saved you</strong>, and
 <strong>it only looked at HTML.</strong> Nothing is compressed twice and nothing is compared;
@@ -971,29 +973,38 @@ the check asks whether a <code>Content-Encoding</code> header was present and st
 stylesheets, scripts and JSON endpoints were never fetched for it, so it has no opinion about
 those. Even though its own fix text asks you to turn compression on for them.</p>
 
-<h2>The false positive you should check before you change anything</h2>
+<h2>Brotli, and the one extra request Docket makes</h2>
 
-<p>This one matters, and it is ours rather than yours. Docket's crawler sends <code>Accept-Encoding: gzip, deflate</code>. It does not advertise
-Brotli, because there is no Brotli decoder in the Python standard library and the engine is kept
-dependency-free. The fetcher says so in its own comment: Docket never advertises
-<code>br</code>, so Brotli cannot arrive from a specification-abiding server.</p>
+<p>Docket's crawler fetches pages with <code>Accept-Encoding: gzip, deflate</code>. It does not
+advertise Brotli on those fetches, because there is no Brotli decoder in the Python standard
+library and the crawler reads pages with the standard library alone. The fetcher says so in its
+own comment: Docket never advertises <code>br</code>, so Brotli cannot arrive from a
+specification-abiding server.</p>
 
 <p>Now read that against the specification. Under
 <a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-12.5.3">RFC 9110 section 12.5.3</a>, the
 <code>Accept-Encoding</code> request header is how a client states which content codings it
 will accept, and a server that respects it will not send one that was not offered. So an origin
-or CDN configured to serve Brotli and nothing else, behaving correctly, answers our crawler with
-an uncompressed document and no <code>Content-Encoding</code> header. Docket then reports
-<code>perf.no_compression</code> at <code>high</code> against a site whose real visitors have
-had compressed HTML all along.</p>
+or CDN configured to serve Brotli and nothing else, behaving correctly, answers those fetches with
+an uncompressed document and no <code>Content-Encoding</code> header, while its real visitors
+have had compressed HTML all along.</p>
 
-<p>Check before you touch a configuration file, with the request a browser actually makes:</p>
+<p>So when a page over the size floor arrives uncompressed, Docket asks that one URL again, this
+time for Brotli, and reads only the response headers; the body is never decoded. If the answer
+carries a <code>Content-Encoding</code>, the server compresses for the clients that ask for it,
+browsers and Googlebot among them, and <code>perf.no_compression</code> is not reported. If it
+comes back uncompressed too, the finding says so in its own words: "Docket also asked for Brotli,
+and that came back uncompressed too." One request is made, for the first such page, and its answer
+stands for the site.</p>
+
+<p>If that request could not be made (an error, or a redirect), the finding keeps an older
+sentence instead, saying a server that offers only Brotli cannot be told apart. Then check before
+you touch a configuration file, with the request a browser actually makes:</p>
 
 <pre><code>curl -sI -H 'Accept-Encoding: gzip, deflate, br' https://example.com/ | grep -i content-encoding</code></pre>
 
 <p>If that prints <code>content-encoding: br</code> and the same request without
-<code>br</code> prints nothing, the finding is about our request rather than your server and
-there is nothing to fix. The general form holds in both directions: a managed host or CDN can
+<code>br</code> prints nothing, compression is on and there is nothing to fix. The general form holds in both directions: a managed host or CDN can
 compress for real visitors while answering an unfamiliar client differently, and the response we
 got is the only thing this check ever saw.</p>
 
@@ -1015,7 +1026,8 @@ never reads what the header says, so it cannot distinguish gzip from Brotli from
 <code>html_bytes</code> is documented in the model as the raw HTML byte length before any
 transfer encoding, and is assigned after the fetcher has unpacked the body. It is the size of
 your markup, not of what crossed the wire. A page under the floor is never reported however it
-is served, because the saving on a small document does not justify a finding.</p>
+is served, because the saving on a small document does not justify a finding. If the list is not
+empty, the one Brotli request described above decides whether it is reported.</p>
 
 <p><strong>Caching.</strong> Here the shape is different, and this is the part most likely to
 surprise you. A page counts as having no caching headers only when <em>all</em> of
@@ -1115,9 +1127,9 @@ both.</p>
 
 <h2>So which is worth an afternoon</h2>
 
-<p>Neither, on the check's own grading, and that is the useful answer. Confirm the compression
-finding with the <code>curl</code> above, because a Brotli-only host produces it falsely. If it
-holds, turn compression on: one line, and the largest single win this check can point at. Then
+<p>Neither, on the check's own grading, and that is the useful answer. If the compression
+finding does not say Docket also asked for Brotli, confirm it with the <code>curl</code> above
+first. If it holds, turn compression on: one line, and the largest single win this check can point at. Then
 set a <code>Cache-Control</code> value and make sure a validator is present: worth doing, not
 urgent. Spend the rest of the afternoon on
 <a href="/how-to/">something else on the list</a>.</p>
@@ -1128,8 +1140,8 @@ urgent. Spend the rest of the afternoon on
 <a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html">gzip module</a> at nginx.org, and
 <a href="https://httpd.apache.org/docs/2.4/mod/mod_deflate.html">mod_deflate</a> at httpd.apache.org.</p>
 
-<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-compression-and-caching-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket-1.3.147-arm64.dmg" data-ev="Download" data-ev-button="how-to-fix-compression-and-caching-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-compression-and-caching-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.147/Docket-1.3.147-x86_64.dmg" data-ev="Download" data-ev-button="how-to-fix-compression-and-caching-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-compression-and-caching" data-ev="Buy" data-ev-price="59" data-ev-button="how-to-fix-compression-and-caching">Buy once, $59 &middot; or&nbsp;4&nbsp;&times;&nbsp;$14.75</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-compression-and-caching">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Black Friday price $29.50 <span class="founding-end" data-founding-end="2026-12-01T07:59:59Z">until 30 November</span> with <code>FOUNDINGDOCKET</code>, then $59</span></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Docket check for Brotli?</h3><p>No, and this is the check's most important limit. Docket's crawler sends Accept-Encoding: gzip, deflate and never advertises br, because there is no Brotli decoder in the Python standard library. A server that only offers Brotli and obeys RFC 9110 will send our crawler an uncompressed document, so perf.no_compression can fire on a site that compresses perfectly for real browsers. Confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' before changing anything.</p></div><div class="faq-item"><h3>What counts as compressed?</h3><p>The presence of a Content-Encoding header on the response, whatever its value. The check never reads the algorithm, never compares sizes and makes no claim about how much was saved. It is a presence test, not a measurement.</p></div><div class="faq-item"><h3>Why does the compression finding only cover some pages?</h3><p>There is a size floor, and it is measured on the decompressed HTML rather than on what crossed the wire. Pages whose markup is smaller than the floor are never reported however they are served, because the saving on a small document does not justify a finding.</p></div><div class="faq-item"><h3>What counts as a caching header?</h3><p>Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare when all three are absent, and the finding is only raised when more than half the crawled pages are bare, so it is a statement about the site, not a count of pages. The value is never read, so Cache-Control: no-store clears the check as thoroughly as a good policy would.</p></div><div class="faq-item"><h3>Will fixing this improve my Core Web Vitals score?</h3><p>It may improve the experience, but Docket cannot tell you, and neither can any tool running on one machine. LCP, INP and CLS come from real visitors on real connections. Docket measures the causes; the field values belong in Search Console.</p></div><div class="faq-item"><h3>Does compression affect rankings directly?</h3><p>Not as a header. Nothing in the check claims a ranking effect and this page will not invent one. Smaller responses arrive faster, which is worth having on its own terms.</p></div></div></section>
+<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-compression-and-caching-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.148/Docket-1.3.148-arm64.dmg" data-ev="Download" data-ev-button="how-to-fix-compression-and-caching-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-compression-and-caching-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.148/Docket-1.3.148-x86_64.dmg" data-ev="Download" data-ev-button="how-to-fix-compression-and-caching-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-compression-and-caching" data-ev="Buy" data-ev-price="59" data-ev-button="how-to-fix-compression-and-caching">Buy once, $59</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-compression-and-caching">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Black Friday price $29.50 <span class="founding-end" data-founding-end="2026-12-01T07:59:59Z">until 30 November</span> with <code>FOUNDINGDOCKET</code>, then $59</span></p></aside>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Docket check for Brotli?</h3><p>With one request. Page fetches advertise only gzip and deflate, because there is no Brotli decoder in the Python standard library. When a large page arrives uncompressed, Docket asks that URL again for Brotli and reads only the headers. If an encoding comes back, the server compresses for the clients that ask and perf.no_compression is not reported. If that request fails, the finding says a Brotli-only server cannot be told apart; confirm with curl -sI -H 'Accept-Encoding: gzip, deflate, br' before changing anything.</p></div><div class="faq-item"><h3>What counts as compressed?</h3><p>The presence of a Content-Encoding header on the response, whatever its value. The check never reads the algorithm, never compares sizes and makes no claim about how much was saved. It is a presence test, not a measurement.</p></div><div class="faq-item"><h3>Why does the compression finding only cover some pages?</h3><p>There is a size floor, and it is measured on the decompressed HTML rather than on what crossed the wire. Pages whose markup is smaller than the floor are never reported however they are served, because the saving on a small document does not justify a finding.</p></div><div class="faq-item"><h3>What counts as a caching header?</h3><p>Any one of Cache-Control, ETag or Last-Modified. A page only counts as bare when all three are absent, and the finding is only raised when more than half the crawled pages are bare, so it is a statement about the site, not a count of pages. The value is never read, so Cache-Control: no-store clears the check as thoroughly as a good policy would.</p></div><div class="faq-item"><h3>Will fixing this improve my Core Web Vitals score?</h3><p>It may improve the experience, but this check cannot tell you, and neither can any tool running on one machine. LCP, INP and CLS come from real visitors on real connections. This check measures causes; the field values come from the Chrome UX Report, which Docket's optional PageSpeed check reads when Google has data for your site, and which Search Console shows too.</p></div><div class="faq-item"><h3>Does compression affect rankings directly?</h3><p>Not as a header. Nothing in the check claims a ranking effect and this page will not invent one. Smaller responses arrive faster, which is worth having on its own terms.</p></div></div></section>
 </div></article>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
