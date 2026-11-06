@@ -1957,6 +1957,10 @@ def _windows_form_privacy() -> str:
             "<code>kerr-subscribe.kerrco.workers.dev</code>, a server we run. It stores nothing in your browser. We\n"
             "use the address once, to write to you the day Docket for Windows is ready, and for nothing else.</p>")
 
+#: The day the example card's audit was run (docket-app scripts/shot_score_card.mjs against the company site); the caption states it.
+_CARD_DAY = _dt.date(2026, 11, 6)
+
+
 def score_card() -> Path:
     """What a Docket score card is. The card the free version saves (docket-app ui/src/scorecard.js) prints this page's short
     address, docketseo.app/score-card, as its foot: a picture cannot carry a tracked link, so the visits to this page are the
@@ -1968,7 +1972,7 @@ problems each area of the audit found. The free version of Docket makes one for 
 <figure class="shot">
   <img src="/assets/score-card-example.webp" width="1200" height="630" loading="lazy" decoding="async"
        alt="A Docket score card for one of our own sites: score 96, grade A, 10 problems found, 4 pages checked, and the number of problems in each of the {N_LANES} areas, with the words Audited with Docket and docketseo.app/score-card at the foot.">
-  <figcaption>A score card for kerrandcompanyholdings.com, the company site, from a real audit on 6 November 2026.
+  <figcaption>A score card for kerrandcompanyholdings.com, the company site, from a real audit on {_CARD_DAY.day} {_CARD_DAY.strftime('%B %Y')}.
   It is the picture the app saves, not a mockup.</figcaption>
 </figure>
 
