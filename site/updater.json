@@ -1,19 +1,19 @@
 {
-  "version": "1.3.151",
-  "notes": "Docket 1.3.151\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $59, or $29.50 at the Black Friday price until 30 November, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *A free score card.* The free version now saves a score card: one picture with the site, its score and grade, how many\n  pages were checked and how many problems each area found. Press Save score card on the result and send it to a client\n  or a colleague. It says nothing about what the problems are or how to fix them.\n- *Reports link back to Docket.* The footer of a report that is Docket's own, in HTML, Markdown and PDF, now links to\n  docketseo.app. A white-labelled report is unchanged: it names the agency and carries no link.\n\n99 checks across 13 areas.",
-  "pub_date": "2026-11-06T02:30:03Z",
+  "version": "1.3.152",
+  "notes": "Docket 1.3.152\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes), $59, or $29.50 at the Black Friday price until 30 November, to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *Docket SEO in Claude Desktop on Windows.* The release now carries a Windows bundle for Claude Desktop and other MCP\n  clients (Docket-1.3.152-windows-x64.mcpb), beside the Mac and Linux ones. Open it with Claude Desktop to install Docket's\n  audit engine as an extension: ask Claude to audit a site and the audit runs on your own computer. The engine inside is the\n  same one the Windows installer carries, signed by Kerr & Company LLC.\n- *An empty key setting means the free version.* When a chat app passes an unfilled licence-key setting to Docket's engine,\n  the engine now reads it as no key and gives the free result, instead of reporting a key that was never entered.\n\n99 checks across 13 areas.",
+  "pub_date": "2026-11-06T05:25:22Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTQ4OUpJOTdVZHoyZDNCdmNaVmtKOTR6VVhnK3FDaFJJaFdvS1pTV1Y1SFlXL29NZWpkOHY4T2pLZ1JnTEJIb2tMVkNIN25VejQ4MmRhUDM5UE1ZUEFjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzOTMwMzM1CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKd3ZvcEI3Nkh2akdBaFI5RzFvM1ZhNm1yNXpBdjZsK2Nla2F2M2RSS3hTWXIrTzIxVWQ5VFpnTjA2dlBqaENhWm05RW9nS21EMjdVSWVmUkJPc0phRFE9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.151/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTRpQ09GZUpSRmd5aTdaTmxDWk45MzhKcU1RS0NlRUI3ODVSY0ZISjA5YStZK3RlM3NmSGpFR0tEcW1yWVRQTmZwL3Y2blVVZGhjYS9CZTJrUExQbXdnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzOTQxNzc2CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKei9qSDVpRzlMaUc1Y2hVQTBweDM3amFtMEI2T0JTTFF0bWxpeDQrNEM0SVdON2d3VFdjc2wvZ043bDQ0N2puRVFERnltQzBVQ2czUDEySTAzL1ZHQ3c9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.152/Docket.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXlIdEtVV0J1NEtJN01KMU9YNzFiTHM0VmxNelpvRXUyZmsvOC95OW1rdEd0SEczVkZjQUE4M3Fzb2IvR0doQ08xWFFrUTFiTit4UWlJL1ZyR0ZkaGdJPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzOTMxMTQ4CWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6CjFRTDBCR3RuYWw1ay82bkVyR0d2YXlRa2xOUWNxQmN5RWF6MVh6YVd0eVpzZDRHajBUZ2JzbWt0S0oyRzZmR2ZxVWVTWkxEYW5pbHdzL1czMExHL0RnPT0K",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.151/Docket-x86_64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaStXTUl4bG10NWhhTHd6OVJoOHVxOXlYczU3bUdhbVE3SWhvZkk3eEx2Tm55c2FBS0pPc20vYmUrV3hSUk1vUGxIK0QzT25leDlOVG8ya1FOS2EwcXdrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzOTQyMDE4CWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6Cm1CdzVqYklGeWpXdTU1NVU4N3RYa1hjYkJDZlV0bnBlYWMxSVgxOXFFVHVXamw2b3BQTXVueHVaSy95VnlyQ3VvaHp5RVQ5UVhKVjYxbHJCZC9kckJ3PT0K",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.152/Docket-x86_64.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTVsSUVBNXd3c3FDOSszNDNHVGI2RWpqSlRiK3B1SkZzenFTVmhKRDlMS0tDWHJnZkRFelJKdG5FZUw2SW8rQkRwNm90R1JXV3AzM1pJNE5kQ2ZQK3dnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzOTMxMzAwCWZpbGU6RG9ja2V0LTEuMy4xNTEteDY0LXNldHVwLmV4ZQpKTXJMY3FTN1E2NmNpbm5FSEcxaWRIeHlrN1lzd09QTko0UHQ0SWFXNk5pNittclQ5QUd1WnhUZXFBTXpUVzdBNWFUcnZ4VEcvbXMrTWVQREdkQkREdz09Cg==",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.151/Docket-1.3.151-x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTJjeS9hSjhaTlFoeUpUZiswU1gyQ2VSN2RITkY2bkVPVit5K3U0NWY4RUJDeVliSDBPdUJzcE1sQjRkSTdQek1GUzI3MmpUaGQ3bm1MRlZvU1FwakFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkzOTQyMTM3CWZpbGU6RG9ja2V0LTEuMy4xNTIteDY0LXNldHVwLmV4ZQp0Nkd6bWppMWhZWWxLMVZDNXhNS0E1b2xrbUlkSzhBYnIvUU1JTm9NLzBWSStjUnRmSGtVbTVvOWRVcUlPUFNoRVNnanlEU2poeFgyRElWK0RiQ3ZCdz09Cg==",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.152/Docket-1.3.152-x64-setup.exe"
     }
   }
 }
