@@ -1003,6 +1003,27 @@ def write_static() -> None:
     (SITE / ".nojekyll").write_text("")
 
 
+def _thank_you_xsell() -> str:
+    """Matthew, 2026-11-07 ~00:3xZ via the CEO: "our other apps and bundle should be offered at some point in the
+    checkout as well." BELOW the key steps and the support line, never above: this page is the handover, and what a
+    buyer must do next comes first. Hub buy links only, nofollow, and no link to a sibling domain (verify_sibling_links:
+    only /about/ may). Prices come from data/bundle.json through render.app_price, so the sale wording goes by itself
+    at the first build after founding_ends_at (on the 1 December rebuild list)."""
+    from render import HUB, app_price, bundle_link
+    def item(name: str, key: str, slug: str, blurb: str) -> str:
+        return (f'<li><strong>{name}</strong>: {blurb} {app_price(key)}. '
+                f'<a href="{HUB}/buy/{slug}?src=ty-docket-xsell" rel="nofollow" data-ev="Buy" '
+                f'data-ev-button="ty-docket-xsell-{slug}">Buy {name.split()[0]}</a></li>')
+    return f"""
+<h2>Also from Kerr &amp; Company</h2>
+<ul class="tool-list">
+{item("Crisp Video", "Crisp", "crisp", "Restores and upscales old video to 4K on your own Mac or PC.")}
+{item("Outlier", "Outlier", "outlier", "Runs AI models on your Mac with no cloud and no subscription.")}
+</ul>
+<p>{bundle_link("ty-docket-xsell", "ty-docket-xsell-bundle", lead="All three together:")}.</p>
+"""
+
+
 def thank_you() -> Path:
     """The page a buyer lands on after paying. Built 2026-08-19.
 
@@ -1083,14 +1104,15 @@ terminal, <code>docket licence --key YOUR-KEY</code> does the same thing.</p>
 <p>Email <a href="mailto:__SUPPORT__">__SUPPORT__</a> and say what
 happened. If the purchase was a mistake, the
 <a href="/legal/refunds/">refund policy</a> is on this site and it is short.</p>
-"""
+__XSELL__"""
     return render(
         cat="", slug="thank-you",
         title="Thank you | Docket",
         desc="Your Docket purchase is complete. Where to download the app and how to reach us.",
         h1="Thank you",
         crumb='<a href="/">Docket</a> / Thank you',
-        body=body.replace("__SUPPORT__", SUPPORT_EMAIL).replace("__COVERS__", F.licence_covers()),
+        body=(body.replace("__SUPPORT__", SUPPORT_EMAIL).replace("__COVERS__", F.licence_covers())
+              .replace("__XSELL__", _thank_you_xsell())),
         # ⚠️ This page told buyers to email hello@docketseo.app — the address
         # Matthew replaced with support@ on 2026-08-13 and ~/ops/bin/contact-gate
         # lists as DISOWNED. The gate never saw it: /thank-you/ is noindexed and

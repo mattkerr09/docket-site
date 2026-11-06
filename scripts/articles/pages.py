@@ -19,7 +19,7 @@ from corrections_cases import CASES  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
-from render import (_human_date, windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
+from render import (_human_date, bundle_link, windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
@@ -161,7 +161,8 @@ def download() -> Path:
     body = f"""
 <ol class="steps" id="buy">
 <li><strong>Buy once.</strong> The licence key
-arrives with your receipt.{buy_block("download-steps", sample=True, big=True)}</li>
+arrives with your receipt.{buy_block("download-steps", sample=True, big=True)}
+<p class="hero-note">{bundle_link("docket-download-bundle", "download-bundle", lead="Or all three of our apps, Docket SEO, Crisp and Outlier, for")}.</p></li>
 <li><strong>Download</strong> the app: <a href="{download_url('download-steps')}" data-ev="Download"
 data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On an Intel Mac, <a href="{download_url("download-steps-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="download-steps-intel">the Intel version</a>.') if INTEL else ''}{(f' On Windows, <a href="{download_url("download-steps-windows", to=WIN_SETUP)}" data-ev="Download" data-ev-button="download-steps-windows">the Windows installer</a>, {WIN_SETUP_SIZE}.') if WINDOWS else ''}</li>
 <li><strong>Paste the key</strong> into the field the app shows, and run your first audit.

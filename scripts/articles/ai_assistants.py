@@ -41,10 +41,13 @@ def _bundle(platform: str) -> str:
     return f"{REPO}/releases/download/{RELEASE}/Docket-{version}-{platform}.mcpb"
 
 
+#: The bundles link straight to the release, not through the hub's /dl counter: the counter forwards only the DMGs and
+#: the installer, and sent a .mcpb link to /download/ instead (verify_download_path.py caught it, 2026-11-06). The
+#: click is still counted as a Plausible Download event with its own button name.
 def ai_assistants() -> Path:
     when = _day(RUN["measured"])
     links = " · ".join(
-        f'<a href="{download_url("ai-assistants-mcpb-" + key, to=_bundle(key))}" data-ev="Download" '
+        f'<a href="{_bundle(key)}" data-ev="Download" '
         f'data-ev-button="ai-assistants-mcpb-{key}">{label}</a>'
         for key, label in (("macos", "Mac"), ("windows-x64", "Windows"), ("linux-x86_64", "Linux")))
     body = f"""

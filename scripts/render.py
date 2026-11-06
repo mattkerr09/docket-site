@@ -240,6 +240,47 @@ def checkout_url(src: str) -> str:
     return f"{HUB}/buy/docket?src={src}"
 
 
+
+def _bundle() -> dict:
+    import json as _json
+    return _json.loads((DATA / "bundle.json").read_text(encoding="utf-8"))
+
+
+def _usd(x: float) -> str:
+    return f"${x:,.2f}" if x != int(x) else f"${int(x):,}"
+
+
+def founding_open() -> bool:
+    """The founding (Black Friday) prices hold until bundle.json's founding_ends_at; a rebuild after it drops them."""
+    import datetime as _dt
+    ends = _dt.datetime.fromisoformat(_bundle()["founding_ends_at"].replace("Z", "+00:00"))
+    return _dt.datetime.now(_dt.timezone.utc) < ends
+
+
+def founding_last_day() -> str:
+    """The last day of the sale as a person in the US reads it: founding_ends_at less eight hours (Pacific)."""
+    import datetime as _dt
+    ends = _dt.datetime.fromisoformat(_bundle()["founding_ends_at"].replace("Z", "+00:00")) - _dt.timedelta(hours=8)
+    return f"{ends.day} {ends:%B}"
+
+
+def app_price(app: str) -> str:
+    """'$14.50 until 30 November, then $29' while the sale runs, else '$29 once'. From bundle.json, never typed."""
+    b = _bundle()
+    lp = b["list_prices"][app]
+    if founding_open():
+        return f"{_usd(lp * (100 - b['founding_pct']) / 100)} until {founding_last_day()}, then {_usd(lp)}"
+    return f"{_usd(lp)} once"
+
+
+def bundle_link(src: str, button: str, *, lead: str = "All three apps, Docket SEO, Crisp and Outlier, for") -> str:
+    """One line offering the three-app bundle through the hub, with nofollow (a sister product)."""
+    b = _bundle()
+    price = (f"{_usd(b['standard_price'])}, or {_usd(b['founding_price'])} through November"
+             if founding_open() else f"{_usd(b['standard_price'])}")
+    return (f'<a href="{b["url"]}?src={src}" rel="nofollow" data-ev="Buy" data-ev-button="{button}">'
+            f'{lead} {price}</a>')
+
 def download_url(src: str, to: str = "") -> str:
     """A Download button's link: our counter, then the release file.
 
