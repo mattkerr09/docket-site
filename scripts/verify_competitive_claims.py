@@ -52,7 +52,8 @@ sys.path.insert(0, str(ROOT / "scripts" / "articles"))
 #: Rivals this site names. Kept here rather than derived from VERIFIED so a new
 #: name appearing in prose without an entry is caught rather than excused.
 RIVALS = ("Screaming Frog", "Sitebulb", "Ahrefs", "Semrush", "Lighthouse",
-          "Search Console", "Sitechecker", "SEOptimer", "Ubersuggest", "Scrutiny")
+          "Search Console", "Sitechecker", "SEOptimer", "Ubersuggest", "Scrutiny",
+          "Netpeak", "LibreCrawl")
 
 #: Only the unambiguous superiority claims — an assertion that a named rival
 #: LACKS something, or that Docket alone has it.

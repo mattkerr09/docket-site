@@ -73,7 +73,9 @@ client.</p>
 
 <p>The free tier is limited to 500 URLs. For a small brochure site that is the whole site, and
 you get an actual crawl rather than a page-at-a-time check: redirect chains, broken links,
-<a href="/how-to/fix-duplicate-title-tags/">duplicate titles across pages</a>.</p>
+<a href="/how-to/fix-duplicate-title-tags/">duplicate titles across pages</a>.
+If you need more than the free tier, <a href="/best/screaming-frog-alternatives/">the Screaming Frog alternatives for Mac and Windows</a>
+sets the paid and free ones side by side.</p>
 
 <p>It is the right free answer for anyone comfortable reading crawl data and deciding what
 matters. If a spreadsheet of every URL and its status codes is a useful artefact to you rather
@@ -151,6 +153,11 @@ product here was read from that product's own documentation and is dated on the 
 by Google. What each does, the limits its own documentation states, and the three specific
 points where paying starts to help.
 <a href="/best/free-seo-audit-tools/">The best free SEO audit tools →</a></p>
+
+<h2>Screaming Frog alternatives</h2>
+<p>Crawlers and audit tools for Mac and Windows, set beside Screaming Frog: what each costs, which computers it runs on,
+how much it crawls, and when it is the better choice. Ours is one of them and is labelled as ours.
+<a href="/best/screaming-frog-alternatives/">Screaming Frog alternatives for Mac and Windows →</a></p>
 
 <h2>How a tool gets onto one of these pages</h2>
 <p>There is no scoring formula and no ranking here, because a number invented to order a list is

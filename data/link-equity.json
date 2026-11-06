@@ -1,37 +1,43 @@
 {
   "site": "docketseo.app",
-  "pages": 144,
-  "edges": 3928,
+  "pages": 145,
+  "edges": 3957,
   "average_share_pct": 0.69,
-  "below_half": 118,
+  "below_half": 119,
   "nodes": [
     {
       "path": "/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
     {
       "path": "/about/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
     {
       "path": "/best/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
     {
       "path": "/best/free-seo-audit-tools/",
-      "inlinks": 4,
-      "share_pct": 0.1,
-      "index": 0.14
+      "inlinks": 5,
+      "share_pct": 0.13,
+      "index": 0.19
+    },
+    {
+      "path": "/best/screaming-frog-alternatives/",
+      "inlinks": 3,
+      "share_pct": 0.08,
+      "index": 0.12
     },
     {
       "path": "/bot/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
@@ -43,19 +49,19 @@
     },
     {
       "path": "/contact/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
     {
       "path": "/download/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
     {
       "path": "/for/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
@@ -91,7 +97,7 @@
     },
     {
       "path": "/how-to/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
@@ -457,7 +463,7 @@
     },
     {
       "path": "/index/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
@@ -481,7 +487,7 @@
     },
     {
       "path": "/learn/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
@@ -499,7 +505,7 @@
     },
     {
       "path": "/learn/ai-search-visibility/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
@@ -643,7 +649,7 @@
     },
     {
       "path": "/learn/seo-audit/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
@@ -667,7 +673,7 @@
     },
     {
       "path": "/learn/what-docket-checks/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
@@ -709,25 +715,25 @@
     },
     {
       "path": "/legal/privacy/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
     {
       "path": "/legal/refunds/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
     {
       "path": "/legal/terms/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
     {
       "path": "/mac-seo-audit-tool/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
@@ -751,13 +757,13 @@
     },
     {
       "path": "/tools/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
     {
       "path": "/tools/ai-crawler-checker/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
@@ -781,13 +787,13 @@
     },
     {
       "path": "/vs/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
     {
       "path": "/vs/ahrefs-site-audit-alternative/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
@@ -829,15 +835,15 @@
     },
     {
       "path": "/vs/screaming-frog-alternative/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
     {
       "path": "/vs/scrutiny-alternative/",
-      "inlinks": 4,
-      "share_pct": 0.1,
-      "index": 0.14
+      "inlinks": 5,
+      "share_pct": 0.13,
+      "index": 0.19
     },
     {
       "path": "/vs/se-ranking-vs-screaming-frog/",
@@ -847,7 +853,7 @@
     },
     {
       "path": "/vs/semrush-site-audit-alternative/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },
@@ -859,7 +865,7 @@
     },
     {
       "path": "/vs/sitebulb-alternative/",
-      "inlinks": 143,
+      "inlinks": 144,
       "share_pct": 3.64,
       "index": 5.28
     },

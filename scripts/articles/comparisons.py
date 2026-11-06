@@ -555,6 +555,28 @@ CHECKED_ISO["mac-options"] = _MAC["read"]
 _d = _date.fromisoformat(_MAC["read"])
 CHECKED_HUMAN["mac-options"] = f"{_d.day} {_d.strftime('%B %Y')}"
 
+# The Screaming Frog alternatives page (/best/screaming-frog-alternatives/): the same pattern as the Mac options
+# page above. Every fact about a rival is a row of data/screaming-frog-alternatives.json with its own source and
+# the day it was read; nothing about a rival is typed in the builder.
+_SFA = _json.loads((Path(__file__).resolve().parent.parent.parent / "data" / "screaming-frog-alternatives.json")
+                   .read_text(encoding="utf-8"))
+
+
+def _sfa_facts(data: dict) -> list:
+    """The claim list for data/screaming-frog-alternatives.json. Pure, like _mac_facts."""
+    return ([(f"{t['name']}: runs on {t['runs_on']}; {t['sold']}; free: {t['free']}; crawl size: {t['urls']}; {t['features']}"
+              + (f"; refunds: {t['refund']}" if t.get("refund") else "")
+              + (f"; {t['note']}" if t.get("note") else ""), t["source"])
+             for t in data["tools"]]
+            + [(what, url) for what, url in data["sources_extra"]])
+
+
+VERIFIED["sf-alternatives"] = _sfa_facts(_SFA)
+DATA_CLAIM_SETS["sf-alternatives"] = ("data/screaming-frog-alternatives.json", _sfa_facts)
+CHECKED_ISO["sf-alternatives"] = _SFA["read"]
+_d = _date.fromisoformat(_SFA["read"])
+CHECKED_HUMAN["sf-alternatives"] = f"{_d.day} {_d.strftime('%B %Y')}"
+
 #: The closing sentence of a verification note. Written for a competitor with a
 #: price list and a roadmap, which Search Console has neither of, so that page
 #: passes its own.

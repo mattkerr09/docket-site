@@ -147,7 +147,8 @@ see what it finds on your own site before you pay anything.</p>
 <p>Ahrefs Site Audit and Semrush Site Audit run in a browser and are sold as part of larger subscriptions, so
 they are not Mac apps; see <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs</a> and
 <a href="/vs/semrush-site-audit-alternative/">Semrush</a>. The Mac App Store also sells small crawlers. They were
-not compared here.</p>
+not compared here. If you also use Windows, or want Netpeak Spider and LibreCrawl in the comparison, see
+<a href="/best/screaming-frog-alternatives/">Screaming Frog alternatives for Mac and Windows</a>.</p>
 
 {buy_block("mac-options-page", try_app="mac-options-page-try-free", phone=False)}
 {comparisons._verified_note("mac-options", closing="If a price on this page is out of date, <a href='/contact/'>tell us</a> and it will be corrected.")}

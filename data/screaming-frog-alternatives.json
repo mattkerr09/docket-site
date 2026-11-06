@@ -1,0 +1,115 @@
+{
+  "read": "2026-11-05",
+  "note": "Every row was read from the vendor's own pages on this date, in a desktop browser for the pages that fill in their prices with JavaScript. Prices are US dollar list prices for one person. A thing the page did not state is recorded as not stated, never guessed. Nothing here was measured by running the rival's software: Docket's own runs are on the page and are marked as ours.",
+  "tools": [
+    {
+      "slug": "screaming-frog",
+      "name": "Screaming Frog SEO Spider",
+      "runs_on": "Windows, macOS (Apple silicon and Intel) and Ubuntu",
+      "sold": "$279 a year per licence; a licence lasts 1 year and then has to be renewed; two users need two licences",
+      "annual": 279,
+      "free": "free, crawls up to 500 URLs",
+      "urls": "no fixed limit on a paid licence: the maximum is \"dependent on allocated memory and storage\"",
+      "free_cap": 500,
+      "source": "https://www.screamingfrog.co.uk/seo-spider/pricing/?wmc-currency=USD",
+      "wins": "raw crawl data, JavaScript rendering and the biggest sites",
+      "features": "its feature list names JavaScript rendering, scheduling and crawl comparison"
+    },
+    {
+      "slug": "sitebulb",
+      "name": "Sitebulb",
+      "runs_on": "a desktop app for Windows or Mac, and a separate cloud product",
+      "sold": "Lite $180 a year for 1 user, Pro $425 a year for 1 user; cloud from $1500 a year",
+      "annual": 180,
+      "annual_pro": 425,
+      "free": "a 14 day free trial",
+      "urls": "10,000 URLs per audit on Lite, 500,000 on Pro",
+      "source": "https://sitebulb.com/subscriptions/pricing/index/?annual=true",
+      "wins": "client work: Pro lists scheduled audits, audit comparisons and customised PDF reports",
+      "features": "every plan lists JavaScript crawling and Google Analytics and Search Console integration; Pro adds scheduled audits, audit comparisons and customised PDF reports"
+    },
+    {
+      "slug": "seo-powersuite",
+      "name": "SEO PowerSuite (WebSite Auditor)",
+      "runs_on": "Windows, Apple and Linux",
+      "sold": "WebSite Auditor Professional $149 a year; the whole Professional suite $349 a year",
+      "annual": 149,
+      "annual_suite": 349,
+      "free": "free for as long as you want, crawling and auditing 500 URLs",
+      "urls": "500 URLs on the free version, and site crawling and auditing listed as unlimited on a paid licence",
+      "free_cap": 500,
+      "refund": "the pricing page says refunds are not issued for partial use or for the time left in a subscription",
+      "source": "https://www.link-assistant.com/pricing.html",
+      "wins": "an SEO suite: the same company sells rank tracking, backlink analysis and link building",
+      "features": "the same company sells Rank Tracker, SEO SpyGlass for backlinks and Link Assistant for link building"
+    },
+    {
+      "slug": "netpeak-spider",
+      "name": "Netpeak Spider",
+      "runs_on": "Windows and macOS",
+      "sold": "$20 a month, cancel anytime, after a 3 day free trial",
+      "monthly": 20,
+      "free": "a 3 day free trial",
+      "urls": "not stated on the pages read",
+      "refund": "the pricing page lists a 14 day money back guarantee",
+      "source": "https://netpeaksoftware.com/spider",
+      "wins": "paying by the month with no yearly commitment, on Windows or a Mac",
+      "features": "crawls JavaScript with Chromium and has a built-in PageRank calculator"
+    },
+    {
+      "slug": "scrutiny",
+      "name": "Scrutiny",
+      "runs_on": "Mac only: macOS 11.5 or later, and the page says there are no plans for Windows",
+      "sold": "$149, a one-off purchase",
+      "once": 149,
+      "free": "30 days of free use with only exporting disabled",
+      "urls": "not stated on the page read",
+      "source": "https://peacockmedia.software/mac/scrutiny/",
+      "wins": "a one-off price on a Mac, and a crawler that also checks spelling and validates HTML",
+      "features": "link checking, HTML validation, spelling and grammar checks, SEO warnings and sitemap export"
+    },
+    {
+      "slug": "librecrawl",
+      "name": "LibreCrawl",
+      "runs_on": "any computer that can run Docker or Python, as a web app you open in your browser",
+      "sold": "free and open source under the MIT licence",
+      "once": 0,
+      "free": "free, no tiers",
+      "urls": "not stated on the page read",
+      "source": "https://github.com/PhialsBasement/LibreCrawl",
+      "wins": "costing nothing, and being software you can read and change",
+      "features": "JavaScript rendering through Playwright, PageSpeed Insights integration, issue detection and CSV, XLSX, JSON or XML export",
+      "note": "GitHub lists no published release, so it is started from the source"
+    }
+  ],
+  "sources_extra": [
+    [
+      "Screaming Frog free version, licence term and JavaScript rendering in the feature list",
+      "https://www.screamingfrog.co.uk/seo-spider/pricing/"
+    ],
+    [
+      "Sitebulb platforms, trial and plan features",
+      "https://sitebulb.com/pricing/"
+    ],
+    [
+      "SEO PowerSuite platforms and the WebSite Auditor price",
+      "https://www.link-assistant.com/website-auditor/"
+    ],
+    [
+      "SEO PowerSuite return policy",
+      "https://www.link-assistant.com/return-policy.html"
+    ],
+    [
+      "Netpeak Spider pricing, trial and refund terms",
+      "https://netpeaksoftware.com/pricing"
+    ],
+    [
+      "LibreCrawl README: JavaScript rendering, export formats and how it is started",
+      "https://github.com/PhialsBasement/LibreCrawl#readme"
+    ],
+    [
+      "LibreCrawl licence and published releases, read through GitHub's API",
+      "https://api.github.com/repos/PhialsBasement/LibreCrawl"
+    ]
+  ]
+}
