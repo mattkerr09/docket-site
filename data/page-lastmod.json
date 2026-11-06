@@ -396,8 +396,8 @@
   "hash": "bcf58d83bdabd883"
  },
  "learn/internal-link-equity/index.html": {
-  "date": "2026-11-05",
-  "hash": "7cd74ac6c38814d1"
+  "date": "2026-11-06",
+  "hash": "f6e1315463f0192f"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-11-05",
@@ -495,21 +495,33 @@
   "date": "2026-11-06",
   "hash": "0ac50b4b839de9cc"
  },
+ "tools/http-header-checker/index.html": {
+  "date": "2026-11-06",
+  "hash": "944ed350563c4401"
+ },
  "tools/index.html": {
   "date": "2026-11-06",
-  "hash": "445baba8386ff6af"
+  "hash": "d7a0e2db0f28c53a"
  },
  "tools/json-ld-checker/index.html": {
   "date": "2026-11-06",
-  "hash": "25eb8da3fa9bca62"
+  "hash": "265b5a24a71e7b39"
  },
  "tools/meta-tag-checker/index.html": {
   "date": "2026-11-06",
-  "hash": "e3a2ee27b60d63b3"
+  "hash": "33c50067daf00056"
+ },
+ "tools/redirect-checker/index.html": {
+  "date": "2026-11-06",
+  "hash": "03a848eb0c8757d1"
  },
  "tools/robots-txt-tester/index.html": {
   "date": "2026-11-06",
   "hash": "09e992d3bd8f5e98"
+ },
+ "tools/seo-checker/index.html": {
+  "date": "2026-11-06",
+  "hash": "319c16c69fb61123"
  },
  "tools/serp-preview/index.html": {
   "date": "2026-11-06",
