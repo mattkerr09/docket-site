@@ -1,25 +1,25 @@
 {
   "site": "docketseo.app",
-  "pages": 142,
-  "edges": 3878,
+  "pages": 143,
+  "edges": 3903,
   "average_share_pct": 0.7,
-  "below_half": 116,
+  "below_half": 117,
   "nodes": [
     {
       "path": "/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
     {
       "path": "/about/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
     {
       "path": "/best/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -31,7 +31,7 @@
     },
     {
       "path": "/bot/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -43,19 +43,19 @@
     },
     {
       "path": "/contact/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
     {
       "path": "/download/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
     {
       "path": "/for/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -91,7 +91,7 @@
     },
     {
       "path": "/how-to/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -368,8 +368,8 @@
     {
       "path": "/how-to/pages-an-audit-could-not-reach/",
       "inlinks": 8,
-      "share_pct": 0.21,
-      "index": 0.3
+      "share_pct": 0.2,
+      "index": 0.29
     },
     {
       "path": "/how-to/placeholder-text-findings/",
@@ -416,8 +416,8 @@
     {
       "path": "/how-to/tell-a-rate-limit-from-a-block/",
       "inlinks": 8,
-      "share_pct": 0.21,
-      "index": 0.3
+      "share_pct": 0.2,
+      "index": 0.29
     },
     {
       "path": "/how-to/what-your-site-says-you-are-called/",
@@ -457,7 +457,7 @@
     },
     {
       "path": "/index/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -470,8 +470,8 @@
     {
       "path": "/index/ai-directives/",
       "inlinks": 15,
-      "share_pct": 0.39,
-      "index": 0.56
+      "share_pct": 0.38,
+      "index": 0.54
     },
     {
       "path": "/index/llms-txt-adoption-2026-10/",
@@ -481,7 +481,7 @@
     },
     {
       "path": "/learn/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -499,7 +499,7 @@
     },
     {
       "path": "/learn/ai-search-visibility/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -536,8 +536,8 @@
     {
       "path": "/learn/canonical-tags/",
       "inlinks": 8,
-      "share_pct": 0.21,
-      "index": 0.3
+      "share_pct": 0.2,
+      "index": 0.29
     },
     {
       "path": "/learn/click-depth-and-orphan-pages/",
@@ -548,8 +548,8 @@
     {
       "path": "/learn/conversion-audit/",
       "inlinks": 8,
-      "share_pct": 0.21,
-      "index": 0.3
+      "share_pct": 0.2,
+      "index": 0.29
     },
     {
       "path": "/learn/dead-contact-address/",
@@ -608,8 +608,8 @@
     {
       "path": "/learn/javascript-rendering/",
       "inlinks": 8,
-      "share_pct": 0.21,
-      "index": 0.3
+      "share_pct": 0.2,
+      "index": 0.29
     },
     {
       "path": "/learn/log-file-analysis/",
@@ -620,8 +620,8 @@
     {
       "path": "/learn/marketing-tag-audit/",
       "inlinks": 8,
-      "share_pct": 0.21,
-      "index": 0.3
+      "share_pct": 0.2,
+      "index": 0.29
     },
     {
       "path": "/learn/page-weight/",
@@ -632,8 +632,8 @@
     {
       "path": "/learn/priority-model/",
       "inlinks": 8,
-      "share_pct": 0.21,
-      "index": 0.3
+      "share_pct": 0.2,
+      "index": 0.29
     },
     {
       "path": "/learn/sameas-entity-signals/",
@@ -643,7 +643,7 @@
     },
     {
       "path": "/learn/seo-audit/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -667,15 +667,15 @@
     },
     {
       "path": "/learn/what-docket-checks/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
     {
       "path": "/learn/what-docket-got-wrong/",
       "inlinks": 22,
-      "share_pct": 0.57,
-      "index": 0.81
+      "share_pct": 0.56,
+      "index": 0.8
     },
     {
       "path": "/learn/what-is-claudebot/",
@@ -702,26 +702,32 @@
       "index": 0.11
     },
     {
+      "path": "/legal/chrome-extension/",
+      "inlinks": 1,
+      "share_pct": 0.03,
+      "index": 0.04
+    },
+    {
       "path": "/legal/privacy/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
     {
       "path": "/legal/refunds/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
     {
       "path": "/legal/terms/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
     {
       "path": "/mac-seo-audit-tool/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -739,13 +745,13 @@
     },
     {
       "path": "/tools/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
     {
       "path": "/tools/ai-crawler-checker/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -769,13 +775,13 @@
     },
     {
       "path": "/vs/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
     {
       "path": "/vs/ahrefs-site-audit-alternative/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -812,12 +818,12 @@
     {
       "path": "/vs/profound-alternative/",
       "inlinks": 8,
-      "share_pct": 0.21,
-      "index": 0.3
+      "share_pct": 0.2,
+      "index": 0.29
     },
     {
       "path": "/vs/screaming-frog-alternative/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -835,7 +841,7 @@
     },
     {
       "path": "/vs/semrush-site-audit-alternative/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -847,7 +853,7 @@
     },
     {
       "path": "/vs/sitebulb-alternative/",
-      "inlinks": 141,
+      "inlinks": 142,
       "share_pct": 3.64,
       "index": 5.2
     },
@@ -858,5 +864,5 @@
       "index": 0.21
     }
   ],
-  "measured": "2026-10-30"
+  "measured": "2026-11-06"
 }
