@@ -1,0 +1,954 @@
+{
+ "measured": "2026-11-06",
+ "method": "One GET of https://<host>/ per site in data/sites.txt with Docket's fetcher; title and meta description read by Docket's extractor; width by seo_engine.words.display_width (East Asian wide and fullwidth characters count two); limits from seo_engine/checks/onpage.py. Bot-protection interstitials are left out, never retried.",
+ "limits": {
+  "title_min": 25,
+  "title_max": 65,
+  "desc_min": 70,
+  "desc_max": 165
+ },
+ "summary": {
+  "attempted": 110,
+  "read": 77,
+  "refused": 2,
+  "no_title": 2,
+  "title_over": 11,
+  "title_under": 11,
+  "title_in_range": 53,
+  "title_median": 48,
+  "title_longest": 80,
+  "no_desc": 3,
+  "desc_over": 14,
+  "desc_under": 5,
+  "desc_in_range": 55,
+  "desc_median": 144.0
+ },
+ "records": [
+  {
+   "host": "nytimes.com",
+   "category": "news",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "theguardian.com",
+   "category": "news",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 48,
+   "desc_width": 128
+  },
+  {
+   "host": "bbc.co.uk",
+   "category": "news",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 10,
+   "desc_width": 144
+  },
+  {
+   "host": "reuters.com",
+   "category": "news",
+   "status": 401,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "apnews.com",
+   "category": "news",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "washingtonpost.com",
+   "category": "news",
+   "status": 0,
+   "error": "the server did not respond in time. It may be slow or blocking us",
+   "read": false
+  },
+  {
+   "host": "wsj.com",
+   "category": "news",
+   "status": 0,
+   "error": "that domain does not resolve. Check the spelling, and that the site is live and public",
+   "read": false
+  },
+  {
+   "host": "bloomberg.com",
+   "category": "news",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 72,
+   "desc_width": 140
+  },
+  {
+   "host": "ft.com",
+   "category": "news",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "economist.com",
+   "category": "news",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "cnn.com",
+   "category": "news",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 43,
+   "desc_width": 117
+  },
+  {
+   "host": "forbes.com",
+   "category": "news",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "theatlantic.com",
+   "category": "news",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "wired.com",
+   "category": "news",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 71,
+   "desc_width": 147
+  },
+  {
+   "host": "arstechnica.com",
+   "category": "news",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 80,
+   "desc_width": 144
+  },
+  {
+   "host": "techcrunch.com",
+   "category": "news",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 40,
+   "desc_width": 107
+  },
+  {
+   "host": "theverge.com",
+   "category": "news",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 9,
+   "desc_width": 221
+  },
+  {
+   "host": "vox.com",
+   "category": "news",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 3,
+   "desc_width": 455
+  },
+  {
+   "host": "npr.org",
+   "category": "news",
+   "status": 0,
+   "error": "the server did not respond in time. It may be slow or blocking us",
+   "read": false
+  },
+  {
+   "host": "time.com",
+   "category": "news",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 57,
+   "desc_width": 133
+  },
+  {
+   "host": "amazon.com",
+   "category": "ecommerce",
+   "status": 202,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "etsy.com",
+   "category": "ecommerce",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "ebay.com",
+   "category": "ecommerce",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "walmart.com",
+   "category": "ecommerce",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 34,
+   "desc_width": 179
+  },
+  {
+   "host": "target.com",
+   "category": "ecommerce",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 31,
+   "desc_width": 150
+  },
+  {
+   "host": "wayfair.com",
+   "category": "ecommerce",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 69,
+   "desc_width": 155
+  },
+  {
+   "host": "chewy.com",
+   "category": "ecommerce",
+   "status": 429,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "allbirds.com",
+   "category": "ecommerce",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 50,
+   "desc_width": 151
+  },
+  {
+   "host": "gymshark.com",
+   "category": "ecommerce",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 0,
+   "desc_width": 0
+  },
+  {
+   "host": "warbyparker.com",
+   "category": "ecommerce",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 62,
+   "desc_width": 123
+  },
+  {
+   "host": "glossier.com",
+   "category": "ecommerce",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 8,
+   "desc_width": 8
+  },
+  {
+   "host": "patagonia.com",
+   "category": "ecommerce",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 33,
+   "desc_width": 55
+  },
+  {
+   "host": "rei.com",
+   "category": "ecommerce",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "nike.com",
+   "category": "ecommerce",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 26,
+   "desc_width": 92
+  },
+  {
+   "host": "ikea.com",
+   "category": "ecommerce",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 27,
+   "desc_width": 130
+  },
+  {
+   "host": "zara.com",
+   "category": "ecommerce",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "asos.com",
+   "category": "ecommerce",
+   "status": 0,
+   "error": "the server did not respond in time. It may be slow or blocking us",
+   "read": false
+  },
+  {
+   "host": "lush.com",
+   "category": "ecommerce",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "madewell.com",
+   "category": "ecommerce",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 66,
+   "desc_width": 125
+  },
+  {
+   "host": "bombas.com",
+   "category": "ecommerce",
+   "status": 429,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "stripe.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 54,
+   "desc_width": 149
+  },
+  {
+   "host": "notion.so",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 45,
+   "desc_width": 124
+  },
+  {
+   "host": "figma.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 56,
+   "desc_width": 164
+  },
+  {
+   "host": "slack.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 45,
+   "desc_width": 173
+  },
+  {
+   "host": "zoom.us",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 30,
+   "desc_width": 159
+  },
+  {
+   "host": "hubspot.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 55,
+   "desc_width": 129
+  },
+  {
+   "host": "mailchimp.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 42,
+   "desc_width": 126
+  },
+  {
+   "host": "shopify.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 66,
+   "desc_width": 142
+  },
+  {
+   "host": "squarespace.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 62,
+   "desc_width": 157
+  },
+  {
+   "host": "wix.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 56,
+   "desc_width": 144
+  },
+  {
+   "host": "webflow.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 55,
+   "desc_width": 151
+  },
+  {
+   "host": "canva.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 32,
+   "desc_width": 135
+  },
+  {
+   "host": "airtable.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 71,
+   "desc_width": 161
+  },
+  {
+   "host": "asana.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 55,
+   "desc_width": 106
+  },
+  {
+   "host": "monday.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 49,
+   "desc_width": 159
+  },
+  {
+   "host": "intercom.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 62,
+   "desc_width": 192
+  },
+  {
+   "host": "zendesk.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 46,
+   "desc_width": 135
+  },
+  {
+   "host": "calendly.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 59,
+   "desc_width": 159
+  },
+  {
+   "host": "linear.app",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 43,
+   "desc_width": 64
+  },
+  {
+   "host": "vercel.com",
+   "category": "saas",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 31,
+   "desc_width": 45
+  },
+  {
+   "host": "ahrefs.com",
+   "category": "seo-tools",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 48,
+   "desc_width": 128
+  },
+  {
+   "host": "semrush.com",
+   "category": "seo-tools",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 59,
+   "desc_width": 114
+  },
+  {
+   "host": "moz.com",
+   "category": "seo-tools",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 40,
+   "desc_width": 187
+  },
+  {
+   "host": "screamingfrog.co.uk",
+   "category": "seo-tools",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 27,
+   "desc_width": 148
+  },
+  {
+   "host": "sitebulb.com",
+   "category": "seo-tools",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 75,
+   "desc_width": 156
+  },
+  {
+   "host": "searchenginejournal.com",
+   "category": "seo-tools",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 61,
+   "desc_width": 164
+  },
+  {
+   "host": "searchengineland.com",
+   "category": "seo-tools",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "backlinko.com",
+   "category": "seo-tools",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 61,
+   "desc_width": 131
+  },
+  {
+   "host": "neilpatel.com",
+   "category": "seo-tools",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 58,
+   "desc_width": 156
+  },
+  {
+   "host": "seroundtable.com",
+   "category": "seo-tools",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 72,
+   "desc_width": 181
+  },
+  {
+   "host": "rotorooter.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 47,
+   "desc_width": 138
+  },
+  {
+   "host": "servicemaster.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 48,
+   "desc_width": 182
+  },
+  {
+   "host": "terminix.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 53,
+   "desc_width": 161
+  },
+  {
+   "host": "mrhandyman.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 57,
+   "desc_width": 151
+  },
+  {
+   "host": "molymaid.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 12,
+   "desc_width": 93
+  },
+  {
+   "host": "kumon.com",
+   "category": "local",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "massageenvy.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 54,
+   "desc_width": 109
+  },
+  {
+   "host": "supercuts.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 0,
+   "desc_width": 0
+  },
+  {
+   "host": "jiffylube.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 44,
+   "desc_width": 149
+  },
+  {
+   "host": "midas.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 52,
+   "desc_width": 147
+  },
+  {
+   "host": "hrblock.com",
+   "category": "local",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "katzsdelicatessen.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 52,
+   "desc_width": 25
+  },
+  {
+   "host": "shakeshack.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 23,
+   "desc_width": 0
+  },
+  {
+   "host": "chipotle.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 61,
+   "desc_width": 145
+  },
+  {
+   "host": "sweetgreen.com",
+   "category": "local",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 44,
+   "desc_width": 130
+  },
+  {
+   "host": "wikipedia.org",
+   "category": "reference",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 9,
+   "desc_width": 130
+  },
+  {
+   "host": "stackoverflow.com",
+   "category": "reference",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "github.com",
+   "category": "reference",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 70,
+   "desc_width": 186
+  },
+  {
+   "host": "medium.com",
+   "category": "reference",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "substack.com",
+   "category": "reference",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 8,
+   "desc_width": 132
+  },
+  {
+   "host": "quora.com",
+   "category": "reference",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "reddit.com",
+   "category": "reference",
+   "status": 200,
+   "error": "",
+   "read": false,
+   "refused": true
+  },
+  {
+   "host": "imdb.com",
+   "category": "reference",
+   "status": 202,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "webmd.com",
+   "category": "reference",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 42,
+   "desc_width": 279
+  },
+  {
+   "host": "mayoclinic.org",
+   "category": "reference",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "healthline.com",
+   "category": "reference",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 64,
+   "desc_width": 104
+  },
+  {
+   "host": "investopedia.com",
+   "category": "reference",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "nerdwallet.com",
+   "category": "reference",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 27,
+   "desc_width": 121
+  },
+  {
+   "host": "tripadvisor.com",
+   "category": "reference",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "yelp.com",
+   "category": "reference",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "khanacademy.org",
+   "category": "nonprofit",
+   "status": 200,
+   "error": "",
+   "read": false,
+   "refused": true
+  },
+  {
+   "host": "coursera.org",
+   "category": "nonprofit",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 50,
+   "desc_width": 188
+  },
+  {
+   "host": "edx.org",
+   "category": "nonprofit",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 70,
+   "desc_width": 116
+  },
+  {
+   "host": "redcross.org",
+   "category": "nonprofit",
+   "status": 403,
+   "error": "",
+   "read": false
+  },
+  {
+   "host": "wwf.org.uk",
+   "category": "nonprofit",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 32,
+   "desc_width": 143
+  },
+  {
+   "host": "unicef.org",
+   "category": "nonprofit",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 23,
+   "desc_width": 138
+  },
+  {
+   "host": "doctorswithoutborders.org",
+   "category": "nonprofit",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 36,
+   "desc_width": 158
+  },
+  {
+   "host": "habitat.org",
+   "category": "nonprofit",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 20,
+   "desc_width": 234
+  },
+  {
+   "host": "mit.edu",
+   "category": "nonprofit",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 43,
+   "desc_width": 184
+  },
+  {
+   "host": "stanford.edu",
+   "category": "nonprofit",
+   "status": 200,
+   "error": "",
+   "read": true,
+   "title_width": 19,
+   "desc_width": 364
+  }
+ ]
+}

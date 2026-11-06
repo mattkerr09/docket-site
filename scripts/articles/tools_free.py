@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import html
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -64,6 +65,8 @@ TOOLS = [
      "Is this page's title the right length, is it indexable, and what will a shared link show?"),
     ("json-ld-checker", "JSON-LD structured data checker",
      "Is this page's structured data valid, and is anything missing that a rich result needs?"),
+    ("serp-preview", "Search result preview",
+     "How will a title and description look in a search result, and where will they be cut off?"),
 ]
 
 
@@ -98,12 +101,35 @@ def audit_next(src: str, *, what: str) -> str:
 </div>"""
 
 
+
+def how_it_works(button: str, you_see: list[str], *, ask: str = "Paste the address of any page, yours or a competitor's.",
+                 steps: list[str] | None = None,
+                 free: str = "Nothing to install, and nothing about the site you check is stored.") -> str:
+    """No sign-up, three steps, what the result shows, then the step up to the app.
+
+    Matthew, 2026-11-06, from reading the free-tool pages of the big SEO suites: they all say
+    "no sign-up", give three steps and list what the report contains before the button is
+    pressed, and end on what the paid product adds. Each checker here says the same, in its
+    own words, and the step up is the app's free download, not a sign-up."""
+    steps = steps or [ask, f"Press <strong>{html.escape(button)}</strong>.",
+                      "Read the result. The things to fix come first, each with the change to make."]
+    return f"""
+<section class="tool-how" aria-label="How this checker works">
+<p class="tool-free"><strong>Free, no sign-up required.</strong> {free}</p>
+<ol class="tool-steps">{"".join(f"<li>{x}</li>" for x in steps)}</ol>
+<p class="tool-see-h"><strong>You will see:</strong></p>
+<ul class="tool-see">{"".join(f"<li>{x}</li>" for x in you_see)}</ul>
+<p class="tool-step-up">This checks one page. <a href="/download/">Docket</a>, the app these checkers come
+from, runs {N_CHECKS} checks on every page of your site and lists what to fix first. Its free download
+shows your score and the top problem in full.</p>
+</section>"""
+
 def hub() -> Path:
     items = "".join(
         f'<li><a href="/tools/{slug}/"><strong>{html.escape(name)}</strong></a>: {html.escape(q)}</li>'
         for slug, name, q in TOOLS)
     body = f"""
-<p class="lede">Free checks you can run on any page, in your browser, with no account and nothing
+<p class="lede">Free checks you can run on any page, in your browser. No sign-up required and nothing
 to install. Each one answers one question in a few seconds.</p>
 <ul class="tool-list">{items}</ul>
 
@@ -120,6 +146,9 @@ blocking the first kind usually is not.</p>
 <p><strong>A search result shows the wrong title, or a cut-off one.</strong> The title and meta tag
 checker measures the title and description the way Docket does, by width rather than character
 count, and checks the tags that decide whether the page can be indexed and what a shared link shows.</p>
+<p><strong>You are writing a new title and want to see it first.</strong> The search result
+preview shows the title and description as a result would, before anything is published, and marks
+where Docket expects each to be cut off. It needs no address: type the words and watch.</p>
 <p><strong>Stars, prices or FAQs never appear under your result.</strong> The JSON-LD checker reads
 every structured data block on the page, says which line breaks the JSON, and lists the properties a
 rich result needs that are missing.</p>
@@ -208,6 +237,11 @@ It works on any site, yours or not, and there is nothing to verify first.</p>
 <thead><tr><th>Crawler</th><th>Who</th><th>What it is for</th><th>This page</th></tr></thead>
 <tbody>{rows}</tbody></table></div>
 <p class="checker-sitemaps" id="checker-sitemaps" hidden></p>
+{how_it_works("Test this page", [
+    "Allowed or blocked for Googlebot, Bingbot and the AI crawlers, one row each",
+    "The exact robots.txt line that decides, so you know which line to change",
+    "The sitemaps the file lists",
+])}
 {audit_next("tools-robots-tester", what="one file, read for one page")}
 
 <h2>How to read the answer</h2>
@@ -405,6 +439,11 @@ what to fix.</p>
   </dl>
 </div>
 <ul class="findings" id="findings"></ul>
+{how_it_works("Check this page", [
+    "The title and meta description, measured the way Docket measures them, with a verdict on each",
+    "Whether the page can be indexed, from its robots tag and its headers",
+    "The canonical, the main heading, and what a shared link will show",
+])}
 {audit_next("tools-meta-checker", what="one page, read once")}
 
 <h2>How long should a title be?</h2>
@@ -511,6 +550,11 @@ that are missing.</p>
 <div class="wrap-tbl" id="ld-items-wrap" hidden><table class="cmp" id="ld-items">
 <thead><tr><th>Block</th><th>Type</th><th>Name</th><th>Missing</th></tr></thead><tbody></tbody></table></div>
 <ul class="findings" id="findings"></ul>
+{how_it_works("Check structured data", [
+    "Every JSON-LD block on the page, with its type and name",
+    "The line and column where broken JSON stops a parser",
+    "The properties a rich result needs that are missing",
+])}
 {audit_next("tools-jsonld-checker", what="one page, read once")}
 
 <h2>What it checks</h2>
@@ -610,7 +654,208 @@ and ranks what to fix with the rest of its {N_CHECKS} checks.</p>
     )
 
 
-BUILDERS = [hub, robots_tester, meta_checker, jsonld_checker]
+#: The worker's copy of words.display_width's wide ranges, read from its source so the preview,
+#: the meta tag checker and the app can never measure the same title differently.
+_PAGE_JS = Path(__file__).resolve().parents[2] / "workers" / "ai-crawler-check" / "src" / "page.js"
+
+
+def _wide_ranges_js() -> str:
+    m = re.search(r"const WIDE = (\[\[.*?\]\])", _PAGE_JS.read_text(), re.S)
+    if not m:
+        raise SystemExit(f"{_PAGE_JS}: no WIDE table; the preview would measure differently from the checker")
+    return " ".join(m.group(1).split())
+
+
+def titles_data() -> dict:
+    """The newest homepage title survey (scripts/collect_titles.py)."""
+    newest = sorted((Path(__file__).resolve().parents[2] / "data").glob("titles-*.json"))[-1]
+    return json.loads(newest.read_text())
+
+
+def _day(iso: str) -> str:
+    import datetime
+    d = datetime.date.fromisoformat(iso)
+    return f"{d.day} {d:%B %Y}"
+
+
+def serp_preview() -> Path:
+    t = titles_data()
+    m = t["summary"]
+    lim = t["limits"]
+    tmin, tmax, dmin, dmax = lim["title_min"], lim["title_max"], lim["desc_min"], lim["desc_max"]
+    when = _day(t["measured"])
+    with_title = m["read"] - m["no_title"]
+    with_desc = m["read"] - m["no_desc"]
+    silent = m["attempted"] - m["read"] - m["refused"]
+    n403 = sum(1 for r in t["records"] if not r.get("read") and not r.get("refused") and r["status"] == 403)
+    title_cut_pct = round(100 * m["title_over"] / with_title)
+    desc_cut_pct = round(100 * m["desc_over"] / with_desc)
+    body = rf"""
+<p class="lede">Type a title and a meta description to see them as a search result shows them. A result
+cuts a title off at about {TITLE_PX} pixels, roughly {tmax} Latin characters, and this preview cuts it
+where Docket does, so you can move the important words to the front before anything goes live.</p>
+
+<form class="checker-form serp-form" id="serp" autocomplete="off" novalidate onsubmit="return false">
+  <label for="serp-title">Title</label>
+  <input id="serp-title" type="text" maxlength="300" spellcheck="true"
+         value="Emergency plumber in Grand Rapids, open 24 hours a day | Your Business Name">
+  <p class="serp-count" id="serp-title-count" aria-live="polite"></p>
+  <label for="serp-desc">Meta description</label>
+  <textarea id="serp-desc" rows="3" maxlength="700" spellcheck="true">Burst pipe or no hot water? A licensed plumber at your door within the hour, day or night. Upfront prices, and every repair guaranteed for a year.</textarea>
+  <p class="serp-count" id="serp-desc-count" aria-live="polite"></p>
+  <label for="serp-url">Page address (optional)</label>
+  <input id="serp-url" type="text" inputmode="url" placeholder="yourbusiness.com/emergency-plumber/" spellcheck="false">
+</form>
+
+<div class="serp-box" id="serp-box">
+  <div class="serp-site"><span id="serp-host">yourbusiness.com</span> <span class="serp-path" id="serp-path"></span></div>
+  <div class="serp-title" id="serp-title-out"></div>
+  <div class="serp-desc" id="serp-desc-out"></div>
+</div>
+<div class="serp-copy">
+  <button class="btn-ghost" type="button" id="serp-copy">Copy the HTML tags</button>
+  <span class="serp-count" id="serp-copied" aria-live="polite"></span>
+</div>
+{how_it_works("", [
+    "The title and description laid out as a search result, with the cut-off point marked in red",
+    f"Each one's width in Docket's units, against {tmin} to {tmax} for a title and {dmin} to {dmax} for a description",
+    "The two HTML tags, ready to paste into the page's head",
+], steps=["Type or paste a title.", "Type or paste a meta description, and the page address if you like.",
+          "Watch the preview. Anything past the red mark will not be shown, so move what matters in front of it."],
+   free="Nothing to install, and nothing you type leaves your browser.")}
+
+<h2>Will Google cut off my title?</h2>
+<p>If it is wider than about {TITLE_PX} pixels, yes. Docket turns that into a width of {tmax}, counting an
+East Asian character as two because it renders about twice as wide as a Latin one. Under {tmin} wide, a
+result has little to show. Google can also replace a title it thinks does not describe the page, so a
+title that fits is necessary, not sufficient.</p>
+
+<h2>How often well-known sites go over</h2>
+<p>On {when}, Docket read the homepages of the {m["attempted"]} well-known sites in its measurement
+sample with its own fetcher and width rule. {m["read"]} answered with a page. {silent} did not return one
+to a plain request ({n403} of them answered 403, access denied) and {m["refused"]} showed a bot check;
+those are left out.</p>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th></th><th>Title</th><th>Meta description</th></tr></thead>
+<tbody>
+<tr><td>Inside Docket's range</td><td>{m["title_in_range"]} of {with_title}</td><td>{m["desc_in_range"]} of {with_desc}</td></tr>
+<tr><td>Wider, so a result cuts it</td><td>{m["title_over"]} ({title_cut_pct}%)</td><td>{m["desc_over"]} ({desc_cut_pct}%)</td></tr>
+<tr><td>Shorter than the range</td><td>{m["title_under"]}</td><td>{m["desc_under"]}</td></tr>
+<tr><td>None at all</td><td>{m["no_title"]}</td><td>{m["no_desc"]}</td></tr>
+<tr><td>Median width</td><td>{m["title_median"]:g}</td><td>{m["desc_median"]:g}</td></tr>
+</tbody></table></div>
+<p class="table-note">Homepages only, measured {when}. The sites are not named: the figures are the
+point, not who they belong to.</p>
+<p>A short title can be right for a name people already type into a search box. It is a poor choice
+for a page that has to be found by what it does. A long one loses its end first, so a brand name
+added after the words that matter is the cheapest thing to lose.</p>
+
+<h2>How long should a meta description be?</h2>
+<p>Docket uses {dmin} to {dmax} wide. Google sets no fixed limit and often writes its own snippet from
+the page when the description does not match what someone searched for. Put the reason to click in
+the first sentence, so it survives a cut.</p>
+
+<h2>A preview checks words; an audit checks the site</h2>
+<p>This shows one title you typed. It cannot tell you that a dozen pages share the same title, that a
+template left a page with none, or that the live title differs from the one you meant to publish.
+Docket reads every page of a site and reports each of those, with the rest of its {N_CHECKS} checks,
+ranked by what to fix first. To check a page that is already live, use the
+<a href="/tools/meta-tag-checker/">title and meta tag checker</a>.</p>
+{buy_block("tools-serp-preview", try_app="tools-serp-preview-try-free")}
+
+<h2>Related</h2>
+<ul>
+<li><a href="/how-to/write-title-tags-that-fit/">Write title tags that fit</a></li>
+<li><a href="/how-to/write-meta-descriptions/">Write meta descriptions for every page</a></li>
+<li><a href="/how-to/fix-duplicate-title-tags/">Fix duplicate title tags</a></li>
+<li><a href="/tools/meta-tag-checker/">Title and meta tag checker</a></li>
+</ul>
+
+<script>
+(function () {{
+  var WIDE = {_wide_ranges_js()};
+  var TMAX = {tmax}, TMIN = {tmin}, DMAX = {dmax}, DMIN = {dmin};
+  function cw(ch) {{ var c = ch.codePointAt(0); for (var i = 0; i < WIDE.length; i++) if (c >= WIDE[i][0] && c <= WIDE[i][1]) return 2; return 1; }}
+  function width(s) {{ var n = 0; for (var ch of s) n += cw(ch); return n; }}
+  function cut(s, max) {{
+    if (width(s) <= max) return {{ shown: s, rest: '' }};
+    var n = 0, i = 0, chars = Array.from(s);
+    for (; i < chars.length; i++) {{ if (n + cw(chars[i]) > max - 1) break; n += cw(chars[i]); }}
+    var shown = chars.slice(0, i).join('');
+    var sp = shown.lastIndexOf(' ');
+    if (sp > shown.length * 0.6) shown = shown.slice(0, sp);
+    return {{ shown: shown.replace(/[\s,|:;\-]+$/, ''), rest: chars.slice(shown.length).join('') }};
+  }}
+  function verdict(w, lo, hi, what) {{
+    if (!w) return {{ t: 'No ' + what + ' yet.', over: false }};
+    if (w > hi) return {{ t: w + ' wide. Too long: a result cuts it after about ' + hi + '.', over: true }};
+    if (w < lo) return {{ t: w + ' wide. Short: under ' + lo + ' leaves a result little to show.', over: false }};
+    return {{ t: w + ' wide. Fits Docket\'s range of ' + lo + ' to ' + hi + '.', over: false }};
+  }}
+  function el(id) {{ return document.getElementById(id); }}
+  function put(box, s, max) {{
+    box.textContent = '';
+    var c = cut(s, max);
+    box.appendChild(document.createTextNode(c.shown));
+    if (c.rest) {{ var m = document.createElement('span'); m.className = 'serp-cut'; m.textContent = ' …'; m.title = 'Cut here'; box.appendChild(m); }}
+  }}
+  var sent = false;
+  function update() {{
+    var t = el('serp-title').value.replace(/\s+/g, ' ').trim();
+    var d = el('serp-desc').value.replace(/\s+/g, ' ').trim();
+    var u = el('serp-url').value.trim().replace(/^https?:\/\//i, '');
+    var host = u.split('/')[0] || 'yourbusiness.com';
+    var path = u.split('/').slice(1).filter(Boolean);
+    el('serp-host').textContent = host;
+    el('serp-path').textContent = path.length ? '› ' + path.join(' › ') : '';
+    put(el('serp-title-out'), t || 'Your title appears here', TMAX);
+    put(el('serp-desc-out'), d || 'Your description appears here.', DMAX);
+    var vt = verdict(width(t), TMIN, TMAX, 'title'), vd = verdict(width(d), DMIN, DMAX, 'description');
+    el('serp-title-count').textContent = vt.t; el('serp-title-count').className = 'serp-count' + (vt.over ? ' over' : '');
+    el('serp-desc-count').textContent = vd.t; el('serp-desc-count').className = 'serp-count' + (vd.over ? ' over' : '');
+  }}
+  function esc(s) {{ return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }}
+  ['serp-title', 'serp-desc', 'serp-url'].forEach(function (id) {{
+    el(id).addEventListener('input', function () {{
+      update();
+      if (!sent && window.plausible) {{ sent = true; window.plausible('Checker', {{ props: {{ tool: 'serp' }} }}); }}
+    }});
+  }});
+  el('serp-copy').addEventListener('click', function () {{
+    var t = el('serp-title').value.replace(/\s+/g, ' ').trim(), d = el('serp-desc').value.replace(/\s+/g, ' ').trim();
+    var tags = '<title>' + esc(t) + '</title>\n<meta name="description" content="' + esc(d) + '">';
+    var done = function () {{ el('serp-copied').textContent = 'Copied.'; }};
+    if (navigator.clipboard) navigator.clipboard.writeText(tags).then(done, function () {{ el('serp-copied').textContent = tags; }});
+    else el('serp-copied').textContent = tags;
+  }});
+  update();
+}})();
+</script>
+"""
+    return render(
+        cat="tools", slug="serp-preview",
+        title="SERP preview tool: will Google cut off your title?",
+        desc=(f"Free search result preview: type a title and meta description and see where a result cuts "
+              f"them, measured against {tmax} and {dmax} wide. No sign-up."),
+        h1="Search result preview: see where your title gets cut off",
+        crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / Search result preview',
+        body=body,
+        published=t["measured"],
+        schema_type="WebPage",
+        faq=[
+            ("Will Google cut off my title?",
+             f"Yes, if it is wider than about {TITLE_PX} pixels, roughly {tmax} Latin characters. On {when} "
+             f"{m['title_over']} of {with_title} well-known homepages Docket measured had titles that wide."),
+            ("How long should a meta description be?",
+             f"Docket uses {dmin} to {dmax} wide. Google sets no fixed limit and may write its own snippet "
+             "when the description does not match the search."),
+            ("Does the preview send what I type anywhere?",
+             "No. The preview runs in your browser and nothing you type is sent to Docket or anyone else."),
+        ],
+    )
+
+
+BUILDERS = [hub, robots_tester, meta_checker, jsonld_checker, serp_preview]
 
 
 def build_all() -> list[Path]:

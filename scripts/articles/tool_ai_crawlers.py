@@ -28,7 +28,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from tools_free import audit_next  # noqa: E402
+from tools_free import audit_next, how_it_works  # noqa: E402
 from render import (DATA, HAS_SAMPLE, N_CHECKS, PAY4, PRICE, PRICE_STR, SAMPLE_REPORT, price_req_html,  # noqa: E402
                     buy_block, checkout_url, render)
 
@@ -119,6 +119,11 @@ first, and the ones that only collect training data come second.</p>
     data-what="badge">Copy badge code</button><span id="share-preview"></span></div>
 </div>
 
+{how_it_works("Check my site", [
+    f"Each of the {n} crawlers, allowed or blocked, with the ones that let an assistant quote you first",
+    "The robots.txt line behind each answer",
+    "A link to share the result, and a badge for your site that links to it",
+], ask="Type your website's address, or any page on it.")}
 {audit_next("tools-checker-result", what="one file, read for one page")}
 
 <h2>Crawlers that decide whether AI can cite you</h2>
