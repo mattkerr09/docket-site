@@ -2152,6 +2152,9 @@ kept complete, and this is the enumeration failing.</p>
 <p>If you open an issue on GitHub, that issue is public and GitHub's privacy policy applies to
 it; we hold nothing separately.</p>
 
+<h2>The Chrome extension</h2>
+<p>Docket page check, the free Chrome extension, has its own short page: <a href="/legal/chrome-extension/">what it reads and what it sends</a>. It sends nothing to us.</p>
+
 <h2>Changes</h2>
 <p>If this policy changes, the updated version appears on this page.</p>
 
@@ -2172,7 +2175,69 @@ it; we hold nothing separately.</p>
         body=body,
         # From git: 884a2caee, 2026-11-04 (the crawler names the edge-access check sends). Before this the page showed
         # only "Published 6 August 2026" over changes dated 2 November (Matthew's full audit, 2026-11-04, row 19).
-        modified="2026-11-04",
+        modified="2026-11-06",
+        schema_type="WebPage",
+    )
+
+
+def chrome_extension_privacy() -> Path:
+    """What Docket page check, the free Chrome extension, reads and sends. The Chrome Web Store asks for a privacy page
+    for an extension, and the claims here are the ones the extension's own tests pin (chrome-extension/ in docket-app:
+    permissions activeTab and scripting only, one request, for the visited site's own /llms.txt, nothing stored)."""
+    body = """
+<p>Docket page check is a free Chrome extension from Kerr &amp; Company. It checks the web page you are
+looking at for the SEO basics and shows the result in a small window. This page says what it can see,
+what it sends and what it asks Chrome for. The privacy policy for the Docket app and for this website is
+<a href="/legal/privacy/">here</a>.</p>
+
+<h2>What it sends</h2>
+<p>Nothing to us and nothing to anyone else. The checking happens inside your browser, on the page you
+opened it on. There is no account, no sign-in, no analytics, no crash reporting and no advertising in
+it, and it stores nothing on your computer.</p>
+<p>It makes one network request. When you open it on a page, it asks that same site for its own
+<code>/llms.txt</code> file, without cookies, to say whether the site has one. The request goes to the
+site you are already on, as any visitor's would, and carries what any request carries, such as your IP
+address and your browser's usual headers. Nothing about the page is sent anywhere.</p>
+
+<h2>What it reads</h2>
+<p>Only when you click its icon, and only the page that tab is showing: the title, the meta description,
+the headings, the canonical link, the robots meta tag, structured data, Open Graph tags, the alt
+attributes of images, hreflang links, and whether the site has an llms.txt. It reads them to work out the
+result, and the result stays in the window until you close it. The text of the page is not copied, saved
+or sent.</p>
+
+<h2>What it asks Chrome for</h2>
+<ul>
+<li><strong>activeTab.</strong> Lets it look at the tab you are on, only after you click its icon. It has
+no standing access to any site.</li>
+<li><strong>scripting.</strong> Lets it run its checking code in that tab once you have clicked.</li>
+</ul>
+<p>It does not ask for access to all sites, your browsing history, your list of tabs, bookmarks, cookies
+or downloads.</p>
+
+<h2>The link to the whole-site audit</h2>
+<p>The window has a link, &ldquo;Audit the whole site with Docket&rdquo;. It opens
+<a href="/download/">the download page on this website</a> in a new tab when you click it, and not
+before. The link carries a tag, <code>utm_source=chrome-ext</code>, so this website&rsquo;s analytics can
+count that the visit came from the extension. What this website collects is in the
+<a href="/legal/privacy/">privacy policy</a>.</p>
+
+<h2>Changes</h2>
+<p>If this page changes, the updated version appears here.</p>
+
+<h2>Contact</h2>
+<p>Questions about privacy or anything else: <a href="/contact/">get in touch</a>.</p>
+"""
+    return render(
+        cat="legal", slug="chrome-extension",
+        title="Privacy: Docket page check, the free Chrome extension",
+        desc="The Chrome extension reads the page you are on, in your browser, and sends nothing "
+             "anywhere. What it reads, what it asks Chrome for, and the one request it makes.",
+        h1="Docket page check: privacy",
+        crumb='<a href="/">Docket</a> / <a href="/legal/privacy/">Privacy</a> / Chrome extension',
+        body=body,
+        published="2026-11-06",
+        modified="2026-11-06",
         schema_type="WebPage",
     )
 
@@ -2558,7 +2623,7 @@ the governing law, are on <a href="/legal/terms/">the terms of use page</a>.</p>
 BUILDERS = [download, for_hub, for_agencies, for_developers, for_ecommerce,
             for_local, for_saas, howto_hub,
             howto_ai_access,
-            privacy, terms, refunds]
+            privacy, chrome_extension_privacy, terms, refunds]
 
 
 def build_all() -> list[Path]:
