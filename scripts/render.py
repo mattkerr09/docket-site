@@ -283,15 +283,22 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
            f'<p class="price-line"><span class="price-big">{PRICE_STR}</span>'
            f'<span class="price-pay4">once{PAY4_BUY}</span></p>{price_req_html()}'
            f'<div class="hero-cta">'
-           f'<a class="btn{size}" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
+           f'<a class="btn{size} buy-btn" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
            f'data-ev-button="{src}">Buy Docket</a>']
     if try_app:
         # Since 1.3.96 the app itself is free to try (from 1.3.102: the score, the
         # per-area counts and the top problem in full), so that is the free thing beside Buy now.
         # `try_app` is the download's tag. CEO, 2026-10-01: Monday's visitors
         # should see the free path above the fold.
-        out.append(f'<a class="btn-ghost{size}" href="{download_url(try_app)}" data-ev="Download" '
-                   f'data-ev-button="{try_app}">Try it free</a>')
+        out.append(f'<a class="btn-ghost{size}{" dl-mac" if WINDOWS else ""}" href="{download_url(try_app)}" '
+                   f'data-ev="Download" data-ev-button="{try_app}">Try it free</a>')
+        if WINDOWS:
+            # A Windows desktop is handed the Windows installer first (CEO, 2026-11-06: 26 of Docket's 61 visitors in 30
+            # days were on Windows, and the main download button gave them a Mac file). The head script marks such a page
+            # `win`; the CSS shows this button and hides the Mac one. With no script, or on a Mac, a phone or a tablet,
+            # nothing changes. Counted as `<placement>-win`, so the hero is home-hero-win.
+            out.append(f'<a class="btn{size} dl-win" href="{download_url(src + "-win", to=WIN_SETUP)}" data-ev="Download" '
+                       f'data-ev-button="{src}-win">Try it free for Windows</a>')
     elif try_free:
         # The one thing a visitor can try without paying, beside the button
         # that asks them to pay (CEO's revenue pass, 2026-09-29).
@@ -301,6 +308,9 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
         out.append(f'<a class="btn-ghost{size}" href="{SAMPLE_REPORT}" data-ev="Sample report" '
                    f'data-ev-button="{src}">See a full sample report</a>')
     out.append('</div>')
+    if try_app and WINDOWS:
+        out.append(f'<p class="mac-alt hero-note">On a Mac? <a href="{download_url(src + "-mac")}" data-ev="Download" '
+                   f'data-ev-button="{src}-mac">Get the Mac version</a>.</p>')
     if try_app and phone:
         out.append(PHONE_LINK)
     if FOUNDING_LINE:
@@ -502,6 +512,13 @@ WIN_PUBLISHER = "Kerr & Company LLC"
 #: What there is no build of.
 NO_BUILDS = ("" if WINDOWS else
              "There is no Windows build." if INTEL else "There is no Windows or Intel build.")
+
+
+#: Marks a Windows desktop `win` on <html>, before the page paints, so the buy block leads with the Windows installer. A phone or
+#: tablet is never `win` (an iPad reports a Mac, so a "Mac" with a touch screen is a tablet). Nothing is sent anywhere.
+WIN_HEAD_JS = ("<script>(function(n){var u=n.userAgent||'';if(/iPhone|iPad|iPod|Android|Mobi/i.test(u)||"
+               "(/Macintosh/.test(u)&&n.maxTouchPoints>1))return;if(/Windows NT/.test(u))"
+               "document.documentElement.classList.add('win')})(navigator)</script>") if WINDOWS else ""
 
 
 def windows_download(src: str, *, lead: str = "On Windows?") -> str:
@@ -1564,6 +1581,14 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+/* THE WINDOWS DOWNLOAD FIRST ON A WINDOWS DESKTOP (CEO, 2026-11-06). The head script marks the page `win` for a Windows desktop and
+   never for a phone or tablet; with no script, or on anything else, the Mac button leads as before and these stay hidden. */
+.dl-win,.mac-alt{display:none}
+.win .dl-win{display:inline-block;order:-1}
+.win .dl-mac{display:none}
+.win .mac-alt{display:block}
+.win .hero-cta .buy-btn{background:rgba(255,255,255,.03);color:var(--text);border:1px solid var(--border-strong)}
+.win .hero-cta .buy-btn:hover{background:var(--surface-2);color:var(--text)}
 .buy-block{margin:0 0 1.1rem}
 /* The price, and pay-in-four on its baseline at 40% of its size, same face,
    full-strength text colour (never the dim note colour). One line at 1280;
@@ -2671,6 +2696,7 @@ def render(
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+{WIN_HEAD_JS}
 {RETURN_URL_SCRUB if (cat, slug) == ("", "thank-you") else ""}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {BING_SITE_VERIFICATION}

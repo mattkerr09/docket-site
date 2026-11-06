@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(n){var u=n.userAgent||'';if(/iPhone|iPad|iPod|Android|Mobi/i.test(u)||(/Macintosh/.test(u)&&n.maxTouchPoints>1))return;if(/Windows NT/.test(u))document.documentElement.classList.add('win')})(navigator)</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="msvalidate.01" content="34D102FD9C044A2BDA597B176842725B" />
@@ -14,7 +15,7 @@
 <title>AI crawler checker: can ChatGPT read your site?</title>
 <meta name="description" content="Free check of your robots.txt against 22 crawlers: which let ChatGPT, Claude, Perplexity, AI Overviews and Copilot read and cite you, and which only train.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="6938c8d6cba7">
+<meta name="build-id" content="e0cd99034c3d">
 <link rel="canonical" href="https://docketseo.app/tools/ai-crawler-checker/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -603,6 +604,14 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+/* THE WINDOWS DOWNLOAD FIRST ON A WINDOWS DESKTOP (CEO, 2026-11-06). The head script marks the page `win` for a Windows desktop and
+   never for a phone or tablet; with no script, or on anything else, the Mac button leads as before and these stay hidden. */
+.dl-win,.mac-alt{display:none}
+.win .dl-win{display:inline-block;order:-1}
+.win .dl-mac{display:none}
+.win .mac-alt{display:block}
+.win .hero-cta .buy-btn{background:rgba(255,255,255,.03);color:var(--text);border:1px solid var(--border-strong)}
+.win .hero-cta .buy-btn:hover{background:var(--surface-2);color:var(--text)}
 .buy-block{margin:0 0 1.1rem}
 /* The price, and pay-in-four on its baseline at 40% of its size, same face,
    full-strength text colour (never the dim note colour). One line at 1280;
@@ -1032,7 +1041,7 @@ out of date.</p>
 crawler and reports when your server refuses one that robots.txt permits, reads the tags on every
 page, and flags text that only appears after JavaScript runs. It then ranks what to fix first, next
 to five optional outside checks and the rest of the audit.</p>
-<div class="buy-block"><p class="price-line"><span class="price-big">$59</span><span class="price-pay4">once</span></p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later, and 64-bit Windows</p><div class="hero-cta"><a rel="nofollow" class="btn btn-lg" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=tools-ai-crawler-checker" data-ev="Buy" data-ev-price="59" data-ev-button="tools-ai-crawler-checker">Buy Docket</a><a class="btn-ghost btn-lg" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-ai-crawler-checker">See a full sample report</a></div><p class="hero-note founding-note" data-founding-until="2026-12-01T07:59:59Z">Black Friday price, all of November: <strong>Docket SEO $29.50 once</strong>. From 1 December it&rsquo;s $59, or 4&nbsp;&times;&nbsp;$14.75. Buy applies the code <code>FOUNDINGDOCKET</code> for you; if the checkout shows $59, enter it under &lsquo;Have a discount code?&rsquo;.</p><p class="hero-note price-anchor">Screaming Frog is $279 a year. Ahrefs plans with Site Audit run $29&ndash;$449 a month. Docket is $59 once. <span class="qual">Screaming Frog&rsquo;s price read 4 November 2026, Ahrefs&rsquo; 28 October 2026.</span></p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
+<div class="buy-block"><p class="price-line"><span class="price-big">$59</span><span class="price-pay4">once</span></p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later, and 64-bit Windows</p><div class="hero-cta"><a rel="nofollow" class="btn btn-lg buy-btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=tools-ai-crawler-checker" data-ev="Buy" data-ev-price="59" data-ev-button="tools-ai-crawler-checker">Buy Docket</a><a class="btn-ghost btn-lg" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-ai-crawler-checker">See a full sample report</a></div><p class="hero-note founding-note" data-founding-until="2026-12-01T07:59:59Z">Black Friday price, all of November: <strong>Docket SEO $29.50 once</strong>. From 1 December it&rsquo;s $59, or 4&nbsp;&times;&nbsp;$14.75. Buy applies the code <code>FOUNDINGDOCKET</code> for you; if the checkout shows $59, enter it under &lsquo;Have a discount code?&rsquo;.</p><p class="hero-note price-anchor">Screaming Frog is $279 a year. Ahrefs plans with Site Audit run $29&ndash;$449 a month. Docket is $59 once. <span class="qual">Screaming Frog&rsquo;s price read 4 November 2026, Ahrefs&rsquo; 28 October 2026.</span></p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
 
 <h2>Related</h2>
 <ul>

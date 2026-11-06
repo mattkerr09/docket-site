@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>(function(n){var u=n.userAgent||'';if(/iPhone|iPad|iPod|Android|Mobi/i.test(u)||(/Macintosh/.test(u)&&n.maxTouchPoints>1))return;if(/Windows NT/.test(u))document.documentElement.classList.add('win')})(navigator)</script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="msvalidate.01" content="34D102FD9C044A2BDA597B176842725B" />
@@ -14,7 +15,7 @@
 <title>White-label SEO audit tool for agencies (2026): $59 once</title>
 <meta name="description" content="Put your agency's name and logo on every audit report. $59 once for unlimited client audits, against $39 to $59 a month for a white-label subscription.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="6938c8d6cba7">
+<meta name="build-id" content="e0cd99034c3d">
 <link rel="canonical" href="https://docketseo.app/for/agencies/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -603,6 +604,14 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   -webkit-text-fill-color:currentColor}
 .hero-sub{font-size:var(--t-xl);color:var(--text-mid);max-width:33rem;margin-bottom:1.9rem;line-height:1.6}
 .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin-bottom:1.1rem}
+/* THE WINDOWS DOWNLOAD FIRST ON A WINDOWS DESKTOP (CEO, 2026-11-06). The head script marks the page `win` for a Windows desktop and
+   never for a phone or tablet; with no script, or on anything else, the Mac button leads as before and these stay hidden. */
+.dl-win,.mac-alt{display:none}
+.win .dl-win{display:inline-block;order:-1}
+.win .dl-mac{display:none}
+.win .mac-alt{display:block}
+.win .hero-cta .buy-btn{background:rgba(255,255,255,.03);color:var(--text);border:1px solid var(--border-strong)}
+.win .hero-cta .buy-btn:hover{background:var(--surface-2);color:var(--text)}
 .buy-block{margin:0 0 1.1rem}
 /* The price, and pay-in-four on its baseline at 40% of its size, same face,
    full-strength text colour (never the dim note colour). One line at 1280;
