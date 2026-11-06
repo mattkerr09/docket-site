@@ -2141,25 +2141,13 @@ requests as any other, and it can ask for offline mode.</li>
 removes them permanently.</p>
 
 <h2>This website</h2>
-<p>This site is static and runs five third-party scripts. The first is
+<p>This site is static and runs four third-party scripts. The first is
 <a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, which counts page
 views. Plausible states that it uses no cookies, collects no personal data and does not track
 visitors across sites; it is hosted in the EU. Nothing about your audits reaches it.
 Audits run on your Mac and this website never sees them. Standard server logs may record IP
 addresses and requested URLs, which are used only to keep the site running.</p>
-<p>The second is the <a href="https://www.facebook.com/business/tools/meta-pixel">Meta
-pixel</a>. It is here because we advertise on Facebook and Instagram, and without it we cannot
-tell which adverts bring people who actually download Docket: only how much we spent. It
-records that a page was viewed and sets a <code>_fbp</code> cookie, which lets Meta connect a
-visit here to an advert you saw there. Its id is
-<code>2344029433088526</code>, visible in this page's source; that is normal for a pixel and not
-a secret. It sees pages on this site. It does not see your audits, which run on your Mac and are
-never uploaded.</p>
-<p>This is the most intrusive thing on the site and it is the one we would least like to need. A
-content blocker stops it, as does Meta's own
-<a href="https://www.facebook.com/adpreferences/ad_settings">off-Facebook activity</a> setting,
-and nothing here depends on it loading.</p>
-<p>The third is the chat assistant in the corner of the page, which answers questions about
+<p>The second is the chat assistant in the corner of the page, which answers questions about
 Docket. Its script is loaded from <code>kerr-lead-agent.kerrco.workers.dev</code>, a server we
 run. The assistant stores nothing in your browser (no cookie of its own, no local
 storage, no session storage), and it reads nothing about your device. It draws itself in
@@ -2168,13 +2156,13 @@ into it, that question is sent to that server so it can be answered; if you neve
 nothing is sent. It knows only published facts about Docket, and the price it quotes comes from
 the payment provider rather than from this page, so it cannot quote you a price the checkout
 will not honour.</p>
-<p>The fourth is on the front page only: the founding-offer bar across the top of the
+<p>The third is on the front page only: the founding-offer bar across the top of the
 page, loaded from <code>kerr-lead-agent.kerrco.workers.dev</code>, the same server as the
 assistant. When the page loads it asks that server whether the offer is still open, and the only
 thing it sends is this site's name. If you close the bar, the time you closed it is kept in your
 browser's local storage so the bar stays away for seven days; nothing else is stored and it sets
 no cookie. It draws itself in an isolated shadow root, like the assistant.</p>
-<p>The fifth is on every page: a small script loaded from
+<p>The fourth is on every page: a small script loaded from
 <code>kerr-affiliate-hub.kerrco.workers.dev</code>, a server we run, which is where our Download and
 Buy links point. It does three things. When you click a Download or Buy link, it marks the click as made
 by a person, because a crawler that only follows the address never makes a click, so we can count people
@@ -2196,9 +2184,11 @@ other way and it does nothing at all.</p>
 <p>These paragraphs have been rewritten three times as the answer changed. They once said the
 site &ldquo;sets no cookies&rdquo; and runs &ldquo;one third-party script&rdquo;; both were true
 until Sled was added. The line calling Sled the only thing here that can set a cookie was true
-until the Meta pixel was. The count said three until the chat assistant was added, and the description on this page still said three after the body said four. Our own audit caught that, and it was corrected to five, which is when the Windows form on the front page was counted too. It said five while the front page loaded six: the founding-offer bar was missed until a count of every script on every built page was checked against this list, and that count now runs before every deploy. It said six
+until Meta's advertising tracker was added. The count said three until the chat assistant was added, and the description on this page still said three after the body said four. Our own audit caught that, and it was corrected to five, which is when the Windows form on the front page was counted too. It said five while the front page loaded six: the founding-offer bar was missed until a count of every script on every built page was checked against this list, and that count now runs before every deploy. It said six
 until the click-counting script was added on every page. It went back to five on 2 November 2026,
-when Sled was retired; affiliate credit is kept by the click-counting script, without a cookie. This
+when Sled was retired; affiliate credit is kept by the click-counting script, without a cookie. It
+went to four four days later, when Meta's advertising tracker was removed: it sent every visit
+here to Meta and set a cookie to do it. This
 paragraph is the reason that was noticed: each correction is made above rather than quietly
 deleted. A privacy page that enumerates what a site does not do is only worth reading if the
 enumeration stays complete.</p>
@@ -2209,15 +2199,18 @@ depends on it loading.</p>
 <p>The <a href="/tools/">free checkers</a> send the address you type, and nothing else about you,
 to <code>ai-crawler-check.kerrco.workers.dev</code>, a server we run. Nothing is sent until you press
 the button. The AI crawler checker and the robots.txt tester make that server fetch the site's
-robots.txt. The title and meta tag checker and the JSON-LD checker make it fetch the page at that
-address, read its title, meta tags, headings and structured data, and send back only the result of
-the checks, not the page. The server names itself in each request, keeps a copy of what it fetched
+robots.txt. The SEO checker, the title and meta tag checker and the JSON-LD checker make it fetch
+the page at that address, read its title, meta tags, headings and structured data, and send back
+only the result of the checks, not the page. The redirect checker and the HTTP header checker make
+it follow the address hop by hop and send back each hop's address and status code and the final
+page's headers, never its cookies. The search result preview sends nothing: it runs in your
+browser. The server names itself in each request, keeps a copy of what it fetched
 for a few minutes so repeated checks do not hit the site again, counts checks per connection for a
 minute to stop floods, and keeps nothing else. The pages set no cookie and store nothing in your
 browser.</p>
 <p>After a purchase, the page you return to asks <code>kerr-affiliate-hub.kerrco.workers.dev</code>,
 a server we run, what that payment came to, sending only the payment&rsquo;s id, so our own sales
-count and advertising records show what you actually paid rather than the list price. Nothing about
+count shows what you actually paid rather than the list price. Nothing about
 you is sent or returned.</p>
 <p>The home page has one email field. Leave your address and we will email you once, when the
 free audit is ready. It is not a newsletter and there is no series to subscribe to. The
@@ -2250,7 +2243,7 @@ it; we hold nothing separately.</p>
         cat="legal", slug="privacy",
         title="Privacy policy: what Docket collects, and what it does not",
         desc="Audits run on your Mac and are never uploaded. No account, no "
-             "telemetry. Five third-party scripts, one an advertising pixel. "
+             "telemetry. Four third-party scripts and no advertising tracker. "
              "What each does and how to stop it.",
         h1="Privacy policy",
         crumb='<a href="/">Docket</a> / Privacy',

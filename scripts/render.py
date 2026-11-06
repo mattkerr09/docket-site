@@ -2233,7 +2233,10 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
 #:     page could be attributed.
 #:
 #: Setting it here puts it on every page and survives every build.
-META_PIXEL_ID = "2344029433088526"
+#: REMOVED 2026-11-06. Matthew chose "Remove it": the pixel sent every visit to Meta with no consent
+#: prompt, and brought 1 Facebook visit in 30 days. Empty is DARK: no snippet on any page, and
+#: verify_pixel.py then requires the privacy policy not to describe one.
+META_PIXEL_ID = ""
 
 META_PIXEL = (
     ('<!-- Meta pixel, live. Disclosed at /legal/privacy/ with the id and the cookie. -->\n'

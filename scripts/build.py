@@ -1170,16 +1170,7 @@ _THANK_YOU_JS = """
       if (!localStorage.getItem(pk)) { localStorage.setItem(pk, '1'); sendP(); }
     } catch (e) { sendP(); }
 
-    if (typeof fbq === 'function') {
-      var once = 'dk_purchase_' + (pid || 'nopid');
-      var fire = function () {
-        fbq('track', 'Purchase', { value: value, currency: 'USD' },
-            pid ? { eventID: pid } : undefined);
-      };
-      try {
-        if (!sessionStorage.getItem(once)) { sessionStorage.setItem(once, '1'); fire(); }
-      } catch (e) { fire(); }   // private mode: firing once beats not firing
-    }
+    // The Meta Purchase event that stood here went with the pixel, 2026-11-06 (Matthew: "Remove it").
   };
 
   if (status !== 'succeeded') return;
