@@ -119,11 +119,16 @@ first, and the ones that only collect training data come second.</p>
     data-what="badge">Copy badge code</button><span id="share-preview"></span></div>
 </div>
 
-{how_it_works("Check my site", [
+{how_it_works([
     f"Each of the {n} crawlers, allowed or blocked, with the ones that let an assistant quote you first",
     "The robots.txt line behind each answer",
     "A link to share the result, and a badge for your site that links to it",
-], ask="Type your website's address, or any page on it.")}
+], free="Nothing to install, and no account to make.",
+   steps=["Type your website's address, or any page on it.", "Press <strong>Check my site</strong>.",
+          "Read which crawlers may fetch it, the ones that let assistants quote you at the top."],
+   step_up=(f'Your rules, read once. <a href="/download/">Docket</a> checks every page of your site against '
+            f"each AI crawler and requests them as those crawlers, which shows refusals robots.txt cannot, "
+            f"among its {N_CHECKS} checks."))}
 {audit_next("tools-checker-result", what="one file, read for one page")}
 
 <h2>Crawlers that decide whether AI can cite you</h2>

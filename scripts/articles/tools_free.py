@@ -102,26 +102,21 @@ def audit_next(src: str, *, what: str) -> str:
 
 
 
-def how_it_works(button: str, you_see: list[str], *, ask: str = "Paste the address of any page, yours or a competitor's.",
-                 steps: list[str] | None = None,
-                 free: str = "Nothing to install, and nothing about the site you check is stored.") -> str:
+def how_it_works(you_see: list[str], *, free: str, steps: list[str], step_up: str) -> str:
     """No sign-up, three steps, what the result shows, then the step up to the app.
 
     Matthew, 2026-11-06, from reading the free-tool pages of the big SEO suites: they all say
     "no sign-up", give three steps and list what the report contains before the button is
-    pressed, and end on what the paid product adds. Each checker here says the same, in its
-    own words, and the step up is the app's free download, not a sign-up."""
-    steps = steps or [ask, f"Press <strong>{html.escape(button)}</strong>.",
-                      "Read the result. The things to fix come first, each with the change to make."]
+    pressed, and end on what the paid product adds. Every argument is written for its own page:
+    one block worded the same on five pages put three of them over lint.py's shared-phrasing
+    limit, which is the near-duplicate signal search engines act on."""
     return f"""
 <section class="tool-how" aria-label="How this checker works">
 <p class="tool-free"><strong>Free, no sign-up required.</strong> {free}</p>
 <ol class="tool-steps">{"".join(f"<li>{x}</li>" for x in steps)}</ol>
 <p class="tool-see-h"><strong>You will see:</strong></p>
 <ul class="tool-see">{"".join(f"<li>{x}</li>" for x in you_see)}</ul>
-<p class="tool-step-up">This checks one page. <a href="/download/">Docket</a>, the app these checkers come
-from, runs {N_CHECKS} checks on every page of your site and lists what to fix first. Its free download
-shows your score and the top problem in full.</p>
+<p class="tool-step-up">{step_up}</p>
 </section>"""
 
 def hub() -> Path:
@@ -237,11 +232,17 @@ It works on any site, yours or not, and there is nothing to verify first.</p>
 <thead><tr><th>Crawler</th><th>Who</th><th>What it is for</th><th>This page</th></tr></thead>
 <tbody>{rows}</tbody></table></div>
 <p class="checker-sitemaps" id="checker-sitemaps" hidden></p>
-{how_it_works("Test this page", [
+{how_it_works([
     "Allowed or blocked for Googlebot, Bingbot and the AI crawlers, one row each",
     "The exact robots.txt line that decides, so you know which line to change",
     "The sitemaps the file lists",
-])}
+], free="It works on any site, with nothing to verify first.",
+   steps=["Paste the address of the page that dropped out of search, not only the homepage.",
+          "Add another crawler's name if you want one, then press <strong>Test this page</strong>.",
+          "Read each crawler's verdict beside the line that decides it."],
+   step_up=(f'One file, read for one page. <a href="/download/">Docket</a> reads it for every page of your '
+            f"site, then requests those pages as each crawler to catch the firewall and CDN refusals a file "
+            f"cannot show, among its {N_CHECKS} checks."))}
 {audit_next("tools-robots-tester", what="one file, read for one page")}
 
 <h2>How to read the answer</h2>
@@ -439,11 +440,16 @@ what to fix.</p>
   </dl>
 </div>
 <ul class="findings" id="findings"></ul>
-{how_it_works("Check this page", [
+{how_it_works([
     "The title and meta description, measured the way Docket measures them, with a verdict on each",
     "Whether the page can be indexed, from its robots tag and its headers",
     "The canonical, the main heading, and what a shared link will show",
-])}
+], free="Nothing to install, and the page is read once and not kept.",
+   steps=["Paste the address of a live page, yours or a rival's.", "Press <strong>Check this page</strong>.",
+          "Start with the first item: the worst comes first, with the change to make."],
+   step_up=('One page at a time. <a href="/download/">Docket</a> measures the title and description of '
+            "every page on your site and finds the pages that share a title or point a canonical at an "
+            "address that cannot be indexed."))}
 {audit_next("tools-meta-checker", what="one page, read once")}
 
 <h2>How long should a title be?</h2>
@@ -550,11 +556,16 @@ that are missing.</p>
 <div class="wrap-tbl" id="ld-items-wrap" hidden><table class="cmp" id="ld-items">
 <thead><tr><th>Block</th><th>Type</th><th>Name</th><th>Missing</th></tr></thead><tbody></tbody></table></div>
 <ul class="findings" id="findings"></ul>
-{how_it_works("Check structured data", [
+{how_it_works([
     "Every JSON-LD block on the page, with its type and name",
     "The line and column where broken JSON stops a parser",
     "The properties a rich result needs that are missing",
-])}
+], free="No account, and the markup is read and then dropped.",
+   steps=["Paste the address of a product, recipe, event or article page.",
+          "Press <strong>Check structured data</strong>.",
+          "Read each block's verdict and the properties it still needs."],
+   step_up=('This reads the page you paste. <a href="/download/">Docket</a> reads the structured data on '
+            "every page of your site and checks that what the markup says matches what the page shows."))}
 {audit_next("tools-jsonld-checker", what="one page, read once")}
 
 <h2>What it checks</h2>
@@ -716,13 +727,15 @@ where Docket does, so you can move the important words to the front before anyth
   <button class="btn-ghost" type="button" id="serp-copy">Copy the HTML tags</button>
   <span class="serp-count" id="serp-copied" aria-live="polite"></span>
 </div>
-{how_it_works("", [
+{how_it_works([
     "The title and description laid out as a search result, with the cut-off point marked in red",
     f"Each one's width in Docket's units, against {tmin} to {tmax} for a title and {dmin} to {dmax} for a description",
     "The two HTML tags, ready to paste into the page's head",
 ], steps=["Type or paste a title.", "Type or paste a meta description, and the page address if you like.",
           "Watch the preview. Anything past the red mark will not be shown, so move what matters in front of it."],
-   free="Nothing to install, and nothing you type leaves your browser.")}
+   free="Nothing to install, and nothing you type leaves your browser.",
+   step_up=('These are words you typed. To see the titles a site really serves, <a href="/download/">Docket</a> '
+            "reads every page and reports the missing, repeated and cut-off ones."))}
 
 <h2>Will Google cut off my title?</h2>
 <p>If it is wider than about {TITLE_PX} pixels, yes. Docket turns that into a width of {tmax}, counting an
