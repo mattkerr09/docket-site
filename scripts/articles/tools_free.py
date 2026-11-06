@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import comparisons  # noqa: E402
-from render import (HAS_SAMPLE, INTEL, INTEL_DMG, N_CHECKS, PAY4_BUY, PRICE, PRICE_STR,  # noqa: E402
+from render import (HAS_SAMPLE, INTEL, INTEL_DMG, N_CHECKS, N_LANES, PAY4_BUY, PRICE, PRICE_STR,  # noqa: E402
                     REFUND_DAYS, SAMPLE_REPORT, buy_block, checkout_url, download_url,
                     price_req_html, render)
 
@@ -57,6 +57,8 @@ REQUIRED_TYPES = list(REQUIRED_PROPS)
 
 #: The free checkers, in the order the hub lists them. (slug, name, question).
 TOOLS = [
+    ("seo-checker", "SEO checker",
+     "What is wrong with this page, how bad is it, and what should be fixed first?"),
     ("ai-crawler-checker", "AI crawler checker",
      "Can ChatGPT, Claude, Perplexity and Google's AI Overviews read your site?"),
     ("robots-txt-tester", "Robots.txt tester",
@@ -129,6 +131,9 @@ to install. Each one answers one question in a few seconds.</p>
 <ul class="tool-list">{items}</ul>
 
 <h2>Which one to use</h2>
+<p><strong>You want to know what is wrong with a page, and what to fix first.</strong> Start with the
+SEO checker. It reads the page and its robots.txt, gives a score, counts the problems in each area and
+puts the worst one at the top with the fix. The checkers below go deeper on one question each.</p>
 <p><strong>A page dropped out of search, or never showed up.</strong> Start with the robots.txt
 tester. Paste the page's own address, not the homepage, because rules are written per path and the
 homepage can be open while a whole section is closed. It names the line that decides, which is the
@@ -444,7 +449,7 @@ what to fix.</p>
     "The title and meta description, measured the way Docket measures them, with a verdict on each",
     "Whether the page can be indexed, from its robots tag and its headers",
     "The canonical, the main heading, and what a shared link will show",
-], free="Nothing to install, and the page is read once and not kept.",
+], free="Nothing to install; the page is read once and nothing about it is stored.",
    steps=["Paste the address of a live page, yours or a rival's.", "Press <strong>Check this page</strong>.",
           "Start with the first item: the worst comes first, with the change to make."],
    step_up=('One page at a time. <a href="/download/">Docket</a> measures the title and description of '
@@ -560,7 +565,7 @@ that are missing.</p>
     "Every JSON-LD block on the page, with its type and name",
     "The line and column where broken JSON stops a parser",
     "The properties a rich result needs that are missing",
-], free="No account, and the markup is read and then dropped.",
+], free="No account, and nothing about the page you check is stored.",
    steps=["Paste the address of a product, recipe, event or article page.",
           "Press <strong>Check structured data</strong>.",
           "Read each block's verdict and the properties it still needs."],
@@ -868,7 +873,218 @@ ranked by what to fix first. To check a page that is already live, use the
     )
 
 
-BUILDERS = [hub, robots_tester, meta_checker, jsonld_checker, serp_preview]
+#: The page score: 100, less this much for each finding of that level. Stated on the page.
+PROBLEM_COST, WARNING_COST = 12, 5
+#: Crawlers the checker asks robots.txt about: the two search engines, then the AI search
+#: crawlers that decide whether an assistant can find and quote a page (collect_index.py's
+#: CITATION_BOTS). Training crawlers are left out: blocking them is a choice, not a fault.
+SEO_SEARCH_AGENTS = ["Googlebot", "Bingbot"]
+SEO_CITE_AGENTS = ["OAI-SearchBot", "Claude-SearchBot", "PerplexityBot"]
+#: Areas in the order the result lists them, the order they fail in: a page that cannot be
+#: crawled gains nothing from a better title.
+SEO_AREAS = ["Crawling and indexing", "Security", "Search listing", "Page basics", "AI search",
+             "Structured data", "Sharing"]
+
+
+def field_audits() -> dict:
+    return json.loads((Path(__file__).resolve().parents[2] / "data" / "field-audits.json").read_text())
+
+
+def seo_checker() -> Path:
+    fa = field_audits()
+    fa_when = _day(fa["date"])
+    fa_n = fa["sites"]
+    fa_pages = fa["median"]["pages"]
+    fa_problems = fa["median"]["problems"]
+    fa_least = min(a["problems"] for a in fa["audits"])
+    fa_most = max(a["problems"] for a in fa["audits"])
+    area_rows = "".join(f"<tr><td>{a}</td><td>{w}</td></tr>" for a, w in [
+        ("Crawling and indexing", "Whether the page answers, whether robots.txt lets Googlebot and Bingbot "
+         "crawl it, any noindex in the page or its headers, the canonical, and the redirects on the way"),
+        ("Security", "Whether the page is served over HTTPS"),
+        ("Search listing", f"The title and meta description, measured against {TITLE_MIN} to {TITLE_MAX} and "
+         f"{DESC_MIN} to {DESC_MAX} wide, and duplicate tags"),
+        ("Page basics", "One main heading, a declared language, and a viewport tag for phones"),
+        ("AI search", f"Whether robots.txt lets the {len(SEO_CITE_AGENTS)} AI search crawlers read the page, "
+         "the ones behind ChatGPT search, Claude and Perplexity"),
+        ("Structured data", "Whether each JSON-LD block is valid and has what a rich result needs"),
+        ("Sharing", "The Open Graph and X card tags that decide what a shared link shows"),
+    ])
+    body = rf"""
+<p class="lede">Paste the address of any page to get a score, the problems in each area, and the first
+thing to fix with the change to make. It reads the page the way a search engine does and checks its
+robots.txt for Googlebot and the AI search crawlers. It takes a few seconds.</p>
+{_form("Check this page", "yourbusiness.com/services/")}
+
+<div class="seo-result" id="seo-result" hidden>
+  <div class="seo-score-row">
+    <p class="seo-score"><span class="seo-score-n" id="seo-score"></span><span class="seo-score-of">/ 100</span></p>
+    <p class="seo-score-what" id="seo-counts"></p>
+  </div>
+  <div class="seo-top" id="seo-top" hidden>
+    <p class="seo-top-h">Fix this first</p>
+    <p class="seo-top-label" id="seo-top-label"></p>
+    <p class="seo-top-detail" id="seo-top-detail"></p>
+  </div>
+  <div class="wrap-tbl"><table class="cmp" id="seo-areas"><thead><tr><th>Area</th><th>Problems</th><th>Worth fixing</th></tr></thead><tbody></tbody></table></div>
+  <details class="seo-all"><summary id="seo-all-sum">Every finding on this page</summary><ul class="findings" id="findings"></ul></details>
+  <p class="table-note">The score is 100, less {PROBLEM_COST} for each problem and {WARNING_COST} for each
+  thing worth fixing, on this one page. Docket's app scores a whole site across {N_LANES} areas, so its
+  number will differ.</p>
+</div>
+{how_it_works([
+    "A score out of 100 for the page, and how many problems it has",
+    "Problems counted by area, from crawling and indexing to sharing",
+    "The worst one in full, with what it means and the change that fixes it",
+], free="Nothing to install, and nothing about the page is stored.",
+   steps=["Paste a page that matters: your homepage, a service page or a product page.",
+          "Press <strong>Check this page</strong>.",
+          "Fix the item at the top first, then check again to watch the score move."],
+   step_up=(f'This is one page. <a href="/download/">Docket</a> crawls the whole site and runs {N_CHECKS} '
+            "checks, including the ones that only show up between pages, like two pages with one title or a "
+            "page nothing links to."))}
+{audit_next("tools-seo-checker", what="one page, read once")}
+
+<h2>How do I check my website's SEO for free?</h2>
+<p>Start with the pages that earn you money: the homepage, then each service or product page. Paste
+each one above. Fix what comes first on each, because the result is in the order things fail: a page
+search engines cannot crawl gains nothing from a better title. Then check the whole site, because
+most sites have problems no single page shows. Docket's free download crawls every page and shows
+your site's score and its top problem in full.</p>
+
+<h2>What this checker looks at</h2>
+<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Area</th><th>What it checks on the page</th></tr></thead>
+<tbody>{area_rows}</tbody></table></div>
+<p>The rules are Docket's own, ported from its engine and tested against it, so this page and the app
+give the same answer about the same page.</p>
+
+<h2>How many problems does a real site have?</h2>
+<p>More than one page can show. On {fa_when}, Docket audited {fa_n} small-business sites with its app
+at the default settings. The median site had {fa_pages:g} pages and {fa_problems:g} problems; the
+cleanest had {fa_least} and the worst {fa_most}. Many of them exist only between pages: two pages
+with one title, a page that nothing links to, a section reached through a chain of redirects. A
+one-page check cannot see those, and that is what the app is for.</p>
+{buy_block("tools-seo-checker", try_app="tools-seo-checker-try-free")}
+
+<h2>Related</h2>
+<ul>
+<li><a href="/learn/seo-audit/">What is an SEO audit?</a></li>
+<li><a href="/best/free-seo-audit-tools/">Free SEO audit tools, compared</a></li>
+<li><a href="/tools/meta-tag-checker/">Title and meta tag checker</a></li>
+<li><a href="/tools/robots-txt-tester/">Robots.txt tester</a></li>
+<li><a href="/tools/serp-preview/">Search result preview</a></li>
+</ul>
+
+<script>
+(function () {{
+  var PAGE = {json.dumps(WORKER + "/page")}, CHECK = {json.dumps(WORKER + "/check")};
+  var SEARCH = {json.dumps(SEO_SEARCH_AGENTS)}, CITE = {json.dumps(SEO_CITE_AGENTS)};
+  var AREAS = {json.dumps(SEO_AREAS)}, PCOST = {PROBLEM_COST}, WCOST = {WARNING_COST};
+  {RESULT_JS}
+  var form = document.getElementById('checker'), input = document.getElementById('checker-url');
+  var status = document.getElementById('checker-status');
+  if (!form || !window.fetch) return;
+  function say(t) {{ status.textContent = t; }}
+  function el(id) {{ return document.getElementById(id); }}
+  function get(url) {{
+    return fetch(url).then(function (r) {{ return r.json().then(function (j) {{ return {{ ok: r.ok, j: j }}; }}); }})
+      .catch(function () {{ return {{ ok: false, j: {{ error: 'The checker could not be reached. Try again in a minute.' }} }}; }});
+  }}
+  function areaOf(label) {{
+    if (/og:|twitter/i.test(label)) return 'Sharing';
+    if (/title|description/i.test(label)) return 'Search listing';
+    if (/index|canonical|nofollow/i.test(label)) return 'Crawling and indexing';
+    return 'Page basics';
+  }}
+  function robotsItems(j, items) {{
+    if (!j || j.error) {{ items.push({{ area: 'Crawling and indexing', level: 'note', label: 'robots.txt was not checked', detail: (j && j.error) || '' }}); return; }}
+    if (j.state === 'unavailable' && (j.status === 401 || j.status === 403)) {{
+      items.push({{ area: 'Crawling and indexing', level: 'note', label: 'The site refused this checker its robots.txt', detail: 'HTTP ' + j.status + '. Crawler access is unknown, so it is not scored.' }}); return; }}
+    if (j.state === 'unreachable') {{
+      items.push({{ area: 'Crawling and indexing', level: 'problem', label: 'robots.txt could not be read', detail: j.robots_url + (j.status ? ' answered HTTP ' + j.status : ' did not answer') + '. Crawlers stay out until it can be read. Make it return 200, or 404 if you have no rules.' }}); return; }}
+    if (j.state === 'blocked') return;
+    var by = {{}}; (j.results || []).forEach(function (r) {{ by[r.agent] = r; }});
+    SEARCH.forEach(function (a) {{
+      var r = by[a]; if (!r) return;
+      if (!r.allowed) items.push({{ area: 'Crawling and indexing', level: 'problem', label: a + ' may not crawl this page', detail: 'robots.txt blocks it' + (r.rule ? ' with "' + r.rule + '"' : '') + '. Remove or narrow that line if the page should appear in search.' }});
+      else items.push({{ area: 'Crawling and indexing', level: 'ok', label: a + ' may crawl this page', detail: '' }});
+    }});
+    var shut = CITE.filter(function (a) {{ return by[a] && !by[a].allowed; }});
+    if (shut.length) items.push({{ area: 'AI search', level: 'warning', label: shut.length + ' of ' + CITE.length + ' AI search crawlers are blocked', detail: shut.join(', ') + '. These decide whether ChatGPT search, Claude and Perplexity can find and quote the page. Allow them in robots.txt unless you mean to stay out of AI answers.' }});
+    else items.push({{ area: 'AI search', level: 'ok', label: 'AI search crawlers may read this page', detail: CITE.join(', ') }});
+  }}
+  form.addEventListener('submit', function (e) {{
+    e.preventDefault();
+    var v = (input.value || '').trim();
+    if (!v) {{ say('Enter a page address.'); return; }}
+    var path = '/';
+    try {{ var u = new URL(/^[a-z]+:\/\//i.test(v) ? v : 'https://' + v); path = (u.pathname || '/') + (u.search || ''); }} catch (err) {{}}
+    say('Reading the page and its robots.txt…');
+    el('seo-result').hidden = true;
+    Promise.all([get(PAGE + '?url=' + encodeURIComponent(v)),
+                 get(CHECK + '?url=' + encodeURIComponent(v) + '&path=' + encodeURIComponent(path) + '&agents=' + encodeURIComponent(SEARCH.concat(CITE).join(',')))])
+      .then(function (res) {{
+        var pg = res[0].j, rb = res[1].j;
+        if (!res[0].ok || pg.error) {{ say(pg.error || 'That address could not be checked.'); return; }}
+        var items = [];
+        if (pg.status && pg.status !== 200) items.push({{ area: 'Crawling and indexing', level: 'problem', label: 'The page answered HTTP ' + pg.status, detail: 'Search engines index pages that answer 200. Fix the address or the server.' }});
+        if (/^http:/i.test(pg.final_url || '')) items.push({{ area: 'Security', level: 'problem', label: 'The page is not served over HTTPS', detail: 'Browsers mark it not secure. Serve it over HTTPS and redirect the http:// address to it.' }});
+        else items.push({{ area: 'Security', level: 'ok', label: 'Served over HTTPS', detail: '' }});
+        var hops = (pg.redirects || []).length;
+        if (hops > 1) items.push({{ area: 'Crawling and indexing', level: 'warning', label: hops + ' redirects before the page', detail: 'Each hop costs time and crawl budget. Link straight to ' + pg.final_url + '.' }});
+        robotsItems(res[1].ok ? rb : (rb || {{}}), items);
+        (pg.meta.findings || []).forEach(function (f) {{ items.push({{ area: areaOf(f.label), level: f.level, label: f.label, detail: f.detail }}); }});
+        (pg.jsonld.findings || []).forEach(function (f) {{ items.push({{ area: 'Structured data', level: f.level, label: f.label, detail: f.detail }}); }});
+        var np = items.filter(function (f) {{ return f.level === 'problem'; }}).length;
+        var nw = items.filter(function (f) {{ return f.level === 'warning'; }}).length;
+        el('seo-score').textContent = Math.max(0, 100 - PCOST * np - WCOST * nw);
+        el('seo-counts').textContent = (np ? np + ' problem' + (np === 1 ? '' : 's') : 'No problems') + ' and ' + (nw ? nw + ' thing' + (nw === 1 ? '' : 's') + ' worth fixing' : 'nothing else worth fixing') + ' on ' + pg.final_url;
+        var rank = {{ problem: 0, warning: 1 }};
+        var top = items.filter(function (f) {{ return f.level in rank; }}).sort(function (a, b) {{ return rank[a.level] - rank[b.level] || AREAS.indexOf(a.area) - AREAS.indexOf(b.area); }})[0];
+        el('seo-top').hidden = !top;
+        if (top) {{ el('seo-top-label').textContent = top.label + ' (' + top.area + ')'; el('seo-top-detail').textContent = top.detail; }}
+        var tb = document.querySelector('#seo-areas tbody'); tb.innerHTML = '';
+        AREAS.forEach(function (a) {{
+          var mine = items.filter(function (f) {{ return f.area === a; }}); if (!mine.length) return;
+          var tr = document.createElement('tr');
+          [a, mine.filter(function (f) {{ return f.level === 'problem'; }}).length, mine.filter(function (f) {{ return f.level === 'warning'; }}).length].forEach(function (t) {{ var td = document.createElement('td'); td.textContent = t; tr.appendChild(td); }});
+          tb.appendChild(tr);
+        }});
+        renderFindings(el('findings'), items);
+        el('seo-all-sum').textContent = 'Every finding on this page (' + items.length + ')';
+        el('seo-result').hidden = false;
+        var next = el('checker-next'); if (next) next.hidden = false;
+        say('Read ' + pg.final_url + (hops ? ' after ' + hops + ' redirect' + (hops === 1 ? '' : 's') : '') + '.');
+        if (window.plausible) window.plausible('Checker', {{ props: {{ tool: 'seo', issues: String(np + nw) }} }});
+      }});
+  }});
+}})();
+</script>
+"""
+    return render(
+        cat="tools", slug="seo-checker",
+        title="Free SEO checker: score any page and see what to fix",
+        desc=("Free SEO checker: paste any page for a score out of 100, its problems by area and the first "
+              "fix to make. Checks robots.txt for Google and AI crawlers. No sign-up."),
+        h1="Free SEO checker",
+        crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / SEO checker',
+        body=body,
+        published="2026-11-06",
+        schema_type="WebPage",
+        faq=[
+            ("Is this SEO checker free?",
+             "Yes. There is no sign-up and nothing to install. It checks one page at a time, as often as you like."),
+            ("How is the score worked out?",
+             f"It starts at 100 and loses {PROBLEM_COST} for each problem and {WARNING_COST} for each thing worth "
+             "fixing on the page. The rule is the same for every page, so a fix always moves it."),
+            ("Can it check my whole website?",
+             f"It checks one page. Docket's app crawls the whole site with {N_CHECKS} checks, and its free "
+             "download shows the site's score and the top problem in full."),
+        ],
+    )
+
+
+BUILDERS = [hub, robots_tester, meta_checker, jsonld_checker, serp_preview, seo_checker]
 
 
 def build_all() -> list[Path]:
