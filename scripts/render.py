@@ -1656,6 +1656,7 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .seo-top p{margin:0 0 .4rem}.seo-top-h{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--bad-text)}
 .seo-top-label{font-weight:700;color:var(--text)}.seo-top-detail{color:var(--text-mid);overflow-wrap:anywhere}
 .seo-all{margin:0 0 .8rem}.seo-all summary{cursor:pointer;font-weight:600}
+.trace-url{overflow-wrap:anywhere;word-break:break-word}
 .checker-share{margin:-1rem 0 2rem;padding:1rem 1.2rem;border:1px solid var(--border-strong);
   border-radius:var(--radius-lg);background:var(--surface)}
 .checker-share p{margin:.3rem 0 .5rem}

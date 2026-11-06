@@ -67,6 +67,10 @@ TOOLS = [
      "Is this page's title the right length, is it indexable, and what will a shared link show?"),
     ("json-ld-checker", "JSON-LD structured data checker",
      "Is this page's structured data valid, and is anything missing that a rich result needs?"),
+    ("redirect-checker", "Redirect chain checker",
+     "Where does this address send people, through how many hops, and with which status codes?"),
+    ("http-header-checker", "HTTP header checker",
+     "Which headers does this page send, and are the ones search engines and browsers rely on right?"),
     ("serp-preview", "Search result preview",
      "How will a title and description look in a search result, and where will they be cut off?"),
 ]
@@ -146,6 +150,10 @@ blocking the first kind usually is not.</p>
 <p><strong>A search result shows the wrong title, or a cut-off one.</strong> The title and meta tag
 checker measures the title and description the way Docket does, by width rather than character
 count, and checks the tags that decide whether the page can be indexed and what a shared link shows.</p>
+<p><strong>An old link lands somewhere odd, or the browser says too many redirects.</strong> The
+redirect checker follows the address one hop at a time and shows each status code, so the hop that
+loops or should not be there is easy to spot. The HTTP header checker reads what the final response
+says about indexing, caching and security.</p>
 <p><strong>You are writing a new title and want to see it first.</strong> The search result
 preview shows the title and description as a result would, before anything is published, and marks
 where Docket expects each to be cut off. It needs no address: type the words and watch.</p>
@@ -1084,7 +1092,293 @@ one-page check cannot see those, and that is what the app is for.</p>
     )
 
 
-BUILDERS = [hub, robots_tester, meta_checker, jsonld_checker, serp_preview, seo_checker]
+#: Shared by the redirect checker and the header checker: one request to the worker's /trace,
+#: which walks the chain hop by hop and returns the final response's headers with Docket's verdicts.
+TRACE_JS = r"""
+  function traceTable(tb, j) {
+    tb.innerHTML = '';
+    var rows = (j.hops || []).map(function (h, i) { return [String(i + 1), h.url, String(h.status), h.location || ''] });
+    if (j.final) rows.push([String(rows.length + 1), j.final.url, String(j.final.status), 'the page']);
+    rows.forEach(function (r) {
+      var tr = document.createElement('tr');
+      r.forEach(function (t, i) { var td = document.createElement('td'); td.textContent = t; if (i === 1 || i === 3) td.className = 'trace-url'; tr.appendChild(td); });
+      tb.appendChild(tr);
+    });
+  }
+  function runTrace(v, done, say) {
+    say('Following the address…');
+    fetch(TRACE + '?url=' + encodeURIComponent(v))
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        var j = res.j;
+        if (!res.ok || (j.error && !j.hops)) { say(j.error || 'That address could not be checked.'); return; }
+        done(j);
+        var next = document.getElementById('checker-next'); if (next) next.hidden = false;
+      })
+      .catch(function () { say('The checker could not be reached. Try again in a minute.'); });
+  }
+"""
+
+
+def redirect_data() -> dict:
+    newest = sorted((Path(__file__).resolve().parents[2] / "data").glob("redirects-*.json"))[-1]
+    return json.loads(newest.read_text())
+
+
+def redirect_checker() -> Path:
+    d = redirect_data()
+    m = d["summary"]
+    when = _day(d["measured"])
+    read = m["read"]
+    hop_rows = "".join(f"<tr><td>{k}</td><td>{v}</td></tr>" for k, v in m["hops"].items())
+    chain_pct = round(100 * m["two_or_more"] / read)
+    from urllib.parse import urlparse
+    chains = [r for r in d["records"] if r.get("read") and r["hops"] >= 2]
+    to_www = sum(1 for r in chains if (urlparse(r["final"]).hostname or "").startswith("www.")
+                 and not r["host"].startswith("www."))
+    body = rf"""
+<p class="lede">Paste an address to see every hop it takes before a page answers: each address, its
+HTTP status code and where it points next. Start with the oldest form people still type, such as
+<code>http://</code> without <code>www</code>, because that is where chains and loops hide.</p>
+{_form("Trace redirects", "http://yourbusiness.com/old-page/")}
+<div class="wrap-tbl" id="trace-wrap" hidden><table class="cmp" id="trace">
+<thead><tr><th>Hop</th><th>Address</th><th>Status</th><th>Goes to</th></tr></thead><tbody></tbody></table></div>
+<ul class="findings" id="findings"></ul>
+{how_it_works([
+    "Every hop in order, with its status code: 301 and 308 for a permanent move, 302 and 307 for a temporary one",
+    "The address the chain ends on, and whether that answers with a page or an error",
+    "Loops, chains of two or more, and an http:// address that never reaches HTTPS",
+], free="Nothing to install, and nothing about the addresses you trace is stored.",
+   steps=["Paste an old link, a short link or the bare domain with http:// in front.",
+          "Press <strong>Trace redirects</strong>.",
+          "Look for the hop that should not be there, then point the first address straight at the last."],
+   step_up=(f'One address at a time. <a href="/download/">Docket</a> follows every link on your site and '
+            "lists each one that redirects, so internal links can point at the final address."))}
+{audit_next("tools-redirect-checker", what="one address, followed once")}
+
+<h2>How do I check a redirect chain?</h2>
+<p>Paste the address into the checker above. It requests the address without following anything
+automatically, reads the status code and the <code>Location</code> header, and repeats until an
+address answers with something other than a redirect. You can do the same from a terminal:</p>
+<pre><code>curl -sIL http://yourbusiness.com/ | grep -iE '^(HTTP|location)'</code></pre>
+<p>Each <code>HTTP</code> line is one hop. More than one before the final <code>200</code> is a chain.</p>
+
+<h2>Why does my site have too many redirects?</h2>
+<p>"Too many redirects" in a browser means a loop: the chain comes back to an address it already
+visited, so it never ends. The checker names the address that repeats. The usual causes:</p>
+<ul>
+<li><strong>A CDN and the server disagree about HTTPS.</strong> The CDN reaches the server over
+http, the server redirects to https, and the CDN asks over http again.</li>
+<li><strong>Two rules disagree about www.</strong> One sends visitors to <code>www</code>, another
+sends them back to the bare domain.</li>
+<li><strong>The site's own address setting conflicts with the server.</strong> A content
+management system set to an http address, behind a server that forces https.</li>
+</ul>
+<p>Fix the rule at the hop that repeats, then trace again until the chain ends on a page.</p>
+
+<h2>How many hops do well-known sites take?</h2>
+<p>On {when}, Docket walked from <code>http://</code> to the homepage of each of the {m["attempted"]}
+well-known sites in its measurement sample. {read} ended on a page; {m["status_403"]} answered 403 and
+{m["refused"]} showed a bot check, and those are left out.</p>
+<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Redirects before the page</th><th>Sites</th></tr></thead>
+<tbody>{hop_rows}</tbody></table></div>
+<p class="table-note">From the address with http:// in front, measured {when}. No site is named.</p>
+<p>{m["two_or_more"]} of {read} ({chain_pct}%) took two or more hops, which Docket reports as a chain.
+{to_www} of those {m["two_or_more"]} ended on a <code>www</code> address the typed domain did not have:
+one rule adds https, another adds www, and each makes sense alone. Sending <code>http://</code> straight
+to the final address removes a hop for everyone who types the short form.</p>
+
+<h2>301 or 302?</h2>
+<p>A 301 or 308 says the page has moved for good, and search engines move to the new address. A 302 or
+307 says the move is temporary, so the old address may stay in results. Use a temporary code only
+when the old address is coming back.</p>
+{buy_block("tools-redirect-checker", try_app="tools-redirect-checker-try-free")}
+
+<h2>Related</h2>
+<ul>
+<li><a href="/how-to/fix-redirect-problems/">Fix redirect problems</a></li>
+<li><a href="/how-to/redirect-http-to-https/">Redirect http to https</a></li>
+<li><a href="/tools/http-header-checker/">HTTP header checker</a></li>
+<li><a href="/tools/seo-checker/">Free SEO checker</a></li>
+</ul>
+
+<script>
+(function () {{
+  var TRACE = {json.dumps(WORKER + "/trace")};
+  {RESULT_JS}
+  {TRACE_JS}
+  var form = document.getElementById('checker'), input = document.getElementById('checker-url');
+  var status = document.getElementById('checker-status');
+  if (!form || !window.fetch) return;
+  function say(t) {{ status.textContent = t; }}
+  form.addEventListener('submit', function (e) {{
+    e.preventDefault();
+    var v = (input.value || '').trim();
+    if (!v) {{ say('Enter an address.'); return; }}
+    runTrace(v, function (j) {{
+      traceTable(document.querySelector('#trace tbody'), j);
+      document.getElementById('trace-wrap').hidden = false;
+      renderFindings(document.getElementById('findings'), j.redirects || []);
+      var n = (j.hops || []).length;
+      say(n + ' redirect' + (n === 1 ? '' : 's') + (j.final ? ', ending on ' + j.final.url + ' (HTTP ' + j.final.status + ').' : '.'));
+      if (window.plausible) window.plausible('Checker', {{ props: {{ tool: 'redirect', hops: String(n) }} }});
+    }}, say);
+  }});
+}})();
+</script>
+"""
+    return render(
+        cat="tools", slug="redirect-checker",
+        title="Redirect checker: trace every hop and status code",
+        desc=("Free redirect chain checker: paste an address to see every hop, its 301, 302 or other status "
+              "code and where it ends. Finds loops and long chains. No sign-up."),
+        h1="Redirect chain checker",
+        crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / Redirect checker',
+        body=body,
+        published=d["measured"],
+        schema_type="WebPage",
+        faq=[
+            ("How do I check a redirect chain?",
+             "Paste the address into the checker. It follows each redirect itself and lists every hop with its "
+             "status code and destination, up to the page the chain ends on."),
+            ("Why does my site say too many redirects?",
+             "The redirects form a loop. A CDN and the server disagreeing about HTTPS, or two rules disagreeing "
+             "about www, are the usual causes. The checker names the address that repeats."),
+            ("Is a 302 redirect bad for SEO?",
+             "Not in itself. It says the move is temporary, so search engines may keep showing the old address. "
+             "For a permanent move, use a 301 or 308."),
+        ],
+    )
+
+
+def header_checker() -> Path:
+    d = redirect_data()
+    m = d["summary"]
+    when = _day(d["measured"])
+    https = m["https"]
+    body = rf"""
+<p class="lede">Paste an address to see the HTTP headers the page sends: the status code, the headers
+that tell search engines what to do with it, and the security headers browsers act on. Each one Docket
+checks gets a verdict, and redirects on the way are followed and listed.</p>
+{_form("Show headers", "yourbusiness.com")}
+<p class="checker-sitemaps" id="hdr-final" hidden></p>
+<div class="wrap-tbl" id="hdr-wrap" hidden><table class="cmp" id="hdr">
+<thead><tr><th>Header</th><th>Value</th></tr></thead><tbody></tbody></table></div>
+<ul class="findings" id="findings"></ul>
+{how_it_works([
+    "The final status code and the address that sent it, after any redirects",
+    "The headers that matter for search and security, each with its value",
+    "Docket's verdict on HSTS, X-Content-Type-Options, Referrer-Policy and any noindex in X-Robots-Tag",
+], free="Nothing to install, and the headers are read once, not kept.",
+   steps=["Type a domain or paste the full address of one page.", "Press <strong>Show headers</strong>.",
+          "Read the verdicts first, then the raw values underneath."],
+   step_up=(f'This reads the headers of one response. <a href="/download/">Docket</a> reads them for your '
+            f"whole site along with {N_CHECKS} checks on what each page contains."))}
+{audit_next("tools-http-header-checker", what="one response, read once")}
+
+<h2>How do I check my HTTP headers?</h2>
+<p>Paste the address above. To see them yourself, there are two ways:</p>
+<ul>
+<li><strong>In the browser.</strong> Open the developer tools, choose the Network tab, reload the
+page, click the first request and read Response Headers.</li>
+<li><strong>In a terminal.</strong> <code>curl -sI https://yourbusiness.com/</code> prints the status
+line and every header. Add <code>-L</code> to follow redirects.</li>
+</ul>
+
+<h2>Which headers matter</h2>
+<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Header</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>X-Robots-Tag</code></td><td>Search engine instructions for files that have no HTML, such as PDFs. A
+<code>noindex</code> here keeps the page out of search however the page itself is tagged.</td></tr>
+<tr><td><code>Link</code></td><td>Can carry a canonical address for a file, the same way a canonical tag does in a page.</td></tr>
+<tr><td><code>Cache-Control</code></td><td>How long browsers and CDNs may reuse the response before asking again.</td></tr>
+<tr><td><code>Strict-Transport-Security</code></td><td>Tells browsers to use HTTPS for the site from now on.</td></tr>
+<tr><td><code>X-Content-Type-Options</code></td><td><code>nosniff</code> stops a browser guessing a file's type from its contents.</td></tr>
+<tr><td><code>Referrer-Policy</code></td><td>How much of the page's address is passed on when a visitor follows a link away.</td></tr>
+<tr><td><code>Content-Security-Policy</code></td><td>Which scripts and sources the page may load.</td></tr>
+</tbody></table></div>
+
+<h2>How many well-known sites send them</h2>
+<p>On {when}, Docket read the homepages of the {m["attempted"]} well-known sites in its measurement
+sample. {https} ended on an HTTPS page and are counted here; sites that refused the request are left out.</p>
+<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Header</th><th>Missing</th></tr></thead><tbody>
+<tr><td>Strict-Transport-Security</td><td>{m["no_hsts"]} of {m["hsts_judged"]}</td></tr>
+<tr><td>X-Content-Type-Options</td><td>{m["no_xcto"]} of {https}</td></tr>
+<tr><td>Referrer-Policy (as a header)</td><td>{m["no_referrer"]} of {https}</td></tr>
+<tr><td>Content-Security-Policy</td><td>{m["no_csp"]} of {https}</td></tr>
+</tbody></table></div>
+<p class="table-note">Homepages, measured {when}. HSTS is not counted for a site on a domain the browsers
+already force to HTTPS. No site is named.</p>
+<p>{"Referrer-Policy is the one most often left out as a header, and it" if m["no_referrer"] >= max(m["no_hsts"], m["no_xcto"], m["no_csp"]) else "Referrer-Policy"}
+can also be set with a meta tag in the page, which this table does not count. Docket's app reads both.
+It does not report a missing Content-Security-Policy; the row is there for reference.</p>
+{buy_block("tools-http-header-checker", try_app="tools-http-header-checker-try-free")}
+
+<h2>Related</h2>
+<ul>
+<li><a href="/how-to/fix-missing-security-headers/">Fix missing security headers</a></li>
+<li><a href="/tools/redirect-checker/">Redirect chain checker</a></li>
+<li><a href="/tools/seo-checker/">Free SEO checker</a></li>
+</ul>
+
+<script>
+(function () {{
+  var TRACE = {json.dumps(WORKER + "/trace")};
+  {RESULT_JS}
+  {TRACE_JS}
+  var form = document.getElementById('checker'), input = document.getElementById('checker-url');
+  var status = document.getElementById('checker-status');
+  if (!form || !window.fetch) return;
+  function say(t) {{ status.textContent = t; }}
+  form.addEventListener('submit', function (e) {{
+    e.preventDefault();
+    var v = (input.value || '').trim();
+    if (!v) {{ say('Enter an address.'); return; }}
+    runTrace(v, function (j) {{
+      var tb = document.querySelector('#hdr tbody'); tb.innerHTML = '';
+      var f = j.final;
+      if (f) {{
+        f.headers.forEach(function (h) {{
+          var tr = document.createElement('tr'), a = document.createElement('td'), b = document.createElement('td');
+          var c = document.createElement('code'); c.textContent = h.name; a.appendChild(c); b.textContent = h.value; b.className = 'trace-url';
+          tr.appendChild(a); tr.appendChild(b); tb.appendChild(tr);
+        }});
+        document.getElementById('hdr-wrap').hidden = false;
+        var p = document.getElementById('hdr-final');
+        p.textContent = 'HTTP ' + f.status + ' from ' + f.url + ((j.hops || []).length ? ' after ' + j.hops.length + ' redirect' + (j.hops.length === 1 ? '' : 's') : '') + '. ' + f.headers.length + ' headers shown, ' + f.other + ' others not shown.';
+        p.hidden = false;
+      }}
+      renderFindings(document.getElementById('findings'), (j.headers || []).concat((j.redirects || []).filter(function (x) {{ return x.level === 'problem'; }})));
+      say(f ? 'Read the headers of ' + f.url + '.' : (j.error || 'The chain did not end on a page.'));
+      if (window.plausible) window.plausible('Checker', {{ props: {{ tool: 'headers' }} }});
+    }}, say);
+  }});
+}})();
+</script>
+"""
+    return render(
+        cat="tools", slug="http-header-checker",
+        title="HTTP header checker: see a page's response headers",
+        desc=("Free HTTP header checker: see the status code and response headers of any page, with verdicts "
+              "on HSTS, X-Robots-Tag and security headers. No sign-up."),
+        h1="HTTP header checker",
+        crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / HTTP header checker',
+        body=body,
+        published=d["measured"],
+        schema_type="WebPage",
+        faq=[
+            ("How do I check my HTTP headers?",
+             "Paste the address into the checker, or open the browser's developer tools, choose Network, reload "
+             "and read Response Headers. In a terminal, curl -sI followed by the address prints them."),
+            ("Do I need an HSTS header?",
+             "On most domains, yes: it makes browsers use HTTPS from the first visit on. On a domain the browsers "
+             "already force to HTTPS, such as .app or .dev, it adds nothing."),
+            ("Can an HTTP header stop a page being indexed?",
+             "Yes. X-Robots-Tag: noindex keeps a page out of search even when the page itself has no noindex tag."),
+        ],
+    )
+
+
+BUILDERS = [hub, robots_tester, meta_checker, jsonld_checker, serp_preview, seo_checker, redirect_checker, header_checker]
 
 
 def build_all() -> list[Path]:

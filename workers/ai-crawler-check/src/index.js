@@ -24,6 +24,7 @@
  */
 import { evaluate, parseRobots } from './robots.js'
 import { checkJsonLd, checkMeta, extract } from './page.js'
+import { checkHeaders, checkRedirects, trace } from './trace.js'
 
 export const ALLOWED_ORIGIN = 'https://docketseo.app'
 export const USER_AGENT = 'DocketRobotsCheck/1.0 (+https://docketseo.app/tools/ai-crawler-checker/)'
@@ -278,7 +279,7 @@ export async function handle(request, fetchImpl = fetch, env = {}, store = undef
   if (request.method !== 'GET') return json({ error: 'GET only.' }, 405, origin)
   const u = new URL(request.url)
   if (u.pathname === '/health') return json({ ok: true }, 200, origin)
-  if (u.pathname !== '/check' && u.pathname !== '/page') return json({ error: 'Not found.' }, 404, origin)
+  if (u.pathname !== '/check' && u.pathname !== '/page' && u.pathname !== '/trace') return json({ error: 'Not found.' }, 404, origin)
 
   const ip = request.headers.get('CF-Connecting-IP')
   if (await overLimit(ip, env, store === undefined ? cacheStore() : store)) {
@@ -289,6 +290,11 @@ export async function handle(request, fetchImpl = fetch, env = {}, store = undef
 
   let site
   try { site = siteFrom(u.searchParams.get('url')) } catch (e) { return json({ error: e.message }, 400, origin) }
+  if (u.pathname === '/trace') {
+    const t = await trace(site, fetchImpl, PAGE_AGENT)
+    return json({ url: site.toString(), checked_at: new Date().toISOString(), ...t,
+      redirects: checkRedirects(t, site.toString()), headers: checkHeaders(t) }, 200, origin)
+  }
   if (u.pathname === '/page') {
     const got = await fetchPage(site, fetchImpl)
     const base = { url: site.toString(), final_url: got.url, redirects: got.hops, status: got.status || null,
