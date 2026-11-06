@@ -15,7 +15,7 @@
 <title>Google robots.txt tester: is Googlebot blocked?</title>
 <meta name="description" content="Free Google robots.txt tester: paste any page address and see whether Googlebot, Bingbot, GPTBot and other crawlers may crawl it, and which line decides.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="031ed4093c2e">
+<meta name="build-id" content="54457b42da2d">
 <link rel="canonical" href="https://docketseo.app/tools/robots-txt-tester/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -651,6 +651,24 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .meta-summary dt{font-weight:600}.meta-summary dd{margin:0;overflow-wrap:anywhere}
 @media(max-width:600px){.findings .finding,.meta-summary dl{grid-template-columns:1fr}.finding-level{grid-row:auto}}
 .checker-status{margin:.7rem 0 0;color:var(--text-mid);min-height:1.3em;overflow-wrap:anywhere}
+/* Every free checker: no sign-up, three steps, what you will see, the step up (2026-11-06). */
+.tool-how{margin:0 0 2rem;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:var(--radius-lg)}
+.tool-how p{margin:0 0 .6rem}.tool-how .tool-step-up{margin:.8rem 0 0;color:var(--text-mid)}
+.tool-steps{margin:.2rem 0 .8rem;padding-left:1.3rem}.tool-steps li,.tool-see li{margin:.25rem 0}
+.tool-see{margin:.2rem 0 0;padding-left:1.3rem}
+/* The search result preview. */
+.serp-form input,.serp-form textarea{width:100%;padding:.7rem .85rem;border-radius:var(--radius-md);
+  border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit;resize:vertical}
+.serp-form label{margin-top:.9rem}.serp-form label:first-child{margin-top:0}
+.serp-count{margin:.35rem 0 0;color:var(--text-mid);font-size:var(--t-sm)}
+.serp-count.over{color:var(--bad-text)}
+.serp-box{margin:0 0 1rem;padding:1.1rem 1.2rem;border-radius:var(--radius-lg);background:#fff;color:#202124;
+  font-family:Arial,Helvetica,sans-serif;max-width:600px;overflow-wrap:anywhere}
+.serp-site{font-size:14px;line-height:20px;color:#202124}.serp-site .serp-path{color:#4d5156}
+.serp-title{font-size:20px;line-height:26px;color:#1a0dab;margin:4px 0 3px}
+.serp-desc{font-size:14px;line-height:22px;color:#4d5156}
+.serp-cut{color:#b3261e;font-weight:700}
+.serp-copy{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin:0 0 2rem}
 .checker-share{margin:-1rem 0 2rem;padding:1rem 1.2rem;border:1px solid var(--border-strong);
   border-radius:var(--radius-lg);background:var(--surface)}
 .checker-share p{margin:.3rem 0 .5rem}
@@ -965,6 +983,14 @@ It works on any site, yours or not, and there is nothing to verify first.</p>
 <thead><tr><th>Crawler</th><th>Who</th><th>What it is for</th><th>This page</th></tr></thead>
 <tbody><tr data-agent="Googlebot"><td><code>Googlebot</code></td><td>Google</td><td>Google Search, including AI Overviews and AI Mode</td><td class="verdict"></td></tr><tr data-agent="Bingbot"><td><code>Bingbot</code></td><td>Microsoft</td><td>Bing, and Copilot, which crawls as Bingbot</td><td class="verdict"></td></tr><tr data-agent="Applebot"><td><code>Applebot</code></td><td>Apple</td><td>Siri and Spotlight suggestions</td><td class="verdict"></td></tr><tr data-agent="DuckDuckBot"><td><code>DuckDuckBot</code></td><td>DuckDuckGo</td><td>DuckDuckGo search</td><td class="verdict"></td></tr><tr data-agent="OAI-SearchBot"><td><code>OAI-SearchBot</code></td><td>OpenAI</td><td>ChatGPT Search results</td><td class="verdict"></td></tr><tr data-agent="ChatGPT-User"><td><code>ChatGPT-User</code></td><td>OpenAI</td><td>ChatGPT fetching a page a user asked about</td><td class="verdict"></td></tr><tr data-agent="Claude-SearchBot"><td><code>Claude-SearchBot</code></td><td>Anthropic</td><td>Claude&#x27;s search results</td><td class="verdict"></td></tr><tr data-agent="PerplexityBot"><td><code>PerplexityBot</code></td><td>Perplexity</td><td>Perplexity&#x27;s index and citations</td><td class="verdict"></td></tr><tr data-agent="GPTBot"><td><code>GPTBot</code></td><td>OpenAI</td><td>OpenAI model training</td><td class="verdict"></td></tr><tr data-agent="ClaudeBot"><td><code>ClaudeBot</code></td><td>Anthropic</td><td>Anthropic model training</td><td class="verdict"></td></tr><tr data-agent="Google-Extended"><td><code>Google-Extended</code></td><td>Google</td><td>Gemini training and grounding, not Search</td><td class="verdict"></td></tr><tr data-agent="CCBot"><td><code>CCBot</code></td><td>Common Crawl</td><td>the open web corpus many models train on</td><td class="verdict"></td></tr></tbody></table></div>
 <p class="checker-sitemaps" id="checker-sitemaps" hidden></p>
+
+<section class="tool-how" aria-label="How this checker works">
+<p class="tool-free"><strong>Free, no sign-up required.</strong> It works on any site, with nothing to verify first.</p>
+<ol class="tool-steps"><li>Paste the address of the page that dropped out of search, not only the homepage.</li><li>Add another crawler's name if you want one, then press <strong>Test this page</strong>.</li><li>Read each crawler's verdict beside the line that decides it.</li></ol>
+<p class="tool-see-h"><strong>You will see:</strong></p>
+<ul class="tool-see"><li>Allowed or blocked for Googlebot, Bingbot and the AI crawlers, one row each</li><li>The exact robots.txt line that decides, so you know which line to change</li><li>The sitemaps the file lists</li></ul>
+<p class="tool-step-up">One file, read for one page. <a href="/download/">Docket</a> reads it for every page of your site, then requests those pages as each crawler to catch the firewall and CDN refusals a file cannot show, among its 99 checks.</p>
+</section>
 
 <div class="checker-next" id="checker-next" hidden>
   <p><strong>That was one file, read for one page.</strong> Docket runs 99 checks across your whole site, ranked by
