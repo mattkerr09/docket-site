@@ -38,6 +38,9 @@ ANTHROPIC_BOTS = ("https://support.claude.com/en/articles/8896518-does-anthropic
 ANTHROPIC_IPS = "https://claude.com/crawling/bots.json"
 GOOGLE_AI_FEATURES = "https://developers.google.com/search/docs/appearance/ai-features"
 LLMSTXT = "https://llmstxt.org/"
+ANTHROPIC_SUBPROCESSORS = "https://trust.anthropic.com/subprocessors"
+PARALLEL_BOTS = "https://parallel.ai/parallel-web-systems-bots"
+BRAVE_CRAWLER = "https://search.brave.com/help/brave-search-crawler"
 
 
 def _checker(lead: str) -> str:
@@ -291,7 +294,98 @@ can reach your pages at all.</p>
     )
 
 
-BUILDERS = [what_is_claudebot, what_is_llms_txt]
+def claude_search_crawlers() -> Path:
+    """Which crawlers feed Claude's web search? Answered from the operators' own pages, read 2026-11-06.
+
+    Matthew, 2026-11-07 00:1xZ via the CEO: "make sure we're seen by Claude". Claude's own web search did not
+    find docketseo.app by name. Anthropic's Trust Center lists its web-search subprocessors; Parallel and Brave
+    each say what their crawler does. Nothing here is a guess about how Claude weighs them: Anthropic does not
+    publish that, and the page says so."""
+    body = f"""
+<p class="lede"><strong>Claude&rsquo;s web search reads pages through Anthropic&rsquo;s own crawlers and
+through outside search providers.</strong> Anthropic&rsquo;s are Claude-SearchBot and Claude-User.
+Anthropic&rsquo;s subprocessor list also names three web search providers: Brave Search, Parallel Web
+Systems and turbopuffer. Parallel&rsquo;s crawler is ShapBot. Brave&rsquo;s crawler has no name of its
+own and follows your Googlebot rules.</p>
+
+<h2>Each one, in its operator&rsquo;s words</h2>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Crawler</th><th>Operator</th><th>What the operator says</th><th>What robots.txt does</th></tr></thead>
+<tbody>
+<tr><td><code>Claude-SearchBot</code></td><td>Anthropic</td><td>&ldquo;navigates the web to improve search
+result quality for users&rdquo;</td><td>Its own group, or <code>*</code>, decides.</td></tr>
+<tr><td><code>Claude-User</code></td><td>Anthropic</td><td>fetches a page &ldquo;when individuals ask
+questions to Claude&rdquo;</td><td>Its own group, or <code>*</code>, decides.</td></tr>
+<tr><td><code>ShapBot</code></td><td>Parallel Web Systems</td><td>&ldquo;collects publicly available web
+content to build and maintain Parallel&rsquo;s search index&rdquo;</td><td>Follows a <code>ShapBot</code>
+group, or <code>*</code>. Parallel says changes take effect within about a day.</td></tr>
+<tr><td><code>Shap-User</code></td><td>Parallel Web Systems</td><td>identifies itself &ldquo;when accessing
+content on behalf of users&rdquo;</td><td>Parallel says it is meant for visibility, not to be managed by
+automated controls, so a block may not stop it.</td></tr>
+<tr><td>Brave Search&rsquo;s crawler</td><td>Brave</td><td>&ldquo;does not advertise a differentiated user
+agent&rdquo;</td><td>Brave says a page Googlebot may not crawl is not crawled by Brave either.</td></tr>
+</tbody></table></div>
+<p class="table-note">Read on {_read_day()} from <a href="{ANTHROPIC_SUBPROCESSORS}" rel="nofollow noopener">Anthropic&rsquo;s
+subprocessor list</a>, <a href="{PARALLEL_BOTS}" rel="nofollow noopener">Parallel&rsquo;s bot page</a>, effective the
+same day, and <a href="{BRAVE_CRAWLER}" rel="nofollow noopener">Brave&rsquo;s crawler page</a>. Anthropic&rsquo;s
+own crawlers are from <a href="{ANTHROPIC_BOTS}" rel="nofollow noopener">its help article</a>.</p>
+<p>turbopuffer is on the list too. It makes search database software, and Anthropic does not say what
+part it plays in Claude&rsquo;s search. Anthropic does not publish how Claude weighs any of these
+providers either, so the safe position is to be open to all of them.</p>
+
+<h2>How to stay findable</h2>
+<p>If your robots.txt allows everything, there is nothing to change. If it closes the door to bots it
+does not know, which is common after a wave of AI blocking, name the search crawlers and open them:</p>
+<pre><code>User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: ShapBot
+Allow: /</code></pre>
+<p>Keep Googlebot open as well, because Brave follows those rules. Blocking ClaudeBot, which collects
+training data, does not affect any of this; <a href="/learn/what-is-claudebot/">what ClaudeBot does</a>
+explains the difference. A firewall or CDN rule can still refuse a crawler your file welcomes, and that
+is the most common reason a site that meant to stay open is not.</p>
+
+<h2>Docket checks them</h2>
+<p>The free <a href="/tools/ai-crawler-checker/">AI crawler checker</a> now includes ShapBot and
+Shap-User beside Anthropic&rsquo;s crawlers, and Docket&rsquo;s app adds them in its next release.</p>
+{_checker("Most sites have never checked what their file says to the crawlers behind Claude&rsquo;s search.")}
+{buy_block("learn-claude-search-crawlers", try_app="learn-claude-search-crawlers-try-free")}
+
+<h2>Related</h2>
+<ul>
+<li><a href="/learn/what-is-claudebot/">What is ClaudeBot?</a></li>
+<li><a href="/learn/ai-crawler-directives/">Every AI crawler: which to block and which to keep</a></li>
+<li><a href="/how-to/fix-ai-crawlers-blocked-by-your-cdn/">When your CDN blocks crawlers your robots.txt allows</a></li>
+</ul>
+"""
+    return render(
+        cat="learn", slug="claude-search-crawlers",
+        title="Which crawlers feed Claude's web search?",
+        desc=("Claude's search reads pages through Claude-SearchBot, Claude-User and providers Anthropic lists: "
+              "Brave, Parallel's ShapBot and turbopuffer."),
+        h1="Which crawlers feed Claude&rsquo;s web search?",
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Crawlers behind Claude&rsquo;s search',
+        body=body,
+        published="2026-11-06",
+        faq=[
+            ("Does Claude use Brave Search?",
+             "Anthropic's subprocessor list names Brave Search as a web search provider for all its products. "
+             "Brave's crawler has no separate user agent and follows your Googlebot rules."),
+            ("What is ShapBot?",
+             "Parallel Web Systems' crawler. Parallel says it collects public web content to build its search "
+             "index, and Anthropic lists Parallel as a web search provider for Claude."),
+            ("Should I block ShapBot?",
+             "Only if you want to stay out of Parallel's index. Parallel says restricting it may reduce your "
+             "visibility through its search features, and Claude's web search uses Parallel."),
+        ],
+    )
+
+
+def _read_day() -> str:
+    return "6 November 2026"
+
+
+BUILDERS = [what_is_claudebot, what_is_llms_txt, claude_search_crawlers]
 
 
 def build_all() -> list[Path]:

@@ -320,8 +320,8 @@
   "hash": "8503354f4d20383f"
  },
  "learn/ai-crawler-directives/index.html": {
-  "date": "2026-11-05",
-  "hash": "1497da19a0e11e13"
+  "date": "2026-11-06",
+  "hash": "548ffa2ab3a99a32"
  },
  "learn/ai-crawlers-and-sitemaps/index.html": {
   "date": "2026-11-05",
@@ -354,6 +354,10 @@
  "learn/canonical-tags/index.html": {
   "date": "2026-11-05",
   "hash": "6b6de30e916420a9"
+ },
+ "learn/claude-search-crawlers/index.html": {
+  "date": "2026-11-06",
+  "hash": "25ac980f8b2df886"
  },
  "learn/click-depth-and-orphan-pages/index.html": {
   "date": "2026-11-05",
@@ -472,8 +476,8 @@
   "hash": "99a1124b07fbc921"
  },
  "legal/privacy/index.html": {
-  "date": "2026-11-05",
-  "hash": "b052a8aaebd3552b"
+  "date": "2026-11-06",
+  "hash": "2d55d7195647e027"
  },
  "legal/refunds/index.html": {
   "date": "2026-11-05",
@@ -493,7 +497,7 @@
  },
  "tools/ai-crawler-checker/index.html": {
   "date": "2026-11-06",
-  "hash": "0ac50b4b839de9cc"
+  "hash": "7b0827971e9cf9c1"
  },
  "tools/http-header-checker/index.html": {
   "date": "2026-11-06",
@@ -556,8 +560,8 @@
   "hash": "38aa5edf28882f59"
  },
  "vs/profound-alternative/index.html": {
-  "date": "2026-11-05",
-  "hash": "aa355822492dd3b0"
+  "date": "2026-11-06",
+  "hash": "d2cd5d7ced01be3c"
  },
  "vs/screaming-frog-alternative/index.html": {
   "date": "2026-11-06",
@@ -577,14 +581,14 @@
  },
  "vs/seoptimer-alternative/index.html": {
   "date": "2026-11-06",
-  "hash": "ea45cd65963ac372"
+  "hash": "4ae581bba84545b7"
  },
  "vs/sitebulb-alternative/index.html": {
   "date": "2026-11-05",
   "hash": "82ff91f1ac929a35"
  },
  "vs/sitechecker-alternative/index.html": {
-  "date": "2026-11-05",
-  "hash": "0b7cb7b61dca446c"
+  "date": "2026-11-06",
+  "hash": "0e93ef30da520417"
  }
 }

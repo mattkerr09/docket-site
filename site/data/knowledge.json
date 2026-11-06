@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "compiled": "2026-10-26",
-  "revision": 8,
+  "compiled": "2026-11-06",
+  "revision": 9,
   "ai_crawlers": {
     "GPTBot": {
       "owner": "OpenAI",
@@ -112,6 +112,16 @@
       "owner": "Meta",
       "purpose": "advertising",
       "impact": "Crawls for Meta's advertising and other business products. Meta's documentation does not tie it to Meta AI answers or citations."
+    },
+    "ShapBot": {
+      "owner": "Parallel Web Systems",
+      "purpose": "search index",
+      "impact": "Removes you from Parallel's search index. Parallel says restricting it may reduce your visibility through its web APIs and search features, and Anthropic lists Parallel as a web search provider for Claude."
+    },
+    "Shap-User": {
+      "owner": "Parallel Web Systems",
+      "purpose": "live fetch",
+      "impact": "Fetches a page on a user's behalf. Parallel says it is meant to make those requests visible rather than to be managed by robots.txt, so a block here may not stop it."
     }
   },
   "web_vitals": {
@@ -276,7 +286,7 @@
     }
   ],
   "sources": {
-    "ai_crawlers": "Each operator's published crawler documentation, re-read 2026-10-26 (Anthropic, Google, Meta, OpenAI, Perplexity), cross-checked against robots.txt directives observed in the Scout Index.",
+    "ai_crawlers": "Each operator's published crawler documentation, re-read 2026-10-26 (Anthropic, Google, Meta, OpenAI, Perplexity) and 2026-11-06 (Parallel Web Systems: parallel.ai/parallel-web-systems-bots; Anthropic's subprocessor list at trust.anthropic.com/subprocessors names Parallel for web search), cross-checked against robots.txt directives observed in the Scout Index.",
     "web_vitals": "Google's published Core Web Vitals thresholds (web.dev).",
     "algorithm_notes": "Google Search Status Dashboard (developers.google.com/search/updates/ranking) and Search Central / blog.google announcements, each read on the date in the entry. Durations are Google's own. The ranking dashboard was re-read 2026-10-26; its newest entry is the September 2026 spam update."
   }
