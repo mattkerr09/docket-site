@@ -562,6 +562,8 @@ __ISSUES__ issues found, shown here with a placeholder in place of your name and
 <p>SEOptimer's prices and features are its own, read from its pricing page on __SO_READ__; our
 <a href="/vs/seoptimer-alternative/">SEOptimer comparison</a> sets them out in full. If you sell
 audits from your own report address, or want report templates, that is what the subscription buys.</p>
+<p>The other tools that put your name on a report, and what each costs, are set side by side in
+<a href="/best/white-label-seo-audit-tools/">white-label SEO audit tools for agencies</a>.</p>
 
 <p>The cost that hurts an agency is usually not the licence. It is the per-seat and
 per-crawl metering that makes you think twice before auditing a prospect. Docket is a one-time

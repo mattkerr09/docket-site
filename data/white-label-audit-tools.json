@@ -1,0 +1,79 @@
+{
+  "read": "2026-11-05",
+  "note": "Every row was read from the vendor's own pages on this date, except SEOptimer, whose site answers automated requests with a refusal: that row is the one read on 2026-10-08 and the page says so. Prices are US dollar list prices for one person. A thing the page did not state is recorded as not stated, never guessed. Nothing here was measured by running the rival's software.",
+  "tools": [
+    {
+      "slug": "seo-powersuite",
+      "name": "SEO PowerSuite Enterprise",
+      "kind": "a desktop suite for Windows, Apple and Linux",
+      "white_label": "white-label SEO reports, fully customizable report templates, saving and emailing reports in PDF and HTML, and automated report scheduling and delivery",
+      "sold": "the Enterprise plan is $599 a year billed yearly; the Professional plan at $349 a year does not list white-label reports",
+      "annual": 599,
+      "source": "https://www.link-assistant.com/pricing.html"
+    },
+    {
+      "slug": "netpeak-spider",
+      "name": "Netpeak Spider",
+      "kind": "a desktop crawler for Windows and macOS",
+      "white_label": "its Spider page says the white-label feature generates a website SEO audit report in PDF featuring your company's logo, contacts and recommendations",
+      "sold": "$20 a month, cancel anytime, after a 3 day free trial",
+      "monthly": 20,
+      "source": "https://netpeaksoftware.com/spider"
+    },
+    {
+      "slug": "sitebulb",
+      "name": "Sitebulb Pro",
+      "kind": "a desktop app for Windows or Mac, with a separate cloud product",
+      "white_label": "the Pro plan lists customised PDF reports, scheduled audits and audit comparisons; its pricing page does not use the words white label, and a customer quote on its features page calls the PDFs white-label",
+      "sold": "Pro is $425 a year for 1 user; the Lite plan at $180 a year does not list customised PDF reports",
+      "annual": 425,
+      "source": "https://sitebulb.com/subscriptions/pricing/index/?annual=true"
+    },
+    {
+      "slug": "se-ranking",
+      "name": "SE Ranking with the Agency Pack",
+      "kind": "a cloud platform",
+      "white_label": "the Agency Pack add-on lists white label for platform and reporting, 30 client seats and unlimited scheduled reporting",
+      "sold": "the Agency Pack is $69 a month on annual billing only, on top of a plan: Core is $129 a month, or $103.20 a month billed annually",
+      "plan_monthly_annual": 103.2,
+      "addon_monthly": 69,
+      "source": "https://seranking.com/subscription.html"
+    },
+    {
+      "slug": "semrush",
+      "name": "Semrush with the Pro Report add-on",
+      "kind": "a cloud platform",
+      "white_label": "the Pro Report add-on lists branding and white-labeling, delivery at a specific time and sharing by link",
+      "sold": "the Pro Report add-on is $20 a month on top of a plan: the SEO plan is $139 a month, or $117.33 a month billed annually",
+      "plan_monthly_annual": 117.33,
+      "addon_monthly": 20,
+      "source": "https://www.semrush.com/pricing/seo-ai-search/"
+    },
+    {
+      "slug": "sitechecker",
+      "name": "Sitechecker",
+      "kind": "a cloud platform",
+      "white_label": "it has a page titled White Label SEO Tool for Audits and Reports, and the pages read do not say which plan unlocks white label",
+      "sold": "plans run from $99 a month to $449 a month, with a 14 day free trial and no card needed",
+      "monthly_low": 99,
+      "source": "https://sitechecker.pro/account/plans/"
+    },
+    {
+      "slug": "seoptimer",
+      "name": "SEOptimer",
+      "kind": "a cloud tool",
+      "white_label": "Pro and Max name white label PDF reporting, and its feature breakdown lists a white label custom domain and report templates",
+      "sold": "Pro is $39 a month and Max is $59 a month (read 8 October 2026, because its site refuses automated requests)",
+      "monthly": 39,
+      "read": "2026-10-08",
+      "source": "https://www.seoptimer.com/pricing"
+    }
+  ],
+  "sources_extra": [
+    ["Sitebulb plan features, including customised PDF reports on Pro", "https://sitebulb.com/pricing/"],
+    ["Sitebulb features page, a customer quote about white-label PDFs", "https://sitebulb.com/features/"],
+    ["SE Ranking's white label page", "https://seranking.com/white-label.html"],
+    ["Netpeak Spider pricing, trial and refund terms", "https://netpeaksoftware.com/pricing"],
+    ["Sitechecker's white label page", "https://sitechecker.pro/white-label/"]
+  ]
+}

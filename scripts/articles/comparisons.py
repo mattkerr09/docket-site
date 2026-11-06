@@ -571,6 +571,23 @@ def _sfa_facts(data: dict) -> list:
             + [(what, url) for what, url in data["sources_extra"]])
 
 
+# The white-label audit tools list (/best/white-label-seo-audit-tools/): the same pattern, its own data file.
+_WLT = _json.loads((Path(__file__).resolve().parent.parent.parent / "data" / "white-label-audit-tools.json")
+                   .read_text(encoding="utf-8"))
+
+
+def _wlt_facts(data: dict) -> list:
+    """The claim list for data/white-label-audit-tools.json. Pure, like _mac_facts."""
+    return ([(f"{t['name']}: {t['kind']}; {t['white_label']}; {t['sold']}", t["source"]) for t in data["tools"]]
+            + [(what, url) for what, url in data["sources_extra"]])
+
+
+VERIFIED["wl-tools"] = _wlt_facts(_WLT)
+DATA_CLAIM_SETS["wl-tools"] = ("data/white-label-audit-tools.json", _wlt_facts)
+CHECKED_ISO["wl-tools"] = _WLT["read"]
+_d = _date.fromisoformat(_WLT["read"])
+CHECKED_HUMAN["wl-tools"] = f"{_d.day} {_d.strftime('%B %Y')}"
+
 VERIFIED["sf-alternatives"] = _sfa_facts(_SFA)
 DATA_CLAIM_SETS["sf-alternatives"] = ("data/screaming-frog-alternatives.json", _sfa_facts)
 CHECKED_ISO["sf-alternatives"] = _SFA["read"]

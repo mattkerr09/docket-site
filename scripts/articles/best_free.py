@@ -159,6 +159,11 @@ points where paying starts to help.
 how much it crawls, and when it is the better choice. Ours is one of them and is labelled as ours.
 <a href="/best/screaming-frog-alternatives/">Screaming Frog alternatives for Mac and Windows →</a></p>
 
+<h2>White-label SEO audit tools</h2>
+<p>The tools that put your own name on an audit report, with what the white-label part of each one is, what a year of it
+costs, and when each is the better choice. Ours is one of them and is labelled as ours.
+<a href="/best/white-label-seo-audit-tools/">White-label SEO audit tools for agencies →</a></p>
+
 <h2>How a tool gets onto one of these pages</h2>
 <p>There is no scoring formula and no ranking here, because a number invented to order a list is
 still invented. A guide gets written when there is a job worth choosing a tool for, and it names

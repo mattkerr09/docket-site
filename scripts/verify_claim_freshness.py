@@ -31,7 +31,8 @@ sys.path.insert(0, str(ROOT / "scripts"))
 WARN_DAYS = 30
 FAIL_DAYS = 45
 #: Data files read off a vendor's own page, by their top-level "read" date.
-FRESH_DATA = ("data/ahrefs-credits-2026-09.json", "data/mac-options.json", "data/screaming-frog-alternatives.json")
+FRESH_DATA = ("data/ahrefs-credits-2026-09.json", "data/mac-options.json", "data/screaming-frog-alternatives.json",
+              "data/white-label-audit-tools.json")
 
 
 def collect() -> dict:

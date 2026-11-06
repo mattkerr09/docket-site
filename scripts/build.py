@@ -34,6 +34,7 @@ import bytecap  # noqa: E402
 import canonicals  # noqa: E402
 import best_free  # noqa: E402
 import sf_alternatives  # noqa: E402
+import white_label  # noqa: E402
 import comparisons  # noqa: E402
 import directives  # noqa: E402
 import entity  # noqa: E402
@@ -1443,7 +1444,8 @@ def stamp_build_id() -> str:
 def main() -> int:
     pages: list[Path] = [home.build(), index_page.build(), checks_page()]
     pages += comparisons.build_all()
-    pages += [best_free.best_hub(), best_free.free_seo_audit_tools(), sf_alternatives.sf_alternatives()]
+    pages += [best_free.best_hub(), best_free.free_seo_audit_tools(), sf_alternatives.sf_alternatives(),
+              white_label.white_label_tools()]
     pages += [howto_https.http_to_https(),
               howto_hreflang.hreflang_return_tags(),
               howto_canonicals.conflicting_canonicals(),
