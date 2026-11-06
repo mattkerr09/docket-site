@@ -1,21 +1,22 @@
 # Docket SEO
 
-> Docket SEO is a Mac app that audits any website on your own Mac: 99 checks across 13
-> areas, then one ranked plan of what to fix, in order, with the markup to paste and a
-> client-ready PDF report. It costs $59, paid once; there is no subscription.
+> Docket SEO is a Mac and Windows app that audits any website on your own computer: 99
+> checks across 13 areas, then one ranked plan of what to fix, in order, with the
+> markup to paste and a client-ready PDF report. It costs $59, paid once; there is no
+> subscription.
 
-The crawl and the report stay on the Mac, and there is no account and no telemetry.
-Five optional checks are on by default and reach outside it: Google PageSpeed Insights
-is sent the addresses of the homepage and top pages; Google's public autocomplete is
-sent the site's topic words, typed by the user or read off its titles, headings and
-descriptions; DNS is asked about the mail domains the site publishes; the audited
-server is asked what it tells AI crawlers; and docketseo.app serves a knowledge file.
-Offline mode turns all five off. Checking links to other sites, and rendering a few
-pages as a browser would, also reach the sites and services those pages link to or
-load. The licence key is checked with the payment provider when it is activated and
-about once a day after that. The app asks docketseo.app whether an update exists, and,
-while its activation screen is showing on a copy with no key, what the current price
-and offer are and whether the founding offer is still open.
+The crawl and the report stay on your computer, and there is no account and no
+telemetry. Five optional checks are on by default and reach outside it: Google
+PageSpeed Insights is sent the addresses of the homepage and top pages; Google's
+public autocomplete is sent the site's topic words, typed by the user or read off its
+titles, headings and descriptions; DNS is asked about the mail domains the site
+publishes; the audited server is asked what it tells AI crawlers; and docketseo.app
+serves a knowledge file. Offline mode turns all five off. Checking links to other
+sites, and rendering a few pages as a browser would, also reach the sites and services
+those pages link to or load. The licence key is checked with the payment provider when
+it is activated and about once a day after that. The app asks docketseo.app whether an
+update exists, and, while its activation screen is showing on a copy with no key, what
+the current price and offer are and whether the founding offer is still open.
 
 Docket is written by Matt Kerr and sold by Kerr & Company LLC, of Grand Rapids,
 Michigan, United States.
