@@ -133,11 +133,13 @@
     "learn/what-scout-checks": "2026-08-06",
     "learn/who-blocks-googlebot": "2026-09-15",
     "learn/www-vs-non-www": "2026-09-15",
+    "legal/chrome-extension": "2026-11-05",
     "legal/privacy": "2026-08-06",
     "legal/refunds": "2026-08-12",
     "legal/terms": "2026-08-06",
     "mac-seo-audit-tool": "2026-10-14",
     "pricing": "2026-09-30",
+    "score-card": "2026-11-05",
     "thank-you": "2026-08-19",
     "tools": "2026-10-06",
     "tools/ai-crawler-checker": "2026-09-28",
@@ -160,5 +162,7 @@
     "vs/sitebulb-alternative": "2026-08-06",
     "vs/sitechecker-alternative": "2026-09-16"
   },
-  "uncommitted": []
+  "uncommitted": [
+    "score-card"
+  ]
 }

@@ -169,7 +169,9 @@ data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On
 
 </ol>
 <p>Or start with step 2: without a key, Docket runs the same full audit for free. {FREE_LINE}
-Buy from inside the app and the audit you ran opens in full.</p>
+Buy from inside the app and the audit you ran opens in full.
+The free version also saves a <a href="/score-card/">score card</a> of any audit: one picture with the score and the problems
+in each area, to send to a client or a colleague.</p>
 {windows_waitlist("download")}
 
 <p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on {MAC_HW}{' and for 64-bit Windows' if WINDOWS else ''}.
@@ -187,6 +189,8 @@ top pages, and Google's autocomplete, which is sent your site's topic words;
 {(f'<p class="intel-dl">Intel Mac? <a href="{download_url("download-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="download-intel">Download the Intel version</a> ({INTEL_DMG_SIZE}).</p>') if INTEL else ''}
 <p style="font-size:var(--t-md);color:var(--text-dim)">Apple Silicon · {MACOS}+ · {DMG_SIZE} ·
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
+<p class="brew">Prefer the terminal? <code>brew install --cask mattkerr09/docket/docket-seo</code> installs the same app on a Mac
+(<a href="https://github.com/mattkerr09/homebrew-docket">the Homebrew tap</a>).</p>
 
 <h2>What it will crawl</h2>
 
@@ -1953,6 +1957,78 @@ def _windows_form_privacy() -> str:
             "<code>kerr-subscribe.kerrco.workers.dev</code>, a server we run. It stores nothing in your browser. We\n"
             "use the address once, to write to you the day Docket for Windows is ready, and for nothing else.</p>")
 
+def score_card() -> Path:
+    """What a Docket score card is. The card the free version saves (docket-app ui/src/scorecard.js) prints this page's short
+    address, docketseo.app/score-card, as its foot: a picture cannot carry a tracked link, so the visits to this page are the
+    count of people the cards send. Matthew, 2026-11-05: "Yes, add the free score card" (relayed by the CEO)."""
+    body = f"""
+<p class="lede">A Docket score card is one picture that sums up an SEO audit of a website: the site's score, and how many
+problems each area of the audit found. The free version of Docket makes one for any site you audit.</p>
+
+<figure class="shot">
+  <img src="/assets/score-card-example.webp" width="1200" height="630" loading="lazy" decoding="async"
+       alt="A Docket score card for one of our own sites: score 96, grade A, 10 problems found, 4 pages checked, and the number of problems in each of the {N_LANES} areas, with the words Audited with Docket and docketseo.app/score-card at the foot.">
+  <figcaption>A score card for kerrandcompanyholdings.com, the company site, from a real audit on 6 November 2026.
+  It is the picture the app saves, not a mockup.</figcaption>
+</figure>
+
+<h2>What is on it</h2>
+<ul>
+<li>The site's name and address.</li>
+<li>The score, out of 100, and its grade.</li>
+<li>How many pages Docket checked, and the date.</li>
+<li>Each of the {N_LANES} areas of the audit, with how many problems it found.</li>
+</ul>
+<p>That is all. It does not say what the problems are, which pages have them or how to fix them. Whoever makes the card
+decides what else to share.</p>
+
+<h2>How to read it</h2>
+<p>Start with the grade, then the areas. An area with no problems is one where every check that applies to the site passed.
+An area with a few is where the work is, and the count tells you how big the job is before you open anything. Two sites with
+the same score can have very different cards: one with a single area full of problems, one with a small problem in every area.
+The card is a summary for the people who need the number. The person who will fix the site needs the full report.</p>
+
+<h2>Where the score comes from</h2>
+<p>Docket crawls the site and runs {N_CHECKS} checks across the {N_LANES} areas, from indexing and page titles to speed,
+structured data, security, local search and AI search visibility. The score is for the pages it crawled. What each check
+looks at is on <a href="/learn/what-docket-checks/">the page that lists them</a>.</p>
+
+<h2>Make your own</h2>
+<p><a href="/download/">Download Docket</a> for a Mac or a 64-bit Windows PC, type a site's address and run the audit. When it
+finishes, press <strong>Save score card</strong>. The audit runs on your own computer and there is no account to create.</p>
+
+<h2>If someone sent you one</h2>
+<p>They ran Docket on a site and sent you the picture. You can run the same audit on your own site in a few minutes and see
+where it stands.</p>
+"""
+    return render(
+        cat="score-card", slug="",
+        title="The Docket score card: one picture of an SEO audit",
+        desc="A score card is a one-picture summary of a Docket audit: the site, its score and how many problems "
+             "each area has. What is on it, and how to make your own.",
+        h1="The Docket score card",
+        crumb='<a href="/">Docket</a> / Score card',
+        body=body,
+        faq=[
+            ("Does the card say what is wrong with the site?",
+             "No. It says how many problems each area found, and nothing about what they are, which pages have them or how to fix "
+             "them. A card is safe to post or send: whoever reads it learns the score and where the work is, not the details."),
+            ("Does saving a card send anything anywhere?",
+             "No. The app draws the card on your own computer and saves it where you choose. Nothing about the audit or the card "
+             "is sent to us or to anyone else. The only address on it is ours, at the foot."),
+            ("Can I put my own logo on it?",
+             "Not on the card. Agencies who want their own name on what a client sees use the white-label reports in the full "
+             "version of Docket, which carry the agency's name and logo and no mention of Docket."),
+            ("Why is the score not 100?",
+             "The score is the weighted result of the checks that apply to the site, so a site with a few small problems in a few "
+             "areas scores in the nineties, and one with a blocked homepage scores far lower. The grade is the letter for that score."),
+        ],
+        published="2026-11-06",
+        modified="2026-11-06",
+        schema_type="WebPage",
+    )
+
+
 def privacy() -> Path:
     body = """
 <p>Docket is desktop software that runs on your Mac. This policy covers both the application
@@ -2623,7 +2699,7 @@ the governing law, are on <a href="/legal/terms/">the terms of use page</a>.</p>
 BUILDERS = [download, for_hub, for_agencies, for_developers, for_ecommerce,
             for_local, for_saas, howto_hub,
             howto_ai_access,
-            privacy, chrome_extension_privacy, terms, refunds]
+            score_card, privacy, chrome_extension_privacy, terms, refunds]
 
 
 def build_all() -> list[Path]:
