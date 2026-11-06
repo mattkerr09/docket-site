@@ -15,7 +15,7 @@
 <title>AI crawler checker: can ChatGPT read your site?</title>
 <meta name="description" content="Free check of your robots.txt against 22 crawlers: which let ChatGPT, Claude, Perplexity, AI Overviews and Copilot read and cite you, and which only train.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="031ed4093c2e">
+<meta name="build-id" content="54457b42da2d">
 <link rel="canonical" href="https://docketseo.app/tools/ai-crawler-checker/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -651,6 +651,24 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .meta-summary dt{font-weight:600}.meta-summary dd{margin:0;overflow-wrap:anywhere}
 @media(max-width:600px){.findings .finding,.meta-summary dl{grid-template-columns:1fr}.finding-level{grid-row:auto}}
 .checker-status{margin:.7rem 0 0;color:var(--text-mid);min-height:1.3em;overflow-wrap:anywhere}
+/* Every free checker: no sign-up, three steps, what you will see, the step up (2026-11-06). */
+.tool-how{margin:0 0 2rem;padding:1rem 1.2rem;border:1px solid var(--border);border-radius:var(--radius-lg)}
+.tool-how p{margin:0 0 .6rem}.tool-how .tool-step-up{margin:.8rem 0 0;color:var(--text-mid)}
+.tool-steps{margin:.2rem 0 .8rem;padding-left:1.3rem}.tool-steps li,.tool-see li{margin:.25rem 0}
+.tool-see{margin:.2rem 0 0;padding-left:1.3rem}
+/* The search result preview. */
+.serp-form input,.serp-form textarea{width:100%;padding:.7rem .85rem;border-radius:var(--radius-md);
+  border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit;resize:vertical}
+.serp-form label{margin-top:.9rem}.serp-form label:first-child{margin-top:0}
+.serp-count{margin:.35rem 0 0;color:var(--text-mid);font-size:var(--t-sm)}
+.serp-count.over{color:var(--bad-text)}
+.serp-box{margin:0 0 1rem;padding:1.1rem 1.2rem;border-radius:var(--radius-lg);background:#fff;color:#202124;
+  font-family:Arial,Helvetica,sans-serif;max-width:600px;overflow-wrap:anywhere}
+.serp-site{font-size:14px;line-height:20px;color:#202124}.serp-site .serp-path{color:#4d5156}
+.serp-title{font-size:20px;line-height:26px;color:#1a0dab;margin:4px 0 3px}
+.serp-desc{font-size:14px;line-height:22px;color:#4d5156}
+.serp-cut{color:#b3261e;font-weight:700}
+.serp-copy{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin:0 0 2rem}
 .checker-share{margin:-1rem 0 2rem;padding:1rem 1.2rem;border:1px solid var(--border-strong);
   border-radius:var(--radius-lg);background:var(--surface)}
 .checker-share p{margin:.3rem 0 .5rem}
@@ -970,6 +988,14 @@ first, and the ones that only collect training data come second.</p>
     data-what="badge">Copy badge code</button><span id="share-preview"></span></div>
 </div>
 
+
+<section class="tool-how" aria-label="How this checker works">
+<p class="tool-free"><strong>Free, no sign-up required.</strong> Nothing to install, and no account to make.</p>
+<ol class="tool-steps"><li>Type your website's address, or any page on it.</li><li>Press <strong>Check my site</strong>.</li><li>Read which crawlers may fetch it, the ones that let assistants quote you at the top.</li></ol>
+<p class="tool-see-h"><strong>You will see:</strong></p>
+<ul class="tool-see"><li>Each of the 22 crawlers, allowed or blocked, with the ones that let an assistant quote you first</li><li>The robots.txt line behind each answer</li><li>A link to share the result, and a badge for your site that links to it</li></ul>
+<p class="tool-step-up">Your rules, read once. <a href="/download/">Docket</a> checks every page of your site against each AI crawler and requests them as those crawlers, which shows refusals robots.txt cannot, among its 99 checks.</p>
+</section>
 
 <div class="checker-next" id="checker-next" hidden>
   <p><strong>That was one file, read for one page.</strong> Docket runs 99 checks across your whole site, ranked by
