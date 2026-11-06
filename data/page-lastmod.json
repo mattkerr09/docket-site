@@ -492,24 +492,28 @@
   "hash": "93e748437034d949"
  },
  "tools/ai-crawler-checker/index.html": {
-  "date": "2026-11-05",
-  "hash": "0f95695d11ceda68"
+  "date": "2026-11-06",
+  "hash": "0ac50b4b839de9cc"
  },
  "tools/index.html": {
-  "date": "2026-11-05",
-  "hash": "1bc01c22412ab889"
+  "date": "2026-11-06",
+  "hash": "445baba8386ff6af"
  },
  "tools/json-ld-checker/index.html": {
-  "date": "2026-11-05",
-  "hash": "ff94c48d8a2799e6"
+  "date": "2026-11-06",
+  "hash": "25eb8da3fa9bca62"
  },
  "tools/meta-tag-checker/index.html": {
-  "date": "2026-11-05",
-  "hash": "a1062ddf1bb69365"
+  "date": "2026-11-06",
+  "hash": "e3a2ee27b60d63b3"
  },
  "tools/robots-txt-tester/index.html": {
-  "date": "2026-11-05",
-  "hash": "38b9de5ab74ca4c4"
+  "date": "2026-11-06",
+  "hash": "09e992d3bd8f5e98"
+ },
+ "tools/serp-preview/index.html": {
+  "date": "2026-11-06",
+  "hash": "f7b386842ecc9017"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
   "date": "2026-11-06",
