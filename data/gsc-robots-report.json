@@ -1,0 +1,19 @@
+{
+  "read": "2026-11-05",
+  "note": "What Google's robots.txt report in Search Console is and does, read from Google's own help pages on this date. The Search Engine Land line is the one source Docket's tools could not fetch: its site refuses automated requests, and this page does not get round that.",
+  "claims": [
+    [
+      "Google's robots.txt report shows which robots.txt files Google found for the top 20 hosts of a property, the last time they were crawled, and any warnings or errors, and lets you request a recrawl of a file for emergencies; it is available only for properties at the domain level",
+      "https://support.google.com/webmasters/answer/6062598"
+    ],
+    [
+      "Google's guide to updating a robots.txt file points to the robots.txt report to copy the file's content and to request a recrawl",
+      "https://developers.google.com/search/docs/crawling-indexing/robots/submit-updated-robots-txt"
+    ],
+    [
+      "Search Engine Land reported when Google added the robots.txt report and decided to sunset the robots.txt tester (its site refuses automated requests, so this line comes from its search listing)",
+      "https://searchengineland.com/google-search-console-adds-robots-txt-report-434708"
+    ]
+  ],
+  "top_hosts": 20
+}

@@ -601,12 +601,12 @@ def write_llms_txt() -> None:
 
     out = ["# Docket SEO", ""]
     out.append(wrap(
-        f"Docket SEO is a Mac app that audits any website on your own Mac: {N_CHECKS} "
+        f"Docket SEO is a Mac and Windows app that audits any website on your own computer: {N_CHECKS} "
         f"checks across {N_LANES} areas, then one ranked plan of what to fix, in order, "
         f"with the markup to paste and a client-ready PDF report. It costs {PRICE_STR}, "
         f"paid once; there is no subscription.", "> ", "> "))
     out += ["", wrap(
-        "The crawl and the report stay on the Mac, and there is no account and no "
+        "The crawl and the report stay on your computer, and there is no account and no "
         f"telemetry. {F.optional_connectors_word().capitalize()} optional checks are on by "
         "default and reach outside it: Google PageSpeed Insights is sent the addresses of "
         "the homepage and top pages; Google's public autocomplete is sent the site's topic "

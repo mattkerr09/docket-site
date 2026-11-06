@@ -20,6 +20,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import comparisons  # noqa: E402
 from render import (HAS_SAMPLE, INTEL, INTEL_DMG, N_CHECKS, PAY4_BUY, PRICE, PRICE_STR,  # noqa: E402
                     REFUND_DAYS, SAMPLE_REPORT, buy_block, checkout_url, download_url,
                     price_req_html, render)
@@ -186,9 +187,9 @@ def robots_tester() -> Path:
         for a, o, w in ROBOTS_AGENTS)
     agents = ",".join(a for a, _, _ in ROBOTS_AGENTS)
     body = f"""
-<p class="lede">Paste the address of any page. The tester fetches that site's robots.txt and reads
-it the way the crawlers do, then shows, for this exact page, who may crawl it and which line in the
-file decides.</p>
+<p class="lede">Paste the address of any page to see whether Googlebot may crawl it, and which line of
+the site's robots.txt decides. The same test runs for Bingbot, the AI crawlers and any other crawler you name.
+It works on any site, yours or not, and there is nothing to verify first.</p>
 
 <form class="checker-form" id="checker" autocomplete="off" novalidate>
   <label for="checker-url">Page address</label>
@@ -220,6 +221,14 @@ matching rule wins, and <code>Allow</code> wins a tie. <code>*</code> matches an
 a <code>$</code> at the end anchors it. If the server answers robots.txt with a server error, crawlers
 stay out of the whole site; if it answers "not found", everything is allowed.</p>
 
+<h2>Where did Google's robots.txt tester go?</h2>
+<p>Google no longer runs a robots.txt Tester in Search Console. In its place is the robots.txt report. It shows
+which robots.txt files Google found for the top {comparisons._GRR["top_hosts"]} hosts of a property, when each was last crawled, and any warnings or
+errors, and it lets you request a recrawl of a file in an emergency. It is available only for properties at the domain
+level, and Google's help page describes no way to type in a page address and see whether that page is blocked.</p>
+<p>This tester does that part. It fetches the file the way a crawler would, for the page you give it, and shows which
+rule decided. Use the report to see what Google last fetched, and this to see what a rule does to a page.</p>
+
 <h2>What robots.txt does not do</h2>
 <ul>
 <li><strong>It does not remove a page from search.</strong> A blocked page can still be indexed from
@@ -244,6 +253,7 @@ ranks all of it with the rest of its {N_CHECKS} checks.</p>
 <li><a href="/learn/does-noindex-stop-ai-crawlers/">Does noindex stop AI crawlers?</a></li>
 <li><a href="/vs/ahrefs-site-audit-alternative/">Ahrefs Site Audit</a>: what a paid crawler checks, and how a crawl is paid for</li>
 </ul>
+{comparisons._verified_note("gsc-robots-report", closing="Google's pages change; if one has moved on from what is described here, <a href='/contact/'>tell us</a> and it will be corrected.")}
 
 <script>
 (function () {{
@@ -307,15 +317,19 @@ ranks all of it with the rest of its {N_CHECKS} checks.</p>
 """
     return render(
         cat="tools", slug="robots-txt-tester",
-        title="Robots.txt tester for Googlebot and AI crawlers",
-        desc=("Free robots.txt tester: paste a page address and see whether Googlebot, Bingbot, "
+        title="Google robots.txt tester: is Googlebot blocked?",
+        desc=("Free Google robots.txt tester: paste any page address and see whether Googlebot, Bingbot, "
               "GPTBot and other crawlers may crawl it, and which line decides."),
-        h1="Robots.txt tester",
+        h1="Google robots.txt tester",
         crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / Robots.txt tester',
         body=body,
         published="2026-10-06",
         schema_type="WebPage",
         faq=[
+            ("Where is the robots.txt tester in Google Search Console?",
+             "Google replaced it with the robots.txt report, which lists the files Google found, when it last crawled "
+             "them and any errors. The report does not take a page address, so to see whether one page is blocked, "
+             "paste its address into the tester on this page."),
             ("How do I test my robots.txt?",
              "Paste the address of a page into the tester above. It fetches the site's robots.txt, "
              "applies the rules the way crawlers do, and shows for each crawler whether that page is "

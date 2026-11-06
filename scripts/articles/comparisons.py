@@ -588,6 +588,22 @@ CHECKED_ISO["wl-tools"] = _WLT["read"]
 _d = _date.fromisoformat(_WLT["read"])
 CHECKED_HUMAN["wl-tools"] = f"{_d.day} {_d.strftime('%B %Y')}"
 
+# The robots.txt tester page (/tools/robots-txt-tester/): what Google's robots.txt report is, read from Google's own pages.
+_GRR = _json.loads((Path(__file__).resolve().parent.parent.parent / "data" / "gsc-robots-report.json")
+                   .read_text(encoding="utf-8"))
+
+
+def _grr_facts(data: dict) -> list:
+    """The claim list for data/gsc-robots-report.json. Pure, like _mac_facts."""
+    return [(what, url) for what, url in data["claims"]]
+
+
+VERIFIED["gsc-robots-report"] = _grr_facts(_GRR)
+DATA_CLAIM_SETS["gsc-robots-report"] = ("data/gsc-robots-report.json", _grr_facts)
+CHECKED_ISO["gsc-robots-report"] = _GRR["read"]
+_d = _date.fromisoformat(_GRR["read"])
+CHECKED_HUMAN["gsc-robots-report"] = f"{_d.day} {_d.strftime('%B %Y')}"
+
 VERIFIED["sf-alternatives"] = _sfa_facts(_SFA)
 DATA_CLAIM_SETS["sf-alternatives"] = ("data/screaming-frog-alternatives.json", _sfa_facts)
 CHECKED_ISO["sf-alternatives"] = _SFA["read"]
