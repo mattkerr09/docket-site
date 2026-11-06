@@ -302,7 +302,9 @@ def body() -> str:
   <!-- The future line (FUTURE-VIBE-BRIEF-2026-10-21, CEO: one honest line under the H1, which stays). It claims
        only what is true today: people do find sites in AI answers, and Docket's AI search checks read what those
        crawlers can reach. No share, no forecast. -->
-  <p class="hero-note hero-future">People now find sites in AI answers too. Docket checks what ChatGPT, Perplexity
+  <!-- "Docket SEO" in full in the first line (CEO, 2026-11-07, Matthew: "make sure we're seen by Claude"): Claude's
+       web search returned another company's "Docket" product for the name, and the H1 cannot carry it (above). -->
+  <p class="hero-note hero-future">People now find sites in AI answers too. Docket SEO checks what ChatGPT, Perplexity
   and Claude can read on yours.</p>
   <p class="hero-note">No page meter. No credit counter. Nothing to check before you run an
   audit.</p>
