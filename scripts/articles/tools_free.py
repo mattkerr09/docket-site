@@ -919,8 +919,8 @@ def seo_checker() -> Path:
         ("Sharing", "The Open Graph and X card tags that decide what a shared link shows"),
     ])
     body = rf"""
-<p class="lede">Paste the address of any page to get a score, the problems in each area, and the first
-thing to fix with the change to make. It reads the page the way a search engine does and checks its
+<p class="lede">Paste the address of any page for a free SEO audit of that page: a score, the problems
+in each area, and the first thing to fix with the change to make. It reads the page the way a search engine does and checks its
 robots.txt for Googlebot and the AI search crawlers. It takes a few seconds.</p>
 {_form("Check this page", "yourbusiness.com/services/")}
 
@@ -953,7 +953,7 @@ robots.txt for Googlebot and the AI search crawlers. It takes a few seconds.</p>
             "page nothing links to."))}
 {audit_next("tools-seo-checker", what="one page, read once")}
 
-<h2>How do I check my website's SEO for free?</h2>
+<h2>How do I audit my website for free?</h2>
 <p>Start with the pages that earn you money: the homepage, then each service or product page. Paste
 each one above. Fix what comes first on each, because the result is in the order things fail: a page
 search engines cannot crawl gains nothing from a better title. Then check the whole site, because

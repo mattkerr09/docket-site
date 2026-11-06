@@ -26,10 +26,16 @@ from render import PRICE_STR, render, with_next_step  # noqa: E402
 
 def free_seo_audit_tools() -> Path:
     body = f"""
-<p class="lede">Three genuinely free tools cover most of what a small site needs, and two of
-them are made by Google. If you are looking for a free SEO audit, start here and stop reading
-when you have enough. This page is on the site of a tool that costs {PRICE_STR}, and most
-readers should not buy it.</p>
+<p class="lede">Four free tools cover most of what a small site needs. Two are made by Google, one
+is a crawler, and one is a one-page checker we make. If you are looking for a free SEO audit, start
+here and stop reading when you have enough. This page is on the site of a tool that costs
+{PRICE_STR}, and most readers should not buy it.</p>
+
+<div class="callout compact" id="try-now">
+<p><strong>Want to audit your website free, right now?</strong> Paste a page into Docket's free SEO
+checker for a score, the problems on that page and the first fix, in a few seconds, with no sign-up.</p>
+<p><a class="btn" href="/tools/seo-checker/" data-ev="Free check" data-ev-button="best-free-checker-box">Check a page free</a></p>
+</div>
 
 <h2>Google Lighthouse: free, open source, already installed</h2>
 
@@ -81,6 +87,19 @@ sets the paid and free ones side by side.</p>
 matters. If a spreadsheet of every URL and its status codes is a useful artefact to you rather
 than a wall of numbers, take this one.</p>
 
+<h2>Docket's free SEO checker: one page, no sign-up (ours)</h2>
+
+<p>We make this one, so read it with that in mind. Paste the address of any page into the
+<a href="/tools/seo-checker/" data-ev="Free check" data-ev-button="best-free-checker-entry">free SEO checker</a>
+and it returns a score out of 100, the problems on that page by area, and the worst one in full
+with the change that fixes it. It runs in your browser with nothing to install, and it works on any
+site, yours or a competitor's, so there is nothing to verify first.</p>
+
+<p><strong>What it checks:</strong> whether Googlebot, Bingbot and the AI search crawlers may read
+the page, noindex and canonical tags, redirects and HTTPS, the width of the title and description,
+headings, structured data and sharing tags. <strong>What it does not:</strong> speed, which is
+Lighthouse's job, and anything between pages, because it reads one page at a time.</p>
+
 <h2>So when is anything paid worth it?</h2>
 
 <p>When the free ones have stopped answering your question, which happens in three specific
@@ -114,8 +133,9 @@ ones already told you is a waste of {PRICE_STR}.</p>
 """
     return render(
         cat="best", slug="free-seo-audit-tools",
+        modified="2026-11-06",
         title="The best free SEO audit tools (and when to stop)",
-        desc=("Three genuinely free tools cover most of what a small site needs. What each "
+        desc=("Four free SEO audit tools cover most of what a small site needs. What each "
               "one does, the limits its own documentation states, and when paying helps."),
         h1="The best free SEO audit tools",
         crumb='<a href="/">Docket</a> / <a href="/best/">Best</a> / free SEO audit tools',
@@ -126,6 +146,10 @@ ones already told you is a waste of {PRICE_STR}.</p>
              "and powers PageSpeed Insights. For how Google actually treats your site, Search "
              "Console. For crawling a small site, Screaming Frog's free tier, capped at 500 "
              "URLs."),
+            ("Can I audit my website free without signing up?",
+             "Yes. Lighthouse runs inside Chrome, Screaming Frog's free tier crawls up to 500 URLs "
+             "on your computer, and Docket's free SEO checker, which we make, checks one page in the "
+             "browser. None of them needs an account."),
             ("Is Google Lighthouse enough for SEO?",
              "For one page at a time, often. Its SEO category describes itself as “basic "
              "search engine optimization advice” and notes there are checks it does not "
