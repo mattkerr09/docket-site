@@ -109,7 +109,7 @@ def audit_next(src: str, *, what: str) -> str:
 
 
 
-def how_it_works(you_see: list[str], *, free: str, steps: list[str], step_up: str) -> str:
+def how_it_works(you_see: list[str], *, free: str, steps: list[str], step_up: str, addon: str = "") -> str:
     """No sign-up, three steps, what the result shows, then the step up to the app.
 
     Matthew, 2026-11-06, from reading the free-tool pages of the big SEO suites: they all say
@@ -124,7 +124,17 @@ def how_it_works(you_see: list[str], *, free: str, steps: list[str], step_up: st
 <p class="tool-see-h"><strong>You will see:</strong></p>
 <ul class="tool-see">{"".join(f"<li>{x}</li>" for x in you_see)}</ul>
 <p class="tool-step-up">{step_up}</p>
-</section>"""
+{addon_line(addon)}</section>"""
+
+
+def addon_line(lead: str) -> str:
+    """The Chrome add-on, offered where someone has just pasted one address to check one page (CEO, 2026-11-07,
+    ratings step 1: put it where people who already want it will find it). The lead is worded per page."""
+    if not lead:
+        return ""
+    return (f'<p class="tool-addon">{lead} The free <a href="{CHROME_ADDON}" rel="noopener" data-ev="Install" '
+            f'data-ev-button="tools-addon">Docket SEO add-on for Chrome</a> does it from the tab you are on, '
+            f'with nothing uploaded.</p>\n')
 
 def hub() -> Path:
     items = "".join(
@@ -467,6 +477,7 @@ what to fix.</p>
 ], free="Nothing to install; the page is read once and nothing about it is stored.",
    steps=["Paste the address of a live page, yours or a rival's.", "Press <strong>Check this page</strong>.",
           "Start with the first item: the worst comes first, with the change to make."],
+   addon="Checking tags on many pages?",
    step_up=('One page at a time. <a href="/download/">Docket</a> measures the title and description of '
             "every page on your site and finds the pages that share a title or point a canonical at an "
             "address that cannot be indexed."))}
@@ -584,6 +595,7 @@ that are missing.</p>
    steps=["Paste the address of a product, recipe, event or article page.",
           "Press <strong>Check structured data</strong>.",
           "Read each block's verdict and the properties it still needs."],
+   addon="Reading structured data page after page?",
    step_up=('This reads the page you paste. <a href="/download/">Docket</a> reads the structured data on '
             "every page of your site and checks that what the markup says matches what the page shows."))}
 {audit_next("tools-jsonld-checker", what="one page, read once")}
@@ -955,6 +967,7 @@ robots.txt for Googlebot and the AI search crawlers. It takes a few seconds.</p>
    steps=["Paste a page that matters: your homepage, a service page or a product page.",
           "Press <strong>Check this page</strong>.",
           "Fix the item at the top first, then check again to watch the score move."],
+   addon="Want this check on every page you open?",
    step_up=(f'This is one page. <a href="/download/">Docket</a> crawls the whole site and runs {N_CHECKS} '
             "checks, including the ones that only show up between pages, like two pages with one title or a "
             "page nothing links to."))}
