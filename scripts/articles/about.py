@@ -51,7 +51,7 @@ Linux build entirely until 2026-08-10, when the download page had been describin
 def about() -> Path:
     body = f"""
 <p class="lede">Docket is built by Matt Kerr, one person, in {SELLER_CITY}, and sold by his
-company, {SELLER}. It is a Mac app that
+company, {SELLER}. It is {'an app for Mac and 64-bit Windows' if WINDOWS else 'a Mac app'} that
 audits a site's SEO, copy and branding against {N_CHECKS} checks across {N_LANES} lanes,
 runs the crawl on your own machine, and costs {PRICE_STR} once, and {FREE_CLAUSE}.</p>
 
@@ -67,16 +67,16 @@ what your own HTML says. The crawl is the cheap part. The recurring bill is for 
 and the servers exist because the tool was built as a service rather than as software.</p>
 
 <p>Docket is the other shape. The audit engine is Python, frozen into the app, and it runs on
-your Mac. The crawler and the checks are written on Python's own standard library, with one outside
+your own computer. The crawler and the checks are written on Python's own standard library, with one outside
 package for the list of trusted certificates; the app's window talks to the engine through a small
-web server on your Mac, which brings its own few packages. There is no account, no crawl credit, no
+web server on your computer, which brings its own few packages. There is no account, no crawl credit, no
 per-seat price and no queue. Audit the same site forty times in an afternoon; nobody is
 counting, because there is nobody to count.</p>
 
 <h2>What that changes about the findings</h2>
 
 <p>Running locally is not only a pricing decision. A crawler farm sees your site as an
-anonymous datacentre IP; your Mac sees it the way a person does. It also asks your homepage
+anonymous datacentre IP; your computer sees it the way a person does. It also asks your homepage
 once as each of the crawlers that matter, with Docket's name added to every request
 (<a href="/bot/">the list</a>). That is how Docket can tell you what your CDN returns to
 <code>GPTBot</code> specifically, rather than what your robots.txt claims it should.</p>
@@ -110,7 +110,7 @@ application is not. If your policy requires reading the code, Docket will not pa
 
 <h2>How you can check any of this</h2>
 
-<p>The download is signed with an Apple Developer ID and notarised, which means the
+<p>The Mac download is signed with an Apple Developer ID and notarised, which means the
 certificate carries a legal name and Apple has checked it. You do not have to take that on
 faith. After downloading the {DMG_SIZE} disk image:</p>
 
@@ -120,6 +120,9 @@ spctl -a -t open --context context:primary-signature -v {DMG_NAME}</code></pre>
 <p>The first prints the authority chain, ending at Apple's root. The second should say
 <code>accepted</code> and <code>source=Notarized Developer ID</code>. Any Mac app worth
 installing will survive both; a surprising number will not.</p>
+{('<p>On Windows, the installer is signed by ' + WIN_PUBLISHER + '. Right-click it, choose Properties, and '
+  'the Digital Signatures tab names the signer; in PowerShell, <code>Get-AuthenticodeSignature</code> '
+  'followed by the file name should report <code>Valid</code>.</p>') if WINDOWS else ''}
 
 <h2>What to do if a finding is wrong</h2>
 
