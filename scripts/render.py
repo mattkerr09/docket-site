@@ -517,6 +517,11 @@ def known_issue_edge_cloudflare() -> str:
         "challenges, look at Cloudflare's security events before you change anything.</p>\n</div>\n"
     )
 REPO = "https://github.com/mattkerr09/docket-site"
+#: The two store listings (CEO job 4, live by 2026-11-07): the Windows app in the Microsoft Store (free, the licence
+#: bought in the app) and the free Chrome add-on that checks the page you are on.
+MS_STORE = "https://apps.microsoft.com/detail/xpdf21r6w95n99?cid=docketseo-download"
+CHROME_ADDON = ("https://chromewebstore.google.com/detail/docket-seo-check-for-this/pbmopklklnjhoefinjmjhhemjmefcppm"
+                "?utm_source=docketseo&utm_medium=tools")
 #: The contact channel, and the only one verified to receive anything. The
 #: footer advertised hello@docketseo.app on all 25 pages; the domain has no MX
 #: record and its address record is GitHub Pages, port 25 closed, so every

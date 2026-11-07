@@ -23,7 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import comparisons  # noqa: E402
 import facts as F  # noqa: E402
-from render import (HAS_SAMPLE, INTEL, INTEL_DMG, N_CHECKS, N_LANES, PAY4_BUY, PRICE, PRICE_STR,  # noqa: E402
+from render import (CHROME_ADDON, HAS_SAMPLE, INTEL, INTEL_DMG, N_CHECKS, N_LANES, PAY4_BUY, PRICE, PRICE_STR,  # noqa: E402
                     REFUND_DAYS, SAMPLE_REPORT, buy_block, checkout_url, download_url,
                     price_req_html, render)
 
@@ -158,6 +158,9 @@ says about indexing, caching and security.</p>
 <p><strong>You are writing a new title and want to see it first.</strong> The search result
 preview shows the title and description as a result would, before anything is published, and marks
 where Docket expects each to be cut off. It needs no address: type the words and watch.</p>
+<p><strong>You want the basics checked on every page you open.</strong> The free
+<a href="{CHROME_ADDON}" rel="noopener" data-ev="Install" data-ev-button="tools-chrome-addon">Docket SEO add-on for Chrome</a>
+checks the page in the tab you are on, in your browser, with nothing uploaded and no account.</p>
 <p><strong>Stars, prices or FAQs never appear under your result.</strong> The JSON-LD checker reads
 every structured data block on the page, says which line breaks the JSON, and lists the properties a
 rich result needs that are missing.</p>
@@ -165,7 +168,7 @@ rich result needs that are missing.</p>
 <h2>What a free check can and cannot tell you</h2>
 <p>Each checker reads what a crawler would read at the moment you ask: one robots.txt file, for one
 page. It cannot see a firewall or CDN that refuses a crawler the file allows, and it does not look at
-the rest of your site. The rules come from Docket, the Mac app these pages belong to, so a free check
+the rest of your site. The rules come from Docket, the desktop app these pages belong to, so a free check
 and the app give the same answer for the same page. The checkers fetch only what they need, name
 themselves in the request, keep a copy for a few minutes so repeated checks do not hit your server,
 and store nothing about the sites checked.</p>

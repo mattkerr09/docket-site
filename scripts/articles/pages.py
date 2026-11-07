@@ -19,7 +19,7 @@ from corrections_cases import CASES  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
-from render import (_human_date, bundle_link, windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
+from render import (MS_STORE, _human_date, bundle_link, windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
@@ -192,6 +192,7 @@ top pages, and Google's autocomplete, which is sent your site's topic words;
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
 <p class="brew">Prefer the terminal? <code>brew install --cask mattkerr09/docket/docket-seo</code> installs the same app on a Mac
 (<a href="https://github.com/mattkerr09/homebrew-docket">the Homebrew tap</a>).</p>
+{(f'<p class="stores">On Windows, Docket is also in the <a href="{MS_STORE}" rel="noopener" data-ev="Download" data-ev-button="download-msstore">Microsoft Store</a>: free to download, with the licence bought in the app.</p>') if WINDOWS else ''}
 
 <h2>What it will crawl</h2>
 
