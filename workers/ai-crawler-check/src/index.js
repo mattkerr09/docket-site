@@ -279,6 +279,10 @@ export async function handle(request, fetchImpl = fetch, env = {}, store = undef
   // Clients that read a server's own favicon (Claude's directory uses "the favicon from the server's URL") get the
   // site's icon. docketseo.app has no favicon.ico, so both go to the 512 px PNG.
   const iconPath = new URL(request.url).pathname
+  // OpenAI plugin directory domain verification (draft plugin_asdk_app_6aef6b89..., 2026-11-07): the exact token, plain text.
+  if (iconPath === '/.well-known/openai-apps-challenge') {
+    return new Response('7yJsIZ3Wi6pCHx3viqGg_oYnbEutp4aJ-mAdUywySK4', { status: 200, headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' } })
+  }
   if (iconPath === '/favicon.ico' || iconPath === '/icon.png') {
     return new Response(null, { status: 301, headers: { Location: 'https://docketseo.app/icon.png', 'Cache-Control': 'public, max-age=86400' } })
   }
