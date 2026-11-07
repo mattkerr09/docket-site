@@ -25,6 +25,8 @@
 import { evaluate, parseRobots } from './robots.js'
 import { checkJsonLd, checkMeta, extract } from './page.js'
 import { checkHeaders, checkRedirects, trace } from './trace.js'
+import { handleMcp, DailyCap } from './mcp.js'
+export { DailyCap }
 
 export const ALLOWED_ORIGIN = 'https://docketseo.app'
 export const USER_AGENT = 'DocketRobotsCheck/1.0 (+https://docketseo.app/tools/ai-crawler-checker/)'
@@ -271,6 +273,9 @@ function cacheStore() {
 }
 
 export async function handle(request, fetchImpl = fetch, env = {}, store = undefined) {
+  // The remote MCP server is called server-to-server by MCP clients, not by docketseo.app's pages, so it skips the
+  // origin check and the per-IP limit below (it limits per session; see mcp.js).
+  if (new URL(request.url).pathname === '/mcp') return handleMcp(request, fetchImpl, env)
   const origin = request.headers.get('Origin')
   if (origin && origin !== ALLOWED_ORIGIN) return json({ error: 'This checker only answers docketseo.app.' }, 403, origin)
   if (request.method === 'OPTIONS') {

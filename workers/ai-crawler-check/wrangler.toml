@@ -16,3 +16,20 @@ namespace_id = "1001"
   [ratelimits.simple]
   limit = 20
   period = 60
+
+# The remote MCP server (/mcp, src/mcp.js): 30 tool calls a minute per MCP session, and one global daily counter.
+[[ratelimits]]
+name = "MCP_LIMITER"
+namespace_id = "1002"
+
+  [ratelimits.simple]
+  limit = 30
+  period = 60
+
+[[durable_objects.bindings]]
+name = "DAILY_CAP"
+class_name = "DailyCap"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["DailyCap"]

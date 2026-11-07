@@ -1,0 +1,470 @@
+{
+ "endpoint": "https://ai-crawler-check.kerrco.workers.dev/mcp",
+ "at": "2026-11-07T02:25:30.213Z",
+ "tools": [
+  {
+   "name": "check_page_seo",
+   "title": "Check one page for SEO problems",
+   "description": "Reads one web page and its robots.txt and reports a score out of 100, problems by area (crawling and indexing, security, search listing, page basics, AI search, structured data, sharing) and the most serious problem with its fix.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "The page address, for example example.com/pricing/. https:// is assumed if left out."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "annotations": {
+    "readOnlyHint": true,
+    "openWorldHint": true,
+    "title": "Check one page for SEO problems",
+    "destructiveHint": false,
+    "idempotentHint": true
+   }
+  },
+  {
+   "name": "check_ai_crawlers",
+   "title": "Check which AI crawlers robots.txt allows",
+   "description": "Reads a site's robots.txt and says, for each AI crawler (OpenAI, Anthropic, Perplexity, Google, Apple, Meta, Parallel and others), whether it may fetch the given path and which rule decides.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "The page address, for example example.com/pricing/. https:// is assumed if left out."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "annotations": {
+    "readOnlyHint": true,
+    "openWorldHint": true,
+    "title": "Check which AI crawlers robots.txt allows",
+    "destructiveHint": false,
+    "idempotentHint": true
+   }
+  },
+  {
+   "name": "trace_redirects",
+   "title": "Trace a redirect chain",
+   "description": "Follows an address one hop at a time and lists each hop with its HTTP status code and destination, then flags loops, chains of two or more redirects, temporary redirects and pages left on plain http.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "The page address, for example example.com/pricing/. https:// is assumed if left out."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "annotations": {
+    "readOnlyHint": true,
+    "openWorldHint": true,
+    "title": "Trace a redirect chain",
+    "destructiveHint": false,
+    "idempotentHint": true
+   }
+  },
+  {
+   "name": "check_http_headers",
+   "title": "Check a page’s HTTP response headers",
+   "description": "Returns the final status code and the response headers that matter for search and security (X-Robots-Tag, Cache-Control, Strict-Transport-Security, X-Content-Type-Options, Referrer-Policy and others), with a verdict on each.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "url": {
+      "type": "string",
+      "description": "The page address, for example example.com/pricing/. https:// is assumed if left out."
+     }
+    },
+    "required": [
+     "url"
+    ]
+   },
+   "annotations": {
+    "readOnlyHint": true,
+    "openWorldHint": true,
+    "title": "Check a page’s HTTP response headers",
+    "destructiveHint": false,
+    "idempotentHint": true
+   }
+  },
+  {
+   "name": "preview_search_snippet",
+   "title": "Preview a search result title and description",
+   "description": "Measures a title and meta description and shows where a search result would cut each off. Fetches nothing.",
+   "inputSchema": {
+    "type": "object",
+    "properties": {
+     "title": {
+      "type": "string",
+      "description": "The page title."
+     },
+     "description": {
+      "type": "string",
+      "description": "The meta description."
+     }
+    },
+    "required": [
+     "title"
+    ]
+   },
+   "annotations": {
+    "readOnlyHint": true,
+    "openWorldHint": false,
+    "title": "Preview a search result title and description",
+    "destructiveHint": false,
+    "idempotentHint": true
+   }
+  }
+ ],
+ "calls": [
+  {
+   "name": "check_page_seo",
+   "args": {
+    "url": "docketseo.app"
+   },
+   "ms": 482,
+   "isError": false,
+   "text": "https://docketseo.app/: score 100/100, 0 problem(s) and 0 thing(s) worth fixing.\nScore: 100, less 12 for each problem and 5 for each thing worth fixing.\nThis checked one page; Docket's desktop app checks the whole site.",
+   "structuredContent": {
+    "url": "https://docketseo.app/",
+    "score": 100,
+    "problems": 0,
+    "worth_fixing": 0,
+    "top": null,
+    "findings": [
+     {
+      "area": "Search listing",
+      "level": "ok",
+      "label": "Title length is fine: 58 wide",
+      "detail": "Inside 25 to 65, the range Docket uses."
+     },
+     {
+      "area": "Search listing",
+      "level": "ok",
+      "label": "Description length is fine: 144 wide",
+      "detail": "Inside 70 to 165."
+     },
+     {
+      "area": "Crawling and indexing",
+      "level": "ok",
+      "label": "Indexable",
+      "detail": "No noindex in the page or its headers."
+     },
+     {
+      "area": "Crawling and indexing",
+      "level": "ok",
+      "label": "Canonical points to this page",
+      "detail": "https://docketseo.app/"
+     },
+     {
+      "area": "Page basics",
+      "level": "ok",
+      "label": "One H1 heading",
+      "detail": "Everything that's wrong. In the order to fix it."
+     },
+     {
+      "area": "Structured data",
+      "level": "ok",
+      "label": "28 items read, none missing a required property",
+      "detail": "Checked against the properties Google requires for each type Docket knows."
+     }
+    ]
+   }
+  },
+  {
+   "name": "check_ai_crawlers",
+   "args": {
+    "url": "docketseo.app"
+   },
+   "ms": 93,
+   "isError": false,
+   "text": "Read https://docketseo.app/robots.txt for /.\n- Amazonbot (Amazon, search index): allowed by \"Allow: /\"\n- Applebot-Extended (Apple, training): allowed by \"Allow: /\"\n- Bytespider (ByteDance, training): allowed by \"Allow: /\"\n- CCBot (Common Crawl, open corpus): allowed by \"Allow: /\"\n- ChatGPT-User (OpenAI, live fetch): allowed by \"Allow: /\"\n- Claude-SearchBot (Anthropic, search index): allowed by \"Allow: /\"\n- Claude-User (Anthropic, live fetch): allowed by \"Allow: /\"\n- ClaudeBot (Anthropic, training): allowed by \"Allow: /\"\n- GPTBot (OpenAI, training): allowed by \"Allow: /\"\n- Google-CloudVertexBot (Google, grounding): allowed by \"Allow: /\"\n- Google-Extended (Google, training / Gemini Apps grounding): allowed by \"Allow: /\"\n- GoogleOther (Google, research / product fetch): allowed by \"Allow: /\"\n- Meta-ExternalFetcher (Meta, live fetch): allowed by \"Allow: /\"\n- Meta-WebIndexer (Meta, search index): allowed by \"Allow: /\"\n- MistralAI-Index (Mistral, search index): allowed by \"Allow: /\"\n- MistralAI-Training (Mistral, training): allowed by \"Allow: /\"\n- OAI-SearchBot (OpenAI, search index): allowed by \"Allow: /\"\n- Perplexity-User (Perplexity, live fetch): allowed by \"Allow: /\"\n- PerplexityBot (Perplexity, search index): allowed by \"Allow: /\"\n- Shap-User (Parallel Web Systems, live fetch): allowed by \"Allow: /\"\n- ShapBot (Parallel Web Systems, search index): allowed by \"Allow: /\"\n- meta-externalagent (Meta, training): allowed by \"Allow: /\"",
+   "structuredContent": {
+    "robots_url": "https://docketseo.app/robots.txt",
+    "path": "/",
+    "crawlers": [
+     {
+      "agent": "Amazonbot",
+      "owner": "Amazon",
+      "purpose": "search index",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "Applebot-Extended",
+      "owner": "Apple",
+      "purpose": "training",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "Bytespider",
+      "owner": "ByteDance",
+      "purpose": "training",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "CCBot",
+      "owner": "Common Crawl",
+      "purpose": "open corpus",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "ChatGPT-User",
+      "owner": "OpenAI",
+      "purpose": "live fetch",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "Claude-SearchBot",
+      "owner": "Anthropic",
+      "purpose": "search index",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "Claude-User",
+      "owner": "Anthropic",
+      "purpose": "live fetch",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "ClaudeBot",
+      "owner": "Anthropic",
+      "purpose": "training",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "GPTBot",
+      "owner": "OpenAI",
+      "purpose": "training",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "Google-CloudVertexBot",
+      "owner": "Google",
+      "purpose": "grounding",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "Google-Extended",
+      "owner": "Google",
+      "purpose": "training / Gemini Apps grounding",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "GoogleOther",
+      "owner": "Google",
+      "purpose": "research / product fetch",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "Meta-ExternalFetcher",
+      "owner": "Meta",
+      "purpose": "live fetch",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "Meta-WebIndexer",
+      "owner": "Meta",
+      "purpose": "search index",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "MistralAI-Index",
+      "owner": "Mistral",
+      "purpose": "search index",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "MistralAI-Training",
+      "owner": "Mistral",
+      "purpose": "training",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "OAI-SearchBot",
+      "owner": "OpenAI",
+      "purpose": "search index",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "Perplexity-User",
+      "owner": "Perplexity",
+      "purpose": "live fetch",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "PerplexityBot",
+      "owner": "Perplexity",
+      "purpose": "search index",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "Shap-User",
+      "owner": "Parallel Web Systems",
+      "purpose": "live fetch",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "ShapBot",
+      "owner": "Parallel Web Systems",
+      "purpose": "search index",
+      "allowed": true,
+      "rule": "Allow: /"
+     },
+     {
+      "agent": "meta-externalagent",
+      "owner": "Meta",
+      "purpose": "training",
+      "allowed": true,
+      "rule": "Allow: /"
+     }
+    ]
+   }
+  },
+  {
+   "name": "trace_redirects",
+   "args": {
+    "url": "http://docketseo.app/"
+   },
+   "ms": 159,
+   "isError": false,
+   "text": "1. http://docketseo.app/ -> HTTP 301 -> https://docketseo.app/\n2. https://docketseo.app/ -> HTTP 200 (the page)\nFine: One redirect. http://docketseo.app/ sends visitors to https://docketseo.app/ in one step.\nFine: http:// is sent to HTTPS",
+   "structuredContent": {
+    "hops": [
+     {
+      "url": "http://docketseo.app/",
+      "status": 301,
+      "location": "https://docketseo.app/",
+      "ms": 54
+     }
+    ],
+    "final": {
+     "url": "https://docketseo.app/",
+     "status": 200
+    },
+    "findings": [
+     {
+      "level": "ok",
+      "label": "One redirect",
+      "detail": "http://docketseo.app/ sends visitors to https://docketseo.app/ in one step."
+     },
+     {
+      "level": "ok",
+      "label": "http:// is sent to HTTPS",
+      "detail": ""
+     }
+    ]
+   }
+  },
+  {
+   "name": "check_http_headers",
+   "args": {
+    "url": "docketseo.app"
+   },
+   "ms": 73,
+   "isError": false,
+   "text": "HTTP 200 from https://docketseo.app/.\ncontent-type: text/html; charset=utf-8\ncache-control: max-age=600\nlast-modified: Sat, 07 Nov 2026 00:30:57 GMT\netag: W/\"6aee7141-1f775\"\nvary: Accept-Encoding\nserver: cloudflare\nage: 0\nFine: No HSTS header needed: .app is HTTPS-only in every major browser. The whole .app domain is on the HSTS preload list built into the browsers, so a first visit is never made over http://.\nNote: Missing 2 baseline security headers. Not set: x-content-type-options, referrer-policy. Low-risk to add at the server or CDN. Referrer-Policy can also be set with a meta tag in the page, which this check does not read.",
+   "structuredContent": {
+    "url": "https://docketseo.app/",
+    "status": 200,
+    "headers": [
+     {
+      "name": "content-type",
+      "value": "text/html; charset=utf-8"
+     },
+     {
+      "name": "cache-control",
+      "value": "max-age=600"
+     },
+     {
+      "name": "last-modified",
+      "value": "Sat, 07 Nov 2026 00:30:57 GMT"
+     },
+     {
+      "name": "etag",
+      "value": "W/\"6aee7141-1f775\""
+     },
+     {
+      "name": "vary",
+      "value": "Accept-Encoding"
+     },
+     {
+      "name": "server",
+      "value": "cloudflare"
+     },
+     {
+      "name": "age",
+      "value": "0"
+     }
+    ],
+    "findings": [
+     {
+      "level": "ok",
+      "label": "No HSTS header needed: .app is HTTPS-only in every major browser",
+      "detail": "The whole .app domain is on the HSTS preload list built into the browsers, so a first visit is never made over http://."
+     },
+     {
+      "level": "note",
+      "label": "Missing 2 baseline security headers",
+      "detail": "Not set: x-content-type-options, referrer-policy. Low-risk to add at the server or CDN. Referrer-Policy can also be set with a meta tag in the page, which this check does not read."
+     }
+    ]
+   }
+  },
+  {
+   "name": "preview_search_snippet",
+   "args": {
+    "title": "Docket SEO: SEO, copy, conversion and brand audits for Mac",
+    "description": "Docket SEO audits any website on your Mac with 99 checks, ranked into a fix plan."
+   },
+   "ms": 86,
+   "isError": false,
+   "text": "Title as shown: Docket SEO: SEO, copy, conversion and brand audits for Mac\nTitle: 58 wide: fits the range of 25 to 65.\nDescription as shown: Docket SEO audits any website on your Mac with 99 checks, ranked into a fix plan.\nDescription: 81 wide: fits the range of 70 to 165.\nWidth counts East Asian wide characters as two, as search results render them about twice as wide.",
+   "structuredContent": {
+    "title_width": 58,
+    "description_width": 81,
+    "title_shown": "Docket SEO: SEO, copy, conversion and brand audits for Mac",
+    "description_shown": "Docket SEO audits any website on your Mac with 99 checks, ranked into a fix plan."
+   }
+  }
+ ],
+ "bad": {
+  "isError": true,
+  "content": [
+   {
+    "type": "text",
+    "text": "That address is not a public site name."
+   }
+  ]
+ }
+}
