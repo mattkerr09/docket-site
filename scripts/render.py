@@ -278,8 +278,11 @@ def bundle_link(src: str, button: str, *, lead: str = "All three apps, Docket SE
     b = _bundle()
     price = (f"{_usd(b['standard_price'])}, or {_usd(b['founding_price'])} through November"
              if founding_open() else f"{_usd(b['standard_price'])}")
+    # The exact saving at list prices (CEO, 2026-11-07), summed from list_prices, never typed.
+    apart = sum(b["list_prices"].values())
+    saving = f' ({_usd(apart)} bought apart, {_usd(b["standard_price"])} together)'
     return (f'<a href="{b["url"]}?src={src}" rel="nofollow" data-ev="Buy" data-ev-button="{button}">'
-            f'{lead} {price}</a>')
+            f'{lead} {price}</a>{saving}')
 
 def download_url(src: str, to: str = "") -> str:
     """A Download button's link: our counter, then the release file.
@@ -323,6 +326,8 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
     out = [f'<div class="buy-block{"" if big else " compact"}">'
            f'<p class="price-line"><span class="price-big">{PRICE_STR}</span>'
            f'<span class="price-pay4">once{PAY4_BUY}</span></p>{price_req_html()}'
+           # CEO, 2026-11-07 (sales audit): most November buyers paid in another currency, some with VAT added.
+           f'<p class="price-req">Priced in US dollars. Checkout shows your currency and any local tax.</p>'
            f'<div class="hero-cta">'
            f'<a class="btn{size} buy-btn" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
            f'data-ev-button="{src}">Buy Docket</a>']

@@ -1012,7 +1012,7 @@ def _thank_you_xsell() -> str:
     buyer must do next comes first. Hub buy links only, nofollow, and no link to a sibling domain (verify_sibling_links:
     only /about/ may). Prices come from data/bundle.json through render.app_price, so the sale wording goes by itself
     at the first build after founding_ends_at (on the 1 December rebuild list)."""
-    from render import HUB, app_price, bundle_link
+    from render import HUB, app_price
     def item(name: str, key: str, slug: str, blurb: str) -> str:
         return (f'<li><strong>{name}</strong>: {blurb} {app_price(key)}. '
                 f'<a href="{HUB}/buy/{slug}?src=ty-docket-xsell" rel="nofollow" data-ev="Buy" '
@@ -1023,7 +1023,7 @@ def _thank_you_xsell() -> str:
 {item("Crisp Video", "Crisp", "crisp", "Restores and upscales old video to 4K on your own Mac or PC.")}
 {item("Outlier", "Outlier", "outlier", "Runs AI models on your Mac with no cloud and no subscription.")}
 </ul>
-<p>{bundle_link("ty-docket-xsell", "ty-docket-xsell-bundle", lead="All three together:")}.</p>
+<p>The three-app bundle is not offered here: it includes Docket SEO, which you have just bought.</p>
 """
 
 
