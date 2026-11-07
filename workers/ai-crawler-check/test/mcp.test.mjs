@@ -127,3 +127,15 @@ test('the daily cap refuses politely once reached', async () => {
   assert.equal(j.result.isError, true)
   assert.match(j.result.content[0].text, /daily limit/)
 })
+
+test('initialize carries the icons, and the favicon on the connector host redirects to the site icon', async () => {
+  const j = await (await handle(call(rpc('initialize', { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 't', version: '1' } })), fetch, {})).json()
+  const icons = j.result.serverInfo.icons
+  assert.equal(icons[0].src, 'https://docketseo.app/icon.png')
+  assert.deepEqual(icons[0].sizes, ['512x512'])
+  for (const path of ['/favicon.ico', '/icon.png']) {
+    const r = await handle(new Request(`https://mcp.docketseo.app${path}`), fetch, {})
+    assert.equal(r.status, 301)
+    assert.equal(r.headers.get('Location'), 'https://docketseo.app/icon.png')
+  }
+})

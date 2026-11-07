@@ -18,7 +18,12 @@ import { checkHeaders, checkRedirects, trace } from './trace.js'
 import { AI_AGENTS } from './agents.js'
 
 export const PROTOCOL_VERSIONS = ['2025-06-18', '2025-03-26', '2024-11-05']
-export const SERVER_INFO = { name: 'docket-seo', title: 'Docket SEO', version: '1.0.0' }
+// icons: the MCP Implementation.icons field (sizes as "WxH" strings). ChatGPT showed a placeholder without it (2026-11-07).
+export const SERVER_INFO = { name: 'docket-seo', title: 'Docket SEO', version: '1.0.0', websiteUrl: 'https://docketseo.app',
+  icons: [
+    { src: 'https://docketseo.app/icon.png', mimeType: 'image/png', sizes: ['512x512'] },
+    { src: 'https://docketseo.app/apple-touch-icon.png', mimeType: 'image/png', sizes: ['180x180'] },
+  ] }
 export const SESSION_LIMIT = 30        // tool calls per session per minute
 export const DAILY_CAP = 20000         // tool calls per UTC day, all sessions together
 const TITLE_MIN = 25, TITLE_MAX = 65, DESC_MIN = 70, DESC_MAX = 165

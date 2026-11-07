@@ -1,6 +1,6 @@
 {
  "endpoint": "https://mcp.docketseo.app/mcp",
- "at": "2026-11-07T16:29:54.923Z",
+ "at": "2026-11-07T16:51:57.102Z",
  "tools": [
   {
    "name": "check_page_seo",
@@ -133,7 +133,7 @@
    "args": {
     "url": "docketseo.app"
    },
-   "ms": 416,
+   "ms": 330,
    "isError": false,
    "text": "https://docketseo.app/: score 100/100, 0 problem(s) and 0 thing(s) worth fixing.\nScore: 100, less 12 for each problem and 5 for each thing worth fixing, on this one page.",
    "structuredContent": {
@@ -187,7 +187,7 @@
    "args": {
     "url": "docketseo.app"
    },
-   "ms": 132,
+   "ms": 80,
    "isError": false,
    "text": "Read https://docketseo.app/robots.txt for /.\n- Amazonbot (Amazon, search index): allowed by \"Allow: /\"\n- Applebot-Extended (Apple, training): allowed by \"Allow: /\"\n- Bytespider (ByteDance, training): allowed by \"Allow: /\"\n- CCBot (Common Crawl, open corpus): allowed by \"Allow: /\"\n- ChatGPT-User (OpenAI, live fetch): allowed by \"Allow: /\"\n- Claude-SearchBot (Anthropic, search index): allowed by \"Allow: /\"\n- Claude-User (Anthropic, live fetch): allowed by \"Allow: /\"\n- ClaudeBot (Anthropic, training): allowed by \"Allow: /\"\n- GPTBot (OpenAI, training): allowed by \"Allow: /\"\n- Google-CloudVertexBot (Google, grounding): allowed by \"Allow: /\"\n- Google-Extended (Google, training / Gemini Apps grounding): allowed by \"Allow: /\"\n- GoogleOther (Google, research / product fetch): allowed by \"Allow: /\"\n- Meta-ExternalFetcher (Meta, live fetch): allowed by \"Allow: /\"\n- Meta-WebIndexer (Meta, search index): allowed by \"Allow: /\"\n- MistralAI-Index (Mistral, search index): allowed by \"Allow: /\"\n- MistralAI-Training (Mistral, training): allowed by \"Allow: /\"\n- OAI-SearchBot (OpenAI, search index): allowed by \"Allow: /\"\n- Perplexity-User (Perplexity, live fetch): allowed by \"Allow: /\"\n- PerplexityBot (Perplexity, search index): allowed by \"Allow: /\"\n- Shap-User (Parallel Web Systems, live fetch): allowed by \"Allow: /\"\n- ShapBot (Parallel Web Systems, search index): allowed by \"Allow: /\"\n- meta-externalagent (Meta, training): allowed by \"Allow: /\"",
    "structuredContent": {
@@ -356,7 +356,7 @@
    "args": {
     "url": "http://docketseo.app/"
    },
-   "ms": 154,
+   "ms": 106,
    "isError": false,
    "text": "1. http://docketseo.app/ -> HTTP 301 -> https://docketseo.app/\n2. https://docketseo.app/ -> HTTP 200 (the page)\nFine: One redirect. http://docketseo.app/ sends visitors to https://docketseo.app/ in one step.\nFine: http:// is sent to HTTPS",
    "structuredContent": {
@@ -365,7 +365,7 @@
       "url": "http://docketseo.app/",
       "status": 301,
       "location": "https://docketseo.app/",
-      "ms": 50
+      "ms": 19
      }
     ],
     "final": {
@@ -391,7 +391,7 @@
    "args": {
     "url": "docketseo.app"
    },
-   "ms": 112,
+   "ms": 84,
    "isError": false,
    "text": "HTTP 200 from https://docketseo.app/.\ncontent-type: text/html; charset=utf-8\ncache-control: max-age=14400\nlast-modified: Sat, 07 Nov 2026 06:04:14 GMT\nvary: Accept-Encoding\nserver: cloudflare\nage: 0\nFine: No HSTS header needed: .app is HTTPS-only in every major browser. The whole .app domain is on the HSTS preload list built into the browsers, so a first visit is never made over http://.\nNote: Missing 2 baseline security headers. Not set: x-content-type-options, referrer-policy. Low-risk to add at the server or CDN. Referrer-Policy can also be set with a meta tag in the page, which this check does not read.",
    "structuredContent": {
@@ -443,7 +443,7 @@
     "title": "Docket SEO: SEO, copy, conversion and brand audits for Mac",
     "description": "Docket SEO audits any website on your Mac with 99 checks, ranked into a fix plan."
    },
-   "ms": 76,
+   "ms": 122,
    "isError": false,
    "text": "Title as shown: Docket SEO: SEO, copy, conversion and brand audits for Mac\nTitle: 58 wide: fits the range of 25 to 65.\nDescription as shown: Docket SEO audits any website on your Mac with 99 checks, ranked into a fix plan.\nDescription: 81 wide: fits the range of 70 to 165.\nWidth counts East Asian wide characters as two, as search results render them about twice as wide.",
    "structuredContent": {

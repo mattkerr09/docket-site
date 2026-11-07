@@ -276,6 +276,15 @@ export async function handle(request, fetchImpl = fetch, env = {}, store = undef
   // The remote MCP server is called server-to-server by MCP clients, not by docketseo.app's pages, so it skips the
   // origin check and the per-IP limit below (it limits per session; see mcp.js).
   if (new URL(request.url).pathname === '/mcp') return handleMcp(request, fetchImpl, env)
+  // Clients that read a server's own favicon (Claude's directory uses "the favicon from the server's URL") get the
+  // site's icon. docketseo.app has no favicon.ico, so both go to the 512 px PNG.
+  const iconPath = new URL(request.url).pathname
+  if (iconPath === '/favicon.ico' || iconPath === '/icon.png') {
+    return new Response(null, { status: 301, headers: { Location: 'https://docketseo.app/icon.png', 'Cache-Control': 'public, max-age=86400' } })
+  }
+  if (iconPath === '/apple-touch-icon.png') {
+    return new Response(null, { status: 301, headers: { Location: 'https://docketseo.app/apple-touch-icon.png', 'Cache-Control': 'public, max-age=86400' } })
+  }
   const origin = request.headers.get('Origin')
   if (origin && origin !== ALLOWED_ORIGIN) return json({ error: 'This checker only answers docketseo.app.' }, 403, origin)
   if (request.method === 'OPTIONS') {
