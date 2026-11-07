@@ -241,7 +241,7 @@ const jobs = JSON.parse(fs.readFileSync(process.argv[3], 'utf8'));
     });
     await page.goto('file://' + job.html);
     await page.evaluate(() => document.fonts.ready);
-    await page.screenshot({ path: job.out, omitBackground: false });
+    await page.screenshot({ path: job.out, omitBackground: !!job.transparent });
     await page.close();
   }
   await browser.close();
@@ -290,8 +290,13 @@ def render(out_dir: pathlib.Path) -> None:
                     % (w, h, w, h, svg), encoding="utf-8")
             else:
                 page.write_text(og_html(pal), encoding="utf-8")
+            # The tile's corners are see-through, not page-white: Claude's
+            # connector directory and Google's favicon service show
+            # apple-touch-icon.png on dark backgrounds, where white corners
+            # showed as a white square behind the rounded tile (2026-11-07).
             jobs.append({"html": str(page), "out": str(out_dir / name),
-                         "width": w, "height": h})
+                         "width": w, "height": h,
+                         "transparent": kind == "tile"})
 
         script = tmp / "shot.js"
         script.write_text(_NODE_SCRIPT, encoding="utf-8")
