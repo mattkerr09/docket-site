@@ -29,6 +29,22 @@ ENGINE_WIN = r"C:\Users\YOU\AppData\Local\Docket\docket\docket.exe"
 CLAUDE_DESKTOP_HELP = ("https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-"
                        "on-claude-desktop")
 CLAUDE_CODE_DOCS = "https://code.claude.com/docs/en/mcp"
+#: The connector's listing in Claude's directory, published 2026-11-07 (loads in a browser; bots get a 403).
+CLAUDE_DIRECTORY = "https://claude.ai/directory/docket-seo"
+REMOTE = "https://mcp.docketseo.app/mcp"
+
+
+def _install_links() -> tuple[str, str]:
+    """One-click installs, in the format each editor documents (read 2026-11-07): VS Code's
+    vscode:mcp/install?{url-encoded JSON} (code.visualstudio.com/api/extension-guides/ai/mcp) and Cursor's
+    cursor://anysphere.cursor-deeplink/mcp/install?name=...&config={base64 JSON} (cursor.com/docs/mcp/install-links)."""
+    import base64
+    import urllib.parse
+    vscode = "vscode:mcp/install?" + urllib.parse.quote(json.dumps({"name": "docket-seo", "type": "http", "url": REMOTE},
+                                                                   separators=(",", ":")))
+    cursor = ("cursor://anysphere.cursor-deeplink/mcp/install?name=docket-seo&config="
+              + urllib.parse.quote(base64.b64encode(json.dumps({"url": REMOTE}, separators=(",", ":")).encode()).decode()))
+    return vscode, cursor
 
 
 def _day(iso: str) -> str:
@@ -46,6 +62,7 @@ def _bundle(platform: str) -> str:
 #: (verify_download_path.py caught it); the hub accepts .mcpb since worker version 53a39145 (CEO, 2026-11-07).
 def ai_assistants() -> Path:
     when = _day(RUN["measured"])
+    vscode_link, cursor_link = _install_links()
     links = " · ".join(
         f'<a href="{download_url("ai-assistants-" + key.split("-")[0], to=_bundle(key))}" data-ev="Download" '
         f'data-ev-button="ai-assistants-{key.split("-")[0]}">{label}</a>'
@@ -58,8 +75,12 @@ worst one in full with its fix.</p>
 
 <h2>Claude: add the connector, nothing to install</h2>
 <p>Docket SEO&rsquo;s free checks also run as a connector on our server, so Claude can use them in a chat with
-nothing installed. Add it in Claude&rsquo;s connector settings as a custom connector with this address:</p>
-<pre><code>https://mcp.docketseo.app/mcp</code></pre>
+nothing installed. It is listed in <a href="{CLAUDE_DIRECTORY}" rel="noopener">Claude&rsquo;s connector directory</a>;
+add it from there, or as a custom connector with this address:</p>
+<pre><code>{REMOTE}</code></pre>
+<p>The same address works in other editors that speak MCP:
+<a class="btn-ghost" href="{vscode_link}" data-ev="Install" data-ev-button="ai-assistants-vscode">Add to VS Code</a>
+<a class="btn-ghost" href="{cursor_link}" data-ev="Install" data-ev-button="ai-assistants-cursor">Add to Cursor</a></p>
 <p>It needs no account and no key. Its five tools are read-only: a one-page SEO check with a score and the
 first fix, which AI crawlers robots.txt lets in, a redirect trace, an HTTP header check, and a search snippet
 preview. Try asking:</p>
