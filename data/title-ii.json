@@ -1,0 +1,58 @@
+{
+  "checked": "2026-11-07",
+  "threshold": 50000,
+  "large_date": "2027-04-26",
+  "small_date": "2028-04-26",
+  "large_date_before": "2026-04-24",
+  "small_date_before": "2027-04-26",
+  "standard": "WCAG 2.1 Level AA",
+  "ifr": {
+    "citation": "91 FR 20902",
+    "published": "2026-04-20",
+    "doc": "2026-07663",
+    "url": "https://www.federalregister.gov/documents/2026/04/20/2026-07663/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web",
+    "says": "This IFR does not alter the substantive requirements adopted in the 2024 final rule ... this rule solely extends the 2024 final rule's compliance dates.",
+    "comments_closed": "2026-06-22"
+  },
+  "rule_2024": {
+    "published": "2024-04-24",
+    "cfr": "28 CFR 35.200 to 35.205"
+  },
+  "exceptions_cfr": "28 CFR 35.201, unchanged since 2024-06-24 (eCFR, read 2026-11-07)",
+  "exceptions": [
+    [
+      "Archived web content",
+      "Pages and files made before your date (or copies of older paper or media), kept only for reference, research or records, not changed after archiving, and kept in an area clearly marked as archived."
+    ],
+    [
+      "Older documents",
+      "PDFs, Word files, slide decks and spreadsheets that were already on your site or app before your date, unless people use them today to apply for, get or take part in a service, programme or activity."
+    ],
+    [
+      "Content posted by someone else",
+      "What a member of the public posts, such as a comment. It does not cover a vendor or contractor posting for you: that is still yours."
+    ],
+    [
+      "Private documents about one person",
+      "Documents about a specific person, their property or their account, kept behind a password or otherwise secured, such as a tax bill or utility account."
+    ],
+    [
+      "Older social media posts",
+      "Your own social media posts from before your date."
+    ]
+  ],
+  "sources": {
+    "dates": "Federal Register, 91 FR 20902 (2026-04-20), the interim final rule's own summary",
+    "exceptions": "eCFR, 28 CFR 35.201 and the definitions in 35.104"
+  },
+  "exceptions_section": "28 CFR 35.201",
+  "examples": {
+    "township": 8400,
+    "county": 120000,
+    "authority_parts": [
+      31000,
+      26000
+    ],
+    "note": "illustrative figures for the checker's worked examples, not real places"
+  }
+}

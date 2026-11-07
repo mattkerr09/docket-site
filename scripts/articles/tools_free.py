@@ -68,6 +68,8 @@ TOOLS = [
      "Is this page's title the right length, is it indexable, and what will a shared link show?"),
     ("json-ld-checker", "JSON-LD structured data checker",
      "Is this page's structured data valid, and is anything missing that a rich result needs?"),
+    ("title-ii-date", "ADA Title II date checker",
+     "Which ADA Title II website date applies to us, and which documents are exempt?"),
     ("redirect-checker", "Redirect chain checker",
      "Where does this address send people, through how many hops, and with which status codes?"),
     ("http-header-checker", "HTTP header checker",

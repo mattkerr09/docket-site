@@ -135,6 +135,7 @@ import tool_ai_crawlers  # noqa: E402
 import tools_free  # noqa: E402
 import ai_assistants  # noqa: E402
 import ai_questions  # noqa: E402
+import title_ii  # noqa: E402
 
 
 def hub(cat: str, title: str, desc: str, h1: str, lede: str,
@@ -1565,6 +1566,7 @@ def main() -> int:
     pages += tools_free.build_all()
     pages += ai_assistants.build_all()
     pages += ai_questions.build_all()
+    pages += title_ii.build_all()
     pages += build_hubs()
 
     # NOT appended to `pages`: the sitemap is derived from that list, and
