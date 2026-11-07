@@ -4,8 +4,8 @@
  * Matthew, 2026-11-07, via the CEO: a free, authless connector for Claude's directory, exposing the checks this worker
  * already runs for docketseo.app/tools/. Anthropic's directory rules, read 2026-11-07 (research/step-change-growth-
  * 2026-11-07.md Part A): every tool has a title and readOnlyHint, names of 64 characters or fewer, errors that say what
- * went wrong, reasonable response sizes, and NO promotion in descriptions. The only line about the app is one factual
- * scope sentence in the page check's result.
+ * went wrong, reasonable response sizes, and NO promotion in descriptions or results. A scope line naming the desktop app
+ * was removed on 2026-11-07: OpenAI's plugin rules forbid promoting upgrades in results, and one server serves both.
  *
  * Rate limits are per MCP session, not per IP: every claude.ai call comes from Anthropic's address range, so a per-IP
  * limit would throttle all Claude users together. A global daily cap (DailyCap, a Durable Object) keeps the worker from
@@ -25,7 +25,6 @@ const TITLE_MIN = 25, TITLE_MAX = 65, DESC_MIN = 70, DESC_MAX = 165
 const PROBLEM_COST = 12, WARNING_COST = 5
 const SEARCH = ['Googlebot', 'Bingbot']
 const CITE = ['OAI-SearchBot', 'Claude-SearchBot', 'PerplexityBot']
-const SCOPE = "This checked one page; Docket's desktop app checks the whole site."
 
 const url = { type: 'string', description: 'The page address, for example example.com/pricing/. https:// is assumed if left out.' }
 export const TOOLS = [
@@ -98,7 +97,7 @@ export async function checkPageSeo(args, fetchImpl, env = {}) {
   const lines = [`${pg.url}: score ${score}/100, ${problems.length} problem(s) and ${warnings.length} thing(s) worth fixing.`]
   if (top) lines.push(`Fix first (${top.area}): ${top.label}. ${top.detail}`)
   for (const f of items.filter((x) => x !== top && (x.level === 'problem' || x.level === 'warning'))) lines.push(`- ${f.level === 'problem' ? 'Problem' : 'Worth fixing'} (${f.area}): ${f.label}. ${f.detail}`)
-  lines.push(`Score: 100, less ${PROBLEM_COST} for each problem and ${WARNING_COST} for each thing worth fixing.`, SCOPE)
+  lines.push(`Score: 100, less ${PROBLEM_COST} for each problem and ${WARNING_COST} for each thing worth fixing, on this one page.`)
   return { text: lines.join('\n'), structured: { url: pg.url, score, problems: problems.length, worth_fixing: warnings.length, top, findings: items } }
 }
 

@@ -2212,7 +2212,10 @@ page address, or for the snippet preview a title and description. Nothing else a
 The server fetches the page, its robots.txt or its headers, returns the result to the assistant, and keeps nothing
 about the request or the site. It keeps a copy of what it fetched for five minutes, like the checkers above, and
 counts requests per connection for a minute and across all users per day, to stop floods; those counts hold no
-address, page or result. The connector has no account and no key. The server names itself in each request, keeps a copy of what it fetched
+address, page or result. The connector has no account and no key. The server runs on Cloudflare, which hosts it;
+nobody else receives what an assistant sends it, apart from the site being checked, which sees an ordinary request
+for its page. There is nothing to delete because nothing is kept, and you can stop at any time by removing the
+connector from the assistant. Questions go to <a href="mailto:support@docketseo.app">support@docketseo.app</a>. The server names itself in each request, keeps a copy of what it fetched
 for a few minutes so repeated checks do not hit the site again, counts checks per connection for a
 minute to stop floods, and keeps nothing else. The pages set no cookie and store nothing in your
 browser.</p>

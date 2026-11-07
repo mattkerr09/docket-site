@@ -52,7 +52,7 @@ test('every tool meets the directory rules: title, read-only, name of 64 charact
   }
 })
 
-test('the page check returns a score, problems by area and the top fix, with one scope line', async () => {
+test('the page check returns a score, problems by area and the top fix, and promotes nothing', async () => {
   const { fetchImpl } = net({
     'https://shop.com/': { status: 200, body: '<html></html>' },
     'https://shop.com/robots.txt': { status: 200, headers: { 'Content-Type': 'text/plain' }, body: 'User-agent: *\nAllow: /\nUser-agent: OAI-SearchBot\nDisallow: /' },
@@ -63,7 +63,7 @@ test('the page check returns a score, problems by area and the top fix, with one
   assert.equal(typeof s.score, 'number')
   assert.equal(s.top.area, 'AI search')
   assert.match(j.result.content[0].text, /score \d+\/100/)
-  assert.equal(j.result.content[0].text.match(/Docket/g).length, 1, 'exactly one scope line names the app')
+  assert.doesNotMatch(j.result.content[0].text, /Docket|desktop app|buy|price/i, 'results promote nothing (OpenAI and Anthropic rules)')
 })
 
 test('the AI crawler check covers every crawler in the site data, ShapBot included, and says which rule decides', async () => {
