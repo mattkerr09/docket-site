@@ -323,6 +323,10 @@
   "date": "2026-11-05",
   "hash": "8503354f4d20383f"
  },
+ "learn/ada-title-ii-website-dates/index.html": {
+  "date": "2026-11-07",
+  "hash": "7cc02a75d45bc7b7"
+ },
  "learn/ai-crawler-directives/index.html": {
   "date": "2026-11-07",
   "hash": "d4ecf8778f98d9b8"
@@ -349,7 +353,7 @@
  },
  "learn/audit-tool-accuracy/index.html": {
   "date": "2026-11-07",
-  "hash": "84af75b63faffe6f"
+  "hash": "2f0fd3295caf0aac"
  },
  "learn/brand-consistency/index.html": {
   "date": "2026-11-05",
@@ -404,8 +408,8 @@
   "hash": "8d03122b1fe017d0"
  },
  "learn/internal-link-equity/index.html": {
-  "date": "2026-11-06",
-  "hash": "5cc69acc9a522e8a"
+  "date": "2026-11-07",
+  "hash": "fb3bc8591447b005"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-11-05",
@@ -457,7 +461,7 @@
  },
  "learn/what-docket-got-wrong/index.html": {
   "date": "2026-11-07",
-  "hash": "25220f83e9b98357"
+  "hash": "82a368a481686bd5"
  },
  "learn/what-is-claudebot/index.html": {
   "date": "2026-11-07",
@@ -509,7 +513,7 @@
  },
  "tools/index.html": {
   "date": "2026-11-07",
-  "hash": "7a1ab4a3e15ae40d"
+  "hash": "1be0caa6370f758f"
  },
  "tools/json-ld-checker/index.html": {
   "date": "2026-11-07",
@@ -534,6 +538,10 @@
  "tools/serp-preview/index.html": {
   "date": "2026-11-07",
   "hash": "7e81a0a57e6ff298"
+ },
+ "tools/title-ii-date/index.html": {
+  "date": "2026-11-07",
+  "hash": "9dde7e112cd8f5b8"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
   "date": "2026-11-07",
