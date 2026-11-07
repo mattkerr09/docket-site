@@ -104,7 +104,7 @@ by itself. Real fixes are made in the pages and documents.</p>
         h1=f"The ADA Title II website dates moved: {LARGE} and {SMALL}",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / ADA Title II website dates',
         body=body,
-        published=T["checked"],
+        published="2026-11-07",   # first published; the facts are re-checked on T["checked"]
         faq=[
             ("When do local governments have to meet the ADA Title II web rule?",
              f"{LARGE} for state and local governments with a total population of {POP} or more; {SMALL} for "
@@ -220,7 +220,7 @@ Bureau&rsquo;s school district estimate. The <a href="/learn/ada-title-ii-websit
         h1="Which ADA Title II website date applies to us?",
         crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / Title II date checker',
         body=body,
-        published=T["checked"],
+        published="2026-11-07",   # first published; the facts are re-checked on T["checked"]
         schema_type="WebPage",
         faq=[
             ("Is a special district on the earlier date if it serves a big city?",
