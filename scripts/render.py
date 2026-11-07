@@ -1665,7 +1665,7 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
 .checker-form .checker-row+label{margin-top:.9rem}
-.tool-out{margin:0 0 2rem;padding:1rem 1.2rem;border-left:3px solid var(--accent);background:var(--surface)}
+.tool-out{margin:0 0 2rem;padding:1rem 1.2rem;border-left:3px solid var(--brand);background:var(--surface)}
 .tool-out .t2-when{font-size:1.25rem;font-weight:700;margin:0 0 .4rem}
 .tool-list li{margin:.5rem 0}
 .short-answer{margin:1rem 0 1.6rem}.short-answer li{margin:.45rem 0}
