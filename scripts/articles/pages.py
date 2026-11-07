@@ -2270,7 +2270,7 @@ it; we hold nothing separately.</p>
         body=body,
         # From git: 884a2caee, 2026-11-04 (the crawler names the edge-access check sends). Before this the page showed
         # only "Published 6 August 2026" over changes dated 2 November (Matthew's full audit, 2026-11-04, row 19).
-        modified="2026-11-06",
+        modified="2026-11-07",
         schema_type="WebPage",
     )
 

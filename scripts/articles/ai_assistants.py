@@ -153,7 +153,8 @@ an audit does contact, and how to turn the optional parts off, is on the
         h1="Use Docket SEO from your AI assistant",
         crumb='<a href="/">Docket</a> / AI assistants',
         body=body,
-        published=RUN["measured"],
+        published="2026-11-06",   # first published; the run below it is re-made each release
+        modified="2026-11-07",
         schema_type="WebPage",
         faq=[
             ("Can Claude audit my website?",
