@@ -1,14 +1,15 @@
 {
   "target": "docketseo.app",
-  "engine": "1.3.154",
+  "engine": "1.3.155",
   "checks": 99,
-  "date": "2026-11-06",
-  "pages": 147,
-  "seconds": 43,
-  "score": 99,
+  "date": "2026-11-07",
+  "pages": 153,
+  "seconds": 45,
+  "score": 98,
   "grade": "A",
-  "findings_total": 8,
+  "findings_total": 10,
   "by_severity": {
+    "medium": 2,
     "low": 4,
     "notice": 4
   },
@@ -16,8 +17,8 @@
   "lanes": [
     {
       "label": "Crawlability & indexing",
-      "score": 100,
-      "findings": 0
+      "score": 93,
+      "findings": 1
     },
     {
       "label": "On-page SEO",
@@ -66,8 +67,8 @@
     },
     {
       "label": "Tracking & campaign readiness",
-      "score": 100,
-      "findings": 1
+      "score": 93,
+      "findings": 2
     },
     {
       "label": "Brand consistency",
@@ -78,14 +79,30 @@
   "top": [
     {
       "rank": 1,
-      "title": "2 groups of near-identical colours in your CSS",
-      "severity": "low",
-      "effort": "medium",
-      "pages": 2,
-      "phase": "Build"
+      "title": "No advertising pixels installed",
+      "severity": "medium",
+      "effort": "small",
+      "pages": 1,
+      "phase": "Quick wins"
     },
     {
       "rank": 2,
+      "title": "1 orphan page has no internal links pointing to it",
+      "severity": "medium",
+      "effort": "medium",
+      "pages": 1,
+      "phase": "Build"
+    },
+    {
+      "rank": 3,
+      "title": "3 groups of near-identical colours in your CSS",
+      "severity": "low",
+      "effort": "medium",
+      "pages": 3,
+      "phase": "Build"
+    },
+    {
+      "rank": 4,
       "title": "Only 1 recognised profile in sameAs",
       "severity": "low",
       "effort": "trivial",
@@ -93,7 +110,7 @@
       "phase": "Polish"
     },
     {
-      "rank": 3,
+      "rank": 5,
       "title": "1 page promises one thing in search and another on the page",
       "severity": "low",
       "effort": "small",
@@ -101,7 +118,7 @@
       "phase": "Polish"
     },
     {
-      "rank": 4,
+      "rank": 6,
       "title": "1 link uses non-descriptive anchor text",
       "severity": "low",
       "effort": "medium",
@@ -109,7 +126,7 @@
       "phase": "Polish"
     },
     {
-      "rank": 5,
+      "rank": 7,
       "title": "Missing 1 baseline security header",
       "severity": "notice",
       "effort": "trivial",
@@ -117,15 +134,15 @@
       "phase": "Polish"
     },
     {
-      "rank": 6,
-      "title": "2 marketing and analytics tools detected",
+      "rank": 8,
+      "title": "1 marketing and analytics tool detected",
       "severity": "notice",
       "effort": "trivial",
-      "pages": 2,
+      "pages": 1,
       "phase": "Polish"
     },
     {
-      "rank": 8,
+      "rank": 10,
       "title": "One AI visibility control cannot be checked from outside, including by Docket",
       "severity": "notice",
       "effort": "trivial",

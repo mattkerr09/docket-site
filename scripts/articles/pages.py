@@ -2196,6 +2196,10 @@ here to Meta and set a cookie to do it. This
 paragraph is the reason that was noticed: each correction is made above rather than quietly
 deleted. A privacy page that enumerates what a site does not do is only worth reading if the
 enumeration stays complete.</p>
+<p><strong>Changed 7 November 2026.</strong> From late August 2026 until 7 November 2026, when someone bought Docket,
+our sales system sent Meta (Facebook) the price, the currency and a one-way coded copy of the buyer&rsquo;s email address
+(a SHA-256 hash), so that Meta could count the sale for advertising. We switched it off on 7 November, and the code that
+did it is being removed. Nothing about a purchase goes to Meta now.</p>
 <p>If you would rather not be counted, any content blocker stops it, and nothing on this site
 depends on it loading.</p>
 
