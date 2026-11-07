@@ -15,7 +15,7 @@
 <title>Docket vs Google Lighthouse: what its SEO score covers</title>
 <meta name="description" content="Lighthouse is free, from Google, and the authority on lab Core Web Vitals. Its SEO category is ten scored checks on one URL. What a site audit sees outside it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="61e866863d12">
+<meta name="build-id" content="6ed680d962bd">
 <link rel="canonical" href="https://docketseo.app/vs/lighthouse-alternative/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -1046,9 +1046,9 @@ Console's Core Web Vitals report is built from the Chrome UX Report rather than 
 one side and CrUX field data on the other.</p>
 
 <p>Docket has one optional check that fetches those field values from the PageSpeed Insights
-API, which is the same CrUX data Search Console shows. It is one of four checks that reach off
-your machine, <code>--offline</code> turns them off, and the scope page of every PDF names
-Core Web Vitals field values among the things that were not measured. If you are trying to
+API, which is the same CrUX data Search Console shows. It is one of five optional checks that reach off
+your machine; <code>--offline</code> turns them off. The report's scope page says whether
+Core Web Vitals field values were read, Google had no field data, or they were not asked for. If you are trying to
 move LCP: change what Docket points at, measure it in Lighthouse, confirm it in Search
 Console. Docket will tell you which markup is costing you. It will not tell you whether the
 fix landed.</p>
@@ -1089,14 +1089,14 @@ Lighthouse grades a page, Docket sequences the work on a site.</p>
 <h2>When Lighthouse on its own is enough</h2>
 <p>If you run a single landing page, Lighthouse plus a careful read of your own title tags
 gets you most of the way, and Docket is a purchase you do not need. If your problem is
-speed, Lighthouse is the better tool and this is the wrong page. If you want a score gated in
-continuous integration, Lighthouse ships as a Node module built for that and Docket has no
-equivalent. And if you are not on a Mac with Apple silicon or Intel running macOS 12 or later, Docket will
-not run at all.</p>
+speed, Lighthouse is the better tool and this is the wrong page. Use Lighthouse to gate a
+performance score in continuous integration. Docket's command line can fail a build on findings
+of a chosen severity with <code>--fail-on</code>. The desktop app runs on macOS 12 or later (Apple silicon or Intel) and on 64-bit Windows.
+Linux runs the command line only.</p>
 <p>Docket costs $59 once, runs 99 checks on your own machine with no account
-and no telemetry, and keeps everything under <code>~/.docket</code>. The one thing it sends is
-the licence key, checked with the payment provider when you activate it and about once a day
-after that. It earns that money against a free tool from Google in
+and no telemetry. The crawl and report stay on your computer. Some optional checks send page
+addresses or topic words to outside services; <code>--offline</code> turns those checks off.
+The privacy page lists each request. It earns that money against a free tool from Google in
 one situation only: when the question has stopped being how fast is this page and become which
 of forty things do I do first. If you are not at that point yet, the honest answer is to stay free:
 <a href="/best/free-seo-audit-tools/">the best free SEO audit tools, and when to stop</a>.</p>

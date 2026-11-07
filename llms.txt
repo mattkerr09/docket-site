@@ -32,8 +32,9 @@ Michigan, United States.
 - AI search visibility: each AI crawler is checked separately (OAI-SearchBot for
   ChatGPT Search, PerplexityBot, Claude-SearchBot) and kept apart from training
   crawlers such as GPTBot. Google-Extended is reported as what it is: Gemini training
-  and Gemini Apps grounding, with no effect on AI Overviews. Docket also requests
-  pages as each crawler and reports when a server refuses one that robots.txt permits.
+  and Gemini Apps grounding, with no effect on AI Overviews. Docket checks robots.txt
+  rules for 22 AI crawlers. A separate check requests your homepage as 9 AI crawlers
+  plus Googlebot to find server refusals the file cannot show.
 - A command-line interface ships inside the app. `docket audit` exits non-zero on a
   critical issue, so CI can fail a build before it ships.
 - [All 99 checks, by area](https://docketseo.app/learn/what-docket-checks/): the complete list, generated from the shipped build so it cannot drift from the product
