@@ -1606,7 +1606,7 @@ Lighthouse grades a page, Docket sequences the work on a site.</p>
 gets you most of the way, and Docket is a purchase you do not need. If your problem is
 speed, Lighthouse is the better tool and this is the wrong page. Use Lighthouse to gate a
 performance score in continuous integration. Docket's command line can fail a build on findings
-of a chosen severity with <code>--fail-on</code>. The desktop app runs on {MACOS}+ on {MAC_HW}{' and 64-bit Windows' if WINDOWS else ''}.
+of a chosen severity with <code>--fail-on</code>. The desktop app runs on {MACOS} or later ({MAC_HW}){' and on 64-bit Windows' if WINDOWS else ''}.
 Linux runs the command line only.</p>
 <p>Docket costs {PRICE_STR} once, runs {N_CHECKS} checks on your own machine with no account
 and no telemetry. The crawl and report stay on your computer. Some optional checks send page

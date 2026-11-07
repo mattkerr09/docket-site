@@ -257,7 +257,7 @@ It replaces the part of it you open once a month and then export to a spreadshee
 
 <p>If you need keyword positions or a backlink profile, none of these pages will help. Docket
 has neither and is not building either. If your crawl is hundreds of thousands of URLs, use a
-crawler built for it. Docket's desktop app runs on {MACOS}+ on {MAC_HW}{' and 64-bit Windows' if WINDOWS else ''}.
+crawler built for it. Docket's desktop app runs on {MACOS} or later ({MAC_HW}){' and on 64-bit Windows' if WINDOWS else ''}.
 Linux runs the command line only.</p>
 
 <p>Each comparison below names at least one thing the other tool does better. That is not

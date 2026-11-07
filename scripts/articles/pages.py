@@ -2104,7 +2104,7 @@ server tells them.</li>
 to other sites still work, and that the share images your pages name load, with a request to
 each address and a second if the first fails. It fetches the stylesheets your pages link,
 including ones served from other hosts. And it renders a small sample of your pages in
-{"WebKit on a Mac or Microsoft's WebView2 engine based on Chromium on Windows" if WINDOWS else 'the WebKit engine macOS already ships'},
+<!-- render-engine -->,
 which runs their scripts the way a browser would, so whatever those pages
 load, such as analytics or advertising pixels, is requested too.</li>
 </ul>
@@ -2251,7 +2251,9 @@ it; we hold nothing separately.</p>
 """
     body = (body.replace("<!-- windows-form-privacy -->", _windows_form_privacy())
                 .replace("<!-- windows-same-app -->\n", _windows_same_app())
-                .replace("<!-- edge-probes -->", F.probe_names_html()))
+                .replace("<!-- edge-probes -->", F.probe_names_html())
+                .replace("<!-- render-engine -->", "WebKit on a Mac, or Microsoft&rsquo;s WebView2 (Chromium) on Windows"
+                         if WINDOWS else "the WebKit engine macOS already ships"))
     return render(
         cat="legal", slug="privacy",
         title="Privacy policy: what Docket collects, and what it does not",
