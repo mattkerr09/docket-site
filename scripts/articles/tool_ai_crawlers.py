@@ -126,9 +126,10 @@ first, and the ones that only collect training data come second.</p>
 ], free="Nothing to install, and no account to make.",
    steps=["Type your website's address, or any page on it.", "Press <strong>Check my site</strong>.",
           "Read which crawlers may fetch it, the ones that let assistants quote you at the top."],
-   step_up=(f'Your rules, read once. <a href="/download/">Docket</a> checks every page of your site against '
-            f"each AI crawler and requests them as those crawlers, which shows refusals robots.txt cannot, "
-            f"among its {N_CHECKS} checks."))}
+   step_up=(f'Your rules, read once. <a href="/download/">Docket</a> checks robots.txt rules for '
+            f"{F.ai_agents()} AI crawlers across your site. A separate check requests your homepage as "
+            f"{len(F.probes()['ai'])} AI crawlers plus {F.probes()['search']} to find server refusals "
+            f"the file cannot show, among its {N_CHECKS} checks."))}
 {audit_next("tools-checker-result", what="one file, read for one page")}
 
 <h2>Crawlers that decide whether AI can cite you</h2>
@@ -178,10 +179,11 @@ the address, and nothing is kept on our side to make it work.</p>
 checked with Docket and links to the live result. It does not say what the check found, so it cannot go
 out of date.</p>
 
-<h2>Checking every page, and your server</h2>
-<p>Docket checks all of this from your Mac, on every page it crawls: it requests pages as each AI
-crawler and reports when your server refuses one that robots.txt permits, reads the tags on every
-page, and flags text that only appears after JavaScript runs. It then ranks what to fix first, next
+<h2>Checking your rules and homepage access</h2>
+<p>Docket checks robots.txt rules for {F.ai_agents()} AI crawlers across your site. A separate check
+requests your homepage as {len(F.probes()['ai'])} AI crawlers plus {F.probes()['search']} from your computer
+and reports server refusals the file cannot show. It reads tags across the pages it crawls and
+flags text that only appears after JavaScript runs. It then ranks what to fix first, next
 to {F.optional_connectors_word()} optional outside checks and the rest of the audit.</p>
 {buy_block("tools-ai-crawler-checker")}
 
@@ -293,8 +295,11 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
              "AI. AI Overviews and AI Mode follow your Googlebot rules."),
             ("My robots.txt allows every AI crawler. Am I visible?",
              "Not necessarily. A CDN, firewall or bot-protection setting can refuse a crawler "
-             "that robots.txt allows, and this checker cannot see that. Docket requests pages as "
-             "each crawler to find out."),
+             "that robots.txt allows, and this checker cannot see that. Docket checks robots.txt "
+             f"rules for {F.ai_agents()} AI crawlers. A separate check requests your homepage as "
+             f"{len(F.probes()['ai'])} AI crawlers plus {F.probes()['search']} from your computer. "
+             "A firewall can treat the real, verified crawler differently, so your server's own "
+             "logs settle whether it was allowed through."),
         ],
     )
 

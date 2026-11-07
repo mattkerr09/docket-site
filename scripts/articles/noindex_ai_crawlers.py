@@ -216,7 +216,7 @@ assistant</a>.</li>
 """
     return render(
         cat="learn", slug="does-noindex-stop-ai-crawlers",
-        title="noindex does not stop AI crawlers – robots.txt does",
+        title="noindex does not stop AI crawlers. robots.txt does",
         desc=("noindex tells indexers not to list a page; it cannot stop a crawler fetching it. "
               "What robots.txt and your server control instead, and which layer is refusing yours."),
         h1="Does noindex stop AI crawlers?",

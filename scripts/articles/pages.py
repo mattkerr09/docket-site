@@ -662,7 +662,7 @@ claims everything invites the client to test the claim.</p>
             ("Can I use Docket for client work?",
              "Yes. Docket is " + PRICE_STR + " once"
              + (" (" + FOUNDING_NOW + " at the Black Friday price until " + FOUNDING_END_DAY + ")" if FOUNDING_OPEN else "") + ", "
-             "with no per-seat or per-crawl limits, so you can audit as many client and "
+             "with no per-crawl charge; one licence covers " + F.licence_covers() + ". You can audit as many client and "
              "prospect sites as you like and charge for the work."),
             ("Can I white-label the report?",
              "Yes, in the paid version. Add your agency's name and logo under Reports, then Report "
@@ -1338,9 +1338,9 @@ Google API key it will read Chrome UX Report data, which is Google measuring, no
 marketing site, docs, blog and pricing page are.</li>
 <li><strong>It does not run prompts against models,</strong> so it cannot tell you whether
 ChatGPT named you this morning. <a href="/vs/profound-alternative/">Profound</a>, Otterly and Peec do that.</li>
-<li><strong>Rendering is a sample</strong>: ten of the shallowest pages by default, which
-answers "is this client-rendered and what is it costing me" without turning a five-minute
-audit into an hour. It is not a full rendered crawl of a large application.</li>
+<li><strong>Rendering is a small sample by default,</strong> with more on request through
+<code>--render</code>. It answers "is this client-rendered and what is it costing me".
+It is not a full rendered crawl of a large application.</li>
 {('<li><strong>It is macOS on ' + MAC_HW + ', or 64-bit Windows.</strong> No Linux desktop, no web version.') if WINDOWS else ('<li><strong>It is macOS on ' + MAC_HW + '.</strong> No Windows, no Linux desktop, no web version.')}
 The CLI inside the bundle runs on <a href="/for/developers/">macOS CI runners</a>.</li>
 </ul>
@@ -1368,7 +1368,7 @@ years.</p>
 
 <h2>Why the price is a number rather than a plan</h2>
 
-<p>{PRICE_STR}, once, from v1.0, and {FREE_CLAUSE}. No per-seat price, no
+<p>{PRICE_STR}, once, and {FREE_CLAUSE}. No per-seat price, no
 crawl credits, no renewal date: one licence covers {F.licence_covers()}. You price a SaaS product yourself, so you know what a
 recurring line item does to a buying decision at a company that already has eleven of
 them.</p>
@@ -2045,7 +2045,8 @@ and this website.</p>
 <h2>The application</h2>
 <p>Nothing about the sites you audit reaches us, Kerr &amp; Company: the crawl and the report
 stay on your Mac. The requests that do leave it are listed below with who receives each one,
-and the only ones that come to us are for two public files on this website. What our payment
+and the ones that come to us are for the public update, price and knowledge files on this
+website and, on a copy with no licence, a question to an offer server we run. What our payment
 provider receives on our behalf is your licence key and a name for each Mac you activate it on.
 There is no account, no telemetry and no crash reporting. The licence key is checked with our
 payment provider when you activate it and about once a day after that.</p>
@@ -2102,8 +2103,9 @@ server tells them.</li>
 <li><strong>Other sites your pages point to.</strong> Docket checks that a sample of your links
 to other sites still work, and that the share images your pages name load, with a request to
 each address and a second if the first fails. It fetches the stylesheets your pages link,
-including ones served from other hosts. And it renders three of your pages in the WebKit engine
-macOS already ships, which runs their scripts the way a browser would, so whatever those pages
+including ones served from other hosts. And it renders a small sample of your pages in
+{"WebKit on a Mac or Microsoft's WebView2 engine based on Chromium on Windows" if WINDOWS else 'the WebKit engine macOS already ships'},
+which runs their scripts the way a browser would, so whatever those pages
 load, such as analytics or advertising pixels, is requested too.</li>
 </ul>
 

@@ -93,9 +93,8 @@ misrepresenting what the number is.</p>
 <p>And if you want to crawl a large site with rendering at volume, <a
 href="/vs/screaming-frog-alternative/">Screaming Frog</a> has been doing it for years with
 configurable wait strategies, JavaScript error capture and a rendered-versus-raw diff view
-built for exactly this. Docket renders a sample (the shallowest pages, ten by default)
-because that answers "is this site client-rendered and what is it costing me" without turning
-a five-minute audit into an hour.</p>
+built for exactly this. Docket renders a small sample by default, with more on request through
+<code>--render</code>. That answers "is this site client-rendered and what is it costing me".</p>
 
 <h2>Trying it</h2>
 

@@ -22,6 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import comparisons  # noqa: E402
+import facts as F  # noqa: E402
 from render import (HAS_SAMPLE, INTEL, INTEL_DMG, N_CHECKS, N_LANES, PAY4_BUY, PRICE, PRICE_STR,  # noqa: E402
                     REFUND_DAYS, SAMPLE_REPORT, buy_block, checkout_url, download_url,
                     price_req_html, render)
@@ -168,8 +169,9 @@ the rest of your site. The rules come from Docket, the Mac app these pages belon
 and the app give the same answer for the same page. The checkers fetch only what they need, name
 themselves in the request, keep a copy for a few minutes so repeated checks do not hit your server,
 and store nothing about the sites checked.</p>
-<p>Docket runs {N_CHECKS} checks across every page of a site, requests pages as each AI crawler to
-find the refusals a file cannot show, and ranks what to fix first.</p>
+<p>Docket runs {N_CHECKS} checks across a site and checks robots.txt rules for {F.ai_agents()} AI crawlers.
+A separate check requests your homepage as {len(F.probes()['ai'])} AI crawlers plus {F.probes()['search']}
+to find server refusals the file cannot show. It ranks what to fix first.</p>
 <h2>Choosing between audit tools?</h2>
 <p>These pages set Docket beside the tools people most often weigh it against. Each vendor's prices
 and limits are read from its own pages and dated, each page ends with when to pick the other tool
@@ -253,9 +255,10 @@ It works on any site, yours or not, and there is nothing to verify first.</p>
    steps=["Paste the address of the page that dropped out of search, not only the homepage.",
           "Add another crawler's name if you want one, then press <strong>Test this page</strong>.",
           "Read each crawler's verdict beside the line that decides it."],
-   step_up=(f'One file, read for one page. <a href="/download/">Docket</a> reads it for every page of your '
-            f"site, then requests those pages as each crawler to catch the firewall and CDN refusals a file "
-            f"cannot show, among its {N_CHECKS} checks."))}
+   step_up=(f'One file, read for one page. <a href="/download/">Docket</a> checks robots.txt rules for '
+            f"{F.ai_agents()} AI crawlers across your site. A separate check requests your homepage as "
+            f"{len(F.probes()['ai'])} AI crawlers plus {F.probes()['search']} to catch server refusals "
+            f"the file cannot show, among its {N_CHECKS} checks."))}
 {audit_next("tools-robots-tester", what="one file, read for one page")}
 
 <h2>How to read the answer</h2>
@@ -289,9 +292,10 @@ have their own file. The tester reads the file for the host you type.</li>
 </ul>
 
 <h2>Checking every page</h2>
-<p>Docket reads robots.txt for every page it crawls, requests pages as each AI crawler to find server
-and CDN refusals, and checks the <code>noindex</code> tags and headers this tester cannot see, then
-ranks all of it with the rest of its {N_CHECKS} checks.</p>
+<p>Docket reads robots.txt rules for {F.ai_agents()} AI crawlers across the pages it crawls.
+A separate check requests your homepage as {len(F.probes()['ai'])} AI crawlers plus {F.probes()['search']}
+to find server and CDN refusals. It checks the <code>noindex</code> tags and headers this tester
+cannot see, then ranks all of it with the rest of its {N_CHECKS} checks.</p>
 {buy_block("tools-robots-tester", try_app="tools-robots-tester-try-free")}
 
 <h2>Related</h2>

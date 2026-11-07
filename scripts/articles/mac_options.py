@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import speed_words, WINDOWS, BNPL_INSTALMENT, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, REFUND_DAYS, buy_block, render  # noqa: E402
+from render import speed_words, WINDOWS, BNPL_INSTALMENT, MAC_HW, MACOS, N_CHECKS, N_LANES, PRICE, PRICE_STR, REFUND_DAYS, buy_block, render  # noqa: E402
 
 import comparisons  # noqa: E402
 
@@ -138,7 +138,8 @@ comparisons and branded PDF reports. <a href="/vs/sitebulb-alternative/">The two
 <h2>What Docket does not do</h2>
 <p>{'Docket runs on a Mac or a 64-bit Windows PC.' if WINDOWS else 'Docket runs only on a Mac.'} It does not track where you rank for a keyword. It is lighter than Screaming Frog
 on custom extraction and on rendering JavaScript across a crawl, and it says so on the comparison page. It
-runs {N_CHECKS} checks on every page it reads, including whether AI crawlers such as GPTBot and ClaudeBot can reach your
+runs {N_CHECKS} checks across {N_LANES} areas, some on each page, some across the whole site,
+including whether AI crawlers such as GPTBot and ClaudeBot can reach your
 site, and puts what it found in the order to fix it. Its last audit of this site covered {_RUN["pages"]} pages in
 {speed_words(_RUN["seconds"])}. The free audit shows the score, how many problems each area has and the single most important problem in full, so you can
 see what it finds on your own site before you pay anything.</p>

@@ -24,7 +24,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE / "articles"))
 
 import facts as F  # noqa: E402
-from render import BASE, DATA, PRICE, SITE, SUPPORT_EMAIL, render, with_next_step  # noqa: E402
+from render import BASE, DATA, MAC_HW, MACOS, PRICE, SITE, SUPPORT_EMAIL, WINDOWS, render, with_next_step  # noqa: E402
 
 import about  # noqa: E402
 import audit_quality  # noqa: E402
@@ -232,7 +232,7 @@ def build_hubs() -> list[Path]:
              "meter: SEOptimer buys you a set number of crawls a month, Docket does not "
              "count them."),
         ],
-        intro="""
+        intro=f"""
 <h2>The three kinds of tool, and which question each answers</h2>
 
 <p>Most comparisons between SEO tools are unhelpful because they compare things built to
@@ -257,7 +257,8 @@ It replaces the part of it you open once a month and then export to a spreadshee
 
 <p>If you need keyword positions or a backlink profile, none of these pages will help. Docket
 has neither and is not building either. If your crawl is hundreds of thousands of URLs, use a
-crawler built for it. If you are not on a Mac, Docket will not run at all.</p>
+crawler built for it. Docket's desktop app runs on {MACOS}+ on {MAC_HW}{' and 64-bit Windows' if WINDOWS else ''}.
+Linux runs the command line only.</p>
 
 <p>Each comparison below names at least one thing the other tool does better. That is not
 modesty; a comparison page that concedes nothing tells you only that its author wanted your
@@ -633,8 +634,10 @@ def write_llms_txt() -> None:
         "AI search visibility: each AI crawler is checked separately (OAI-SearchBot for "
         "ChatGPT Search, PerplexityBot, Claude-SearchBot) and kept apart from training "
         "crawlers such as GPTBot. Google-Extended is reported as what it is: Gemini training "
-        "and Gemini Apps grounding, with no effect on AI Overviews. Docket also requests pages as each "
-        "crawler and reports when a server refuses one that robots.txt permits.",
+        "and Gemini Apps grounding, with no effect on AI Overviews. Docket checks robots.txt "
+        f"rules for {F.ai_agents()} AI crawlers. A separate check requests your homepage as "
+        f"{len(F.probes()['ai'])} AI crawlers plus {F.probes()['search']} to find server refusals "
+        "the file cannot show.",
         "A command-line interface ships inside the app. `docket audit` exits non-zero on a "
         "critical issue, so CI can fail a build before it ships.")
     out += links(

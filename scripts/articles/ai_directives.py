@@ -51,8 +51,8 @@ def ai_directives() -> Path:
     search = F.ai_agents_for("search index")
     body = f"""
 <p class="lede">Blocking <code>GPTBot</code> and blocking <code>OAI-SearchBot</code> look like the
-same decision in a robots.txt file. They are not remotely the same decision, and most sites that
-make one make the other by accident. Docket checks
+same decision in a robots.txt file. They block different uses. The file shows what is blocked,
+not why the owner blocked it. Docket checks
 {F.ai_agents_word()} AI crawlers separately, from {F.ai_agent_operators()} companies, because the
 cost of blocking each one is different.</p>
 

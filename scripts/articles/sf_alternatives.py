@@ -26,7 +26,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import (BNPL_INSTALMENT, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, REFUND_DAYS, WINDOWS,  # noqa: E402
+from render import (BNPL_INSTALMENT, MAC_HW, MACOS, N_CHECKS, N_LANES, PRICE, PRICE_STR, REFUND_DAYS, WINDOWS,  # noqa: E402
                     buy_block, render, speed_words)
 
 import comparisons  # noqa: E402
@@ -154,7 +154,8 @@ install it, you update it and nobody is paid to answer when it breaks.</p>
 
 <h2>Docket, the one we make, and what we ran ourselves</h2>
 <p>Docket is ours. It runs on {esc(docket_runs)}, costs {PRICE_STR} once, and refunds the whole price within
-{REFUND_DAYS} days. It runs {N_CHECKS} checks on every page it reads, including whether AI crawlers such as GPTBot and
+{REFUND_DAYS} days. It runs {N_CHECKS} checks across {N_LANES} areas, some on each page, some across the whole site,
+including whether AI crawlers such as GPTBot and
 ClaudeBot can reach the site, and it puts what it finds in the order to fix it, with the exact markup to paste. That
 is the difference from Screaming Frog, which gives you the data and leaves the ordering to you.</p>
 <p>It is weaker than Screaming Frog in three places and you should know them before you buy. It has no custom
