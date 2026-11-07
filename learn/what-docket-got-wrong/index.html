@@ -15,7 +15,7 @@
 <title>What Docket got wrong, and the release that fixed it</title>
 <meta name="description" content="The releases that fixed something Docket got wrong, newest first, with the tests that hold each fix, and 15 worked cases of findings that looked wrong.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="249d50664618">
+<meta name="build-id" content="2454bbdaea7f">
 <link rel="canonical" href="https://docketseo.app/learn/what-docket-got-wrong/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -630,12 +630,15 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
   border-radius:var(--radius-lg);background:var(--surface)}
 .checker-form label{display:block;font-weight:600;margin-bottom:.5rem;color:var(--text)}
 .checker-row{display:flex;gap:.6rem;flex-wrap:wrap}
-.checker-row input{flex:1 1 14rem;min-width:0;padding:.7rem .85rem;border-radius:var(--radius-md);
+.checker-row input,.checker-row select{flex:1 1 14rem;min-width:0;padding:.7rem .85rem;border-radius:var(--radius-md);
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-form .checker-extra{margin:.9rem 0 .4rem;font-weight:500;color:var(--text-mid)}
 .checker-extra-input{width:100%;max-width:16rem;padding:.55rem .75rem;border-radius:var(--radius-md);
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
+.checker-form .checker-row+label{margin-top:.9rem}
+.tool-out{margin:0 0 2rem;padding:1rem 1.2rem;border-left:3px solid var(--brand);background:var(--surface)}
+.tool-out .t2-when{font-size:1.25rem;font-weight:700;margin:0 0 .4rem}
 .tool-list li{margin:.5rem 0}
 .short-answer{margin:1rem 0 1.6rem}.short-answer li{margin:.45rem 0}
 .table-note{color:var(--text-mid);margin:.2rem 0 .8rem}
@@ -975,7 +978,7 @@ and which tests now hold the fix in place. Where we could not prove something, t
 <p>This is the part of our log that has shipped as a release. It is not a list of every mistake, only of the ones we
 found and fixed. For the questions to ask of any tool's report, ours included, see
 <a href="/learn/audit-tool-accuracy/">how to tell whether an audit tool is lying to you</a>; it counts
-197 of Docket's 663 test files that record a past mistake in their own words.
+197 of Docket's 664 test files that record a past mistake in their own words.
 After the releases, 15 <a href="#worked-cases">worked cases</a> show what such mistakes look like from the reader's
 side.</p>
 
