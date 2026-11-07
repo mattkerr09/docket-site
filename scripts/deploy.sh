@@ -36,6 +36,10 @@ echo "==> em-dash gate"
 # however it is written (a ">" inside one fooled Crisp's regex stripper).
 python3 scripts/verify_no_em_dash.py || { echo "  refusing to deploy: rewrite the em-dashes above"; exit 1; }
 
+echo "==> template-leak gate"
+# 2026-11-07: the privacy page printed f-string code; no other gate reads prose for generator code.
+"$PY" scripts/verify_no_template_leak.py || { echo "  refusing to deploy: a page prints its own template code"; exit 1; }
+
 echo "==> derived-number gate"
 # The Index published 30% over a 26% dataset because a correction updated the
 # prose and not the stored aggregate. This refuses to ship a measurement that
