@@ -56,6 +56,23 @@ ChatGPT can audit a site for you in conversation. Ask &ldquo;audit example.com&r
 your machine. Without a key it is the free version: the score, how many problems each area has, and the
 worst one in full with its fix.</p>
 
+<h2>Claude: add the connector, nothing to install</h2>
+<p>Docket SEO&rsquo;s free checks also run as a connector on our server, so Claude can use them in a chat with
+nothing installed. Add it in Claude&rsquo;s connector settings as a custom connector with this address:</p>
+<pre><code>https://mcp.docketseo.app/mcp</code></pre>
+<p>It needs no account and no key. Its five tools are read-only: a one-page SEO check with a score and the
+first fix, which AI crawlers robots.txt lets in, a redirect trace, an HTTP header check, and a search snippet
+preview. Try asking:</p>
+<ul>
+<li>&ldquo;Check docketseo.app/pricing/ for SEO problems and tell me what to fix first.&rdquo;</li>
+<li>&ldquo;Which AI crawlers can read my site, and is anything blocking Claude or ChatGPT search?&rdquo;</li>
+<li>&ldquo;Trace the redirects from http://example.com and check its security headers.&rdquo;</li>
+<li>&ldquo;Will this title get cut off in Google: &lsquo;Emergency plumber in Grand Rapids, open 24 hours a day&rsquo;?&rdquo;</li>
+</ul>
+<p>The connector checks one page at a time. For a whole site, use the desktop app below. What it sends and keeps
+is on the <a href="/legal/privacy/">privacy page</a>; questions go to
+<a href="mailto:support@docketseo.app">support@docketseo.app</a>.</p>
+
 <h2>Claude Desktop: install the extension</h2>
 <p>Download the extension for your computer: {links}. Then, in Claude Desktop, open Settings, choose
 Extensions (under Desktop app in the newer layout), click Advanced settings and then Install Extension, and

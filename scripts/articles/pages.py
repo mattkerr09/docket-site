@@ -2205,7 +2205,14 @@ the page at that address, read its title, meta tags, headings and structured dat
 only the result of the checks, not the page. The redirect checker and the HTTP header checker make
 it follow the address hop by hop and send back each hop's address and status code and the final
 page's headers, never its cookies. The search result preview sends nothing: it runs in your
-browser. The server names itself in each request, keeps a copy of what it fetched
+browser.</p>
+<p>The same checks are offered to AI assistants as a connector at <code>mcp.docketseo.app</code>, run by the same
+server. When you ask an assistant such as Claude to use it, the assistant sends that server the tool's arguments: a
+page address, or for the snippet preview a title and description. Nothing else about you or the conversation is sent.
+The server fetches the page, its robots.txt or its headers, returns the result to the assistant, and keeps nothing
+about the request or the site. It keeps a copy of what it fetched for five minutes, like the checkers above, and
+counts requests per connection for a minute and across all users per day, to stop floods; those counts hold no
+address, page or result. The connector has no account and no key. The server names itself in each request, keeps a copy of what it fetched
 for a few minutes so repeated checks do not hit the site again, counts checks per connection for a
 minute to stop floods, and keeps nothing else. The pages set no cookie and store nothing in your
 browser.</p>
