@@ -19,6 +19,10 @@ from articles.title_ii import LARGE, SMALL, POP  # noqa: E402
 PUBLIC_SITE_CHECK_PAGE = False
 # TODO CEO: set the add-on's checkout URL when its product is ready. Never use the SEO licence URL.
 PSC_BUY_URL = ""
+#: The add-on's price (PLAN decision 2, 2026-11-08) and the standard its checks cite; the date the page's facts were read.
+PSC_PRICE = 149
+WCAG = "2.1"
+CHECKED = "8 November 2026"
 
 PROOF = ("We ran it on our own site first: 26 issues on the first 25 pages it checked, all fixed; "
          "the re-check found none on 39 pages.")
@@ -53,12 +57,12 @@ def public_site_check() -> Path:
     buy = (f'<p><a class="btn" href="{escape(PSC_BUY_URL, quote=True)}" data-ev="Buy" '
            'data-ev-button="public-site-check">Buy Public Site Check</a></p>') if PSC_BUY_URL else ""
     body = f"""
-<p class="lede">Public Site Check is a $149 add-on to Docket SEO&rsquo;s desktop app for Mac and 64-bit Windows.
-It checks a public body&rsquo;s site against WCAG 2.1 Level A and AA, sorts posted documents by its Title II date,
+<p class="lede">Public Site Check is a ${PSC_PRICE} add-on to Docket SEO&rsquo;s desktop app for Mac and 64-bit Windows.
+It checks a public body&rsquo;s site against WCAG {WCAG} Level A and AA, sorts posted documents by its Title II date,
 and writes a plain-words board report as a PDF.</p>
 <p>For towns, counties, school districts, libraries and special districts.
 <strong>It works without a Docket SEO licence.</strong> A clerk can hand the report to a council or board.</p>
-<p class="tool-free">Checked 8 November 2026.</p>
+<p class="tool-free">Checked {CHECKED}.</p>
 
 <aside class="tool-out" aria-label="Limits">
 <p><strong>{LIMITS}</strong></p>
@@ -66,7 +70,7 @@ and writes a plain-words board report as a PDF.</p>
 </aside>
 
 <div class="buy-block">
-<p><strong>$149 once per licence.</strong> Unlimited sites on that computer. Updates included. 30-day refund.
+<p><strong>${PSC_PRICE} once per licence.</strong> Unlimited sites on that computer. Updates included. 30-day refund.
 For Mac and 64-bit Windows. No Docket SEO licence needed.</p>
 {buy}
 </div>
@@ -78,10 +82,10 @@ Use the <a href="/tools/title-ii-date/">Title II date tool</a> to work out your 
 The <a href="/learn/ada-title-ii-website-dates/">Title II dates guide</a> explains the rule, exceptions and sources.</p>
 
 <h2>The 15 success criteria it checks</h2>
-<p>Each finding names its WCAG 2.1 success criterion and level. Contrast, focus and reflow need the app&rsquo;s
+<p>Each finding names its WCAG {WCAG} success criterion and level. Contrast, focus and reflow need the app&rsquo;s
 renderer, which renders a sample of pages. The other checks read the HTML.</p>
 <div class="wrap-tbl"><table class="cmp">
-<caption>WCAG 2.1 Level A and AA checks in Public Site Check</caption>
+<caption>WCAG {WCAG} Level A and AA checks in Public Site Check</caption>
 <thead><tr><th scope="col">Number</th><th scope="col">Success criterion</th><th scope="col">Level</th></tr></thead>
 <tbody>{rows}</tbody>
 </table></div>
@@ -119,7 +123,7 @@ what needs work.</p>
     page = render(
         cat="public-site-check", slug="",
         title="Public Site Check: WCAG checks and a board report",
-        desc=("A $149 desktop add-on for public bodies: WCAG 2.1 Level A and AA checks, "
+        desc=(f"A ${PSC_PRICE} desktop add-on for public bodies: WCAG {WCAG} Level A and AA checks, "
               "documents sorted by Title II date, and a plain-words board report PDF."),
         h1="Public Site Check",
         crumb='<a href="/">Docket</a> / Public Site Check',
