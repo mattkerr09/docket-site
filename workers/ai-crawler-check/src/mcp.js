@@ -16,6 +16,7 @@ import { checkMeta, checkJsonLd, displayWidth, extract } from './page.js'
 import { evaluate, parseRobots } from './robots.js'
 import { checkHeaders, checkRedirects, trace } from './trace.js'
 import { AI_AGENTS } from './agents.js'
+import { addGuide } from './guides.js'
 
 export const PROTOCOL_VERSIONS = ['2025-06-18', '2025-03-26', '2024-11-05']
 // icons: the MCP Implementation.icons field (sizes as "WxH" strings). ChatGPT showed a placeholder without it (2026-11-07).
@@ -151,7 +152,8 @@ export async function checkPageSeo(args, fetchImpl, env = {}) {
   if (top) lines.push(`Fix first (${top.area}): ${top.label}. ${top.detail}`)
   for (const f of items.filter((x) => x !== top && (x.level === 'problem' || x.level === 'warning'))) lines.push(`- ${f.level === 'problem' ? 'Problem' : 'Worth fixing'} (${f.area}): ${f.label}. ${f.detail}`)
   lines.push(`Score: 100, less ${PROBLEM_COST} for each problem and ${WARNING_COST} for each thing worth fixing, on this one page.`)
-  return { text: lines.join('\n'), structured: { url: pg.url, score, problems: problems.length, worth_fixing: warnings.length, top, findings: items } }
+  return { text: lines.join('\n'), structured: { url: pg.url, score, problems: problems.length, worth_fixing: warnings.length, top, findings: items },
+    guide: { finding: top, after: 1 } }
 }
 
 export async function checkAiCrawlers(args, fetchImpl) {
@@ -170,7 +172,9 @@ export async function checkAiCrawlers(args, fetchImpl) {
     : rb.state === 'unavailable' ? `${rb.robots_url}: ${rb.note || 'no robots.txt could be read'} So every crawler may crawl.`
     : `${rb.robots_url} could not be read, so crawlers stay out until it can.`
   const lines = [head, ...rows.map((r) => `- ${r.agent} (${r.owner}, ${r.purpose}): ${r.allowed ? 'allowed' : 'blocked'}${r.rule ? ` by "${r.rule}"` : ''}`)]
-  return { text: lines.join('\n'), structured: { robots_url: rb.robots_url, path, crawlers: rows } }
+  const first = rows.findIndex((r) => !r.allowed)
+  return { text: lines.join('\n'), structured: { robots_url: rb.robots_url, path, crawlers: rows },
+    guide: { finding: rows[first], after: first + 1 } }
 }
 
 export async function traceRedirects(args, fetchImpl) {
@@ -180,7 +184,9 @@ export async function traceRedirects(args, fetchImpl) {
   const lines = t.hops.map((h, i) => `${i + 1}. ${h.url} -> HTTP ${h.status} -> ${h.location || '(no destination)'}`)
   if (t.final) lines.push(`${t.hops.length + 1}. ${t.final.url} -> HTTP ${t.final.status} (the page)`)
   for (const f of findings) lines.push(`${f.level === 'ok' ? 'Fine' : f.level === 'note' ? 'Note' : f.level === 'warning' ? 'Worth fixing' : 'Problem'}: ${f.label}${f.detail ? `. ${f.detail}` : ''}`)
-  return { text: lines.join('\n'), structured: { hops: t.hops, final: t.final ? { url: t.final.url, status: t.final.status } : null, findings } }
+  const first = findings.findIndex((f) => f.level === 'problem' || f.level === 'warning')
+  return { text: lines.join('\n'), structured: { hops: t.hops, final: t.final ? { url: t.final.url, status: t.final.status } : null, findings },
+    guide: { finding: findings[first], after: t.hops.length + (t.final ? 1 : 0) + first } }
 }
 
 export async function checkHttpHeaders(args, fetchImpl) {
@@ -191,7 +197,9 @@ export async function checkHttpHeaders(args, fetchImpl) {
   const lines = [`HTTP ${t.final.status} from ${t.final.url}${t.hops.length ? ` after ${t.hops.length} redirect(s)` : ''}.`,
     ...t.final.headers.map((h) => `${h.name}: ${h.value}`),
     ...findings.map((f) => `${f.level === 'ok' ? 'Fine' : f.level === 'note' ? 'Note' : f.level === 'warning' ? 'Worth fixing' : 'Problem'}: ${f.label}${f.detail ? `. ${f.detail}` : ''}`)]
-  return { text: lines.join('\n'), structured: { url: t.final.url, status: t.final.status, headers: t.final.headers, findings } }
+  const first = findings.findIndex((f) => f.level === 'problem' || f.level === 'warning')
+  return { text: lines.join('\n'), structured: { url: t.final.url, status: t.final.status, headers: t.final.headers, findings },
+    guide: { finding: findings[first], after: t.final.headers.length + 1 + first } }
 }
 
 function cut(text, max) {
@@ -216,7 +224,11 @@ export function previewSnippet(args) {
   if (desc) lines.push(`Description as shown: ${cut(desc, DESC_MAX)}`)
   lines.push(`Description: ${verdict(dw, DESC_MIN, DESC_MAX, 'description')}`,
     'Width counts East Asian wide characters as two, as search results render them about twice as wide.')
-  return { text: lines.join('\n'), structured: { title_width: tw, description_width: dw, title_shown: cut(title, TITLE_MAX), description_shown: desc ? cut(desc, DESC_MAX) : '' } }
+  const findings = []
+  if (tw > TITLE_MAX) findings.push({ level: 'warning', label: `Long title: ${tw} wide` })
+  if (dw > DESC_MAX) findings.push({ level: 'warning', label: `Long description: ${dw} wide` })
+  return { text: lines.join('\n'), structured: { title_width: tw, description_width: dw, title_shown: cut(title, TITLE_MAX), description_shown: desc ? cut(desc, DESC_MAX) : '', findings },
+    guide: { finding: findings[0], after: tw > TITLE_MAX ? 1 : 3 } }
 }
 
 const RUN = { check_page_seo: checkPageSeo, check_ai_crawlers: checkAiCrawlers, trace_redirects: traceRedirects,
@@ -270,7 +282,8 @@ export async function handleMcp(request, fetchImpl = fetch, env = {}) {
   if (method === 'tools/list') return reply({ jsonrpc: '2.0', id, result: { tools: TOOLS } })
   if (method !== 'tools/call') return rpcError(id, -32601, `Unknown method: ${method}.`)
 
-  await tally(env, 'calls', familyOf(request.headers.get('Mcp-Session-Id')))
+  const family = familyOf(request.headers.get('Mcp-Session-Id'))
+  await tally(env, 'calls', family)
   const name = params.name
   const run = RUN[name]
   if (!run) return rpcError(id, -32602, `Unknown tool: ${name}. The tools are ${TOOLS.map((t) => t.name).join(', ')}.`)
@@ -284,6 +297,7 @@ export async function handleMcp(request, fetchImpl = fetch, env = {}) {
   }
   try {
     const out = await run(params.arguments || {}, fetchImpl, env)
+    if (addGuide(out, family)) await tally(env, 'guide', family)
     await tally(env, name, 'ok')
     return reply({ jsonrpc: '2.0', id, result: { content: [{ type: 'text', text: out.text }], structuredContent: out.structured, isError: false } })
   } catch (e) {
