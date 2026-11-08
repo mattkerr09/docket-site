@@ -276,6 +276,14 @@ export async function handle(request, fetchImpl = fetch, env = {}, store = undef
   // The remote MCP server is called server-to-server by MCP clients, not by docketseo.app's pages, so it skips the
   // origin check and the per-IP limit below (it limits per session; see mcp.js).
   if (new URL(request.url).pathname === '/mcp') return handleMcp(request, fetchImpl, env)
+  // Outcome counts for the MCP tools (tool and outcome only; see tally in mcp.js). Secret-gated, never public.
+  if (new URL(request.url).pathname === '/mcp/stats') {
+    const key = request.headers.get('X-Stats-Key') || ''
+    if (!env.STATS_KEY || key.length !== env.STATS_KEY.length || key !== env.STATS_KEY || !env.DAILY_CAP) {
+      return new Response('Not found.', { status: 404 })
+    }
+    return env.DAILY_CAP.get(env.DAILY_CAP.idFromName('global')).fetch('https://cap.invalid/stats')
+  }
   // Clients that read a server's own favicon (Claude's directory uses "the favicon from the server's URL") get the
   // site's icon. docketseo.app has no favicon.ico, so both go to the 512 px PNG.
   const iconPath = new URL(request.url).pathname

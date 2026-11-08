@@ -31,6 +31,43 @@ const PROBLEM_COST = 12, WARNING_COST = 5
 const SEARCH = ['Googlebot', 'Bingbot']
 const CITE = ['OAI-SearchBot', 'Claude-SearchBot', 'PerplexityBot']
 
+/**
+ * The site decided the outcome, not the tool: it refused, failed, timed out or is not a web page. Claude's directory
+ * counted every one of these as a tool error (6.5% of 169 calls in the 30 days to 8 Nov 2026), and the person saw one
+ * bare sentence. They are facts about the site, so they come back as a normal result that starts "Not checked:", says
+ * why in plain words and says what to do. Only a bad address and our own limits stay errors (the assistant can fix the
+ * first and must wait out the second).
+ */
+export class NotChecked extends Error {
+  constructor(detail, status = null) {
+    super(detail)
+    const why = classify(detail, status)
+    this.reason = why.reason
+    this.advice = why.advice
+  }
+}
+function classify(detail, status) {
+  const d = String(detail || '')
+  if (status === 401 || status === 403 || status === 429 || /bot check|refused/i.test(d))
+    // No product link: the directory's rules (and the "promotes nothing" tests) keep tool results free of promotion.
+    return { reason: 'refused', advice: 'The site turned away this checker, which runs on cloud servers; many sites do that to cloud traffic and still let visitors in. Look at the page from your own connection instead, for example in a browser\u2019s page source.' }
+  if (status === 404 || status === 410)
+    return { reason: 'not_found', advice: 'Check the address. If it is right, the page itself is missing, and visitors see the same error.' }
+  if (status && status >= 500)
+    return { reason: 'server_error', advice: 'The site\u2019s server failed. Try again in a minute; if it keeps failing, visitors are seeing the error too.' }
+  if (status && status >= 400)
+    return { reason: 'http_error', advice: 'Check the address. The site answered with an error rather than the page.' }
+  if (/within 8 seconds/.test(d))
+    return { reason: 'timeout', advice: 'Try again. A page that keeps taking longer than 8 seconds is slow for visitors and search crawlers too.' }
+  if (/could not be reached/.test(d))
+    return { reason: 'unreachable', advice: 'Check that the address is spelled right and that the site is online.' }
+  if (/not a web page/.test(d))
+    return { reason: 'not_html', advice: 'Give the address of an HTML page rather than a file.' }
+  if (/redirect/i.test(d))
+    return { reason: 'redirects', advice: 'The trace_redirects tool lists every hop, so you can see where the chain breaks.' }
+  return { reason: 'other', advice: 'Try again, or check the address.' }
+}
+
 const url = { type: 'string', description: 'The page address, for example example.com/pricing/. https:// is assumed if left out.' }
 export const TOOLS = [
   { name: 'check_page_seo', title: 'Check one page for SEO problems',
@@ -68,7 +105,7 @@ async function robotsFor(site, path, agents, fetchImpl) {
   if (got.state === 'blocked') return { state: 'blocked', note: got.note, results: [] }
   if (got.state !== 'parsed') {
     const allowed = got.state === 'unavailable'
-    return { state: got.state, status: got.status, robots_url: got.url,
+    return { state: got.state, status: got.status, robots_url: got.url, note: got.note,
       results: agents.map((agent) => ({ agent, allowed, governedBy: 'status', rule: null })) }
   }
   const parsed = parseRobots(got.body.text)
@@ -79,7 +116,7 @@ export async function checkPageSeo(args, fetchImpl, env = {}) {
   const site = siteFrom(args.url)
   const path = (site.pathname || '/') + (site.search || '')
   const [pg, rb] = await Promise.all([fetchPage(site, fetchImpl), robotsFor(site, path, [...SEARCH, ...CITE], fetchImpl)])
-  if (pg.error) throw new Error(pg.error)
+  if (pg.error) throw new NotChecked(pg.error, pg.status || null)
   const data = await (env.extract || extract)(pg.body.text)
   const items = []
   const add = (area, level, label, detail = '') => items.push({ area, level, label, detail })
@@ -110,14 +147,16 @@ export async function checkAiCrawlers(args, fetchImpl) {
   const site = siteFrom(args.url)
   const path = (site.pathname || '/') + (site.search || '')
   const rb = await robotsFor(site, path, AI_AGENTS.map((a) => a.agent), fetchImpl)
-  if (rb.state === 'blocked') throw new Error(rb.note || 'That address could not be checked.')
+  if (rb.state === 'blocked') throw new NotChecked(rb.note || 'robots.txt redirects somewhere this tool will not follow.')
   if (rb.state === 'unavailable' && (rb.status === 401 || rb.status === 403)) {
-    throw new Error(`${rb.robots_url} refused this checker (HTTP ${rb.status}), so what it tells crawlers is unknown.`)
+    throw new NotChecked(`${rb.robots_url} refused this checker (HTTP ${rb.status}), so what it tells crawlers is unknown.`, rb.status)
   }
   const meta = Object.fromEntries(AI_AGENTS.map((a) => [a.agent, a]))
   const rows = rb.results.map((r) => ({ agent: r.agent, owner: meta[r.agent].owner, purpose: meta[r.agent].purpose, allowed: r.allowed, rule: r.rule || null }))
   const head = rb.state === 'parsed' ? `Read ${rb.robots_url} for ${path}.`
-    : rb.state === 'unavailable' ? `${rb.robots_url} was not found (HTTP ${rb.status}), so every crawler may crawl.`
+    : rb.state === 'unavailable' && rb.status ? `${rb.robots_url} was not found (HTTP ${rb.status}), so every crawler may crawl.`
+    // No status: robots.txt redirected more than five times (it said "HTTP null" here until 8 Nov 2026).
+    : rb.state === 'unavailable' ? `${rb.robots_url}: ${rb.note || 'no robots.txt could be read'} So every crawler may crawl.`
     : `${rb.robots_url} could not be read, so crawlers stay out until it can.`
   const lines = [head, ...rows.map((r) => `- ${r.agent} (${r.owner}, ${r.purpose}): ${r.allowed ? 'allowed' : 'blocked'}${r.rule ? ` by "${r.rule}"` : ''}`)]
   return { text: lines.join('\n'), structured: { robots_url: rb.robots_url, path, crawlers: rows } }
@@ -136,7 +175,7 @@ export async function traceRedirects(args, fetchImpl) {
 export async function checkHttpHeaders(args, fetchImpl) {
   const site = siteFrom(args.url)
   const t = await trace(site, fetchImpl, PAGE_AGENT)
-  if (!t.final) throw new Error(t.error || (t.loop ? `The address redirects in a loop through ${t.loop}.` : 'The redirects did not end on a page.'))
+  if (!t.final) throw new NotChecked(t.error || (t.loop ? `The address redirects in a loop through ${t.loop}.` : 'The redirects did not end on a page.'))
   const findings = checkHeaders(t)
   const lines = [`HTTP ${t.final.status} from ${t.final.url}${t.hops.length ? ` after ${t.hops.length} redirect(s)` : ''}.`,
     ...t.final.headers.map((h) => `${h.name}: ${h.value}`),
@@ -223,6 +262,7 @@ export async function handleMcp(request, fetchImpl = fetch, env = {}) {
   if (!run) return rpcError(id, -32602, `Unknown tool: ${name}. The tools are ${TOOLS.map((t) => t.name).join(', ')}.`)
   const session = request.headers.get('Mcp-Session-Id') || request.headers.get('CF-Connecting-IP') || 'anonymous'
   if (await overSession(session, env)) {
+    await tally(env, name, 'limit')
     return reply({ jsonrpc: '2.0', id, result: { isError: true, content: [{ type: 'text', text: `Too many checks in this conversation: the limit is ${SESSION_LIMIT} a minute. Wait a minute and try again.` }] } })
   }
   if (await overDailyCap(env)) {
@@ -230,17 +270,56 @@ export async function handleMcp(request, fetchImpl = fetch, env = {}) {
   }
   try {
     const out = await run(params.arguments || {}, fetchImpl, env)
+    await tally(env, name, 'ok')
     return reply({ jsonrpc: '2.0', id, result: { content: [{ type: 'text', text: out.text }], structuredContent: out.structured, isError: false } })
   } catch (e) {
+    if (e instanceof NotChecked) {
+      await tally(env, name, e.reason)
+      return reply({ jsonrpc: '2.0', id, result: { isError: false,
+        content: [{ type: 'text', text: `Not checked: ${e.message} ${e.advice}` }],
+        structuredContent: { checked: false, reason: e.reason, detail: e.message, advice: e.advice } } })
+    }
+    await tally(env, name, 'input')
     return reply({ jsonrpc: '2.0', id, result: { isError: true, content: [{ type: 'text', text: String((e && e.message) || e || 'The check failed.') }] } })
   }
 }
 
-/** One counter for the whole worker, per UTC day. */
+/**
+ * How each call ended, counted per UTC day as tool and outcome only: never the address checked and never who asked, so
+ * "nothing is stored" stays true. Read with GET /mcp/stats and the STATS_KEY secret (index.js).
+ */
+async function tally(env, tool, outcome) {
+  if (!env.DAILY_CAP) return
+  try {
+    const stub = env.DAILY_CAP.get(env.DAILY_CAP.idFromName('global'))
+    await stub.fetch(`https://cap.invalid/tally?k=${encodeURIComponent(`${tool}:${outcome}`)}`)
+  } catch { /* a count is never worth a failed check */ }
+}
+
+/** One counter for the whole worker, per UTC day; and the outcome tally above. */
 export class DailyCap {
   constructor(state) { this.state = state }
-  async fetch() {
+  async fetch(request) {
+    const u = new URL(request ? request.url : 'https://cap.invalid/hit')
     const day = new Date().toISOString().slice(0, 10)
+    if (u.pathname === '/tally') {
+      const k = (u.searchParams.get('k') || '').slice(0, 80)
+      if (!/^[a-z_]+:[a-z_]+$/.test(k)) return new Response('bad key', { status: 400 })
+      const key = `t:${day}:${k}`
+      await this.state.storage.put(key, ((await this.state.storage.get(key)) || 0) + 1)
+      return new Response('ok')
+    }
+    if (u.pathname === '/stats') {
+      const since = new Date(Date.now() - 35 * 86400e3).toISOString().slice(0, 10)
+      const rows = {}
+      for (const [key, n] of await this.state.storage.list({ prefix: 't:' })) {
+        const [, d, k] = key.match(/^t:([^:]+):(.+)$/) || []
+        if (!d) continue
+        if (d < since) { await this.state.storage.delete(key); continue }
+        rows[k] = (rows[k] || 0) + n
+      }
+      return new Response(JSON.stringify({ since, outcomes: rows }), { headers: { 'Content-Type': 'application/json' } })
+    }
     const key = `n:${day}`
     const n = ((await this.state.storage.get(key)) || 0) + 1
     await this.state.storage.put(key, n)

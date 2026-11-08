@@ -139,3 +139,51 @@ test('initialize carries the icons, and the favicon on the connector host redire
     assert.equal(r.headers.get('Location'), 'https://docketseo.app/icon.png')
   }
 })
+
+test('a site that refuses, fails, times out or is not a page is "Not checked", with what to do: not a tool error', async () => {
+  const cases = [
+    [{ 'https://shop-gr.com/': { status: 403 } }, 'refused'],
+    [{ 'https://shop-gr.com/': { status: 503 } }, 'server_error'],
+    [{ 'https://shop-gr.com/': { status: 404 } }, 'not_found'],
+    [{ 'https://shop-gr.com/': { headers: { 'Content-Type': 'application/pdf' } } }, 'not_html'],
+    [{}, 'unreachable'],
+  ]
+  for (const [routes, reason] of cases) {
+    const { fetchImpl } = net(routes)
+    const j = await (await handle(call(tool('check_page_seo', { url: 'shop-gr.com' })), fetchImpl, EXTRACT)).json()
+    assert.equal(j.result.isError, false, reason)
+    assert.match(j.result.content[0].text, /^Not checked: /)
+    assert.equal(j.result.structuredContent.checked, false)
+    assert.equal(j.result.structuredContent.reason, reason)
+    assert.ok(j.result.structuredContent.advice.length > 20)
+    assert.doesNotMatch(j.result.content[0].text, /docketseo\.app|Docket SEO|download/i, 'results promote nothing')
+  }
+  const { fetchImpl } = net({})
+  const bad = await (await handle(call(tool('check_page_seo', { url: 'not a url at all' })), fetchImpl, EXTRACT)).json()
+  assert.equal(bad.result.isError, true, 'a bad address is still an error the assistant can fix')
+})
+
+test('a robots.txt that redirects in a loop says so, never "HTTP null"', async () => {
+  const loop = { 'https://shop-gr.com/robots.txt': { status: 301, headers: { Location: 'https://shop-gr.com/robots.txt' } } }
+  const { fetchImpl } = net(loop)
+  const j = await (await handle(call(tool('check_ai_crawlers', { url: 'shop-gr.com' })), fetchImpl, {})).json()
+  assert.equal(j.result.isError, false)
+  assert.doesNotMatch(j.result.content[0].text, /null/)
+  assert.match(j.result.content[0].text, /More than five redirects/)
+})
+
+test('outcomes are counted by tool and outcome only, and the stats need the secret', async () => {
+  const store = new Map()
+  const state = { storage: { get: async (k) => store.get(k), put: async (k, v) => { store.set(k, v) },
+    delete: async (k) => { store.delete(k) }, list: async ({ prefix }) => new Map([...store].filter(([k]) => k.startsWith(prefix))) } }
+  const { DailyCap } = await import('../src/mcp.js')
+  const cap = new DailyCap(state)
+  const env = { ...EXTRACT, STATS_KEY: 'k'.repeat(32),
+    DAILY_CAP: { idFromName: () => 'g', get: () => ({ fetch: (u) => cap.fetch(new Request(u)) }) } }
+  const { fetchImpl } = net({ 'https://shop-gr.com/': { status: 403 } })
+  await handle(call(tool('check_page_seo', { url: 'shop-gr.com' })), fetchImpl, env)
+  for (const key of store.keys()) assert.doesNotMatch(key, /shop-gr\.com/, 'never the address')
+  assert.equal(await (await handle(new Request('https://w.example.workers.dev/mcp/stats'), fetchImpl, env)).status, 404)
+  const stats = await (await handle(new Request('https://w.example.workers.dev/mcp/stats', { headers: { 'X-Stats-Key': 'k'.repeat(32) } }), fetchImpl, env)).json()
+  assert.equal(stats.outcomes['check_page_seo:refused'], 1)
+})

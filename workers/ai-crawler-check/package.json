@@ -2,5 +2,8 @@
   "name": "ai-crawler-check",
   "private": true,
   "type": "module",
-  "scripts": { "test": "node --test test/*.test.mjs" }
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "deploy": "npm test && npx --no-install wrangler deploy"
+  }
 }
