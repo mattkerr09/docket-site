@@ -15,7 +15,7 @@
 <title>What is ClaudeBot? What blocking it does, and doesn't</title>
 <meta name="description" content="ClaudeBot is Anthropic's training crawler. Blocking it keeps your pages out of training, not out of Claude's answers. The three Anthropic bots, and how to block one.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="7d14e5b3b830">
+<meta name="build-id" content="8c93cd385269">
 <link rel="canonical" href="https://docketseo.app/learn/what-is-claudebot/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -187,6 +187,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:va
    on every article rendered in default browser blue on a near-black page for
    as long as that brace survived, and no gate on this site looks at colour. */
 a{color:var(--brand-light);text-decoration:none;transition:color .16s}
+/* Links inside running text are underlined, not marked by colour alone (WCAG
+   1.4.1). Docket's own Public Site Check found 121 such links on 7 of the 10
+   pages it rendered on 8 November 2026: the teal link against the grey text is
+   1.4 to 1, under the 3 to 1 that colour alone would need. Links with a class
+   (buttons, cards, nav) keep their own look. */
+main :is(p,li,td,dd,figcaption,blockquote) a:not([class]){text-decoration:underline;
+  text-underline-offset:.15em;text-decoration-thickness:from-font}
+/* Inline code is often one long unbroken command or path; at 320px it pushed
+   /ai-assistants/ to 475px wide (WCAG 1.4.10). Code blocks keep their own
+   scrolling box. */
+:not(pre)>code{overflow-wrap:anywhere}
 /* --- instrument, not dashboard -------------------------------------------
    Monospace carries every label, eyebrow and measured value. Prose stays in
    the sans, because a whole page of mono is a pose rather than a choice. The

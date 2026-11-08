@@ -15,7 +15,7 @@
 <title>What Docket got wrong, and the release that fixed it</title>
 <meta name="description" content="The releases that fixed something Docket got wrong, newest first, with the tests that hold each fix, and 15 worked cases of findings that looked wrong.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="7d14e5b3b830">
+<meta name="build-id" content="8c93cd385269">
 <link rel="canonical" href="https://docketseo.app/learn/what-docket-got-wrong/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -187,6 +187,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:va
    on every article rendered in default browser blue on a near-black page for
    as long as that brace survived, and no gate on this site looks at colour. */
 a{color:var(--brand-light);text-decoration:none;transition:color .16s}
+/* Links inside running text are underlined, not marked by colour alone (WCAG
+   1.4.1). Docket's own Public Site Check found 121 such links on 7 of the 10
+   pages it rendered on 8 November 2026: the teal link against the grey text is
+   1.4 to 1, under the 3 to 1 that colour alone would need. Links with a class
+   (buttons, cards, nav) keep their own look. */
+main :is(p,li,td,dd,figcaption,blockquote) a:not([class]){text-decoration:underline;
+  text-underline-offset:.15em;text-decoration-thickness:from-font}
+/* Inline code is often one long unbroken command or path; at 320px it pushed
+   /ai-assistants/ to 475px wide (WCAG 1.4.10). Code blocks keep their own
+   scrolling box. */
+:not(pre)>code{overflow-wrap:anywhere}
 /* --- instrument, not dashboard -------------------------------------------
    Monospace carries every label, eyebrow and measured value. Prose stays in
    the sans, because a whole page of mono is a pose rather than a choice. The
@@ -983,7 +994,7 @@ and which tests now hold the fix in place. Where we could not prove something, t
 <p>This is the part of our log that has shipped as a release. It is not a list of every mistake, only of the ones we
 found and fixed. For the questions to ask of any tool's report, ours included, see
 <a href="/learn/audit-tool-accuracy/">how to tell whether an audit tool is lying to you</a>; it counts
-197 of Docket's 664 test files that record a past mistake in their own words.
+197 of Docket's 669 test files that record a past mistake in their own words.
 After the releases, 15 <a href="#worked-cases">worked cases</a> show what such mistakes look like from the reader's
 side.</p>
 
