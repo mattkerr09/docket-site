@@ -2094,10 +2094,11 @@ KERR_MORE_ARM = KERR_MORE
 FOOTER = f"""<footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>
-<a href="/">Overview</a><a href="/download/">Download Docket SEO for Mac</a>
+<a href="/">Overview</a><a href="/download/">Download Docket SEO</a>
 <a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a>__FOOT_CHECKER__</div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
+<a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking vs Screaming Frog</a>
 <a href="/vs/sitebulb-alternative/">vs Sitebulb</a>
 <a href="/vs/ahrefs-site-audit-alternative/">vs Ahrefs</a>
 <a href="/vs/semrush-site-audit-alternative/">vs Semrush</a>
