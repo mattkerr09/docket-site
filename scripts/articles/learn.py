@@ -184,6 +184,8 @@ on your own computer, with no account and no sign-up:</p>
 data-ev-button="{SEO_AUDIT_BOX}">Run a free audit of your site</a></p>
 <p class="hero-note">{FREE_LINE} For {PLATFORMS}.
 {('<a href="' + download_url(SEO_AUDIT_BOX + "-intel", to=INTEL_DMG) + '" data-ev="Download" data-ev-button="' + SEO_AUDIT_BOX + '-intel">Intel Mac download</a>, ') if INTEL else ''}<a href="/download/">Windows and other downloads</a>.</p>
+<p>To check a single page first, with nothing to install, the free <a href="/tools/seo-checker/">SEO checker</a>
+scores one address in your browser and shows what to fix on it.</p>
 </div>
 
 <p class="lede">An SEO audit is a systematic check of everything about a website that
@@ -271,13 +273,13 @@ checked nothing or is hiding something. If a crawl was blocked or only reached p
 that has to be on the page.</li>
 </ol>
 
-<p>Docket is built around those three. It runs {N_CHECKS} checks on your Mac, ranks everything by impact
+<p>Docket is built around those three. It runs {N_CHECKS} checks on your own computer, ranks everything by impact
 against effort, and marks areas it could not assess as unknown rather than passing.</p>
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="learn", slug="seo-audit",
-        modified="2026-11-05",  # the answer-first box with the free-audit download (src learn-seo-audit-box)
+        modified="2026-11-08",  # the single-page checker linked from the answer box; "on your own computer" (Windows too)
         title="What is an SEO audit? What it covers and how to read one",
         desc=("An SEO audit checks whether search engines can find, understand and choose to "
               "show your site. What each area covers, and why they fail in order."),
