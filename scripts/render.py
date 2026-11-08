@@ -2357,12 +2357,16 @@ PHONE_LINK_JS = (
 
 
 #: The landing-source tagger: see the comment where it is placed in the head.
-#: The list matches the hub's LANDING_OK exactly (kerr-affiliate-hub worker.js).
+#: The list matched the hub's LANDING_OK exactly (kerr-affiliate-hub worker.js) until 2026-11-08, when claude,
+#: claude-directory, claude-connector and chatgpt-directory were added here first; the hub counts them once J4
+#: adds them to LANDING_OK and snippet.js's SOURCES.
 LANDING_SOURCE_JS = (
     "(function(){var L=/^(producthunt|product_hunt|ph|hackernews|hn|reddit|twitter|x|youtube|"
     "github|betalist|indiehackers|newsletter|linkedin|facebook|instagram|tiktok|google|bing|"
-    "chatgpt|perplexity|discord)$/,K='dk_ls',H='https://kerr-affiliate-hub.kerrco.workers.dev/',s='';"
-    "try{var q=new URLSearchParams(location.search),v=(q.get('ref')||q.get('via')||'').toLowerCase();"
+    "chatgpt|perplexity|discord|claude|claude-directory|claude-connector|chatgpt-directory)$/,"
+    "K='dk_ls',H='https://kerr-affiliate-hub.kerrco.workers.dev/',s='';"
+    "try{var q=new URLSearchParams(location.search),v=(q.get('ref')||q.get('via')||q.get('utm_source')||'').toLowerCase();"
+    "if(v==='chatgpt.com')v='chatgpt';else if(v==='claude.ai')v='claude';"
     "if(L.test(v)){s=v;sessionStorage.setItem(K,v)}else{s=sessionStorage.getItem(K)||''}}catch(e){}"
     "if(!L.test(s))return;"
     "function t(a){var h=a.getAttribute('href')||'';if(h.indexOf(H)!==0)return;var p=h.slice(H.length);"

@@ -22,6 +22,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import N_CHECKS, REPO, RELEASE, buy_block, download_url, render  # noqa: E402
+from render import ISSUES, PRICE_STR, PAY4, FOUNDING_LINE  # noqa: E402
+from pages import email_box, free_result_figure  # noqa: E402
 
 RUN = json.loads((Path(__file__).resolve().parents[2] / "data" / "ai-assistants-run.json").read_text())
 ENGINE_MAC = "/Applications/Docket.app/Contents/Resources/docket/docket"
@@ -63,15 +65,45 @@ def _bundle(platform: str) -> str:
 def ai_assistants() -> Path:
     when = _day(RUN["measured"])
     vscode_link, cursor_link = _install_links()
+    purchase = (buy_block("ai-assistants", try_app="ai-assistants-try-free")
+                .replace(' dl-mac', '').replace(' dl-win', '')
+                .replace('>Try it free</a>', '>Try it free for Mac</a>'))
     links = " · ".join(
         f'<a href="{download_url("ai-assistants-" + key.split("-")[0], to=_bundle(key))}" data-ev="Download" '
         f'data-ev-button="ai-assistants-{key.split("-")[0]}">{label}</a>'
         for key, label in (("macos", "Mac"), ("windows-x64", "Windows"), ("linux-x86_64", "Linux")))
     body = f"""
-<p class="lede">Docket SEO&rsquo;s audit engine runs as an MCP server on your own computer, so Claude or
-ChatGPT can audit a site for you in conversation. Ask &ldquo;audit example.com&rdquo; and the crawl runs on
-your machine. Without a key it is the free version: the score, how many problems each area has, and the
-worst one in full with its fix.</p>
+<p class="lede">The Docket SEO connector checks one page at a time, free, with nothing to install.
+To check every page of a site, run Docket SEO on your Mac or PC. The free version crawls the whole site
+and shows your score, how many problems each area has, and the worst one in full with its fix.</p>
+{purchase}
+{email_box()}
+<p class="hero-note">Checked {_day(RUN["measured"])}.</p>
+
+<h2>From one page to the whole site</h2>
+<div class="wrap-tbl"><table class="cmp">
+<caption>What the connector and the desktop app check</caption>
+<thead><tr><th scope="col"> </th><th scope="col">The connector in Claude</th>
+<th scope="col">Docket, free</th><th scope="col">Docket, with a licence</th></tr></thead>
+<tbody>
+<tr><th scope="row">Pages</th><td>One per check</td><td>The whole site</td><td>The whole site</td></tr>
+<tr><th scope="row">What it shows</th><td>Score, the problems on that page, the first fix</td>
+<td>Score, problem count per area, the worst problem with its fix</td>
+<td>Every finding, ranked, with the markup to paste</td></tr>
+<tr><th scope="row">Runs on</th><td>Our server</td><td>Your computer</td><td>Your computer</td></tr>
+<tr><th scope="row">Works in</th><td>claude.ai, Claude Desktop, mobile, Claude Code</td>
+<td>The app, Claude Desktop extension, Claude Code</td><td>The same</td></tr>
+<tr><th scope="row">Price</th><td>Free</td><td>Free</td><td>{PRICE_STR} once{PAY4}. See the
+<a href="#licence">licence and current price</a> below.</td></tr>
+</tbody></table></div>
+{free_result_figure()}
+
+<h2>Claude Desktop: install the extension</h2>
+<p>Download the extension for your computer: {links}. Then, in Claude Desktop, open Settings, choose
+Extensions under Desktop app in the newer layout, click Advanced settings and then Install Extension, and
+pick the file. Leave the licence key setting empty for the free version, or paste the key from your Docket
+receipt for every finding. These steps are from <a href="{CLAUDE_DESKTOP_HELP}" rel="nofollow noopener">Anthropic&rsquo;s
+help page</a>, read {when}.</p>
 
 <h2>Claude: add the connector, nothing to install</h2>
 <p>Docket SEO&rsquo;s free checks also run as a connector on our server, so Claude can use them in a chat with
@@ -90,16 +122,9 @@ preview. Try asking:</p>
 <li>&ldquo;Trace the redirects from http://example.com and check its security headers.&rdquo;</li>
 <li>&ldquo;Will this title get cut off in Google: &lsquo;Emergency plumber in Grand Rapids, open 24 hours a day&rsquo;?&rdquo;</li>
 </ul>
-<p>The connector checks one page at a time. For a whole site, use the desktop app below. What it sends and keeps
+<p>The connector checks one page at a time. For a whole site, use the desktop app. What it sends and keeps
 is on the <a href="/legal/privacy/">privacy page</a>; questions go to
 <a href="mailto:support@docketseo.app">support@docketseo.app</a>.</p>
-
-<h2>Claude Desktop: install the extension</h2>
-<p>Download the extension for your computer: {links}. Then, in Claude Desktop, open Settings, choose
-Extensions (under Desktop app in the newer layout), click Advanced settings and then Install Extension, and
-pick the file. Leave the licence key setting empty for the free version, or paste the key from your Docket
-receipt for every finding. These steps are from <a href="{CLAUDE_DESKTOP_HELP}" rel="nofollow noopener">Anthropic&rsquo;s
-help page</a>, read {when}.</p>
 
 <h2>Claude Code: one line</h2>
 <p>With the Docket app installed, run this in a terminal:</p>
@@ -110,8 +135,8 @@ read {when}: everything after <code>--</code> is the command that starts the ser
 
 <h2>ChatGPT: the desktop app</h2>
 <p>The ChatGPT desktop app can start a local MCP server. Add one, choose STDIO, and give it the same engine
-path with the argument <code>mcp</code>. ChatGPT on the web cannot, because it only reaches servers on the
-internet and Docket runs on your computer. The <a href="/how-to/audit-your-site-from-an-ai-assistant/">full
+path with the argument <code>mcp</code>. This local setup does not work in ChatGPT on the web, which only
+reaches servers on the internet. The <a href="/how-to/audit-your-site-from-an-ai-assistant/">full
 setup guide</a> has OpenAI&rsquo;s wording and every tool&rsquo;s options.</p>
 
 <h2>What the free version returns</h2>
@@ -132,11 +157,21 @@ tells Claude Desktop to start it, on this Mac on {when}, and on a clean Windows 
 clicks inside the Claude app are Anthropic&rsquo;s.</li>
 <li><strong>Claude Code and ChatGPT:</strong> the command is the one the extension runs. The client syntax is
 from each maker&rsquo;s documentation, not run here.</li>
-<li><strong>Your audits never reach us.</strong> They run on your computer and are never uploaded. What
+<li><strong>Local audits stay on your computer.</strong> The app and extension do not upload them to us. The
+remote connector runs its checks on our server. What
 an audit does contact, and how to turn the optional parts off, is on the
 <a href="/legal/privacy/">privacy page</a>.</li>
 </ul>
-{buy_block("ai-assistants", try_app="ai-assistants-try-free")}
+
+<h2 id="licence">What a Docket SEO licence includes</h2>
+<p>A licence unlocks every finding from the app&rsquo;s {N_CHECKS} checks, ranked, with the markup to paste.
+It also unlocks the full result in the Claude Desktop extension and the local engine used by Claude Code.
+Those audits run on your computer. The remote connector&rsquo;s five free checks need no licence.</p>
+<p>The licence is {PRICE_STR}, paid once{PAY4}. No subscription. {FOUNDING_LINE}</p>
+
+<h2>Missing a check?</h2>
+<p><a href="{ISSUES}" rel="noopener">Ask for it on the public issue tracker</a>, or report a problem there.
+Please leave private site details out of a public issue.</p>
 
 <h2>Related</h2>
 <ul>
@@ -147,19 +182,19 @@ an audit does contact, and how to turn the optional parts off, is on the
 """
     return render(
         cat="ai-assistants", slug="",
-        title="Use Docket SEO from Claude, Claude Code or ChatGPT",
-        desc=("Install Docket SEO's audit engine in Claude Desktop, Claude Code or ChatGPT's desktop app. "
-              "Ask it to audit a site; it runs on your computer. Free without a key."),
-        h1="Use Docket SEO from your AI assistant",
+        title="Docket SEO in Claude and ChatGPT",
+        desc=("Check one page free with the Docket SEO connector in Claude. "
+              "Crawl the whole site on your Mac or PC, free, then unlock every finding with a licence."),
+        h1="Docket SEO in Claude and ChatGPT",
         crumb='<a href="/">Docket</a> / AI assistants',
         body=body,
         published="2026-11-06",   # first published; the run below it is re-made each release
-        modified="2026-11-07",
+        modified="2026-11-08",
         schema_type="WebPage",
         faq=[
             ("Can Claude audit my website?",
-             "Yes, with Docket SEO installed as an extension in Claude Desktop or added to Claude Code. Ask it to "
-             "audit a site and the audit runs on your computer."),
+             "Yes. The free connector checks one page on our server. For a whole site, install the Claude Desktop "
+             "extension or add Docket to Claude Code; that audit runs on your computer."),
             ("Does Docket SEO work in ChatGPT?",
              "In the ChatGPT desktop app, which can start a local MCP server. Not on the web, which only reaches "
              "servers on the internet."),

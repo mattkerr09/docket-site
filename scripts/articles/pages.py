@@ -42,6 +42,119 @@ import json as _json  # noqa: E402
 
 _FREE_RUN = _json.loads((Path(__file__).resolve().parent.parent.parent / "data" / "free-run.json").read_text())
 
+# Enable only after J5's MailerLite forwarding and confirmation email are live.
+EMAIL_BOX_ENABLED = False
+_REMINDER_LAST_DAY = _dt.date(2026, 11, 30)
+_EMAIL_CORRECTED = _dt.date(2026, 11, 8)
+_REMINDER_PROMISE = ("Not ready today? We'll email you to confirm, and once more the day before the Black Friday "
+                     "price ends on 30 November. Then we delete your address.")
+_NEWS_PROMISE = ("New checks in the connector and the app, about once a month. "
+                 "Every email has a one-click unsubscribe.")
+
+SUBSCRIBE_JS = """
+function subscribedOk(status, bodyText) {
+  if (!(status >= 200 && status < 300)) return false;
+  try { var body = JSON.parse(bodyText); return body !== null && body.ok === true; }
+  catch (e) { return false; }
+}
+(function () {
+  var card = document.getElementById('email-box');
+  var form = card.querySelector('form');
+  var message = card.querySelector('[role="status"]');
+  var button = form.querySelector('[type="submit"]');
+  function offer() {
+    var news = new Date().toISOString().slice(0, 10) > '2026-11-30';
+    form.elements.source.value = news ? 'docket-news' : 'docket-price-reminder';
+    card.querySelector('[data-promise]').textContent = news ? __NEWS__ : __REMINDER__;
+    button.textContent = news ? 'Keep me posted' : 'Remind me';
+  }
+  document.addEventListener('click', function (event) {
+    var link = event.target.closest && event.target.closest('a[data-ev="Download"]');
+    if (!link || link.href.indexOf('https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?') !== 0) return;
+    offer();
+    var host = link.closest('.buy-block') || link.closest('p, li') || link;
+    if (host.tagName === 'LI') host.appendChild(card);
+    else host.insertAdjacentElement('afterend', card);
+    card.hidden = false;
+  });
+  card.querySelector('[data-dismiss]').addEventListener('click', function () { card.hidden = true; });
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    if (button.disabled) return;
+    offer();
+    button.disabled = true;
+    message.textContent = '';
+    try {
+      var response = await fetch(form.action, {
+        method: 'POST', body: new URLSearchParams(new FormData(form)), credentials: 'omit'
+      });
+      if (!subscribedOk(response.status, await response.text())) throw new Error('subscribe failed');
+      form.hidden = true;
+      message.textContent = 'Done. Check your inbox to confirm.';
+    } catch (e) {
+      message.textContent = 'That did not go through. Please try again.';
+    } finally { button.disabled = false; }
+  });
+})();
+""".replace("__NEWS__", _json.dumps(_NEWS_PROMISE)).replace("__REMINDER__", _json.dumps(_REMINDER_PROMISE))
+
+
+def email_box(today: _dt.date | None = None) -> str:
+    """No markup or handler while disabled; otherwise reveal only after a Download click.
+
+    The build date sets the no-JS form's source. The handler also checks the date
+    when shown and submitted, so an older page cannot join the expired list.
+    """
+    if not EMAIL_BOX_ENABLED:
+        return ""
+    reminder = (today or _dt.datetime.now(_dt.timezone.utc).date()) <= _REMINDER_LAST_DAY
+    source = "docket-price-reminder" if reminder else "docket-news"
+    promise = _REMINDER_PROMISE if reminder else _NEWS_PROMISE
+    return f"""
+<section class="callout compact" id="email-box" hidden aria-label="Optional email list">
+<button type="button" data-dismiss aria-label="Close email box">Close</button>
+<p data-promise>{_html.escape(promise)}</p>
+<form method="post" action="https://kerr-subscribe.kerrco.workers.dev">
+<input type="hidden" name="source" value="{source}">
+<label for="sub-email">Email</label>
+<input id="sub-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+<div aria-hidden="true" style="position:absolute;left:-9999px">
+<label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label>
+</div>
+<button type="submit">{'Remind me' if reminder else 'Keep me posted'}</button>
+</form>
+<p role="status" aria-live="polite"></p>
+<p class="hero-note">From Kerr &amp; Company, who make Docket SEO. We keep your address, the list name and the date,
+nothing about your device. <a href="/legal/privacy/">Privacy policy</a>.</p>
+</section>
+<script>{SUBSCRIBE_JS}</script>
+"""
+
+
+def _email_privacy() -> str:
+    state = ("The AI assistants page and the download page have an optional email box, shown only after a Download click."
+             if EMAIL_BOX_ENABLED else
+             "The planned email boxes on the AI assistants page and the download page are switched off. "
+             "Neither page shows a box or sends an address.")
+    sending = ("We send the emails through MailerLite, which receives the address and the list name and sends a "
+               "confirmation first; nothing else is sent until you confirm. Every email has an unsubscribe link."
+               if EMAIL_BOX_ENABLED else
+               "We will switch the boxes on only when the email service can send a confirmation first. "
+               "Until then they collect nothing.")
+    return f"""
+<p>{state} When enabled, until 30 November 2026 the box offers a confirmation email and one reminder the day
+before the Black Friday price ends. That list is <code>docket-price-reminder</code>. From 1 December it offers news
+about new checks about once a month, on a separate list called <code>docket-news</code>. Asking for a reminder
+does not sign you up for news.</p>
+<p>Nothing is sent unless you type an address and press the button. Then the address and the name of the list
+go to <code>kerr-subscribe.kerrco.workers.dev</code>, a server we run. It keeps the address, the list name,
+the site name and the date, and nothing about your device. {sending} The reminder list is deleted on
+1 December 2026. To be removed sooner, use the unsubscribe link or <a href="/contact/">ask</a>, and the row
+is deleted. News addresses are kept until you unsubscribe.</p>
+<p>Until {_EMAIL_CORRECTED.day} {_EMAIL_CORRECTED:%B %Y} this section said the home page had one email field;
+by then no page had one.</p>
+"""
+
 
 def free_result_figure() -> str:
     r = _FREE_RUN
@@ -169,6 +282,7 @@ data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On
 <span class="qual">30-day refund, no conditions.</span></li>
 
 </ol>
+{email_box()}
 <p>Or start with step 2: without a key, Docket runs the same full audit for free. {FREE_LINE}
 Buy from inside the app and the audit you ran opens in full.
 The free version also saves a <a href="/score-card/">score card</a> of any audit: one picture with the score and the problems
@@ -2173,15 +2287,17 @@ by a person, because a crawler that only follows the address never makes a click
 apart from crawlers. If you arrive through an affiliate or partner link, with an id such as
 <code>ref</code> or <code>via</code> in the address, it keeps that id in this site's local storage for
 thirty days and adds it to the Buy link, so the person who recommended Docket is credited if you buy; it
-sets no cookie. And it adds where you came from, from the same short list as below, to Download links. It
+sets no cookie. It also keeps the landing word, such as <code>producthunt</code>, from the same short list
+as below, in local storage for thirty days and adds it to Download and Buy links. It
 sends nothing itself. The server it points at counts downloads and Buy clicks per day, per page tag and
 country, and whether the click looked like a person; it stores no IP address and no user agent. If a
 content blocker stops the script, the links still work.</p>
 <!-- windows-form-privacy -->
 <p>One more thing runs here, written into this site's own pages rather than loaded from
 anywhere. If you arrive from a link that says where it was shared, such as
-<code>?ref=producthunt</code>, from a fixed list of such names (Product Hunt, Hacker News, Reddit, a
-newsletter and the like), the page keeps that one word in your browser's session storage for this visit and
+<code>?ref=producthunt</code>, <code>via</code> or <code>utm_source</code>, from a fixed list of names, such as
+Product Hunt, Hacker News, Reddit, Claude, ChatGPT, a
+newsletter and the like. The page keeps that one word in your browser's session storage for this visit and
 adds it to its Download and Buy links, so we can count how many downloads came from a launch. It is
 never an affiliate id, nothing else is stored, and it is gone when you close the tab. Arrive any
 other way and it does nothing at all.</p>
@@ -2219,24 +2335,18 @@ page address, or for the snippet preview a title and description. Nothing else a
 The server fetches the page, its robots.txt or its headers, returns the result to the assistant, and keeps nothing
 about the request or the site. It keeps a copy of what it fetched for five minutes, like the checkers above, and
 counts requests per connection for a minute and across all users per day, to stop floods; those counts hold no
-address, page or result. The connector has no account and no key. The server runs on Cloudflare, which hosts it;
+address, page or result. The server also keeps daily counts by assistant family for conversations started,
+tool calls and guide links, and by tool outcome, never an address, client name or session id. These daily counts
+are kept for thirty-five days. The connector has no account and no key. The server runs on Cloudflare, which hosts it;
 nobody else receives what an assistant sends it, apart from the site being checked, which sees an ordinary request
-for its page. There is nothing to delete because nothing is kept, and you can stop at any time by removing the
-connector from the assistant. Questions go to <a href="mailto:support@docketseo.app">support@docketseo.app</a>. The server names itself in each request, keeps a copy of what it fetched
-for a few minutes so repeated checks do not hit the site again, counts checks per connection for a
-minute to stop floods, and keeps nothing else. The pages set no cookie and store nothing in your
-browser.</p>
+for its page. There is no saved site or conversation to delete. You can stop at any time by removing the
+connector from the assistant. Questions go to <a href="mailto:support@docketseo.app">support@docketseo.app</a>.
+The server names itself in each request. The checkers set no cookie and store nothing in your browser.</p>
 <p>After a purchase, the page you return to asks <code>kerr-affiliate-hub.kerrco.workers.dev</code>,
 a server we run, what that payment came to, sending only the payment&rsquo;s id, so our own sales
 count shows what you actually paid rather than the list price. Nothing about
 you is sent or returned.</p>
-<p>The home page has one email field. Leave your address and we will email you once, when the
-free audit is ready. It is not a newsletter and there is no series to subscribe to. The
-form sends exactly two things, and only when you press the button: the address you type, and a
-hidden field naming which of our sites it came from. Nothing is sent if you never use it.</p>
-<p>What is kept is that address, the site name, and the date. No IP address, no user agent, no
-referer, no fingerprint: the write stores those three columns and reads nothing from the
-request. To be removed, <a href="/contact/">ask</a> and the row is deleted.</p>
+<!-- email-privacy -->
 <p>This section said &ldquo;there is no contact form and no mailing list&rdquo; until
 2026-08-24. The field went live on 2026-08-18, so the denial stood for six days while addresses
 were being collected. It is corrected here rather than quietly rewritten, for the reason given
@@ -2255,6 +2365,7 @@ it; we hold nothing separately.</p>
 <p>Questions about privacy or anything else: <a href="/contact/">get in touch</a>.</p>
 """
     body = (body.replace("<!-- windows-form-privacy -->", _windows_form_privacy())
+                .replace("<!-- email-privacy -->", _email_privacy())
                 .replace("<!-- windows-same-app -->\n", _windows_same_app())
                 .replace("<!-- edge-probes -->", F.probe_names_html())
                 .replace("<!-- render-engine -->", "WebKit on a Mac, or Microsoft&rsquo;s WebView2 (Chromium) on Windows"
@@ -2270,7 +2381,7 @@ it; we hold nothing separately.</p>
         body=body,
         # From git: 884a2caee, 2026-11-04 (the crawler names the edge-access check sends). Before this the page showed
         # only "Published 6 August 2026" over changes dated 2 November (Matthew's full audit, 2026-11-04, row 19).
-        modified="2026-11-07",
+        modified="2026-11-08",
         schema_type="WebPage",
     )
 
