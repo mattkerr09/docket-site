@@ -70,7 +70,9 @@ def contact_urls() -> dict[str, set[str]]:
             # address (directly, or in a hub /dl link's to=), and the download-path gate checks those. Counting them
             # here sent ~200 HEADs at GitHub's release servers per deploy; on 2026-11-08, while they answered slowly,
             # this gate refused two deploys over "advertised channels" that were installers.
-            if "/releases/download/" in url:
+            # Release pages (/releases, /releases/tag/vX) are changelog citations, not channels either: ~50 of
+            # them were HEADed on every deploy.
+            if "/releases/download/" in url or "/releases" in url:
                 continue
             if any(h in url for h in CONTACT_HOSTS):
                 found.setdefault(url, set()).add(rel)
