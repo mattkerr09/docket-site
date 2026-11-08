@@ -3,8 +3,17 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { handle } from '../src/index.js'
-import { TOOLS, SESSION_LIMIT, DAILY_CAP, DailyCap, clientFamily, familyOf } from '../src/mcp.js'
+import { TOOLS, ACCESS_TOOL_ENABLED, SESSION_LIMIT, DAILY_CAP, DailyCap, clientFamily, familyOf } from '../src/mcp.js'
 import { AI_AGENTS } from '../src/agents.js'
+import { DISCLAIMER } from '../src/access.js'
+
+// Exercise the real protocol with only the release constant changed. No runtime flag can enable the shipped tool.
+const enabledMcp = async () => {
+  const file = new URL('../src/mcp.js', import.meta.url)
+  const source = readFileSync(file, 'utf8').replace('ACCESS_TOOL_ENABLED = false', 'ACCESS_TOOL_ENABLED = true')
+    .replace(/from '(\.\/[^']+)'/g, (_, path) => `from '${new URL(path, file).href}'`)
+  return import(`data:text/javascript,${encodeURIComponent(source)}`)
+}
 
 function net(routes) {
   const seen = []
@@ -283,4 +292,142 @@ test('calls are counted even for an unknown tool, bad input, session limit or da
   assert.equal(store.get(`t:${day}:calls:claude`), 4)
   assert.equal(store.get(`t:${day}:preview_search_snippet:input`), 1)
   assert.equal(store.get(`t:${day}:preview_search_snippet:limit`), 1)
+})
+
+test('accessibility is shipped off, unlisted, and exactly an unknown tool without fetching or charging limits', async () => {
+  assert.equal(ACCESS_TOOL_ENABLED, false)
+  const { store, DAILY_CAP: daily } = counter()
+  const env = { DAILY_CAP: daily, ACCESS_TOOL_ENABLED: true,
+    MCP_LIMITER: { limit: async () => { assert.fail('unknown tools do not consume limits') } } }
+  const noFetch = async () => { assert.fail('disabled tool must not fetch a page') }
+  const list = await (await handle(call(rpc('tools/list', {})), noFetch, env)).text()
+  assert.equal(list, JSON.stringify({ jsonrpc: '2.0', id: 1, result: { tools: TOOLS } }))
+  assert.equal(TOOLS.length, 5)
+  const disabled = await (await handle(call(tool('check_accessibility', { url: 'example.com' })), noFetch, env)).text()
+  const unknown = await (await handle(call(tool('unknown', {})), noFetch, env)).text()
+  assert.equal(disabled, unknown.replace('Unknown tool: unknown.', 'Unknown tool: check_accessibility.'))
+  const day = new Date().toISOString().slice(0, 10)
+  assert.equal(store.get(`t:${day}:calls:other`), 2)
+  assert.ok(![...store.keys()].some((k) => k.includes('check_accessibility')))
+})
+
+test('switching the constant on adds only the sixth read-only tool', async () => {
+  const { handleMcp, TOOLS: enabledTools, ACCESS_TOOL_ENABLED: enabled } = await enabledMcp()
+  assert.equal(enabled, true)
+  const j = await (await handleMcp(call(rpc('tools/list', {})), fetch, {})).json()
+  assert.equal(j.result.tools.length, 6)
+  assert.deepEqual(j.result.tools.slice(0, 5), TOOLS)
+  assert.deepEqual(j.result.tools, enabledTools)
+  const tool = j.result.tools[5]
+  assert.equal(tool.name, 'check_accessibility')
+  assert.equal(tool.annotations.readOnlyHint, true)
+  assert.equal(tool.annotations.destructiveHint, false)
+  assert.equal(tool.annotations.idempotentHint, true)
+  assert.equal(tool.annotations.title, tool.title)
+  assert.deepEqual(tool.inputSchema, TOOLS[0].inputSchema)
+  assert.match(tool.description, /one page of HTML/)
+  assert.match(tool.description, /no rendering: colour contrast, focus and reflow are not checked/)
+  assert.doesNotMatch(tool.description, /compliant|certified|guarantee|ADA compliance check|docket|download|buy|upgrade/i)
+})
+
+test('enabled accessibility reads only one page through the shared fetch and returns counts and the first three fixes', async () => {
+  const { handleMcp } = await enabledMcp()
+  const { store, DAILY_CAP: daily } = counter()
+  const body = '<html lang="en"><head><title>Garden</title></head><body><main><img><a href="/plants"></a><button></button><iframe></iframe></main></body></html>'
+  const { seen, fetchImpl } = net({
+    'http://example.com/': { status: 301, headers: { Location: 'https://example.com/garden' } },
+    'https://example.com/garden': { body },
+  })
+  const before = Date.now()
+  const j = await (await handleMcp(call(tool('check_accessibility', { url: 'http://example.com' }), { 'Mcp-Session-Id': 'claude.private-session' }), async (url, init) => {
+    assert.equal(init.redirect, 'manual')
+    assert.equal(init.method, 'GET')
+    assert.equal(init.cf.cacheTtl, 300)
+    assert.match(init.headers['User-Agent'], /^DocketPageCheck/)
+    return fetchImpl(url, init)
+  }, { DAILY_CAP: daily })).json()
+  assert.equal(j.result.isError, false)
+  const s = j.result.structuredContent, text = j.result.content[0].text
+  assert.deepEqual(Object.keys(s).sort(), ['url', 'checked_at', 'standard', 'by_sc', 'findings', 'limits'].sort())
+  assert.equal(s.url, 'https://example.com/garden')
+  assert.ok(Date.parse(s.checked_at) >= before && Date.parse(s.checked_at) <= Date.now())
+  assert.equal(s.standard, 'WCAG 2.1 Level A and AA')
+  assert.equal(s.by_sc.find((r) => r.sc === '4.1.2').count, 2)
+  assert.equal(s.findings.length, 4)
+  assert.ok(s.findings.every((f) => f.certainty === 'fails' && f.sc && f.sc_name && f.level === 'A' && f.element && f.problem && f.fix))
+  assert.equal(text.split('Fix: ').length - 1, 3)
+  for (const f of s.findings.slice(0, 3)) assert.ok(text.includes(`${f.element} ${f.problem} Fix: ${f.fix}`))
+  assert.ok(!text.includes(s.findings[3].problem))
+  assert.ok(text.startsWith('Accessibility checks for https://example.com/garden'))
+  assert.ok(text.endsWith(DISCLAIMER))
+  assert.equal(text.split(DISCLAIMER).length - 1, 1)
+  assert.doesNotMatch(text + JSON.stringify(s), /docketseo|download|buy|price|upgrade|compliant|certified|guarantee|ADA compliance check/i)
+  assert.deepEqual(seen, ['http://example.com/', 'https://example.com/garden'])
+  const day = new Date().toISOString().slice(0, 10)
+  assert.equal(store.get(`t:${day}:calls:claude`), 1)
+  assert.equal(store.get(`t:${day}:check_accessibility:ok`), 1)
+  assert.ok(![...store.keys()].some((k) => /example|private-session|guide/.test(k)))
+})
+
+test('enabled accessibility keeps NotChecked results and tallies site outcomes and bad input', async () => {
+  const { handleMcp } = await enabledMcp()
+  const { store, DAILY_CAP: daily } = counter()
+  for (const [route, reason] of [
+    [{ status: 403 }, 'refused'], [{ status: 503 }, 'server_error'], [{ status: 404 }, 'not_found'],
+    [{ headers: { 'Content-Type': 'application/pdf' }, body: '%PDF' }, 'not_html'],
+    [{ body: '<html><title>Just a moment...</title></html>' }, 'refused'],
+    [null, 'unreachable'], [{ status: 301, headers: { Location: 'http://127.0.0.1/' } }, 'redirects'],
+  ]) {
+    const { seen, fetchImpl } = net(route ? { 'https://example.com/': route } : {})
+    const j = await (await handleMcp(call(tool('check_accessibility', { url: 'example.com' })), fetchImpl, { DAILY_CAP: daily })).json()
+    assert.equal(j.result.isError, false, reason)
+    assert.match(j.result.content[0].text, /^Not checked: /)
+    assert.equal(j.result.structuredContent.checked, false)
+    assert.equal(j.result.structuredContent.reason, reason)
+    assert.ok(j.result.structuredContent.advice)
+    assert.equal(j.result.structuredContent.findings, undefined)
+    assert.deepEqual(seen, ['https://example.com/'])
+  }
+  for (const url of ['localhost', 'http://127.0.0.1/', 'file:///tmp/page', 'https://user:pass@example.com', 'https://example.com:8443', '']) {
+    const j = await (await handleMcp(call(tool('check_accessibility', { url })), async () => { assert.fail('unsafe addresses must not be fetched') }, { DAILY_CAP: daily })).json()
+    assert.equal(j.result.isError, true, url)
+  }
+  const day = new Date().toISOString().slice(0, 10)
+  for (const [outcome, expected] of [['refused', 2], ['server_error', 1], ['not_found', 1], ['not_html', 1], ['unreachable', 1], ['redirects', 1], ['input', 6]]) {
+    assert.equal(store.get(`t:${day}:check_accessibility:${outcome}`), expected)
+  }
+})
+
+test('enabled accessibility uses existing session and daily limits before fetching', async () => {
+  const { handleMcp } = await enabledMcp()
+  const { store, DAILY_CAP: daily } = counter()
+  const noFetch = async () => { assert.fail('limited tool must not fetch a page') }
+  const j = await (await handleMcp(call(tool('check_accessibility', { url: 'example.com' })), noFetch,
+    { DAILY_CAP: daily, MCP_LIMITER: { limit: async () => ({ success: false }) } })).json()
+  assert.equal(j.result.isError, true)
+  assert.match(j.result.content[0].text, /limit is 30 a minute/)
+  const day = new Date().toISOString().slice(0, 10)
+  assert.equal(store.get(`t:${day}:check_accessibility:limit`), 1)
+  store.set(`n:${day}`, DAILY_CAP)
+  const cap = await (await handleMcp(call(tool('check_accessibility', { url: 'example.com' })), noFetch, { DAILY_CAP: daily })).json()
+  assert.equal(cap.result.isError, true)
+  assert.match(cap.result.content[0].text, /daily limit/)
+})
+
+test('enabled accessibility discloses the shared two MiB page cap and the 25-finding cap', async () => {
+  const { handleMcp } = await enabledMcp()
+  const body = '<html lang="en"><head><title>Garden</title></head><body><main>' + '<img>'.repeat(40) + 'x'.repeat(2 * 1024 * 1024) + '<button></button></main></body></html>'
+  const { fetchImpl } = net({ 'https://example.com/': { body } })
+  const j = await (await handleMcp(call(tool('check_accessibility', { url: 'example.com' })), fetchImpl)).json()
+  const s = j.result.structuredContent
+  assert.equal(j.result.isError, false)
+  assert.equal(s.limits.page_truncated, true)
+  assert.equal(s.limits.findings_truncated, true)
+  assert.equal(s.limits.max_page_bytes, 2 * 1024 * 1024)
+  assert.equal(s.findings.length, 25)
+  assert.equal(s.by_sc.find((r) => r.sc === '1.1.1').count, 40)
+  assert.equal(s.by_sc.find((r) => r.sc === '4.1.2').count, 0)
+  assert.match(j.result.content[0].text, /Only part of the HTML was checked/)
+  assert.match(j.result.content[0].text, /first 25 findings/)
+  assert.ok(j.result.content[0].text.endsWith(DISCLAIMER))
 })

@@ -17,6 +17,10 @@ import { evaluate, parseRobots } from './robots.js'
 import { checkHeaders, checkRedirects, trace } from './trace.js'
 import { AI_AGENTS } from './agents.js'
 import { addGuide } from './guides.js'
+import { checkAccessibilityHtml, STANDARD, DISCLAIMER } from './access.js'
+
+// Built for phase F2. The CEO switches it on after 7 Dec 2026, with the paid add-on.
+export const ACCESS_TOOL_ENABLED = false
 
 export const PROTOCOL_VERSIONS = ['2025-06-18', '2025-03-26', '2024-11-05']
 // icons: the MCP Implementation.icons field (sizes as "WxH" strings). ChatGPT showed a placeholder without it (2026-11-07).
@@ -104,6 +108,27 @@ export const TOOLS = [
 for (const t of TOOLS) { t.annotations.title = t.title; t.annotations.destructiveHint = false; t.annotations.idempotentHint = true }
 
 // ------------------------------------------------------------------ the checks
+
+// Keep the five-tool contract above unchanged while this switch is off.
+if (ACCESS_TOOL_ENABLED) TOOLS.push({ name: 'check_accessibility', title: 'Check one page for accessibility problems',
+  description: 'Reads one page of HTML for some WCAG 2.1 Level A and AA problems. Reports each problem and a fix. HTML only, with no rendering: colour contrast, focus and reflow are not checked. Automated checks find some problems, not all. This is not legal advice.',
+  inputSchema: { type: 'object', properties: { url }, required: ['url'] },
+  annotations: { title: 'Check one page for accessibility problems', readOnlyHint: true, openWorldHint: true, destructiveHint: false, idempotentHint: true } })
+
+export async function checkAccessibility(args, fetchImpl) {
+  const pg = await fetchPage(siteFrom(args.url), fetchImpl)
+  if (pg.error) throw new NotChecked(pg.error, pg.status || null)
+  const data = checkAccessibilityHtml(pg.body.text, { truncated: pg.body.truncated })
+  const lines = [`Accessibility checks for ${pg.url}`, `Standard: ${STANDARD}`,
+    ...data.by_sc.map((r) => `${r.sc} ${r.sc_name}, Level ${r.level}: ${r.count}`)]
+  for (const f of data.findings.slice(0, 3)) lines.push(`${f.sc} ${f.sc_name}, Level ${f.level}: ${f.certainty}. ${f.element} ${f.problem} Fix: ${f.fix}`)
+  lines.push('HTML only. No rendering. Colour contrast, focus and reflow are not checked.')
+  if (data.limits.page_truncated || data.limits.parser_truncated) lines.push('Only part of the HTML was checked. Counts cover the part read.')
+  if (data.limits.name_depth_limited || data.limits.name_work_limited) lines.push('Some names need review because the HTML reached this check\'s reading limits.')
+  if (data.limits.findings_truncated) lines.push('The data lists the first 25 findings. Counts include all findings in the HTML checked.')
+  lines.push(DISCLAIMER)
+  return { text: lines.join('\n'), structured: { url: pg.url, checked_at: new Date().toISOString(), standard: STANDARD, ...data } }
+}
 
 function areaOf(label) {
   if (/og:|twitter/i.test(label)) return 'Sharing'
@@ -232,7 +257,8 @@ export function previewSnippet(args) {
 }
 
 const RUN = { check_page_seo: checkPageSeo, check_ai_crawlers: checkAiCrawlers, trace_redirects: traceRedirects,
-  check_http_headers: checkHttpHeaders, preview_search_snippet: (a) => previewSnippet(a) }
+  check_http_headers: checkHttpHeaders, preview_search_snippet: (a) => previewSnippet(a),
+  ...(ACCESS_TOOL_ENABLED ? { check_accessibility: checkAccessibility } : {}) }
 
 // ------------------------------------------------------------------ the protocol
 
