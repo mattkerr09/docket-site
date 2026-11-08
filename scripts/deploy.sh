@@ -20,6 +20,8 @@ PY="${PYTHON:-python3}"
 "$PY" scripts/test_brake_guard.py >/dev/null || { echo "  the brake guard's own test failed; refusing to deploy"; exit 1; }
 # The AI assistants landing page: its tag list, the email box in both states (off ships nothing) and the privacy text.
 "$PY" scripts/test_connector_landing.py >/dev/null || { echo "  the AI assistants landing test failed; refusing to deploy"; exit 1; }
+# The Public Site Check page: switched off writes nothing; switched on, the 15 criteria, the limits and the proof line.
+"$PY" scripts/test_public_site_check_page.py >/dev/null || { echo "  the Public Site Check page test failed; refusing to deploy"; exit 1; }
 source scripts/brake_guard.sh
 docket_brake_guard || exit 1
 
