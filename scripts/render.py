@@ -2432,7 +2432,8 @@ ANALYTICS = (
 #: Changed whenever og.png's content changes, so the platforms that cache a
 #: share card by URL (X, LinkedIn, iMessage, Product Hunt) fetch the new one.
 #: 2026-10-02: the card gained the free version, the price and the requirement.
-OG_VERSION = "20261002" + ("-intel" if INTEL else "")
+#: 2026-11-08: the card says Mac or PC and names Windows (the Windows relaunch), so a new key.
+OG_VERSION = "20261108" + ("-win" if WINDOWS else "-intel" if INTEL else "")
 
 
 #: Bing Webmaster Tools site verification. Matthew's order, 2026-09-26 01:28Z

@@ -181,6 +181,13 @@ def og_html(pal: dict) -> str:
     price = f"{_site.PRICE_STR} once" + (
         f" \u00b7 or 4 \u00d7 {_site.BNPL_INSTALMENT}" if _site.BNPL_LIVE else "")
     floor = f"{_site.MACOS}+"
+    # 2026-11-08 (CEO, the Windows relaunch): Windows is shipped and signed, so the card says so, read from the same
+    # WINDOWS flag every Windows sentence on the site reads; without a published installer it says Mac only, as before.
+    # "Mac or PC" makes the old line wrap one word onto a second line; this one matches the relaunch tagline.
+    pitch = ("Audits any site on your Mac or PC, ranked into a fix plan." if _site.WINDOWS
+             else "Audits any website on your Mac and ranks what to fix, in order.")
+    runs = (f"Mac \u00b7 {floor} \u00b7 Windows 64-bit" if _site.WINDOWS
+            else f"Mac \u00b7 {_site.MAC_HW} \u00b7 {floor}")
     fonts = (SITE / "fonts").as_uri()
     bare_shield = (
         '<svg viewBox="0 0 1024 1024" width="116" height="116">'
@@ -213,10 +220,10 @@ body{{background:{pal['paper']};color:{pal['ink']};
 </style>
 <div class="row">{bare_shield}<span class="word">Docket</span><span class="chip">SEO</span></div>
 <div class="rule"></div>
-<div class="line">Audits any website on your Mac and ranks what to fix, in order.</div>
+<div class="line">{pitch}</div>
 <div class="free">Try it free: your score and the top problem in full</div>
 <div class="price">{price}</div>
-<div class="foot"><span>Mac \u00b7 {_site.MAC_HW} \u00b7 {floor}</span><span>docketseo.app</span></div>
+<div class="foot"><span>{runs}</span><span>docketseo.app</span></div>
 """
 
 
