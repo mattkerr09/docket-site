@@ -851,6 +851,7 @@ def build() -> Path:
         faq=FAQ,
         closer=closer(),
         landing=True,
+        modified="2026-11-08",  # 1.3.156: the free still, the hero and the demo re-taken on the shipped version
     )
 
 
