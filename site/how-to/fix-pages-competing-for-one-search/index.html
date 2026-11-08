@@ -15,7 +15,7 @@
 <title>Pages competing for the same search: find and fix them</title>
 <meta name="description" content="Two pages on one site aiming at the same search split your own links and relevance. Why a duplicate-content audit misses them, and which to keep.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2454bbdaea7f">
+<meta name="build-id" content="7d14e5b3b830">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-pages-competing-for-one-search/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -636,6 +636,9 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .checker-extra-input{width:100%;max-width:16rem;padding:.55rem .75rem;border-radius:var(--radius-md);
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
+/* WCAG 2.4.1 Bypass Blocks: our own Public Site Check found no skip link or main landmark here (2026-11-08). */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:.6rem 1rem;background:var(--surface);color:var(--text);border:2px solid var(--brand);border-radius:var(--radius-md)}
+.skip-link:focus{left:1rem;top:1rem}
 .checker-form .checker-row+label{margin-top:.9rem}
 .tool-out{margin:0 0 2rem;padding:1rem 1.2rem;border-left:3px solid var(--brand);background:var(--surface)}
 .tool-out .t2-when{font-size:1.25rem;font-weight:700;margin:0 0 .4rem}
@@ -941,6 +944,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
@@ -968,6 +972,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
 </div></nav>
+<main id="main">
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / competing pages</div><h1>Pages competing for the same search</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-17">17 September 2026</time></p>
 
 <p class="lede">Google shows one result per site for most queries. When two of your pages aim at
@@ -1052,6 +1057,7 @@ redirect the thin one, as set out in
 <a href="/how-to/fix-thin-content-pages/">how to fix thin content pages</a>.</p>
 <aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-pages-competing-for-one-search-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.155/Docket-1.3.155-arm64.dmg" data-ev="Download" data-ev-button="how-to-fix-pages-competing-for-one-search-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-pages-competing-for-one-search-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.155/Docket-1.3.155-x86_64.dmg" data-ev="Download" data-ev-button="how-to-fix-pages-competing-for-one-search-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-pages-competing-for-one-search" data-ev="Buy" data-ev-price="59" data-ev-button="how-to-fix-pages-competing-for-one-search">Buy once, $59</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-pages-competing-for-one-search">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Black Friday price $29.50 <span class="founding-end" data-founding-end="2026-12-01T07:59:59Z">until 30 November</span> with <code>FOUNDINGDOCKET</code>, then $59</span></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is keyword cannibalisation?</h3><p>Two or more pages on the same site aiming at the same search. They are not duplicates (they are different pages answering one question), so the internal links and relevance that should back a single page are split between them.</p></div><div class="faq-item"><h3>Is it the same as duplicate content?</h3><p>No, and that is why it is easy to miss. Duplicate content means the pages are the same. Competing pages are genuinely different and often both good; the problem only exists in the relationship between them.</p></div><div class="faq-item"><h3>How do I know which page to keep?</h3><p>Use evidence you already have: which page already ranks for the query, and which one your own site links to more. If neither is clear, keep the one whose intent matches the search rather than the one you prefer.</p></div><div class="faq-item"><h3>Should I noindex or delete the page I am not keeping?</h3><p>Neither. Redirect it to the winner with a 301, which moves the links it had earned. Noindex stops it competing but discards that value, and deleting throws it away along with the page.</p></div><div class="faq-item"><h3>Can two pages target similar words without competing?</h3><p>Yes, when they genuinely answer different questions: a comparison page and a product page, for example. Make the difference visible in the title and opening paragraph, and link them to each other.</p></div></div></section>
 </div></article>
+</main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>

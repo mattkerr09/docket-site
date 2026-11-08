@@ -15,7 +15,7 @@
 <title>When your site stops saying one thing about itself</title>
 <meta name="description" content="No page is wrong, but twenty pages describe twenty businesses. Why an audit measures your site across pages, and how good work causes this.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2454bbdaea7f">
+<meta name="build-id" content="7d14e5b3b830">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-a-site-that-says-something-different-every-page/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -636,6 +636,9 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .checker-extra-input{width:100%;max-width:16rem;padding:.55rem .75rem;border-radius:var(--radius-md);
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
+/* WCAG 2.4.1 Bypass Blocks: our own Public Site Check found no skip link or main landmark here (2026-11-08). */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:.6rem 1rem;background:var(--surface);color:var(--text);border:2px solid var(--brand);border-radius:var(--radius-md)}
+.skip-link:focus{left:1rem;top:1rem}
 .checker-form .checker-row+label{margin-top:.9rem}
 .tool-out{margin:0 0 2rem;padding:1rem 1.2rem;border-left:3px solid var(--brand);background:var(--surface)}
 .tool-out .t2-when{font-size:1.25rem;font-weight:700;margin:0 0 .4rem}
@@ -941,6 +944,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
@@ -968,6 +972,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
 </div></nav>
+<main id="main">
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / positioning</div><h1>When your site stops saying one thing about itself</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-18">18 September 2026</time></p>
 
 <p class="lede">Read any one page of your site and it is fine. Read twenty and you cannot say
@@ -1047,6 +1052,7 @@ which is the correct direction for a test to move when it disagrees with reality
 <a href="/learn/brand-consistency/">a separate piece</a>.</p>
 <aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-a-site-that-says-something-different-every-page-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.155/Docket-1.3.155-arm64.dmg" data-ev="Download" data-ev-button="how-to-fix-a-site-that-says-something-different-every-page-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-a-site-that-says-something-different-every-page-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.155/Docket-1.3.155-x86_64.dmg" data-ev="Download" data-ev-button="how-to-fix-a-site-that-says-something-different-every-page-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-a-site-that-says-something-different-every-page" data-ev="Buy" data-ev-price="59" data-ev-button="how-to-fix-a-site-that-says-something-different-every-page">Buy once, $59</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-a-site-that-says-something-different-every-page">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Black Friday price $29.50 <span class="founding-end" data-founding-end="2026-12-01T07:59:59Z">until 30 November</span> with <code>FOUNDINGDOCKET</code>, then $59</span></p></aside><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What does a positioning check actually measure?</h3><p>Whether any vocabulary recurs across your meta descriptions. A company with a settled position repeats it without trying, because it keeps being the true thing to say. One without invents a fresh pitch per page.</p></div><div class="faq-item"><h3>Will putting my company name in every description fix it?</h3><p>No, and a good check excludes the brand name on purpose. A site repeating its own name is not a site saying something: the name recurs even when no idea does.</p></div><div class="faq-item"><h3>Is the same description on every page the solution?</h3><p>That is the opposite defect and it is measured separately. It also puts a claim on pages it is not true of, which is worse than an inconsistent one.</p></div><div class="faq-item"><h3>How does a site end up like this?</h3><p>By shipping. Each page gets a description written to describe that page as precisely as possible, every addition improves the site, and the aggregate gets worse. There is no moment where somebody does the wrong thing.</p></div><div class="faq-item"><h3>Can a tool tell me whether my positioning is any good?</h3><p>No. It can see whether your pages share vocabulary. Whether the sentence you settled on is the right one is a judgement about a company, and no crawler has an opinion on it.</p></div></div></section>
 </div></article>
+</main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>

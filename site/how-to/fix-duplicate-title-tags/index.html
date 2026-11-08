@@ -15,7 +15,7 @@
 <title>How to fix duplicate title tags, and what it won't fix</title>
 <meta name="description" content="Duplicate titles are not a penalty. They let the wrong page on your site win the query and waste the one line of the result you get to write.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2454bbdaea7f">
+<meta name="build-id" content="7d14e5b3b830">
 <link rel="canonical" href="https://docketseo.app/how-to/fix-duplicate-title-tags/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -636,6 +636,9 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .checker-extra-input{width:100%;max-width:16rem;padding:.55rem .75rem;border-radius:var(--radius-md);
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
+/* WCAG 2.4.1 Bypass Blocks: our own Public Site Check found no skip link or main landmark here (2026-11-08). */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:.6rem 1rem;background:var(--surface);color:var(--text);border:2px solid var(--brand);border-radius:var(--radius-md)}
+.skip-link:focus{left:1rem;top:1rem}
 .checker-form .checker-row+label{margin-top:.9rem}
 .tool-out{margin:0 0 2rem;padding:1rem 1.2rem;border-left:3px solid var(--brand);background:var(--surface)}
 .tool-out .t2-when{font-size:1.25rem;font-weight:700;margin:0 0 .4rem}
@@ -941,6 +944,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
@@ -968,6 +972,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
 </div></nav>
+<main id="main">
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / duplicate titles</div><h1>How to fix duplicate title tags</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-10">10 August 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-19">19 October 2026</time></p>
 
 <p class="lede">Duplicate title tags are a real problem, and most of the advice about them is
@@ -1164,6 +1169,7 @@ number 304.</p>
 <aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-duplicate-title-tags-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.155/Docket-1.3.155-arm64.dmg" data-ev="Download" data-ev-button="how-to-fix-duplicate-title-tags-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-duplicate-title-tags-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.155/Docket-1.3.155-x86_64.dmg" data-ev="Download" data-ev-button="how-to-fix-duplicate-title-tags-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-duplicate-title-tags" data-ev="Buy" data-ev-price="59" data-ev-button="how-to-fix-duplicate-title-tags">Buy once, $59</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-duplicate-title-tags">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Black Friday price $29.50 <span class="founding-end" data-founding-end="2026-12-01T07:59:59Z">until 30 November</span> with <code>FOUNDINGDOCKET</code>, then $59</span></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I fix duplicate title tags in WordPress?</h3><p>Find which of two causes you have. Many pages sharing one title means the title template in your SEO plugin or theme has no variable that changes per page, so give each type of page a template with its own name in it. Two title elements in one page means the theme prints one and something else prints another; WordPress's theme handbook says a theme should not hard code the title and should declare title-tag support, so remove the hard-coded one from header.php.</p></div><div class="faq-item"><h3>Is it a problem if my h1 and title tag are the same?</h3><p>No. Google's page on title links suggests putting the title text in the first visible h1. The thing to find is the same h1 or the same title repeated across many pages.</p></div><div class="faq-item"><h3>Can a page have two title tags?</h3><p>It should not. A page has one document title, in the head. A second match for the title element is often an SVG icon's accessible name in the body, which is not the document title. Google's page on title links does not say what it does with a second title element, so the safe course is to emit one.</p></div><div class="faq-item"><h3>Do duplicate title tags cause a Google penalty?</h3><p>No. Google's spam policies enumerate sixteen behaviours that can lower a ranking or trigger a manual action, and duplicate or repeated titles is not among them. The real cost is that Google has to decide which of several near-identical pages answers a query and will sometimes pick the wrong one, and that a repeated title is one of the clearest invitations for Google to write its own title link instead of using yours.</p></div><div class="faq-item"><h3>How long should a title tag be?</h3><p>Google's documentation says there is no limit on the length of a title element, and that the title link is truncated in results as needed, typically to fit the width of the device. That is a pixel measurement rather than a character count. Roughly 50 to 60 characters is a useful working range and the lowest measured rewrite rates sit in that band, but a title of wide capitals runs out of room sooner than a narrow one of the same length.</p></div><div class="faq-item"><h3>Why does Google show a different title than the one I wrote?</h3><p>Because it generates its own where it judges yours unhelpful: half-empty, boilerplate, repeated across the site, or a poor description of the page. Google has put its use of the HTML title element at about 87% of the time; an independent study of 80,959 titles across 2,370 sites found the displayed title differed from the written one 61.6% of the time. The two count different things. Write distinct titles regardless: they are the input Google is judging.</p></div><div class="faq-item"><h3>Should paginated pages have unique titles?</h3><p>Yes, but minimally. Appending the page number is enough, and each page in the sequence should carry a canonical pointing at itself. Google's pagination guidance says not to use the first page of a sequence as the canonical. Writing genuinely distinct descriptive titles for pages 2 through 40 of an archive is work that returns nothing.</p></div><div class="faq-item"><h3>Do near-duplicate titles count, or only exact matches?</h3><p>They count, and they are the ones most reports miss. Twelve location pages differing only by city name are twelve distinct strings and one title. Where a single swapped word is all that separates two pages, the titles are not really the problem: the pages are.</p></div></div></section>
 </div></article>
+</main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>

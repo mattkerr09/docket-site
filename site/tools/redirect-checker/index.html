@@ -15,7 +15,7 @@
 <title>Redirect checker: trace every hop and status code</title>
 <meta name="description" content="Free redirect chain checker: paste an address to see every hop, its 301, 302 or other status code and where it ends. Finds loops and long chains. No sign-up.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2454bbdaea7f">
+<meta name="build-id" content="7d14e5b3b830">
 <link rel="canonical" href="https://docketseo.app/tools/redirect-checker/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -636,6 +636,9 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .checker-extra-input{width:100%;max-width:16rem;padding:.55rem .75rem;border-radius:var(--radius-md);
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
+/* WCAG 2.4.1 Bypass Blocks: our own Public Site Check found no skip link or main landmark here (2026-11-08). */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:.6rem 1rem;background:var(--surface);color:var(--text);border:2px solid var(--brand);border-radius:var(--radius-md)}
+.skip-link:focus{left:1rem;top:1rem}
 .checker-form .checker-row+label{margin-top:.9rem}
 .tool-out{margin:0 0 2rem;padding:1rem 1.2rem;border-left:3px solid var(--brand);background:var(--surface)}
 .tool-out .t2-when{font-size:1.25rem;font-weight:700;margin:0 0 .4rem}
@@ -941,6 +944,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
@@ -968,6 +972,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
 </div></nav>
+<main id="main">
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/tools/">Tools</a> / Redirect checker</div><h1>Redirect chain checker</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-11-06">6 November 2026</time></p>
 
 <p class="lede">Paste an address to see every hop it takes before a page answers: each address, its
@@ -1134,6 +1139,7 @@ when the old address is coming back.</p>
 </script>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How do I check a redirect chain?</h3><p>Paste the address into the checker. It follows each redirect itself and lists every hop with its status code and destination, up to the page the chain ends on.</p></div><div class="faq-item"><h3>Why does my site say too many redirects?</h3><p>The redirects form a loop. A CDN and the server disagreeing about HTTPS, or two rules disagreeing about www, are the usual causes. The checker names the address that repeats.</p></div><div class="faq-item"><h3>Is a 302 redirect bad for SEO?</h3><p>Not in itself. It says the move is temporary, so search engines may keep showing the old address. For a permanent move, use a 301 or 308.</p></div></div></section>
 </div></article>
+</main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>

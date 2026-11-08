@@ -15,7 +15,7 @@
 <title>Title tag length checker (free): meta, noindex, OG</title>
 <meta name="description" content="Free title tag length checker: paste a page to see if its title (about 65 characters) and meta description fit, plus noindex, canonical, H1 and Open Graph tags.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2454bbdaea7f">
+<meta name="build-id" content="7d14e5b3b830">
 <link rel="canonical" href="https://docketseo.app/tools/meta-tag-checker/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -636,6 +636,9 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .checker-extra-input{width:100%;max-width:16rem;padding:.55rem .75rem;border-radius:var(--radius-md);
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
+/* WCAG 2.4.1 Bypass Blocks: our own Public Site Check found no skip link or main landmark here (2026-11-08). */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:.6rem 1rem;background:var(--surface);color:var(--text);border:2px solid var(--brand);border-radius:var(--radius-md)}
+.skip-link:focus{left:1rem;top:1rem}
 .checker-form .checker-row+label{margin-top:.9rem}
 .tool-out{margin:0 0 2rem;padding:1rem 1.2rem;border-left:3px solid var(--brand);background:var(--surface)}
 .tool-out .t2-when{font-size:1.25rem;font-weight:700;margin:0 0 .4rem}
@@ -941,6 +944,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
@@ -968,6 +972,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
 </div></nav>
+<main id="main">
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/tools/">Tools</a> / Title and meta tag checker</div><h1>Title tag and meta description length checker</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-10-06">6 October 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-28">28 October 2026</time></p>
 
 <p class="lede">A title tag length checker: paste the address of any page and it measures the title against
@@ -1117,6 +1122,7 @@ with the rest of its 99 checks, and ranks what to fix first.</p>
 </script>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How long should a title tag be?</h3><p>Up to about 580 pixels, roughly 65 Latin characters, before search results cut it off. Width matters more than count: East Asian characters are about twice as wide.</p></div><div class="faq-item"><h3>How long should a meta description be?</h3><p>Between 70 and 165 wide is the range Docket uses. Google may still write its own snippet when the description does not match the search.</p></div><div class="faq-item"><h3>How do I check if a page is set to noindex?</h3><p>Paste it into the checker above. It reads the robots meta tag on the page and the X-Robots-Tag header the server sends, and reports a noindex in either.</p></div></div></section>
 </div></article>
+</main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>
