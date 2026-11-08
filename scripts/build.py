@@ -203,7 +203,7 @@ def build_hubs() -> list[Path]:
              "queries, index status and field Core Web Vitals, and nothing replaces it. What "
              "it cannot answer is what is wrong with a page today."),
             ("/vs/scrutiny-alternative/", "Docket vs Scrutiny",
-             "Both are Mac apps you buy once rather than subscribe to. Scrutiny is the "
+             "Both are apps you buy once and run on a Mac rather than subscribe to. Scrutiny is the "
              "stronger link checker and has been shipping far longer; Docket ranks what "
              "it finds and covers conversion, brand and AI visibility, which Scrutiny "
              "does not."),
@@ -218,7 +218,7 @@ def build_hubs() -> list[Path]:
             ("/vs/jetoctopus-alternative/", "Docket vs JetOctopus",
              "It reads your server logs, which Docket cannot do at all, and meters "
              "crawling in hundreds of thousands to millions of URLs. An enterprise platform "
-             "against a Mac app you buy once."),
+             "against a desktop app you buy once."),
             ("/vs/profound-alternative/", "Docket vs Profound",
              "An answer-engine tracker sold by demo, with no crawler in its published "
              "platform list. It reports whether AI assistants mention you; Docket checks "

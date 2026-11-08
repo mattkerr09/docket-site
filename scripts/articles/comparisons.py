@@ -827,7 +827,7 @@ and UTM parameters on internal links.</li>
 <tr><td>Price</td><td>One-time</td><td>Free to 500 URLs, then {price("screaming-frog")}</td></tr>
 <tr><td>Who the licence covers</td><td>You, on {F.licence_covers()}</td>
     <td>One user. Their pricing page states that two users need two licences</td></tr>
-<tr><td>Runs on</td><td>Your Mac</td><td>Your machine</td></tr>
+<tr><td>Runs on</td><td>Your Mac or Windows PC</td><td>Your machine</td></tr>
 <tr><td>Output</td><td>Ranked plan with fixes</td><td>Spreadsheet of crawl data</td></tr>
 <tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>
 <tr><td>Custom XPath extraction</td><td class="no">No</td><td class="yes">Yes</td></tr>
@@ -934,7 +934,7 @@ reporting every English phrase as absent.</li>
 <thead><tr><th></th><th>Docket</th><th>Sitebulb</th></tr></thead>
 <tbody>
 <tr><td>Price</td><td>One-time</td><td>{price("sitebulb")}</td></tr>
-<tr><td>Runs on</td><td>Your Mac</td><td>Desktop or cloud</td></tr>
+<tr><td>Runs on</td><td>Your Mac or Windows PC</td><td>Desktop or cloud</td></tr>
 <tr><td>Site architecture visualisation</td><td class="yes">Rings by depth, sized by equity</td><td class="yes">Interactive force-directed map</td></tr>
 <tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>
 <tr><td>Team collaboration</td><td class="no">No team accounts; one licence covers {F.licence_covers()}</td><td class="yes">Cloud tier</td></tr>
@@ -1021,14 +1021,14 @@ sorts them into errors, warnings and notices. It spends one crawl credit for eac
 {F.credits_for("Lite")} a month on Lite (${_AH_PRICE["Lite"]}), {F.credits_for("Standard")} on Standard
 (${_AH_PRICE["Standard"]}) and {F.credits_for("Advanced")} on Advanced (${_AH_PRICE["Advanced"]}), as read on
 {CHECKED_HUMAN["ahrefs"]}. The paid plans that include it run from ${_AH_LO} to ${_AH_HI} a month, and Ahrefs Free
-runs it only on sites you verify you own. Docket is a one-time Mac app whose whole job is the audit:
+runs it only on sites you verify you own. Docket is a one-time desktop app for Mac and Windows whose whole job is the audit:
 {N_CHECKS} checks, ranked by impact against effort, {PRICE_STR} once and no crawl credits. If you also need keyword
 volumes and a backlink index, you need Ahrefs.</p>
 
 <ul class="short-answer">
 <li><strong>Ahrefs suits</strong> someone who does keyword research and link building and wants the
 audit inside the same account.</li>
-<li><strong>Docket suits</strong> someone on a Mac who wants to audit any site, a client's included,
+<li><strong>Docket suits</strong> someone on a Mac or Windows PC who wants to audit any site, a client's included,
 with a ranked list of fixes and no crawl credits.</li>
 </ul>
 
@@ -1354,7 +1354,7 @@ Business, and their knowledge base notes those reset on the 1st rather than roll
 <thead><tr><th></th><th>Docket</th><th>Semrush Site Audit</th></tr></thead>
 <tbody>
 <tr><td>Billing</td><td>Paid once</td><td>{price("semrush-site-audit")}</td></tr>
-<tr><td>Where the crawl runs</td><td>Your Mac</td><td>Their cloud</td></tr>
+<tr><td>Where the crawl runs</td><td>Your computer</td><td>Their cloud</td></tr>
 <tr><td>Crawl allowance</td><td class="yes">Whatever your machine will do</td><td>20,000–100,000 per audit, metered monthly</td></tr>
 <tr><td>Checks</td><td>{N_CHECKS}</td><td class="yes">140+</td></tr>
 <tr><td>Output</td><td class="yes">Four phases, impact against effort</td><td>Errors, warnings, notices</td></tr>
@@ -1584,7 +1584,7 @@ fix landed.</p>
 <tr><td>Conversion and copy</td><td class="yes">Yes</td><td class="no">Not scored</td></tr>
 <tr><td>Output</td><td>Ranked plan with markup to paste</td><td>Four scores out of 100, an agentic browsing fraction and a list</td></tr>
 <tr><td>Report</td><td class="yes">Client-ready PDF</td><td>HTML or JSON</td></tr>
-<tr><td>Runs on</td><td>Your Mac, no account</td><td class="yes">Chrome, CLI, Node, or the web</td></tr>
+<tr><td>Runs on</td><td>Your Mac or PC, no account</td><td class="yes">Chrome, CLI, Node, or the web</td></tr>
 </tbody></table></div>
 
 <h2>The order that wastes least time</h2>
@@ -1772,7 +1772,7 @@ last week, on pages Google has met. Docket answers a question about this minute,
 <tr><td>What exactly do I paste to fix it?</td><td>Explains the concept</td><td>The markup itself</td></tr>
 <tr><td>How do I hand this to a client?</td><td>Export the tables</td><td>Client-ready PDF</td></tr>
 <tr><td>How do I compare against a named competitor?</td><td>Not its job</td><td>Side-by-side scoring</td></tr>
-<tr><td>Where does my site's data end up?</td><td>Google's servers</td><td>Your Mac, in <code>~/.docket</code></td></tr>
+<tr><td>Where does my site's data end up?</td><td>Google's servers</td><td>Your computer, in <code>~/.docket</code></td></tr>
 </tbody></table></div>
 
 <p>Deliberately no green ticks and red crosses in that table. Nine of those rows are not a
@@ -1950,7 +1950,7 @@ page allowance.</p>
         body=body,
         faq=[
             ("Is Docket a Scrutiny alternative?",
-             "Partly. Both are one-time-purchase Mac SEO tools that run locally. "
+             "Partly. Both are one-time purchases that run locally on a Mac (Docket also runs on Windows). "
              "Scrutiny does spell checking, HTML validation and site search, none of "
              "which Docket does. Docket adds AI-crawler access, conversion and "
              "local-business checks, and produces a ranked fix plan."),
@@ -2427,7 +2427,7 @@ def jetoctopus() -> Path:
     """
     body = f"""
 <p>JetOctopus is an enterprise technical-SEO platform built around server log files. Docket is a
-{PRICE_STR} Mac app. Before any comparison is worth making, the important part:
+{PRICE_STR} desktop app for Mac and Windows. Before any comparison is worth making, the important part:
 <strong>JetOctopus reads your server logs and Docket cannot</strong>, and on a large site that is
 the most valuable technical-SEO data there is.</p>
 
@@ -2810,7 +2810,7 @@ features second.</p>
 audit in one place, and is happy to pay monthly for it.</li>
 <li><strong>Screaming Frog suits</strong> an SEO who wants raw crawl data from a desktop tool, on
 very large sites, with no page meter.</li>
-<li><strong>Docket suits</strong> someone on a Mac who wants a ranked list of what to fix, bought
+<li><strong>Docket suits</strong> someone on a Mac or Windows PC who wants a ranked list of what to fix, bought
 once, with no meter.</li>
 </ul>
 
@@ -2832,7 +2832,7 @@ once, with no meter.</li>
     <td class="yes">Unmetered; the free tier stops at 500 URLs</td>
     <td class="yes">Unmetered</td></tr>
 <tr><td>Where the crawl runs</td><td>Their cloud</td><td class="yes">Your machine</td>
-    <td class="yes">Your Mac</td></tr>
+    <td class="yes">Your Mac or PC</td></tr>
 <tr><td>Try before buying</td><td>&ldquo;Start free 14-day trial&rdquo;, &ldquo;No credit card
     required&rdquo;</td><td>Free tier, 500 URLs, permanently</td>
     <td>Free: your score, how many problems each area has and the top problem in full. Then a {REFUND_DAYS}-day refund</td></tr>
@@ -2906,7 +2906,7 @@ with what it checks and how a crawl is paid for.</p>
     Pick <a href="{sf}" rel="nofollow noopener">Screaming Frog</a>. It handles far larger crawls
     than Docket and supports custom extraction.</li>
 {WRONG_COMPUTER}
-<li><strong>You want to know what is wrong with your site and what to do about it, on a Mac, with
+<li><strong>You want to know what is wrong with your site and what to do about it, on a Mac or Windows PC, with
     no subscription or page meter.</strong> That is what Docket is for.</li>
 </ul>
 {_verified_note(key, closing="SE Ranking and Screaming Frog change their plans without telling anyone, so a figure here can go stale. If one has, <a href='/about/'>tell us</a>.")}
@@ -2926,7 +2926,7 @@ with what it checks and how a crawl is paid for.</p>
              "It depends on the job. Screaming Frog is a desktop crawler with no page meter and a "
              "free tier of 500 URLs, for people who want raw crawl data. SE Ranking's audit is one "
              "module of a subscription platform, metered by pages per month and sold beside rank "
-             "tracking and keyword research. Docket is a third option for Mac users: bought once, "
+             "tracking and keyword research. Docket is a third option for Mac and Windows users: bought once, "
              "unmetered, with a ranked list of fixes."),
             ("How much does SE Ranking cost compared with Screaming Frog?",
              f"SE Ranking is {price('seranking')}. Screaming Frog is {price('screaming-frog')}, "
@@ -2944,7 +2944,7 @@ with what it checks and how a crawl is paid for.</p>
             ("Can I use SE Ranking and Screaming Frog together?",
              "Yes. They do different jobs: SE Ranking tracks rankings and keywords and meters its audit "
              "by pages per month, while Screaming Frog crawls on your own machine and returns raw data "
-             "with no page meter. Neither ranks what to fix first, which is the gap Docket fills for Mac "
+             "with no page meter. Neither ranks what to fix first, which is the gap Docket fills for Mac and Windows "
              "users."),
             ("Which one tracks keyword rankings?",
              "SE Ranking. Screaming Frog does not, and neither does Docket. If daily rank "

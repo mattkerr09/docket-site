@@ -638,7 +638,7 @@ def body() -> str:
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Tool</th><th>Price</th><th>Runs</th><th>Output</th></tr></thead>
 <tbody>
-<tr><td>Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td><td class="yes">Your Mac</td><td>Ranked fix plan</td></tr>
+<tr><td>Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td><td class="yes">Your Mac or PC</td><td>Ranked fix plan</td></tr>
 <tr><td>Ahrefs Site Audit</td><td>{price("ahrefs-site-audit")}</td><td>Cloud, metered</td><td>170+ issues</td></tr>
 <tr><td>Semrush Site Audit</td><td>{price("semrush-site-audit")}</td><td>Cloud, metered</td><td>140+ checkpoints</td></tr>
 <tr><td>Sitebulb</td><td>{price("sitebulb")}</td><td>Local + cloud</td><td>Visual issue report</td></tr>
