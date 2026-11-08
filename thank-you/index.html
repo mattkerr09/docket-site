@@ -24,7 +24,7 @@
 <title>Thank you | Docket</title>
 <meta name="description" content="Your Docket purchase is complete. Where to download the app and how to reach us.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="270d128fb3e8">
+<meta name="build-id" content="c4a755c46754">
 <meta name="robots" content="noindex">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -1012,6 +1012,30 @@ terminal, <code>docket licence --key YOUR-KEY</code> does the same thing.</p>
 <p>Email <a href="mailto:support@docketseo.app">support@docketseo.app</a> and say what
 happened. If the purchase was a mistake, the
 <a href="/legal/refunds/">refund policy</a> is on this site and it is short.</p>
+
+<section id="ty-found" aria-labelledby="ty-found-q">
+<h2 id="ty-found-q">One question: how did you find Docket?</h2>
+<p class="hero-note">One tap, optional. It sends only the answer you pick.</p>
+<div class="found-row" style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px">
+<button type="button" class="btn-ghost" data-found="claude">Claude</button>
+<button type="button" class="btn-ghost" data-found="chatgpt">ChatGPT</button>
+<button type="button" class="btn-ghost" data-found="google">Google</button>
+<button type="button" class="btn-ghost" data-found="bing">Bing</button>
+<button type="button" class="btn-ghost" data-found="youtube">YouTube</button>
+<button type="button" class="btn-ghost" data-found="reddit">Reddit</button>
+<button type="button" class="btn-ghost" data-found="producthunt">Product Hunt</button>
+<button type="button" class="btn-ghost" data-found="friend">A friend or colleague</button>
+<button type="button" class="btn-ghost" data-found="other">Somewhere else</button>
+</div>
+<p id="ty-found-done" role="status" aria-live="polite"></p>
+</section>
+<script>(function(){var box=document.getElementById('ty-found');if(!box)return;
+box.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-found]');if(!b)return;
+var u='https://kerr-affiliate-hub.kerrco.workers.dev/found/docket?a='+encodeURIComponent(b.getAttribute('data-found'))+(e.isTrusted?'&ct=1':'');
+try{fetch(u,{method:'POST',mode:'cors',credentials:'omit',keepalive:true}).catch(function(){})}catch(x){}
+box.querySelector('.found-row').hidden=true;box.querySelector('.hero-note').hidden=true;
+document.getElementById('ty-found-done').textContent='Thank you.';});})();</script>
+
 
 <h2>Also from Kerr &amp; Company</h2>
 <ul class="tool-list">
