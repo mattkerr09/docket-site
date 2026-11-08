@@ -287,7 +287,7 @@ read your preference and declined it.</li>
 
 <p>Docket does this across a whole site rather than three pages: it checks canonical
 validity, resolves the declared target, and flags the ones landing on redirects, 404s or a
-different host. Among {N_CHECKS} checks that run on your Mac, with no account, and the crawl
+different host. Among {N_CHECKS} checks that run on your computer, with no account, and the crawl
 and the report stay there. Findings come back ranked by cost against effort, each with the exact markup to
 paste.</p>
 

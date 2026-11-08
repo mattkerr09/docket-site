@@ -158,7 +158,7 @@ be obvious what that means.</p>
 
 <p><strong>Your URLs do go to Google and to Bing.</strong> That is not a side effect, it is the
 feature: to ask whether Google has your page, Docket has to tell Google which page you mean. The
-requests are made from your Mac, with credentials you supply, against properties you have
+requests are made from your computer, with credentials you supply, against properties you have
 verified as yours. Nothing is routed through us, nothing about your site reaches us, and there is
 no account with us to hold it. If you would rather not ask, the connector is a switch and the
 rest of the audit is unaffected.</p>
@@ -194,7 +194,7 @@ quota, Microsoft's crawl-statistics reference, and IndexNow's FAQ.</p>
              "of the reading instead, and says that is what it is."),
             ("Does Docket send my URLs to Google?",
              "Yes, for the pages you ask it to inspect. There is no way to ask whether Google "
-             "has a page without naming the page. The request goes from your Mac using your "
+             "has a page without naming the page. The request goes from your computer using your "
              "own Search Console sign-in against a property you verified, nothing is routed "
              "through us, and turning the connector off stops it entirely."),
             ("Why does a page say unknown instead of missing?",

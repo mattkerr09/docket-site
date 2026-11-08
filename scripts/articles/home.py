@@ -603,8 +603,8 @@ def body() -> str:
     you answers. It reads their domain authority from <a href="https://commoncrawl.org/">Common Crawl</a> so the size of the gap is a
     number, not a guess. <a href="/how-to/outrank-a-bigger-competitor/">See what it finds</a>.</p></div>
   <div class="card"><div class="card-ico">{ICONS['lock']}</div>
-    <h3>The report stays on your Mac</h3>
-    <p>No account and no telemetry. The crawl and the report stay on your Mac.
+    <h3>The report stays on your computer</h3>
+    <p>No account and no telemetry. The crawl and the report stay on your computer.
     {CONNECTORS_WORD_CAP} optional checks fetch data Docket cannot produce alone and are on by
     default, so Google PageSpeed is sent the addresses of your homepage and top pages, and
     Google's autocomplete your site's topic words; <code>--offline</code> turns all
@@ -634,7 +634,7 @@ def body() -> str:
 <section class="sec"><div class="wrap-wide">
 <div class="sec-head"><h2>{PRICE_STR}. Once.</h2>
 {BNPL_BLOCK}
-<p>Every tool below is a subscription. Docket is a one-time purchase, and the audit runs on your Mac, so there are no crawl credits to ration. {BETA_NOTE}</p></div>
+<p>Every tool below is a subscription. Docket is a one-time purchase, and the audit runs on your computer, so there are no crawl credits to ration. {BETA_NOTE}</p></div>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Tool</th><th>Price</th><th>Runs</th><th>Output</th></tr></thead>
 <tbody>
@@ -653,7 +653,7 @@ different orders of magnitude.</p></div>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>What you could buy</th><th>Price</th><th>For that you get</th></tr></thead>
 <tbody>
-<tr><td>Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td><td>Unlimited audits, on your Mac</td></tr>
+<tr><td>Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td><td>Unlimited audits, on your computer</td></tr>
 <tr><td>{AG["webfx-audit"]["name"]}, published rate</td><td>{agency_amount("webfx-audit")}/month</td>
     <td>{AG["webfx-audit"]["scope"]}</td></tr>
 <tr><td>Agency retainer, survey average</td><td>{agency_amount("ahrefs-survey-retainer")}/month</td>
@@ -769,7 +769,7 @@ FAQ = [
      f"Email {SUPPORT_EMAIL}. Questions whose answers would help the next person can go on "
      "the public issue tracker instead."),
     ("Does Docket send my site data anywhere?",
-     "The crawl and the report stay on your Mac, and there is no account and no "
+     "The crawl and the report stay on your computer, and there is no account and no "
      f"telemetry. {CONNECTORS_WORD_CAP} optional checks, on by default, reach outside it: "
      "Core Web Vitals from Google PageSpeed, which is sent the addresses of your homepage "
      "and top pages; a deliverability test on the addresses your site publishes, which "
@@ -813,7 +813,7 @@ def closer() -> str:
     return f"""<section class="cta-band"><div class="wrap">
 <h2>Audit your site in about a minute</h2>
 <p>Download it, type a domain, press Run. There is no onboarding because none is
-needed, and the crawl and the report stay on your Mac.</p>
+needed, and the crawl and the report stay on your computer.</p>
 <figure class="cta-shot">
   <img src="/assets/app-running.webp" width="1280" height="800" loading="lazy" decoding="async"
        alt="Docket mid-audit: the URL being crawled, a progress bar, and four counters reading
@@ -841,12 +841,12 @@ def build() -> Path:
         # 162 characters, and Google renders about 155 — measured with entities
         # decoded, which is the only way to count a description honestly.
         # Dropping "visibility" is the whole edit: 151, brand name still first.
-        # 154 since "nothing uploaded" became "kept on your Mac": PageSpeed and
+        # 154 since "nothing uploaded" became "kept on your computer": PageSpeed and
         # topic suggestions send page addresses and topic words to Google by
         # default, so "nothing uploaded" was not true of a default audit.
         # 149 characters. Names the free version (1.3.96) because this line is
         # the Google snippet and every pasted link's preview (CEO, 2026-10-02).
-        desc=(f"Docket SEO audits any website on your Mac with {N_CHECKS} checks, ranked into a fix "
+        desc=(f"Docket SEO audits any website on your Mac or Windows PC with {N_CHECKS} checks, ranked into a fix "
               f"plan. Free to try: your score, counts and the top fix. Pro {PRICE_STR} once."),
         h1="SEO audits that tell you what to fix, in order",
         crumb="Docket for Mac",

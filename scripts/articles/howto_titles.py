@@ -177,7 +177,7 @@ job, because duplicate titles arrive in template-sized batches rather than one a
 <li><strong>Docket.</strong> Duplicate and near-duplicate titles sit among its {N_CHECKS}
 checks, and the finding is ranked against everything else on the site rather than listed.
 Thirty duplicates on archive pages you never wanted indexed is not the same discovery as two on
-the pages that sell. The crawl runs on your own Mac and each finding carries the markup to
+the pages that sell. The crawl runs on your own computer and each finding carries the markup to
 paste.</li>
 <li><strong>A <code>site:</code> query, if you have neither.</strong>
 <code>site:example.com intitle:"Services | Acme"</code> returns pages carrying that exact title.

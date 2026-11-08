@@ -130,7 +130,7 @@ only see <code>User-agent: *</code>, whatever it says applies to all of them. Th
 <li>Check that your homepage has Organization schema with a <code>sameAs</code> array.</li>
 </ol>
 <p>Or run Docket, which does all three plus {N_CHECKS - 3} other checks and tells you which crawler you are
-blocking and what it costs you. It runs on your Mac, and the crawl and the report stay there.</p>
+blocking and what it costs you. It runs on your computer, and the crawl and the report stay there.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """

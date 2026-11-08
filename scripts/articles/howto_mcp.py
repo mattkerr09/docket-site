@@ -174,7 +174,7 @@ the sites your pages link to or load.</p>
 
 <h2>It is the same engine, and the same licence</h2>
 
-<p>Nothing about this is a cloud service. The crawl runs on your Mac exactly as it does when you
+<p>Nothing about this is a cloud service. The crawl runs on your computer exactly as it does when you
 click the button, there is no API key, and there is no per-call charge. Your assistant is
 talking to the app you bought, not to us.</p>
 
@@ -208,7 +208,7 @@ command line.</p>
              f"{SIDECAR} and the argument mcp, then restart the client. Any MCP client works "
              "the same way, because Docket speaks the protocol over stdio."),
             ("Does using Docket through MCP cost extra?",
-             "No. There is no API key and no per-call charge. The crawl runs on your own Mac, "
+             "No. There is no API key and no per-call charge. The crawl runs on your own computer, "
              "the assistant is talking to the copy of Docket you bought, and the licence is "
              "the same one-time purchase."),
             ("Can an assistant audit a site if Docket is not activated?",

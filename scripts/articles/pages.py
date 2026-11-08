@@ -1003,7 +1003,7 @@ client starts Docket itself. In Claude Desktop, add this to
 
 <p>Any MCP client takes the same command and argument. There are five tools.
 <code>audit_site</code> takes a <code>url</code> and optionally <code>max_pages</code>,
-<code>max_seconds</code> and <code>offline</code>, crawls the site on your Mac and returns the result as
+<code>max_seconds</code> and <code>offline</code>, crawls the site on your computer and returns the result as
 JSON. Three read the audits Docket has kept, without crawling again: <code>get_last_report</code>
 returns the most recent one, <code>explain_finding</code> returns one problem in full with its fix,
 and <code>compare_audits</code> says what changed between two audits of the same site.
@@ -1542,7 +1542,7 @@ to happen whether or not anyone is at the machine, that is what a hosted crawler
              + (f"or {FOUNDING_NOW} at the Black Friday price until {FOUNDING_END_DAY}, " if FOUNDING_OPEN else "") + f"and "
              f"every 1.x update is included. One licence covers {F.licence_covers()}, and there is no "
              f"per-seat price, no crawl credits, no account "
-             f"and no telemetry, and audit history is stored on your Mac in ~/.docket/ as "
+             f"and no telemetry, and audit history is stored on your computer in ~/.docket/ as "
              f"plain JSON."),
         ],
     )
@@ -1892,7 +1892,7 @@ it is describing and the reason is worth reading.
 
 <h2>Auditing from an AI assistant</h2>
 <p>Docket speaks the Model Context Protocol over stdio, so an assistant can run an audit on
-your own Mac and read the findings back as structured data. No API key, no cloud, and the
+your own computer and read the findings back as structured data. No API key, no cloud, and the
 same one-time licence: the assistant is talking to the copy you own.
 <a href="/how-to/audit-your-site-from-an-ai-assistant/">How to set it up &rarr;</a></p>
 
@@ -2153,13 +2153,13 @@ where it stands.</p>
 
 def privacy() -> Path:
     body = """
-<p>Docket is desktop software that runs on your Mac. This policy covers both the application
+<p>Docket is desktop software that runs on your Mac or Windows PC. This policy covers both the application
 and this website.</p>
 <!-- windows-same-app -->
 
 <h2>The application</h2>
 <p>Nothing about the sites you audit reaches us, Kerr &amp; Company: the crawl and the report
-stay on your Mac. The requests that do leave it are listed below with who receives each one,
+stay on your computer. The requests that do leave it are listed below with who receives each one,
 and the ones that come to us are for the public update, price and knowledge files on this
 website and, on a copy with no licence, a question to an offer server we run. What our payment
 provider receives on our behalf is your licence key and a name for each Mac you activate it on.
@@ -2175,8 +2175,8 @@ unless you switch them off.</p>
 <ul>
 <li><strong>The licence check, to Dodo Payments.</strong> Dodo handles our checkout and issues
 the licence keys. When you activate Docket, the app sends Dodo your licence key and a name for
-that activation: <code>Docket @</code> followed by your Mac's hostname, the network name macOS
-usually builds from the computer's name. After that it sends the key with that activation's
+that activation: <code>Docket @</code> followed by the computer's hostname: on a Mac, the network name
+macOS usually builds from the computer's name; on Windows, the computer name. After that it sends the key with that activation's
 id about once a day, when the app opens or an audit starts, and again if you deactivate. None
 of these requests carries anything about your audits, and no switch turns them off.</li>
 <li><strong>The update check, to this website.</strong> When the app opens, and every thirty
@@ -2197,7 +2197,7 @@ of your shallowest pages, homepage first, each sent to Google's PageSpeed Insigh
 then measures that page. It works without an API key, and the desktop app never sends one.</li>
 <li><strong>DNS, for email deliverability.</strong> The mail domains of the addresses your pages
 publish, leaving out free providers such as Gmail. Docket looks up their mail-server (MX) and
-address records, asking your Mac's own DNS servers first and Cloudflare's and Google's public
+address records, asking your computer's own DNS servers first and Cloudflare's and Google's public
 resolvers if those do not answer. Where a domain has no MX record, it also opens a connection to
 port 25 on that domain's server to see whether anything is listening, and closes it without
 sending a message.</li>
@@ -2263,7 +2263,7 @@ removes them permanently.</p>
 <a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, which counts page
 views. Plausible states that it uses no cookies, collects no personal data and does not track
 visitors across sites; it is hosted in the EU. Nothing about your audits reaches it.
-Audits run on your Mac and this website never sees them. Standard server logs may record IP
+Audits run on your computer and this website never sees them. Standard server logs may record IP
 addresses and requested URLs, which are used only to keep the site running.</p>
 <p>The second is the chat assistant in the corner of the page, which answers questions about
 Docket. Its script is loaded from <code>kerr-lead-agent.kerrco.workers.dev</code>, a server we
@@ -2377,7 +2377,7 @@ it; we hold nothing separately.</p>
     return render(
         cat="legal", slug="privacy",
         title="Privacy policy: what Docket collects, and what it does not",
-        desc="Audits run on your Mac and are never uploaded. No account, no "
+        desc="Audits run on your computer and are never uploaded. No account, no "
              "telemetry. Four third-party scripts and no advertising tracker. "
              "What each does and how to stop it.",
         h1="Privacy policy",
@@ -2693,7 +2693,7 @@ tested.</p>"""
 
     body = f"""
 <p class="lede">Thirty days from the date of purchase, no conditions and no questions asked, on
-any paid copy of Docket. What follows is how to ask, what happens to the copy on your Mac
+any paid copy of Docket. What follows is how to ask, what happens to the copy on your computer
 afterwards, and why the window is thirty days rather than a number picked because it sounded
 generous.</p>
 {beta}
@@ -2735,7 +2735,7 @@ reason you are unhappy, and none of the three belong on a page anyone can read.<
 
 <p>It goes back to the free version. Taking a refund revokes the licence key that came with your
 purchase, and Docket re-checks that key about once a day, so within roughly a day of the refund
-being issued, the copy on your Mac shows only the score, how many problems each area has and the top problem. A revoked key is refused immediately and is not
+being issued, the copy on your computer shows only the score, how many problems each area has and the top problem. A revoked key is refused immediately and is not
 given the offline grace period that a merely-unreachable licence server would allow.</p>
 
 <p>This changed when Docket became a licensed product in August 2026. Before that it had no
@@ -2773,7 +2773,7 @@ that the absence reads as a decision rather than an oversight.</p>
 <p>One correction to make in the same breath, because a page claiming perfect ignorance would
 be exactly the sort of claim this tool exists to check. Docket makes two requests of its own
 accord. It checks the licence key with our payment provider when you activate it and about
-once a day after that, which is how a refund reaches the copy on your Mac. And when it opens,
+once a day after that, which is how a refund reaches the copy on your computer. And when it opens,
 and every thirty minutes while it stays open, it asks <code>docketseo.app/updater.json</code>
 whether a newer build exists, and stays silent if there is none or there is no network. That
 file is static and served by GitHub Pages. The log behind it records an address and a time,

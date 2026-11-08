@@ -35,7 +35,7 @@ the comparison leads with what got worse.</p>
 
 <p><strong>It runs while Docket is open, and stops when you quit.</strong> The scheduler is
 a thread inside the app, not a background service and not a server. There is nothing left
-running on your Mac after you close it, and nothing running anywhere else at any time. A
+running on your computer after you close it, and nothing running anywhere else at any time. A
 site that falls due while Docket is shut is picked up the next time you open it, so you get
 the check late rather than not at all. If you need an audit to run at 3am whether or not
 anybody is logged in, that is a job for the Linux CLI in cron or CI, and
@@ -150,7 +150,7 @@ the difference between research and a nuisance.</p>
              "Docket is shut is re-audited the next time you open it. For unattended "
              "runs on a schedule, use the Linux CLI in cron or CI."),
             ("Does site monitoring need an account or a server?",
-             "No. The re-audits run on your Mac and history is stored in ~/.docket/ as plain "
+             "No. The re-audits run on your computer and history is stored in ~/.docket/ as plain "
              "JSON: a watchlist plus one small snapshot per audit. The history is never "
              "uploaded, and it stays yours if you stop using Docket."),
             ("Why does Docket refuse to compare some audits?",

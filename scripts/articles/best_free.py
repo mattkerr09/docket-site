@@ -118,7 +118,7 @@ does not attempt.</li>
 <p>If the paid tool you already have is Ahrefs, its crawler is <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs Site Audit</a>; our comparison
 sets out what it checks and how a crawl is paid for.</p>
 
-<p>Docket is {PRICE_STR} paid once, runs on your Mac, and answers
+<p>Docket is {PRICE_STR} paid once, runs on your computer, and answers
 that third one: a ranked plan rather than a list. <strong>It is not free, and if your site is
 under 500 URLs and you are comfortable reading Lighthouse and Search Console, you do not need
 it.</strong> That is a real answer, not modesty. Buying a tool to tell you what three free

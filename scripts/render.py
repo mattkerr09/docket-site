@@ -2119,7 +2119,7 @@ FOOTER = f"""<footer><div class="wrap-wide">
 {KERR_MORE}
 </div>
 <div class="foot-bottom">
-<span>© 2026 Docket SEO · Audits run on your Mac, and the reports stay there.</span>
+<span>© 2026 Docket SEO · Audits run on your computer, and the reports stay there.</span>
 <span>{_mark(15, "var(--text-dim)")}</span>
 </div></div></footer>"""
 

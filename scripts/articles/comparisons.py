@@ -1144,7 +1144,7 @@ crawl credits. Docket's exports are a PDF report and CSV and JSON files, and non
 <tr><td>Keyword &amp; backlink data</td><td class="no">None</td><td class="yes">Its main product</td></tr>
 <tr><td>Rank tracking</td><td class="no">No</td><td class="yes">Yes</td></tr>
 <tr><td>Crawl limits</td><td class="yes">Your machine, your limits</td><td>Credit-metered by plan</td></tr>
-<tr><td>Data location</td><td class="yes">Crawl runs on your Mac; {CONNECTORS_WORD} optional checks fetch data unless <code>--offline</code></td><td>Cloud</td></tr>
+<tr><td>Data location</td><td class="yes">Crawl runs on your computer; {CONNECTORS_WORD} optional checks fetch data unless <code>--offline</code></td><td>Cloud</td></tr>
 <tr><td>Ranked action plan</td><td class="yes">By impact against effort</td><td>Errors, warnings and notices</td></tr>
 <tr><td>AI crawler audit</td><td class="yes">Per-crawler</td><td>Not listed as per-crawler</td></tr>
 <tr><td>Conversion audit</td><td class="yes">Yes</td><td class="no">Not listed</td></tr>
@@ -1338,7 +1338,7 @@ bleeding, quick wins, build, polish. Reach is compressed as well, so a trivial i
 happens to appear on 4,000 pages does not outrank a serious one on the homepage. The report
 opens as a sequence instead of a filter you have to operate.</p>
 
-<h2>The audit stays on your Mac</h2>
+<h2>The audit stays on your computer</h2>
 <p>Docket has no account, no sign-in and no telemetry. The crawl runs on your machine and each
 run is written to <code>~/.docket/</code> as plain JSON you can diff, script against, or delete.
 {CONNECTORS_WORD_CAP} checks reach outside by default and <code>--offline</code> turns all {CONNECTORS_WORD} off;
@@ -1453,7 +1453,7 @@ stand; the local tool answers what to change next.</p>
             ("Does Docket have crawl limits like Semrush?",
              "Not monthly ones. Semrush's knowledge base lists 20,000 pages per audit on Pro "
              "and Guru and 100,000 on Business, drawn against 100,000 to 1,000,000 pages a "
-             "month depending on plan, resetting on the 1st. Docket crawls on your Mac, so "
+             "month depending on plan, resetting on the 1st. Docket crawls on your computer, so "
              "the bounds are the page and depth caps you set, and re-running an audit costs "
              "nothing."),
             ("Does Docket check AI crawler access like Semrush?",
@@ -1752,7 +1752,7 @@ None of them is a defect. Together they are the outline of a different question.
 copy, page speed, structured data, local visibility, AI search access and marketing conversion), then ranks every finding by impact against effort and sorts them into four phases.
 Each finding states what it costs you in plain language and carries the exact markup to paste.
 It writes a client-ready PDF and can score you against a named competitor. The crawl runs on
-your Mac: no account, no telemetry, results in <code>~/.docket</code>.</p>
+your computer: no account, no telemetry, results in <code>~/.docket</code>.</p>
 
 <p>The difference is time-shape more than feature list. Search Console answers questions about
 last week, on pages Google has met. Docket answers a question about this minute, on every page you have, including the one you published an hour ago.</p>
@@ -1842,7 +1842,7 @@ forever, and add the crawler when the question is what to change rather than wha
         cat="vs", slug="google-search-console",
         title="Docket vs Google Search Console: what each answers",
         desc=("Search Console is free, it is Google's own data, and nothing replaces it. What "
-              "it cannot tell you, and where an audit on your own Mac answers instead."),
+              "it cannot tell you, and where an audit on your own computer answers instead."),
         h1="Docket vs Google Search Console",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Search Console',
         published="2026-08-10",
@@ -1890,7 +1890,7 @@ def scrutiny() -> Path:
     body = f"""
 <p>Scrutiny is a macOS desktop SEO tool sold for a one-time fee, which makes it
 the closest thing to Docket on the market: no account, no subscription, runs on
-your own Mac. If you are choosing between the two, the honest summary is that
+your own computer. If you are choosing between the two, the honest summary is that
 <strong>Docket costs less, and Scrutiny does several things Docket does not do
 at all</strong>.</p>
 
@@ -1990,7 +1990,7 @@ def seoptimer() -> Path:
 <p class="lede"><strong>The short answer:</strong> the SEOptimer alternative that fits depends on what you use SEOptimer
 for. It is a cloud audit tool sold by the month ({price('seoptimer')}), with white-label PDF reports on a custom
 domain and a lead-capture widget, and every plan buys a fixed number of crawls. Docket is an audit you run on your own
-Mac, bought once for {PRICE_STR}, with no crawl meter, a free version, and reports that can carry your name and logo.
+computer, bought once for {PRICE_STR}, with no crawl meter, a free version, and reports that can carry your name and logo.
 If you sell audits from your own report address or collect leads with an audit form, stay with SEOptimer. If you want
 to hand clients a report under your own name, or re-run audits as often as you like, pick Docket.</p>
 
@@ -2027,7 +2027,7 @@ website. Pro is ten. Max is fifty. That is the shape of every subscription audit
 changes how you work: a crawl becomes something you spend rather than something you run.</p>
 
 <p>Docket does not meter anything. There is no page allowance, no crawl count and no project
-limit, because there is no server keeping score. The audit runs on your Mac, and
+limit, because there is no server keeping score. The audit runs on your computer, and
 <code>-n 0</code> removes the page-count limit. A crawl still stops at its time limit of
 {F.limits()['wall_clock_minutes']} minutes by default or {F.limits()['everything_hours']} hours
 with Everything, its depth limit of {F.crawl_depth()} by default, or when it runs out of links.
@@ -2101,7 +2101,7 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
         body=body,
         faq=[
             ("What is a good SEOptimer alternative for Mac?",
-             "Docket, if you audit your own sites and want unlimited re-runs: it runs on your Mac, "
+             "Docket, if you audit your own sites and want unlimited re-runs: it runs on your computer, "
              "is bought once and has no crawl allowance, and its reports can carry your name and logo. "
              "It is not the one to pick if you need a custom report domain or an embeddable "
              "lead-capture form, which SEOptimer has and Docket does not."),
@@ -2135,7 +2135,7 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
             ("How many crawls does SEOptimer allow?",
              "Its published plans buy four crawls a month for one website on Starter, ten on Pro "
              "and fifty on Max. Docket does not meter crawls at all: the audit "
-             "runs on your own Mac and -n 0 removes the page-count limit. A crawl still stops at "
+             "runs on your own computer and -n 0 removes the page-count limit. A crawl still stops at "
              f"its time limit of {F.limits()['wall_clock_minutes']} minutes by default or "
              f"{F.limits()['everything_hours']} hours with Everything, its depth limit of "
              f"{F.crawl_depth()} by default, or when it runs out of links. Re-running after each fix costs nothing."),
@@ -2216,7 +2216,7 @@ tracking mentions is the whole of what you need. What Docket checks on the acces
 
 <p>{N_CHECKS} checks across thirteen areas, including conversion and brand consistency, which
 do not appear in Sitechecker's listed core tools. Findings arrive as a ranked plan with the fix
-written out rather than as a dashboard. <a href="/learn/priority-model/">The ordering formula is published</a>. It runs on your Mac
+written out rather than as a dashboard. <a href="/learn/priority-model/">The ordering formula is published</a>. It runs on your computer
 with no account, and the crawl and the report stay there. And it is {PRICE_STR} once rather than
 a monthly bill.</p>
 
@@ -2460,7 +2460,7 @@ line item, JetOctopus is in your category and Docket is not.</p>
 
 <h2>What Docket does</h2>
 
-<p>{N_CHECKS} checks across thirteen areas, on your own Mac, with no account. <code>-n 0</code>
+<p>{N_CHECKS} checks across thirteen areas, on your own computer, with no account. <code>-n 0</code>
 removes the page-count limit. A crawl still stops at its time limit of {F.limits()['wall_clock_minutes']}
 minutes by default or {F.limits()['everything_hours']} hours with Everything, its depth limit of
 {F.crawl_depth()} by default, or when it runs out of links. Re-running after each fix costs nothing because
@@ -2553,8 +2553,8 @@ def crawlraven() -> Path:
     body = f"""
 <p class="lede">CrawlRaven is the closest tool to Docket's pitch among the cheaper ones: it joins Search
 Console and GA4 to a technical audit and hands back prioritised action items. It is sold by the month, with a
-fixed-site lifetime plan beside it, and its audit runs within a monthly page allowance. Docket is a Mac app
-bought once, with no allowance. The overlap is real, so it is said first.</p>
+fixed-site lifetime plan beside it, and its audit runs within a monthly page allowance. Docket is an app for Mac and
+64-bit Windows, bought once, with no allowance. The overlap is real, so it is said first.</p>
 
 <h2>What CrawlRaven does that Docket does not</h2>
 
@@ -2582,7 +2582,7 @@ a CSV export of findings. The page describes a {_CR_AUDIT_POINTS}-point technica
 
 <p>Docket runs {N_CHECKS} checks across thirteen areas, four of them not technical SEO at all: conversion, brand
 consistency, AI search visibility and campaign tracking. It has no page allowance, and the crawl and the report stay
-on your Mac. A count of checks is a weak measure, and nothing here compares the quality of either tool's output,
+on your computer. A count of checks is a weak measure, and nothing here compares the quality of either tool's output,
 which has not been measured.</p>
 
 <h2>What one Docket run looks like</h2>
@@ -2611,7 +2611,7 @@ lists the lifetime plan; the monthly plans are the ones it leads with.</p>
 ${_CR_STARTER} a month; from month {_months_past_docket(_CR_STARTER)} it has cost more. Twelve months of Starter come to
 ${_CR_STARTER * 12} for one site, against {PRICE_STR} once for any site; the lifetime plan is
 ${_CR_LIFETIME} for {_CR_PRO_SITES}. They are not the same purchase: one is a content-insights platform with a
-metered audit, the other is the audit, running locally on your own Mac with no account and no site limit.</p>
+metered audit, the other is the audit, running locally on your own computer with no account and no site limit.</p>
 
 <h2>Which to buy</h2>
 
@@ -2631,7 +2631,7 @@ for {price('scrutiny')}, and stronger than either of us at link checking.</p>
 
     return render(
         cat="vs", slug="crawlraven-alternative",
-        modified="2026-10-19",
+        modified="2026-11-08",  # Mac and 64-bit Windows, not Mac only (CEO QC),
         title="CrawlRaven vs Docket: price, technical audit, MCP",
         desc=(f"CrawlRaven joins Search Console and GA4 to a technical audit from ${_CR_STARTER} a month. "
               f"Docket is {PRICE_STR} once, any site. What each does, read from CrawlRaven's pricing page."),

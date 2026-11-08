@@ -122,17 +122,17 @@ Michigan, United States.
   and a command-line build for Linux x86_64.
 - How do I get help? Email support@docketseo.app. Questions whose answers would help
   the next person can go on the public issue tracker instead.
-- Does Docket send my site data anywhere? The crawl and the report stay on your Mac,
-  and there is no account and no telemetry. Five optional checks, on by default, reach
-  outside it: Core Web Vitals from Google PageSpeed, which is sent the addresses of
-  your homepage and top pages; a deliverability test on the addresses your site
-  publishes, which looks up their mail domains in DNS; what your server tells AI
-  crawlers; a knowledge refresh from this site; and Google's public autocomplete for
-  topic suggestions, which is sent your site's topic words. Offline mode turns all
-  five off, and every report names the ones that ran. Checking your links to other
-  sites, and rendering a few pages as a browser would, also reach the sites and
-  services those pages link to or load. The licence key is checked with our payment
-  provider when you activate it and about once a day after that.
+- Does Docket send my site data anywhere? The crawl and the report stay on your
+  computer, and there is no account and no telemetry. Five optional checks, on by
+  default, reach outside it: Core Web Vitals from Google PageSpeed, which is sent the
+  addresses of your homepage and top pages; a deliverability test on the addresses
+  your site publishes, which looks up their mail domains in DNS; what your server
+  tells AI crawlers; a knowledge refresh from this site; and Google's public
+  autocomplete for topic suggestions, which is sent your site's topic words. Offline
+  mode turns all five off, and every report names the ones that ran. Checking your
+  links to other sites, and rendering a few pages as a browser would, also reach the
+  sites and services those pages link to or load. The licence key is checked with our
+  payment provider when you activate it and about once a day after that.
 - How is Docket different from Screaming Frog? Screaming Frog gives you raw crawl data
   and leaves the interpretation to you. Docket ranks every finding by impact against
   effort and gives you an ordered plan with the exact markup to paste. Screaming Frog

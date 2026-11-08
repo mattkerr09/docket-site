@@ -237,7 +237,7 @@ method alongside the numbers.</p>
 
 <div class="callout">
 <div class="callout-title">Check your own site</div>
-<p>Docket runs this same audit against your site, plus {N_CHECKS - 1} other checks, on your Mac.
+<p>Docket runs this same audit against your site, plus {N_CHECKS - 1} other checks, on your computer.
 It tells you which crawlers you are blocking, whether it looks deliberate, and what the
 practical consequence is for each one. <a href="/download/">Download Docket →</a> To read one
 robots.txt without installing anything, use the free
