@@ -15,7 +15,7 @@
 <title>What is llms.txt, and does it do anything?</title>
 <meta name="description" content="llms.txt is a Markdown map of your site for language models. Google says you don't need it for AI Overviews. What goes in it, who has one, and when it helps.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2454bbdaea7f">
+<meta name="build-id" content="7d14e5b3b830">
 <link rel="canonical" href="https://docketseo.app/learn/what-is-llms-txt/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -636,6 +636,9 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .checker-extra-input{width:100%;max-width:16rem;padding:.55rem .75rem;border-radius:var(--radius-md);
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
+/* WCAG 2.4.1 Bypass Blocks: our own Public Site Check found no skip link or main landmark here (2026-11-08). */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:.6rem 1rem;background:var(--surface);color:var(--text);border:2px solid var(--brand);border-radius:var(--radius-md)}
+.skip-link:focus{left:1rem;top:1rem}
 .checker-form .checker-row+label{margin-top:.9rem}
 .tool-out{margin:0 0 2rem;padding:1rem 1.2rem;border-left:3px solid var(--brand);background:var(--surface)}
 .tool-out .t2-when{font-size:1.25rem;font-weight:700;margin:0 0 .4rem}
@@ -941,6 +944,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
@@ -968,6 +972,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
 </div></nav>
+<main id="main">
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is llms.txt?</div><h1>What is llms.txt?</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-28">28 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-19">19 October 2026</time></p>
 
 <p class="lede"><strong>llms.txt is a Markdown file at the root of a website that lists the pages
@@ -1040,6 +1045,7 @@ and which rule decided it.</p>
 </ul>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does llms.txt help me rank in Google or appear in AI Overviews?</h3><p>Google's documentation says there are no special requirements to appear in AI Overviews or AI Mode, and that you don't need AI text files to be included. Crawler access to your real pages is what counts.</p></div><div class="faq-item"><h3>Is llms.txt the same as robots.txt?</h3><p>No. robots.txt tells crawlers what they may fetch. llms.txt is a suggested reading list for a model that is already reading your site. It grants and blocks nothing.</p></div><div class="faq-item"><h3>Should I add one anyway?</h3><p>It is cheap and harmless if it is a genuine index of your best pages, generated from the same source as those pages so it cannot go stale. Check first that AI crawlers can reach your site; a file nobody can fetch does nothing.</p></div></div></section>
 </div></article>
+</main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>

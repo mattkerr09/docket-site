@@ -15,7 +15,7 @@
 <title>The Docket score card: one picture of an SEO audit</title>
 <meta name="description" content="A score card is a one-picture summary of a Docket audit: the site, its score and how many problems each area has. What is on it, and how to make your own.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2454bbdaea7f">
+<meta name="build-id" content="7d14e5b3b830">
 <link rel="canonical" href="https://docketseo.app/score-card/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -636,6 +636,9 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .checker-extra-input{width:100%;max-width:16rem;padding:.55rem .75rem;border-radius:var(--radius-md);
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
+/* WCAG 2.4.1 Bypass Blocks: our own Public Site Check found no skip link or main landmark here (2026-11-08). */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:.6rem 1rem;background:var(--surface);color:var(--text);border:2px solid var(--brand);border-radius:var(--radius-md)}
+.skip-link:focus{left:1rem;top:1rem}
 .checker-form .checker-row+label{margin-top:.9rem}
 .tool-out{margin:0 0 2rem;padding:1rem 1.2rem;border-left:3px solid var(--brand);background:var(--surface)}
 .tool-out .t2-when{font-size:1.25rem;font-weight:700;margin:0 0 .4rem}
@@ -940,6 +943,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
@@ -967,6 +971,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
 </div></nav>
+<main id="main">
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / Score card</div><h1>The Docket score card</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-11-06">6 November 2026</time></p>
 
 <p class="lede">A Docket score card is one picture that sums up an SEO audit of a website: the site's score, and how many
@@ -1009,6 +1014,7 @@ finishes, press <strong>Save score card</strong>. The audit runs on your own com
 where it stands.</p>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does the card say what is wrong with the site?</h3><p>No. It says how many problems each area found, and nothing about what they are, which pages have them or how to fix them. A card is safe to post or send: whoever reads it learns the score and where the work is, not the details.</p></div><div class="faq-item"><h3>Does saving a card send anything anywhere?</h3><p>No. The app draws the card on your own computer and saves it where you choose. Nothing about the audit or the card is sent to us or to anyone else. The only address on it is ours, at the foot.</p></div><div class="faq-item"><h3>Can I put my own logo on it?</h3><p>Not on the card. Agencies who want their own name on what a client sees use the white-label reports in the full version of Docket, which carry the agency's name and logo and no mention of Docket.</p></div><div class="faq-item"><h3>Why is the score not 100?</h3><p>The score is the weighted result of the checks that apply to the site, so a site with a few small problems in a few areas scores in the nineties, and one with a blocked homepage scores far lower. The grade is the letter for that score.</p></div></div></section>
 </div></article>
+</main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>

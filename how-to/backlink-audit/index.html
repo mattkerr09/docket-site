@@ -15,7 +15,7 @@
 <title>Backlink audit: which questions are worth paying for</title>
 <meta name="description" content="Ahrefs sells no product called Backlink Audit. The three questions an audit asks, which tool answers each, and what an open link graph cannot.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2454bbdaea7f">
+<meta name="build-id" content="7d14e5b3b830">
 <link rel="canonical" href="https://docketseo.app/how-to/backlink-audit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -636,6 +636,9 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .checker-extra-input{width:100%;max-width:16rem;padding:.55rem .75rem;border-radius:var(--radius-md);
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
+/* WCAG 2.4.1 Bypass Blocks: our own Public Site Check found no skip link or main landmark here (2026-11-08). */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:.6rem 1rem;background:var(--surface);color:var(--text);border:2px solid var(--brand);border-radius:var(--radius-md)}
+.skip-link:focus{left:1rem;top:1rem}
 .checker-form .checker-row+label{margin-top:.9rem}
 .tool-out{margin:0 0 2rem;padding:1rem 1.2rem;border-left:3px solid var(--brand);background:var(--surface)}
 .tool-out .t2-when{font-size:1.25rem;font-weight:700;margin:0 0 .4rem}
@@ -941,6 +944,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
@@ -968,6 +972,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
 </div></nav>
+<main id="main">
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Backlink audit</div><h1>How to do a backlink audit</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-14">14 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-05">5 November 2026</time></p>
 
 <p class="lede">A backlink audit asks three questions: who links to us, is any of it doing
@@ -1073,6 +1078,7 @@ a backlink costume.</p>
 </ul>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Ahrefs have a backlink audit tool?</h3><p>Not under that name. Checked across their pricing, Site Audit, Backlink Checker and Site Explorer pages, the phrase does not appear. The work people mean by “backlink audit” is done with Backlink Checker for individual links and Site Explorer for the full profile.</p></div><div class="faq-item"><h3>Can I audit backlinks for free?</h3><p>Partly. Common Crawl's public hyperlink graph gives referring domains at the domain level, which answers “who links to us” and lets you compare your count against a competitor's. It does not give linking URLs, anchor text or nofollow status: those need a commercial backlink index.</p></div><div class="faq-item"><h3>Should I disavow bad backlinks?</h3><p>Usually not. Search engines discount obvious spam on their own, and a disavow file submitted on a hunch can remove links that were helping. The case for it is narrow: links you or a predecessor bought, or a domain with a known history.</p></div><div class="faq-item"><h3>What is the difference between a domain-level and a page-level link graph?</h3><p>A domain-level graph records that one domain links to another. A page-level index records which URL links to which URL, with the anchor text. The first is enough to count referring domains and compare sites; the second is what you need to look at an individual link.</p></div><div class="faq-item"><h3>What is the most common fixable finding in a backlink audit?</h3><p>An earned link pointing at a URL that no longer exists. The authority arrives at a 404 and one redirect recovers it. It is worth checking before anything more ambitious, because it costs almost nothing and nobody is selling it to you.</p></div></div></section>
 </div></article>
+</main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>

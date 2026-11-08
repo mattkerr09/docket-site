@@ -15,7 +15,7 @@
 <title>Marketing tag audit: is your tracking on every page?</title>
 <meta name="description" content="The 6 tracking checks in Docket's audit (analytics coverage, ad pixels, consent timing, UTM hygiene), and the common failure you can check yourself in four minutes.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2454bbdaea7f">
+<meta name="build-id" content="7d14e5b3b830">
 <link rel="canonical" href="https://docketseo.app/learn/marketing-tag-audit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -636,6 +636,9 @@ h1 em,h2 em,h3 em,.hero-h1 em{font-style:normal;color:var(--brand-light)}
 .checker-extra-input{width:100%;max-width:16rem;padding:.55rem .75rem;border-radius:var(--radius-md);
   border:1px solid var(--border-strong);background:var(--surface-2);color:var(--text);font:inherit}
 .checker-sitemaps{color:var(--text-mid);overflow-wrap:anywhere}
+/* WCAG 2.4.1 Bypass Blocks: our own Public Site Check found no skip link or main landmark here (2026-11-08). */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:.6rem 1rem;background:var(--surface);color:var(--text);border:2px solid var(--brand);border-radius:var(--radius-md)}
+.skip-link:focus{left:1rem;top:1rem}
 .checker-form .checker-row+label{margin-top:.9rem}
 .tool-out{margin:0 0 2rem;padding:1rem 1.2rem;border-left:3px solid var(--brand);background:var(--surface)}
 .tool-out .t2-when{font-size:1.25rem;font-weight:700;margin:0 0 .4rem}
@@ -941,6 +944,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
@@ -968,6 +972,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div></details>
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
 </div></nav>
+<main id="main">
 <article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Marketing tag audit</div><h1>Marketing tag audit</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-14">14 August 2026</time></p>
 
 <p class="lede">A marketing tag audit answers one question: does the tracking you believe is
@@ -1075,6 +1080,7 @@ guess at the rest.</p>
 </ul>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is a marketing tag audit?</h3><p>A check that the analytics and advertising tags you believe are running actually appear on every page, for every visitor, and fire at the right time. It is different from checking a tag is installed: tags are installed on templates, and sites grow pages that use other templates.</p></div><div class="faq-item"><h3>Why would a page be missing my analytics tag?</h3><p>Because tags are added to a template, not to a site. Landing pages built for a campaign, checkout flows rebuilt by a contractor, and blogs moved to a subdomain are all pages published outside the template the tag was added to. Nothing errors when it happens.</p></div><div class="faq-item"><h3>Can Docket see tags that JavaScript injects at runtime?</h3><p>Not by default. It reports what is present in the HTML it read, and says so rather than concluding a site has no analytics. Running an audit with --render executes the page's JavaScript in WebKit first and audits what a browser actually receives.</p></div><div class="faq-item"><h3>Does Docket check whether my tracking is correct?</h3><p>No. It checks what is present in the pages it read. Whether events fire on the right actions and whether revenue is passed accurately can only be tested against real sessions in your analytics account, and a crawler cannot see them.</p></div></div></section>
 </div></article>
+</main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
 <div><h2 class="foot-h">Docket SEO</h2>
