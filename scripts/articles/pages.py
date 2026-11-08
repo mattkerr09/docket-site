@@ -2283,7 +2283,7 @@ def chrome_extension_privacy() -> Path:
 <p>Docket page check is a free Chrome extension from Kerr &amp; Company. It checks the web page you are
 looking at for the SEO basics and shows the result in a small window. This page says what it can see,
 what it sends and what it asks Chrome for. The privacy policy for the Docket app and for this website is
-<a href="/legal/privacy/">here</a>.</p>
+the <a href="/legal/privacy/">Docket privacy policy</a>.</p>
 
 <h2>What it sends</h2>
 <p>Nothing to us and nothing to anyone else. The checking happens inside your browser, on the page you
