@@ -578,7 +578,12 @@ def windows_download(src: str, *, lead: str = "On Windows?") -> str:
         return ""
     return (f'<p class="win-dl">{lead} <a href="{download_url(src + "-windows", to=WIN_SETUP)}" '
             f'data-ev="Download" data-ev-button="{src}-windows">Download Docket {RELEASE} for Windows</a> '
-            f'({WIN_SETUP_SIZE}, 64-bit, signed by {WIN_PUBLISHER}).</p>')
+            f'({WIN_SETUP_SIZE}, 64-bit, signed by {WIN_PUBLISHER}). Or '
+            # The Store is the second option, never instead of the direct link: the direct link is the counted path
+            # (hub /dl). Store installs are rated there, which the listing needs (CEO, 2026-11-08). cid tags the placement
+            # for Partner Center's own acquisition report.
+            f'<a href="{MS_STORE.split("?")[0]}?cid=docketseo-{src}" rel="noopener" data-ev="Download" '
+            f'data-ev-button="{src}-msstore">get it from Microsoft</a>, the same app through the Microsoft Store.</p>')
 
 #: Where a Windows waiting-list sign-up is posted and under which source. The source is the one the shared
 #: widget this replaces used (host + "-windows"), so earlier sign-ups and new ones are ONE list, kept apart from
