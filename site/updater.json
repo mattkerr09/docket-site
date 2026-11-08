@@ -1,19 +1,19 @@
 {
-  "version": "1.3.157",
-  "notes": "Docket 1.3.157\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes) to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *The header fits a small window again.* In 1.3.156, at the app's smallest window size, the new Public Site Check tab\n  pushed the header onto two lines: \"Buy Docket\", \"Enter licence key\" and \"New audit\" each wrapped, and the Buy button\n  rose out of the title bar. Everything is on one line again at every size.\n- *The licence dialog says \"this computer\".* It said the key is stored \"on this Mac only\", on Windows too.\n\n99 checks across 13 areas.",
-  "pub_date": "2026-11-08T06:58:34Z",
+  "version": "1.3.158",
+  "notes": "Docket 1.3.158\n\n**Docket is free to try: run a full audit of any site without a key and see your score, how many problems each area has, and the most important problem in full with its fix. [Buy it once](https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=release-notes) to see all the others, the ranked fix plan and the markup to paste. 30-day refund, no conditions.**\n\n- *A page with a long block of CSS no longer stalls the audit.* Reading the fonts a page uses rescanned the end of a\n  long style block once for every character in it. A page carrying 26 KB of CSS comments held the audit for about nine\n  seconds, long enough for the app to lose touch with the engine while it ran. The same page now takes a few\n  milliseconds.\n- *More of the app is tested before every release.* The browser tests of every screen, the accessibility checks of the\n  app itself and the Chrome add-on's tests now run on every build, and a release is refused if any of them fails or\n  skips.\n\n99 checks across 13 areas.",
+  "pub_date": "2026-11-08T08:32:00Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaThXeWpwblFTSDRSK0dKVlNJUUJsVmlmT25XZFVTN2hIV2lPS1ZMVk5UVkhRVUFJU08rcCtOOG9ibVNqT1FiWkxZWUtFZ01YcGRvMmtoSWIvMW9aY3dBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk0MTIwNDQxCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKMmZsZkJGUTZqUllBZEpFQWZIbEhhcGFmdDZ4RTZ4NUNOeWVkNnpKWlplSmd5ZkZNNFlvVmszY212bE10NGVTd0Y0RlIvcnFMTFhBS1A0MTJEVjZxRHc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.157/Docket.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXorUDczWURkT2NXOW91aFJ6eVBiR2lKRExQRDQ5cnQwMlpVbU1TMzAvamVTZmtpZVk1S29KOEtGbi9iUnhQeTFGSS8rT0RrS1hjdkFmSnRVUTVoNWcwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk0MTI2MTI3CWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKUFZOZVJvQWxKYWs5cjJJU2g0OVhlNnY3b3lRYlNzQVdiK1d0b3BZdHFzSkh3S3J6N1RMVzFhcGJUYnpzcW8wdGE0dkIxSVlsZjhYajQ2Wi9FU3NsRGc9PQo=",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.158/Docket.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTNNQmlLQ1RiaGV3aWZKMEpDbGEwV3o3b3RvemRETkZZZnVJYnROdjRBVjZYRlZmUlpVNVZ4Nk1tZ2lDYzlGWXFqbHMwRll3c1dtWjQ1MHhPVnUrNmdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk0MTIwNzA1CWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6CkdWcXdjcWN1SlNFUU5IbUlGWWRhVmJGMnVxWE5JLzhBMVZBTGxXdHVBV21YMERFTjBYSFBRQnM0MUVSUTBXVGFJNkVFcFNvWGRpbXBPdktCSDQxRkRnPT0K",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.157/Docket-x86_64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaXg1QWNka3ljT3crSTdDcnpWWnJIZXk3MjdESWlXd0dJZ2s3Qi81SWJ2QkxjQ0Q4Z3NsWGkvNjE1R0N1TWN0R0VXZ3BHb05VMnVOTzQ2YjhXbXlmbHd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk0MTI2MzczCWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6CjlEYmNoQkJxNTNMcE5yUEc4S3BCT3lzYW1YbzF1ekl3VFlYcjV5MGE3MWJ4SExCMmFPYU53NGk1M05MWWpHMndMRERQaVl4U3dvZXZmSjBlaXUyV0F3PT0K",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.158/Docket-x86_64.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaS9KREJMdVc4Vnlhc3AwMytudU9MWWZGZWN5a29BSUhnL2dlaFlpSWZSaUgrcm16NGdHWklVMU50NzlWeFEwbTBKSkhwZFVYWGR3a1JyRmJYL3lLMHdNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk0MTIwODI1CWZpbGU6RG9ja2V0LTEuMy4xNTcteDY0LXNldHVwLmV4ZQpMWXh4ZmNqekFtZFBBTXc2QWp3RUwwSDhkTk9aK0tqMjdCbGU3S2JiKzMrNzYyVC9MWkpOWG96bHl5NkpNMlVYTjJieXNPTythME1JdGVSUWE2bEtCUT09Cg==",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.157/Docket-1.3.157-x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTFSQVd6MnVraDBVZnNnK2JDSElZNWlhOG9aVlhXcHlMY0dyT2NUNUpWYWFuMHdLRkltTXFzRjZQbzhmL1U3eXdOMzAxUHVSVGJZanVzTmE2THMreUFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk0MTI2NDc0CWZpbGU6RG9ja2V0LTEuMy4xNTgteDY0LXNldHVwLmV4ZQo5MDc4SEV6bEpLL2d6Vm5jY0RlT3F6bUtMKzVlb3Q5M1liVm9vOTFtQ2Q0KzV4MHFhbVR5VllVTDNRTUdXeWZ5N1QrYnNBM0RXZUVkeFVOUE1xS2JDZz09Cg==",
+      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.158/Docket-1.3.158-x64-setup.exe"
     }
   }
 }

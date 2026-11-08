@@ -1,7 +1,7 @@
 {
   "measured": "2026-11-08",
-  "release": "1.3.157",
-  "bundle": "Docket-1.3.157-macos.mcpb, the file published on the v1.3.157 GitHub release",
+  "release": "1.3.158",
+  "bundle": "Docket-1.3.158-macos.mcpb, the file published on the v1.3.158 GitHub release",
   "how": "Unpacked and started as Claude Desktop starts it (the manifest's command, the licence-key setting left empty), with a temporary HOME and DOCKET_HOME so no saved licence could be read; scripts/mcpb_host_test.mjs in docket-app: initialize, tools/list, one audit_site call (offline, at most 10 pages, 120 s), then close.",
   "site": "docketseo.app",
   "tools": [
@@ -11,7 +11,7 @@
     "compare_audits",
     "list_checks"
   ],
-  "seconds": 14.1,
+  "seconds": 14.3,
   "score": 99.4,
   "grade": "A",
   "areas": 12,
