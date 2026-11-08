@@ -833,7 +833,11 @@ support inbox and the issue tracker myself. <a href="/about/">About me, and what
 def build() -> Path:
     return render(
         cat="", slug="",
-        title="Docket SEO: SEO, copy, conversion and brand audits for Mac",
+        # 2026-11-08 (CEO, the Windows relaunch): name Windows, read from the same WINDOWS flag as the share card. "...
+        # conversion and brand audits for Mac and Windows" is 70 characters, past the 60 Google shows, so copy and brand
+        # stay in the description. Logged as a dated change in ~/ops/research/docket-search-health-2026-10-30.md.
+        title=("Docket SEO: SEO and conversion audits for Mac and Windows" if WINDOWS
+               else "Docket SEO: SEO, copy, conversion and brand audits for Mac"),
         # 162 characters, and Google renders about 155 — measured with entities
         # decoded, which is the only way to count a description honestly.
         # Dropping "visibility" is the whole edit: 151, brand name still first.
