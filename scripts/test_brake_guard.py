@@ -32,6 +32,8 @@ def main() -> int:
         held = run(hold, None)
         assert held.returncode == 1, held
         assert "RUNBOOK.md section 3" in held.stdout and "DOCKET_DEPLOY_PAST_BRAKE=1" in held.stdout, held.stdout
+        # After the roll-forward a newer version is live, and update-brake.py refuses a plain release then.
+        assert "python3 ~/ops/bin/update-brake.py release docket --clear --yes" in held.stdout, held.stdout
         for wrong in ("0", "yes", "true", ""):
             assert run(hold, wrong).returncode == 1, f"only exactly 1 may pass the brake, not {wrong!r}"
         forward = run(hold, "1")

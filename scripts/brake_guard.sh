@@ -15,7 +15,8 @@ docket_brake_guard() {
     echo "  See ~/ops/RUNBOOK.md section 3, \"A bad update reached customers\"."
     echo "  For the roll-forward deploy that publishes the fixed version, and only that one:"
     echo "    DOCKET_DEPLOY_PAST_BRAKE=1 bash scripts/deploy.sh \"site: <fixed version>\""
-    echo "  then release the brake: python3 ~/ops/bin/update-brake.py release docket --yes"
+    echo "  then clear the hold (a plain release refuses once a newer version is live):"
+    echo "    python3 ~/ops/bin/update-brake.py release docket --clear --yes"
     return 1
   fi
   if [ -e "$hold" ]; then
