@@ -200,14 +200,18 @@ def _field_section() -> str:
 
     def num(x):
         return f"{x:g}"
+
+    def _count(x):
+        # A median of an even number of counts can fall between two whole problems: say both, not "42.5 problems".
+        return f"{int(x)} or {int(x) + 1}" if x != int(x) else f"{int(x)}"
     rows = "".join(f"<tr><td>{k}</td><td>{num(_st.median(v))}</td><td>{sum(1 for x in v if x > 0)} of {len(v)}</td></tr>"
                    for k, v in ranked[:6])
     return f"""
 <h2>What audits of {n} small-business sites found ({day})</h2>
 <p>On {day} we ran Docket against {n} small-business sites
 ({kinds} and others), using {d["settings"]}. Each site is named here only by what kind of business it is.
-The median site scored {num(d["median"]["score"])} out of 100 with {num(d["median"]["problems"])} problems,
-and the range ran from {least} to {most}. Of the {n}, {grades["D"]} graded D, {grades["C"]} C, {grades["B"]} B
+The median site scored about {round(d["median"]["score"])} out of 100 and had {_count(d["median"]["problems"])}
+problems; the problem counts ran from {least} to {most}. Of the {n}, {grades["D"]} graded D, {grades["C"]} C, {grades["B"]} B
 and {grades["A"]} A.</p>
 <p>The most common area was {top[0]}: a median of {num(_st.median(top[1]))} problems a site. Next
 came {second[0]}, at {num(_st.median(second[1]))}. Crawlability, the gate described above, had
