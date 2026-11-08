@@ -66,6 +66,12 @@ def contact_urls() -> dict[str, set[str]]:
     for page in SITE.rglob("*.html"):
         rel = str(page.relative_to(SITE))
         for url in HREF.findall(page.read_text()):
+            # A release download is a file, not a way to reach us. Its "github.com/mattkerr09" is the download's
+            # address (directly, or in a hub /dl link's to=), and the download-path gate checks those. Counting them
+            # here sent ~200 HEADs at GitHub's release servers per deploy; on 2026-11-08, while they answered slowly,
+            # this gate refused two deploys over "advertised channels" that were installers.
+            if "/releases/download/" in url:
+                continue
             if any(h in url for h in CONTACT_HOSTS):
                 found.setdefault(url, set()).add(rel)
     return found

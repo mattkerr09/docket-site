@@ -1028,6 +1028,37 @@ def _thank_you_xsell() -> str:
 """
 
 
+#: "How did you find Docket?" (plan J3, 2026-11-08; the hub's POST /found/<app> is J4). One tap sends one word from this
+#: fixed list to the hub, which adds one to a daily count by answer and country. No storage, no cookie, nothing sent
+#: unless a button is pressed, and the question hides after it. ct=1 only on a real (trusted) click, as the hub's
+#: snippet does for /dl and /buy. The list must match the hub's FOUND_ANSWERS (affiliate-hub/worker.js).
+FOUND_ENDPOINT = "https://kerr-affiliate-hub.kerrco.workers.dev/found/docket"
+FOUND_ANSWERS = (("claude", "Claude"), ("chatgpt", "ChatGPT"), ("google", "Google"), ("bing", "Bing"),
+                 ("youtube", "YouTube"), ("reddit", "Reddit"), ("producthunt", "Product Hunt"),
+                 ("friend", "A friend or colleague"), ("other", "Somewhere else"))
+
+
+def _thank_you_found() -> str:
+    buttons = "\n".join(f'<button type="button" class="btn-ghost" data-found="{key}">{label}</button>'
+                         for key, label in FOUND_ANSWERS)
+    return f"""
+<section id="ty-found" aria-labelledby="ty-found-q">
+<h2 id="ty-found-q">One question: how did you find Docket?</h2>
+<p class="hero-note">One tap, optional. It sends only the answer you pick.</p>
+<div class="found-row" style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px">
+{buttons}
+</div>
+<p id="ty-found-done" role="status" aria-live="polite"></p>
+</section>
+<script>(function(){{var box=document.getElementById('ty-found');if(!box)return;
+box.addEventListener('click',function(e){{var b=e.target.closest&&e.target.closest('[data-found]');if(!b)return;
+var u='{FOUND_ENDPOINT}?a='+encodeURIComponent(b.getAttribute('data-found'))+(e.isTrusted?'&ct=1':'');
+try{{fetch(u,{{method:'POST',mode:'cors',credentials:'omit',keepalive:true}}).catch(function(){{}})}}catch(x){{}}
+box.querySelector('.found-row').hidden=true;box.querySelector('.hero-note').hidden=true;
+document.getElementById('ty-found-done').textContent='Thank you.';}});}})();</script>
+"""
+
+
 def thank_you() -> Path:
     """The page a buyer lands on after paying. Built 2026-08-19.
 
@@ -1108,6 +1139,7 @@ terminal, <code>docket licence --key YOUR-KEY</code> does the same thing.</p>
 <p>Email <a href="mailto:__SUPPORT__">__SUPPORT__</a> and say what
 happened. If the purchase was a mistake, the
 <a href="/legal/refunds/">refund policy</a> is on this site and it is short.</p>
+__FOUND__
 __XSELL__"""
     return render(
         cat="", slug="thank-you",
@@ -1116,7 +1148,7 @@ __XSELL__"""
         h1="Thank you",
         crumb='<a href="/">Docket</a> / Thank you',
         body=(body.replace("__SUPPORT__", SUPPORT_EMAIL).replace("__COVERS__", F.licence_covers())
-              .replace("__XSELL__", _thank_you_xsell())),
+              .replace("__XSELL__", _thank_you_xsell()).replace("__FOUND__", _thank_you_found())),
         # ⚠️ This page told buyers to email hello@docketseo.app — the address
         # Matthew replaced with support@ on 2026-08-13 and ~/ops/bin/contact-gate
         # lists as DISOWNED. The gate never saw it: /thank-you/ is noindexed and

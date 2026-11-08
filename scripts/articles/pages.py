@@ -2346,6 +2346,10 @@ The server names itself in each request. The checkers set no cookie and store no
 a server we run, what that payment came to, sending only the payment&rsquo;s id, so our own sales
 count shows what you actually paid rather than the list price. Nothing about
 you is sent or returned.</p>
+<p>The same page asks, once, how you found Docket. It is optional. If you tap an answer, the page sends that one
+word, such as <code>google</code>, to the same server, which adds one to a daily count for that answer and the country
+the request came from. Nothing else is sent or kept, nothing is stored in your browser, and nothing is sent if you
+do not tap.</p>
 <!-- email-privacy -->
 <p>This section said &ldquo;there is no contact form and no mailing list&rdquo; until
 2026-08-24. The field went live on 2026-08-18, so the denial stood for six days while addresses
