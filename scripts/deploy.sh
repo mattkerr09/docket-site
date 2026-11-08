@@ -18,6 +18,8 @@ PY="${PYTHON:-python3}"
 
 # The update brake: no deploy while it holds Docket, except the roll-forward (scripts/brake_guard.sh).
 "$PY" scripts/test_brake_guard.py >/dev/null || { echo "  the brake guard's own test failed; refusing to deploy"; exit 1; }
+# The AI assistants landing page: its tag list, the email box in both states (off ships nothing) and the privacy text.
+"$PY" scripts/test_connector_landing.py >/dev/null || { echo "  the AI assistants landing test failed; refusing to deploy"; exit 1; }
 source scripts/brake_guard.sh
 docket_brake_guard || exit 1
 
