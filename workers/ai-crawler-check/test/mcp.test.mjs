@@ -3,7 +3,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { handle } from '../src/index.js'
-import { TOOLS, SESSION_LIMIT } from '../src/mcp.js'
+import { TOOLS, SESSION_LIMIT, DAILY_CAP, DailyCap, clientFamily, familyOf } from '../src/mcp.js'
 import { AI_AGENTS } from '../src/agents.js'
 
 function net(routes) {
@@ -22,6 +22,38 @@ const call = (body, headers = {}) => new Request('https://w.example.workers.dev/
 const rpc = (method, params, id = 1) => ({ jsonrpc: '2.0', id, method, params })
 const tool = (name, args) => rpc('tools/call', { name, arguments: args })
 const EXTRACT = { extract: async () => ({ lang: 'en', titles: ['Plumber in Grand Rapids, open all night'], metas: { description: ['A licensed plumber at your door within the hour, any time, with upfront prices and a one-year guarantee.'], viewport: ['width=device-width'], 'og:title': ['x'], 'og:image': ['x'] }, canonicals: [], h1s: ['Plumber'], jsonld: [] }) }
+
+function counter() {
+  const store = new Map()
+  const state = { storage: { get: async (k) => store.get(k), put: async (k, v) => { store.set(k, v) },
+    delete: async (k) => { store.delete(k) }, list: async ({ prefix }) => new Map([...store].filter(([k]) => k.startsWith(prefix))) } }
+  const cap = new DailyCap(state)
+  return { store, DAILY_CAP: { idFromName: () => 'g', get: () => ({ fetch: (u) => cap.fetch(new Request(u)) }) } }
+}
+
+test('client names map to one of three families, including missing, empty and long names', () => {
+  for (const [name, family] of [
+    ['Claude Desktop', 'claude'], ['ANTHROPIC connector', 'claude'],
+    ['OpenAI client', 'chatgpt'], ['cHaTgPt', 'chatgpt'],
+    ['', 'other'], ['Unknown client', 'other'], [undefined, 'other'], [42, 'other'],
+    ['x'.repeat(200), 'other'], ['x'.repeat(194) + 'ClAuDe', 'claude'],
+    ['x'.repeat(194) + 'OpenAI', 'chatgpt'],
+  ]) assert.equal(clientFamily({ name }), family)
+  assert.equal(clientFamily(), 'other')
+  assert.equal(clientFamily(null), 'other')
+})
+
+test('initialize session prefixes round trip and other headers have no known family', async () => {
+  for (const [name, family] of [['Claude', 'claude'], ['OpenAI', 'chatgpt'], ['Unknown client', 'other'], [undefined, 'other']]) {
+    const r = await handle(call(rpc('initialize', { clientInfo: { name } })), fetch, {})
+    const session = r.headers.get('Mcp-Session-Id')
+    assert.match(session, new RegExp(`^${family}\\.[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$`))
+    assert.equal(familyOf(session), family)
+  }
+  for (const header of [null, undefined, '', 'old-session-id', 'claude', 'chatgpt', 'Claude.id', 'openai.id', 'other.id', 'unknown.claude.id']) {
+    assert.equal(familyOf(header), 'other')
+  }
+})
 
 test('initialize answers with a session id and a supported protocol version', async () => {
   const r = await handle(call(rpc('initialize', { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 't', version: '1' } })), async () => { throw new Error('no fetch') }, {})
@@ -98,6 +130,36 @@ test('the snippet preview cuts a long title and measures East Asian width as dou
   assert.equal(ja.result.structuredContent.title_width, 31)
 })
 
+test('every tool promotes nothing in its text or structured content on fixture pages', async () => {
+  const title = 'A helpful guide to garden plants'
+  const description = 'Learn how to choose garden plants and care for them through every season with this simple guide.'
+  const data = { lang: 'en', titles: [title], metas: { description: [description], viewport: ['width=device-width'],
+    'og:title': [title], 'og:image': ['https://example.com/garden.png'] }, canonicals: ['https://example.com/garden/'],
+    h1s: ['Garden plants'], jsonld: [JSON.stringify({ '@context': 'https://schema.org', '@type': 'Article', headline: title })] }
+  const { fetchImpl } = net({
+    'http://example.com/': { status: 301, headers: { Location: 'https://example.com/' } },
+    'https://example.com/': { status: 302, headers: { Location: '/garden/' } },
+    'https://example.com/garden/': { body: '<html></html>', headers: { 'Content-Type': 'text/html',
+      'Strict-Transport-Security': 'max-age=31536000', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'strict-origin-when-cross-origin' } },
+    'http://example.com/robots.txt': { body: 'User-agent: *\nAllow: /', headers: { 'Content-Type': 'text/plain' } },
+  })
+  for (const { name } of TOOLS) {
+    const j = await (await handle(call(tool(name, { url: 'http://example.com/', title, description })), fetchImpl, { extract: async () => data })).json()
+    assert.equal(j.result.isError, false, name)
+    assert.ok(j.result.structuredContent, name)
+    const promotion = /docket|docketseo|download|buy|price|licen[cs]e|upgrade|\$\d/i
+    assert.doesNotMatch(j.result.content[0].text, promotion, `${name} text promotes nothing`)
+    assert.doesNotMatch(JSON.stringify(j.result.structuredContent), promotion, `${name} data promotes nothing`)
+    if (name === 'check_page_seo') {
+      const findings = j.result.structuredContent.findings
+      assert.ok(findings.some((f) => f.level === 'ok' && /Title length is fine/.test(f.label)))
+      assert.ok(findings.some((f) => f.level === 'ok' && /none missing a required property/.test(f.label)))
+    }
+    if (name === 'trace_redirects') assert.equal(j.result.structuredContent.hops.length, 2)
+    if (name === 'check_http_headers') assert.ok(j.result.structuredContent.headers.some((h) => h.name === 'strict-transport-security'))
+  }
+})
+
 test('errors say what went wrong', async () => {
   const bad = await (await handle(call(tool('check_page_seo', { url: 'localhost' })), fetch, {})).json()
   assert.equal(bad.result.isError, true)
@@ -172,18 +234,53 @@ test('a robots.txt that redirects in a loop says so, never "HTTP null"', async (
   assert.match(j.result.content[0].text, /More than five redirects/)
 })
 
-test('outcomes are counted by tool and outcome only, and the stats need the secret', async () => {
-  const store = new Map()
-  const state = { storage: { get: async (k) => store.get(k), put: async (k, v) => { store.set(k, v) },
-    delete: async (k) => { store.delete(k) }, list: async ({ prefix }) => new Map([...store].filter(([k]) => k.startsWith(prefix))) } }
-  const { DailyCap } = await import('../src/mcp.js')
-  const cap = new DailyCap(state)
+test('family and outcome counts store no address, client details or session id, and the stats need the secret', async () => {
+  const { store, DAILY_CAP: daily } = counter()
   const env = { ...EXTRACT, STATS_KEY: 'k'.repeat(32),
-    DAILY_CAP: { idFromName: () => 'g', get: () => ({ fetch: (u) => cap.fetch(new Request(u)) }) } }
+    DAILY_CAP: daily }
   const { fetchImpl } = net({ 'https://shop-gr.com/': { status: 403 } })
+  const privateDetails = ['shop-gr.com', '160.79.104.10', 'PrivateUserAgent', 'PrivateVersion']
+  for (const [name, family] of [['Claude PrivateClient', 'claude'], ['ChatGPT PrivateClient', 'chatgpt'], ['Unknown PrivateClient', 'other']]) {
+    const r = await handle(call(rpc('initialize', { clientInfo: { name, version: 'PrivateVersion' } })), fetchImpl, env)
+    const session = r.headers.get('Mcp-Session-Id')
+    privateDetails.push(name, session)
+    await handle(call(tool('check_page_seo', { url: 'shop-gr.com' }), {
+      'Mcp-Session-Id': session, 'CF-Connecting-IP': '160.79.104.10', 'User-Agent': 'PrivateUserAgent',
+    }), fetchImpl, env)
+    const day = new Date().toISOString().slice(0, 10)
+    assert.equal(store.get(`t:${day}:init:${family}`), 1)
+    assert.equal(store.get(`t:${day}:calls:${family}`), 1)
+  }
+  // Missing, legacy and unrecognized session prefixes all belong to other.
   await handle(call(tool('check_page_seo', { url: 'shop-gr.com' })), fetchImpl, env)
-  for (const key of store.keys()) assert.doesNotMatch(key, /shop-gr\.com/, 'never the address')
+  for (const session of ['legacy-private-session', 'private-client.private-session']) {
+    privateDetails.push(session)
+    await handle(call(tool('preview_search_snippet', { title: 'A fine title for a page' }), { 'Mcp-Session-Id': session }), fetchImpl, env)
+  }
+  for (const [key, count] of store) {
+    for (const detail of privateDetails) assert.ok(!key.includes(detail), `never store ${detail}`)
+    assert.match(key, /^(n:\d{4}-\d{2}-\d{2}|t:\d{4}-\d{2}-\d{2}:[a-z_]+:[a-z_]+)$/)
+    assert.equal(typeof count, 'number')
+  }
   assert.equal(await (await handle(new Request('https://w.example.workers.dev/mcp/stats'), fetchImpl, env)).status, 404)
   const stats = await (await handle(new Request('https://w.example.workers.dev/mcp/stats', { headers: { 'X-Stats-Key': 'k'.repeat(32) } }), fetchImpl, env)).json()
-  assert.equal(stats.outcomes['check_page_seo:refused'], 1)
+  assert.deepEqual(stats.outcomes, { 'init:claude': 1, 'calls:claude': 1, 'check_page_seo:refused': 4,
+    'init:chatgpt': 1, 'calls:chatgpt': 1, 'init:other': 1, 'calls:other': 4, 'preview_search_snippet:ok': 2 })
+})
+
+test('calls are counted even for an unknown tool, bad input, session limit or daily cap', async () => {
+  const { store, DAILY_CAP: daily } = counter()
+  const env = { DAILY_CAP: daily }
+  const headers = { 'Mcp-Session-Id': 'claude.private-session' }
+  await handle(call(tool('unknown', {}), headers), fetch, env)
+  await handle(call(tool('preview_search_snippet', {}), headers), fetch, env)
+  await handle(call(tool('preview_search_snippet', { title: 'A fine title for a page' }), headers), fetch,
+    { ...env, MCP_LIMITER: { limit: async () => ({ success: false }) } })
+  const day = new Date().toISOString().slice(0, 10)
+  store.set(`n:${day}`, DAILY_CAP)
+  const capped = await (await handle(call(tool('preview_search_snippet', { title: 'A fine title for a page' }), headers), fetch, env)).json()
+  assert.match(capped.result.content[0].text, /daily limit/)
+  assert.equal(store.get(`t:${day}:calls:claude`), 4)
+  assert.equal(store.get(`t:${day}:preview_search_snippet:input`), 1)
+  assert.equal(store.get(`t:${day}:preview_search_snippet:limit`), 1)
 })

@@ -104,7 +104,7 @@ export function checkMeta(data) {
     const w = displayWidth(title)
     if (w > TITLE_MAX) add('warning', `Long title: ${w} wide`, `Search results cut titles off at about 580 pixels, roughly ${TITLE_MAX} Latin characters. Put the words that matter first.`)
     else if (w < TITLE_MIN) add('warning', `Short title: ${w} wide`, `Under ${TITLE_MIN} gives a search result little to show. Say what the page is and who it is for.`)
-    else add('ok', `Title length is fine: ${w} wide`, `Inside ${TITLE_MIN} to ${TITLE_MAX}, the range Docket uses.`)
+    else add('ok', `Title length is fine: ${w} wide`, `Inside ${TITLE_MIN} to ${TITLE_MAX}, the range this check uses.`)
   }
   if (titles.length > 1) add('warning', `${titles.length} title tags`, 'Search engines use the first one. Remove the others.')
 
@@ -220,7 +220,7 @@ export function checkJsonLd(blocks) {
       if (missing.length) add('problem', `${types.join(', ')} is missing ${missing.join(', ')}`, `Google requires ${missing.length === 1 ? 'it' : 'them'} for a rich result. The markup is read but earns no rich result without ${missing.length === 1 ? 'it' : 'them'}.`)
     })
   })
-  if (nodes.length && !findings.some((f) => f.level === 'problem')) add('ok', `${nodes.length} item${nodes.length === 1 ? '' : 's'} read, none missing a required property`, 'Checked against the properties Google requires for each type Docket knows.')
+  if (nodes.length && !findings.some((f) => f.level === 'problem')) add('ok', `${nodes.length} item${nodes.length === 1 ? '' : 's'} read, none missing a required property`, 'Checked against the properties Google requires for each type this check knows.')
   return { blocks: blocks.length, nodes: nodes.slice(0, 40), findings }
 }
 

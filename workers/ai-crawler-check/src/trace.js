@@ -93,7 +93,7 @@ export function checkRedirects(t, startUrl) {
   else if (t.tooMany) add('problem', `More than ${MAX_TRACE} redirects`, 'Browsers give up and show "too many redirects", and crawlers stop sooner. Point the first address straight at the last.')
   if (t.error) add('problem', 'The chain breaks', t.error)
   if (!t.loop && !t.tooMany) {
-    if (n >= 2) add('warning', `${n} redirects before the page`, `Docket reports a chain of two or more. Each hop is another request before anything loads, and crawlers may stop following. Redirect ${t.hops[0].url} straight to ${t.final ? t.final.url : 'its destination'}, and link to that address directly.`)
+    if (n >= 2) add('warning', `${n} redirects before the page`, `This check reports a chain of two or more. Each hop is another request before anything loads, and crawlers may stop following. Redirect ${t.hops[0].url} straight to ${t.final ? t.final.url : 'its destination'}, and link to that address directly.`)
     else if (n === 1) add('ok', 'One redirect', `${t.hops[0].url} sends visitors to ${t.hops[0].location} in one step.`)
     else if (t.final) add('ok', 'No redirects', 'The address you entered answers directly.')
   }

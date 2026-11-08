@@ -31,6 +31,17 @@ const PROBLEM_COST = 12, WARNING_COST = 5
 const SEARCH = ['Googlebot', 'Bingbot']
 const CITE = ['OAI-SearchBot', 'Claude-SearchBot', 'PerplexityBot']
 
+export function clientFamily(clientInfo) {
+  const name = typeof clientInfo?.name === 'string' ? clientInfo.name : ''
+  if (/claude|anthropic/i.test(name)) return 'claude'
+  if (/openai|chatgpt/i.test(name)) return 'chatgpt'
+  return 'other'
+}
+
+export function familyOf(header) {
+  return typeof header === 'string' ? /^(claude|chatgpt)\./.exec(header)?.[1] || 'other' : 'other'
+}
+
 /**
  * The site decided the outcome, not the tool: it refused, failed, timed out or is not a web page. Claude's directory
  * counted every one of these as a tool error (6.5% of 169 calls in the 30 days to 8 Nov 2026), and the person saw one
@@ -248,15 +259,18 @@ export async function handleMcp(request, fetchImpl = fetch, env = {}) {
   if (method === 'initialize') {
     const asked = params.protocolVersion
     const version = PROTOCOL_VERSIONS.includes(asked) ? asked : PROTOCOL_VERSIONS[0]
+    const family = clientFamily(params.clientInfo)
+    await tally(env, 'init', family)
     return reply({ jsonrpc: '2.0', id, result: { protocolVersion: version, capabilities: { tools: { listChanged: false } },
       serverInfo: SERVER_INFO,
       instructions: 'Free, read-only checks of public web pages: a one-page SEO check, AI crawler access in robots.txt, redirect chains, HTTP headers and a search snippet preview. Each tool takes a page address; nothing is stored.' } },
-    200, { 'Mcp-Session-Id': crypto.randomUUID() })
+    200, { 'Mcp-Session-Id': `${family}.${crypto.randomUUID()}` })
   }
   if (method === 'ping') return reply({ jsonrpc: '2.0', id, result: {} })
   if (method === 'tools/list') return reply({ jsonrpc: '2.0', id, result: { tools: TOOLS } })
   if (method !== 'tools/call') return rpcError(id, -32601, `Unknown method: ${method}.`)
 
+  await tally(env, 'calls', familyOf(request.headers.get('Mcp-Session-Id')))
   const name = params.name
   const run = RUN[name]
   if (!run) return rpcError(id, -32602, `Unknown tool: ${name}. The tools are ${TOOLS.map((t) => t.name).join(', ')}.`)
@@ -285,8 +299,8 @@ export async function handleMcp(request, fetchImpl = fetch, env = {}) {
 }
 
 /**
- * How each call ended, counted per UTC day as tool and outcome only: never the address checked and never who asked, so
- * "nothing is stored" stays true. Read with GET /mcp/stats and the STATS_KEY secret (index.js).
+ * Initializations and calls by assistant family, plus how each tool call ended, counted per UTC day: never a client
+ * name, session id or address. Read with GET /mcp/stats and the STATS_KEY secret (index.js).
  */
 async function tally(env, tool, outcome) {
   if (!env.DAILY_CAP) return
