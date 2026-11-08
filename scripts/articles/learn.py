@@ -204,7 +204,7 @@ def _field_section() -> str:
                    for k, v in ranked[:6])
     return f"""
 <h2>What audits of {n} small-business sites found ({day})</h2>
-<p>On {day} we ran Docket {d["engine"]} against {n} small-business sites
+<p>On {day} we ran Docket against {n} small-business sites
 ({kinds} and others), using {d["settings"]}. Each site is named here only by what kind of business it is.
 The median site scored {num(d["median"]["score"])} out of 100 with {num(d["median"]["problems"])} problems,
 and the range ran from {least} to {most}. Of the {n}, {grades["D"]} graded D, {grades["C"]} C, {grades["B"]} B
