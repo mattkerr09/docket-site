@@ -172,6 +172,54 @@ blocking and what it costs you. It runs on your computer, and the crawl and the 
 SEO_AUDIT_BOX = "learn-seo-audit-box"
 
 
+
+def _field_section() -> str:
+    """What the shipped engine found on real small-business sites (data/field-audits.json, collect_field_audits.py).
+    Every number is computed here, so a re-collected dataset updates the prose. Sites are named by kind only."""
+    import datetime as _dt
+    import json as _json
+    import statistics as _st
+    d = _json.loads((Path(__file__).resolve().parents[2] / "data" / "field-audits.json").read_text())
+    audits = d["audits"]
+    n = len(audits)
+    when = _dt.date.fromisoformat(d["date"])
+    day = f"{when.day} {when:%B %Y}"
+    grades = {g: sum(1 for a in audits if a["grade"] == g) for g in "ABCD"}
+    areas: dict = {}
+    for a in audits:
+        for k, v in a["by_area"].items():
+            areas.setdefault(k, []).append(v)
+    ranked = sorted(areas.items(), key=lambda kv: (-_st.median(kv[1]), kv[0]))
+    top, second = ranked[0], ranked[1]
+    crawl = areas["Crawlability & indexing"]
+    crawl_hit = sum(1 for v in crawl if v > 0)
+    every = [k for k, v in areas.items() if len(v) == n and all(x > 0 for x in v)]
+    least = min(a["problems"] for a in audits)
+    most = max(a["problems"] for a in audits)
+    kinds = ", ".join(a["kind"] for a in audits[:4])
+
+    def num(x):
+        return f"{x:g}"
+    rows = "".join(f"<tr><td>{k}</td><td>{num(_st.median(v))}</td><td>{sum(1 for x in v if x > 0)} of {len(v)}</td></tr>"
+                   for k, v in ranked[:6])
+    return f"""
+<h2>What audits of {n} small-business sites found ({day})</h2>
+<p>On {day} we ran Docket {d["engine"]} against {n} small-business sites
+({kinds} and others), using {d["settings"]}. Each site is named here only by what kind of business it is.
+The median site scored {num(d["median"]["score"])} out of 100 with {num(d["median"]["problems"])} problems,
+and the range ran from {least} to {most}. Of the {n}, {grades["D"]} graded D, {grades["C"]} C, {grades["B"]} B
+and {grades["A"]} A.</p>
+<p>The most common area was {top[0]}: a median of {num(_st.median(top[1]))} problems a site. Next
+came {second[0]}, at {num(_st.median(second[1]))}. Crawlability, the gate described above, had
+problems on {crawl_hit} of the {n} sites. Every one of them had at least one finding in {len(every)} of the
+{len(areas)} areas. A clean audit is rare. What an audit is for is the order: which of those problems to fix
+first.</p>
+<div class="wrap-tbl"><table class="cmp">
+<caption>Problems per site by area, the six most common ({n} sites, {day})</caption>
+<thead><tr><th scope="col">Area</th><th scope="col">Median problems</th><th scope="col">Sites with any</th></tr></thead>
+<tbody>{rows}</tbody></table></div>
+"""
+
 def seo_audit() -> Path:
     body = f"""
 <div class="callout" id="answer">
@@ -254,6 +302,7 @@ crawl, and <a href="/learn/marketing-tag-audit/">whether your tracking is on eve
 which is a different question from whether it is installed.</li>
 </ul>
 
+{_field_section()}
 <h2>How often to run one</h2>
 <p>Quarterly is right for most sites, with lighter monitoring between. Run one immediately
 after a redesign, a migration, a CMS change, or an unexplained traffic drop: those are when
@@ -279,7 +328,7 @@ against effort, and marks areas it could not assess as unknown rather than passi
 """
     return render(
         cat="learn", slug="seo-audit",
-        modified="2026-11-08",  # the single-page checker linked from the answer box; "on your own computer" (Windows too)
+        modified="2026-11-08",  # field results from 14 small-business sites; the single-page checker linked; Windows too
         title="What is an SEO audit? What it covers and how to read one",
         desc=("An SEO audit checks whether search engines can find, understand and choose to "
               "show your site. What each area covers, and why they fail in order."),
