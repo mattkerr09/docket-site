@@ -1870,6 +1870,12 @@ def favicon_own_sites() -> dict:
     return json.loads((ROOT / "data" / "favicon-own-sites-2026-11-09.json").read_text())
 
 
+@lru_cache(maxsize=None)
+def https_own_sites() -> dict:
+    """Dated HTTPS readings and the sources quoted alongside them."""
+    return json.loads((ROOT / "data" / "https-own-sites-2026-11-09.json").read_text())
+
+
 def index_reached() -> int:
     return index()["summary"]["n"]
 

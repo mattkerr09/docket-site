@@ -1303,6 +1303,167 @@ against Google's list, so an SVG-only favicon is worth checking by eye. If your 
     )
 
 
+def what_is_https() -> Path:
+    s = F.https_own_sites()
+    sources = s["sources"]
+    own_sites = format(s["own_sites"], ",")
+    own_301 = format(s["own_301"], ",")
+    own_free_cert = format(s["own_free_cert"], ",")
+    own_cert_days_min = format(s["own_cert_days_min"], ",")
+    own_cert_days_max = format(s["own_cert_days_max"], ",")
+    own_hsts = format(s["own_hsts"], ",")
+    own_preloaded = format(s["own_preloaded"], ",")
+    g_https_pct = format(s["g_https_pct"], ",")
+    le_days_now = format(s["le_days_now"], ",")
+    le_days_2027 = format(s["le_days_2027"], ",")
+    le_days_2028 = format(s["le_days_2028"], ",")
+    max_days_2029 = format(s["max_days_2029"], ",")
+    own_read_human = F.lt_fmt(s["read"])
+    d_chrome_warn = F.lt_fmt(s["dates"]["chrome_warn"])
+    d_chrome_not_secure = " ".join(F.lt_fmt(s["dates"]["chrome_not_secure"]).split()[1:])
+    d_le_2027 = F.lt_fmt(s["dates"]["le_2027"])
+    d_le_2028 = F.lt_fmt(s["dates"]["le_2028"])
+    d_max_2029 = F.lt_fmt(s["dates"]["max_2029"])
+
+    body = f"""
+<p class="lede"><strong>HTTPS is HTTP sent over an encrypted TLS connection: the browser and the site agree on keys, and
+everything between them is private and can't be changed on the way.</strong> It also proves the browser reached the domain
+in the address bar. It does not prove the site is honest, safe or run by who it says: a phishing page can have a valid
+certificate too. Google calls HTTPS a very lightweight ranking signal. Since {d_chrome_warn} Chrome asks before opening any
+public site over plain HTTP, so a site without it now meets a warning before its first visit. All {own_sites} sites I checked redirect to it, and
+none of them pays for its certificate.</p>
+
+<h2>What HTTPS protects</h2>
+
+<p>The HTTP standard, RFC 9110, lists what an https:// address gives you: the server has been authenticated as acting for the
+domain, and the connection has confidentiality and integrity protection. In plain words:</p>
+
+<ul>
+<li><strong>Privacy:</strong> nobody on the network in between, such as a café's Wi-Fi or an internet provider, can read what is sent.</li>
+<li><strong>Integrity:</strong> nobody in between can change the page, inject ads or swap a download.</li>
+<li><strong>The right server:</strong> the certificate shows the browser it reached the domain it asked for.</li>
+</ul>
+
+<h2>What it doesn't prove</h2>
+
+<p>A domain-validated certificate, the kind Let's Encrypt issues, shows only that the requester controls the domain. Let's
+Encrypt itself says such a certificate says nothing about a site's reputation, real-world identity or safety. A padlock means the connection is private. It doesn't mean the site deserves your card number.</p>
+
+<h2>Does HTTPS help SEO?</h2>
+
+<p>A little. When Google announced HTTPS as a ranking signal, it called it a very lightweight one, affecting fewer than
+{g_https_pct} percent of queries and carrying less weight than high-quality content. Its current page-experience guidance asks
+whether pages are served securely but gives HTTPS no weight of its own.</p>
+
+<p>What matters more is which version gets indexed. Google prefers the HTTPS version of a page as the canonical one when both
+exist, as long as the certificate is valid and the HTTPS page doesn't depend on insecure resources or point back to HTTP.</p>
+
+<h2>What browsers do now</h2>
+
+<ul>
+<li><strong>Chrome marks plain HTTP pages "Not secure",</strong> and has done so for every HTTP page since {d_chrome_not_secure}.</li>
+<li><strong>Chrome now asks first.</strong> Google announced that Chrome would ask for the user's permission before first opening any
+  public site without HTTPS, and on {d_chrome_warn} said this protection had reached all users by default.</li>
+<li><strong>Mixed content is blocked or upgraded.</strong> On an HTTPS page, browsers try to upgrade images, video and audio requested over
+  http://, and block other insecure requests such as scripts and stylesheets.</li>
+</ul>
+
+<h2>Redirects and HSTS</h2>
+
+<p>Moving a site to HTTPS is a site move in Google's terms. Redirect every http:// address to its own https:// address with a
+permanent redirect (301 or 308), not everything to the home page, and keep the redirects for at least a year.</p>
+
+<p><strong>HSTS</strong> goes a step further. A site that sends the Strict-Transport-Security header tells the browser to use HTTPS for it
+from then on, without asking. The HSTS preload list builds that into browsers before the first visit. It needs a header with
+a max-age of at least a year, includeSubDomains and preload, and it is hard to undo: removal takes months to reach users.</p>
+
+<p>Some whole domain endings are preloaded. Every .app domain is on the list, so browsers that use it never try plain HTTP for one.</p>
+
+<h2>Certificates are free, and getting shorter</h2>
+
+<p>Let's Encrypt issues certificates at no charge, and its default lifetime is {le_days_now} days. It has announced shorter ones:
+{le_days_2027} days from {d_le_2027} and {le_days_2028} days from {d_le_2028}. Industry rules will cap every public
+certificate at {max_days_2029} days from {d_max_2029}. Renewal has to be automatic, because nobody can renew by hand that
+often.</p>
+
+<h2>What four real sites showed</h2>
+
+<p>On {own_read_human} I checked {own_sites} sites I run.</p>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th></th><th>Sites</th></tr></thead>
+<tbody>
+<tr><td>http:// redirects to https:// with a 301</td><td>{own_301} of {own_sites}</td></tr>
+<tr><td>Certificate issued by Let's Encrypt or Google Trust Services</td><td>{own_free_cert} of {own_sites}</td></tr>
+<tr><td>Certificate lifetime</td><td>{own_cert_days_min} to {own_cert_days_max} days</td></tr>
+<tr><td>Send an HSTS header</td><td>{own_hsts} of {own_sites}</td></tr>
+<tr><td>On the HSTS preload list through their domain ending</td><td>{own_preloaded} of {own_sites}</td></tr>
+</tbody></table></div>
+
+<p>None sends an HSTS header, and for {own_preloaded} of them that doesn't matter: they are .app sites, and the preload list
+already makes browsers use HTTPS before the first request. The other one depends on its redirect alone for the first visit.
+That is the pattern worth checking on your own site.</p>
+
+<h2>What Docket checks</h2>
+
+<p>Docket checks whether your site is served over HTTPS, whether http:// redirects to https://, and whether http:// answers with
+an error instead. It reports a certificate that is invalid or close to expiring, pages that load scripts, styles or images
+over http://, and a missing HSTS header. On a domain ending that is already preloaded, such as .app, it says no HSTS header
+is needed instead of flagging one. It also reports missing baseline security headers.</p>
+
+<h2>Sources</h2>
+<ul>
+<li><a href="{sources['rfc9110_https']}" rel="nofollow noopener">RFC 9110, the https URI scheme</a></li>
+<li><a href="{sources['mdn_https']}" rel="nofollow noopener">MDN, HTTPS</a></li>
+<li><a href="{sources['google_https_signal_2014']}" rel="nofollow noopener">Google, HTTPS as a ranking signal (2014)</a></li>
+<li><a href="{sources['google_canonical']}" rel="nofollow noopener">Google, canonical URLs</a></li>
+<li><a href="{sources['google_chrome_warns']}" rel="nofollow noopener">Google, Chrome now warns before insecure HTTP connections</a></li>
+<li><a href="{sources['chromium_not_secure']}" rel="nofollow noopener">Chromium, marking HTTP as non-secure</a></li>
+<li><a href="{sources['mdn_mixed']}" rel="nofollow noopener">MDN, mixed content</a></li>
+<li><a href="{sources['hstspreload']}" rel="nofollow noopener">HSTS preload list</a></li>
+<li><a href="{sources['le_90_to_45']}" rel="nofollow noopener">Let's Encrypt, from 90 to 45 days</a></li>
+<li><a href="{sources['le_lifetimes']}" rel="nofollow noopener">Let's Encrypt, certificate lifetimes</a></li>
+<li><a href="{sources['google_site_move']}" rel="nofollow noopener">Google, site moves</a></li>
+</ul>
+
+{buy_block("learn-what-is-https", try_app="learn-what-is-https-try-free")}
+"""
+    return render(
+        cat="learn", slug="what-is-https",
+        modified="2026-11-09",
+        title="What is HTTPS? What it protects, and what it doesn't",
+        desc=("HTTPS encrypts the connection between a browser and a site. What it proves and doesn't, "
+              "Chrome's new warnings, HSTS, shorter certificates, and four real sites."),
+        h1="What is HTTPS?",
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is HTTPS?',
+        body=body,
+        published="2026-11-09",
+        faq=[
+            ("What is the difference between HTTP and HTTPS?",
+             "HTTPS is HTTP over an encrypted TLS connection. With plain HTTP, anyone on the network in between can read "
+             "and change what is sent. With HTTPS, they can't, and the browser can confirm it reached the right domain."),
+            ("Does HTTPS mean a website is safe?",
+             "No. It means the connection is private and goes to the domain shown. A phishing site can have a valid "
+             "certificate. Domain-validated certificates say nothing about who runs a site or whether it can be trusted."),
+            ("Is HTTPS a ranking factor?",
+             f"A very small one. Google described it as a very lightweight signal affecting fewer than {g_https_pct} "
+             "percent of queries. Google does prefer the HTTPS version of a page when both exist."),
+            ("Do I need to pay for an SSL certificate?",
+             "No. Let's Encrypt and other authorities issue certificates for free, and most hosts renew them "
+             "automatically."),
+        ],
+        closer="""
+<h2>Related</h2>
+<ul>
+<li><a href="/how-to/redirect-http-to-https/">How to redirect http:// to https://</a></li>
+<li><a href="/how-to/fix-missing-security-headers/">Fix missing security headers</a></li>
+<li><a href="/learn/what-is-a-404-error/">What is a 404 error?</a></li>
+<li><a href="/learn/what-is-a-favicon/">What is a favicon?</a></li>
+</ul>
+""",
+    )
+
+
 def claude_search_crawlers() -> Path:
     """Which crawlers feed Claude's web search? Answered from the operators' own pages, read 2026-11-06.
 
@@ -1394,7 +1555,7 @@ def _read_day() -> str:
     return "6 November 2026"
 
 
-BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, what_is_robots_txt, what_is_a_404_error, what_is_a_favicon, claude_search_crawlers]
+BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, what_is_robots_txt, what_is_a_404_error, what_is_a_favicon, what_is_https, claude_search_crawlers]
 
 
 def build_all() -> list[Path]:

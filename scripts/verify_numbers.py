@@ -212,6 +212,7 @@ ALLOWED = {
     "80": "'~80 LocalBusiness subtypes', schema.org",
     "25": "rich result types in Google's gallery",
     # -- HTTP status codes. Constants of the protocol. --------------------
+    "308": "HTTP 308 Permanent Redirect, a protocol status code rather than a measurement",
     "200": "HTTP 200", "401": "HTTP 401", "403": "HTTP 403",
     "404": "HTTP 404", "405": "HTTP 405", "406": "HTTP 406",
     "410": "HTTP 410 Gone, a status code defined by RFC 9110",

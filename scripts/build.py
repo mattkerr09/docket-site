@@ -319,6 +319,9 @@ money.</p>
             ("/learn/what-is-a-favicon/", "What is a favicon?",
              "The small icon for your site in tabs, bookmarks and search results. "
              "Google's current size and format rules."),
+            ("/learn/what-is-https/", "What is HTTPS?",
+             "HTTP over an encrypted connection. What it proves and what it doesn't, "
+             "and what browsers now do with sites that lack it."),
             ("/learn/does-noindex-stop-ai-crawlers/", "Does noindex stop AI crawlers?",
              "noindex tells an indexer not to list a page; it cannot stop a crawler "
              "fetching it. What robots.txt and your server control instead, and which "

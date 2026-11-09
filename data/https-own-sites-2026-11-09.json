@@ -1,0 +1,37 @@
+{
+  "read": "2026-11-09",
+  "method": "Article Studio requested http:// on each of four sites run by Kerr & Company on 9 Nov 2026 20:27Z (status and Location), read each TLS certificate's issuer and validity, the Strict-Transport-Security header on https://, and each domain's status on hstspreload.org. Sites are not named on the page.",
+  "own_sites": 4,
+  "own_301": 4,
+  "own_free_cert": 4,
+  "own_cert_days_min": 89,
+  "own_cert_days_max": 90,
+  "own_hsts": 0,
+  "own_preloaded": 3,
+  "g_https_pct": 1,
+  "le_days_now": 90,
+  "le_days_2027": 64,
+  "le_days_2028": 45,
+  "max_days_2029": 47,
+  "dates": {
+    "chrome_warn": "2026-10-21",
+    "chrome_not_secure": "2018-07-24",
+    "le_2027": "2027-02-10",
+    "le_2028": "2028-02-16",
+    "max_2029": "2029-03-15"
+  },
+  "facts_read": "2026-11-09",
+  "sources": {
+    "rfc9110_https": "https://www.rfc-editor.org/rfc/rfc9110.html#name-https-uri-scheme",
+    "mdn_https": "https://developer.mozilla.org/en-US/docs/Glossary/HTTPS",
+    "google_https_signal_2014": "https://developers.google.com/search/blog/2014/08/https-as-ranking-signal",
+    "google_canonical": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls",
+    "google_chrome_warns": "https://blog.google/security/chrome-now-warns-before-insecure-http-connections/",
+    "chromium_not_secure": "https://www.chromium.org/Home/chromium-security/marking-http-as-non-secure/",
+    "mdn_mixed": "https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content",
+    "hstspreload": "https://hstspreload.org/",
+    "le_90_to_45": "https://letsencrypt.org/2025/12/02/from-90-to-45",
+    "le_lifetimes": "https://letsencrypt.org/docs/cert-lifetimes/",
+    "google_site_move": "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes"
+  }
+}
