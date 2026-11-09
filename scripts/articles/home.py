@@ -26,7 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
 from render import (_human_date, SAMPLE_REPORT, speed_words, windows_waitlist, WINDOWS, WIN_SETUP_SIZE, WIN_PUBLISHER, RELEASE, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
-                    buy_block, FOUNDING_NOW, SUPPORT_EMAIL, REPO,
+                    buy_block, founding_price_sentence, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, FOUNDING_OPEN, FOUNDING_END_DAY, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
                     N_LANES, PRICE_STR,
@@ -740,9 +740,9 @@ data-ev-button="home-free-block">Download Docket for Mac</a></p>
 #: the terms and the refund page rather than restated from memory.
 FAQ = [
     ("Is Docket free?",
-     f"{FREE_LINE} Pro is {PRICE_STR} once, "
-     + (f"{FOUNDING_NOW} at the launch price until {FOUNDING_END_DAY}, " if FOUNDING_OPEN else "")
-     + "with a 30-day refund. There is no subscription and nothing to cancel."),
+     f"{FREE_LINE} "
+     + (founding_price_sentence() if FOUNDING_OPEN else f"Pro is {PRICE_STR} once.")
+     + " There is a 30-day refund. There is no subscription and nothing to cancel."),
     ("What if it isn't for me?",
      "Ask for a refund within 30 days of buying and you get your money back. No conditions "
      f"and no questions. Write to {SUPPORT_EMAIL}, or reply to the receipt the payment "

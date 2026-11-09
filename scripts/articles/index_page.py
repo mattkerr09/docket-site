@@ -84,7 +84,7 @@ def build() -> Path:
     # Sites drawing the Perplexity/OpenAI distinction deliberately — a real
     # editorial decision, not a misconfiguration, and worth separating out.
     targeted = [
-        r["host"] for r in live
+        r for r in live
         if r["ai_access"].get("PerplexityBot") is False
         and r["ai_access"].get("OAI-SearchBot") is not False
     ]
@@ -152,7 +152,7 @@ in publishers and in whoever copied a block list from one.</p>
 was disallowed by {oai}. That gap is not a rounding artefact: {len(targeted)} sites block
 Perplexity specifically while allowing OpenAI's search crawler through, which is a deliberate
 editorial position rather than a misconfiguration.</p>
-<p>Among them: {', '.join(targeted[:8])}{'…' if len(targeted) > 8 else ''}.</p>
+<p>These include large news and media sites.</p>
 
 <h2>Every crawler we measured</h2>
 <div class="wrap-tbl"><table class="cmp">
@@ -175,14 +175,14 @@ win by default. It is table stakes you can lose by accident.</p>
 
 <h3>{s['uses_content_signal']} sites use Content-signal</h3>
 <p><code>Content-signal</code> is a newer, Cloudflare-backed convention for stating intent
-declaratively. Stack Overflow's reads
+declaratively. A large programming Q&amp;A site's file reads
 <code>Content-signal: search=no, ai-train=no</code>. No crawler is obliged to honour it. It is
 worth watching because it separates <em>what you permit</em> from <em>which user-agent
 happens to be asking</em>, which is exactly the distinction robots.txt handles badly.</p>
 
 <h3>{s['blocking_a_search_engine']} sites block a conventional search engine</h3>
 <p>Not AI crawlers: Googlebot, Bingbot, DuckDuckBot or Applebot. In the cases we looked at
-this is intentional: Reddit's robots.txt is a blanket <code>Disallow: /</code> with search
+this is intentional: a large discussion site's robots.txt is a blanket <code>Disallow: /</code> with search
 access negotiated commercially instead. It is a reminder that robots.txt describes policy,
 not always practice.</p>
 
@@ -194,7 +194,7 @@ wildcards and <code>$</code> anchors. A site counts as blocking a crawler when t
 is disallowed from <code>/</code>.</p>
 
 <p>Whether a response is a real robots.txt is decided by its <em>content</em>, not its status
-code. Stack Overflow serves a genuine, restrictive robots.txt with an HTTP 418; a status-code
+code. A large programming Q&amp;A site serves a genuine, restrictive robots.txt with an HTTP 418; a status-code
 test would have miscounted it. Sites returning no <code>User-agent:</code> directive at all
 ({s['no_robots_txt']} of them) are excluded from every percentage, because a site with no
 robots.txt has no policy. Counting it as "allows everything" would overstate how open the

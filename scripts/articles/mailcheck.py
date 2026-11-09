@@ -18,8 +18,11 @@ from render import ISSUES, N_CHECKS, render  # noqa: E402
 
 def _shape_table() -> str:
     """Rows built from the dataset, so the table cannot disagree with the text."""
+    labels = {"a hostedemail.com customer exchanger":
+              "a customer exchanger at a hosted email provider"}
     return "".join(
-        f"<tr><td>{n}</td><td>{shape}</td></tr>" for n, shape in F.mx_shape_rows()
+        f"<tr><td>{n}</td><td>{labels.get(shape, shape)}</td></tr>"
+        for n, shape in F.mx_shape_rows()
     )
 
 RFC = "https://www.rfc-editor.org/rfc/rfc5321#section-5.1"

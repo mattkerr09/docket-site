@@ -100,7 +100,7 @@ real organisation than one that is only a domain.</p>
 <h2>Why reference sites are near the bottom</h2>
 
 <p>Reference sites came second from bottom at {m['cats'].get('reference', {}).get('pct_same_as', 0):.0f}%,
-which looks wrong until you think about who they are. Wikipedia and its peers <em>are</em>
+which looks wrong until you think about who they are. These reference sites <em>are</em>
 the entity graph. They are what everyone else's <code>sameAs</code> points at. They have
 less to gain by pointing outward.</p>
 

@@ -108,7 +108,7 @@ most modern sites, and only one of them is what Google judges.</p>
 <p>Docket's byte-cap check once reported a major news site's title tag as sitting past
 Googlebot's 2MB cutoff. It was reading an inline SVG icon label that said "Close icon"; the
 real title was {F.size_largest()['critical_kb']} KB in and perfectly fine. That was caught one
-edit before it went into <a href="/learn/googlebot-2mb-limit/">an article naming the site</a>.</p>
+edit before it went into <a href="/learn/googlebot-2mb-limit/">an article about the measurement</a>.</p>
 
 <p>What fixed the class was not the fix. It was a test that fails the build if the mistake
 returns, and later a second kind of test that greps the source for the <em>shape</em> of the

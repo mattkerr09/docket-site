@@ -28,13 +28,15 @@ that vendor's estimate of a thing Google has never published. Docket computes a 
 the same kind of public data (the Common Crawl hyperlink graph), and the useful difference
 is not the number. It is what it says when it does not know.</p>
 
-<pre><code>$ docket backlinks wikipedia.org bbc.co.uk example-shop-that-does-not-exist-9134.com
+<p>The measured sites' names are withheld in this transcript.</p>
 
-wikipedia.org
+<pre><code>$ docket backlinks &lt;a large reference site&gt; &lt;a national broadcaster's site&gt; example-shop-that-does-not-exist-9134.com
+
+&lt;a large reference site&gt;
   ranks 14 of 117,963,409 domains by harmonic centrality:
   the top 0.0000% of the crawled web.
 
-bbc.co.uk
+&lt;a national broadcaster's site&gt;
   ranks 86 of 117,963,409 domains by harmonic centrality:
   the top 0.0001% of the crawled web.
 

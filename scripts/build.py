@@ -579,7 +579,7 @@ def write_llms_txt() -> None:
     import textwrap
     from collections import OrderedDict
 
-    from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS, size_article,
+    from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS, size_article, founding_price_sentence,
                         SALE_UNDER_FLOOR, WINDOWS, WIN_PUBLISHER, WIN_SETUP_SIZE,
                         FOUNDING_AFTER_DAY, FOUNDING_END_DAY, FOUNDING_NOW, FOUNDING_OPEN, HAS_SAMPLE, LINUX, MACOS, SALE_NAME,
                         N_CHECKS, N_LANES, PRICE_STR, REPO, SAMPLE_REPORT, SELLER,
@@ -675,8 +675,7 @@ def write_llms_txt() -> None:
     out += facts(
         f"{PRICE_STR}, paid once, in US dollars. Not a subscription: there is no renewal "
         f"date and nothing to cancel.",
-        (f"{SALE_NAME}: {FOUNDING_NOW} once, through {FOUNDING_END_DAY}. From "
-         f"{FOUNDING_AFTER_DAY}: {PRICE_STR}. The Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
+        (f"{founding_price_sentence()} The Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
          f"{PRICE_STR}, enter it under \"Have a discount code?\")." if FOUNDING_OPEN else ""),
         # Audit row 29: at the sale price the checkout offers no instalments, so they are dated, not offered now.
         ((f"From {FOUNDING_AFTER_DAY}, at {PRICE_STR}, four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, "

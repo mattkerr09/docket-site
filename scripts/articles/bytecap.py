@@ -3,7 +3,7 @@
 
 Every figure comes from data/page-size-2026-08.json via facts.py. The
 Google quotes were re-read from the source immediately before publishing,
-because the page names the sites it measured.
+alongside the measurements.
 """
 from __future__ import annotations
 
@@ -14,13 +14,21 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from render import render  # noqa: E402
 
+_SITE_LABELS = {
+    "cnn.com": "a large US news site",
+    "wix.com": "a large website-builder homepage",
+    "madewell.com": "a large online fashion retailer",
+    "edx.org": "a large online learning site",
+    "apnews.com": "a large news agency site",
+}
+
 SOURCE = ("https://developers.google.com/search/blog/2026/03/"
           "crawler-blog-post")
 
 
 def _over_table() -> str:
     rows = "".join(
-        f"<tr><td>{site['host']}</td><td>{site['mb']} MB</td>"
+        f"<tr><td>{_SITE_LABELS[site['host']]}</td><td>{site['mb']} MB</td>"
         f"<td>{site['critical_kb']} KB</td></tr>"
         for site in F.size_over_list()
     )
@@ -36,7 +44,7 @@ def byte_cap() -> Path:
 <p class="lede">Googlebot reads at most 2MB of any HTML page, headers included, and hands
 that fragment to indexing as if it were the whole file. We measured the homepages of
 {F.size_fetched()} well-known sites and found <strong>{F.size_over_cap()} already past the
-cutoff</strong>: the largest, {largest['host']}, serving {largest['mb']} MB, which is
+cutoff</strong>: the largest, {_SITE_LABELS[largest['host']]}, serving {largest['mb']} MB, which is
 {largest['times_cap']} times the limit.</p>
 
 <p>None of those {F.size_over_cap()} is losing markup Google requires. That is the honest headline and it is
@@ -83,14 +91,14 @@ nobody mentions.</p>
 
 {_over_table()}
 
-<p>{largest['host']} is the striking one: {largest['mb']} MB served, with everything Google
+<p>The largest news homepage is the striking one: {largest['mb']} MB served, with everything Google
 needs inside the first {largest['critical_kb']} KB. More than half of that page is fetched by
 nobody. It costs them nothing measurable today, and it is a large amount of work being done
 for an audience that does not exist.</p>
 
 <h2>The false positive we caught on the way</h2>
 
-<p>The first version of this measurement reported that {largest['host']}'s
+<p>The first version of this measurement reported that the largest news homepage's
 <strong>title tag</strong> sat at 2.48 MB, past the cutoff. That would have been the headline
 of this page.</p>
 
@@ -98,7 +106,7 @@ of this page.</p>
 labels, and the one at 2.48 MB reads "Close icon". Our rule took the <em>last</em> match for
 every element, which is right for JSON-LD (each block is separate content, so a block past
 the cutoff is data Google never gets), and wrong for a document title, which is the first one
-and lives in the head. {largest['host']}'s real title is at {largest['critical_kb']} KB.</p>
+and lives in the head. The homepage's real title is at {largest['critical_kb']} KB.</p>
 
 <p>We are writing that down because it is the same mistake in both directions. The check
 exists because tools read pages from disk and see things Google never received; the bug was

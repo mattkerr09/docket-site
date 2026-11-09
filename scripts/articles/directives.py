@@ -184,7 +184,7 @@ Anthropic that it has not made.</p>
 <code>Google-GeminiNotebook</code>, and its crawler documentation lists the old token as a former
 agent "supported until August 2026". That month has passed, and Google's page does not say the old
 token still works. {d['retired_tokens']['google-notebooklm']['count']} sites in our sample name the
-old token, including amazon.com, pinterest.com and tiktok.com.
+old token, including large ecommerce and social media sites.
 <strong>Zero name the new one.</strong></p>
 
 <p><strong>Undocumented.</strong> The token appears on no vendor page and in no community
@@ -241,8 +241,8 @@ another {_token_sites(d, 'bigsur.ai')}.</p>
 <strong>chatgpt.com itself</strong>) writing <code>perplexity&#8209;user</code> with a U+2011
 non-breaking hyphen where the ASCII one belongs. It renders identically in every editor we
 tried and survives copy-paste out of a styled document, so the rule reads as
-<code>perplexity</code> and nobody can see why. The others:
-{', '.join(h for h in _nbsp_hosts(d) if h != 'chatgpt.com')}.</p>
+<code>perplexity</code> and nobody can see why. The other cases include software,
+education, research, forum and publishing sites.</p>
 
 <p>One honest limit. Not every crawler runs Google's parser, and one doing naive substring
 matching might behave differently. That is the point rather than a caveat: a rule whose
@@ -250,7 +250,7 @@ meaning depends on whose parser reads it is not a rule you can rely on.</p>
 
 <h2>The site that wrote the rules everyone else copies</h2>
 
-<p>Cloudflare authored the Content-Signal syntax we found in {s['content_signal']} of the
+<p>A large CDN provider authored the Content-Signal syntax we found in {s['content_signal']} of the
 {n:,} robots.txt files ({100 * s['content_signal'] / n:.1f}%). Its own robots.txt names
 <code>anthropic-ai</code>, <code>Claude-Web</code> and <code>cohere-ai</code> (all three
 retired), and names neither <code>OAI-SearchBot</code> nor <code>Claude-SearchBot</code>, the
@@ -312,12 +312,12 @@ had already set aside most of the sites that answered 200 with an ordinary web p
 <p>First, we fetched a control path on each host that cannot exist.
 <strong>{s['llms_soft404']} hosts ({s['pct_llms_soft404']}%) answered 200 with a body for that
 too</strong>: catch-all handlers and soft 404s, one of them returning an
-<code>image/gif</code> for every unknown path. Among them: office.com, sentry.io,
-amplitude.com and dell.com.</p>
+<code>image/gif</code> for every unknown path. These include large productivity software, monitoring,
+analytics and computer hardware sites.</p>
 
 <p>Second, we read what came back. {s['llms_wrong_kind']} of the survivors served something
-that is not an llms.txt at all: st-andrews.ac.uk returns an XML sitemap, sudoku.com and
-upstart.com return their robots.txt, utwente.nl returns JSON, and five hosts returned gzip
+that is not an llms.txt at all: a university site returns an XML sitemap, a puzzle site and
+a lending site return their robots.txt, another university site returns JSON, and five hosts returned gzip
 bytes labelled <code>text/plain</code> that we could not decode and therefore did not
 count.</p>
 
@@ -368,9 +368,9 @@ because a WAF rule three layers up drops unknown user-agents. No robots.txt audi
 included) can see that from the outside. It has to be tested against the site itself, with
 the crawler's own user-agent.</p>
 
-<h3>nature.com, which gets this more right than almost anyone and still has a hole</h3>
+<h3>A large science publisher gets this mostly right and still has a hole</h3>
 
-<p>Nature's robots.txt blocks <code>GPTBot</code>, <code>PerplexityBot</code> and
+<p>The publisher's robots.txt blocks <code>GPTBot</code>, <code>PerplexityBot</code> and
 <code>ClaudeBot</code>. We asked their server for the homepage as each of seven documented AI
 crawlers on {collected} and compared the answers to an ordinary browser request, which
 returned 200. All three of those crawlers got <strong>406</strong>: the file and the edge
@@ -381,8 +381,8 @@ asks Perplexity about it) is <strong>allowed in their robots.txt and refused 406
 server</strong>. Nothing in the file says so. It is not a robots.txt decision at all; it is a
 rule in front of it, and the only way to find it is to ask.</p>
 
-<p>We are naming Nature because they are among the most careful publishers we measured, not
-because they are careless. If a site that separates training from citation correctly, in the
+<p>This was among the most careful publishers we measured. If a site that separates training
+from citation correctly, in the
 file, still has one crawler blocked somewhere they cannot see, the odds on a site that has
 never thought about it are not good.</p>
 
@@ -403,7 +403,7 @@ for one site at a time: the site in front of it.</p>
 <code>Docket-SEO-Audit</code> to every vendor string so nobody's log shows a forged crawler,
 and reports the contradictions rather than the refusals: a crawler your file blocks and your
 server also blocks is your policy working twice, and saying so would train you to ignore the
-check. On Nature it reports one finding, not four.</p>
+check. On this publisher's site it reports one finding, not four.</p>
 
 <h2>Where someone else's data is better</h2>
 

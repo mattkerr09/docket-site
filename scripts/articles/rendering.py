@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """JavaScript rendering: what it is for, and what it changed for Docket.
 
-Numbers here were measured while building the feature: notion.so fetched
+Numbers here were measured while building the feature: a large SaaS homepage fetched
 statically versus rendered in WebKit, on 2026-08-06.
 """
 from __future__ import annotations
@@ -16,7 +16,7 @@ from render import DMG, DMG_SIZE, download_url, render  # noqa: E402
 def javascript_rendering() -> Path:
     body = f"""
 <p class="lede">A crawler that does not run JavaScript sees the HTML your server sent, which
-on a modern site is often an empty shell. We fetched notion.so twice: the served HTML
+on a modern site is often an empty shell. We fetched a large SaaS homepage twice: the served HTML
 contained <strong>0 characters of text and 0 links</strong>, and the same page rendered in a
 browser contained <strong>2,068 characters and 106 links</strong>.</p>
 
@@ -56,14 +56,14 @@ for you.</p>
 <h2>What it unlocked</h2>
 
 <h3>Pages that only exist after hydration</h3>
-<p>The notion.so case. Docket now compares the served HTML against the rendered DOM and
+<p>The SaaS homepage case. Docket now compares the served HTML against the rendered DOM and
 reports the difference as a measurement rather than a suspicion: 0 characters versus 2,068
 is a fact you can take to whoever owns the front end.</p>
 
 <h3>What your tag manager actually loaded</h3>
 <p>GTM injects tags at runtime, so a static fetch sees the container and nothing else. Docket
 used to say "GTM is present, so your analytics may be configured inside it" and stop. Rendering
-notion.so surfaced <strong>54 scripts that were not in the served HTML</strong>, among them
+the same homepage surfaced <strong>54 scripts that were not in the served HTML</strong>, among them
 Marketo, the LinkedIn Insight Tag and the X advertising pixel.</p>
 <p>That matters beyond curiosity. Tags you cannot enumerate are tags nobody is auditing, and
 every one of them is a third party receiving your visitors' data.</p>
@@ -125,9 +125,8 @@ to a static crawl and letting you believe otherwise.</p>
     return render(
         cat="learn", slug="javascript-rendering",
         title="JavaScript rendering: auditing what a browser actually sees",
-        desc=("A crawler that does not run JavaScript sees what your server sent. notion.so "
-              "returns 0 characters of text statically and 2,068 rendered. What rendering "
-              "changes."),
+        desc=("A SaaS homepage returns 0 characters of text statically and 2,068 rendered. "
+              "What a JavaScript SEO audit can see."),
         h1="Auditing what a browser actually sees",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / JavaScript rendering',
         body=body,

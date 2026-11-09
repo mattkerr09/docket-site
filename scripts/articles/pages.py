@@ -24,7 +24,7 @@ from render import (MS_STORE, _human_date, bundle_link, windows_waitlist, window
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
     RELEASE, SELLER, SELLER_REG_NO, SUMS, price_note_html, render,
-    seller_address, buy_block, FOUNDING_NOW, FOUNDING_OPEN, FOUNDING_END_DAY, SUPPORT_EMAIL, SELLER_CITY,
+    seller_address, buy_block, founding_price_sentence, FOUNDING_OPEN, SUPPORT_EMAIL, SELLER_CITY,
 )
 
 
@@ -781,9 +781,8 @@ claims everything invites the client to test the claim.</p>
         body=body,
         faq=[
             ("Can I use Docket for client work?",
-             "Yes. Docket is " + PRICE_STR + " once"
-             + (" (" + FOUNDING_NOW + " at the launch price until " + FOUNDING_END_DAY + ")" if FOUNDING_OPEN else "") + ", "
-             "with no per-crawl charge; one licence covers " + F.licence_covers() + ". You can audit as many client and "
+             "Yes. " + (founding_price_sentence() if FOUNDING_OPEN else f"Docket is {PRICE_STR} once.")
+             + " There is no per-crawl charge; one licence covers " + F.licence_covers() + ". You can audit as many client and "
              "prospect sites as you like and charge for the work."),
             ("Can I white-label the report?",
              "Yes, in the paid version. Add your agency's name and logo under Reports, then Report "
@@ -1321,8 +1320,6 @@ def for_saas() -> Path:
     and pages nobody links to any more.
     """
     v = VERCEL_CRAWLER
-    saas_hosts = ", ".join(F.category_hosts("saas"))
-    signal_hosts = ", ".join(F.category_content_signal_hosts("saas"))
     body = f"""
 <p class="lede">The story sold to SaaS marketers is that AI crawlers are being shut out of the
 web and you are probably shut out too. Measured, that is not what is happening:
@@ -1335,7 +1332,8 @@ crawler is let in, it arrives, and the page is empty when it gets there.</p>
 
 <p>On {F.index_measured()} we read <code>robots.txt</code> for {F.category_n('saas')} SaaS
 hosts as part of the Index. All {F.category_n('saas')} answered with a file our parser could
-read. Named so you can judge the sample: {saas_hosts}.</p>
+read. The Index chose well-known, high-traffic sites across categories where an AI assistant
+might be asked for a recommendation; these are its SaaS slice.</p>
 
 <div class="wrap-tbl"><table class="cmp"><thead><tr>
 <th>Crawler</th><th>What it feeds</th><th>Disallowed by</th></tr></thead><tbody>
@@ -1359,8 +1357,8 @@ read. Named so you can judge the sample: {saas_hosts}.</p>
 </tbody></table></div>
 
 <p>{F.category_mentions_ai('saas')} of the {F.category_n('saas')} name an AI crawler at all,
-{F.category_sitemap('saas')} declare a sitemap, and four publish Content-Signal preferences:
-{signal_hosts}. These are large companies with people whose job this is, so it is the easy
+{F.category_sitemap('saas')} declare a sitemap, and four publish Content-Signal preferences.
+These are large companies with people whose job this is, so it is the easy
 case rather than a random sample of SaaS. A seed-stage site that inherited its
 <code>robots.txt</code> from a boilerplate repo is a different risk, and that is the site
 worth checking. But the pitch that everyone is pulling up the drawbridge, or that you are shut
@@ -1381,10 +1379,10 @@ exceptions, because both sit on infrastructure that already renders. That is the
 measurement, published {v['published']} and read on {v['read_on']}; we cannot reproduce it, and if crawler behaviour has
 moved since, the argument below moves with it.</p>
 
-<p>What Docket shows you is your own side of that. It fetched notion.so twice, once as a
+<p>What Docket shows you is your own side of that. It fetched a large SaaS homepage twice, once as a
 crawler and once through WebKit: the served HTML held 0 characters of text and 0 links, the
 rendered page held 2,068 characters and 106 links.
-<a href="/learn/javascript-rendering/">The full measurement is here</a>. Notion is not a badly
+<a href="/learn/javascript-rendering/">The full measurement is here</a>. This is not a badly
 built site. It is a normally built one, and to a crawler that does not execute code it is a
 blank sheet.</p>
 
@@ -1544,9 +1542,8 @@ to happen whether or not anyone is at the machine, that is what a hosted crawler
              "field data if you add your own Google API key, which is Google measuring rather "
              "than Docket measuring."),
             ("Is Docket really a one-time purchase?",
-             f"Yes. {PRICE_STR} once, "
-             + (f"or {FOUNDING_NOW} at the launch price until {FOUNDING_END_DAY}, " if FOUNDING_OPEN else "") + f"and "
-             f"every 1.x update is included. One licence covers {F.licence_covers()}, and there is no "
+             "Yes. " + (founding_price_sentence() if FOUNDING_OPEN else f"{PRICE_STR} once.")
+             + f" Every 1.x update is included. One licence covers {F.licence_covers()}, and there is no "
              f"per-seat price, no crawl credits, no account "
              f"and no telemetry, and audit history is stored on your computer in ~/.docket/ as "
              f"plain JSON."),

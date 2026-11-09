@@ -405,8 +405,8 @@ def buy_strip(src: str) -> str:
     sample = (f' &middot; <a href="{SAMPLE_REPORT}" data-ev="Sample report" data-ev-button="{src}">'
               f'See a sample report</a>' if HAS_SAMPLE else "")
     # The founding part carries its own separator, so the page's switch can remove it whole at FOUNDING_ENDS_AT.
-    founding = (f'<span{FOUNDING_UNTIL}> &middot; {SALE_NAME} {FOUNDING_NOW} once '
-                f'{FOUNDING_END_HTML} with <code>{FOUNDING_CODE}</code>, then {PRICE_STR}</span>'
+    founding = (f'<span{FOUNDING_UNTIL}> &middot; {founding_price_sentence()} '
+                f'Use code <code>{FOUNDING_CODE}</code>.</span>'
                 if FOUNDING_OPEN else "")
     return (f'<aside class="buy-strip"><p><a href="{download_url(try_src)}" data-ev="Download" '
             f'data-ev-button="{try_src}"><strong>Try it free</strong></a>{intel}: your score and '
@@ -803,6 +803,14 @@ FOUNDING_END_HTML = (f'<span class="founding-end" data-founding-end="{FOUNDING_E
 #: The first day at the full price, as the sale line says it: "From 1 December it's $59".
 FOUNDING_AFTER_DAY = (lambda d: f"{d.day} {d.strftime('%B')}")(
     _dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00")) - _dt.timedelta(hours=10) + _dt.timedelta(days=1))
+
+
+def founding_price_sentence() -> str:
+    """The launch offer in prose and FAQs, dropped when the offer closes."""
+    return (f"{SALE_NAME}: {FOUNDING_NOW} once, through {FOUNDING_END_DAY}. "
+            f"From {FOUNDING_AFTER_DAY}: {PRICE_STR}." if FOUNDING_OPEN else "")
+
+
 #: Beside every buy button, as page text — the founding bar is a script that
 #: can fail to load, and a visitor at the button should not need it to know the
 #: offer exists or how to claim it. Says "first 25 buyers", never how many are
