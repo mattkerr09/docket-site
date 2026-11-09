@@ -19,7 +19,7 @@ from corrections_cases import CASES  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
-from render import (MS_STORE, _human_date, bundle_link, windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4, PAY4_FOUNDING, 
+from render import (MS_STORE, _human_date, bundle_link, windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4_FOUNDING,
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
@@ -334,7 +334,7 @@ cannot drift from what the app does.</p>
 
 <div class="wrap-tbl"><table class="cmp"><thead><tr>
 <th>Tool</th><th>Cheapest tier</th><th>Three years</th></tr></thead><tbody>
-<tr><td><strong>Docket</strong></td><td><strong>{PRICE_STR} once{PAY4}</strong></td>
+<tr><td><strong>Docket</strong></td><td><strong>{PRICE_STR} once</strong></td>
 <td><strong>{PRICE_STR}</strong></td></tr>
 {_cost_rows()}
 </tbody></table></div>

@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import speed_words, WINDOWS, BNPL_INSTALMENT, MAC_HW, MACOS, N_CHECKS, N_LANES, PRICE, PRICE_STR, REFUND_DAYS, buy_block, render  # noqa: E402
+from render import speed_words, WINDOWS, MAC_HW, MACOS, N_CHECKS, N_LANES, PRICE, PRICE_STR, REFUND_DAYS, buy_block, render  # noqa: E402
 
 import comparisons  # noqa: E402
 
@@ -77,7 +77,7 @@ def mac_options() -> Path:
 
     side_rows = [
         ("Docket SEO", f"Mac ({MAC_HW}, {MACOS} or later) and 64-bit Windows" if WINDOWS else f"Mac only: {MAC_HW}, {MACOS} or later",
-         f"{PRICE_STR} once, or four payments of {BNPL_INSTALMENT}",
+         f"{PRICE_STR} once",
          "A full audit with no key: the score, the number of problems in each area and the most important one in full",
          f"{REFUND_DAYS} days, no conditions",
          "you want a ranked list of what to fix first, from a tool that runs on your own Mac with nothing to renew")
@@ -129,8 +129,9 @@ a refund policy, so ask them before you pay.</p>
 <li><strong>Screaming Frog</strong> if you want raw crawl data and exact control over what is extracted, or you
 need JavaScript rendered across a whole crawl. Docket gives you a ranked answer and not the raw table.
 <a href="/vs/screaming-frog-alternative/">The two compared in detail</a>.</li>
-<li><strong>Sitebulb</strong> if you work for clients and want visual site maps, scheduled audits, audit
-comparisons and branded PDF reports. <a href="/vs/sitebulb-alternative/">The two compared</a>.</li>
+<li><strong>Sitebulb</strong> if you want an interactive crawl map. Docket draws a static structure map
+in its HTML report, compares audits, and writes PDFs with your agency's name and logo. Its scheduled monitoring
+runs while the app is open. <a href="/vs/sitebulb-alternative/">The two compared</a>.</li>
 <li><strong>Scrutiny</strong> if you want spell checking, HTML validation or site search. <a href="/vs/scrutiny-alternative/">The two compared</a>.</li>
 <li><strong>SEO PowerSuite</strong> if you also want rank checking and backlink tools from the same company.</li>
 </ul>

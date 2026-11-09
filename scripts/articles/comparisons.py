@@ -17,7 +17,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import (_human_date, speed_words, PAY4, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, RELEASE,  # noqa: E402
+from render import (_human_date, speed_words, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, RELEASE,  # noqa: E402
                     price, price_note_html, render, buy_block, rival_monthly_range, COMPETITORS,
                     INTEL, INTEL_DMG, download_url, DATA, REFUND_DAYS, WINDOWS)
 
@@ -95,7 +95,7 @@ CHECKED_HUMAN: dict[str, str] = {
     # Re-read 2026-10-19: the product page's own SoftwareApplication schema again (operatingSystem "MacOS", the
     # "There are no plans" answer for Windows, the 149 USD offer, the featureList). Unchanged.
     "scrutiny": "19 October 2026",
-    "se-ranking-vs-screaming-frog": "8 October 2026",
+    "se-ranking-vs-screaming-frog": "9 November 2026",
     # Re-read 2026-09-14: crawl-credit allowances unchanged since 2026-08-10,
     # plus the per-project page caps and the pay-as-you-go overage clause, which
     # the page had not carried. The competitive gate caught the stamp staying at
@@ -155,7 +155,7 @@ CHECKED_HUMAN: dict[str, str] = {
 }
 CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-10-19",
-    "se-ranking-vs-screaming-frog": "2026-10-08",
+    "se-ranking-vs-screaming-frog": "2026-11-09",
     "ahrefs": "2026-10-28",
     "seoptimer": "2026-10-08",
     "sitechecker": "2026-10-19",
@@ -904,17 +904,19 @@ def sitebulb() -> Path:
     body = f"""
 <p class="lede">Sitebulb and Docket are aiming at the same problem from different sides.
 Sitebulb turns crawl data into visual reports an agency can present. Docket turns it into an
-ordered list of work. If you need a diagram of your site architecture, Sitebulb wins outright.
+ordered list of work. If you need an interactive crawl map, Sitebulb is the better fit.
 If you need to know what to do on Monday, Docket is more direct about it.</p>
 
-<h2>Sitebulb's real advantage: you can see the site</h2>
-<p>Sitebulb's architecture graph is the strongest thing either tool has that the other does
-not. It draws the site as an interactive map: isolated content clusters, pages buried too
+<h2>Sitebulb's real advantage: an interactive crawl map</h2>
+<p>Sitebulb's interactive crawl map is a feature Docket does not have. It draws the site as
+an interactive map: isolated content clusters, pages buried too
 deep, link equity pooling in the wrong places. Some structural problems are genuinely easier
 to see than to read, and a client will understand a picture of their own site faster than a
 table about it.</p>
-<p>Docket computes the same underlying link graph and does not draw it. That is an open gap and
-it is on the roadmap; until it ships, this is a straightforward reason to choose Sitebulb.</p>
+<p>Docket draws a static structure map in its HTML report: pages in rings by click depth, sized
+by link equity. It also compares audits with <code>docket diff</code>, writes client PDFs with
+your agency's name and logo, and runs scheduled monitoring while the app is open. The map is
+not interactive, so that remains a reason to choose Sitebulb.</p>
 
 <h2>Where Docket is more useful</h2>
 <p>Sitebulb prioritises issues and explains them in plain English, which is why it is the
@@ -940,7 +942,7 @@ reporting every English phrase as absent.</li>
 <tbody>
 <tr><td>Price</td><td>One-time</td><td>{price("sitebulb")}</td></tr>
 <tr><td>Runs on</td><td>Your Mac or Windows PC</td><td>Desktop or cloud</td></tr>
-<tr><td>Site architecture visualisation</td><td class="yes">Rings by depth, sized by equity</td><td class="yes">Interactive force-directed map</td></tr>
+<tr><td>Site architecture visualisation</td><td class="yes">Static rings by depth, sized by equity</td><td class="yes">Interactive force-directed map</td></tr>
 <tr><td>JavaScript rendering</td><td class="yes">Sampled, via WebKit</td><td class="yes">Yes, every page</td></tr>
 <tr><td>Team collaboration</td><td class="no">No team accounts; one licence covers {F.licence_covers()}</td><td class="yes">Cloud tier</td></tr>
 <tr><td>Ranked action plan</td><td class="yes">Four phases</td><td>Prioritised hints</td></tr>
@@ -958,7 +960,7 @@ trade, and the report says so: inferred sections are less precise than ones you 
 
 <h2>Which one to pick</h2>
 <p><strong>Choose Sitebulb</strong> if visual reporting is how you sell work, if you need the
-architecture graph, if your clients' sites are JavaScript-heavy, or if a team needs shared
+interactive crawl map, if your clients' sites are JavaScript-heavy, or if a team needs shared
 access.</p>
 <p><strong>Choose Docket</strong> if you want the audit to cover marketing and AI visibility as
 well as technical SEO, if you would rather own the tool than rent it, or if you want a report
@@ -970,16 +972,16 @@ check".</p>
     return render(
         cat="vs", slug="sitebulb-alternative",
         title="Docket vs Sitebulb: visual reports or a ranked plan? (2026)",
-        desc=("Sitebulb draws your site architecture and Docket does not. That is a real reason to "
-              "pick it. Where Docket wins: AI visibility, conversion, and stated limits."),
+        desc=("Sitebulb has an interactive crawl map; Docket draws a static map in its audit report. "
+              "Compare site audits, reports, prices and limits."),
         h1="Docket vs Sitebulb",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Sitebulb',
         body=body,
         faq=[
             ("Does Docket have site architecture visualisation like Sitebulb?",
-             "Both do. Docket draws a deterministic picture: pages in rings by click depth, sized "
+             "Both draw maps. Docket draws a static picture in its HTML report: pages in rings by click depth, sized "
              "by link equity. Sitebulb's "
-             "architecture map is its strongest feature and a legitimate reason to choose it."),
+             "interactive crawl map is a reason to choose it."),
             ("Is Docket cheaper than Sitebulb?",
              "Docket is a one-time download; Sitebulb is " + price("sitebulb") + ". Over a year the "
              "difference is substantial, but Sitebulb's cloud tier offers team collaboration "
@@ -1085,7 +1087,7 @@ backlink data that Docket does not have, as the sections below say.</p>
     <td>{F.max_pages_for("Standard")}</td><td>{_AH_UNVERIFIED["Standard"]}</td></tr>
 <tr><td>Ahrefs Advanced</td><td>${_AH_PRICE["Advanced"]}</td><td>{F.credits_for("Advanced")}</td>
     <td>{F.max_pages_for("Advanced")}</td><td>{_AH_UNVERIFIED["Advanced"]}</td></tr>
-<tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td>
+<tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once</td>
     <td class="yes">None</td><td class="yes">No page limit</td><td class="yes">Any site</td></tr>
 </tbody></table></div>
 {_top_cta("vs-ahrefs-top")}
@@ -1144,7 +1146,7 @@ crawl credits. Docket's exports are a PDF report and CSV and JSON files, and non
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th></th><th>Docket</th><th>Ahrefs</th></tr></thead>
 <tbody>
-<tr><td>Price</td><td class="yes">{PRICE_STR} once{PAY4}</td><td>{price("ahrefs-site-audit")}</td></tr>
+<tr><td>Price</td><td class="yes">{PRICE_STR} once</td><td>{price("ahrefs-site-audit")}</td></tr>
 <tr><td>Sites you do not own</td><td class="yes">Any site, no project limit</td><td>Not on Ahrefs Free; {_AH_UNVERIFIED["Lite"]}, {_AH_UNVERIFIED["Standard"]} or {_AH_UNVERIFIED["Advanced"]} projects on Lite, Standard or Advanced</td></tr>
 <tr><td>Keyword &amp; backlink data</td><td class="no">None</td><td class="yes">Its main product</td></tr>
 <tr><td>Rank tracking</td><td class="no">No</td><td class="yes">Yes</td></tr>
@@ -2006,7 +2008,7 @@ offers a {_SEOPT_TRIAL_DAYS} day free trial.</p>
 <thead><tr><th>Plan</th><th>Monthly price</th><th>Crawls a month</th><th>What the plan names</th></tr></thead>
 <tbody>
 {"".join(f"<tr><td>SEOptimer {n}</td><td>${p}</td><td>{c}</td><td>{f}</td></tr>" for n, p, c, f in _SEOPT_PLANS)}
-<tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td><td class="yes">Unmetered</td>
+<tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once</td><td class="yes">Unmetered</td>
     <td>Reports with your name and logo. No custom report domain and no lead-capture tool</td></tr>
 </tbody></table></div>
 {_top_cta("vs-seoptimer-top")}
@@ -2609,7 +2611,7 @@ lists the lifetime plan; the monthly plans are the ones it leads with.</p>
 <tr><td>CrawlRaven Pro</td><td>${_CR_PRO} a month, plus ${_CR_EXTRA_SITE} a month for each extra site</td><td>{_CR_PRO_SITES}</td></tr>
 <tr><td>CrawlRaven Agency</td><td>From ${_CR_AGENCY} a month</td><td>{_CR_AGENCY_SITES}</td></tr>
 <tr><td>CrawlRaven Pro lifetime</td><td>${_CR_LIFETIME} as a single payment</td><td>{_CR_PRO_SITES}, fixed</td></tr>
-<tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once{PAY4}</td><td class="yes">Any site</td></tr>
+<tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once</td><td class="yes">Any site</td></tr>
 </tbody></table></div>
 
 <p>CrawlRaven's Starter plan costs less than Docket for its first {_months_past_docket(_CR_STARTER) - 1} months, at
@@ -2828,7 +2830,7 @@ once, with no meter.</li>
 <tr><td>How you pay</td><td>Monthly subscription</td><td>Annual licence</td>
     <td class="yes">Once</td></tr>
 <tr><td>Published price</td><td>{price("seranking")}</td><td>{price("screaming-frog")}</td>
-    <td class="yes">{PRICE_STR} once{PAY4}</td></tr>
+    <td class="yes">{PRICE_STR} once</td></tr>
 <tr><td>Plans</td><td>Core and Growth, then an Enterprise tier that says &ldquo;Talk to sales&rdquo;</td>
     <td>One tier. Licences are per user</td>
     <td class="yes">One licence, {F.licence_covers()}</td></tr>
@@ -2849,10 +2851,10 @@ once, with no meter.</li>
 
 <p>Not a crawler. The audit is one module inside a rank-tracking and keyword platform, and the
 Core plan's own bullet list makes the proportions clear: ten projects and one manager seat, two
-thousand keywords and a hundred prompts tracked daily, five domains in GEO research, 250k pages
-a month in audit, and 25K API credits with MCP access. The Growth plan raises the audit to 2M
+thousand keywords tracked daily, AI visibility tracking of 25 prompts a day across five AI
+engines, 250k pages a month in audit, and 25K API credits with MCP access. The Growth plan raises the audit to 2M
 pages a month, with thirty projects and three manager seats. If you want daily rank tracking
-across locations and devices, that is the product, and neither of the other two here does it at
+across major search engines, that is the product, and neither of the other two here does it at
 all.</p>
 
 <p>The page meter is the thing to check before you buy. 250k pages a month is generous for one

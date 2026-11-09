@@ -579,7 +579,7 @@ def write_llms_txt() -> None:
     import textwrap
     from collections import OrderedDict
 
-    from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS,
+    from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS, size_article,
                         SALE_UNDER_FLOOR, WINDOWS, WIN_PUBLISHER, WIN_SETUP_SIZE,
                         FOUNDING_AFTER_DAY, FOUNDING_END_DAY, FOUNDING_NOW, FOUNDING_OPEN, HAS_SAMPLE, LINUX, MACOS, SALE_NAME,
                         N_CHECKS, N_LANES, PRICE_STR, REPO, SAMPLE_REPORT, SELLER,
@@ -660,9 +660,9 @@ def write_llms_txt() -> None:
     out += ["", "## Requirements", ""]
     out += facts(
         f"A Mac with {MAC_HW} running {MACOS} or later. {NO_BUILDS}",
-        f"The Mac app is a {DMG_SIZE} download, signed with a Developer ID and notarised "
+        f"The Mac app is {size_article(DMG_SIZE)} {DMG_SIZE} download, signed with a Developer ID and notarised "
         f"by Apple.",
-        (f"Or a PC with 64-bit Windows: the installer is a {WIN_SETUP_SIZE} download, signed by "
+        (f"Or a PC with 64-bit Windows: the installer is {size_article(WIN_SETUP_SIZE)} {WIN_SETUP_SIZE} download, signed by "
          f"{WIN_PUBLISHER}.") if WINDOWS else "",
         "A command-line build for Linux x86_64 is on the download page." if LINUX else "",
         # CEO's order from Matthew, 2026-11-03: Claude and ChatGPT should know how to use the product.
@@ -1003,8 +1003,9 @@ def write_static() -> None:
     #
     # `deploy.sh` runs that script's `--check` after this build, so a stale
     # tile fails the deploy rather than shipping.
-    from render_brand_assets import render as render_brand
-    render_brand(SITE)
+    if os.environ.get("DOCKET_SKIP_BRAND_ASSETS") != "1":
+        from render_brand_assets import render as render_brand
+        render_brand(SITE)
     (SITE / ".nojekyll").write_text("")
 
 
@@ -1308,7 +1309,8 @@ def pricing_page() -> Path:
     article.
     """
     from render import (BNPL_INSTALMENT, DMG_SIZE, FOUNDING_AFTER_DAY, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, PRICE_STR, REFUND_DAYS,
-                        FOUNDING_END_DAY, FOUNDING_NOW, SALE_NAME, SALE_UNDER_FLOOR, WINDOWS, buy_block, download_url, windows_waitlist)
+                        FOUNDING_END_DAY, FOUNDING_NOW, SALE_NAME, SALE_UNDER_FLOOR, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE,
+                        buy_block, download_url, windows_waitlist)
     # The prose below is this page's own. The quality gate's duplicate check
     # judged the first version (the buy block alone) a copy of 18 pages,
     # rightly: a page that is only the shared block says nothing of its own.
@@ -1337,7 +1339,7 @@ def pricing_page() -> Path:
 {buy_block("pricing-page", try_app="pricing-page-try-free", phone=False)}
 <p class="hero-note"{' data-founding-until="' + bundle["founding_ends_at"] + '"' if founding else ""}>{bundle_line}</p>
 <p class="hero-note">Bought it already? <a href="{download_url('pricing-page')}" data-ev="Download"
-data-ev-button="pricing-page">Get the {DMG_SIZE} Mac download</a> and paste the key from your receipt.</p>
+data-ev-button="pricing-page">Get the {DMG_SIZE} Mac download</a>{(f' or <a href="{download_url("pricing-page-windows", to=WIN_SETUP)}" data-ev="Download" data-ev-button="pricing-page-windows">the {WIN_SETUP_SIZE} Windows installer</a>') if WINDOWS else ''} and paste the key from your receipt.</p>
 
 <h2>What {PRICE_STR} gets you</h2>
 <ul>
@@ -1436,6 +1438,38 @@ and Semrush Site Audit, each naming what the other does better.</li>
         filename="404.html",
         noindex=True,
     )
+
+
+def legal_redirect_stubs() -> list[Path]:
+    """Keep guessed legal addresses working, using the existing Moved stub shape."""
+    from render import BING_SITE_VERIFICATION
+
+    redirects = {
+        "privacy": ("Privacy policy", "/legal/privacy/"),
+        "terms": ("Terms", "/legal/terms/"),
+        "refund": ("Refunds", "/legal/refunds/"),
+        "refunds": ("Refunds", "/legal/refunds/"),
+        "legal": ("Privacy policy", "/legal/privacy/"),
+    }
+    pages = []
+    for slug, (title, target) in redirects.items():
+        page = SITE / slug / "index.html"
+        page.parent.mkdir(parents=True, exist_ok=True)
+        page.write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+{BING_SITE_VERIFICATION}
+<title>Moved: {title}</title>
+<link rel="canonical" href="{BASE}{target}">
+<meta name="robots" content="noindex,follow">
+<meta http-equiv="refresh" content="0; url={target}">
+</head><body>
+<p>This page has moved to <a href="{target}">{target}</a>.</p>
+<footer>
+<p>Made by <a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company</a></p>
+</footer>
+</body></html>
+''', encoding="utf-8")
+        pages.append(page)
+    return pages
 
 
 def stamp_build_id() -> str:
@@ -1611,6 +1645,8 @@ def main() -> int:
     thank_you()
     buy_redirect()
     pricing_page()
+    # Redirect stubs are not sitemap entries, just like the retired article addresses.
+    legal_redirect_stubs()
 
     write_robots()
     write_llms_txt()

@@ -26,7 +26,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import (BNPL_INSTALMENT, MAC_HW, MACOS, N_CHECKS, N_LANES, PRICE, PRICE_STR, REFUND_DAYS, WINDOWS,  # noqa: E402
+from render import (MAC_HW, MACOS, N_CHECKS, N_LANES, PRICE, PRICE_STR, REFUND_DAYS, WINDOWS,  # noqa: E402
                     buy_block, render, speed_words)
 
 import comparisons  # noqa: E402
@@ -87,7 +87,7 @@ def sf_alternatives() -> Path:
         (t["name"], t["runs_on"], t["sold"], t["free"], t["urls"]) for t in _TOOLS.values()
     ] + [
         ("Docket SEO", docket_runs,
-         f"{PRICE_STR} once, or four payments of {BNPL_INSTALMENT}",
+         f"{PRICE_STR} once",
          "a full audit with no key: the score, the number of problems in each area and the most important one in full",
          f"{ui_pages} pages by default and {minutes} minutes, and both can be raised"),
     ]

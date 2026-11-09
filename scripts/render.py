@@ -64,6 +64,14 @@ def speed_words(seconds: float) -> str:
     return "under a minute" if seconds < 60 else f"{round(seconds)} seconds"
 
 
+def size_article(size: str) -> str:
+    """The article before a download size, from its first spoken number."""
+    first = int(size.split()[0].split(".")[0].replace(",", ""))
+    while first >= 1000:
+        first //= 1000
+    return "an" if first in (8, 11, 18) or 80 <= first < 90 or 800 <= first < 900 else "a"
+
+
 def _competitors() -> dict:
     """Every competitor row, keyed by slug.
 
@@ -954,7 +962,7 @@ PAY4_FOUNDING = (f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_FOUNDING_INSTALME
 #: no pay-in-four. So while a sale under BNPL_MIN_CENTS is open, every price a visitor is asked to pay (the buy
 #: block, the buy strip, the nav button, the free tools' price line) carries no instalment, and the four payments
 #: are said once, where they are true: "From 1 December it's $59, or 4 × $14.75" in the sale line. Comparison
-#: tables state the list price and keep PAY4. After the sale this is PAY4 again (rebuild at its end).
+#: tables state the list price without instalments. After the sale this is PAY4 again (rebuild at its end).
 SALE_UNDER_FLOOR = FOUNDING_OPEN and not BNPL_FOUNDING_OK
 PAY4_BUY = "" if SALE_UNDER_FLOOR else PAY4
 #: The same sentence for a page, with its instalment set in full-strength text
