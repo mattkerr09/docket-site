@@ -405,11 +405,11 @@
  },
  "learn/index.html": {
   "date": "2026-11-09",
-  "hash": "6f016681b30ef624"
+  "hash": "6864cd020ef3e4c3"
  },
  "learn/internal-link-equity/index.html": {
   "date": "2026-11-09",
-  "hash": "d30b59270de193ab"
+  "hash": "43ea2e160cdadabc"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-11-09",
@@ -482,6 +482,10 @@
  "learn/what-is-claudebot/index.html": {
   "date": "2026-11-09",
   "hash": "7bc209bf52dee8fa"
+ },
+ "learn/what-is-https/index.html": {
+  "date": "2026-11-09",
+  "hash": "1feb7896aeb41360"
  },
  "learn/what-is-llms-txt/index.html": {
   "date": "2026-11-09",
