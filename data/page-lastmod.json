@@ -405,11 +405,11 @@
  },
  "learn/index.html": {
   "date": "2026-11-09",
-  "hash": "4afbeddf69ef11d9"
+  "hash": "6f016681b30ef624"
  },
  "learn/internal-link-equity/index.html": {
   "date": "2026-11-09",
-  "hash": "1ae0a97f068254ec"
+  "hash": "d30b59270de193ab"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-11-09",
@@ -462,6 +462,14 @@
  "learn/what-docket-got-wrong/index.html": {
   "date": "2026-11-09",
   "hash": "5aecab5926f5d0ae"
+ },
+ "learn/what-is-a-404-error/index.html": {
+  "date": "2026-11-09",
+  "hash": "222e359b82714f58"
+ },
+ "learn/what-is-a-favicon/index.html": {
+  "date": "2026-11-09",
+  "hash": "b31ae6b0f5b39123"
  },
  "learn/what-is-a-sitemap/index.html": {
   "date": "2026-11-09",
