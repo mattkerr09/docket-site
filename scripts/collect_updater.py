@@ -20,6 +20,7 @@ import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
 import app_path  # noqa: E402
+import stage_updates_mirror as mirror  # noqa: E402
 
 import argparse
 import datetime
@@ -39,10 +40,7 @@ SIG = APP / "dist" / "Docket.app.tar.gz.sig"
 TGZ_X86 = APP / "dist" / "Docket-x86_64.app.tar.gz"
 SIG_X86 = APP / "dist" / "Docket-x86_64.app.tar.gz.sig"
 
-#: Where the tarball is served from. The GitHub release, not the site: GitHub
-#: Pages has a soft size limit and a 100 MB hard one per file, and serving a
-#: 17 MB binary from the same host as the manifest buys nothing.
-RELEASE = "https://github.com/mattkerr09/docket-site/releases/download"
+RELEASE = mirror.RELEASE
 
 
 def macos_min(tgz: pathlib.Path) -> str:
@@ -159,10 +157,15 @@ def main() -> None:
     # silicon without pointing Intel copies at anything.
     ap.add_argument("--no-intel", action="store_true",
                     help="publish the Apple silicon manifest only")
+    ap.add_argument("--source", choices=("mirror", "github"), default="mirror",
+                    help="updater download host. Default mirror. Use github to roll back")
     args = ap.parse_args()
     if not args.tag:
         args.tag = f"v{args.version}"
     notes = _notes_text(args.notes)
+    mirror.version_key(args.version)
+    base_url = (f"{RELEASE}/{args.tag}" if args.source == "github"
+                else f"{mirror.MIRROR}/{args.version}")
 
     for path in (TGZ, SIG):
         if not path.is_file():
@@ -184,7 +187,7 @@ def main() -> None:
             # which fails after the download rather than before it.
             "darwin-aarch64": {
                 "signature": signature,
-                "url": f"{RELEASE}/{args.tag}/Docket.app.tar.gz",
+                "url": f"{base_url}/Docket.app.tar.gz",
             }
         },
     }
@@ -198,7 +201,7 @@ def main() -> None:
             sys.exit(f"{SIG_X86} is empty; refusing to publish an Intel entry that rejects every update")
         data["platforms"]["darwin-x86_64"] = {
             "signature": sig_x86,
-            "url": f"{RELEASE}/{args.tag}/{TGZ_X86.name}",
+            "url": f"{base_url}/{TGZ_X86.name}",
         }
     # windows-x86_64 only from this version's NSIS installer and the update signature made for it on the
     # Mac (docket-app/scripts/windows_release.py, which takes the installer from CI only when it is signed
@@ -213,10 +216,19 @@ def main() -> None:
             sys.exit(f"{win_sig} is empty; refusing to publish a Windows entry that rejects every update")
         data["platforms"]["windows-x86_64"] = {
             "signature": sig_win,
-            "url": f"{RELEASE}/{args.tag}/{win.name}",
+            "url": f"{base_url}/{win.name}",
         }
     elif win.is_file() != win_sig.is_file():
         sys.exit(f"{win.name} and its .sig must both exist or neither; refusing a half Windows entry")
+    if args.source == "mirror":
+        names = tuple(entry["url"].rsplit("/", 1)[-1]
+                      for entry in data["platforms"].values())
+        try:
+            mirror.stage(args.version, APP / "dist", OUT.parent.parent / ".updates-cache",
+                         names=names)
+            mirror.publish_plan(data, OUT.parent.parent / ".updates-cache")
+        except (OSError, ValueError) as exc:
+            sys.exit(f"UPDATES MIRROR FAIL - {exc}")
     OUT.write_text(json.dumps(data, indent=2) + "\n")
 
     # The download size, recorded so the site cannot claim one and ship

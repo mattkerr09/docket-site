@@ -277,14 +277,24 @@ if [ -n "$(git status --porcelain site data/build-id.txt)" ]; then
   git commit -qm "${1:-site: rebuild}"
 fi
 
+echo "==> updater mirror cache gate"
+"$PY" scripts/verify_updates_mirror.py --offline || exit 1
+
 echo "==> push main"
 git push -q origin main
 
 echo "==> publish site/ to gh-pages"
 git branch -D gh-pages-tmp >/dev/null 2>&1 || true
 git subtree split --prefix site -b gh-pages-tmp >/dev/null
+"$PY" scripts/stage_updates_mirror.py --publish gh-pages-tmp
 git push -qf origin gh-pages-tmp:gh-pages
 git branch -D gh-pages-tmp >/dev/null
+
+echo "==> live updater mirror gate"
+"$PY" scripts/verify_updates_mirror.py --live || {
+  echo "FAIL  updater mirror bytes did not reach Pages. The push has already completed." >&2
+  exit 1
+}
 
 # The gap nothing watched. Every gate above checks the BUILD; this is the only
 # one that checks the build reached a reader. On 2026-08-17 two merged, green,
