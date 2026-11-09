@@ -1846,6 +1846,12 @@ def alt_text_own_sites() -> dict:
     return json.loads((ROOT / "data" / "alt-text-own-sites-2026-11-09.json").read_text())
 
 
+@lru_cache(maxsize=None)
+def structured_data_own_sites() -> dict:
+    """Dated structured-data readings and the sources quoted alongside them."""
+    return json.loads((ROOT / "data" / "structured-data-own-sites-2026-11-09.json").read_text())
+
+
 def index_reached() -> int:
     return index()["summary"]["n"]
 

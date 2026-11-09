@@ -307,6 +307,9 @@ money.</p>
             ("/learn/what-is-alt-text/", "What is alt text?",
              "The words that stand in for an image. How to write them, when an empty alt is correct, "
              "and the length rule nobody official set."),
+            ("/learn/what-is-structured-data/", "What is structured data?",
+             "Markup that tells search engines what a page is about. The formats, what it cannot promise, "
+             "and which features Google has retired."),
             ("/learn/does-noindex-stop-ai-crawlers/", "Does noindex stop AI crawlers?",
              "noindex tells an indexer not to list a page; it cannot stop a crawler "
              "fetching it. What robots.txt and your server control instead, and which "

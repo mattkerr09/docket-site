@@ -638,6 +638,183 @@ one.</p>
     )
 
 
+def what_is_structured_data() -> Path:
+    s = F.structured_data_own_sites()
+    sources = s["sources"]
+    sd_sites = format(s["sd_sites"], ",")
+    sd_pages = format(s["sd_pages"], ",")
+    sd_with_jsonld = format(s["sd_with_jsonld"], ",")
+    sd_blocks = format(s["sd_blocks"], ",")
+    sd_parse_errors = format(s["sd_parse_errors"], ",")
+    sd_other_formats = format(s["sd_other_formats"], ",")
+    sd_faq = format(s["sd_faq"], ",")
+    sd_howto = format(s["sd_howto"], ",")
+    gallery_count = format(s["gallery_count"], ",")
+    sd_read_human = F.lt_fmt(s["read"])
+    facts_read_human = F.lt_fmt(s["facts_read"])
+    d_faq_limited = F.lt_fmt(s["dates"]["faq_limited"])
+    d_howto_gone = F.lt_fmt(s["dates"]["howto_gone"])
+    d_seven_gone = F.lt_fmt(s["dates"]["seven_gone"])
+    d_faq_gone = F.lt_fmt(s["dates"]["faq_gone"])
+    d_faq_limited_month = d_faq_limited.split(" ", 1)[1]
+    d_faq_gone_short = d_faq_gone
+
+    body = f"""
+<p class="lede"><strong>Structured data is a small block of code, usually JSON-LD, that describes a page in a standard
+vocabulary: this is an article, this is its author, this is a product and its price.</strong> <a href="{sources['intro']}" rel="nofollow noopener">Google says it uses it</a> to
+understand the page, and to make the page eligible for richer results such as review stars or breadcrumbs. Eligible is the
+word that matters: Google does not guarantee any result feature, and it has retired several since 2023, FAQ results among
+them. On {sd_sites} sites I run, {sd_with_jsonld} of {sd_pages} pages carry it, and {sd_faq} of them still carry FAQ markup that
+Google no longer shows.</p>
+
+<h2>What it looks like</h2>
+
+<pre><code>&lt;script type="application/ld+json"&gt;
+{{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Example Bakery",
+  "url": "https://example.com/",
+  "logo": "https://example.com/logo.png"
+}}
+&lt;/script&gt;</code></pre>
+
+<p>The words come from <a href="{sources['schema_org']}" rel="nofollow noopener">schema.org, a shared vocabulary</a> that Google, Microsoft, Yahoo and Yandex founded. The script sits in the
+page's HTML and nobody sees it. Search engines read it alongside the page.</p>
+
+<h2>The three formats</h2>
+
+<ul>
+<li><strong>JSON-LD</strong>, a separate script block like the one above. Google recommends it where your setup allows, because it sits
+  apart from the visible HTML and is easy to maintain.</li>
+<li><strong>Microdata</strong>, attributes such as itemscope and itemprop written into the visible HTML.</li>
+<li><strong>RDFa</strong>, attributes such as typeof and property, also in the HTML.</li>
+</ul>
+
+<p>Google says all three are equally fine if the markup is valid. <a href="{sources['bing']}" rel="nofollow noopener">Bing says its crawlers</a> do not prefer one over another.</p>
+
+<h2>What it does, and what it can't promise</h2>
+
+<p>Google's documentation says structured data helps it understand a page and can make it eligible for rich results. It also
+says, plainly, that it does not guarantee the markup will show up in search results. I found no Google page that calls it a
+ranking factor. Treat it as a way to be understood and to qualify for a feature, not as a way to move up.</p>
+
+<p>Bing says the same thing in its own words: markup alone doesn't guarantee Bing will use it, and it may support its AI
+answers without guaranteeing visibility.</p>
+
+<h2>The rules</h2>
+
+<ul>
+<li>Mark up only what readers can see. <a href="{sources['policies']}" rel="nofollow noopener">Google's guidelines</a> say not to mark up content that isn't visible on the page.</li>
+<li>It has to be true. No fake reviews, and no ratings or prices that the page doesn't show.</li>
+<li>Breaking these rules can cost a page its rich result eligibility through a manual action. Google says that kind of action
+  does not change how the page ranks in ordinary results.</li>
+</ul>
+
+<h2>What Google has retired</h2>
+
+<p>Rich result features come and go, and many guides still promise ones that no longer exist. From Google's own changelog:</p>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>When</th><th>What changed</th></tr></thead>
+<tbody>
+<tr><td>{d_faq_limited}</td><td>FAQ results limited to well-known government and health sites</td></tr>
+<tr><td>{d_howto_gone}</td><td>How-to results no longer shown, on mobile or desktop</td></tr>
+<tr><td>{d_seven_gone}</td><td>Course info, estimated salary, learning video, special announcement and vehicle listing results removed</td></tr>
+<tr><td>{d_faq_gone}</td><td>FAQ results no longer shown at all</td></tr>
+</tbody></table></div>
+
+<p>Read on <a href="{sources['updates']}" rel="nofollow noopener">developers.google.com/search/updates</a>, {facts_read_human}.</p>
+
+<p><a href="{sources['gallery']}" rel="nofollow noopener">Google's gallery lists</a> {gallery_count} result features today, including article, breadcrumb, product, recipe, review
+snippet, event, job posting, organization, software app and video. If a guide promises FAQ dropdowns or how-to steps in
+Google's results, it is out of date.</p>
+
+<h2>What four real sites showed</h2>
+
+<p>I read every page in the sitemaps of {sd_sites} sites I run on {sd_read_human} and parsed every structured data block.</p>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th></th><th>Total</th></tr></thead>
+<tbody>
+<tr><td>Pages</td><td>{sd_pages}</td></tr>
+<tr><td>Pages with JSON-LD</td><td>{sd_with_jsonld}</td></tr>
+<tr><td>JSON-LD blocks</td><td>{sd_blocks}</td></tr>
+<tr><td>Blocks that failed to parse</td><td>{sd_parse_errors}</td></tr>
+<tr><td>Pages with Microdata or RDFa</td><td>{sd_other_formats}</td></tr>
+<tr><td>Pages with FAQ markup</td><td>{sd_faq}</td></tr>
+<tr><td>Pages with how-to markup</td><td>{sd_howto}</td></tr>
+</tbody></table></div>
+
+<p>Two things stood out.</p>
+
+<p><strong>The basics were in place.</strong> Every block parsed. The common types were breadcrumbs, organization, person and article,
+which are the ones Google's gallery still uses.</p>
+
+<p><strong>Most of the FAQ markup is dead weight in Google.</strong> {sd_faq} pages carry FAQPage markup, added by our page templates. For
+sites like ours it could not have produced a result: Google had already limited FAQ results to government and health sites
+in {d_faq_limited_month}. It does no harm, and Bing still reads schema.org, but it earns nothing in Google Search. Before we knew it was retired, our own study of which pages earn clicks had
+already found FAQ markup more common on the pages that got nothing.</p>
+
+<h2>How to test it</h2>
+
+<ul>
+<li><strong>Google's Rich Results Test</strong> shows which Google result features your markup qualifies for, and can preview them.</li>
+<li><strong><a href="{sources['validator']}" rel="nofollow noopener">The Schema Markup Validator</a></strong>, at validator.schema.org, checks any schema.org markup, without Google's feature rules.</li>
+</ul>
+
+<p>They answer different questions. A page can be valid schema.org and still qualify for nothing in Google.</p>
+
+<h2>What Docket checks</h2>
+
+<p>Docket reads the structured data on every page it crawls. It reports:</p>
+
+<ul>
+<li>JSON-LD that fails to parse, and markup holding an unfilled template tag.</li>
+<li>A site with no structured data at all, or with it on only a small share of pages.</li>
+<li>Identity markup that a script adds in the browser rather than serving in the HTML, and no breadcrumb markup.</li>
+<li>Ratings or prices marked up but not shown on the page, which is the kind of markup Google's guidelines rule out.</li>
+<li>Pages with question-and-answer content and no FAQ markup, as a low-priority note that says plainly Google retired FAQ
+  results on {d_faq_gone_short}, so the markup no longer buys a result feature.</li>
+</ul>
+{buy_block("learn-what-is-structured-data", try_app="learn-what-is-structured-data-try-free")}
+"""
+    return render(
+        cat="learn", slug="what-is-structured-data",
+        modified="2026-11-09",
+        title="What is structured data? What Google still uses in 2026",
+        desc=("Structured data is markup that tells search engines what a page is about. "
+              "The formats, what it can't promise, what Google retired, and what real pages showed."),
+        h1="What is structured data?",
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is structured data?',
+        body=body,
+        published="2026-11-09",
+        faq=[
+            ("Is structured data a ranking factor?",
+             "Google's documentation doesn't say it is. It says structured data helps Google understand a page "
+             "and can make it eligible for rich results, without guaranteeing them."),
+            ("Does FAQ schema still work?",
+             f"Not in Google Search. Google stopped showing FAQ rich results on {d_faq_gone_short}. "
+             "The markup does no harm, but it no longer produces an expandable answer."),
+            ("Which format should I use?",
+             "JSON-LD, which Google recommends where your setup allows. Microdata and RDFa work too, "
+             "and Bing reads all three."),
+            ("Is schema markup the same as structured data?",
+             "In practice, yes. Schema markup usually means structured data written with the schema.org "
+             "vocabulary, which is what Google and Bing read."),
+        ],
+        closer="""
+<h2>Related</h2>
+<ul>
+<li><a href="/how-to/fix-structured-data-errors/">How to fix structured data errors</a></li>
+<li><a href="/how-to/fix-structured-data-that-does-not-match-the-page/">Structured data that says what the page does not</a></li>
+<li><a href="/tools/json-ld-checker/">JSON-LD checker</a></li>
+<li><a href="/learn/what-is-a-sitemap/">What is a sitemap?</a></li>
+</ul>
+""",
+    )
+
+
 def claude_search_crawlers() -> Path:
     """Which crawlers feed Claude's web search? Answered from the operators' own pages, read 2026-11-06.
 
@@ -729,7 +906,7 @@ def _read_day() -> str:
     return "6 November 2026"
 
 
-BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, claude_search_crawlers]
+BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, claude_search_crawlers]
 
 
 def build_all() -> list[Path]:

@@ -1,0 +1,29 @@
+{
+  "read": "2026-11-09",
+  "method": "Claude (Article Studio) fetched every sitemap URL of four sites run by Kerr & Company on 9 Nov 2026 19:02Z and parsed every JSON-LD block, and looked for Microdata (itemscope) and RDFa (typeof). Sites are not named on the page.",
+  "sd_sites": 4,
+  "sd_pages": 478,
+  "sd_with_jsonld": 468,
+  "sd_blocks": 1367,
+  "sd_parse_errors": 0,
+  "sd_other_formats": 0,
+  "sd_faq": 317,
+  "sd_howto": 29,
+  "gallery_count": 25,
+  "dates": {
+    "faq_limited": "2023-08-08",
+    "howto_gone": "2023-09-13",
+    "seven_gone": "2025-09-09",
+    "faq_gone": "2026-05-07"
+  },
+  "facts_read": "2026-11-09",
+  "sources": {
+    "intro": "https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data",
+    "policies": "https://developers.google.com/search/docs/appearance/structured-data/sd-policies",
+    "gallery": "https://developers.google.com/search/docs/appearance/structured-data/search-gallery",
+    "updates": "https://developers.google.com/search/updates",
+    "bing": "https://www.bing.com/webmasters/help/marking-up-your-site-with-structured-data-3a93e731",
+    "schema_org": "https://schema.org/",
+    "validator": "https://validator.schema.org/"
+  }
+}
