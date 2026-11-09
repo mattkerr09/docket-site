@@ -1,0 +1,18 @@
+{
+  "read": "2026-11-09",
+  "method": "Article Studio requested one page on each of four sites run by Kerr & Company in seven forms (as published, no trailing slash, upper case, http://, www., a tracking parameter, a doubled slash) on 9 Nov 2026 21:08Z, recording status, Location and the canonical tag. Sites are not named on the page.",
+  "own_sites": 4, "own_variants_per_site": 7, "own_variants": 28,
+  "rfc_min_len": 8000, "sitemap_max_len": 2048, "docket_long": 115,
+  "facts_read": "2026-11-09",
+  "sources": {
+    "rfc3986": "https://www.rfc-editor.org/rfc/rfc3986",
+    "mdn_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+    "mdn_fragment": "https://developer.mozilla.org/en-US/docs/Web/URI/Reference/Fragment",
+    "whatwg_url": "https://url.spec.whatwg.org/",
+    "google_url_structure": "https://developers.google.com/search/docs/crawling-indexing/url-structure",
+    "google_slash": "https://developers.google.com/search/blog/2010/04/to-slash-or-not-to-slash",
+    "google_canonical": "https://developers.google.com/search/docs/crawling-indexing/canonicalization",
+    "rfc9110": "https://www.rfc-editor.org/rfc/rfc9110",
+    "sitemaps_protocol": "https://www.sitemaps.org/protocol.html"
+  }
+}

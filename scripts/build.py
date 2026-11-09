@@ -322,6 +322,9 @@ money.</p>
             ("/learn/what-is-https/", "What is HTTPS?",
              "HTTP over an encrypted connection. What it proves and what it doesn't, "
              "and what browsers now do with sites that lack it."),
+            ("/learn/what-is-a-url/", "What is a URL?",
+             "The address of a page, in five parts. Which parts are case-sensitive, "
+             "and why search engines see some variants as different pages."),
             ("/learn/does-noindex-stop-ai-crawlers/", "Does noindex stop AI crawlers?",
              "noindex tells an indexer not to list a page; it cannot stop a crawler "
              "fetching it. What robots.txt and your server control instead, and which "

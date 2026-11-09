@@ -68,6 +68,7 @@ ALLOWED = {
             "on the same page and sourced in VERIFIED"),
     # -- standards, specs and versions ------------------------------------
     "9110": "RFC 9110, the HTTP semantics standard",
+    "3986": "RFC 3986, the URI generic syntax standard",
     # -- figures read off a dated specimen image: none, any more ----------
     # "90" and "58" were typed here for a 1.1.44 screenshot of our own site's
     # report from 2026-08-17, which stood on the homepage for eleven weeks.

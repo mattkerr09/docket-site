@@ -1464,6 +1464,157 @@ is needed instead of flagging one. It also reports missing baseline security hea
     )
 
 
+def what_is_a_url() -> Path:
+    s = F.url_variants_own_sites()
+    sources = s["sources"]
+    own_sites = format(s["own_sites"], ",")
+    own_variants_per_site = format(s["own_variants_per_site"], ",")
+    own_variants = format(s["own_variants"], ",")
+    rfc_min_len = format(s["rfc_min_len"], ",")
+    sitemap_max_len = format(s["sitemap_max_len"], ",")
+    docket_long = format(s["docket_long"], ",")
+    own_read_human = F.lt_fmt(s["read"])
+    facts_read_human = F.lt_fmt(s["facts_read"])
+
+    body = f"""
+<p class="lede"><strong>A URL is the address of a page or file on the web: it says how to reach it, which server holds it,
+and where on that server it is.</strong> It has up to five parts: the scheme, the host, the path, the query and the fragment.
+Two of them catch people out. The path is case-sensitive, so Google treats /Apple and /apple as different pages. And the
+fragment, the part after #, never reaches the server at all. I asked {own_sites} sites I run for {own_variants} variants of
+one page each, and every variant either redirected to the real address, returned 404, or pointed back to it with a canonical
+tag.</p>
+
+<h2>The five parts</h2>
+
+<pre><code>https://shop.example.com:443/guides/blue-shoes?color=navy#sizing
+└─┬─┘   └──────┬───────┘ └┬┘ └─────┬──────┘ └───┬────┘ └──┬──┘
+scheme        host      port    path        query   fragment</code></pre>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Part</th><th>What it does</th><th>Case-sensitive?</th></tr></thead>
+<tbody>
+<tr><td>Scheme (https)</td><td>Which protocol the browser uses</td><td>No</td></tr>
+<tr><td>Host (shop.example.com)</td><td>Which server to ask. The port, if shown, says which door on it</td><td>No</td></tr>
+<tr><td>Path (/guides/blue-shoes)</td><td>Which page or file on that server</td><td>Yes</td></tr>
+<tr><td>Query (?color=navy)</td><td>Extra parameters for the server</td><td>Yes</td></tr>
+<tr><td>Fragment (#sizing)</td><td>A spot within the page, handled by the browser only</td><td>Yes</td></tr>
+</tbody></table></div>
+
+<p>From RFC 3986, the standard that defines URL syntax, and MDN, read {facts_read_human}.</p>
+
+<h2>The part after # never reaches the server</h2>
+
+<p>When you open a link with a fragment, the browser asks the server for the page without it, then scrolls to the matching spot
+itself. That's why Google says not to use fragments to change what a page shows: Google Search generally doesn't support
+them. A site that loads different content for #pricing and #features looks like one page to a search engine. Sites built as
+single-page apps should use real paths instead.</p>
+
+<h2>Different-looking URLs, same page</h2>
+
+<p>Google treats each distinct URL as a separate address, even when they show the same content. The usual variants:</p>
+
+<ul>
+<li><strong>Case:</strong> /Guides and /guides are different URLs to Google. Pick lowercase and stick to it.</li>
+<li><strong>Trailing slash:</strong> /guides and /guides/ are different, except at the very root of the site.</li>
+<li><strong>Protocol:</strong> http:// and https:// versions are duplicates. Google prefers the https:// one.</li>
+<li><strong>Host:</strong> www.example.com and example.com are variants of each other.</li>
+</ul>
+
+<p>Google's advice is the same for all of them: choose one version, send the others there with a 301 redirect, and where a
+redirect isn't possible, point to the chosen version with a canonical tag.</p>
+
+<h2>What four real sites did with the variants</h2>
+
+<p>On {own_read_human} I took one page on each of {own_sites} sites I run and requested it {own_variants_per_site} ways.</p>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Variant</th><th>What all {own_sites} sites did</th></tr></thead>
+<tbody>
+<tr><td>The address as published</td><td>Answered 200</td></tr>
+<tr><td>Without the trailing slash</td><td>Redirected with a 301 to the version with it</td></tr>
+<tr><td>In capital letters</td><td>Returned 404</td></tr>
+<tr><td>With http://</td><td>Redirected with a 301 to https://</td></tr>
+<tr><td>With www.</td><td>Redirected with a 301 to the address without it</td></tr>
+<tr><td>With a tracking parameter added</td><td>Answered 200, with a canonical tag pointing to the clean address</td></tr>
+<tr><td>With a doubled slash after the host</td><td>Answered 200, with a canonical tag pointing to the clean address</td></tr>
+</tbody></table></div>
+
+<p>That is {own_variants} requests and no stray duplicate: every variant either ends at the real address or tells search engines
+which address is the real one. The last two rows are the ones to check on your own site. A server that answers 200 at a
+second address is fine only if the page names its canonical.</p>
+
+<h2>What makes a good URL</h2>
+
+<p>From Google's URL structure guidance:</p>
+
+<ul>
+<li>Use readable words, not long ID numbers.</li>
+<li>Separate words with hyphens, not underscores.</li>
+<li>Use as few parameters as you can. Long parameter strings make many URLs that show the same content.</li>
+<li>Keep one address per page, and redirect the rest.</li>
+</ul>
+
+<p>URLs can be long. The HTTP standard recommends that software handle URLs of at least {rfc_min_len} bytes, and the sitemap
+protocol caps each sitemap address at under {sitemap_max_len} characters. Short, readable addresses are easier to share
+and to read in search results.</p>
+
+<h2>What Docket checks</h2>
+
+<p>Docket reads every URL it crawls and reports URLs with a session ID in the query string, uppercase letters in the path,
+encoded spaces, more than {docket_long} characters, or several query parameters. The <a href="/learn/url-structure/">URL structure guide</a>
+explains each finding and which popular URL rules have no source behind them.</p>
+
+<h2>Sources</h2>
+<ul>
+<li><a href="{sources['rfc3986']}" rel="nofollow noopener">RFC 3986, URI generic syntax</a></li>
+<li><a href="{sources['mdn_url']}" rel="nofollow noopener">MDN, what is a URL</a></li>
+<li><a href="{sources['mdn_fragment']}" rel="nofollow noopener">MDN, URI fragment</a></li>
+<li><a href="{sources['whatwg_url']}" rel="nofollow noopener">WHATWG URL standard</a></li>
+<li><a href="{sources['google_url_structure']}" rel="nofollow noopener">Google, URL structure best practices</a></li>
+<li><a href="{sources['google_slash']}" rel="nofollow noopener">Google, to slash or not to slash</a></li>
+<li><a href="{sources['google_canonical']}" rel="nofollow noopener">Google, canonicalization</a></li>
+<li><a href="{sources['rfc9110']}" rel="nofollow noopener">RFC 9110, URI length</a></li>
+<li><a href="{sources['sitemaps_protocol']}" rel="nofollow noopener">sitemaps.org protocol</a></li>
+</ul>
+
+{buy_block("learn-what-is-a-url", try_app="learn-what-is-a-url-try-free")}
+"""
+    return render(
+        cat="learn", slug="what-is-a-url",
+        modified="2026-11-09",
+        title="What is a URL? The parts, and which ones search engines see",
+        desc=("A URL is the address of a page. Its five parts, which are case-sensitive, "
+              "why the part after # never reaches the server, and how real sites handle variants."),
+        h1="What is a URL?",
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is a URL?',
+        body=body,
+        published="2026-11-09",
+        faq=[
+            ("What is the difference between a URL and a URI?",
+             "A URI is any identifier for a resource. A URL is a URI that also says how to reach it, such as an https:// "
+             "address. In everyday use, and in the web's own URL standard, the two mean the same thing."),
+            ("Are URLs case-sensitive?",
+             "Partly. The scheme and the host are not: EXAMPLE.com and example.com are the same site. The path and the query "
+             "are, so /Guides and /guides can be different pages, and Google treats them as different URLs."),
+            ("Does the part after # in a URL reach the server?",
+             "No. The browser keeps the fragment and uses it to jump to a spot on the page. That's why Google says not to "
+             "use fragments to change a page's content."),
+            ("Should my URLs end with a slash?",
+             "Either is fine. What matters is choosing one form and redirecting the other to it, because Google treats "
+             "/page and /page/ as different URLs everywhere except the site's root."),
+        ],
+        closer="""
+<h2>Related</h2>
+<ul>
+<li><a href="/learn/url-structure/">SEO URL structure: what is checked, what is folklore</a></li>
+<li><a href="/learn/canonical-tags/">Canonical tags are a hint, not an instruction</a></li>
+<li><a href="/learn/what-is-https/">What is HTTPS?</a></li>
+<li><a href="/learn/what-is-a-404-error/">What is a 404 error?</a></li>
+</ul>
+""",
+    )
+
+
 def claude_search_crawlers() -> Path:
     """Which crawlers feed Claude's web search? Answered from the operators' own pages, read 2026-11-06.
 
@@ -1555,7 +1706,7 @@ def _read_day() -> str:
     return "6 November 2026"
 
 
-BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, what_is_robots_txt, what_is_a_404_error, what_is_a_favicon, what_is_https, claude_search_crawlers]
+BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, what_is_robots_txt, what_is_a_404_error, what_is_a_favicon, what_is_https, what_is_a_url, claude_search_crawlers]
 
 
 def build_all() -> list[Path]:
