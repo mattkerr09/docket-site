@@ -405,11 +405,11 @@
  },
  "learn/index.html": {
   "date": "2026-11-09",
-  "hash": "32f04191e55674a7"
+  "hash": "ddf36c06a77a8c5e"
  },
  "learn/internal-link-equity/index.html": {
   "date": "2026-11-09",
-  "hash": "b9ecd3ac5288431c"
+  "hash": "5384a630e41c3eef"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-11-09",
@@ -466,6 +466,10 @@
  "learn/what-is-a-sitemap/index.html": {
   "date": "2026-11-09",
   "hash": "4c814802d89e9900"
+ },
+ "learn/what-is-alt-text/index.html": {
+  "date": "2026-11-09",
+  "hash": "8fe515755be6eb0e"
  },
  "learn/what-is-claudebot/index.html": {
   "date": "2026-11-09",
