@@ -15,7 +15,7 @@
 <title>Googlebot stops reading at 2MB and never tells you</title>
 <meta name="description" content="Googlebot fetches 2MB of a page and indexes that as the whole file. We measured 82 homepages: 5 are already past it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="9f07f48c7962">
+<meta name="build-id" content="ed59c31d9327">
 <link rel="canonical" href="https://docketseo.app/learn/googlebot-2mb-limit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -986,7 +986,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p class="lede">Googlebot reads at most 2MB of any HTML page, headers included, and hands
 that fragment to indexing as if it were the whole file. We measured the homepages of
 82 well-known sites and found <strong>5 already past the
-cutoff</strong>: the largest, cnn.com, serving 5.3 MB, which is
+cutoff</strong>: the largest, a large US news site, serving 5.3 MB, which is
 2.7 times the limit.</p>
 
 <p>None of those 5 is losing markup Google requires. That is the honest headline and it is
@@ -1031,16 +1031,16 @@ limit. The 90th percentile is <strong>1532 KB</strong>, which is the number
 worth sitting with, because it means one homepage in ten is already within a third of a cutoff
 nobody mentions.</p>
 
-<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Site</th><th>HTML served</th><th>Last required markup at</th></tr></thead><tbody><tr><td>cnn.com</td><td>5.3 MB</td><td>470 KB</td></tr><tr><td>wix.com</td><td>3.0 MB</td><td>316 KB</td></tr><tr><td>madewell.com</td><td>2.7 MB</td><td>690 KB</td></tr><tr><td>edx.org</td><td>2.4 MB</td><td>21 KB</td></tr><tr><td>apnews.com</td><td>2.1 MB</td><td>33 KB</td></tr></tbody></table></div>
+<div class="wrap-tbl"><table class="cmp"><thead><tr><th>Site</th><th>HTML served</th><th>Last required markup at</th></tr></thead><tbody><tr><td>a large US news site</td><td>5.3 MB</td><td>470 KB</td></tr><tr><td>a large website-builder homepage</td><td>3.0 MB</td><td>316 KB</td></tr><tr><td>a large online fashion retailer</td><td>2.7 MB</td><td>690 KB</td></tr><tr><td>a large online learning site</td><td>2.4 MB</td><td>21 KB</td></tr><tr><td>a large news agency site</td><td>2.1 MB</td><td>33 KB</td></tr></tbody></table></div>
 
-<p>cnn.com is the striking one: 5.3 MB served, with everything Google
+<p>The largest news homepage is the striking one: 5.3 MB served, with everything Google
 needs inside the first 470 KB. More than half of that page is fetched by
 nobody. It costs them nothing measurable today, and it is a large amount of work being done
 for an audience that does not exist.</p>
 
 <h2>The false positive we caught on the way</h2>
 
-<p>The first version of this measurement reported that cnn.com's
+<p>The first version of this measurement reported that the largest news homepage's
 <strong>title tag</strong> sat at 2.48 MB, past the cutoff. That would have been the headline
 of this page.</p>
 
@@ -1048,7 +1048,7 @@ of this page.</p>
 labels, and the one at 2.48 MB reads "Close icon". Our rule took the <em>last</em> match for
 every element, which is right for JSON-LD (each block is separate content, so a block past
 the cutoff is data Google never gets), and wrong for a document title, which is the first one
-and lives in the head. cnn.com's real title is at 470 KB.</p>
+and lives in the head. The homepage's real title is at 470 KB.</p>
 
 <p>We are writing that down because it is the same mistake in both directions. The check
 exists because tools read pages from disk and see things Google never received; the bug was
@@ -1087,7 +1087,7 @@ merely over the limit is losing content, and a page whose required markup falls 
 cutoff is losing indexation. They are not the same problem and they do not deserve the same
 urgency.</p>
 
-<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-googlebot-2mb-limit-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="learn-googlebot-2mb-limit-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-googlebot-2mb-limit-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x86_64.dmg" data-ev="Download" data-ev-button="learn-googlebot-2mb-limit-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=learn-googlebot-2mb-limit" data-ev="Buy" data-ev-price="59" data-ev-button="learn-googlebot-2mb-limit">Buy once, $59</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-googlebot-2mb-limit">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Launch price $29.50 once <span class="founding-end" data-founding-end="2026-12-01T07:59:59Z">until 30 November</span> with <code>FOUNDINGDOCKET</code>, then $59</span></p></aside>
+<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-googlebot-2mb-limit-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="learn-googlebot-2mb-limit-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-googlebot-2mb-limit-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x86_64.dmg" data-ev="Download" data-ev-button="learn-googlebot-2mb-limit-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=learn-googlebot-2mb-limit" data-ev="Buy" data-ev-price="59" data-ev-button="learn-googlebot-2mb-limit">Buy once, $59</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-googlebot-2mb-limit">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Launch price: $29.50 once, through 30 November. From 1 December: $59. Use code <code>FOUNDINGDOCKET</code>.</span></p></aside>
 <section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How much of a page does Googlebot fetch?</h3><p>Up to 2MB of any individual URL, including the HTTP headers. PDFs get 64MB, and any crawler that sets no limit of its own defaults to 15MB. Referenced resources like CSS and images have their own separate budgets and do not count against the page that links them.</p></div><div class="faq-item"><h3>What happens to the rest of the page?</h3><p>Nothing. In Google's words the bytes past the threshold are not fetched, not rendered and not indexed, and the portion that was fetched is passed to indexing as if it were the complete file. There is no error and no Search Console report.</p></div><div class="faq-item"><h3>Is 2MB of HTML a realistic problem?</h3><p>For most sites, no: the median homepage in our sample was 468 KB. But 5 of 82 well-known sites we measured were already past it, and the 90th percentile was 1532 KB, so one in ten is closer than its owners probably think.</p></div><div class="faq-item"><h3>How do I make a page smaller?</h3><p>Move inline CSS, JavaScript and base64 images into linked files. That removes them from the page's budget completely, because every referenced resource has its own. Navigation that renders thousands of links before the content is the other common cause.</p></div></div></section>
 </div></article>
 </main>

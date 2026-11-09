@@ -102,8 +102,9 @@ Michigan, United States.
 
 - Is Docket free? Free: your score, how many problems in each category, and the top
   problem in full with its fix. Pro: the rest of the problems, the ranked fix plan and
-  the markup to paste. Pro is $59 once, $29.50 at the launch price until 30 November,
-  with a 30-day refund. There is no subscription and nothing to cancel.
+  the markup to paste. Launch price: $29.50 once, through 30 November. From 1
+  December: $59. There is a 30-day refund. There is no subscription and nothing to
+  cancel.
 - What if it isn't for me? Ask for a refund within 30 days of buying and you get your
   money back. No conditions and no questions. Write to support@docketseo.app, or reply
   to the receipt the payment processor emails you. The licence key is revoked, so the
