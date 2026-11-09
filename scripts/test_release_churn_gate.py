@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+"""Offline checks for the release churn gate, using throwaway git repos."""
+from __future__ import annotations
+
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import tempfile
+import unittest
+
+HERE = Path(__file__).resolve().parent
+
+
+class ReleaseChurnGateTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.env = dict(os.environ)
+        self.env.pop("DOCKET_SITEWIDE_REASON", None)
+        self.env["GIT_CONFIG_GLOBAL"] = os.devnull
+        self.env["GIT_CONFIG_NOSYSTEM"] = "1"
+        self.env["PYTHONDONTWRITEBYTECODE"] = "1"
+        (self.root / "scripts").mkdir()
+        (self.root / "data").mkdir()
+        shutil.copyfile(HERE / "release_churn_gate.py", self.root / "scripts/release_churn_gate.py")
+        self.git("init", "--quiet")
+        self.original = {
+            f"page-{i:02}/index.html": {"date": "2026-11-07", "hash": f"old-{i}"}
+            for i in range(20)
+        }
+        self.write(self.original)
+        self.git("add", "data/page-lastmod.json")
+        self.commit()
+
+    def git(self, *args):
+        return subprocess.run(
+            ["git", *args], cwd=self.root, env=self.env,
+            capture_output=True, text=True, check=True,
+        )
+
+    def commit(self):
+        self.git("-c", "user.name=Gate Test", "-c", "user.email=gate@example.invalid",
+                 "-c", "commit.gpgsign=false", "-c", f"core.hooksPath={os.devnull}",
+                 "commit", "--quiet", "-m", "Test baseline")
+
+    def write(self, records):
+        (self.root / "data").mkdir(exist_ok=True)
+        (self.root / "data/page-lastmod.json").write_text(json.dumps(records), encoding="utf-8")
+
+    def run_gate(self, count=0, reason=None):
+        records = {page: dict(record) for page, record in self.original.items()}
+        for page in list(records)[:count]:
+            records[page]["hash"] = "changed"
+        self.write(records)
+        if reason is not None:
+            self.env["DOCKET_SITEWIDE_REASON"] = reason
+        return self.invoke()
+
+    def invoke(self):
+        return subprocess.run(
+            [sys.executable, str(self.root / "scripts/release_churn_gate.py")],
+            cwd=self.root, env=self.env, capture_output=True, text=True,
+        )
+
+    def test_no_change_passes(self):
+        result = self.run_gate()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("0 changed pages", result.stdout)
+
+    def test_twelve_changed_pass(self):
+        result = self.run_gate(12)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("12 changed pages", result.stdout)
+
+    def test_thirteen_changed_fail(self):
+        result = self.run_gate(13)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn("13 changed pages", result.stdout)
+        self.assertIn("CHURN FAIL", result.stdout)
+
+    def test_thirteen_with_reason_pass(self):
+        reason = "We corrected the price shown across the site."
+        result = self.run_gate(13, reason)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn(reason, result.stdout)
+
+    def test_empty_reason_fails(self):
+        for reason in ("", " \t\n "):
+            with self.subTest(reason=reason):
+                self.assertEqual(self.run_gate(13, reason).returncode, 1)
+
+    def test_new_page_counts(self):
+        self.original["index.html"] = {"date": "2026-11-08", "hash": "new"}
+        result = self.run_gate(12)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn("13 changed pages", result.stdout)
+        self.assertIn("https://docketseo.app/\n", result.stdout)
+
+    def test_date_only_changes_pass(self):
+        for record in self.original.values():
+            record["date"] = "2026-11-08"
+        result = self.run_gate()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("0 changed pages", result.stdout)
+
+    def test_missing_head_file_counts_all_pages(self):
+        self.git("rm", "data/page-lastmod.json")
+        self.commit()
+        result = self.run_gate()
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn("20 changed pages", result.stdout)
+
+    def test_prints_first_fifteen_urls_in_order(self):
+        result = self.run_gate(20)
+        urls = [line.strip() for line in result.stdout.splitlines() if line.startswith("  https://")]
+        self.assertEqual(urls, [f"https://docketseo.app/page-{i:02}/" for i in range(15)])
+
+    def test_git_error_fails_even_with_reason(self):
+        shutil.rmtree(self.root / ".git")
+        result = self.run_gate(13, "We corrected the price shown across the site.")
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn("Could not compare page hashes", result.stderr)
+
+    def test_missing_working_file_fails(self):
+        (self.root / "data/page-lastmod.json").unlink()
+        result = self.invoke()
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn("Could not compare page hashes", result.stderr)
+
+    def test_invalid_json_fails(self):
+        (self.root / "data/page-lastmod.json").write_text("invalid", encoding="utf-8")
+        result = self.invoke()
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn("Could not compare page hashes", result.stderr)
+
+
+if __name__ == "__main__":
+    unittest.main()
