@@ -294,6 +294,198 @@ can reach your pages at all.</p>
     )
 
 
+def what_is_a_sitemap() -> Path:
+    s = F.sitemap_own_sites()
+    docs = s["docs"]
+    sources = docs["sources"]
+    own_sites = format(s["own_sites"], ",")
+    own_urls = format(s["own_urls"], ",")
+    own_ok = format(s["own_ok"], ",")
+    own_lastmod = format(s["own_lastmod"], ",")
+    own_priority = format(s["own_priority"], ",")
+    own_changefreq = format(s["own_changefreq"], ",")
+    own_robots_line = format(s["own_robots_line"], ",")
+    one_site_urls = format(s["one_site_urls"], ",")
+    one_site_date = s["one_site_date"]
+    low_imp = format(s["low_imp"], ",")
+    low_imp_pages = format(s["low_imp_pages"], ",")
+    gsc_indexed = format(s["gsc_indexed"], ",")
+    gsc_inspected = format(s["gsc_inspected"], ",")
+    max_urls = format(docs["max_urls"], ",")
+    max_mb = format(docs["max_mb"], ",")
+    small_site_pages = format(docs["small_site_pages"], ",")
+    images_per_page = format(docs["images_per_page"], ",")
+    news_days = {2: "two"}[docs["news_days"]]
+    own_read_human = F.lt_fmt(s["read"])
+    facts_read_human = F.lt_fmt(s["docs_read"])
+    gsc_read_human = F.lt_fmt(s["gsc_read"])
+    gsc_window_end_human = F.lt_fmt(s["gsc_window_end"])
+    index_month = F.index_month()
+    index_reached = format(F.index_reached(), ",")
+    index_sitemap_line = format(F.index_sitemap_line(), ",")
+
+    body = f"""
+<p class="lede"><strong>A sitemap is a file, usually sitemap.xml at the root of your site, that lists the URLs you want
+search engines to find, with an optional date each one last changed.</strong> It helps a crawler discover pages. It does
+not get a page indexed or ranked: Google calls submitting one "merely a hint". On {own_sites} sites I run, {own_urls} URLs
+were listed and {own_ok} of them answered 200 on {own_read_human}. What decided which ones Google showed was everything
+else.</p>
+
+<h2>What goes in one</h2>
+
+<p>The format is a short XML list. Each page gets a <code>&lt;url&gt;</code> entry with its address in <code>&lt;loc&gt;</code>, and optionally the date it last
+changed in <code>&lt;lastmod&gt;</code>:</p>
+
+<pre><code>&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://example.com/pricing/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-11-09&lt;/lastmod&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;</code></pre>
+
+<p>One file can hold up to {max_urls} URLs and {max_mb} MB uncompressed. Past that, you split the list into several files and
+list those in a sitemap index file. Google's limits are on its <a href="{sources['build_sitemap']}" rel="nofollow noopener">"Build and submit a sitemap"</a> page (read {facts_read_human}),
+and the protocol itself is published at <a href="{sources['protocol']}" rel="nofollow noopener">sitemaps.org</a>.</p>
+
+<p>List only the version of each page you want in search: the canonical address, with no redirects, no pages that return an
+error, and no pages marked noindex. <a href="{sources['bing_guidelines']}" rel="nofollow noopener">Bing's webmaster guidelines</a> say the same, and say to take deleted and redirected URLs out.</p>
+
+<h2>What Google and Bing do with each tag</h2>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Tag</th><th>Google</th><th>Bing</th></tr></thead>
+<tbody>
+<tr><td>&lt;loc&gt;</td><td>Required. The page address.</td><td>Required. The page address.</td></tr>
+<tr><td>&lt;lastmod&gt;</td><td>Used only when it is consistently and verifiably accurate</td><td>Asked for, as a freshness signal. If every date is today's, Bing says it may not trust them.</td></tr>
+<tr><td>&lt;changefreq&gt;</td><td>Ignored</td><td>Ignored</td></tr>
+<tr><td>&lt;priority&gt;</td><td>Ignored</td><td>Ignored</td></tr>
+</tbody></table></div>
+
+<p>Read on <a href="{sources['build_sitemap']}" rel="nofollow noopener">each company's own documentation</a> and <a href="{sources['bing_lastmod_blog']}" rel="nofollow noopener">the Bing Webmaster blog</a>, {facts_read_human}.</p>
+
+<p>So the only tag beyond the address that can do anything is lastmod, and only if it is true. A lastmod should change when the
+main content, structured data or links on the page change. A new copyright year in the footer doesn't count.</p>
+
+<h2>Do you need one?</h2>
+
+<p><a href="{sources['overview']}" rel="nofollow noopener">Google says you might not</a>, if your site is small (about {small_site_pages} pages or fewer that you want in search) and every page is linked
+from somewhere else on the site. You probably do if the site is large, new with few links from other sites, or full of
+video, images or news.</p>
+
+<p>Since a sitemap is cheap to make and every common platform can generate one, my advice is to have one anyway, and keep it
+honest. A wrong sitemap is worse than none: it points crawlers at pages you don't want and trains them to distrust your dates.</p>
+
+<h2>How to tell search engines where it is</h2>
+
+<ul>
+<li><strong>robots.txt:</strong> add a line such as Sitemap: https://example.com/sitemap.xml. Google and Bing both read it, and it can go
+  anywhere in the file.</li>
+<li><strong>Google Search Console:</strong> the Sitemaps report, which also shows when Google last read the file.</li>
+<li><strong>Bing Webmaster Tools:</strong> Submit sitemaps. Bing can also import the sitemaps you submitted to Google.</li>
+<li><strong>IndexNow, for changes:</strong> a ping that a URL was added, changed or deleted. Bing says it reads sitemaps about once a day
+  and recommends IndexNow on top, and <a href="{sources['indexnow_faq']}" rel="nofollow noopener">the IndexNow site</a> says to use both. Amazon, Bing, Naver, Seznam, Yandex and Yep take part.</li>
+</ul>
+
+<p>In Docket's {index_month} study of {index_reached} large, well-known sites (a hand-picked list, not a random sample),
+{index_sitemap_line} had a Sitemap line in robots.txt.</p>
+
+<h2>What four real sitemaps showed</h2>
+
+<p>I read the sitemaps of {own_sites} sites I run on {own_read_human}, then requested every URL in them.</p>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th></th><th>Total</th></tr></thead>
+<tbody>
+<tr><td>URLs listed</td><td>{own_urls}</td></tr>
+<tr><td>Answered 200 (no redirect, no error)</td><td>{own_ok}</td></tr>
+<tr><td>Had a lastmod date</td><td>{own_lastmod}</td></tr>
+<tr><td>Carried a priority tag</td><td>{own_priority}</td></tr>
+<tr><td>Carried a changefreq tag</td><td>{own_changefreq}</td></tr>
+<tr><td>Sites with a Sitemap line in robots.txt</td><td>{own_robots_line} of {own_sites}</td></tr>
+</tbody></table></div>
+
+<p>Three things stood out.</p>
+
+<p><strong>Most of the tags do nothing.</strong> {own_priority} priority tags and {own_changefreq} changefreq tags, and Google and Bing
+ignore every one. They are harmless, but they are noise. Our own generators added them by default.</p>
+
+<p><strong>One site dated every page today.</strong> All {one_site_urls} URLs on one of the sites carried the same lastmod, {one_site_date},
+because a sitewide wording change that day touched every page. The dates were true, but a list where every page changed on
+the same day looks exactly like a generator stamping today's date on everything, which is the pattern Bing says makes it
+distrust lastmod. If a change to the page's furniture touches every page, it is better not to move the date of pages whose
+main content didn't change.</p>
+
+<p><strong>Listed is not indexed, and indexed is not shown.</strong> Of the URLs on two of these sitemaps, Google reported
+{gsc_indexed} of {gsc_inspected} as "Submitted and indexed" when I asked its URL Inspection API on {gsc_read_human}. Being
+in the index did not mean being seen: {low_imp} of the {low_imp_pages} pages on those two sites had fewer than 10 Google
+impressions in the 28 days to {gsc_window_end_human}, because few people search for what they cover or a stronger page outranks them. The sitemap did its one job, which is getting pages found.</p>
+
+<h2>What Docket checks in a sitemap</h2>
+
+<p>Docket reads your robots.txt for declared sitemaps, falls back to /sitemap.xml, and then checks the list against the pages
+it crawled. The findings it can report:</p>
+
+<ul>
+<li>No XML sitemap found, or a declared sitemap that is unreachable.</li>
+<li>Sitemap URLs that are broken, or that redirect instead of serving a page.</li>
+<li>Sitemap URLs with the site's address written twice, a generator bug that produces addresses nobody can reach.</li>
+<li>Noindex pages listed in the sitemap, which asks a search engine to index a page you told it not to.</li>
+<li>Indexable pages missing from the sitemap.</li>
+<li>Sitemap URLs it could not check, reported as a limit of the check rather than a fault, because a server that refuses a
+  crawler may still serve Google.</li>
+</ul>
+
+<p>It does not grade your lastmod dates or flag a missing robots.txt Sitemap line. Those you can read by eye in a minute.</p>
+
+<h2>Other kinds of sitemap</h2>
+
+<ul>
+<li><strong>Image sitemaps</strong> list images Google might not find on its own, up to {images_per_page} per page.</li>
+<li><strong>Video sitemaps</strong> add details about videos hosted on your pages.</li>
+<li><strong>News sitemaps</strong> are for Google News publishers, and list only articles from the last {news_days} days.</li>
+<li><strong>hreflang in a sitemap:</strong> for sites in several languages, each URL lists every language version, itself included.</li>
+<li><strong>An HTML sitemap</strong> is a page of links for people. It is a different thing, and search engines treat it as an ordinary page.</li>
+</ul>
+{buy_block("learn-what-is-a-sitemap", try_app="learn-what-is-a-sitemap-try-free")}
+
+<h2>Related</h2>
+<ul>
+<li><a href="/learn/ai-crawlers-and-sitemaps/">AI crawlers and sitemaps</a></li>
+<li><a href="/how-to/sitemap-urls-that-are-not-stale/">Sitemap URLs flagged as broken? Check before you regenerate</a></li>
+<li><a href="/learn/index-coverage/">Index coverage</a></li>
+<li><a href="/learn/canonical-tags/">Canonical tags are a hint, not an instruction</a></li>
+</ul>
+"""
+    return render(
+        cat="learn", slug="what-is-a-sitemap",
+        modified="2026-11-09",
+        title="What is a sitemap? What it does, and what it doesn't",
+        desc=("A sitemap lists the URLs you want search engines to find. What goes in one, "
+              "what Google and Bing ignore, and what four real sitemaps showed."),
+        h1="What is a sitemap?",
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is a sitemap?',
+        body=body,
+        published="2026-11-09",
+        faq=[
+            ("Does a sitemap help SEO?",
+             "It helps search engines find your pages, which matters most for new sites and pages with "
+             "few links to them. It does not improve rankings, and Google says submitting one is only "
+             "a hint, not a guarantee that pages are crawled or indexed."),
+            ("Do I need a sitemap for a small website?",
+             f"Google says a site of about {small_site_pages} pages or fewer, with every page linked "
+             "from somewhere on the site, might not need one. It is still worth having, because it "
+             "costs nothing and helps Bing and other engines too."),
+            ("How often should I update my sitemap?",
+             "Whenever pages are added, removed or change in a meaningful way. Most platforms "
+             "regenerate it automatically. Keep lastmod true: change it when the page's main content "
+             "changes, not on every rebuild."),
+            ("Does Google use priority and changefreq?",
+             "No. Google's documentation says it ignores both. Bing ignores them too. Only the URL and "
+             "an accurate lastmod are used."),
+        ],
+    )
+
+
 def claude_search_crawlers() -> Path:
     """Which crawlers feed Claude's web search? Answered from the operators' own pages, read 2026-11-06.
 
@@ -385,7 +577,7 @@ def _read_day() -> str:
     return "6 November 2026"
 
 
-BUILDERS = [what_is_claudebot, what_is_llms_txt, claude_search_crawlers]
+BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, claude_search_crawlers]
 
 
 def build_all() -> list[Path]:

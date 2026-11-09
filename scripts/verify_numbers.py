@@ -194,6 +194,7 @@ ALLOWED = {
     "5": "ordinals, 'the five pages that make you money'",
     "10": "'ten pages by default' — the render sample size",
     "0": "'0 characters', ordinals",
+    "28": "the Search Console reporting window chosen for the sitemap article",
     # -- dates -------------------------------------------------------------
     "2024": "year in a dated claim", "2025": "year in a dated claim",
     "2026": "year in a dated claim", "2023": "year in a dated claim",

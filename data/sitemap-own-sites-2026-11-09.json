@@ -1,0 +1,35 @@
+{
+  "read": "2026-11-09",
+  "method": "Claude (Article Studio) read the sitemap.xml and robots.txt of four sites run by Kerr & Company on 9 Nov 2026 18:06Z, and requested every listed URL without following redirects. Sites are not named on the page.",
+  "own_sites": 4,
+  "own_urls": 476,
+  "own_ok": 476,
+  "own_lastmod": 476,
+  "own_priority": 448,
+  "own_changefreq": 205,
+  "own_robots_line": 4,
+  "one_site_urls": 105,
+  "one_site_date": "2026-11-09",
+  "low_imp": 203,
+  "low_imp_pages": 254,
+  "gsc_window_end": "2026-11-07",
+  "gsc_indexed": 205,
+  "gsc_inspected": 256,
+  "gsc_read": "2026-11-09",
+  "docs_read": "2026-11-09",
+  "docs": {
+    "max_urls": 50000,
+    "max_mb": 50,
+    "small_site_pages": 500,
+    "images_per_page": 1000,
+    "news_days": 2,
+    "sources": {
+      "build_sitemap": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap",
+      "overview": "https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview",
+      "protocol": "https://www.sitemaps.org/protocol.html",
+      "bing_guidelines": "https://www.bing.com/webmasters/help/webmaster-guidelines-30fba23a",
+      "bing_lastmod_blog": "https://blogs.bing.com/webmaster/february-2023/The-Importance-of-Setting-the-lastmod-Tag-in-Your-Sitemap",
+      "indexnow_faq": "https://www.indexnow.org/faq"
+    }
+  }
+}

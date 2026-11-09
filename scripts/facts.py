@@ -1829,3 +1829,25 @@ def lt_fmt(iso: str) -> str:
 def lt_pct(count: int, base: int) -> str:
     """A share, one decimal, from the counts and not from a stored rounding."""
     return f"{100 * count / base:.1f}"
+
+
+# -- our own sitemaps, read 2026-11-09 --------------------------------------
+
+
+@lru_cache(maxsize=None)
+def sitemap_own_sites() -> dict:
+    """Dated sitemap readings and the documented limits quoted alongside them."""
+    return json.loads((ROOT / "data" / "sitemap-own-sites-2026-11-09.json").read_text())
+
+
+def index_reached() -> int:
+    return index()["summary"]["n"]
+
+
+def index_sitemap_line() -> int:
+    return index()["summary"]["has_sitemap_directive"]
+
+
+def index_month() -> str:
+    year, mon, _ = (int(x) for x in index_measured().split("-"))
+    return f"{_MONTHS[mon - 1]} {year}"
