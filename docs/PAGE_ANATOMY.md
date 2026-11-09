@@ -123,6 +123,14 @@ died at 32 of 36 hosts clean, and the AI-crawler cluster at 0 of 6 passing.
 measurement, its source is the citation, and the comments above it usually
 record the mistake it was written to stop. That is the whole point of section 9.
 
+## Release rule
+
+Change version strings and dates only where the fact changes. A footer, nav or
+wording sweep across many pages needs `DOCKET_SITEWIDE_REASON` set to a sentence
+that names the change and explains why it is needed. The release churn gate runs
+after the build. It compares page hashes with git HEAD and stops a release that
+changes more than 12 pages unless that reason is set. New pages count too.
+
 ## Shipping
 
 The sequence, and `$?` is checked after the build:

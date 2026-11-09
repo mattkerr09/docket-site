@@ -36,6 +36,9 @@ echo "==> build"
 # Any other build writes it to a scratch path so the checkout stays clean.
 DOCKET_DEPLOY=1 "$PY" scripts/build.py >/dev/null
 
+echo "==> release churn gate"
+"$PY" scripts/release_churn_gate.py || exit 1
+
 echo "==> em-dash gate"
 # Matthew, 2026-10-05: everything public reads as a person wrote it; the content
 # standard (~/ops/launch/CONTENT-STANDARD.md rule 11) names em-dash chains. 45
