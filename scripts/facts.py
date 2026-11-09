@@ -1840,6 +1840,12 @@ def sitemap_own_sites() -> dict:
     return json.loads((ROOT / "data" / "sitemap-own-sites-2026-11-09.json").read_text())
 
 
+@lru_cache(maxsize=None)
+def alt_text_own_sites() -> dict:
+    """Dated image-alt readings and the sources quoted alongside them."""
+    return json.loads((ROOT / "data" / "alt-text-own-sites-2026-11-09.json").read_text())
+
+
 def index_reached() -> int:
     return index()["summary"]["n"]
 

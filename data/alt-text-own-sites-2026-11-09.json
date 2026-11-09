@@ -1,0 +1,26 @@
+{
+  "read": "2026-11-09",
+  "method": "Claude (Article Studio) fetched every sitemap URL of four sites run by Kerr & Company on 9 Nov 2026 18:56Z and parsed every img tag. Sites are not named on the page.",
+  "alt_sites": 4,
+  "alt_pages": 478,
+  "alt_imgs": 251,
+  "alt_missing": 0,
+  "alt_empty": 188,
+  "alt_over_125": 40,
+  "alt_long_site_median": 217,
+  "alt_logo_flagged": 177,
+  "alt_logo_imgs": 178,
+  "myth_chars": 125,
+  "google_style_chars": 155,
+  "facts_read": "2026-11-09",
+  "sources": {
+    "wai_images": "https://www.w3.org/WAI/tutorials/images/",
+    "wai_decision_tree": "https://www.w3.org/WAI/tutorials/images/decision-tree/",
+    "wai_decorative": "https://www.w3.org/WAI/tutorials/images/decorative/",
+    "whatwg_images": "https://html.spec.whatwg.org/multipage/images.html",
+    "mdn_img": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img",
+    "google_images": "https://developers.google.com/search/docs/appearance/google-images",
+    "google_codelab_125": "https://codelabs.developers.google.com/codelabs/material-communication-guidance",
+    "google_style_155": "https://developers.google.com/style/images"
+  }
+}

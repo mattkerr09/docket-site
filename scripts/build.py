@@ -304,6 +304,9 @@ money.</p>
             ("/learn/what-is-a-sitemap/", "What is a sitemap?",
              "A list of the URLs you want search engines to find. What goes in one, which "
              "tags Google and Bing ignore, and what four real sitemaps showed."),
+            ("/learn/what-is-alt-text/", "What is alt text?",
+             "The words that stand in for an image. How to write them, when an empty alt is correct, "
+             "and the length rule nobody official set."),
             ("/learn/does-noindex-stop-ai-crawlers/", "Does noindex stop AI crawlers?",
              "noindex tells an indexer not to list a page; it cannot stop a crawler "
              "fetching it. What robots.txt and your server control instead, and which "

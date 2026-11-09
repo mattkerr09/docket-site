@@ -488,6 +488,157 @@ it crawled. The findings it can report:</p>
     )
 
 
+def what_is_alt_text() -> Path:
+    s = F.alt_text_own_sites()
+    sources = s["sources"]
+    alt_sites = format(s["alt_sites"], ",")
+    alt_pages = format(s["alt_pages"], ",")
+    alt_imgs = format(s["alt_imgs"], ",")
+    alt_missing = format(s["alt_missing"], ",")
+    alt_empty = format(s["alt_empty"], ",")
+    alt_over_125 = format(s["alt_over_125"], ",")
+    alt_long_site_median = format(s["alt_long_site_median"], ",")
+    alt_logo_flagged = format(s["alt_logo_flagged"], ",")
+    alt_logo_imgs = format(s["alt_logo_imgs"], ",")
+    myth_chars = format(s["myth_chars"], ",")
+    google_style_chars = format(s["google_style_chars"], ",")
+    missing = "no" if s["alt_missing"] == 0 else alt_missing
+    alt_read_human = F.lt_fmt(s["read"])
+    facts_read_human = F.lt_fmt(s["facts_read"])
+
+    body = f"""
+<p class="lede"><strong>Alt text is the text in an image's alt attribute: the words a screen reader reads out in place of the
+picture, and what a browser shows if the image fails to load.</strong> Google also uses it to understand what an image
+shows. Write it as the words you would use to replace the image. If the image is pure decoration, leave it empty, as alt="",
+which is correct and not an error. Across {alt_pages} pages on {alt_sites} sites I run, {alt_imgs} images had {missing}
+missing alt attributes and {alt_empty} empty ones, and every empty one was right.</p>
+
+<h2>What it looks like</h2>
+
+<pre><code>&lt;img src="dalmatian.jpg" alt="Dalmatian puppy playing fetch"&gt;</code></pre>
+
+<p>The test the <a href="{sources['whatwg_images']}" rel="nofollow noopener">HTML standard</a> gives is simple: if every image on the page were replaced by its alt text, the page should mean
+the same thing.</p>
+
+<h2>Missing alt and empty alt are different</h2>
+
+<ul>
+<li><strong>No alt attribute at all</strong> is the mistake. Some screen readers then read out the file name instead, so a listener hears
+  a camera's file name where the picture should be.</li>
+<li><strong><a href="{sources['wai_decorative']}" rel="nofollow noopener">An empty alt, alt="",</a></strong> tells assistive technology to skip the image. That is correct for an image that is purely
+  decorative, or that only repeats text right next to it.</li>
+</ul>
+
+<p>The <a href="{sources['wai_images']}" rel="nofollow noopener">W3C's accessibility guidelines</a> put this first: every image that carries meaning needs a text alternative that does the
+same job, and pure decoration should be marked so assistive technology can ignore it.</p>
+
+<h2>How to write good alt text</h2>
+
+<p>The <a href="{sources['wai_images']}" rel="nofollow noopener">W3C's image tutorials</a> sort images into a few kinds, and each gets a different kind of alt:</p>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Kind of image</th><th>What the alt should say</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>Informative: a photo or picture that adds meaning</td><td>The essential information, briefly</td><td>alt="Dalmatian puppy playing fetch"</td></tr>
+<tr><td>Functional: the only content of a link or button</td><td>What the link or button does, not what it looks like</td><td>alt="Search" on a magnifying-glass button</td></tr>
+<tr><td>Image of text</td><td>The same words as the image</td><td>alt="Now open on Sundays"</td></tr>
+<tr><td>Decorative: a divider, a background flourish</td><td>Nothing: alt=""</td><td>alt=""</td></tr>
+<tr><td>Complex: a chart or a detailed screenshot</td><td>A short alt, with the full detail in nearby text or a caption</td><td>alt="Monthly visits this year" plus the numbers in a table</td></tr>
+</tbody></table></div>
+
+<p>Read on the <a href="{sources['wai_decision_tree']}" rel="nofollow noopener">W3C's own pages</a>, {facts_read_human}.</p>
+
+<p>A few habits make most alt text better:</p>
+
+<ul>
+<li>Say what the image means here, not every detail in it. The same photo can need different alt on two pages.</li>
+<li>Skip "image of" and "picture of". The screen reader already says it is an image.</li>
+<li>Don't repeat a caption or a heading that sits right beside it. Use alt="" and let the text do the work.</li>
+<li>Don't stuff keywords. Google's own example of bad alt is a list of keywords, and it says this can get a site seen as spam.</li>
+</ul>
+
+<h2>The {myth_chars}-character myth</h2>
+
+<p>Many guides say alt text must stay under {myth_chars} characters because screen readers cut it off there. I could not find that rule
+in any official source. The W3C's guidance sets no character limit. Neither does the HTML standard, <a href="{sources['mdn_img']}" rel="nofollow noopener">MDN</a> or <a href="{sources['google_images']}" rel="nofollow noopener">Google Search
+Central</a>. The only Google page I found that mentions {myth_chars} is a <a href="{sources['google_codelab_125']}" rel="nofollow noopener">design codelab</a> on button labels, and a <a href="{sources['google_style_155']}" rel="nofollow noopener">Google style guide</a> for its
+own developer docs says {google_style_chars}.</p>
+
+<p>So length is a judgement, not a limit. Short is usually kinder, because a listener can't skim. On one of the sites I measured,
+the median alt was {alt_long_site_median} characters, because each image is a product screenshot that carries a score, a grade
+and a count. That is informative, but the W3C's advice for complex images is better: a short alt, and the detail in a caption
+or the text around it.</p>
+
+<h2>What four real sites showed</h2>
+
+<p>I read every page in the sitemaps of {alt_sites} sites I run on {alt_read_human} and checked every image.</p>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th></th><th>Total</th></tr></thead>
+<tbody>
+<tr><td>Pages</td><td>{alt_pages}</td></tr>
+<tr><td>Images</td><td>{alt_imgs}</td></tr>
+<tr><td>No alt attribute</td><td>{alt_missing}</td></tr>
+<tr><td>Empty alt (alt="")</td><td>{alt_empty}</td></tr>
+<tr><td>Alt longer than {myth_chars} characters</td><td>{alt_over_125}</td></tr>
+</tbody></table></div>
+
+<p>The most useful finding was about a tool, not a page. Our own internal page audit flagged {alt_logo_flagged} pages on one site for
+images with no alt text. Every empty alt on that site, {alt_logo_imgs} in all, was the site's logo inside the home link, right
+beside the site's name in text.
+There, alt="" is correct: a non-empty alt would make a screen reader say the name twice. The audit had treated an empty alt as
+a missing one. A checker that does that trains people to add junk alt text to images that should stay silent.</p>
+
+<h2>What Docket checks</h2>
+
+<p>Docket reports images that have no alt attribute at all, with the pages they are on. It treats alt="" as correct and does not
+flag it, and it ignores 1x1 tracking pixels. It also reports links with no text at all, which is often an image link with no
+alt, and a logo whose alt text doesn't name your company. A missing alt is an accessibility problem as well as an image-search
+one.</p>
+
+<p>It does not judge whether your alt text is good. Only a person who knows why the image is there can do that.</p>
+
+<p>If you run a public body's website, the deadlines for accessible websites under the ADA are on
+<a href="/learn/ada-title-ii-website-dates/">our Title II dates page</a>.</p>
+{buy_block("learn-what-is-alt-text", try_app="learn-what-is-alt-text-try-free")}
+"""
+    return render(
+        cat="learn", slug="what-is-alt-text",
+        modified="2026-11-09",
+        title="What is alt text? How to write it, and when to leave it empty",
+        desc=(f'Alt text is the words that stand in for an image. How to write it, when alt="" '
+              f'is right, the {myth_chars}-character myth, and what {alt_pages} real pages showed.'),
+        h1="What is alt text?",
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is alt text?',
+        body=body,
+        published="2026-11-09",
+        faq=[
+            ('Does alt text help SEO?',
+             'Google uses alt text, together with what it can see in the image, to understand what the image '
+             'shows, and uses it as anchor text when the image is a link. Write it for people first. Google '
+             'warns that alt filled with keywords can make a site look like spam.'),
+            ('How long should alt text be?',
+             "No official source sets a limit. The W3C's guidance says to keep it to the essential "
+             "information, and to put long detail, such as a chart's numbers, in the text around the image."),
+            ('When should alt text be empty?',
+             'When the image is purely decorative, or when the same information is already in text right '
+             'next to it. Use alt="", not a missing attribute, so screen readers skip it instead of reading '
+             'the file name.'),
+            ('Is alt text the same as the text you see on hover?',
+             'No. Hover text comes from the title attribute. Alt text is read by screen readers and shown '
+             "when the image doesn't load."),
+        ],
+        closer="""
+<h2>Related</h2>
+<ul>
+<li><a href="/how-to/fix-image-seo-problems/">Which image SEO problems actually matter</a></li>
+<li><a href="/how-to/fix-vague-and-empty-link-text/">How to fix vague and empty link text</a></li>
+<li>ADA Title II website dates</li>
+</ul>
+""",
+    )
+
+
 def claude_search_crawlers() -> Path:
     """Which crawlers feed Claude's web search? Answered from the operators' own pages, read 2026-11-06.
 
@@ -579,7 +730,7 @@ def _read_day() -> str:
     return "6 November 2026"
 
 
-BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, claude_search_crawlers]
+BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, claude_search_crawlers]
 
 
 def build_all() -> list[Path]:
