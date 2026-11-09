@@ -1852,6 +1852,12 @@ def structured_data_own_sites() -> dict:
     return json.loads((ROOT / "data" / "structured-data-own-sites-2026-11-09.json").read_text())
 
 
+@lru_cache(maxsize=None)
+def robots_txt_facts() -> dict:
+    """Dated robots.txt readings and the sources quoted alongside them."""
+    return json.loads((ROOT / "data" / "robots-txt-facts-2026-11-09.json").read_text())
+
+
 def index_reached() -> int:
     return index()["summary"]["n"]
 
@@ -1863,3 +1869,27 @@ def index_sitemap_line() -> int:
 def index_month() -> str:
     year, mon, _ = (int(x) for x in index_measured().split("-"))
     return f"{_MONTHS[mon - 1]} {year}"
+
+
+def index_no_robots() -> int:
+    return index()["summary"]["no_robots_txt"]
+
+
+def index_ai_mention() -> int:
+    return index()["summary"]["mentions_any_ai_bot"]
+
+
+def index_block_training() -> int:
+    return index()["summary"]["blocking_any_training_bot"]
+
+
+def index_block_citation() -> int:
+    return index()["summary"]["blocking_any_citation_bot"]
+
+
+def index_block_search() -> int:
+    return index()["summary"]["blocking_a_search_engine"]
+
+
+def index_ccbot() -> int:
+    return index()["summary"]["by_bot"]["CCBot"]["blocked"]

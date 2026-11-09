@@ -310,6 +310,9 @@ money.</p>
             ("/learn/what-is-structured-data/", "What is structured data?",
              "Markup that tells search engines what a page is about. The formats, what it cannot promise, "
              "and which features Google has retired."),
+            ("/learn/what-is-robots-txt/", "What is robots.txt?",
+             "A request to crawlers about which URLs not to fetch. How the rules match, "
+             "and why it can't keep a page out of search."),
             ("/learn/does-noindex-stop-ai-crawlers/", "Does noindex stop AI crawlers?",
              "noindex tells an indexer not to list a page; it cannot stop a crawler "
              "fetching it. What robots.txt and your server control instead, and which "

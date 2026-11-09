@@ -815,6 +815,190 @@ already found FAQ markup more common on the pages that got nothing.</p>
     )
 
 
+def what_is_robots_txt() -> Path:
+    s = F.robots_txt_facts()
+    sources = s["sources"]
+    own_disallowed = format(s["own_disallowed"], ",")
+    max_kib = format(s["max_kib"], ",")
+    err_stop_hours = format(s["err_stop_hours"], ",")
+    err_cache_days = format(s["err_cache_days"], ",")
+    cache_hours = format(s["cache_hours"], ",")
+    own_read_human = F.lt_fmt(s["read"])
+    facts_read_human = F.lt_fmt(s["facts_read"])
+    d_noindex_retired = F.lt_fmt(s["d_noindex_retired"])
+    index_reached = format(F.index_reached(), ",")
+    index_no_robots = format(F.index_no_robots(), ",")
+    index_ai_mention = format(F.index_ai_mention(), ",")
+    index_block_training = format(F.index_block_training(), ",")
+    index_block_citation = format(F.index_block_citation(), ",")
+    index_block_search = format(F.index_block_search(), ",")
+    index_ccbot = format(F.index_ccbot(), ",")
+
+    body = f"""
+<p class="lede"><strong>robots.txt is a plain text file at the root of a site that tells crawlers which URLs they may and may
+not fetch.</strong> It controls crawling, not indexing: a blocked page can still appear in Google, just without a
+description. And it is a request, not a lock: well-behaved crawlers follow it, and anyone else can still open the URL. Of
+the {index_reached} large sites in Docket's study, {index_no_robots} had no robots.txt at all.</p>
+
+<h2>What it looks like</h2>
+
+<pre><code>User-agent: *
+Disallow: /cart/
+Disallow: /search
+
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://example.com/sitemap.xml</code></pre>
+
+<p>Each group starts with one or more User-agent lines, naming the crawler, then the rules for it. The star means any crawler
+that isn't named elsewhere. The file must sit at the top of the host, as /robots.txt, and it covers only that host,
+protocol and port. A robots.txt on www.example.com says nothing about shop.example.com.</p>
+
+<h2>The lines Google reads</h2>
+
+<ul>
+<li><strong>User-agent:</strong> which crawler the group is for.</li>
+<li><strong>Disallow:</strong> a path the crawler should not fetch.</li>
+<li><strong>Allow:</strong> a path it may fetch, even inside a disallowed folder.</li>
+<li><strong>Sitemap:</strong> where your sitemap is. This one can go anywhere in the file.</li>
+</ul>
+
+<p>Google ignores everything else. Crawl-delay is not supported by Google, though Bing honours it. A noindex line in
+robots.txt has done nothing in Google since {d_noindex_retired}.</p>
+
+<h2>How the rules match</h2>
+
+<p>Three rules decide what a crawler does, and they trip people up more than the syntax does.</p>
+
+<p><strong>A crawler follows one group: the most specific one that names it.</strong> If there is a group for Googlebot, Googlebot ignores
+the star group entirely. Groups don't add up. One of the sites I run handles this correctly: it names each AI crawler in its
+own group and repeats the same Disallow lines in every one, because a named group would otherwise lose the rules written
+under the star.</p>
+
+<p><strong>Within a group, the longest matching rule wins.</strong> With Disallow: /shop and Allow: /shop/sale, the sale pages are allowed,
+because the longer rule is the closer match. When an Allow and a Disallow are the same length, Google picks the less
+restrictive one, the Allow.</p>
+
+<p><strong>Paths are case-sensitive, and two wildcards work.</strong> /Shop and /shop are different paths. A star matches any run of
+characters, and a dollar sign marks the end of the URL, so Disallow: /*.pdf$ blocks every PDF. The words Disallow and
+User-agent themselves are not case-sensitive.</p>
+
+<h2>What robots.txt can't do</h2>
+
+<p><strong>It can't keep a page out of search results.</strong> Google's own guide says robots.txt is not a way to keep a page out of
+Google. If other pages link to a blocked URL, Google may still list it, with no description, because it never read the
+page. To keep a page out, let it be crawled and give it a noindex tag, or put it behind a password. A noindex on a page
+that robots.txt blocks is never seen, so the two together fail.</p>
+
+<p><strong>It can't hide anything.</strong> The RFC that standardised robots.txt says its rules are not a form of access authorisation.
+One of my own sites learned this the obvious way: its robots.txt disallows {own_disallowed} internal files, and on
+{own_read_human} all {own_disallowed} still loaded for anyone who asked for them. Nothing in them was secret, but the
+robots.txt line protected none of it.</p>
+
+<h2>How Google treats the file itself</h2>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Situation</th><th>What Google does</th></tr></thead>
+<tbody>
+<tr><td>The file is over {max_kib} KiB</td><td>Reads the first {max_kib} KiB and ignores the rest</td></tr>
+<tr><td>robots.txt returns 404 or another 4xx (not 429)</td><td>Crawls as if there were no robots.txt</td></tr>
+<tr><td>robots.txt returns a 5xx</td><td>Stops crawling the site for {err_stop_hours} hours, then uses the last good copy for up to {err_cache_days} days</td></tr>
+<tr><td>Any successful read</td><td>Caches the file for up to {cache_hours} hours</td></tr>
+</tbody></table></div>
+
+<p>From Google's robots.txt specification, read {facts_read_human}.</p>
+
+<p>That 5xx row is the one to watch. A server error on robots.txt doesn't mean "no rules"; for Google it means "stop".</p>
+
+<h2>AI crawlers in robots.txt</h2>
+
+<p>Each AI company documents its own crawler names, and they do different jobs. Blocking the training crawler is not the
+same as leaving an AI's search:</p>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Company</th><th>Name in robots.txt</th><th>What blocking it does</th></tr></thead>
+<tbody>
+<tr><td>OpenAI</td><td>GPTBot</td><td>Asks that your content not be used for training</td></tr>
+<tr><td>OpenAI</td><td>OAI-SearchBot</td><td>Keeps your pages out of ChatGPT's search results</td></tr>
+<tr><td>Anthropic</td><td>ClaudeBot</td><td>Asks that your future content not be used for training</td></tr>
+<tr><td>Anthropic</td><td>Claude-SearchBot</td><td>Stops Claude indexing your content for search</td></tr>
+<tr><td>Anthropic</td><td>Claude-User</td><td>Stops Claude fetching your page when a user asks about it</td></tr>
+<tr><td>Google</td><td>Google-Extended</td><td>Opts out of Gemini training and grounding. It does not affect Google Search</td></tr>
+</tbody></table></div>
+
+<p>Read on each company's own crawler page, {facts_read_human}.</p>
+
+<p>Docket's study shows how sites use these. Of the {index_reached} large, well-known sites it read (a hand-picked list, not a
+random sample), {index_ai_mention} mentioned at least one AI crawler, {index_block_training} blocked at least one training
+crawler, {index_block_citation} blocked at least one crawler that feeds AI answers, and {index_block_search} blocked a
+search engine. The most-blocked name was CCBot, Common Crawl's crawler, on {index_ccbot} sites. The <a
+href="/learn/ai-crawler-directives/">AI crawler directives guide</a> covers which to keep and which to block.</p>
+
+<h2>What Docket checks</h2>
+
+<p>Docket reads your robots.txt before it crawls and follows the rules written for Googlebot, and for Docket's own crawler if
+you name it, matching them the way the standard describes: longest match, wildcards and the dollar sign. It reports:</p>
+
+<ul>
+<li>a robots.txt that blocks a crawler from the whole site;</li>
+<li>a robots.txt with syntax problems, or one that returns a server error;</li>
+<li>AI search crawlers and AI training crawlers that are blocked, listed separately because they do different jobs;</li>
+<li>a CDN or firewall that blocks a crawler your robots.txt allows.</li>
+</ul>
+
+<p>You can test a single URL against your file with the free <a href="/tools/robots-txt-tester/">robots.txt tester</a>.</p>
+
+<h2>Sources</h2>
+<ul>
+<li><a href="{sources['google_intro']}" rel="nofollow noopener">Google, robots.txt introduction</a></li>
+<li><a href="{sources['google_spec']}" rel="nofollow noopener">Google, how Google interprets robots.txt</a></li>
+<li><a href="{sources['google_noindex']}" rel="nofollow noopener">Google, block indexing with noindex</a></li>
+<li><a href="{sources['rfc9309']}" rel="nofollow noopener">RFC 9309</a></li>
+<li><a href="{sources['bing_crawl_control']}" rel="nofollow noopener">Bing, crawl control</a></li>
+<li><a href="{sources['openai_bots']}" rel="nofollow noopener">OpenAI crawlers</a></li>
+<li><a href="{sources['anthropic_bots']}" rel="nofollow noopener">Anthropic crawlers</a></li>
+<li><a href="{sources['google_crawlers']}" rel="nofollow noopener">Google common crawlers</a></li>
+</ul>
+
+{buy_block("learn-what-is-robots-txt", try_app="learn-what-is-robots-txt-try-free")}
+"""
+    return render(
+        cat="learn", slug="what-is-robots-txt",
+        modified="2026-11-09",
+        title="What is robots.txt? What it controls, and what it can't",
+        desc=("robots.txt asks crawlers which URLs not to fetch. How rules match, what Google and Bing ignore, "
+              "why it can't keep a page out of search, and what big sites block."),
+        h1="What is robots.txt?",
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is robots.txt?',
+        body=body,
+        published="2026-11-09",
+        faq=[
+            ("Does robots.txt stop a page from being indexed?",
+             "No. It stops crawling. Google can still list a blocked URL, without a description, if other pages "
+             "link to it. To keep a page out of search, allow crawling and add a noindex tag."),
+            ("Do I need a robots.txt file?",
+             "Not strictly. With no robots.txt, crawlers treat every URL as allowed. Many sites have one anyway, "
+             "to point to the sitemap and keep crawlers out of cart, search and admin pages."),
+            ("Does Google support crawl-delay?",
+             "No. Google ignores it. Bing honours it. To slow Googlebot down, your server can answer with a 503 "
+             "or 429 status for a while."),
+            ("Is robots.txt case-sensitive?",
+             "The paths are: /Shop and /shop are different. The field names, such as Disallow, and the crawler "
+             "names are not."),
+        ],
+        closer="""
+<h2>Related</h2>
+<ul>
+<li><a href="/learn/ai-crawler-directives/">Every AI crawler: which to block and which to keep</a></li>
+<li><a href="/learn/who-blocks-googlebot/">Who blocks Googlebot, and who blocks GoogleOther</a></li>
+<li><a href="/tools/robots-txt-tester/">robots.txt tester</a></li>
+<li><a href="/learn/what-is-a-sitemap/">What is a sitemap?</a></li>
+</ul>
+""",
+    )
+
+
 def claude_search_crawlers() -> Path:
     """Which crawlers feed Claude's web search? Answered from the operators' own pages, read 2026-11-06.
 
@@ -906,7 +1090,7 @@ def _read_day() -> str:
     return "6 November 2026"
 
 
-BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, claude_search_crawlers]
+BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, what_is_robots_txt, claude_search_crawlers]
 
 
 def build_all() -> list[Path]:

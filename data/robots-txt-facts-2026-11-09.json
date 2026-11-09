@@ -1,0 +1,18 @@
+{
+  "read": "2026-11-09",
+  "method": "Google's robots.txt specification and introduction, RFC 9309, Bing's crawl control page and the AI companies' crawler pages, read 9 Nov 2026 by Article Studio; own-site figure from a read of one Kerr & Company site's robots.txt and the four paths it disallows (all returned 200), 9 Nov 2026. Site not named on the page.",
+  "own_disallowed": 4,
+  "d_noindex_retired": "2019-09-01",
+  "max_kib": 500, "err_stop_hours": 12, "err_cache_days": 30, "cache_hours": 24,
+  "facts_read": "2026-11-09",
+  "sources": {
+    "google_intro": "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+    "google_spec": "https://developers.google.com/crawling/docs/robots-txt/robots-txt-spec",
+    "google_noindex": "https://developers.google.com/search/docs/crawling-indexing/block-indexing",
+    "rfc9309": "https://www.rfc-editor.org/rfc/rfc9309.html",
+    "bing_crawl_control": "https://www.bing.com/webmasters/help/crawl-control-55a30303",
+    "openai_bots": "https://developers.openai.com/api/docs/bots",
+    "anthropic_bots": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler",
+    "google_crawlers": "https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers"
+  }
+}
