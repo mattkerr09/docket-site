@@ -34,12 +34,11 @@ import comparisons  # noqa: E402
 _ROOT = Path(__file__).resolve().parent.parent.parent
 _DATA = json.loads((_ROOT / "data" / "screaming-frog-alternatives.json").read_text(encoding="utf-8"))
 _TOOLS = {t["slug"]: t for t in _DATA["tools"]}
-_READ = comparisons.CHECKED_HUMAN["sf-alternatives"]
 #: The audit of our own site that the figures below are made from (docket-app scripts/shot_free.mjs).
 _RUN = json.loads((_ROOT / "data" / "free-run.json").read_text(encoding="utf-8"))
 _LIMITS = json.loads((_ROOT / "data" / "limits.json").read_text(encoding="utf-8"))
 
-_WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight"}
+_WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight", 9: "nine"}
 
 
 def _usd(n: int) -> str:
@@ -55,9 +54,25 @@ def sf_alternatives() -> Path:
     esc = html.escape
     sf, sb, ps, np_, scr, lc = (_TOOLS[k] for k in ("screaming-frog", "sitebulb", "seo-powersuite",
                                                     "netpeak-spider", "scrutiny", "librecrawl"))
-    others = len(_TOOLS)                          # every tool in the data is an alternative or Screaming Frog itself:
-    #                                               five alternatives, with Docket the sixth, and Screaming Frog
-    seven = len(_TOOLS) + 1                       # the tools in the table, Screaming Frog and Docket included
+    # The data includes Screaming Frog. Docket adds a table row and replaces it in the alternatives count.
+    others = len(_TOOLS)
+    total = len(_TOOLS) + 1
+    other_words = _WORDS.get(others, str(others))
+    total_words = _WORDS.get(total, str(total))
+    names = ", ".join(esc(t["name"]) for t in _TOOLS.values() if t["slug"] != sf["slug"])
+    extra_tools = [t for t in _TOOLS.values() if t["slug"] not in
+                   {sf["slug"], sb["slug"], ps["slug"], np_["slug"], scr["slug"], lc["slug"]}]
+    extra_sections = "\n".join(
+        f'<h3>{esc(t["name"])}</h3>\n'
+        f'<p>It is {esc(t["sold"])}. It runs on {esc(t["runs_on"])}. '
+        f'Its page lists {esc(t["features"])}. Choose it for {esc(t["wins"])}.</p>'
+        for t in extra_tools)
+    extra_free_answers = " ".join(
+        f'{t["name"]} is {t["sold"]}. It runs on {t["runs_on"]}. Its page lists {t["features"]}.'
+        for t in extra_tools)
+    extra_platform_answers = " ".join(f'{t["name"]} runs on {t["runs_on"]}.' for t in extra_tools)
+    crawly = _TOOLS["crawly"]
+    houtini = _TOOLS["houtini-seo-audit-console"]
     ui_pages = _LIMITS["ui_default_pages"]
     minutes = _LIMITS["wall_clock_minutes"]
     # The sentences below depend on the order of these prices. If a price change breaks one, the build stops here
@@ -69,12 +84,8 @@ def sf_alternatives() -> Path:
     docket_runs = (f"Mac ({MAC_HW}, {MACOS} or later) and 64-bit Windows" if WINDOWS
                    else f"Mac only: {MAC_HW}, {MACOS} or later")
     glance = [
-        ("Screaming Frog SEO Spider", sf["runs_on"], sf["sold"], sf["free"], sf["urls"]),
-        ("Sitebulb", sb["runs_on"], sb["sold"], sb["free"], sb["urls"]),
-        ("SEO PowerSuite (WebSite Auditor)", ps["runs_on"], ps["sold"], ps["free"], ps["urls"]),
-        ("Netpeak Spider", np_["runs_on"], np_["sold"], np_["free"], np_["urls"]),
-        ("Scrutiny", scr["runs_on"], scr["sold"], scr["free"], scr["urls"]),
-        ("LibreCrawl", lc["runs_on"], lc["sold"], lc["free"], lc["urls"]),
+        (t["name"], t["runs_on"], t["sold"], t["free"], t["urls"]) for t in _TOOLS.values()
+    ] + [
         ("Docket SEO", docket_runs,
          f"{PRICE_STR} once, or four payments of {BNPL_INSTALMENT}",
          "a full audit with no key: the score, the number of problems in each area and the most important one in full",
@@ -89,15 +100,17 @@ def sf_alternatives() -> Path:
     body = f"""
 <p class="lede">Screaming Frog's SEO Spider is the crawler the others are measured against, and it is free
 up to {sf["free_cap"]} URLs. If you have outgrown that, or you want to pay a different way, there
-are {_WORDS[others]} others worth a look: Sitebulb, SEO PowerSuite's WebSite Auditor, Netpeak Spider, Scrutiny,
-LibreCrawl and ours, Docket. This page says what each costs, which computers it runs on, how much it will crawl,
+are {other_words} others worth a look: {names} and ours, Docket. This page says what each costs, which computers
+it runs on, how much it will crawl,
 and when it is the better choice than Screaming Frog. Docket is the answer for some readers and not for others,
 and the page says which.</p>
 
 <h2>Short answer: pick by what you are missing</h2>
 <ul>
-<li><strong>You want it free:</strong> LibreCrawl, if you are happy to start it from a script or Docker, or
-Screaming Frog itself or WebSite Auditor for sites under {sf["free_cap"]} URLs.</li>
+<li><strong>You want it free:</strong> {esc(crawly["name"])} on a Mac, LibreCrawl if you are happy to start it from a script or Docker,
+or Screaming Frog itself up to {sf["free_cap"]} URLs or WebSite Auditor up to {ps["free_cap"]} URLs.</li>
+<li><strong>You work in Claude and want Search Console data joined to the crawl:</strong>
+{esc(houtini["name"])}. {esc(_cap(houtini["runs_on"]))}.</li>
 <li><strong>You want to pay monthly, not yearly:</strong> Netpeak Spider, from {_usd(np_["monthly"])} a month.</li>
 <li><strong>You make reports for clients:</strong> Sitebulb Pro.</li>
 <li><strong>You want rank tracking and backlinks from the same company:</strong> SEO PowerSuite.</li>
@@ -108,8 +121,9 @@ Docket at {PRICE_STR}.</li>
 Nothing below changes that.</li>
 </ul>
 
-<h2>{_cap(_WORDS[seven])} tools side by side</h2>
-<p>Read {_READ} from each vendor's own pages (sources at the foot of the page). Prices are US dollar list prices
+<h2>{_cap(total_words)} tools side by side</h2>
+<p>Read from each vendor's own pages. Each tool's read date is shown with its source at the foot of the page.
+Prices are US dollar list prices
 for one person. The first row is the tool you are comparing against.</p>
 <div class="wrap-tbl"><table class="cmp"><thead><tr><th>Tool</th><th>Runs on</th><th>What it costs</th>
 <th>Free version</th><th>How much it crawls</th></tr></thead><tbody>
@@ -152,6 +166,8 @@ yourself. Its page lists {esc(lc["features"])}, and {esc(lc["note"])}. You choos
 price has to be nothing, or when you want to read and change the code. The trade is the one every self-run tool has: you
 install it, you update it and nobody is paid to answer when it breaks.</p>
 
+{extra_sections}
+
 <h2>Docket, the one we make, and what we ran ourselves</h2>
 <p>Docket is ours. It runs on {esc(docket_runs)}, costs {PRICE_STR} once, and refunds the whole price within
 {REFUND_DAYS} days. It runs {N_CHECKS} checks across {N_LANES} areas, some on each page, some across the whole site,
@@ -188,7 +204,7 @@ Mac-only view with the cost over three years, see <a href="/mac-seo-audit-tool/"
     return render(
         cat="best", slug="screaming-frog-alternatives",
         title="Screaming Frog alternatives for Mac and Windows (2026)",
-        desc=(f"{_cap(_WORDS[others])} Screaming Frog alternatives for Mac and Windows: what each costs, what it crawls, "
+        desc=(f"{_cap(other_words)} Screaming Frog alternatives for Mac and Windows: what each costs, what it crawls, "
               "its free version, and when it wins. Read from their own pages, November 2026."),
         h1="Screaming Frog alternatives for Mac and Windows",
         crumb='<a href="/">Docket</a> / <a href="/best/">Best</a> / Screaming Frog alternatives',
@@ -197,14 +213,16 @@ Mac-only view with the cost over three years, see <a href="/mac-seo-audit-tool/"
             ("What is the best free alternative to Screaming Frog?",
              f"LibreCrawl is free with no paid tier and is open source under the MIT licence, but you start it yourself "
              f"from a script or Docker. SEO PowerSuite's WebSite Auditor has a free version that crawls up to "
-             f"{ps['free_cap']} URLs, and Screaming Frog itself is free up to {sf['free_cap']} URLs."),
+             f"{ps['free_cap']} URLs, and Screaming Frog itself is free up to {sf['free_cap']} URLs. "
+             f"{extra_free_answers}"),
             ("Is there a Screaming Frog alternative I pay for once?",
              f"Yes. Scrutiny is a one-off {_usd(scr['once'])} purchase and runs on a Mac only. Docket is a one-off "
              f"{PRICE_STR} and runs on a Mac and on 64-bit Windows. Sitebulb, SEO PowerSuite and Screaming Frog are "
              "sold by the year, and Netpeak Spider by the month."),
             ("Which Screaming Frog alternatives work on Windows?",
              "Docket, Sitebulb, SEO PowerSuite's WebSite Auditor and Netpeak Spider all list a Windows version. "
-             "Scrutiny is Mac only, and LibreCrawl runs anywhere that can run Docker or Python."),
+             "Scrutiny is Mac only, and LibreCrawl runs anywhere that can run Docker or Python. "
+             f"{extra_platform_answers}"),
             ("Is Docket a replacement for Screaming Frog?",
              "For some people. Docket ranks what it finds and says what to fix first, runs on a Mac and on Windows, "
              f"and costs {PRICE_STR} once. Screaming Frog is the better tool for raw crawl data, custom extraction, "

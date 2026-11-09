@@ -85,7 +85,7 @@
       "slug": "crawly",
       "name": "Crawly",
       "read": "2026-11-09",
-      "runs_on": "macOS (Apple silicon and Intel); its page lists Windows and Linux as coming soon",
+      "runs_on": "macOS (Apple silicon and Intel), as a native Mac app; its page lists Windows and Linux as coming soon",
       "sold": "free: the page says no licence, no page cap and no Java",
       "annual": 0,
       "free": "free, with no page cap, per its page",
