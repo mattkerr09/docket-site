@@ -301,6 +301,9 @@ money.</p>
             ("/learn/what-is-llms-txt/", "What is llms.txt?",
              "A Markdown reading list for language models. What goes in it, how many large "
              "sites have one, and why Google says you do not need it."),
+            ("/learn/what-is-a-sitemap/", "What is a sitemap?",
+             "A list of the URLs you want search engines to find. What goes in one, which "
+             "tags Google and Bing ignore, and what four real sitemaps showed."),
             ("/learn/does-noindex-stop-ai-crawlers/", "Does noindex stop AI crawlers?",
              "noindex tells an indexer not to list a page; it cannot stop a crawler "
              "fetching it. What robots.txt and your server control instead, and which "
