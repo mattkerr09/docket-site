@@ -1160,6 +1160,10 @@ def what_is_a_favicon() -> Path:
     own_apple = format(s["own_apple"], ",")
     own_svg_only = format(s["own_svg_only"], ",")
     own_ico_404 = format(s["own_ico_404"], ",")
+    _n_svg = s["own_svg_only"]
+    svg_only_phrase = ("none declared only an SVG icon" if _n_svg == 0 else
+                       "one declared only an SVG icon" if _n_svg == 1 else
+                       f"{own_svg_only} declared only an SVG icon")
     own_robots_block = format(s["own_robots_block"], ",")
     g_min_px = format(s["g_min_px"], ",")
     g_rec_px = format(s["g_rec_px"], ",")
@@ -1173,8 +1177,7 @@ def what_is_a_favicon() -> Path:
 <p class="lede"><strong>A favicon is the small icon that stands for your site: in the browser tab, in bookmarks, on a phone's
 home screen, and next to your site's name in search results.</strong> You add it with a link tag in the page's head. For
 Google, it has to be square, at least {g_min_px} pixels, in a format Google lists, and declared on your home page. SVG,
-the format many modern sites use, is not on Google's list. On {own_sites} sites I run, {own_svg_only} declared only an SVG
-icon.</p>
+the format many modern sites use, is not on Google's list. Of the {own_sites} sites I run, {svg_only_phrase} when I last checked.</p>
 
 <h2>What it looks like in the HTML</h2>
 
@@ -1223,9 +1226,9 @@ everything that needs a bitmap, an SVG for browsers that want it, and an apple-t
 <tr><td>Block the icon in robots.txt</td><td>{own_robots_block} of {own_sites}</td></tr>
 </tbody></table></div>
 
-<p>The SVG-only sites are probably still covered in Google, because Google also reads apple-touch-icon, and both have a PNG
-there. But that rests on one tag. Adding a PNG or ICO icon of at least {g_rec_px} pixels would make it certain, and it would
-stop the 404s for /favicon.ico in their logs.</p>
+<p>An SVG-only site is probably still covered in Google, because Google also reads apple-touch-icon, and every one of
+these sites has a PNG there. But that rests on one tag. Adding a PNG or ICO icon of at least {g_rec_px} pixels makes it
+certain, and stops the 404s for /favicon.ico. One of the sites did exactly that on the day I first checked.</p>
 
 <h2>The sizes worth making</h2>
 
