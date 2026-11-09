@@ -675,8 +675,8 @@ def write_llms_txt() -> None:
     out += facts(
         f"{PRICE_STR}, paid once, in US dollars. Not a subscription: there is no renewal "
         f"date and nothing to cancel.",
-        (f"{SALE_NAME}, all of November: Docket SEO {FOUNDING_NOW} once, until {FOUNDING_END_DAY}. From "
-         f"{FOUNDING_AFTER_DAY} it's {PRICE_STR}. The Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
+        (f"{SALE_NAME}: {FOUNDING_NOW} once, through {FOUNDING_END_DAY}. From "
+         f"{FOUNDING_AFTER_DAY}: {PRICE_STR}. The Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
          f"{PRICE_STR}, enter it under \"Have a discount code?\")." if FOUNDING_OPEN else ""),
         # Audit row 29: at the sale price the checkout offers no instalments, so they are dated, not offered now.
         ((f"From {FOUNDING_AFTER_DAY}, at {PRICE_STR}, four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, "
@@ -887,7 +887,7 @@ def write_offer() -> None:
     read it.
     """
     from render import (BNPL_FOUNDING_OK, BNPL_LIVE, BNPL_MIN_CENTS, CHECKOUT, FOUNDING_CODE, FOUNDING_OPEN,
-                        FOUNDING_ENDS_AT, FOUNDING_PCT, HAS_SAMPLE, REFUND_DAYS, SALE_NAME, SAMPLE_REPORT)
+                        FOUNDING_ENDS_AT, FOUNDING_END_DAY, FOUNDING_PCT, HAS_SAMPLE, REFUND_DAYS, SALE_NAME, SAMPLE_REPORT)
     import math
     price_cents = PRICE * 100
     founding_cents = price_cents * (100 - FOUNDING_PCT) // 100
@@ -905,7 +905,7 @@ def write_offer() -> None:
                       "instalment_cents": math.ceil(founding_cents / 4) if BNPL_FOUNDING_OK else None,
                       # No "seats" since 2026-11-02: the sale is uncapped. Builds up to 1.3.138 required it, but
                       # they also hold the old $349 list price, so they show no sale line from this file either way.
-                      "code": FOUNDING_CODE, "label": SALE_NAME + ", all of November", "ends_at": FOUNDING_ENDS_AT}
+                      "code": FOUNDING_CODE, "label": SALE_NAME + ", through " + FOUNDING_END_DAY, "ends_at": FOUNDING_ENDS_AT}
                      if FOUNDING_OPEN else None),
         "refund_days": REFUND_DAYS,
         "checkout_url": CHECKOUT,
@@ -1308,7 +1308,7 @@ def pricing_page() -> Path:
     article.
     """
     from render import (BNPL_INSTALMENT, DMG_SIZE, FOUNDING_AFTER_DAY, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, PRICE_STR, REFUND_DAYS,
-                        FOUNDING_NOW, SALE_NAME, SALE_UNDER_FLOOR, WINDOWS, buy_block, download_url, windows_waitlist)
+                        FOUNDING_END_DAY, FOUNDING_NOW, SALE_NAME, SALE_UNDER_FLOOR, WINDOWS, buy_block, download_url, windows_waitlist)
     # The prose below is this page's own. The quality gate's duplicate check
     # judged the first version (the buy block alone) a copy of 18 pages,
     # rightly: a page that is only the shared block says nothing of its own.
@@ -1327,7 +1327,7 @@ def pricing_page() -> Path:
         return f"${x:,.2f}" if x != int(x) else f"${int(x):,}"
     bundle_line = (
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
-        f'All three apps, {apps}, for {usd(bundle["founding_price"])} once: the Black Friday price, all of November.</a> '
+        f'All three apps, {apps}, for {usd(bundle["founding_price"])} once: the launch price, through {FOUNDING_END_DAY}.</a> '
         f'From {FOUNDING_AFTER_DAY} it is {usd(bundle["standard_price"])}.'
         if founding else
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'

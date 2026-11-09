@@ -67,8 +67,8 @@ def shows_founding(name: str, text: str, price: str, code: str) -> str:
         if needle in seen:
             return f"{needle!r} in its text"
     # The bundle's "while founding prices last" and any other founding-price sentence without the figure.
-    if re.search(r"founding price|black friday price", seen, flags=re.I):
-        return "'founding price' or 'Black Friday price' in its text"
+    if re.search(r"founding price|black friday price|launch price", seen, flags=re.I):
+        return "'founding price', 'launch price' or 'Black Friday price' in its text"
     return ""
 
 

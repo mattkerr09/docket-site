@@ -328,8 +328,8 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
     # (CEO QC, 2026-11-09, on /download/). Built from the same constants as the bar and the note, only while the
     # offer is open, and removed by the page's own switch at FOUNDING_ENDS_AT.
     sale_line = (f'<p class="price-sale"{FOUNDING_UNTIL} style="font-size:1.25rem;line-height:1.3;margin:0 0 .6rem">'
-                 f'<strong>{SALE_NAME}: {FOUNDING_NOW} once</strong> with code <code>{FOUNDING_CODE}</code>, '
-                 f'then {PRICE_STR} from {FOUNDING_AFTER_DAY}.</p>' if sale_first and FOUNDING_OPEN else "")
+                 f'<strong>{SALE_NAME}: {FOUNDING_NOW} once</strong>, through {FOUNDING_END_DAY}. '
+                 f'From {FOUNDING_AFTER_DAY}: {PRICE_STR}.</p>' if sale_first and FOUNDING_OPEN else "")
     out = [f'<div class="buy-block{"" if big else " compact"}">{sale_line}'
            f'<p class="price-line"><span class="price-big">{PRICE_STR}</span>'
            f'<span class="price-pay4">once{PAY4_BUY}</span></p>{price_req_html()}'
@@ -397,7 +397,7 @@ def buy_strip(src: str) -> str:
     sample = (f' &middot; <a href="{SAMPLE_REPORT}" data-ev="Sample report" data-ev-button="{src}">'
               f'See a sample report</a>' if HAS_SAMPLE else "")
     # The founding part carries its own separator, so the page's switch can remove it whole at FOUNDING_ENDS_AT.
-    founding = (f'<span{FOUNDING_UNTIL}> &middot; {SALE_NAME} {FOUNDING_NOW}{PAY4_FOUNDING} '
+    founding = (f'<span{FOUNDING_UNTIL}> &middot; {SALE_NAME} {FOUNDING_NOW} once '
                 f'{FOUNDING_END_HTML} with <code>{FOUNDING_CODE}</code>, then {PRICE_STR}</span>'
                 if FOUNDING_OPEN else "")
     return (f'<aside class="buy-strip"><p><a href="{download_url(try_src)}" data-ev="Download" '
@@ -748,7 +748,7 @@ FOUNDING_CODE = "FOUNDINGDOCKET"
 FOUNDING_SEATS = None
 #: What the sale is called on every page, in Matthew's framing. Not "50% off": $59 has not been charged to anyone yet,
 #: so a discount against it would be a former price nobody paid (CEO, 2026-11-02, on the FTC's former-price rules).
-SALE_NAME = "Black Friday price"
+SALE_NAME = "Launch price"
 #: When the founding offer stops: FOUNDINGDOCKET's expires_at, read from Dodo on 2026-10-21 (50% off, 0 of 25 used,
 #: restricted to Docket). CEO, 2026-10-21: every founding-price line, the auto-applied code and the ads switch off by
 #: that moment. So every founding line this site writes (the note under each Buy button, the guide strips, the FAQ
@@ -970,8 +970,8 @@ BNPL_NOTE_HTML = BNPL_NOTE.replace(
 #: the full price (the hub falls back to the plain link if Dodo is down).
 #: The sale line, in the words the CEO relayed from Matthew on 2026-11-02: "Black Friday price, all of November:
 #: Docket SEO $29.50 once. From 1 December it's $59, or 4 × $14.75."
-FOUNDING_LINE = (f"{SALE_NAME}, all of November: <strong>Docket SEO {FOUNDING_NOW} once{PAY4_FOUNDING}</strong>. "
-                 f"From {FOUNDING_AFTER_DAY} it&rsquo;s {PRICE_STR}{', or 4&nbsp;&times;&nbsp;' + BNPL_INSTALMENT if PAY4 else ''}. "
+FOUNDING_LINE = (f"{SALE_NAME}: <strong>{FOUNDING_NOW} once</strong>, through {FOUNDING_END_DAY}. "
+                 f"From {FOUNDING_AFTER_DAY}: {PRICE_STR}. "
                  f"Buy applies the code <code>{FOUNDING_CODE}</code> for you; if the checkout shows {PRICE_STR}, "
                  f"enter it under &lsquo;Have a discount code?&rsquo;." if FOUNDING_OPEN else "")
 

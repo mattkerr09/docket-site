@@ -46,7 +46,7 @@ _FREE_RUN = _json.loads((Path(__file__).resolve().parent.parent.parent / "data" 
 EMAIL_BOX_ENABLED = False
 _REMINDER_LAST_DAY = _dt.date(2026, 11, 30)
 _EMAIL_CORRECTED = _dt.date(2026, 11, 8)
-_REMINDER_PROMISE = ("Not ready today? We'll email you to confirm, and once more the day before the Black Friday "
+_REMINDER_PROMISE = ("Not ready today? We'll email you to confirm, and once more the day before the launch "
                      "price ends on 30 November. Then we delete your address.")
 _NEWS_PROMISE = ("New checks in the connector and the app, about once a month. "
                  "Every email has a one-click unsubscribe.")
@@ -143,7 +143,7 @@ def _email_privacy() -> str:
                "Until then they collect nothing.")
     return f"""
 <p>{state} When enabled, until 30 November 2026 the box offers a confirmation email and one reminder the day
-before the Black Friday price ends. That list is <code>docket-price-reminder</code>. From 1 December it offers news
+before the launch price ends. That list is <code>docket-price-reminder</code>. From 1 December it offers news
 about new checks about once a month, on a separate list called <code>docket-news</code>. Asking for a reminder
 does not sign you up for news.</p>
 <p>Nothing is sent unless you type an address and press the button. Then the address and the name of the list
@@ -782,7 +782,7 @@ claims everything invites the client to test the claim.</p>
         faq=[
             ("Can I use Docket for client work?",
              "Yes. Docket is " + PRICE_STR + " once"
-             + (" (" + FOUNDING_NOW + " at the Black Friday price until " + FOUNDING_END_DAY + ")" if FOUNDING_OPEN else "") + ", "
+             + (" (" + FOUNDING_NOW + " at the launch price until " + FOUNDING_END_DAY + ")" if FOUNDING_OPEN else "") + ", "
              "with no per-crawl charge; one licence covers " + F.licence_covers() + ". You can audit as many client and "
              "prospect sites as you like and charge for the work."),
             ("Can I white-label the report?",
@@ -1545,7 +1545,7 @@ to happen whether or not anyone is at the machine, that is what a hosted crawler
              "than Docket measuring."),
             ("Is Docket really a one-time purchase?",
              f"Yes. {PRICE_STR} once, "
-             + (f"or {FOUNDING_NOW} at the Black Friday price until {FOUNDING_END_DAY}, " if FOUNDING_OPEN else "") + f"and "
+             + (f"or {FOUNDING_NOW} at the launch price until {FOUNDING_END_DAY}, " if FOUNDING_OPEN else "") + f"and "
              f"every 1.x update is included. One licence covers {F.licence_covers()}, and there is no "
              f"per-seat price, no crawl credits, no account "
              f"and no telemetry, and audit history is stored on your computer in ~/.docket/ as "
