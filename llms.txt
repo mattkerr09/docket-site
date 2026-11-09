@@ -61,12 +61,12 @@ Michigan, United States.
 
 - $59, paid once, in US dollars. Not a subscription: there is no renewal date and
   nothing to cancel.
-- Black Friday price, all of November: Docket SEO $29.50 once, until 30 November. From
-  1 December it's $59. The Buy link applies the code FOUNDINGDOCKET at checkout (if
-  the checkout shows $59, enter it under "Have a discount code?").
+- Launch price: $29.50 once, through 30 November. From 1 December: $59. The Buy link
+  applies the code FOUNDINGDOCKET at checkout (if the checkout shows $59, enter it
+  under "Have a discount code?").
 - From 1 December, at $59, four payments of $14.75 with Klarna or Afterpay, two weeks
-  apart. The Black Friday price of $29.50 is paid in one payment: the checkout offers
-  no instalments under $50.01.
+  apart. The Launch price of $29.50 is paid in one payment: the checkout offers no
+  instalments under $50.01.
 - Free: your score, how many problems in each category, and the top problem in full
   with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to
   paste. The free version needs no key and no account, and runs the same full audit;
@@ -102,8 +102,8 @@ Michigan, United States.
 
 - Is Docket free? Free: your score, how many problems in each category, and the top
   problem in full with its fix. Pro: the rest of the problems, the ranked fix plan and
-  the markup to paste. Pro is $59 once, $29.50 at the Black Friday price until 30
-  November, with a 30-day refund. There is no subscription and nothing to cancel.
+  the markup to paste. Pro is $59 once, $29.50 at the launch price until 30 November,
+  with a 30-day refund. There is no subscription and nothing to cancel.
 - What if it isn't for me? Ask for a refund within 30 days of buying and you get your
   money back. No conditions and no questions. Write to support@docketseo.app, or reply
   to the receipt the payment processor emails you. The licence key is revoked, so the
