@@ -160,13 +160,11 @@ def free_result_figure() -> str:
     r = _FREE_RUN
     d = _dt.date.fromisoformat(r["date"])
     when = f"{d.day} {d.strftime('%B %Y')}"
-    more = f"{r['more']} more problem{'' if r['more'] == 1 else 's'}"
     alt = (f"Docket's free result for a real site: score {r['score']}, grade {r['grade']}, the most important "
-           f"problem shown in full with its fix, and a line saying Docket found {more} on this site, with a "
-           f"Buy button, the price and the refund.")
+           f"problem shown in full with its fix, and the total number of problems found.")
     caption = (f"The free result in Docket {r['engine']} after a real audit of {r['target']} on {when}: "
                f"{r['pages']} pages crawled, score {r['score']} out of 100, the most important problem in full "
-               f"with its fix, and the number of others Docket found ({r['more']}). It is the shipped free version "
+               f"with its fix, and how many problems were found in all. It is the free version "
                f"running against the audit engine, captured from that run, not a mockup.")
     return (f'<figure class="shot">\n  <img src="/assets/free-result.webp" width="{r["image"]["width"]}" '
             f'height="{r["image"]["height"]}" loading="lazy" decoding="async" alt="{_html.escape(alt)}">\n'
