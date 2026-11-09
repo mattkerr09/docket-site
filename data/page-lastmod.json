@@ -405,11 +405,11 @@
  },
  "learn/index.html": {
   "date": "2026-11-09",
-  "hash": "ddf36c06a77a8c5e"
+  "hash": "58ec75790289fbbb"
  },
  "learn/internal-link-equity/index.html": {
   "date": "2026-11-09",
-  "hash": "5384a630e41c3eef"
+  "hash": "52ecc2a847a4f1d3"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-11-09",
@@ -478,6 +478,10 @@
  "learn/what-is-llms-txt/index.html": {
   "date": "2026-11-09",
   "hash": "8afbf27431d9da87"
+ },
+ "learn/what-is-structured-data/index.html": {
+  "date": "2026-11-09",
+  "hash": "c21c1776f65887a7"
  },
  "learn/who-blocks-googlebot/index.html": {
   "date": "2026-11-09",
