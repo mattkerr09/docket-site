@@ -310,7 +310,8 @@ def price_req_html() -> str:
 
 def buy_block(src: str, *, sample: bool = True, big: bool = True,
               anchor: bool = True, refund: bool = True, refund_link: bool = True,
-              try_free: bool = False, try_app: str = "", phone: bool = True) -> str:
+              try_free: bool = False, try_app: str = "", phone: bool = True,
+              sale_first: bool = False) -> str:
     """Buy button, founding offer, what the alternatives cost, the refund.
 
     One definition, because the buy path is now on every kind of page and a
@@ -323,7 +324,13 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
     # about 40% of its size (Matthew, 2026-09-28, on the literal same-size
     # version: "this looks bad"). The button says only what it does: at 375px
     # "Buy Docket · $349 once · or 4 × $87.25" broke over two lines.
-    out = [f'<div class="buy-block{"" if big else " compact"}">'
+    # `sale_first`: the sale price stands ABOVE the regular one, so nobody reads the big "$59" as today's price
+    # (CEO QC, 2026-11-09, on /download/). Built from the same constants as the bar and the note, only while the
+    # offer is open, and removed by the page's own switch at FOUNDING_ENDS_AT.
+    sale_line = (f'<p class="price-sale"{FOUNDING_UNTIL} style="font-size:1.25rem;line-height:1.3;margin:0 0 .6rem">'
+                 f'<strong>{SALE_NAME}: {FOUNDING_NOW} once</strong> with code <code>{FOUNDING_CODE}</code>, '
+                 f'then {PRICE_STR} from {FOUNDING_AFTER_DAY}.</p>' if sale_first and FOUNDING_OPEN else "")
+    out = [f'<div class="buy-block{"" if big else " compact"}">{sale_line}'
            f'<p class="price-line"><span class="price-big">{PRICE_STR}</span>'
            f'<span class="price-pay4">once{PAY4_BUY}</span></p>{price_req_html()}'
            # CEO, 2026-11-07 (sales audit): most November buyers paid in another currency, some with VAT added.

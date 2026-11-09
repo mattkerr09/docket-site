@@ -266,24 +266,25 @@ def _payment_note() -> str:
 
 
 def download() -> Path:
-    # Matthew's plan, 2026-09-24: the download page opens with the order things
-    # actually happen in. GitHub counted about 3,107 Mac and 950 Linux downloads
-    # from 08-07 against no sales, and the key wall right after download is where
-    # people leave: this page led with a Download button for an app that will not
-    # audit anything until a key is pasted. Buying is step one because it is.
+    # Matthew's plan, 2026-09-24 put Buying first: GitHub counted about 3,107 Mac and 950 Linux downloads
+    # from 08-07 against no sales, and the key wall right after the download was where people left, because
+    # the app would not audit anything until a key was pasted. That premise ended with the free version (1.3.96:
+    # the full audit, with the score, the per-area counts and the top problem in full, and no key). CEO QC,
+    # 2026-11-09: the title promises "free to try", but at 375px the first thing under the H1 was a $59 Buy, so
+    # Download is step 1 and Buy is step 2, "when you are ready".
     body = f"""
 <ol class="steps" id="buy">
-<li><strong>Buy once.</strong> The licence key
-arrives with your receipt.{buy_block("download-steps", sample=True, big=True)}
-<p class="hero-note">{bundle_link("docket-download-bundle", "download-bundle", lead="Or all three of our apps, Docket SEO, Crisp and Outlier, for")}.</p></li>
-<li><strong>Download</strong> the app: <a href="{download_url('download-steps')}" data-ev="Download"
+<li><strong>Download</strong> the app, free to try: <a href="{download_url('download-steps')}" data-ev="Download"
 data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On an Intel Mac, <a href="{download_url("download-steps-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="download-steps-intel">the Intel version</a>.') if INTEL else ''}{(f' On Windows, <a href="{download_url("download-steps-windows", to=WIN_SETUP)}" data-ev="Download" data-ev-button="download-steps-windows">the Windows installer</a>, {WIN_SETUP_SIZE}.') if WINDOWS else ''}</li>
+<li><strong>Buy once</strong> when you are ready. The licence key
+arrives with your receipt.{buy_block("download-steps", sample=True, big=True, sale_first=True)}
+<p class="hero-note">{bundle_link("docket-download-bundle", "download-bundle", lead="Or all three of our apps, Docket SEO, Crisp and Outlier, for")}.</p></li>
 <li><strong>Paste the key</strong> into the field the app shows, and run your first audit.
 <span class="qual">30-day refund, no conditions.</span></li>
 
 </ol>
 {email_box()}
-<p>Or start with step 2: without a key, Docket runs the same full audit for free. {FREE_LINE}
+<p>Step 1 needs no key: Docket runs the same full audit for free. {FREE_LINE}
 Buy from inside the app and the audit you ran opens in full.
 The free version also saves a <a href="/score-card/">score card</a> of any audit: one picture with the score and the problems
 in each area, to send to a client or a colleague.</p>
