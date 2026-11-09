@@ -1,6 +1,6 @@
 {
   "read": "2026-11-05",
-  "note": "Every row was read from the vendor's own pages on this date, in a desktop browser for the pages that fill in their prices with JavaScript. Prices are US dollar list prices for one person. A thing the page did not state is recorded as not stated, never guessed. Nothing here was measured by running the rival's software: Docket's own runs are on the page and are marked as ours.",
+  "note": "Rows without their own read date were read from the vendor's own pages on this date, in a desktop browser for the pages that fill in their prices with JavaScript. Prices are US dollar list prices for one person. A thing the page did not state is recorded as not stated, never guessed. Nothing here was measured by running the rival's software: Docket's own runs are on the page and are marked as ours.",
   "tools": [
     {
       "slug": "screaming-frog",
@@ -80,6 +80,32 @@
       "wins": "costing nothing, and being software you can read and change",
       "features": "JavaScript rendering through Playwright, PageSpeed Insights integration, issue detection and CSV, XLSX, JSON or XML export",
       "note": "GitHub lists no published release, so it is started from the source"
+    },
+    {
+      "slug": "crawly",
+      "name": "Crawly",
+      "read": "2026-11-09",
+      "runs_on": "macOS (Apple silicon and Intel); its page lists Windows and Linux as coming soon",
+      "sold": "free: the page says no licence, no page cap and no Java",
+      "annual": 0,
+      "free": "free, with no page cap, per its page",
+      "urls": "no page cap, per its page",
+      "source": "https://www.getcrawly.com/",
+      "features": "19 issue types, crawl comparison that diffs two crawls, and an MCP server for Claude Code, Claude Desktop, Cursor, Codex and Windsurf",
+      "wins": "price (free, no page cap) and a built-in MCP server for asking questions of a crawl"
+    },
+    {
+      "slug": "houtini-seo-audit-console",
+      "name": "Houtini SEO Audit Console",
+      "read": "2026-11-09",
+      "runs_on": "Claude Desktop and Claude Code, as an MCP server installed with npm; it keeps its data in a SQLite database on your own PC",
+      "sold": "free and open source (Apache-2.0, per its page)",
+      "annual": 0,
+      "free": "free",
+      "urls": "not stated",
+      "source": "https://houtini.com/tools/seo-audit/",
+      "features": "143 checks per its page, joined with Google Search Console history so each finding is ranked by expected clicks per developer-hour",
+      "wins": "joining Search Console data to the crawl, so findings are ranked by the traffic at stake"
     }
   ],
   "sources_extra": [

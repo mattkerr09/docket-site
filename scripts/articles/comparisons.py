@@ -566,7 +566,8 @@ def _sfa_facts(data: dict) -> list:
     """The claim list for data/screaming-frog-alternatives.json. Pure, like _mac_facts."""
     return ([(f"{t['name']}: runs on {t['runs_on']}; {t['sold']}; free: {t['free']}; crawl size: {t['urls']}; {t['features']}"
               + (f"; refunds: {t['refund']}" if t.get("refund") else "")
-              + (f"; {t['note']}" if t.get("note") else ""), t["source"])
+              + (f"; {t['note']}" if t.get("note") else "")
+              + f"; read {_human_date(t.get('read', data['read']))}", t["source"])
              for t in data["tools"]]
             + [(what, url) for what, url in data["sources_extra"]])
 
@@ -606,8 +607,8 @@ CHECKED_HUMAN["gsc-robots-report"] = f"{_d.day} {_d.strftime('%B %Y')}"
 
 VERIFIED["sf-alternatives"] = _sfa_facts(_SFA)
 DATA_CLAIM_SETS["sf-alternatives"] = ("data/screaming-frog-alternatives.json", _sfa_facts)
-CHECKED_ISO["sf-alternatives"] = _SFA["read"]
-_d = _date.fromisoformat(_SFA["read"])
+CHECKED_ISO["sf-alternatives"] = max(t.get("read", _SFA["read"]) for t in _SFA["tools"])
+_d = _date.fromisoformat(CHECKED_ISO["sf-alternatives"])
 CHECKED_HUMAN["sf-alternatives"] = f"{_d.day} {_d.strftime('%B %Y')}"
 
 #: The closing sentence of a verification note. Written for a competitor with a
@@ -748,9 +749,10 @@ def _verified_note(key: str, closing: str = _DEFAULT_CLOSING) -> str:
         f'{what} (<a href="{url}" rel="nofollow noopener">source</a>)'
         for what, url in items
     )
+    read_note = ("Each rival's read date is shown with its claim below. " if key == "sf-alternatives" else
+                 "The factual\nclaims about this product were read from its own pages on that date: ")
     return f"""
-<p class="verified-note"><strong>Checked {checked}.</strong> The factual
-claims about this product were read from its own pages on that date: {checks}.
+<p class="verified-note"><strong>Checked {checked}.</strong> {read_note}{checks}.
 {closing}</p>"""
 
 
