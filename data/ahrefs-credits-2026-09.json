@@ -1,7 +1,7 @@
 {
- "read": "2026-10-28",
+ "read": "2026-11-09",
  "source": "https://ahrefs.com/pricing",
- "method": "Plan prices, credits and project caps read from the page's rendered text (monthly view) on 2026-10-16 and again on 2026-10-28, unchanged; the crawl-credit rules from Ahrefs' help centre. Not derived, not inferred from tier prices.",
+ "method": "Ahrefs' rendered pricing and Site Audit pages were read in a real browser on 9 November 2026. Monthly billing is the default and an annual toggle exists. Site Audit has columns for Lite, Standard, Advanced and Enterprise only. Help-centre and FAQ facts were re-read on the same date. These are supplied verified readings, with no network access in this job.",
  "site_audit_crawl_credits_per_month": {
   "Lite": "100,000",
   "Standard": "500,000",
@@ -14,8 +14,7 @@
   "Advanced": "250,000",
   "Enterprise": "5M"
  },
- "overage": "Ahrefs' own FAQ: \"Once you enable additional pay-as-you-go credits and data, you'll be automatically charged when consumption exceeds your plan's limits.\" So the credit figure is a threshold for billing as well as a cap, when pay-as-you-go is switched on.",
- "not_claimed": "Which tiers include Site Audit at all is NOT resolved here. Their feature grid uses no table rows and did not resolve per-tier; see competitors.csv's ahrefs-site-audit row, where the entry tier is recorded as unverified.",
+ "overage": "Ahrefs' pricing FAQ says that enabling additional pay-as-you-go credits and data causes automatic charges when consumption exceeds plan limits.",
  "why_stored": "A competitor's limits change without telling us. Dated here so the page quotes a reading rather than a memory, and so one edit updates every place that cites it.",
  "help_centre": [
   {
@@ -26,7 +25,7 @@
   {
    "url": "https://help.ahrefs.com/en/articles/6061657-ahrefs-usage-based-pricing-for-credit-based-plans",
    "title": "Ahrefs' usage-based pricing for credit-based plans",
-   "dated_by_ahrefs": "3 September 2026"
+   "dated_by_ahrefs": "not stated in the supplied 9 November 2026 reading"
   }
  ],
  "credit_rules": {
@@ -46,5 +45,49 @@
   "Lite": 129,
   "Standard": 249,
   "Advanced": 449
- }
+ },
+ "overage_source": "https://ahrefs.com/pricing",
+ "site_audit_entry_plan": "Lite",
+ "unverified_projects": {
+  "Lite": 5,
+  "Standard": 20,
+  "Advanced": 50
+ },
+ "users_included": 1,
+ "additional_users": {
+  "Lite": {
+   "maximum": 2,
+   "price_per_month_usd": 40
+  },
+  "Standard": {
+   "maximum": 5,
+   "price_per_month_usd": 60
+  },
+  "Advanced": {
+   "maximum": 10,
+   "price_per_month_usd": 80
+  }
+ },
+ "site_audit": {
+  "source": "https://ahrefs.com/site-audit",
+  "issues": "170+",
+  "urls_per_minute_claim": "170k",
+  "bulk_export_formats": [
+   "ZIP",
+   "CSV"
+  ]
+ },
+ "project_boost": {
+  "Pro": {
+   "price_per_project_per_month_usd": 20,
+   "always_on_pages_per_minute": 10,
+   "ai_detection_urls_per_crawl": 1000
+  },
+  "Max": {
+   "price_per_project_per_month_usd": 200,
+   "always_on_pages_per_minute": 30,
+   "ai_detection_urls_per_crawl": "unlimited"
+  }
+ },
+ "report_builder_price_per_month_usd": 99
 }

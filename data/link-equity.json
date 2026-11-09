@@ -1,7 +1,7 @@
 {
   "site": "docketseo.app",
   "pages": 154,
-  "edges": 4356,
+  "edges": 4357,
   "average_share_pct": 0.65,
   "below_half": 127,
   "nodes": [
@@ -704,8 +704,8 @@
     {
       "path": "/learn/what-docket-got-wrong/",
       "inlinks": 22,
-      "share_pct": 0.51,
-      "index": 0.78
+      "share_pct": 0.5,
+      "index": 0.77
     },
     {
       "path": "/learn/what-is-claudebot/",
@@ -763,9 +763,9 @@
     },
     {
       "path": "/pricing/",
-      "inlinks": 0,
-      "share_pct": 0.0,
-      "index": 0.0
+      "inlinks": 1,
+      "share_pct": 0.02,
+      "index": 0.03
     },
     {
       "path": "/score-card/",
@@ -930,5 +930,5 @@
       "index": 0.22
     }
   ],
-  "measured": "2026-11-08"
+  "measured": "2026-11-09"
 }
