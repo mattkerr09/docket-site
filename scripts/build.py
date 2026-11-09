@@ -313,6 +313,9 @@ money.</p>
             ("/learn/what-is-robots-txt/", "What is robots.txt?",
              "A request to crawlers about which URLs not to fetch. How the rules match, "
              "and why it can't keep a page out of search."),
+            ("/learn/what-is-a-404-error/", "What is a 404 error?",
+             "The server found nothing at that address. When a 404 is harmless, when it isn't, "
+             "and the soft 404 that looks fine and isn't."),
             ("/learn/does-noindex-stop-ai-crawlers/", "Does noindex stop AI crawlers?",
              "noindex tells an indexer not to list a page; it cannot stop a crawler "
              "fetching it. What robots.txt and your server control instead, and which "

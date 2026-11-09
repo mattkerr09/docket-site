@@ -67,6 +67,7 @@ ALLOWED = {
     "500": ("Screaming Frog's own free-tier limit of 500 URLs, quoted verbatim "
             "on the same page and sourced in VERIFIED"),
     # -- standards, specs and versions ------------------------------------
+    "9110": "RFC 9110, the HTTP semantics standard",
     # -- figures read off a dated specimen image: none, any more ----------
     # "90" and "58" were typed here for a 1.1.44 screenshot of our own site's
     # report from 2026-08-17, which stood on the homepage for eleven weeks.
@@ -213,6 +214,7 @@ ALLOWED = {
     # -- HTTP status codes. Constants of the protocol. --------------------
     "200": "HTTP 200", "401": "HTTP 401", "403": "HTTP 403",
     "404": "HTTP 404", "405": "HTTP 405", "406": "HTTP 406",
+    "410": "HTTP 410 Gone, a status code defined by RFC 9110",
     "429": "HTTP 429", "451": "HTTP 451", "503": "HTTP 503",
     "95": "95% confidence interval — a convention, not a measurement",
     "100": "a percentage ceiling, or a score out of 100",

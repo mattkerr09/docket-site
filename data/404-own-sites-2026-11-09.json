@@ -1,0 +1,17 @@
+{
+  "read": "2026-11-09",
+  "method": "Article Studio requested three made-up paths (/this-page-does-not-exist-9nov/, /learn/no-such-guide/, /old-page.html) on each of four sites run by Kerr & Company on 9 Nov 2026 19:47Z, recording status code, noindex and internal links on the response. Sites are not named on the page.",
+  "own_sites": 4, "own_paths": 3, "own_requests": 12, "own_real_404": 12, "own_soft_404": 0, "own_noindex_sites": 3,
+  "own_links_min": 2, "own_links_max": 48,
+  "facts_read": "2026-11-09",
+  "sources": {
+    "rfc9110_404": "https://www.rfc-editor.org/rfc/rfc9110#section-15.5.5",
+    "rfc9110_410": "https://www.rfc-editor.org/rfc/rfc9110#section-15.5.11",
+    "mdn_404": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/404",
+    "google_status_codes": "https://developers.google.com/crawling/docs/troubleshooting/http-status-codes",
+    "google_crawl_budget": "https://developers.google.com/crawling/docs/crawl-budget",
+    "google_404_blog": "https://developers.google.com/search/blog/2011/05/do-404s-hurt-my-site",
+    "google_site_move": "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes",
+    "google_301": "https://developers.google.com/search/docs/crawling-indexing/301-redirects"
+  }
+}

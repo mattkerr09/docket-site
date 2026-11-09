@@ -999,6 +999,159 @@ you name it, matching them the way the standard describes: longest match, wildca
     )
 
 
+def what_is_a_404_error() -> Path:
+    s = F.error_404_own_sites()
+    sources = s["sources"]
+    own_sites = format(s["own_sites"], ",")
+    own_paths = format(s["own_paths"], ",")
+    own_requests = format(s["own_requests"], ",")
+    own_real_404 = format(s["own_real_404"], ",")
+    own_soft_404 = format(s["own_soft_404"], ",")
+    own_noindex_sites = format(s["own_noindex_sites"], ",")
+    own_links_min = format(s["own_links_min"], ",")
+    own_links_max = format(s["own_links_max"], ",")
+    own_read_human = F.lt_fmt(s["read"])
+
+    body = f"""
+<p class="lede"><strong>A 404 error is the status code a web server sends when it has nothing at the address you asked for:
+404 Not Found.</strong> It doesn't say whether the page is gone for good or just never existed. On its own, a 404 is not an
+SEO problem: Google says a 404 on some URLs doesn't count against the rest of your site. The 404s worth fixing are the ones
+your own pages link to, and the "soft 404": a missing page that answers with 200 OK instead. I asked {own_sites} sites I run for
+pages that don't exist, {own_requests} requests in all, and every one answered with a real 404.</p>
+
+<h2>What the code means</h2>
+
+<p>HTTP status codes are three-digit answers a server gives with every response. The ones that start with 4 mean the request
+couldn't be served as asked. 404 is the most common. The HTTP standard, RFC 9110, says it means the server did not find
+anything for that address, and that it does not indicate whether this is temporary or permanent.</p>
+
+<p>Its close relative is <strong>410 Gone</strong>, which says the page is gone and that this is likely permanent. You don't need it: the
+standard says it isn't necessary to mark every removed page as gone, and Google says it treats all 4xx codes the same way,
+apart from 429.</p>
+
+<h2>Do 404s hurt SEO?</h2>
+
+<p>Not by themselves. Google's documentation says a 4xx code has no effect on how fast it crawls your site, and that a URL
+that returns 404 is removed from the index if it was indexed. Google's own post on the question says that 404s on some pages
+don't hurt the rest of your site. The web is full of dead addresses, and a search engine expects to meet them.</p>
+
+<p>They do cost you in three cases:</p>
+
+<ul>
+<li><strong>Your own pages link to them.</strong> A visitor clicks and hits a dead end, and the link goes nowhere useful. Fix the link, or
+  redirect the old address to the page that replaced it.</li>
+<li><strong>The page moved.</strong> If the content lives at a new address, a 301 redirect to it keeps visitors and the links other sites
+  gave you. Use a 404 when there's no replacement, and a 301 when there is.</li>
+<li><strong>It's a soft 404.</strong> That one gets its own section.</li>
+</ul>
+
+<h2>The soft 404: a missing page that says 200</h2>
+
+<p>A soft 404 is a page that tells the reader "not found" but tells the browser and the crawler "200 OK". Google then treats it
+as a real page, keeps crawling it, and its documentation says soft 404s waste your crawl budget. The two common causes:</p>
+
+<ul>
+<li>A site that serves its "page not found" design with a 200 status. Some page builders and single-page apps do this by
+  default.</li>
+<li>Sending every missing URL to the home page with a redirect. Google says not to redirect many old URLs to one irrelevant
+  page such as the home page, because it can treat that as a soft 404.</li>
+</ul>
+
+<p>The test takes a minute: ask your site for an address that can't exist, and look at the status code it sends back, not just
+the page it shows.</p>
+
+<h2>What four real sites returned</h2>
+
+<p>On {own_read_human} I asked {own_sites} sites I run for {own_paths} made-up paths each: a missing folder, a missing guide and
+an old-style .html page.</p>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th></th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>Requests</td><td>{own_requests}</td></tr>
+<tr><td>Answered with a real 404</td><td>{own_real_404}</td></tr>
+<tr><td>Answered 200 (a soft 404)</td><td>{own_soft_404}</td></tr>
+<tr><td>Not-found pages marked noindex</td><td>{own_noindex_sites} of {own_sites} sites</td></tr>
+<tr><td>Links back into the site on the not-found page</td><td>from {own_links_min} to {own_links_max}</td></tr>
+</tbody></table></div>
+
+<p>All of them got the status code right. Where they differed was what a lost visitor could do next. The best not-found page
+offered {own_links_max} links back into the site. The weakest offered {own_links_min}. A 404 page is still a page someone is looking at: give them the main sections, a search box and a way to the
+thing they most likely wanted.</p>
+
+<h2>How to handle a 404, by situation</h2>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Situation</th><th>What to return</th></tr></thead>
+<tbody>
+<tr><td>The page never existed, or someone mistyped</td><td>404, with a helpful not-found page</td></tr>
+<tr><td>The page was removed and nothing replaces it</td><td>404 or 410</td></tr>
+<tr><td>The page moved, or a better page replaces it</td><td>A 301 redirect to that page</td></tr>
+<tr><td>A misspelled address that people keep using</td><td>A 301 redirect to the right page</td></tr>
+<tr><td>A page shows "not found" but returns 200</td><td>Fix the server so it returns 404</td></tr>
+</tbody></table></div>
+
+<h2>What Docket checks</h2>
+
+<p>Docket asks your site for a made-up address on every audit and reports when it answers 200 instead of 404, which is the
+site-wide soft 404 test above. It also reports pages that show an error message but return 200, missing pages that your own
+pages link to, links to your own subdomains that are broken, and outbound links that are broken. A 404 that nothing links to
+is left alone, because that one is fine.</p>
+
+<h2>Sources</h2>
+<ul>
+<li><a href="{sources['rfc9110_404']}" rel="nofollow noopener">RFC 9110, 404 Not Found</a></li>
+<li><a href="{sources['rfc9110_410']}" rel="nofollow noopener">RFC 9110, 410 Gone</a></li>
+<li><a href="{sources['mdn_404']}" rel="nofollow noopener">MDN, 404</a></li>
+<li><a href="{sources['google_status_codes']}" rel="nofollow noopener">Google, HTTP status codes and crawling</a></li>
+<li><a href="{sources['google_crawl_budget']}" rel="nofollow noopener">Google, crawl budget</a></li>
+<li><a href="{sources['google_404_blog']}" rel="nofollow noopener">Google Search blog, do 404s hurt my site</a></li>
+<li><a href="{sources['google_site_move']}" rel="nofollow noopener">Google, site moves (redirects to the home page)</a></li>
+<li><a href="{sources['google_301']}" rel="nofollow noopener">Google, 301 redirects</a></li>
+</ul>
+
+{buy_block("learn-what-is-a-404-error", try_app="learn-what-is-a-404-error-try-free")}
+"""
+    return render(
+        cat="learn", slug="what-is-a-404-error",
+        modified="2026-11-09",
+        title="What is a 404 error? What it means, and when it's fine",
+        desc=("A 404 means the server found nothing at that address. When it's harmless, when it isn't, "
+              "the soft 404 trap, 404 vs 410, and what four real sites returned."),
+        h1="What is a 404 error?",
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is a 404 error?',
+        body=body,
+        published="2026-11-09",
+        faq=[
+            ("Do 404 errors hurt SEO?",
+             "Not on their own. Google says 404s on some URLs don't count against the rest of your site, and it "
+             "removes those URLs from its index. They matter when your own pages link to them, when the content "
+             "moved and needed a redirect, or when a missing page returns 200 instead."),
+            ("What's the difference between 404 and 410?",
+             "404 means nothing was found, without saying whether that's permanent. 410 Gone says it is likely "
+             "permanent. Google says it treats all 4xx codes the same, apart from 429, so either works for a "
+             "removed page."),
+            ("Should I redirect every 404 to my home page?",
+             "No. Google warns that sending many old URLs to one irrelevant page, such as the home page, can be "
+             "treated as a soft 404. Redirect a URL only to a page that really replaces it, and let the rest "
+             "return 404."),
+            ("What is a soft 404?",
+             "A page that says \"not found\" to the reader but returns 200 OK to the browser. Search engines then "
+             "treat it as a real page and keep crawling it. The fix is to make the server return 404 for addresses "
+             "that don't exist."),
+        ],
+        closer="""
+<h2>Related</h2>
+<ul>
+<li><a href="/how-to/fix-soft-404s/">Soft 404s: how to find and fix them</a></li>
+<li><a href="/how-to/fix-redirect-problems/">How to fix redirect problems</a></li>
+<li><a href="/learn/what-is-robots-txt/">What is robots.txt?</a></li>
+<li><a href="/learn/what-is-a-sitemap/">What is a sitemap?</a></li>
+</ul>
+""",
+    )
+
+
 def claude_search_crawlers() -> Path:
     """Which crawlers feed Claude's web search? Answered from the operators' own pages, read 2026-11-06.
 
@@ -1090,7 +1243,7 @@ def _read_day() -> str:
     return "6 November 2026"
 
 
-BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, what_is_robots_txt, claude_search_crawlers]
+BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, what_is_robots_txt, what_is_a_404_error, claude_search_crawlers]
 
 
 def build_all() -> list[Path]:
