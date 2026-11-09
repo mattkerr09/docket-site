@@ -874,8 +874,11 @@ Googlebot actually fetched rather than what your site would serve if asked.</p>
 
     return render(
         cat="vs", slug="screaming-frog-alternative",
-        title=f"Screaming Frog alternative ({year}): Docket vs Screaming Frog",
-        modified="2026-11-04",  # the WHAT-WORKS pass above
+        # The title says what the page is, a comparison, and leaves "alternatives" to
+        # /best/screaming-frog-alternatives/: two pages answering one search split it
+        # (the 8 Nov traffic diagnosis, Cause 5). No year, so it never needs re-dating.
+        title="Docket vs Screaming Frog: price, limits, what it does better",
+        modified="2026-11-09",  # the title no longer targets the "alternatives" search
         desc=(f"Docket is {PRICE_STR} once; Screaming Frog is ${sf_year} a year per user. A ranked fix "
               "plan instead of raw crawl data, and what Screaming Frog still does better."),
         h1="Docket vs Screaming Frog",

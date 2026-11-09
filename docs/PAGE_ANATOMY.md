@@ -128,7 +128,7 @@ record the mistake it was written to stop. That is the whole point of section 9.
 Change version strings and dates only where the fact changes. A footer, nav or
 wording sweep across many pages needs `DOCKET_SITEWIDE_REASON` set to a sentence
 that names the change and explains why it is needed. The release churn gate runs
-after the build. It compares page hashes with git HEAD and stops a release that
+after the build. It compares page hashes with origin/main (the last deployed state) and stops a release that
 changes more than 12 pages unless that reason is set. New pages count too.
 
 ## Shipping

@@ -21,6 +21,7 @@ class ReleaseChurnGateTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.env = dict(os.environ)
         self.env.pop("DOCKET_SITEWIDE_REASON", None)
+        self.env.pop("CHURN_BASELINE", None)
         self.env["GIT_CONFIG_GLOBAL"] = os.devnull
         self.env["GIT_CONFIG_NOSYSTEM"] = "1"
         self.env["PYTHONDONTWRITEBYTECODE"] = "1"
@@ -65,6 +66,33 @@ class ReleaseChurnGateTests(unittest.TestCase):
             [sys.executable, str(self.root / "scripts/release_churn_gate.py")],
             cwd=self.root, env=self.env, capture_output=True, text=True,
         )
+
+    def test_compares_with_origin_main_when_head_already_holds_the_change(self):
+        # The release flow commits the build before deploy.sh runs, so HEAD holds the
+        # change. The baseline is the last pushed state, origin/main.
+        self.git("update-ref", "refs/remotes/origin/main", "HEAD")
+        records = {page: dict(record) for page, record in self.original.items()}
+        for page in list(records)[:13]:
+            records[page]["hash"] = "changed"
+        self.write(records)
+        self.git("add", "data/page-lastmod.json")
+        self.commit()
+        result = self.invoke()
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("13 changed pages", result.stdout)
+
+    def test_baseline_override_names_another_ref(self):
+        self.git("update-ref", "refs/remotes/origin/main", "HEAD")
+        records = {page: dict(record) for page, record in self.original.items()}
+        for page in list(records)[:13]:
+            records[page]["hash"] = "changed"
+        self.write(records)
+        self.git("add", "data/page-lastmod.json")
+        self.commit()
+        self.env["CHURN_BASELINE"] = "HEAD"
+        result = self.invoke()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertIn("0 changed pages", result.stdout)
 
     def test_no_change_passes(self):
         result = self.run_gate()
