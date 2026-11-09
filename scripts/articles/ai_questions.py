@@ -605,7 +605,7 @@ one.</p>
     return render(
         cat="learn", slug="what-is-alt-text",
         modified="2026-11-09",
-        title="What is alt text? How to write it, and when to leave it empty",
+        title="What is alt text? How to write it and when to leave it empty",
         desc=(f'Alt text is the words that stand in for an image. How to write it, when alt="" '
               f'is right, the {myth_chars}-character myth, and what {alt_pages} real pages showed.'),
         h1="What is alt text?",
@@ -622,7 +622,7 @@ one.</p>
              "information, and to put long detail, such as a chart's numbers, in the text around the image."),
             ('When should alt text be empty?',
              'When the image is purely decorative, or when the same information is already in text right '
-             'next to it. Use alt="", not a missing attribute, so screen readers skip it instead of reading '
+             'next to it. Use an empty alt attribute, not a missing one, so screen readers skip it instead of reading '
              'the file name.'),
             ('Is alt text the same as the text you see on hover?',
              'No. Hover text comes from the title attribute. Alt text is read by screen readers and shown '
@@ -633,7 +633,6 @@ one.</p>
 <ul>
 <li><a href="/how-to/fix-image-seo-problems/">Which image SEO problems actually matter</a></li>
 <li><a href="/how-to/fix-vague-and-empty-link-text/">How to fix vague and empty link text</a></li>
-<li>ADA Title II website dates</li>
 </ul>
 """,
     )
