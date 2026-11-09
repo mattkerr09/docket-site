@@ -1,0 +1,23 @@
+{
+  "read": "2026-11-09",
+  "method": "Article Studio fetched the home page of four sites run by Kerr & Company on 9 Nov 2026 20:02Z, every declared icon, /favicon.ico and robots.txt. Sites are not named on the page.",
+  "own_sites": 4,
+  "own_declare": 4,
+  "own_apple": 4,
+  "own_svg_only": 2,
+  "own_ico_404": 2,
+  "own_robots_block": 0,
+  "g_min_px": 8,
+  "g_rec_px": 48,
+  "apple_px": 180,
+  "manifest_small": 192,
+  "manifest_large": 512,
+  "facts_read": "2026-11-09",
+  "sources": {
+    "google_favicon": "https://developers.google.com/search/docs/appearance/favicon-in-search",
+    "whatwg_icon": "https://html.spec.whatwg.org/multipage/links.html#rel-icon",
+    "mdn_link": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/link",
+    "webdev_svg_favicon": "https://web.dev/articles/building/an-adaptive-favicon",
+    "webdev_manifest": "https://web.dev/articles/add-manifest"
+  }
+}

@@ -1864,6 +1864,12 @@ def error_404_own_sites() -> dict:
     return json.loads((ROOT / "data" / "404-own-sites-2026-11-09.json").read_text())
 
 
+@lru_cache(maxsize=None)
+def favicon_own_sites() -> dict:
+    """Dated favicon readings and the sources quoted alongside them."""
+    return json.loads((ROOT / "data" / "favicon-own-sites-2026-11-09.json").read_text())
+
+
 def index_reached() -> int:
     return index()["summary"]["n"]
 

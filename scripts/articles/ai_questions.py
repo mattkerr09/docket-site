@@ -1152,6 +1152,154 @@ is left alone, because that one is fine.</p>
     )
 
 
+def what_is_a_favicon() -> Path:
+    s = F.favicon_own_sites()
+    sources = s["sources"]
+    own_sites = format(s["own_sites"], ",")
+    own_declare = format(s["own_declare"], ",")
+    own_apple = format(s["own_apple"], ",")
+    own_svg_only = format(s["own_svg_only"], ",")
+    own_ico_404 = format(s["own_ico_404"], ",")
+    own_robots_block = format(s["own_robots_block"], ",")
+    g_min_px = format(s["g_min_px"], ",")
+    g_rec_px = format(s["g_rec_px"], ",")
+    apple_px = format(s["apple_px"], ",")
+    manifest_small = format(s["manifest_small"], ",")
+    manifest_large = format(s["manifest_large"], ",")
+    own_read_human = F.lt_fmt(s["read"])
+    facts_read_human = F.lt_fmt(s["facts_read"])
+
+    body = f"""
+<p class="lede"><strong>A favicon is the small icon that stands for your site: in the browser tab, in bookmarks, on a phone's
+home screen, and next to your site's name in search results.</strong> You add it with a link tag in the page's head. For
+Google, it has to be square, at least {g_min_px} pixels, in a format Google lists, and declared on your home page. SVG,
+the format many modern sites use, is not on Google's list. On {own_sites} sites I run, {own_svg_only} declared only an SVG
+icon.</p>
+
+<h2>What it looks like in the HTML</h2>
+
+<pre><code>&lt;link rel="icon" href="/favicon.ico" sizes="any"&gt;
+&lt;link rel="icon" href="/icon.svg" type="image/svg+xml"&gt;
+&lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;</code></pre>
+
+<p>The browser picks the best icon from what you declare. If you declare none, browsers fall back to asking for /favicon.ico at
+the root of the site, which is why that file shows up in server logs even on sites that never made one.</p>
+
+<h2>Google's rules for the icon in search results</h2>
+
+<p>From Google Search Central's favicon page, read {facts_read_human}:</p>
+
+<ul>
+<li><strong>Square, and at least {g_min_px} by {g_min_px} pixels.</strong> Google recommends larger than {g_rec_px} by {g_rec_px}, so it
+  looks good on every surface.</li>
+<li><strong>A format Google lists:</strong> BMP, GIF, ICO, PNG, JPEG, PPM or TIFF. SVG and WebP are not on the list.</li>
+<li><strong>On the home page.</strong> Put the link tag in the head of your home page. Google supports one favicon per hostname, so a
+  subdomain needs its own, and a section of a site can't have a different one.</li>
+<li><strong>Crawlable.</strong> Googlebot-Image must be able to fetch the file, and robots.txt must not block the icon or the home page.</li>
+<li><strong>A stable address.</strong> Google asks you not to change the favicon's URL often.</li>
+<li><strong>Patience.</strong> Google says a new favicon can take from several days to several weeks to appear, and that a favicon is not
+  guaranteed to appear at all.</li>
+</ul>
+
+<p>Google reads four kinds of link for this: icon, shortcut icon, apple-touch-icon and apple-touch-icon-precomposed.</p>
+
+<h2>SVG: fine for browsers, not on Google's list</h2>
+
+<p>SVG favicons are popular because one small file stays sharp at every size, and Chromium browsers and Firefox support them.
+But Google Search's list of favicon formats does not include SVG. The safe setup is the one above: an ICO or PNG icon for
+everything that needs a bitmap, an SVG for browsers that want it, and an apple-touch-icon for phones.</p>
+
+<h2>What four real sites declare</h2>
+
+<p>I read the home page of {own_sites} sites I run on {own_read_human} and fetched every icon they declared.</p>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th></th><th>Sites</th></tr></thead>
+<tbody>
+<tr><td>Declare a favicon in the head</td><td>{own_declare} of {own_sites}</td></tr>
+<tr><td>Have a {apple_px} by {apple_px} apple-touch-icon</td><td>{own_apple} of {own_sites}</td></tr>
+<tr><td>Declare only an SVG as their icon</td><td>{own_svg_only} of {own_sites}</td></tr>
+<tr><td>Return 404 for /favicon.ico</td><td>{own_ico_404} of {own_sites}</td></tr>
+<tr><td>Block the icon in robots.txt</td><td>{own_robots_block} of {own_sites}</td></tr>
+</tbody></table></div>
+
+<p>The SVG-only sites are probably still covered in Google, because Google also reads apple-touch-icon, and both have a PNG
+there. But that rests on one tag. Adding a PNG or ICO icon of at least {g_rec_px} pixels would make it certain, and it would
+stop the 404s for /favicon.ico in their logs.</p>
+
+<h2>The sizes worth making</h2>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>File</th><th>Size</th><th>Used by</th></tr></thead>
+<tbody>
+<tr><td>favicon.ico or a PNG icon</td><td>{g_rec_px} pixels or larger, square</td><td>Browsers, and Google Search results</td></tr>
+<tr><td>icon.svg</td><td>Any (it scales)</td><td>Modern browser tabs</td></tr>
+<tr><td>apple-touch-icon.png</td><td>{apple_px} by {apple_px}</td><td>iPhone and iPad home screens</td></tr>
+<tr><td>Manifest icons</td><td>{manifest_small} and {manifest_large} pixels</td><td>Installed web apps on Chromium browsers</td></tr>
+</tbody></table></div>
+
+<h2>Does a favicon help SEO?</h2>
+
+<p>Not as a ranking signal. Google's favicon page says nothing about rankings. What it changes is how your result looks: a
+recognisable icon beside your name in the results, and in a crowded list of tabs. Treat it as part of looking finished, not
+as a way to move up.</p>
+
+<h2>What Docket checks</h2>
+
+<p>Docket fetches the icons your home page declares to make sure at least one is a real image file, not an error page served in
+its place, and falls back to /favicon.ico when none of them works. It reports when no usable favicon is found. It does not check the icon's format
+against Google's list, so an SVG-only favicon is worth checking by eye. If your icon still isn't showing in Google, our
+<a href="/how-to/fix-favicon-not-showing-in-search/">guide to a favicon missing from search</a> walks through the usual causes.</p>
+
+<h2>Sources</h2>
+<ul>
+<li><a href="{sources['google_favicon']}" rel="nofollow noopener">Google, favicon in search results</a></li>
+<li><a href="{sources['whatwg_icon']}" rel="nofollow noopener">HTML standard, rel="icon"</a></li>
+<li><a href="{sources['mdn_link']}" rel="nofollow noopener">MDN, the link element</a></li>
+<li><a href="{sources['webdev_svg_favicon']}" rel="nofollow noopener">web.dev, an adaptive SVG favicon</a></li>
+<li><a href="{sources['webdev_manifest']}" rel="nofollow noopener">web.dev, the web app manifest</a></li>
+</ul>
+
+{buy_block("learn-what-is-a-favicon", try_app="learn-what-is-a-favicon-try-free")}
+"""
+    return render(
+        cat="learn", slug="what-is-a-favicon",
+        modified="2026-11-09",
+        title="What is a favicon? Sizes, formats and Google's rules",
+        desc=("A favicon is the small icon for your site in tabs, bookmarks and search results. "
+              "Google's current rules, which formats it lists, and what four real sites declare."),
+        h1="What is a favicon?",
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is a favicon?',
+        body=body,
+        published="2026-11-09",
+        faq=[
+            ("What size should a favicon be?",
+             f"Google requires a square of at least {g_min_px} pixels and recommends larger than {g_rec_px}. A "
+             f"{g_rec_px}-pixel or larger PNG or ICO, plus an SVG for browsers and a {apple_px}-pixel apple-touch-icon, "
+             f"covers search, tabs and phones."),
+            ("Does Google support SVG favicons?",
+             f"Google Search's favicon page lists BMP, GIF, ICO, PNG, JPEG, PPM and TIFF, and not SVG. Browsers support "
+             f"SVG, so use it alongside a PNG or ICO icon, not instead of one."),
+            ("Why isn't my favicon showing in Google?",
+             f"Common causes: it isn't declared on the home page, it isn't square, it's smaller than {g_min_px} pixels, "
+             f"it's in a format Google doesn't list, robots.txt blocks it, or Google hasn't recrawled yet, which can "
+             f"take several weeks."),
+            ("Do I still need a favicon.ico file?",
+             f"Not for Google, which reads the icon you declare. But browsers and other tools ask for /favicon.ico when "
+             f"nothing is declared, so having one avoids a stream of 404s."),
+        ],
+        closer="""
+<h2>Related</h2>
+<ul>
+<li><a href="/how-to/fix-favicon-not-showing-in-search/">Why your favicon isn't showing in search</a></li>
+<li><a href="/learn/what-is-a-404-error/">What is a 404 error?</a></li>
+<li><a href="/learn/what-is-robots-txt/">What is robots.txt?</a></li>
+<li><a href="/learn/what-is-structured-data/">What is structured data?</a></li>
+</ul>
+""",
+    )
+
+
 def claude_search_crawlers() -> Path:
     """Which crawlers feed Claude's web search? Answered from the operators' own pages, read 2026-11-06.
 
@@ -1243,7 +1391,7 @@ def _read_day() -> str:
     return "6 November 2026"
 
 
-BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, what_is_robots_txt, what_is_a_404_error, claude_search_crawlers]
+BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, what_is_robots_txt, what_is_a_404_error, what_is_a_favicon, claude_search_crawlers]
 
 
 def build_all() -> list[Path]:
