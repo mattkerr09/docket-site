@@ -173,13 +173,15 @@ def og_html(pal: dict) -> str:
     argument is that it looks like an instrument and not a neon dashboard.
 
     From 2026-10-02 (CEO, before the Product Hunt launch) it also carries the
-    reason to click: the free version, the price and what it runs on. Every
-    number is read from render.py's constants, the ones every page prints, so
-    the card cannot quote a price or a requirement the site does not.
+    reason to click: the free version, how you pay and what it runs on. Every
+    requirement is read from render.py's constants, the ones every page prints, so
+    the card cannot quote one the site does not. It carries NO price (CEO, 2026-11-09).
     """
     import render as _site
-    price = f"{_site.PRICE_STR} once" + (
-        f" \u00b7 or 4 \u00d7 {_site.BNPL_INSTALMENT}" if _site.BNPL_LIVE else "")
+    # 2026-11-09 (CEO): no price on the card. It is shared for months, the launch price ends on 30 November and "or 4 x $14.75"
+    # is not the launch wording, so the line says how you pay and where it runs, with no number in it (MEDIA-BAR: today's
+    # price or no price).
+    price = "Paid once, Mac and Windows" if _site.WINDOWS else "Paid once, for Mac"
     floor = f"{_site.MACOS}+"
     # 2026-11-08 (CEO, the Windows relaunch): Windows is shipped and signed, so the card says so, read from the same
     # WINDOWS flag every Windows sentence on the site reads; without a published installer it says Mac only, as before.
