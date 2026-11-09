@@ -554,16 +554,22 @@ is gone.</p>
 """
     return render(
         cat="download", slug="",
-        title=f"Download Docket for Mac: {PRICE_STR}, paid once",
+        # The title names no price: the price (and a sale price) lives in the body, so a
+        # price change never rewrites the title that search results show.
+        title=("Download Docket SEO for Mac and Windows, free to try" if WINDOWS
+               else f"Download Docket for Mac: {PRICE_STR}, paid once"),
         # Two downloads have two sizes, so with Intel the description names neither.
-        desc=(f"Docket for {MACOS}+ on {MAC_HW}. "
-              + ("No account" if INTEL else f"{DMG_SIZE}, no account")
-              + ", no telemetry. Includes the CLI, which exits non-zero on a critical "
-              "issue so it can gate a deploy."),
-        h1="Download Docket for Mac",
+        desc=((f"Docket SEO for {MACOS}+ on {MAC_HW} and for 64-bit Windows. "
+               "No account, no telemetry. Includes the CLI, which exits non-zero on a "
+               "critical issue so it can gate a deploy.") if WINDOWS else
+              (f"Docket for {MACOS}+ on {MAC_HW}. "
+               + ("No account" if INTEL else f"{DMG_SIZE}, no account")
+               + ", no telemetry. Includes the CLI, which exits non-zero on a critical "
+               "issue so it can gate a deploy.")),
+        h1="Download Docket SEO for Mac and Windows" if WINDOWS else "Download Docket for Mac",
         crumb='<a href="/">Docket</a> / Download',
         body=body,
-        modified="2026-11-05",  # ten subcommands; checks prints area, id and title
+        modified="2026-11-09",  # title, description and H1 name Mac and Windows
         schema_type="WebPage",
     )
 

@@ -727,7 +727,7 @@ def write_llms_txt() -> None:
     out += links(
         ("Homepage", f"{BASE}/", "what Docket checks, how it ranks what it finds, and "
          "the price"),
-        ("Download Docket for Mac", f"{BASE}/download/", "the current release, the "
+        ("Download Docket SEO for Mac and Windows", f"{BASE}/download/", "the current release, the "
          "requirements, the price, and the command line"),
         ("The Docket Index", f"{BASE}/index/", "who is blocking AI search crawlers, "
          "measured with Docket's own parser; method and dataset included"),
