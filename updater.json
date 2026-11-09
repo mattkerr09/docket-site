@@ -5,15 +5,15 @@
   "platforms": {
     "darwin-aarch64": {
       "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaThwMVRYaDZZek1NN2t1VzhLeTUzeDJsYUlDb0dUMlc3cXZPNkN6ZTV0UGZGZGJWTGFKcUhhS3N2UlJTdTNIYnd6WUpvRVhnd1ZEaDJIQ2ZzQ1ZMT2dnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk0MTUxODMyCWZpbGU6RG9ja2V0LmFwcC50YXIuZ3oKZEQxYWZWR1hjQkhibTVwL0N3cDRaRHIrWFM3WnNXMUJCRmVPV2V1ZXA4SFBFbndDQy8rYmx0UDFCQ3ljRDUwenpEUnZKQTduMS9QcVFYeXVsRlZkQWc9PQo=",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket.app.tar.gz"
+      "url": "https://docketseo.app/updates/1.3.159/Docket.app.tar.gz"
     },
     "darwin-x86_64": {
       "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTY3Y3pFZ0FsMTV4QWs3S0RPQVN1S2RsaWo1TTJrMjhvTDV6UGlVeTFQK1REdWwxSndHS3FNck5sL3p4OTA4MHg5ZDc2a1ZnbTdBS0FVci9oenhYcUF3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk0MTUyMDc5CWZpbGU6RG9ja2V0LXg4Nl82NC5hcHAudGFyLmd6ClRlWWpIVDRzMmpFbHRmY3BEK2pPUWlMRk9laVZ0T1FrQWMyOTFwdmlnL3JDMm1zTDVjOGFQOU9MVHNUVVVOdWJybVpXM0tCVXJtQkhGOWFvaEsxRkNBPT0K",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-x86_64.app.tar.gz"
+      "url": "https://docketseo.app/updates/1.3.159/Docket-x86_64.app.tar.gz"
     },
     "windows-x86_64": {
       "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTS3ZMM21oQ2luaTdNd1ZOM29QQWIrcTNhc3c3bllOZTgrbmtxUDVHWUpxZUZ1TWxZazdHbi9kSnB6d2FuT3ZmRWlRcDNackZudUxaeXY3UC9GQmx3Vm9TaWdEOW5Sc1FRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzk0MTUyMTk1CWZpbGU6RG9ja2V0LTEuMy4xNTkteDY0LXNldHVwLmV4ZQpUQk9NcVdldkc5LzlrdFRYMm9KMFZBNUlrUGd5KzNsQ2hvOUdhaGcyRVlERlh0a1VRVGIySTJ2TzRUaXBnVjNKMnRCaURzNW1FMUJPOVBYOWQ4RGFEdz09Cg==",
-      "url": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x64-setup.exe"
+      "url": "https://docketseo.app/updates/1.3.159/Docket-1.3.159-x64-setup.exe"
     }
   }
 }
