@@ -678,12 +678,12 @@ __ISSUES__ issues found, shown here with a placeholder in place of your name and
 <tr><td>Price</td><td class="yes">__PRICE__ once</td><td>$__SO_PRO__ a month</td><td>$__SO_MAX__ a month</td></tr>
 <tr><td>The first year</td><td class="yes">__PRICE__</td><td>$__SO_PRO_YEAR__</td><td>$__SO_MAX_YEAR__</td></tr>
 <tr><td>Your name and logo on the PDF</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
-<tr><td>Custom report domain and templates</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+<tr><td>Lead generation tool</td><td class="no">No</td><td>Not named</td><td class="yes">Yes</td></tr>
 <tr><td>Audits</td><td class="yes">Unmetered</td><td>A monthly crawl allowance</td><td>A monthly crawl allowance</td></tr>
 </tbody></table></div>
 <p>SEOptimer's prices and features are its own, read from its pricing page on __SO_READ__; our
 <a href="/vs/seoptimer-alternative/">SEOptimer comparison</a> sets them out in full. If you sell
-audits from your own report address, or want report templates, that is what the subscription buys.</p>
+audits and want a lead generation tool, that is what the subscription buys.</p>
 <p>The other tools that put your name on a report, and what each costs, are set side by side in
 <a href="/best/white-label-seo-audit-tools/">white-label SEO audit tools for agencies</a>.</p>
 
@@ -750,8 +750,8 @@ client's server logs.</p>
 <h2>What to tell clients it cannot do</h2>
 <p>Say it early rather than being asked. Docket has no per-page backlink or anchor-text data
 and no search volumes. You will still need an index tool for keyword research. Reports use one layout and
-have no custom report domain; if you need either, <a href="/vs/seoptimer-alternative/">the SEOptimer comparison</a>
-shows a tool that names both. Rendering runs
+have no custom report domain; if you need either, <a href="/best/white-label-seo-audit-tools/">the white-label tools page</a>
+sets out which tools name them. Rendering runs
 automatically on a small sample of each crawl rather than on every page, and the sample is
 drawn from the shallowest pages once utility pages such as cart, checkout and login are set
 aside, so a very large single-page application still wants a dedicated rendering crawl.</p>

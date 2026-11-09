@@ -115,7 +115,7 @@ CHECKED_HUMAN: dict[str, str] = {
     # own pricing page. The CSV had carried 2026-08-10; re-reading confirmed the
     # prices unchanged and added the monthly crawl allowances, which are the
     # thing this page actually turns on.
-    "seoptimer": "8 October 2026",
+    "seoptimer": "9 November 2026",
     # Re-read 2026-10-19 on the rendered plans page: the three plan prices and their annual rates, the "all plans
     # include" list, the five AI models and the core tools were unchanged. The detailed plan table also lists a
     # crawl-page total per plan, which the page had said Sitechecker does not publish; that is now stated and sourced.
@@ -157,7 +157,7 @@ CHECKED_ISO: dict[str, str] = {
     "scrutiny": "2026-10-19",
     "se-ranking-vs-screaming-frog": "2026-11-09",
     "ahrefs": "2026-10-28",
-    "seoptimer": "2026-10-08",
+    "seoptimer": "2026-11-09",
     "sitechecker": "2026-10-19",
     "profound": "2026-10-19",
     "jetoctopus": "2026-10-19",
@@ -320,13 +320,11 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
         ("each plan lists a monthly crawl allowance: Starter 4 SEO crawls for 1 site, "
          "Pro 10 SEO crawls, Max 50 SEO crawls",
          "https://www.seoptimer.com/pricing"),
-        ("Pro and Max name white label PDF reporting, and its feature breakdown lists a "
-         "white label custom domain and report templates",
+        ("Pro and Max name white label PDF reporting",
          "https://www.seoptimer.com/pricing"),
-        ('Max names a lead generation tool, and its feature list says "Embed an SEO '
-         'Audit Widget into your site"',
+        ("Max names a lead generation tool",
          "https://www.seoptimer.com/pricing"),
-        ("each plan offers a 14 day free trial",
+        ("each plan offers a 7 day free trial",
          "https://www.seoptimer.com/pricing"),
     ],
     "scrutiny": [
@@ -722,9 +720,9 @@ findings ({sev_text}), the first three Docket ranked among those that name nobod
 """
 
 
-#: SEOptimer's plans as its pricing page lists them (read 2026-10-08).
+#: SEOptimer's plans as its pricing page lists them (read by hand in a browser 2026-11-09: its site refuses automated requests).
 #: (name, monthly price, crawls, what the plan names)
-_SEOPT_TRIAL_DAYS = 14
+_SEOPT_TRIAL_DAYS = 7
 _SEOPT_PLANS = [
     ("Starter", 29, "4 crawls, for 1 site", "20 tracked keywords"),
     ("Pro", 39, "10 crawls", "White label PDF reporting, 3 users"),
@@ -1978,10 +1976,12 @@ def seoptimer() -> Path:
     """The cheapest subscription a buyer comparing Docket will find, and it wins on one thing.
 
     SEOptimer starts at a third of what Docket costs per month and is built for
-    selling audits: white-label reports with a custom report domain and
-    templates, and an embeddable audit form that captures leads. Since 1.3.147
-    Docket puts an agency's name and logo on its reports, but has no report
-    domain, templates or lead form, and the page says so before anything else.
+    selling audits: white-label PDF reports and, on its top plan, a lead
+    generation tool. Since 1.3.147 Docket puts an agency's name and logo on its
+    reports, but has no lead generation tool, and the page says so before
+    anything else. (2026-11-09: the earlier "custom report domain", "report
+    templates" and "audit widget" details were NOT on the vendor's page when it
+    was read by hand that day, so they were cut.)
 
     The honest comparison is not features, it is the meter. Every plan buys a
     fixed number of crawls per month; Docket's crawl limit is the machine. Read
@@ -1995,10 +1995,10 @@ def seoptimer() -> Path:
     """
     body = f"""
 <p class="lede"><strong>The short answer:</strong> the SEOptimer alternative that fits depends on what you use SEOptimer
-for. It is a cloud audit tool sold by the month ({price('seoptimer')}), with white-label PDF reports on a custom
-domain and a lead-capture widget, and every plan buys a fixed number of crawls. Docket is an audit you run on your own
+for. It is a cloud audit tool sold by the month ({price('seoptimer')}), with white-label PDF reports, a lead generation
+tool on its top plan, and a fixed number of crawls on every plan. Docket is an audit you run on your own
 computer, bought once for {PRICE_STR}, with no crawl meter, a free version, and reports that can carry your name and logo.
-If you sell audits from your own report address or collect leads with an audit form, stay with SEOptimer. If you want
+If you want a lead generation tool or a monthly cloud service built for selling audits, stay with SEOptimer. If you want
 to hand clients a report under your own name, or re-run audits as often as you like, pick Docket.</p>
 
 <h2>At a glance</h2>
@@ -2009,23 +2009,19 @@ offers a {_SEOPT_TRIAL_DAYS} day free trial.</p>
 <tbody>
 {"".join(f"<tr><td>SEOptimer {n}</td><td>${p}</td><td>{c}</td><td>{f}</td></tr>" for n, p, c, f in _SEOPT_PLANS)}
 <tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once</td><td class="yes">Unmetered</td>
-    <td>Reports with your name and logo. No custom report domain and no lead-capture tool</td></tr>
+    <td>Reports with your name and logo. No lead generation tool</td></tr>
 </tbody></table></div>
 {_top_cta("vs-seoptimer-top")}
 
 <h2>What SEOptimer does that Docket does not</h2>
 
 <ul>
-<li><strong>A report domain and templates.</strong> Its paid plans name white-label PDF reporting, a
-custom report domain and report templates. Docket puts your name and logo on its PDF and HTML
-reports, in one layout, and has no report domain.</li>
-<li><strong>Lead generation.</strong> Its top plan, Max, names a lead generation tool, and its
-feature list says &ldquo;Embed an SEO Audit Widget into your site&rdquo;. That is a marketing
-product. Docket is a tool you run, and has nothing like it.</li>
+<li><strong>Lead generation.</strong> Its top plan, Max, names a lead generation tool. That is a
+marketing product. Docket is a tool you run, and has nothing like it.</li>
 </ul>
 
-<p>Those are not small concessions. Selling audits is a real business and SEOptimer is built
-for it end to end; Docket is not built for it at all.</p>
+<p>That is a real concession. Selling audits is a real business and SEOptimer is built for it;
+Docket is a tool you run on your own computer.</p>
 
 <h2>The difference that actually decides it: the meter</h2>
 
@@ -2062,10 +2058,8 @@ ordering yourself.</p>
 <h2>When to pick SEOptimer instead of Docket</h2>
 
 <ul>
-<li><strong>You sell audits from your own web address.</strong> You need a custom report domain
-or your own report templates. Docket's reports carry your name and logo in one fixed layout.</li>
-<li><strong>You want an audit form on your site that collects leads.</strong> SEOptimer names a tool
-for that. Docket has nothing like it.</li>
+<li><strong>You want a lead generation tool.</strong> SEOptimer's Max plan names one. Docket has
+nothing like it.</li>
 <li><strong>You only need one audit.</strong> A subscription you can cancel is better value than a
 purchase.</li>
 {WRONG_COMPUTER}
@@ -2110,10 +2104,10 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
             ("What is a good SEOptimer alternative for Mac?",
              "Docket, if you audit your own sites and want unlimited re-runs: it runs on your computer, "
              "is bought once and has no crawl allowance, and its reports can carry your name and logo. "
-             "It is not the one to pick if you need a custom report domain or an embeddable "
-             "lead-capture form, which SEOptimer has and Docket does not."),
+             "It is not the one to pick if you need a lead generation tool, which SEOptimer's "
+             "Max plan names and Docket does not."),
             ("Does SEOptimer have a free trial?",
-             f"Its pricing page offers a 14 day free trial on each plan. Docket's free version "
+             f"Its pricing page offers a {_SEOPT_TRIAL_DAYS} day free trial on each plan. Docket's free version "
              f"shows your score, how many problems each area has and the top problem in full, with no key and no time "
              f"limit. The full report is a one-time purchase with a {REFUND_DAYS}-day refund."),
             ("How much does SEOptimer cost?",
@@ -2121,8 +2115,8 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
              f"Docket is {PRICE_STR} once."),
             ("Is Docket an SEOptimer alternative?",
              "For auditing sites and handing clients a report under your own name and logo, yes. "
-             "If you sell audits from a custom report domain or collect leads with an embedded "
-             "audit form, no: SEOptimer has both and Docket has neither."),
+             "If you want a lead generation tool, no: SEOptimer's Max plan names one and Docket "
+             "has nothing like it."),
             ("Is there a free SEOptimer alternative?",
              "Docket's free version shows your score, how many problems each area has and the top "
              "problem in full, on any site, with no key and no time limit. It is not the full "
@@ -2131,8 +2125,8 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
             ("Can I get white-label reports from a SEOptimer alternative?",
              "Yes. In the paid version, Docket's PDF and HTML reports can carry your agency's name "
              "and logo in place of Docket's (Reports, then Report branding), and its CSV and JSON "
-             "exports carry no branding at all. SEOptimer also names a custom report domain and "
-             "report templates on its Pro and Max plans."),
+             "exports carry no branding at all. SEOptimer also names white-label PDF reporting "
+             "on its Pro and Max plans."),
             ("Which is cheaper, Docket or SEOptimer?",
              f"SEOptimer's Starter plan, for its first {_months_past_docket(_SEOPT_LO) - 1} months: "
              f"${_SEOPT_LO} a month against Docket's {PRICE_STR} once. From month "

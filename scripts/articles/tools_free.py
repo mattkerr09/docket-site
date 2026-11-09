@@ -196,8 +196,8 @@ instead, and each shows a real Docket audit.</p>
 a cloud audit metered by pages per month against a desktop crawler with no meter.</li>
 <li><a href="/vs/ahrefs-site-audit-alternative/"><strong>Docket vs Ahrefs Site Audit</strong></a>:
 one module of a keyword and backlink platform against a one-time Mac audit.</li>
-<li><a href="/vs/seoptimer-alternative/"><strong>SEOptimer alternative</strong></a>: reports on a
-custom domain and a monthly crawl allowance against an unmetered audit you run yourself.</li>
+<li><a href="/vs/seoptimer-alternative/"><strong>SEOptimer alternative</strong></a>: white-label reports and a
+monthly crawl allowance against an unmetered audit you run yourself.</li>
 </ul>
 
 {buy_block("tools-hub", try_app="tools-hub-try-free")}
