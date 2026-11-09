@@ -559,9 +559,8 @@ is gone.</p>
         title=("Download Docket SEO for Mac and Windows, free to try" if WINDOWS
                else f"Download Docket for Mac: {PRICE_STR}, paid once"),
         # Two downloads have two sizes, so with Intel the description names neither.
-        desc=((f"Docket SEO for {MACOS}+ on {MAC_HW} and for 64-bit Windows. "
-               "No account, no telemetry. Includes the CLI, which exits non-zero on a "
-               "critical issue so it can gate a deploy.") if WINDOWS else
+        desc=((f"Docket SEO for {MACOS}+ on {MAC_HW} and 64-bit Windows. "
+               "No account, no telemetry. The CLI exits non-zero on a critical issue.") if WINDOWS else
               (f"Docket for {MACOS}+ on {MAC_HW}. "
                + ("No account" if INTEL else f"{DMG_SIZE}, no account")
                + ", no telemetry. Includes the CLI, which exits non-zero on a critical "
