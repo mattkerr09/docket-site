@@ -301,6 +301,8 @@ def what_is_a_sitemap() -> Path:
     own_sites = format(s["own_sites"], ",")
     own_urls = format(s["own_urls"], ",")
     own_ok = format(s["own_ok"], ",")
+    own_answered = (f"all {own_urls} of them answered 200" if s["own_ok"] == s["own_urls"]
+                    else f"{own_ok} of them answered 200")
     own_lastmod = format(s["own_lastmod"], ",")
     own_priority = format(s["own_priority"], ",")
     own_changefreq = format(s["own_changefreq"], ",")
@@ -328,7 +330,7 @@ def what_is_a_sitemap() -> Path:
 <p class="lede"><strong>A sitemap is a file, usually sitemap.xml at the root of your site, that lists the URLs you want
 search engines to find, with an optional date each one last changed.</strong> It helps a crawler discover pages. It does
 not get a page indexed or ranked: Google calls submitting one "merely a hint". On {own_sites} sites I run, {own_urls} URLs
-were listed and {own_ok} of them answered 200 on {own_read_human}. What decided which ones Google showed was everything
+were listed, and {own_answered} on {own_read_human}. What decided which ones Google showed was everything
 else.</p>
 
 <h2>What goes in one</h2>
