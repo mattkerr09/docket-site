@@ -1636,11 +1636,10 @@ on a subdomain serves a robots.txt with no rules at all, while the main site's f
 
 <h2>The parts of a hostname</h2>
 
-<pre><code>shop.example.com
-└┬─┘ └──┬──┘ └┬┘
- │      │     └ top-level domain
- │      └────── domain you register
- └───────────── subdomain</code></pre>
+<figure aria-label="The parts of a hostname: shop is the subdomain, example the domain you register, and .com the top-level domain." style="margin:1.4rem 0;padding:1.4rem 1.2rem 1.1rem;background:var(--surface-2);border:1px solid var(--border);border-radius:12px">
+<div style="display:flex;flex-wrap:wrap;column-gap:.35rem;row-gap:1rem;font-size:var(--t-lg);line-height:1.2;word-break:break-all"><span style="display:inline-flex;flex-direction:column;gap:.45rem;padding-bottom:.2rem"><span style="font-family:var(--mono);color:var(--text);padding-bottom:.35rem;border-bottom:3px dashed #F5B65B">shop.</span><span style="font-family:var(--mono);font-size:var(--t-xs);letter-spacing:.06em;text-transform:uppercase;color:#F5B65B">subdomain</span></span><span style="display:inline-flex;flex-direction:column;gap:.45rem;padding-bottom:.2rem"><span style="font-family:var(--mono);color:var(--text);padding-bottom:.35rem;border-bottom:3px solid var(--brand-light)">example</span><span style="font-family:var(--mono);font-size:var(--t-xs);letter-spacing:.06em;text-transform:uppercase;color:var(--brand-light)">your domain</span></span><span style="display:inline-flex;flex-direction:column;gap:.45rem;padding-bottom:.2rem"><span style="font-family:var(--mono);color:var(--text);padding-bottom:.35rem;border-bottom:3px solid var(--text-dim)">.com</span><span style="font-family:var(--mono);font-size:var(--t-xs);letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim)">top level</span></span></div>
+<figcaption style="margin-top:1.1rem;font-size:var(--t-sm);color:var(--text-mid)"><span style="color:#F5B65B">Dashed line:</span> the part you create yourself, as many times as you like. <span style="color:var(--brand-light)">Solid lines:</span> the name you register once.</figcaption>
+</figure>
 
 <p>You register example.com once. Every name in front of it, such as www, shop, blog or help, is a subdomain you create
 yourself, usually with a DNS record that points it at a server or a hosting service. www is a subdomain too, and most sites
@@ -1669,7 +1668,7 @@ reads the hostname and hands the request to a different program. Two names on on
 several countries compares the two:</p>
 
 <div class="wrap-tbl"><table class="cmp">
-<thead><tr><th></th><th>Subdomain (de.example.com)</th><th>Subfolder (example.com/de/)</th></tr></thead>
+<thead><tr><th></th><th>Subdomain</th><th>Subfolder</th></tr></thead>
 <tbody>
 <tr><td>Setting up</td><td>Easy</td><td>Easy</td></tr>
 <tr><td>Where it runs</td><td>Can be a different server</td><td>Same host as the main site</td></tr>
