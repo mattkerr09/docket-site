@@ -15,24 +15,25 @@
 <title>Title tag length checker (free): meta, noindex, OG</title>
 <meta name="description" content="Free title tag length checker: paste a page to see if its title (about 65 characters) and meta description fit, plus noindex, canonical, H1 and Open Graph tags.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="c9e52275c331">
-<link rel="canonical" href="https://docketseo.app/tools/meta-tag-checker/">
+<meta name="build-id" content="0d6e8542999d">
+<link rel="canonical" href="https://checkengineseo.com/tools/meta-tag-checker/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Title tag and meta description length checker">
 <meta property="og:description" content="Free title tag length checker: paste a page to see if its title (about 65 characters) and meta description fit, plus noindex, canonical, H1 and Open Graph tags.">
-<meta property="og:url" content="https://docketseo.app/tools/meta-tag-checker/">
-<meta property="og:site_name" content="Docket SEO">
-<meta property="og:image" content="https://docketseo.app/og.png?v=20261108-win">
+<meta property="og:url" content="https://checkengineseo.com/tools/meta-tag-checker/">
+<meta property="og:site_name" content="Check Engine SEO">
+<meta property="og:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Title tag and meta description length checker">
 <meta name="twitter:description" content="Free title tag length checker: paste a page to see if its title (about 65 characters) and meta description fit, plus noindex, canonical, H1 and Open Graph tags.">
-<meta name="twitter:image" content="https://docketseo.app/og.png?v=20261108-win">
+<meta name="twitter:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
    display faces this category defaults to: Docket is a measuring instrument that
@@ -128,7 +129,7 @@
           keeps it from reading as a 2010 drop shadow: the shadow is much
           smaller than the blur, so it is a pool of darkness under the card
           rather than an outline around it.
-     Measured off outlier.host at 1440x900, which does the same three things:
+     Measured off a sister site's stylesheet at 1440x900, which does the same three things:
      rgba(255,255,255,.06) 0 2px 0 inset, rgba(255,255,255,.04) 0 0 0 1px inset,
      rgba(0,0,0,.95) 0 60px 130px -40px. */
   /* Ported from outlier-site: one gradient for text, one for a filled control,
@@ -291,10 +292,8 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
-/* The nav button carries the price only where the header has room for the
-   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
-   the other). Narrower, it says "Get Docket" and the hero carries both. */
-@media(max-width:1180px){.nav-price{display:none}}
+/* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
+   sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -876,8 +875,8 @@ nav{z-index:40}
 .faq-item p{font-size:var(--t-md);margin:0}
 
 /* ---- Futuristic touches (Matthew, 2026-10-09) -------------------------------
-   "honestly bookbreaker looks great, make every site just a little bit better":
-   the touches from bookbreaker.bet's stylesheet that this site lacked, in
+   "make every site just a little bit better": the touches from a sister
+   site's stylesheet that this site lacked, in
    Docket's own teal (~/ops/launch/FUTURISTIC-TOUCHES.md). It reverses the
    ":root" note above that "nothing glows" on his word. Colours, copy, prices
    and links are unchanged; all of it is CSS. */
@@ -933,10 +932,10 @@ nav{background:rgba(7,12,13,.72);
   .btn,.btn:hover,.btn-ghost:hover,.split-col:hover{transform:none}}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac and Windows.","sameAs":["https://github.com/mattkerr09/docket-site","https://www.producthunt.com/products/docket-seo"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel; Windows, 64-bit","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg","offers":{"@type":"Offer","price":"59","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://docketseo.app/tools/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","headline":"Title tag and meta description length checker","description":"Free title tag length checker: paste a page to see if its title (about 65 characters) and meta description fit, plus noindex, canonical, H1 and Open Graph tags.","datePublished":"2026-10-06","dateModified":"2026-10-28","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/tools/meta-tag-checker/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long should a title tag be?","acceptedAnswer":{"@type":"Answer","text":"Up to about 580 pixels, roughly 65 Latin characters, before search results cut it off. Width matters more than count: East Asian characters are about twice as wide."}},{"@type":"Question","name":"How long should a meta description be?","acceptedAnswer":{"@type":"Answer","text":"Between 70 and 165 wide is the range Docket uses. Google may still write its own snippet when the description does not match the search."}},{"@type":"Question","name":"How do I check if a page is set to noindex?","acceptedAnswer":{"@type":"Answer","text":"Paste it into the checker above. It reads the robots meta tag on the page and the X-Robots-Tag header the server sends, and reports a noindex in either."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg", "offers": {"@type": "Offer", "price": "59", "priceCurrency": "USD", "availability": "https://schema.org/InStock"}, "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Check Engine", "item": "https://checkengineseo.com/"}, {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://checkengineseo.com/tools/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "headline": "Title tag and meta description length checker", "description": "Free title tag length checker: paste a page to see if its title (about 65 characters) and meta description fit, plus noindex, canonical, H1 and Open Graph tags.", "datePublished": "2026-10-06", "dateModified": "2026-10-28", "author": {"@type": "Person", "name": "Matt Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/tools/meta-tag-checker/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How long should a title tag be?", "acceptedAnswer": {"@type": "Answer", "text": "Up to about 580 pixels, roughly 65 Latin characters, before search results cut it off. Width matters more than count: East Asian characters are about twice as wide."}}, {"@type": "Question", "name": "How long should a meta description be?", "acceptedAnswer": {"@type": "Answer", "text": "Between 70 and 165 wide is the range Check Engine uses. Google may still write its own snippet when the description does not match the search."}}, {"@type": "Question", "name": "How do I check if a page is set to noindex?", "acceptedAnswer": {"@type": "Answer", "text": "Paste it into the checker above. It reads the robots meta tag on the page and the X-Robots-Tag header the server sends, and reports a noindex in either."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -956,7 +955,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
-<a class="nav-brand" href="/" aria-label="Docket SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Docket<i>SEO</i></span></a>
+<a class="nav-brand" href="/" aria-label="Check Engine SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Check Engine<i>SEO</i></span></a>
 <div class="nav-links">
 <a href="/tools/" data-ev="Free check" data-ev-button="nav">Free tools</a>
 <a href="/index/">The Index</a>
@@ -978,13 +977,13 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Check Engine</a>
 </div></nav>
 <main id="main">
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/tools/">Tools</a> / Title and meta tag checker</div><h1>Title tag and meta description length checker</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-10-06">6 October 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-28">28 October 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/tools/">Tools</a> / Title and meta tag checker</div><h1>Title tag and meta description length checker</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-10-06">6 October 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-28">28 October 2026</time></p>
 
 <p class="lede">A title tag length checker: paste the address of any page and it measures the title against
-about 65 characters, the width Docket uses before a search result cuts it off, and the meta description
+about 65 characters, the width Check Engine uses before a search result cuts it off, and the meta description
 against 70 to 165. It then reads the canonical, robots tags, headings and sharing tags, and says
 what to fix.</p>
 
@@ -1011,13 +1010,13 @@ what to fix.</p>
 <p class="tool-free"><strong>Free, no sign-up required.</strong> Nothing to install; the page is read once and nothing about it is stored.</p>
 <ol class="tool-steps"><li>Paste the address of a live page, yours or a rival's.</li><li>Press <strong>Check this page</strong>.</li><li>Start with the first item: the worst comes first, with the change to make.</li></ol>
 <p class="tool-see-h"><strong>You will see:</strong></p>
-<ul class="tool-see"><li>The title and meta description, measured the way Docket measures them, with a verdict on each</li><li>Whether the page can be indexed, from its robots tag and its headers</li><li>The canonical, the main heading, and what a shared link will show</li></ul>
-<p class="tool-step-up">One page at a time. <a href="/download/">Docket</a> measures the title and description of every page on your site and finds the pages that share a title or point a canonical at an address that cannot be indexed.</p>
-<p class="tool-addon">Checking tags on many pages? The free <a href="https://chromewebstore.google.com/detail/docket-seo-check-for-this/pbmopklklnjhoefinjmjhhemjmefcppm?utm_source=docketseo&utm_medium=tools" rel="noopener" data-ev="Install" data-ev-button="tools-addon">Docket SEO add-on for Chrome</a> does it from the tab you are on, with nothing uploaded.</p>
+<ul class="tool-see"><li>The title and meta description, measured the way Check Engine measures them, with a verdict on each</li><li>Whether the page can be indexed, from its robots tag and its headers</li><li>The canonical, the main heading, and what a shared link will show</li></ul>
+<p class="tool-step-up">One page at a time. <a href="/download/">Check Engine</a> measures the title and description of every page on your site and finds the pages that share a title or point a canonical at an address that cannot be indexed.</p>
+<p class="tool-addon">Checking tags on many pages? The free <a href="https://chromewebstore.google.com/detail/docket-seo-check-for-this/pbmopklklnjhoefinjmjhhemjmefcppm?utm_source=docketseo&utm_medium=tools" rel="noopener" data-ev="Install" data-ev-button="tools-addon">Check Engine SEO add-on for Chrome</a> does it from the tab you are on, with nothing uploaded.</p>
 </section>
 
 <div class="checker-next" id="checker-next" hidden>
-  <p><strong>That was one page, read once.</strong> Docket runs 99 checks across your whole site, ranked by
+  <p><strong>That was one page, read once.</strong> Check Engine runs 99 checks across your whole site, ranked by
   what to fix first, each with where it is and the change to make. The free download shows your score
   and the top problem in full.</p>
   <div class="buy-block compact">
@@ -1025,7 +1024,7 @@ what to fix.</p>
       <a rel="nofollow" class="btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-meta-checker-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="tools-meta-checker-try-free">Try it free</a>
       <a rel="nofollow" class="btn-ghost" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=tools-meta-checker" data-ev="Buy" data-ev-price="59"
          data-ev-button="tools-meta-checker">Buy once, $59</a>
-      <a class="btn-ghost" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-meta-checker">See a sample report</a>
+      <a class="btn-ghost" href="https://docketseo.app/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-meta-checker">See a sample report</a>
     </div>
     <p class="price-line"><span class="price-big">$59</span><span class="price-pay4">once</span></p>
     <p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later, and 64-bit Windows</p>
@@ -1036,13 +1035,13 @@ what to fix.</p>
 
 <h2>How long should a title be?</h2>
 <p>Search results cut a title off at about 580 pixels, which is roughly 65 Latin characters.
-Docket measures width rather than counting characters, because Chinese, Japanese and Korean characters
+Check Engine measures width rather than counting characters, because Chinese, Japanese and Korean characters
 render about twice as wide: a 19-character Japanese title is 31 wide and perfectly normal. Below
 25 wide, a result has little to show. Put the words that say what the page is first; a
 brand name at the end is the first thing to be cut.</p>
 
 <h2>How long should a meta description be?</h2>
-<p>Between 70 and 165 wide is the range Docket uses. Google writes its own snippet when the
+<p>Between 70 and 165 wide is the range Check Engine uses. Google writes its own snippet when the
 description does not match what someone searched for, so the description is a suggestion. A good one
 says what the page offers and why to click, in the first sentence.</p>
 
@@ -1060,9 +1059,9 @@ another address is fine when it is deliberate, such as a filtered view pointing 
 
 <h2>What one page cannot tell you</h2>
 <p>Whether two pages <a href="/how-to/fix-duplicate-title-tags/">share the same title</a>, whether the canonical you point at is itself indexable, and
-whether the page's text matches what its tags promise. Docket checks those across every page of a site,
+whether the page's text matches what its tags promise. Check Engine checks those across every page of a site,
 with the rest of its 99 checks, and ranks what to fix first.</p>
-<div class="buy-block"><p class="price-line"><span class="price-big">$59</span><span class="price-pay4">once</span></p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later, and 64-bit Windows</p><p class="price-req">Priced in US dollars. Checkout shows your currency and any local tax.</p><div class="hero-cta"><a rel="nofollow" class="btn btn-lg buy-btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=tools-meta-checker" data-ev="Buy" data-ev-price="59" data-ev-button="tools-meta-checker">Buy Docket</a><a rel="nofollow" class="btn-ghost btn-lg dl-mac" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-meta-checker-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="tools-meta-checker-try-free">Try it free</a><a rel="nofollow" class="btn btn-lg dl-win" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-meta-checker-win&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x64-setup.exe" data-ev="Download" data-ev-button="tools-meta-checker-win">Try it free for Windows</a><a class="btn-ghost btn-lg" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-meta-checker">See a full sample report</a></div><p class="mac-alt hero-note">On a Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-meta-checker-mac&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="tools-meta-checker-mac">Get the Mac version</a>.</p><p class="phone-link">On your phone? <button type="button" data-send-mac-link>Send the Mac link to yourself</button></p><p class="hero-note founding-note" data-founding-until="2026-12-01T07:59:59Z">Launch price: <strong>$29.50 once</strong>, through 30 November. From 1 December: $59. Buy applies the code <code>FOUNDINGDOCKET</code> for you; if the checkout shows $59, enter it under &lsquo;Have a discount code?&rsquo;.</p><p class="hero-note price-anchor">Screaming Frog is $279 a year. Ahrefs plans with Site Audit run $129&ndash;$449 a month. Docket is $59 once. <span class="qual">Screaming Frog&rsquo;s price read 4 November 2026, Ahrefs&rsquo; 9 November 2026.</span></p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
+<div class="buy-block"><p class="price-line"><span class="price-big">$59</span><span class="price-pay4">once</span></p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later, and 64-bit Windows</p><p class="price-req">Priced in US dollars. Checkout shows your currency and any local tax.</p><div class="hero-cta"><a rel="nofollow" class="btn btn-lg buy-btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=tools-meta-checker" data-ev="Buy" data-ev-price="59" data-ev-button="tools-meta-checker">Buy Check Engine</a><a rel="nofollow" class="btn-ghost btn-lg dl-mac" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-meta-checker-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="tools-meta-checker-try-free">Try it free</a><a rel="nofollow" class="btn btn-lg dl-win" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-meta-checker-win&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x64-setup.exe" data-ev="Download" data-ev-button="tools-meta-checker-win">Try it free for Windows</a><a class="btn-ghost btn-lg" href="https://docketseo.app/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-meta-checker">See a full sample report</a></div><p class="mac-alt hero-note">On a Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-meta-checker-mac&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="tools-meta-checker-mac">Get the Mac version</a>.</p><p class="phone-link">On your phone? <button type="button" data-send-mac-link>Send the Mac link to yourself</button></p><p class="hero-note founding-note" data-founding-until="2026-12-01T07:59:59Z">Launch price: <strong>$29.50 once</strong>, through 30 November. From 1 December: $59. Buy applies the code <code>FOUNDINGDOCKET</code> for you; if the checkout shows $59, enter it under &lsquo;Have a discount code?&rsquo;.</p><p class="hero-note price-anchor">Screaming Frog is $279 a year. Ahrefs plans with Site Audit run $129&ndash;$449 a month. Check Engine is $59 once. <span class="qual">Screaming Frog&rsquo;s price read 4 November 2026, Ahrefs&rsquo; 9 November 2026.</span></p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
 
 <h2>Related</h2>
 <ul>
@@ -1128,14 +1127,14 @@ with the rest of its 99 checks, and ranks what to fix first.</p>
   });
 })();
 </script>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How long should a title tag be?</h3><p>Up to about 580 pixels, roughly 65 Latin characters, before search results cut it off. Width matters more than count: East Asian characters are about twice as wide.</p></div><div class="faq-item"><h3>How long should a meta description be?</h3><p>Between 70 and 165 wide is the range Docket uses. Google may still write its own snippet when the description does not match the search.</p></div><div class="faq-item"><h3>How do I check if a page is set to noindex?</h3><p>Paste it into the checker above. It reads the robots meta tag on the page and the X-Robots-Tag header the server sends, and reports a noindex in either.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How long should a title tag be?</h3><p>Up to about 580 pixels, roughly 65 Latin characters, before search results cut it off. Width matters more than count: East Asian characters are about twice as wide.</p></div><div class="faq-item"><h3>How long should a meta description be?</h3><p>Between 70 and 165 wide is the range Check Engine uses. Google may still write its own snippet when the description does not match the search.</p></div><div class="faq-item"><h3>How do I check if a page is set to noindex?</h3><p>Paste it into the checker above. It reads the robots meta tag on the page and the X-Robots-Tag header the server sends, and reports a noindex in either.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
-<div><h2 class="foot-h">Docket SEO</h2>
-<a href="/">Overview</a><a href="/download/">Download Docket SEO</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
+<div><h2 class="foot-h">Check Engine SEO</h2>
+<a href="/">Overview</a><a href="/download/">Download Check Engine SEO</a>
+<a href="/index/">The Check Engine Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking vs Screaming Frog</a>
@@ -1149,9 +1148,10 @@ with the rest of its 99 checks, and ranks what to fix first.</p>
 <a href="/learn/seo-audit/">What an SEO audit is</a>
 <a href="/learn/">All guides</a></div>
 <div><h2 class="foot-h">Contact</h2>
-<a href="/about/">About Docket</a>
+<a href="/about/">About Check Engine</a>
 <a href="/contact/">Get in touch</a>
-<a href="/bot/">Our crawler</a>
+<a href="/help/">Help</a><a href="/support/">Support</a><a href="/faq/">FAQ</a>
+<a href="https://docketseo.app/bot/">Our crawler</a>
 <a href="https://github.com/mattkerr09/docket-site/issues">Issue tracker</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a>
 <a href="/legal/refunds/">Refunds</a></div>
@@ -1159,8 +1159,8 @@ with the rest of its 99 checks, and ranks what to fix first.</p>
 <div class="foot-more">
 <p>Made by <a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company</a></p>
 </div>
-<div class="foot-bottom">
-<span>© 2026 Docket SEO · Audits run on your computer, and the reports stay there.</span>
+<p>formerly Docket SEO</p><div class="foot-bottom">
+<span>© 2026 Check Engine SEO · Audits run on your computer, and the reports stay there.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
 <div data-founding data-was="$59" data-now="$29.50" hidden></div>
@@ -1186,7 +1186,7 @@ with the rest of its 99 checks, and ranks what to fix first.</p>
      it. `prefers-reduced-motion` can hide or freeze almost anything except a
      playing <video>. So the script pauses it and rewinds to the poster frame,
      which is a real frame of the same run, so nothing is lost.
-     builtbykerr.com carries ten prefers-reduced-motion blocks to this file's
+     A sister site carries ten prefers-reduced-motion blocks to this file's
      two; this is the one that was actually missing something. */
   try {
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1195,7 +1195,7 @@ with the rest of its 99 checks, and ranks what to fix first.</p>
       });
     }
   } catch (e) { /* a video that keeps playing is not worth throwing over */ }
-  /* GRANULARITY IS THE EFFECT. Measured on outlier.host: 51 revealed units,
+  /* GRANULARITY IS THE EFFECT. Measured on a sister site: 51 revealed units,
      median height 171px, SIX in view at once. This page had 31 large ones and
      only TWO in flight at any scroll position, which is why it read as sections
      popping rather than a page assembling itself. Adding the smaller units (

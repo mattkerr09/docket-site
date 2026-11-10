@@ -13,26 +13,27 @@
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Answer extractability: can an AI quote your page?</title>
-<meta name="description" content="Docket's answer-extractability check reads your question-form headings. What it computes, what it cannot see, and why that is a proxy.">
+<meta name="description" content="Check Engine's answer-extractability check reads your question-form headings. What it computes, what it cannot see, and why that is a proxy.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="c9e52275c331">
-<link rel="canonical" href="https://docketseo.app/learn/answer-extractability/">
+<meta name="build-id" content="0d6e8542999d">
+<link rel="canonical" href="https://checkengineseo.com/learn/answer-extractability/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Whether an AI answer can be lifted from your page">
-<meta property="og:description" content="Docket's answer-extractability check reads your question-form headings. What it computes, what it cannot see, and why that is a proxy.">
-<meta property="og:url" content="https://docketseo.app/learn/answer-extractability/">
-<meta property="og:site_name" content="Docket SEO">
-<meta property="og:image" content="https://docketseo.app/og.png?v=20261108-win">
+<meta property="og:description" content="Check Engine's answer-extractability check reads your question-form headings. What it computes, what it cannot see, and why that is a proxy.">
+<meta property="og:url" content="https://checkengineseo.com/learn/answer-extractability/">
+<meta property="og:site_name" content="Check Engine SEO">
+<meta property="og:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Whether an AI answer can be lifted from your page">
-<meta name="twitter:description" content="Docket's answer-extractability check reads your question-form headings. What it computes, what it cannot see, and why that is a proxy.">
-<meta name="twitter:image" content="https://docketseo.app/og.png?v=20261108-win">
+<meta name="twitter:description" content="Check Engine's answer-extractability check reads your question-form headings. What it computes, what it cannot see, and why that is a proxy.">
+<meta name="twitter:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
    display faces this category defaults to: Docket is a measuring instrument that
@@ -128,7 +129,7 @@
           keeps it from reading as a 2010 drop shadow: the shadow is much
           smaller than the blur, so it is a pool of darkness under the card
           rather than an outline around it.
-     Measured off outlier.host at 1440x900, which does the same three things:
+     Measured off a sister site's stylesheet at 1440x900, which does the same three things:
      rgba(255,255,255,.06) 0 2px 0 inset, rgba(255,255,255,.04) 0 0 0 1px inset,
      rgba(0,0,0,.95) 0 60px 130px -40px. */
   /* Ported from outlier-site: one gradient for text, one for a filled control,
@@ -291,10 +292,8 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
-/* The nav button carries the price only where the header has room for the
-   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
-   the other). Narrower, it says "Get Docket" and the hero carries both. */
-@media(max-width:1180px){.nav-price{display:none}}
+/* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
+   sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -876,8 +875,8 @@ nav{z-index:40}
 .faq-item p{font-size:var(--t-md);margin:0}
 
 /* ---- Futuristic touches (Matthew, 2026-10-09) -------------------------------
-   "honestly bookbreaker looks great, make every site just a little bit better":
-   the touches from bookbreaker.bet's stylesheet that this site lacked, in
+   "make every site just a little bit better": the touches from a sister
+   site's stylesheet that this site lacked, in
    Docket's own teal (~/ops/launch/FUTURISTIC-TOUCHES.md). It reverses the
    ":root" note above that "nothing glows" on his word. Colours, copy, prices
    and links are unchanged; all of it is CSS. */
@@ -933,10 +932,10 @@ nav{background:rgba(7,12,13,.72);
   .btn,.btn:hover,.btn-ghost:hover,.split-col:hover{transform:none}}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac and Windows.","sameAs":["https://github.com/mattkerr09/docket-site","https://www.producthunt.com/products/docket-seo"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel; Windows, 64-bit","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg","offers":{"@type":"Offer","price":"59","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Learn","item":"https://docketseo.app/learn/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Whether an AI answer can be lifted from your page","description":"Docket's answer-extractability check reads your question-form headings. What it computes, what it cannot see, and why that is a proxy.","datePublished":"2026-09-15","dateModified":"2026-10-19","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/learn/answer-extractability/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can Docket tell whether ChatGPT has cited my site?","acceptedAnswer":{"@type":"Answer","text":"No, and nor can any other crawler. An AI answer is assembled inside a product nobody outside that company can query, for a user the crawler never meets. Docket measures the shape of your content against what lifting an answer requires, which is a proxy for the thing you want to know and is not the thing itself."}},{"@type":"Question","name":"What does the answer-extractability check actually look at?","acceptedAnswer":{"@type":"Answer","text":"The second- and third-level headings of every indexable page carrying three hundred words or more of main text. It counts a page as asking a question if any of those headings ends in a question mark, or if a question word appears shortly before one. If fewer than a quarter of those pages qualify, it raises one medium-severity finding listing the pages that do not."}},{"@type":"Question","name":"Does it check that I answered the question?","acceptedAnswer":{"@type":"Answer","text":"No. Nothing in the check reads the text under the heading, and nothing reads your lists or tables either, although the check's own description mentions them. Its fix text asks you to phrase the heading as a question and answer it in the first two sentences; only the first of those is measured. Doing half the work clears the check."}},{"@type":"Question","name":"Why did my site pass when none of my pages answer anything?","acceptedAnswer":{"@type":"Answer","text":"Check your footer. Headings are collected from the whole document, including nav and footer, while the word count that decides which pages count is taken from main content with those regions stripped. One site-wide footer heading ending in a question mark satisfies the test on every page of the site."}},{"@type":"Question","name":"Is adding question headings the same as AI optimisation?","acceptedAnswer":{"@type":"Answer","text":"Not according to the vendors. Google states there are no additional requirements or special optimisations needed to appear in its AI features, and no special structured data. OpenAI documents which crawler surfaces pages in ChatGPT search and documents nothing about how a page is selected. Question headings help a reader find the answer, which is a good enough reason on its own."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg", "offers": {"@type": "Offer", "price": "59", "priceCurrency": "USD", "availability": "https://schema.org/InStock"}, "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Check Engine", "item": "https://checkengineseo.com/"}, {"@type": "ListItem", "position": 2, "name": "Learn", "item": "https://checkengineseo.com/learn/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Whether an AI answer can be lifted from your page", "description": "Check Engine's answer-extractability check reads your question-form headings. What it computes, what it cannot see, and why that is a proxy.", "datePublished": "2026-09-15", "dateModified": "2026-10-19", "author": {"@type": "Person", "name": "Matt Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/learn/answer-extractability/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can Check Engine tell whether ChatGPT has cited my site?", "acceptedAnswer": {"@type": "Answer", "text": "No, and nor can any other crawler. An AI answer is assembled inside a product nobody outside that company can query, for a user the crawler never meets. Check Engine measures the shape of your content against what lifting an answer requires, which is a proxy for the thing you want to know and is not the thing itself."}}, {"@type": "Question", "name": "What does the answer-extractability check actually look at?", "acceptedAnswer": {"@type": "Answer", "text": "The second- and third-level headings of every indexable page carrying three hundred words or more of main text. It counts a page as asking a question if any of those headings ends in a question mark, or if a question word appears shortly before one. If fewer than a quarter of those pages qualify, it raises one medium-severity finding listing the pages that do not."}}, {"@type": "Question", "name": "Does it check that I answered the question?", "acceptedAnswer": {"@type": "Answer", "text": "No. Nothing in the check reads the text under the heading, and nothing reads your lists or tables either, although the check's own description mentions them. Its fix text asks you to phrase the heading as a question and answer it in the first two sentences; only the first of those is measured. Doing half the work clears the check."}}, {"@type": "Question", "name": "Why did my site pass when none of my pages answer anything?", "acceptedAnswer": {"@type": "Answer", "text": "Check your footer. Headings are collected from the whole document, including nav and footer, while the word count that decides which pages count is taken from main content with those regions stripped. One site-wide footer heading ending in a question mark satisfies the test on every page of the site."}}, {"@type": "Question", "name": "Is adding question headings the same as AI optimisation?", "acceptedAnswer": {"@type": "Answer", "text": "Not according to the vendors. Google states there are no additional requirements or special optimisations needed to appear in its AI features, and no special structured data. OpenAI documents which crawler surfaces pages in ChatGPT search and documents nothing about how a page is selected. Question headings help a reader find the answer, which is a good enough reason on its own."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -956,7 +955,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
-<a class="nav-brand" href="/" aria-label="Docket SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Docket<i>SEO</i></span></a>
+<a class="nav-brand" href="/" aria-label="Check Engine SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Check Engine<i>SEO</i></span></a>
 <div class="nav-links">
 <a href="/tools/" data-ev="Free check" data-ev-button="nav">Free tools</a>
 <a href="/index/">The Index</a>
@@ -978,20 +977,20 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Check Engine</a>
 </div></nav>
 <main id="main">
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/learn/">Learn</a> / Answer extractability</div><h1>Whether an AI answer can be lifted from your page</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-19">19 October 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/learn/">Learn</a> / Answer extractability</div><h1>Whether an AI answer can be lifted from your page</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-19">19 October 2026</time></p>
 
 <p class="lede">If ChatGPT or Perplexity reads one of your pages, can it actually get an
 answer out of it? That is a fair question and it has a mechanical half, which is the half
-Docket can help with. The check is <code>ai.extractability</code>, "Answer extractability",
+Check Engine can help with. The check is <code>ai.extractability</code>, "Answer extractability",
 and the honest place to start is with the part of the question no tool on your machine can
 reach.</p>
 
 <h2>Nobody can watch an engine read your page</h2>
 
-<p>Docket cannot observe ChatGPT or Perplexity reading your site. It cannot tell you whether
+<p>Check Engine cannot observe ChatGPT or Perplexity reading your site. It cannot tell you whether
 you were cited, in which answer, or to whom. Neither can any other crawler, ours or anyone
 else's: the answer is assembled inside a product we do not run, from an index we cannot
 query, for a reader we never meet. A crawler sees your HTML. It does not see the engine.</p>
@@ -1114,7 +1113,7 @@ the second yourself by reading the page.</p>
 
 <h2>Where this check ends and the others begin</h2>
 
-<p>Three checks in two lanes sit near this one and none of them is doing its job:</p>
+<p>Three checks in two areas sit near this one and none of them is doing its job:</p>
 
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Check</th><th>Asks</th><th>Reads</th></tr></thead>
@@ -1137,7 +1136,7 @@ the same report: the two checks do not agree on where "substantial" starts, and 
 floor belongs to the citable-facts side. That is a divergence in the source rather than a
 decision anybody wrote down.</p>
 
-<p><code>content.ai_slop</code> is in a different lane and answers a different complaint:
+<p><code>content.ai_slop</code> is in a different area and answers a different complaint:
 <a href="/learn/ai-sounding-copy/">what it detects, and what it cannot</a> is its own page.
 Nothing here is about how your writing sounds.</p>
 
@@ -1157,9 +1156,9 @@ whose whole value is the explanation. Both run on every audit. Read them togethe
 
 <h2>Before any of this, the page has to be fetchable</h2>
 
-<p>This check reads HTML that Docket already has. If a crawler is disallowed in your
+<p>This check reads HTML that Check Engine already has. If a crawler is disallowed in your
 robots.txt or refused at your CDN, it never reaches the question this page is about, and
-that is a separate thing Docket measures separately, by reading your robots.txt against each
+that is a separate thing Check Engine measures separately, by reading your robots.txt against each
 crawler by name. <a href="/how-to/fix-ai-crawler-access/">Fixing AI crawler access</a> is the
 one to do first, and <a href="/learn/ai-search-visibility/">the three gates</a> sets out the
 order: access, then rendering, then everything on this page.</p>
@@ -1194,7 +1193,7 @@ asks something and then wanders is worse than a plain one, and it now passes a c
 being worse.</li>
 </ol>
 
-<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-answer-extractability-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="learn-answer-extractability-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-answer-extractability-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x86_64.dmg" data-ev="Download" data-ev-button="learn-answer-extractability-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=learn-answer-extractability" data-ev="Buy" data-ev-price="59" data-ev-button="learn-answer-extractability">Buy once, $59</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-answer-extractability">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Launch price: $29.50 once, through 30 November. From 1 December: $59. Use code <code>FOUNDINGDOCKET</code>.</span></p></aside>
+<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-answer-extractability-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="learn-answer-extractability-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-answer-extractability-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x86_64.dmg" data-ev="Download" data-ev-button="learn-answer-extractability-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=learn-answer-extractability" data-ev="Buy" data-ev-price="59" data-ev-button="learn-answer-extractability">Buy once, $59</a>, 30-day refund &middot; <a href="https://docketseo.app/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-answer-extractability">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Launch price: $29.50 once, through 30 November. From 1 December: $59. Use code <code>FOUNDINGDOCKET</code>.</span></p></aside>
 
 <h2>Further reading</h2>
 <ul>
@@ -1206,14 +1205,14 @@ being worse.</li>
 <li><a href="/learn/what-docket-got-wrong/#case-wrong-type">A completeness check assumes your type is right</a></li>
 <li><a href="/how-to/when-a-field-is-there-and-still-missing/">When a field is there and still missing</a></li>
 </ul>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can Docket tell whether ChatGPT has cited my site?</h3><p>No, and nor can any other crawler. An AI answer is assembled inside a product nobody outside that company can query, for a user the crawler never meets. Docket measures the shape of your content against what lifting an answer requires, which is a proxy for the thing you want to know and is not the thing itself.</p></div><div class="faq-item"><h3>What does the answer-extractability check actually look at?</h3><p>The second- and third-level headings of every indexable page carrying three hundred words or more of main text. It counts a page as asking a question if any of those headings ends in a question mark, or if a question word appears shortly before one. If fewer than a quarter of those pages qualify, it raises one medium-severity finding listing the pages that do not.</p></div><div class="faq-item"><h3>Does it check that I answered the question?</h3><p>No. Nothing in the check reads the text under the heading, and nothing reads your lists or tables either, although the check's own description mentions them. Its fix text asks you to phrase the heading as a question and answer it in the first two sentences; only the first of those is measured. Doing half the work clears the check.</p></div><div class="faq-item"><h3>Why did my site pass when none of my pages answer anything?</h3><p>Check your footer. Headings are collected from the whole document, including nav and footer, while the word count that decides which pages count is taken from main content with those regions stripped. One site-wide footer heading ending in a question mark satisfies the test on every page of the site.</p></div><div class="faq-item"><h3>Is adding question headings the same as AI optimisation?</h3><p>Not according to the vendors. Google states there are no additional requirements or special optimisations needed to appear in its AI features, and no special structured data. OpenAI documents which crawler surfaces pages in ChatGPT search and documents nothing about how a page is selected. Question headings help a reader find the answer, which is a good enough reason on its own.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can Check Engine tell whether ChatGPT has cited my site?</h3><p>No, and nor can any other crawler. An AI answer is assembled inside a product nobody outside that company can query, for a user the crawler never meets. Check Engine measures the shape of your content against what lifting an answer requires, which is a proxy for the thing you want to know and is not the thing itself.</p></div><div class="faq-item"><h3>What does the answer-extractability check actually look at?</h3><p>The second- and third-level headings of every indexable page carrying three hundred words or more of main text. It counts a page as asking a question if any of those headings ends in a question mark, or if a question word appears shortly before one. If fewer than a quarter of those pages qualify, it raises one medium-severity finding listing the pages that do not.</p></div><div class="faq-item"><h3>Does it check that I answered the question?</h3><p>No. Nothing in the check reads the text under the heading, and nothing reads your lists or tables either, although the check's own description mentions them. Its fix text asks you to phrase the heading as a question and answer it in the first two sentences; only the first of those is measured. Doing half the work clears the check.</p></div><div class="faq-item"><h3>Why did my site pass when none of my pages answer anything?</h3><p>Check your footer. Headings are collected from the whole document, including nav and footer, while the word count that decides which pages count is taken from main content with those regions stripped. One site-wide footer heading ending in a question mark satisfies the test on every page of the site.</p></div><div class="faq-item"><h3>Is adding question headings the same as AI optimisation?</h3><p>Not according to the vendors. Google states there are no additional requirements or special optimisations needed to appear in its AI features, and no special structured data. OpenAI documents which crawler surfaces pages in ChatGPT search and documents nothing about how a page is selected. Question headings help a reader find the answer, which is a good enough reason on its own.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
-<div><h2 class="foot-h">Docket SEO</h2>
-<a href="/">Overview</a><a href="/download/">Download Docket SEO</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
+<div><h2 class="foot-h">Check Engine SEO</h2>
+<a href="/">Overview</a><a href="/download/">Download Check Engine SEO</a>
+<a href="/index/">The Check Engine Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking vs Screaming Frog</a>
@@ -1227,9 +1226,10 @@ being worse.</li>
 <a href="/learn/seo-audit/">What an SEO audit is</a>
 <a href="/learn/">All guides</a></div>
 <div><h2 class="foot-h">Contact</h2>
-<a href="/about/">About Docket</a>
+<a href="/about/">About Check Engine</a>
 <a href="/contact/">Get in touch</a>
-<a href="/bot/">Our crawler</a>
+<a href="/help/">Help</a><a href="/support/">Support</a><a href="/faq/">FAQ</a>
+<a href="https://docketseo.app/bot/">Our crawler</a>
 <a href="https://github.com/mattkerr09/docket-site/issues">Issue tracker</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a>
 <a href="/legal/refunds/">Refunds</a></div>
@@ -1237,8 +1237,8 @@ being worse.</li>
 <div class="foot-more">
 <p>Made by <a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company</a></p>
 </div>
-<div class="foot-bottom">
-<span>© 2026 Docket SEO · Audits run on your computer, and the reports stay there.</span>
+<p>formerly Docket SEO</p><div class="foot-bottom">
+<span>© 2026 Check Engine SEO · Audits run on your computer, and the reports stay there.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
 <div data-founding data-was="$59" data-now="$29.50" hidden></div>
@@ -1264,7 +1264,7 @@ being worse.</li>
      it. `prefers-reduced-motion` can hide or freeze almost anything except a
      playing <video>. So the script pauses it and rewinds to the poster frame,
      which is a real frame of the same run, so nothing is lost.
-     builtbykerr.com carries ten prefers-reduced-motion blocks to this file's
+     A sister site carries ten prefers-reduced-motion blocks to this file's
      two; this is the one that was actually missing something. */
   try {
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1273,7 +1273,7 @@ being worse.</li>
       });
     }
   } catch (e) { /* a video that keeps playing is not worth throwing over */ }
-  /* GRANULARITY IS THE EFFECT. Measured on outlier.host: 51 revealed units,
+  /* GRANULARITY IS THE EFFECT. Measured on a sister site: 51 revealed units,
      median height 171px, SIX in view at once. This page had 31 large ones and
      only TWO in flight at any scroll position, which is why it read as sections
      popping rather than a page assembling itself. Adding the smaller units (

@@ -13,26 +13,27 @@
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Fix heading structure: is one H1 per page a real rule?</title>
-<meta name="description" content="What Docket's heading check measures, what it cannot see, and where the one-H1 rule parts company with the HTML standard and Google's own docs.">
+<meta name="description" content="What Check Engine's heading check measures, what it cannot see, and where the one-H1 rule parts company with the HTML standard and Google's own docs.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="c9e52275c331">
-<link rel="canonical" href="https://docketseo.app/how-to/fix-heading-structure/">
+<meta name="build-id" content="0d6e8542999d">
+<link rel="canonical" href="https://checkengineseo.com/how-to/fix-heading-structure/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to fix heading structure">
-<meta property="og:description" content="What Docket's heading check measures, what it cannot see, and where the one-H1 rule parts company with the HTML standard and Google's own docs.">
-<meta property="og:url" content="https://docketseo.app/how-to/fix-heading-structure/">
-<meta property="og:site_name" content="Docket SEO">
-<meta property="og:image" content="https://docketseo.app/og.png?v=20261108-win">
+<meta property="og:description" content="What Check Engine's heading check measures, what it cannot see, and where the one-H1 rule parts company with the HTML standard and Google's own docs.">
+<meta property="og:url" content="https://checkengineseo.com/how-to/fix-heading-structure/">
+<meta property="og:site_name" content="Check Engine SEO">
+<meta property="og:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="How to fix heading structure">
-<meta name="twitter:description" content="What Docket's heading check measures, what it cannot see, and where the one-H1 rule parts company with the HTML standard and Google's own docs.">
-<meta name="twitter:image" content="https://docketseo.app/og.png?v=20261108-win">
+<meta name="twitter:description" content="What Check Engine's heading check measures, what it cannot see, and where the one-H1 rule parts company with the HTML standard and Google's own docs.">
+<meta name="twitter:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
    display faces this category defaults to: Docket is a measuring instrument that
@@ -128,7 +129,7 @@
           keeps it from reading as a 2010 drop shadow: the shadow is much
           smaller than the blur, so it is a pool of darkness under the card
           rather than an outline around it.
-     Measured off outlier.host at 1440x900, which does the same three things:
+     Measured off a sister site's stylesheet at 1440x900, which does the same three things:
      rgba(255,255,255,.06) 0 2px 0 inset, rgba(255,255,255,.04) 0 0 0 1px inset,
      rgba(0,0,0,.95) 0 60px 130px -40px. */
   /* Ported from outlier-site: one gradient for text, one for a filled control,
@@ -291,10 +292,8 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
-/* The nav button carries the price only where the header has room for the
-   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
-   the other). Narrower, it says "Get Docket" and the hero carries both. */
-@media(max-width:1180px){.nav-price{display:none}}
+/* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
+   sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -876,8 +875,8 @@ nav{z-index:40}
 .faq-item p{font-size:var(--t-md);margin:0}
 
 /* ---- Futuristic touches (Matthew, 2026-10-09) -------------------------------
-   "honestly bookbreaker looks great, make every site just a little bit better":
-   the touches from bookbreaker.bet's stylesheet that this site lacked, in
+   "make every site just a little bit better": the touches from a sister
+   site's stylesheet that this site lacked, in
    Docket's own teal (~/ops/launch/FUTURISTIC-TOUCHES.md). It reverses the
    ":root" note above that "nothing glows" on his word. Colours, copy, prices
    and links are unchanged; all of it is CSS. */
@@ -933,10 +932,10 @@ nav{background:rgba(7,12,13,.72);
   .btn,.btn:hover,.btn-ghost:hover,.split-col:hover{transform:none}}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac and Windows.","sameAs":["https://github.com/mattkerr09/docket-site","https://www.producthunt.com/products/docket-seo"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel; Windows, 64-bit","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg","offers":{"@type":"Offer","price":"59","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Fix it","item":"https://docketseo.app/how-to/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to fix heading structure","description":"What Docket's heading check measures, what it cannot see, and where the one-H1 rule parts company with the HTML standard and Google's own docs.","datePublished":"2026-09-15","dateModified":"2026-10-19","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/how-to/fix-heading-structure/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is one H1 per page a real rule?","acceptedAnswer":{"@type":"Answer","text":"Not in the HTML standard and not in Google's documentation. The living standard says a document can contain multiple top-level headings and prints a conforming example with three; its only requirement is that at least one heading in the outline is level 1. Docket still flags multiple H1s, at its lightest-but-one weight, because in practice it usually means a template is using H1 for font size."}},{"@type":"Question","name":"Does skipping a heading level hurt my rankings?","acceptedAnswer":{"@type":"Answer","text":"Google's SEO starter guide says semantic order is excellent for screen readers but that from Google Search's perspective it does not matter if headings are out of order. Docket reports it at NOTICE, its lowest severity, and its finding text talks about screen readers and parsers rather than rankings."}},{"@type":"Question","name":"Why does Docket say my page has no H1 when I can see one?","acceptedAnswer":{"@type":"Answer","text":"Because it records a heading only if the element has text content. An H1 holding only a logo image or an inline SVG has no text, is not recorded, and the page reads as having none."}},{"@type":"Question","name":"Do headings in my footer count?","acceptedAnswer":{"@type":"Answer","text":"Yes. The extractor walks the whole document and applies no nav, header or footer filter, so an H2 in your footer clears the no-subheadings finding and a header logo wrapped in an H1 counts as that page's H1 sitewide."}},{"@type":"Question","name":"Does Docket check whether my headings are any good?","acceptedAnswer":{"@type":"Answer","text":"No, and nor can any tool that reads markup. It can tell you a heading element is present, absent or out of order. It cannot tell you that your subheadings say Overview, More and Other. That judgement is yours and it is worth more than every finding on this page."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg", "offers": {"@type": "Offer", "price": "59", "priceCurrency": "USD", "availability": "https://schema.org/InStock"}, "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Check Engine", "item": "https://checkengineseo.com/"}, {"@type": "ListItem", "position": 2, "name": "Fix it", "item": "https://checkengineseo.com/how-to/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to fix heading structure", "description": "What Check Engine's heading check measures, what it cannot see, and where the one-H1 rule parts company with the HTML standard and Google's own docs.", "datePublished": "2026-09-15", "dateModified": "2026-10-19", "author": {"@type": "Person", "name": "Matt Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/how-to/fix-heading-structure/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is one H1 per page a real rule?", "acceptedAnswer": {"@type": "Answer", "text": "Not in the HTML standard and not in Google's documentation. The living standard says a document can contain multiple top-level headings and prints a conforming example with three; its only requirement is that at least one heading in the outline is level 1. Check Engine still flags multiple H1s, at its lightest-but-one weight, because in practice it usually means a template is using H1 for font size."}}, {"@type": "Question", "name": "Does skipping a heading level hurt my rankings?", "acceptedAnswer": {"@type": "Answer", "text": "Google's SEO starter guide says semantic order is excellent for screen readers but that from Google Search's perspective it does not matter if headings are out of order. Check Engine reports it at NOTICE, its lowest severity, and its finding text talks about screen readers and parsers rather than rankings."}}, {"@type": "Question", "name": "Why does Check Engine say my page has no H1 when I can see one?", "acceptedAnswer": {"@type": "Answer", "text": "Because it records a heading only if the element has text content. An H1 holding only a logo image or an inline SVG has no text, is not recorded, and the page reads as having none."}}, {"@type": "Question", "name": "Do headings in my footer count?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The extractor walks the whole document and applies no nav, header or footer filter, so an H2 in your footer clears the no-subheadings finding and a header logo wrapped in an H1 counts as that page's H1 sitewide."}}, {"@type": "Question", "name": "Does Check Engine check whether my headings are any good?", "acceptedAnswer": {"@type": "Answer", "text": "No, and nor can any tool that reads markup. It can tell you a heading element is present, absent or out of order. It cannot tell you that your subheadings say Overview, More and Other. That judgement is yours and it is worth more than every finding on this page."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -956,7 +955,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
-<a class="nav-brand" href="/" aria-label="Docket SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Docket<i>SEO</i></span></a>
+<a class="nav-brand" href="/" aria-label="Check Engine SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Check Engine<i>SEO</i></span></a>
 <div class="nav-links">
 <a href="/tools/" data-ev="Free check" data-ev-button="nav">Free tools</a>
 <a href="/index/">The Index</a>
@@ -978,10 +977,10 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Check Engine</a>
 </div></nav>
 <main id="main">
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / heading structure</div><h1>How to fix heading structure</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-19">19 October 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / heading structure</div><h1>How to fix heading structure</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-15">15 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-19">19 October 2026</time></p>
 
 <p class="lede">Your audit flagged your headings, and you have read contradictory advice about
 them for years. One H1 per page, or as many as you like. Never skip a level, or nobody cares.
@@ -991,11 +990,11 @@ headings. They do not agree, and knowing where they part is more useful than ano
 
 <h2>Start with what no tool can tell you</h2>
 
-<p>Docket reads your HTML. For this check it reads the text inside your heading elements and
+<p>Check Engine reads your HTML. For this check it reads the text inside your heading elements and
 nothing else: not the paragraphs beneath them, not what the page is for.</p>
 
 <p>So it cannot tell you the thing that matters most: <strong>whether a heading describes the
-section under it.</strong> A page can pass every heading finding Docket has and still be
+section under it.</strong> A page can pass every heading finding Check Engine has and still be
 organised under headings that say "Overview", "More", "Details" and "Other". That page has a
 perfect outline and a useless one, and no crawler will flag it, because a crawler has nothing to
 compare the words against.</p>
@@ -1065,16 +1064,16 @@ you use them out of order. <a
 href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide">Google Search
 Central, SEO starter guide</a>, read 19 October 2026.</p>
 
-<p>So Docket is stricter than both, and is the only one of the three claiming anything. That gap
+<p>So Check Engine is stricter than both, and is the only one of the three claiming anything. That gap
 is not a bug (a template emitting three H1s because the designer wanted three big fonts is worth
 seeing), but read it for what it is. If your page has two H1s because it has two subjects, the
 standard is on your side and Google is indifferent.</p>
 
-<h2>Where the standard is stricter than Docket</h2>
+<h2>Where the standard is stricter than Check Engine</h2>
 
 <p>The skipped-level finding runs the other way, and this is the part nobody expects.</p>
 
-<p>Docket's condition is a presence test over the whole document: an h3 exists somewhere and no
+<p>Check Engine's condition is a presence test over the whole document: an h3 exists somewhere and no
 h2 exists anywhere. That catches the common template defect (h1 straight to h3 because h3 was
 the right size), and it catches nothing else. An h2 followed by an h4 is not flagged. An h1
 followed by an h4 with no h3 on the page is not flagged. A page that jumps h1 to h3 halfway down
@@ -1082,12 +1081,12 @@ but carries an h2 elsewhere is not flagged either.</p>
 
 <p>The standard's rule is per-sequence: each heading following another must have a level that is
 less than, equal to, or one greater than the previous heading's level. Its own non-conforming
-example is an h1 followed by an h3, exactly the case Docket catches, but the rule covers every
-other jump too, and Docket's does not. A clean <code>onpage.heading_skip</code> does not mean
+example is an h1 followed by an h3, exactly the case Check Engine catches, but the rule covers every
+other jump too, and Check Engine's does not. A clean <code>onpage.heading_skip</code> does not mean
 your outline conforms.</p>
 
 <p>What is the jump worth? Google's answer is above: for Search, not much; for screen readers, a
-great deal. Docket's finding agrees and says nothing about rankings. "H3s appear with no H2
+great deal. Check Engine's finding agrees and says nothing about rankings. "H3s appear with no H2
 above them, which breaks the document outline for screen readers and parsers." That is the
 honest version of a claim usually sold as a ranking factor.</p>
 
@@ -1108,7 +1107,7 @@ them stops believing the finding that was accurate.</p>
 other half: a short page needs no sections and is exempt. The id
 <code>onpage.h2_missing</code> is a leftover from the version that was wrong.</p>
 
-<h2>What Docket counts as a heading</h2>
+<h2>What Check Engine counts as a heading</h2>
 
 <p>Narrower than you probably assume, and it explains most surprises.</p>
 
@@ -1145,10 +1144,10 @@ Central, title links</a>, read 19 October 2026.</p>
 
 <h2>What to actually do</h2>
 
-<p>In the order Docket's own weights put them:</p>
+<p>In the order Check Engine's own weights put them:</p>
 
 <ul>
-<li><strong>Give every page an H1 with text in it.</strong> Docket's fix text is "Add exactly one
+<li><strong>Give every page an H1 with text in it.</strong> Check Engine's fix text is "Add exactly one
 H1 per page that names the page's topic in plain language", with the markup
 <code>&lt;h1&gt;WHAT THIS PAGE IS ABOUT, in plain language&lt;/h1&gt;</code>. The "exactly one"
 is house preference rather than a requirement of the standard; what is not negotiable is that
@@ -1163,10 +1162,10 @@ and see whether the list still describes the page. That is the check no tool run
 that changes anything.</li>
 </ul>
 
-<p>The rest of what Docket looks at, check by check, is listed in <a
-href="/learn/what-docket-checks/">what Docket checks</a>.</p>
+<p>The rest of what Check Engine looks at, check by check, is listed in <a
+href="/learn/what-docket-checks/">what Check Engine checks</a>.</p>
 
-<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-heading-structure-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="how-to-fix-heading-structure-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-heading-structure-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x86_64.dmg" data-ev="Download" data-ev-button="how-to-fix-heading-structure-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-heading-structure" data-ev="Buy" data-ev-price="59" data-ev-button="how-to-fix-heading-structure">Buy once, $59</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-heading-structure">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Launch price: $29.50 once, through 30 November. From 1 December: $59. Use code <code>FOUNDINGDOCKET</code>.</span></p></aside>
+<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-heading-structure-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="how-to-fix-heading-structure-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-heading-structure-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x86_64.dmg" data-ev="Download" data-ev-button="how-to-fix-heading-structure-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-heading-structure" data-ev="Buy" data-ev-price="59" data-ev-button="how-to-fix-heading-structure">Buy once, $59</a>, 30-day refund &middot; <a href="https://docketseo.app/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-heading-structure">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Launch price: $29.50 once, through 30 November. From 1 December: $59. Use code <code>FOUNDINGDOCKET</code>.</span></p></aside>
 
 <h2>Further reading</h2>
 <ul>
@@ -1177,14 +1176,14 @@ href="/learn/what-docket-checks/">what Docket checks</a>.</p>
 <li><a href="/how-to/where-an-audit-looks-for-your-address/">Where an audit looks for your address</a></li>
 <li><a href="/how-to/fix-sameas-that-claims-the-wrong-accounts/">Not every social link on your site is yours</a></li>
 </ul>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is one H1 per page a real rule?</h3><p>Not in the HTML standard and not in Google's documentation. The living standard says a document can contain multiple top-level headings and prints a conforming example with three; its only requirement is that at least one heading in the outline is level 1. Docket still flags multiple H1s, at its lightest-but-one weight, because in practice it usually means a template is using H1 for font size.</p></div><div class="faq-item"><h3>Does skipping a heading level hurt my rankings?</h3><p>Google's SEO starter guide says semantic order is excellent for screen readers but that from Google Search's perspective it does not matter if headings are out of order. Docket reports it at NOTICE, its lowest severity, and its finding text talks about screen readers and parsers rather than rankings.</p></div><div class="faq-item"><h3>Why does Docket say my page has no H1 when I can see one?</h3><p>Because it records a heading only if the element has text content. An H1 holding only a logo image or an inline SVG has no text, is not recorded, and the page reads as having none.</p></div><div class="faq-item"><h3>Do headings in my footer count?</h3><p>Yes. The extractor walks the whole document and applies no nav, header or footer filter, so an H2 in your footer clears the no-subheadings finding and a header logo wrapped in an H1 counts as that page's H1 sitewide.</p></div><div class="faq-item"><h3>Does Docket check whether my headings are any good?</h3><p>No, and nor can any tool that reads markup. It can tell you a heading element is present, absent or out of order. It cannot tell you that your subheadings say Overview, More and Other. That judgement is yours and it is worth more than every finding on this page.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is one H1 per page a real rule?</h3><p>Not in the HTML standard and not in Google's documentation. The living standard says a document can contain multiple top-level headings and prints a conforming example with three; its only requirement is that at least one heading in the outline is level 1. Check Engine still flags multiple H1s, at its lightest-but-one weight, because in practice it usually means a template is using H1 for font size.</p></div><div class="faq-item"><h3>Does skipping a heading level hurt my rankings?</h3><p>Google's SEO starter guide says semantic order is excellent for screen readers but that from Google Search's perspective it does not matter if headings are out of order. Check Engine reports it at NOTICE, its lowest severity, and its finding text talks about screen readers and parsers rather than rankings.</p></div><div class="faq-item"><h3>Why does Check Engine say my page has no H1 when I can see one?</h3><p>Because it records a heading only if the element has text content. An H1 holding only a logo image or an inline SVG has no text, is not recorded, and the page reads as having none.</p></div><div class="faq-item"><h3>Do headings in my footer count?</h3><p>Yes. The extractor walks the whole document and applies no nav, header or footer filter, so an H2 in your footer clears the no-subheadings finding and a header logo wrapped in an H1 counts as that page's H1 sitewide.</p></div><div class="faq-item"><h3>Does Check Engine check whether my headings are any good?</h3><p>No, and nor can any tool that reads markup. It can tell you a heading element is present, absent or out of order. It cannot tell you that your subheadings say Overview, More and Other. That judgement is yours and it is worth more than every finding on this page.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
-<div><h2 class="foot-h">Docket SEO</h2>
-<a href="/">Overview</a><a href="/download/">Download Docket SEO</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
+<div><h2 class="foot-h">Check Engine SEO</h2>
+<a href="/">Overview</a><a href="/download/">Download Check Engine SEO</a>
+<a href="/index/">The Check Engine Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking vs Screaming Frog</a>
@@ -1198,9 +1197,10 @@ href="/learn/what-docket-checks/">what Docket checks</a>.</p>
 <a href="/learn/seo-audit/">What an SEO audit is</a>
 <a href="/learn/">All guides</a></div>
 <div><h2 class="foot-h">Contact</h2>
-<a href="/about/">About Docket</a>
+<a href="/about/">About Check Engine</a>
 <a href="/contact/">Get in touch</a>
-<a href="/bot/">Our crawler</a>
+<a href="/help/">Help</a><a href="/support/">Support</a><a href="/faq/">FAQ</a>
+<a href="https://docketseo.app/bot/">Our crawler</a>
 <a href="https://github.com/mattkerr09/docket-site/issues">Issue tracker</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a>
 <a href="/legal/refunds/">Refunds</a></div>
@@ -1208,8 +1208,8 @@ href="/learn/what-docket-checks/">what Docket checks</a>.</p>
 <div class="foot-more">
 <p>Made by <a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company</a></p>
 </div>
-<div class="foot-bottom">
-<span>© 2026 Docket SEO · Audits run on your computer, and the reports stay there.</span>
+<p>formerly Docket SEO</p><div class="foot-bottom">
+<span>© 2026 Check Engine SEO · Audits run on your computer, and the reports stay there.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
 <div data-founding data-was="$59" data-now="$29.50" hidden></div>
@@ -1235,7 +1235,7 @@ href="/learn/what-docket-checks/">what Docket checks</a>.</p>
      it. `prefers-reduced-motion` can hide or freeze almost anything except a
      playing <video>. So the script pauses it and rewinds to the poster frame,
      which is a real frame of the same run, so nothing is lost.
-     builtbykerr.com carries ten prefers-reduced-motion blocks to this file's
+     A sister site carries ten prefers-reduced-motion blocks to this file's
      two; this is the one that was actually missing something. */
   try {
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1244,7 +1244,7 @@ href="/learn/what-docket-checks/">what Docket checks</a>.</p>
       });
     }
   } catch (e) { /* a video that keeps playing is not worth throwing over */ }
-  /* GRANULARITY IS THE EFFECT. Measured on outlier.host: 51 revealed units,
+  /* GRANULARITY IS THE EFFECT. Measured on a sister site: 51 revealed units,
      median height 171px, SIX in view at once. This page had 31 large ones and
      only TWO in flight at any scroll position, which is why it read as sections
      popping rather than a page assembling itself. Adding the smaller units (
