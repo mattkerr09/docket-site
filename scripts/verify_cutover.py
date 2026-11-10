@@ -330,7 +330,9 @@ def checks(phase, fetch, old=OLD, new=NEW, probe_post=False):
                             return
                         served(response, t, mode)
                         if phase == "redirect":
-                            other = get(new, p, m)
+                            # GitHub Pages answers the new host's /bot with its own 301 to /bot/; the Worker follows it
+                            # for the old host, so the old /bot is compared with the new /bot/.
+                            other = get(new, "/bot/" if p == "/bot" else p, m)
                             served(other, t)
                             if m == "GET":
                                 require(response.digest() == other.digest(), "old/new body hashes differ")
@@ -349,12 +351,21 @@ def checks(phase, fetch, old=OLD, new=NEW, probe_post=False):
                 def release(h=host, p=path, t=mime):
                     served(get(h, p, "HEAD"), t, mode)
                     response = get(h, p, headers={"Range": "bytes=0-0"})
-                    range_response(response, t, mode)
+                    ranged_installer = phase == "redirect" and p.lower().endswith(".exe")
+                    if ranged_installer:
+                        # Cloudflare gzips a Worker's subrequest and GitHub gzips the installer, which breaks a Range
+                        # over that copy, so the Worker sends a ranged installer request to the file's own host.
+                        status(response, 302)
+                        header(response, "Location", "https://" + new + p)
+                        range_response(get(new, p, headers={"Range": "bytes=0-0"}), t)
+                    else:
+                        range_response(response, t, mode)
                     if phase == "redirect":
-                        other = get(new, p, headers={"Range": "bytes=0-0"})
-                        range_response(other, t)
-                        require(response.digest() == other.digest(),
-                                "old/new release range hashes differ")
+                        if not ranged_installer:
+                            other = get(new, p, headers={"Range": "bytes=0-0"})
+                            range_response(other, t)
+                            require(response.digest() == other.digest(),
+                                    "old/new release range hashes differ")
                         old_file, new_file = get(h, p), get(new, p)
                         served(old_file, t, mode)
                         served(new_file, t)
@@ -457,6 +468,8 @@ class Fixture:
 
     def good(self, host, path, method, headers):
         bare = urlsplit(path).path
+        if bare == "/bot" and host in {OLD, "www." + OLD} and self.phase in {"fallback", "redirect"}:
+            bare = "/bot/"   # the Worker follows GitHub's slash redirect, so the old host answers with the /bot/ page
         if host == OLD and self.phase in {"fallback", "redirect"} and method == "POST":
             return Response(405, {"Allow": "GET" if bare == "/__redirect-health" else "GET, HEAD"})
         if host == MCP:
@@ -465,6 +478,11 @@ class Fixture:
             return Response(301, {"Location": "https://" + OLD + path})
         if host == OLD and self.phase == "passthrough" and bare == "/bot":
             return Response(301, {"Location": "https://" + OLD + "/bot/"})   # GitHub Pages' own slash redirect
+        if host == NEW and bare == "/bot":
+            return Response(301, {"Location": "https://" + NEW + "/bot/"})   # GitHub Pages' own slash redirect
+        if (host in {OLD, "www." + OLD} and self.phase == "redirect" and bare.startswith("/updates/") and bare.endswith(".exe")
+                and headers.get("Range")):
+            return Response(302, {"Location": "https://" + NEW + path})       # a ranged installer goes to its own host
         if host != NEW and self.phase in {"fallback", "redirect"} and bare == "/__redirect-health":
             return Response(200, {"Content-Type": "text/plain", "X-Mode": self.phase}, b"ok")
         is_app = bare in APPS or bare.startswith("/updates/")
@@ -476,13 +494,16 @@ class Fixture:
         if bare == "/updater.json":
             mime = "application/json"
             body = json.dumps({"version": "1.2.3", "platforms": {"test": {
-                "url": "https://" + OLD + "/updates/1.2.3/Docket.app.tar.gz"}}}).encode()
+                "url": "https://" + OLD + "/updates/1.2.3/Docket.app.tar.gz"}, "windows": {
+                "url": "https://" + OLD + "/updates/1.2.3/Docket-1.2.3-x64-setup.exe"}}}).encode()
         elif bare == "/_redirect-map.json":
             mime, body = "application/json", b'["/index.html", "/learn/index.html", "/extra/index.html"]'
         elif bare in {"/offer.json", "/data/knowledge.json"}:
             mime, body = "application/json", b"{}"
         elif bare.endswith(".pdf"):
             mime, body = "application/pdf", b"%PDF fixture"
+        elif bare.startswith("/updates/") and bare.endswith(".exe"):
+            mime, body = "application/octet-stream", b"installer fixture"
         elif bare.startswith("/updates/"):
             mime, body = "application/gzip", b"release fixture"
         elif bare == "/robots.txt":
