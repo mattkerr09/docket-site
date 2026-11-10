@@ -2321,8 +2321,8 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
 #: is how it stays false for a month. If they ever must be split, the POLICY goes
 #: first: over-disclosure is cheap and fixed in a commit, the reverse is not.
 #:
-#: What this site's policy currently says that a live pixel would falsify — read
-#: from the live page, not assumed, because every site denies something different:
+#: Earlier policy wording that a live pixel would falsify. These are historical
+#: examples, not today's policy; the privacy page names the current scripts:
 #:
 #:     "No account, no telemetry, no analytics on this site"
 #:     "This site is static and runs two third-party scripts"

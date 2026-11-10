@@ -84,10 +84,10 @@
     "id": "data",
     "stage": "Before you buy",
     "question": "Where do my crawl and report go?",
-    "answer": "The crawl and report stay on your computer, and there is no account or telemetry. Optional checks reach outside it, including Google PageSpeed and Google's autocomplete. The offline option turns those optional checks off.",
+    "answer": "The crawl and report stay on your computer, and there is no account. The app sends three anonymous counts, with no site address or audit result. Optional checks reach outside it, including Google PageSpeed and Google's autocomplete. The offline option turns those optional checks off.",
     "source": {
       "source_path": "/download/",
-      "claim": ["There is no account to create and no telemetry.", "The crawl and the report stay on your computer.", "Google PageSpeed, which is sent the addresses of your homepage and top pages", "Google's autocomplete, which is sent your site's topic words", "or the offline tick in the desktop app"]
+      "claim": ["There is no account to create.", "The crawl and the report stay on your computer.", "The app sends three anonymous counts", "Nothing about your site or audit results reaches us.", "Google PageSpeed, which is sent the addresses of your homepage and top pages", "Google's autocomplete, which is sent your site's topic words", "or the offline tick in the desktop app"]
     }
   },
   {

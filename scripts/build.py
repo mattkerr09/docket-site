@@ -660,8 +660,9 @@ def write_llms_txt() -> None:
         f"with the markup to paste and a client-ready PDF report. It costs {PRICE_STR}, "
         f"paid once; there is no subscription.", "> ", "> "))
     out += ["", wrap(
-        "The crawl and the report stay on your computer, and there is no account and no "
-        f"telemetry. {F.optional_connectors_word().capitalize()} optional checks are on by "
+        "The crawl and the report stay on your computer, and there is no account. "
+        "The app sends three anonymous counts, with no site address or audit result. "
+        f"{F.optional_connectors_word().capitalize()} optional checks are on by "
         "default and reach outside it: Google PageSpeed Insights is sent the addresses of "
         "the homepage and top pages; Google's public autocomplete is sent the site's topic "
         "words, typed by the user or read off its titles, headings and descriptions; DNS is "
@@ -1418,7 +1419,8 @@ and move it by deactivating one.</li>
 bill clients for the work. Nothing is counted per page or per site.</li>
 <li>Every 1.x release, delivered by the updater inside the app. If a 2.0 ever costs money,
 the version you bought keeps running.</li>
-<li>The key by email, on the receipt. No account to sign up for, and no telemetry.</li>
+<li>The key by email, on the receipt. No account to sign up for. The app sends three anonymous counts,
+with no site address or audit result. <a href="/legal/privacy/">What is sent and how to turn it off</a>.</li>
 </ul>
 
 <h2>How paying works</h2>

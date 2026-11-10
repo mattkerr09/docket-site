@@ -606,7 +606,8 @@ def body() -> str:
     number, not a guess. <a href="/how-to/outrank-a-bigger-competitor/">See what it finds</a>.</p></div>
   <div class="card"><div class="card-ico">{ICONS['lock']}</div>
     <h3>The report stays on your computer</h3>
-    <p>No account and no telemetry. The crawl and the report stay on your computer.
+    <p>No account. The crawl and the report stay on your computer. The app sends three anonymous counts,
+    with no site address or audit result. <a href="/legal/privacy/">What is sent and how to turn it off</a>.
     {CONNECTORS_WORD_CAP} optional checks fetch data Docket cannot produce alone and are on by
     default, so Google PageSpeed is sent the addresses of your homepage and top pages, and
     Google's autocomplete your site's topic words; <code>--offline</code> turns all
@@ -771,8 +772,9 @@ FAQ = [
      f"Email {SUPPORT_EMAIL}. Questions whose answers would help the next person can go on "
      "the public issue tracker instead."),
     ("Does Docket send my site data anywhere?",
-     "The crawl and the report stay on your computer, and there is no account and no "
-     f"telemetry. {CONNECTORS_WORD_CAP} optional checks, on by default, reach outside it: "
+     "The crawl and the report stay on your computer, and there is no account. "
+     "The app sends three anonymous counts, with no site address or audit result. "
+     f"{CONNECTORS_WORD_CAP} optional checks, on by default, reach outside it: "
      "Core Web Vitals from Google PageSpeed, which is sent the addresses of your homepage "
      "and top pages; a deliverability test on the addresses your site publishes, which "
      "looks up their mail domains in DNS; what your server tells AI crawlers; a knowledge "

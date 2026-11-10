@@ -297,7 +297,8 @@ in each area, to send to a client or a colleague.</p>
 
 <p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on {MAC_HW}{' and for 64-bit Windows' if WINDOWS else ''}.
 {DMG_SIZE}{(' for the Mac, ' + WIN_SETUP_SIZE + ' for Windows') if WINDOWS else ''}. No subscription, no crawl credits, no per-seat pricing. Audit as many sites as
-you like, for as long as you like. There is no account to create and no telemetry. Activating
+you like, for as long as you like. There is no account to create. The app sends three anonymous counts,
+once per copy and per event. Activating
 your licence checks the key with our payment provider once, and about once a day after that.
 The crawl and the report stay on your {'computer' if WINDOWS else 'Mac'}. {CONNECTORS_WORD_CAP} optional checks, on by default,
 reach outside it, among them Google PageSpeed, which is sent the addresses of your homepage and
@@ -548,11 +549,12 @@ says which checks did not run rather than quietly scoring them.</p>
 <p>Docket also asks {LEGACY_HOST + "/updater.json" if SITE_BRAND == "checkengine" else HOST} when it opens, and every thirty minutes while it stays open,
 whether a newer version exists, and tells you if there is one. It sends nothing but the request
 itself, it never installs anything without you saying yes, and <code>Check for Updates…</code>
-in the Docket menu does the same thing on demand. With the licence check, that makes two calls
-it makes on its own, and a product that sells not phoning home should list both.</p>
+in the Docket menu does the same thing on demand. It also makes a licence check and sends three
+anonymous app counts. The <a href="/legal/privacy/">privacy page</a> lists each request and how to
+turn the counts off.</p>
 
-<p>What never happens: no telemetry, no account, no analytics on you, and nothing about your
-site is sent anywhere for us to see. This page made a stronger, absolute claim until
+<p>There is no account. The anonymous counts contain only an event name, the app version and the
+kind of computer. Nothing about your site or audit results reaches us. This page made a stronger, absolute claim until
 2026-08-10; it was not true while those four checks were on by default, and it has been
 corrected rather than quietly dropped.</p>
 <p>Audit history is stored in <code>~/.docket/</code> as plain JSON. Delete the folder and it
@@ -566,10 +568,10 @@ is gone.</p>
                else f"Download Docket for Mac: {PRICE_STR}, paid once"),
         # Two downloads have two sizes, so with Intel the description names neither.
         desc=((f"Docket SEO for {MACOS}+ on {MAC_HW} and 64-bit Windows. "
-               "No account, no telemetry. The CLI exits non-zero on a critical issue.") if WINDOWS else
+               "No account. Reports stay on your computer. The CLI exits non-zero on a critical issue.") if WINDOWS else
               (f"Docket for {MACOS}+ on {MAC_HW}. "
                + ("No account" if INTEL else f"{DMG_SIZE}, no account")
-               + ", no telemetry. Includes the CLI, which exits non-zero on a critical "
+               + ". Reports stay on your computer. Includes the CLI, which exits non-zero on a critical "
                "issue so it can gate a deploy.")),
         h1="Download Docket SEO for Mac and Windows" if WINDOWS else "Download Docket for Mac",
         crumb='<a href="/">Docket</a> / Download',
@@ -1501,12 +1503,14 @@ crawl credits, no renewal date: one licence covers {F.licence_covers()}. You pri
 recurring line item does to a buying decision at a company that already has eleven of
 them.</p>
 
-<p>The rest follows from running on your own machine: no telemetry, no account, and
+<p>The rest follows from running on your own machine: no account, and
 results that stay in <code>~/.docket/</code> as JSON you can read with <code>cat</code>. Save
 the site and scheduled re-audits report what changed, regressions first, which is how you learn a <code>noindex</code> reached production on Tuesday rather than from a traffic graph
 three weeks later. The schedule lives inside the app rather than in launchd, so it runs while
 Docket is open and picks up anything overdue the next time you launch it; if you need the crawl
 to happen whether or not anyone is at the machine, that is what a hosted crawler is for.</p>
+<p>The app also sends three anonymous counts. They contain no site address or audit result.
+The <a href="/legal/privacy/">privacy page</a> lists them and how to turn them off.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
@@ -1553,9 +1557,8 @@ to happen whether or not anyone is at the machine, that is what a hosted crawler
             ("Is Docket really a one-time purchase?",
              "Yes. " + (founding_price_sentence() if FOUNDING_OPEN else f"{PRICE_STR} once.")
              + f" Every 1.x update is included. One licence covers {F.licence_covers()}, and there is no "
-             f"per-seat price, no crawl credits, no account "
-             f"and no telemetry, and audit history is stored on your computer in ~/.docket/ as "
-             f"plain JSON."),
+             f"per-seat price, no crawl credits and no account. Audit history is stored on your computer in ~/.docket/ as "
+             f"plain JSON. The app sends three anonymous counts, with no site address or audit result."),
         ],
     )
 
@@ -2182,10 +2185,10 @@ and this website.</p>
 <h2>The application</h2>
 <p>Nothing about the sites you audit reaches us, Kerr &amp; Company: the crawl and the report
 stay on your computer. The requests that do leave it are listed below with who receives each one,
-and the ones that come to us are for the public update, price and knowledge files on this
+and the ones that come to us are anonymous app counts, requests for the public update, price and knowledge files on this
 website and, on a copy with no licence, a question to an offer server we run. What our payment
 provider receives on our behalf is your licence key and a name for each Mac you activate it on.
-There is no account, no telemetry and no crash reporting. The licence key is checked with our
+There is no account or crash reporting. The licence key is checked with our
 payment provider when you activate it and about once a day after that.</p>
 <p>An earlier version of this policy said the only network requests the app makes are to the
 website you ask it to audit, and the next one named three kinds of destination. Neither was
@@ -2279,6 +2282,26 @@ requests as any other, and it can ask for offline mode.</li>
 <p>Audit results, your saved-site list and any crash reports are stored on your machine in
 <code>~/.docket/</code> as plain JSON files. They are never transmitted. Deleting that folder
 removes them permanently.</p>
+
+<h2>What the app tells us, anonymously</h2>
+<p>The app sends one count at each of these three moments:</p>
+<ul>
+<li><code>first_opened</code>: the first time the app is opened.</li>
+<li><code>first_audit_finished</code>: the first time an audit finishes.</li>
+<li><code>free_limit</code>: the first time the free version reaches its limit and shows the unlock.</li>
+</ul>
+<p>Each is sent once per copy and per event. Each sends only the event name, the app version
+and the kind of computer: Mac, Windows or Linux. It is a single HTTPS GET, like a page request,
+to <code>mcp.docketseo.app/app-event</code>, with a User-Agent header, no cookie and no body.</p>
+<p>These counts never send any web address or the site you audit, results or reports, your licence key,
+any ID or name, or anything from your files. Like any page request, the receiving server sees your
+internet address for the moment it answers. We store only a daily tally per event, version and system,
+never who. We do not store the internet address or User-Agent with the counts.</p>
+<p>Nothing is sent for these counts by source builds or by the engine's offline mode, and an audit run with
+&ldquo;Keep it private: only contact this site&rdquo; switched on sends no count when it finishes. The first count,
+<code>first_opened</code>, goes out the first time the app starts, before there is a chance to choose. To turn all
+three counts off, set the environment variable <code>DOCKET_NO_COUNTS=1</code>, or create an empty file named
+<code>no-counts</code> in the <code>.docket</code> folder in your home folder, before you first open the app.</p>
 
 <h2>This website</h2>
 <p>This site is static and runs four third-party scripts. The first is
@@ -2417,8 +2440,8 @@ it; we hold nothing separately.</p>
             if SITE_BRAND == "checkengine"
             else ("Privacy policy: what Docket collects, and what it does not")
         ),
-        desc="Your audits stay on your computer. No account, no "
-             "telemetry. Four third-party scripts and no advertising tracker. "
+        desc="Your audits stay on your computer. Anonymous app counts. "
+             "Four third-party scripts and no advertising tracker. "
              "What each does and how to stop it.",
         h1="Privacy policy",
         crumb='<a href="/">Docket</a> / Privacy',
@@ -2677,7 +2700,7 @@ def refunds() -> Path:
       licence server (`home.py`, `pages.py` and `about.py` all promise there is
       not), so no revocation is possible. A policy that implied otherwise would
       be describing software that does not exist.
-    * **It carries no conditions.** Docket collects no telemetry, so "unused",
+    * **It carries no conditions.** Anonymous app counts identify no copy, so "unused",
       "fewer than N audits" and "within reason" are all unverifiable. A
       condition the seller cannot check is one applied by mood.
     """
@@ -2797,8 +2820,8 @@ deleted from our side, because there is no our side. Removing that folder remove
 
 <h2>Conditions that are deliberately absent</h2>
 
-<p>None of these will be asked, because none of them could be checked. Docket has no account
-and no telemetry. The licence key ties a payment to the Macs it is activated on and to nothing
+<p>None of these will be asked, because none of them could be checked. Docket has no account.
+Its anonymous counts identify no copy and contain no audit result. The licence key ties a payment to the Macs it is activated on and to nothing
 else, so the seller has no way to know:</p>
 
 <ul>

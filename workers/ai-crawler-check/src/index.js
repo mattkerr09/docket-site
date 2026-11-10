@@ -26,7 +26,8 @@ import { BASE, HOST } from './site-brand.js'
 import { evaluate, parseRobots } from './robots.js'
 import { checkJsonLd, checkMeta, extract } from './page.js'
 import { checkHeaders, checkRedirects, trace } from './trace.js'
-import { handleMcp, DailyCap } from './mcp.js'
+import { handleMcp, DailyCap, tally } from './mcp.js'
+import { appTallyKeys } from './app-events.js'
 export { DailyCap }
 
 export const ALLOWED_ORIGIN = BASE
@@ -274,10 +275,25 @@ function cacheStore() {
 }
 
 export async function handle(request, fetchImpl = fetch, env = {}, store = undefined) {
+  // Desktop app counts: no Origin check, CORS, cookies, request logging or IP cache.
+  if (new URL(request.url).pathname === '/app-event') {
+    const headers = { 'Cache-Control': 'no-store' }
+    if (request.method !== 'GET') return new Response(null, { status: 405, headers: { ...headers, Allow: 'GET' } })
+    const keys = appTallyKeys(new URL(request.url).searchParams)
+    if (keys.length) {
+      // Only reuse the existing limiter binding. Its cache fallback would store the IP.
+      let limited = false
+      try {
+        if (env.CHECK_LIMITER) limited = await overLimit(request.headers.get('CF-Connecting-IP'), env, null)
+      } catch { /* counts remain best effort if the limiter is unavailable */ }
+      if (!limited) for (const key of keys) await tally(env, key)
+    }
+    return new Response(null, { status: 204, headers })
+  }
   // The remote MCP server is called server-to-server by MCP clients, not by docketseo.app's pages, so it skips the
   // origin check and the per-IP limit below (it limits per session; see mcp.js).
   if (new URL(request.url).pathname === '/mcp') return handleMcp(request, fetchImpl, env)
-  // Outcome counts for the MCP tools (tool and outcome only; see tally in mcp.js). Secret-gated, never public.
+  // Daily MCP and anonymous app counts (see tally in mcp.js). Secret-gated, never public.
   if (new URL(request.url).pathname === '/mcp/stats') {
     const key = request.headers.get('X-Stats-Key') || ''
     if (!env.STATS_KEY || key.length !== env.STATS_KEY.length || key !== env.STATS_KEY || !env.DAILY_CAP) {

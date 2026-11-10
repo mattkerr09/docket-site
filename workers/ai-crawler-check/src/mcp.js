@@ -18,6 +18,7 @@ import { evaluate, parseRobots } from './robots.js'
 import { checkHeaders, checkRedirects, trace } from './trace.js'
 import { AI_AGENTS } from './agents.js'
 import { addGuide } from './guides.js'
+import { validAppTallyKey } from './app-events.js'
 import { checkAccessibilityHtml, STANDARD, DISCLAIMER } from './access.js'
 
 // Built for phase F2. The CEO switches it on after 7 Dec 2026, with the paid add-on.
@@ -299,7 +300,7 @@ export async function handleMcp(request, fetchImpl = fetch, env = {}) {
     const asked = params.protocolVersion
     const version = PROTOCOL_VERSIONS.includes(asked) ? asked : PROTOCOL_VERSIONS[0]
     const family = clientFamily(params.clientInfo)
-    await tally(env, 'init', family)
+    await tally(env, `init:${family}`)
     return reply({ jsonrpc: '2.0', id, result: { protocolVersion: version, capabilities: { tools: { listChanged: false } },
       serverInfo: SERVER_INFO,
       instructions: 'Free, read-only checks of public web pages: a one-page SEO check, AI crawler access in robots.txt, redirect chains, HTTP headers and a search snippet preview. Each tool takes a page address; nothing is stored.' } },
@@ -310,13 +311,13 @@ export async function handleMcp(request, fetchImpl = fetch, env = {}) {
   if (method !== 'tools/call') return rpcError(id, -32601, `Unknown method: ${method}.`)
 
   const family = familyOf(request.headers.get('Mcp-Session-Id'))
-  await tally(env, 'calls', family)
+  await tally(env, `calls:${family}`)
   const name = params.name
   const run = RUN[name]
   if (!run) return rpcError(id, -32602, `Unknown tool: ${name}. The tools are ${TOOLS.map((t) => t.name).join(', ')}.`)
   const session = request.headers.get('Mcp-Session-Id') || request.headers.get('CF-Connecting-IP') || 'anonymous'
   if (await overSession(session, env)) {
-    await tally(env, name, 'limit')
+    await tally(env, `${name}:limit`)
     return reply({ jsonrpc: '2.0', id, result: { isError: true, content: [{ type: 'text', text: `Too many checks in this conversation: the limit is ${SESSION_LIMIT} a minute. Wait a minute and try again.` }] } })
   }
   if (await overDailyCap(env)) {
@@ -324,42 +325,44 @@ export async function handleMcp(request, fetchImpl = fetch, env = {}) {
   }
   try {
     const out = await run(params.arguments || {}, fetchImpl, env)
-    if (addGuide(out, family)) await tally(env, 'guide', family)
-    await tally(env, name, 'ok')
+    if (addGuide(out, family)) await tally(env, `guide:${family}`)
+    await tally(env, `${name}:ok`)
     return reply({ jsonrpc: '2.0', id, result: { content: [{ type: 'text', text: out.text }], structuredContent: out.structured, isError: false } })
   } catch (e) {
     if (e instanceof NotChecked) {
-      await tally(env, name, e.reason)
+      await tally(env, `${name}:${e.reason}`)
       return reply({ jsonrpc: '2.0', id, result: { isError: false,
         content: [{ type: 'text', text: `Not checked: ${e.message} ${e.advice}` }],
         structuredContent: { checked: false, reason: e.reason, detail: e.message, advice: e.advice } } })
     }
-    await tally(env, name, 'input')
+    await tally(env, `${name}:input`)
     return reply({ jsonrpc: '2.0', id, result: { isError: true, content: [{ type: 'text', text: String((e && e.message) || e || 'The check failed.') }] } })
   }
 }
 
 /**
  * Initializations and calls by assistant family, plus how each tool call ended, counted per UTC day: never a client
- * name, session id or address. Read with GET /mcp/stats and the STATS_KEY secret (index.js).
+ * name, session id or address. Also used for anonymous app event, version and system counts.
+ * Read with GET /mcp/stats and the STATS_KEY secret (index.js).
  */
-async function tally(env, tool, outcome) {
+export async function tally(env, key) {
   if (!env.DAILY_CAP) return
   try {
     const stub = env.DAILY_CAP.get(env.DAILY_CAP.idFromName('global'))
-    await stub.fetch(`https://cap.invalid/tally?k=${encodeURIComponent(`${tool}:${outcome}`)}`)
+    await stub.fetch(`https://cap.invalid/tally?k=${encodeURIComponent(key)}`)
   } catch { /* a count is never worth a failed check */ }
 }
 
-/** One counter for the whole worker, per UTC day; and the outcome tally above. */
+/** One counter for the whole worker, per UTC day; plus the MCP and app tallies above. */
 export class DailyCap {
   constructor(state) { this.state = state }
   async fetch(request) {
     const u = new URL(request ? request.url : 'https://cap.invalid/hit')
     const day = new Date().toISOString().slice(0, 10)
     if (u.pathname === '/tally') {
-      const k = (u.searchParams.get('k') || '').slice(0, 80)
-      if (!/^[a-z_]+:[a-z_]+$/.test(k)) return new Response('bad key', { status: 400 })
+      const k = u.searchParams.get('k') || ''
+      const valid = k.startsWith('app:') ? validAppTallyKey(k) : /^[a-z_]+:[a-z_]+$/.test(k)
+      if (!valid || k.length > 80 || k !== k.trim()) return new Response('bad key', { status: 400 })
       const key = `t:${day}:${k}`
       await this.state.storage.put(key, ((await this.state.storage.get(key)) || 0) + 1)
       return new Response('ok')

@@ -24,7 +24,7 @@ GET /health
   - 429 is treated like a server error, as Google does, and the response says so.
 - Never requests a page as a crawler and never claims to be one. It sends
   `User-Agent: DocketRobotsCheck/1.0 (+https://docketseo.app/tools/ai-crawler-checker/)`.
-- Stores nothing.
+- Stores no site address or check result. See the anonymous count route below.
 
 ## Safety
 
@@ -44,7 +44,7 @@ A public name that resolves to a private address, such as a rebinding DNS
 service, is not caught by the name checks. Cloudflare's network does not
 route Worker subrequests to private address space, which is the backstop.
 
-CORS answers only `https://docketseo.app`. Any other `Origin` gets a 403.
+For the browser check routes, CORS answers only `https://docketseo.app`. Any other `Origin` gets a 403.
 
 Per-IP limit: 20 checks a minute per `CF-Connecting-IP`, then a 429 with
 `Retry-After: 60` and a plain sentence the page shows. It uses the
@@ -52,6 +52,23 @@ Per-IP limit: 20 checks a minute per `CF-Connecting-IP`, then a 429 with
 create that binding, delete the block; the Worker then falls back to a per-IP
 counter in the Cache API. That counter is per data centre and approximate,
 which is enough to stop a flood.
+
+## Anonymous app counts
+
+`GET /app-event?e=first_opened&v=1.3.161&os=mac` counts one of `first_opened`,
+`first_audit_finished` or `free_limit`. Versions must have three numeric parts
+of one to three digits each; systems are `mac`, `windows` or `linux`.
+Each required field must appear once. Other query parameters are ignored.
+GET always returns an empty 204 with `Cache-Control: no-store`, including for
+invalid input. Other methods return 405. This app route skips Origin checks
+and sets no CORS headers or cookies.
+
+It stores daily counts by event, version and system in the same Durable Object
+as the MCP tallies. It logs no requests and forwards no request headers to that
+store. Only the existing limiter binding is used, with no IP cache fallback.
+Read the `app:` keys in `/mcp/stats` with the existing `X-Stats-Key` header.
+See [the server notes](../../docs/APP_COUNTS_SITE.md) for keys, retention and the
+separate app job's responsibilities.
 
 ## Test and deploy
 

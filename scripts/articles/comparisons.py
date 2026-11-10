@@ -1337,7 +1337,8 @@ happens to appear on 4,000 pages does not outrank a serious one on the homepage.
 opens as a sequence instead of a filter you have to operate.</p>
 
 <h2>The audit stays on your computer</h2>
-<p>Docket has no account, no sign-in and no telemetry. The crawl runs on your machine and each
+<p>Docket has no account or sign-in. The app sends three anonymous counts, with no site address or audit result.
+The <a href="/legal/privacy/">privacy page</a> lists them and how to turn them off. The crawl runs on your machine and each
 run is written to <code>~/.docket/</code> as plain JSON you can diff, script against, or delete.
 {CONNECTORS_WORD_CAP} checks reach outside by default and <code>--offline</code> turns all {CONNECTORS_WORD} off;
 the licence key is checked with the payment provider about once a day.</p>
@@ -1606,8 +1607,8 @@ speed, Lighthouse is the better tool and this is the wrong page. Use Lighthouse 
 performance score in continuous integration. Docket's command line can fail a build on findings
 of a chosen severity with <code>--fail-on</code>. The desktop app runs on {MACOS} or later ({MAC_HW}){' and on 64-bit Windows' if WINDOWS else ''}.
 Linux runs the command line only.</p>
-<p>Docket costs {PRICE_STR} once, runs {N_CHECKS} checks on your own machine with no account
-and no telemetry. The crawl and report stay on your computer. Some optional checks send page
+<p>Docket costs {PRICE_STR} once, runs {N_CHECKS} checks on your own machine with no account.
+The app sends three anonymous counts, with no site address or audit result. The crawl and report stay on your computer. Some optional checks send page
 addresses or topic words to outside services; <code>--offline</code> turns those checks off.
 The privacy page lists each request. It earns that money against a free tool from Google in
 one situation only: when the question has stopped being how fast is this page and become which
@@ -1750,7 +1751,8 @@ None of them is a defect. Together they are the outline of a different question.
 copy, page speed, structured data, local visibility, AI search access and marketing conversion), then ranks every finding by impact against effort and sorts them into four phases.
 Each finding states what it costs you in plain language and carries the exact markup to paste.
 It writes a client-ready PDF and can score you against a named competitor. The crawl runs on
-your computer: no account, no telemetry, results in <code>~/.docket</code>.</p>
+your computer: no account, results in <code>~/.docket</code>. The app sends three anonymous counts,
+with no site address or audit result. The <a href="/legal/privacy/">privacy page</a> lists them and how to turn them off.</p>
 
 <p>The difference is time-shape more than feature list. Search Console answers questions about
 last week, on pages Google has met. Docket answers a question about this minute, on every page you have, including the one you published an hour ago.</p>

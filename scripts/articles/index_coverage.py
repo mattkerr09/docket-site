@@ -18,10 +18,9 @@ pre-registered scope named four different ones; IndexNow's own FAQ lists the
 endpoints below. Neither of ours matched. That is why the connector hardcodes
 no list and this page cites one.
 
-⚠️ THE SITE'S PROMISE IS NOT MINE TO CHANGE. "No account, no tracking, your
-audits stay on this Mac" is a promise Matthew made and only he edits. This page
-therefore states plainly what this one feature sends and to whom, and changes
-no wording anywhere else.
+The crawl and report stay on the computer. The app also sends anonymous counts;
+the privacy page lists those and the other requests. This page states plainly
+what this one feature sends and to whom.
 
 No typed figures or dates: the quota, the ceiling and the read date are module
 constants interpolated below, and the body contains no brace characters.
