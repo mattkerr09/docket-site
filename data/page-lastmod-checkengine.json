@@ -361,7 +361,7 @@
  },
  "learn/audit-tool-accuracy/index.html": {
   "date": "2026-11-10",
-  "hash": "cc8e5b84494e68d1"
+  "hash": "5f5365a2edd6d48c"
  },
  "learn/brand-consistency/index.html": {
   "date": "2026-11-10",
@@ -412,12 +412,12 @@
   "hash": "0d125c76e395548a"
  },
  "learn/index.html": {
-  "date": "2026-11-10",
-  "hash": "f1f189d3a1c869ff"
+  "date": "2026-11-09",
+  "hash": "1aec90a060225370"
  },
  "learn/internal-link-equity/index.html": {
-  "date": "2026-11-10",
-  "hash": "975ae0a554683268"
+  "date": "2026-11-09",
+  "hash": "087e855e2c0932d6"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-11-10",
@@ -469,7 +469,7 @@
  },
  "learn/what-docket-got-wrong/index.html": {
   "date": "2026-11-10",
-  "hash": "4c99be7434781f5d"
+  "hash": "0b2bec166dc6f05b"
  },
  "learn/what-is-a-404-error/index.html": {
   "date": "2026-11-10",
@@ -482,6 +482,10 @@
  "learn/what-is-a-sitemap/index.html": {
   "date": "2026-11-10",
   "hash": "77279331b0592617"
+ },
+ "learn/what-is-a-subdomain/index.html": {
+  "date": "2026-11-09",
+  "hash": "473e5cee60e2eb63"
  },
  "learn/what-is-a-url/index.html": {
   "date": "2026-11-10",
