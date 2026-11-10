@@ -453,7 +453,7 @@ def body() -> str:
   </div>
 </div>
 <figure class="shot shot-plan">
-  <img src="/assets/app-plan.webp" width="1500" height="672" loading="lazy" decoding="async"
+  <img src="/assets/app-plan.webp" width="1768" height="1104" loading="lazy" decoding="async"
        alt="Docket's ranked plan: numbered items under a BUILD phase heading reading
             'Worth real effort. Schedule once the quick wins are done.' Each item carries a
             severity chip, the lane it belongs to, an effort estimate, how many pages it
@@ -621,7 +621,7 @@ def body() -> str:
 </div>
 </div>
 <figure class="shot shot-finding">
-  <img src="/assets/app-finding.webp" width="1500" height="452" loading="lazy" decoding="async"
+  <img src="/assets/app-finding.webp" width="1688" height="478" loading="lazy" decoding="async"
        data-brand-history alt="One finding from a Docket audit: a numbered item titled 'http://docketseo.app does not
             redirect to https://', tagged High, Security &amp; trust, Under an hour, with an
             explanation and a Fix reading 'Add a site-wide 301 from http://docketseo.app to
