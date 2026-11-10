@@ -207,7 +207,7 @@ def plausible(response, new):
     scripts = [attrs for tag, attrs in Page(raw).tags if tag == "script"
                and urlsplit(attrs.get("src", "")).hostname == "plausible.io"]
     require(len(scripts) == 1, "expected one Plausible loader")
-    require(scripts[0].get("src") == "https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"
+    require(scripts[0].get("src") == "https://plausible.io/js/pa-l5xLCLM0WKYQNcrCFH9qg.js"
             and "async" in scripts[0] and "data-domain" not in scripts[0],
             "expected the site-bound Plausible loader (async, no data-domain): it counts under the docketseo.app site")
     require("plausible.init" in raw and "plausible.q" in raw,
@@ -507,7 +507,7 @@ class Fixture:
         return (f'<link rel="canonical" href="https://{NEW}{path}">'
                 f'<meta property="og:url" content="https://{NEW}{path}">'
                 f'<meta property="og:image" content="https://{NEW}/og.png">'
-                f'<script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>'
+                f'<script async src="https://plausible.io/js/pa-l5xLCLM0WKYQNcrCFH9qg.js"></script>'
                 '<script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>'
                 f'<p>support@{OLD} https://{MCP}/mcp https://{OLD}/updater.json</p>'
                 f'<section data-brand-history><p>https://{OLD}/past/</p></section>').encode()
@@ -689,7 +689,7 @@ def targeted_self_tests(fixture, fetch):
         (b'rel="canonical" href="https://' + NEW.encode(), b'rel="canonical" href="https://' + OLD.encode(), "page metadata /", "canonical"),
         (b'property="og:url" content="https://' + NEW.encode(), b'property="og:url" content="https://' + OLD.encode(), "page metadata /", "og:url"),
         (b'property="og:image" content="https://' + NEW.encode(), b'property="og:image" content="https://' + OLD.encode(), "page metadata /", "og:image"),
-        (b"pa-9WvL8kBqk1wanjcZqTHu4.js", b"script.js", "Plausible /", "site-bound Plausible loader"),
+        (b"pa-l5xLCLM0WKYQNcrCFH9qg.js", b"script.js", "Plausible /", "site-bound Plausible loader"),
         (b"plausible.q", b"plausible.z", "Plausible /", "queue stub"),
         (NEW.encode(), OLD.encode(), "sitemap new host", "wrong host"),
         (b"# Check Engine SEO.", b"# Docket SEO.", "robots", "first line"),

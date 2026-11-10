@@ -36,7 +36,7 @@ from brand import HOST, SITE_BRAND  # noqa: E402
 
 _SRC = re.compile(r"<script\b[^>]*\bsrc=[\"']([^\"']+)[\"']", re.I)
 # Both brands use the site-bound loader (CEO 2026-11-10): it counts under the docketseo.app Plausible site whatever the host.
-PLAUSIBLE_SRC = "https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"
+PLAUSIBLE_SRC = "https://plausible.io/js/pa-l5xLCLM0WKYQNcrCFH9qg.js"
 
 
 class PlausibleScripts(HTMLParser):

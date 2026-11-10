@@ -2424,10 +2424,10 @@ LANDING_SOURCE_JS = (
 )
 
 
-# The site-bound Plausible loader, for BOTH brands (CEO 2026-11-10): it counts under the docketseo.app Plausible site whatever the
-# hostname, so the Check Engine host keeps Docket's history; the CEO renames that Plausible site to checkengineseo.com after the flip.
-# Do not switch the Check Engine build to a classic data-domain script: the checkengineseo.com Plausible site was repurposed.
-PLAUSIBLE_LOADER = '<script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>\n'
+# The site-bound Plausible loader, for BOTH brands. Matthew gave the checkengineseo.com site's own snippet on 10 Nov 2026
+# (pa-l5xLCLM0WKYQNcrCFH9qg); it replaced the docketseo.app site's loader, so the site loads exactly one Plausible script.
+# Do not switch to a classic data-domain script: the loader is bound to the Plausible site, whatever the hostname.
+PLAUSIBLE_LOADER = '<script async src="https://plausible.io/js/pa-l5xLCLM0WKYQNcrCFH9qg.js"></script>\n'
 PLAUSIBLE_STUB = (
     'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},'
     'plausible.init=plausible.init||function(i){plausible.o=i||{}};\n'
