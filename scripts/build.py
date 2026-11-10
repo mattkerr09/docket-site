@@ -846,6 +846,11 @@ def write_llms_txt() -> None:
 
     (SITE / "llms.txt").write_text(brand.text("\n".join(out) + "\n"), encoding="utf-8")
 
+    # Search Console's HTML-file proof of ownership for https://checkengineseo.com/ (asked for on 10 Nov 2026,
+    # for the Change of Address from the docketseo.app property). Google re-checks it, so every build writes it.
+    (SITE / "google384d8f3f1de83e9f.html").write_text(
+        "google-site-verification: google384d8f3f1de83e9f.html\n", encoding="utf-8")
+
 
 #: The day each page's content last changed, and the fingerprint it had then.
 #: Seeded from history by scripts/collect_lastmod.py; updated by every build.
