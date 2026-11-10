@@ -92,7 +92,7 @@ export async function dnsAddresses(host, fetchImpl, signal) {
     u.searchParams.set('type', type)
     const response = await fetchImpl(u.href, {
       method: 'GET', redirect: 'manual', credentials: 'omit', signal, cache: 'no-store',
-      headers: { Accept: 'application/dns-json' }, cf: { cacheTtl: 0, cacheEverything: false },
+      headers: { Accept: 'application/dns-json' },
     })
     if (!response.ok) { discard(response); throw new BadAddress('The website address could not be checked safely.') }
     const body = await readCapped(response, DNS_MAX_BYTES, signal)

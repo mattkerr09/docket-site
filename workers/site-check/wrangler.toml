@@ -3,10 +3,11 @@ main = "src/index.js"
 compatibility_date = "2026-09-01"
 workers_dev = true
 
-# Keep off until host review confirms private-address egress protection,
-# including DNS rebinding between the DNS preflight and fetch's lookup.
+# The kill switch: set to "1" and redeploy (or set the variable in the dashboard) to turn the checker off at once.
+# Turned on 10 Nov 2026 after the host review: every hop passes a DNS preflight that must return only public
+# addresses, and Cloudflare's own egress does not route to private ranges (the rebinding window is that lookup gap).
 [vars]
-SITE_CHECK_DISABLED = "1"
+SITE_CHECK_DISABLED = "0"
 
 [observability]
 enabled = false

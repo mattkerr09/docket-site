@@ -96,7 +96,7 @@ export async function crawl(address, runtime = {}) {
       signal.throwIfAborted()
       const { response, sent } = await send(url, {
         method: kind === 'http' ? 'HEAD' : 'GET', redirect: 'manual', credentials: 'omit',
-        signal, cache: 'no-store', cf: { cacheTtl: 0, cacheEverything: false },
+        signal, cache: 'no-store',
         headers: { 'User-Agent': USER_AGENT, Accept: kind === 'page' ? 'text/html' : '*/*' },
       }, kind === 'page' ? owner : null)
       if (signal.aborted) { discard(response); signal.throwIfAborted() }
