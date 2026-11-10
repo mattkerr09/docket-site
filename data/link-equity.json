@@ -1,7 +1,7 @@
 {
   "site": "checkengineseo.com",
   "pages": 167,
-  "edges": 5248,
+  "edges": 5250,
   "average_share_pct": 0.6,
   "below_half": 138,
   "nodes": [
@@ -913,9 +913,9 @@
     },
     {
       "path": "/tools/website-checker/",
-      "inlinks": 8,
-      "share_pct": 0.15,
-      "index": 0.25
+      "inlinks": 10,
+      "share_pct": 0.19,
+      "index": 0.32
     },
     {
       "path": "/vs/",
