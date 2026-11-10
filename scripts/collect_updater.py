@@ -157,8 +157,10 @@ def main() -> None:
     # silicon without pointing Intel copies at anything.
     ap.add_argument("--no-intel", action="store_true",
                     help="publish the Apple silicon manifest only")
-    ap.add_argument("--source", choices=("mirror", "github"), default="mirror",
-                    help="updater download host. Default mirror. Use github to roll back")
+    ap.add_argument("--source", choices=("mirror", "github"), default="github",
+                    help="updater download host. Default github: the manifest cites the release assets "
+                         "and Pages carries no update binaries (the mirror's 157 MB artifacts timed out "
+                         "the Pages deploy twice on 10 Nov 2026). Use mirror to host them on the site again")
     args = ap.parse_args()
     if not args.tag:
         args.tag = f"v{args.version}"
@@ -220,9 +222,16 @@ def main() -> None:
         }
     elif win.is_file() != win_sig.is_file():
         sys.exit(f"{win.name} and its .sig must both exist or neither; refusing a half Windows entry")
+    names = tuple(entry["url"].rsplit("/", 1)[-1] for entry in data["platforms"].values())
+    if args.source == "github":
+        # The mirror's staging proves each file is a regular, nonempty file before a manifest can cite it. The release
+        # assets are the same files, so the same proof runs here: an empty installer must never reach a manifest.
+        for name in names:
+            path = APP / "dist" / name
+            if path.is_symlink() or not path.is_file() or path.stat().st_size == 0:
+                sys.exit(f"{path} is missing or empty; refusing a manifest that cites an update file that "
+                         f"cannot be installed")
     if args.source == "mirror":
-        names = tuple(entry["url"].rsplit("/", 1)[-1]
-                      for entry in data["platforms"].values())
         try:
             mirror.stage(args.version, APP / "dist", OUT.parent.parent / ".updates-cache",
                          names=names)

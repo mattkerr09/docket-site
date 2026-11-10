@@ -196,7 +196,7 @@ class MirrorTests(unittest.TestCase):
         for platform, name in zip(PLATFORMS, mirror.artifact_names(version)):
             (dist / (name + ".sig")).write_text(f"  file-signature-{platform}\n")
         arguments = ("--version", version, "--notes", "Actual release notes")
-        self.script("collect_updater", *arguments)
+        self.script("collect_updater", *arguments, "--source", "mirror")
         manifest = json.loads((self.root / "site/updater.json").read_text())
         self.assertEqual(set(manifest), {"version", "notes", "pub_date", "platforms"})
         self.assertEqual(set(manifest["platforms"]), set(PLATFORMS))
@@ -213,7 +213,14 @@ class MirrorTests(unittest.TestCase):
             self.assertEqual(rollback["platforms"][platform],
                              {"signature": f"file-signature-{platform}", "url": f"{mirror.RELEASE}/custom-tag/{name}"})
         self.assertFalse(self.cache.exists())
-        self.script("collect_updater", *arguments, "--no-intel")
+        # The default is the release assets: Pages carries no update binaries (10 Nov 2026: the mirror's 157 MB
+        # artifacts timed out the Pages deploy twice), and nothing is staged.
+        self.script("collect_updater", *arguments)
+        default = json.loads((self.root / "site/updater.json").read_text())
+        for platform, name in zip(PLATFORMS, mirror.artifact_names(version)):
+            self.assertEqual(default["platforms"][platform]["url"], f"{mirror.RELEASE}/v{version}/{name}")
+        self.assertFalse(self.cache.exists())
+        self.script("collect_updater", *arguments, "--source", "mirror", "--no-intel")
         optional = json.loads((self.root / "site/updater.json").read_text())
         self.assertEqual(set(optional["platforms"]), {"darwin-aarch64", "windows-x86_64"})
         self.assertFalse((self.cache / version / "Docket-x86_64.app.tar.gz").exists())
