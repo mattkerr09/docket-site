@@ -2352,6 +2352,14 @@ only the result of the checks, not the page. The redirect checker and the HTTP h
 it follow the address hop by hop and send back each hop's address and status code and the final
 page's headers, never its cookies. The search result preview sends nothing: it runs in your
 browser.</p>
+<p>The <a href="/tools/website-checker/">free website checker</a> sends the address you type, and nothing else about
+you, to <code>site-check.kerrco.workers.dev</code>, a server we run, when you press the button. That server reads up
+to 25 pages of the site as <code>CheckEngineBot</code> (it obeys robots.txt; see <a href="/bot/">the crawler page</a>)
+and sends back only counts and example page paths, not the pages. It keeps a summary of the result for one hour so a
+repeat check is quick. To keep the limits fair it also holds daily counts of checks per visitor, per site and in
+total; the visitor count uses a one-way code made from your internet address and the date, never the address, and
+all of it is deleted when the day ends. The checker sets no cookie and stores nothing in your browser. It runs on
+Cloudflare, which hosts it.</p>
 <p>The same checks are offered to AI assistants as a connector at <code>mcp.docketseo.app</code>, run by the same
 server. When you ask an assistant such as Claude to use it, the assistant sends that server the tool's arguments: a
 page address, or for the snippet preview a title and description. Nothing else about you or the conversation is sent.

@@ -59,6 +59,8 @@ REQUIRED_TYPES = list(REQUIRED_PROPS)
 
 #: The free checkers, in the order the hub lists them. (slug, name, question).
 TOOLS = [
+    ("website-checker", "Website checker",
+     "What needs fixing across up to 25 pages of your site?"),
     ("seo-checker", "SEO checker",
      "What is wrong with this page, how bad is it, and what should be fixed first?"),
     ("ai-crawler-checker", "AI crawler checker",
@@ -80,7 +82,7 @@ TOOLS = [
 ]
 
 
-def audit_next(src: str, *, what: str, own: bool = False) -> str:
+def audit_next(src: str, *, what: str, own: bool = False, summary: str | None = None) -> str:
     """Shown after a result: what one free check was, and what the Mac audit adds.
 
     The free download comes first (content standard: one clear next step, Buy
@@ -92,11 +94,12 @@ def audit_next(src: str, *, what: str, own: bool = False) -> str:
     sample = (f'<a class="btn-ghost" href="{SAMPLE_REPORT}" data-ev="Sample report" '
               f'data-ev-button="{src}">See a sample report</a>' if HAS_SAMPLE else "")
     own_line = '\n  <p class="checker-own" id="checker-own"></p>' if own else ""
+    summary = summary or (f"Docket runs {N_CHECKS} checks across your whole site, ranked by "
+                         "what to fix first, each with where it is and the change to make. "
+                         "The free download shows your score and the top problem in full.")
     return f"""
 <div class="checker-next" id="checker-next" hidden>{own_line}
-  <p><strong>That was {what}.</strong> Docket runs {N_CHECKS} checks across your whole site, ranked by
-  what to fix first, each with where it is and the change to make. The free download shows your score
-  and the top problem in full.</p>
+  <p><strong>That was {what}.</strong> {summary}</p>
   <div class="buy-block compact">
     <div class="hero-cta">
       <a class="btn" href="{download_url(try_src)}" data-ev="Download" data-ev-button="{try_src}">Try it free</a>
@@ -145,11 +148,14 @@ def hub() -> Path:
         f'<li><a href="/tools/{slug}/"><strong>{html.escape(name)}</strong></a>: {html.escape(q)}</li>'
         for slug, name, q in TOOLS)
     body = f"""
-<p class="lede">Free checks you can run on any page, in your browser. No sign-up required and nothing
-to install. Each one answers one question in a few seconds.</p>
+<p class="lede">Free checks you can start in your browser. Check up to 25 pages of a site, or look
+more closely at one page. No sign-up required and nothing to install.</p>
 <ul class="tool-list">{items}</ul>
 
 <h2>Which one to use</h2>
+<p><strong>You want to find problems across your website.</strong> The
+<a href="/tools/website-checker/">website checker</a> reads up to 25 pages and puts the top issues
+in order, with counts and example paths. Allow about 30 seconds for this quick check.</p>
 <p><strong>You want to know what is wrong with a page, and what to fix first.</strong> Start with the
 SEO checker. It reads the page and its robots.txt, gives a score, counts the problems in each area and
 puts the worst one at the top with the fix. The checkers below go deeper on one question each.</p>
@@ -180,7 +186,8 @@ every structured data block on the page, says which line breaks the JSON, and li
 rich result needs that are missing.</p>
 
 <h2>What a free check can and cannot tell you</h2>
-<p>Each checker reads what a crawler would read at the moment you ask: one robots.txt file, for one
+<p>The <a href="/tools/website-checker/">website checker</a> reads up to 25 pages and keeps only a
+summary for one hour. The page checkers below read what a crawler would read at the moment you ask: one robots.txt file, for one
 page. It cannot see a firewall or CDN that refuses a crawler the file allows, and it does not look at
 the rest of your site. The rules come from Docket, the desktop app these pages belong to, so a free check
 and the app give the same answer for the same page. The checkers fetch only what they need, name
@@ -316,6 +323,7 @@ then ranks what to fix with the rest of its {N_CHECKS} checks.</p>
 
 <h2>Related</h2>
 <ul>
+<li><a href="/tools/website-checker/">Free website checker: check up to 25 pages</a></li>
 <li><a href="/learn/seo-audit/">What an SEO audit checks beyond robots.txt</a></li>
 <li><a href="/best/free-seo-audit-tools/">Free website audit tools and their limits</a></li>
 <li><a href="/tools/ai-crawler-checker/">AI crawler checker: can ChatGPT read your site?</a></li>
@@ -525,6 +533,7 @@ with the rest of its {N_CHECKS} checks, and ranks what to fix first.</p>
 
 <h2>Related</h2>
 <ul>
+<li><a href="/tools/website-checker/">Free website checker: check up to 25 pages</a></li>
 <li><a href="/how-to/write-title-tags-that-fit/">Write title tags that fit</a></li>
 <li><a href="/how-to/write-meta-descriptions/">Write meta descriptions for every page</a></li>
 <li><a href="/how-to/fix-favicon-not-showing-in-search/">Fix a favicon that is not showing</a></li>
@@ -646,6 +655,7 @@ and ranks what to fix with the rest of its {N_CHECKS} checks.</p>
 
 <h2>Related</h2>
 <ul>
+<li><a href="/tools/website-checker/">Free website checker: check up to 25 pages</a></li>
 <li><a href="/how-to/json-ld-parser-errors/">Fix JSON-LD parser errors</a></li>
 <li><a href="/tools/meta-tag-checker/">Title and meta tag checker</a></li>
 <li><a href="/tools/robots-txt-tester/">Robots.txt tester</a></li>
@@ -820,6 +830,7 @@ ranked by what to fix first. To check a page that is already live, use the
 
 <h2>Related</h2>
 <ul>
+<li><a href="/tools/website-checker/">Free website checker: check up to 25 pages</a></li>
 <li><a href="/how-to/write-title-tags-that-fit/">Write title tags that fit</a></li>
 <li><a href="/how-to/write-meta-descriptions/">Write meta descriptions for every page</a></li>
 <li><a href="/how-to/fix-duplicate-title-tags/">Fix duplicate title tags</a></li>
@@ -978,7 +989,8 @@ robots.txt for Googlebot and the AI search crawlers. It takes a few seconds.</p>
           "Press <strong>Check this page</strong>.",
           "Fix the item at the top first, then check again to watch the score move."],
    addon="Want this check on every page you open?",
-   step_up=(f'This is one page. <a href="/download/">Docket</a> crawls the whole site and runs {N_CHECKS} '
+   step_up=('Want to check more pages here? The <a href="/tools/website-checker/">free website checker</a> '
+            f'reads up to 25 pages. <a href="/download/">Docket</a> crawls every page and runs {N_CHECKS} '
             "checks, including the ones that only show up between pages, like two pages with one title or a "
             "page nothing links to."))}
 {audit_next("tools-seo-checker", what="one page, read once", own=True)}
@@ -1006,6 +1018,7 @@ one-page check cannot see those, and that is what the app is for.</p>
 
 <h2>Related</h2>
 <ul>
+<li><a href="/tools/website-checker/">Free website checker: check up to 25 pages</a></li>
 <li><a href="/learn/seo-audit/">What is an SEO audit?</a></li>
 <li><a href="/best/free-seo-audit-tools/">Free SEO audit tools, compared</a></li>
 <li><a href="/tools/meta-tag-checker/">Title and meta tag checker</a></li>
@@ -1118,7 +1131,8 @@ one-page check cannot see those, and that is what the app is for.</p>
              f"It starts at 100 and loses {PROBLEM_COST} for each problem and {WARNING_COST} for each thing worth "
              "fixing on the page. The rule is the same for every page, so a fix always moves it."),
             ("Can it check my whole website?",
-             f"It checks one page. Docket's app crawls the whole site with {N_CHECKS} checks, and its free "
+             "This tool checks one page. The free website checker reads up to 25 pages. "
+             f"Docket's app crawls the whole site with {N_CHECKS} checks, and its free "
              "download shows the site's score and the top problem in full."),
         ],
     )
@@ -1228,6 +1242,7 @@ when the old address is coming back.</p>
 
 <h2>Related</h2>
 <ul>
+<li><a href="/tools/website-checker/">Free website checker: check up to 25 pages</a></li>
 <li><a href="/how-to/fix-redirect-problems/">Fix redirect problems</a></li>
 <li><a href="/how-to/redirect-http-to-https/">Redirect http to https</a></li>
 <li><a href="/tools/http-header-checker/">HTTP header checker</a></li>
@@ -1347,6 +1362,7 @@ It does not report a missing Content-Security-Policy; the row is there for refer
 
 <h2>Related</h2>
 <ul>
+<li><a href="/tools/website-checker/">Free website checker: check up to 25 pages</a></li>
 <li><a href="/how-to/fix-missing-security-headers/">Fix missing security headers</a></li>
 <li><a href="/tools/redirect-checker/">Redirect chain checker</a></li>
 <li><a href="/tools/seo-checker/">Free SEO checker</a></li>

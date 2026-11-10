@@ -34,10 +34,10 @@ def bot() -> Path:
     token = lim["user_agent_token"]
     body = f"""
 <p class="lede">If <code>{escape(token)}</code> is in your logs, somebody audited your site with
-Docket from their own computer. There is no Docket crawler farm and no scheduled sweep of the web:
-every request under this name belongs to one audit that one person started. The one other thing
-that sends requests from Docket is an occasional research survey, which has its own name and is
-described below.</p>
+Docket from their own computer. There is no scheduled sweep of the web: every request under this
+name belongs to one audit that one person started on their own machine. Two other things send
+requests from our own servers, each under its own name and described below: the free website
+checker, when a visitor asks it to check a site, and an occasional research survey.</p>
 
 <h2>How it identifies itself</h2>
 
@@ -92,6 +92,23 @@ requested: no other page, no sitemap, no <code>llms.txt</code> and no favicon. A
 the audit can switch robots.txt off, which exists for auditing their own staging sites. If that
 matters to you, refuse the user agent at your server as well; that is the only rule a crawler
 cannot choose to ignore.</p>
+
+<h2>The free website checker</h2>
+
+<p>The free <a href="/tools/website-checker/">website checker</a> reads a site from our servers
+when a visitor types its address. It sends this user agent:</p>
+
+<pre><code>CheckEngineBot/1.0 (+https://checkengineseo.com/bot/)</code></pre>
+
+<p>One check reads at most 25 pages of one site: it starts at most one request every tenth of a
+second, four at a time, and stops after 30 seconds whatever it has reached. It reads your
+<code>/robots.txt</code> first and obeys the groups written for <code>CheckEngineBot</code> and for
+<code>*</code>; a page they disallow is not requested. A site can be checked at most three times a day
+and once a minute, whoever asks. It sends no cookies, and it keeps nothing but a short summary for one
+hour. To keep it out entirely:</p>
+
+<pre><code>User-agent: CheckEngineBot
+Disallow: /</code></pre>
 
 <h2>The research survey</h2>
 

@@ -134,6 +134,7 @@ import howto_compression  # noqa: E402
 import extractability  # noqa: E402
 import tool_ai_crawlers  # noqa: E402
 import tools_free  # noqa: E402
+import tools_website_checker  # noqa: E402
 import ai_assistants  # noqa: E402
 import ai_questions  # noqa: E402
 import title_ii  # noqa: E402
@@ -1699,6 +1700,7 @@ def main() -> int:
     pages += extractability.build_all()
     pages += tool_ai_crawlers.build_all()
     pages += tools_free.build_all()
+    pages.append(tools_website_checker.website_checker())
     pages += ai_assistants.build_all()
     pages += ai_questions.build_all()
     pages += title_ii.build_all()
