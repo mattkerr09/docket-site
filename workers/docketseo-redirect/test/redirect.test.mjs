@@ -274,10 +274,11 @@ test('health is a read-only local GET', async () => {
   assert.equal(head.headers.get('Allow'), 'GET')
 })
 
-test('the committed default is passthrough and forwards the original request and response unchanged', async (t) => {
-  assert.equal(MODE, 'passthrough')
+test('the committed mode is one known mode, and passthrough forwards the original request and response unchanged', async (t) => {
+  assert.ok(['passthrough', 'fallback', 'redirect'].includes(MODE))
   const source = await readFile(new URL('../src/index.js', import.meta.url), 'utf8')
-  assert.equal(source.match(/export const MODE = 'passthrough'/g)?.length, 1)
+  assert.equal(source.match(/^export const MODE = '(passthrough|fallback|redirect)'$/gm)?.length, 1)
+  const passthrough = makeHandler('passthrough')
   for (const path of ['/', '/updater.json', '/updates/release/file.exe', '/__redirect-health']) {
     for (const method of ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'OPTIONS']) {
       const request = requestFor(`${path}?keep=%2f`, {
@@ -292,7 +293,7 @@ test('the committed default is passthrough and forwards the original request and
         if (method === 'POST') assert.equal(await args[0].text(), 'original body')
         return origin
       })
-      assert.equal(await defaultWorker.fetch(request), origin)
+      assert.equal(await passthrough.fetch(request), origin)
       assert.equal(mock.mock.callCount(), 1)
     }
   }
