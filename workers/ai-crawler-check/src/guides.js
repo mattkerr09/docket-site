@@ -1,3 +1,5 @@
+import { BASE } from './site-brand.js'
+
 // One switch disables guide text, structured URLs and guide counts together.
 export const GUIDE_LINKS = true
 
@@ -34,7 +36,7 @@ export function addGuide(out, family) {
   if (!finding || !(finding.level === 'problem' || finding.level === 'warning' || finding.allowed === false)) return false
   const path = guidePath(finding)
   if (!path) return false
-  const url = `https://docketseo.app${path}?utm_source=claude-connector`
+  const url = `${BASE}${path}?utm_source=claude-connector`
   const lines = out.text.split('\n')
   lines.splice(after + 1, 0, `How to fix it, step by step: ${url}`)
   out.text = lines.join('\n')

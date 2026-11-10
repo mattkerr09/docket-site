@@ -176,7 +176,7 @@ same thing as consistency.</strong></p>
 <p>The registered checks are <code>brand.name_consistency</code>, which compares what your
 markup calls you, and <code>brand.logo</code>, which covers logo presence and markup. Both are
 in the brand area. See
-<a href="/learn/brand-consistency/">the question no crawler asks &rarr;</a> for what that lane
+<a href="/learn/brand-consistency/">the question no crawler asks &rarr;</a> for what that area
 measures and where dedicated tools beat an SEO crawler at it.</p>
 """
     return render(

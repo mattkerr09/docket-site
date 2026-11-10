@@ -55,6 +55,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from render import SITE_BRAND
 from render import DATA, render  # noqa: E402
 
 #: When the check's source was read and these constants transcribed from it.
@@ -98,7 +99,7 @@ def email_capture_audit() -> Path:
     body = f"""
 <p class="lede">Is your site actually collecting email, or does it only look as though it
 is? Docket has a check called <strong>{row["title"]}</strong> (<code>mar.email_capture</code>,
-in the <strong>{lane_label}</strong> lane), and the honest answer is that it settles
+in the <strong>{lane_label}</strong> area), and the honest answer is that it settles
 a much smaller question than its name suggests.</p>
 
 <p>Here is the whole of it. The check stands down if an email tool's tag is already on the
@@ -216,18 +217,18 @@ property of who owns the address book, and it is true without any figure under i
 
 <p>Two of them are worth knowing about, because each answers something this one does not.</p>
 
-<p>The tag half of this check reads the same tracker table as the rest of the lane, and that
+<p>The tag half of this check reads the same tracker table as the rest of the area, and that
 table is what the coverage checks work from. Whether the tags you believe are running
 appear on every page rather than on the template they were added to.
-<a href="/learn/marketing-tag-audit/">The tracking lane, and the coverage question it is
+<a href="/learn/marketing-tag-audit/">The tracking area, and the coverage question it is
 built around.</a></p>
 
-<p>The form half belongs to a different lane entirely. <code>cvr.no_capture</code> is the
+<p>The form half belongs to a different area entirely. <code>cvr.no_capture</code> is the
 check that does count forms, and <code>mailto:</code>, <code>tel:</code> and
 <code>sms:</code> links, and anything labelled contact, enquire, book or support, and it
 fires at high severity when a site has none of them. Its question is whether a visitor can
 reach you at all, not whether you are building a list.
-<a href="/learn/conversion-audit/">What the conversion lane judges, and what it refuses to
+<a href="/learn/conversion-audit/">What the conversion area judges, and what it refuses to
 judge for you.</a></p>
 
 <h2>Checking this yourself</h2>
@@ -247,9 +248,14 @@ audience, and no check in any tool will ever report it.</p>
     return render(
         cat="learn", slug="email-capture-audit",
         title="Email capture audit: the check that ignores your form",
-        desc=(f"Docket's email list building check never looks at a form. It looks for an "
-              f"email tool's tag, or {len(PHRASES)} words in your copy, and here is what "
-              f"that can and cannot tell you."),
+        desc=(
+            (f"Docket's email list building check never looks at a form. It looks for an email tool's "
+             f"tag, or {len(PHRASES)} words in copy, and what that can and cannot tell you.")
+            if SITE_BRAND == "checkengine"
+            else (f"Docket's email list building check never looks at a form. It looks for an "
+                  f"email tool's tag, or {len(PHRASES)} words in your copy, and here is what "
+                  f"that can and cannot tell you.")
+        ),
         h1="Email capture audit",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Email capture',
         body=body,

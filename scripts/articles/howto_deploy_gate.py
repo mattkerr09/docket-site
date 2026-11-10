@@ -113,7 +113,7 @@ test panels, the GitHub Action) is here.</p>
         cat="how-to", slug="gate-a-deploy-on-seo-regressions",
         title="Gate a deploy on SEO regressions",
         desc=("docket diff audits production against staging and fails the build on "
-              "what the deploy introduced, including the regression that registers "
+              "what the deploy introduced, including one that registers "
               "as three improvements."),
         h1="How to gate a deploy on SEO regressions",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Deploy gate',

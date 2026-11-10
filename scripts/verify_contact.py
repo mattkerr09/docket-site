@@ -20,6 +20,7 @@ Usage:  python3 scripts/verify_contact.py
 """
 from __future__ import annotations
 
+import os
 import re
 import subprocess
 import sys
@@ -27,6 +28,9 @@ import urllib.error
 import time
 import urllib.request
 from pathlib import Path
+from urllib.parse import urlsplit
+
+from brand import HOST, SITE_BRAND
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import own_hosts  # noqa: E402
@@ -74,7 +78,10 @@ def contact_urls() -> dict[str, set[str]]:
             # them were HEADed on every deploy.
             if "/releases/download/" in url or "/releases" in url:
                 continue
-            if any(h in url for h in CONTACT_HOSTS):
+            parsed = urlsplit(url)
+            new_contact_page = (SITE_BRAND == "checkengine" and parsed.hostname == HOST
+                                and parsed.path == "/contact/")
+            if any(h in url for h in CONTACT_HOSTS) or new_contact_page:
                 found.setdefault(url, set()).add(rel)
     return found
 
@@ -140,6 +147,9 @@ def reachable(url: str, attempts: int = 3) -> tuple[bool, str]:
     A real 404 or 410 is returned immediately - those are not flaky and
     retrying them only slows the deploy down.
     """
+    if (SITE_BRAND == "checkengine" and urlsplit(url).hostname == HOST and "--check-new-host" not in sys.argv
+            and os.environ.get("DOCKET_CHECK_NEW_HOST") != "1"):
+        return True, "SKIP new host until it serves. Use --check-new-host after cutover."
     last = ""
     for attempt in range(attempts):
         req = urllib.request.Request(url, method="HEAD",
@@ -189,11 +199,16 @@ def reachable_or_raw(url: str) -> tuple[bool, str]:
 def main() -> int:
     problems: list[str] = []
     checked = 0
+    skipped = 0
+    offline = "--offline" in sys.argv
 
     for domain, pages in sorted(addresses().items()):
         checked += 1
         if domain in MX_EXEMPT:
             print(f"  {domain}: exempt — {MX_EXEMPT[domain]}")
+            continue
+        if offline:
+            print(f"  SKIP MX @{domain}: --offline")
             continue
         ok, why = has_mx(domain)
         if not ok:
@@ -217,7 +232,13 @@ def main() -> int:
 
     for url, pages in sorted(contact_urls().items()):
         checked += 1
+        if offline:
+            print(f"  SKIP HEAD {url}: --offline")
+            continue
         ok, why = reachable_or_raw(url)
+        if why.startswith("SKIP "):
+            skipped += 1
+            print(f"  {url}: {why}")
         if not ok:
             problems.append(f"{url} on {len(pages)} page(s): {why}")
 
@@ -226,7 +247,12 @@ def main() -> int:
         for p in problems:
             print(f"  {p}")
         return 1
-    print(f"CONTACT ok — {checked} advertised channel(s), all reachable")
+    if offline:
+        print("CONTACT local checks ok. SKIP DNS and live contact checks: --offline")
+    elif skipped:
+        print(f"CONTACT ok. {skipped} new-host link(s) skipped until cutover.")
+    else:
+        print(f"CONTACT ok — {checked} advertised channel(s), all reachable")
     return 0
 
 

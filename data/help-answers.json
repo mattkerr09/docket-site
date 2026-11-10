@@ -1,0 +1,194 @@
+[
+  {
+    "id": "try",
+    "stage": "Before you buy",
+    "question": "Can I try an audit before I pay?",
+    "answer": "Yes. Download Docket and run an audit without a key. The free version shows the score, the problem counts for each area and the top problem in full with its fix. Buying inside the app opens the audit you ran in full.",
+    "help_answer": "No key is needed to try Docket. The free audit includes your score, each area's problem count and the worst problem with its fix.",
+    "source": {
+      "source_path": "/download/",
+      "claim": ["Step 1 needs no key: Docket runs the same full audit for free.", "{FREE_LINE}", "Buy from inside the app and the audit you ran opens in full."]
+    }
+  },
+  {
+    "id": "price",
+    "stage": "Before you buy",
+    "question": "What does Docket cost?",
+    "answer": "{PRICE_WORDS} There is no subscription, no crawl credits and no per-seat pricing.",
+    "source": {
+      "source_path": "/download/",
+      "claim": ["{PRICE_CLAIM}", "No subscription, no crawl credits, no per-seat pricing."]
+    }
+  },
+  {
+    "id": "platforms",
+    "stage": "Before you buy",
+    "question": "Will it run on my computer?",
+    "answer": "The desktop app runs on {PLATFORMS}. You need an internet connection to the site you audit and to the payment provider for licence activation and checks.",
+    "source": {
+      "source_path": "/download/",
+      "claim": ["{MACOS} or later, {MAC_HW}", "64-bit Windows", "An internet connection to the site you are auditing, and to our payment provider when the licence is activated and re-checked."]
+    }
+  },
+  {
+    "id": "licence",
+    "stage": "Before you buy",
+    "question": "How many computers does a licence cover?",
+    "answer": "One licence covers {LICENCE_COVERS}. Activating a computer uses a place on that licence. Deactivate one to move it to another computer.",
+    "source": {
+      "source_path": "/legal/terms/",
+      "claim": ["One licence covers {LICENCE_COVERS}.", "Activating Docket on a computer uses one of them; deactivate one to move it to another."]
+    }
+  },
+  {
+    "id": "clients",
+    "stage": "Before you buy",
+    "question": "Can I audit client sites and charge for the work?",
+    "answer": "Yes. You may audit any number of websites, including for clients, and charge them for the work. The reports are yours to send, and you may rebrand the CSV and JSON exports.",
+    "source": {
+      "source_path": "/legal/terms/",
+      "claim": ["You may audit any number of websites with it, including on behalf of clients, and you may charge those clients for the work.", "Reports it produces are yours: send them, rebrand the CSV and JSON exports, bill for them."]
+    }
+  },
+  {
+    "id": "updates",
+    "stage": "Before you buy",
+    "question": "Are updates included?",
+    "answer": "Updates within the current major version cost nothing and install through the app's updater. A paid upgrade for a future major version has not been decided. If that happens, the copy you paid for keeps working.",
+    "source": {
+      "source_path": "/legal/terms/",
+      "claim": ["upgrades cost nothing and install through the app's own updater.", "Whether a future 2.0 is a paid upgrade has not been decided; if it ever is, the copy you paid for keeps working."]
+    }
+  },
+  {
+    "id": "crawl-limits",
+    "stage": "Before you buy",
+    "question": "Is there a limit on how many pages I can audit?",
+    "answer": "You can remove the page limit. Crawls still stop at their time limit, when there are no more pages to visit or when your computer runs out of memory. The download guide lists the defaults and ways to raise them.",
+    "source": {
+      "source_path": "/download/",
+      "claim": ["setting the page count to 0 removes the limit entirely.", "the frontier running dry and, on a genuinely enormous site, your machine's memory", "The defaults are deliberately polite; you can raise them."]
+    }
+  },
+  {
+    "id": "refund",
+    "stage": "Before you buy",
+    "question": "Can I get a refund if it does not suit me?",
+    "answer": "Ask within {REFUND_DAYS} days of the date on your receipt for a full refund to the payment method you used, including any tax charged. You do not have to give a reason or send evidence. The refund policy explains how to ask and what happens to your copy.",
+    "source": {
+      "source_path": "/legal/refunds/",
+      "claim": ["Ask within {REFUND_DAYS} days of the date on your receipt and the full purchase price goes back to the payment method it came from, along with any tax charged on top of it.", "You do not have to have stopped using it, give a reason, or send evidence of anything."]
+    }
+  },
+  {
+    "id": "data",
+    "stage": "Before you buy",
+    "question": "Where do my crawl and report go?",
+    "answer": "The crawl and report stay on your computer, and there is no account or telemetry. Optional checks reach outside it, including Google PageSpeed and Google's autocomplete. The offline option turns those optional checks off.",
+    "source": {
+      "source_path": "/download/",
+      "claim": ["There is no account to create and no telemetry.", "The crawl and the report stay on your computer.", "Google PageSpeed, which is sent the addresses of your homepage and top pages", "Google's autocomplete, which is sent your site's topic words", "or the offline tick in the desktop app"]
+    }
+  },
+  {
+    "id": "mac",
+    "stage": "After you install",
+    "question": "How do I start on a Mac?",
+    "answer": "Download the Mac app, choosing the Intel version if you have an Intel Mac. Double-click it to open it. Type a domain into the field and press Run audit.",
+    "source": {
+      "source_path": "/download/",
+      "claim": ["On an Intel Mac, the Intel version.", "Double-click it.", "type a domain, press Run audit, and watch it crawl."]
+    }
+  },
+  {
+    "id": "windows",
+    "stage": "After you install",
+    "question": "Where do I get the Windows app?",
+    "answer": "The download page links to the Windows installer. Docket is also in the Microsoft Store{STORE_NOTE}, free to download, with the licence bought in the app.",
+    "source": {
+      "source_path": "/download/",
+      "claim": ["On Windows, the Windows installer", "On Windows, Docket is also in the Microsoft Store{STORE_NOTE}: free to download, with the licence bought in the app."]
+    }
+  },
+  {
+    "id": "activate",
+    "stage": "After you install",
+    "question": "Where is my key, and how do I activate?",
+    "answer": "Your licence key arrives by email with your receipt. Paste the key into the field the app shows, then run your audit.",
+    "help_answer": "Use the key sent with your purchase receipt. Enter it in the app's key field to unlock the full audit.",
+    "source": {
+      "source_path": "/download/",
+      "claim": ["The licence key arrives with your receipt.", "Paste the key into the field the app shows, and run your first audit."]
+    }
+  },
+  {
+    "id": "lost-computer",
+    "stage": "After you install",
+    "question": "What if my computer dies before I deactivate it?",
+    "answer": "Email {SUPPORT_EMAIL} if a Mac or PC is lost or dies before you can deactivate it. Support can release that place on your licence.",
+    "source": {
+      "source_path": "/legal/terms/",
+      "claim": ["If a Mac or PC is lost or dies before you deactivate it, email {SUPPORT_EMAIL} and we release the seat."]
+    }
+  },
+  {
+    "id": "first-fix",
+    "stage": "After you install",
+    "question": "How do I know what to fix first?",
+    "answer": "Docket ranks findings by impact against effort. It marks areas it could not assess as unknown. Read the report's gaps as well as its first task.",
+    "source": {
+      "source_path": "/learn/seo-audit/",
+      "claim": ["ranks everything by impact against effort, and marks areas it could not assess as unknown rather than passing.", "Is there a first task?", "Does it admit what it could not check?"]
+    }
+  },
+  {
+    "id": "score-card",
+    "stage": "After you install",
+    "question": "Is a score card the full report?",
+    "answer": "A score card shows the score and how many problems each area has. The person fixing the site needs the full report to see the problems, affected pages and fixes.",
+    "source": {
+      "source_path": "/score-card/",
+      "claim": ["Each of the {N_LANES} areas of the audit, with how many problems it found.", "It does not say what the problems are, which pages have them or how to fix them.", "The person who will fix the site needs the full report."]
+    }
+  },
+  {
+    "id": "assistant",
+    "stage": "After you install",
+    "question": "Can an AI assistant run my audits?",
+    "answer": "Docket uses the Model Context Protocol so an assistant can run audits and read kept ones. The setup guide gives the command and configuration for a local MCP client on Mac and Windows.",
+    "source": {
+      "source_path": "/how-to/audit-your-site-from-an-ai-assistant/",
+      "claim": ["Docket speaks the Model Context Protocol", "On Windows, use the engine inside your install folder instead", "Restart the client and Docket appears as a tool."]
+    }
+  },
+  {
+    "id": "wrong-finding",
+    "stage": "After you install",
+    "question": "How do I report a finding that looks wrong?",
+    "answer": "Open a GitHub issue with the URL you audited and the check ID printed beside the finding. Say what you expected and why. Include a link to the specification or vendor documentation if it supports your case.",
+    "source": {
+      "source_path": "/contact/",
+      "claim": ["Open an issue with the URL you audited and the check ID.", "What you expected instead, and why.", "If a specification or a vendor's own documentation says otherwise, a link to it settles the question immediately."]
+    }
+  },
+  {
+    "id": "crash",
+    "stage": "After you install",
+    "question": "What should I send about a crash or bug?",
+    "answer": "Use the public GitHub issue tracker for a crash or bug. For a Mac or Windows report, include your macOS or Windows version and what you were doing.",
+    "source": {
+      "source_path": "/contact/",
+      "claim": ["Report a crash or a bug", "Open an issue with your macOS version and what you were doing"]
+    }
+  },
+  {
+    "id": "private-support",
+    "stage": "After you install",
+    "question": "Where do I ask about my purchase?",
+    "answer": "Email {SUPPORT_EMAIL} about a licence, refund or payment, or reply to your receipt. Keep these requests private because they carry your name and order reference.",
+    "source": {
+      "source_path": "/contact/",
+      "claim": ["Email {SUPPORT_EMAIL}, or reply to your receipt.", "These carry an order reference and a name, so never a public issue"]
+    }
+  }
+]

@@ -2,6 +2,8 @@
 """Offline checks for the switched-off Public Site Check page. No whole-site build."""
 from __future__ import annotations
 
+from brand import NAME, BASE
+
 import ast
 from contextlib import ExitStack
 from html import escape
@@ -57,7 +59,7 @@ def check_content(html: str) -> None:
     for phrase in ("Public Site Check", "$149", "add-on", "desktop app", "Mac", "64-bit Windows",
                    "public body", "WCAG 2.1 Level A and AA", "Title II date", "board report", "PDF"):
         assert phrase in answer, phrase
-    assert "It works without a Docket SEO licence." in text
+    assert f"It works without a {NAME} licence." in text
     assert "By Matt Kerr" in text and "Published" in text
     assert "Checked 8 November 2026." in text
 
@@ -161,7 +163,7 @@ def check_build(enabled: bool, buy_url: str) -> None:
             assert scripts <= shared_scripts, "no new third-party script"
         build.write_sitemap([existing] + added)
         sitemap = (site / "sitemap.xml").read_text()
-        assert sitemap.count("<loc>https://docketseo.app/public-site-check/</loc>") == int(enabled)
+        assert sitemap.count(f"<loc>{BASE}/public-site-check/</loc>") == int(enabled)
         assert (site / "public-site-check").exists() == enabled
         if not enabled:
             for page in site.rglob("*.html"):
@@ -174,7 +176,7 @@ def main() -> int:
     assert any(isinstance(node, ast.AugAssign) and ast.unparse(node) == "pages += public_site_check.build_all()"
                for node in main_fn.body), "wire the guarded generator into the sitemap's page list"
     for enabled in (False, True):
-        for buy_url in ("", "https://docketseo.app/test-checkout?src=public-site-check&test=1"):
+        for buy_url in ("", f"{BASE}/test-checkout?src=public-site-check&test=1"):
             check_build(enabled, buy_url)
     print("PUBLIC SITE CHECK ok: off writes nothing; on renders the page and sitemap; checkout is guarded")
     return 0

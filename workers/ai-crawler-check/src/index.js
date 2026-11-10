@@ -22,15 +22,16 @@
  *     Requests with no Origin (curl) are answered, because a browser is the
  *     only thing CORS protects and a script can fetch robots.txt itself.
  */
+import { BASE, HOST } from './site-brand.js'
 import { evaluate, parseRobots } from './robots.js'
 import { checkJsonLd, checkMeta, extract } from './page.js'
 import { checkHeaders, checkRedirects, trace } from './trace.js'
 import { handleMcp, DailyCap } from './mcp.js'
 export { DailyCap }
 
-export const ALLOWED_ORIGIN = 'https://docketseo.app'
-export const USER_AGENT = 'DocketRobotsCheck/1.0 (+https://docketseo.app/tools/ai-crawler-checker/)'
-export const PAGE_AGENT = 'DocketPageCheck/1.0 (+https://docketseo.app/tools/)'
+export const ALLOWED_ORIGIN = BASE
+export const USER_AGENT = `DocketRobotsCheck/1.0 (+${BASE}/tools/ai-crawler-checker/)`
+export const PAGE_AGENT = `DocketPageCheck/1.0 (+${BASE}/tools/)`
 const MAX_PAGE_BYTES = 2 * 1024 * 1024
 const MAX_BYTES = 512 * 1024
 const MAX_REDIRECTS = 5
@@ -292,13 +293,13 @@ export async function handle(request, fetchImpl = fetch, env = {}, store = undef
     return new Response('7yJsIZ3Wi6pCHx3viqGg_oYnbEutp4aJ-mAdUywySK4', { status: 200, headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' } })
   }
   if (iconPath === '/favicon.ico' || iconPath === '/icon.png') {
-    return new Response(null, { status: 301, headers: { Location: 'https://docketseo.app/icon.png', 'Cache-Control': 'public, max-age=86400' } })
+    return new Response(null, { status: 301, headers: { Location: `${BASE}/icon.png`, 'Cache-Control': 'public, max-age=86400' } })
   }
   if (iconPath === '/apple-touch-icon.png') {
-    return new Response(null, { status: 301, headers: { Location: 'https://docketseo.app/apple-touch-icon.png', 'Cache-Control': 'public, max-age=86400' } })
+    return new Response(null, { status: 301, headers: { Location: `${BASE}/apple-touch-icon.png`, 'Cache-Control': 'public, max-age=86400' } })
   }
   const origin = request.headers.get('Origin')
-  if (origin && origin !== ALLOWED_ORIGIN) return json({ error: 'This checker only answers docketseo.app.' }, 403, origin)
+  if (origin && origin !== ALLOWED_ORIGIN) return json({ error: `This checker only answers ${HOST}.` }, 403, origin)
   if (request.method === 'OPTIONS') {
     return new Response(null, { status: 204, headers: { ...cors(origin), 'Access-Control-Allow-Methods': 'GET', 'Access-Control-Max-Age': '86400' } })
   }

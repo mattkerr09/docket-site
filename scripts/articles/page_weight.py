@@ -325,7 +325,7 @@ how bad it is. Everything else on the list is a measurement you can trust to the
     return render(
         cat="learn", slug="page-weight",
         title="Page weight and SEO: how heavy is too heavy?",
-        desc=(f"A Docket audit of your site flags an HTML document over {VERY_HEAVY_KB} KB. "
+        desc=(f"A Docket audit flags an HTML document over {VERY_HEAVY_KB} KB. "
               f"What that counts, what it leaves out, and when a size is a floor "
               f"rather than a measurement."),
         h1="Page weight: how heavy is too heavy?",

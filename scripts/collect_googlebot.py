@@ -18,6 +18,8 @@ purpose: every address costs two lookups against somebody else's resolver.
 """
 from __future__ import annotations
 
+from brand import HOST
+
 import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
@@ -50,7 +52,7 @@ SPOT_CHECK = 6
 def _fetch(name: str) -> dict:
     req = urllib.request.Request(
         f"{BASE}/{name}.json",
-        headers={"User-Agent": "docketseo.app dataset collector"})
+        headers={"User-Agent": f"{HOST} dataset collector"})
     with urllib.request.urlopen(req, timeout=30) as resp:
         return json.loads(resp.read().decode("utf-8"))
 

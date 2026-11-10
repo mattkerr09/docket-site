@@ -65,9 +65,9 @@ pixels so it looks right on different surfaces.</li>
 <p>After a change, Google says recrawling can take anywhere from several days to several weeks. You can ask for the
 home page to be indexed again with the URL Inspection tool in Search Console.</p>
 
-<h2>What Docket checks</h2>
+<h2>What the audit checks</h2>
 
-<p>Docket opens your home page, takes the first two <code>&lt;link&gt;</code> tags whose <code>rel</code> contains the
+<p>The tool opens your home page, takes the first two <code>&lt;link&gt;</code> tags whose <code>rel</code> contains the
 word icon, and fetches each one. A file counts if the server answers, the answer is not an HTML page, and it is not
 empty. If neither works, it tries <code>/favicon.ico</code> the same way. If nothing loads it reports
 <em>{esc(none["title"])}</em>, at low severity.</p>

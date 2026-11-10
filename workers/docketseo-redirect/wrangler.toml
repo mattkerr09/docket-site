@@ -1,0 +1,7 @@
+name = "docketseo-redirect"
+main = "src/index.js"
+compatibility_date = "2026-11-09"
+workers_dev = false
+
+# CEO adds routes in the dashboard: docketseo.app/* and www.docketseo.app/*
+# mcp.docketseo.app stays on its existing Worker route.

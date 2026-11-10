@@ -4,6 +4,8 @@
 Compared with origin/main (the last deployed state), not HEAD: see baseline_ref."""
 from __future__ import annotations
 
+from brand import BASE, LASTMOD_FILE, SITE_BRAND
+
 import json
 import os
 from pathlib import Path
@@ -11,7 +13,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parent.parent
-LASTMOD = "data/page-lastmod.json"
+LASTMOD = "data/" + LASTMOD_FILE
 MAX_CHANGED_PAGES = 12
 
 
@@ -30,20 +32,25 @@ def baseline_ref() -> str:
 
 def head_lastmod() -> dict:
     ref = baseline_ref()
-    result = subprocess.run(
-        ["git", "show", f"{ref}:{LASTMOD}"], cwd=ROOT,
-        capture_output=True, text=True,
-    )
-    if result.returncode:
-        # Only a missing file is an empty baseline. Other git errors must fail.
+    candidates = [LASTMOD]
+    if SITE_BRAND == "checkengine":
+        # Before the rename ships, the deployed baseline has Docket hashes.
+        candidates.append("data/page-lastmod.json")
+    for path in candidates:
+        result = subprocess.run(
+            ["git", "show", f"{ref}:{path}"], cwd=ROOT,
+            capture_output=True, text=True,
+        )
+        if result.returncode == 0:
+            return json.loads(result.stdout)
+        # Only a missing file permits the fallback. Other git errors must fail.
         listing = subprocess.run(
-            ["git", "ls-tree", "--name-only", ref, "--", LASTMOD],
+            ["git", "ls-tree", "--name-only", ref, "--", path],
             cwd=ROOT, capture_output=True, text=True, check=True,
         )
         if listing.stdout.strip():
             raise ValueError(result.stderr.strip())
-        return {}
-    return json.loads(result.stdout)
+    return {}
 
 
 def main() -> int:
@@ -62,7 +69,7 @@ def main() -> int:
     print(f"CHURN  {len(changed)} changed pages. Limit is {MAX_CHANGED_PAGES}.")
     for page in changed[:15]:
         path = page.removesuffix("index.html")
-        print(f"  https://docketseo.app/{path}")
+        print(f"  {BASE}/{path}")
 
     if len(changed) <= MAX_CHANGED_PAGES:
         print("CHURN OK")

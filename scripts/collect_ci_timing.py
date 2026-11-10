@@ -30,6 +30,8 @@ every number. A timing figure without those three is not a measurement.
 """
 from __future__ import annotations
 
+from brand import BASE
+
 import json
 import platform
 import subprocess
@@ -46,7 +48,7 @@ CAP = 25
 # frame is small and the point of the figure is an order of magnitude, not a
 # benchmark — the dataset says so and the page must not claim more.
 SITES = [
-    "https://docketseo.app",
+    BASE,
     "https://www.allbirds.com",
     "https://www.thefarmersdog.com",
     "https://pizzapilgrims.co.uk",

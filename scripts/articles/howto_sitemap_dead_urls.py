@@ -31,11 +31,12 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from brand import FORMER_ADDRESS_SENTENCE  # noqa: E402
 from render import render  # noqa: E402
 
 
 def sitemap_dead_urls() -> Path:
-    body = """
+    body = f"""
 <p class="lede">An audit reports that some of the URLs in your sitemap are broken, and tells you
 to regenerate the file so it contains only live, indexable, canonical pages. When those URLs
 really are 404s, that is correct and it is the most common sitemap defect there is. When they are
@@ -75,8 +76,8 @@ stopped waiting, not an answer from your server. Reporting it as "broken" descri
 page two contradictory ways in one document.
 <a href="/how-to/pages-an-audit-could-not-reach/">"Could not be reached" is not a
 diagnosis &rarr;</a>.</li>
-<li><strong>A host that hung up once.</strong> This one is ours. Auditing docketseo.app, the host
-answered dozens of requests and reset the connection on a single one. Two findings named that
+<li><strong>A host that hung up once.</strong> This one is ours. Auditing <span data-brand-history>docketseo.app</span>, the host
+answered dozens of requests and reset the connection on a single one.<span data-brand-history>{FORMER_ADDRESS_SENTENCE}</span> Two findings named that
 URL: one correctly calling it rate limiting rather than an outage, and this one telling us to drop
 from the sitemap a page that answered 200 in a browser the same minute.</li>
 </ul>

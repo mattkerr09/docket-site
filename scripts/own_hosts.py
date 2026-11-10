@@ -32,6 +32,8 @@ The rules, in one place:
 """
 from __future__ import annotations
 
+from brand import HOST, LEGACY_HOST, BRANDS
+
 import sys
 import threading
 import urllib.error
@@ -45,7 +47,9 @@ from urllib.parse import urlparse
 OWN_HOST_SUFFIXES = (
     "kerrco.workers.dev",
     "dodopayments.com",
-    "docketseo.app",
+    HOST,
+    LEGACY_HOST,
+    BRANDS["checkengine"]["HOST"],
     "outlier.host",
     "crispvideo.app",
     "adplaybook.app",

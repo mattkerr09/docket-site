@@ -35,6 +35,8 @@ Usage:  python3 scripts/collect_mail_small.py --date YYYY-MM-DD
 """
 from __future__ import annotations
 
+from brand import HOST
+
 import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
@@ -63,7 +65,7 @@ OVERPASS = "https://overpass-api.de/api/interpreter"
 #: Overpass answers 406 to a browser user-agent. Identifying the tool and a
 #: contact is what its usage policy asks for anyway — a shared free API is
 #: owed an honest introduction.
-OVERPASS_UA = ("docketseo.app survey (github.com/mattkerr09/docket-site) "
+OVERPASS_UA = (f"{HOST} survey (github.com/mattkerr09/docket-site) "
                "one query, contact via the repository issue tracker")
 QUERY = (
     '[out:json][timeout:180];'

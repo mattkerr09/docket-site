@@ -241,7 +241,7 @@ connect the page to anything.</p>
 Either the cluster is not reciprocal, or the declared language of the page contradicts its own
 prose. <a href="/how-to/fix-lang-attribute-mismatch/">hreflang and html lang mismatch</a>
 separates those. <a href="/learn/what-docket-checks/">What Docket checks</a> lists the rest of
-the indexing lane these findings sit in.</p>
+the indexing area these findings sit in.</p>
 
 <p>Everything on this page describes the build shipped as {RELEASE}, read in the engine source
 rather than from the manual.</p>

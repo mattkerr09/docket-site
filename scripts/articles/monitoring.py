@@ -19,6 +19,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from render import SITE_BRAND
 from render import render  # noqa: E402
 
 
@@ -133,9 +134,14 @@ the difference between research and a nuisance.</p>
     return render(
         cat="learn", slug="site-monitoring",
         title="SEO monitoring: what changed, not what is wrong",
-        desc=("Scheduled site re-audits on your own machine, regressions first, and "
-              "the two comparisons Docket refuses to make because the number "
-              "would look useful and be wrong."),
+        desc=(
+            ("Scheduled site re-audits on your own machine, regressions first, and the two "
+             "comparisons Docket refuses to make because the number would be wrong.")
+            if SITE_BRAND == "checkengine"
+            else ("Scheduled site re-audits on your own machine, regressions first, and "
+                  "the two comparisons Docket refuses to make because the number "
+                  "would look useful and be wrong.")
+        ),
         h1="Site monitoring",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Site monitoring',
         body=body,

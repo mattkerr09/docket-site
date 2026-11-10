@@ -22,11 +22,13 @@ from render import render  # noqa: E402
 
 def pagination() -> Path:
     body = """
-<p class="lede">Paginated archives fail quietly. The pages all return 200, they all look right
-in a browser, and the products or articles on page two onwards stop appearing in search. The
-usual cause is a single line in the head of every page after the first.</p>
+<p class="lede">For canonical pagination, each page that lists different items should point
+its canonical at itself. Do not point every page at the first page. That tells search engines
+the later pages are duplicates, even though they hold different products or articles.</p>
+<p>To audit your site, open a later page in a series and check its canonical in the HTML.
+If it points back to the first page, fix the pagination template and check the series again.</p>
 
-<h2>The mistake</h2>
+<h2>Should paginated pages canonicalise to the first page?</h2>
 
 <p>Pages 2, 3 and 4 declare page 1 as their canonical:</p>
 
@@ -39,8 +41,8 @@ different items.</p>
 
 <p>The cost is not the archive page itself, which nobody was searching for. It is everything
 <strong>only reachable from it</strong>. On a catalogue or a blog with a long back-file, the
-deeper pages are the only route to most of the site. Tell a crawler they are duplicates and it
-has little reason to keep fetching them, and the items behind them go with them.</p>
+deeper pages are the only route to most of the site. A canonical is a hint. If a crawler treats these pages as duplicates, it
+may stop fetching them, and the items only reachable through them may stop being crawled too.</p>
 
 <h2>Why sensible people do it</h2>
 
@@ -49,7 +51,7 @@ layout, so collapsing them to one canonical feels tidy, and it is the shape of a
 circulated widely when pagination markup was a live topic. The instinct is right and the target
 is wrong: near-identical <em>chrome</em> around different <em>items</em> is not duplication.</p>
 
-<h2>What to do instead</h2>
+<h2>How to set canonical tags for pagination</h2>
 
 <p><strong>Make every paginated page self-canonical.</strong> Page two's canonical is page two:</p>
 
@@ -66,7 +68,7 @@ doing the work.</p>
 title, or a heading that says which slice of the series it is. Not to rank the archive, but so
 nothing about the page invites the collapse you have just undone.</p>
 
-<h2>Checking it yourself, in one command</h2>
+<h2>How to check a pagination canonical</h2>
 
 <p>Fetch the second page of any series and read its canonical:</p>
 
@@ -74,24 +76,34 @@ nothing about the page invites the collapse you have just undone.</p>
 
 <p>If that prints page one, you have found it. Check a product category as well as the blog.
 These are usually set by a template, so the fault tends to be either absent or everywhere.</p>
+<p>After the template change, fetch a later page again. Its canonical should match its own
+address. Check that previous, next and numbered links still lead to the right pages.</p>
+<p>A canonical is only part of an <a href="/learn/seo-audit/">SEO audit</a>.
+If a later page cannot be crawled, use the <a href="/tools/robots-txt-tester/">robots.txt tester</a>
+to check for a blocking rule before changing its canonical.</p>
 
 <h2>What this does not cover</h2>
 
 <p>It is about what the pages <em>declare</em>, not about whether pagination is the right design.
-An infinite scroll or a "load more" button that never changes the URL has the opposite problem (
-there are no deeper pages for a crawler to find at all, canonical or otherwise), and a view-all
+An infinite scroll or a "load more" button that never changes the URL has the opposite problem:
+there are no deeper pages for a crawler to find at all, canonical or otherwise. A view-all
 page is a different trade again. Those are decisions about the site. This is a line in the head
 that is saying something untrue about it.</p>
 """
     return render(
         cat="how-to", slug="fix-paginated-pages-that-canonicalise-to-page-1",
-        title="Pagination SEO: the canonical mistake that hides pages",
-        desc=("Paginated pages canonicalising to page 1 tells Google they are duplicates. "
-              "What it costs a site, and how to audit yours in one command."),
-        h1="Pagination: the canonical mistake that hides pages",
+        modified="2026-11-09",
+        title="Canonical pagination: how to fix it | Docket",
+        desc=("Each paginated page with different items should be self-canonical. "
+              "Audit your site for canonicals pointing to the first page and fix the template."),
+        h1="Canonical pagination: which URL should each page use?",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / pagination',
         body=body,
         faq=[
+            ("What is canonical pagination?",
+             "It is how canonical tags identify the preferred URL for each page in a series. "
+             "When each page lists different items, each should point its canonical at itself, "
+             "rather than treating later pages as copies of the first."),
             ("Should paginated pages canonicalise to page 1?",
              "No. It tells search engines that pages 2 and beyond are duplicates of page 1, so "
              "they may stop being crawled, and everything only reachable from them goes with "

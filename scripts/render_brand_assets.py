@@ -42,6 +42,8 @@ resolve to" comes from a layout engine and nowhere else.
 """
 from __future__ import annotations
 
+from brand import HOST, SHORT
+
 import argparse
 import json
 import pathlib
@@ -220,12 +222,12 @@ body{{background:{pal['paper']};color:{pal['ink']};
 .foot{{font-family:ui-monospace,Menlo,monospace;font-size:23px;
   letter-spacing:.05em;color:{pal['tile']};display:flex;justify-content:space-between}}
 </style>
-<div class="row">{bare_shield}<span class="word">Docket</span><span class="chip">SEO</span></div>
+<div class="row">{bare_shield}<span class="word">{SHORT}</span><span class="chip">SEO</span></div>
 <div class="rule"></div>
 <div class="line">{pitch}</div>
 <div class="free">Try it free: your score and the top problem in full</div>
 <div class="price">{price}</div>
-<div class="foot"><span>{runs}</span><span>docketseo.app</span></div>
+<div class="foot"><span>{runs}</span><span>{HOST}</span></div>
 """
 
 
@@ -233,6 +235,7 @@ body{{background:{pal['paper']};color:{pal['ink']};
 TARGETS = (
     ("favicon.svg", 0, 0, "svg"),
     ("icon.png", 512, 512, "tile"),
+    ("favicon-192.png", 192, 192, "tile"),
     ("apple-touch-icon.png", 180, 180, "tile"),
     ("og.png", 1200, 630, "og"),
 )

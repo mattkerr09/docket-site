@@ -21,6 +21,12 @@ import json
 import pathlib
 import sys
 
+
+def _json_text(value) -> str:
+    """The inside of a JSON string for a JSON-LD block. HTML escaping is wrong here: a script block is not decoded, so
+    esc() printed &quot; and &amp; as those letters in the structured data (the alt-text page's description has alt="")."""
+    return json.dumps(str(value), ensure_ascii=False)[1:-1].replace("</", "<\\/")
+
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import facts as _facts  # noqa: E402
 
@@ -31,7 +37,9 @@ SITE = Path(__file__).resolve().parent.parent / "site"
 #: email addresses no page renders. Keep measurements here; publish the pages
 #: that quote them.
 DATA = Path(__file__).resolve().parent.parent / "data"
-BASE = "https://docketseo.app"
+from brand import BASE, HOST, NAME, TAGLINE, SITE_BRAND, FORMERLY, formerly_note
+from brand import html as brand_html
+from urllib.parse import quote
 
 
 def _check_counts() -> tuple:
@@ -511,6 +519,13 @@ def price_note_html() -> str:
 RELEASE = _facts.release_tag()
 
 
+def recorded_with(engine: str) -> str:
+    """" 1.3.160" for a caption, but only once the recorded build IS the release. A page may not name a build nobody can
+    download (verify_version_strings), so a recording made from the build about to ship says no number until it ships; the
+    number then appears by itself."""
+    return f" {engine}" if engine == RELEASE.lstrip("v") else ""
+
+
 #: Releases with a known issue in the AI-crawler server check, and the note the
 #: pages about that check show while one of them is the current release.
 #: ⚠️ THE NOTE NAMES NO LATER VERSION and switches itself off: the version gate
@@ -884,7 +899,7 @@ FREE_CLAUSE = (f"{RELEASE} is free while it is in beta"
 #: still shows $199 and still takes the card. Only the landing differs, and
 #: nobody sees that without completing a payment.
 CHECKOUT = ("https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79"
-            "?redirect_url=https%3A%2F%2Fdocketseo.app%2Fthank-you%2F")
+            "?redirect_url=" + quote(BASE + "/thank-you/", safe=""))
 
 #: ── BUY NOW, PAY LATER ─────────────────────────────────────────────────────
 #: DARK UNTIL SOMEONE SEES IT ON THE LIVE CHECKOUT. Flip to True only after
@@ -1057,11 +1072,11 @@ BILLING_EMAIL = "support@docketseo.app"
 #: here, and a test message is not ours to send. One real message received is
 #: what proves it; that is Matthew's to do, and he has been asked.
 SUPPORT_EMAIL = BILLING_EMAIL
-#: The company that will take the payment and appear on the card statement.
-#: Not chosen. The pages say "not chosen" rather than naming a likely candidate,
-#: because a buyer who reads a name here and sees a different one on their
-#: statement has been told something false by us.
-PROCESSOR = ""
+#: The reseller and merchant of record for every sale: it takes the payment, calculates and shows any sales tax or VAT
+#: at checkout, issues the receipt and any tax invoice in its own name, and refunds on our instruction (CEO, 2026-11-09,
+#: from the Dodo agreement; the pricing and privacy pages already said so). The publisher and licensor is SELLER.
+#: This site does not say what appears on a card statement: that is not something we have read.
+PROCESSOR = "Dodo Payments"
 
 
 def seller_address() -> str:
@@ -1184,7 +1199,7 @@ STYLE = """<style>
           keeps it from reading as a 2010 drop shadow: the shadow is much
           smaller than the blur, so it is a pool of darkness under the card
           rather than an outline around it.
-     Measured off outlier.host at 1440x900, which does the same three things:
+     Measured off a sister site's stylesheet at 1440x900, which does the same three things:
      rgba(255,255,255,.06) 0 2px 0 inset, rgba(255,255,255,.04) 0 0 0 1px inset,
      rgba(0,0,0,.95) 0 60px 130px -40px. */
   /* Ported from outlier-site: one gradient for text, one for a filled control,
@@ -1347,10 +1362,8 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
-/* The nav button carries the price only where the header has room for the
-   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
-   the other). Narrower, it says "Get Docket" and the hero carries both. */
-@media(max-width:1180px){.nav-price{display:none}}
+/* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
+   sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -1932,8 +1945,8 @@ nav{z-index:40}
 .faq-item p{font-size:var(--t-md);margin:0}
 
 /* ---- Futuristic touches (Matthew, 2026-10-09) -------------------------------
-   "honestly bookbreaker looks great, make every site just a little bit better":
-   the touches from bookbreaker.bet's stylesheet that this site lacked, in
+   "make every site just a little bit better": the touches from a sister
+   site's stylesheet that this site lacked, in
    Docket's own teal (~/ops/launch/FUTURISTIC-TOUCHES.md). It reverses the
    ":root" note above that "nothing glows" on his word. Colours, copy, prices
    and links are unchanged; all of it is CSS. */
@@ -2094,7 +2107,7 @@ def _nav(checker: bool) -> str:
 <div class="nav-more-links">
 {links}
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, ${PRICE}{PAY4_BUY}</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket</a>
 </div></nav>"""
 
 
@@ -2139,6 +2152,7 @@ FOOTER = f"""<footer><div class="wrap-wide">
 <div><h2 class="foot-h">Contact</h2>
 <a href="/about/">About Docket</a>
 <a href="/contact/">Get in touch</a>
+<a href="/help/">Help</a><a href="/support/">Support</a><a href="/faq/">FAQ</a>
 <a href="/bot/">Our crawler</a>
 <a href="{REPO}/issues">Issue tracker</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a>
@@ -2373,12 +2387,12 @@ PHONE_LINK_JS = (
     "if(!q.length&&(v.ref||v.landing_source))q.push('ref='+encodeURIComponent(v.ref||v.landing_source));"
     "['via','rekomi_ref','affonso_referral','awc','cjevent','irclickid'].forEach(function(k){"
     "if(v[k])q.push(k+'='+encodeURIComponent(v[k]))})}catch(e){}return q.length?u+'&'+q.join('&'):u}"
-    "function go(){var url=carry('https://docketseo.app/?utm_source=phone-share&utm_medium=share');"
-    "var text='Docket SEO for Mac is free to try: your site\\'s score, how many problems each area has and the top problem in full. "
+    "function go(){var url=carry('" + BASE + "/?utm_source=phone-share&utm_medium=share');"
+    "var text='" + NAME + " for Mac is free to try: your site\\'s score, how many problems each area has and the top problem in full. "
     "Open this on your Mac to download it.';"
     "if(typeof plausible==='function'){try{plausible('Send Mac Link')}catch(e){}}"
-    "if(navigator.share){navigator.share({title:'Docket SEO for Mac',text:text,url:url}).catch(function(){})}"
-    "else{location.href='mailto:?subject='+encodeURIComponent('Docket SEO for Mac: download link')"
+    "if(navigator.share){navigator.share({title:'" + NAME + " for Mac',text:text,url:url}).catch(function(){})}"
+    "else{location.href='mailto:?subject='+encodeURIComponent('" + NAME + " for Mac: download link')"
     "+'&body='+encodeURIComponent(text+'\\n\\n'+url)}}"
     "document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-send-mac-link]');"
     "if(b){e.preventDefault();go()}})})();"
@@ -2410,6 +2424,16 @@ LANDING_SOURCE_JS = (
 )
 
 
+# The site-bound Plausible loader, for BOTH brands (CEO 2026-11-10): it counts under the docketseo.app Plausible site whatever the
+# hostname, so the Check Engine host keeps Docket's history; the CEO renames that Plausible site to checkengineseo.com after the flip.
+# Do not switch the Check Engine build to a classic data-domain script: the checkengineseo.com Plausible site was repurposed.
+PLAUSIBLE_LOADER = '<script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>\n'
+PLAUSIBLE_STUB = (
+    'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},'
+    'plausible.init=plausible.init||function(i){plausible.o=i||{}};\n'
+    'plausible.init()\n'
+)
+
 ANALYTICS = (
     '<!-- Privacy-friendly analytics by Plausible -->\n'
         # The assistant. One widget served from the worker, one factbase per site,
@@ -2420,11 +2444,7 @@ ANALYTICS = (
     # week, against 20 for Crisp) and affiliate and launch-source ids never reached checkout. The
     # privacy page names it in the same commit, as the hub plan requires.
     '<script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>\n'
-'<script async src="https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"></script>\n'
-    '<script>\n'
-    'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},'
-    'plausible.init=plausible.init||function(i){plausible.o=i||{}};\n'
-    'plausible.init()\n'
+    + PLAUSIBLE_LOADER + '<script>\n' + PLAUSIBLE_STUB +
     # Custom events, Matthew's plan 2026-09-24: "Buy" with the button name, and
     # "Download". One delegated listener instead of a handler per link, so a
     # button added to any page is counted by carrying data-ev. Nothing new is
@@ -2763,7 +2783,7 @@ def render(
         modified_field = f'"dateModified":"{modified}",' if modified else ""
         blocks.append(
             '{"@context":"https://schema.org","@type":"' + schema_type + '",'
-            f'"headline":"{esc(h1)}","description":"{esc(desc)}",'
+            f'"headline":"{_json_text(h1)}","description":"{_json_text(desc)}",'
             f'"datePublished":"{published}",' + modified_field +
             '"author":{"@type":"Person","name":"Matt Kerr",'
             '"description":"Builds Docket. Every number on this site comes from running it."},'
@@ -2845,6 +2865,7 @@ def render(
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="{'website' if schema_type == 'WebPage' else 'article'}">
 <meta property="og:title" content="{esc(h1)}">
@@ -2894,7 +2915,7 @@ def render(
      it. `prefers-reduced-motion` can hide or freeze almost anything except a
      playing <video>. So the script pauses it and rewinds to the poster frame,
      which is a real frame of the same run, so nothing is lost.
-     builtbykerr.com carries ten prefers-reduced-motion blocks to this file's
+     A sister site carries ten prefers-reduced-motion blocks to this file's
      two; this is the one that was actually missing something. */
   try {{
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {{
@@ -2903,7 +2924,7 @@ def render(
       }});
     }}
   }} catch (e) {{ /* a video that keeps playing is not worth throwing over */ }}
-  /* GRANULARITY IS THE EFFECT. Measured on outlier.host: 51 revealed units,
+  /* GRANULARITY IS THE EFFECT. Measured on a sister site: 51 revealed units,
      median height 171px, SIX in view at once. This page had 31 large ones and
      only TWO in flight at any scroll position, which is why it read as sections
      popping rather than a page assembling itself. Adding the smaller units (
@@ -2969,6 +2990,12 @@ def render(
 </body>
 </html>
 """
+
+    html = brand_html(html)
+    if FORMERLY:
+        html = html.replace('<div class="foot-bottom">', '<p>' + FORMERLY + '</p><div class="foot-bottom">', 1)
+        if (cat, slug) in {("", ""), ("about", "")} and filename == "index.html":
+            html = html.replace("</h1>", "</h1>" + formerly_note(), 1)
 
     html = nofollow_hub_links(html)
 

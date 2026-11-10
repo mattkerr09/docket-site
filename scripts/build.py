@@ -21,14 +21,15 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, str(HERE / "articles"))
+import brand
+sys.path.append(str(HERE / "articles"))
 
 import facts as F  # noqa: E402
-from render import BASE, DATA, MAC_HW, MACOS, PRICE, SITE, SUPPORT_EMAIL, WINDOWS, render, with_next_step  # noqa: E402
+from render import BASE, DATA, MAC_HW, MACOS, PRICE, PROCESSOR, SITE, SUPPORT_EMAIL, WINDOWS, render, with_next_step  # noqa: E402
 
 import about  # noqa: E402
 import audit_quality  # noqa: E402
-import brand as brand_article  # noqa: E402
+from articles import brand as brand_article  # noqa: E402
 import logs as logs_article  # noqa: E402
 import bytecap  # noqa: E402
 import canonicals  # noqa: E402
@@ -137,6 +138,7 @@ import ai_assistants  # noqa: E402
 import ai_questions  # noqa: E402
 import title_ii  # noqa: E402
 import public_site_check  # noqa: E402
+import help_pages  # noqa: E402
 
 
 def hub(cat: str, title: str, desc: str, h1: str, lede: str,
@@ -376,7 +378,7 @@ money.</p>
             ("/learn/brand-consistency/", "Brand consistency: the question no crawler asks",
              f"Of {F.brand_social_frame()} company sites linking social profiles, "
              f"{F.brand_social_undeclared()} declared none of them in schema. What the "
-             f"brand lane checks, and where design tools beat it."),
+             f"brand area checks, and where design tools beat it."),
             ("/learn/domain-authority-without-a-subscription/",
              "Domain authority without a subscription",
              "Ranked from the public Common Crawl link graph. The useful part is what "
@@ -525,11 +527,17 @@ its own pages, and when to pick it instead of Docket:
 """
     return render(
         cat="learn", slug="what-docket-checks",
-        title=f"SEO audit checklist: all {len(rows)} checks by area (2026)",
-        desc=(f"Every check in a Docket audit, by area: crawlability, AI search visibility, content, "
-              f"structured data and speed. {len(rows)} checks across {len(by_lane)} areas, "
-              "from the shipped build."),
-        h1=f"All {len(rows)} checks, by area",
+        title=f"Docket SEO audit checklist: all {len(rows)} checks",
+        desc=(
+            (f"Every check in a Docket audit, by area: crawlability, AI search visibility, content, "
+             f"structured data and speed. {len(rows)} checks in {len(by_lane)} areas, from the "
+             f"app build.")
+            if brand.SITE_BRAND == "checkengine"
+            else (f"Every check in a Docket audit, by area: crawlability, AI search visibility, content, "
+                  f"structured data and speed. {len(rows)} checks across {len(by_lane)} areas, "
+                  "from the shipped build.")
+        ),
+        h1=f"All {len(rows)} Docket checks, by area",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What Docket checks',
         body=body,
     )
@@ -543,7 +551,7 @@ def write_robots() -> None:
     sites did it by accident, is the entire point.
     """
     lines = [
-        "# Docket. Docketseo.app",
+        f"# {brand.NAME}. {brand.HOST}",
         "# Everything is open, including AI search and training crawlers.",
         "# Named individually so the next person to edit this file can see the",
         "# difference between a search crawler and a training crawler.",
@@ -627,6 +635,20 @@ def write_llms_txt() -> None:
         # whole entry.
         return [f"- [{name}]({url}): {note}" for name, url, note in items]
 
+    knowledge_source = (brand.LEGACY_BASE + "/data/knowledge.json"
+                        if brand.SITE_BRAND == "checkengine" else brand.HOST)
+    if brand.SITE_BRAND == "checkengine":
+        app_requests = (
+            f"The app asks {brand.LEGACY_BASE}/updater.json whether an update exists. "
+            "While its activation screen is showing on a copy with no key, it asks "
+            f"{brand.LEGACY_BASE}/offer.json for the current price and offer and whether "
+            "the founding offer is still open.")
+    else:
+        app_requests = (
+            f"The app asks {brand.HOST} whether an update exists, and, while its activation "
+            "screen is showing on a copy with no key, what the current price and offer "
+            "are and whether the founding offer is still open.")
+
     out = ["# Docket SEO", ""]
     out.append(wrap(
         f"Docket SEO is a Mac and Windows app that audits any website on your own computer: {N_CHECKS} "
@@ -641,14 +663,11 @@ def write_llms_txt() -> None:
         "words, typed by the user or read off its titles, headings and descriptions; DNS is "
         "asked about "
         "the mail domains the site publishes; the audited server is asked what it tells AI "
-        "crawlers; and docketseo.app serves a knowledge file. Offline mode turns all "
+        f"crawlers; and {knowledge_source} serves a knowledge file. Offline mode turns all "
         f"{F.optional_connectors_word()} off. Checking links to other sites, and rendering a "
         "few pages as a browser would, also reach the sites and services those pages link "
         "to or load. The licence key is checked with the payment provider when it is "
-        "activated and about once a day after that. The app asks docketseo.app whether "
-        "an update exists, and, while its activation screen is showing on a copy with no "
-        "key, what the current price and offer are and whether the founding offer is "
-        "still open.")]
+        f"activated and about once a day after that. {app_requests}")]
     out += ["", wrap(f"Docket is written by Matt Kerr and sold by {SELLER}, of "
                      f"{seller_address()}.")]
 
@@ -693,7 +712,7 @@ def write_llms_txt() -> None:
         ("AI assistants can run it: Docket speaks MCP over stdio, so Claude Code "
          "(claude mcp add docket -- /Applications/Docket.app/Contents/Resources/docket/docket mcp), "
          "Claude Desktop and the ChatGPT desktop app can audit a site with it. Setup: "
-         "https://docketseo.app/how-to/audit-your-site-from-an-ai-assistant/"))
+         f"{BASE}/how-to/audit-your-site-from-an-ai-assistant/"))
 
     out += ["", "## Price and licence", ""]
     out += facts(
@@ -719,7 +738,7 @@ def write_llms_txt() -> None:
     out += facts(
         "Thirty days from the date of purchase, no conditions and no questions asked. The "
         "full purchase price goes back to the payment method it came from.",
-        f"To ask, write to {SUPPORT_EMAIL} or reply to the receipt the payment processor "
+        f"To ask, write to {SUPPORT_EMAIL} or reply to the receipt {PROCESSOR} "
         f"sends.",
         "A refund revokes the licence key, and within about a day the copy goes back to "
         "the free version.")
@@ -822,12 +841,12 @@ def write_llms_txt() -> None:
         ("All releases", f"{REPO}/releases", "every Docket release, on GitHub"),
         ("Sitemap", f"{BASE}/sitemap.xml", "every indexable page on this site"))
 
-    (SITE / "llms.txt").write_text("\n".join(out) + "\n", encoding="utf-8")
+    (SITE / "llms.txt").write_text(brand.text("\n".join(out) + "\n"), encoding="utf-8")
 
 
 #: The day each page's content last changed, and the fingerprint it had then.
 #: Seeded from history by scripts/collect_lastmod.py; updated by every build.
-LASTMOD = DATA / "page-lastmod.json"
+LASTMOD = DATA / brand.LASTMOD_FILE
 
 
 def page_fingerprint(html: str) -> str:
@@ -935,13 +954,19 @@ def write_offer() -> None:
         # Our buy endpoint: makes the Dodo checkout with the founding code
         # applied while it is honoured, and records which button was pressed.
         "buy_url": "https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket",
-        "sample_report_url": f"{BASE}{SAMPLE_REPORT}" if HAS_SAMPLE else None,
+        "sample_report_url": brand.site_url(f"{BASE}{SAMPLE_REPORT}") if HAS_SAMPLE else None,
     }
     (SITE / "offer.json").write_text(json.dumps(offer, indent=1) + "\n", encoding="utf-8")
 
 
 def write_static() -> None:
-    (SITE / "CNAME").write_text("docketseo.app\n")
+    (SITE / "CNAME").write_text(brand.HOST + "\n")
+    (ROOT / "workers/ai-crawler-check/src/site-brand.js").write_text(brand.worker_module(), encoding="utf-8")
+    notices = SITE / "NOTICES.txt"
+    _, _, notice_body = notices.read_text(encoding="utf-8").partition("\n")
+    heading = (f"Third-party notices for {brand.HOST}" if brand.SITE_BRAND == "checkengine"
+               else f"Third-party notices \N{EM DASH} {brand.HOST}")
+    notices.write_text(heading + "\n" + notice_body, encoding="utf-8")
 
     # Copy the Index datasets into the served tree. They live in /data at the
     # repo root so the collection script and its inputs sit together, but only
@@ -1026,8 +1051,10 @@ def write_static() -> None:
     #
     # `deploy.sh` runs that script's `--check` after this build, so a stale
     # tile fails the deploy rather than shipping.
-    if os.environ.get("DOCKET_SKIP_BRAND_ASSETS") != "1":
-        from render_brand_assets import render as render_brand
+    from render_brand_assets import render as render_brand
+    if os.environ.get("DOCKET_SKIP_BRAND_ASSETS") == "1":
+        print("SKIP brand image rendering: DOCKET_SKIP_BRAND_ASSETS=1")
+    else:
         render_brand(SITE)
     (SITE / ".nojekyll").write_text("")
 
@@ -1357,10 +1384,20 @@ def pricing_page() -> Path:
         if founding else
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
         f'All three apps, {apps}, for {usd(bundle["standard_price"])} once.</a>')
+    apart = sum(bundle["list_prices"].values())
+    bundle_sum = (f'{usd(apart)} bought apart, '
+                  f'{usd(bundle["standard_price"])} together.')
+    if founding:
+        launch_apart = apart * (100 - bundle["founding_pct"]) / 100
+        bundle_sum += (
+            f' <span data-founding-until="{bundle["founding_ends_at"]}">'
+            f'{SALE_NAME} through {FOUNDING_END_DAY}: '
+            f'{usd(launch_apart)} bought apart, {usd(bundle["founding_price"])} together.</span>')
     body = f"""
 <p class="lede">One price, paid once. No subscription, no page meter, nothing to cancel.</p>
 {buy_block("pricing-page", try_app="pricing-page-try-free", phone=False)}
 <p class="hero-note"{' data-founding-until="' + bundle["founding_ends_at"] + '"' if founding else ""}>{bundle_line}</p>
+<p class="hero-note" id="bundle-sum">{bundle_sum}</p>
 <p class="hero-note">Bought it already? <a href="{download_url('pricing-page')}" data-ev="Download"
 data-ev-button="pricing-page">Get the {DMG_SIZE} Mac download</a>{(f' or <a href="{download_url("pricing-page-windows", to=WIN_SETUP)}" data-ev="Download" data-ev-button="pricing-page-windows">the {WIN_SETUP_SIZE} Windows installer</a>') if WINDOWS else ''} and paste the key from your receipt.</p>
 
@@ -1513,7 +1550,7 @@ def stamp_build_id() -> str:
     """
     manifest = []
     for path in sorted(SITE.rglob("*")):
-        if path.is_dir() or path.name == ".nojekyll":
+        if path.is_dir() or path.name in {".nojekyll", "_redirect-map.json"}:
             continue
         manifest.append(path.relative_to(SITE).as_posix().encode()
                         + b"\0" + hashlib.sha256(path.read_bytes()).hexdigest().encode())
@@ -1658,6 +1695,7 @@ def main() -> int:
     pages += ai_questions.build_all()
     pages += title_ii.build_all()
     pages += public_site_check.build_all()
+    pages += help_pages.build_all()
     pages += build_hubs()
 
     # NOT appended to `pages`: the sitemap is derived from that list, and
@@ -1677,6 +1715,27 @@ def main() -> int:
     write_sitemap(pages)
     write_static()
     stamp_competitor_claims(pages)
+
+    # Redirects predate the assembler. Their source copy lets either brand be
+    # rebuilt after the other without carrying words over from the last mode.
+    redirects = json.loads((DATA / "redirect-pages.json").read_text(encoding="utf-8"))
+    for relative, source in redirects.items():
+        branded = brand.html(source)
+        if brand.FORMERLY:
+            branded = branded.replace("</footer>", brand.formerly_note() + "</footer>", 1)
+        (SITE / relative).write_text(branded, encoding="utf-8")
+
+    # This inventory is derived from the tree and excluded from the build-id
+    # input so adding it cannot change an otherwise identical default build.
+    paths = set()
+    for path in SITE.rglob("*"):
+        if path.is_file():
+            rel = "/" + path.relative_to(SITE).as_posix()
+            paths.add(rel)
+            if path.name == "index.html":
+                paths.add(rel.removesuffix("index.html"))
+    paths.add("/_redirect-map.json")
+    (SITE / "_redirect-map.json").write_text(json.dumps(sorted(paths), indent=2) + "\n")
 
     build_id = stamp_build_id()
     print(f"build id {build_id}. Stamped into every page and data/build-id.txt")

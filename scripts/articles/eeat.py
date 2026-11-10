@@ -229,7 +229,7 @@ narrower published wording is the one to act on, and it is the one linked above.
 
 <p><code>content.eeat</code> does not read <code>sameAs</code>, and nothing in it connects an
 author's name to an identity anywhere else. Docket does check <code>sameAs</code>, in a separate
-check in the AI visibility lane, but that one reads the <em>organisation's</em> node. It asks
+check in the AI visibility area, but that one reads the <em>organisation's</em> node. It asks
 whether the business resolves to something a model already knows about, not whether your writer
 does. Neither check resolves a named author to a real identity, which is the honest position:
 <a href="/learn/sameas-entity-signals/">what sameAs does and who should declare it</a> is a
@@ -271,7 +271,7 @@ def trust_and_authorship() -> Path:
     return render(
         cat="learn", slug="trust-and-authorship-signals",
         title="Trust and authorship signals a crawler can see",
-        desc=("What content.eeat looks for on a site: About, Contact and privacy "
+        desc=("What content.eeat looks for: About, Contact and privacy "
               "pages, plus an author signal. What it measures, what it misses, and "
               "why E-E-A-T is not a score."),
         h1="Trust and authorship signals, and what a crawler can actually see",

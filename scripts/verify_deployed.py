@@ -33,6 +33,8 @@ implies the second.
 """
 from __future__ import annotations
 
+from brand import BASE
+
 import argparse
 import sys
 import time
@@ -43,7 +45,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 BUILD_ID = ROOT / "data" / "build-id.txt"
 BUILT_HOME = ROOT / "site" / "index.html"
-URL = "https://docketseo.app/"
+URL = BASE + "/"
 
 #: Cache-busting is the point: a CDN that hands back a cached copy would let a
 #: failed deploy pass, which is the exact bug being guarded.

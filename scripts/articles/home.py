@@ -23,8 +23,10 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from brand import FORMER_ADDRESS_NOTE  # noqa: E402
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
+from render import SITE_BRAND, TAGLINE, recorded_with
 from render import (_human_date, SAMPLE_REPORT, speed_words, windows_waitlist, WINDOWS, WIN_SETUP_SIZE, WIN_PUBLISHER, RELEASE, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, founding_price_sentence, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, FOUNDING_OPEN, FOUNDING_END_DAY, agency_amount, agency_multiple, agency_note_html,
@@ -80,7 +82,7 @@ def _sample_section() -> str:
                 f"{pl(s['excluded'], 'it describes', 'they describe')} something Docket could not measure rather than "
                 "anything we did wrong." if fix and s["excluded"] else "")
     host = _html.escape(s["url"].split("//", 1)[-1].strip("/"))
-    alt = (f"Page one of a Docket SEO audit of {host}, made by Docket {s['engine']}: a score of {s['score']} out "
+    alt = (f"Page one of a Docket SEO audit of {host}, made by Docket{recorded_with(s['engine'])}: a score of {s['score']} out "
            f"of 100, grade {s['grade']}" + (f", with {chip_words}" if chip_words else "") +
            f"; {s['pages']} pages crawled, {s['issues']} {pl(s['issues'], 'issue', 'issues')} found, "
            f"{s['seconds']} seconds to audit.")
@@ -88,7 +90,7 @@ def _sample_section() -> str:
 <div class="sec-head">
   <h2>This is the actual report.<br><em>Run against our own site.</em></h2>
   <p class="sec-sub">Not a mockup or a marketing render. It is page one of the PDF Docket writes, from an audit
-  of our own agency site made by Docket {s['engine']} on {_human_date(s['recorded'])}. We pointed it at our own site
+  of our own agency site made by Docket{recorded_with(s['engine'])} on {_human_date(s['recorded'])}. We pointed it at our own site
   rather than a competitor's, because publishing someone else's audit without asking is not ours to do, and
   because this is the one report we cannot quietly curate. <a href="{SAMPLE_REPORT}" data-ev="Sample report"
   data-ev-button="home-actual-report">Read the whole report</a>.</p>
@@ -121,14 +123,14 @@ def _demo_section() -> str:
 <section class="sec" id="watch"><div class="wrap-wide">
 <div class="sec-head">
   <h2>One real audit.<br><em>Start to finish.</em></h2>
-  <p class="sec-sub">Docket auditing this site, recorded {_human_date(d['recorded'])}: the crawl in
+  <p class="sec-sub" data-brand-history>Docket auditing docketseo.app, recorded {_human_date(d['recorded'])}: the crawl in
   {speed_words(d['seconds'])}, a score of {d['score']}, then the fix list narrowed to one area and one finding opened with the
   markup to paste. A screen recording of the real app; the crawl is sped up.</p>
 </div>
 <figure class="shot demo-shot">
   <video class="demo-video" muted playsinline loop preload="none" controls
          poster="/assets/demo-run-poster.jpg" width="1280" height="720"
-         aria-label="Docket auditing docketseo.app: the address typed, the crawl running, a score of {d['score']}, the fix list filtered to {d['area']}, and the finding '{d['held']}' opened with its fix.">
+         data-brand-history aria-label="Docket auditing docketseo.app: the address typed, the crawl running, a score of {d['score']}, the fix list filtered to {d['area']}, and the finding '{d['held']}' opened with its fix.">
     <source src="/assets/demo-run.webm" type="video/webm">
     <source src="/assets/demo-run.mp4" type="video/mp4">
   </video>
@@ -327,19 +329,19 @@ def body() -> str:
   <img src="/assets/free-result.webp" width="{FREE['image']['width']}" height="{FREE['image']['height']}"
        alt="Docket's free result for {FREE['target']}: a score of {FREE['score']} out of 100, grade {FREE['grade']}, {FREE['problems']} problems found, and the most important one shown in full with its fix, with {FREE['more']} more to unlock."
        decoding="async" fetchpriority="high">
-  <figcaption>The free audit of this site, in the shipped app. <strong>{FREE['score']}/100, {FREE['problems']} problems, the first one in full.</strong></figcaption>
+  <figcaption>The free audit of our own company site, in the app. <strong>{FREE['score']}/100, {FREE['problems']} problems, the first one in full.</strong></figcaption>
 </figure>
 </div>
 <div class="wrap-wide hero-media-wrap">
 <figure class="hero-media">
   <video class="hero-video" autoplay loop muted playsinline preload="metadata"
          poster="/assets/app-demo-poster.jpg" width="1280" height="800"
-         aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs,
+         data-brand-history aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs,
                      and a report appears scoring {HERO['score']} out of 100, grade {HERO['grade']}.">
     <source src="/assets/app-demo.webm" data-src-hi="/assets/app-demo-hi.webm" type="video/webm">
     <source src="/assets/app-demo.mp4" type="video/mp4">
   </video>
-  <figcaption>Docket auditing this site, recorded {_human_date(HERO['recorded'])}. <strong>Done in {speed_words(HERO['seconds']).replace(' ', '&nbsp;')}, {HERO['score']}/100</strong>.
+  <figcaption data-brand-history>Docket auditing docketseo.app{FORMER_ADDRESS_NOTE}, recorded {_human_date(HERO['recorded'])}. <strong>Done in {speed_words(HERO['seconds']).replace(' ', '&nbsp;')}, {HERO['score']}/100</strong>.
   A screen recording of the shipped app, not a mockup.</figcaption>
 </figure>
 </div>
@@ -620,13 +622,13 @@ def body() -> str:
 </div>
 <figure class="shot shot-finding">
   <img src="/assets/app-finding.webp" width="1500" height="452" loading="lazy" decoding="async"
-       alt="One finding from a Docket audit: a numbered item titled 'http://docketseo.app does not
+       data-brand-history alt="One finding from a Docket audit: a numbered item titled 'http://docketseo.app does not
             redirect to https://', tagged High, Security &amp; trust, Under an hour, with an
             explanation and a Fix reading 'Add a site-wide 301 from http://docketseo.app to
             https://, preserving the path.'">
   <figcaption>One item, as the app writes it: what is wrong, how bad, which area, how long it
   takes, and the change to make. This one is real and it is ours. Docket found it auditing
-  this site.</figcaption>
+  <span data-brand-history>docketseo.app</span>.</figcaption>
 </figure>
 </section>
 
@@ -774,8 +776,9 @@ FAQ = [
      "Core Web Vitals from Google PageSpeed, which is sent the addresses of your homepage "
      "and top pages; a deliverability test on the addresses your site publishes, which "
      "looks up their mail domains in DNS; what your server tells AI crawlers; a knowledge "
-     "refresh from this site; and Google's public autocomplete for topic suggestions, "
-     "which is sent your site's topic words. Offline mode turns all "
+     "refresh; and Google's public autocomplete for topic suggestions, "
+     "which is sent your site's topic words. The knowledge refresh fetches "
+     "docketseo.app/data/knowledge.json. Offline mode turns all "
      f"{CONNECTORS_WORD} off, and every report names the ones that ran. Checking your "
      "links to other sites, and rendering a few pages as a browser would, also reach the "
      "sites and services those pages link to or load. The licence key is checked with our "
@@ -836,8 +839,12 @@ def build() -> Path:
         # 2026-11-08 (CEO, the Windows relaunch): name Windows, read from the same WINDOWS flag as the share card. "...
         # conversion and brand audits for Mac and Windows" is 70 characters, past the 60 Google shows, so copy and brand
         # stay in the description. Logged as a dated change in ~/ops/research/docket-search-health-2026-10-30.md.
-        title=("Docket SEO: SEO and conversion audits for Mac and Windows" if WINDOWS
-               else "Docket SEO: SEO, copy, conversion and brand audits for Mac"),
+        title=(
+            (TAGLINE if WINDOWS else "Docket SEO: audits for Mac")
+            if SITE_BRAND == "checkengine"
+            else ("Docket SEO: SEO and conversion audits for Mac and Windows" if WINDOWS
+                  else "Docket SEO: SEO, copy, conversion and brand audits for Mac")
+        ),
         # 162 characters, and Google renders about 155 — measured with entities
         # decoded, which is the only way to count a description honestly.
         # Dropping "visibility" is the whole edit: 151, brand name still first.
@@ -846,8 +853,8 @@ def build() -> Path:
         # default, so "nothing uploaded" was not true of a default audit.
         # 149 characters. Names the free version (1.3.96) because this line is
         # the Google snippet and every pasted link's preview (CEO, 2026-10-02).
-        desc=(f"Docket SEO audits any website on your Mac or Windows PC with {N_CHECKS} checks, ranked into a fix "
-              f"plan. Free to try: your score, counts and the top fix. Pro {PRICE_STR} once."),
+        desc=(f"Docket SEO audits any site on your Mac or Windows PC with {N_CHECKS} checks, ranked into a fix "
+              f"plan. Free to try: score, counts and the top fix. Pro {PRICE_STR} once."),
         h1="SEO audits that tell you what to fix, in order",
         crumb="Docket for Mac",
         body=body(),

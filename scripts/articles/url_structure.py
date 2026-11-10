@@ -86,7 +86,7 @@ of it has never been published by anyone who measured it. This page separates th
 says plainly which of them Docket checks, because the answer is fewer than you would guess.</p>
 
 <p>Docket registers one check here, <code>index.url_hygiene</code>, under the title
-"URL structure", in the crawlability and indexing lane. It emits up to {N_FINDINGS} findings.
+"URL structure", in the crawlability and indexing area. It emits up to {N_FINDINGS} findings.
 Here they are, with the condition that fires each, exactly as the code has it.</p>
 
 <h2>The five findings</h2>
@@ -230,7 +230,7 @@ internal links pointing at redirects</a> is the shape to avoid creating on the w
     return render(
         cat="learn", slug="url-structure",
         title="SEO URL structure: what is checked, what is folklore",
-        desc=("What a Docket audit of your site's URLs reports, finding by finding: session "
+        desc=("What a Docket audit of URLs reports, finding by finding: session "
               "IDs, casing, encoded spaces, length and parameters, and the claims with no source."),
         h1="SEO URL structure best practice, minus the folklore",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / URL structure',

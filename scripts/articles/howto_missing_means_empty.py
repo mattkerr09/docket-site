@@ -86,7 +86,7 @@ documentation asks for it was the business most likely to be told it had no phon
 <p>Two details make it worse. The address branch of the same check had always read both the
 visible prose and the <code>PostalAddress</code> in the markup: the rule existed, ten lines away,
 in the same function. And the structured-data block is the thing that switches the entire
-local-business lane on, so <em>the block that enabled the check contained the answer the check then
+local-business area on, so <em>the block that enabled the check contained the answer the check then
 called missing.</em></p>
 
 <h2>The label in the report is not the key in your markup</h2>

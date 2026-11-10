@@ -1,3 +1,4 @@
+import { BASE } from '../src/site-brand.js'
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
@@ -50,18 +51,18 @@ function linked(result) {
   return findings.filter((f) => f.guide_url)
 }
 function assertNoGuide(result) {
-  assert.doesNotMatch(JSON.stringify(result), /docketseo\.app|guide_url|How to fix it, step by step:/)
+  assert.doesNotMatch(JSON.stringify(result), /docketseo\.app|checkengineseo\.com|guide_url|How to fix it, step by step:/)
 }
 function assertGuide(result, path, previousLine) {
   const text = result.content[0].text
   const lines = text.split('\n')
   const guides = lines.filter((line) => line.startsWith('How to fix it, step by step: '))
   assert.equal(guides.length, 1)
-  assert.equal((text.match(/https:\/\/docketseo\.app/g) || []).length, 1)
-  const expected = `https://docketseo.app${path}?utm_source=claude-connector`
+  assert.equal(text.split(BASE).length - 1, 1)
+  const expected = `${BASE}${path}?utm_source=claude-connector`
   assert.equal(guides[0], `How to fix it, step by step: ${expected}`)
   const url = new URL(expected)
-  assert.equal(url.origin, 'https://docketseo.app')
+  assert.equal(url.origin, BASE)
   assert.match(url.pathname, /^\/(how-to|learn)\/[a-z0-9-]+\/$/)
   assert.equal(url.search, '?utm_source=claude-connector')
   assert.match(lines[lines.indexOf(guides[0]) - 1], previousLine)
@@ -178,7 +179,8 @@ test('every mapped path is a local how-to or learn page, never a sales page or a
 })
 
 test('the one-line switch suppresses text and structured guide URLs', async () => {
-  const source = readFileSync(new URL('../src/guides.js', import.meta.url), 'utf8')
+  const file = new URL('../src/guides.js', import.meta.url)
+  const source = readFileSync(file, 'utf8').replace(/from '(\.\/[^']+)'/g, (_, path) => `from '${new URL(path, file).href}'`)
   const disabled = await import(`data:text/javascript,${encodeURIComponent(source.replace('GUIDE_LINKS = true', 'GUIDE_LINKS = false'))}`)
   const out = { text: 'Fix first: No title tag', guide: { finding: { level: 'problem', label: 'No title tag' }, after: 0 } }
   assert.equal(disabled.addGuide(out, 'claude'), false)

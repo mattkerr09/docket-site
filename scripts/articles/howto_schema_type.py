@@ -85,7 +85,7 @@ libraries and museums all have. That looseness is correct: those organisations <
 local-search work to do, and excluding them would help nobody.</p>
 
 <p>But the output of the check is markup that makes a claim. <strong>Being generous about applying
-a lane is right. Being generous about what to recommend is not.</strong></p>
+a area is right. Being generous about what to recommend is not.</strong></p>
 
 <p>So only the unambiguous cases are claimed. An education or government domain label is strong
 evidence and gets the matching type. Everything else stays with the general type, because a charity

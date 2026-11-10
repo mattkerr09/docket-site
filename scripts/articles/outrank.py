@@ -18,11 +18,14 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from brand import FORMER_ADDRESS_NOTE  # noqa: E402
 from render import render  # noqa: E402
 
 
 def outrank() -> Path:
-    body = """
+    history_pointer = (f"<p data-brand-history>The run used docketseo.app{FORMER_ADDRESS_NOTE}.</p>"
+                       if FORMER_ADDRESS_NOTE else "")
+    body = f"""
 <p class="lede">Every SEO tool will tell you a competitor is ahead. That is the part you already
 knew. The useful question is narrower and almost nobody answers it: <strong>given that they have
 years and links you cannot match this quarter, where does none of that help them?</strong></p>
@@ -46,7 +49,8 @@ autocomplete what people actually search for in your subject, and returns the op
 <p>It opens by telling you the gap is real, because a tool that flatters you is no use. From a
 run against Screaming Frog, dated in the block below:</p>
 
-<pre><code>$ docket attack https://docketseo.app https://www.screamingfrog.co.uk/seo-spider/
+{history_pointer}
+<pre data-brand-history><code>$ docket attack https://docketseo.app https://www.screamingfrog.co.uk/seo-spider/
 # measured 2026-08-11
 
 Link authority

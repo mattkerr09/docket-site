@@ -26,7 +26,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import (MAC_HW, MACOS, N_CHECKS, N_LANES, PRICE, PRICE_STR, REFUND_DAYS, WINDOWS,  # noqa: E402
+from render import (recorded_with, MAC_HW, MACOS, N_CHECKS, N_LANES, PRICE, PRICE_STR, REFUND_DAYS, WINDOWS,  # noqa: E402
                     buy_block, render, speed_words)
 
 import comparisons  # noqa: E402
@@ -180,7 +180,7 @@ pages and not on every page. And it crawls {ui_pages} pages by default and stops
 raise, but it is not built for a site of hundreds of thousands of URLs.
 <a href="/vs/screaming-frog-alternative/">Docket and Screaming Frog compared in full</a>.</p>
 {free_figure}
-<p>We ran the free version of Docket {esc(_RUN["engine"])}, as shipped, on this site, {esc(_RUN["target"])}. It
+<p>We ran the free version of Docket{esc(recorded_with(_RUN["engine"]))}{', as shipped,' if recorded_with(_RUN["engine"]) else ''} on our own company site, {esc(_RUN["target"])}. It
 read {_RUN["pages"]} pages in {speed_words(_RUN["seconds"])}, scored the site {_RUN["score"]} out of 100
 ({esc(_RUN["grade"])}), and found {_RUN["problems"]} problems. The free version put the most important one in full,
 with its fix, and said how many more the paid version shows.</p>
@@ -205,7 +205,7 @@ Mac-only view with the cost over three years, see <a href="/mac-seo-audit-tool/"
         cat="best", slug="screaming-frog-alternatives",
         title="Screaming Frog alternatives for Mac and Windows (2026)",
         desc=(f"{_cap(other_words)} Screaming Frog alternatives for Mac and Windows: what each costs, what it crawls, "
-              "its free version, and when it wins. Read from their own pages, November 2026."),
+              "free limits, and when it wins. Read from vendor pages, November 2026."),
         h1="Screaming Frog alternatives for Mac and Windows",
         crumb='<a href="/">Docket</a> / <a href="/best/">Best</a> / Screaming Frog alternatives',
         body=body,

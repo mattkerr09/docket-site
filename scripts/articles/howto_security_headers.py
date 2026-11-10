@@ -17,30 +17,33 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import render  # noqa: E402
+from brand import FORMER_ADDRESS_NOTE  # noqa: E402
+from render import render, _human_date  # noqa: E402
 
 
 def security_headers() -> Path:
-    body = """
+    body = f"""
 <p class="lede">Security headers are response headers that tell a browser how carefully to
 treat your site. They cost nothing, they are set once at the server or CDN, and most sites
 have none of them. Including, at the time of writing, this one.</p>
 
-<h2>What an audit of this site returns</h2>
+<h2>What the audit returned</h2>
 
-<pre><code>high     security.no_http_redirect    http://docketseo.app does not redirect to https://
+<p data-brand-history>We audited docketseo.app{FORMER_ADDRESS_NOTE} on __AUDITED__. These were the findings.</p>
+
+<pre data-brand-history><code>high     security.no_http_redirect    http://docketseo.app does not redirect to https://
 low      security.no_hsts             No HSTS header
 notice   security.missing_headers     Missing 2 baseline security headers</code></pre>
 
-<p>All three are true. We checked the first by hand before believing it, which is the rule
+<p>All three were true. We checked the first by hand before believing it, which is the rule
 we apply to findings about anybody else's site:</p>
 
-<pre><code>$ curl -sI http://docketseo.app/
+<pre data-brand-history><code>$ curl -sI http://docketseo.app/
 HTTP/1.1 200 OK
 Server: GitHub.com</code></pre>
 
-<p>Two hundred, over plain http, with no redirect. The <code>www</code> host redirects
-correctly; the apex does not, which is the same half-configured shape Docket found on a
+<p>Two hundred, over plain http, with no redirect. The <code>www</code> host redirected
+correctly. The apex did not, which is the same half-configured shape Docket found on a
 French bakery chain the same week, and the reason its redirect finding now names the exact
 host it probed instead of saying "http://".</p>
 
@@ -127,7 +130,7 @@ redirect, and it has nothing to do with rankings.</p>
               "describing."),
         h1="How to fix missing security headers",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Security headers',
-        body=body,
+        body=body.replace("__AUDITED__", _human_date("2026-08-14")),
         faq=[
             ("Do security headers help SEO?",
              "Directly, almost nothing. Google treats https as a lightweight ranking "

@@ -1,3 +1,4 @@
+import { BASE } from '../src/site-brand.js'
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { checkJsonLd, checkMeta, decodeEntities, displayWidth, TITLE_MAX } from '../src/page.js'
@@ -81,7 +82,7 @@ test('/page reads one page and returns the checks, never the HTML', async () => 
   const html = '<html lang="en"><head><title>Secret page body follows</title></head><body>PRIVATE</body></html>'
   const fetchImpl = async () => new Response(html, { status: 200, headers: { 'Content-Type': 'text/html' } })
   const env = { extract: async () => ({ lang: 'en', titles: ['A title that is long enough here'], metas: {}, canonicals: [], h1s: [], jsonld: [] }) }
-  const res = await handle(new Request('https://w.example/page?url=example.com/a', { headers: { Origin: 'https://docketseo.app' } }), fetchImpl, env, null)
+  const res = await handle(new Request('https://w.example/page?url=example.com/a', { headers: { Origin: BASE } }), fetchImpl, env, null)
   const text = await res.text()
   const j = JSON.parse(text)
   assert.equal(res.status, 200)

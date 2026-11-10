@@ -22,6 +22,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from render import SITE_BRAND
 from render import DATA, render  # noqa: E402
 
 SITE = Path(__file__).resolve().parents[2] / "site"
@@ -90,7 +91,7 @@ sounds.</p>
 <h2>What we found looking at real sites</h2>
 
 <p>On 2026-08-14 we audited four live business sites (an Italian food retailer, a French
-bakery chain, a US coffee retailer and a US museum), and the tracking lane produced a
+bakery chain, a US coffee retailer and a US museum), and the tracking area produced a
 finding on the coffee retailer that is worth quoting exactly as it was written:</p>
 
 <blockquote><p>No analytics tag on any page Docket could see</p></blockquote>
@@ -108,7 +109,7 @@ gets. <a href="/learn/javascript-rendering/">How that works, and when it is wort
 time.</a></p>
 
 <p>Four sites is not a sample and there is no rate here to quote. It is one measurement,
-reported because it shows what the lane does and where it stops.</p>
+reported because it shows what the area does and where it stops.</p>
 
 <h2>Doing this yourself, without Docket</h2>
 
@@ -120,9 +121,9 @@ happened, it is usually built last, and it is the page most often published from
 nobody added the tag to.</p>
 
 <p>If all five carry it, you have ruled out the common failure. If one does not, you have
-found the thing this lane exists for, and it took four minutes.</p>
+found the thing this area exists for, and it took four minutes.</p>
 
-<h2>What this lane deliberately does not do</h2>
+<h2>What this area deliberately does not do</h2>
 
 <p>It does not tell you whether your tracking is <em>correct</em>. Whether the events fire
 on the right actions, whether revenue is passed accurately, whether your goals mean what
@@ -146,9 +147,14 @@ guess at the rest.</p>
     return render(
         cat="learn", slug="marketing-tag-audit",
         title="Marketing tag audit: is your tracking on every page?",
-        desc=(f"The {len(rows)} tracking checks in Docket's audit (analytics coverage, ad "
-              "pixels, consent timing, UTM hygiene), and the common failure you "
-              "can check yourself in four minutes."),
+        desc=(
+            (f"The {len(rows)} tracking checks in Docket's audit cover analytics, ad pixels, consent "
+             f"timing and UTM hygiene. The common failure you can check in four minutes.")
+            if SITE_BRAND == "checkengine"
+            else (f"The {len(rows)} tracking checks in Docket's audit (analytics coverage, ad "
+                  "pixels, consent timing, UTM hygiene), and the common failure you "
+                  "can check yourself in four minutes.")
+        ),
         h1="Marketing tag audit",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Marketing tag audit',
         body=body,

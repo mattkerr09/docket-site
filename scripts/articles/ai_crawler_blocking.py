@@ -532,7 +532,7 @@ search crawlers your site blocks, and whether the server agrees with the file. T
          "No. It publishes counts and shares only, and so does the download."),
     ]
 
-    desc = (f"The same 10,000 sites' robots.txt, read in August and October: AI "
+    desc = (f"10,000 sites' robots.txt, read in August and October: AI "
             f"training-crawler blocking fell from {tr_a}% to {tr_o}%, mostly sites that "
             f"look like Cloudflare's block.")
     return render(

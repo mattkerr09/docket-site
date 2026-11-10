@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from brand import FORMER_ADDRESS_SENTENCE  # noqa: E402
 import facts as F  # noqa: E402
 from render import render  # noqa: E402
 
@@ -28,10 +29,10 @@ assessed {F.exposure_assessed('retailer')} pages and found
 <strong>{F.exposure_substitutable_pct('retailer')}% fully substitutable</strong>, because
 {F.exposure_defence('retailer', 'transact')} of them let the visitor do something and
 {F.exposure_defence('retailer', 'operate')} carry something to operate. Run against
-<strong>docketseo.app</strong> it assessed {F.exposure_assessed('docket')} pages and found
+<strong data-brand-history>docketseo.app</strong> it assessed {F.exposure_assessed('docket')} pages and found
 {F.exposure_substitutable_pct('docket')}% too, but the worst page on this site scored 0.85
 out of 1 a few hours before this was written, and what changed was mostly the measurement
-rather than the page.</p>
+rather than the page.<span data-brand-history>{FORMER_ADDRESS_SENTENCE}</span></p>
 
 <p class="note">The retailer is not named, and nor is any other site measured here that did
 not ask to be. The numbers are real and were produced by the tool this page describes; the

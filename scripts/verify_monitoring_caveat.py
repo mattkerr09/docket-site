@@ -39,6 +39,7 @@ catches the failure that actually happened: the claim shipping alone.
 from __future__ import annotations
 
 import re
+from brand import SHORT
 import sys
 from pathlib import Path
 
@@ -61,13 +62,13 @@ SELLS = re.compile(
 #: because the pages are written by hand and should stay that way — a gate that
 #: demands one exact sentence turns into boilerplate nobody reads.
 DISCLOSES = re.compile(
-    r"while (?:the app|docket) is open"
+    rf"while (?:the app|{re.escape(SHORT)}) is open"
     r"|while it is open"
     r"|closing the laptop stops"
     r"|quitting it stops"
-    r"|quit docket"
+    rf"|quit {re.escape(SHORT)}"
     r"|not a background daemon"
-    r"|only while docket"
+    rf"|only while {re.escape(SHORT)}"
     r"|while the app is open",
     re.I,
 )

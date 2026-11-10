@@ -16,7 +16,9 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from brand import FORMER_ADDRESS_SENTENCE  # noqa: E402
 import facts as F  # noqa: E402
+from render import SITE_BRAND, recorded_with
 from render import (_human_date, speed_words, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, RELEASE,  # noqa: E402
                     price, price_note_html, render, buy_block, rival_monthly_range, COMPETITORS,
                     INTEL, INTEL_DMG, download_url, DATA, REFUND_DAYS, WINDOWS, N_LANES, founding_price_sentence)
@@ -44,7 +46,7 @@ CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
 CTA = f"""
 <div class="callout" id="buy">
 <div class="callout-title">One purchase. No subscription.</div>
-<p>Docket is a one-time purchase for macOS: no account, no crawl credits, and the crawl runs
+<p>Docket is a one-time purchase for Mac and Windows: no account, no crawl credits, and the crawl runs
 on your machine. {CONNECTORS_WORD_CAP} optional checks fetch data it cannot produce alone; <code>--offline</code>
 turns all {CONNECTORS_WORD} off.</p>
 {buy_block("vs-page", big=False, try_app="vs-page-try-free")}
@@ -657,7 +659,7 @@ def _top_cta(src: str, *, anchor: bool = True) -> str:
 </div>"""
 
 
-def _measured(intro: str, view: str = "table") -> str:
+def _measured(intro: str, view: str = "table", *, former_address: bool = False) -> str:
     """Docket run on a real public site, with the figures the engine reported.
 
     Everything here comes from data/vs-run.json, which docket-app's
@@ -685,9 +687,11 @@ def _measured(intro: str, view: str = "table") -> str:
     full = sum(1 for lane in r["lanes"] if lane["score"] == hi)
     left = f"{r['left_out']} more name other companies or sites, a cookie-consent finding among them, and are left out here as they are in the public sample report."
     caption = {
-        "table": (f"The area scoreboard in the Docket {r['engine']} window after a real audit of {r['target']} "
+        "table": (f"The area scoreboard in the Docket{recorded_with(r['engine'])} window after a real audit of "
+                  f"{r['target']} "
                   f"on {_run_date()}: {r['pages']} pages crawled in {speed_words(r['seconds'])}, score {r['score']} "
-                  f"out of 100, grade {r['grade']}. It is the shipped interface running against the audit "
+                  f"out of 100, grade {r['grade']}.{FORMER_ADDRESS_SENTENCE if former_address else ''} "
+                  "It is the app's interface running against the audit "
                   "engine, captured from that run, not a mockup."),
         "list": (f"Docket's results window for the audit below, run on {_run_date()}. Score {r['score']} out of "
                  f"100, grade {r['grade']}, across {r['pages']} pages in {speed_words(r['seconds'])}, and no crawl "
@@ -699,8 +703,8 @@ def _measured(intro: str, view: str = "table") -> str:
     figure = f"""
 <figure class="shot">
   <img src="/assets/vs-docket-run.webp" width="1600" height="1000" loading="lazy" decoding="async"
-       alt="{html.escape(alt)}">
-  <figcaption>{caption}</figcaption>
+       data-brand-history alt="{html.escape(alt)}">
+  <figcaption data-brand-history>{caption}</figcaption>
 </figure>"""
     if view == "table":
         rows = "".join(
@@ -873,7 +877,7 @@ judged wrongly by any parser that resolves rules in order.</p>
 <h2>Which one to pick</h2>
 <p><strong>Choose Screaming Frog</strong> if you are a technical SEO, your sites are
 JavaScript-heavy, you need custom extraction, or you are crawling hundreds of thousands of
-URLs. It is the deeper instrument and its price-to-power ratio is unmatched.</p>
+URLs. It is the deeper instrument.</p>
 <p><strong>Choose Docket</strong> if you need to hand someone a plan rather than a dataset, if
 you care about AI search visibility or whether your landing pages convert, or if you want a
 client-ready PDF without building one.</p>
@@ -892,7 +896,11 @@ Googlebot actually fetched rather than what your site would serve if asked.</p>
         # The title says what the page is, a comparison, and leaves "alternatives" to
         # /best/screaming-frog-alternatives/: two pages answering one search split it
         # (the 8 Nov traffic diagnosis, Cause 5). No year, so it never needs re-dating.
-        title="Docket vs Screaming Frog: price, limits, what it does better",
+        title=(
+            ("Docket vs Screaming Frog: price, limits and uses")
+            if SITE_BRAND == "checkengine"
+            else ("Docket vs Screaming Frog: price, limits, what it does better")
+        ),
         modified="2026-11-09",  # the title no longer targets the "alternatives" search
         desc=(f"Docket is {PRICE_STR} once; Screaming Frog is ${sf_year} a year per user. A ranked fix "
               "plan instead of raw crawl data, and what Screaming Frog still does better."),
@@ -984,7 +992,11 @@ check".</p>
 
     return render(
         cat="vs", slug="sitebulb-alternative",
-        title="Docket vs Sitebulb: visual reports or a ranked plan? (2026)",
+        title=(
+            ("Docket vs Sitebulb: visual reports or a ranked plan?")
+            if SITE_BRAND == "checkengine"
+            else ("Docket vs Sitebulb: visual reports or a ranked plan? (2026)")
+        ),
         desc=("Sitebulb has an interactive crawl map; Docket draws a static map in its audit report. "
               "Compare site audits, reports, prices and limits."),
         h1="Docket vs Sitebulb",
@@ -1080,13 +1092,13 @@ verified sites. A paid plan is needed for sites you cannot verify, such as a pro
 competitor's. A client's site can use the free allowance if its ownership is verified.</p>
 <p>Docket's free version works on any public site with no account. It runs the audit and shows the score,
 the number of problems in each area and the top problem with its fix. The full fix plan and report exports
-need a licence. The screenshot below is the shipped free version auditing our company site on
+need a licence. The screenshot below is the free version auditing our company site on
 {_human_date(run['date'])}.</p>
 <figure class="shot">
 <img src="/assets/free-result.webp" width="{run['image']['width']}" height="{run['image']['height']}"
      loading="lazy" decoding="async" alt="Docket's free audit result. Score {run['score']} out of 100, {run['problems']} problems, with the top problem and its fix shown in full.">
 <figcaption>{run['pages']} pages crawled in {speed_words(run['seconds'])}. Score {run['score']} out of 100,
-{run['problems']} problems found, with {run['more']} more to unlock. Captured from Docket {run['engine']}.</figcaption>
+{run['problems']} problems found, with {run['more']} more to unlock. Captured from Docket{recorded_with(run['engine'])}.</figcaption>
 </figure>
 <p class="table-note">Ahrefs sources read {checked}. <a href="https://ahrefs.com/free" rel="nofollow noopener">Ahrefs Free</a> and
 <a href="https://ahrefs.com/webmaster-tools" rel="nofollow noopener">Webmaster Tools</a>.</p>
@@ -1420,7 +1432,7 @@ stand; the local tool answers what to change next.</p>
         cat="vs", slug="semrush-site-audit-alternative",
         title="Docket vs Semrush Site Audit: a one-time alternative",
         desc=("Semrush Site Audit is 140+ checks inside a platform from $139/mo. Docket is a "
-              "one-time Mac audit with a ranked fix plan. Where Semrush genuinely wins."),
+              "one-time audit for Mac and Windows with a ranked fix plan."),
         h1="Docket vs Semrush Site Audit",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Semrush',
         published="2026-08-10",
@@ -1928,9 +1940,14 @@ page allowance.</p>
     return render(
         cat="vs", slug="scrutiny-alternative",
         title="Docket vs Scrutiny: two paid Mac SEO tools compared",
-        desc=("Scrutiny does spell checking, HTML validation and site search, which "
-              "Docket does not; Docket costs less. What Docket adds, and when to buy "
-              "theirs instead."),
+        desc=(
+            ("Scrutiny does spell checking, HTML validation and site search, which Docket does not. "
+             "Docket costs less. What it adds, and when to buy theirs.")
+            if SITE_BRAND == "checkengine"
+            else ("Scrutiny does spell checking, HTML validation and site search, which "
+                  "Docket does not; Docket costs less. What Docket adds, and when to buy "
+                  "theirs instead.")
+        ),
         h1="Docket vs Scrutiny",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Scrutiny',
         body=body,
@@ -2029,7 +2046,7 @@ you can cancel is a real advantage if you only need one audit.</p>
 
 <p>Docket runs {N_CHECKS} checks across thirteen areas, and four of those areas are not technical
 SEO at all: conversion, brand consistency, AI search visibility and campaign tracking. The AI
-lane checks robots.txt rules for {F.ai_agents()} AI crawlers. A separate check requests your
+area checks robots.txt rules for {F.ai_agents()} AI crawlers. A separate check requests your
 homepage as {len(F.probes()['ai'])} AI crawlers plus {F.probes()['search']} to find server refusals
 the file cannot show. And every finding lands in a ranked plan rather than a categorised list. <a href="/learn/priority-model/">The formula is written out</a> if you want to check the
 ordering yourself.</p>
@@ -2076,8 +2093,14 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
         cat="vs", slug="seoptimer-alternative",
         modified="2026-11-05",  # report branding (1.3.147): Docket's reports can carry your name and logo
         title=f"SEOptimer alternative for Mac: {PRICE_STR} once, no crawl limit",
-        desc=(f"SEOptimer's plans run ${_SEOPT_LO} to ${_SEOPT_HI} a month for {_SEOPT_CRAWLS_LO} to {_SEOPT_CRAWLS_HI} "
-              f"crawls and add white-label reports. Docket is {PRICE_STR} once for any site, with a free version and no crawl meter."),
+        desc=(
+            (f"SEOptimer's plans run ${_SEOPT_LO} to ${_SEOPT_HI} a month for {_SEOPT_CRAWLS_LO} to "
+             f"{_SEOPT_CRAWLS_HI} crawls and add white-label reports. Docket is {PRICE_STR} once for "
+             f"any site, with a free tier and no meter.")
+            if SITE_BRAND == "checkengine"
+            else (f"SEOptimer's plans run ${_SEOPT_LO} to ${_SEOPT_HI} a month for {_SEOPT_CRAWLS_LO} to {_SEOPT_CRAWLS_HI} "
+                  f"crawls and add white-label reports. Docket is {PRICE_STR} once for any site, with a free tier and no crawl meter.")
+        ),
         h1="Docket vs SEOptimer",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / SEOptimer',
         body=body,
@@ -2230,9 +2253,14 @@ measured. Both vendors' published feature lists are what this page is built from
     return render(
         cat="vs", slug="sitechecker-alternative",
         title="Docket vs Sitechecker: access or mentions?",
-        desc=("Sitechecker tracks rankings and whether AI assistants mention you; Docket "
-              "checks whether those crawlers can reach you at all. Different questions, "
-              "said plainly."),
+        desc=(
+            ("Sitechecker tracks rankings and whether AI assistants mention you. Docket checks "
+             "whether those crawlers can reach you. Different questions, said plainly.")
+            if SITE_BRAND == "checkengine"
+            else ("Sitechecker tracks rankings and whether AI assistants mention you; Docket "
+                  "checks whether those crawlers can reach you at all. Different questions, "
+                  "said plainly.")
+        ),
         h1="Docket vs Sitechecker",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Sitechecker',
         body=body,
@@ -2357,9 +2385,18 @@ outside.</p>
 
     return render(
         cat="vs", slug="profound-alternative",
-        title="Profound alternative? Docket checks AI access, not mentions",
-        desc=(f"Profound tracks whether AI assistants mention your brand and quotes its brand plans by demo. "
-              f"Docket checks whether their crawlers can reach your site, for {PRICE_STR} once."),
+        title=(
+            ("Profound vs Docket: mentions and AI crawler access")
+            if SITE_BRAND == "checkengine"
+            else ("Profound alternative? Docket checks AI access, not mentions")
+        ),
+        desc=(
+            (f"Profound tracks whether AI assistants mention your brand and quotes plans by demo. "
+             f"Docket checks whether their crawlers can reach your site, for {PRICE_STR} once.")
+            if SITE_BRAND == "checkengine"
+            else (f"Profound tracks whether AI assistants mention your brand and quotes brand plans by demo. "
+                  f"Docket checks whether their crawlers can reach your site, for {PRICE_STR} once.")
+        ),
         h1="Docket vs Profound",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Profound',
         body=body,
@@ -2473,7 +2510,11 @@ publishes about its own product.</p>
 
     return render(
         cat="vs", slug="jetoctopus-alternative",
-        title="Docket vs JetOctopus: logs at scale, or an audit you own",
+        title=(
+            ("Docket vs JetOctopus: logs at scale, or your own audit")
+            if SITE_BRAND == "checkengine"
+            else ("Docket vs JetOctopus: logs at scale, or an audit you own")
+        ),
         desc=("JetOctopus reads your server logs and meters crawling by the URLs a month. "
               "Docket cannot read logs at all. Which question you are asking decides it."),
         h1="Docket vs JetOctopus",
@@ -2615,8 +2656,14 @@ for {price('scrutiny')}, and stronger than either of us at link checking.</p>
         cat="vs", slug="crawlraven-alternative",
         modified="2026-11-08",  # Mac and 64-bit Windows, not Mac only (CEO QC),
         title="CrawlRaven vs Docket: price, technical audit, MCP",
-        desc=(f"CrawlRaven joins Search Console and GA4 to a technical audit from ${_CR_STARTER} a month. "
-              f"Docket is {PRICE_STR} once, any site. What each does, read from CrawlRaven's pricing page."),
+        desc=(
+            (f"CrawlRaven joins Search Console and GA4 to a technical audit from ${_CR_STARTER} a "
+             f"month. Docket is {PRICE_STR} once, any site. Each tool, read from its pricing "
+             f"page.")
+            if SITE_BRAND == "checkengine"
+            else (f"CrawlRaven joins Search Console and GA4 to a technical audit from ${_CR_STARTER} a month. "
+                  f"Docket is {PRICE_STR} once, any site. What each does, read from its pricing page.")
+        ),
         h1="Docket vs CrawlRaven",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / CrawlRaven',
         body=body,
@@ -2781,11 +2828,11 @@ def se_ranking_vs_screaming_frog() -> Path:
     sf = "https://www.screamingfrog.co.uk/seo-spider/"
     key = "se-ranking-vs-screaming-frog"
     body = f"""
-<p class="lede"><strong>The short answer:</strong> these are not the same kind of tool. SE Ranking
-is a monthly subscription to a cloud platform, and its site audit is <strong>metered by pages per
-month</strong>. Screaming Frog is a licence for a crawler that runs on your own machine, with
-<strong>no page meter at all</strong> and a free tier. Choose on that difference first and on
-features second.</p>
+<p class="lede"><strong>SE Ranking vs Screaming Frog:</strong> choose SE Ranking if you need
+rank tracking and keyword research alongside a site audit. Choose Screaming Frog if you need
+a desktop crawler and want to work with the crawl data yourself. SE Ranking's cloud audit is
+<strong>metered by pages per month</strong>. Screaming Frog's paid licence has
+<strong>no page meter</strong>; its free tier has a URL cap.</p>
 
 <ul class="short-answer">
 <li><strong>SE Ranking suits</strong> a marketer who wants rank tracking, keyword research and an
@@ -2796,9 +2843,9 @@ very large sites, with no page meter.</li>
 once, with no meter.</li>
 </ul>
 
-<h2>At a glance</h2>
-<p class="table-note">Every vendor figure here was read from that vendor's own pages on
-{CHECKED_HUMAN[key]}.</p>
+<h2>SE Ranking vs Screaming Frog: prices and audit limits</h2>
+<p class="table-note">Vendor figures were read from each vendor's own pages;
+the evidence list below gives the pages and the dates read.</p>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>&nbsp;</th><th>SE Ranking</th><th>Screaming Frog</th><th>Docket</th></tr></thead>
 <tbody>
@@ -2816,26 +2863,24 @@ once, with no meter.</li>
 <tr><td>Where the crawl runs</td><td>Their cloud</td><td class="yes">Your machine</td>
     <td class="yes">Your Mac or PC</td></tr>
 <tr><td>Try before buying</td><td>&ldquo;Start free 14-day trial&rdquo;, &ldquo;No credit card
-    required&rdquo;</td><td>Free tier, 500 URLs, permanently</td>
+    required&rdquo;</td><td>Free tier, 500 URLs</td>
     <td>Free: your score, how many problems each area has and the top problem in full. Then a {REFUND_DAYS}-day refund</td></tr>
 </tbody></table></div>
 {_top_cta("vs-sr-sf")}
 {price_note_html()}
 
-<h2>What SE Ranking is actually selling</h2>
+<h2>When should you choose SE Ranking?</h2>
 
 <p>Not a crawler. The audit is one module inside a rank-tracking and keyword platform, and the
-Core plan's own bullet list makes the proportions clear: ten projects and one manager seat, two
-thousand keywords tracked daily, AI visibility tracking of 25 prompts a day across five AI
-engines, 250k pages a month in audit, and 25K API credits with MCP access. The Growth plan raises the audit to 2M
-pages a month, with thirty projects and three manager seats. If you want daily rank tracking
+Core plan states &ldquo;250k pages per month in audit&rdquo; and &ldquo;25K API credits &amp; MCP access&rdquo;.
+The Growth plan states &ldquo;2M pages per month in audit&rdquo;. If you want daily rank tracking
 across major search engines, that is the product, and neither of the other two here does it at
 all.</p>
 
 <p>The page meter is the thing to check before you buy. 250k pages a month is generous for one
-site and starts to matter when you are auditing many, or re-auditing the same large site often, and it is a ceiling that exists because the crawl happens on their hardware.</p>
+site and starts to matter when you are auditing many, or re-auditing the same large site often.</p>
 
-<h2>What Screaming Frog is actually selling</h2>
+<h2>When should you choose Screaming Frog?</h2>
 
 <p>The opposite trade. It audits &ldquo;over 300 SEO issues&rdquo;, it runs on your machine,
 and nothing counts your pages. Their page says you can &ldquo;Download &amp; crawl 500 URLs for
@@ -2845,8 +2890,10 @@ per licence, and says licences are per user, so two people need two. The free ti
 useful and genuinely limited: their Free vs Paid table puts Scheduling, Crawl Configuration,
 Save &amp; Open Crawls, JavaScript Rendering, Crawl Comparison and Near Duplicate Content on the
 paid side only, so the free version cannot save a crawl or render JavaScript.</p>
+<p>If you only need a free audit, the <a href="/best/free-seo-audit-tools/">free SEO audit tools
+list</a> puts the page checkers and site crawler beside their limits.</p>
 
-<p>What you get back is data. Screaming Frog is the better tool if you know what you are looking for: custom extraction, very large crawls, a specific hypothesis to test. It does not
+<p>What you get back is data. Screaming Frog is the better tool if you know what you are looking for: very large crawls, a specific hypothesis to test. It does not
 rank what to fix first, and it does not try to.</p>
 
 <h2>Where Docket sits, and where it does not</h2>
@@ -2859,20 +2906,19 @@ change to make. That is the whole pitch, and it is worth being clear about what 
 checks, no competitor position history. If that is why you were looking at SE Ranking, Docket
 does not replace it and this page is not trying to talk you out of it.</p>
 
-<p><strong>Docket does not out-crawl Screaming Frog.</strong> Screaming Frog handles far larger
-sites, renders JavaScript across a whole crawl in its integrated Chromium, and supports custom
-XPath extraction. Docket renders a sample by default. On a large single-page application,
-Screaming Frog is the right tool.</p>
+<p>Screaming Frog's Free vs Paid table lists &ldquo;JavaScript Rendering&rdquo; on the paid side.
+Docket renders a sample by default.</p>
 
-{'<p><strong>All three run on Windows.</strong> Docket also runs on Macs, with Apple silicon or Intel.</p>' if WINDOWS else '<p><strong>Docket is macOS only.</strong> Both of the others run on Windows.</p>'}
+<p>SE Ranking is a cloud platform used in a browser. Screaming Frog runs on Windows, macOS
+and Ubuntu. Docket runs on Macs with Apple silicon or Intel{' and on 64-bit Windows' if WINDOWS else ''}.</p>
 
-{_measured("<p>Most of this page is about what the other two do. This is what Docket does: a real audit of our own site, with the figures the engine reported.</p>")}
+{_measured("<p>Most of this page is about what the other two do. This is what Docket does: a real audit of our own site, with the figures the engine reported.</p>", former_address=True)}
 
 <h2>Can you use both?</h2>
 
 <p>Yes, because they do different jobs. SE Ranking tracks rankings and keywords and meters its audit by pages per
 month. Screaming Frog crawls on your own machine and returns raw data, with no page meter. Nothing about one stops you
-running the other, and the price table above is the whole cost of doing so, as read on {CHECKED_HUMAN[key]}. If you
+running the other. The price table above lists their published prices, with sources and dates below. If you
 add a third tool for the part neither does, a ranked list of what to fix first, that is where Docket sits.</p>
 
 <p>If the platform you already pay for is Ahrefs rather than SE Ranking, <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs Site Audit</a> is set out the same way,
@@ -2886,20 +2932,20 @@ with what it checks and how a crawl is paid for.</p>
     track rankings.</li>
 <li><strong>You crawl very large sites, or you want raw data to interrogate yourself.</strong>
     Pick <a href="{sf}" rel="nofollow noopener">Screaming Frog</a>. It handles far larger crawls
-    than Docket and supports custom extraction.</li>
+    than Docket.</li>
 {WRONG_COMPUTER}
 <li><strong>You want to know what is wrong with your site and what to do about it, on a Mac or Windows PC, with
     no subscription or page meter.</strong> That is what Docket is for.</li>
 </ul>
-{_verified_note(key, closing="SE Ranking and Screaming Frog change their plans without telling anyone, so a figure here can go stale. If one has, <a href='/about/'>tell us</a>.")}
+{_verified_note(key, closing="If a figure here has gone stale, <a href='/about/'>tell us</a>.")}
 {CTA}
 """
     return render(
         cat="vs", slug="se-ranking-vs-screaming-frog",
-        modified="2026-10-19",
-        title="SE Ranking vs Screaming Frog: price, audit limits, use",
-        desc=(f"SE Ranking is ${_SR_LO} to ${_SR_HI} a month and meters its audit by pages. Screaming Frog is "
-              f"${COMPETITORS['screaming-frog']['annual_low']} a year, unmetered, free to 500 URLs. Read from their own pages."),
+        modified="2026-11-09",
+        title="SE Ranking vs Screaming Frog: prices, limits | Docket",
+        desc=("SE Ranking combines a cloud site audit with rank tracking. Screaming Frog is a "
+              "desktop crawler. Compare prices, audit limits and when to use each."),
         h1="SE Ranking vs Screaming Frog",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / SE Ranking vs Screaming Frog',
         body=body,
@@ -2912,12 +2958,11 @@ with what it checks and how a crawl is paid for.</p>
              "unmetered, with a ranked list of fixes."),
             ("How much does SE Ranking cost compared with Screaming Frog?",
              f"SE Ranking is {price('seranking')}. Screaming Frog is {price('screaming-frog')}, "
-             f"with a free tier up to 500 URLs. Both were read from the vendors' own pages on "
-             f"{CHECKED_HUMAN['se-ranking-vs-screaming-frog']}. Docket is {PRICE_STR} once."),
+             f"with a free tier up to 500 URLs. The evidence list gives the sources and dates read. "
+             f"Docket is {PRICE_STR} once."),
             ("Is SE Ranking's site audit unlimited?",
              "No. Its Core plan states \u201c250k pages per month in audit\u201d, so the audit "
-             "is metered by pages per month. Screaming Frog's paid licence has no page meter, "
-             "because the crawl runs on your own machine rather than theirs."),
+             "is metered by pages per month. Screaming Frog's paid licence has no page meter."),
             ("Can I use Screaming Frog for free?",
              "Yes, up to 500 URLs. Their Free vs Paid table puts Scheduling, Crawl "
              "Configuration, Save & Open Crawls, JavaScript Rendering, Crawl Comparison and "

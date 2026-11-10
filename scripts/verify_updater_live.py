@@ -31,6 +31,8 @@ answers the question "would an installed copy actually update".
 """
 from __future__ import annotations
 
+from brand import LEGACY_BASE
+
 import argparse
 import base64
 import json
@@ -44,7 +46,7 @@ import urllib.error
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-MANIFEST_URL = "https://docketseo.app/updater.json"
+MANIFEST_URL = LEGACY_BASE + "/updater.json"
 UA = {"User-Agent": "docketseo-updater-live/1.0"}
 
 

@@ -16,13 +16,15 @@ It refuses to publish a file that:
 """
 from __future__ import annotations
 
+from brand import LEGACY_BASE
+
 import json
 import sys
 import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-LIVE = "https://docketseo.app/data/knowledge.json"
+LIVE = LEGACY_BASE + "/data/knowledge.json"
 LOCAL = ROOT / "site" / "data" / "knowledge.json"
 SCHEMA_VERSION = 1
 

@@ -23,6 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import comparisons  # noqa: E402
 import facts as F  # noqa: E402
+from brand import SHORT  # noqa: E402
 from render import (CHROME_ADDON, HAS_SAMPLE, INTEL, INTEL_DMG, N_CHECKS, N_LANES, PAY4_BUY, PRICE, PRICE_STR,  # noqa: E402
                     REFUND_DAYS, SAMPLE_REPORT, buy_block, checkout_url, download_url,
                     price_req_html, render)
@@ -241,9 +242,10 @@ def robots_tester() -> Path:
         for a, o, w in ROBOTS_AGENTS)
     agents = ",".join(a for a, _, _ in ROBOTS_AGENTS)
     body = f"""
-<p class="lede">Paste the address of any page to see whether Googlebot may crawl it, and which line of
-the site's robots.txt decides. The same test runs for Bingbot, the AI crawlers and any other crawler you name.
-It works on any site, yours or not, and there is nothing to verify first.</p>
+<p class="lede">This free robots.txt tester checks whether a page is allowed or blocked for
+Googlebot, Bingbot and the AI crawlers. Paste the page address to see which robots.txt rule
+decides. No sign-up is needed. It tests crawl rules, not whether a page is indexed or whether
+a firewall lets a crawler through.</p>
 
 <form class="checker-form" id="checker" autocomplete="off" novalidate>
   <label for="checker-url">Page address</label>
@@ -276,7 +278,7 @@ It works on any site, yours or not, and there is nothing to verify first.</p>
             f"the file cannot show, among its {N_CHECKS} checks."))}
 {audit_next("tools-robots-tester", what="one file, read for one page")}
 
-<h2>How to read the answer</h2>
+<h2>How to read your robots.txt checker result</h2>
 <p><strong>Allowed</strong> or <strong>Blocked</strong> is what the file tells that crawler about this
 page. The rule beside it is the line that decided, and "named in your file" means a group addresses
 that crawler by name, so your <code>*</code> rules no longer apply to it. If no line matches, the page
@@ -307,14 +309,14 @@ have their own file. The tester reads the file for the host you type.</li>
 </ul>
 
 <h2>Checking every page</h2>
-<p>Docket reads robots.txt rules for {F.ai_agents()} AI crawlers across the pages it crawls.
-A separate check requests your homepage as {len(F.probes()['ai'])} AI crawlers plus {F.probes()['search']}
-to find server and CDN refusals. It checks the <code>noindex</code> tags and headers this tester
-cannot see, then ranks all of it with the rest of its {N_CHECKS} checks.</p>
+<p>Docket also checks the <code>noindex</code> tags and headers this tester cannot see,
+then ranks what to fix with the rest of its {N_CHECKS} checks.</p>
 {buy_block("tools-robots-tester", try_app="tools-robots-tester-try-free")}
 
 <h2>Related</h2>
 <ul>
+<li><a href="/learn/seo-audit/">What an SEO audit checks beyond robots.txt</a></li>
+<li><a href="/best/free-seo-audit-tools/">Free website audit tools and their limits</a></li>
 <li><a href="/tools/ai-crawler-checker/">AI crawler checker: can ChatGPT read your site?</a></li>
 <li><a href="/learn/ai-crawler-directives/">Which AI crawlers to block and which to keep</a></li>
 <li><a href="/learn/does-noindex-stop-ai-crawlers/">Does noindex stop AI crawlers?</a></li>
@@ -384,15 +386,20 @@ cannot see, then ranks all of it with the rest of its {N_CHECKS} checks.</p>
 """
     return render(
         cat="tools", slug="robots-txt-tester",
-        title="Google robots.txt tester: is Googlebot blocked?",
-        desc=("Free Google robots.txt tester: paste any page address and see whether Googlebot, Bingbot, "
-              "GPTBot and other crawlers may crawl it, and which line decides."),
-        h1="Google robots.txt tester",
+        modified="2026-11-09",
+        title="Free robots.txt tester and checker | Docket",
+        desc=("Test your site's robots.txt free. Enter a page URL to check whether Googlebot, "
+              "Bingbot and AI crawlers may crawl it, and see the rule that decides."),
+        h1="Free robots.txt tester and checker",
         crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / Robots.txt tester',
         body=body,
         published="2026-10-06",
         schema_type="WebPage",
         faq=[
+            ("Is this robots.txt checker free?",
+             "Yes. Paste a page address with no sign-up. The checker reads the robots.txt for "
+             "that host and tests the rules for Googlebot, Bingbot, AI crawlers and a crawler "
+             "you name. It does not check indexing or firewall access."),
             ("Where is the robots.txt tester in Google Search Console?",
              "Google replaced it with the robots.txt report, which lists the files Google found, when it last crawled "
              "them and any errors. The report does not take a page address, so to see whether one page is blocked, "
@@ -837,7 +844,7 @@ ranked by what to fix first. To check a page that is already live, use the
     if (!w) return {{ t: 'No ' + what + ' yet.', over: false }};
     if (w > hi) return {{ t: w + ' wide. Too long: a result cuts it after about ' + hi + '.', over: true }};
     if (w < lo) return {{ t: w + ' wide. Short: under ' + lo + ' leaves a result little to show.', over: false }};
-    return {{ t: w + ' wide. Fits Docket\'s range of ' + lo + ' to ' + hi + '.', over: false }};
+    return {{ t: w + ' wide. Fits {SHORT}\'s range of ' + lo + ' to ' + hi + '.', over: false }};
   }}
   function el(id) {{ return document.getElementById(id); }}
   function put(box, s, max) {{
@@ -1094,7 +1101,7 @@ one-page check cannot see those, and that is what the app is for.</p>
     return render(
         cat="tools", slug="seo-checker",
         title="Free SEO checker: score any page and see what to fix",
-        desc=("Free SEO checker: paste any page for a score out of 100, its problems by area and the first "
+        desc=("Free SEO checker: paste a page for a score out of 100, its problems by area and the first "
               "fix to make. Checks robots.txt for Google and AI crawlers. No sign-up."),
         h1="Free SEO checker",
         crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / SEO checker',

@@ -220,8 +220,8 @@ crawler name parses cleanly and applies to nobody. How often that happens is mea
 page rather than asserted here.</li>
 </ul>
 
-<p>Docket's audit carries an XML sitemap check in the indexability lane and separate per-crawler
-robots.txt and server-access checks in the AI lane, which is the split this page argues for: the
+<p>Docket's audit carries an XML sitemap check in the indexability area and separate per-crawler
+robots.txt and server-access checks in the AI area, which is the split this page argues for: the
 sitemap is a file-level fact, access is a per-crawler one. When that sitemap check reports URLs as
 broken, <a href="/how-to/sitemap-urls-that-are-not-stale/">read the cause before you regenerate
 the file</a>. The full list is on

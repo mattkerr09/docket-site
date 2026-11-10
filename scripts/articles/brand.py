@@ -27,7 +27,7 @@ def brand_consistency() -> Path:
 <p class="lede">A crawler asks whether a machine can read your page. None of them ask whether
 a person moving between your pages sees the same company each time, which is the question a
 brand owner actually has, and it falls straight down the gap between the SEO tool and the
-design review. Docket has a whole lane for it, and on
+design review. Docket has a whole area for it, and on
 <strong>{F.brand_social_undeclared()} of {F.brand_social_frame()}</strong> real company sites
 we measured, the machine-readable version of "this is us" was simply missing.</p>
 
@@ -57,9 +57,9 @@ whether you are an entity at all.</p>
 problem that companies have weighed and deprioritised. It is a cheap one nobody's tool
 mentioned.</p>
 
-<h2>What the lane actually checks</h2>
+<h2>What the area actually checks</h2>
 
-<p>Six checks, one of {N_LANES} lanes. Each is a counted fact rather than an opinion, because
+<p>Six checks, one of {N_LANES} areas. Each is a counted fact rather than an opinion, because
 "four typefaces across nine pages" is something you can verify and "the typography is
 inconsistent" is something you can only agree or disagree with.</p>
 
@@ -79,7 +79,7 @@ the site or lurch between pages written years apart.</li>
 <li><strong>Social consistency</strong>: the <code>sameAs</code> finding above.</li>
 </ul>
 
-<p>The lane is weighted lightly in the score on purpose. An inconsistent wordmark is a real
+<p>The area is weighted lightly in the score on purpose. An inconsistent wordmark is a real
 problem and it is not a <code>noindex</code>; it should never dominate a grade.</p>
 
 <h2>Two colours nobody can tell apart</h2>
@@ -178,7 +178,7 @@ broken for years because no tool was looking.</p>
              "sameAs tells the machine."),
             ("Do SEO tools check brand consistency?",
              "Crawlers generally do not. They answer whether a machine can read and index "
-             "the page. Docket runs six brand checks as one of its lanes. If typography and "
+             "the page. Docket runs six brand checks as one of its areas. If typography and "
              "colour governance is your real problem, though, a design-system tool reads your "
              "tokens directly and will beat any crawler at it."),
             ("Why does my audit say typefaces were not measured?",

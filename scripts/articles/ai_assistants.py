@@ -23,6 +23,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import N_CHECKS, REPO, RELEASE, buy_block, download_url, render  # noqa: E402
 from render import ISSUES, PRICE_STR, FOUNDING_LINE  # noqa: E402
+from brand import SITE_BRAND
 from pages import email_box, free_result_figure  # noqa: E402
 
 RUN = json.loads((Path(__file__).resolve().parents[2] / "data" / "ai-assistants-run.json").read_text())
@@ -64,6 +65,8 @@ def _bundle(platform: str) -> str:
 #: (verify_download_path.py caught it); the hub accepts .mcpb since worker version 53a39145 (CEO, 2026-11-07).
 def ai_assistants() -> Path:
     when = _day(RUN["measured"])
+    site_description = ("this site's address until November 2026"
+                        if SITE_BRAND == "checkengine" else "this site")
     vscode_link, cursor_link = _install_links()
     purchase = (buy_block("ai-assistants", try_app="ai-assistants-try-free")
                 .replace(' dl-mac', '').replace(' dl-win', '')
@@ -141,7 +144,7 @@ setup guide</a> has OpenAI&rsquo;s wording and every tool&rsquo;s options.</p>
 
 <h2>What the free version returns</h2>
 <p>On {when} we took the released {RUN["release"]} Mac extension, started it the way Claude Desktop does
-with the key setting empty and a fresh home folder, and asked it to audit {RUN["site"]}, this site. It
+with the key setting empty and a fresh home folder, and asked it to audit <span data-brand-history>{RUN["site"]}</span>, {site_description}. It
 answered in {RUN["seconds"]:g} seconds with a score of {RUN["score"]:g} ({RUN["grade"]}),
 {RUN["problems"]} problems across {RUN["areas"]} areas, and the top one in full: &ldquo;{RUN["top_title"]}&rdquo;,
 with where it is and the change to make. Its tool list also offers

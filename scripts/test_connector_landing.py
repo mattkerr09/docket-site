@@ -193,7 +193,7 @@ assert.equal(run('', 'unknown')[0].get('ls'), null);
             with patch.object(pages, "EMAIL_BOX_ENABLED", enabled):
                 body = page(pages, pages.privacy)["body"]
             self.assertNotIn("The home page has one email field", body)
-            for word in ("kerr-subscribe.kerrco.workers.dev", "docket-price-reminder", "docket-news",
+            for word in ("kerr-subscribe.kerrco.workers.dev", "price-reminder list", "news list",
                          "daily counts by assistant family", "tool outcome", "never an address, client name or session id",
                          "in local storage for thirty days"):
                 self.assertIn(word, body)

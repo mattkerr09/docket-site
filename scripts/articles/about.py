@@ -23,6 +23,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from brand import FORMER_ADDRESS_NOTE  # noqa: E402
 import facts as F  # noqa: E402
 from render import (
     FREE_CLAUSE,  # noqa: E402
@@ -49,10 +50,12 @@ build, and that none was planned while it is one person, until Docket {RELEASE};
 Linux build entirely until 2026-08-10, when the download page had been describing it for weeks.</li>"""
 
 def about() -> Path:
+    from brand import HOST, LEGACY_HOST, SITE_BRAND
+    knowledge_source = LEGACY_HOST + "/data/knowledge.json" if SITE_BRAND == "checkengine" else HOST
     body = f"""
-<p class="lede">Docket is built by Matt Kerr, one person, in {SELLER_CITY}, and sold by his
+<p class="lede">Docket is built by Matt Kerr, one person, in {SELLER_CITY}, and published by his
 company, {SELLER}. It is {'an app for Mac and 64-bit Windows' if WINDOWS else 'a Mac app'} that
-audits a site's SEO, copy and branding against {N_CHECKS} checks across {N_LANES} lanes,
+audits a site's SEO, copy and branding against {N_CHECKS} checks across {N_LANES} areas,
 runs the crawl on your own machine, and costs {PRICE_STR} once, and {FREE_CLAUSE}.</p>
 
 <p>There is no team page because there is no team, and no support desk because there is
@@ -153,7 +156,7 @@ link. The rates, the payout terms and the disclosure you owe your readers are on
         cat="about", slug="",
         title="About Docket: who builds it and what it cannot do",
         desc=(f"Docket is an SEO audit app for {'Mac and Windows' if WINDOWS else 'Mac'} with {N_CHECKS} checks, built by one "
-              f"person in Grand Rapids, Michigan. What it is bad at, and how to check the download."),
+              f"person in Grand Rapids, Michigan. Its limits, and how to check the download."),
         h1="About Docket",
         crumb='<a href="/">Docket</a> / About',
         body=body,
@@ -162,7 +165,7 @@ link. The rates, the payout terms and the disclosure you owe your readers are on
         schema_type="AboutPage",
         faq=[
             ("Who makes Docket?",
-             f"Matt Kerr, one person, in {SELLER_CITY}; the seller is his company, {SELLER}. There is no team. "
+             f"Matt Kerr, one person, in {SELLER_CITY}; the publisher is his company, {SELLER}. There is no team. "
              "The macOS download is signed with an Apple Developer ID and notarised, so "
              "the legal name on the certificate can be checked with codesign before you "
              "install anything."),
@@ -170,7 +173,7 @@ link. The rates, the payout terms and the disclosure you owe your readers are on
              "The audit and its results stay on your computer, in ~/.docket/ as plain JSON. "
              f"{F.optional_connectors_word().capitalize()} optional checks, on by default, do "
              "reach out: Docket asks your own server what it tells AI crawlers, refreshes its "
-             "crawler knowledge file from docketseo.app (which learns nothing about what you "
+             f"crawler knowledge file from {knowledge_source} (which learns nothing about what you "
              "audit), checks whether the email addresses your site publishes can receive mail, "
              "sends Google PageSpeed Insights the address you are measuring (no API key needed), "
              "and asks Google's public autocomplete for topic suggestions. --offline, or "
@@ -197,19 +200,19 @@ site first advertised could not receive mail.</p>
 
 <h2>The address that did not work</h2>
 
-<p>The footer of all 25 pages of this site used to offer
+<p>The footer of all 25 pages of <span data-brand-history>docketseo.app{FORMER_ADDRESS_NOTE}</span> used to offer
 <code>hello@docketseo.app</code>. That address could not receive mail, and never had.</p>
 
 <p>Delivering mail to a domain means looking up its MX record. When that address was
-advertised, <code>docketseo.app</code> had none.
+advertised, <code data-brand-history>docketseo.app</code> had none.
 <a href="https://www.rfc-editor.org/rfc/rfc5321#section-5.1">RFC 5321 §5.1</a> says a
-sender that finds no MX record falls back to the domain's address record, which for this site is GitHub Pages, whose servers do not answer on port 25. So every message went out,
+sender that finds no MX record falls back to the domain's address record, which for that address was GitHub Pages, whose servers did not answer on port 25. So every message went out,
 found nowhere to go, and bounced.</p>
 
 <p><strong>That part has since changed, and this page will state only the half of it that can
-be proved.</strong> <code>docketseo.app</code> now has MX records: forwarding, at
+be proved.</strong> <code data-brand-history>docketseo.app</code> now has MX records: forwarding, at
 <code>fwd1.porkbun.com</code> and <code>fwd2.porkbun.com</code>. What has <em>not</em> been
-established is whether a message to an address on this domain reaches a mailbox anyone reads:
+established is whether a message to an address on that domain reaches a mailbox anyone reads:
 an MX record is necessary for delivery, not sufficient, and forwarding is configured per
 address. {SUPPORT_EMAIL} is the address the owner named for it, and the one the refund
 policy and the purchase receipt point to.</p>

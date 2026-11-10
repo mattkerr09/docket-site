@@ -70,7 +70,7 @@ fax, or a customer's. The same reasoning covers a <code>tel:</code> that appears
 JavaScript string: a grep finds it, the parser does not, and the parser is right, because a
 mention is not a promise.</p>
 
-<p>A printed number with no link on it at all is a different check in a different lane
+<p>A printed number with no link on it at all is a different check in a different area
 (<code>local.phone_not_clickable</code>, which only runs for sites that look like a local
 business). This page is about the link that exists and does not work.</p>
 
@@ -205,7 +205,7 @@ carry across to them; we have not surveyed phone links at all.</p>
 
 <p>If your customers find you in a map, the rest of that ground (business schema, the name,
 address and phone matching your listing, the place named in your titles) is on
-<a href="/for/local-business/">why your business is not in the map pack</a>. The lane this
+<a href="/for/local-business/">why your business is not in the map pack</a>. The area this
 check sits in, and what else is in it, is on
 <a href="/learn/conversion-audit/">the conversion audit page</a>. If the trouble is several
 different numbers rather than a dead one, that is at
@@ -216,7 +216,7 @@ different numbers rather than a dead one, that is at
     return render(
         cat="how-to", slug="fix-phone-links-that-will-not-dial",
         title="How to fix phone links that will not dial",
-        desc=("A tel: link can look perfect on screen and dial nothing when tapped. What "
+        desc=("A tel: link can look perfect and dial nothing when tapped. What "
               "Docket's cvr.unusable_phone check reads in the href, and what it cannot "
               "tell you."),
         h1="Phone links that will not dial",

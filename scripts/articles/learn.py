@@ -215,8 +215,8 @@ problems; the problem counts ran from {least} to {most}. Of the {n}, {grades["D"
 and {grades["A"]} A.</p>
 <p>The most common area was {top[0]}: a median of {num(_st.median(top[1]))} problems a site. Next
 came {second[0]}, at {num(_st.median(second[1]))}. Crawlability, the gate described above, had
-problems on {crawl_hit} of the {n} sites. Every one of them had at least one finding in {len(every)} of the
-{len(areas)} areas. A clean audit is rare. What an audit is for is the order: which of those problems to fix
+problems on {crawl_hit} of the {n} sites. In {len(every)} of the {len(areas)} areas, all {n} sites
+had at least one finding. A clean audit is rare. What an audit is for is the order: which of those problems to fix
 first.</p>
 <div class="wrap-tbl"><table class="cmp">
 <caption>Problems per site by area, the six most common ({n} sites, {day})</caption>
@@ -240,22 +240,20 @@ data-ev-button="{SEO_AUDIT_BOX}">Run a free audit of your site</a></p>
 scores one address in your browser and shows what to fix on it.</p>
 </div>
 
-<p class="lede">An SEO audit is a systematic check of everything about a website that
-determines whether search engines can find it, understand it, and choose to show it. A useful
-audit ends with a short ordered list of things to change. An unhelpful one ends with a
-spreadsheet of 400 rows.</p>
-
-<h2>What an audit actually covers</h2>
-<p>The areas below are ordered the way they should be worked, because they fail in sequence: a
-page that cannot be crawled scores zero on everything downstream, however good its content.
-Each one carries a number from our own surveys, because "check this" is advice and "this is
-broken on half the sites we read" is a reason.</p>
+<h2>What does an SEO audit include?</h2>
+<p>Start with whether search engines can reach and index the pages. Then check what those
+pages say, how they load and how they link together. A good audit separates faults a tool can
+find from questions that need a person to read the page.</p>
 
 <h3>Crawlability and indexing: the gate</h3>
 <p>Can search engines reach the page, and are you telling them to index it? This is where the
 site-killing mistakes live: a <code>noindex</code> left on after a redesign, a robots.txt
 <code>Disallow: /</code> carried over from staging, canonicals pointing at another domain,
-redirect loops. Every one of these is invisible to a visitor and fatal to rankings.</p>
+redirect loops. These faults can go unnoticed by the site owner while affecting how search
+engines reach or index the pages.</p>
+<p>Use the <a href="/tools/robots-txt-tester/">robots.txt tester</a> to check whether a rule blocks
+a page. For an archive that points every canonical at its first page,
+<a href="/how-to/fix-paginated-pages-that-canonicalise-to-page-1/">check the pagination canonicals</a>.</p>
 <p>Two numbers from reading the robots.txt of the Tranco top 10,000. Of the
 {F.directives_ai_sites():,} sites writing a rule aimed at an AI crawler,
 <strong>{F.directives_dead_sites()} ({F.directives_dead_pct()}%) name a user-agent token no
@@ -290,7 +288,7 @@ links that organisation to anything else. {F.entity_org() - F.entity_same_as()} 
 trouble of describing themselves and then connected it to nothing.
 <a href="/learn/sameas-entity-signals/">The dataset is here.</a></p>
 
-<h3>The three most audits skip</h3>
+<h3>The three that most audits skip</h3>
 <ul>
 <li><strong>Local business signals</strong>: NAP consistency, LocalBusiness schema and its
 subtypes, opening hours, geo targeting. For a plumber or a restaurant this <em>is</em> organic
@@ -307,7 +305,13 @@ which is a different question from whether it is installed.</li>
 </ul>
 
 {_field_section()}
-<h2>How often to run one</h2>
+<h2>How can I run a free SEO audit?</h2>
+<p>Start with a page you need people to find. Check its crawl access, title, headings and
+canonical, then look for the same faults across the site. Fix access problems before polishing
+copy that search engines cannot read. The <a href="/best/free-seo-audit-tools/">free SEO audit tools
+list</a> shows which tools check a page, which crawl a site and where their free versions stop.</p>
+
+<h2>How often should I run an SEO audit?</h2>
 <p>Quarterly is right for most sites, with lighter monitoring between. Run one immediately
 after a redesign, a migration, a CMS change, or an unexplained traffic drop: those are when
 the fatal, invisible mistakes get introduced.</p>
@@ -332,19 +336,25 @@ against effort, and marks areas it could not assess as unknown rather than passi
 """
     return render(
         cat="learn", slug="seo-audit",
-        modified="2026-11-08",  # field results from 14 small-business sites; the single-page checker linked; Windows too
-        title="What is an SEO audit? What it covers and how to read one",
+        modified="2026-11-09",
+        title="What is an SEO audit? A checklist | Docket",
         desc=("An SEO audit checks whether search engines can find, understand and choose to "
-              "show your site. What each area covers, and why they fail in order."),
-        h1="What an SEO audit actually covers",
+              "show your site. Use this checklist to find faults and choose what to fix first."),
+        h1="What is an SEO audit?",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / SEO audits',
         body=body,
         faq=[
+            ("What is an SEO audit?",
+             "An SEO audit checks whether search engines can find your pages, understand them "
+             "and choose to show them. Its useful result is an ordered list of fixes, with the "
+             "affected pages and what to change."),
+            ("Can I do an SEO audit for free?",
+             "Yes. Start with a free page check, then use a site crawl to find faults between "
+             "pages. Docket's free download shows your score, problem counts by category and "
+             "the top problem in full with its fix. The rest of the problems and ranked plan are paid."),
             ("What does an SEO audit include?",
              "Crawlability and indexing, on-page markup, content quality, speed, structured "
-             "data, internal and outbound links, and security. A thorough audit also covers "
-             "local business signals, AI search visibility and conversion, which most technical "
-             "crawlers omit."),
+             "data, local business signals, AI search visibility and conversion."),
             ("How often should I run an SEO audit?",
              "Quarterly for most sites, with lighter monitoring in between. Run one immediately "
              "after a redesign, migration or unexplained traffic drop: those are when "

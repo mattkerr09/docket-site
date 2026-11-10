@@ -167,7 +167,7 @@ streets you cover, what the awkward customer situation was and how it was handle
 result aloud. Stock phrasing is much easier to hear than to see.</p>
 
 <p>If the same generic register runs across the whole site rather than a few drafted pages, the
-problem is a level up from copy. Docket's brand lane asks whether a person moving between your
+problem is a level up from copy. Docket's brand area asks whether a person moving between your
 pages sees the same company each time, which is
 <a href="/learn/brand-consistency/">a question no crawler asks</a> and a different question from
 this one.</p>
@@ -195,7 +195,7 @@ version of the question is
         cat="learn", slug="ai-sounding-copy",
         title="Does your copy read as AI-written? What Docket checks",
         desc=("Docket's content.ai_slop check detects a register, not authorship. What it "
-              "matches, why it needs two phrases, and what it cannot tell you about your "
+              "matches, why it needs two phrases, and what it cannot tell you about "
               "writing."),
         h1="Copy that reads as AI-written, and what Docket can tell you",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / AI-sounding copy',

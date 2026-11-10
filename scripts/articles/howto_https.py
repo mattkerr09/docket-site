@@ -21,18 +21,19 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from brand import FORMER_ADDRESS_NOTE  # noqa: E402
 from render import render  # noqa: E402
 
 
 def http_to_https() -> Path:
-    body = """
+    body = f"""
 <p class="lede">If your site answers on <code>http://</code> without sending the visitor to
 <code>https://</code>, you have two problems and only one of them is about ranking. The
 ranking one is old news. The other is that a browser now writes "Not secure" next to your
 address, and the person reading it has no idea whether that means you are careless or
 compromised.</p>
 
-<p>We found this on our own site. Docket audited <code>docketseo.app</code>, returned
+<p>We found this on our own site. Docket audited <code data-brand-history>docketseo.app</code><span data-brand-history>{FORMER_ADDRESS_NOTE}</span>, returned
 <strong>http:// does not redirect to https://</strong> at HIGH, and it was right: the plain
 HTTP address answered normally with no redirect at all. A tool that ships this check was
 shipping the fault. That is embarrassing in a useful way, because fixing it turned up the part

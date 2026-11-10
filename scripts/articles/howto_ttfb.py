@@ -143,7 +143,7 @@ with <a href="/vs/">other audit tools</a>.</p>
         cat="how-to", slug="reduce-server-response-time",
         title="How to reduce server response time (TTFB)",
         desc=("Time to first byte is the floor under every loading number. Cache pages, add a CDN, find what "
-              "is slow behind the cache, and what a crawler can and cannot tell you."),
+              "is slow behind it, and what a crawler can and cannot tell you."),
         h1="How to reduce server response time (TTFB)",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / server response time',
         body=body,

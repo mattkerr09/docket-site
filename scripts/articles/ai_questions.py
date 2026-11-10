@@ -173,7 +173,7 @@ plainly what it cannot see.</p>
         modified="2026-10-19",
         title="What is ClaudeBot? What blocking it does, and doesn't",
         desc=("ClaudeBot is Anthropic's training crawler. Blocking it keeps your pages out of "
-              "training, not out of Claude's answers. The three Anthropic bots, and how to block one."),
+              "training, not Claude's answers. The three Anthropic bots, and how to block one."),
         h1="What is ClaudeBot?",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is ClaudeBot?',
         body=body,
@@ -968,7 +968,7 @@ you name it, matching them the way the standard describes: longest match, wildca
         modified="2026-11-09",
         title="What is robots.txt? What it controls, and what it can't",
         desc=("robots.txt asks crawlers which URLs not to fetch. How rules match, what Google and Bing ignore, "
-              "why it can't keep a page out of search, and what big sites block."),
+              "why it can't hide a page from search, and what big sites block."),
         h1="What is robots.txt?",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is robots.txt?',
         body=body,
@@ -1270,7 +1270,7 @@ against Google's list, so an SVG-only favicon is worth checking by eye. If your 
         modified="2026-11-09",
         title="What is a favicon? Sizes, formats and Google's rules",
         desc=("A favicon is the small icon for your site in tabs, bookmarks and search results. "
-              "Google's current rules, which formats it lists, and what four real sites declare."),
+              "Google's rules, which formats it lists, and what four real sites declare."),
         h1="What is a favicon?",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is a favicon?',
         body=body,

@@ -79,7 +79,7 @@ more exactly somebody followed the vocabulary, the more certainly the check went
 
 <h2>Two checks in one product, disagreeing about one site</h2>
 
-<p>The structured-data lane asks the same question. Does this site declare a business identity?,
+<p>The structured-data area asks the same question. Does this site declare a business identity?,
 and got it right on the same file. It consults a shared list of identity types whose own comment
 states the rule plainly: every subtype qualifies, because each one <em>is</em> the base type by
 inheritance.</p>
@@ -93,7 +93,7 @@ file.</strong></p>
 <p>Worth separating, because "two checks are about the same thing" is not automatically a fault.</p>
 
 <p>When no business identity is found at all, this check now says nothing. Not because it has no
-view, but because the structured-data lane already reports that at high severity, and reporting
+view, but because the structured-data area already reports that at high severity, and reporting
 the same defect twice would take two bites out of one score for one fix. That deference is
 designed.</p>
 
@@ -125,7 +125,7 @@ first.</strong> If you declared a specific business type and the finding names t
 that is the signature.</li>
 <li><strong>Search your markup for the property, not for the type name.</strong> The property is
 what matters; the type is what the tool was matching on.</li>
-<li><strong>Look for the same question answered elsewhere in the report.</strong> If one lane says
+<li><strong>Look for the same question answered elsewhere in the report.</strong> If one area says
 you have business markup and another says you do not, you have found a disagreement rather than a
 defect.</li>
 <li><strong>Validate with the search engine's own testing tool.</strong> It resolves inheritance,
@@ -174,7 +174,7 @@ what you are &rarr;</a>.</p>
         cat="how-to", slug="when-a-check-cannot-see-your-markup",
         title="When a check cannot see the markup you wrote",
         desc=("An audit told a consultancy its schema linked to no profiles while seven sat in "
-              "the file. The check matched a type name literally and never saw the site's "
+              "the file. The check matched a type name literally and missed the site's "
               "subtype."),
         h1="When a check cannot see the markup you wrote",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Type matching',
@@ -193,7 +193,7 @@ what you are &rarr;</a>.</p>
              "compares names. Validate with the search engine's own tool, which resolves "
              "inheritance."),
             ("Is it a problem that two checks cover the same thing?",
-             "Overlap is fine and often deliberate: one of ours stays silent when another lane "
+             "Overlap is fine and often deliberate: one of ours stays silent when another area "
              "already reports the same defect, so a single fix does not cost the score twice. "
              "Disagreement is the problem, not overlap."),
             ("Does a full sameAs array prove anything?",

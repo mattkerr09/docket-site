@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """The recordings on the front page were made by a build that is still current.
 
-    python3 scripts/verify_recordings_fresh.py [--self-test]
+    python3 scripts/verify_recordings_fresh.py [--self-test] [--allow-legacy-brand-recordings]
 
 WHY. The home page showed "136 pages, 112 seconds" (a recording made by 1.3.94)
 and "140 pages crawled in 97 seconds" (1.3.95) while the shipping build audited
@@ -35,9 +35,12 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import os
 import pathlib
 import re
 import sys
+
+from brand import SITE_BRAND
 
 DATA = pathlib.Path(__file__).resolve().parent.parent / "data"
 #: sample-run.json is the home page's "This is the actual report" image (page 1 of the sample PDF) and its
@@ -119,8 +122,19 @@ def main() -> int:
     # UTC, because the recorders stamp `new Date().toISOString().slice(0, 10)`, a UTC date. The local date failed a
     # recording made after 19:00 Eastern as "in the future" (2026-11-04 04:17Z, still the 3rd in Michigan).
     found = problems(recs, current, dt.datetime.now(dt.timezone.utc).date())
+    legacy_brand = [name for name, rec in recs.items() if rec.get("site_brand", "docket") != SITE_BRAND]
+    allow_legacy = ("--allow-legacy-brand-recordings" in sys.argv
+                    or os.environ.get("DOCKET_ALLOW_LEGACY_BRAND_RECORDINGS") == "1")
+    if allow_legacy and SITE_BRAND != "checkengine":
+        print("FAIL --allow-legacy-brand-recordings requires SITE_BRAND=checkengine")
+        return 1
+    if legacy_brand and not allow_legacy:
+        found.append("Recordings show the old brand: " + ", ".join(legacy_brand)
+                     + ". Replace them or use --allow-legacy-brand-recordings for the rename review.")
+    elif legacy_brand:
+        print("ALLOW old-brand footage: --allow-legacy-brand-recordings. Freshness limits still apply.")
     if found:
-        print("FAIL  a front-page recording is older than the build it claims to show:")
+        print("FAIL  a front-page recording is stale or uses another brand:")
         for line in found:
             print("   ", line)
         print("    Re-record: start a dev engine, then in docket-app/ui run")

@@ -23,6 +23,7 @@ requires the gate to refuse it; then requires the real site to pass.
 from __future__ import annotations
 
 import argparse
+from html.parser import HTMLParser
 import pathlib
 import re
 import sys
@@ -31,8 +32,23 @@ from urllib.parse import urlsplit
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from verify_pixel import (PRIVACY, SITE, TRACKER_MARKS,  # noqa: E402
                           declared_script_count)
+from brand import HOST, SITE_BRAND  # noqa: E402
 
 _SRC = re.compile(r"<script\b[^>]*\bsrc=[\"']([^\"']+)[\"']", re.I)
+# Both brands use the site-bound loader (CEO 2026-11-10): it counts under the docketseo.app Plausible site whatever the host.
+PLAUSIBLE_SRC = "https://plausible.io/js/pa-9WvL8kBqk1wanjcZqTHu4.js"
+
+
+class PlausibleScripts(HTMLParser):
+    def __init__(self, raw):
+        super().__init__()
+        self.scripts = []
+        self.feed(raw)
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "script" and urlsplit(attrs.get("src", "")).hostname == "plausible.io":
+            self.scripts.append(attrs)
 
 
 def loaded_scripts(pages: dict[str, str]) -> dict[str, list[str]]:
@@ -65,6 +81,12 @@ def check(pages: dict[str, str], privacy_html: str, declared: int | None) -> lis
         if host.lower() not in privacy_html.lower():
             bad.append(f"{key} (on {len(where)} page(s), e.g. {where[0]}) is loaded and "
                        f"its host is named nowhere on the privacy page")
+    for name, raw in pages.items():
+        for attrs in PlausibleScripts(raw).scripts:
+            if attrs["src"] != PLAUSIBLE_SRC:
+                bad.append(f"{name}: wrong Plausible loader for {SITE_BRAND}")
+            if "data-domain" in attrs:
+                bad.append(f"{name}: the Plausible loader must be the site-bound one (no data-domain)")
     return bad
 
 
@@ -94,6 +116,18 @@ def main() -> int:
             print("SELF-TEST FAILED — an unlisted script on the front page passed")
             return 1
         print("  self-test ok — a planted unlisted script was refused")
+        name = next(name for name, raw in pages.items() if PLAUSIBLE_SRC in raw)
+        planted = dict(pages)
+        planted[name] = planted[name].replace(PLAUSIBLE_SRC, "https://plausible.io/js/wrong.js")
+        if not any("wrong Plausible loader" in b for b in check(planted, privacy, declared)):
+            print("SELF-TEST FAILED: wrong Plausible loader passed")
+            return 1
+        planted[name] = pages[name].replace(PLAUSIBLE_SRC, "https://plausible.io/js/script.js").replace(
+            "<script async ", '<script async data-domain="wrong.invalid" ')
+        if not any("site-bound one" in b or "wrong Plausible loader" in b for b in check(planted, privacy, declared)):
+            print("SELF-TEST FAILED: a classic data-domain loader passed")
+            return 1
+        print("  self-test ok: the brand's Plausible settings were checked")
 
     bad = check(pages, privacy, declared)
     scripts = loaded_scripts(pages)

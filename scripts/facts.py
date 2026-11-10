@@ -497,7 +497,9 @@ def equity_node(path: str) -> dict:
 
 
 def equity_weakest(limit: int = 3) -> list:
-    return sorted(equity()["nodes"], key=lambda n: n["index"])[:limit]
+    # /thank-you/ is the post-purchase page and is never linked on purpose: it stays in the measurement, but it is
+    # not an example of a link that is missing.
+    return sorted((n for n in equity()["nodes"] if n["path"] != "/thank-you/"), key=lambda n: n["index"])[:limit]
 
 
 # -- AI-substitution portfolios, exported from real audits -------------------

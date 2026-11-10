@@ -12,6 +12,7 @@ import re
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from brand import html as brand_html
 from render import FOUNDING_MOUNT, NAV, render  # noqa: E402
 from articles.title_ii import LARGE, SMALL, POP  # noqa: E402
 
@@ -133,8 +134,9 @@ what needs work.</p>
     )
     # Shared chrome sells the separate SEO licence and its founding offer.
     # Keep this page's sole buy path tied to PSC_BUY_URL, without changing other pages.
-    nav = re.sub(r'<a\b[^>]*data-ev="Buy"[^>]*>.*?</a>', "", NAV, flags=re.S)
-    html = page.read_text(encoding="utf-8").replace(NAV, nav, 1)
+    original_nav = brand_html(NAV)
+    nav = re.sub(r'<a\b[^>]*data-ev="Buy"[^>]*>.*?</a>', "", original_nav, flags=re.S)
+    html = page.read_text(encoding="utf-8").replace(original_nav, nav, 1)
     if FOUNDING_MOUNT:
         html = html.replace(FOUNDING_MOUNT, "", 1)
     page.write_text(html, encoding="utf-8")

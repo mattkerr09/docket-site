@@ -184,9 +184,9 @@ finding and not another.</p>
 fix are a page of their own and are not repeated: <a href="/how-to/fix-layout-shift/">how to fix
 layout shift</a> covers the reason browsers need the attributes, what to do when you cannot know
 the dimensions, and the four other causes of shift that have nothing to do with images. Docket
-links its own two findings on this for the same reason. The performance lane's layout-shift
+links its own two findings on this for the same reason. The performance area's layout-shift
 risk finding carries a pointer back to this check as the owner of the remedy, so the action plan
-asks for the work once while both lanes keep their deduction.</p>
+asks for the work once while both areas keep their deduction.</p>
 
 <p>One caveat that page cannot give you, because it is about Docket rather than about CLS. The
 extractor decides an image has dimensions if it has <code>width</code> and <code>height</code>
@@ -198,11 +198,11 @@ page, not the other way round.</p>
 
 <h2>The image findings that are not this check</h2>
 
-<p>Docket splits image work across lanes, and two neighbours will show up in the same report
+<p>Docket splits image work across areas, and two neighbours will show up in the same report
 with the word "image" in them.</p>
 
 <ul>
-<li><strong>Image formats</strong>: <code>perf.modern_images</code>, in the performance lane.
+<li><strong>Image formats</strong>: <code>perf.modern_images</code>, in the performance area.
 It looks at file extensions and reports pages carrying several JPEGs or PNGs where WebP or AVIF
 would do. Nothing to do with alt text; it never opens a file either, so it is reasoning from the
 extension. The fix, with a real before and after, is at
@@ -210,13 +210,13 @@ extension. The fix, with a real before and after, is at
 <li><strong>Layout shift risk</strong>: <code>perf.cls_risk</code>, also performance. Same
 missing width and height, seen per page as a proportion rather than a count, and stated as risk
 rather than measurement because a crawl cannot measure Cumulative Layout Shift.</li>
-<li><strong>Social preview images</strong>: the social lane, covered in <a
+<li><strong>Social preview images</strong>: the social area, covered in <a
 href="/how-to/fix-missing-open-graph-tags/">fixing a broken link preview</a>. An
 <code>og:image</code> is not an <code>&lt;img&gt;</code> on your page and is checked
 differently.</li>
 </ul>
 
-<p>The full list, with what each lane is for, is on <a href="/learn/what-docket-checks/">what
+<p>The full list, with what each area is for, is on <a href="/learn/what-docket-checks/">what
 Docket checks</a>. Every check on this page appears there under its own identifier, which is
 the thing to search for when a finding's wording is not enough to place it.</p>
 

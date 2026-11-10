@@ -225,7 +225,7 @@ notice rather than an error because static hosting frequently cannot issue a ser
 redirect at all, and scolding somebody for using the only tool their host gives them is not
 advice.</li>
 <li><strong>Redirect latency</strong>: <code>perf.redirect_volume</code>, in the performance
-lane. It fires on the share of crawled URLs that went through any redirect, one hop included,
+area. It fires on the share of crawled URLs that went through any redirect, one hop included,
 which is a question about cost rather than correctness.</li>
 <li><strong>Canonical conflicts</strong>: the <code>index.canonical</code> check, whose
 findings include <code>index.canonical_conflict</code>. A redirect and a canonical tag are two

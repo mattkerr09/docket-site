@@ -143,8 +143,8 @@ otherwise is selling you a conclusion it did not reach.</p>
 <h2>Where this sits in an audit</h2>
 
 <p>The registered check is <code>mar.analytics</code>, which covers whether analytics is installed.
-For the tracking lane as a whole (what the six checks look for, what was found across real sites,
-and what the lane deliberately does not do) see
+For the tracking area as a whole (what the six checks look for, what was found across real sites,
+and what the area deliberately does not do) see
 <a href="/learn/marketing-tag-audit/">the marketing tag audit &rarr;</a>.</p>
 
 <p>For the related habit of reading what a finding actually counted, see

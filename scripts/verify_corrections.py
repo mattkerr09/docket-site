@@ -38,7 +38,8 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "corrections.json"
-APP = ROOT.parent / "docket-app"
+import app_path
+APP = app_path.find()
 PAGE = ROOT / "site" / "learn" / "what-docket-got-wrong" / "index.html"
 REPO = "mattkerr09/docket-site"
 FIELDS = ("title", "wrong", "found", "fixed")

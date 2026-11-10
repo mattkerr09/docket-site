@@ -29,6 +29,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from render import SITE_BRAND
 from render import render  # noqa: E402
 
 #: The day Google's documentation was read for this page.
@@ -90,7 +91,7 @@ question with a much firmer answer.</p>
 
 <h2>What <code>links.nav_not_in_html</code> actually measures</h2>
 
-<p>The check is registered in the links lane under the name
+<p>The check is registered in the links area under the name
 <code>Navigation reachable without JavaScript</code>, and that title is broader than the
 measurement underneath it. Read the source and the measurement is this: for every crawled page
 that returned OK and declared an HTML content type, Docket counts the distinct internal
@@ -264,9 +265,14 @@ answer is measured and when it is withheld.</p>
     return render(
         cat="how-to", slug="fix-navigation-that-needs-javascript",
         title="Fix navigation that needs JavaScript to work",
-        desc=("Docket's nav_not_in_html check counts internal links across a site in the HTML "
-              "your server "
-              "sent. What it measures, what it cannot tell you about Google, and the fix."),
+        desc=(
+            ("Docket's nav_not_in_html check counts internal links in the HTML your server sent. "
+             "What it measures, what it cannot tell you about Google, and the fix.")
+            if SITE_BRAND == "checkengine"
+            else ("Docket's nav_not_in_html check counts internal links across a site in the HTML "
+                  "your server "
+                  "sent. What it measures, what it cannot tell you about Google, and the fix.")
+        ),
         h1="Fixing navigation that only exists after JavaScript runs",
         crumb=('<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / '
                'navigation that needs JavaScript'),

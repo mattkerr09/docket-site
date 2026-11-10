@@ -216,7 +216,7 @@ is the part nobody repeats a year later, which is why it is the part that rots.<
 
 <p>Docket checks the first two across a whole site and reports the pages where the entity is
 declared without <code>sameAs</code>, or with an array too weak to resolve anything. Part of
-its <a href="/learn/ai-search-visibility/">AI search visibility</a> lane.</p>
+its <a href="/learn/ai-search-visibility/">AI search visibility</a> area.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """

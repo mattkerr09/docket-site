@@ -23,6 +23,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from render import SITE_BRAND
 from render import DATA, render  # noqa: E402
 
 SITE = Path(__file__).resolve().parents[2] / "site"
@@ -59,7 +60,7 @@ the device most people are holding.</p>
 <h2>Three findings from one real site</h2>
 
 <p>Auditing a US coffee retailer on 2026-08-14 produced three conversion findings, and they
-are a fair illustration of what this lane is and is not good for.</p>
+are a fair illustration of what this area is and is not good for.</p>
 
 <p><strong>"2 key pages have no clear call to action"</strong>, at HIGH. This is the
 mechanical kind and it is worth exactly what it says: two pages whose job is to move
@@ -101,7 +102,7 @@ use. <a href="/learn/dead-contact-address/">The mail one is worth its own page</
 address on a domain with no MX record bounces to the sender, so you never learn that
 anybody tried.</p>
 
-<h2>What this lane deliberately does not do</h2>
+<h2>What this area deliberately does not do</h2>
 
 <p>It does not score your copy, judge your design, or predict a conversion rate. It cannot
 tell you whether your price is right, whether your offer is compelling, or whether the
@@ -117,9 +118,14 @@ traffic you already earned.</p>
     return render(
         cat="learn", slug="conversion-audit",
         title="Conversion audit: 9 checks on your landing pages",
-        desc=(f"The {len(rows)} conversion checks in Docket's audit (calls to action, social "
-              "proof, message match, dead contact details), and the judgement calls "
-              "it refuses to make for you."),
+        desc=(
+            (f"The {len(rows)} conversion checks in Docket's audit cover calls to action, social "
+             f"proof, message match and dead contact details. What it leaves to you.")
+            if SITE_BRAND == "checkengine"
+            else (f"The {len(rows)} conversion checks in Docket's audit (calls to action, social "
+                  "proof, message match, dead contact details), and the judgement calls "
+                  "it refuses to make for you.")
+        ),
         h1="Conversion audit",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Conversion audit',
         body=body,

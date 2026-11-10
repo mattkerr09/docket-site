@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from brand import FORMER_ADDRESS_SENTENCE  # noqa: E402
 import facts as F  # noqa: E402
 from render import render  # noqa: E402
 
@@ -23,8 +24,8 @@ other, and it is distributed by where you link, not by what you think matters. G
 treats a link from your homepage as a vote, so a page nothing links to reads as a page
 you do not care about, however important it is to your business.</p>
 
-<p>We found this on our own site. Docket crawled docketseo.app, built the internal link graph,
-and ran PageRank across it. The download page (the entire commercial point of the site)
+<p data-brand-history>We found this on our own site. Docket crawled docketseo.app, built the internal link graph,
+and ran PageRank across it.{FORMER_ADDRESS_SENTENCE} The download page (the entire commercial point of the site)
 received <strong>one internal link</strong> and held <strong>1.25% of the internal link
 equity</strong> against a 5.56% average. Our most important page was getting a fifth of what
 a typical page got.</p>

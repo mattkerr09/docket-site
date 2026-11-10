@@ -2,6 +2,8 @@
 """Offline checks for the release churn gate, using throwaway git repos."""
 from __future__ import annotations
 
+from brand import BASE, LASTMOD_FILE, SITE_BRAND
+
 import json
 import os
 from pathlib import Path
@@ -28,13 +30,14 @@ class ReleaseChurnGateTests(unittest.TestCase):
         (self.root / "scripts").mkdir()
         (self.root / "data").mkdir()
         shutil.copyfile(HERE / "release_churn_gate.py", self.root / "scripts/release_churn_gate.py")
+        shutil.copyfile(HERE / "brand.py", self.root / "scripts/brand.py")
         self.git("init", "--quiet")
         self.original = {
             f"page-{i:02}/index.html": {"date": "2026-11-07", "hash": f"old-{i}"}
             for i in range(20)
         }
         self.write(self.original)
-        self.git("add", "data/page-lastmod.json")
+        self.git("add", f"data/{LASTMOD_FILE}")
         self.commit()
 
     def git(self, *args):
@@ -50,7 +53,7 @@ class ReleaseChurnGateTests(unittest.TestCase):
 
     def write(self, records):
         (self.root / "data").mkdir(exist_ok=True)
-        (self.root / "data/page-lastmod.json").write_text(json.dumps(records), encoding="utf-8")
+        (self.root / f"data/{LASTMOD_FILE}").write_text(json.dumps(records), encoding="utf-8")
 
     def run_gate(self, count=0, reason=None):
         records = {page: dict(record) for page, record in self.original.items()}
@@ -75,7 +78,7 @@ class ReleaseChurnGateTests(unittest.TestCase):
         for page in list(records)[:13]:
             records[page]["hash"] = "changed"
         self.write(records)
-        self.git("add", "data/page-lastmod.json")
+        self.git("add", f"data/{LASTMOD_FILE}")
         self.commit()
         result = self.invoke()
         self.assertEqual(result.returncode, 1, result.stdout)
@@ -87,7 +90,7 @@ class ReleaseChurnGateTests(unittest.TestCase):
         for page in list(records)[:13]:
             records[page]["hash"] = "changed"
         self.write(records)
-        self.git("add", "data/page-lastmod.json")
+        self.git("add", f"data/{LASTMOD_FILE}")
         self.commit()
         self.env["CHURN_BASELINE"] = "HEAD"
         result = self.invoke()
@@ -126,7 +129,7 @@ class ReleaseChurnGateTests(unittest.TestCase):
         result = self.run_gate(12)
         self.assertEqual(result.returncode, 1, result.stderr)
         self.assertIn("13 changed pages", result.stdout)
-        self.assertIn("https://docketseo.app/\n", result.stdout)
+        self.assertIn(f"{BASE}/\n", result.stdout)
 
     def test_date_only_changes_pass(self):
         for record in self.original.values():
@@ -135,8 +138,16 @@ class ReleaseChurnGateTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("0 changed pages", result.stdout)
 
+    @unittest.skipUnless(SITE_BRAND == "checkengine", "rename baseline applies in checkengine mode")
+    def test_first_rename_compares_with_deployed_docket_hashes(self):
+        self.git("mv", f"data/{LASTMOD_FILE}", "data/page-lastmod.json")
+        self.commit()
+        result = self.run_gate(13)
+        self.assertEqual(result.returncode, 1, result.stderr)
+        self.assertIn("13 changed pages", result.stdout)
+
     def test_missing_head_file_counts_all_pages(self):
-        self.git("rm", "data/page-lastmod.json")
+        self.git("rm", f"data/{LASTMOD_FILE}")
         self.commit()
         result = self.run_gate()
         self.assertEqual(result.returncode, 1, result.stderr)
@@ -145,7 +156,7 @@ class ReleaseChurnGateTests(unittest.TestCase):
     def test_prints_first_fifteen_urls_in_order(self):
         result = self.run_gate(20)
         urls = [line.strip() for line in result.stdout.splitlines() if line.startswith("  https://")]
-        self.assertEqual(urls, [f"https://docketseo.app/page-{i:02}/" for i in range(15)])
+        self.assertEqual(urls, [f"{BASE}/page-{i:02}/" for i in range(15)])
 
     def test_git_error_fails_even_with_reason(self):
         shutil.rmtree(self.root / ".git")
@@ -154,13 +165,13 @@ class ReleaseChurnGateTests(unittest.TestCase):
         self.assertIn("Could not compare page hashes", result.stderr)
 
     def test_missing_working_file_fails(self):
-        (self.root / "data/page-lastmod.json").unlink()
+        (self.root / f"data/{LASTMOD_FILE}").unlink()
         result = self.invoke()
         self.assertEqual(result.returncode, 1, result.stderr)
         self.assertIn("Could not compare page hashes", result.stderr)
 
     def test_invalid_json_fails(self):
-        (self.root / "data/page-lastmod.json").write_text("invalid", encoding="utf-8")
+        (self.root / f"data/{LASTMOD_FILE}").write_text("invalid", encoding="utf-8")
         result = self.invoke()
         self.assertEqual(result.returncode, 1, result.stderr)
         self.assertIn("Could not compare page hashes", result.stderr)

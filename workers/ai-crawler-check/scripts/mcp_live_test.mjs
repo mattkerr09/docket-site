@@ -1,3 +1,4 @@
+import { HOST } from '../src/site-brand.js'
 // A plain MCP client over Streamable HTTP, for testing the live /mcp endpoint the way a connector host calls it.
 //
 //   node workers/ai-crawler-check/scripts/mcp_live_test.mjs https://ai-crawler-check.kerrco.workers.dev/mcp [out.json]
@@ -38,10 +39,10 @@ check(tools.length === 5 && tools.every((t) => t.title && t.annotations?.readOnl
 record.tools = tools
 
 const calls = [
-  ['check_page_seo', { url: 'docketseo.app' }],
-  ['check_ai_crawlers', { url: 'docketseo.app' }],
-  ['trace_redirects', { url: 'http://docketseo.app/' }],
-  ['check_http_headers', { url: 'docketseo.app' }],
+  ['check_page_seo', { url: HOST }],
+  ['check_ai_crawlers', { url: HOST }],
+  ['trace_redirects', { url: `http://${HOST}/` }],
+  ['check_http_headers', { url: HOST }],
   ['preview_search_snippet', { title: 'Docket SEO: SEO, copy, conversion and brand audits for Mac', description: 'Docket SEO audits any website on your Mac with 99 checks, ranked into a fix plan.' }],
 ]
 record.calls = []

@@ -36,6 +36,8 @@ silently.
 """
 from __future__ import annotations
 
+from brand import SHORT
+
 import ast
 import json
 import re
@@ -68,7 +70,7 @@ RIVALS = ("Screaming Frog", "Sitebulb", "Ahrefs", "Semrush", "Lighthouse",
 #: What is left is the class that was actually wrong: "crawler tools ignore".
 #: A reader cannot check "ignores" without being told where to look.
 COMPARATIVE = re.compile(
-    r"\b(ignores?|ignored|no other tool|the only tool|only Docket|"
+    rf"\b(ignores?|ignored|no other tool|the only tool|only {re.escape(SHORT)}|"
     r"nothing else does|no one else)\b", re.I)
 
 #: The concession that must survive. If someone tightens this sentence back
@@ -575,8 +577,8 @@ def main() -> int:
         for header, rows in _cmp_tables(page.read_text()):
             names = {h for h in header if h}
             # COLUMN-PER-PRODUCT: Docket names a column.
-            if "Docket" in header:
-                ours = header.index("Docket")
+            if SHORT in header:
+                ours = header.index(SHORT)
                 for cells in rows:
                     if not cells or cells[0].strip().lower() not in price_headers:
                         continue
@@ -598,12 +600,12 @@ def main() -> int:
                 if not cells or len(cells) <= price_col:
                     continue
                 label = cells[0].strip()
-                known = label == "Docket" or any(
+                known = label == SHORT or any(
                     label in r["name"] or r["name"] in label for r in rivals.values() if label)
                 if not known:
                     continue
                 rows_checked += 1
-                _judge(where, label, cells[price_col], label == "Docket")
+                _judge(where, label, cells[price_col], label == SHORT)
 
     if not cols_checked or not rows_checked:
         failures.append(

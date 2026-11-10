@@ -101,6 +101,8 @@ measurements, not other people's files.
 """
 from __future__ import annotations
 
+from brand import LEGACY_BASE
+
 import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
@@ -134,7 +136,7 @@ REFERENCE_URL = ("https://raw.githubusercontent.com/ai-robots-txt/ai.robots.txt/
                  "main/robots.json")
 
 CONTACT = "support@docketseo.app"
-UA = ("Docket-SEO-Audit-Survey/1.0 (+https://docketseo.app/bot/; research survey: "
+UA = (f"Docket-SEO-Audit-Survey/1.0 (+{LEGACY_BASE}/bot/; research survey: "
       f"one robots.txt request per site, no crawling; contact {CONTACT})")
 TIMEOUT = 8.0
 OVERSIZE = 256 * 1024          # see the docstring: reconstructed, not recovered

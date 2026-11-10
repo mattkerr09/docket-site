@@ -153,7 +153,7 @@ only defence is that you know what your page is for and the tool does not.</p>
 <p>The two registered checks are <code>cvr.no_cta</code>, which covers calls to action, and
 <code>cvr.form_friction</code>, which covers form length and also emits the
 missing-contact-route finding. Both live in the conversion and landing pages area. See
-<a href="/learn/conversion-audit/">what that lane checks and what it deliberately does
+<a href="/learn/conversion-audit/">what that area checks and what it deliberately does
 not &rarr;</a>.</p>
 
 <p>For the related habit of reading the number attached to a finding before acting on it, see

@@ -11,6 +11,7 @@
  * limit would throttle all Claude users together. A global daily cap (DailyCap, a Durable Object) keeps the worker from
  * being run up. Nothing about a check is stored; fetched pages are cached for five minutes at the edge.
  */
+import { BASE, NAME } from './site-brand.js'
 import { fetchPage, fetchRobots, siteFrom, PAGE_AGENT } from './index.js'
 import { checkMeta, checkJsonLd, displayWidth, extract } from './page.js'
 import { evaluate, parseRobots } from './robots.js'
@@ -24,10 +25,10 @@ export const ACCESS_TOOL_ENABLED = false
 
 export const PROTOCOL_VERSIONS = ['2025-06-18', '2025-03-26', '2024-11-05']
 // icons: the MCP Implementation.icons field (sizes as "WxH" strings). ChatGPT showed a placeholder without it (2026-11-07).
-export const SERVER_INFO = { name: 'docket-seo', title: 'Docket SEO', version: '1.0.0', websiteUrl: 'https://docketseo.app',
+export const SERVER_INFO = { name: 'docket-seo', title: NAME, version: '1.0.0', websiteUrl: BASE,
   icons: [
-    { src: 'https://docketseo.app/icon.png', mimeType: 'image/png', sizes: ['512x512'] },
-    { src: 'https://docketseo.app/apple-touch-icon.png', mimeType: 'image/png', sizes: ['180x180'] },
+    { src: `${BASE}/icon.png`, mimeType: 'image/png', sizes: ['512x512'] },
+    { src: `${BASE}/apple-touch-icon.png`, mimeType: 'image/png', sizes: ['180x180'] },
   ] }
 export const SESSION_LIMIT = 30        // tool calls per session per minute
 export const DAILY_CAP = 20000         // tool calls per UTC day, all sessions together

@@ -19,6 +19,8 @@ product uses — so the site is verified with the tool it sells.
 """
 from __future__ import annotations
 
+from brand import BASE
+
 import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
@@ -36,7 +38,7 @@ import urllib.request
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
 import own_hosts  # noqa: E402
 
-BASE = "https://docketseo.app"
+
 
 PAGES = ["/", "/download/", "/learn/", "/for/", "/for/developers/",
          "/for/ecommerce/", "/vs/", "/index/", "/about/", "/how-to/"]
@@ -84,7 +86,7 @@ MUST_NOT_SAY = [
     # that too — in the FAQ and in the FAQPage schema, which is the copy search
     # engines can lift into a result. So the rule now tolerates a couple of
     # words in the middle, and covers the passive form as well.
-    r"(?i)only\s+(?:\w+\s+){0,2}requests?\s+(?:Docket|it|the app)\s+makes",
+    r"(?i)only\s+(?:\w+\s+){0,2}requests?\s+(?:Docket|Check Engine|it|the app)\s+makes",
     r"(?i)only\s+(?:\w+\s+){0,2}requests?\s+are\s+to\s+the\s+site",
 ]
 
@@ -96,7 +98,7 @@ MUST_NOT_SAY = [
 #: that forbade the quotation would force the correction to be deleted to pass,
 #: which is the opposite of what it is for.
 QUOTED_TO_CORRECT_IT = {
-    "/legal/privacy/": (r"(?i)only\s+(?:\w+\s+){0,2}requests?\s+(?:Docket|it|the app)\s+makes",),
+    "/legal/privacy/": (r"(?i)only\s+(?:\w+\s+){0,2}requests?\s+(?:Docket|Check Engine|it|the app)\s+makes",),
 }
 
 #: A width where layout breaks, and one where it does not. Both, because a

@@ -258,7 +258,7 @@ crawl-quality gate the other does not. Engine source read on {READ_ON}.</p>
 """
     title = "Click depth and orphan pages: what Docket checks"
     desc = ("How many clicks from the homepage is too many, and what counts as an orphan page. "
-            "What each Docket finding measures, and when the orphan answer is withheld.")
+            "What a Docket finding measures, and when the orphan answer is withheld.")
     return render(
         cat="learn", slug="click-depth-and-orphan-pages",
         title=title,

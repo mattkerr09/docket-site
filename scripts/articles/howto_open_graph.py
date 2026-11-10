@@ -95,7 +95,7 @@ large one.</p>
 
 <p>Each platform has a debugger that re-scrapes on demand. That is what to use after a fix,
 because your own paste test will keep showing you the cached card. If you have a Docket
-audit to hand, the social lane already fetched the image and told you whether it resolved.</p>
+audit to hand, the social area already fetched the image and told you whether it resolved.</p>
 
 <h2>Why this is an SEO page and not a design one</h2>
 

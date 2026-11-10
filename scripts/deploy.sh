@@ -15,6 +15,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 PY="${PYTHON:-python3}"
+SITE_BASE=$("$PY" -c 'import sys; sys.path.insert(0, "scripts"); from brand import BASE; print(BASE)')
 
 # The update brake: no deploy while it holds Docket, except the roll-forward (scripts/brake_guard.sh).
 "$PY" scripts/test_brake_guard.py >/dev/null || { echo "  the brake guard's own test failed; refusing to deploy"; exit 1; }
@@ -376,7 +377,7 @@ echo "==> media-box gate"
 echo "==> deployed-build gate (waits for the CDN)"
 "$PY" scripts/verify_deployed.py --wait 300
 
-echo "==> done — https://docketseo.app (propagation takes a minute)"
+echo "==> done — $SITE_BASE (propagation takes a minute)"
 echo
 echo "    verify what the CDN is actually serving, once it has propagated:"
 echo "      python3 scripts/verify_live.py"

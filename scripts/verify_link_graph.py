@@ -25,6 +25,8 @@ Usage:  python3 scripts/verify_link_graph.py [--write]
 """
 from __future__ import annotations
 
+from brand import HOST, LEGACY_BASE, SITE_BRAND, is_machine_path
+
 import json
 import re
 import sys
@@ -40,6 +42,7 @@ from lint import is_redirect_stub  # noqa: E402
 #: A link to a section (/page/#part) is a link to the page; the part and any query string are dropped.
 #: The pattern used to require the closing quote straight after the path, so every anchored link was
 #: silently not counted, and a page that sections link to read as one nobody links to.
+LEGACY_HREF = re.compile(r'href="' + re.escape(LEGACY_BASE) + r'(/[^"#?]*)(?:[#?][^"]*)?"')
 HREF = re.compile(r'href="(/[^"#?]*)(?:[#?][^"]*)?"')
 
 #: Markup a reader cannot click, stripped before hrefs are counted.
@@ -94,7 +97,13 @@ def measure() -> tuple[dict, dict[str, set[str]]]:
     broken: dict[str, set[str]] = {}
     for page in pages:
         src = path_of(page)
-        for href in HREF.findall(UNCLICKABLE.sub(" ", page.read_text())):
+        raw = UNCLICKABLE.sub(" ", page.read_text())
+        hrefs = HREF.findall(raw)
+        # The rename makes app-facing links absolute on the old host. They
+        # still lead to paths published by this site and remain graph edges.
+        if SITE_BRAND == "checkengine":
+            hrefs += [href for href in LEGACY_HREF.findall(raw) if is_machine_path(href)]
+        for href in hrefs:
             target = href if href.endswith("/") else href + "/"
             if target in stubs:
                 broken.setdefault(href + " (a redirect stub: link to where it forwards)", set()).add(src)
@@ -122,7 +131,7 @@ def measure() -> tuple[dict, dict[str, set[str]]]:
     for node in nodes:
         node["index"] = round(node["share_pct"] / average, 2) if average else 0.0
 
-    return ({"site": "docketseo.app", "pages": len(paths), "edges": total,
+    return ({"site": HOST, "pages": len(paths), "edges": total,
              "average_share_pct": average,
              "below_half": sum(1 for x in nodes if x["index"] < 0.5),
              "nodes": nodes}, broken)

@@ -21,6 +21,7 @@ the survey figure below says how often that happens.
 """
 from __future__ import annotations
 
+
 import html
 import json
 import sys
@@ -29,7 +30,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from tools_free import audit_next, how_it_works  # noqa: E402
-from render import (DATA, HAS_SAMPLE, N_CHECKS, PAY4, PRICE, PRICE_STR, SAMPLE_REPORT, price_req_html,  # noqa: E402
+from brand import SHORT  # noqa: E402
+from render import (BASE, DATA, HAS_SAMPLE, N_CHECKS, PAY4, PRICE, PRICE_STR, SAMPLE_REPORT, price_req_html,  # noqa: E402
                     buy_block, checkout_url, render)
 
 #: The Worker the form calls. `workers/ai-crawler-check/wrangler.toml` names it.
@@ -37,7 +39,7 @@ CHECKER_ENDPOINT = "https://ai-crawler-check.kerrco.workers.dev/check"
 #: A shared result (CEO, 2026-10-21: a free tool earns links when a result can be passed on): this page with
 #: ?d=<host>, which runs the check again in the visitor's browser. Nothing is stored to make it work; the
 #: canonical stays the bare page, and the Worker's own per-IP limit and ten-minute cache apply as for any check.
-SHARE_BASE = "https://docketseo.app/tools/ai-crawler-checker/"
+SHARE_BASE = BASE + "/tools/ai-crawler-checker/"
 SURVEYED_HUMAN = "August 2026"
 
 #: The two search crawlers that decide the AI-feature questions. Worded from
@@ -213,7 +215,7 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
   function badge(url) {{
     return '<a href="' + url + '" style="display:inline-block;padding:5px 10px;border:1px solid #14b8a6;' +
       'border-radius:6px;background:#f0fdfa;color:#115e59;font:600 13px/1.3 system-ui,-apple-system,sans-serif;' +
-      'text-decoration:none">AI crawler access checked with Docket</a>';
+      'text-decoration:none">AI crawler access checked with {SHORT}</a>';
   }}
   function share(host) {{
     if (!shareBox || !HOST.test(host)) return;

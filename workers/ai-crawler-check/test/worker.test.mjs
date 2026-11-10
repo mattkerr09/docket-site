@@ -1,3 +1,4 @@
+import { HOST, BASE } from '../src/site-brand.js'
 // node --test workers/ai-crawler-check/test/
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -24,13 +25,13 @@ test('unsafe hosts are refused in every spelling', () => {
     '10.0.0.1', '[::1]', '::1', 'intranet', 'printer.local', 'db.internal', 'x.home.arpa', 'metadata']) {
     assert.ok(unsafeHost(h), `${h} should be refused`)
   }
-  for (const h of ['docketseo.app', 'www.example.co.uk', 'a-b.io', '123.com']) {
+  for (const h of [HOST, 'www.example.co.uk', 'a-b.io', '123.com']) {
     assert.equal(unsafeHost(h), null, `${h} should be allowed`)
   }
 })
 
 test('what a person types becomes a safe URL, or a plain error', () => {
-  assert.equal(siteFrom('docketseo.app').origin, 'https://docketseo.app')
+  assert.equal(siteFrom(HOST).origin, BASE)
   assert.equal(siteFrom('http://example.com/a/b').pathname, '/a/b')
   for (const bad of ['', 'ftp://example.com', 'https://u:p@example.com', 'https://example.com:8080',
     'http://169.254.169.254/latest', 'https://localhost', 'javascript:alert(1)']) {
@@ -43,7 +44,7 @@ test('crawler names are validated and capped', () => {
   assert.equal(agentsFrom(Array.from({ length: 60 }, (_, i) => `Bot${'x'.repeat(i % 5)}${String.fromCharCode(97 + (i % 26))}`).join(',')).length <= 40, true)
 })
 
-test('CORS answers docketseo.app and refuses every other origin', async () => {
+test('CORS answers the selected site and refuses every other origin', async () => {
   const { fetchImpl } = net({ 'https://example.com/robots.txt': { body: 'User-agent: *\nAllow: /' } })
   const ok = await handle(req('url=example.com&agents=GPTBot'), fetchImpl)
   assert.equal(ok.status, 200)

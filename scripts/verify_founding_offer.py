@@ -203,7 +203,11 @@ def main() -> int:
     files = {p.relative_to(SITE).as_posix(): p.read_text(errors="ignore")
              for p in sorted(SITE.rglob("*")) if p.is_file() and p.suffix in (".html", ".txt", ".json")
              and (p.suffix != ".json" or p.name == "offer.json")}
-    dodo = read_dodo(R.FOUNDING_CODE)
+    if "--offline" in sys.argv:
+        print("SKIP live discount check: --offline")
+        dodo = None
+    else:
+        dodo = read_dodo(R.FOUNDING_CODE)
     fails, notes = problems(files, dodo, dt.datetime.now(dt.timezone.utc), R.FOUNDING_ENDS_AT,
                             R.FOUNDING_NOW, R.FOUNDING_CODE, R.FOUNDING_END_DAY, R.FOUNDING_AFTER_DAY)
     for n in notes:

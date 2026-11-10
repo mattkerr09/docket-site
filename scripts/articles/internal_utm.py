@@ -245,9 +245,9 @@ find it there, you have found every page at once.</p>
 question, and not one this survey measured: that is
 <a href="/learn/canonical-tags/">canonical tags</a>, and when the signals disagree,
 <a href="/how-to/fix-conflicting-canonicals/">fixing conflicting canonicals</a>. Docket runs the
-internal-UTM check as part of its tracking lane, alongside the rest of
+internal-UTM check as part of its tracking area, alongside the rest of
 <a href="/learn/conversion-audit/">the conversion checks</a>; the full catalogue is
-<a href="/learn/what-docket-checks/">what Docket checks</a>, and the lane-by-lane walkthrough is
+<a href="/learn/what-docket-checks/">what Docket checks</a>, and the area-by-area walkthrough is
 <a href="/learn/seo-audit/">the SEO audit</a>.</p>
 
 <h2>What this page does and does not claim</h2>

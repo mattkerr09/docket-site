@@ -35,6 +35,10 @@
   "date": "2026-11-09",
   "hash": "ec901a5c88ea82d9"
  },
+ "faq/index.html": {
+  "date": "2026-11-09",
+  "hash": "6b51a99df02c2e72"
+ },
  "for/agencies/index.html": {
   "date": "2026-11-09",
   "hash": "0d9c1cc7659709ab"
@@ -58,6 +62,10 @@
  "for/saas/index.html": {
   "date": "2026-11-09",
   "hash": "3afe24800bcb3aa3"
+ },
+ "help/index.html": {
+  "date": "2026-11-09",
+  "hash": "b1c6ae29f29e9e45"
  },
  "how-to/analytics-findings-name-the-tag/index.html": {
   "date": "2026-11-09",
@@ -530,6 +538,10 @@
  "score-card/index.html": {
   "date": "2026-11-05",
   "hash": "93e748437034d949"
+ },
+ "support/index.html": {
+  "date": "2026-11-09",
+  "hash": "9d7d32bb9fba3392"
  },
  "tools/ai-crawler-checker/index.html": {
   "date": "2026-11-09",

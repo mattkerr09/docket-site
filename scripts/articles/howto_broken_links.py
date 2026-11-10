@@ -43,6 +43,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from render import SITE_BRAND
 from render import render  # noqa: E402
 
 #: The external sources, read at their canonical homes on the date below.
@@ -244,9 +245,14 @@ unhelpful: the ones that say only "click here" or "read more" are at
     return render(
         cat="how-to", slug="fix-broken-outbound-links",
         title="How to fix broken outbound links (and which are not)",
-        desc=("A dead outbound link and a host that refuses a crawler are not the same audit "
-              "row. What Docket counts as broken, what it files as unverified, and what "
-              "each needs."),
+        desc=(
+            ("A dead outbound link and a host that refuses a crawler are not the same audit row. "
+             "What Docket counts as broken, what is unverified, and what each needs.")
+            if SITE_BRAND == "checkengine"
+            else ("A dead outbound link and a host that refuses a crawler are not the same audit "
+                  "row. What Docket counts as broken, what it files as unverified, and what "
+                  "each needs.")
+        ),
         h1="How to fix broken outbound links",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / broken outbound links',
         body=body,
@@ -264,7 +270,7 @@ unhelpful: the ones that say only "click here" or "read more" are at
              "policy. If the row is in the unverified finding, that is exactly what it is "
              "telling you. If it is in the broken finding, open it: Docket confirms every "
              "failed HEAD with a GET before counting it, but it still only asked once."),
-            ("Does Docket check every outbound link on my site?",
+            ("Does the audit check every outbound link on my site?",
              "No. It checks a capped sample of the outbound links the crawler met first, and "
              "the sample shrinks further if your site asks crawlers to slow down. The finding "
              "prints how many it checked and calls it a sample in its own text."),

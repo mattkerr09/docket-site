@@ -19,6 +19,8 @@ from corrections_cases import CASES  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
+from render import SITE_BRAND, recorded_with
+from brand import CLI, HOST, LEGACY_HOST, MACHINE_PATHS, STORE_NOTE, machine_link
 from render import (MS_STORE, _human_date, bundle_link, windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4_FOUNDING,
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
@@ -26,6 +28,9 @@ from render import (MS_STORE, _human_date, bundle_link, windows_waitlist, window
     RELEASE, SELLER, SELLER_REG_NO, SUMS, price_note_html, render,
     seller_address, buy_block, founding_price_sentence, FOUNDING_OPEN, SUPPORT_EMAIL, SELLER_CITY,
 )
+
+CLI_LABEL = (f'<code>{CLI}</code> (the old name, <code>docket</code>, still works)'
+             if SITE_BRAND == "checkengine" else '<code>docket</code>')
 
 
 # The free result as a visitor sees it, from one real run (docket-app
@@ -143,8 +148,8 @@ def _email_privacy() -> str:
                "Until then they collect nothing.")
     return f"""
 <p>{state} When enabled, until 30 November 2026 the box offers a confirmation email and one reminder the day
-before the launch price ends. That list is <code>docket-price-reminder</code>. From 1 December it offers news
-about new checks about once a month, on a separate list called <code>docket-news</code>. Asking for a reminder
+before the launch price ends, on the price-reminder list. From 1 December it offers news
+about new checks about once a month, on the separate news list. Asking for a reminder
 does not sign you up for news.</p>
 <p>Nothing is sent unless you type an address and press the button. Then the address and the name of the list
 go to <code>kerr-subscribe.kerrco.workers.dev</code>, a server we run. It keeps the address, the list name,
@@ -162,7 +167,7 @@ def free_result_figure() -> str:
     when = f"{d.day} {d.strftime('%B %Y')}"
     alt = (f"Docket's free result for a real site: score {r['score']}, grade {r['grade']}, the most important "
            f"problem shown in full with its fix, and the total number of problems found.")
-    caption = (f"The free result in Docket {r['engine']} after a real audit of {r['target']} on {when}: "
+    caption = (f"The free result in Docket{recorded_with(r['engine'])} after a real audit of {r['target']} on {when}: "
                f"{r['pages']} pages crawled, score {r['score']} out of 100, the most important problem in full "
                f"with its fix, and how many problems were found in all. It is the free version "
                f"running against the audit engine, captured from that run, not a mockup.")
@@ -221,7 +226,9 @@ def _derived_caveat() -> str:
     return (
         f'<p class="verified-note"><strong>Billed monthly.</strong> {names} '
         + ("quotes" if one else "quote")
-        + f" a monthly price and offers a discount for paying yearly, and the "
+        + " a monthly price and "
+        + ("offers" if one else "offer")
+        + " a discount for paying yearly, and the "
         + ("figure" if one else "figures")
         + f" above {'is' if one else 'are'} twelve monthly payments: what you pay without "
         f"committing to a year. Their annual "
@@ -305,7 +312,7 @@ top pages, and Google's autocomplete, which is sent your site's topic words;
 <a href="https://github.com/mattkerr09/docket-site/releases">all releases</a></p>
 <p class="brew">Prefer the terminal? <code>brew install --cask mattkerr09/docket/docket-seo</code> installs the same app on a Mac
 (<a href="https://github.com/mattkerr09/homebrew-docket">the Homebrew tap</a>).</p>
-{(f'<p class="stores">On Windows, Docket is also in the <a href="{MS_STORE}" rel="noopener" data-ev="Download" data-ev-button="download-msstore">Microsoft Store</a>: free to download, with the licence bought in the app.</p>') if WINDOWS else ''}
+{(f'<p class="stores">On Windows, Docket is also in the <a href="{MS_STORE}" rel="noopener" data-ev="Download" data-ev-button="download-msstore">Microsoft Store</a>{STORE_NOTE}: free to download, with the licence bought in the app.</p>') if WINDOWS else ''}
 
 <h2>What it will crawl</h2>
 
@@ -375,7 +382,7 @@ selection, because none of those are necessary for the thing you came to do.</p>
 receipt, and <a href="#buy">the buy step is at the top of this page</a>.</p>
 {free_result_figure()}
 <p>The first launch takes a few seconds longer than later ones. It used to say "while the
-engine unpacks itself". That was an explanation nobody had measured, and timing the CLI out of
+engine unpacks itself". That was an explanation nobody had measured, and timing the engine out of
 the shipped bundle put its startup at a fifth of a second with no unpacking step to be found.
 The delay is real and the reason given for it was invented, so the reason is gone.</p>
 
@@ -383,7 +390,7 @@ The delay is real and the reason given for it was invented, so the reason is gon
 Apple and opens it.</p>
 
 <h2>The command line</h2>
-<p>The same engine ships as a CLI inside the app bundle. It is the whole product, not a
+<p>The same engine ships as a CLI, {CLI_LABEL}, inside the app bundle. It is the whole product, not a
 cut-down version, and it has ten subcommands.</p>
 
 <h3><code>docket audit</code>: the full audit</h3>
@@ -531,14 +538,14 @@ with Docket's name added to every request, to see whether your server turns them
 <a href="/bot/">the bot page</a> lists them, and an offline audit sends none.</p>
 
 <p>{CONNECTORS_WORD_CAP} optional checks do reach out, and it is worth being exact rather than reassuring:
-Docket asks your own server what it tells AI crawlers, refreshes its crawler knowledge file
-from this site, checks whether the email addresses you publish can actually receive mail,
+Docket asks your own server what it tells AI crawlers, refreshes its crawler knowledge file from
+{LEGACY_HOST + "/data/knowledge.json" if SITE_BRAND == "checkengine" else HOST}, checks whether the email addresses you publish can actually receive mail,
 fetches Core Web Vitals from Google PageSpeed Insights, and asks Google's public autocomplete
 for topic suggestions. <code>--offline</code>, or the offline
 tick in the desktop app, turns all {CONNECTORS_WORD} off and the audit still completes. The report then
 says which checks did not run rather than quietly scoring them.</p>
 
-<p>Docket also asks docketseo.app when it opens, and every thirty minutes while it stays open,
+<p>Docket also asks {LEGACY_HOST + "/updater.json" if SITE_BRAND == "checkengine" else HOST} when it opens, and every thirty minutes while it stays open,
 whether a newer version exists, and tells you if there is one. It sends nothing but the request
 itself, it never installs anything without you saying yes, and <code>Check for Updates…</code>
 in the Docket menu does the same thing on demand. With the licence check, that makes two calls
@@ -577,7 +584,7 @@ def for_hub() -> Path:
 <p class="lede">The same {N_CHECKS} checks run on every site, but which findings matter most changes a
 lot by who you are. These pages cover what to look at first.</p>
 
-<p>That is not a marketing framing. Docket scores every lane on every site, and the same
+<p>That is not a marketing framing. Docket scores every area on every site, and the same
 finding genuinely carries different weight depending on how the business gets found.</p>
 
 <h2>Why the same finding lands differently</h2>
@@ -800,7 +807,7 @@ def for_developers() -> Path:
     had shipped by then, and mattkerr09/docket-audit-action installs it.
     """
     body = f"""
-<p class="lede">Docket's CLI exits <code>2</code> when it finds a critical issue, so
+<p class="lede">Docket's CLI, {CLI_LABEL}, exits <code>2</code> when it finds a critical issue, so
 <code>docket audit https://staging.example.com</code> is a complete deploy gate in one line and
 nothing else has to be installed. Auditing {F.ci_page_cap()} pages took a median of
 <strong>{F.ci_median_seconds()} seconds</strong> across {F.ci_sites()} real sites
@@ -1162,7 +1169,7 @@ that Docket has no equivalent of and is not trying to build.</p>
 
 <h2>What Docket is for, on a shop</h2>
 
-<p>The four lanes a crawler does not cover, which on an ecommerce site are: whether an AI
+<p>The four areas a crawler does not cover, which on an ecommerce site are: whether an AI
 answer <a href="/learn/ai-substitution/">replaces the page</a> a customer would have visited;
 whether your <a href="/learn/brand-consistency/">brand is consistent</a> across a catalogue
 built by several teams over several years; whether the checkout path's copy actually converts;
@@ -1177,7 +1184,11 @@ and is noticed the latest.</p>
 """
     return render(
         cat="for", slug="ecommerce",
-        title="Docket for ecommerce: what 10 real shops actually got wrong",
+        title=(
+            (f"Docket for ecommerce: what {F.ecom_shops()} real shops got wrong")
+            if SITE_BRAND == "checkengine"
+            else ("Docket for ecommerce: what 10 real shops actually got wrong")
+        ),
         desc=(f"We audited {F.ecom_shops()} large online shops. Zero had broken Product "
               f"schema and zero had thin product pages. What did show up, and where "
               f"Screaming Frog is the better tool."),
@@ -1504,7 +1515,7 @@ to happen whether or not anyone is at the machine, that is what a hosted crawler
         title="Docket for SaaS: audit your marketing site and docs",
         desc=(f"The blocking scare is not the SaaS story: "
               f"{len(F.category_citation_hosts('saas'))} of {F.category_n('saas')} SaaS "
-              f"sites in our Index shut an answer engine out. The real problem is a page "
+              f"sites in our Index shut an answer engine out. The problem is a page "
               f"that is blank until JavaScript runs."),
         h1="Docket for SaaS companies",
         crumb='<a href="/">Docket</a> / <a href="/for/">For you</a> / SaaS',
@@ -2034,7 +2045,7 @@ first few seconds of any audit.</p>
         title="Let ChatGPT and Perplexity read your site (robots.txt, 2026)",
         modified="2026-11-05",  # Google-Extended: Gemini training and Gemini Apps, not AI Overviews
         desc=("Search and training crawlers are separate decisions. The robots.txt that allows "
-              "citation while opting out of training, and the shared snippet that gets it "
+              "citation while opting out of training, and the snippet that gets it "
               "wrong."),
         h1="How to fix AI crawler access",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / AI crawler access',
@@ -2061,6 +2072,16 @@ def _windows_same_app() -> str:
             "policy says Mac, read the Windows PC you run it on.</p>\n")
 
 
+def _pixel_history() -> str:
+    """The dated line that says the advertising pixel is gone (git ceb00c24a, 2026-11-06). verify_pixel.py refuses the words
+    'Meta pixel' here while the build carries none, so it says 'Meta's advertising pixel'."""
+    return (f"<p><strong>No advertising pixel.</strong> Until {_human_date('2026-11-06')} every page here also loaded "
+            "Meta&rsquo;s advertising pixel, a script loaded from Facebook&rsquo;s servers, which set a cookie named "
+            "<code>_fbp</code> and told Meta that a page was viewed; the thank-you page also told Meta that a purchase had "
+            "completed. All of it has been removed. A browser that visited before may still hold an old <code>_fbp</code> "
+            "cookie until it expires; nothing on this site sets or reads it now.</p>")
+
+
 def _windows_form_privacy() -> str:
     """The Windows waiting-list form, while there is one; afterwards what became of the addresses."""
     if WINDOWS:
@@ -2077,7 +2098,7 @@ def _windows_form_privacy() -> str:
             "use the address once, to write to you the day Docket for Windows is ready, and for nothing else.</p>")
 
 #: The day the example card's audit was run (docket-app scripts/shot_score_card.mjs against the company site); the caption states it.
-_CARD_DAY = _dt.date(2026, 11, 6)
+_CARD_DAY = _dt.date(2026, 11, 9)
 
 
 def score_card() -> Path:
@@ -2090,7 +2111,7 @@ problems each area of the audit found. The free version of Docket makes one for 
 
 <figure class="shot">
   <img src="/assets/score-card-example.webp" width="1200" height="630" loading="lazy" decoding="async"
-       alt="A Docket score card for one of our own sites: score 96, grade A, 10 problems found, 4 pages checked, and the number of problems in each of the {N_LANES} areas, with the words Audited with Docket and docketseo.app/score-card at the foot.">
+       alt="A Docket score card for one of our own sites: score {_FREE_RUN['score']}, grade {_FREE_RUN['grade']}, {_FREE_RUN['problems']} problems found, {_FREE_RUN['pages']} pages checked, and the number of problems in each of the {N_LANES} areas, with the words Audited with Docket and a short link to the score card page at the foot.">
   <figcaption>A score card for kerrandcompanyholdings.com, the company site, from a real audit on {_CARD_DAY.day} {_CARD_DAY.strftime('%B %Y')}.
   It is the picture the app saves, not a mockup.</figcaption>
 </figure>
@@ -2293,6 +2314,7 @@ as below, in local storage for thirty days and adds it to Download and Buy links
 sends nothing itself. The server it points at counts downloads and Buy clicks per day, per page tag and
 country, and whether the click looked like a person; it stores no IP address and no user agent. If a
 content blocker stops the script, the links still work.</p>
+<!-- pixel-history -->
 <!-- windows-form-privacy -->
 <p>One more thing runs here, written into this site's own pages rather than loaded from
 anywhere. If you arrive from a link that says where it was shared, such as
@@ -2369,7 +2391,12 @@ it; we hold nothing separately.</p>
 <h2>Contact</h2>
 <p>Questions about privacy or anything else: <a href="/contact/">get in touch</a>.</p>
 """
-    body = (body.replace("<!-- windows-form-privacy -->", _windows_form_privacy())
+    for path in MACHINE_PATHS:
+        label = f"<code>{LEGACY_HOST}{path}</code>"
+        body = body.replace(label, f"<code>{machine_link(path)}</code>")
+
+    body = (body.replace("<!-- pixel-history -->", _pixel_history())
+            .replace("<!-- windows-form-privacy -->", _windows_form_privacy())
                 .replace("<!-- email-privacy -->", _email_privacy())
                 .replace("<!-- windows-same-app -->\n", _windows_same_app())
                 .replace("<!-- edge-probes -->", F.probe_names_html())
@@ -2377,8 +2404,12 @@ it; we hold nothing separately.</p>
                          if WINDOWS else "the WebKit engine macOS already ships"))
     return render(
         cat="legal", slug="privacy",
-        title="Privacy policy: what Docket collects, and what it does not",
-        desc="Audits run on your computer and are never uploaded. No account, no "
+        title=(
+            ("Privacy policy: what Docket collects and keeps private")
+            if SITE_BRAND == "checkengine"
+            else ("Privacy policy: what Docket collects, and what it does not")
+        ),
+        desc="Your audits stay on your computer. No account, no "
              "telemetry. Four third-party scripts and no advertising tracker. "
              "What each does and how to stop it.",
         h1="Privacy policy",
@@ -2386,7 +2417,7 @@ it; we hold nothing separately.</p>
         body=body,
         # From git: 884a2caee, 2026-11-04 (the crawler names the edge-access check sends). Before this the page showed
         # only "Published 6 August 2026" over changes dated 2 November (Matthew's full audit, 2026-11-04, row 19).
-        modified="2026-11-08",
+        modified="2026-11-10",  # the dated "No advertising pixel" paragraph (Quality Desk; the CEO's 7 Nov item); was 2026-11-08
         schema_type="WebPage",
     )
 
@@ -2443,7 +2474,7 @@ count that the visit came from the extension. What this website collects is in t
         cat="legal", slug="chrome-extension",
         title="Privacy: Docket page check, the free Chrome extension",
         desc="The Chrome extension reads the page you are on, in your browser, and sends nothing "
-             "anywhere. What it reads, what it asks Chrome for, and the one request it makes.",
+             "anywhere. What it reads, what it asks Chrome for, and the request it makes.",
         h1="Docket page check: privacy",
         crumb='<a href="/">Docket</a> / <a href="/legal/privacy/">Privacy</a> / Chrome extension',
         body=body,
@@ -2483,8 +2514,8 @@ renewal date and nothing to cancel, because nothing recurs. One licence covers u
 machines.</p>"""
     else:
         price_para = f"""
-<p>Docket costs {PRICE_STR} in US dollars, paid once. Not a subscription: there is no renewal
-date and nothing to cancel, because nothing recurs.</p>
+<p>{founding_price_sentence() if FOUNDING_OPEN else f"Docket costs {PRICE_STR} in US dollars, paid once."}
+Not a subscription: there is no renewal date and nothing to cancel, because nothing recurs.</p>
 <p><strong>One licence covers {F.licence_covers()}.</strong>
 Activating Docket on a computer uses one of them; deactivate one to move it to another. The
 limit is enforced by the payment provider, so an activation past it is refused.
@@ -2508,17 +2539,18 @@ party is responsible for remitting it, depends on {PROCESSOR or 'the payment pro
 where you are buying from. That is not settled yet and this paragraph will say which it is
 before a checkout opens, rather than leaving you to discover it on the payment
 screen.</p>""" if not PROCESSOR else f"""
-<p>Prices are shown in US dollars. Any sales tax or VAT due is calculated and shown by
-{PROCESSOR} at checkout, before you pay.</p>"""
+<p>Prices are shown in US dollars. {PROCESSOR}, as merchant of record, calculates any sales
+tax or VAT due and shows it at checkout, before you pay.</p>"""
 
     body = f"""
 <p>By downloading or using Docket you agree to these terms. If you buy a licence, the sections
 on price, delivery and refunds are part of that agreement.</p>
 
 <h2>Who you are dealing with</h2>
-<p>Docket is published and sold by {seller}, of {seller_address()}. The software is written by
-Matt Kerr. Correspondence goes through <a href="/contact/">the channels on the contact
-page</a>.</p>
+<p>Docket is published by {seller}, of {seller_address()}, which licenses the software to you.
+The software is written by Matt Kerr. Licences are sold through {PROCESSOR}, the reseller and
+merchant of record for each sale. Correspondence about the software goes through
+<a href="/contact/">the channels on the contact page</a>.</p>
 
 <h2>What it costs</h2>
 {price_para}
@@ -2534,7 +2566,7 @@ rebrand the CSV and JSON exports, bill for them.</p>
 
 <h2>Delivery</h2>
 <p>Delivery is a download. Docket ships as a notarised macOS disk image of {DMG_SIZE} from
-<a href="https://github.com/mattkerr09/docket-site/releases">the releases page</a>{linux_clause}.
+<a href="https://github.com/mattkerr09/docket-site/releases">the releases page</a>{(f", a Windows installer of {WIN_SETUP_SIZE}" if WINDOWS else "")}{linux_clause}.
 There is nothing to post. The licence key arrives by email with your receipt,
 which is the one thing worth waiting for. This sentence used to say there was no
 activation email at all, and licensing made that false.</p>
@@ -2569,7 +2601,7 @@ relying on an audit for a decision that matters.</p>
 <h2>Liability</h2>
 <p>If you are a consumer, nothing in these terms removes or reduces a right you have under the
 law where you live, and the rest of this section applies only as far as that law allows.</p>
-<p>Subject to that, and to the extent the law permits: the total liability of {seller} arising
+<p>Subject to that, and to the extent the law permits: the total liability of {seller}, as licensor of the software, arising
 out of Docket or these terms is limited to the amount you paid for the licence, and neither
 lost traffic, lost revenue, lost rankings, lost profits nor loss of data is recoverable.
 Liability for fraud, for fraudulent misrepresentation, and for death or personal injury caused
@@ -2607,7 +2639,7 @@ appear on this page and apply from the day they appear, not before.</p>
         h1="Terms of use",
         crumb='<a href="/">Docket</a> / Terms',
         body=body,
-        modified="2026-11-04",  # from git: 82f9687e6, one licence covers up to 3 computers (audit row 19: read 08-11)
+        modified="2026-11-09",  # seller and Dodo merchant-of-record wording, tax line, Windows delivery, launch-price sentence (CEO 2026-11-09); was 2026-11-04: from git 82f9687e6, one licence covers up to 3 computers (audit row 19: read 08-11)
         schema_type="WebPage",
     )
 
@@ -2685,7 +2717,7 @@ to you, silently, and we never learn you wrote.
 MX of any address this site prints and refuses to publish one that cannot receive mail. It is
 why you are not reading an invented address on this page.</p>
 
-<p>What has changed since that was written: <code>docketseo.app</code> now publishes an MX
+<p>What has changed since that was written: <code data-brand-history>docketseo.app</code> now publishes an MX
 record and does accept mail. So the original obstacle is gone, and only a smaller one is left.
 Delivery to the domain is not the same as a mailbox existing behind a particular name, and the
 address we intend to publish has not yet had a real message sent to it and read. The moment it
@@ -2714,14 +2746,14 @@ item at one price, so there is no partial refund to calculate and none is offere
 <li><strong>The free version shows how much is wrong, and the worst of it.</strong> It gives the score,
 how many problems each area has and the top problem in full with its fix, so the rest of the findings, the fix plan and
 the markup come after the money does. Thirty days with no conditions is what makes that fair: run it on your own sites and your clients', and if it is
-not worth {PRICE_STR} to you, ask for it back.</li>
+not worth the price to you, ask for it back.</li>
 <li><strong>Monitoring needs weeks to say anything.</strong> The default re-audit cadence is
 weekly, and the thing being sold (what changed on your site since last time) is empty on the
 first run and thin on the second. Thirty days is four of them. A fourteen-day window would end
 before the feature had demonstrated itself, which would make it a policy that quietly excluded
 the reason some people bought.</li>
 <li><strong>It can be honoured by one person.</strong> Issuing a refund is one action in
-{processor_ref}'s dashboard. Nothing has to be reclaimed, deactivated, closed or
+the dashboard at {processor_ref}. Nothing has to be reclaimed, deactivated, closed or
 chased, so the length of the window costs nothing but the money.</li>
 </ul>
 
@@ -2814,8 +2846,11 @@ forward, not backwards.</p>
 
 <h2>Who you are paying</h2>
 
-<p>Docket is sold by {seller}{reg_no}, of {seller_address()}. The terms of the sale, including
-the governing law, are on <a href="/legal/terms/">the terms of use page</a>.</p>
+<p>Licences are sold through {processor_ref}, the reseller and merchant of record for the sale.
+{seller}{reg_no}, of {seller_address()}, publishes Docket. To ask for a refund, write to us as described
+above and we issue it through {processor_name}; support at {processor_name} can also help with a payment or
+a receipt. The terms of the sale, including the governing law, are on
+<a href="/legal/terms/">the terms of use page</a>.</p>
 """
     return render(
         cat="legal", slug="refunds",
@@ -2826,7 +2861,7 @@ the governing law, are on <a href="/legal/terms/">the terms of use page</a>.</p>
         crumb='<a href="/">Docket</a> / Refunds',
         body=body,
         published="2026-08-11",
-        modified="2026-11-02",  # the price it quotes became $59 on 2026-11-02 (render.PRICE); audit row 19
+        modified="2026-11-09",  # who you are paying: Dodo merchant of record and the publisher (CEO 2026-11-09); was 2026-11-02: the price it quotes became $59 (render.PRICE); audit row 19
         schema_type="WebPage",
     )
 

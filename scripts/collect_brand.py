@@ -27,6 +27,8 @@ Run from the site repo; it imports Docket's engine from the app checkout.
 """
 from __future__ import annotations
 
+from brand import BASE
+
 import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
@@ -68,7 +70,7 @@ SITES = [
     "https://www.notion.com",
     "https://www.warbyparker.com",
     "https://www.tesco.com",
-    "https://docketseo.app",
+    BASE,
 ]
 
 BRAND_CHECKS = ("brand.name_consistency", "brand.logo", "brand.visual_consistency",

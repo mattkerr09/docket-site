@@ -244,7 +244,7 @@ renderers can say what was left out.</p>
 <p>And the tool-limit exclusion was subtler than it looks. Those findings were given an impact
 of zero, which everyone assumed protected the score. It did not: impact never enters the score
 calculation at all, which is driven by severity and reach, so a blind-spot notice deducted from
-a lane exactly like any other notice. The test that was supposed to guard this asserted that
+a area exactly like any other notice. The test that was supposed to guard this asserted that
 impact was zero: the premise, not the behaviour it was named for. The fix was two lines; the
 lesson was that a test should assert the thing it claims to protect.</p>
 

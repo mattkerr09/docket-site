@@ -28,6 +28,8 @@ those instead and no one has to edit this file.
 """
 from __future__ import annotations
 
+from brand import BASE
+
 import glob
 import re
 import sys
@@ -40,7 +42,7 @@ app_path.on_path()
 
 from seo_engine.checks.brand import positioning  # noqa: E402
 
-ORIGIN = "https://docketseo.app"
+ORIGIN = BASE
 SITE = Path(__file__).resolve().parents[1] / "site"
 
 

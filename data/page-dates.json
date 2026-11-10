@@ -1,5 +1,5 @@
 {
-  "compiled": "2026-11-06",
+  "compiled": "2026-11-09",
   "dates": {
     ".": "2026-08-06",
     "about": "2026-08-07",
@@ -11,12 +11,14 @@
     "buy": "2026-09-28",
     "contact": "2026-08-07",
     "download": "2026-08-06",
+    "faq": "2026-11-09",
     "for": "2026-08-06",
     "for/agencies": "2026-08-06",
     "for/developers": "2026-08-07",
     "for/ecommerce": "2026-08-07",
     "for/local-business": "2026-08-06",
     "for/saas": "2026-08-10",
+    "help": "2026-11-09",
     "how-to": "2026-08-06",
     "how-to/addresses-on-your-site-that-are-not-yours": "2026-09-18",
     "how-to/analytics-findings-name-the-tag": "2026-09-18",
@@ -142,6 +144,7 @@
     "mac-seo-audit-tool": "2026-10-14",
     "pricing": "2026-09-30",
     "score-card": "2026-11-05",
+    "support": "2026-11-09",
     "thank-you": "2026-08-19",
     "tools": "2026-10-06",
     "tools/ai-crawler-checker": "2026-09-28",
@@ -164,5 +167,9 @@
     "vs/sitebulb-alternative": "2026-08-06",
     "vs/sitechecker-alternative": "2026-09-16"
   },
-  "uncommitted": []
+  "uncommitted": [
+    "faq",
+    "help",
+    "support"
+  ]
 }

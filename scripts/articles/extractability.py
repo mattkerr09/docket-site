@@ -217,7 +217,7 @@ the second yourself by reading the page.</p>
 
 <h2>Where this check ends and the others begin</h2>
 
-<p>Three checks in two lanes sit near this one and none of them is doing its job:</p>
+<p>Three checks in two areas sit near this one and none of them is doing its job:</p>
 
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Check</th><th>Asks</th><th>Reads</th></tr></thead>
@@ -240,7 +240,7 @@ the same report: the two checks do not agree on where "substantial" starts, and 
 floor belongs to the citable-facts side. That is a divergence in the source rather than a
 decision anybody wrote down.</p>
 
-<p><code>content.ai_slop</code> is in a different lane and answers a different complaint:
+<p><code>content.ai_slop</code> is in a different area and answers a different complaint:
 <a href="/learn/ai-sounding-copy/">what it detects, and what it cannot</a> is its own page.
 Nothing here is about how your writing sounds.</p>
 

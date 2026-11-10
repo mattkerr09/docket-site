@@ -1,0 +1,9 @@
+{
+  "name": "docketseo-redirect",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "deploy": "npm test && npx --no-install wrangler deploy"
+  }
+}

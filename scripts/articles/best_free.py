@@ -21,21 +21,39 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from comparisons import _verified_note  # noqa: E402
-from render import PRICE_STR, render, with_next_step  # noqa: E402
+from render import CHROME_ADDON, FREE_LINE, PRICE_STR, render, with_next_step  # noqa: E402
 
 
 def free_seo_audit_tools() -> Path:
     body = f"""
-<p class="lede">Four free tools cover most of what a small site needs. Two are made by Google, one
-is a crawler, and one is a one-page checker we make. If you are looking for a free SEO audit, start
-here and stop reading when you have enough. This page is on the site of a tool that costs
-{PRICE_STR}, and most readers should not buy it.</p>
+<p class="lede">For a free SEO audit, use a page checker for faults on one URL, a crawler for
+faults across a site, and Search Console for what Google has seen. The tools below do different
+jobs. Start with the question you need answered and check the free limit before you run an audit.
+We make Docket, including the free checker listed here.</p>
 
 <div class="callout compact" id="try-now">
 <p><strong>Want to audit your website free, right now?</strong> Paste a page into Docket's free SEO
 checker for a score, the problems on that page and the first fix, in a few seconds, with no sign-up.</p>
 <p><a class="btn" href="/tools/seo-checker/" data-ev="Free check" data-ev-button="best-free-checker-box">Check a page free</a></p>
 </div>
+
+<h2>Which free SEO audit tool fits the job?</h2>
+<div class="wrap-tbl"><table class="cmp">
+<caption>Free website audit tools and their limits</caption>
+<thead><tr><th scope="col">Tool</th><th scope="col">Use it for</th><th scope="col">Free limit</th></tr></thead>
+<tbody>
+<tr><th scope="row">Google Lighthouse</th><td>Page speed and basic SEO checks</td>
+<td>One page at a time, not a whole-site crawl</td></tr>
+<tr><th scope="row">Google Search Console</th><td>Search queries and indexing in Google</td>
+<td>A verified property; reports have row limits and a delay</td></tr>
+<tr><th scope="row">Screaming Frog</th><td>Crawling a small site for links, redirects and duplicate titles</td>
+<td>Up to 500 URLs in the free tier</td></tr>
+<tr><th scope="row">Docket SEO checker, ours</th><td>A page score, its problems and the first fix</td>
+<td>One page; no speed test or checks between pages</td></tr>
+</tbody></table></div>
+<p>New to audits? <a href="/learn/seo-audit/">What an SEO audit includes</a> gives you a checklist.
+For a single access question, the <a href="/tools/robots-txt-tester/">robots.txt tester</a> shows
+which rule allows or blocks a page.</p>
 
 <h2>Google Lighthouse: free, open source, already installed</h2>
 
@@ -45,8 +63,7 @@ Lighthouse, run it.</p>
 
 <p><strong>What it is genuinely good at:</strong> performance on a single page, measured
 properly. It is also what powers PageSpeed Insights, which "uses Lighthouse to analyze the
-given URL in a simulated environment" for its lab data. For "why is this page slow", nothing
-free is better.</p>
+given URL in a simulated environment" for its lab data.</p>
 
 <p><strong>What it does not do, in its own words:</strong> its SEO category declares ten
 scored audits and describes itself as "basic search engine optimization advice", noting that
@@ -54,9 +71,9 @@ there are more checks it does not perform. It is also <em>per page</em>. It has 
 your site as a whole, so orphan pages, canonical conflicts across templates and hreflang
 reciprocity are all invisible to it by design.</p>
 
-<h2>Google Search Console: free, and the only source of real Google data</h2>
+<h2>Google Search Console: free, and Google's own data about your site</h2>
 
-<p>Nothing else tells you what Google actually did with your site: which queries brought
+<p>Search Console tells you what Google did with your site: which queries brought
 impressions, which pages were indexed and which were not. It is free, and for anything about
 your standing in Google specifically it is the primary source.</p>
 
@@ -64,8 +81,8 @@ your standing in Google specifically it is the primary source.</p>
 show "a maximum of 1,000 rows, so some rows might be omitted". Data is not live: "normally,
 however, collected data should be available in 2-3 days". Google "might not track some queries
 that are made a very small number of times", so the long tail is partly absent. The URL
-Inspection API is capped at "2000 QPD" and "600 QPM" per property, which means a site of any
-size cannot be inspected page by page even by script.</p>
+Inspection API is capped at "2000 QPD" and "600 QPM" per site. These limits cap how fast
+a large site can be inspected page by page, even by script.</p>
 
 <p>Its Core Web Vitals report is field data: "the data for the Core Web Vitals report comes
 from the CrUX report", gathered from real visitors. That is more truthful than any simulation, and it needs enough traffic to exist. How much is not published: "An exact number is not
@@ -87,7 +104,7 @@ sets the paid and free ones side by side.</p>
 matters. If a spreadsheet of every URL and its status codes is a useful artefact to you rather
 than a wall of numbers, take this one.</p>
 
-<h2>Docket's free SEO checker: one page, no sign-up (ours)</h2>
+<h2>Docket's free SEO checker: one page, no sign-up</h2>
 
 <p>We make this one, so read it with that in mind. Paste the address of any page into the
 <a href="/tools/seo-checker/" data-ev="Free check" data-ev-button="best-free-checker-entry">free SEO checker</a>
@@ -100,29 +117,36 @@ the page, noindex and canonical tags, redirects and HTTPS, the width of the titl
 headings, structured data and sharing tags. <strong>What it does not:</strong> speed, which is
 Lighthouse's job, and anything between pages, because it reads one page at a time.</p>
 
+<h2>Is there a free SEO audit plugin?</h2>
+<p>For Chrome, our free <a href="{CHROME_ADDON}" rel="noopener" data-ev="Install"
+data-ev-button="best-free-addon">Docket SEO add-on</a> checks the page in the tab you are on,
+in your browser, with nothing uploaded and no account. It is a page check, not a whole-site crawl.</p>
+
+<h2>What does a free SEO audit report show?</h2>
+<p>The online checker shows a page score, problems by area and the top problem with its fix.
+It does not audit the whole website. For a site audit, Docket's download runs on your computer.
+{FREE_LINE} The free result is a starting point, not the full paid report.</p>
+
 <h2>So when is anything paid worth it?</h2>
 
-<p>When the free ones have stopped answering your question, which happens in three specific
-places:</p>
+<p>When the free version you use has stopped answering your question:</p>
 
 <ul>
 <li><strong>More than 500 URLs</strong>, where the free crawl tier stops.</li>
 <li><strong>Whole-site relationships</strong>: a canonical pointing at a noindex page, an
-hreflang set that is not reciprocated, a page nothing links to. None of these exist on any
-single page, so no per-page tool can see them.</li>
+hreflang set that is not reciprocated, a page nothing links to. These need a site crawl,
+not just a per-page check.</li>
 <li><strong>Being told what to do first.</strong> Every tool above hands you findings. Ordering
-them by what they cost you is the part that takes an expert, and it is the part a free tool
-does not attempt.</li>
+them by what they cost you is a separate job from finding them.</li>
 </ul>
 
 <p>If the paid tool you already have is Ahrefs, its crawler is <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs Site Audit</a>; our comparison
 sets out what it checks and how a crawl is paid for.</p>
 
-<p>Docket is {PRICE_STR} paid once, runs on your computer, and answers
-that third one: a ranked plan rather than a list. <strong>It is not free, and if your site is
-under 500 URLs and you are comfortable reading Lighthouse and Search Console, you do not need
-it.</strong> That is a real answer, not modesty. Buying a tool to tell you what three free
-ones already told you is a waste of {PRICE_STR}.</p>
+<p>Docket's paid version is {PRICE_STR} once and adds the full ranked plan.
+If the free tools already tell you what to fix, keep using them. For a paid crawler or platform,
+<a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking vs Screaming Frog</a> sets out the
+different ways their audits are paid for.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a> ·
 <a href="/vs/">see how it compares, tool by tool</a></p>
@@ -133,23 +157,29 @@ ones already told you is a waste of {PRICE_STR}.</p>
 """
     return render(
         cat="best", slug="free-seo-audit-tools",
-        modified="2026-11-06",
-        title="The best free SEO audit tools (and when to stop)",
-        desc=("Four free SEO audit tools cover most of what a small site needs. What each "
-              "one does, the limits its own documentation states, and when paying helps."),
-        h1="The best free SEO audit tools",
+        modified="2026-11-09",
+        title="Free SEO audit tools: uses and limits | Docket",
+        desc=("Run a free SEO audit of a page or small site. Compare website audit tools, "
+              "free limits, a Chrome plugin and what the free report shows."),
+        h1="Free SEO audit tools and their limits",
         crumb='<a href="/">Docket</a> / <a href="/best/">Best</a> / free SEO audit tools',
         body=body,
         faq=[
+            ("Is there a free SEO audit plugin?",
+             "Yes. Our free Docket SEO add-on for Chrome checks the page in the tab you are on, "
+             "in your browser, with nothing uploaded and no account. It checks one page, not the whole site."),
+            ("What does a free SEO audit report include?",
+             "Docket's free online checker shows a page score, problems by area and the top "
+             "problem with its fix. The free desktop download gives a site score, counts by "
+             "category and the top problem in full. The rest of the problems and ranked plan are paid."),
             ("What is the best free SEO audit tool?",
              "For a single page, Lighthouse. It is open source, built into Chrome DevTools, "
              "and powers PageSpeed Insights. For how Google actually treats your site, Search "
              "Console. For crawling a small site, Screaming Frog's free tier, capped at 500 "
              "URLs."),
             ("Can I audit my website free without signing up?",
-             "Yes. Lighthouse runs inside Chrome, Screaming Frog's free tier crawls up to 500 URLs "
-             "on your computer, and Docket's free SEO checker, which we make, checks one page in the "
-             "browser. None of them needs an account."),
+             "Our free Docket SEO checker checks one page in the browser with no sign-up. "
+             "Lighthouse runs inside Chrome, and Screaming Frog's free tier crawls up to 500 URLs."),
             ("Is Google Lighthouse enough for SEO?",
              "For one page at a time, often. Its SEO category describes itself as “basic "
              "search engine optimization advice” and notes there are checks it does not "

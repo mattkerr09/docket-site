@@ -25,6 +25,8 @@ notices is broken.
 """
 from __future__ import annotations
 
+from brand import BASE, SHORT
+
 import sys
 from pathlib import Path
 
@@ -73,7 +75,7 @@ def _dodo(url: str) -> int:
     import urllib.request
 
     req = urllib.request.Request(
-        url, headers={"User-Agent": "docket-build/1.0 (+https://docketseo.app)"})
+        url, headers={"User-Agent": f"docket-build/1.0 (+{BASE})"})
     try:
         with urllib.request.urlopen(req, timeout=25) as r:
             html = r.read().decode("utf-8", "replace")
@@ -85,7 +87,7 @@ def _dodo(url: str) -> int:
     cents = str(render.PRICE * 100)
     problems = []
     transition = ""
-    if "Docket" not in html:
+    if not any(name in html for name in (SHORT, "Docket")):
         problems.append("the checkout does not name Docket at all")
     if not _charges(html, cents):
         # A PRICE RISE LANDS ON THE SITE FIRST, ON PURPOSE.

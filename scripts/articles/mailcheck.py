@@ -12,6 +12,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from brand import FORMER_ADDRESS_SENTENCE  # noqa: E402
 import facts as F  # noqa: E402
 from render import ISSUES, N_CHECKS, render  # noqa: E402
 
@@ -57,8 +58,8 @@ the visitor it failed. A dead mailbox tells the visitor it worked.</strong></p>
 
 <h2>We did this</h2>
 
-<p>docketseo.app carried <code>hello@docketseo.app</code> in the footer of all 25 of its pages.
-The domain had no MX record; it is on GitHub Pages; port 25 is closed there. Every message
+<p data-brand-history>docketseo.app carried <code>hello@docketseo.app</code> in the footer of all 25 of its pages.{FORMER_ADDRESS_SENTENCE}
+The domain had no MX record. It was on GitHub Pages, whose servers did not answer on port 25. Every message
 anyone sent bounced, and we found out by writing a contact page and checking our own
 advertised channel before publishing it.</p>
 
@@ -253,7 +254,7 @@ but a working mail server on its address record is legal and fine.</p>
         cat="learn", slug="dead-contact-address",
         title="The contact address that bounces every message",
         desc=(f"An address on a domain with no MX record bounces silently. Two "
-              f"measured surveys: {F.mail_publishing_pct()}% of the Tranco top publish "
+              f"surveys: {F.mail_publishing_pct()}% of the Tranco top publish "
               f"one, {F.small_publishing_pct()}% of UK shops do, and "
               f"{F.small_dead()} of those are dead."),
         h1="The contact address that cannot receive mail",

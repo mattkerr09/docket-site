@@ -116,7 +116,7 @@ itself rather than leaving you to discover it.</p>
 
 <h2>What Docket does for the mechanical half</h2>
 
-<p>Docket runs {N_CHECKS} checks across {N_LANES} areas on your machine, and the content lane
+<p>Docket runs {N_CHECKS} checks across {N_LANES} areas on your machine, and the content area
 covers the fourth question: pages with almost no body text, pages in the thin band above them,
 archive pages that list almost nothing, utility pages that should not be indexed at all, titles
 duplicated across pages, and pages whose content is not in the HTML the server sends. It reports

@@ -247,7 +247,7 @@ are where the saving is.</p>
 <h2>What this check is not</h2>
 
 <p>Header findings attract everything else that is slow, so the boundaries are worth stating.
-Docket's speed lane runs this check alongside separate ones with their own ids, their own
+Docket's speed area runs this check alongside separate ones with their own ids, their own
 thresholds and their own findings:</p>
 
 <ul>
@@ -263,16 +263,16 @@ would be smaller.</li>
 </ul>
 
 <p>None of those is fixed by a compression header and none of them fixes one. The full list of
-what the engine looks at, lane by lane, is on
-<a href="/learn/what-docket-checks/">what Docket checks</a>. The lane's other markup-level
+what the engine looks at, area by area, is on
+<a href="/learn/what-docket-checks/">what Docket checks</a>. The area's other markup-level
 finding is written up at <a href="/how-to/fix-layout-shift/">how to fix layout shift</a>, which
 carries the same limit from the other side: Docket infers layout-shift risk from markup and
 cannot measure the metric. Scripts and stylesheets that hold back the first paint, the third
-markup-level finding in this lane, are at
+markup-level finding in this area, are at
 <a href="/how-to/fix-render-blocking-resources/">how to fix render-blocking resources</a>. The fourth,
 a slow server, is at <a href="/how-to/reduce-server-response-time/">how to reduce server response time</a>.</p>
 
-<p>The closest relative outside this lane is response headers of a different kind.
+<p>The closest relative outside this area is response headers of a different kind.
 <a href="/how-to/fix-missing-security-headers/">Missing security headers</a> are set in the same
 file, at the same edge, by the same person, and this site fails two of those checks itself,
 because its host cannot set response headers at all. If you are opening that file anyway, do

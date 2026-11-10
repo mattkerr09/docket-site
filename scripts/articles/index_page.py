@@ -18,6 +18,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
+from render import SITE_BRAND
 from render import N_CHECKS, render  # noqa: E402
 
 DATA = Path(__file__).resolve().parents[2] / "data" / "index-2026-08.json"
@@ -272,7 +273,11 @@ robots.txt without installing anything, use the free
 
     return render(
         cat="index", slug="",
-        title=f"Docket Index: {cit_pct}% of major sites block an AI search crawler",
+        title=(
+            (f"Docket Index: {cit_pct}% of sites block an AI search crawler")
+            if SITE_BRAND == "checkengine"
+            else (f"Docket Index: {cit_pct}% of major sites block an AI search crawler")
+        ),
         desc=(f"We measured the robots.txt of {s['attempted']} well-known sites with Docket's "
               f"own parser. {cit_pct}% block at least one AI search crawler. Full method "
               f"and dataset included."),

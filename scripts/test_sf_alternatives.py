@@ -17,6 +17,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE / "articles"))
 import comparisons  # noqa: E402
 import render  # noqa: E402
+from brand import text as brand_text  # noqa: E402
 import sf_alternatives  # noqa: E402
 
 
@@ -97,9 +98,9 @@ class ScreamingFrogAlternativesTests(unittest.TestCase):
                    re.findall(r'<script type="application/ld\+json">(.*?)</script>', output, re.S)]
         faq = next(block for block in schemas if block.get("@type") == "FAQPage")
         self.assertEqual([(item["name"], item["acceptedAnswer"]["text"]) for item in faq["mainEntity"]],
-                         page["faq"])
+                         [(brand_text(q), brand_text(a)) for q, a in page["faq"]])
         article = next(block for block in schemas if "headline" in block)
-        self.assertEqual(article["description"], page["desc"])
+        self.assertEqual(article["description"], brand_text(page["desc"]))
         for tool in comparisons._SFA["tools"][-2:]:
             self.assertIn(tool["name"], faq["mainEntity"][0]["acceptedAnswer"]["text"])
 

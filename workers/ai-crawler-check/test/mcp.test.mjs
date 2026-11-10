@@ -1,3 +1,4 @@
+import { BASE } from '../src/site-brand.js'
 // node --test workers/ai-crawler-check/test/
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -202,12 +203,12 @@ test('the daily cap refuses politely once reached', async () => {
 test('initialize carries the icons, and the favicon on the connector host redirects to the site icon', async () => {
   const j = await (await handle(call(rpc('initialize', { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 't', version: '1' } })), fetch, {})).json()
   const icons = j.result.serverInfo.icons
-  assert.equal(icons[0].src, 'https://docketseo.app/icon.png')
+  assert.equal(icons[0].src, `${BASE}/icon.png`)
   assert.deepEqual(icons[0].sizes, ['512x512'])
   for (const path of ['/favicon.ico', '/icon.png']) {
     const r = await handle(new Request(`https://mcp.docketseo.app${path}`), fetch, {})
     assert.equal(r.status, 301)
-    assert.equal(r.headers.get('Location'), 'https://docketseo.app/icon.png')
+    assert.equal(r.headers.get('Location'), `${BASE}/icon.png`)
   }
 })
 
@@ -227,7 +228,7 @@ test('a site that refuses, fails, times out or is not a page is "Not checked", w
     assert.equal(j.result.structuredContent.checked, false)
     assert.equal(j.result.structuredContent.reason, reason)
     assert.ok(j.result.structuredContent.advice.length > 20)
-    assert.doesNotMatch(j.result.content[0].text, /docketseo\.app|Docket SEO|download/i, 'results promote nothing')
+    assert.doesNotMatch(j.result.content[0].text, /docketseo\.app|checkengineseo\.com|Docket SEO|Check Engine SEO|download/i, 'results promote nothing')
   }
   const { fetchImpl } = net({})
   const bad = await (await handle(call(tool('check_page_seo', { url: 'not a url at all' })), fetchImpl, EXTRACT)).json()

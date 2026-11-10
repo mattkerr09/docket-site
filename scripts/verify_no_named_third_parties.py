@@ -42,6 +42,8 @@ decision for the repo's owner, not for a build gate.
 """
 from __future__ import annotations
 
+from brand import HOST, LEGACY_HOST
+
 import json
 import pathlib
 import re
@@ -56,7 +58,8 @@ SITE = pathlib.Path(__file__).resolve().parent.parent / "site"
 #: options were to rewrite those URLs or to state the fact. Rewriting a
 #: measurement to look tidier is how a dataset stops being evidence, so the
 #: data is untouched and the allowlist carries the explanation.
-OURS = {"docketseo.app", "www.docketseo.app", "scoutseo.app", "www.scoutseo.app"}
+OURS = {HOST, "www." + HOST, LEGACY_HOST, "www." + LEGACY_HOST,
+        "scoutseo.app", "www.scoutseo.app"}
 
 #: Keys that carry a per-page breakdown. Aggregates are fine; these are not.
 PER_PAGE_KEYS = ("pages", "urls", "page_urls", "worst", "most_exposed")

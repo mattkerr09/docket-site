@@ -31,6 +31,8 @@ capability the shipped CLI documents in `--render`'s own help text.
 """
 from __future__ import annotations
 
+from brand import SHORT
+
 import html
 import re
 import sys
@@ -43,12 +45,12 @@ SITE = ROOT / "site"
 #: "Screaming Frog does not render JavaScript" would be a claim about a rival
 #: and is `verify_competitive_claims`' business, not this script's.
 DENIALS = [
-    re.compile(r"Docket[^.]{0,120}?\b(?:does not|doesn't|cannot|can't|will not|won't)\b"
+    re.compile(re.escape(SHORT) + r"[^.]{0,120}?\b(?:does not|doesn't|cannot|can't|will not|won't)\b"
                r"[^.]{0,80}?\b(?:render|renders|rendering|run|runs|execute|executes)\b"
                r"[^.]{0,40}?JavaScript", re.I),
     re.compile(r"\b(?:render|renders|rendering|runs?)\b[^.]{0,60}?JavaScript[^.]{0,120}?;?\s*"
-               r"Docket does not", re.I),
-    re.compile(r"Docket[^.]{0,60}?\bno\b[^.]{0,40}?JavaScript rendering", re.I),
+               rf"{re.escape(SHORT)} does not", re.I),
+    re.compile(re.escape(SHORT) + r"[^.]{0,60}?\bno\b[^.]{0,40}?JavaScript rendering", re.I),
 ]
 
 
