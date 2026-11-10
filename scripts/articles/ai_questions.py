@@ -1582,14 +1582,14 @@ explains each finding and which popular URL rules have no source behind them.</p
 """
     return render(
         cat="learn", slug="what-is-a-url",
-        modified="2026-11-09",
+        modified="2026-11-10",
         title="What is a URL? The parts, and which ones search engines see",
         desc=("A URL is the address of a page. Its five parts, which are case-sensitive, "
               "why the part after # never reaches the server, and how real sites handle variants."),
         h1="What is a URL?",
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is a URL?',
         body=body,
-        published="2026-11-09",
+        published="2026-11-10",
         faq=[
             ("What is the difference between a URL and a URI?",
              "A URI is any identifier for a resource. A URL is a URI that also says how to reach it, such as an https:// "
