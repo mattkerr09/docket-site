@@ -13,9 +13,9 @@
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Privacy policy: what Check Engine collects and keeps private</title>
-<meta name="description" content="Your audits stay on your computer. No account, no telemetry. Four third-party scripts and no advertising tracker. What each does and how to stop it.">
+<meta name="description" content="Your audits stay on your computer. Anonymous app counts. Four third-party scripts and no advertising tracker. What each does and how to stop it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="66ef4d5997e0">
+<meta name="build-id" content="b3c1c29f8e3f">
 <link rel="canonical" href="https://checkengineseo.com/legal/privacy/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -24,7 +24,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Privacy policy">
-<meta property="og:description" content="Your audits stay on your computer. No account, no telemetry. Four third-party scripts and no advertising tracker. What each does and how to stop it.">
+<meta property="og:description" content="Your audits stay on your computer. Anonymous app counts. Four third-party scripts and no advertising tracker. What each does and how to stop it.">
 <meta property="og:url" content="https://checkengineseo.com/legal/privacy/">
 <meta property="og:site_name" content="Check Engine SEO">
 <meta property="og:image" content="https://checkengineseo.com/og.png?v=20261108-win">
@@ -32,7 +32,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Privacy policy">
-<meta name="twitter:description" content="Your audits stay on your computer. No account, no telemetry. Four third-party scripts and no advertising tracker. What each does and how to stop it.">
+<meta name="twitter:description" content="Your audits stay on your computer. Anonymous app counts. Four third-party scripts and no advertising tracker. What each does and how to stop it.">
 <meta name="twitter:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -229,6 +229,9 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
   letter-spacing:.04em;color:var(--brand);margin-left:.28em;
   border:1px solid var(--brand);border-radius:var(--radius-sm);padding:.02em .3em}
 .nav-brand:hover{text-decoration:none;color:var(--brand-light)}
+/* The name stays on one line at every width (it wrapped to "Check / Engine SEO" at 375px on 10 Nov 2026, and the page
+   scrolled sideways at 320px). The phone rules below make the row fit instead of letting the name break. */
+.nav-brand span{white-space:nowrap}.nav-brand{flex-shrink:0}
 .nav-links{display:flex;gap:1.3rem;font-size:var(--t-md)}
 .nav-links a{color:var(--text-mid)}
 @media(hover:hover){.nav-links a:hover{color:var(--text);text-decoration:none}}
@@ -291,7 +294,9 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    where this label measured wider than in Chrome and wrapped to two lines
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
-@media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
+@media(max-width:420px){.nav-inner{gap:.3rem}.nav-brand{font-size:15px;gap:.4rem}.nav-brand svg{width:20px;height:20px}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
+@media(max-width:380px){.nav-brand{font-size:14px}.nav-brand i{font-size:.6rem;margin-left:.2em}nav .btn{padding:.5rem .5rem;font-size:.8rem}}
+@media(max-width:340px){.nav-brand i{display:none}}
 /* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
    sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);
@@ -932,8 +937,8 @@ nav{background:rgba(7,12,13,.72);
   .btn,.btn:hover,.btn-ghost:hover,.split-col:hover{transform:none}}
 </style>
 
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.160/Docket-1.3.160-arm64.dmg", "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "headline": "Privacy policy", "description": "Your audits stay on your computer. No account, no telemetry. Four third-party scripts and no advertising tracker. What each does and how to stop it.", "datePublished": "2026-08-06", "dateModified": "2026-11-10", "author": {"@type": "Person", "name": "Matt Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/legal/privacy/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.161/Docket-1.3.161-arm64.dmg", "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "headline": "Privacy policy", "description": "Your audits stay on your computer. Anonymous app counts. Four third-party scripts and no advertising tracker. What each does and how to stop it.", "datePublished": "2026-08-06", "dateModified": "2026-11-10", "author": {"@type": "Person", "name": "Matt Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/legal/privacy/", "inLanguage": "en"}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -987,10 +992,10 @@ and this website.</p>
 <h2>The application</h2>
 <p>Nothing about the sites you audit reaches us, Kerr &amp; Company: the crawl and the report
 stay on your computer. The requests that do leave it are listed below with who receives each one,
-and the ones that come to us are for the public update, price and knowledge files on this
+and the ones that come to us are anonymous app counts, requests for the public update, price and knowledge files on this
 website and, on a copy with no licence, a question to an offer server we run. What our payment
 provider receives on our behalf is your licence key and a name for each Mac you activate it on.
-There is no account, no telemetry and no crash reporting. The licence key is checked with our
+There is no account or crash reporting. The licence key is checked with our
 payment provider when you activate it and about once a day after that.</p>
 <p>An earlier version of this policy said the only network requests the app makes are to the
 website you ask it to audit, and the next one named three kinds of destination. Neither was
@@ -1084,6 +1089,26 @@ requests as any other, and it can ask for offline mode.</li>
 <p>Audit results, your saved-site list and any crash reports are stored on your machine in
 <code>~/.docket/</code> as plain JSON files. They are never transmitted. Deleting that folder
 removes them permanently.</p>
+
+<h2>What the app tells us, anonymously</h2>
+<p>The app sends one count at each of these three moments:</p>
+<ul>
+<li><code>first_opened</code>: the first time the app is opened.</li>
+<li><code>first_audit_finished</code>: the first time an audit finishes.</li>
+<li><code>free_limit</code>: the first time the free version reaches its limit and shows the unlock.</li>
+</ul>
+<p>Each is sent once per copy and per event. Each sends only the event name, the app version
+and the kind of computer: Mac, Windows or Linux. It is a single HTTPS GET, like a page request,
+to <code>mcp.docketseo.app/app-event</code>, with a User-Agent header, no cookie and no body.</p>
+<p>These counts never send any web address or the site you audit, results or reports, your licence key,
+any ID or name, or anything from your files. Like any page request, the receiving server sees your
+internet address for the moment it answers. We store only a daily tally per event, version and system,
+never who. We do not store the internet address or User-Agent with the counts.</p>
+<p>Nothing is sent for these counts by source builds or by the engine's offline mode, and an audit run with
+&ldquo;Keep it private: only contact this site&rdquo; switched on sends no count when it finishes. The first count,
+<code>first_opened</code>, goes out the first time the app starts, before there is a chance to choose. To turn all
+three counts off, set the environment variable <code>DOCKET_NO_COUNTS=1</code>, or create an empty file named
+<code>no-counts</code> in the <code>.docket</code> folder in your home folder, before you first open the app.</p>
 
 <h2>This website</h2>
 <p>This site is static and runs four third-party scripts. The first is
