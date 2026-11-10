@@ -15,7 +15,7 @@
 <title>Check Engine's crawler: what it requests and how to stop it</title>
 <meta name="description" content="What Check Engine's audit crawler does on your site, how fast it goes, and the robots.txt rule that asks it to stay out.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="ea09c0ff2ee7">
+<meta name="build-id" content="66ef4d5997e0">
 <link rel="canonical" href="https://checkengineseo.com/bot/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -982,10 +982,10 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / Crawler</div><h1>The Check Engine crawler</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-09-23">23 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-19">19 October 2026</time></p>
 
 <p class="lede">If <code>Docket-SEO-Audit</code> is in your logs, somebody audited your site with
-Check Engine from their own computer. There is no Check Engine crawler farm and no scheduled sweep of the web:
-every request under this name belongs to one audit that one person started. The one other thing
-that sends requests from Check Engine is an occasional research survey, which has its own name and is
-described below.</p>
+Check Engine from their own computer. There is no scheduled sweep of the web: every request under this
+name belongs to one audit that one person started on their own machine. Two other things send
+requests from our own servers, each under its own name and described below: the free website
+checker, when a visitor asks it to check a site, and an occasional research survey.</p>
 
 <h2>How it identifies itself</h2>
 
@@ -1040,6 +1040,23 @@ requested: no other page, no sitemap, no <code>llms.txt</code> and no favicon. A
 the audit can switch robots.txt off, which exists for auditing their own staging sites. If that
 matters to you, refuse the user agent at your server as well; that is the only rule a crawler
 cannot choose to ignore.</p>
+
+<h2>The free website checker</h2>
+
+<p>The free <a href="/tools/website-checker/">website checker</a> reads a site from our servers
+when a visitor types its address. It sends this user agent:</p>
+
+<pre><code>CheckEngineBot/1.0 (+https://docketseo.app/bot/)</code></pre>
+
+<p>One check reads at most 25 pages of one site: it starts at most one request every tenth of a
+second, four at a time, and stops after 30 seconds whatever it has reached. It reads your
+<code>/robots.txt</code> first and obeys the groups written for <code>CheckEngineBot</code> and for
+<code>*</code>; a page they disallow is not requested. A site can be checked at most three times a day
+and once a minute, whoever asks. It sends no cookies, and it keeps nothing but a short summary for one
+hour. To keep it out entirely:</p>
+
+<pre><code>User-agent: CheckEngineBot
+Disallow: /</code></pre>
 
 <h2>The research survey</h2>
 
