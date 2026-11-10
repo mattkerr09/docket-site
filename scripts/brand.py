@@ -71,6 +71,16 @@ def site_url(value: str, *, page: bool = False) -> str:
     return urlunsplit((parsed.scheme, host, parsed.path, parsed.query, parsed.fragment))
 
 
+#: Machine paths that a person also clicks: the crawler's page and the sample report. A link a reader follows goes to this
+#: site's own host (asked by the Quality Desk, 10 Nov 2026); installed apps, feeds and user-agent strings keep the old host.
+READER_PATHS = ("/bot", "/bot/", "/assets/docket-sample-report.pdf")
+
+
+def _reader_page(value: str) -> bool:
+    parsed = urlsplit(value)
+    return parsed.path in READER_PATHS and parsed.netloc in ("", LEGACY_HOST, HOST)
+
+
 def machine_link(path: str) -> str:
     """Keep the original code label by default and link the retained feed after rename."""
     label = LEGACY_HOST + path
@@ -157,7 +167,8 @@ class _BrandHTML(HTMLParser):
             name, before, quote, value = match.groups()
             key = name.lower()
             if key in {"href", "src", "action", "poster"}:
-                value = site_url(value, page=tag == "link" and attributes.get("rel") == "canonical")
+                value = site_url(value, page=(tag == "link" and attributes.get("rel") == "canonical")
+                                 or (tag == "a" and key == "href" and _reader_page(value)))
             elif key in {"title", "alt", "aria-label", "placeholder"}:
                 value = text(value, historical=historical)
             elif tag == "meta" and key == "content":

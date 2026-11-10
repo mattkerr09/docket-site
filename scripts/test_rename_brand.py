@@ -105,13 +105,16 @@ def check_history(site):
         "how-to/outrank-a-bigger-competitor": (
             "$ docket attack https://docketseo.app https://www.screamingfrog.co.uk/seo-spider/",
             "you: docketseo.app was not found"),
-        "ai-assistants": ("audit docketseo.app, this site's address until November 2026.",),
         "vs/se-ranking-vs-screaming-frog": (
             vs_run_phrase(),),
         "learn/ai-substitution": ("Run against docketseo.app it assessed",),
         "learn/internal-link-equity": ("crawled docketseo.app, built the internal link graph",),
         "how-to/sitemap-urls-that-are-not-stale": ("Auditing docketseo.app, the host answered",),
     }
+    # The AI assistants run was re-measured on 10 Nov 2026 against the new host, so it reads as this site, not as history.
+    assistants = words((site / "ai-assistants" / "index.html").read_text())
+    assert "audit checkengineseo.com, this site." in assistants
+    assert "this site's address until November 2026" not in assistants
     for route, phrases in historical.items():
         raw = (site / route / "index.html").read_text()
         for phrase in phrases:
@@ -314,7 +317,10 @@ def check_site(site):
         assert not re.search(r"(?<![/\w])docket audit\b", raw), rel
     for machine in MACHINE:
         assert (site / machine.lstrip("/")).exists(), machine
-    assert f'href="https://{OLD_HOST}/bot/"' in (site / "index.html").read_text()
+    home = (site / "index.html").read_text()
+    # A link a reader follows goes to this site's host; the user-agent string and app feeds keep the old one.
+    assert f'href="https://{NEW_HOST}/bot/"' in home and f'href="https://{OLD_HOST}/bot/"' not in home
+    assert f'href="https://{OLD_HOST}/assets/docket-sample-report.pdf"' not in home
     privacy = (site / "legal/privacy/index.html").read_text()
     for machine in MACHINE[:3]:
         assert f'href="https://{OLD_HOST}{machine}"' in privacy, machine

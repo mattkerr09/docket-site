@@ -65,8 +65,9 @@ def _bundle(platform: str) -> str:
 #: (verify_download_path.py caught it); the hub accepts .mcpb since worker version 53a39145 (CEO, 2026-11-07).
 def ai_assistants() -> Path:
     when = _day(RUN["measured"])
+    # The run audited whichever host RUN["site"] names: the old address reads as history, the current one as this site.
     site_description = ("this site's address until November 2026"
-                        if SITE_BRAND == "checkengine" else "this site")
+                        if SITE_BRAND == "checkengine" and RUN["site"] == "docketseo.app" else "this site")
     vscode_link, cursor_link = _install_links()
     purchase = (buy_block("ai-assistants", try_app="ai-assistants-try-free")
                 .replace(' dl-mac', '').replace(' dl-win', '')
