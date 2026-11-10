@@ -319,7 +319,7 @@ def check_site(site):
         assert (site / machine.lstrip("/")).exists(), machine
     home = (site / "index.html").read_text()
     # A link a reader follows goes to this site's host; the user-agent string and app feeds keep the old one.
-    assert f'href="https://{NEW_HOST}/bot/"' in home and f'href="https://{OLD_HOST}/bot/"' not in home
+    assert 'href="/bot/"' in home and f'href="https://{OLD_HOST}/bot/"' not in home
     assert f'href="https://{OLD_HOST}/assets/docket-sample-report.pdf"' not in home
     privacy = (site / "legal/privacy/index.html").read_text()
     for machine in MACHINE[:3]:

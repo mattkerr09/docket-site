@@ -167,8 +167,11 @@ class _BrandHTML(HTMLParser):
             name, before, quote, value = match.groups()
             key = name.lower()
             if key in {"href", "src", "action", "poster"}:
-                value = site_url(value, page=(tag == "link" and attributes.get("rel") == "canonical")
-                                 or (tag == "a" and key == "href" and _reader_page(value)))
+                reader = tag == "a" and key == "href" and _reader_page(value)
+                if reader and value.startswith("/") and not value.startswith("//"):
+                    pass  # a root-relative link a reader follows already means this site's own host
+                else:
+                    value = site_url(value, page=(tag == "link" and attributes.get("rel") == "canonical") or reader)
             elif key in {"title", "alt", "aria-label", "placeholder"}:
                 value = text(value, historical=historical)
             elif tag == "meta" and key == "content":
