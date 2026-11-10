@@ -5,19 +5,19 @@
 > markup to paste and a client-ready PDF report. It costs $59, paid once; there is no
 > subscription.
 
-The crawl and the report stay on your computer, and there is no account and no
-telemetry. Five optional checks are on by default and reach outside it: Google
-PageSpeed Insights is sent the addresses of the homepage and top pages; Google's
-public autocomplete is sent the site's topic words, typed by the user or read off its
-titles, headings and descriptions; DNS is asked about the mail domains the site
-publishes; the audited server is asked what it tells AI crawlers; and
-https://docketseo.app/data/knowledge.json serves a knowledge file. Offline mode turns
-all five off. Checking links to other sites, and rendering a few pages as a browser
-would, also reach the sites and services those pages link to or load. The licence key
-is checked with the payment provider when it is activated and about once a day after
-that. The app asks https://docketseo.app/updater.json whether an update exists. While
-its activation screen is showing on a copy with no key, it asks
-https://docketseo.app/offer.json for the current price and offer and whether the
+The crawl and the report stay on your computer, and there is no account. The app sends
+three anonymous counts, with no site address or audit result. Five optional checks are
+on by default and reach outside it: Google PageSpeed Insights is sent the addresses of
+the homepage and top pages; Google's public autocomplete is sent the site's topic
+words, typed by the user or read off its titles, headings and descriptions; DNS is
+asked about the mail domains the site publishes; the audited server is asked what it
+tells AI crawlers; and https://docketseo.app/data/knowledge.json serves a knowledge
+file. Offline mode turns all five off. Checking links to other sites, and rendering a
+few pages as a browser would, also reach the sites and services those pages link to or
+load. The licence key is checked with the payment provider when it is activated and
+about once a day after that. The app asks https://docketseo.app/updater.json whether
+an update exists. While its activation screen is showing on a copy with no key, it
+asks https://docketseo.app/offer.json for the current price and offer and whether the
 founding offer is still open.
 
 Check Engine is written by Matt Kerr and sold by Kerr & Company LLC, of Grand Rapids,
@@ -119,23 +119,23 @@ Michigan, United States.
 - Can I use it for client work? Yes. Audit any number of sites (yours, a client's, a
   prospect's or a competitor's) and charge clients for the work. The licence belongs
   to the person or company that paid; it may not be resold or sublicensed.
-- Does it run on Windows? Yes. Check Engine v1.3.160 has an installer for 64-bit Windows,
+- Does it run on Windows? Yes. Check Engine v1.3.161 has an installer for 64-bit Windows,
   18.1 MB, signed by Kerr & Company LLC. It is on the download page beside the Mac app
   and a command-line build for Linux x86_64.
 - How do I get help? Email support@docketseo.app. Questions whose answers would help
   the next person can go on the public issue tracker instead.
 - Does Check Engine send my site data anywhere? The crawl and the report stay on your
-  computer, and there is no account and no telemetry. Five optional checks, on by
-  default, reach outside it: Core Web Vitals from Google PageSpeed, which is sent the
-  addresses of your homepage and top pages; a deliverability test on the addresses
-  your site publishes, which looks up their mail domains in DNS; what your server
-  tells AI crawlers; a knowledge refresh; and Google's public autocomplete for topic
-  suggestions, which is sent your site's topic words. The knowledge refresh fetches
-  docketseo.app/data/knowledge.json. Offline mode turns all five off, and every report
-  names the ones that ran. Checking your links to other sites, and rendering a few
-  pages as a browser would, also reach the sites and services those pages link to or
-  load. The licence key is checked with our payment provider when you activate it and
-  about once a day after that.
+  computer, and there is no account. The app sends three anonymous counts, with no
+  site address or audit result. Five optional checks, on by default, reach outside it:
+  Core Web Vitals from Google PageSpeed, which is sent the addresses of your homepage
+  and top pages; a deliverability test on the addresses your site publishes, which
+  looks up their mail domains in DNS; what your server tells AI crawlers; a knowledge
+  refresh; and Google's public autocomplete for topic suggestions, which is sent your
+  site's topic words. The knowledge refresh fetches docketseo.app/data/knowledge.json.
+  Offline mode turns all five off, and every report names the ones that ran. Checking
+  your links to other sites, and rendering a few pages as a browser would, also reach
+  the sites and services those pages link to or load. The licence key is checked with
+  our payment provider when you activate it and about once a day after that.
 - How is Check Engine different from Screaming Frog? Screaming Frog gives you raw crawl data
   and leaves the interpretation to you. Check Engine ranks every finding by impact against
   effort and gives you an ordered plan with the exact markup to paste. Screaming Frog
