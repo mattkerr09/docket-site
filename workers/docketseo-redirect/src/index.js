@@ -1,4 +1,4 @@
-export const MODE = 'fallback'
+export const MODE = 'redirect'
 const DESTINATION_HOST = 'checkengineseo.com'
 const RAW_ORIGIN = 'https://raw.githubusercontent.com/mattkerr09/docket-site/gh-pages'
 const PASSTHROUGH = ['/updater.json', '/offer.json', '/data/knowledge.json', '/bot', '/bot/', '/assets/docket-sample-report.pdf']
