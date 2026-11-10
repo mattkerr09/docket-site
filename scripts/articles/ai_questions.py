@@ -1616,6 +1616,183 @@ explains each finding and which popular URL rules have no source behind them.</p
     )
 
 
+def what_is_a_subdomain() -> Path:
+    s = F.subdomain_own_sites()
+    sources = s["sources"]
+    own_sites = format(s["own_sites"], ",")
+    own_apex_disallow = format(s["own_apex_disallow"], ",")
+    own_sub_robots_lines = format(s["own_sub_robots_lines"], ",")
+    own_www_cname = format(s["own_www_cname"], ",")
+    own_www_proxy = format(s["own_www_proxy"], ",")
+    own_read_human = F.lt_fmt(s["read"])
+    facts_read_human = F.lt_fmt(s["facts_read"])
+
+    body = f"""
+<p class="lede"><strong>A subdomain is an extra name in front of a domain, such as shop.example.com or blog.example.com: it
+points to its own place, which can be a different server, and you add it with a DNS record.</strong> For search engines, the
+difference that matters is that several rules follow the hostname, not the site. robots.txt, the favicon and the site name in
+Google results all belong to a hostname, not to the site as a whole, so a subdomain needs its own. On one of the {own_sites} sites I run, a small service
+on a subdomain serves a robots.txt with no rules at all, while the main site's file has {own_apex_disallow} Disallow lines.</p>
+
+<h2>The parts of a hostname</h2>
+
+<pre><code>shop.example.com
+└┬─┘ └──┬──┘ └┬┘
+ │      │     └ top-level domain
+ │      └────── domain you register
+ └───────────── subdomain</code></pre>
+
+<p>You register example.com once. Every name in front of it, such as www, shop, blog or help, is a subdomain you create
+yourself, usually with a DNS record that points it at a server or a hosting service. www is a subdomain too, and most sites
+send it to the bare domain or the other way round. The <a href="/learn/www-vs-non-www/">www vs non-www study</a> measured
+what sites actually do with it.</p>
+
+<h2>How a subdomain is set up</h2>
+
+<p>You create a subdomain in your domain's DNS, the system that turns names into server addresses. Two records do most of the
+work:</p>
+
+<ul>
+<li><strong>An A record</strong> points the name at a server's IP address.</li>
+<li><strong>A CNAME record</strong> points the name at another domain name, never at an IP address. Subdomains such as blog.example.com
+  or shop.example.com often use one, pointed at the service that hosts them.</li>
+</ul>
+
+<p>On {own_read_human} I looked up the www name of each of the {own_sites} sites. {own_www_cname} of them points at its host
+with a CNAME. The other {own_www_proxy} sit behind a proxy, so public DNS shows only the proxy's two addresses. The service on a
+subdomain resolves to exactly the same two addresses as its main site, and still serves a different robots.txt: the proxy
+reads the hostname and hands the request to a different program. Two names on one address can be two different sites.</p>
+
+<h2>Subdomain or subfolder?</h2>
+
+<p>shop.example.com is a subdomain. example.com/shop/ is a subfolder, also called a subdirectory. Google's guide to sites in
+several countries compares the two:</p>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th></th><th>Subdomain (de.example.com)</th><th>Subfolder (example.com/de/)</th></tr></thead>
+<tbody>
+<tr><td>Setting up</td><td>Easy</td><td>Easy</td></tr>
+<tr><td>Where it runs</td><td>Can be a different server</td><td>Same host as the main site</td></tr>
+<tr><td>Keeping it separate</td><td>Easy</td><td>Harder</td></tr>
+</tbody></table></div>
+
+<p>From Google Search Central, read {facts_read_human}. Google also lists low maintenance as a plus of the subfolder, because it's the same host.</p>
+
+<p>Google's documentation doesn't say one ranks better than the other. What it does document is a set of rules that follow the
+hostname, and those decide most of the practical difference.</p>
+
+<h2>What a subdomain gets on its own</h2>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Rule</th><th>Per hostname?</th><th>What it means for a subdomain</th></tr></thead>
+<tbody>
+<tr><td>robots.txt</td><td>Yes</td><td>The main site's file doesn't apply. The subdomain needs its own at /robots.txt</td></tr>
+<tr><td>Favicon in Google</td><td>Yes</td><td>Google supports one favicon per hostname, so the subdomain can have its own, and needs one</td></tr>
+<tr><td>Site name in Google</td><td>Yes</td><td>One site name per domain or subdomain. A subfolder can't have its own</td></tr>
+<tr><td>Search Console</td><td>Depends on the property</td><td>A Domain property covers every subdomain. A URL-prefix property covers only the one you enter</td></tr>
+<tr><td>HSTS</td><td>Can cover all</td><td>A header with includeSubDomains applies HTTPS to every subdomain</td></tr>
+</tbody></table></div>
+
+<p>Read on each Google page and the robots.txt standard, {facts_read_human}.</p>
+
+<p>Two of those catch people out. A subdomain launched on a different service can end up with a robots.txt the service supplies,
+not yours. And a Search Console URL-prefix property for https://example.com shows nothing about shop.example.com, so a
+problem there can sit unseen.</p>
+
+<h2>What I found on my own sites</h2>
+
+<p>On {own_read_human} I checked {own_sites} sites I run.</p>
+
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th></th><th>Result</th></tr></thead>
+<tbody>
+<tr><td>www. subdomain</td><td>All {own_sites} send www. to the bare domain with a 301, robots.txt included</td></tr>
+<tr><td>That subdomain's robots.txt</td><td>Its own file: {own_sub_robots_lines} lines, all comments, no rules</td></tr>
+<tr><td>The main site's robots.txt</td><td>{own_apex_disallow} Disallow lines that don't reach the subdomain</td></tr>
+<tr><td>That subdomain's favicon</td><td>None: /favicon.ico returns 404</td></tr>
+</tbody></table></div>
+
+<p>The subdomain runs a small tool that answers requests from apps, not a page for people, so an empty robots.txt and no
+favicon do no harm there. But it shows the rule: nothing you set on the main site carried over. If that subdomain had been
+a blog, its pages would have been open to every crawler, and Google would have had no favicon to show for it, whatever the
+main site said.</p>
+
+<h2>Cookies follow the domain you name</h2>
+
+<p>Logins and other cookies have their own subdomain rule. A cookie set without a Domain attribute stays on the host that set
+it and doesn't reach its subdomains. A cookie set with Domain=example.com goes to example.com and every subdomain under it.
+A server can widen a cookie to its own parent domain, but never point it at a subdomain or another domain.</p>
+
+<p>That is how one login can work on example.com and shop.example.com. It's also why handing a subdomain to an outside service
+deserves a second look: any cookie scoped to the whole domain reaches that service too. None of the {own_sites} home pages I
+checked sets a cookie with a Domain attribute.</p>
+
+<h2>Subdomains and spam</h2>
+
+<p>Google's spam policies name subdomains in one place: using existing or new subdomains, subfolders or sites to keep breaking
+its policies is itself a violation.</p>
+
+<h2>What Docket checks</h2>
+
+<p>Docket treats a link to one of your own subdomains as your own link, not an outbound one. When such a link is broken, it says
+so under its own title instead of mixing it into the count of broken links to other sites. It also reads the HSTS preload
+list, so a domain ending that is preloaded with its subdomains included is not flagged for a missing header. The <a
+href="/learn/what-is-robots-txt/">robots.txt guide</a> covers the per-host rule in more detail.</p>
+
+<h2>Sources</h2>
+<ul>
+<li><a href="{sources['google_multiregional']}" rel="nofollow noopener">Google, managing multi-regional and multilingual sites</a></li>
+<li><a href="{sources['gsc_property']}" rel="nofollow noopener">Google Search Console Help, add a website property</a></li>
+<li><a href="{sources['google_site_names']}" rel="nofollow noopener">Google, site names</a></li>
+<li><a href="{sources['google_favicon']}" rel="nofollow noopener">Google, favicon in search results</a></li>
+<li><a href="{sources['google_spam']}" rel="nofollow noopener">Google, spam policies</a></li>
+<li><a href="{sources['rfc9309']}" rel="nofollow noopener">RFC 9309, robots exclusion protocol</a></li>
+<li><a href="{sources['mdn_cookies']}" rel="nofollow noopener">MDN, using HTTP cookies</a></li>
+<li><a href="{sources['cf_cname']}" rel="nofollow noopener">Cloudflare Learning, what is a DNS CNAME record</a></li>
+</ul>
+
+{buy_block("learn-what-is-a-subdomain", try_app="learn-what-is-a-subdomain-try-free")}
+"""
+    return render(
+        cat="learn", slug="what-is-a-subdomain",
+        modified="2026-11-10",
+        title="What is a subdomain? How search engines treat one",
+        desc=("A subdomain is a name in front of your domain, like shop.example.com. "
+              "What it changes for search, robots.txt, favicons and Search Console, measured."),
+        h1="What is a subdomain?",
+        crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / What is a subdomain?',
+        body=body,
+        published="2026-11-10",
+        faq=[
+            ("What is an example of a subdomain?",
+             "In blog.example.com, blog is the subdomain, example is the domain and .com is the top-level domain. "
+             "www.example.com is a subdomain too."),
+            ("Is a subdomain a separate website to Google?",
+             "For several rules, yes. robots.txt, the favicon and the site name in Google results are set per hostname. "
+             "A Search Console Domain property groups all of a domain's subdomains together."),
+            ("Is a subdomain or a subfolder better for SEO?",
+             "Google's documentation doesn't rank one above the other. A subfolder shares the main site's host and "
+             "settings, while a subdomain needs its own robots.txt and favicon and can run on a different server."),
+            ("How do I create a subdomain?",
+             "Add a DNS record for the new name wherever your domain's DNS is managed: an A record that points to a "
+             "server's IP address, or a CNAME that points to another domain name, often the hosting service's. Then set "
+             "up the site on that server for the new name."),
+            ("Do I need a robots.txt on a subdomain?",
+             "If you want rules there, yes. A robots.txt applies only to its own host, so the main site's file does "
+             "nothing for a subdomain."),
+        ],
+        closer="""
+<h2>Related</h2>
+<ul>
+<li><a href="/learn/www-vs-non-www/">www vs non-www: what sites actually do</a></li>
+<li><a href="/learn/what-is-robots-txt/">What is robots.txt?</a></li>
+<li><a href="/learn/what-is-a-favicon/">What is a favicon?</a></li>
+<li><a href="/learn/what-is-a-url/">What is a URL?</a></li>
+</ul>
+""",
+    )
+
+
 def claude_search_crawlers() -> Path:
     """Which crawlers feed Claude's web search? Answered from the operators' own pages, read 2026-11-06.
 
@@ -1707,7 +1884,7 @@ def _read_day() -> str:
     return "6 November 2026"
 
 
-BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, what_is_robots_txt, what_is_a_404_error, what_is_a_favicon, what_is_https, what_is_a_url, claude_search_crawlers]
+BUILDERS = [what_is_claudebot, what_is_llms_txt, what_is_a_sitemap, what_is_alt_text, what_is_structured_data, what_is_robots_txt, what_is_a_404_error, what_is_a_favicon, what_is_https, what_is_a_url, what_is_a_subdomain, claude_search_crawlers]
 
 
 def build_all() -> list[Path]:

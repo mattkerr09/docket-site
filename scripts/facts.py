@@ -1884,6 +1884,12 @@ def url_variants_own_sites() -> dict:
     return json.loads((ROOT / "data" / "url-variants-own-sites-2026-11-09.json").read_text())
 
 
+@lru_cache(maxsize=None)
+def subdomain_own_sites() -> dict:
+    """Dated subdomain readings and the sources quoted alongside them."""
+    return json.loads((ROOT / "data" / "subdomain-own-sites-2026-11-10.json").read_text())
+
+
 def index_reached() -> int:
     return index()["summary"]["n"]
 

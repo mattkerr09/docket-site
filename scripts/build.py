@@ -327,6 +327,9 @@ money.</p>
             ("/learn/what-is-a-url/", "What is a URL?",
              "The address of a page, in five parts. Which parts are case-sensitive, "
              "and why search engines see some variants as different pages."),
+            ("/learn/what-is-a-subdomain/", "What is a subdomain?",
+             "A name in front of your domain, like shop.example.com. Which search rules "
+             "follow the hostname, and which follow the site."),
             ("/learn/does-noindex-stop-ai-crawlers/", "Does noindex stop AI crawlers?",
              "noindex tells an indexer not to list a page; it cannot stop a crawler "
              "fetching it. What robots.txt and your server control instead, and which "

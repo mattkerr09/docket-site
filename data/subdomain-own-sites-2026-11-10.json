@@ -1,0 +1,20 @@
+{
+  "read": "2026-11-10",
+  "method": "Article Studio, 10 Nov 2026 03:2x-03:45Z: robots.txt requested on the www and bare host of four sites run by Kerr & Company, and on one site's subdomain service; DNS A and CNAME records read with dig; Set-Cookie headers on the four home pages. Sites are not named on the page. Raw notes: ops research/articles/data-2026-11-10/subdomain-own-sites.txt.",
+  "own_sites": 4,
+  "own_apex_disallow": 4,
+  "own_sub_robots_lines": 24,
+  "own_www_cname": 1,
+  "own_www_proxy": 3,
+  "facts_read": "2026-11-10",
+  "sources": {
+    "google_multiregional": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+    "gsc_property": "https://support.google.com/webmasters/answer/34592",
+    "google_site_names": "https://developers.google.com/search/docs/appearance/site-names",
+    "google_favicon": "https://developers.google.com/search/docs/appearance/favicon-in-search",
+    "google_spam": "https://developers.google.com/search/docs/essentials/spam-policies",
+    "rfc9309": "https://www.rfc-editor.org/rfc/rfc9309.html",
+    "mdn_cookies": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies",
+    "cf_cname": "https://www.cloudflare.com/learning/dns/dns-records/dns-cname-record/"
+  }
+}
