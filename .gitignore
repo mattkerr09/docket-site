@@ -1,2 +1,5 @@
 scripts/scout-render
 .updates-cache/
+
+# Local Worker dev state (wrangler dev), never committed
+.wrangler/
