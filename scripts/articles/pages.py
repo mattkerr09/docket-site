@@ -2387,7 +2387,7 @@ Cloudflare, which hosts it.</p>
 server. When you ask an assistant such as Claude to use it, the assistant sends that server the tool's arguments: a
 page address, or for the snippet preview a title and description. Nothing else about you or the conversation is sent.
 The server fetches the page, its robots.txt or its headers, returns the result to the assistant, and keeps nothing
-about the request or the site. It keeps a copy of what it fetched for five minutes, like the checkers above, and
+about the request or the site. A public file it fetches, such as robots.txt, can sit in an edge cache for up to ten minutes, and it
 counts requests per connection for a minute and across all users per day, to stop floods; those counts hold no
 address, page or result. The server also keeps daily counts by assistant family for conversations started,
 tool calls and guide links, and by tool outcome, never an address, client name or session id. These daily counts
