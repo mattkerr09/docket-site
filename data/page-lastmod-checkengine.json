@@ -25,7 +25,7 @@
  },
  "bot/index.html": {
   "date": "2026-11-10",
-  "hash": "85dc4115d1710673"
+  "hash": "17147d4006b68ad1"
  },
  "contact/index.html": {
   "date": "2026-11-10",
@@ -361,7 +361,7 @@
  },
  "learn/audit-tool-accuracy/index.html": {
   "date": "2026-11-10",
-  "hash": "5f5365a2edd6d48c"
+  "hash": "455a92402a8bd2ad"
  },
  "learn/brand-consistency/index.html": {
   "date": "2026-11-10",
@@ -416,8 +416,8 @@
   "hash": "1aec90a060225370"
  },
  "learn/internal-link-equity/index.html": {
-  "date": "2026-11-09",
-  "hash": "087e855e2c0932d6"
+  "date": "2026-11-10",
+  "hash": "54f30e78e05e24b7"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-11-10",
@@ -469,7 +469,7 @@
  },
  "learn/what-docket-got-wrong/index.html": {
   "date": "2026-11-10",
-  "hash": "0b2bec166dc6f05b"
+  "hash": "7f583b8d641561be"
  },
  "learn/what-is-a-404-error/index.html": {
   "date": "2026-11-10",
@@ -529,7 +529,7 @@
  },
  "legal/privacy/index.html": {
   "date": "2026-11-10",
-  "hash": "057f02bdcfe8a494"
+  "hash": "580449179d336e51"
  },
  "legal/refunds/index.html": {
   "date": "2026-11-10",
@@ -556,40 +556,44 @@
   "hash": "29ee1c80f09cb9ed"
  },
  "tools/http-header-checker/index.html": {
-  "date": "2026-11-09",
-  "hash": "3109e54f7c0dac3f"
+  "date": "2026-11-10",
+  "hash": "f263d66291fe0ba1"
  },
  "tools/index.html": {
-  "date": "2026-11-09",
-  "hash": "1ee14b113f2a8c22"
+  "date": "2026-11-10",
+  "hash": "e962f8578c410773"
  },
  "tools/json-ld-checker/index.html": {
-  "date": "2026-11-09",
-  "hash": "be9fd1605c2f0743"
+  "date": "2026-11-10",
+  "hash": "64c19eff9c85ebe1"
  },
  "tools/meta-tag-checker/index.html": {
-  "date": "2026-11-09",
-  "hash": "4a4bbaff22886edd"
+  "date": "2026-11-10",
+  "hash": "39642987cecd5cfa"
  },
  "tools/redirect-checker/index.html": {
-  "date": "2026-11-09",
-  "hash": "9f66fde2ff4b1239"
+  "date": "2026-11-10",
+  "hash": "62e44e66a6e2a844"
  },
  "tools/robots-txt-tester/index.html": {
   "date": "2026-11-10",
-  "hash": "8474835120c89071"
+  "hash": "e29a5c35a13bee43"
  },
  "tools/seo-checker/index.html": {
   "date": "2026-11-10",
-  "hash": "70c2de4cbeb008cf"
+  "hash": "069c286b10fa7afb"
  },
  "tools/serp-preview/index.html": {
-  "date": "2026-11-09",
-  "hash": "d988161dedc6d601"
+  "date": "2026-11-10",
+  "hash": "e13abb1b18145bba"
  },
  "tools/title-ii-date/index.html": {
   "date": "2026-11-09",
   "hash": "fefcb8029f211f18"
+ },
+ "tools/website-checker/index.html": {
+  "date": "2026-11-10",
+  "hash": "dc33ef1756989c21"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
   "date": "2026-11-10",
