@@ -12,27 +12,28 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Google robots.txt tester: is Googlebot blocked?</title>
-<meta name="description" content="Free Google robots.txt tester: paste any page address and see whether Googlebot, Bingbot, GPTBot and other crawlers may crawl it, and which line decides.">
+<title>Free robots.txt tester and checker | Check Engine</title>
+<meta name="description" content="Test your site's robots.txt free. Enter a page URL to check whether Googlebot, Bingbot and AI crawlers may crawl it, and see the rule that decides.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="c9e52275c331">
-<link rel="canonical" href="https://docketseo.app/tools/robots-txt-tester/">
+<meta name="build-id" content="0d6e8542999d">
+<link rel="canonical" href="https://checkengineseo.com/tools/robots-txt-tester/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Google robots.txt tester">
-<meta property="og:description" content="Free Google robots.txt tester: paste any page address and see whether Googlebot, Bingbot, GPTBot and other crawlers may crawl it, and which line decides.">
-<meta property="og:url" content="https://docketseo.app/tools/robots-txt-tester/">
-<meta property="og:site_name" content="Docket SEO">
-<meta property="og:image" content="https://docketseo.app/og.png?v=20261108-win">
+<meta property="og:title" content="Free robots.txt tester and checker">
+<meta property="og:description" content="Test your site's robots.txt free. Enter a page URL to check whether Googlebot, Bingbot and AI crawlers may crawl it, and see the rule that decides.">
+<meta property="og:url" content="https://checkengineseo.com/tools/robots-txt-tester/">
+<meta property="og:site_name" content="Check Engine SEO">
+<meta property="og:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Google robots.txt tester">
-<meta name="twitter:description" content="Free Google robots.txt tester: paste any page address and see whether Googlebot, Bingbot, GPTBot and other crawlers may crawl it, and which line decides.">
-<meta name="twitter:image" content="https://docketseo.app/og.png?v=20261108-win">
+<meta name="twitter:title" content="Free robots.txt tester and checker">
+<meta name="twitter:description" content="Test your site's robots.txt free. Enter a page URL to check whether Googlebot, Bingbot and AI crawlers may crawl it, and see the rule that decides.">
+<meta name="twitter:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
    display faces this category defaults to: Docket is a measuring instrument that
@@ -128,7 +129,7 @@
           keeps it from reading as a 2010 drop shadow: the shadow is much
           smaller than the blur, so it is a pool of darkness under the card
           rather than an outline around it.
-     Measured off outlier.host at 1440x900, which does the same three things:
+     Measured off a sister site's stylesheet at 1440x900, which does the same three things:
      rgba(255,255,255,.06) 0 2px 0 inset, rgba(255,255,255,.04) 0 0 0 1px inset,
      rgba(0,0,0,.95) 0 60px 130px -40px. */
   /* Ported from outlier-site: one gradient for text, one for a filled control,
@@ -291,10 +292,8 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
-/* The nav button carries the price only where the header has room for the
-   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
-   the other). Narrower, it says "Get Docket" and the hero carries both. */
-@media(max-width:1180px){.nav-price{display:none}}
+/* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
+   sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -876,8 +875,8 @@ nav{z-index:40}
 .faq-item p{font-size:var(--t-md);margin:0}
 
 /* ---- Futuristic touches (Matthew, 2026-10-09) -------------------------------
-   "honestly bookbreaker looks great, make every site just a little bit better":
-   the touches from bookbreaker.bet's stylesheet that this site lacked, in
+   "make every site just a little bit better": the touches from a sister
+   site's stylesheet that this site lacked, in
    Docket's own teal (~/ops/launch/FUTURISTIC-TOUCHES.md). It reverses the
    ":root" note above that "nothing glows" on his word. Colours, copy, prices
    and links are unchanged; all of it is CSS. */
@@ -933,10 +932,10 @@ nav{background:rgba(7,12,13,.72);
   .btn,.btn:hover,.btn-ghost:hover,.split-col:hover{transform:none}}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac and Windows.","sameAs":["https://github.com/mattkerr09/docket-site","https://www.producthunt.com/products/docket-seo"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel; Windows, 64-bit","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg","offers":{"@type":"Offer","price":"59","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://docketseo.app/tools/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","headline":"Google robots.txt tester","description":"Free Google robots.txt tester: paste any page address and see whether Googlebot, Bingbot, GPTBot and other crawlers may crawl it, and which line decides.","datePublished":"2026-10-06","dateModified":"2026-11-05","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/tools/robots-txt-tester/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Where is the robots.txt tester in Google Search Console?","acceptedAnswer":{"@type":"Answer","text":"Google replaced it with the robots.txt report, which lists the files Google found, when it last crawled them and any errors. The report does not take a page address, so to see whether one page is blocked, paste its address into the tester on this page."}},{"@type":"Question","name":"How do I test my robots.txt?","acceptedAnswer":{"@type":"Answer","text":"Paste the address of a page into the tester above. It fetches the site's robots.txt, applies the rules the way crawlers do, and shows for each crawler whether that page is allowed and which line decided."}},{"@type":"Question","name":"Does Disallow in robots.txt remove a page from Google?","acceptedAnswer":{"@type":"Answer","text":"No. It stops Googlebot fetching the page, but the page can still be indexed from links to it, without its content. To keep a page out of search, allow crawling and add a noindex tag."}},{"@type":"Question","name":"Why is a page blocked when my * rules allow it?","acceptedAnswer":{"@type":"Answer","text":"Because a group names that crawler. A crawler that finds a group addressed to it by name obeys only that group and ignores the * rules entirely."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg", "offers": {"@type": "Offer", "price": "59", "priceCurrency": "USD", "availability": "https://schema.org/InStock"}, "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Check Engine", "item": "https://checkengineseo.com/"}, {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://checkengineseo.com/tools/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "headline": "Free robots.txt tester and checker", "description": "Test your site's robots.txt free. Enter a page URL to check whether Googlebot, Bingbot and AI crawlers may crawl it, and see the rule that decides.", "datePublished": "2026-10-06", "dateModified": "2026-11-09", "author": {"@type": "Person", "name": "Matt Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/tools/robots-txt-tester/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this robots.txt checker free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Paste a page address with no sign-up. The checker reads the robots.txt for that host and tests the rules for Googlebot, Bingbot, AI crawlers and a crawler you name. It does not check indexing or firewall access."}}, {"@type": "Question", "name": "Where is the robots.txt tester in Google Search Console?", "acceptedAnswer": {"@type": "Answer", "text": "Google replaced it with the robots.txt report, which lists the files Google found, when it last crawled them and any errors. The report does not take a page address, so to see whether one page is blocked, paste its address into the tester on this page."}}, {"@type": "Question", "name": "How do I test my robots.txt?", "acceptedAnswer": {"@type": "Answer", "text": "Paste the address of a page into the tester above. It fetches the site's robots.txt, applies the rules the way crawlers do, and shows for each crawler whether that page is allowed and which line decided."}}, {"@type": "Question", "name": "Does Disallow in robots.txt remove a page from Google?", "acceptedAnswer": {"@type": "Answer", "text": "No. It stops Googlebot fetching the page, but the page can still be indexed from links to it, without its content. To keep a page out of search, allow crawling and add a noindex tag."}}, {"@type": "Question", "name": "Why is a page blocked when my * rules allow it?", "acceptedAnswer": {"@type": "Answer", "text": "Because a group names that crawler. A crawler that finds a group addressed to it by name obeys only that group and ignores the * rules entirely."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -956,7 +955,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
-<a class="nav-brand" href="/" aria-label="Docket SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Docket<i>SEO</i></span></a>
+<a class="nav-brand" href="/" aria-label="Check Engine SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Check Engine<i>SEO</i></span></a>
 <div class="nav-links">
 <a href="/tools/" data-ev="Free check" data-ev-button="nav">Free tools</a>
 <a href="/index/">The Index</a>
@@ -978,14 +977,15 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Check Engine</a>
 </div></nav>
 <main id="main">
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/tools/">Tools</a> / Robots.txt tester</div><h1>Google robots.txt tester</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-10-06">6 October 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-05">5 November 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/tools/">Tools</a> / Robots.txt tester</div><h1>Free robots.txt tester and checker</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-10-06">6 October 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-09">9 November 2026</time></p>
 
-<p class="lede">Paste the address of any page to see whether Googlebot may crawl it, and which line of
-the site's robots.txt decides. The same test runs for Bingbot, the AI crawlers and any other crawler you name.
-It works on any site, yours or not, and there is nothing to verify first.</p>
+<p class="lede">This free robots.txt tester checks whether a page is allowed or blocked for
+Googlebot, Bingbot and the AI crawlers. Paste the page address to see which robots.txt rule
+decides. No sign-up is needed. It tests crawl rules, not whether a page is indexed or whether
+a firewall lets a crawler through.</p>
 
 <form class="checker-form" id="checker" autocomplete="off" novalidate>
   <label for="checker-url">Page address</label>
@@ -1010,11 +1010,11 @@ It works on any site, yours or not, and there is nothing to verify first.</p>
 <ol class="tool-steps"><li>Paste the address of the page that dropped out of search, not only the homepage.</li><li>Add another crawler's name if you want one, then press <strong>Test this page</strong>.</li><li>Read each crawler's verdict beside the line that decides it.</li></ol>
 <p class="tool-see-h"><strong>You will see:</strong></p>
 <ul class="tool-see"><li>Allowed or blocked for Googlebot, Bingbot and the AI crawlers, one row each</li><li>The exact robots.txt line that decides, so you know which line to change</li><li>The sitemaps the file lists</li></ul>
-<p class="tool-step-up">One file, read for one page. <a href="/download/">Docket</a> checks robots.txt rules for 22 AI crawlers across your site. A separate check requests your homepage as 9 AI crawlers plus Googlebot to catch server refusals the file cannot show, among its 99 checks.</p>
+<p class="tool-step-up">One file, read for one page. <a href="/download/">Check Engine</a> checks robots.txt rules for 22 AI crawlers across your site. A separate check requests your homepage as 9 AI crawlers plus Googlebot to catch server refusals the file cannot show, among its 99 checks.</p>
 </section>
 
 <div class="checker-next" id="checker-next" hidden>
-  <p><strong>That was one file, read for one page.</strong> Docket runs 99 checks across your whole site, ranked by
+  <p><strong>That was one file, read for one page.</strong> Check Engine runs 99 checks across your whole site, ranked by
   what to fix first, each with where it is and the change to make. The free download shows your score
   and the top problem in full.</p>
   <div class="buy-block compact">
@@ -1022,7 +1022,7 @@ It works on any site, yours or not, and there is nothing to verify first.</p>
       <a rel="nofollow" class="btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-robots-tester-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="tools-robots-tester-try-free">Try it free</a>
       <a rel="nofollow" class="btn-ghost" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=tools-robots-tester" data-ev="Buy" data-ev-price="59"
          data-ev-button="tools-robots-tester">Buy once, $59</a>
-      <a class="btn-ghost" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-robots-tester">See a sample report</a>
+      <a class="btn-ghost" href="https://docketseo.app/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-robots-tester">See a sample report</a>
     </div>
     <p class="price-line"><span class="price-big">$59</span><span class="price-pay4">once</span></p>
     <p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later, and 64-bit Windows</p>
@@ -1031,12 +1031,12 @@ It works on any site, yours or not, and there is nothing to verify first.</p>
   </div>
 </div>
 
-<h2>How to read the answer</h2>
+<h2>How to read your robots.txt checker result</h2>
 <p><strong>Allowed</strong> or <strong>Blocked</strong> is what the file tells that crawler about this
 page. The rule beside it is the line that decided, and "named in your file" means a group addresses
 that crawler by name, so your <code>*</code> rules no longer apply to it. If no line matches, the page
 is allowed.</p>
-<p>The rules follow RFC 9309, the robots.txt standard, and match the parser inside Docket. A crawler
+<p>The rules follow RFC 9309, the robots.txt standard, and match the parser inside Check Engine. A crawler
 obeys every group that names it; only if none does, it obeys the <code>*</code> groups. The longest
 matching rule wins, and <code>Allow</code> wins a tie. <code>*</code> matches any run of characters and
 a <code>$</code> at the end anchors it. If the server answers robots.txt with a server error, crawlers
@@ -1062,14 +1062,14 @@ have their own file. The tester reads the file for the host you type.</li>
 </ul>
 
 <h2>Checking every page</h2>
-<p>Docket reads robots.txt rules for 22 AI crawlers across the pages it crawls.
-A separate check requests your homepage as 9 AI crawlers plus Googlebot
-to find server and CDN refusals. It checks the <code>noindex</code> tags and headers this tester
-cannot see, then ranks all of it with the rest of its 99 checks.</p>
-<div class="buy-block"><p class="price-line"><span class="price-big">$59</span><span class="price-pay4">once</span></p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later, and 64-bit Windows</p><p class="price-req">Priced in US dollars. Checkout shows your currency and any local tax.</p><div class="hero-cta"><a rel="nofollow" class="btn btn-lg buy-btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=tools-robots-tester" data-ev="Buy" data-ev-price="59" data-ev-button="tools-robots-tester">Buy Docket</a><a rel="nofollow" class="btn-ghost btn-lg dl-mac" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-robots-tester-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="tools-robots-tester-try-free">Try it free</a><a rel="nofollow" class="btn btn-lg dl-win" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-robots-tester-win&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x64-setup.exe" data-ev="Download" data-ev-button="tools-robots-tester-win">Try it free for Windows</a><a class="btn-ghost btn-lg" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-robots-tester">See a full sample report</a></div><p class="mac-alt hero-note">On a Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-robots-tester-mac&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="tools-robots-tester-mac">Get the Mac version</a>.</p><p class="phone-link">On your phone? <button type="button" data-send-mac-link>Send the Mac link to yourself</button></p><p class="hero-note founding-note" data-founding-until="2026-12-01T07:59:59Z">Launch price: <strong>$29.50 once</strong>, through 30 November. From 1 December: $59. Buy applies the code <code>FOUNDINGDOCKET</code> for you; if the checkout shows $59, enter it under &lsquo;Have a discount code?&rsquo;.</p><p class="hero-note price-anchor">Screaming Frog is $279 a year. Ahrefs plans with Site Audit run $129&ndash;$449 a month. Docket is $59 once. <span class="qual">Screaming Frog&rsquo;s price read 4 November 2026, Ahrefs&rsquo; 9 November 2026.</span></p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
+<p>Check Engine also checks the <code>noindex</code> tags and headers this tester cannot see,
+then ranks what to fix with the rest of its 99 checks.</p>
+<div class="buy-block"><p class="price-line"><span class="price-big">$59</span><span class="price-pay4">once</span></p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later, and 64-bit Windows</p><p class="price-req">Priced in US dollars. Checkout shows your currency and any local tax.</p><div class="hero-cta"><a rel="nofollow" class="btn btn-lg buy-btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=tools-robots-tester" data-ev="Buy" data-ev-price="59" data-ev-button="tools-robots-tester">Buy Check Engine</a><a rel="nofollow" class="btn-ghost btn-lg dl-mac" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-robots-tester-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="tools-robots-tester-try-free">Try it free</a><a rel="nofollow" class="btn btn-lg dl-win" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-robots-tester-win&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x64-setup.exe" data-ev="Download" data-ev-button="tools-robots-tester-win">Try it free for Windows</a><a class="btn-ghost btn-lg" href="https://docketseo.app/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="tools-robots-tester">See a full sample report</a></div><p class="mac-alt hero-note">On a Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=tools-robots-tester-mac&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="tools-robots-tester-mac">Get the Mac version</a>.</p><p class="phone-link">On your phone? <button type="button" data-send-mac-link>Send the Mac link to yourself</button></p><p class="hero-note founding-note" data-founding-until="2026-12-01T07:59:59Z">Launch price: <strong>$29.50 once</strong>, through 30 November. From 1 December: $59. Buy applies the code <code>FOUNDINGDOCKET</code> for you; if the checkout shows $59, enter it under &lsquo;Have a discount code?&rsquo;.</p><p class="hero-note price-anchor">Screaming Frog is $279 a year. Ahrefs plans with Site Audit run $129&ndash;$449 a month. Check Engine is $59 once. <span class="qual">Screaming Frog&rsquo;s price read 4 November 2026, Ahrefs&rsquo; 9 November 2026.</span></p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
 
 <h2>Related</h2>
 <ul>
+<li><a href="/learn/seo-audit/">What an SEO audit checks beyond robots.txt</a></li>
+<li><a href="/best/free-seo-audit-tools/">Free website audit tools and their limits</a></li>
 <li><a href="/tools/ai-crawler-checker/">AI crawler checker: can ChatGPT read your site?</a></li>
 <li><a href="/learn/ai-crawler-directives/">Which AI crawlers to block and which to keep</a></li>
 <li><a href="/learn/does-noindex-stop-ai-crawlers/">Does noindex stop AI crawlers?</a></li>
@@ -1139,14 +1139,14 @@ Google's pages change; if one has moved on from what is described here, <a href=
   });
 })();
 </script>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Where is the robots.txt tester in Google Search Console?</h3><p>Google replaced it with the robots.txt report, which lists the files Google found, when it last crawled them and any errors. The report does not take a page address, so to see whether one page is blocked, paste its address into the tester on this page.</p></div><div class="faq-item"><h3>How do I test my robots.txt?</h3><p>Paste the address of a page into the tester above. It fetches the site's robots.txt, applies the rules the way crawlers do, and shows for each crawler whether that page is allowed and which line decided.</p></div><div class="faq-item"><h3>Does Disallow in robots.txt remove a page from Google?</h3><p>No. It stops Googlebot fetching the page, but the page can still be indexed from links to it, without its content. To keep a page out of search, allow crawling and add a noindex tag.</p></div><div class="faq-item"><h3>Why is a page blocked when my * rules allow it?</h3><p>Because a group names that crawler. A crawler that finds a group addressed to it by name obeys only that group and ignores the * rules entirely.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is this robots.txt checker free?</h3><p>Yes. Paste a page address with no sign-up. The checker reads the robots.txt for that host and tests the rules for Googlebot, Bingbot, AI crawlers and a crawler you name. It does not check indexing or firewall access.</p></div><div class="faq-item"><h3>Where is the robots.txt tester in Google Search Console?</h3><p>Google replaced it with the robots.txt report, which lists the files Google found, when it last crawled them and any errors. The report does not take a page address, so to see whether one page is blocked, paste its address into the tester on this page.</p></div><div class="faq-item"><h3>How do I test my robots.txt?</h3><p>Paste the address of a page into the tester above. It fetches the site's robots.txt, applies the rules the way crawlers do, and shows for each crawler whether that page is allowed and which line decided.</p></div><div class="faq-item"><h3>Does Disallow in robots.txt remove a page from Google?</h3><p>No. It stops Googlebot fetching the page, but the page can still be indexed from links to it, without its content. To keep a page out of search, allow crawling and add a noindex tag.</p></div><div class="faq-item"><h3>Why is a page blocked when my * rules allow it?</h3><p>Because a group names that crawler. A crawler that finds a group addressed to it by name obeys only that group and ignores the * rules entirely.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
-<div><h2 class="foot-h">Docket SEO</h2>
-<a href="/">Overview</a><a href="/download/">Download Docket SEO</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
+<div><h2 class="foot-h">Check Engine SEO</h2>
+<a href="/">Overview</a><a href="/download/">Download Check Engine SEO</a>
+<a href="/index/">The Check Engine Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking vs Screaming Frog</a>
@@ -1160,9 +1160,10 @@ Google's pages change; if one has moved on from what is described here, <a href=
 <a href="/learn/seo-audit/">What an SEO audit is</a>
 <a href="/learn/">All guides</a></div>
 <div><h2 class="foot-h">Contact</h2>
-<a href="/about/">About Docket</a>
+<a href="/about/">About Check Engine</a>
 <a href="/contact/">Get in touch</a>
-<a href="/bot/">Our crawler</a>
+<a href="/help/">Help</a><a href="/support/">Support</a><a href="/faq/">FAQ</a>
+<a href="https://docketseo.app/bot/">Our crawler</a>
 <a href="https://github.com/mattkerr09/docket-site/issues">Issue tracker</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a>
 <a href="/legal/refunds/">Refunds</a></div>
@@ -1170,8 +1171,8 @@ Google's pages change; if one has moved on from what is described here, <a href=
 <div class="foot-more">
 <p>Made by <a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company</a></p>
 </div>
-<div class="foot-bottom">
-<span>© 2026 Docket SEO · Audits run on your computer, and the reports stay there.</span>
+<p>formerly Docket SEO</p><div class="foot-bottom">
+<span>© 2026 Check Engine SEO · Audits run on your computer, and the reports stay there.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
 <div data-founding data-was="$59" data-now="$29.50" hidden></div>
@@ -1197,7 +1198,7 @@ Google's pages change; if one has moved on from what is described here, <a href=
      it. `prefers-reduced-motion` can hide or freeze almost anything except a
      playing <video>. So the script pauses it and rewinds to the poster frame,
      which is a real frame of the same run, so nothing is lost.
-     builtbykerr.com carries ten prefers-reduced-motion blocks to this file's
+     A sister site carries ten prefers-reduced-motion blocks to this file's
      two; this is the one that was actually missing something. */
   try {
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1206,7 +1207,7 @@ Google's pages change; if one has moved on from what is described here, <a href=
       });
     }
   } catch (e) { /* a video that keeps playing is not worth throwing over */ }
-  /* GRANULARITY IS THE EFFECT. Measured on outlier.host: 51 revealed units,
+  /* GRANULARITY IS THE EFFECT. Measured on a sister site: 51 revealed units,
      median height 171px, SIX in view at once. This page had 31 large ones and
      only TWO in flight at any scroll position, which is why it read as sections
      popping rather than a page assembling itself. Adding the smaller units (

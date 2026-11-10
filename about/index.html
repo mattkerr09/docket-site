@@ -12,27 +12,28 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>About Docket: who builds it and what it cannot do</title>
-<meta name="description" content="Docket is an SEO audit app for Mac and Windows with 99 checks, built by one person in Grand Rapids, Michigan. What it is bad at, and how to check the download.">
+<title>About Check Engine: who builds it and what it cannot do</title>
+<meta name="description" content="Check Engine is an SEO audit app for Mac and Windows with 99 checks, built by one person in Grand Rapids, Michigan. Its limits, and how to check the download.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="c9e52275c331">
-<link rel="canonical" href="https://docketseo.app/about/">
+<meta name="build-id" content="0d6e8542999d">
+<link rel="canonical" href="https://checkengineseo.com/about/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="About Docket">
-<meta property="og:description" content="Docket is an SEO audit app for Mac and Windows with 99 checks, built by one person in Grand Rapids, Michigan. What it is bad at, and how to check the download.">
-<meta property="og:url" content="https://docketseo.app/about/">
-<meta property="og:site_name" content="Docket SEO">
-<meta property="og:image" content="https://docketseo.app/og.png?v=20261108-win">
+<meta property="og:title" content="About Check Engine">
+<meta property="og:description" content="Check Engine is an SEO audit app for Mac and Windows with 99 checks, built by one person in Grand Rapids, Michigan. Its limits, and how to check the download.">
+<meta property="og:url" content="https://checkengineseo.com/about/">
+<meta property="og:site_name" content="Check Engine SEO">
+<meta property="og:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About Docket">
-<meta name="twitter:description" content="Docket is an SEO audit app for Mac and Windows with 99 checks, built by one person in Grand Rapids, Michigan. What it is bad at, and how to check the download.">
-<meta name="twitter:image" content="https://docketseo.app/og.png?v=20261108-win">
+<meta name="twitter:title" content="About Check Engine">
+<meta name="twitter:description" content="Check Engine is an SEO audit app for Mac and Windows with 99 checks, built by one person in Grand Rapids, Michigan. Its limits, and how to check the download.">
+<meta name="twitter:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
    display faces this category defaults to: Docket is a measuring instrument that
@@ -128,7 +129,7 @@
           keeps it from reading as a 2010 drop shadow: the shadow is much
           smaller than the blur, so it is a pool of darkness under the card
           rather than an outline around it.
-     Measured off outlier.host at 1440x900, which does the same three things:
+     Measured off a sister site's stylesheet at 1440x900, which does the same three things:
      rgba(255,255,255,.06) 0 2px 0 inset, rgba(255,255,255,.04) 0 0 0 1px inset,
      rgba(0,0,0,.95) 0 60px 130px -40px. */
   /* Ported from outlier-site: one gradient for text, one for a filled control,
@@ -291,10 +292,8 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
-/* The nav button carries the price only where the header has room for the
-   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
-   the other). Narrower, it says "Get Docket" and the hero carries both. */
-@media(max-width:1180px){.nav-price{display:none}}
+/* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
+   sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -876,8 +875,8 @@ nav{z-index:40}
 .faq-item p{font-size:var(--t-md);margin:0}
 
 /* ---- Futuristic touches (Matthew, 2026-10-09) -------------------------------
-   "honestly bookbreaker looks great, make every site just a little bit better":
-   the touches from bookbreaker.bet's stylesheet that this site lacked, in
+   "make every site just a little bit better": the touches from a sister
+   site's stylesheet that this site lacked, in
    Docket's own teal (~/ops/launch/FUTURISTIC-TOUCHES.md). It reverses the
    ":root" note above that "nothing glows" on his word. Colours, copy, prices
    and links are unchanged; all of it is CSS. */
@@ -933,9 +932,9 @@ nav{background:rgba(7,12,13,.72);
   .btn,.btn:hover,.btn-ghost:hover,.split-col:hover{transform:none}}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac and Windows.","sameAs":["https://github.com/mattkerr09/docket-site","https://www.producthunt.com/products/docket-seo"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel; Windows, 64-bit","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg","offers":{"@type":"Offer","price":"59","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","headline":"About Docket","description":"Docket is an SEO audit app for Mac and Windows with 99 checks, built by one person in Grand Rapids, Michigan. What it is bad at, and how to check the download.","datePublished":"2026-08-07","dateModified":"2026-11-05","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/about/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Who makes Docket?","acceptedAnswer":{"@type":"Answer","text":"Matt Kerr, one person, in Grand Rapids, Michigan; the seller is his company, Kerr & Company LLC. There is no team. The macOS download is signed with an Apple Developer ID and notarised, so the legal name on the certificate can be checked with codesign before you install anything."}},{"@type":"Question","name":"Does Docket send my site data anywhere?","acceptedAnswer":{"@type":"Answer","text":"The audit and its results stay on your computer, in ~/.docket/ as plain JSON. Five optional checks, on by default, do reach out: Docket asks your own server what it tells AI crawlers, refreshes its crawler knowledge file from docketseo.app (which learns nothing about what you audit), checks whether the email addresses your site publishes can receive mail, sends Google PageSpeed Insights the address you are measuring (no API key needed), and asks Google's public autocomplete for topic suggestions. --offline, or &quot;Keep it private&quot; in the app, turns all of them off and the audit still completes."}},{"@type":"Question","name":"What can Docket not do?","acceptedAnswer":{"@type":"Answer","text":"It runs on Macs (Apple silicon or Intel) and 64-bit Windows, with no web version; it does not track keyword rankings or backlinks, and it is not built for crawling hundreds of thousands of URLs. The application source is not public, though the website's datasets are."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg", "offers": {"@type": "Offer", "price": "59", "priceCurrency": "USD", "availability": "https://schema.org/InStock"}, "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "AboutPage", "headline": "About Check Engine", "description": "Check Engine is an SEO audit app for Mac and Windows with 99 checks, built by one person in Grand Rapids, Michigan. Its limits, and how to check the download.", "datePublished": "2026-08-07", "dateModified": "2026-11-05", "author": {"@type": "Person", "name": "Matt Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/about/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Who makes Check Engine?", "acceptedAnswer": {"@type": "Answer", "text": "Matt Kerr, one person, in Grand Rapids, Michigan; the publisher is his company, Kerr & Company LLC. There is no team. The macOS download is signed with an Apple Developer ID and notarised, so the legal name on the certificate can be checked with codesign before you install anything."}}, {"@type": "Question", "name": "Does Check Engine send my site data anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "The audit and its results stay on your computer, in ~/.docket/ as plain JSON. Five optional checks, on by default, do reach out: Check Engine asks your own server what it tells AI crawlers, refreshes its crawler knowledge file from docketseo.app/data/knowledge.json (which learns nothing about what you audit), checks whether the email addresses your site publishes can receive mail, sends Google PageSpeed Insights the address you are measuring (no API key needed), and asks Google's public autocomplete for topic suggestions. --offline, or &quot;Keep it private&quot; in the app, turns all of them off and the audit still completes."}}, {"@type": "Question", "name": "What can Check Engine not do?", "acceptedAnswer": {"@type": "Answer", "text": "It runs on Macs (Apple silicon or Intel) and 64-bit Windows, with no web version; it does not track keyword rankings or backlinks, and it is not built for crawling hundreds of thousands of URLs. The application source is not public, though the website's datasets are."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -955,7 +954,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
-<a class="nav-brand" href="/" aria-label="Docket SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Docket<i>SEO</i></span></a>
+<a class="nav-brand" href="/" aria-label="Check Engine SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Check Engine<i>SEO</i></span></a>
 <div class="nav-links">
 <a href="/tools/" data-ev="Free check" data-ev-button="nav">Free tools</a>
 <a href="/index/">The Index</a>
@@ -977,14 +976,14 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Check Engine</a>
 </div></nav>
 <main id="main">
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / About</div><h1>About Docket</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-07">7 August 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-05">5 November 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / About</div><h1>About Check Engine</h1><p class="hero-note">formerly Docket SEO</p><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-07">7 August 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-05">5 November 2026</time></p>
 
-<p class="lede">Docket is built by Matt Kerr, one person, in Grand Rapids, Michigan, and sold by his
+<p class="lede">Check Engine is built by Matt Kerr, one person, in Grand Rapids, Michigan, and published by his
 company, Kerr & Company LLC. It is an app for Mac and 64-bit Windows that
-audits a site's SEO, copy and branding against 99 checks across 13 lanes,
+audits a site's SEO, copy and branding against 99 checks across 13 areas,
 runs the crawl on your own machine, and costs $59 once, and activation is a licence key you paste in once.</p>
 
 <p>There is no team page because there is no team, and no support desk because there is
@@ -998,7 +997,7 @@ domain, a queue somewhere fetches it, and you pay monthly for the privilege of b
 what your own HTML says. The crawl is the cheap part. The recurring bill is for the servers,
 and the servers exist because the tool was built as a service rather than as software.</p>
 
-<p>Docket is the other shape. The audit engine is Python, frozen into the app, and it runs on
+<p>Check Engine is the other shape. The audit engine is Python, frozen into the app, and it runs on
 your own computer. The crawler and the checks are written on Python's own standard library, with one outside
 package for the list of trusted certificates; the app's window talks to the engine through a small
 web server on your computer, which brings its own few packages. There is no account, no crawl credit, no
@@ -1009,11 +1008,11 @@ counting, because there is nobody to count.</p>
 
 <p>Running locally is not only a pricing decision. A crawler farm sees your site as an
 anonymous datacentre IP; your computer sees it the way a person does. It also asks your homepage
-once as each of the crawlers that matter, with Docket's name added to every request
-(<a href="/bot/">the list</a>). That is how Docket can tell you what your CDN returns to
+once as each of the crawlers that matter, with Check Engine's name added to every request
+(<a href="https://docketseo.app/bot/">the list</a>). That is how Check Engine can tell you what your CDN returns to
 <code>GPTBot</code> specifically, rather than what your robots.txt claims it should.</p>
 
-<p>It is also why the awkward findings are possible. Docket will tell you your AI opt-out is
+<p>It is also why the awkward findings are possible. Check Engine will tell you your AI opt-out is
 unenforceable, that your directive names a crawler that has been retired, or that the
 markup Google needs sits past the 2MB it will actually read. We publish those measurements
 as datasets rather than as marketing: 6236 sites' robots.txt files in
@@ -1023,7 +1022,7 @@ as datasets rather than as marketing: 6236 sites' robots.txt files in
 in <a href="https://github.com/mattkerr09/docket-site">the site's repository</a>, next to the scripts that check every figure
 on this site is derived from it rather than typed into a sentence.</p>
 
-<h2>What Docket is not good at</h2>
+<h2>What Check Engine is not good at</h2>
 
 <p>The honest list, because you will find it out in the first hour anyway:</p>
 
@@ -1032,16 +1031,16 @@ on this site is derived from it rather than typed into a sentence.</p>
 macOS 12 or later, or a 64-bit Windows PC, with an installer signed by Kerr & Company LLC. There is no
 web version. The same engine ships as a <a href="/download/">Linux x86_64 command line build</a>,
 without the desktop app and without <code>--render</code>. This page said there was no Windows
-build, and that none was planned while it is one person, until Docket v1.3.159; it denied the
+build, and that none was planned while it is one person, until Check Engine v1.3.159; it denied the
 Linux build entirely until 2026-08-10, when the download page had been describing it for weeks.</li>
 <li><strong>It is not a rank tracker.</strong> No keyword positions, no search volume, no
 backlink index. <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs</a> and Semrush have
-spent years and a great deal of money building those, and Docket has no answer to them.</li>
+spent years and a great deal of money building those, and Check Engine has no answer to them.</li>
 <li><strong>It is not built for enormous sites.</strong>
 <a href="/vs/screaming-frog-alternative/">Screaming Frog</a> will crawl 400,000 URLs and let
-you sort them; Docket is built to read a site closely, not to survey one at that scale.</li>
+you sort them; Check Engine is built to read a site closely, not to survey one at that scale.</li>
 <li><strong>The app's source is not public.</strong> The website and its datasets are; the
-application is not. If your policy requires reading the code, Docket will not pass it.</li>
+application is not. If your policy requires reading the code, Check Engine will not pass it.</li>
 <li><strong>It is version v1.3.159.</strong> There are things it should connect to and does not yet: Search Console for your own impressions is the biggest.</li>
 </ul>
 
@@ -1061,7 +1060,7 @@ installing will survive both; a surprising number will not.</p>
 
 <h2>What to do if a finding is wrong</h2>
 
-<p>Tell us, with the URL. Docket has shipped false positives. The byte-cap check once
+<p>Tell us, with the URL. Check Engine has shipped false positives. The byte-cap check once
 reported a major news site's title tag as past Googlebot's cutoff, when what it had found
 was an inline SVG icon label reading "Close icon" and the real title was fine. That is
 written up in full on <a href="/learn/googlebot-2mb-limit/">the page about the check</a>,
@@ -1072,25 +1071,25 @@ authors do. The fixes that have shipped, with the release and the day, are on
 <h2>Who else is behind it</h2>
 
 <p>Kerr &amp; Company also makes Outlier, Crisp Video, AdPlaybook and Bookbreaker. They are
-separate products with their own sites, and none of them shares code or data with Docket.</p>
+separate products with their own sites, and none of them shares code or data with Check Engine.</p>
 
-<h2>Writing or making videos about Docket?</h2>
-<p>Kerr &amp; Company, the company that sells Docket, runs an affiliate programme that pays a
+<h2>Writing or making videos about Check Engine?</h2>
+<p>Kerr &amp; Company, the company that sells Check Engine, runs an affiliate programme that pays a
 commission on each sale, using a personal code the buyer enters at checkout instead of a tracking
 link. The rates, the payout terms and the disclosure you owe your readers are on
 <a href="https://kerrandcompanyholdings.com/affiliates/">the affiliates page</a>.</p>
 
-<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=about-page-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="about-page-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=about-page-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x86_64.dmg" data-ev="Download" data-ev-button="about-page-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=about-page" data-ev="Buy" data-ev-price="59" data-ev-button="about-page">Buy once, $59</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="about-page">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Launch price: $29.50 once, through 30 November. From 1 December: $59. Use code <code>FOUNDINGDOCKET</code>.</span></p></aside>
+<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=about-page-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="about-page-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=about-page-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x86_64.dmg" data-ev="Download" data-ev-button="about-page-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=about-page" data-ev="Buy" data-ev-price="59" data-ev-button="about-page">Buy once, $59</a>, 30-day refund &middot; <a href="https://docketseo.app/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="about-page">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Launch price: $29.50 once, through 30 November. From 1 December: $59. Use code <code>FOUNDINGDOCKET</code>.</span></p></aside>
 
 <p><a class="btn" href="/contact/">How to get in touch</a></p>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Who makes Docket?</h3><p>Matt Kerr, one person, in Grand Rapids, Michigan; the seller is his company, Kerr & Company LLC. There is no team. The macOS download is signed with an Apple Developer ID and notarised, so the legal name on the certificate can be checked with codesign before you install anything.</p></div><div class="faq-item"><h3>Does Docket send my site data anywhere?</h3><p>The audit and its results stay on your computer, in ~/.docket/ as plain JSON. Five optional checks, on by default, do reach out: Docket asks your own server what it tells AI crawlers, refreshes its crawler knowledge file from docketseo.app (which learns nothing about what you audit), checks whether the email addresses your site publishes can receive mail, sends Google PageSpeed Insights the address you are measuring (no API key needed), and asks Google's public autocomplete for topic suggestions. --offline, or "Keep it private" in the app, turns all of them off and the audit still completes.</p></div><div class="faq-item"><h3>What can Docket not do?</h3><p>It runs on Macs (Apple silicon or Intel) and 64-bit Windows, with no web version; it does not track keyword rankings or backlinks, and it is not built for crawling hundreds of thousands of URLs. The application source is not public, though the website's datasets are.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Who makes Check Engine?</h3><p>Matt Kerr, one person, in Grand Rapids, Michigan; the publisher is his company, Kerr & Company LLC. There is no team. The macOS download is signed with an Apple Developer ID and notarised, so the legal name on the certificate can be checked with codesign before you install anything.</p></div><div class="faq-item"><h3>Does Check Engine send my site data anywhere?</h3><p>The audit and its results stay on your computer, in ~/.docket/ as plain JSON. Five optional checks, on by default, do reach out: Check Engine asks your own server what it tells AI crawlers, refreshes its crawler knowledge file from docketseo.app/data/knowledge.json (which learns nothing about what you audit), checks whether the email addresses your site publishes can receive mail, sends Google PageSpeed Insights the address you are measuring (no API key needed), and asks Google's public autocomplete for topic suggestions. --offline, or "Keep it private" in the app, turns all of them off and the audit still completes.</p></div><div class="faq-item"><h3>What can Check Engine not do?</h3><p>It runs on Macs (Apple silicon or Intel) and 64-bit Windows, with no web version; it does not track keyword rankings or backlinks, and it is not built for crawling hundreds of thousands of URLs. The application source is not public, though the website's datasets are.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
-<div><h2 class="foot-h">Docket SEO</h2>
-<a href="/">Overview</a><a href="/download/">Download Docket SEO</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
+<div><h2 class="foot-h">Check Engine SEO</h2>
+<a href="/">Overview</a><a href="/download/">Download Check Engine SEO</a>
+<a href="/index/">The Check Engine Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking vs Screaming Frog</a>
@@ -1104,9 +1103,10 @@ link. The rates, the payout terms and the disclosure you owe your readers are on
 <a href="/learn/seo-audit/">What an SEO audit is</a>
 <a href="/learn/">All guides</a></div>
 <div><h2 class="foot-h">Contact</h2>
-<a href="/about/">About Docket</a>
+<a href="/about/">About Check Engine</a>
 <a href="/contact/">Get in touch</a>
-<a href="/bot/">Our crawler</a>
+<a href="/help/">Help</a><a href="/support/">Support</a><a href="/faq/">FAQ</a>
+<a href="https://docketseo.app/bot/">Our crawler</a>
 <a href="https://github.com/mattkerr09/docket-site/issues">Issue tracker</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a>
 <a href="/legal/refunds/">Refunds</a></div>
@@ -1114,8 +1114,8 @@ link. The rates, the payout terms and the disclosure you owe your readers are on
 <div class="foot-more">
 <p>Made by <a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company</a></p>
 </div>
-<div class="foot-bottom">
-<span>© 2026 Docket SEO · Audits run on your computer, and the reports stay there.</span>
+<p>formerly Docket SEO</p><div class="foot-bottom">
+<span>© 2026 Check Engine SEO · Audits run on your computer, and the reports stay there.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
 <div data-founding data-was="$59" data-now="$29.50" hidden></div>
@@ -1141,7 +1141,7 @@ link. The rates, the payout terms and the disclosure you owe your readers are on
      it. `prefers-reduced-motion` can hide or freeze almost anything except a
      playing <video>. So the script pauses it and rewinds to the poster frame,
      which is a real frame of the same run, so nothing is lost.
-     builtbykerr.com carries ten prefers-reduced-motion blocks to this file's
+     A sister site carries ten prefers-reduced-motion blocks to this file's
      two; this is the one that was actually missing something. */
   try {
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1150,7 +1150,7 @@ link. The rates, the payout terms and the disclosure you owe your readers are on
       });
     }
   } catch (e) { /* a video that keeps playing is not worth throwing over */ }
-  /* GRANULARITY IS THE EFFECT. Measured on outlier.host: 51 revealed units,
+  /* GRANULARITY IS THE EFFECT. Measured on a sister site: 51 revealed units,
      median height 171px, SIX in view at once. This page had 31 large ones and
      only TWO in flight at any scroll position, which is why it read as sections
      popping rather than a page assembling itself. Adding the smaller units (

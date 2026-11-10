@@ -1,6 +1,6 @@
-# Docket SEO
+# Check Engine SEO
 
-> Docket SEO is a Mac and Windows app that audits any website on your own computer: 99
+> Check Engine SEO is a Mac and Windows app that audits any website on your own computer: 99
 > checks across 13 areas, then one ranked plan of what to fix, in order, with the
 > markup to paste and a client-ready PDF report. It costs $59, paid once; there is no
 > subscription.
@@ -10,15 +10,17 @@ telemetry. Five optional checks are on by default and reach outside it: Google
 PageSpeed Insights is sent the addresses of the homepage and top pages; Google's
 public autocomplete is sent the site's topic words, typed by the user or read off its
 titles, headings and descriptions; DNS is asked about the mail domains the site
-publishes; the audited server is asked what it tells AI crawlers; and docketseo.app
-serves a knowledge file. Offline mode turns all five off. Checking links to other
-sites, and rendering a few pages as a browser would, also reach the sites and services
-those pages link to or load. The licence key is checked with the payment provider when
-it is activated and about once a day after that. The app asks docketseo.app whether an
-update exists, and, while its activation screen is showing on a copy with no key, what
-the current price and offer are and whether the founding offer is still open.
+publishes; the audited server is asked what it tells AI crawlers; and
+https://docketseo.app/data/knowledge.json serves a knowledge file. Offline mode turns
+all five off. Checking links to other sites, and rendering a few pages as a browser
+would, also reach the sites and services those pages link to or load. The licence key
+is checked with the payment provider when it is activated and about once a day after
+that. The app asks https://docketseo.app/updater.json whether an update exists. While
+its activation screen is showing on a copy with no key, it asks
+https://docketseo.app/offer.json for the current price and offer and whether the
+founding offer is still open.
 
-Docket is written by Matt Kerr and sold by Kerr & Company LLC, of Grand Rapids,
+Check Engine is written by Matt Kerr and sold by Kerr & Company LLC, of Grand Rapids,
 Michigan, United States.
 
 ## What it checks
@@ -32,17 +34,17 @@ Michigan, United States.
 - AI search visibility: each AI crawler is checked separately (OAI-SearchBot for
   ChatGPT Search, PerplexityBot, Claude-SearchBot) and kept apart from training
   crawlers such as GPTBot. Google-Extended is reported as what it is: Gemini training
-  and Gemini Apps grounding, with no effect on AI Overviews. Docket checks robots.txt
+  and Gemini Apps grounding, with no effect on AI Overviews. Check Engine checks robots.txt
   rules for 22 AI crawlers. A separate check requests your homepage as 9 AI crawlers
   plus Googlebot to find server refusals the file cannot show.
-- A command-line interface ships inside the app. `docket audit` exits non-zero on a
+- A command-line interface ships inside the app. `checkengine audit` exits non-zero on a
   critical issue, so CI can fail a build before it ships.
-- [All 99 checks, by area](https://docketseo.app/learn/what-docket-checks/): the complete list, generated from the shipped build so it cannot drift from the product
-- [How Docket decides what to fix first](https://docketseo.app/learn/priority-model/): severity, impact, reach and effort, and the formula that combines them
+- [All 99 checks, by area](https://checkengineseo.com/learn/what-docket-checks/): the complete list, generated from the shipped build so it cannot drift from the product
+- [How Check Engine decides what to fix first](https://checkengineseo.com/learn/priority-model/): severity, impact, reach and effort, and the formula that combines them
 
 ## Sample report
 
-- [Sample report (PDF)](https://docketseo.app/assets/docket-sample-report.pdf): a full sample of the client-ready PDF Docket writes: score, scorecard, ranked plan, paste-ready markup, and a page on what was and was not measured
+- [Sample report (PDF)](https://docketseo.app/assets/docket-sample-report.pdf): a full sample of the client-ready PDF Check Engine writes: score, scorecard, ranked plan, paste-ready markup, and a page on what was and was not measured
 
 ## Requirements
 
@@ -52,10 +54,10 @@ Michigan, United States.
 - Or a PC with 64-bit Windows: the installer is an 18.1 MB download, signed by Kerr &
   Company LLC.
 - A command-line build for Linux x86_64 is on the download page.
-- AI assistants can run it: Docket speaks MCP over stdio, so Claude Code (claude mcp
+- AI assistants can run it: Check Engine speaks MCP over stdio, so Claude Code (claude mcp
   add docket -- /Applications/Docket.app/Contents/Resources/docket/docket mcp), Claude
   Desktop and the ChatGPT desktop app can audit a site with it. Setup:
-  https://docketseo.app/how-to/audit-your-site-from-an-ai-assistant/
+  https://checkengineseo.com/how-to/audit-your-site-from-an-ai-assistant/
 
 ## Price and licence
 
@@ -72,7 +74,7 @@ Michigan, United States.
   paste. The free version needs no key and no account, and runs the same full audit;
   buying unlocks the audit already run, with no second crawl.
 - The licence key arrives by email with the receipt and is pasted into the app once.
-  One licence covers up to 3 computers at a time, Mac or Windows: activating Docket on
+  One licence covers up to 3 computers at a time, Mac or Windows: activating Check Engine on
   a computer uses one, and deactivating one moves the licence to another.
 - The licence belongs to the person or company that paid. It covers any number of
   websites, including clients' sites, and the work can be billed to those clients. The
@@ -82,8 +84,7 @@ Michigan, United States.
 
 - Thirty days from the date of purchase, no conditions and no questions asked. The
   full purchase price goes back to the payment method it came from.
-- To ask, write to support@docketseo.app or reply to the receipt the payment processor
-  sends.
+- To ask, write to support@docketseo.app or reply to the receipt Dodo Payments sends.
 - A refund revokes the licence key, and within about a day the copy goes back to the
   free version.
 
@@ -93,14 +94,14 @@ Michigan, United States.
 - Copy-quality checks are English-only; the technical checks work in any language.
 - Not built, on purpose: rank tracking, a cloud version, team accounts, server-side
   scheduling and uptime monitoring.
-- Reports can carry your own name and logo in place of Docket's (paid version:
-  Reports, then Report branding; or docket audit --brand-name and --brand-logo).
-- Scheduled re-audits run only while Docket is open: the schedule is a thread inside
+- Reports can carry your own name and logo in place of Check Engine's (paid version:
+  Reports, then Report branding; or checkengine audit --brand-name and --brand-logo).
+- Scheduled re-audits run only while Check Engine is open: the schedule is a thread inside
   the app, so quitting it stops the clock.
 
 ## Frequently asked questions
 
-- Is Docket free? Free: your score, how many problems in each category, and the top
+- Is Check Engine free? Free: your score, how many problems in each category, and the top
   problem in full with its fix. Pro: the rest of the problems, the ranked fix plan and
   the markup to paste. Launch price: $29.50 once, through 30 November. From 1
   December: $59. There is a 30-day refund. There is no subscription and nothing to
@@ -110,37 +111,38 @@ Michigan, United States.
   to the receipt the payment processor emails you. The licence key is revoked, so the
   copy goes back to the free version.
 - How many computers does one licence cover? Up to 3 computers at a time, Mac or
-  Windows. Activating Docket on a computer uses one; deactivate it to move the licence
+  Windows. Activating Check Engine on a computer uses one; deactivate it to move the licence
   to another. On a Mac: Apple silicon or Intel, macOS 12 or later.
-- Are updates included? Yes. While Docket is on version 1.x, every update is free and
+- Are updates included? Yes. While Check Engine is on version 1.x, every update is free and
   installs through the app's own updater. Whether a future 2.0 is a paid upgrade has
   not been decided; if it ever is, the copy you paid for keeps working.
 - Can I use it for client work? Yes. Audit any number of sites (yours, a client's, a
   prospect's or a competitor's) and charge clients for the work. The licence belongs
   to the person or company that paid; it may not be resold or sublicensed.
-- Does it run on Windows? Yes. Docket v1.3.159 has an installer for 64-bit Windows,
+- Does it run on Windows? Yes. Check Engine v1.3.159 has an installer for 64-bit Windows,
   18.1 MB, signed by Kerr & Company LLC. It is on the download page beside the Mac app
   and a command-line build for Linux x86_64.
 - How do I get help? Email support@docketseo.app. Questions whose answers would help
   the next person can go on the public issue tracker instead.
-- Does Docket send my site data anywhere? The crawl and the report stay on your
+- Does Check Engine send my site data anywhere? The crawl and the report stay on your
   computer, and there is no account and no telemetry. Five optional checks, on by
   default, reach outside it: Core Web Vitals from Google PageSpeed, which is sent the
   addresses of your homepage and top pages; a deliverability test on the addresses
   your site publishes, which looks up their mail domains in DNS; what your server
-  tells AI crawlers; a knowledge refresh from this site; and Google's public
-  autocomplete for topic suggestions, which is sent your site's topic words. Offline
-  mode turns all five off, and every report names the ones that ran. Checking your
-  links to other sites, and rendering a few pages as a browser would, also reach the
-  sites and services those pages link to or load. The licence key is checked with our
-  payment provider when you activate it and about once a day after that.
-- How is Docket different from Screaming Frog? Screaming Frog gives you raw crawl data
-  and leaves the interpretation to you. Docket ranks every finding by impact against
+  tells AI crawlers; a knowledge refresh; and Google's public autocomplete for topic
+  suggestions, which is sent your site's topic words. The knowledge refresh fetches
+  docketseo.app/data/knowledge.json. Offline mode turns all five off, and every report
+  names the ones that ran. Checking your links to other sites, and rendering a few
+  pages as a browser would, also reach the sites and services those pages link to or
+  load. The licence key is checked with our payment provider when you activate it and
+  about once a day after that.
+- How is Check Engine different from Screaming Frog? Screaming Frog gives you raw crawl data
+  and leaves the interpretation to you. Check Engine ranks every finding by impact against
   effort and gives you an ordered plan with the exact markup to paste. Screaming Frog
-  supports custom XPath extraction, which Docket does not. Both run JavaScript: Docket
+  supports custom XPath extraction, which Check Engine does not. Both run JavaScript: Check Engine
   renders a sample of every audit automatically, in the WebKit engine macOS already
   ships.
-- Can Docket tell me if ChatGPT can see my website? Yes. Docket checks each AI crawler
+- Can Check Engine tell me if ChatGPT can see my website? Yes. Check Engine checks each AI crawler
   separately (OAI-SearchBot for ChatGPT Search, PerplexityBot and Claude-SearchBot)
   and distinguishes them from training crawlers like GPTBot, which many sites block
   deliberately. It also says what Google-Extended does: it governs Gemini training and
@@ -148,51 +150,51 @@ Michigan, United States.
 
 ## Key pages
 
-- [Homepage](https://docketseo.app/): what Docket checks, how it ranks what it finds, and the price
-- [Download Docket SEO for Mac and Windows](https://docketseo.app/download/): the current release, the requirements, the price, and the command line
-- [The Docket Index](https://docketseo.app/index/): who is blocking AI search crawlers, measured with Docket's own parser; method and dataset included
-- [The AI rules in robots.txt that do nothing](https://docketseo.app/index/ai-directives/): which AI crawler rules in robots.txt name a token no crawler uses
-- [AI crawler blocking, August to October 2026](https://docketseo.app/index/ai-crawler-blocking-2026-10/): the same 10,000 sites read again two months later: who blocks which AI crawler, what changed, and how much of it is Cloudflare's managed robots.txt
-- [llms.txt in the top 10,000 sites, August to October 2026](https://docketseo.app/index/llms-txt-adoption-2026-10/): how many of the same 10,000 sites have a real llms.txt, how that moved in two months, and why a 200 answer is not proof of a file
-- [Learn](https://docketseo.app/learn/): plain explanations of what an SEO audit covers, how AI search visibility works, and what Docket checks
-- [Fix guides](https://docketseo.app/how-to/): the specific problems Docket reports, what each one costs you, and the change to make
-- [How Docket compares](https://docketseo.app/vs/): comparisons with Screaming Frog, Sitebulb, Ahrefs, Semrush and others, each naming at least one thing the other tool does better
-- [Docket for your situation](https://docketseo.app/for/): SEO agencies, developers, online shops, local businesses and SaaS companies
-- [Best tools, by job](https://docketseo.app/best/): which SEO tool fits which job, with every claim read from the product's own documentation
-- [Free AI crawler checker](https://docketseo.app/tools/ai-crawler-checker/): type an address and see which AI crawlers its robots.txt lets in, and what each block costs
-- [Free robots.txt tester](https://docketseo.app/tools/robots-txt-tester/): paste a page address and see whether Googlebot, Bingbot and the AI crawlers may crawl it, and which line decides
-- [Free title and meta tag checker](https://docketseo.app/tools/meta-tag-checker/): title and description width, noindex, canonical, H1 and Open Graph tags for one page
-- [Free JSON-LD checker](https://docketseo.app/tools/json-ld-checker/): invalid JSON by line and column, and the properties each structured data item needs for a rich result
-- [Free SEO checkers](https://docketseo.app/tools/): every free checker, each answering one question about one page
-- [AI search visibility](https://docketseo.app/learn/ai-search-visibility/): whether a model can reach, read and quote a site: crawler access, server-side rendering and entity clarity
-- [About Docket](https://docketseo.app/about/): who builds it and what it cannot do
-- [Contact](https://docketseo.app/contact/): support@docketseo.app for a licence or a refund; the GitHub issue tracker for bugs and wrong findings
-- [The Docket crawler](https://docketseo.app/bot/): what Docket's audit crawler requests and the robots.txt rule that asks it to stay out
+- [Homepage](https://checkengineseo.com/): what Check Engine checks, how it ranks what it finds, and the price
+- [Download Check Engine SEO for Mac and Windows](https://checkengineseo.com/download/): the current release, the requirements, the price, and the command line
+- [The Check Engine Index](https://checkengineseo.com/index/): who is blocking AI search crawlers, measured with Check Engine's own parser; method and dataset included
+- [The AI rules in robots.txt that do nothing](https://checkengineseo.com/index/ai-directives/): which AI crawler rules in robots.txt name a token no crawler uses
+- [AI crawler blocking, August to October 2026](https://checkengineseo.com/index/ai-crawler-blocking-2026-10/): the same 10,000 sites read again two months later: who blocks which AI crawler, what changed, and how much of it is Cloudflare's managed robots.txt
+- [llms.txt in the top 10,000 sites, August to October 2026](https://checkengineseo.com/index/llms-txt-adoption-2026-10/): how many of the same 10,000 sites have a real llms.txt, how that moved in two months, and why a 200 answer is not proof of a file
+- [Learn](https://checkengineseo.com/learn/): plain explanations of what an SEO audit covers, how AI search visibility works, and what Check Engine checks
+- [Fix guides](https://checkengineseo.com/how-to/): the specific problems Check Engine reports, what each one costs you, and the change to make
+- [How Check Engine compares](https://checkengineseo.com/vs/): comparisons with Screaming Frog, Sitebulb, Ahrefs, Semrush and others, each naming at least one thing the other tool does better
+- [Check Engine for your situation](https://checkengineseo.com/for/): SEO agencies, developers, online shops, local businesses and SaaS companies
+- [Best tools, by job](https://checkengineseo.com/best/): which SEO tool fits which job, with every claim read from the product's own documentation
+- [Free AI crawler checker](https://checkengineseo.com/tools/ai-crawler-checker/): type an address and see which AI crawlers its robots.txt lets in, and what each block costs
+- [Free robots.txt tester](https://checkengineseo.com/tools/robots-txt-tester/): paste a page address and see whether Googlebot, Bingbot and the AI crawlers may crawl it, and which line decides
+- [Free title and meta tag checker](https://checkengineseo.com/tools/meta-tag-checker/): title and description width, noindex, canonical, H1 and Open Graph tags for one page
+- [Free JSON-LD checker](https://checkengineseo.com/tools/json-ld-checker/): invalid JSON by line and column, and the properties each structured data item needs for a rich result
+- [Free SEO checkers](https://checkengineseo.com/tools/): every free checker, each answering one question about one page
+- [AI search visibility](https://checkengineseo.com/learn/ai-search-visibility/): whether a model can reach, read and quote a site: crawler access, server-side rendering and entity clarity
+- [About Check Engine](https://checkengineseo.com/about/): who builds it and what it cannot do
+- [Contact](https://checkengineseo.com/contact/): support@docketseo.app for a licence or a refund; the GitHub issue tracker for bugs and wrong findings
+- [The Check Engine crawler](https://docketseo.app/bot/): what Check Engine's audit crawler requests and the robots.txt rule that asks it to stay out
 
 ## Made by
 
-- [Kerr & Company](https://kerrandcompanyholdings.com/): the company behind Docket
+- [Kerr & Company](https://kerrandcompanyholdings.com/): the company behind Check Engine
 
 ## Fix guides people search for most
 
-- [How to fix CLS issues (cumulative layout shift)](https://docketseo.app/how-to/fix-layout-shift/): Layout shift is almost always images with no width and height. The fix, the four other causes, and why a crawler can report the risk but not the score.
-- [How to fix hreflang tags with errors (return tags)](https://docketseo.app/how-to/fix-hreflang-return-tags/): hreflang only works when the link goes both ways. Why one-way declarations are ignored, the four ways a set breaks, and why canonical must agree.
-- [How to fix duplicate title tags, and what it won't fix](https://docketseo.app/how-to/fix-duplicate-title-tags/): Duplicate titles are not a penalty. They let the wrong page on your site win the query and waste the one line of the result you get to write.
-- [How to write title tags that fit (width, not characters)](https://docketseo.app/how-to/write-title-tags-that-fit/): Search engines truncate by pixel width, not character count, which makes the usual advice wrong on any site that is not entirely English.
-- [How to run a JavaScript SEO audit (step by step)](https://docketseo.app/how-to/javascript-seo-audit/): A JavaScript SEO audit compares the HTML your server sends against the rendered page, in five steps. Which of the three gaps you have decides the fix.
-- [How to fix conflicting canonical tags](https://docketseo.app/how-to/fix-conflicting-canonicals/): Two canonicals on one page, canonicals pointing at noindex pages or another domain, and the section-wide mistake that can cost a site its long tail.
-- [Content audit with Ahrefs: which tool does what](https://docketseo.app/how-to/content-audit/): Ahrefs sells no product called Content Audit. What the job is, which of their tools covers which part, and the order that wastes least time.
-- [hreflang and html lang mismatch: which one you have](https://docketseo.app/how-to/fix-lang-attribute-mismatch/): Three different faults share that description and have three different fixes. How to tell them apart in a minute, and which one to fix first.
-- [Backlink audit: which questions are worth paying for](https://docketseo.app/how-to/backlink-audit/): Ahrefs sells no product called Backlink Audit. The three questions an audit asks, which tool answers each, and what an open link graph cannot.
-- [How to redirect http:// to https://, and when it won't](https://docketseo.app/how-to/redirect-http-to-https/): A 301 from http:// to https://, host by host. Plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.
+- [How to fix CLS issues (cumulative layout shift)](https://checkengineseo.com/how-to/fix-layout-shift/): Layout shift is almost always images with no width and height. The fix, the four other causes, and why a crawler can report the risk but not the score.
+- [How to fix hreflang tags with errors (return tags)](https://checkengineseo.com/how-to/fix-hreflang-return-tags/): hreflang only works when the link goes both ways. Why one-way declarations are ignored, the four ways a set breaks, and why canonical must agree.
+- [How to fix duplicate title tags, and what it won't fix](https://checkengineseo.com/how-to/fix-duplicate-title-tags/): Duplicate titles are not a penalty. They let the wrong page on your site win the query and waste the one line of the result you get to write.
+- [How to write title tags that fit (width, not characters)](https://checkengineseo.com/how-to/write-title-tags-that-fit/): Search engines truncate by pixel width, not character count, which makes the usual advice wrong on any site that is not entirely English.
+- [How to run a JavaScript SEO audit (step by step)](https://checkengineseo.com/how-to/javascript-seo-audit/): A JavaScript SEO audit compares the HTML your server sends against the rendered page, in five steps. Which of the three gaps you have decides the fix.
+- [How to fix conflicting canonical tags](https://checkengineseo.com/how-to/fix-conflicting-canonicals/): Two canonicals on one page, canonicals pointing at noindex pages or another domain, and the section-wide mistake that can cost a site its long tail.
+- [Content audit with Ahrefs: which tool does what](https://checkengineseo.com/how-to/content-audit/): Ahrefs sells no product called Content Audit. What the job is, which of their tools covers which part, and the order that wastes least time.
+- [hreflang and html lang mismatch: which one you have](https://checkengineseo.com/how-to/fix-lang-attribute-mismatch/): Three different faults share that description and have three different fixes. How to tell them apart in a minute, and which one to fix first.
+- [Backlink audit: which questions are worth paying for](https://checkengineseo.com/how-to/backlink-audit/): Ahrefs sells no product called Backlink Audit. The three questions an audit asks, which tool answers each, and what an open link graph cannot.
+- [How to redirect http:// to https://, and when it won't](https://checkengineseo.com/how-to/redirect-http-to-https/): A 301 from http:// to https://, host by host. Plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.
 
 ## Policies
 
-- [Privacy policy](https://docketseo.app/legal/privacy/): every request the app makes and who receives it, and the third-party scripts this website loads
-- [Terms of use](https://docketseo.app/legal/terms/): licence, price, delivery, refunds, liability and governing law
-- [Refund policy](https://docketseo.app/legal/refunds/): thirty days, no conditions; how to ask, and what happens to the copy afterwards
+- [Privacy policy](https://checkengineseo.com/legal/privacy/): every request the app makes and who receives it, and the third-party scripts this website loads
+- [Terms of use](https://checkengineseo.com/legal/terms/): licence, price, delivery, refunds, liability and governing law
+- [Refund policy](https://checkengineseo.com/legal/refunds/): thirty days, no conditions; how to ask, and what happens to the copy afterwards
 
 ## Optional
 
-- [All releases](https://github.com/mattkerr09/docket-site/releases): every Docket release, on GitHub
-- [Sitemap](https://docketseo.app/sitemap.xml): every indexable page on this site
+- [All releases](https://github.com/mattkerr09/docket-site/releases): every Check Engine release, on GitHub
+- [Sitemap](https://checkengineseo.com/sitemap.xml): every indexable page on this site

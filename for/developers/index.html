@@ -13,26 +13,27 @@
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>SEO checks in your pipeline: a CLI gate and an MCP server</title>
-<meta name="description" content="Docket's CLI exits 2 on a critical finding, so it gates a deploy. 25 pages in a median 24.9s across 6 sites. It also serves MCP to AI assistants.">
+<meta name="description" content="Check Engine's CLI exits 2 on a critical finding, so it gates a deploy. 25 pages in a median 24.9s across 6 sites. It also serves MCP to AI assistants.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="c9e52275c331">
-<link rel="canonical" href="https://docketseo.app/for/developers/">
+<meta name="build-id" content="0d6e8542999d">
+<link rel="canonical" href="https://checkengineseo.com/for/developers/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SEO checks in your deploy pipeline">
-<meta property="og:description" content="Docket's CLI exits 2 on a critical finding, so it gates a deploy. 25 pages in a median 24.9s across 6 sites. It also serves MCP to AI assistants.">
-<meta property="og:url" content="https://docketseo.app/for/developers/">
-<meta property="og:site_name" content="Docket SEO">
-<meta property="og:image" content="https://docketseo.app/og.png?v=20261108-win">
+<meta property="og:description" content="Check Engine's CLI exits 2 on a critical finding, so it gates a deploy. 25 pages in a median 24.9s across 6 sites. It also serves MCP to AI assistants.">
+<meta property="og:url" content="https://checkengineseo.com/for/developers/">
+<meta property="og:site_name" content="Check Engine SEO">
+<meta property="og:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="SEO checks in your deploy pipeline">
-<meta name="twitter:description" content="Docket's CLI exits 2 on a critical finding, so it gates a deploy. 25 pages in a median 24.9s across 6 sites. It also serves MCP to AI assistants.">
-<meta name="twitter:image" content="https://docketseo.app/og.png?v=20261108-win">
+<meta name="twitter:description" content="Check Engine's CLI exits 2 on a critical finding, so it gates a deploy. 25 pages in a median 24.9s across 6 sites. It also serves MCP to AI assistants.">
+<meta name="twitter:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
    display faces this category defaults to: Docket is a measuring instrument that
@@ -128,7 +129,7 @@
           keeps it from reading as a 2010 drop shadow: the shadow is much
           smaller than the blur, so it is a pool of darkness under the card
           rather than an outline around it.
-     Measured off outlier.host at 1440x900, which does the same three things:
+     Measured off a sister site's stylesheet at 1440x900, which does the same three things:
      rgba(255,255,255,.06) 0 2px 0 inset, rgba(255,255,255,.04) 0 0 0 1px inset,
      rgba(0,0,0,.95) 0 60px 130px -40px. */
   /* Ported from outlier-site: one gradient for text, one for a filled control,
@@ -291,10 +292,8 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
-/* The nav button carries the price only where the header has room for the
-   price AND its pay-in-four beside it (Matthew, 2026-09-28: never one without
-   the other). Narrower, it says "Get Docket" and the hero carries both. */
-@media(max-width:1180px){.nav-price{display:none}}
+/* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
+   sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);
   color:var(--on-accent);font-weight:600;box-shadow:none;
   none;
@@ -876,8 +875,8 @@ nav{z-index:40}
 .faq-item p{font-size:var(--t-md);margin:0}
 
 /* ---- Futuristic touches (Matthew, 2026-10-09) -------------------------------
-   "honestly bookbreaker looks great, make every site just a little bit better":
-   the touches from bookbreaker.bet's stylesheet that this site lacked, in
+   "make every site just a little bit better": the touches from a sister
+   site's stylesheet that this site lacked, in
    Docket's own teal (~/ops/launch/FUTURISTIC-TOUCHES.md). It reverses the
    ":root" note above that "nothing glows" on his word. Colours, copy, prices
    and links are unchanged; all of it is CSS. */
@@ -933,10 +932,10 @@ nav{background:rgba(7,12,13,.72);
   .btn,.btn:hover,.btn-ghost:hover,.split-col:hover{transform:none}}
 </style>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://docketseo.app/#org","name":"Docket SEO","url":"https://docketseo.app/","logo":"https://docketseo.app/icon.png","description":"Docket makes local SEO and marketing audit software for Mac and Windows.","sameAs":["https://github.com/mattkerr09/docket-site","https://www.producthunt.com/products/docket-seo"]},{"@type":"WebSite","@id":"https://docketseo.app/#site","url":"https://docketseo.app/","name":"Docket SEO","publisher":{"@id":"https://docketseo.app/#org"}},{"@type":"SoftwareApplication","@id":"https://docketseo.app/#app","name":"Docket SEO","applicationCategory":"BusinessApplication","applicationSubCategory":"SEO audit software","operatingSystem":"macOS 12 or later, Apple silicon or Intel; Windows, 64-bit","description":"Docket crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.","downloadUrl":"https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg","offers":{"@type":"Offer","price":"59","priceCurrency":"USD","availability":"https://schema.org/InStock"},"featureList":"99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit","publisher":{"@id":"https://docketseo.app/#org"}}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Docket","item":"https://docketseo.app/"},{"@type":"ListItem","position":2,"name":"For you","item":"https://docketseo.app/for/"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"SEO checks in your deploy pipeline","description":"Docket's CLI exits 2 on a critical finding, so it gates a deploy. 25 pages in a median 24.9s across 6 sites. It also serves MCP to AI assistants.","datePublished":"2026-08-07","dateModified":"2026-11-05","author":{"@type":"Person","name":"Matt Kerr","description":"Builds Docket. Every number on this site comes from running it."},"publisher":{"@id":"https://docketseo.app/#org"},"mainEntityOfPage":"https://docketseo.app/for/developers/","inLanguage":"en"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I run an SEO audit in CI?","acceptedAnswer":{"@type":"Answer","text":"Yes, and it is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Docket's CLI exits 0 when clean, 2 when it finds something at or above your threshold, and 1 only when the tool itself could not run."}},{"@type":"Question","name":"Does Docket run on GitHub Actions?","acceptedAnswer":{"@type":"Answer","text":"Yes, on ubuntu-latest and macos-latest. mattkerr09/docket-audit-action installs the right build for the runner, runs the free version, which needs no key, and fails the job at the severity you set. There is no Linux ARM or Windows build of the command line yet."}},{"@type":"Question","name":"How long does a Docket audit take in a pipeline?","acceptedAnswer":{"@type":"Answer","text":"A median of 24.9 seconds for 25 pages across 6 real sites measured on 2026-08-07, or roughly 1.0 seconds per page. Process startup was 0.2s, so almost all of it is the crawl. Rendering with --render is considerably slower and was not included."}},{"@type":"Question","name":"Can Docket output SARIF for GitHub code scanning?","acceptedAnswer":{"@type":"Answer","text":"Yes. docket audit -f sarif writes SARIF 2.1.0, which you can hand to github/codeql-action/upload-sarif. The findings appear as alerts on the Security tab with their severity and fix. They do not annotate the pull request diff: SARIF locations are files and lines, and an SEO finding is about a URL, which cannot generally be mapped back to a source file."}},{"@type":"Question","name":"Does Docket have a GitHub Action?","acceptedAnswer":{"@type":"Answer","text":"Yes. Reference mattkerr09/docket-site in a `uses:` step. It installs Docket, runs the audit and exits with the same codes as the CLI, and it checks the runner first so a Linux job fails with a sentence you can act on rather than a confusing disk-image error. It is not on the GitHub Marketplace; reference it by repository."}},{"@type":"Question","name":"Can Docket write JUnit output for my CI test panel?","acceptedAnswer":{"@type":"Answer","text":"Yes, with -f junit. One testcase per check, so the panel reads as a test run. A check that ran and found nothing passes; one that could not run is skipped, never passed; and if the crawl reached no pages, every check is skipped and none is green. A passing test report is read as a guarantee."}},{"@type":"Question","name":"Should the build fail on the SEO score?","acceptedAnswer":{"@type":"Answer","text":"No. The score is a weighted composite and moves when the weighting changes. Gate on severities with --fail-on, or better, use docket diff to fail only on findings this deploy introduced or made worse. Every real site carries standing findings, so an absolute threshold either fails every build or none of them."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg", "offers": {"@type": "Offer", "price": "59", "priceCurrency": "USD", "availability": "https://schema.org/InStock"}, "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Check Engine", "item": "https://checkengineseo.com/"}, {"@type": "ListItem", "position": 2, "name": "For you", "item": "https://checkengineseo.com/for/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "SEO checks in your deploy pipeline", "description": "Check Engine's CLI exits 2 on a critical finding, so it gates a deploy. 25 pages in a median 24.9s across 6 sites. It also serves MCP to AI assistants.", "datePublished": "2026-08-07", "dateModified": "2026-11-05", "author": {"@type": "Person", "name": "Matt Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/for/developers/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I run an SEO audit in CI?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, and it is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Check Engine's CLI exits 0 when clean, 2 when it finds something at or above your threshold, and 1 only when the tool itself could not run."}}, {"@type": "Question", "name": "Does Check Engine run on GitHub Actions?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, on ubuntu-latest and macos-latest. mattkerr09/docket-audit-action installs the right build for the runner, runs the free version, which needs no key, and fails the job at the severity you set. There is no Linux ARM or Windows build of the command line yet."}}, {"@type": "Question", "name": "How long does a Check Engine audit take in a pipeline?", "acceptedAnswer": {"@type": "Answer", "text": "A median of 24.9 seconds for 25 pages across 6 real sites measured on 2026-08-07, or roughly 1.0 seconds per page. Process startup was 0.2s, so almost all of it is the crawl. Rendering with --render is considerably slower and was not included."}}, {"@type": "Question", "name": "Can Check Engine output SARIF for GitHub code scanning?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. checkengine audit -f sarif writes SARIF 2.1.0, which you can hand to github/codeql-action/upload-sarif. The findings appear as alerts on the Security tab with their severity and fix. They do not annotate the pull request diff: SARIF locations are files and lines, and an SEO finding is about a URL, which cannot generally be mapped back to a source file."}}, {"@type": "Question", "name": "Does Check Engine have a GitHub Action?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Reference mattkerr09/docket-site in a `uses:` step. It installs Check Engine, runs the audit and exits with the same codes as the CLI, and it checks the runner first so a Linux job fails with a sentence you can act on rather than a confusing disk-image error. It is not on the GitHub Marketplace; reference it by repository."}}, {"@type": "Question", "name": "Can Check Engine write JUnit output for my CI test panel?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with -f junit. One testcase per check, so the panel reads as a test run. A check that ran and found nothing passes; one that could not run is skipped, never passed; and if the crawl reached no pages, every check is skipped and none is green. A passing test report is read as a guarantee."}}, {"@type": "Question", "name": "Should the build fail on the SEO score?", "acceptedAnswer": {"@type": "Answer", "text": "No. The score is a weighted composite and moves when the weighting changes. Gate on severities with --fail-on, or better, use checkengine diff to fail only on findings this deploy introduced or made worse. Every real site carries standing findings, so an absolute threshold either fails every build or none of them."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -956,7 +955,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
 <div class="grid-ovl" aria-hidden="true"></div>
 <nav><div class="wrap-wide nav-inner">
-<a class="nav-brand" href="/" aria-label="Docket SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Docket<i>SEO</i></span></a>
+<a class="nav-brand" href="/" aria-label="Check Engine SEO"><svg viewBox="0 0 1024 1024" width="23" height="23" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--brand)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg><span>Check Engine<i>SEO</i></span></a>
 <div class="nav-links">
 <a href="/tools/" data-ev="Free check" data-ev-button="nav">Free tools</a>
 <a href="/index/">The Index</a>
@@ -978,13 +977,13 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <a href="/for/">For you</a>
 <a href="/about/">About</a>
 </div></details>
-<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Docket<span class="nav-price">, $59</span></a>
+<a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Check Engine</a>
 </div></nav>
 <main id="main">
-<article><div class="wrap"><div class="crumb"><a href="/">Docket</a> / <a href="/for/">For you</a> / Developers</div><h1>SEO checks in your deploy pipeline</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-07">7 August 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-05">5 November 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/for/">For you</a> / Developers</div><h1>SEO checks in your deploy pipeline</h1><p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="2026-08-07">7 August 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-05">5 November 2026</time></p>
 
-<p class="lede">Docket's CLI exits <code>2</code> when it finds a critical issue, so
-<code>docket audit https://staging.example.com</code> is a complete deploy gate in one line and
+<p class="lede">Check Engine's CLI, <code>checkengine</code> (the old name, <code>docket</code>, still works), exits <code>2</code> when it finds a critical issue, so
+<code>checkengine audit https://staging.example.com</code> is a complete deploy gate in one line and
 nothing else has to be installed. Auditing 25 pages took a median of
 <strong>24.9 seconds</strong> across 6 real sites
 (17.0s to 36.1s, measured 2026-08-07), which is
@@ -999,7 +998,7 @@ it downloads the build the runner needs, checks it against the release's checksu
 audit and fails the job at the severity you set. There is no Linux ARM or Windows build of the
 command line yet.</p>
 
-<p>On a hosted runner it runs Docket's free version, which needs no key: the score, the count of
+<p>On a hosted runner it runs Check Engine's free version, which needs no key: the score, the count of
 problems in each area, the most important problem in full, and the exit code. That is enough to
 gate a deploy. The full findings and the SARIF and JUnit files below need a licence key, and a
 licence activates on up to 3 computers at a time, Mac or Windows. A fresh hosted runner is a new computer each time, so
@@ -1044,7 +1043,7 @@ anything printed is:</p>
 <thead><tr><th>Code</th><th>Meaning</th></tr></thead>
 <tbody>
 <tr><td><code>0</code></td><td>The audit ran and found nothing at or above the threshold</td></tr>
-<tr><td><code>1</code></td><td>Docket could not run. A defect in the tool, not in your site</td></tr>
+<tr><td><code>1</code></td><td>Check Engine could not run. A defect in the tool, not in your site</td></tr>
 <tr><td><code>2</code></td><td>The audit ran and the result is bad</td></tr>
 </tbody>
 </table></div>
@@ -1053,8 +1052,8 @@ anything printed is:</p>
 "the tool is broken" demand opposite responses from whoever reads the log at six on a Friday,
 and a gate that conflates them gets wrapped in <code>|| true</code> within a month.</p>
 
-<p>A staging URL that does not answer is <code>2</code>, not <code>1</code>: Docket ran
-correctly, the site was not there, and that should stop a deploy. This distinction has teeth: pointing Docket at a hostname that does not resolve used to report three critical issues, of
+<p>A staging URL that does not answer is <code>2</code>, not <code>1</code>: Check Engine ran
+correctly, the site was not there, and that should stop a deploy. This distinction has teeth: pointing Check Engine at a hostname that does not resolve used to report three critical issues, of
 which two were invented. A DNS blip would have failed a build with a confident story about a
 robots.txt file that did not exist. If you are wiring <em>any</em> audit tool into CI, run it
 once against a hostname that does not resolve and read what it says. You will learn more in
@@ -1068,13 +1067,13 @@ threshold is the wrong question for a pipeline, and the reason is arithmetic. Ev
 has standing findings, so a bar tight enough to catch a regression fails every build, and one
 loose enough to pass catches nothing. The deploy is only answerable for what it changed.</p>
 
-<pre><code>docket diff https://example.com https://staging.example.com --fail-on medium</code></pre>
+<pre><code>checkengine diff https://example.com https://staging.example.com --fail-on medium</code></pre>
 
 <p>That audits both on identical settings and fails only on findings that are new or
 <em>worse</em> than production. A check that was MEDIUM before and is HIGH now never appeared or disappeared. It got worse, which is exactly what the gate is for, and a naive new-versus-old set
 comparison misses it entirely. Improvements never fail a build, however many there are.</p>
 
-<p>If the two crawls reach very different numbers of pages, Docket refuses to compare them and
+<p>If the two crawls reach very different numbers of pages, Check Engine refuses to compare them and
 exits <code>1</code> rather than <code>0</code>. A build that goes green because the comparison
 was impossible is worse than one that fails, because the team believes the gate ran.</p>
 
@@ -1086,14 +1085,14 @@ ingest, and the findings become listed alerts with their severity, their descrip
 fix attached:</p>
 
 <pre><code>      - name: Audit staging
-        run: docket audit https://staging.example.com -n 100 -f sarif &gt; docket.sarif
+        run: checkengine audit https://staging.example.com -n 100 -f sarif &gt; docket.sarif
 
       - uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: docket.sarif</code></pre>
 
 <p><strong>Be clear about what that gets you.</strong> SARIF was designed for static analysis,
-where a result points at a file and a line. Docket's findings are about URLs, and there is no
+where a result points at a file and a line. Check Engine's findings are about URLs, and there is no
 general way to know which source file produced a given URL: a template, a CMS record and a
 static file all look identical from outside. So the alerts land on the Security tab, correctly
 titled and linked to the affected pages, and they do <em>not</em> annotate the lines of a pull
@@ -1157,13 +1156,13 @@ runner, or deactivate the key when a runner is retired.</p>
 <p><strong>Do not gate on the score.</strong> It is a weighted composite and it moves when the
 weighting changes. Gate on severities, which are defined per check and do not drift.</p>
 
-<p><strong>Do not run it against production on every push.</strong> Point it at staging. Docket
+<p><strong>Do not run it against production on every push.</strong> Point it at staging. Check Engine
 backs off on 429 and 503 rather than hammering, but a crawl on every commit is still traffic
 your own analytics has to explain, and if you are not sure your tracking is on every page in the
 first place, that is <a href="/learn/marketing-tag-audit/">its own audit</a>.</p>
 
 <p><strong>Do not assume the headers survived the deploy.</strong> Response headers are set by the
-host, the CDN or the framework, and a platform change quietly rewrites them. Docket reads what was
+host, the CDN or the framework, and a platform change quietly rewrites them. Check Engine reads what was
 actually served: <a href="/how-to/fix-missing-security-headers/">which headers matter to a crawler</a>
 and which are for your users.</p>
 
@@ -1173,9 +1172,9 @@ Turn it on for the pages that need it, or on a nightly job rather than a per-PR 
 
 <h2 id="mcp">Ask an AI assistant to run it</h2>
 
-<p>Docket also speaks the Model Context Protocol, the standard AI assistants use to reach tools on
+<p>Check Engine also speaks the Model Context Protocol, the standard AI assistants use to reach tools on
 your own machine. It is served over stdio, so there is no server to run and no port to open: the
-client starts Docket itself. In Claude Desktop, add this to
+client starts Check Engine itself. In Claude Desktop, add this to
 <code>~/Library/Application&nbsp;Support/Claude/claude_desktop_config.json</code> and restart it:</p>
 
 <pre><code>{
@@ -1190,7 +1189,7 @@ client starts Docket itself. In Claude Desktop, add this to
 <p>Any MCP client takes the same command and argument. There are five tools.
 <code>audit_site</code> takes a <code>url</code> and optionally <code>max_pages</code>,
 <code>max_seconds</code> and <code>offline</code>, crawls the site on your computer and returns the result as
-JSON. Three read the audits Docket has kept, without crawling again: <code>get_last_report</code>
+JSON. Three read the audits Check Engine has kept, without crawling again: <code>get_last_report</code>
 returns the most recent one, <code>explain_finding</code> returns one problem in full with its fix,
 and <code>compare_audits</code> says what changed between two audits of the same site.
 <code>list_checks</code> takes no arguments and lists the 99 checks without crawling anything.</p>
@@ -1210,22 +1209,22 @@ rest, including what the tools do not do.</p>
 
 <h2>Where this is thin</h2>
 
-<p>SARIF gets findings onto the Security tab but not onto the pull request diff, for the reason above. That one is structural rather than unfinished. `docket diff` is not wired into
+<p>SARIF gets findings onto the Security tab but not onto the pull request diff, for the reason above. That one is structural rather than unfinished. `checkengine diff` is not wired into
 the action yet, so gating on what a deploy broke means running it as a plain step. Nothing
 is cached between runs, so every job re-downloads 22.5 MB. And the timings above are one
 machine on home broadband on a single day, across 6 sites. One of them swung
 fifteen seconds between two consecutive runs. Treat them as an order of magnitude, not a
 benchmark, and measure your own.</p>
 
-<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=for-developers-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="for-developers-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=for-developers-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x86_64.dmg" data-ev="Download" data-ev-button="for-developers-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=for-developers" data-ev="Buy" data-ev-price="59" data-ev-button="for-developers">Buy once, $59</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="for-developers">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Launch price: $29.50 once, through 30 November. From 1 December: $59. Use code <code>FOUNDINGDOCKET</code>.</span></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can I run an SEO audit in CI?</h3><p>Yes, and it is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Docket's CLI exits 0 when clean, 2 when it finds something at or above your threshold, and 1 only when the tool itself could not run.</p></div><div class="faq-item"><h3>Does Docket run on GitHub Actions?</h3><p>Yes, on ubuntu-latest and macos-latest. mattkerr09/docket-audit-action installs the right build for the runner, runs the free version, which needs no key, and fails the job at the severity you set. There is no Linux ARM or Windows build of the command line yet.</p></div><div class="faq-item"><h3>How long does a Docket audit take in a pipeline?</h3><p>A median of 24.9 seconds for 25 pages across 6 real sites measured on 2026-08-07, or roughly 1.0 seconds per page. Process startup was 0.2s, so almost all of it is the crawl. Rendering with --render is considerably slower and was not included.</p></div><div class="faq-item"><h3>Can Docket output SARIF for GitHub code scanning?</h3><p>Yes. docket audit -f sarif writes SARIF 2.1.0, which you can hand to github/codeql-action/upload-sarif. The findings appear as alerts on the Security tab with their severity and fix. They do not annotate the pull request diff: SARIF locations are files and lines, and an SEO finding is about a URL, which cannot generally be mapped back to a source file.</p></div><div class="faq-item"><h3>Does Docket have a GitHub Action?</h3><p>Yes. Reference mattkerr09/docket-site in a `uses:` step. It installs Docket, runs the audit and exits with the same codes as the CLI, and it checks the runner first so a Linux job fails with a sentence you can act on rather than a confusing disk-image error. It is not on the GitHub Marketplace; reference it by repository.</p></div><div class="faq-item"><h3>Can Docket write JUnit output for my CI test panel?</h3><p>Yes, with -f junit. One testcase per check, so the panel reads as a test run. A check that ran and found nothing passes; one that could not run is skipped, never passed; and if the crawl reached no pages, every check is skipped and none is green. A passing test report is read as a guarantee.</p></div><div class="faq-item"><h3>Should the build fail on the SEO score?</h3><p>No. The score is a weighted composite and moves when the weighting changes. Gate on severities with --fail-on, or better, use docket diff to fail only on findings this deploy introduced or made worse. Every real site carries standing findings, so an absolute threshold either fails every build or none of them.</p></div></div></section>
+<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=for-developers-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-arm64.dmg" data-ev="Download" data-ev-button="for-developers-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=for-developers-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.159/Docket-1.3.159-x86_64.dmg" data-ev="Download" data-ev-button="for-developers-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=for-developers" data-ev="Buy" data-ev-price="59" data-ev-button="for-developers">Buy once, $59</a>, 30-day refund &middot; <a href="https://docketseo.app/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="for-developers">See a sample report</a><span data-founding-until="2026-12-01T07:59:59Z"> &middot; Launch price: $29.50 once, through 30 November. From 1 December: $59. Use code <code>FOUNDINGDOCKET</code>.</span></p></aside>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can I run an SEO audit in CI?</h3><p>Yes, and it is the strongest use of one, because it catches a noindex before it ships rather than weeks later on a traffic graph. Check Engine's CLI exits 0 when clean, 2 when it finds something at or above your threshold, and 1 only when the tool itself could not run.</p></div><div class="faq-item"><h3>Does Check Engine run on GitHub Actions?</h3><p>Yes, on ubuntu-latest and macos-latest. mattkerr09/docket-audit-action installs the right build for the runner, runs the free version, which needs no key, and fails the job at the severity you set. There is no Linux ARM or Windows build of the command line yet.</p></div><div class="faq-item"><h3>How long does a Check Engine audit take in a pipeline?</h3><p>A median of 24.9 seconds for 25 pages across 6 real sites measured on 2026-08-07, or roughly 1.0 seconds per page. Process startup was 0.2s, so almost all of it is the crawl. Rendering with --render is considerably slower and was not included.</p></div><div class="faq-item"><h3>Can Check Engine output SARIF for GitHub code scanning?</h3><p>Yes. checkengine audit -f sarif writes SARIF 2.1.0, which you can hand to github/codeql-action/upload-sarif. The findings appear as alerts on the Security tab with their severity and fix. They do not annotate the pull request diff: SARIF locations are files and lines, and an SEO finding is about a URL, which cannot generally be mapped back to a source file.</p></div><div class="faq-item"><h3>Does Check Engine have a GitHub Action?</h3><p>Yes. Reference mattkerr09/docket-site in a `uses:` step. It installs Check Engine, runs the audit and exits with the same codes as the CLI, and it checks the runner first so a Linux job fails with a sentence you can act on rather than a confusing disk-image error. It is not on the GitHub Marketplace; reference it by repository.</p></div><div class="faq-item"><h3>Can Check Engine write JUnit output for my CI test panel?</h3><p>Yes, with -f junit. One testcase per check, so the panel reads as a test run. A check that ran and found nothing passes; one that could not run is skipped, never passed; and if the crawl reached no pages, every check is skipped and none is green. A passing test report is read as a guarantee.</p></div><div class="faq-item"><h3>Should the build fail on the SEO score?</h3><p>No. The score is a weighted composite and moves when the weighting changes. Gate on severities with --fail-on, or better, use checkengine diff to fail only on findings this deploy introduced or made worse. Every real site carries standing findings, so an absolute threshold either fails every build or none of them.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">
 <div class="foot-grid">
-<div><h2 class="foot-h">Docket SEO</h2>
-<a href="/">Overview</a><a href="/download/">Download Docket SEO</a>
-<a href="/index/">The Docket Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
+<div><h2 class="foot-h">Check Engine SEO</h2>
+<a href="/">Overview</a><a href="/download/">Download Check Engine SEO</a>
+<a href="/index/">The Check Engine Index</a><a href="/learn/what-docket-checks/">What it checks</a><a href="/tools/ai-crawler-checker/" data-ev="Free check" data-ev-button="footer-checker">Free AI crawler checker</a><a href="/tools/" data-ev="Free check" data-ev-button="footer">Free SEO checkers</a></div>
 <div><h2 class="foot-h">Compare</h2>
 <a href="/vs/screaming-frog-alternative/">vs Screaming Frog</a>
 <a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking vs Screaming Frog</a>
@@ -1239,9 +1238,10 @@ benchmark, and measure your own.</p>
 <a href="/learn/seo-audit/">What an SEO audit is</a>
 <a href="/learn/">All guides</a></div>
 <div><h2 class="foot-h">Contact</h2>
-<a href="/about/">About Docket</a>
+<a href="/about/">About Check Engine</a>
 <a href="/contact/">Get in touch</a>
-<a href="/bot/">Our crawler</a>
+<a href="/help/">Help</a><a href="/support/">Support</a><a href="/faq/">FAQ</a>
+<a href="https://docketseo.app/bot/">Our crawler</a>
 <a href="https://github.com/mattkerr09/docket-site/issues">Issue tracker</a>
 <a href="/legal/privacy/">Privacy</a><a href="/legal/terms/">Terms</a>
 <a href="/legal/refunds/">Refunds</a></div>
@@ -1249,8 +1249,8 @@ benchmark, and measure your own.</p>
 <div class="foot-more">
 <p>Made by <a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company</a></p>
 </div>
-<div class="foot-bottom">
-<span>© 2026 Docket SEO · Audits run on your computer, and the reports stay there.</span>
+<p>formerly Docket SEO</p><div class="foot-bottom">
+<span>© 2026 Check Engine SEO · Audits run on your computer, and the reports stay there.</span>
 <span><svg viewBox="0 0 1024 1024" width="15" height="15" aria-hidden="true"><path d="M512 122 L866 242 L866 522 C866 706 714 838 512 902 C310 838 158 706 158 522 L158 242 Z" fill="var(--text-dim)"/><g fill="none" stroke="var(--bg)" stroke-width="112" stroke-linecap="round" stroke-linejoin="round"><path d="M348 636 L676 396"/><path d="M540 388 L688 388 L688 536"/></g></svg></span>
 </div></div></footer>
 <div data-founding data-was="$59" data-now="$29.50" hidden></div>
@@ -1276,7 +1276,7 @@ benchmark, and measure your own.</p>
      it. `prefers-reduced-motion` can hide or freeze almost anything except a
      playing <video>. So the script pauses it and rewinds to the poster frame,
      which is a real frame of the same run, so nothing is lost.
-     builtbykerr.com carries ten prefers-reduced-motion blocks to this file's
+     A sister site carries ten prefers-reduced-motion blocks to this file's
      two; this is the one that was actually missing something. */
   try {
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1285,7 +1285,7 @@ benchmark, and measure your own.</p>
       });
     }
   } catch (e) { /* a video that keeps playing is not worth throwing over */ }
-  /* GRANULARITY IS THE EFFECT. Measured on outlier.host: 51 revealed units,
+  /* GRANULARITY IS THE EFFECT. Measured on a sister site: 51 revealed units,
      median height 171px, SIX in view at once. This page had 31 large ones and
      only TWO in flight at any scroll position, which is why it read as sections
      popping rather than a page assembling itself. Adding the smaller units (
