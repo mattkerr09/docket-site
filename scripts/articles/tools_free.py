@@ -80,7 +80,7 @@ TOOLS = [
 ]
 
 
-def audit_next(src: str, *, what: str) -> str:
+def audit_next(src: str, *, what: str, own: bool = False) -> str:
     """Shown after a result: what one free check was, and what the Mac audit adds.
 
     The free download comes first (content standard: one clear next step, Buy
@@ -91,8 +91,9 @@ def audit_next(src: str, *, what: str) -> str:
              if INTEL else "")
     sample = (f'<a class="btn-ghost" href="{SAMPLE_REPORT}" data-ev="Sample report" '
               f'data-ev-button="{src}">See a sample report</a>' if HAS_SAMPLE else "")
+    own_line = '\n  <p class="checker-own" id="checker-own"></p>' if own else ""
     return f"""
-<div class="checker-next" id="checker-next" hidden>
+<div class="checker-next" id="checker-next" hidden>{own_line}
   <p><strong>That was {what}.</strong> Docket runs {N_CHECKS} checks across your whole site, ranked by
   what to fix first, each with where it is and the change to make. The free download shows your score
   and the top problem in full.</p>
@@ -980,7 +981,7 @@ robots.txt for Googlebot and the AI search crawlers. It takes a few seconds.</p>
    step_up=(f'This is one page. <a href="/download/">Docket</a> crawls the whole site and runs {N_CHECKS} '
             "checks, including the ones that only show up between pages, like two pages with one title or a "
             "page nothing links to."))}
-{audit_next("tools-seo-checker", what="one page, read once")}
+{audit_next("tools-seo-checker", what="one page, read once", own=True)}
 
 <h2>How do I audit my website for free?</h2>
 <p>Start with the pages that earn you money: the homepage, then each service or product page. Paste
@@ -1089,6 +1090,8 @@ one-page check cannot see those, and that is what the app is for.</p>
         }});
         renderFindings(el('findings'), items);
         el('seo-all-sum').textContent = 'Every finding on this page (' + items.length + ')';
+        var own = el('checker-own');
+        if (own) own.textContent = ((np + nw) ? 'This page has ' + np + ' problem' + (np === 1 ? '' : 's') + ' and ' + nw + ' thing' + (nw === 1 ? '' : 's') + ' worth fixing.' : 'This page came back clean.') + ' A whole site has more between its pages: the median of the {fa_n} small-business sites audited had {fa_problems:g} problems across {fa_pages:g} pages.';
         el('seo-result').hidden = false;
         var next = el('checker-next'); if (next) next.hidden = false;
         say('Read ' + pg.final_url + (hops ? ' after ' + hops + ' redirect' + (hops === 1 ? '' : 's') : '') + '.');
