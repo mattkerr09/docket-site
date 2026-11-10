@@ -1299,6 +1299,9 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
   letter-spacing:.04em;color:var(--brand);margin-left:.28em;
   border:1px solid var(--brand);border-radius:var(--radius-sm);padding:.02em .3em}
 .nav-brand:hover{text-decoration:none;color:var(--brand-light)}
+/* The name stays on one line at every width (it wrapped to "Check / Engine SEO" at 375px on 10 Nov 2026, and the page
+   scrolled sideways at 320px). The phone rules below make the row fit instead of letting the name break. */
+.nav-brand span{white-space:nowrap}.nav-brand{flex-shrink:0}
 .nav-links{display:flex;gap:1.3rem;font-size:var(--t-md)}
 .nav-links a{color:var(--text-mid)}
 @media(hover:hover){.nav-links a:hover{color:var(--text);text-decoration:none}}
@@ -1361,7 +1364,9 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    where this label measured wider than in Chrome and wrapped to two lines
    on three pages at 375px. nowrap plus a little less padding and type
    keeps the row inside 343px with room to spare. */
-@media(max-width:420px){.nav-inner{gap:.4rem}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
+@media(max-width:420px){.nav-inner{gap:.3rem}.nav-brand{font-size:15px;gap:.4rem}.nav-brand svg{width:20px;height:20px}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
+@media(max-width:380px){.nav-brand{font-size:14px}.nav-brand i{font-size:.6rem;margin-left:.2em}nav .btn{padding:.5rem .5rem;font-size:.8rem}}
+@media(max-width:340px){.nav-brand i{display:none}}
 /* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
    sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);

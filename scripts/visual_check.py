@@ -40,6 +40,7 @@ SITE = ROOT / "site"
 #: The narrow width is the one that matters. Everything that has ever been
 #: wrong with this layout was wrong at 375px and fine at 1280.
 NARROW = 375
+SMALLEST = 320   # header row and sideways scroll only; see main()
 WIDE = 1280
 
 #: A width this gate had never rendered, and the reason it now does.
@@ -283,6 +284,13 @@ PROBE = """
       });
       var btn = nav.querySelector('.btn');
       if (btn && btn.getBoundingClientRect().height > 58) out.push('nav button wraps');
+      // The name is one line. It wrapped to "Check / Engine SEO" at 375px on 10 Nov 2026 and nothing noticed,
+      // because the row-overlap check above only looks at boxes, and a wrapped name is still one box.
+      var brandText = nav.querySelector('.nav-brand span');
+      if (brandText && getComputedStyle(brandText.parentElement).display !== 'none'
+          && brandText.getBoundingClientRect().height > parseFloat(getComputedStyle(brandText).fontSize) * 2.4) {
+        out.push('brand name wraps');
+      }
       return out;
     })(),
     footerLinks: document.querySelectorAll('footer a').length,
@@ -534,8 +542,12 @@ INJECTIONS = [
      # Aimed at the narrowest rule, which is the one in force at 375px — the
      # first version targeted the 780px rule and a later 420px rule overrode
      # the injection, so the self-test failed rather than the gate passing.
-     "@media(max-width:420px){.nav-inner{gap:.4rem}",
+     "@media(max-width:420px){.nav-inner{gap:.3rem}",
      "@media(max-width:420px){.nav-inner{gap:5rem}"),
+    # The wrapped name, replayed: put the 18px name back and let it shrink, and the row no longer fits, so the name breaks onto two lines again at 375px.
+    ("index.html", "homepage", "nav clipping",
+     ".nav-brand span{white-space:nowrap}.nav-brand{flex-shrink:0}",
+     ".nav-brand span{white-space:normal}.nav-brand{flex-shrink:1;font-size:18px!important}"),
 ]
 
 
@@ -610,13 +622,31 @@ def main() -> int:
                       f"text={r['bodyText']} scroll={r['scrollWidth']}"
                       f"{' OK' if not found else ''}")
 
+    # 320px is the narrowest phone still in use. Only two things are judged there: the header row (logo, menu, Buy)
+    # and sideways scroll. The page scrolled sideways at 320px (329px wide) until 10 Nov 2026, with nobody looking.
+    for rel, label in PAGES:
+        page = SITE / rel
+        if not page.exists():
+            continue
+        name = f"{label}@{SMALLEST}"
+        try:
+            r = probe(helper, page, SMALLEST)
+        except Exception as exc:  # noqa: BLE001 — report, do not mask
+            failures.append(f"{name}: {exc}")
+            continue
+        checked += 1
+        if r["scrollWidth"] > SMALLEST + 1:
+            failures.append(f"{name}: document is {r['scrollWidth']}px wide in a {SMALLEST}px window (sideways scroll)")
+        if r.get("navClipped"):
+            failures.append(f"{name}: header row problem(s): {r['navClipped']}")
+
     if failures:
         print(f"VISUAL: {len(failures)} problem(s) across {checked} renders")
         for f in failures:
             print(f"  {f}")
         return 1
     print(f"VISUAL ok — {checked} renders, "
-          f"{len(PAGES)} templates at {NARROW}px, {WIDE}px and {VERY_WIDE}px")
+          f"{len(PAGES)} templates at {NARROW}px, {WIDE}px and {VERY_WIDE}px, header row at {SMALLEST}px")
     return 0
 
 
