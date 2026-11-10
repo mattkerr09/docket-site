@@ -156,6 +156,25 @@ test('Range and conditional headers reach the origin and 206 stays intact', asyn
   assert.deepEqual(new Uint8Array(await response.arrayBuffer()), new Uint8Array([2, 3, 4]))
 })
 
+test('a ranged installer request is sent to the file\'s own host, and a plain GET is still proxied', async (t) => {
+  for (const method of ['GET', 'HEAD']) {
+    const response = await worker.fetch(requestFor('/updates/1.3.160/Docket-1.3.160-x64-setup.exe?keep=%2f', { method, headers: { Range: 'bytes=0-0' } }))
+    assert.equal(response.status, 302)
+    assert.equal(response.headers.get('Location'), `${destination}/updates/1.3.160/Docket-1.3.160-x64-setup.exe?keep=%2f`)
+    assert.equal(response.headers.get('Cache-Control'), 'no-store')
+  }
+  const upper = await worker.fetch(requestFor('/updates/1.3.160/SETUP.EXE', { headers: { Range: 'bytes=5-9' } }))
+  assert.equal(upper.status, 302)
+  const mock = t.mock.method(globalThis, 'fetch', async (input) => {
+    assert.equal(input, `${destination}/updates/1.3.160/Docket-1.3.160-x64-setup.exe`)
+    return new Response('installer', { status: 200 })
+  })
+  const plain = await worker.fetch(requestFor('/updates/1.3.160/Docket-1.3.160-x64-setup.exe'))
+  assert.equal(plain.status, 200)
+  assert.equal(await plain.text(), 'installer')
+  assert.equal(mock.mock.callCount(), 1)
+})
+
 test('a 304 conditional response keeps its status, headers and empty body', async (t) => {
   t.mock.method(globalThis, 'fetch', async (input, init) => {
     assert.equal(init.headers.get('If-None-Match'), '"feed-1"')

@@ -69,10 +69,20 @@ function fallback(request, url) {
   return proxy(request, `${RAW_ORIGIN}${path}${query}`, path)
 }
 
+function isRangedInstaller(request, url) {
+  return request.headers.has('Range') && url.pathname.startsWith('/updates/') && url.pathname.toLowerCase().endsWith('.exe')
+}
+
 function redirect(request, url) {
   // Use the original suffix to retain escapes, query order and an empty query.
   const destination = request.url.replace(/^https?:\/\/[^/]+/, `https://${DESTINATION_HOST}`)
   if (!isAppPath(url.pathname)) return new Response(null, { status: 301, headers: { Location: destination } })
+  // Cloudflare adds gzip to a Worker's subrequest and GitHub gzips the installer, so a Range over that copy comes back
+  // with the compressed total and an empty body. A ranged installer request goes to the file's own host instead;
+  // clients that resume follow the redirect and keep their Range header. A plain GET is still proxied, never redirected.
+  if (isRangedInstaller(request, url)) {
+    return new Response(null, { status: 302, headers: { Location: destination, 'Cache-Control': 'no-store' } })
+  }
   return proxy(request, destination)
 }
 
