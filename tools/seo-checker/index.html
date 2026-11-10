@@ -15,7 +15,7 @@
 <title>Free SEO checker: score any page and see what to fix</title>
 <meta name="description" content="Free SEO checker: paste a page for a score out of 100, its problems by area and the first fix to make. Checks robots.txt for Google and AI crawlers. No sign-up.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="ea19aef67651">
+<meta name="build-id" content="ea09c0ff2ee7">
 <link rel="canonical" href="https://checkengineseo.com/tools/seo-checker/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -1023,6 +1023,7 @@ robots.txt for Googlebot and the AI search crawlers. It takes a few seconds.</p>
 </section>
 
 <div class="checker-next" id="checker-next" hidden>
+  <p class="checker-own" id="checker-own"></p>
   <p><strong>That was one page, read once.</strong> Check Engine runs 99 checks across your whole site, ranked by
   what to fix first, each with where it is and the change to make. The free download shows your score
   and the top problem in full.</p>
@@ -1173,6 +1174,8 @@ one-page check cannot see those, and that is what the app is for.</p>
         });
         renderFindings(el('findings'), items);
         el('seo-all-sum').textContent = 'Every finding on this page (' + items.length + ')';
+        var own = el('checker-own');
+        if (own) own.textContent = ((np + nw) ? 'This page has ' + np + ' problem' + (np === 1 ? '' : 's') + ' and ' + nw + ' thing' + (nw === 1 ? '' : 's') + ' worth fixing.' : 'This page came back clean.') + ' A whole site has more between its pages: the median of the 14 small-business sites audited had 42.5 problems across 86 pages.';
         el('seo-result').hidden = false;
         var next = el('checker-next'); if (next) next.hidden = false;
         say('Read ' + pg.final_url + (hops ? ' after ' + hops + ' redirect' + (hops === 1 ? '' : 's') : '') + '.');
