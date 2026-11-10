@@ -1,0 +1,20 @@
+name = "site-check"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = true
+
+# Keep off until host review confirms private-address egress protection,
+# including DNS rebinding between the DNS preflight and fetch's lookup.
+[vars]
+SITE_CHECK_DISABLED = "1"
+
+[observability]
+enabled = false
+
+[[durable_objects.bindings]]
+name = "SITE_CHECK_COUNTERS"
+class_name = "SiteCheckCounters"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["SiteCheckCounters"]

@@ -1,0 +1,36 @@
+// All crawl, analysis, storage and request bounds live here.
+export const MAX_PAGES = 25
+export const MAX_PAGE_BYTES = 1024 * 1024
+export const PAGE_TIMEOUT_MS = 8000
+export const DEADLINE_MS = 30000
+export const MAX_REDIRECTS = 5
+export const CONCURRENCY = 4
+export const REQUEST_PAUSE_MS = 100
+export const MAX_URLS_PER_PATH = 3
+export const MAX_DISCOVERED_URLS = 250
+export const MAX_ADDRESS_LENGTH = 2048
+export const MAX_ROBOTS_RULES = 256
+export const MAX_ROBOTS_PATTERN_LENGTH = 512
+export const MAX_ROBOTS_WILDCARDS = 1
+export const VISITOR_DAILY_CAP = 5
+export const HOST_DAILY_CAP = 3
+export const HOST_INTERVAL_MS = 60000
+export const GLOBAL_DAILY_CAP = 1500
+export const DAY_MS = 86400000
+export const LEASE_MS = 45000
+export const PURGE_BATCH = 128
+export const CACHE_TTL_S = 3600
+export const MAX_SUMMARY_BYTES = 32768
+export const MAX_COUNTER_BYTES = 1024
+export const COUNTER_TIMEOUT_MS = 2000
+export const CACHE_TIMEOUT_MS = 1000
+export const DNS_MAX_BYTES = 65536
+export const MAX_ISSUES = 8
+export const MAX_FINE = 5
+export const MAX_EXAMPLES = 3
+export const THIN_WORDS = 100
+export const SLOW_TTFB_MS = 1500
+export const HASH_LABEL = 'site-check-daily-v1'
+export const USER_AGENT = 'CheckEngineBot/1.0 (+https://checkengineseo.com/bot/)'
+export const BUSY_MESSAGE = 'The free checker is busy today. Try again tomorrow.'
+export { TITLE_MIN, TITLE_MAX } from '../../ai-crawler-check/src/page.js'
