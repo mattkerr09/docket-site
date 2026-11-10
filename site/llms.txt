@@ -49,7 +49,7 @@ Michigan, United States.
 ## Requirements
 
 - A Mac with Apple silicon or Intel running macOS 12 or later.
-- The Mac app is a 22.5 MB download, signed with a Developer ID and notarised by
+- The Mac app is a 31.4 MB download, signed with a Developer ID and notarised by
   Apple.
 - Or a PC with 64-bit Windows: the installer is an 18.1 MB download, signed by Kerr &
   Company LLC.
@@ -119,7 +119,7 @@ Michigan, United States.
 - Can I use it for client work? Yes. Audit any number of sites (yours, a client's, a
   prospect's or a competitor's) and charge clients for the work. The licence belongs
   to the person or company that paid; it may not be resold or sublicensed.
-- Does it run on Windows? Yes. Check Engine v1.3.159 has an installer for 64-bit Windows,
+- Does it run on Windows? Yes. Check Engine v1.3.160 has an installer for 64-bit Windows,
   18.1 MB, signed by Kerr & Company LLC. It is on the download page beside the Mac app
   and a command-line build for Linux x86_64.
 - How do I get help? Email support@docketseo.app. Questions whose answers would help
