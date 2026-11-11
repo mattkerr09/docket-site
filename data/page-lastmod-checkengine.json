@@ -703,6 +703,406 @@
   "date": "2026-11-10",
   "hash": "9e7844f45ebc6426"
  },
+ "checks/ai-citable-facts/index.html": {
+  "date": "2026-11-11",
+  "hash": "a6ef38d98e84e598"
+ },
+ "checks/ai-crawler-access/index.html": {
+  "date": "2026-11-11",
+  "hash": "2472f144ee1ab01b"
+ },
+ "checks/ai-dead-crawler-directive/index.html": {
+  "date": "2026-11-11",
+  "hash": "b1047d33b837afe2"
+ },
+ "checks/ai-edge-access/index.html": {
+  "date": "2026-11-11",
+  "hash": "f00b3c4a53859184"
+ },
+ "checks/ai-entity/index.html": {
+  "date": "2026-11-11",
+  "hash": "9813acdb9c90f13f"
+ },
+ "checks/ai-extractability/index.html": {
+  "date": "2026-11-11",
+  "hash": "79a0b2abfbebeffb"
+ },
+ "checks/ai-freshness-signal/index.html": {
+  "date": "2026-11-11",
+  "hash": "145784c31ec45bad"
+ },
+ "checks/ai-llms-txt/index.html": {
+  "date": "2026-11-11",
+  "hash": "9c06ccf7413c28c7"
+ },
+ "checks/ai-rendering/index.html": {
+  "date": "2026-11-11",
+  "hash": "f53aa9a13521154d"
+ },
+ "checks/ai-unmeasurable-optout/index.html": {
+  "date": "2026-11-11",
+  "hash": "69810c9e961e25de"
+ },
+ "checks/brand-logo/index.html": {
+  "date": "2026-11-11",
+  "hash": "49b297e166b48f9e"
+ },
+ "checks/brand-name-consistency/index.html": {
+  "date": "2026-11-11",
+  "hash": "32d39b0e38da7687"
+ },
+ "checks/brand-positioning/index.html": {
+  "date": "2026-11-11",
+  "hash": "79ebd98959d8dbbe"
+ },
+ "checks/brand-social-consistency/index.html": {
+  "date": "2026-11-11",
+  "hash": "e3353ff95f4cbcdd"
+ },
+ "checks/brand-visual-consistency/index.html": {
+  "date": "2026-11-11",
+  "hash": "f63c2159a3ac1e1e"
+ },
+ "checks/brand-voice-consistency/index.html": {
+  "date": "2026-11-11",
+  "hash": "5f3e11f7b3664274"
+ },
+ "checks/content-ai-slop/index.html": {
+  "date": "2026-11-11",
+  "hash": "543e2ae825fc48bf"
+ },
+ "checks/content-competing-pages/index.html": {
+  "date": "2026-11-11",
+  "hash": "543bd157a6d578ed"
+ },
+ "checks/content-dates/index.html": {
+  "date": "2026-11-11",
+  "hash": "f05bbd446bf541cf"
+ },
+ "checks/content-eeat/index.html": {
+  "date": "2026-11-11",
+  "hash": "13927bd5048bfd37"
+ },
+ "checks/content-js-rendering/index.html": {
+  "date": "2026-11-11",
+  "hash": "1295cd75e22d5b92"
+ },
+ "checks/content-lang-mismatch/index.html": {
+  "date": "2026-11-11",
+  "hash": "5fa555e0319d1140"
+ },
+ "checks/content-language-scope/index.html": {
+  "date": "2026-11-11",
+  "hash": "7900b2bf19fc9266"
+ },
+ "checks/content-placeholder/index.html": {
+  "date": "2026-11-11",
+  "hash": "e46336fd18fb3ad8"
+ },
+ "checks/content-readability/index.html": {
+  "date": "2026-11-11",
+  "hash": "163e580fb1a43901"
+ },
+ "checks/content-thin/index.html": {
+  "date": "2026-11-11",
+  "hash": "4f0d57437fa6629b"
+ },
+ "checks/content-topic-gaps/index.html": {
+  "date": "2026-11-11",
+  "hash": "2e966f67e684faac"
+ },
+ "checks/cvr-dead-contact/index.html": {
+  "date": "2026-11-11",
+  "hash": "3d8159127c21678f"
+ },
+ "checks/cvr-form-friction/index.html": {
+  "date": "2026-11-11",
+  "hash": "6e759a5a6afaf255"
+ },
+ "checks/cvr-funnel/index.html": {
+  "date": "2026-11-11",
+  "hash": "c5e84904f690c659"
+ },
+ "checks/cvr-message-match/index.html": {
+  "date": "2026-11-11",
+  "hash": "1a606b8c60526497"
+ },
+ "checks/cvr-no-cta/index.html": {
+  "date": "2026-11-11",
+  "hash": "d27403815aa4bc0b"
+ },
+ "checks/cvr-pricing/index.html": {
+  "date": "2026-11-11",
+  "hash": "9cd5bc8d43824fc3"
+ },
+ "checks/cvr-social-proof/index.html": {
+  "date": "2026-11-11",
+  "hash": "30069337c089ab52"
+ },
+ "checks/cvr-unusable-phone/index.html": {
+  "date": "2026-11-11",
+  "hash": "bb86f200facf793f"
+ },
+ "checks/cvr-value-prop/index.html": {
+  "date": "2026-11-11",
+  "hash": "860dd01182911820"
+ },
+ "checks/index-broken/index.html": {
+  "date": "2026-11-11",
+  "hash": "07ab1dbacff23be3"
+ },
+ "checks/index-byte-cap/index.html": {
+  "date": "2026-11-11",
+  "hash": "a46e55c7b20f800d"
+ },
+ "checks/index-canonical-conflict/index.html": {
+  "date": "2026-11-11",
+  "hash": "76e57fa860c54290"
+ },
+ "checks/index-canonical/index.html": {
+  "date": "2026-11-11",
+  "hash": "3e1319b5765e63cb"
+ },
+ "checks/index-depth/index.html": {
+  "date": "2026-11-11",
+  "hash": "cc88343d048d494f"
+ },
+ "checks/index-duplicate-content/index.html": {
+  "date": "2026-11-11",
+  "hash": "cc8d63e32831d0fd"
+ },
+ "checks/index-meta-refresh/index.html": {
+  "date": "2026-11-11",
+  "hash": "11593633984b261c"
+ },
+ "checks/index-noindex/index.html": {
+  "date": "2026-11-11",
+  "hash": "f75d3705ac049235"
+ },
+ "checks/index-redirects/index.html": {
+  "date": "2026-11-11",
+  "hash": "bbfd106542ec9892"
+ },
+ "checks/index-robots-blocks-all/index.html": {
+  "date": "2026-11-11",
+  "hash": "5ef690f7e9edfa91"
+ },
+ "checks/index-sitemap/index.html": {
+  "date": "2026-11-11",
+  "hash": "341e943161ccdf05"
+ },
+ "checks/index-soft-404-pages/index.html": {
+  "date": "2026-11-11",
+  "hash": "2e73d22a59b3940b"
+ },
+ "checks/index-soft-404/index.html": {
+  "date": "2026-11-11",
+  "hash": "e70993efbdd70098"
+ },
+ "checks/index-url-hygiene/index.html": {
+  "date": "2026-11-11",
+  "hash": "85735e95f369c7be"
+ },
+ "checks/index-www/index.html": {
+  "date": "2026-11-11",
+  "hash": "5fc6a4f9e869ba49"
+ },
+ "checks/index.html": {
+  "date": "2026-11-11",
+  "hash": "703895d4b7228aec"
+ },
+ "checks/intl-hreflang-codes/index.html": {
+  "date": "2026-11-11",
+  "hash": "b0600a8c756c6868"
+ },
+ "checks/intl-hreflang-return/index.html": {
+  "date": "2026-11-11",
+  "hash": "696fcc4359c90887"
+ },
+ "checks/intl-hreflang-self/index.html": {
+  "date": "2026-11-11",
+  "hash": "3791c8fb52e67958"
+ },
+ "checks/intl-hreflang-targets/index.html": {
+  "date": "2026-11-11",
+  "hash": "6d77238c58418200"
+ },
+ "checks/links-broken-external/index.html": {
+  "date": "2026-11-11",
+  "hash": "3df857c66798d549"
+ },
+ "checks/links-http-on-https/index.html": {
+  "date": "2026-11-11",
+  "hash": "f5e5c7ff9dcac478"
+ },
+ "checks/links-internal-volume/index.html": {
+  "date": "2026-11-11",
+  "hash": "a566b0e9fc0c8f74"
+ },
+ "checks/links-money-page-weak-inlinks/index.html": {
+  "date": "2026-11-11",
+  "hash": "51bf583cd4312320"
+ },
+ "checks/links-nav-not-in-html/index.html": {
+  "date": "2026-11-11",
+  "hash": "992ee10e92648730"
+ },
+ "checks/links-outbound-quality/index.html": {
+  "date": "2026-11-11",
+  "hash": "73ee4d69df0cb7e1"
+ },
+ "checks/links-pagination/index.html": {
+  "date": "2026-11-11",
+  "hash": "e03403acdf543469"
+ },
+ "checks/local-applicable/index.html": {
+  "date": "2026-11-11",
+  "hash": "bc04c6ece143d9ea"
+ },
+ "checks/local-contact-signals/index.html": {
+  "date": "2026-11-11",
+  "hash": "548d8bab5fcdd686"
+ },
+ "checks/local-geo-targeting/index.html": {
+  "date": "2026-11-11",
+  "hash": "cd4b182dfc46af5a"
+ },
+ "checks/local-nap/index.html": {
+  "date": "2026-11-11",
+  "hash": "19ab3fd43a866296"
+ },
+ "checks/local-reviews/index.html": {
+  "date": "2026-11-11",
+  "hash": "0759e84b863c6e77"
+ },
+ "checks/local-schema/index.html": {
+  "date": "2026-11-11",
+  "hash": "5d7251a181b1a9c5"
+ },
+ "checks/mar-ad-pixels/index.html": {
+  "date": "2026-11-11",
+  "hash": "75bb2ae8ac3c3af8"
+ },
+ "checks/mar-analytics/index.html": {
+  "date": "2026-11-11",
+  "hash": "190bde2a4d7c8366"
+ },
+ "checks/mar-consent/index.html": {
+  "date": "2026-11-11",
+  "hash": "f478e46398a0ce69"
+ },
+ "checks/mar-email-capture/index.html": {
+  "date": "2026-11-11",
+  "hash": "cbdb72feb24f4484"
+ },
+ "checks/mar-stack/index.html": {
+  "date": "2026-11-11",
+  "hash": "c73c5b77c02a1d6d"
+ },
+ "checks/mar-utm-hygiene/index.html": {
+  "date": "2026-11-11",
+  "hash": "6e73088b0509a819"
+ },
+ "checks/onpage-anchors/index.html": {
+  "date": "2026-11-11",
+  "hash": "2fa9316512a4ed1b"
+ },
+ "checks/onpage-description/index.html": {
+  "date": "2026-11-11",
+  "hash": "9a81c7a27c915907"
+ },
+ "checks/onpage-headings/index.html": {
+  "date": "2026-11-11",
+  "hash": "016d844a0ec0727e"
+ },
+ "checks/onpage-images/index.html": {
+  "date": "2026-11-11",
+  "hash": "4211010780a21275"
+ },
+ "checks/onpage-lang/index.html": {
+  "date": "2026-11-11",
+  "hash": "5064a417e46b33bc"
+ },
+ "checks/onpage-title/index.html": {
+  "date": "2026-11-11",
+  "hash": "816285f5b825c474"
+ },
+ "checks/perf-cls-risk/index.html": {
+  "date": "2026-11-11",
+  "hash": "02f7922a05b89366"
+ },
+ "checks/perf-compression/index.html": {
+  "date": "2026-11-11",
+  "hash": "8ddebafdab40c54b"
+ },
+ "checks/perf-modern-images/index.html": {
+  "date": "2026-11-11",
+  "hash": "16e8e8150c630b4d"
+ },
+ "checks/perf-page-weight/index.html": {
+  "date": "2026-11-11",
+  "hash": "b75b02cd7dd6671d"
+ },
+ "checks/perf-redirect-cost/index.html": {
+  "date": "2026-11-11",
+  "hash": "c9530f735cb767c5"
+ },
+ "checks/perf-render-blocking/index.html": {
+  "date": "2026-11-11",
+  "hash": "34cdca7db8b54d90"
+ },
+ "checks/perf-ttfb/index.html": {
+  "date": "2026-11-11",
+  "hash": "18f35b9b8ddeceaa"
+ },
+ "checks/schema-incomplete/index.html": {
+  "date": "2026-11-11",
+  "hash": "da0745892e23fe7a"
+ },
+ "checks/schema-invalid/index.html": {
+  "date": "2026-11-11",
+  "hash": "257ec75d52f12858"
+ },
+ "checks/schema-mismatch/index.html": {
+  "date": "2026-11-11",
+  "hash": "ae874d3dc334f677"
+ },
+ "checks/schema-missing/index.html": {
+  "date": "2026-11-11",
+  "hash": "11fd19e6260c4019"
+ },
+ "checks/schema-opportunity/index.html": {
+  "date": "2026-11-11",
+  "hash": "31a143f596fa9157"
+ },
+ "checks/schema-price/index.html": {
+  "date": "2026-11-11",
+  "hash": "a9c1f6be85b888fc"
+ },
+ "checks/security-headers/index.html": {
+  "date": "2026-11-11",
+  "hash": "c4193b1faccea71c"
+ },
+ "checks/security-https/index.html": {
+  "date": "2026-11-11",
+  "hash": "c73b094a6b048272"
+ },
+ "checks/security-mixed-content/index.html": {
+  "date": "2026-11-11",
+  "hash": "61ce403b078bf058"
+ },
+ "checks/social-favicon/index.html": {
+  "date": "2026-11-11",
+  "hash": "d3fc68d3302e86c9"
+ },
+ "checks/social-open-graph/index.html": {
+  "date": "2026-11-11",
+  "hash": "4e0ab7b360d4b17f"
+ },
+ "checks/social-twitter/index.html": {
+  "date": "2026-11-11",
+  "hash": "0611548a733c316f"
+ },
  "contact/index.html": {
   "date": "2026-11-10",
   "hash": "4d932671b16c1383"
@@ -1093,7 +1493,7 @@
  },
  "learn/internal-link-equity/index.html": {
   "date": "2026-11-11",
-  "hash": "47cedeb4ee4642f7"
+  "hash": "622c122d5b81351f"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-11-10",
@@ -1140,8 +1540,8 @@
   "hash": "0121eaf01b7aaa9d"
  },
  "learn/what-docket-checks/index.html": {
-  "date": "2026-11-10",
-  "hash": "d159f202319e6a3a"
+  "date": "2026-11-11",
+  "hash": "3a8b16a193629b07"
  },
  "learn/what-docket-got-wrong/index.html": {
   "date": "2026-11-10",
