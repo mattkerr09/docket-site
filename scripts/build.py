@@ -126,6 +126,7 @@ import howto_hreflang_codes  # noqa: E402
 import page_weight  # noqa: E402
 import ai_directives  # noqa: E402
 import ai_crawler_blocking  # noqa: E402
+import ai_crawler_pages  # noqa: E402
 import llms_adoption  # noqa: E402
 import priority_model  # noqa: E402
 import howto_headings  # noqa: E402
@@ -1675,6 +1676,7 @@ def main() -> int:
     pages += priority_model.build_all()
     pages += ai_directives.build_all()
     pages += ai_crawler_blocking.build_all()
+    pages += ai_crawler_pages.build_all()
     pages += llms_adoption.build_all()
     pages += noindex_ai_crawlers.build_all()
     pages += sitemaps_ai_crawlers.build_all()

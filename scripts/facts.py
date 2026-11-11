@@ -1711,6 +1711,12 @@ def blocking() -> dict:
     return json.loads(path.read_text())
 
 
+@lru_cache(maxsize=None)
+def ai_crawler_pages() -> dict:
+    """Aggregate crawler rows, generated offline from the October survey."""
+    return json.loads((ROOT / "data" / "ai-crawler-pages-2026-10.json").read_text())
+
+
 def blk(*path):
     """A value from the derived survey file, by key path."""
     node = blocking()
