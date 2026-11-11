@@ -1,0 +1,75 @@
+{
+  "notes": {
+    "report_capture": "Run capture window: 2026-11-11 13:31:42Z to 13:33:00Z. The job record supplies this window; report file timestamps differ.",
+    "plugin_read": "WordPress.org listings read: 2026-11-11 13:33:25Z to 13:34:06Z.",
+    "psi_docs_read": "Google documentation read: 2026-11-11 13:34:33Z.",
+    "psi_call": "Keyless mobile request to checkengineseo.com: 2026-11-11 13:34:42Z.",
+    "local_read": "Local source files read: 2026-11-11T13:45:38Z."
+  },
+  "files": {
+    "audit.md": {
+      "source": "/Users/matthewkerr/ops/research/articles/data-2026-11-11/ce-sample-report/audit.md",
+      "read_at": "2026-11-11T13:38:21Z",
+      "source_sha256": "8c784dffb58dc88e355f29ff369d608737bae6ee774facb6e98efd81b2ef553c"
+    },
+    "audit.json": {
+      "source": "/Users/matthewkerr/ops/research/articles/data-2026-11-11/ce-sample-report/audit.json",
+      "read_at": "2026-11-11T13:38:21Z",
+      "source_sha256": "b155f3a853b90c046bf51198d7ea60bf98b96124eb4a81deebe0fa070e0e97a6"
+    },
+    "plugins-trimmed.json": {
+      "source": "/Users/matthewkerr/ops/research/articles/data-2026-11-11/ce-wp-plugins/plugins-trimmed.json",
+      "read_at": "2026-11-11T13:38:21Z",
+      "source_sha256": "3b80bd1aa38a782a21f33411d06e5b7454be247a0ef7102fd66adf11f9163cb7"
+    },
+    "psi-doc-sentences.txt": {
+      "source": "/Users/matthewkerr/ops/research/articles/data-2026-11-11/ce-audit-api/psi-doc-sentences.txt",
+      "read_at": "2026-11-11T13:38:21Z",
+      "source_sha256": "7e107507cd53c8a49e63af76ae3e14dae83a3b91776e75284967ebff06bc0f68"
+    },
+    "psi-checkengineseo-mobile.json": {
+      "source": "/Users/matthewkerr/ops/research/articles/data-2026-11-11/ce-audit-api/psi-checkengineseo-mobile.json",
+      "read_at": "2026-11-11T13:38:21Z",
+      "source_sha256": "4ccdc73222559f898697a4cca700d1dd1c21e66eb2559e09961ec5545c7fd311"
+    },
+    "cli-audit-help.txt": {
+      "source": "/Users/matthewkerr/Projects/docket-app/backend/cli.py",
+      "read_at": "2026-11-11T13:38:21Z",
+      "source_sha256": "08a905274be36a1ca194f2faee4014301376d462152be4da9dc79f6d36b4a51e"
+    },
+    "cli-serve-help.txt": {
+      "source": "/Users/matthewkerr/Projects/docket-app/backend/cli.py",
+      "read_at": "2026-11-11T13:38:21Z",
+      "source_sha256": "08a905274be36a1ca194f2faee4014301376d462152be4da9dc79f6d36b4a51e"
+    },
+    "cli-mcp-help.txt": {
+      "source": "/Users/matthewkerr/Projects/docket-app/backend/cli.py",
+      "read_at": "2026-11-11T13:38:21Z",
+      "source_sha256": "08a905274be36a1ca194f2faee4014301376d462152be4da9dc79f6d36b4a51e"
+    },
+    "free-result-source.txt": {
+      "source": "site/pricing/index.html",
+      "rendered_from": [
+        "scripts/build.py:pricing_page",
+        "scripts/render.py:FREE_LINE"
+      ],
+      "read_at": "2026-11-11T13:45:38Z",
+      "source_sha256": "dfe35b56b13ad8eed5385b488a1bb1a0b4744fdbb44b88d52c4a3418d56ee9f4"
+    },
+    "developer-licence-source.txt": {
+      "source": "scripts/articles/pages.py",
+      "read_at": "2026-11-11T13:38:21Z",
+      "source_sha256": "1c9fd1beb153c7ec3bb932e02de1660314c7c0da21a9936d1ef8793aae40684b"
+    },
+    "cli-main-help.txt": {
+      "source": "/Users/matthewkerr/Projects/docket-app/backend/cli.py",
+      "read_at": "2026-11-11T13:41:03Z",
+      "source_sha256": "08a905274be36a1ca194f2faee4014301376d462152be4da9dc79f6d36b4a51e"
+    },
+    "psi-request-canonical.html": {
+      "source": "/Users/matthewkerr/ops/research/articles/data-2026-11-11/ce-audit-api/runpagespeed.html",
+      "read_at": "2026-11-11T13:45:38Z",
+      "source_sha256": "6b03c7a1d5212f1c91390f453ced8e4fd471a5a53bbe6f2db265810e5e8f8d53"
+    }
+  }
+}

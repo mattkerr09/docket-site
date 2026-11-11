@@ -1,0 +1,9 @@
+checkengine audit --help
+
+  -f {text,json,csv,html,md,markdown,pdf,sarif,junit}, --format {text,json,csv,html,md,markdown,pdf,sarif,junit}
+                        output format when printing to stdout (default: text).
+                        pdf requires -o since it is binary. sarif is SARIF
+                        2.1.0, which GitHub and GitLab ingest to list findings
+                        as alerts. junit is JUnit XML for a CI test-report
+                        panel: one testcase per check, failing at the same
+                        threshold as the exit code.

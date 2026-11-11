@@ -1,0 +1,14 @@
+<p>On a hosted runner it runs Docket's free version, which needs no key: the score, the count of
+problems in each area, the most important problem in full, and the exit code. That is enough to
+gate a deploy. The full findings and the SARIF and JUnit files below need a licence key, and a
+licence activates on {F.licence_covers()}. A fresh hosted runner is a new computer each time, so
+use the key on a self-hosted runner, which keeps its one activation.</p>
+
+<h2>Where the binary actually is</h2>
+
+
+<p>What the assistant gets depends on the copy. An unactivated copy returns the free version: the
+score, how many problems each of the {N_LANES} areas has, and the most important problem in full with
+its fix. With a licence the same call returns every finding and the ranked plan. There is no API key
+and no per-call charge, because the audit runs in the app you installed.</p>
+

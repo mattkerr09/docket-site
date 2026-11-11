@@ -1,0 +1,5 @@
+Source: https://developers.google.com/speed/docs/insights/v5/get-started and .../rest/v5/pagespeedapi/runpagespeed, read 2026-11-11T13:34:33Z
+The API can be used with or without an API key, although a key is recommended for frequent, automated queries.
+To use it, an API key is optional for trial runs, but needed for automated multiple queries.
+Page Summary outlined_flag The PageSpeed Insights API analyzes web page performance and provides improvement suggestions using Lighthouse.
+The API response includes performance scores, user experience metrics, Lighthouse audit results, and other relevant data in JSON format.

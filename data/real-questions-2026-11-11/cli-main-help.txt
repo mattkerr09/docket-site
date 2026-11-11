@@ -1,0 +1,1 @@
+    mcp                 serve the engine to an AI assistant over MCP (stdio)

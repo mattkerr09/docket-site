@@ -142,6 +142,9 @@ import title_ii  # noqa: E402
 import public_site_check  # noqa: E402
 import help_pages  # noqa: E402
 import check_pages  # noqa: E402
+import learn_seo_audit_report  # noqa: E402
+import best_free_seo_audit_plugins  # noqa: E402
+import learn_free_seo_audit_api  # noqa: E402
 
 
 def hub(cat: str, title: str, desc: str, h1: str, lede: str,
@@ -280,6 +283,12 @@ money.</p>
         "Learn",
         "Reference pages, written to be read rather than skimmed for keywords.",
         [
+            ("/learn/seo-audit-report/", "Read a real SEO audit report",
+             "The score, ranked fixes and limits from a capped crawl of our own site."),
+            ("/learn/free-seo-audit-api/", "Free SEO audit API options",
+             "Google's key rules, a saved quota error and the local command options."),
+            ("/best/free-seo-audit-plugins-wordpress/", "WordPress audit plugin claims",
+             "What the plugin listings say they check and which audit features are paid."),
             ("/learn/answer-extractability/", "Answer extractability: can an AI quote your page?",
              "The check reads your question-form headings and nothing under them. What that "
              "measures, what nobody can measure, and why one is a proxy for the other."),
@@ -1714,6 +1723,9 @@ def main() -> int:
     pages += public_site_check.build_all()
     pages += help_pages.build_all()
     pages += check_pages.build_all()
+    pages += learn_seo_audit_report.build_all()
+    pages += best_free_seo_audit_plugins.build_all()
+    pages += learn_free_seo_audit_api.build_all()
     pages += build_hubs()
 
     # NOT appended to `pages`: the sitemap is derived from that list, and

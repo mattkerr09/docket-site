@@ -1,0 +1,116 @@
+{
+  "url": "https://checkengineseo.com/",
+  "version": "1.3.161",
+  "started_at": "2026-11-11T13:31:42+00:00",
+  "finished_at": "2026-11-11T13:32:22+00:00",
+  "score": {
+    "verdict": "The pages this audit could reach are in good technical shape, but most of this site was never seen. This is not yet a verdict on the whole of it.",
+    "speaks_for_site": false
+  },
+  "plan": [
+    {
+      "check_id": "brand.colour_drift",
+      "title": "3 groups of near-identical colours in your CSS",
+      "detail": "These are colours close enough that no visitor could tell them apart, defined separately. That is what brand drift looks like in a stylesheet: a value gets copied and nudged rather than referenced, and a year later the brand blue has four spellings. Palette size is not the problem. A design system legitimately defines hundreds of values. Two of them being the same colour is.",
+      "fix": "Check whether each value in a group is doing a different job. If they are steps in an elevation or shade ramp (a surface and the surface above it) or the same colour tuned for a different theme, such as dark mode or high contrast, that is deliberate and there is nothing to fix; this audit cannot tell that apart from the same colour written twice. If they are two spellings of one colour, keep the one already referenced most often and point the others at it, so the next change moves all of them together.",
+      "urls": [],
+      "tool_limit": false,
+      "rank": 1,
+      "phase": "Build"
+    },
+    {
+      "check_id": "ai.weak_sameas",
+      "title": "Only 1 recognised profile in sameAs",
+      "detail": "More corroborating profiles make the entity easier for a model to resolve confidently. Currently linked: github.com.",
+      "fix": "Add the remaining official profiles. LinkedIn and Google Business Profile carry the most weight for local businesses.",
+      "urls": [
+        "https://checkengineseo.com/"
+      ],
+      "tool_limit": false,
+      "rank": 2,
+      "phase": "Polish"
+    },
+    {
+      "check_id": "security.no_hsts",
+      "title": "No HSTS header",
+      "tool_limit": false,
+      "rank": 3,
+      "phase": "Polish"
+    },
+    {
+      "check_id": "cvr.message_mismatch",
+      "title": "1 page promises one thing in search and another on the page",
+      "detail": "The title tag and the H1 share almost no words, so a visitor who clicks expecting one thing lands on something that reads as different. Example. Title: \"Check Engine: SEO audit for Mac and Windows\" vs headline: \"Everything that's wrong. In the order to fix it.\"",
+      "fix": "Make the on-page headline restate the promise from the title. They do not have to match word for word, but they must clearly be about the same thing.",
+      "urls": [
+        "https://checkengineseo.com/"
+      ],
+      "tool_limit": false,
+      "rank": 4,
+      "phase": "Polish"
+    },
+    {
+      "check_id": "security.missing_headers",
+      "title": "Missing 1 baseline security header",
+      "tool_limit": false,
+      "rank": 5,
+      "phase": "Polish"
+    },
+    {
+      "check_id": "audit.unreliable_crawl",
+      "title": "Only part of the site was crawled",
+      "tool_limit": true,
+      "rank": 6,
+      "phase": "Polish",
+      "fix": "This audit found 436 URLs on this site and reached 60 of them. Re-run with a page limit of at least 600 to judge the site as a whole. The findings below stand on their own regardless."
+    },
+    {
+      "check_id": "onpage.description_short",
+      "title": "1 meta description is very short",
+      "tool_limit": false,
+      "rank": 7,
+      "phase": "Polish"
+    },
+    {
+      "check_id": "index.orphans_unchecked",
+      "title": "Orphan pages could not be checked on this crawl",
+      "tool_limit": true,
+      "rank": 8,
+      "phase": "Polish"
+    },
+    {
+      "check_id": "mar.stack",
+      "title": "1 marketing and analytics tool detected",
+      "tool_limit": false,
+      "rank": 9,
+      "phase": "Polish"
+    },
+    {
+      "check_id": "links.unverified_external",
+      "title": "3 outbound links could not be checked",
+      "tool_limit": true,
+      "rank": 10,
+      "phase": "Polish"
+    },
+    {
+      "check_id": "ai.unmeasurable_optout",
+      "title": "One AI visibility control cannot be checked from outside, including by this audit",
+      "tool_limit": true,
+      "rank": 11,
+      "phase": "Polish"
+    }
+  ],
+  "projection": {
+    "excluded_note": "4 findings are excluded from that: they describe something this audit could not measure rather than anything you did wrong, so there are no points to recover."
+  },
+  "stats": {
+    "pages_crawled": 60
+  },
+  "external": [
+    {
+      "key": "psi",
+      "ran": false,
+      "note": "PageSpeed Insights quota exceeded. Without an API key the quota is shared with every other anonymous caller and is frequently exhausted. A free key from Google Cloud raises it to 25,000 requests a day. Paste one into Settings."
+    }
+  ]
+}

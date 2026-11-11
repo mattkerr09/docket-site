@@ -1,0 +1,13 @@
+usage: checkengine serve [-h] [--host HOST] [--port PORT]
+                         [--log-level LOG_LEVEL] [--offline]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --host HOST           interface to bind (default 127.0.0.1, loopback). The
+                        API has no authentication because it is only meant to
+                        be reachable from this machine. Binding it anywhere
+                        else exposes audit control and results to whoever can
+                        reach that address.
+  --port PORT
+  --log-level LOG_LEVEL
+  --offline             send no anonymous app counts
