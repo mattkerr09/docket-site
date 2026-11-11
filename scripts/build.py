@@ -141,6 +141,7 @@ import ai_questions  # noqa: E402
 import title_ii  # noqa: E402
 import public_site_check  # noqa: E402
 import help_pages  # noqa: E402
+import check_pages  # noqa: E402
 
 
 def hub(cat: str, title: str, desc: str, h1: str, lede: str,
@@ -461,6 +462,8 @@ def checks_page() -> Path:
 <p class="lede">Docket runs {len(rows)} checks across {len(by_lane)} areas. This list is
 generated from the shipped build, so it cannot drift from what the tool actually does. Run
 <code>docket checks</code> and you will get the same list.</p>
+
+<p><a href="/checks/">Read what each check measures</a>, including its limits and what to review next.</p>
 
 <p>Each check produces a finding only when there is something to report, and each finding
 carries what it costs you, how much work the fix is, and the markup to paste. Areas that do
@@ -1710,6 +1713,7 @@ def main() -> int:
     pages += title_ii.build_all()
     pages += public_site_check.build_all()
     pages += help_pages.build_all()
+    pages += check_pages.build_all()
     pages += build_hubs()
 
     # NOT appended to `pages`: the sitemap is derived from that list, and

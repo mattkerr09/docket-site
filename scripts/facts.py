@@ -1896,6 +1896,12 @@ def subdomain_own_sites() -> dict:
     return json.loads((ROOT / "data" / "subdomain-own-sites-2026-11-10.json").read_text())
 
 
+@lru_cache(maxsize=None)
+def check_pages() -> dict:
+    """Check reference and source evidence at the pinned engine revision."""
+    return json.loads((ROOT / "data" / "check-pages-2026-11-11.json").read_text())
+
+
 def index_reached() -> int:
     return index()["summary"]["n"]
 
