@@ -69,6 +69,31 @@ def past_releases() -> set:
         return set()
 
 
+#: A dated run summary ("Check Engine 1.3.161 audited checkengineseo.com on 11 November 2026") records which build
+#: made a real run on a real day, so it keeps naming that build after the next release. It is exempt only while its
+#: version is the one the run's own audit.json recorded (data/real-questions-*/audit.json, the same file the page
+#: derives it from). A typed version, or any other old version in that paragraph or elsewhere on the page, still fails.
+RUN_SUMMARY = re.compile(r'(?is)<p\b[^>]*data-run-summary="true"[^>]*>.*?</p>')
+
+
+def recorded_run_versions() -> set:
+    found = set()
+    for path in (SITE.parent / "data").glob("real-questions-*/audit.json"):
+        try:
+            found.add(str(json.loads(path.read_text(encoding="utf-8"))["version"]))
+        except (OSError, ValueError, KeyError):
+            continue
+    return found
+
+
+def without_recorded_runs(text: str, recorded: set) -> str:
+    """`text` with each run-summary paragraph removed whose every version is one a run recorded."""
+    def keep_or_drop(match):
+        versions = set(_VERSION.findall(match.group(0)))
+        return " " if versions and versions <= recorded else match.group(0)
+    return RUN_SUMMARY.sub(keep_or_drop, text)
+
+
 def stale(rel: str, text: str, release: str, past: set) -> list:
     """Versions on page `rel` that are neither the release nor a verified past release on the history page."""
     allowed = past if rel == HISTORY_PAGE else set()
@@ -82,6 +107,11 @@ def _self_test() -> int:
           and stale(HISTORY_PAGE, text + " and 1.3.5", "1.3.110", past) == ["1.3.5"]
           and stale("about/index.html", text, "1.3.110", past) == ["1.3.80", "1.3.97"]
           and not stale("about/index.html", "1.3.110", "1.3.110", past))
+    summary = '<p data-source="audit.json" data-run-summary="true">Check Engine 1.3.109 audited a site.</p>'
+    ok = (ok and not stale("x", without_recorded_runs(summary, {"1.3.109"}), "1.3.110", past)
+          and stale("x", without_recorded_runs(summary, {"1.3.108"}), "1.3.110", past) == ["1.3.109"]
+          and stale("x", without_recorded_runs("<p>Check Engine 1.3.109 audited.</p>", {"1.3.109"}), "1.3.110", past) == ["1.3.109"]
+          and stale("x", without_recorded_runs(summary.replace("</p>", " And 1.3.5.</p>"), {"1.3.109"}), "1.3.110", past) == ["1.3.109", "1.3.5"])
     if not ok:
         print("VERSION FAIL — self-test: the history-page exemption is not exactly the listed releases")
     return 0 if ok else 1
@@ -103,6 +133,7 @@ def main() -> int:
     problems: list[str] = []
     seen = 0
     past = past_releases()
+    recorded = recorded_run_versions()
 
     for path in pages:
         raw = path.read_text(encoding="utf-8", errors="replace")
@@ -110,7 +141,7 @@ def main() -> int:
         # a JSON-LD softwareVersion is the worst kind and both are
         # stripped by `visible()`. The pattern is narrow enough that CSS
         # and script bodies do not trip it.
-        text = raw
+        text = without_recorded_runs(raw, recorded)
         rel = path.relative_to(SITE)
         seen += len(set(_VERSION.findall(text)))
         for match in stale(str(rel), text, release, past):
