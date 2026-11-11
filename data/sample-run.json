@@ -1,12 +1,12 @@
 {
-  "engine": "1.3.160",
-  "recorded": "2026-11-10",
-  "report_date": "2026-11-10",
+  "engine": "1.3.163",
+  "recorded": "2026-11-11",
+  "report_date": "2026-11-11",
   "url": "https://builtbykerr.com/",
   "score": 94,
   "grade": "A",
-  "pages": 74,
-  "seconds": 34,
+  "pages": 86,
+  "seconds": 36,
   "issues": 19,
   "counts": {
     "high": 1,
@@ -20,12 +20,12 @@
   "image": {
     "src": "/assets/sample-report-cover.webp",
     "width": 1280,
-    "height": 959
+    "height": 918
   },
   "branded_image": {
     "src": "/assets/sample-report-branded-cover.webp",
     "width": 1280,
-    "height": 959,
+    "height": 918,
     "name": "Your agency name"
   },
   "site_brand": "checkengine"
