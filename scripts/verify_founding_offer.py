@@ -4,12 +4,12 @@
     python3 scripts/verify_founding_offer.py              # the built site (deploy.sh runs it)
     python3 scripts/verify_founding_offer.py --self-test
 
-WHY. CEO, 21 October 2026: FOUNDINGDOCKET (50% off, limit 25) expires at 2026-11-25T01:26:53Z, and every
-founding-price line on the site, the auto-applied code and the ads must switch off by then. render.py builds the
+WHY. The CEO's 11 November 2026 read-back confirms FOUNDINGDOCKET takes a flat 950 cents off this product
+and still expires at 2026-12-01T07:59:59Z. Every founding-price line, the auto-applied code and the ads must
+switch off by then. render.py builds the
 founding lines only while founding_open(), and the page removes its own at the moment. This is the other half: a
 deploy that would still show the founding price once the code has expired, or once Dodo's times_used has reached its
-usage_limit, fails. A checkout charging $349 under a page that promises $174.50 is a price claim a buyer can prove
-wrong.
+usage_limit, fails. The offer's price and dates must agree with the checkout.
 
 WHAT FAILS, on the built site:
   - it shows the founding offer (the founding price, the code or the words "founding price" in a page's visible
@@ -77,8 +77,8 @@ def problems(files: dict, dodo, now: dt.datetime, ends_at: str, price: str, code
     """(failures, notes). `dodo` is the code's Dodo record, "missing" for a 404, or None when it can't be read.
 
     With `end_day` ("24 November"), an open offer also has to say when it ends wherever its price is shown
-    (CEO, 2026-11-02: "for the first 25 buyers" with no date, while the code ends on a fixed day). From the Black Friday
-    wording of the same day, "From <after_day> it's $59" dates it too."""
+    (CEO, 2026-11-02: "for the first 25 buyers" with no date, while the code ends on a fixed day).
+    A line giving the price from `after_day` also dates the offer."""
     fails, notes = [], []
     shown = [(n, why) for n, t in sorted(files.items()) if (why := shows_founding(n, t, price, code))]
     expires = when(ends_at)

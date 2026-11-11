@@ -1,30 +1,23 @@
-# Check Engine price on 1 December 2026
+# Check Engine price after the 11 November 2026 change
 
-The host first confirms that Dodo charges $39 without FOUNDINGDOCKET. November
-keeps PRICE at 59 for the live checkout check. LATER_PRICE stays 39 and LATER_STR
-is derived from it. FOUNDING_NOW stays $29.50 until the flip.
+Done on 11 November, from the CEO's Dodo read-back at 15:48Z. PRICE is 39.
+LATER_PRICE stays 39 and LATER_STR stays derived from it. FOUNDING_CODE takes
+a flat FOUNDING_OFF_CENTS of 950 off this product. FOUNDING_NOW is derived
+from that code. Buy applies it for the buyer. CHECKOUT_HELP uses PRICE_STR
+for the full checkout price. Both prices are below BNPL_MIN_CENTS, so PAY4,
+BNPL_NOTE and the other pay-in-four text are empty. In offer.json, instalments
+and founding.instalment_cents are null. checkout_price_cents is 3900.
 
-1. Set render.PRICE to LATER_PRICE after Dodo changes. Keep PRICE_PREVIOUS as
-   None. PRICE_STR and PRICE_TODAY then describe the $39 checkout. Comparison
-   figures already use LATER_PRICE and keep the same values.
-2. Keep the expired FOUNDING_ENDS_AT. FOUNDING_OPEN must be false. Remove the
-   CHECKOUT_HELP sentence about entering FOUNDING_CODE when checkout shows $59.
-   FOUNDING_LINE, founding_price_sentence and FOUNDING_MOUNT must produce no
-   launch offer. FOUNDING_NOW remains a derived old-offer value with no display.
-   The host checks that the hub has stopped applying the expired code.
-3. Keep BNPL_MIN_CENTS at 5001 and the BNPL_* provider constants. At $39, PAY4,
-   PAY4_BUY, PAY4_FOUNDING, BNPL_NOTE and BNPL_NOTE_HTML must produce no text.
-   In offer.json, price_cents becomes 3900. founding, after_launch and instalments
-   become null. Keep schema, currency, refund_days, checkout_url, buy_url and
-   sample_report_url with their existing meanings. Keep the added
-   later_price_cents at 3900 and later_from at 2026-12-01.
-4. Rebuild with TZ=UTC python3 scripts/build.py. Check heroes, comparisons,
-   buttons, FAQs, llms.txt and the assistant factbase. JSON-LD must have the
-   current $39 Offer, with the expired launch Offer removed. Keep the historical
-   corrections and the bundle's separate prices as recorded.
-5. Update test_launch_price_copy.py and test_december_price.py for the completed
-   flip. Their November checks pin PRICE to 59 and the two dated Offers. Run
-   those tests, lint.py site, verify_numbers.py, verify_derived_data.py,
-   verify_price_claims.py, verify_founding_offer.py --offline and
-   verify_structured_data_matches_page.py. The host runs the live checkout and
-   founding-offer checks, reviews the change, and ships it.
+1. At 08:00Z on 1 December, FOUNDING_OPEN is false by the clock. Keep
+   FOUNDING_ENDS_AT at 2026-12-01T07:59:59Z and rebuild with
+   TZ=UTC python3 scripts/build.py. The launch lines, CHECKOUT_HELP and launch
+   Offer drop out. JSON-LD keeps one paid Offer at 39.00. write_offer sets
+   founding to null. after_launch and later_* can then go. Check heroes,
+   buttons, FAQs and llms.txt. Run test_december_price.py and the price gates,
+   then lint.py site.
+2. APP_LIST_PRICE_CENTS stays 5900 for installed builds 1.3.139 through
+   1.3.161. They trust the live offer only when price_cents matches their own
+   expected list price. Move APP_LIST_PRICE_CENTS to PRICE * 100 only after
+   the host says release 1.3.162, which expects 3900, has reached users.
+   Then price_cents and the app agree again at 3900.
+3. Re-record the Windows still once after that app release reaches users.

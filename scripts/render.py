@@ -721,14 +721,13 @@ PLATFORMS = (f"{MACS}, {MACOS} or later, and 64-bit Windows" if WINDOWS
 # Frog ($279/yr = $23.25/mo; 15 x 23.25 = $348.75), so Docket is cheaper than
 # Screaming Frog from month 16 onwards. The prose on /download/ says that now.
 #
-# $59 FROM 2026-11-02 18:21Z. Matthew, in chat, relayed by the CEO: "$30-60 each for any of these programs would be
-# fine", for "numbers and volume", then one price each: Crisp $29, Outlier $49, Docket $59, with the founding offers
-# kept. Read back from Dodo at 18:22:47Z: product 5900, FOUNDINGDOCKET 50%, ALLTHREE -$38, FOUNDINGBUNDLE -$87.50.
+# CEO's Dodo read-back, 2026-11-11 at 15:48Z: product 3900 USD cents,
+# FOUNDINGDOCKET flat 950 cents off, restricted to this product.
 # PRICE remains the checkout list price while the launch code is active.
 # Displayed launch copy uses FOUNDING_NOW. Comparison arithmetic uses LATER_PRICE.
-PRICE = 59
-#: LATER_PRICE is what the product costs from FOUNDING_AFTER_DAY. On that day
-#: the host flips PRICE to LATER_PRICE. See docs/DECEMBER_PRICE_FLIP.md.
+PRICE = 39
+#: LATER_PRICE is also the current list price. The launch code expires at
+#: FOUNDING_ENDS_AT. See docs/DECEMBER_PRICE_FLIP.md.
 LATER_PRICE = 39
 LATER_STR = f"${LATER_PRICE}"
 
@@ -741,41 +740,28 @@ LATER_STR = f"${LATER_PRICE}"
 #: is CLOSED. A transition window left open is a gate that has stopped checking.
 PRICE_PREVIOUS = None
 
-#: The founding-offer discount, as a percentage, and the price it produces.
-#:
-#: Read from Dodo 2026-09-08: code FOUNDING1, 50% off, 3 of 25 used, expires
-#: 2026-11-25, unrestricted. DERIVED rather than typed because the banner is the
-#: one price on this site with no generator behind it: founding.js claims prices
-#: come "from the mount if a site states them, else from the API", and the
-#: worker's /founding returns no price field at all, so the mount is the only
-#: source. Typed, it silently kept saying $199/$99.50 after the site moved to
-#: $349 and was the last thing on the page contradicting every other price.
-FOUNDING_PCT = 50
+#: The flat code from the CEO's 2026-11-11 read-back. Derive the launch price
+#: from cents so the page, bar and app offer all agree with the checkout.
+FOUNDING_OFF_CENTS = 950
 FOUNDING_WAS = f"${PRICE}"
-FOUNDING_NOW = f"${PRICE * (100 - FOUNDING_PCT) / 100:.2f}"
+FOUNDING_NOW = f"${(PRICE * 100 - FOUNDING_OFF_CENTS) / 100:.2f}"
 PRICE_STR = f"${PRICE}"
-#: The code a founding buyer types, and how many seats it had. Read from Dodo
-#: 2026-09-24 by ~/ops/bin/discount-guardrail-gate.py: FOUNDINGDOCKET, 50% off,
-#: used 0 of limit 25, restricted to this product, expiring 2026-11-25; and by
-#: founding-bar-gate.py: Dodo charges $349 at 50% = $174.50. The checkout's own
-#: wording for the field, read on the live session the same day: "Have a
-#: discount code?".
+#: Product-restricted flat code, confirmed by the CEO on 2026-11-11.
+#: The checkout calls its field "Have a discount code?".
 FOUNDING_CODE = "FOUNDINGDOCKET"
 #: No cap since 2026-11-02 ("Everyone, all of November"), so no page says "first N buyers" any more.
 FOUNDING_SEATS = None
-#: What the sale is called on every page, in Matthew's framing. Not "50% off": $59 has not been charged to anyone yet,
-#: so a discount against it would be a former price nobody paid (CEO, 2026-11-02, on the FTC's former-price rules).
+#: The launch offer's name on every page, in Matthew's framing. Never "50% off": a discount against a price nobody paid
+#: is a former price (CEO, 2026-11-02, on the FTC's former-price rules); the launch code is a flat $9.50 off $39.
 SALE_NAME = "Launch price"
-#: When the founding offer stops: FOUNDINGDOCKET's expires_at, read from Dodo on 2026-10-21 (50% off, 0 of 25 used,
-#: restricted to Docket). CEO, 2026-10-21: every founding-price line, the auto-applied code and the ads switch off by
+#: The flat code's expiry is unchanged in the CEO's 2026-11-11 read-back.
+#: Every founding-price line, the auto-applied code and the ads switch off by
 #: that moment. So every founding line this site writes (the note under each Buy button, the guide strips, the FAQ
 #: answers, llms.txt, prices.json and the bar's mount) is built only while FOUNDING_OPEN. A deployed page cannot
 #: rebuild itself, so the note and the strip also carry data-founding-until and remove themselves in the browser at
 #: the moment; the first build after it drops the rest. verify_founding_offer.py fails any deploy that still shows the
 #: founding price after the moment, or once Dodo's times_used reaches the limit: then set FOUNDING_SOLD_OUT = True.
-#: 2026-11-02, Matthew via the CEO: "Make it go for the whole month of November and say it's like a Black Friday thing
-#: too", then "Everyone, all of November": FOUNDINGDOCKET read from Dodo at 18:42Z, 50%, usage_limit 100000, expires
-#: 2026-12-01T07:59:59Z (the end of 30 November in US Pacific time). The lead agent's /founding answers unlimited.
+#: The code ends on 30 November in US Pacific time. The lead agent's /founding answers unlimited.
 FOUNDING_ENDS_AT = "2026-12-01T07:59:59Z"
 FOUNDING_SOLD_OUT = False
 
@@ -845,7 +831,7 @@ PRICE_COMPACT = (f"{FOUNDING_NOW} once through {FOUNDING_END_DAY}, then {LATER_S
 #: own schema.price_not_visible check found it, which is the strongest argument
 #: for the check that exists.
 BETA_FREE = False
-PRICE_TODAY = 0 if BETA_FREE else (PRICE * (100 - FOUNDING_PCT) / 100 if FOUNDING_OPEN else PRICE)
+PRICE_TODAY = 0 if BETA_FREE else ((PRICE * 100 - FOUNDING_OFF_CENTS) / 100 if FOUNDING_OPEN else PRICE)
 #: The qualifier that travels with every mention of the price.
 BETA_NOTE = (f"{RELEASE} is free while it is in beta; {PRICE_STR} applies "
              f"from v1.0." if BETA_FREE else "")
@@ -940,8 +926,8 @@ CHECKOUT = ("https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79"
 #: has seen them. Restored exactly as it was.
 BNPL_LIVE = True
 #: Klarna's and Afterpay's floor on Dodo, in cents. A price under it gets no pay-in-four line anywhere, because the
-#: checkout would not offer it. At $59 the full price clears it ($59 = 4 x $14.75); the founding price of $29.50 does
-#: not, so from 2026-11-02 the founding price is shown without an instalment.
+#: checkout would not offer it. The CEO's 2026-11-11 read-back puts both the $39 list price and the
+#: $29.50 flat-code price under the floor, so neither shows an instalment.
 BNPL_MIN_CENTS = 5001
 #: The refund window, stated beside every buy button and in /offer.json, which
 #: the app's activation screen reads.
@@ -969,25 +955,22 @@ BNPL_NOTE = (
 #: heading, strong, callout title), so the font follows by construction and
 #: never has to be matched by hand.
 #:
-#: The founding price does not split evenly ($174.50 / 4 = $43.625), so its
+#: The flat-code price does not split evenly, so its
 #: instalment is rounded UP to the cent: no payment is ever more than the
 #: figure shown. Comparison tables and prose are not prices to pay and are
 #: left alone.
 BNPL_FOUNDING_INSTALMENT = (
-    f"${math.ceil(PRICE * (100 - FOUNDING_PCT) / 4) / 100:.2f}")
+    f"${math.ceil((PRICE * 100 - FOUNDING_OFF_CENTS) / 4) / 100:.2f}")
 #: Non-breaking inside "or 4 × $87.25": a phone may wrap before "or", never
 #: between "4 ×" and the amount (measured at 375px on 2026-09-28, it did).
 PAY4 = (f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_INSTALMENT}"
         if BNPL_LIVE and PRICE_TODAY * 100 >= BNPL_MIN_CENTS else "")
-BNPL_FOUNDING_OK = BNPL_LIVE and PRICE * (100 - FOUNDING_PCT) >= BNPL_MIN_CENTS
+BNPL_FOUNDING_OK = BNPL_LIVE and PRICE * 100 - FOUNDING_OFF_CENTS >= BNPL_MIN_CENTS
 PAY4_FOUNDING = (f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_FOUNDING_INSTALMENT}"
                  if BNPL_FOUNDING_OK else "")
-#: ⚠️ THE INSTALMENT BESIDE A BUY BUTTON IS THE ONE THE CHECKOUT BEHIND IT OFFERS. Matthew's full audit, 2026-11-04,
-#: row 29: while the sale ran, the hero read "$59 once · or 4 × $14.75" and "Or four payments of $14.75 with Klarna or
-#: Afterpay" beside the $29.50 line, but Buy opens a checkout with the sale code applied, and at $29.50 Dodo offers
-#: no pay-in-four. So while a sale under BNPL_MIN_CENTS is open, every price a visitor is asked to pay (the buy
-#: block, the buy strip, the nav button, the free tools' price line) carries no instalment.
-#: Comparison tables state the list price without instalments. The December price is also under the floor.
+#: Buy applies the flat code. While that price is under BNPL_MIN_CENTS, every
+#: buy block, strip and nav button carries no instalment. The list price from
+#: the CEO's 2026-11-11 read-back is also under the floor.
 SALE_UNDER_FLOOR = FOUNDING_OPEN and not BNPL_FOUNDING_OK
 PAY4_BUY = "" if SALE_UNDER_FLOOR else PAY4
 #: The same sentence for a page, with its instalment set in full-strength text
@@ -997,11 +980,8 @@ BNPL_NOTE_HTML = BNPL_NOTE.replace(
     f"Or four payments of {BNPL_INSTALMENT}",
     f'<strong class="pay4-em">Or four payments of {BNPL_INSTALMENT}</strong>', 1)
 
-#: Buy has applied the code itself since the hub's /buy (2026-09-28); the
-#: rehearsal of 2026-09-30 opened it and Dodo showed $174.50 with the code
-#: already in. Typing it is only the fallback, for a checkout that opens at
-#: the full price (the hub falls back to the plain link if Dodo is down).
-#: Only checkout help quotes PRICE_STR while the launch offer is open.
+#: Buy applies the flat code. The CEO's 2026-11-11 read-back confirms $39
+#: before the code and $29.50 after it. Keep the manual fallback while open.
 CHECKOUT_HELP = (f"Buy applies the code <code>{FOUNDING_CODE}</code> for you; if the checkout shows {PRICE_STR}, "
                  f"enter it under &lsquo;Have a discount code?&rsquo;." if FOUNDING_OPEN else "")
 FOUNDING_LINE = CHECKOUT_HELP
@@ -2066,10 +2046,9 @@ FOUNDING_SWITCH = ('<script>(function(){var end=Date.parse("' + FOUNDING_ENDS_AT
                    'month:"long",hour:"numeric",minute:"2-digit"});}catch(x){}});return;}'
                    'document.querySelectorAll("[data-founding-until]").forEach(function(e){e.remove();});})();'
                    '</script>\n')
-#: The bar reads "Sale price: $29.50, then $59 · until Nov 30". The mount was bare for an hour on 2026-11-02 while
-#: founding.js still struck data-was through (a former price nobody had paid) and computed four payments from data-now
-#: under Dodo's $50.01 floor; lead-agent 0eafcffe/5fdcc840 (read 2026-11-02) prints data-was as "then $59" and computes
-#: no instalment under 5001 cents. data-pay4 is sent only when the sale price clears the floor.
+#: The bar gets the flat-code price and the later list price from these constants.
+#: Both are under Dodo's floor in the CEO's 2026-11-11 read-back. Keep data-pay4
+#: guarded so it is sent only when the launch price clears the floor.
 FOUNDING_MOUNT = ((f'<div data-founding data-was="{LATER_STR}" data-now="{FOUNDING_NOW}"'
                    + (f' data-pay4="or 4 &times; {BNPL_FOUNDING_INSTALMENT}"' if BNPL_FOUNDING_OK else '')
                    + ' hidden></div>\n' + FOUNDING_SWITCH

@@ -14,11 +14,14 @@ import tempfile
 from unittest.mock import patch
 
 import render as R
+from build import APP_LIST_PRICE_CENTS
 from test_rename_brand import Page, build, json_values
 from verify_structured_data_matches_page import visible, blocks as schema_blocks
 
 ROOT = Path(__file__).resolve().parent.parent
-BASE = "fe69ad6b0eaa8232284345ce7cc60dbe556ec8e1"
+BASE = "31f4693d7f73a39d7dc155f5d544ef62bb486132"
+# Keep recorded image-compression ranges and decimal research figures.
+STALE_PROMO = re.compile(r"(?<![\d.\u2013-])50%|50%\s*off|Black Friday|\bsale price\b", re.I)
 PAY4 = re.compile(r"Klarna|Afterpay|four payments|pay in four|instalment|(?:4|four)\s*[×x]\s*\$", re.I)
 
 
@@ -52,6 +55,9 @@ def current_copy(raw, path):
 def check_site(site):
     launch = R.founding_price_sentence()
     help_line = " ".join(html.unescape(re.sub(r"<[^>]+>", "", R.CHECKOUT_HELP)).split())
+    assert help_line == (f"Buy applies the code {R.FOUNDING_CODE} for you; if the checkout shows {R.PRICE_STR}, "
+                         "enter it under ‘Have a discount code?’."), help_line
+    assert "$59" not in help_line
     price_pages = heroes = fallback_count = 0
     for path in sorted(site.rglob("*.html")):
         raw = path.read_text()
@@ -62,11 +68,13 @@ def check_site(site):
                 assert attrs["data-now"] == R.FOUNDING_NOW, path
                 assert "data-pay4" not in attrs, path
         fallback_count += text.count(help_line)
-        assert not re.search(r"(?<!SEOptimer Max )\$59(?![\d.])(?! a month)(?!/mo)", text.replace(help_line, "")), path
+        assert not re.search(r"(?<!SEOptimer Max )\$59(?![\d.])(?! a month)(?!/mo)", text), path
+        assert not STALE_PROMO.search(text), path
         assert not PAY4.search(text), (path, PAY4.search(text))
         for block in blocks:
             for value in json_values(block):
                 assert not re.search(r"(?<!SEOptimer Max )\$59(?![\d.])(?! a month)(?!/mo)", value), (path, value)
+                assert not STALE_PROMO.search(value), (path, value)
                 assert not PAY4.search(value), (path, value)
         if R.FOUNDING_NOW in text or R.LATER_STR in text:
             assert launch in text, (path, "price without full launch sentence")
@@ -86,21 +94,25 @@ def check_site(site):
     llms = " ".join((site / "llms.txt").read_text().split())
     assert launch in llms
     assert help_line in llms
-    assert not re.search(r"(?<!SEOptimer Max )\$59(?![\d.])(?! a month)(?!/mo)", llms.replace(help_line, ""))
+    assert not re.search(r"(?<!SEOptimer Max )\$59(?![\d.])(?! a month)(?!/mo)", llms)
+    assert not STALE_PROMO.search(llms)
     assert not PAY4.search(llms)
     fallback_count += llms.count(help_line)
     offer = json.loads((site / "offer.json").read_text())
     before = json.loads(baseline("site/offer.json"))
-    assert {key: offer[key] for key in before} == before, offer
-    assert set(offer) - set(before) == {"later_price_cents", "later_from"}
+    expected = dict(before, instalments=None, checkout_price_cents=R.PRICE * 100)
+    assert offer == expected, offer
+    assert offer["price_cents"] == APP_LIST_PRICE_CENTS == 5900
+    assert offer["checkout_price_cents"] == 3900
+    assert offer["instalments"] is None
+    assert offer["founding"]["price_cents"] == R.PRICE * 100 - R.FOUNDING_OFF_CENTS == 2950
+    assert offer["founding"]["instalment_cents"] is None
     assert offer["later_price_cents"] == R.LATER_PRICE * 100
     assert offer["later_from"] == "2026-12-01"
-    # Existing instalments is app protocol data, preserved above. All prose is checked.
     for key, value in offer.items():
-        if key == "instalments":
-            continue
         for text in json_values(value):
             assert not re.search(r"(?<!SEOptimer Max )\$59(?![\d.])(?! a month)(?!/mo)", text), (key, text)
+            assert not STALE_PROMO.search(text), (key, text)
             assert not PAY4.search(text), (key, text)
     return price_pages, heroes, fallback_count
 
@@ -135,9 +147,16 @@ def check_comparisons(site):
 
 
 def main():
-    assert R.PRICE == 59
+    assert R.PRICE == 39
     assert R.LATER_PRICE == 39
+    assert R.FOUNDING_OFF_CENTS == 950
     assert R.FOUNDING_NOW == "$29.50"
+    assert R.FOUNDING_NOW == f"${R.PRICE - R.FOUNDING_OFF_CENTS / 100:.2f}"
+    assert R.PRICE_TODAY == 29.5
+    assert not R.BNPL_FOUNDING_OK
+    for name in ("PAY4", "PAY4_BUY", "PAY4_FOUNDING", "BNPL_NOTE", "BNPL_NOTE_HTML"):
+        assert getattr(R, name) == "", name
+    assert "data-pay4" not in R.FOUNDING_MOUNT
     assert R.founding_price_sentence() == "Launch price: $29.50 once, through 30 November. From 1 December: $39."
     assert (ROOT / "data/corrections.json").read_bytes() == baseline("data/corrections.json")
     assert (ROOT / "scripts/articles/corrections.py").read_bytes() == baseline("scripts/articles/corrections.py")
@@ -161,10 +180,10 @@ def main():
                                     env=env, capture_output=True, text=True)
             assert result.returncode == 0, script + "\n" + result.stdout + result.stderr
             print(f"PASS python3 scripts/{script}" + (" " + " ".join(args) if args else ""))
-    print(f"PASS {counts[0]} priced pages, {counts[1]} hero price blocks, {counts[2]} checkout-help copies of $59")
-    print("PASS offer.json existing fields unchanged; later_price_cents=3900 and later_from=2026-12-01 added")
+    print(f"PASS {counts[0]} priced pages, {counts[1]} hero price blocks, {counts[2]} checkout-help copies of {R.PRICE_STR}")
+    print("PASS offer.json price_cents=5900, checkout_price_cents=3900, instalments=null; all other fields match base")
     print("PASS historical corrections preserved; current price copy has no instalment claims")
-    print("PASS PRICE=59, LATER_PRICE=39, FOUNDING_NOW=$29.50; comparisons use LATER_PRICE")
+    print("PASS PRICE=39, LATER_PRICE=39, FOUNDING_OFF_CENTS=950, FOUNDING_NOW=$29.50; comparisons use LATER_PRICE")
     print("SKIP brand image rendering: DOCKET_SKIP_BRAND_ASSETS=1 TZ=UTC")
     print("OK")
 

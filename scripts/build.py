@@ -932,13 +932,22 @@ def write_sitemap(pages: list[Path]) -> None:
     LASTMOD.write_text(json.dumps(store, indent=1, sort_keys=True) + "\n", encoding="utf-8")
 
 
+# Installed app builds 1.3.139 through 1.3.161 trust offer.json only when this
+# matches their expected list price. The CEO's 2026-11-11 read-back changed the
+# checkout to 3900 cents with a flat 950-cent code. Keep this compatibility value
+# until the host confirms that app release 1.3.162, which expects 3900, has reached
+# users. Then move it to PRICE * 100.
+APP_LIST_PRICE_CENTS = 5900
+
+
 def write_offer() -> None:
     """/offer.json: the price and offer the app's activation screen shows.
 
     The CEO's revenue audit, 2026-09-28: about 3,361 downloads, no sales, and
     the only screen an unactivated copy shows had no price and no way to buy.
-    The app now shows both. The list price comes from its own
-    EXPECTED_PRICE_CENTS (held to the live checkout by a test). The founding
+    The app now shows both. Its EXPECTED_PRICE_CENTS must match
+    APP_LIST_PRICE_CENTS for it to accept this file. checkout_price_cents
+    carries the live list price from the CEO's 2026-11-11 read-back. The founding
     offer ENDS, so a code baked into a release would keep being advertised by
     every installed copy after it stopped working. This file carries the live
     offer instead, generated from the same constants as every buy button on
@@ -946,15 +955,16 @@ def write_offer() -> None:
     read it.
     """
     from render import (BNPL_FOUNDING_OK, BNPL_LIVE, BNPL_MIN_CENTS, CHECKOUT, FOUNDING_CODE, FOUNDING_OPEN,
-                        FOUNDING_ENDS_AT, FOUNDING_END_DAY, FOUNDING_AFTER_DAY, FOUNDING_PCT, HAS_SAMPLE, LATER_PRICE, LATER_STR, REFUND_DAYS, SALE_NAME, SAMPLE_REPORT)
+                        FOUNDING_ENDS_AT, FOUNDING_END_DAY, FOUNDING_AFTER_DAY, FOUNDING_OFF_CENTS, HAS_SAMPLE, LATER_PRICE, LATER_STR, REFUND_DAYS, SALE_NAME, SAMPLE_REPORT)
     import math
     price_cents = PRICE * 100
-    founding_cents = price_cents * (100 - FOUNDING_PCT) // 100
+    founding_cents = price_cents - FOUNDING_OFF_CENTS
     offer = {
         "schema": 1,
         "later_price_cents": LATER_PRICE * 100,
         "later_from": datetime.date.fromisoformat(FOUNDING_ENDS_AT[:10]).isoformat(),
-        "price_cents": price_cents,
+        "price_cents": APP_LIST_PRICE_CENTS,
+        "checkout_price_cents": price_cents,
         "currency": "USD",
         "after_launch": ({"price_cents": LATER_PRICE * 100, "from": FOUNDING_AFTER_DAY,
                           "description": f"From {FOUNDING_AFTER_DAY}: {LATER_STR}."}
@@ -964,8 +974,8 @@ def write_offer() -> None:
                         if BNPL_LIVE and price_cents >= BNPL_MIN_CENTS else None),
         # null once the offer has ended; the app then shows the list price alone (offer.py).
         "founding": ({"price_cents": founding_cents,
-                      # null under Dodo's pay-in-four floor ($29.50 from 2026-11-02): the app then shows no
-                      # instalment beside the founding price, as the checkout would offer none.
+                      # The flat-code price is under Dodo's floor, confirmed by the CEO on 2026-11-11.
+                      # null suppresses the instalment beside that price in the app.
                       "instalment_cents": math.ceil(founding_cents / 4) if BNPL_FOUNDING_OK else None,
                       # No "seats" since 2026-11-02: the sale is uncapped. Builds up to 1.3.138 required it, but
                       # they also hold the old $349 list price, so they show no sale line from this file either way.
