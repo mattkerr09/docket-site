@@ -1,11 +1,11 @@
 {
  "about/index.html": {
   "date": "2026-11-11",
-  "hash": "156e3c21fc214825"
+  "hash": "a8569d4b39bf6f0d"
  },
  "ai-assistants/index.html": {
   "date": "2026-11-11",
-  "hash": "359efa438c33ee46"
+  "hash": "e8c70f912b662c70"
  },
  "ai-crawlers/addsearchbot/index.html": {
   "date": "2026-11-11",
@@ -1113,7 +1113,7 @@
  },
  "download/index.html": {
   "date": "2026-11-11",
-  "hash": "c18ccd7539bf614d"
+  "hash": "b3f1efb5eaa7165c"
  },
  "faq/index.html": {
   "date": "2026-11-11",
@@ -1125,7 +1125,7 @@
  },
  "for/developers/index.html": {
   "date": "2026-11-11",
-  "hash": "9d8d2fc322ae406f"
+  "hash": "289a00a63db9e3ff"
  },
  "for/ecommerce/index.html": {
   "date": "2026-11-11",
@@ -1229,7 +1229,7 @@
  },
  "how-to/fix-invalid-hreflang-codes/index.html": {
   "date": "2026-11-11",
-  "hash": "3b93f66b3a629d8c"
+  "hash": "204efd5c6b9ba9cf"
  },
  "how-to/fix-lang-attribute-mismatch/index.html": {
   "date": "2026-11-11",
@@ -1321,7 +1321,7 @@
  },
  "how-to/javascript-seo-audit/index.html": {
   "date": "2026-11-11",
-  "hash": "743b25661c58bb0a"
+  "hash": "5057504f12c19343"
  },
  "how-to/json-ld-parser-errors/index.html": {
   "date": "2026-11-11",
@@ -1393,7 +1393,7 @@
  },
  "index.html": {
   "date": "2026-11-11",
-  "hash": "c6ac62ae86c8ff41"
+  "hash": "827c647c2e532c69"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "date": "2026-11-11",
