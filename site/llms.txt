@@ -2,8 +2,8 @@
 
 > Check Engine SEO is a Mac and Windows app that audits any website on your own computer: 99
 > checks across 13 areas, then one ranked plan of what to fix, in order, with the
-> markup to paste and a client-ready PDF report. It costs $59, paid once; there is no
-> subscription.
+> markup to paste and a client-ready PDF report. Launch price: $29.50 once, through 30
+> November. From 1 December: $39. There is no subscription.
 
 The crawl and the report stay on your computer, and there is no account. The app sends
 three anonymous counts, with no site address or audit result. Five optional checks are
@@ -61,12 +61,10 @@ Michigan, United States.
 
 ## Price and licence
 
-- $59, paid once, in US dollars. Not a subscription: there is no renewal date and
-  nothing to cancel.
-- Launch price: $29.50 once, through 30 November. From 1 December: $39. The Buy link
-  applies the code FOUNDINGDOCKET at checkout (if the checkout shows $59, enter it
-  under "Have a discount code?").
-- The Launch price of $29.50 is paid in one payment.
+- Launch price: $29.50 once, through 30 November. From 1 December: $39. Priced in US
+  dollars. There is no renewal date and nothing to cancel.
+- Buy applies the code FOUNDINGDOCKET for you; if the checkout shows $59, enter it
+  under ‘Have a discount code?’.
 - Free: your score, how many problems in each category, and the top problem in full
   with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to
   paste. The free version needs no key and no account, and runs the same full audit;

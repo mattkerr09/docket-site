@@ -1,5 +1,7 @@
 {
  "schema": 1,
+ "later_price_cents": 3900,
+ "later_from": "2026-12-01",
  "price_cents": 5900,
  "currency": "USD",
  "after_launch": {
