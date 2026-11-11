@@ -26,6 +26,8 @@ import render
 from verify_sibling_links import SIBLINGS, offenders
 
 DATA = report_page.EVIDENCE
+PAGESPEED_UPDATE = ("From the Check Engine release of 11 November 2026, a report marks this area "
+                    "'Not measured: PageSpeed Insights did not run' instead of scoring it.")
 NUMBER = re.compile(r'(?<!\w)\d+(?:,\d{3})*(?:\.\d+)*(?!\w)')
 VOID = set('area base br col embed hr img input link meta param source track wbr'.split())
 SKIP = {'head', 'script', 'style', 'nav', 'header', 'footer'}
@@ -192,6 +194,10 @@ def validate_fact(node):
 def validate_numbers(node, covered=False):
     if hidden(node):
         return
+    # This exact release note is sourced in the article code, outside the run summary.
+    if node.tag == 'p' and text(node) == PAGESPEED_UPDATE:
+        assert ancestor(node, 'data-run-summary') is None
+        covered = True
     if 'data-pointer' in node.attrs:
         validate_fact(node)
         covered = True
@@ -411,6 +417,16 @@ class RealQuestionsTests(unittest.TestCase):
         self.assertEqual(sum(a.attrs.get('href') == '/learn/seo-audit/' for a in article(doc).all('a')), 1)
         self.assertIn('PageSpeed Insights did not run', normal(text(article(doc))))
         self.assertNotIn('run', tables)
+        self.assertEqual(self.raw['learn/seo-audit-report'].count(PAGESPEED_UPDATE), 1)
+        update = next(n for n in article(doc).all('p') if text(n) == PAGESPEED_UPDATE)
+        self.assertIsNone(ancestor(update, 'data-run-summary'))
+        paragraphs = list(article(doc).all('p'))
+        self.assertEqual(text(paragraphs[paragraphs.index(update) - 1]),
+                         "PageSpeed Insights did not run because its quota was exceeded. "
+                         "The speed area's clean score therefore includes no PageSpeed measurement.")
+        for node in article(doc).all('p'):
+            if 'data-run-summary' in node.attrs:
+                self.assertNotIn('1.3.163', text(node))
         summary = next(n for n in article(doc).all('p') if 'data-run-summary' in n.attrs)
         self.assertEqual(normal(text(summary)),
                          'Check Engine 1.3.161 audited checkengineseo.com on '
@@ -489,6 +505,9 @@ class RealQuestionsTests(unittest.TestCase):
                 outside_quotes = copy.deepcopy(article(doc))
                 for q in outside_quotes.all('q'):
                     q.children = []
+                for p in outside_quotes.all('p'):
+                    if text(p) == PAGESPEED_UPDATE:
+                        p.children = []
                 self.assertNotRegex(normal(text(outside_quotes)), r'[()]')
                 self.assertNotRegex(value, r'(?i)Black Friday|% off|half price')
                 self.assertLessEqual(value.count('Check Engine'), 6)

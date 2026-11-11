@@ -11,6 +11,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import render  # noqa: E402
 
 EVIDENCE = Path(__file__).resolve().parents[2] / "data/real-questions-2026-11-11"
+# Check Engine origin/main a2e3c3d: backend/seo_engine/provenance.py:198-200
+# says "PageSpeed Insights did not run"; backend/seo_engine/__init__.py sets
+# __version__ = "1.3.163". Check Engine release published 2026-11-11T19:46:22Z.
+# The sentence names the release by its date, not its number: a version string outside a recorded run summary fails
+# the version-string gate at the next release.
+PAGESPEED_UPDATE = ("From the Check Engine release of 11 November 2026, a report marks this area "
+                    "'Not measured: PageSpeed Insights did not run' instead of scoring it.")
 
 
 def source(name: str) -> dict:
@@ -90,6 +97,7 @@ The score describes the pages reached. Finish the crawl before judging the whole
 <p>The orphan check needs the pages that might contain incoming links. With much of the crawl missing, it cannot say a page has no links to it. The outbound-link notice says some requests were refused. Those links were not proved broken, and they were not counted as working.</p>
 <p>The AI control notice asks the owner to check the account setting inside Search Console.</p>
 <p>PageSpeed Insights did not run because its quota was exceeded. The speed area's clean score therefore includes no PageSpeed measurement.</p>
+<p>{PAGESPEED_UPDATE}</p>
 
 <h2>What to ask of any good audit report</h2>
 <p>Ask for ranked fixes because you need a place to start when the list is long. Ask for evidence per finding because someone must be able to find the page, inspect the problem and check the repair. Ask what could not be checked because a blank result can otherwise look like a clean bill of health.</p>
