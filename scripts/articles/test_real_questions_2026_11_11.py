@@ -326,13 +326,13 @@ class RealQuestionsTests(unittest.TestCase):
 
     def test_plugins_are_selected_for_their_own_check_claim(self):
         data = report_page.source('plugins-trimmed.json')['plugins']
-        # Scope matters: a generic promise of good SEO scores and post content
-        # analysis are not a site-audit claim. Yoast and Slim are mentioned only
-        # in the required absence note, not promoted into audited candidates.
-        claim = re.compile(r'full audit of every post|SEO site analysis|GEO/AEO Audit|SEO checker that scans|Site Audit\s*[:(]|scan your site for broken links', re.I)
+        # Include checking features such as per-post analysis as well as site
+        # audits. A generic promise of good SEO scores is not a checking feature.
+        claim = re.compile(r'\b(?:audit|analysis|checker)\b', re.I)
         selected = {p['slug'] for p in data if claim.search(unescape(p['description_text']))}
         self.assertEqual(selected, {'all-in-one-seo-pack', 'seo-by-rank-math', 'wp-seopress',
-                                   'squirrly-seo', 'smartcrawl-seo', 'xagio-seo', 'broken-link-checker'})
+                                   'squirrly-seo', 'smartcrawl-seo', 'xagio-seo', 'broken-link-checker',
+                                   'wordpress-seo'})
         doc = self.docs['best/free-seo-audit-plugins-wordpress']
         sections = [n for n in article(doc).all('section') if 'data-plugin' in n.attrs]
         self.assertEqual([n.attrs['data-plugin'] for n in sections],
@@ -345,7 +345,15 @@ class RealQuestionsTests(unittest.TestCase):
             for value in values:
                 validate_fact(value)
         visible = normal(text(article(doc)))
-        self.assertIn('The Yoast SEO and Slim SEO listings make no site-audit claim in the text we read.', visible)
+        self.assertIn("Slim SEO's listing says its meta tags are generated for the best SEO scores but describes no checker or audit.", visible)
+        yoast = next(n for n in sections if n.attrs['data-plugin'] == 'wordpress-seo')
+        yoast_text = normal(text(yoast))
+        for expected in ('SEO analysis to guide your keyword targeting',
+                         'Readability analysis for clear, engaging, user-friendly writing',
+                         'per post or page while you write, not a crawl of the whole site',
+                         'up to 5 keyphrases in Premium',
+                         'AI tools come with Yoast SEO Premium'):
+            self.assertIn(expected, yoast_text)
         for name in ('SEOPress PRO', 'exclusive Pro features', 'Unique Features of Rank Math PRO'):
             self.assertIn(name, visible)
 

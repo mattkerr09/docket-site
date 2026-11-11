@@ -10,6 +10,9 @@ from render import render
 
 # Each quote is from the plugin's own captured description, not a review.
 REVIEWS = [
+    ("wordpress-seo", "Yoast SEO", "SEO analysis to guide your keyword targeting",
+     f"The listing also promises {quote('Readability analysis for clear, engaging, user-friendly writing', 'plugins-trimmed.json')}. This analysis is per post or page while you write, not a crawl of the whole site.",
+     f"The content analysis section does not mark basic SEO or readability analysis as paid. It does specify {quote('up to 5 keyphrases in Premium', 'plugins-trimmed.json')}. The listing also says its AI tools come with Yoast SEO Premium."),
     ("all-in-one-seo-pack", "All in One SEO", "Get a full audit of every post and term",
      "The listing describes a site audit and a checklist of fixes. Its TruSEO description also covers on-page content and readability. That gives a WordPress editor a way to inspect the writing as well as the wider list of tasks.",
      "The captured audit passage is not marked PRO or paid. The source ends partway through its feature list, so it does not settle all free-plan limits."),
@@ -62,8 +65,8 @@ def build() -> Path:
 <p>There is no overall winner here. A writer checking readability, an owner finding broken links and an agency planning site repairs need different evidence. Use the paid-feature note beside each plugin to decide what to check next on its listing. Where the captured text does not settle access, we leave that question open.</p>
 {''.join(sections)}
 
-<h2>Yoast SEO and Slim SEO</h2>
-<p>The Yoast SEO and Slim SEO listings make no site-audit claim in the text we read.</p>
+<h2>Slim SEO</h2>
+<p data-plugin="slim-seo">Slim SEO's listing says its meta tags are generated {quote('for the best SEO scores', 'plugins-trimmed.json')} but describes no checker or audit.</p>
 
 <h2>When you cannot install a WordPress plugin</h2>
 <p>A plugin gives you a place to start an audit from inside WordPress. The listing may still describe work sent to a cloud service, as the link checker and Rank Math passages show. Do not assume that starting from the dashboard means all processing stays on your server.</p>
