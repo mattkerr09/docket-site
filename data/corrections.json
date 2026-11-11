@@ -142,7 +142,7 @@
    "title": "The app quoted the old price after Docket became $59",
    "wrong": "On 2 November Docket's price became $59 once. Every copy up to 1.3.138 holds the list price it was built with, and trusts the price the website publishes only when the two agree, so it went on showing the old list price, or four payments of the old amount, beside the Buy button. The checkout charged the new price.",
    "found": "The price change itself: the website moved to $59 the same day, and the app's own still of a free audit still printed the old price.",
-   "fixed": "The app reads the website's current price. From 1 December, the standing price is $59 once, or four payments of $14.75. A price under the checkout's $50.01 minimum for paying in four, such as the $29.50 launch price, is shown with no instalments, even if the website's offer file carries one. The launch price is shown under the name the website gives it, with no limit on buyers.",
+   "fixed": "The app reads the website's current price. A price under the checkout's $50.01 minimum for paying in four, such as the $29.50 launch price, is shown with no instalments, even if the website's offer file carries one. The launch price is shown under the name the website gives it, with no limit on buyers.",
    "tests": [
     "test_a_price_under_the_pay_in_four_floor_shows_no_instalments.py",
     "test_an_uncapped_sale_is_shown_with_its_name.py"

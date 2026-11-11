@@ -628,7 +628,7 @@ def write_llms_txt() -> None:
     import textwrap
     from collections import OrderedDict
 
-    from render import (BNPL_INSTALMENT, BNPL_LIVE, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS, size_article, founding_price_sentence,
+    from render import (BNPL_INSTALMENT, BNPL_LIVE, BNPL_MIN_CENTS, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS, size_article, founding_price_sentence,
                         SALE_UNDER_FLOOR, WINDOWS, WIN_PUBLISHER, WIN_SETUP_SIZE,
                         FOUNDING_AFTER_DAY, FOUNDING_END_DAY, FOUNDING_NOW, FOUNDING_OPEN, HAS_SAMPLE, LINUX, MACOS, SALE_NAME,
                         N_CHECKS, N_LANES, PRICE_STR, REPO, SAMPLE_REPORT, SELLER,
@@ -738,11 +738,10 @@ def write_llms_txt() -> None:
         f"date and nothing to cancel.",
         (f"{founding_price_sentence()} The Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
          f"{PRICE_STR}, enter it under \"Have a discount code?\")." if FOUNDING_OPEN else ""),
-        # Audit row 29: at the sale price the checkout offers no instalments, so they are dated, not offered now.
-        ((f"From {FOUNDING_AFTER_DAY}, at {PRICE_STR}, four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, "
-          f"two weeks apart. The {SALE_NAME} of {FOUNDING_NOW} is paid in one payment: the checkout offers no instalments under $50.01."
-          if SALE_UNDER_FLOOR else
-          f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks apart.") if BNPL_LIVE else ""),
+        (f"The {SALE_NAME} of {FOUNDING_NOW} is paid in one payment."
+         if SALE_UNDER_FLOOR else
+         (f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks apart."
+          if BNPL_LIVE and PRICE * 100 >= BNPL_MIN_CENTS else "")),
         f"{FREE_LINE} The free version needs no key and no account, and runs the same "
         f"full audit; buying unlocks the audit already run, with no second crawl.",
         f"The licence key arrives by email with the receipt and is pasted into the app "
@@ -952,7 +951,7 @@ def write_offer() -> None:
     read it.
     """
     from render import (BNPL_FOUNDING_OK, BNPL_LIVE, BNPL_MIN_CENTS, CHECKOUT, FOUNDING_CODE, FOUNDING_OPEN,
-                        FOUNDING_ENDS_AT, FOUNDING_END_DAY, FOUNDING_PCT, HAS_SAMPLE, REFUND_DAYS, SALE_NAME, SAMPLE_REPORT)
+                        FOUNDING_ENDS_AT, FOUNDING_END_DAY, FOUNDING_AFTER_DAY, FOUNDING_PCT, HAS_SAMPLE, LATER_PRICE, LATER_STR, REFUND_DAYS, SALE_NAME, SAMPLE_REPORT)
     import math
     price_cents = PRICE * 100
     founding_cents = price_cents * (100 - FOUNDING_PCT) // 100
@@ -960,6 +959,9 @@ def write_offer() -> None:
         "schema": 1,
         "price_cents": price_cents,
         "currency": "USD",
+        "after_launch": ({"price_cents": LATER_PRICE * 100, "from": FOUNDING_AFTER_DAY,
+                          "description": f"From {FOUNDING_AFTER_DAY}: {LATER_STR}."}
+                         if FOUNDING_OPEN else None),
         "instalments": ({"count": 4, "cents": math.ceil(price_cents / 4),
                          "providers": ["Klarna", "Afterpay"], "every_days": 14}
                         if BNPL_LIVE and price_cents >= BNPL_MIN_CENTS else None),
@@ -1381,7 +1383,7 @@ def pricing_page() -> Path:
     as every other price on the site. Not in the sitemap: it is a door, not an
     article.
     """
-    from render import (BNPL_INSTALMENT, DMG_SIZE, FOUNDING_AFTER_DAY, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, PRICE_STR, REFUND_DAYS,
+    from render import (BNPL_INSTALMENT, BNPL_LIVE, BNPL_MIN_CENTS, DMG_SIZE, FOUNDING_AFTER_DAY, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, PRICE_STR, REFUND_DAYS,
                         FOUNDING_END_DAY, FOUNDING_NOW, SALE_NAME, SALE_UNDER_FLOOR, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE,
                         buy_block, download_url, windows_waitlist)
     # The prose below is this page's own. The quality gate's duplicate check
@@ -1438,13 +1440,11 @@ with no site address or audit result. <a href="/legal/privacy/">What is sent and
 
 <h2>How paying works</h2>
 <p>The checkout belongs to Dodo Payments, the reseller and merchant of record for the sale.
-{(f'''The {SALE_NAME} of {FOUNDING_NOW} is paid at once: the checkout offers no instalments
-on a total under $50.01. From {FOUNDING_AFTER_DAY}, at {PRICE_STR}, you can pay the whole amount at once,
-or split it with Klarna or Afterpay into four instalments of {BNPL_INSTALMENT} a fortnight apart,
-at no extra charge from us.''' if SALE_UNDER_FLOOR else
-f'''Pay the whole amount at once, or split it with Klarna or Afterpay into four instalments of
-{BNPL_INSTALMENT} a fortnight apart, at no extra charge from us.''')} Once the fourth is paid, nothing
-further is ever taken.</p>
+{(f'The {SALE_NAME} of {FOUNDING_NOW} is paid at once.' if SALE_UNDER_FLOOR else
+(f'''Pay the whole amount at once, or split it with Klarna or Afterpay into four instalments of
+{BNPL_INSTALMENT} a fortnight apart, at no extra charge from us. Once the fourth is paid, nothing
+further is ever taken.''' if BNPL_LIVE and PRICE * 100 >= BNPL_MIN_CENTS else
+'Pay the whole amount at once.'))}</p>
 
 <h2>If Docket turns out not to suit you</h2>
 <p>Within {REFUND_DAYS} days of the receipt date, write to the support address or reply to the

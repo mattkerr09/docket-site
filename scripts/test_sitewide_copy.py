@@ -82,7 +82,7 @@ class SitewideCopyTests(unittest.TestCase):
     def test_offer_sentence_uses_constants_and_closes_with_the_offer(self):
         with patch.multiple(render, FOUNDING_OPEN=True, SALE_NAME="Launch price",
                             FOUNDING_NOW="$12.34", FOUNDING_END_DAY="a last day",
-                            FOUNDING_AFTER_DAY="a next day", PRICE_STR="$56"):
+                            FOUNDING_AFTER_DAY="a next day", LATER_STR="$56", PRICE_STR="$78"):
             self.assertEqual(render.founding_price_sentence(),
                              "Launch price: $12.34 once, through a last day. From a next day: $56.")
         with patch.object(render, "FOUNDING_OPEN", False):

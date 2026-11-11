@@ -13,7 +13,7 @@ import render as R
 def answer_values() -> dict:
     price_words = (
         f"{R.SALE_NAME}: {R.FOUNDING_NOW} once, through {R.FOUNDING_END_DAY}. "
-        f"From {R.FOUNDING_AFTER_DAY}: {R.PRICE_STR}."
+        f"From {R.FOUNDING_AFTER_DAY}: {R.LATER_STR}."
         if R.FOUNDING_OPEN else f"{R.PRICE_STR}, paid once."
     )
     return {

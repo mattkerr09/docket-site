@@ -345,7 +345,7 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
     # offer is open, and removed by the page's own switch at FOUNDING_ENDS_AT.
     sale_line = (f'<p class="price-sale"{FOUNDING_UNTIL} style="font-size:1.25rem;line-height:1.3;margin:0 0 .6rem">'
                  f'<strong>{SALE_NAME}: {FOUNDING_NOW} once</strong>, through {FOUNDING_END_DAY}. '
-                 f'From {FOUNDING_AFTER_DAY}: {PRICE_STR}.</p>' if sale_first and FOUNDING_OPEN else "")
+                 f'From {FOUNDING_AFTER_DAY}: {LATER_STR}.</p>' if sale_first and FOUNDING_OPEN else "")
     out = [f'<div class="buy-block{"" if big else " compact"}">{sale_line}'
            f'<p class="price-line"><span class="price-big">{PRICE_STR}</span>'
            f'<span class="price-pay4">once{PAY4_BUY}</span></p>{price_req_html()}'
@@ -737,6 +737,10 @@ PLATFORMS = (f"{MACS}, {MACOS} or later, and 64-bit Windows" if WINDOWS
 # Every comparison that used to say Docket costs "fifteen months of" a rival is computed from this number, so at $59
 # it says a little over two months of Screaming Frog by itself.
 PRICE = 59
+#: LATER_PRICE is what the product costs from FOUNDING_AFTER_DAY. On that day
+#: the host flips PRICE to LATER_PRICE. See docs/DECEMBER_PRICE_FLIP.md.
+LATER_PRICE = 39
+LATER_STR = f"${LATER_PRICE}"
 
 #: No price transition is open. `verify_checkout.py` reads this and, when it is
 #: None, requires the live checkout to charge exactly PRICE.
@@ -815,7 +819,7 @@ def founding_end_day() -> str:
 FOUNDING_END_DAY = founding_end_day()
 FOUNDING_END_HTML = (f'<span class="founding-end" data-founding-end="{FOUNDING_ENDS_AT}">'
                      f'until {FOUNDING_END_DAY}</span>')
-#: The first day at the full price, as the sale line says it: "From 1 December it's $59".
+#: The first day at LATER_PRICE, as the launch line says it.
 FOUNDING_AFTER_DAY = (lambda d: f"{d.day} {d.strftime('%B')}")(
     _dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00")) - _dt.timedelta(hours=10) + _dt.timedelta(days=1))
 
@@ -823,14 +827,14 @@ FOUNDING_AFTER_DAY = (lambda d: f"{d.day} {d.strftime('%B')}")(
 def founding_price_sentence() -> str:
     """The launch offer in prose and FAQs, dropped when the offer closes."""
     return (f"{SALE_NAME}: {FOUNDING_NOW} once, through {FOUNDING_END_DAY}. "
-            f"From {FOUNDING_AFTER_DAY}: {PRICE_STR}." if FOUNDING_OPEN else "")
+            f"From {FOUNDING_AFTER_DAY}: {LATER_STR}." if FOUNDING_OPEN else "")
 
 
 #: Beside every buy button, as page text — the founding bar is a script that
 #: can fail to load, and a visitor at the button should not need it to know the
 #: offer exists or how to claim it. Says "first 25 buyers", never how many are
 #: left: that number lives in Dodo and the bar reads it live.
-#: FOUNDING_LINE is defined below the pay-in-four constants, which it uses.
+#: FOUNDING_LINE is defined below the pay-in-four constants.
 
 #: What the download costs *today*, which is not PRICE. The beta is free, keeps
 #: working, and has no checkout to pay through even if you wanted to.
@@ -956,7 +960,7 @@ BNPL_NOTE = (
     f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks "
     f"apart. The last one is six weeks after the first, at no extra cost from us. "
     f"Then it stops, and it is yours."
-) if BNPL_LIVE and not (FOUNDING_OPEN and PRICE * (100 - FOUNDING_PCT) < BNPL_MIN_CENTS) else ""
+) if BNPL_LIVE and PRICE * 100 >= BNPL_MIN_CENTS and not (FOUNDING_OPEN and PRICE * (100 - FOUNDING_PCT) < BNPL_MIN_CENTS) else ""
 
 #: PAY-IN-FOUR ON THE SAME LINE AS THE PRICE, IN THE PRICE'S OWN FONT. Matthew,
 #: 2026-09-28: "it needs to say the bnpl price right next to the full price in
@@ -983,9 +987,8 @@ PAY4_FOUNDING = (f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_FOUNDING_INSTALME
 #: row 29: while the sale ran, the hero read "$59 once · or 4 × $14.75" and "Or four payments of $14.75 with Klarna or
 #: Afterpay" beside the $29.50 line, but Buy opens a checkout with the sale code applied, and at $29.50 Dodo offers
 #: no pay-in-four. So while a sale under BNPL_MIN_CENTS is open, every price a visitor is asked to pay (the buy
-#: block, the buy strip, the nav button, the free tools' price line) carries no instalment, and the four payments
-#: are said once, where they are true: "From 1 December it's $59, or 4 × $14.75" in the sale line. Comparison
-#: tables state the list price without instalments. After the sale this is PAY4 again (rebuild at its end).
+#: block, the buy strip, the nav button, the free tools' price line) carries no instalment.
+#: Comparison tables state the list price without instalments. The December price is also under the floor.
 SALE_UNDER_FLOOR = FOUNDING_OPEN and not BNPL_FOUNDING_OK
 PAY4_BUY = "" if SALE_UNDER_FLOOR else PAY4
 #: The same sentence for a page, with its instalment set in full-strength text
@@ -999,10 +1002,9 @@ BNPL_NOTE_HTML = BNPL_NOTE.replace(
 #: rehearsal of 2026-09-30 opened it and Dodo showed $174.50 with the code
 #: already in. Typing it is only the fallback, for a checkout that opens at
 #: the full price (the hub falls back to the plain link if Dodo is down).
-#: The sale line, in the words the CEO relayed from Matthew on 2026-11-02: "Black Friday price, all of November:
-#: Docket SEO $29.50 once. From 1 December it's $59, or 4 × $14.75."
+#: The launch line keeps today's checkout fallback on PRICE_STR and the future price on LATER_STR.
 FOUNDING_LINE = (f"{SALE_NAME}: <strong>{FOUNDING_NOW} once</strong>, through {FOUNDING_END_DAY}. "
-                 f"From {FOUNDING_AFTER_DAY}: {PRICE_STR}. "
+                 f"From {FOUNDING_AFTER_DAY}: {LATER_STR}. "
                  f"Buy applies the code <code>{FOUNDING_CODE}</code> for you; if the checkout shows {PRICE_STR}, "
                  f"enter it under &lsquo;Have a discount code?&rsquo;." if FOUNDING_OPEN else "")
 
