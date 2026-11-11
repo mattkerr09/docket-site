@@ -3,21 +3,14 @@
  "later_price_cents": 3900,
  "later_from": "2026-12-01",
  "price_cents": 5900,
+ "checkout_price_cents": 3900,
  "currency": "USD",
  "after_launch": {
   "price_cents": 3900,
   "from": "1 December",
   "description": "From 1 December: $39."
  },
- "instalments": {
-  "count": 4,
-  "cents": 1475,
-  "providers": [
-   "Klarna",
-   "Afterpay"
-  ],
-  "every_days": 14
- },
+ "instalments": null,
  "founding": {
   "price_cents": 2950,
   "instalment_cents": null,
