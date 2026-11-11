@@ -31,7 +31,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from tools_free import audit_next, how_it_works  # noqa: E402
 from brand import SHORT  # noqa: E402
-from render import (BASE, DATA, HAS_SAMPLE, N_CHECKS, PAY4, PRICE, PRICE_STR, SAMPLE_REPORT, price_req_html,  # noqa: E402
+from render import (BASE, DATA, HAS_SAMPLE, N_CHECKS, SAMPLE_REPORT, price_req_html,  # noqa: E402
                     buy_block, checkout_url, render)
 
 #: The Worker the form calls. `workers/ai-crawler-check/wrangler.toml` names it.

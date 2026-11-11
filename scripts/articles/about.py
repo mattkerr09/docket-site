@@ -27,7 +27,7 @@ from brand import FORMER_ADDRESS_NOTE  # noqa: E402
 import facts as F  # noqa: E402
 from render import (
     FREE_CLAUSE,  # noqa: E402
-    DMG_NAME, DMG_SIZE, MAC_HW, MACOS, ISSUES, N_CHECKS, N_LANES, PRICE_STR, RELEASE, REPO,
+    DMG_NAME, DMG_SIZE, MAC_HW, MACOS, ISSUES, N_CHECKS, N_LANES, PRICE_COMPACT, RELEASE, REPO,
     VOLUME, render, SELLER, SELLER_CITY, SUPPORT_EMAIL, buy_strip,
     WINDOWS, WIN_PUBLISHER,
 )
@@ -56,7 +56,7 @@ def about() -> Path:
 <p class="lede">Docket is built by Matt Kerr, one person, in {SELLER_CITY}, and published by his
 company, {SELLER}. It is {'an app for Mac and 64-bit Windows' if WINDOWS else 'a Mac app'} that
 audits a site's SEO, copy and branding against {N_CHECKS} checks across {N_LANES} areas,
-runs the crawl on your own machine, and costs {PRICE_STR} once, and {FREE_CLAUSE}.</p>
+runs the crawl on your own machine, and costs {PRICE_COMPACT}, and {FREE_CLAUSE}.</p>
 
 <p>There is no team page because there is no team, and no support desk because there is
 one person reading <a href="mailto:{SUPPORT_EMAIL}">{SUPPORT_EMAIL}</a> and

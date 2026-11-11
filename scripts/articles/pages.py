@@ -24,7 +24,7 @@ from brand import CLI, HOST, LEGACY_HOST, MACHINE_PATHS, STORE_NOTE, machine_lin
 from render import (MS_STORE, _human_date, bundle_link, windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4_FOUNDING,
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
-    LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_STR, PROCESSOR,
+    LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_COMPACT, PROCESSOR,
     RELEASE, SELLER, SELLER_REG_NO, SUMS, price_note_html, render,
     seller_address, buy_block, founding_price_sentence, FOUNDING_OPEN, SUPPORT_EMAIL, SELLER_CITY,
 )
@@ -185,9 +185,9 @@ _COST_SLUGS = ("sitebulb", "screaming-frog", "ahrefs-site-audit",
 #: says so: this stops the build if a price change makes that untrue. At $349 the same paragraph said "fifteen months
 #: of Screaming Frog", typed, and would have gone on saying it at $59.
 import render as _R  # noqa: E402
-assert all(_R.PRICE < F.rival_annual_low(s) for s in _COST_SLUGS), "rewrite the paragraph under the cost table"
+assert all(_R.LATER_PRICE < F.rival_annual_low(s) for s in _COST_SLUGS), "rewrite the paragraph under the cost table"
 #: Whole months of Screaming Frog that Docket's one price is less than (2.5 months at $59 and $279 a year, so 3).
-_SF_MONTHS = -(-_R.PRICE * 12 // F.rival_annual_low("screaming-frog"))
+_SF_MONTHS = -(-_R.LATER_PRICE * 12 // F.rival_annual_low("screaming-frog"))
 
 
 def _cost_rows() -> str:
@@ -257,7 +257,7 @@ def _payment_note() -> str:
     """
     if BETA_FREE:
         return (f'<p><strong>{RELEASE} is free while it is in beta.</strong> It downloads '
-                f'without payment and keeps working; {PRICE_STR} applies from v1.0.</p>')
+                f'without payment and keeps working; {PRICE_COMPACT} applies from v1.0.</p>')
     # ⚠️ THIS SAID "still downloads and runs without a licence key ... there is
     # no activation step in this build and nothing stops you using it first".
     # Every clause of that went false in 1.1.59. It was written to be scrupulous
@@ -265,7 +265,7 @@ def _payment_note() -> str:
     # a page telling buyers they need not pay yet, beside a button that charges.
     return (
         f'<p><strong>{RELEASE} runs free without a key.</strong> {FREE_LINE} '
-        f'Pro is {PRICE_STR}, paid once: the key arrives with your receipt, covers '
+        f'{_R.price_sentence()} The key arrives with your receipt, covers '
         f'{F.licence_covers()}, and pasted into the app it opens the audit you already '
         f'ran in full.</p>')
 
@@ -295,7 +295,7 @@ The free version also saves a <a href="/score-card/">score card</a> of any audit
 in each area, to send to a client or a colleague.</p>
 {windows_waitlist("download")}
 
-<p class="lede">Docket is {PRICE_STR}, paid once, for {MACOS} or later on {MAC_HW}{' and for 64-bit Windows' if WINDOWS else ''}.
+<p class="lede">{_R.price_sentence()} For {MACOS} or later on {MAC_HW}{' and for 64-bit Windows' if WINDOWS else ''}.
 {DMG_SIZE}{(' for the Mac, ' + WIN_SETUP_SIZE + ' for Windows') if WINDOWS else ''}. No subscription, no crawl credits, no per-seat pricing. Audit as many sites as
 you like, for as long as you like. There is no account to create. The app sends three anonymous counts,
 once per copy and per event. Activating
@@ -335,19 +335,19 @@ cannot drift from what the app does.</p>
 
 <h2>What it costs over three years</h2>
 
-<p>{PRICE_STR} once, against a subscription. The arithmetic, from the prices on
+<p>{PRICE_COMPACT}, against a subscription. The arithmetic, from the prices on
 <a href="/vs/">the comparison pages</a>:</p>
 
 <div class="wrap-tbl"><table class="cmp"><thead><tr>
 <th>Tool</th><th>Cheapest tier</th><th>Three years</th></tr></thead><tbody>
-<tr><td><strong>Docket</strong></td><td><strong>{PRICE_STR} once</strong></td>
-<td><strong>{PRICE_STR}</strong></td></tr>
+<tr><td><strong>Docket</strong></td><td><strong>{PRICE_COMPACT}</strong></td>
+<td><strong>{PRICE_COMPACT}</strong></td></tr>
 {_cost_rows()}
 </tbody></table></div>
 {_derived_caveat()}
 {price_note_html()}
 
-<p>{PRICE_STR} once is less than {_SF_MONTHS} months of Screaming Frog and less than one year of any tool in
+<p>{PRICE_COMPACT} is less than {_SF_MONTHS} months of Screaming Frog and less than one year of any tool in
 this table, and nothing after that. It is priced like a video game rather than like software for businesses,
 because one person in Grand Rapids builds it, with no investors, no sales team and no app store cut. The tools
 above are not overpriced for what they do; they are rented rather than owned.</p>
@@ -565,7 +565,7 @@ is gone.</p>
         # The title names no price: the price (and a sale price) lives in the body, so a
         # price change never rewrites the title that search results show.
         title=("Download Docket SEO for Mac and Windows, free to try" if WINDOWS
-               else f"Download Docket for Mac: {PRICE_STR}, paid once"),
+               else f"Download Docket for Mac: {PRICE_COMPACT}"),
         # Two downloads have two sizes, so with Intel the description names neither.
         desc=((f"Docket SEO for {MACOS}+ on {MAC_HW} and 64-bit Windows. "
                "No account. Reports stay on your computer. The CLI exits non-zero on a critical issue.") if WINDOWS else
@@ -682,7 +682,7 @@ __ISSUES__ issues found, shown here with a placeholder in place of your name and
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th></th><th>Docket</th><th>SEOptimer Pro</th><th>SEOptimer Max</th></tr></thead>
 <tbody>
-<tr><td>Price</td><td class="yes">__PRICE__ once</td><td>$__SO_PRO__ a month</td><td>$__SO_MAX__ a month</td></tr>
+<tr><td>Price</td><td class="yes">__PRICE__</td><td>$__SO_PRO__ a month</td><td>$__SO_MAX__ a month</td></tr>
 <tr><td>The first year</td><td class="yes">__PRICE__</td><td>$__SO_PRO_YEAR__</td><td>$__SO_MAX_YEAR__</td></tr>
 <tr><td>Your name and logo on the PDF</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
 <tr><td>Lead generation tool</td><td class="no">No</td><td>Not named</td><td class="yes">Yes</td></tr>
@@ -768,7 +768,7 @@ claims everything invites the client to test the claim.</p>
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
     for key, value in {
-        "__PRICE__": PRICE_STR, "__COVERS__": F.licence_covers(), "__PAGES__": str(run["pages"]),
+        "__PRICE__": PRICE_COMPACT, "__COVERS__": F.licence_covers(), "__PAGES__": str(run["pages"]),
         "__SECONDS__": str(run["seconds"]), "__ISSUES__": str(run["issues"]), "__BR_SRC__": br["src"],
         "__BR_W__": str(br["width"]), "__BR_H__": str(br["height"]), "__BR_NAME__": _html.escape(br["name"]),
         "__SO_PRO__": str(so_plans["Pro"]), "__SO_MAX__": str(so_plans["Max"]),
@@ -779,16 +779,15 @@ claims everything invites the client to test the claim.</p>
         body = body.replace(key, value)
     return render(
         cat="for", slug="agencies",
-        title=f"White-label SEO audit tool for agencies ({year}): {PRICE_STR} once",
+        title=f"White-label SEO audit tool for agencies ({year})",
         modified="2026-11-05",  # report branding (1.3.147), and the white-label pass above
-        desc=(f"Put your agency's name and logo on every audit report. {PRICE_STR} once for unlimited client "
-              f"audits, against ${so_plans['Pro']} to ${so_plans['Max']} a month for a white-label subscription."),
+        desc=(f"{_R.price_sentence()} Put your agency's name and logo on audit reports. Unlimited sites."),
         h1="A white-label SEO audit tool for agencies",
         crumb='<a href="/">Docket</a> / <a href="/for/">For you</a> / Agencies',
         body=body,
         faq=[
             ("Can I use Docket for client work?",
-             "Yes. " + (founding_price_sentence() if FOUNDING_OPEN else f"Docket is {PRICE_STR} once.")
+             "Yes. " + (founding_price_sentence() if FOUNDING_OPEN else f"Docket is {PRICE_COMPACT}.")
              + " There is no per-crawl charge; one licence covers " + F.licence_covers() + ". You can audit as many client and "
              "prospect sites as you like and charge for the work."),
             ("Can I white-label the report?",
@@ -973,7 +972,7 @@ audit is well under a minute, so a run bills as one: roughly
 hundred pull requests in a month.</p>
 
 <p>Worth saying plainly: that is a recurring cost on a tool sold as a one-time
-{PRICE_STR}, and it is GitHub's, not ours. If it bothers you, gate on merges to main rather
+{PRICE_COMPACT}, and it is GitHub's, not ours. If it bothers you, gate on merges to main rather
 than every push, or run the job on a computer you already own. There is no per-seat price, but a licence
 covers {F.licence_covers()}, and a runner that activates the key uses one of them: keep one self-hosted
 runner, or deactivate the key when a runner is retired.</p>
@@ -1498,7 +1497,7 @@ years.</p>
 
 <h2>Why the price is a number rather than a plan</h2>
 
-<p>{PRICE_STR}, once, and {FREE_CLAUSE}. No per-seat price, no
+<p>{_R.price_sentence()} {FREE_CLAUSE.capitalize()}. No per-seat price, no
 crawl credits, no renewal date: one licence covers {F.licence_covers()}. You price a SaaS product yourself, so you know what a
 recurring line item does to a buying decision at a company that already has eleven of
 them.</p>
@@ -1555,7 +1554,7 @@ The <a href="/legal/privacy/">privacy page</a> lists them and how to turn them o
              "field data if you add your own Google API key, which is Google measuring rather "
              "than Docket measuring."),
             ("Is Docket really a one-time purchase?",
-             "Yes. " + (founding_price_sentence() if FOUNDING_OPEN else f"{PRICE_STR} once.")
+             "Yes. " + (founding_price_sentence() if FOUNDING_OPEN else f"{PRICE_COMPACT}.")
              + f" Every 1.x update is included. One licence covers {F.licence_covers()}, and there is no "
              f"per-seat price, no crawl credits and no account. Audit history is stored on your computer in ~/.docket/ as "
              f"plain JSON. The app sends three anonymous counts, with no site address or audit result."),
@@ -2540,12 +2539,12 @@ def terms() -> Path:
 <p><strong>Today the price is nothing.</strong> {RELEASE} is a free beta. It downloads without
 payment, it does not expire, and this site has no checkout, so no sale has taken place and the
 commercial sections below describe terms that take effect when one can.</p>
-<p>From v1.0 Docket costs {PRICE_STR} in US dollars, paid once. Not a subscription: there is no
+<p>{_R.price_sentence()} Priced in US dollars. Not a subscription: there is no
 renewal date and nothing to cancel, because nothing recurs. One licence covers up to three
 machines.</p>"""
     else:
         price_para = f"""
-<p>{founding_price_sentence() if FOUNDING_OPEN else f"Docket costs {PRICE_STR} in US dollars, paid once."}
+<p>{_R.price_sentence()}
 Not a subscription: there is no renewal date and nothing to cancel, because nothing recurs.</p>
 <p><strong>One licence covers {F.licence_covers()}.</strong>
 Activating Docket on a computer uses one of them; deactivate one to move it to another. The
@@ -2722,7 +2721,7 @@ def refunds() -> Path:
 <div class="callout-title">There is nothing to refund today</div>
 <p>{RELEASE} is free. It downloads without payment, it keeps working, and this site has no
 checkout to pay through. This policy is published before there is a transaction behind it
-because the {PRICE_STR} is already written on this site, and a price with no refund terms
+because the {PRICE_COMPACT} is already written on this site, and a price with no refund terms
 beside it is half a sentence.</p>
 <p>If you have paid money for a copy of Docket, it did not reach us. Say so on
 <a href="{ISSUES}">the issue tracker</a> and where it went will be written up in public.</p>

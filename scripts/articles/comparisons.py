@@ -19,9 +19,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from brand import FORMER_ADDRESS_SENTENCE  # noqa: E402
 import facts as F  # noqa: E402
 from render import SITE_BRAND, recorded_with
-from render import (_human_date, speed_words, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, PRICE, PRICE_STR, RELEASE,  # noqa: E402
+from render import (_human_date, speed_words, BETA_NOTE, FREE_CLAUSE, MAC_HW, MACOS, N_CHECKS, LATER_PRICE, PRICE_COMPACT, RELEASE,  # noqa: E402
                     price, price_note_html, render, buy_block, rival_monthly_range, COMPETITORS,
-                    INTEL, INTEL_DMG, download_url, DATA, REFUND_DAYS, WINDOWS, N_LANES, founding_price_sentence)
+                    INTEL, INTEL_DMG, download_url, DATA, REFUND_DAYS, WINDOWS, N_LANES, founding_price_sentence, price_sentence)
 
 #: "Choose the other tool when..." items about which computers Docket runs on. Derived, because one of them
 #: still said an Intel Mac could not start Docket after the Intel build shipped.
@@ -783,7 +783,7 @@ def screaming_frog() -> Path:
     run = json.loads((DATA / "free-run.json").read_text())
     body = f"""
 <p class="lede">Docket is a Screaming Frog alternative for people who want to be told what to fix
-first rather than handed the crawl data. It is {PRICE_STR} once, where Screaming Frog is ${sf_year} a
+first rather than handed the crawl data. It is {PRICE_COMPACT}, where Screaming Frog is ${sf_year} a
 year for each user, and when we pointed the free version at this site it read {run["pages"]} pages in
 {run["seconds"]} seconds and put the most important of its {run["problems"]} problems first, with the fix.
 Screaming Frog is still the better tool for raw crawl data, custom extraction and very large sites.</p>
@@ -792,9 +792,9 @@ Screaming Frog is still the better tool for raw crawl data, custom extraction an
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th></th><th>Docket</th><th>Screaming Frog</th></tr></thead>
 <tbody>
-<tr><td>The first year</td><td class="yes">{PRICE_STR}</td><td>${sf_year}</td></tr>
-<tr><td>Three years</td><td class="yes">{PRICE_STR}</td><td>${sf_year * 3:,}</td></tr>
-<tr><td>Two people, one year</td><td class="yes">{PRICE_STR} ({F.licence_covers()})</td><td>${sf_year * 2:,} (two licences)</td></tr>
+<tr><td>The first year</td><td class="yes">{PRICE_COMPACT}</td><td>${sf_year}</td></tr>
+<tr><td>Three years</td><td class="yes">{PRICE_COMPACT}</td><td>${sf_year * 3:,}</td></tr>
+<tr><td>Two people, one year</td><td class="yes">{PRICE_COMPACT} ({F.licence_covers()})</td><td>${sf_year * 2:,} (two licences)</td></tr>
 </tbody></table></div>
 <p>Screaming Frog's figure is its own, for one to four licences, read from its pricing page on
 {_human_date(sf["price_checked"])}; it is free up to 500 URLs a crawl. Docket's free version runs the full
@@ -902,8 +902,7 @@ Googlebot actually fetched rather than what your site would serve if asked.</p>
             else ("Docket vs Screaming Frog: price, limits, what it does better")
         ),
         modified="2026-11-09",  # the title no longer targets the "alternatives" search
-        desc=(f"Docket is {PRICE_STR} once; Screaming Frog is ${sf_year} a year per user. A ranked fix "
-              "plan instead of raw crawl data, and what Screaming Frog still does better."),
+        desc=(f"{price_sentence()} Screaming Frog is ${sf_year} a year per user. Compare audit tools."),
         h1="Docket vs Screaming Frog",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Screaming Frog',
         body=body,
@@ -1026,7 +1025,7 @@ _AH_LO, _AH_HI = rival_monthly_range("ahrefs-site-audit")
 def _months_past_docket(monthly: int) -> int:
     """The first month in which paying `monthly` a month has cost more than Docket's one price."""
     m = 1
-    while monthly * m <= PRICE:
+    while monthly * m <= LATER_PRICE:
         m += 1
     return m
 
@@ -1046,7 +1045,7 @@ def ahrefs() -> Path:
     rules = F.credit_rules()
     help_a, help_b = F.credit_help_centre()
     checked = CHECKED_HUMAN["ahrefs"]
-    offer = founding_price_sentence() or f"{PRICE_STR} once."
+    offer = founding_price_sentence() or f"{PRICE_COMPACT}."
     run = json.loads((DATA / "free-run.json").read_text())
     pro, max_boost = _AH["project_boost"]["Pro"], _AH["project_boost"]["Max"]
     seats = _AH["additional_users"]
@@ -1268,10 +1267,10 @@ For the next step after an audit, see <a href="/how-to/content-audit/">how to do
 
 
 #: The entry plan's monthly price and how many weeks of it Docket's one-time price equals. Derived from
-#: competitors.csv and PRICE, because "roughly five weeks" was typed when Docket cost far less and stayed on the
+#: competitors.csv and LATER_PRICE, because "roughly five weeks" was typed when Docket cost far less and stayed on the
 #: page after the price moved to $349 (it is about eleven weeks of $139 a month).
 _SEM_LO, _SEM_HI = rival_monthly_range("semrush-site-audit")
-_SEM_WEEKS = round(PRICE / (int(_SEM_LO) * 12 / 52))
+_SEM_WEEKS = round(LATER_PRICE / (int(_SEM_LO) * 12 / 52))
 
 
 def semrush() -> Path:
@@ -1370,8 +1369,8 @@ Business, and their knowledge base notes those reset on the 1st rather than roll
 
 <h2>The arithmetic, and why it flatters Docket</h2>
 <p>Semrush's pricing page lists the entry plan at $139 a month, or $117.33 a month billed
-annually. Paid monthly that is $1,668 in the first year and the same again in the second. Docket is {PRICE_STR} once ({FREE_CLAUSE}), which works out at roughly {_SEM_WEEKS}
-weeks of the cheapest Semrush plan.</p>
+annually. Paid monthly that is $1,668 in the first year and the same again in the second. Docket is {PRICE_COMPACT} ({FREE_CLAUSE}), which works out at roughly {_SEM_WEEKS}
+{"week" if _SEM_WEEKS == 1 else "weeks"} of the cheapest Semrush plan.</p>
 <p>Then take the flattery back out. That $139 is not the price of a site audit. It is the price
 of keyword research, rank tracking and a backlink index, with an audit included. If you use
 those three, cancelling to save on the audit saves nothing, because the rest of the platform
@@ -1446,8 +1445,8 @@ stand; the local tool answers what to change next.</p>
              "covers the audit for a one-time price."),
             ("How much cheaper is Docket than Semrush?",
              "Semrush's pricing page lists its entry plan at $139 a month, or $117.33 a month "
-             "billed annually, which is $1,668 in a year paid monthly. Docket is " + PRICE_STR
-             + f" paid once, about {_SEM_WEEKS} weeks of that plan. The saving is only real if the "
+             "billed annually, which is $1,668 in a year paid monthly. Docket is " + PRICE_COMPACT
+             + f", about {_SEM_WEEKS} {'week' if _SEM_WEEKS == 1 else 'weeks'} of that plan. The saving is only real if the "
              "site audit is the part of Semrush you use."),
             ("Does Docket have crawl limits like Semrush?",
              "Not monthly ones. Semrush's knowledge base lists 20,000 pages per audit on Pro "
@@ -1607,7 +1606,7 @@ speed, Lighthouse is the better tool and this is the wrong page. Use Lighthouse 
 performance score in continuous integration. Docket's command line can fail a build on findings
 of a chosen severity with <code>--fail-on</code>. The desktop app runs on {MACOS} or later ({MAC_HW}){' and on 64-bit Windows' if WINDOWS else ''}.
 Linux runs the command line only.</p>
-<p>Docket costs {PRICE_STR} once, runs {N_CHECKS} checks on your own machine with no account.
+<p>Docket costs {PRICE_COMPACT}, runs {N_CHECKS} checks on your own machine with no account.
 The app sends three anonymous counts, with no site address or audit result. The crawl and report stay on your computer. Some optional checks send page
 addresses or topic words to outside services; <code>--offline</code> turns those checks off.
 The privacy page lists each request. It earns that money against a free tool from Google in
@@ -1780,7 +1779,7 @@ scoreboard; they are two instruments pointed at different things, and colouring 
 red would be the dishonesty this page opened by refusing.</p>
 
 <p>On cost: Search Console is free and has never been anything else. Docket is
-{PRICE_STR} paid once. {BETA_NOTE}</p>
+{PRICE_COMPACT}. {BETA_NOTE}</p>
 
 <h2>Where Docket defers: Core Web Vitals</h2>
 
@@ -1886,7 +1885,7 @@ def scrutiny() -> Path:
     feature list contains three things Docket does not do at all. Both are said
     plainly, and the assert below stops the build if the price order flips again.
     """
-    assert PRICE < int(COMPETITORS["scrutiny"]["annual_low"]), "Scrutiny costs less than Docket again: rewrite this page"
+    assert LATER_PRICE < int(COMPETITORS["scrutiny"]["annual_low"]), "Scrutiny costs less than Docket again: rewrite this page"
     body = f"""
 <p>Scrutiny is a macOS desktop SEO tool sold for a one-time fee, which makes it
 the closest thing to Docket on the market: no account, no subscription, runs on
@@ -1907,7 +1906,7 @@ specification.</li>
 <li><strong>Site search.</strong> Docket has no equivalent of searching your own
 crawled content.</li>
 </ul>
-<p>On price, Docket is the cheaper of the two: {PRICE_STR} against Scrutiny's
+<p>On price, Docket is the cheaper of the two: {PRICE_COMPACT} against Scrutiny's
 {price('scrutiny')}, both paid once.</p>
 
 <h2>What Docket does that Scrutiny's feature list does not name</h2>
@@ -1960,7 +1959,7 @@ page allowance.</p>
              "which Docket does. Docket adds AI-crawler access, conversion and "
              "local-business checks, and produces a ranked fix plan."),
             ("Which is cheaper?",
-             f"Docket, at {PRICE_STR} against Scrutiny's {price('scrutiny')}. Both "
+             f"Docket, at {PRICE_COMPACT} against Scrutiny's {price('scrutiny')}. Both "
              "are one-time purchases rather than subscriptions."),
             ("Does Scrutiny run on Windows?",
              "No. Its product page says there are no plans for Windows. "
@@ -1997,7 +1996,7 @@ def seoptimer() -> Path:
 <p class="lede"><strong>The short answer:</strong> the SEOptimer alternative that fits depends on what you use SEOptimer
 for. It is a cloud audit tool sold by the month ({price('seoptimer')}), with white-label PDF reports, a lead generation
 tool on its top plan, and a fixed number of crawls on every plan. Docket is an audit you run on your own
-computer, bought once for {PRICE_STR}, with no crawl meter, a free version, and reports that can carry your name and logo.
+computer, bought once for {PRICE_COMPACT}, with no crawl meter, a free version, and reports that can carry your name and logo.
 If you want a lead generation tool or a monthly cloud service built for selling audits, stay with SEOptimer. If you want
 to hand clients a report under your own name, or re-run audits as often as you like, pick Docket.</p>
 
@@ -2008,7 +2007,7 @@ offers a {_SEOPT_TRIAL_DAYS} day free trial.</p>
 <thead><tr><th>Plan</th><th>Monthly price</th><th>Crawls a month</th><th>What the plan names</th></tr></thead>
 <tbody>
 {"".join(f"<tr><td>SEOptimer {n}</td><td>${p}</td><td>{c}</td><td>{f}</td></tr>" for n, p, c, f in _SEOPT_PLANS)}
-<tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once</td><td class="yes">Unmetered</td>
+<tr><td class="yes">Docket</td><td class="yes">{PRICE_COMPACT}</td><td class="yes">Unmetered</td>
     <td>Reports with your name and logo. No lead generation tool</td></tr>
 </tbody></table></div>
 {_top_cta("vs-seoptimer-top")}
@@ -2039,7 +2038,7 @@ the time, which matters more than it sounds: the natural way to use an audit is 
 something and immediately check whether you fixed it.</p>
 
 <p>The pricing follows from that. SEOptimer bills monthly and keeps billing.
-Docket is {PRICE_STR} once. A year on SEOptimer's entry plan costs
+Docket is {PRICE_COMPACT}. A year on SEOptimer's entry plan costs
 ${F.rival_annual_low('seoptimer'):,} at its listed monthly rate, more than Docket's one price.
 A year is a long time in software and a subscription
 you can cancel is a real advantage if you only need one audit.</p>
@@ -2064,7 +2063,7 @@ nothing like it.</li>
 purchase.</li>
 {WRONG_COMPUTER}
 <li><strong>You audit your own sites and want unlimited re-runs while you fix things.</strong> That is
-Docket, for {PRICE_STR} once.</li>
+Docket, for {PRICE_COMPACT}.</li>
 </ul>
 
 <p>They are not really the same product. One is a reporting and lead product sold to agencies;
@@ -2094,15 +2093,8 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
     return render(
         cat="vs", slug="seoptimer-alternative",
         modified="2026-11-05",  # report branding (1.3.147): Docket's reports can carry your name and logo
-        title=f"SEOptimer alternative for Mac: {PRICE_STR} once, no crawl limit",
-        desc=(
-            (f"SEOptimer's plans run ${_SEOPT_LO} to ${_SEOPT_HI} a month for {_SEOPT_CRAWLS_LO} to "
-             f"{_SEOPT_CRAWLS_HI} crawls and add white-label reports. Docket is {PRICE_STR} once for "
-             f"any site, with a free tier and no meter.")
-            if SITE_BRAND == "checkengine"
-            else (f"SEOptimer's plans run ${_SEOPT_LO} to ${_SEOPT_HI} a month for {_SEOPT_CRAWLS_LO} to {_SEOPT_CRAWLS_HI} "
-                  f"crawls and add white-label reports. Docket is {PRICE_STR} once for any site, with a free tier and no crawl meter.")
-        ),
+        title="SEOptimer alternative for Mac with no crawl limit",
+        desc=(f"{price_sentence()} Compare SEOptimer's monthly crawls with Docket's unlimited re-runs."),
         h1="Docket vs SEOptimer",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / SEOptimer',
         body=body,
@@ -2118,7 +2110,7 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
              f"limit. The full report is a one-time purchase with a {REFUND_DAYS}-day refund."),
             ("How much does SEOptimer cost?",
              f"Its pricing page lists three plans, Starter, Pro and Max, at {price('seoptimer')}. "
-             f"Docket is {PRICE_STR} once."),
+             f"Docket is {PRICE_COMPACT}."),
             ("Is Docket an SEOptimer alternative?",
              "For auditing sites and handing clients a report under your own name and logo, yes. "
              "If you want a lead generation tool, no: SEOptimer's Max plan names one and Docket "
@@ -2126,7 +2118,7 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
             ("Is there a free SEOptimer alternative?",
              "Docket's free version shows your score, how many problems each area has and the top "
              "problem in full, on any site, with no key and no time limit. It is not the full "
-             f"report, which is {PRICE_STR} once. Our guide to free SEO audit tools compares the "
+             f"report, which is {PRICE_COMPACT}. Our guide to free SEO audit tools compares the "
              "other free options we looked at."),
             ("Can I get white-label reports from a SEOptimer alternative?",
              "Yes. In the paid version, Docket's PDF and HTML reports can carry your agency's name "
@@ -2135,7 +2127,7 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
              "on its Pro and Max plans."),
             ("Which is cheaper, Docket or SEOptimer?",
              f"SEOptimer's Starter plan, for its first {_months_past_docket(_SEOPT_LO) - 1} months: "
-             f"${_SEOPT_LO} a month against Docket's {PRICE_STR} once. From month "
+             f"${_SEOPT_LO} a month against Docket's {PRICE_COMPACT}. From month "
              f"{_months_past_docket(_SEOPT_LO)} it has cost more. Docket has no recurring fee, "
              "and every 1.x update is included, "
              "but a subscription you can cancel is genuinely better value if you only need one audit."),
@@ -2224,7 +2216,7 @@ tracking mentions is the whole of what you need. What Docket checks on the acces
 <p>{N_CHECKS} checks across thirteen areas, including conversion and brand consistency, which
 do not appear in Sitechecker's listed core tools. Findings arrive as a ranked plan with the fix
 written out rather than as a dashboard. <a href="/learn/priority-model/">The ordering formula is published</a>. It runs on your computer
-with no account, and the crawl and the report stay there. And it is {PRICE_STR} once rather than
+with no account, and the crawl and the report stay there. And it is {PRICE_COMPACT} rather than
 a monthly bill.</p>
 
 <p>That last one is the plainest difference. A year on Sitechecker's entry plan costs several
@@ -2279,7 +2271,7 @@ measured. Both vendors' published feature lists are what this page is built from
              f"{len(F.probes()['ai'])} AI crawlers plus {F.probes()['search']}. Access is a "
              "precondition for citation, not the same thing as it."),
             ("Which is cheaper?",
-             f"Docket costs less even for a month at the listed prices: {PRICE_STR} once; "
+             f"Docket costs less even for a month at the listed prices: {PRICE_COMPACT}; "
              f"Sitechecker starts at {price('sitechecker')} and keeps billing. Choose Sitechecker "
              "for its cloud platform tools, including monitoring and rank history. Docket "
              "re-audits saved sites on a schedule while the app is open, but does not track rankings."),
@@ -2340,7 +2332,7 @@ plan price to set against anything.</p>
 not a criticism: tracking nine answer engines across languages and regions is genuinely
 expensive to operate, and companies that need it have procurement departments. But it means the
 comparison with Docket is not really about features. One is a platform you are onboarded onto.
-The other is a {PRICE_STR} download with the price on the page.</p>
+The other is a {PRICE_COMPACT} download with the price on the page.</p>
 
 <h2>What Profound does that Docket does not</h2>
 
@@ -2392,13 +2384,7 @@ outside.</p>
             if SITE_BRAND == "checkengine"
             else ("Profound alternative? Docket checks AI access, not mentions")
         ),
-        desc=(
-            (f"Profound tracks whether AI assistants mention your brand and quotes plans by demo. "
-             f"Docket checks whether their crawlers can reach your site, for {PRICE_STR} once.")
-            if SITE_BRAND == "checkengine"
-            else (f"Profound tracks whether AI assistants mention your brand and quotes brand plans by demo. "
-                  f"Docket checks whether their crawlers can reach your site, for {PRICE_STR} once.")
-        ),
+        desc=(f"{price_sentence()} Profound tracks brand mentions. Docket checks AI crawler access."),
         h1="Docket vs Profound",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Profound',
         body=body,
@@ -2448,7 +2434,7 @@ def jetoctopus() -> Path:
     """
     body = f"""
 <p>JetOctopus is an enterprise technical-SEO platform built around server log files. Docket is a
-{PRICE_STR} desktop app for Mac and Windows. Before any comparison is worth making, the important part:
+{PRICE_COMPACT} desktop app for Mac and Windows. Before any comparison is worth making, the important part:
 <strong>JetOctopus reads your server logs and Docket cannot</strong>, and on a large site that is
 the most valuable technical-SEO data there is.</p>
 
@@ -2475,7 +2461,7 @@ thousands to millions of pages and a team around them.</p>
 <p>Their published rates: {price('jetoctopus')}. That works out at
 {F.rival_annual_low('jetoctopus'):,} US dollars for a year on the entry plan at the cheaper of the
 two rates, and {F.rival_annual_high('jetoctopus'):,} on the top priced plan.
-Docket is {PRICE_STR} once. Setting those numbers
+Docket is {PRICE_COMPACT}. Setting those numbers
 beside each other is close to meaningless, because they are not sold to the same buyer, but it does tell you which question you are asking. If a platform fee of several thousand dollars a year is a normal
 line item, JetOctopus is in your category and Docket is not.</p>
 
@@ -2536,7 +2522,7 @@ publishes about its own product.</p>
             ("How much does JetOctopus cost?",
              f"Its published In-House plans are {price('jetoctopus')}, which is "
              f"{F.rival_annual_low('jetoctopus'):,} US dollars for a year on the entry plan at the "
-             f"cheaper annual rate, with an Unlimited tier quoted only on request. Docket is {PRICE_STR} "
+             f"cheaper annual rate, with an Unlimited tier quoted only on request. Docket is {PRICE_COMPACT} "
              "once. They are not sold to the same buyer."),
             ("Do both have an MCP integration?",
              "Yes. Docket ships an MCP server so an assistant can run an audit, and "
@@ -2629,12 +2615,12 @@ lists the lifetime plan; the monthly plans are the ones it leads with.</p>
 <tr><td>CrawlRaven Pro</td><td>${_CR_PRO} a month, plus ${_CR_EXTRA_SITE} a month for each extra site</td><td>{_CR_PRO_SITES}</td></tr>
 <tr><td>CrawlRaven Agency</td><td>From ${_CR_AGENCY} a month</td><td>{_CR_AGENCY_SITES}</td></tr>
 <tr><td>CrawlRaven Pro lifetime</td><td>${_CR_LIFETIME} as a single payment</td><td>{_CR_PRO_SITES}, fixed</td></tr>
-<tr><td class="yes">Docket</td><td class="yes">{PRICE_STR} once</td><td class="yes">Any site</td></tr>
+<tr><td class="yes">Docket</td><td class="yes">{PRICE_COMPACT}</td><td class="yes">Any site</td></tr>
 </tbody></table></div>
 
 <p>CrawlRaven's Starter plan costs less than Docket for its first {_months_past_docket(_CR_STARTER) - 1} months, at
 ${_CR_STARTER} a month; from month {_months_past_docket(_CR_STARTER)} it has cost more. Twelve months of Starter come to
-${_CR_STARTER * 12} for one site, against {PRICE_STR} once for any site; the lifetime plan is
+${_CR_STARTER * 12} for one site, against {PRICE_COMPACT} for any site; the lifetime plan is
 ${_CR_LIFETIME} for {_CR_PRO_SITES}. They are not the same purchase: one is a content-insights platform with a
 metered audit, the other is the audit, running locally on your own computer with no account and no site limit.</p>
 
@@ -2658,14 +2644,7 @@ for {price('scrutiny')}, and stronger than either of us at link checking.</p>
         cat="vs", slug="crawlraven-alternative",
         modified="2026-11-08",  # Mac and 64-bit Windows, not Mac only (CEO QC),
         title="CrawlRaven vs Docket: price, technical audit, MCP",
-        desc=(
-            (f"CrawlRaven joins Search Console and GA4 to a technical audit from ${_CR_STARTER} a "
-             f"month. Docket is {PRICE_STR} once, any site. Each tool, read from its pricing "
-             f"page.")
-            if SITE_BRAND == "checkengine"
-            else (f"CrawlRaven joins Search Console and GA4 to a technical audit from ${_CR_STARTER} a month. "
-                  f"Docket is {PRICE_STR} once, any site. What each does, read from its pricing page.")
-        ),
+        desc=(f"{price_sentence()} Compare CrawlRaven's cloud audit with Docket for Mac and Windows."),
         h1="Docket vs CrawlRaven",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / CrawlRaven',
         body=body,
@@ -2677,7 +2656,7 @@ for {price('scrutiny')}, and stronger than either of us at link checking.</p>
              "keyword work, which Docket does not do."),
             ("Which is cheaper, Docket or CrawlRaven?",
              f"CrawlRaven for its first {_months_past_docket(_CR_STARTER) - 1} months, then Docket. Its Starter "
-             f"plan is ${_CR_STARTER} a month for one site, against Docket's {PRICE_STR} once for any site. Twelve months of Starter come to ${_CR_STARTER * 12}, and its "
+             f"plan is ${_CR_STARTER} a month for one site, against Docket's {PRICE_COMPACT} for any site. Twelve months of Starter come to ${_CR_STARTER * 12}, and its "
              f"lifetime plan for {_CR_PRO_SITES} sites is ${_CR_LIFETIME}, as read on {CHECKED_HUMAN['crawlraven']}."),
             ("Does CrawlRaven have a technical SEO audit?",
              f"Yes. On {CHECKED_HUMAN['crawlraven']} its pricing page listed it among the Starter features, and "
@@ -2751,7 +2730,7 @@ free tier is capped at 50 pages a session and its paid CLI tier at 10,000. In Do
 with Everything, its depth limit of {F.crawl_depth()} by default, or when it runs out of links.</p>
 
 <p>On price they are not close. crawler.sh is {price('crawler-sh')}, renewed yearly. Docket is
-{PRICE_STR} once. At these list prices, Docket costs less from the first year.
+{PRICE_COMPACT}. At these list prices, Docket costs less from the first year.
 Both can be tried free with no account: crawler.sh's free tier stops at 50 pages a
 session, and Docket's free version runs the whole audit but shows only the score, how many
 problems each area has and the top problem in full.</p>
@@ -2799,7 +2778,7 @@ what this page is built from.</p>
              f"{F.limits()['everything_hours']} hours with Everything, its depth limit of "
              f"{F.crawl_depth()} by default, or when it runs out of links."),
             ("Which is cheaper?",
-             f"Docket, at {PRICE_STR} once against crawler.sh's {price('crawler-sh')}, which "
+             f"Docket, at {PRICE_COMPACT} against crawler.sh's {price('crawler-sh')}, which "
              "renews every year. Both have a free version that needs no account; Docket's "
              "shows the score, how many problems each area has and the top problem in full, not the rest."),
             ("Do both render JavaScript?",
@@ -2854,7 +2833,7 @@ the evidence list below gives the pages and the dates read.</p>
 <tr><td>How you pay</td><td>Monthly subscription</td><td>Annual licence</td>
     <td class="yes">Once</td></tr>
 <tr><td>Published price</td><td>{price("seranking")}</td><td>{price("screaming-frog")}</td>
-    <td class="yes">{PRICE_STR} once</td></tr>
+    <td class="yes">{PRICE_COMPACT}</td></tr>
 <tr><td>Plans</td><td>Core and Growth, then an Enterprise tier that says &ldquo;Talk to sales&rdquo;</td>
     <td>One tier. Licences are per user</td>
     <td class="yes">One licence, {F.licence_covers()}</td></tr>
@@ -2961,7 +2940,7 @@ with what it checks and how a crawl is paid for.</p>
             ("How much does SE Ranking cost compared with Screaming Frog?",
              f"SE Ranking is {price('seranking')}. Screaming Frog is {price('screaming-frog')}, "
              f"with a free tier up to 500 URLs. The evidence list gives the sources and dates read. "
-             f"Docket is {PRICE_STR} once."),
+             f"Docket is {PRICE_COMPACT}."),
             ("Is SE Ranking's site audit unlimited?",
              "No. Its Core plan states \u201c250k pages per month in audit\u201d, so the audit "
              "is metered by pages per month. Screaming Frog's paid licence has no page meter."),

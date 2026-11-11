@@ -64,7 +64,7 @@ class LiveSiteFixTests(unittest.TestCase):
                 for row in re.findall(r'<tr\b.*?</tr>', table, re.S):
                     text = html.unescape(re.sub(r"<[^>]+>", " ", row))
                     text = " ".join(text.split())
-                    if f"{render.PRICE_STR} once" in text:
+                    if render.PRICE_COMPACT in text:
                         checked += 1
                         self.assertNotIn(render.BNPL_INSTALMENT, text, str(path))
                         self.assertNotIn("four payments", text, str(path))

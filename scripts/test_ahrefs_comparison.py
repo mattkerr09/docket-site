@@ -94,11 +94,12 @@ class AhrefsComparisonTests(unittest.TestCase):
         self.assertIn(offer, page["faq"][3][1])
         with patch.object(C, "founding_price_sentence", return_value=""), \
                 patch.object(C, "_top_cta", return_value=""), \
-                patch.object(C, "CTA_LINK_EXPERIMENT", ""):
+                patch.object(C, "CTA_LINK_EXPERIMENT", ""), \
+                patch.object(C, "PRICE_COMPACT", f"{render.PRICE_STR} once"):
             after = self.page()
         self.assertNotIn("Launch price", after["body"])
         self.assertNotIn("Launch price", str(after["faq"]))
-        self.assertIn(f"{C.PRICE_STR} once", after["body"])
+        self.assertIn(f"{render.PRICE_STR} once", after["body"])
         self.assertNotRegex(html.unescape(page["body"]), r"[—–]")
 
 

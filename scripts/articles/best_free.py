@@ -21,7 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from comparisons import _verified_note  # noqa: E402
-from render import CHROME_ADDON, FREE_LINE, PRICE_STR, render, with_next_step  # noqa: E402
+from render import CHROME_ADDON, FREE_LINE, PRICE_COMPACT, render, with_next_step  # noqa: E402
 
 
 def free_seo_audit_tools() -> Path:
@@ -143,7 +143,7 @@ them by what they cost you is a separate job from finding them.</li>
 <p>If the paid tool you already have is Ahrefs, its crawler is <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs Site Audit</a>; our comparison
 sets out what it checks and how a crawl is paid for.</p>
 
-<p>Docket's paid version is {PRICE_STR} once and adds the full ranked plan.
+<p>Docket's paid version is {PRICE_COMPACT} and adds the full ranked plan.
 If the free tools already tell you what to fix, keep using them. For a paid crawler or platform,
 <a href="/vs/se-ranking-vs-screaming-frog/">SE Ranking vs Screaming Frog</a> sets out the
 different ways their audits are paid for.</p>

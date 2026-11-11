@@ -76,7 +76,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import N_CHECKS, N_LANES, PRICE_STR, render  # noqa: E402
+from render import N_CHECKS, N_LANES, PRICE_COMPACT, render  # noqa: E402
 
 SIDECAR = "/Applications/Docket.app/Contents/Resources/docket/docket"
 #: The engine on Windows, under the per-user install folder. Written with YOU for the account name: the folder is
@@ -184,7 +184,7 @@ what the paid version adds. <code>list_checks</code> works either way, because i
 nothing. A free audit is not kept, so the three tools that read kept audits have nothing to read
 until the copy is activated, and they say so. Activate once with <code>docket licence --key YOUR-KEY</code>, or in the app, and the
 audit tool returns every finding from then on.
-Docket is {PRICE_STR} once, so there is no seat to add for the assistant.</p>
+Docket is {PRICE_COMPACT}, so there is no seat to add for the assistant.</p>
 
 <h2>What it does not do</h2>
 

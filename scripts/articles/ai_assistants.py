@@ -22,7 +22,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import N_CHECKS, REPO, RELEASE, buy_block, download_url, render  # noqa: E402
-from render import ISSUES, PRICE_STR, FOUNDING_LINE  # noqa: E402
+from render import ISSUES, PRICE_COMPACT, FOUNDING_LINE, price_sentence  # noqa: E402
 from brand import SITE_BRAND
 from pages import email_box, free_result_figure  # noqa: E402
 
@@ -97,7 +97,7 @@ and shows your score, how many problems each area has, and the worst one in full
 <tr><th scope="row">Runs on</th><td>Our server</td><td>Your computer</td><td>Your computer</td></tr>
 <tr><th scope="row">Works in</th><td>claude.ai, Claude Desktop, mobile, Claude Code</td>
 <td>The app, Claude Desktop extension, Claude Code</td><td>The same</td></tr>
-<tr><th scope="row">Price</th><td>Free</td><td>Free</td><td>{PRICE_STR} once. See the
+<tr><th scope="row">Price</th><td>Free</td><td>Free</td><td>{PRICE_COMPACT}. See the
 <a href="#licence">licence and current price</a> below.</td></tr>
 </tbody></table></div>
 {free_result_figure()}
@@ -171,7 +171,7 @@ an audit does contact, and how to turn the optional parts off, is on the
 <p>A licence unlocks every finding from the app&rsquo;s {N_CHECKS} checks, ranked, with the markup to paste.
 It also unlocks the full result in the Claude Desktop extension and the local engine used by Claude Code.
 Those audits run on your computer. The remote connector&rsquo;s five free checks need no licence.</p>
-<p>The licence is {PRICE_STR}, paid once. No subscription. {FOUNDING_LINE}</p>
+<p>{price_sentence()} No subscription. {FOUNDING_LINE}</p>
 
 <h2>Missing a check?</h2>
 <p><a href="{ISSUES}" rel="noopener">Ask for it on the public issue tracker</a>, or report a problem there.

@@ -24,7 +24,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import PRICE, PRICE_STR, REFUND_DAYS, buy_block, render, speed_words  # noqa: E402
+from render import LATER_PRICE, PRICE_COMPACT, REFUND_DAYS, buy_block, render, speed_words  # noqa: E402
 
 import comparisons  # noqa: E402
 import facts as F  # noqa: E402
@@ -57,7 +57,7 @@ def white_label_tools() -> Path:
                                                    "semrush", "sitechecker", "seoptimer"))
     # What a year costs if white label is the thing you are buying, lowest listed way in. Computed from the rows.
     year = [
-        ("Docket SEO", PRICE, f"{PRICE_STR} once, so the same in every later year"),
+        ("Docket SEO", LATER_PRICE, f"{PRICE_COMPACT}, with nothing to renew"),
         ("Netpeak Spider", np_["monthly"] * 12, f"{_usd(np_['monthly'])} a month, kept for twelve months"),
         ("SEOptimer Pro", so["monthly"] * 12, f"{_usd(so['monthly'])} a month, kept for twelve months (read {so_read})"),
         ("Sitebulb Pro", sb["annual"], f"{_usd(sb['annual'])} a year"),
@@ -69,14 +69,14 @@ def white_label_tools() -> Path:
     ]
     year.sort(key=lambda r: r[1])
     assert year[0][0] == "Docket SEO", "Docket is no longer the cheapest first year: rewrite the sentences that say so"
-    year_rows = "\n".join(f"<tr><th scope=\"row\">{esc(n)}</th><td>{_usd(c)}</td><td>{esc(how)}</td></tr>"
+    year_rows = "\n".join(f"<tr><th scope=\"row\">{esc(n)}</th><td>{esc(PRICE_COMPACT) if n == 'Docket SEO' else _usd(c)}</td><td>{esc(how)}</td></tr>"
                           for n, c, how in year)
     cheapest_rival = year[1]
 
     docket_part = ("Your agency's name and logo in place of Docket's on the PDF and HTML reports, with &ldquo;Prepared "
                    "by&rdquo; you (the paid version)")
     rows = [
-        ("Docket SEO", "a desktop app for Mac and Windows", docket_part, f"{PRICE_STR} once, {F.licence_covers()}")
+        ("Docket SEO", "a desktop app for Mac and Windows", docket_part, f"{PRICE_COMPACT}, {F.licence_covers()}")
     ]
     for t in (np_, sb, pw, se, sm, sc, so):
         rows.append((t["name"], t["kind"], esc(_cap(t["white_label"])), esc(_cap(t["sold"]))))
@@ -93,7 +93,7 @@ the page says plainly where it does less.</p>
 
 <h2>Short answer: pick by how you sell audits</h2>
 <ul>
-<li><strong>You send a report and want to pay once:</strong> Docket at {PRICE_STR}, with your name and logo on the PDF and
+<li><strong>You send a report and want to pay once:</strong> Docket at {PRICE_COMPACT}, with your name and logo on the PDF and
 HTML report and no limit on how many sites you audit.</li>
 <li><strong>You want a crawler on your own computer with branded PDFs:</strong> Netpeak Spider by the month,
 Sitebulb Pro or SEO PowerSuite Enterprise by the year.</li>
@@ -112,13 +112,13 @@ for one person.</p>
 </tbody></table></div>
 
 <h2>What a year of white label costs</h2>
-<p>The lowest listed way to get your own name on the report, for one year at list price, with no discount codes. A
+<p>The lowest listed way to get your own name on the report, for one year using Docket's price from December for the savings. A
 subscription is paid again every year; Docket is not. Sitechecker is left out of this table because the pages read do
 not say which of its plans unlocks white label, so any figure for it would be a guess.</p>
 <div class="wrap-tbl"><table class="cmp"><thead><tr><th>Tool</th><th>First year</th><th>How that is made up</th></tr></thead><tbody>
 {year_rows}
 </tbody></table></div>
-<p>Docket costs {_usd(cheapest_rival[1] - PRICE)} less in the first year than the next cheapest, {esc(cheapest_rival[0])}.
+<p>Docket costs at least {_usd(cheapest_rival[1] - LATER_PRICE)} less in the first year than the next cheapest, {esc(cheapest_rival[0])}.
 It is cheap because one person builds it and there is no sales team, not because it does less of the one job on this
 page. The cloud tools cost more and do more: SE Ranking and Semrush are whole SEO platforms with rank tracking, which
 this table does not weigh.</p>
@@ -175,7 +175,7 @@ a free check, <a href="/best/free-seo-audit-tools/">the best free SEO audit tool
         body=body,
         faq=[
             ("What is the best white-label SEO audit tool?",
-             f"It depends on how you sell audits. Docket is the cheapest for a year at {PRICE_STR} once and puts your name "
+             f"It depends on how you sell audits. Docket is the cheapest for a year at {PRICE_COMPACT} and puts your name "
              "and logo on the PDF and HTML report. SEOptimer and SE Ranking with its Agency Pack add a report on your own "
              "domain and client logins, and cost more."),
             ("Can I put my own logo on an SEO audit report?",
@@ -183,7 +183,7 @@ a free check, <a href="/best/free-seo-audit-tools/">the best free SEO audit tool
              "and SEOptimer say so on their own pages, and Sitebulb Pro lists customised PDF reports. Which plan unlocks it "
              "differs, and the table says which."),
             ("Is there a white-label SEO audit tool I pay for once?",
-             f"Docket is a one-off {PRICE_STR}. The others on this page are monthly or yearly subscriptions."),
+             f"Docket is a one-off {PRICE_COMPACT}. The others on this page are monthly or yearly subscriptions."),
             ("Does Docket have a client portal or a custom report domain?",
              "No. It makes the report as a PDF and an HTML file that carry your name and logo, and you send it yourself. "
              "A custom report address, report templates and client logins are what the cloud tools charge for."),

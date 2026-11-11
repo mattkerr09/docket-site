@@ -2061,7 +2061,7 @@ def presentation_numbers() -> dict:
             )
         text = visible(path.read_text(), include_chrome=True)
     # Include both offer states, so expiration alone cannot change the dataset.
-    for field in ("FOUNDING_NOW", "FOUNDING_END_DAY", "FOUNDING_AFTER_DAY"):
+    for field in ("FOUNDING_NOW", "FOUNDING_END_DAY", "FOUNDING_AFTER_DAY", "LATER_STR"):
         text += " " + str(getattr(shell, field))
     return {"numbers": sorted({n.replace(",", "") for n in NUMBER.findall(text)}),
             "source": {"file": "scripts/render.py", "function": "render and with_next_step"},

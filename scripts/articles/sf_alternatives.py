@@ -26,7 +26,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import (recorded_with, MAC_HW, MACOS, N_CHECKS, N_LANES, PRICE, PRICE_STR, REFUND_DAYS, WINDOWS,  # noqa: E402
+from render import (recorded_with, MAC_HW, MACOS, N_CHECKS, N_LANES, LATER_PRICE, PRICE_COMPACT, REFUND_DAYS, WINDOWS,  # noqa: E402
                     buy_block, render, speed_words)
 
 import comparisons  # noqa: E402
@@ -77,7 +77,7 @@ def sf_alternatives() -> Path:
     minutes = _LIMITS["wall_clock_minutes"]
     # The sentences below depend on the order of these prices. If a price change breaks one, the build stops here
     # rather than publishing a sentence the table no longer supports.
-    assert PRICE < sf["annual"] and PRICE < scr["once"], "a rival now costs less than Docket once: rewrite the prose"
+    assert LATER_PRICE < sf["annual"] and LATER_PRICE < scr["once"], "a rival now costs less than Docket once: rewrite the prose"
     assert sb["annual"] < sf["annual"] < sb["annual_pro"], "Sitebulb's prices no longer straddle Screaming Frog's"
     assert lc["once"] == 0, "LibreCrawl is no longer free: the first answer on the page is wrong"
 
@@ -87,7 +87,7 @@ def sf_alternatives() -> Path:
         (t["name"], t["runs_on"], t["sold"], t["free"], t["urls"]) for t in _TOOLS.values()
     ] + [
         ("Docket SEO", docket_runs,
-         f"{PRICE_STR} once",
+         f"{PRICE_COMPACT}",
          "a full audit with no key: the score, the number of problems in each area and the most important one in full",
          f"{ui_pages} pages by default and {minutes} minutes, and both can be raised"),
     ]
@@ -114,9 +114,9 @@ or Screaming Frog itself up to {sf["free_cap"]} URLs or WebSite Auditor up to {p
 <li><strong>You want to pay monthly, not yearly:</strong> Netpeak Spider, from {_usd(np_["monthly"])} a month.</li>
 <li><strong>You make reports for clients:</strong> Sitebulb Pro.</li>
 <li><strong>You want rank tracking and backlinks from the same company:</strong> SEO PowerSuite.</li>
-<li><strong>You want to pay once, on a Mac:</strong> Scrutiny at {_usd(scr["once"])}, or Docket at {PRICE_STR}.</li>
+<li><strong>You want to pay once, on a Mac:</strong> Scrutiny at {_usd(scr["once"])}, or Docket at {PRICE_COMPACT}.</li>
 <li><strong>You want to pay once, on Windows or a Mac, and be handed a list of what to fix first:</strong>
-Docket at {PRICE_STR}.</li>
+Docket at {PRICE_COMPACT}.</li>
 <li><strong>You want raw crawl data, exact control and the biggest sites:</strong> stay with Screaming Frog.
 Nothing below changes that.</li>
 </ul>
@@ -169,7 +169,7 @@ install it, you update it and nobody is paid to answer when it breaks.</p>
 {extra_sections}
 
 <h2>Docket, the one we make, and what we ran ourselves</h2>
-<p>Docket is ours. It runs on {esc(docket_runs)}, costs {PRICE_STR} once, and refunds the whole price within
+<p>Docket is ours. It runs on {esc(docket_runs)}, costs {PRICE_COMPACT}, and refunds the whole price within
 {REFUND_DAYS} days. It runs {N_CHECKS} checks across {N_LANES} areas, some on each page, some across the whole site,
 including whether AI crawlers such as GPTBot and
 ClaudeBot can reach the site, and it puts what it finds in the order to fix it, with the exact markup to paste. That
@@ -217,7 +217,7 @@ Mac-only view with the cost over three years, see <a href="/mac-seo-audit-tool/"
              f"{extra_free_answers}"),
             ("Is there a Screaming Frog alternative I pay for once?",
              f"Yes. Scrutiny is a one-off {_usd(scr['once'])} purchase and runs on a Mac only. Docket is a one-off "
-             f"{PRICE_STR} and runs on a Mac and on 64-bit Windows. Sitebulb, SEO PowerSuite and Screaming Frog are "
+             f"{PRICE_COMPACT} and runs on a Mac and on 64-bit Windows. Sitebulb, SEO PowerSuite and Screaming Frog are "
              "sold by the year, and Netpeak Spider by the month."),
             ("Which Screaming Frog alternatives work on Windows?",
              "Docket, Sitebulb, SEO PowerSuite's WebSite Auditor and Netpeak Spider all list a Windows version. "
@@ -225,7 +225,7 @@ Mac-only view with the cost over three years, see <a href="/mac-seo-audit-tool/"
              f"{extra_platform_answers}"),
             ("Is Docket a replacement for Screaming Frog?",
              "For some people. Docket ranks what it finds and says what to fix first, runs on a Mac and on Windows, "
-             f"and costs {PRICE_STR} once. Screaming Frog is the better tool for raw crawl data, custom extraction, "
+             f"and costs {PRICE_COMPACT}. Screaming Frog is the better tool for raw crawl data, custom extraction, "
              "JavaScript rendering on every page and very large sites, and plenty of people use both."),
         ],
     )

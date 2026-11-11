@@ -12,6 +12,7 @@ blocks. This keeps it that way.
 
 WHAT FAILS, on every built page except the noindex meta-refresh stubs:
   - a JSON-LD block that does not parse;
+  - SoftwareApplication offers that differ from the visible launch and December prices and dates;
   - an FAQPage question whose text is not in the page's visible text;
   - an FAQPage answer whose opening (its first 80 characters) is not in the visible text;
   - an Article, BlogPosting, TechArticle or NewsArticle headline that is in neither the visible text nor the H1;
@@ -76,6 +77,17 @@ def problems(page: str) -> list:
             continue
         types = it.get("@type")
         types = types if isinstance(types, list) else [types]
+        if "SoftwareApplication" in types and it.get("offers"):
+            import render as R
+            offers = it["offers"] if isinstance(it["offers"], list) else [it["offers"]]
+            paid = [offer for offer in offers if str(offer.get("price")) != "0"]
+            expected = [offer for offer in R._price_offers(False) if offer["price"] != "0"]
+            fields = ("price", "priceCurrency", "priceValidUntil", "validFrom")
+            if [{key: offer.get(key) for key in fields} for offer in paid] != [
+                    {key: offer.get(key) for key in fields} for offer in expected]:
+                out.append("SoftwareApplication offers do not match the dated page prices")
+            if R.price_sentence().lower() not in vis:
+                out.append("SoftwareApplication price sentence is not visible on the page")
         if "FAQPage" in types:
             for q in it.get("mainEntity") or []:
                 name = norm(q.get("name"))
@@ -133,6 +145,22 @@ def self_test() -> int:
     assert problems(short) == [], problems(short)
     only_in_script = good.replace("<h3>Is it free?</h3>", "<script>var q='Is it free?'</script>")
     assert any("question not visible" in p for p in problems(only_in_script)), "text inside a script is not visible"
+    import render as R
+    priced_app = '<script type="application/ld+json">' + json.dumps({
+        "@type": "SoftwareApplication", "offers": R._price_offers(False)}) + '</script>'
+    priced_app += '<p>' + R.price_sentence() + '</p>'
+    assert problems(priced_app) == [], problems(priced_app)
+    assert problems(priced_app.replace('<p>' + R.price_sentence() + '</p>', ''))
+    stale = priced_app.replace('"price": "29.50"', '"price": "59"')
+    if R.FOUNDING_OPEN:
+        assert any("dated page prices" in p for p in problems(stale)), problems(stale)
+        for field in ("priceValidUntil", "validFrom"):
+            offers = R._price_offers(False)
+            for offer in offers:
+                offer.pop(field, None)
+            missing_date = '<script type="application/ld+json">' + json.dumps({
+                "@type": "SoftwareApplication", "offers": offers}) + '</script><p>' + R.price_sentence() + '</p>'
+            assert any("dated page prices" in p for p in problems(missing_date)), field
     print("STRUCTURED DATA self-test ok")
     return 0
 

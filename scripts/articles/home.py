@@ -31,7 +31,7 @@ from render import (_human_date, SAMPLE_REPORT, speed_words, windows_waitlist, W
                     buy_block, founding_price_sentence, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, FOUNDING_OPEN, FOUNDING_END_DAY, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
-                    N_LANES, PRICE_STR,
+                    N_LANES, PRICE_COMPACT,
                     price, price_note_html, render)  # noqa: E402
 
 #: The instalment note as it appears under a buy button. Empty when BNPL_LIVE is
@@ -635,13 +635,13 @@ def body() -> str:
 
 <!-- ================= COMPARISON ================= -->
 <section class="sec"><div class="wrap-wide">
-<div class="sec-head"><h2>{PRICE_STR}. Once.</h2>
+<div class="sec-head"><h2>{founding_price_sentence() if FOUNDING_OPEN else PRICE_COMPACT}</h2>
 {BNPL_BLOCK}
 <p>Every tool below is a subscription. Docket is a one-time purchase, and the audit runs on your computer, so there are no crawl credits to ration. {BETA_NOTE}</p></div>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Tool</th><th>Price</th><th>Runs</th><th>Output</th></tr></thead>
 <tbody>
-<tr><td>Docket</td><td class="yes">{PRICE_STR} once</td><td class="yes">Your Mac or PC</td><td>Ranked fix plan</td></tr>
+<tr><td>Docket</td><td class="yes">{PRICE_COMPACT}</td><td class="yes">Your Mac or PC</td><td>Ranked fix plan</td></tr>
 <tr><td>Ahrefs Site Audit</td><td>{price("ahrefs-site-audit")}</td><td>Cloud, metered</td><td>170+ issues</td></tr>
 <tr><td>Semrush Site Audit</td><td>{price("semrush-site-audit")}</td><td>Cloud, metered</td><td>140+ checkpoints</td></tr>
 <tr><td>Sitebulb</td><td>{price("sitebulb")}</td><td>Local + cloud</td><td>Visual issue report</td></tr>
@@ -656,7 +656,7 @@ different orders of magnitude.</p></div>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>What you could buy</th><th>Price</th><th>For that you get</th></tr></thead>
 <tbody>
-<tr><td>Docket</td><td class="yes">{PRICE_STR} once</td><td>Unlimited audits, on your computer</td></tr>
+<tr><td>Docket</td><td class="yes">{PRICE_COMPACT}</td><td>Unlimited audits, on your computer</td></tr>
 <tr><td>{AG["webfx-audit"]["name"]}, published rate</td><td>{agency_amount("webfx-audit")}/month</td>
     <td>{AG["webfx-audit"]["scope"]}</td></tr>
 <tr><td>Agency retainer, survey average</td><td>{agency_amount("ahrefs-survey-retainer")}/month</td>
@@ -665,8 +665,8 @@ different orders of magnitude.</p></div>
     <td>{AG["ahrefs-survey-project"]["scope"]}</td></tr>
 </tbody></table></div>
 <div style="max-width:44rem;margin-inline:auto">
-<p>One month at the published agency rate is {agency_multiple("webfx-audit")} Docket licences.
-The bottom of the most common one-off project band is {agency_multiple("ahrefs-survey-project")}.
+<p>One month at the published agency rate buys at least {agency_multiple("webfx-audit")} Docket licences.
+The bottom of the most common one-off project band buys at least {agency_multiple("ahrefs-survey-project")}.
 Docket is bought once and run as often as you like.</p>
 <p>And what you get back is the thing you were paying for: every finding says how bad it is, how
 long the fix takes and the exact change to make, and names the pages when it is a
@@ -744,7 +744,7 @@ data-ev-button="home-free-block">Download Docket for Mac</a></p>
 FAQ = [
     ("Is Docket free?",
      f"{FREE_LINE} "
-     + (founding_price_sentence() if FOUNDING_OPEN else f"Pro is {PRICE_STR} once.")
+     + (founding_price_sentence() if FOUNDING_OPEN else f"Pro is {PRICE_COMPACT}.")
      + " There is a 30-day refund. There is no subscription and nothing to cancel."),
     ("What if it isn't for me?",
      "Ask for a refund within 30 days of buying and you get your money back. No conditions "
@@ -847,16 +847,8 @@ def build() -> Path:
             else ("Docket SEO: SEO and conversion audits for Mac and Windows" if WINDOWS
                   else "Docket SEO: SEO, copy, conversion and brand audits for Mac")
         ),
-        # 162 characters, and Google renders about 155 — measured with entities
-        # decoded, which is the only way to count a description honestly.
-        # Dropping "visibility" is the whole edit: 151, brand name still first.
-        # 154 since "nothing uploaded" became "kept on your computer": PageSpeed and
-        # topic suggestions send page addresses and topic words to Google by
-        # default, so "nothing uploaded" was not true of a default audit.
-        # 149 characters. Names the free version (1.3.96) because this line is
-        # the Google snippet and every pasted link's preview (CEO, 2026-10-02).
-        desc=(f"Docket SEO audits any site on your Mac or Windows PC with {N_CHECKS} checks, ranked into a fix "
-              f"plan. Free to try: score, counts and the top fix. Pro {PRICE_STR} once."),
+        desc=(f"{founding_price_sentence() if FOUNDING_OPEN else PRICE_COMPACT} "
+              "SEO audits for Mac and Windows. Try it free."),
         h1="SEO audits that tell you what to fix, in order",
         crumb="Docket for Mac",
         body=body(),

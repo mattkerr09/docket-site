@@ -184,7 +184,7 @@ class ReviewCopyTests(unittest.TestCase):
                     self.assertIn(render.founding_price_sentence(), price)
                 else:
                     self.assertNotIn("Launch price", price)
-                    self.assertIn(f"Docket costs {render.PRICE_STR} in US dollars, paid once.", price)
+                    self.assertIn(render.price_sentence(), price)
                 if render.WINDOWS:
                     self.assertIn("a Windows installer of test installer size", body)
         end = dt.datetime.fromisoformat(render.FOUNDING_ENDS_AT.replace("Z", "+00:00"))

@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import speed_words, WINDOWS, MAC_HW, MACOS, N_CHECKS, N_LANES, PRICE, PRICE_STR, REFUND_DAYS, buy_block, render  # noqa: E402
+from render import speed_words, WINDOWS, MAC_HW, MACOS, N_CHECKS, N_LANES, LATER_PRICE, PRICE_COMPACT, REFUND_DAYS, buy_block, render  # noqa: E402
 
 import comparisons  # noqa: E402
 
@@ -39,7 +39,7 @@ def _usd(n: int) -> str:
 
 def _more_than_docket(total: int) -> str:
     """How much more `total` is than Docket's one price, in words for the table."""
-    return f"{_usd(total - PRICE)} more"
+    return f"at least {_usd(total - LATER_PRICE)} more"
 
 
 def _cost_rows() -> list:
@@ -48,7 +48,7 @@ def _cost_rows() -> list:
     scr = _OPTIONS["scrutiny"]
     rows.append((scr["once"] * 1, scr["name"], _usd(scr["once"]), _usd(scr["once"]),
                  _more_than_docket(scr["once"])))
-    rows.append((PRICE, "Docket SEO", PRICE_STR, PRICE_STR, "this is Docket"))
+    rows.append((LATER_PRICE, "Docket SEO", PRICE_COMPACT, PRICE_COMPACT, "this is Docket"))
     ps = _OPTIONS["seo-powersuite"]
     wsa = ps["annual_alone"]
     rows.append((wsa * YEARS, "SEO PowerSuite, WebSite Auditor alone", _usd(wsa), _usd(wsa * YEARS),
@@ -73,11 +73,11 @@ def mac_options() -> Path:
     # The claims below depend on the order of these numbers. If a price change breaks one, the build stops
     # here rather than publishing a sentence the table no longer supports.
     cheapest = min(scr["once"], sf["annual"], sb["annual"], ps["annual_alone"], ps["annual"])
-    assert PRICE < cheapest, "a tool in the table now costs less than Docket in year one: rewrite the prose below"
+    assert LATER_PRICE < cheapest, "a tool in the table now costs less than Docket in year one: rewrite the prose below"
 
     side_rows = [
         ("Docket SEO", f"Mac ({MAC_HW}, {MACOS} or later) and 64-bit Windows" if WINDOWS else f"Mac only: {MAC_HW}, {MACOS} or later",
-         f"{PRICE_STR} once",
+         f"{PRICE_COMPACT}",
          "A full audit with no key: the score, the number of problems in each area and the most important one in full",
          f"{REFUND_DAYS} days, no conditions",
          "you want a ranked list of what to fix first, from a tool that runs on your own Mac with nothing to renew")
@@ -113,7 +113,7 @@ prices for one person.</p>
 <th>More than Docket over {YEARS} years</th></tr></thead><tbody>
 {cost}
 </tbody></table></div>
-<p>Docket costs less than Screaming Frog, Sitebulb, Scrutiny and SEO PowerSuite from the first day: {PRICE_STR} once, against
+<p>Docket costs less than Screaming Frog, Sitebulb, Scrutiny and SEO PowerSuite from the first day: {PRICE_COMPACT}, against
 {_usd(scr["once"])} once for Scrutiny and {_usd(sf["annual"])} a year for Screaming Frog. It is cheap because one
 person in Grand Rapids builds it, with no investors to repay and no sales team, not because it does less. Docket's
 one price includes every 1.x release, and Scrutiny's page does not say how long its free updates last.</p>
@@ -168,7 +168,7 @@ not compared here. If you also use Windows, or want Netpeak Spider and LibreCraw
              "Docket, Screaming Frog SEO Spider, Sitebulb and Scrutiny run as Mac apps, and SEO PowerSuite lists an "
              "Apple build. Ahrefs and Semrush are web tools and run in a browser."),
             ("Is there a one-time-price SEO audit tool for Mac?",
-             f"Yes. Scrutiny is a one-off {_usd(scr['once'])} purchase and Docket is a one-off {PRICE_STR}. The others in this "
+             f"Yes. Scrutiny is a one-off {_usd(scr['once'])} purchase and Docket is a one-off {PRICE_COMPACT}. The others in this "
              "comparison are yearly subscriptions."),
             ("Does Docket have a free version?",
              "Yes. A full audit runs with no key and shows your score, the number of problems in each area and the "

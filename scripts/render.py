@@ -144,7 +144,7 @@ def agency_multiple(slug: str) -> int:
     Down, always: the figure is an argument in our own favour, so it rounds the
     way that understates it. $8,600/mo against $349 is 24.6, published as 24.
     """
-    return int(int(AGENCIES[slug]["amount"]) // PRICE)
+    return int(int(AGENCIES[slug]["amount"]) // LATER_PRICE)
 
 
 def agency_note_html() -> str:
@@ -224,9 +224,10 @@ def price_anchor_html() -> str:
     else:
         when = (f"Screaming Frog&rsquo;s price read {_day(sf['price_checked'])}, "
                 f"Ahrefs&rsquo; {_day(ah['price_checked'])}.")
-    return (f'<p class="hero-note price-anchor">Screaming Frog is ${sf["annual_low"]} a year. '
+    return (f'<p class="hero-note price-anchor">{price_sentence()} '
+            f'Screaming Frog is ${sf["annual_low"]} a year. '
             f'Ahrefs plans with Site Audit run ${lo}&ndash;${hi} a month. '
-            f'Docket is {PRICE_STR} once. <span class="qual">{when}</span></p>')
+            f'<span class="qual">{when}</span></p>')
 
 
 #: A real report, exported from a real audit by the shipped app's own PDF
@@ -336,23 +337,12 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
     and the analytics event.
     """
     size = " btn-lg" if big else ""
-    # The price is the hero number and pay-in-four sits on its baseline at
-    # about 40% of its size (Matthew, 2026-09-28, on the literal same-size
-    # version: "this looks bad"). The button says only what it does: at 375px
-    # "Buy Docket · $349 once · or 4 × $87.25" broke over two lines.
-    # `sale_first`: the sale price stands ABOVE the regular one, so nobody reads the big "$59" as today's price
-    # (CEO QC, 2026-11-09, on /download/). Built from the same constants as the bar and the note, only while the
-    # offer is open, and removed by the page's own switch at FOUNDING_ENDS_AT.
-    sale_line = (f'<p class="price-sale"{FOUNDING_UNTIL} style="font-size:1.25rem;line-height:1.3;margin:0 0 .6rem">'
-                 f'<strong>{SALE_NAME}: {FOUNDING_NOW} once</strong>, through {FOUNDING_END_DAY}. '
-                 f'From {FOUNDING_AFTER_DAY}: {LATER_STR}.</p>' if sale_first and FOUNDING_OPEN else "")
-    out = [f'<div class="buy-block{"" if big else " compact"}">{sale_line}'
-           f'<p class="price-line"><span class="price-big">{PRICE_STR}</span>'
-           f'<span class="price-pay4">once{PAY4_BUY}</span></p>{price_req_html()}'
+    out = [f'<div class="buy-block{"" if big else " compact"}">'
+           f'<p class="price-line">{price_sentence()}</p>{price_req_html()}'
            # CEO, 2026-11-07 (sales audit): most November buyers paid in another currency, some with VAT added.
            f'<p class="price-req">Priced in US dollars. Checkout shows your currency and any local tax.</p>'
            f'<div class="hero-cta">'
-           f'<a class="btn{size} buy-btn" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
+           f'<a class="btn{size} buy-btn" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE_TODAY}" '
            f'data-ev-button="{src}">Buy Docket</a>']
     if try_app:
         # Since 1.3.96 the app itself is free to try (from 1.3.102: the score, the
@@ -419,9 +409,9 @@ def buy_strip(src: str) -> str:
     return (f'<aside class="buy-strip"><p><a href="{download_url(try_src)}" data-ev="Download" '
             f'data-ev-button="{try_src}"><strong>Try it free</strong></a>{intel}: your score and '
             f'how many problems each area has, and the top problem in full &middot; '
-            f'<a href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}" '
-            f'data-ev-button="{src}">Buy once, {PRICE_STR}{PAY4_BUY}</a>, {REFUND_DAYS}-day refund'
-            f'{sample}{founding}</p></aside>')
+            f'<a href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE_TODAY}" '
+            f'data-ev-button="{src}">Buy Docket</a>, {REFUND_DAYS}-day refund'
+            f'{sample}{founding if FOUNDING_OPEN else " &middot; " + price_sentence()}</p></aside>')
 
 
 def next_step_block(src: str) -> str:
@@ -734,8 +724,8 @@ PLATFORMS = (f"{MACS}, {MACOS} or later, and 64-bit Windows" if WINDOWS
 # $59 FROM 2026-11-02 18:21Z. Matthew, in chat, relayed by the CEO: "$30-60 each for any of these programs would be
 # fine", for "numbers and volume", then one price each: Crisp $29, Outlier $49, Docket $59, with the founding offers
 # kept. Read back from Dodo at 18:22:47Z: product 5900, FOUNDINGDOCKET 50%, ALLTHREE -$38, FOUNDINGBUNDLE -$87.50.
-# Every comparison that used to say Docket costs "fifteen months of" a rival is computed from this number, so at $59
-# it says a little over two months of Screaming Frog by itself.
+# PRICE remains the checkout list price while the launch code is active.
+# Displayed launch copy uses FOUNDING_NOW. Comparison arithmetic uses LATER_PRICE.
 PRICE = 59
 #: LATER_PRICE is what the product costs from FOUNDING_AFTER_DAY. On that day
 #: the host flips PRICE to LATER_PRICE. See docs/DECEMBER_PRICE_FLIP.md.
@@ -830,6 +820,15 @@ def founding_price_sentence() -> str:
             f"From {FOUNDING_AFTER_DAY}: {LATER_STR}." if FOUNDING_OPEN else "")
 
 
+def price_sentence() -> str:
+    """The full displayed price, including both launch dates while open."""
+    return founding_price_sentence() if FOUNDING_OPEN else f"{PRICE_STR} once."
+
+
+PRICE_COMPACT = (f"{FOUNDING_NOW} once through {FOUNDING_END_DAY}, then {LATER_STR}"
+                 if FOUNDING_OPEN else f"{PRICE_STR} once")
+
+
 #: Beside every buy button, as page text — the founding bar is a script that
 #: can fail to load, and a visitor at the button should not need it to know the
 #: offer exists or how to claim it. Says "first 25 buyers", never how many are
@@ -846,7 +845,7 @@ def founding_price_sentence() -> str:
 #: own schema.price_not_visible check found it, which is the strongest argument
 #: for the check that exists.
 BETA_FREE = False
-PRICE_TODAY = 0 if BETA_FREE else PRICE
+PRICE_TODAY = 0 if BETA_FREE else (PRICE * (100 - FOUNDING_PCT) / 100 if FOUNDING_OPEN else PRICE)
 #: The qualifier that travels with every mention of the price.
 BETA_NOTE = (f"{RELEASE} is free while it is in beta; {PRICE_STR} applies "
              f"from v1.0." if BETA_FREE else "")
@@ -960,7 +959,7 @@ BNPL_NOTE = (
     f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks "
     f"apart. The last one is six weeks after the first, at no extra cost from us. "
     f"Then it stops, and it is yours."
-) if BNPL_LIVE and PRICE * 100 >= BNPL_MIN_CENTS and not (FOUNDING_OPEN and PRICE * (100 - FOUNDING_PCT) < BNPL_MIN_CENTS) else ""
+) if BNPL_LIVE and PRICE_TODAY * 100 >= BNPL_MIN_CENTS else ""
 
 #: PAY-IN-FOUR ON THE SAME LINE AS THE PRICE, IN THE PRICE'S OWN FONT. Matthew,
 #: 2026-09-28: "it needs to say the bnpl price right next to the full price in
@@ -979,7 +978,7 @@ BNPL_FOUNDING_INSTALMENT = (
 #: Non-breaking inside "or 4 × $87.25": a phone may wrap before "or", never
 #: between "4 ×" and the amount (measured at 375px on 2026-09-28, it did).
 PAY4 = (f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_INSTALMENT}"
-        if BNPL_LIVE and PRICE * 100 >= BNPL_MIN_CENTS else "")
+        if BNPL_LIVE and PRICE_TODAY * 100 >= BNPL_MIN_CENTS else "")
 BNPL_FOUNDING_OK = BNPL_LIVE and PRICE * (100 - FOUNDING_PCT) >= BNPL_MIN_CENTS
 PAY4_FOUNDING = (f" &middot; or&nbsp;4&nbsp;&times;&nbsp;{BNPL_FOUNDING_INSTALMENT}"
                  if BNPL_FOUNDING_OK else "")
@@ -1002,11 +1001,10 @@ BNPL_NOTE_HTML = BNPL_NOTE.replace(
 #: rehearsal of 2026-09-30 opened it and Dodo showed $174.50 with the code
 #: already in. Typing it is only the fallback, for a checkout that opens at
 #: the full price (the hub falls back to the plain link if Dodo is down).
-#: The launch line keeps today's checkout fallback on PRICE_STR and the future price on LATER_STR.
-FOUNDING_LINE = (f"{SALE_NAME}: <strong>{FOUNDING_NOW} once</strong>, through {FOUNDING_END_DAY}. "
-                 f"From {FOUNDING_AFTER_DAY}: {LATER_STR}. "
-                 f"Buy applies the code <code>{FOUNDING_CODE}</code> for you; if the checkout shows {PRICE_STR}, "
+#: Only checkout help quotes PRICE_STR while the launch offer is open.
+CHECKOUT_HELP = (f"Buy applies the code <code>{FOUNDING_CODE}</code> for you; if the checkout shows {PRICE_STR}, "
                  f"enter it under &lsquo;Have a discount code?&rsquo;." if FOUNDING_OPEN else "")
+FOUNDING_LINE = CHECKOUT_HELP
 
 #: What the free version is, in Matthew's words of 2026-10-01 and the app's
 #: (freemode.py preset `basic`, from 1.3.96). One sentence, every page that says
@@ -2072,7 +2070,7 @@ FOUNDING_SWITCH = ('<script>(function(){var end=Date.parse("' + FOUNDING_ENDS_AT
 #: founding.js still struck data-was through (a former price nobody had paid) and computed four payments from data-now
 #: under Dodo's $50.01 floor; lead-agent 0eafcffe/5fdcc840 (read 2026-11-02) prints data-was as "then $59" and computes
 #: no instalment under 5001 cents. data-pay4 is sent only when the sale price clears the floor.
-FOUNDING_MOUNT = ((f'<div data-founding data-was="{FOUNDING_WAS}" data-now="{FOUNDING_NOW}"'
+FOUNDING_MOUNT = ((f'<div data-founding data-was="{LATER_STR}" data-now="{FOUNDING_NOW}"'
                    + (f' data-pay4="or 4 &times; {BNPL_FOUNDING_INSTALMENT}"' if BNPL_FOUNDING_OK else '')
                    + ' hidden></div>\n' + FOUNDING_SWITCH
                    + '<script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>')
@@ -2219,6 +2217,28 @@ def _breadcrumb_schema(crumb: str) -> str:
             '"itemListElement":[' + ",".join(items) + "]}")
 
 
+def _price_offers(with_free: bool) -> list:
+    offers = []
+    if with_free:
+        offers.append({"@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD",
+                       "description": "Your site's score, how many problems each area has and the top problem in full, with its fix.",
+                       "availability": "https://schema.org/InStock"})
+    paid = {"@type": "Offer", "name": "Pro", "price": f"{PRICE_TODAY:.2f}",
+            "priceCurrency": "USD", "availability": "https://schema.org/InStock",
+            "description": "The rest of the problems, the ranked fix plan and the markup to paste."}
+    if FOUNDING_OPEN:
+        paid["priceValidUntil"] = (_dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00"))
+                                   - _dt.timedelta(hours=10)).date().isoformat()
+    offers.append(paid)
+    if FOUNDING_OPEN:
+        offers.append({"@type": "Offer", "name": "Pro from " + FOUNDING_AFTER_DAY,
+                       "price": f"{LATER_PRICE:.2f}", "priceCurrency": "USD",
+                       "validFrom": (_dt.date.fromisoformat(paid["priceValidUntil"])
+                                     + _dt.timedelta(days=1)).isoformat(),
+                       "availability": "https://schema.org/InStock"})
+    return offers
+
+
 def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
     """Organization + SoftwareApplication + sameAs, on every page.
 
@@ -2281,25 +2301,7 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
         # and it sits in <head>, so the ops release gates, which take the first
         # .dmg URL on the homepage, test the real file rather than the counter.
         '"downloadUrl":"' + DMG + '",'
-        # PRICE_TODAY, not PRICE. Structured data states what a visitor would
-        # pay now; the future price is prose, not an Offer. Declaring 149 while
-        # the beta is free let Google advertise a number with no checkout
-        # behind it.
-        # FREE AND PRO, where the page says both (CEO, 2026-10-02). Google's
-        # software-app guidance: "If the app is available without payment, set
-        # offers.price to 0". Since 1.3.96 it is, for the score and the
-        # per-area counts, so a page that states the free version (FREE_LINE)
-        # offers both; a page that shows only the price offers only Pro.
-        + (('"offers":['
-            '{"@type":"Offer","name":"Free","price":"0","priceCurrency":"USD",'
-            '"description":"Your site\'s score, how many problems each area has and the top problem in full, with its fix.",'
-            '"availability":"https://schema.org/InStock"},'
-            '{"@type":"Offer","name":"Pro","price":"' + str(PRICE_TODAY) + '","priceCurrency":"USD",'
-            '"description":"The rest of the problems, the ranked fix plan and the markup to paste.",'
-            '"availability":"https://schema.org/InStock"}],')
-           if with_offer and with_free else
-           ('"offers":{"@type":"Offer","price":"' + str(PRICE_TODAY) + '","priceCurrency":"USD",'
-            '"availability":"https://schema.org/InStock"},') if with_offer else '') +
+        + ('"offers":' + json.dumps(_price_offers(with_free)) + ',' if with_offer else '') +
         '"featureList":"' + str(N_CHECKS) + ' checks, ranked action plan, PDF report, scheduled monitoring, '
         'competitor comparison, AI crawler access audit",'
         '"publisher":{"@id":"' + BASE + '/#org"}}]}'
@@ -2754,9 +2756,9 @@ def render(
     esc = lambda s: s.replace('"', "&quot;")  # noqa: E731
 
     # The Offer rides along only where a visitor can see the number it states.
-    # Derived from the authored body rather than a per-page flag, because a
-    # flag drifts the first time someone edits the copy without it.
-    shows_price = str(PRICE_TODAY) in body
+    # Include the FAQ and closing CTA, which are visible after the authored body.
+    price_copy = body + closer + " ".join(answer for _, answer in (faq or []))
+    shows_price = price_sentence() in re.sub(r"<[^>]+>", "", price_copy)
     # The same rule for the free version: the Free offer rides along only where
     # the page states what free is.
     blocks = [_entity_schema(with_offer=shows_price, with_free=FREE_LINE in body)]

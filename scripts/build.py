@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import html
+import re
 import tempfile
 import os
 
@@ -628,10 +630,9 @@ def write_llms_txt() -> None:
     import textwrap
     from collections import OrderedDict
 
-    from render import (BNPL_INSTALMENT, BNPL_LIVE, BNPL_MIN_CENTS, DMG_SIZE, FOUNDING_CODE, FREE_LINE, MAC_HW, NO_BUILDS, size_article, founding_price_sentence,
-                        SALE_UNDER_FLOOR, WINDOWS, WIN_PUBLISHER, WIN_SETUP_SIZE,
-                        FOUNDING_AFTER_DAY, FOUNDING_END_DAY, FOUNDING_NOW, FOUNDING_OPEN, HAS_SAMPLE, LINUX, MACOS, SALE_NAME,
-                        N_CHECKS, N_LANES, PRICE_STR, REPO, SAMPLE_REPORT, SELLER,
+    from render import (DMG_SIZE, FREE_LINE, MAC_HW, NO_BUILDS, size_article,
+                        WINDOWS, WIN_PUBLISHER, WIN_SETUP_SIZE, HAS_SAMPLE, LINUX, MACOS,
+                        N_CHECKS, N_LANES, price_sentence, CHECKOUT_HELP, REPO, SAMPLE_REPORT, SELLER,
                         seller_address)
 
     # Same order as /learn/what-docket-checks/, which lists them from the same file.
@@ -670,8 +671,8 @@ def write_llms_txt() -> None:
     out.append(wrap(
         f"Docket SEO is a Mac and Windows app that audits any website on your own computer: {N_CHECKS} "
         f"checks across {N_LANES} areas, then one ranked plan of what to fix, in order, "
-        f"with the markup to paste and a client-ready PDF report. It costs {PRICE_STR}, "
-        f"paid once; there is no subscription.", "> ", "> "))
+        f"with the markup to paste and a client-ready PDF report. {price_sentence()} "
+        f"There is no subscription.", "> ", "> "))
     out += ["", wrap(
         "The crawl and the report stay on your computer, and there is no account. "
         "The app sends three anonymous counts, with no site address or audit result. "
@@ -734,14 +735,8 @@ def write_llms_txt() -> None:
 
     out += ["", "## Price and licence", ""]
     out += facts(
-        f"{PRICE_STR}, paid once, in US dollars. Not a subscription: there is no renewal "
-        f"date and nothing to cancel.",
-        (f"{founding_price_sentence()} The Buy link applies the code {FOUNDING_CODE} at checkout (if the checkout shows "
-         f"{PRICE_STR}, enter it under \"Have a discount code?\")." if FOUNDING_OPEN else ""),
-        (f"The {SALE_NAME} of {FOUNDING_NOW} is paid in one payment."
-         if SALE_UNDER_FLOOR else
-         (f"Or four payments of {BNPL_INSTALMENT} with Klarna or Afterpay, two weeks apart."
-          if BNPL_LIVE and PRICE * 100 >= BNPL_MIN_CENTS else "")),
+        f"{price_sentence()} Priced in US dollars. There is no renewal date and nothing to cancel.",
+        html.unescape(re.sub(r"<[^>]+>", "", CHECKOUT_HELP)),
         f"{FREE_LINE} The free version needs no key and no account, and runs the same "
         f"full audit; buying unlocks the audit already run, with no second crawl.",
         f"The licence key arrives by email with the receipt and is pasted into the app "
@@ -957,6 +952,8 @@ def write_offer() -> None:
     founding_cents = price_cents * (100 - FOUNDING_PCT) // 100
     offer = {
         "schema": 1,
+        "later_price_cents": LATER_PRICE * 100,
+        "later_from": datetime.date.fromisoformat(FOUNDING_ENDS_AT[:10]).isoformat(),
         "price_cents": price_cents,
         "currency": "USD",
         "after_launch": ({"price_cents": LATER_PRICE * 100, "from": FOUNDING_AFTER_DAY,
@@ -1383,8 +1380,8 @@ def pricing_page() -> Path:
     as every other price on the site. Not in the sitemap: it is a door, not an
     article.
     """
-    from render import (BNPL_INSTALMENT, BNPL_LIVE, BNPL_MIN_CENTS, DMG_SIZE, FOUNDING_AFTER_DAY, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, PRICE_STR, REFUND_DAYS,
-                        FOUNDING_END_DAY, FOUNDING_NOW, SALE_NAME, SALE_UNDER_FLOOR, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE,
+    from render import (DMG_SIZE, FOUNDING_AFTER_DAY, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, price_sentence, REFUND_DAYS,
+                        FOUNDING_END_DAY, SALE_NAME, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE,
                         buy_block, download_url, windows_waitlist)
     # The prose below is this page's own. The quality gate's duplicate check
     # judged the first version (the buy block alone) a copy of 18 pages,
@@ -1426,7 +1423,7 @@ def pricing_page() -> Path:
 <p class="hero-note">Bought it already? <a href="{download_url('pricing-page')}" data-ev="Download"
 data-ev-button="pricing-page">Get the {DMG_SIZE} Mac download</a>{(f' or <a href="{download_url("pricing-page-windows", to=WIN_SETUP)}" data-ev="Download" data-ev-button="pricing-page-windows">the {WIN_SETUP_SIZE} Windows installer</a>') if WINDOWS else ''} and paste the key from your receipt.</p>
 
-<h2>What {PRICE_STR} gets you</h2>
+<h2>What you get</h2>
 <ul>
 <li>A Docket licence for life, in US dollars, with no renewal date. Use it on {F.licence_covers()},
 and move it by deactivating one.</li>
@@ -1440,11 +1437,7 @@ with no site address or audit result. <a href="/legal/privacy/">What is sent and
 
 <h2>How paying works</h2>
 <p>The checkout belongs to Dodo Payments, the reseller and merchant of record for the sale.
-{(f'The {SALE_NAME} of {FOUNDING_NOW} is paid at once.' if SALE_UNDER_FLOOR else
-(f'''Pay the whole amount at once, or split it with Klarna or Afterpay into four instalments of
-{BNPL_INSTALMENT} a fortnight apart, at no extra charge from us. Once the fourth is paid, nothing
-further is ever taken.''' if BNPL_LIVE and PRICE * 100 >= BNPL_MIN_CENTS else
-'Pay the whole amount at once.'))}</p>
+Pay the whole amount at once.</p>
 
 <h2>When the price changes</h2>
 <p>The {SALE_NAME.lower()} applies to everything bought up to the end of {FOUNDING_END_DAY}; the price from {FOUNDING_AFTER_DAY}
@@ -1474,8 +1467,8 @@ of the Kerr &amp; Company site (kerrandcompanyholdings.com/affiliates), linked f
 """
     return render(
         cat="", slug="pricing",
-        title="Docket pricing: $" + str(PRICE) + " once",
-        desc=f"Docket SEO costs ${PRICE}, paid once, for {MACS}. No subscription.",
+        title="Docket pricing and licence",
+        desc=f"{price_sentence()} For {MACS}. No subscription.",
         h1="Docket pricing",
         crumb='<a href="/">Docket</a> / Pricing',
         body=body,

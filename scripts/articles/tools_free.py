@@ -24,7 +24,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import comparisons  # noqa: E402
 import facts as F  # noqa: E402
 from brand import SHORT  # noqa: E402
-from render import (CHROME_ADDON, HAS_SAMPLE, INTEL, INTEL_DMG, N_CHECKS, N_LANES, PAY4_BUY, PRICE, PRICE_STR,  # noqa: E402
+from render import (CHROME_ADDON, HAS_SAMPLE, INTEL, INTEL_DMG, N_CHECKS, N_LANES, price_sentence, PRICE_TODAY,  # noqa: E402
                     REFUND_DAYS, SAMPLE_REPORT, buy_block, checkout_url, download_url,
                     price_req_html, render)
 
@@ -103,11 +103,11 @@ def audit_next(src: str, *, what: str, own: bool = False, summary: str | None = 
   <div class="buy-block compact">
     <div class="hero-cta">
       <a class="btn" href="{download_url(try_src)}" data-ev="Download" data-ev-button="{try_src}">Try it free</a>
-      <a class="btn-ghost" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE}"
-         data-ev-button="{src}">Buy once, {PRICE_STR}</a>
+      <a class="btn-ghost" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE_TODAY}"
+         data-ev-button="{src}">Buy Docket</a>
       {sample}
     </div>
-    <p class="price-line"><span class="price-big">{PRICE_STR}</span><span class="price-pay4">once{PAY4_BUY}</span></p>
+    <p class="price-line">{price_sentence()}</p>
     {price_req_html()}
     <p class="hero-note">{REFUND_DAYS}-day refund, no conditions.</p>
     {intel}
