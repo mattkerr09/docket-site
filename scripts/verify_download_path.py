@@ -38,6 +38,7 @@ import json
 import pathlib
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -170,6 +171,13 @@ def main() -> int:
     # A HEAD, so the counter's own tally is not inflated by this gate.
     for wrapped, url in sorted(_wrapped().items()):
         went = _forwards_to(wrapped)
+        # About 2,900 probes in one run: a lone connection reset is the network, not a broken link. Only an
+        # "unreachable" answer is tried again (three more times, a second apart); a wrong target fails at once.
+        for pause in (1, 2, 3):
+            if not went.startswith("unreachable"):
+                break
+            time.sleep(pause)
+            went = _forwards_to(wrapped)
         if went != url:
             failures.append(f"the download counter {wrapped} forwards to {went}, not {url}")
         else:
