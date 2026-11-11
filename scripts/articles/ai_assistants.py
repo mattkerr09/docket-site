@@ -22,8 +22,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import N_CHECKS, REPO, RELEASE, buy_block, download_url, render  # noqa: E402
-from render import ISSUES, PRICE_COMPACT, FOUNDING_LINE, price_sentence  # noqa: E402
+from render import ISSUES, PRICE_COMPACT, FOUNDING_LINE, FREE_LINE, price_sentence  # noqa: E402
 from brand import SITE_BRAND
+from comparisons import _verified_note  # noqa: E402
 from pages import email_box, free_result_figure  # noqa: E402
 
 RUN = json.loads((Path(__file__).resolve().parents[2] / "data" / "ai-assistants-run.json").read_text())
@@ -101,6 +102,12 @@ and shows your score, how many problems each area has, and the worst one in full
 <a href="#licence">licence and current price</a> below.</td></tr>
 </tbody></table></div>
 {free_result_figure()}
+
+<h2>Audits through MCP</h2>
+<p>Docket's MCP server runs the free audit with no licence key. {FREE_LINE}</p>
+<p>Screaming Frog lists its MCP Server as a paid feature, and Sitebulb lists MCP access on its paid plans
+and offers a trial.</p>
+{_verified_note("ai-assistants-mcp", closing="")}
 
 <h2>Claude Desktop: install the extension</h2>
 <p>Download the extension for your computer: {links}. Then, in Claude Desktop, open Settings, choose
@@ -193,7 +200,7 @@ Please leave private site details out of a public issue.</p>
         crumb='<a href="/">Docket</a> / AI assistants',
         body=body,
         published="2026-11-06",   # first published; the run below it is re-made each release
-        modified="2026-11-08",
+        modified="2026-11-11",
         schema_type="WebPage",
         faq=[
             ("Can Claude audit my website?",

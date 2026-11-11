@@ -94,6 +94,8 @@ CHECKED_ON_HUMAN = "10 August 2026"
 #:
 #: Found by fetching the deployed page and reading it, not from the source.
 CHECKED_HUMAN: dict[str, str] = {
+    # Host read both pricing pages on 2026-11-11 for the MCP access claim.
+    "ai-assistants-mcp": "11 November 2026",
     # Re-read 2026-10-19: the product page's own SoftwareApplication schema again (operatingSystem "MacOS", the
     # "There are no plans" answer for Windows, the 149 USD offer, the featureList). Unchanged.
     "scrutiny": "19 October 2026",
@@ -144,6 +146,7 @@ CHECKED_HUMAN: dict[str, str] = {
     "search-console": "19 October 2026",
 }
 CHECKED_ISO: dict[str, str] = {
+    "ai-assistants-mcp": "2026-11-11",
     "scrutiny": "2026-10-19",
     "se-ranking-vs-screaming-frog": "2026-11-09",
     "ahrefs": "2026-11-09",
@@ -182,6 +185,13 @@ HOME_CLAIM_CHECKED = "2026-10-19"
 HOME_CLAIM_CHECKED_HUMAN = "19 October 2026"
 
 VERIFIED: dict[str, list[tuple[str, str]]] = {
+    "ai-assistants-mcp": [
+        ('Screaming Frog\'s pricing page lists "MCP Server" with a cross in the Free column '
+         'and a tick in the Paid column',
+         "https://www.screamingfrog.co.uk/seo-spider/pricing/"),
+        ('Sitebulb\'s pricing page lists "MCP Access NEW" on each paid plan and offers a 14 day trial',
+         "https://sitebulb.com/pricing/"),
+    ],
     "home-four-lanes": [
         ("neither vendor's published feature list names conversion or "
          "landing-page auditing, brand consistency, or local-business SEO",
@@ -766,8 +776,12 @@ def _verified_note(key: str, closing: str = _DEFAULT_CLOSING) -> str:
         f'{what} (<a href="{url}" rel="nofollow noopener">source</a>)'
         for what, url in items
     )
-    read_note = ("Each rival's read date is shown with its claim below. " if key == "sf-alternatives" else
-                 "The factual\nclaims about this product were read from its own pages on that date: ")
+    if key == "sf-alternatives":
+        read_note = "Each rival's read date is shown with its claim below. "
+    elif key == "ai-assistants-mcp":
+        read_note = "These facts were read from the rivals' pricing pages on that date. "
+    else:
+        read_note = "The factual\nclaims about this product were read from its own pages on that date: "
     return f"""
 <p class="verified-note"><strong>Checked {checked}.</strong> {read_note}{checks}.
 {closing}</p>"""

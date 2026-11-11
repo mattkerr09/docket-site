@@ -102,6 +102,10 @@ def _text(html: str, *, chrome: bool = True) -> str:
 #: question is *when* a fact changed, and only the history knows that.
 CLAIMS_SOURCE = "scripts/articles/comparisons.py"
 
+# Pages outside /vs/ that require their own VERIFIED note, even when their
+# comparison uses plain facts and does not match the superiority patterns.
+VERIFIED_PAGES = {"ai-assistants-mcp": "ai-assistants/index.html"}
+
 
 
 #: A recurring charge, in any of the shapes these tables use.
@@ -493,6 +497,18 @@ def main() -> int:
             failures.append(
                 f"{key}: CHECKED_ISO {iso!r} and CHECKED_HUMAN {human!r} are "
                 f"different dates. The page prints the human one.")
+
+    for key, relative in VERIFIED_PAGES.items():
+        page = SITE / relative
+        raw = page.read_text() if page.is_file() else ""
+        note = re.search(r'<p class="verified-note">.*?</p>', raw, re.S)
+        human = comparisons.CHECKED_HUMAN.get(key, comparisons.CHECKED_ON_HUMAN)
+        if not note or f"Checked {human}." not in _text(note.group(0)):
+            failures.append(f"{relative}: requires a VERIFIED note dated Checked {human}.")
+        if note:
+            for _, source in comparisons.VERIFIED[key]:
+                if f'href="{source}"' not in note.group(0):
+                    failures.append(f"{relative}: VERIFIED note is missing source {source}")
 
 
 

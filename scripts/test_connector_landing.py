@@ -61,7 +61,8 @@ class ConnectorLandingTests(unittest.TestCase):
         self.assertTrue(all("src=ai-assistants-" in url for url in downloads))
         self.assertIn(ai_assistants.ISSUES, body)
         self.assertIn('src="/assets/free-result.webp"', body)
-        self.assertNotRegex(body.lower(), r"\b(?:official|verified|approved)\b")
+        # The words a reader sees, not markup: the dated claim note's class name is "verified-note".
+        self.assertNotRegex(re.sub(r"<[^>]+>", " ", body).lower(), r"\b(?:official|verified|approved)\b")
 
     def test_email_off_by_default_on_both_pages(self):
         self.assertFalse(pages.EMAIL_BOX_ENABLED)
