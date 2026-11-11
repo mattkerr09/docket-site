@@ -742,7 +742,7 @@ def _page(row: dict, rows: list[dict]) -> Path:
                   h1=token, desc=f'{row["token"]} in the {month} robots.txt survey. Operator, purpose, named and blocked counts, and rules to allow or block it.',
                   crumb=f'<a href="/ai-crawlers/">AI crawlers</a> / {token}',
                   body=body, faq=_faq(row),
-                  closer=_next_step("ai-crawlers-" + row["slug"]))
+                  published="2026-11-11", closer=_next_step("ai-crawlers-" + row["slug"]))
 
 
 SORT_SCRIPT = '''<script>
@@ -806,7 +806,7 @@ how many files we could read, and how the leading sites compare.
     return render(cat="ai-crawlers", slug="", title=f'AI crawler index, {method["month"]}',
                   desc='Compare AI crawler operators, purposes and measured robots.txt naming and blocking counts from the October survey.',
                   h1="AI crawler index", crumb="AI crawlers", body=body,
-                  closer=_next_step("ai-crawlers-index"))
+                  published="2026-11-11", closer=_next_step("ai-crawlers-index"))
 
 
 def build_all() -> list[Path]:
