@@ -632,7 +632,7 @@ def write_llms_txt() -> None:
 
     from render import (DMG_SIZE, FREE_LINE, MAC_HW, NO_BUILDS, size_article,
                         WINDOWS, WIN_PUBLISHER, WIN_SETUP_SIZE, HAS_SAMPLE, LINUX, MACOS,
-                        N_CHECKS, N_LANES, price_sentence, CHECKOUT_HELP, REPO, SAMPLE_REPORT, SELLER,
+                        N_CHECKS, N_LANES, price_sentence, CHECKOUT_HELP, REPO, SAMPLE_REPORT_URL, SELLER,
                         seller_address)
 
     # Same order as /learn/what-docket-checks/, which lists them from the same file.
@@ -714,7 +714,7 @@ def write_llms_txt() -> None:
     if HAS_SAMPLE:
         out += ["", "## Sample report", ""]
         out += links(
-            ("Sample report (PDF)", f"{BASE}{SAMPLE_REPORT}",
+            ("Sample report (PDF)", SAMPLE_REPORT_URL,
              "a full sample of the client-ready PDF Docket writes: score, scorecard, "
              "ranked plan, paste-ready markup, and a page on what was and was not "
              "measured"))
@@ -853,7 +853,12 @@ def write_llms_txt() -> None:
         ("All releases", f"{REPO}/releases", "every Docket release, on GitHub"),
         ("Sitemap", f"{BASE}/sitemap.xml", "every indexable page on this site"))
 
-    (SITE / "llms.txt").write_text(brand.text("\n".join(out) + "\n"), encoding="utf-8")
+    text = brand.text("\n".join(out) + "\n")
+    # These are reader links. The prose formatter otherwise retains their
+    # machine hosts, just as it must for installed-app requests above.
+    for url in (SAMPLE_REPORT_URL, f"{BASE}/bot/"):
+        text = text.replace(f"]({brand.site_url(url)})", f"]({url})")
+    (SITE / "llms.txt").write_text(text, encoding="utf-8")
 
     # Search Console's HTML-file proof of ownership for https://checkengineseo.com/ (asked for on 10 Nov 2026,
     # for the Change of Address from the docketseo.app property). Google re-checks it, so every build writes it.
@@ -955,7 +960,7 @@ def write_offer() -> None:
     read it.
     """
     from render import (BNPL_FOUNDING_OK, BNPL_LIVE, BNPL_MIN_CENTS, CHECKOUT, FOUNDING_CODE, FOUNDING_OPEN,
-                        FOUNDING_ENDS_AT, FOUNDING_END_DAY, FOUNDING_AFTER_DAY, FOUNDING_OFF_CENTS, HAS_SAMPLE, LATER_PRICE, LATER_STR, REFUND_DAYS, SALE_NAME, SAMPLE_REPORT)
+                        FOUNDING_ENDS_AT, FOUNDING_END_DAY, FOUNDING_AFTER_DAY, FOUNDING_OFF_CENTS, HAS_SAMPLE, LATER_PRICE, LATER_STR, REFUND_DAYS, SALE_NAME, APP_SAMPLE_REPORT_URL)
     import math
     price_cents = PRICE * 100
     founding_cents = price_cents - FOUNDING_OFF_CENTS
@@ -986,7 +991,7 @@ def write_offer() -> None:
         # Our buy endpoint: makes the Dodo checkout with the founding code
         # applied while it is honoured, and records which button was pressed.
         "buy_url": "https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket",
-        "sample_report_url": brand.site_url(f"{BASE}{SAMPLE_REPORT}") if HAS_SAMPLE else None,
+        "sample_report_url": APP_SAMPLE_REPORT_URL if HAS_SAMPLE else None,
     }
     (SITE / "offer.json").write_text(json.dumps(offer, indent=1) + "\n", encoding="utf-8")
 

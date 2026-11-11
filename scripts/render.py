@@ -37,7 +37,7 @@ SITE = Path(__file__).resolve().parent.parent / "site"
 #: email addresses no page renders. Keep measurements here; publish the pages
 #: that quote them.
 DATA = Path(__file__).resolve().parent.parent / "data"
-from brand import BASE, HOST, NAME, TAGLINE, SITE_BRAND, FORMERLY, formerly_note
+from brand import BASE, HOST, NAME, TAGLINE, SITE_BRAND, FORMERLY, LEGACY_BASE, formerly_note
 from brand import html as brand_html
 from urllib.parse import quote
 
@@ -234,6 +234,9 @@ def price_anchor_html() -> str:
 #: writer. The hero's second button used to be "Download for Mac", which hands
 #: a first-time visitor a 22 MB app that will not audit anything without a key.
 SAMPLE_REPORT = "/assets/docket-sample-report.pdf"
+SAMPLE_REPORT_URL = BASE + SAMPLE_REPORT
+# Installed apps accept only the original host. Keep this separate from reader links.
+APP_SAMPLE_REPORT_URL = LEGACY_BASE + SAMPLE_REPORT
 #: Every sample link is drawn only when the file is actually in site/assets —
 #: a button to a 404 is worse than no button, and the PDF is published in its
 #: own commit once it has been read end to end.

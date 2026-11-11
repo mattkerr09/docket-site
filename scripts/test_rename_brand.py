@@ -272,7 +272,8 @@ def check_site(site):
     assert "`checkengine audit`" in llms
     for machine in MACHINE[:3]:
         assert f"https://{OLD_HOST}{machine}" in llms, machine
-    assert f"https://{OLD_HOST}/assets/docket-sample-report.pdf" in llms
+    assert f"https://{NEW_HOST}/assets/docket-sample-report.pdf" in llms
+    assert f"https://{NEW_HOST}/bot/" in llms
     assert json.loads((site / "offer.json").read_text())["sample_report_url"] == f"https://{OLD_HOST}/assets/docket-sample-report.pdf"
 
     for rel in SAMPLES:
