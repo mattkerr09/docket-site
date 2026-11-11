@@ -1446,6 +1446,11 @@ with no site address or audit result. <a href="/legal/privacy/">What is sent and
 further is ever taken.''' if BNPL_LIVE and PRICE * 100 >= BNPL_MIN_CENTS else
 'Pay the whole amount at once.'))}</p>
 
+<h2>When the price changes</h2>
+<p>The {SALE_NAME.lower()} applies to everything bought up to the end of {FOUNDING_END_DAY}; the price from {FOUNDING_AFTER_DAY}
+applies to everything bought after it. Either way you pay once. Nothing is taken on the day the price changes, nothing renews,
+and a licence bought at the {SALE_NAME.lower()} is never asked to pay the difference later.</p>
+
 <h2>If Docket turns out not to suit you</h2>
 <p>Within {REFUND_DAYS} days of the receipt date, write to the support address or reply to the
 receipt and you get every cent back, to whatever you paid with. There are no conditions and no
