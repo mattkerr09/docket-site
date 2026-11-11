@@ -1,10 +1,9 @@
 {
   "notes": {
-    "report_capture": "Run capture window: 2026-11-11 13:31:42Z to 13:33:00Z. The job record supplies this window; report file timestamps differ.",
-    "plugin_read": "WordPress.org listings read: 2026-11-11 13:33:25Z to 13:34:06Z.",
-    "psi_docs_read": "Google documentation read: 2026-11-11 13:34:33Z.",
-    "psi_call": "Keyless mobile request to checkengineseo.com: 2026-11-11 13:34:42Z.",
-    "local_read": "Local source files read: 2026-11-11T13:45:38Z."
+    "report_capture": "11 November 2026, 13:31 to 13:33 UTC",
+    "plugin_read": "We read each plugin's WordPress.org listing on 11 November 2026, between 13:33 and 13:34 UTC. The quotes are short extracts, and we did not install or test the plugins.",
+    "psi_docs_read": "We read Google's PageSpeed Insights documentation on 11 November 2026 at 13:34 UTC.",
+    "psi_call": "Our keyless mobile request to checkengineseo.com returned a quota error on 11 November 2026 at 13:34 UTC."
   },
   "files": {
     "audit.md": {

@@ -9,6 +9,7 @@ import re
 import sys
 import tempfile
 import unittest
+from datetime import datetime
 from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
@@ -29,6 +30,14 @@ NUMBER = re.compile(r'(?<!\w)\d+(?:,\d{3})*(?:\.\d+)*(?!\w)')
 VOID = set('area base br col embed hr img input link meta param source track wbr'.split())
 SKIP = {'head', 'script', 'style', 'nav', 'header', 'footer'}
 BANNED = re.compile(r'\b(?:fields?|branches|branch|helpers?|matches|endpoints?|entries|rows?|tags|conditions?|generators?|datasets?|manifests?|Codex|Article Studio)\b', re.I)
+HEDGING = re.compile(r'does not establish|does not settle|the sources read here|the captured text|'
+                     r'the wording we read|we make no such claim here', re.I)
+# Counts from the rendered pages at the job's base commit, 7aa50ab08.
+HEDGING_BEFORE = {
+    'learn/seo-audit-report': 1,
+    'best/free-seo-audit-plugins-wordpress': 7,
+    'learn/free-seo-audit-api': 4,
+}
 PAGES = [
     (report_page, 'learn/seo-audit-report', 'seo audit report'),
     (plugins_page, 'best/free-seo-audit-plugins-wordpress', 'free seo audit plugin'),
@@ -151,11 +160,15 @@ def validate_fact(node):
     if name == 'read-times.json':
         assert normal(text(node)) == normal(value), (pointer, text(node))
         return
+    if node.attrs.get('data-run-summary') == 'true':
+        audit = report_page.source('audit.json')
+        window = report_page.source('read-times.json')['notes']['report_capture']
+        assert name == 'audit.json' and pointer == '/version'
+        expected = (f'Check Engine {audit["version"]} audited checkengineseo.com on {window}, '
+                    f'capped at {audit["stats"]["pages_crawled"]} pages.')
+        assert normal(text(node)) == expected, (text(node), expected)
+        return
     labels = {
-        ('audit.json', '/version'): 'Report engine version',
-        ('audit.json', '/stats/pages_crawled'): 'Pages crawled',
-        ('audit.json', '/started_at'): 'Audit JSON start',
-        ('audit.json', '/finished_at'): 'Audit JSON finish',
         ('psi-checkengineseo-mobile.json', '/error/code'): 'HTTP status',
     }
     if name == 'plugins-trimmed.json':
@@ -163,6 +176,14 @@ def validate_fact(node):
                  'last_updated': 'Last updated'}[pointer.rsplit('/', 1)[1]]
         owner = lookup(report_page.source(name), '/'.join(pointer.split('/')[:-1]))['slug']
         assert ancestor(node, 'data-plugin') == owner, (pointer, 'wrong plugin')
+        field = pointer.rsplit('/', 1)[1]
+        if field == 'active_installs':
+            value = f'{value // 1_000_000}+ million' if value >= 1_000_000 else f'{value:,}+'
+        elif field == 'rating':
+            value = f'{value / 20:.1f} out of 5'
+        else:
+            updated = datetime.strptime(value.split()[0], '%Y-%m-%d')
+            value = f'{updated.day} {updated:%B %Y}'
     else:
         label = labels[(name, pointer)]
     assert normal(text(node)) == f'{label}: {value}', (pointer, text(node), label, value)
@@ -344,6 +365,13 @@ class RealQuestionsTests(unittest.TestCase):
             self.assertEqual(len(values), 3)
             for value in values:
                 validate_fact(value)
+            facts = next(n for n in section.all('p') if n.attrs.get('class') == 'plugin-facts')
+            facts_text = normal(text(facts))
+            self.assertEqual(facts_text.count('Active installs:'), 1)
+            self.assertEqual(facts_text.count('Rating:'), 1)
+            self.assertEqual(facts_text.count('Last updated:'), 1)
+            self.assertRegex(facts_text, r'Rating: \d\.\d out of 5')
+            self.assertRegex(facts_text, r'Last updated: \d{1,2} [A-Z][a-z]+ 2026\b')
         visible = normal(text(article(doc)))
         self.assertIn("Slim SEO's listing says its meta tags are generated for the best SEO scores but describes no checker or audit.", visible)
         yoast = next(n for n in sections if n.attrs['data-plugin'] == 'wordpress-seo')
@@ -382,6 +410,15 @@ class RealQuestionsTests(unittest.TestCase):
         self.assertEqual(data['stats']['pages_crawled'], 60)
         self.assertEqual(sum(a.attrs.get('href') == '/learn/seo-audit/' for a in article(doc).all('a')), 1)
         self.assertIn('PageSpeed Insights did not run', normal(text(article(doc))))
+        self.assertNotIn('run', tables)
+        summary = next(n for n in article(doc).all('p') if 'data-run-summary' in n.attrs)
+        self.assertEqual(normal(text(summary)),
+                         'Check Engine 1.3.161 audited checkengineseo.com on '
+                         '11 November 2026, 13:31 to 13:33 UTC, capped at 60 pages.')
+        for row in tables['plan'].all('tr'):
+            stage = [n for n in row.children if isinstance(n, Node)][1]
+            self.assertIn('width:5rem', stage.attrs['style'])
+            self.assertIn('padding:0.6rem 1rem', stage.attrs['style'])
 
     def test_api_source_and_limits_are_present(self):
         value = normal(text(article(self.docs['learn/free-seo-audit-api'])))
@@ -395,6 +432,51 @@ class RealQuestionsTests(unittest.TestCase):
                       (DATA / 'psi-request-canonical.html').read_text())
         self.assertIn('mcp                 serve the engine to an AI assistant over MCP (stdio)',
                       (DATA / 'cli-main-help.txt').read_text())
+        doc = self.docs['learn/free-seo-audit-api']
+        self.assertEqual(normal(text(next(article(doc).all('pre')))),
+                         'checkengine audit https://example.com -f json')
+        self.assertIn('We ran the help commands for this article; we did not run this example audit.', value)
+
+    def test_visible_copy_has_plain_facts_and_times(self):
+        for slug, doc in self.docs.items():
+            value = normal(text(doc.root))
+            with self.subTest(page=slug):
+                self.assertNotRegex(value, r'(?i)\.(?:json|md|txt)|T13:|\+00:00|Z\.|API scale|job record')
+                self.assertNotRegex(value, r'\b\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}')
+                self.assertNotRegex(value, r'\d{5,}')
+                self.assertNotIn('Local source files read', value)
+                self.assertNotIn("saved files' own times", value)
+                self.assertNotIn('saved listing response', value)
+                self.assertNotIn('run record', value)
+        expected = {
+            'learn/seo-audit-report': ('11 November 2026, 13:31 to 13:33 UTC',),
+            'best/free-seo-audit-plugins-wordpress': ('11 November 2026, between 13:33 and 13:34 UTC',),
+            'learn/free-seo-audit-api': ('documentation on 11 November 2026 at 13:34 UTC',
+                                       'quota error on 11 November 2026 at 13:34 UTC'),
+        }
+        for slug, times in expected.items():
+            value = normal(text(article(self.docs[slug])))
+            for timestamp in times:
+                self.assertEqual(value.count(timestamp), 1, (slug, timestamp))
+            heading = next(n for n in article(self.docs[slug]).all('h2') if normal(text(n)) == 'Source note')
+            following = heading.parent.children[heading.parent.children.index(heading) + 1:]
+            notes = []
+            for node in following:
+                if isinstance(node, Node):
+                    if node.tag != 'p':
+                        break
+                    notes.append(normal(text(node)))
+            sentences = re.split(r'(?<=[.!?])\s+(?=[A-Z])', ' '.join(notes))
+            self.assertTrue(notes, slug)
+            self.assertTrue(1 <= len(sentences) <= 2, (slug, sentences))
+
+    def test_repeated_hedging_is_cut_by_at_least_a_quarter(self):
+        print('\nPage | Hedging before | Hedging after')
+        for slug, doc in self.docs.items():
+            before = HEDGING_BEFORE[slug]
+            after = len(HEDGING.findall(normal(text(article(doc)))))
+            print(f'/{slug}/ | {before} | {after}')
+            self.assertLessEqual(after, before * 0.75, slug)
 
     def test_voice_and_no_other_kerr_product_links(self):
         for slug, doc in self.docs.items():
@@ -437,8 +519,9 @@ class RealQuestionsTests(unittest.TestCase):
             self.assertTrue((DATA / name).exists())
             self.assertTrue(evidence['read_at'].startswith('2026-11-11T'))
             self.assertRegex(evidence['source_sha256'], r'^[0-9a-f]{64}$')
-        for key in ('report_capture', 'plugin_read', 'psi_docs_read', 'psi_call', 'local_read'):
-            self.assertIn('2026-11-11', info['notes'][key])
+        self.assertNotIn('local_read', info['notes'])
+        for key in ('report_capture', 'plugin_read', 'psi_docs_read', 'psi_call'):
+            self.assertIn('11 November 2026', info['notes'][key])
 
 
 if __name__ == '__main__':
