@@ -63,7 +63,7 @@ Michigan, United States.
 
 - Launch price: $29.50 once, through 30 November. From 1 December: $39. Priced in US
   dollars. There is no renewal date and nothing to cancel.
-- Buy applies the code FOUNDINGDOCKET for you; if the checkout shows $59, enter it
+- Buy applies the code FOUNDINGDOCKET for you; if the checkout shows $39, enter it
   under ‘Have a discount code?’.
 - Free: your score, how many problems in each category, and the top problem in full
   with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to
