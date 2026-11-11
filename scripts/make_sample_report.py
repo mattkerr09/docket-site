@@ -33,6 +33,8 @@ import sys
 from pathlib import Path
 from urllib.parse import urlparse
 
+from brand import SITE_BRAND
+
 ROOT = Path(__file__).resolve().parents[1]
 URL = "https://builtbykerr.com/"
 HOST = "builtbykerr.com"
@@ -167,6 +169,12 @@ def placeholder_brand():
     return branding.validate(PLACEHOLDER_NAME, out.getvalue())
 
 
+def write_sample_run(run: dict, path: Path) -> None:
+    """Write the sample metadata with the current site brand last."""
+    run = {**run, "site_brand": SITE_BRAND}
+    path.write_text(json.dumps(run, indent=1) + "\n", encoding="utf-8")
+
+
 def write_cover(result, pdf_path: Path, version: str, branded_pdf: bytes = b"") -> None:
     """The home page's 'This is the actual report' image and its caption's figures, from this run.
 
@@ -204,7 +212,7 @@ def write_cover(result, pdf_path: Path, version: str, branded_pdf: bytes = b"") 
            "image": {"src": "/assets/" + COVER.name, "width": still.width, "height": still.height},
            # The same report with Report branding set to a placeholder (PLACEHOLDER_NAME), for /for/agencies/.
            "branded_image": branded}
-    SAMPLE_RUN.write_text(json.dumps(run, indent=1) + "\n", encoding="utf-8")
+    write_sample_run(run, SAMPLE_RUN)
 
 
 def main() -> int:
