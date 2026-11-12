@@ -30,6 +30,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
 from tools_free import audit_next, how_it_works  # noqa: E402
+from crawler_fix import FIX_JS, search_names as _search_names  # noqa: E402
 from brand import SHORT  # noqa: E402
 from render import (BASE, DATA, HAS_SAMPLE, N_CHECKS, SAMPLE_REPORT, price_req_html,  # noqa: E402
                     buy_block, checkout_url, render)
@@ -89,6 +90,7 @@ def checker() -> Path:
     rows = _crawlers()
     n = len(rows)
     agents = ",".join(r["name"] for r in rows)
+    search_names = _search_names(rows)
     surveyed = F._d()["attempted"]
     edge_denied = F.directives_edge_denied()
     edge_pct = round(100 * edge_denied / surveyed, 2)
@@ -132,6 +134,18 @@ first, and the ones that only collect training data come second.</p>
             f"{F.ai_agents()} AI crawlers across your site. A separate check requests your homepage as "
             f"{len(F.probes()['ai'])} AI crawlers plus {F.probes()['search']} to find server refusals "
             f"the file cannot show, among its {N_CHECKS} checks."))}
+<div id="checker-fix" hidden>
+  <h2>How to fix it</h2>
+  <p id="checker-fix-google" hidden>Your robots.txt blocks Googlebot as well, so start there: removing that block lets these crawlers in too. Then, if you want to refuse model training, add Disallow groups for the training crawlers only.</p>
+  <div id="checker-fix-wildcard" hidden>
+    <p>These crawlers are blocked by your * rule. Add these lines to your robots.txt. A group that names a crawler beats the * rule for that crawler.</p>
+    <pre id="checker-fix-snippet"></pre>
+    <button class="btn-ghost" type="button" data-copy="checker-fix-snippet" data-what="fix">Copy</button>
+  </div>
+  <p id="checker-fix-name" hidden></p>
+  <p id="checker-fix-server" hidden></p>
+  <p>This reads your robots.txt only. A firewall or CDN can still refuse a crawler that robots.txt allows, and no robots.txt check can see that.</p>
+</div>
 {audit_next("tools-checker-result", what="one file, read for one page")}
 
 <h2>Crawlers that decide whether AI can cite you</h2>
@@ -199,13 +213,17 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
 
 <script>
 (function () {{
+  {FIX_JS}
   var ENDPOINT = {json.dumps(CHECKER_ENDPOINT)};
   var AGENTS = {json.dumps(agents)};
+  var SEARCH_NAMES = {json.dumps(search_names)};
   var SHARE = {json.dumps(SHARE_BASE)};
   var form = document.getElementById('checker');
   var input = document.getElementById('checker-url');
   var status = document.getElementById('checker-status');
   var shareBox = document.getElementById('checker-share');
+  var fixBox = document.getElementById('checker-fix');
+  var request = 0;
   if (!form || !window.fetch) return;
   function cells() {{ return document.querySelectorAll('tr[data-agent] .verdict'); }}
   function say(text) {{ status.textContent = text; }}
@@ -229,10 +247,23 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
   [].forEach.call(document.querySelectorAll('[data-copy]'), function (b) {{
     b.addEventListener('click', function () {{
       var el = document.getElementById(b.getAttribute('data-copy'));
+      var value = el.value === undefined ? el.textContent : el.value;
       var done = function () {{ var t = b.textContent; b.textContent = 'Copied'; setTimeout(function () {{ b.textContent = t; }}, 1500); }};
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(el.value).then(done, function () {{}});
-      else {{ el.select(); try {{ document.execCommand('copy'); done(); }} catch (e) {{}} }}
-      if (window.plausible) window.plausible('Checker share', {{ props: {{ what: b.getAttribute('data-what') }} }});
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(value).then(done, function () {{}});
+      else {{
+        if (el.select) el.select();
+        else {{
+          var range = document.createRange();
+          range.selectNodeContents(el);
+          var selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }}
+        try {{ document.execCommand('copy'); done(); }} catch (e) {{}}
+      }}
+      if (b.getAttribute('data-what') === 'fix') {{
+        if (window.plausible) window.plausible('fix_copied');
+      }} else if (window.plausible) window.plausible('Checker share', {{ props: {{ what: b.getAttribute('data-what') }} }});
     }});
   }});
   form.addEventListener('submit', function (e) {{
@@ -242,6 +273,11 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
   var asked = (new URLSearchParams(location.search).get('d') || '').trim().toLowerCase();
   if (HOST.test(asked)) {{ input.value = asked; run(); }}
   function run() {{
+    var current = ++request;
+    fixBox.hidden = true;
+    document.getElementById('checker-fix-snippet').textContent = '';
+    document.getElementById('checker-fix-name').textContent = '';
+    document.getElementById('checker-fix-server').textContent = '';
     var v = (input.value || '').trim();
     if (!v) {{ say('Enter your website address.'); return; }}
     [].forEach.call(cells(), function (c) {{ c.textContent = '…'; c.className = 'verdict'; }});
@@ -249,6 +285,7 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
     fetch(ENDPOINT + '?url=' + encodeURIComponent(v) + '&agents=' + encodeURIComponent(AGENTS))
       .then(function (r) {{ return r.json().then(function (j) {{ return {{ ok: r.ok, j: j }}; }}); }})
       .then(function (res) {{
+        if (current !== request) return;
         var j = res.j;
         if (!res.ok || j.error) {{ say(j.error || 'That address could not be checked.'); [].forEach.call(cells(), function (c) {{ c.textContent = ''; }}); return; }}
         var by = {{}};
@@ -262,6 +299,17 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
           var how = r.governedBy === 'name' ? 'named in your file' : r.governedBy === 'wildcard' ? 'by your * rules' : r.governedBy === 'status' ? 'by the server’s answer' : 'no rule applies';
           c.textContent = (r.allowed ? 'Allowed' : 'Blocked') + ': ' + how + (r.rule ? ' (' + r.rule + ')' : '');
         }});
+        var fix = buildCrawlerFix(j.results || [], SEARCH_NAMES);
+        fixBox.hidden = !(fix.byWildcard.length || fix.byName.length || fix.byServer.length);
+        document.getElementById('checker-fix-google').hidden = !fix.googleBlocked;
+        document.getElementById('checker-fix-wildcard').hidden = !fix.snippet;
+        document.getElementById('checker-fix-snippet').textContent = fix.snippet;
+        var named = document.getElementById('checker-fix-name');
+        named.hidden = !fix.byName.length;
+        named.textContent = fix.byName.length ? "Your robots.txt names these crawlers and disallows them, so this reads as a decision: " + fix.byName.join(', ') + ". If you want them to read your site, delete that crawler's Disallow line, or change it to Allow: /." : '';
+        var server = document.getElementById('checker-fix-server');
+        server.hidden = !fix.byServer.length;
+        server.textContent = fix.byServer.length ? 'These crawlers were blocked by the way your server answered for robots.txt, not by a rule: ' + fix.byServer.join(', ') + '. Make /robots.txt answer 200 or 404.' : '';
         var msg = {{ parsed: 'Read ' + j.robots_url + '.', unavailable: (j.status === 401 || j.status === 403) ? j.robots_url + ' refused this checker (HTTP ' + j.status + '). The site may send crawlers it trusts a file this checker cannot see, so the answer is unknown.' : j.robots_url + ' was not found (HTTP ' + j.status + '), so every crawler may crawl.', unreachable: j.robots_url + ' could not be read' + (j.status ? ' (HTTP ' + j.status + ')' : '') + ', so crawlers stay out until it can.', blocked: j.note || 'That address could not be checked.' }}[j.state] || '';
         if (j.note && j.state !== 'blocked') msg += ' ' + j.note;
         if (j.warnings && j.warnings.length) msg += ' ' + j.warnings[0];
@@ -271,7 +319,7 @@ to {F.optional_connectors_word()} optional outside checks and the rest of the au
         if (j.state !== 'blocked' && j.robots_url) {{ try {{ share(new URL(j.robots_url).hostname); }} catch (e) {{}} }}
         if (window.plausible) window.plausible('Checker', {{ props: {{ state: j.state }} }});
       }})
-      .catch(function () {{ say('The checker could not be reached. Try again in a minute.'); }});
+      .catch(function () {{ if (current === request) say('The checker could not be reached. Try again in a minute.'); }});
   }}
 }})();
 </script>

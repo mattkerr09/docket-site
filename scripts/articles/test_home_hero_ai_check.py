@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -21,6 +22,7 @@ import hero_check
 import home
 import render
 import tool_ai_crawlers as tool
+from crawler_fix import FIX_JS, search_names
 
 BASE = "23cea93a72b107dba1052ade68a3dcd3602e3e0a"
 CAVEAT = ("This reads your robots.txt only. A firewall or CDN can still refuse a crawler that "
@@ -122,6 +124,37 @@ class HomeHeroTests(unittest.TestCase):
         self.assertIn(normal(render.price_sentence()), normal(self.page))
         self.assertIn(f'{F.index_citation_pct()}% of the {F.index_n()} major sites', normal(self.page))
 
+    def test_shared_fix_inside_answer(self):
+        self.assertIn(FIX_JS, self.script)
+        self.assertIn(FIX_JS, self.tool)
+        expected = search_names(tool._crawlers())
+        for script in (self.script, self.tool):
+            names = json.loads(re.search(r"var SEARCH_NAMES = (.*?);", script)[1])
+            self.assertEqual(names, expected)
+            self.assertNotIn("Google-Extended", names)
+            self.assertNotIn("GPTBot", names)
+        answer = self.fragment.split('<div id="hero-check-answer" hidden>', 1)[1]
+        answer = answer.split('<div class="hero-check-next"', 1)[0]
+        self.assertLess(answer.index('id="hero-check-summary"'), answer.index('id="hero-check-fix"'))
+        self.assertLess(answer.index('id="hero-check-fix"'), answer.index(CAVEAT))
+        self.assertIn('</div>\n    <p>' + CAVEAT + '</p>\n  </div>', answer)
+        self.assertEqual(self.fragment.count(CAVEAT), 1)
+        self.assertIn("fix_copied", self.script)
+        self.assertNotIn("innerHTML", self.script)
+        hero_fix = self.fragment.split('<div id="hero-check-fix"', 1)[1].split(CAVEAT, 1)[0]
+        for paragraph in re.findall(r"<p\b[^>]*>(.*?)</p>", hero_fix, re.S):
+            if paragraph:
+                self.assertIn(paragraph, self.tool)
+        with patch.object(hero_check, "_crawlers", return_value=[
+            {"name": "future-search", "owner": "Anthropic", "purpose": "search index"},
+            {"name": "OAI-SearchBot", "owner": "OpenAI", "purpose": "search index"},
+            {"name": "future-training", "owner": "Anthropic", "purpose": "training"},
+            {"name": "Googlebot", "owner": "Google", "purpose": "search index"},
+        ]):
+            fragment = hero_check.hero_check_block()
+        # A new crawler is never added to a snippet people paste by its data row alone: only the curated set.
+        self.assertEqual(json.loads(re.search(r"var SEARCH_NAMES = (.*?);", fragment)[1]), ["OAI-SearchBot"])
+
     def test_platform_downloads_use_existing_helper(self):
         for windows in (False, True):
             with patch.object(hero_check, "WINDOWS", windows):
@@ -157,6 +190,7 @@ class HomeHeroTests(unittest.TestCase):
         for key in ("title", "desc", "h1", "faq", "closer", "modified"):
             self.assertEqual(before_args[key], after_args[key])
 
+    @unittest.skipUnless(shutil.which("node"), "node was not found on PATH; skipping browser JavaScript cases")
     def test_browser_states_events_and_retries(self):
         source = r"""
 const assert = require('node:assert/strict');
@@ -164,17 +198,25 @@ const vm = require('node:vm');
 const source = __SOURCE__;
 const assistants = __ASSISTANTS__;
 const names = assistants.flatMap(a => a.agents);
-function setup(fetcher, analytics = true, supported = true) {
-  const handlers = {}, calls = [], events = [], clicks = [];
+function setup(fetcher, analytics = true, supported = true, clipboard = true) {
+  const handlers = {}, calls = [], events = [], clicks = [], copied = [];
+  let copyClick, selected;
   const elements = Object.fromEntries(['address', 'status', 'answer', 'summary', 'next', 'every',
-    'verdict-0', 'verdict-1', 'verdict-2'].map(name => ['hero-check-' + name, {textContent: '', hidden: true}]));
+    'verdict-0', 'verdict-1', 'verdict-2', 'fix', 'fix-google', 'fix-wildcard', 'fix-snippet',
+    'fix-name', 'fix-server'].map(name => ['hero-check-' + name, {textContent: '', hidden: true}]));
   const form = {addEventListener: (name, fn) => handlers[name] = fn};
   const links = [0, 1].map(() => ({addEventListener: (name, fn) => clicks.push(fn)}));
   elements['hero-check-next'].querySelectorAll = () => links;
+  elements['hero-check-fix'].querySelector = () => ({textContent: 'Copy',
+    getAttribute: () => 'hero-check-fix-snippet', addEventListener: (name, fn) => copyClick = fn});
   const fetch = (url) => {calls.push(url); return fetcher(url);};
   const context = {URL, encodeURIComponent, document: {
-    querySelector: () => form, getElementById: id => elements[id]}, fetch,
-    window: {fetch: supported && fetch}};
+    querySelector: () => form, getElementById: id => elements[id],
+    createRange: () => ({selectNodeContents: el => selected = el}),
+    execCommand: name => {assert.equal(name, 'copy'); copied.push(selected.textContent);}}, fetch,
+    navigator: clipboard ? {clipboard: {writeText: async text => copied.push(text)}} : {},
+    setTimeout: fn => fn(),
+    window: {fetch: supported && fetch, getSelection: () => ({removeAllRanges() {}, addRange() {}})}};
   if (analytics) context.window.plausible = (name, props) => events.push({name, props});
   vm.runInNewContext(source, context);
   async function submit(value) {
@@ -184,7 +226,7 @@ function setup(fetcher, analytics = true, supported = true) {
     assert.equal(prevented, true);
     await new Promise(resolve => setImmediate(resolve));
   }
-  return {handlers, calls, events, clicks, elements, submit,
+  return {handlers, calls, events, clicks, elements, submit, copied, copy: () => copyClick(),
     text: name => elements['hero-check-' + name].textContent,
     hidden: name => elements['hero-check-' + name].hidden};
 }
@@ -208,6 +250,7 @@ async function main() {
   assert.equal(allowed.text('summary'), 'Your robots.txt lets all three read your site. The free audit checks the rest, in order.');
   assert.equal(allowed.hidden('answer'), false);
   assert.equal(allowed.hidden('next'), false);
+  assert.equal(allowed.hidden('fix'), true);
   assert.equal(allowed.elements['hero-check-every'].href, '/tools/ai-crawler-checker/?d=example.com');
   allowed.clicks.forEach(click => click());
   assert.deepEqual(allowed.events.map(e => e.name), ['check_started', 'check_started', 'result_allowed',
@@ -218,6 +261,9 @@ async function main() {
   await blocked.submit('example.com');
   assert.deepEqual([0, 1, 2].map(i => blocked.text('verdict-' + i)), ['Blocked', 'Blocked', 'Can read']);
   assert.equal(blocked.text('summary'), 'Your robots.txt blocks 3 AI search crawlers, so those assistants cannot quote your site. The free audit shows the fix in full.');
+  assert.equal(blocked.hidden('fix'), false);
+  assert.equal(blocked.hidden('fix-server'), false);
+  assert.equal(blocked.hidden('fix-wildcard'), true);
   assert.equal(JSON.stringify(blocked.events[1]), JSON.stringify({name: 'result_blocked', props: {props: {blocked: 2}}}));
   for (const agent of names) {
     const one = setup(() => response(result({results: [{agent, allowed: false}]})));
@@ -242,6 +288,7 @@ async function main() {
     for (let i = 0; i < 3; i++) assert.equal(missing.text('verdict-' + i), 'Not checked');
     assert.equal(missing.text('summary'), '');
     assert.equal(missing.events.length, 1);
+    assert.equal(missing.hidden('fix'), true);
   }
   const partial = setup(() => response(result({results: [{agent: names[0], allowed: true}]})));
   await partial.submit('example.com');
@@ -259,6 +306,42 @@ async function main() {
   const warnings = setup(() => response(result({note: 'File note.', warnings: ['First warning.', 'Second warning.']})));
   await warnings.submit('example.com');
   assert.equal(warnings.text('status'), 'Read https://example.com/robots.txt. File note. First warning.');
+  const wildcard = {agent: 'OAI-SearchBot', allowed: false, governedBy: 'wildcard'};
+  const snippet = '# Let AI search crawlers read your site (they are not training crawlers)\nUser-agent: OAI-SearchBot\nAllow: /';
+  for (const clipboard of [true, false]) {
+    for (const analytics of [true, false]) {
+      const fix = setup(() => response(result({results: [wildcard,
+        {agent: 'GPTBot', allowed: false, governedBy: 'wildcard'},
+        {agent: 'Claude-SearchBot', allowed: false, governedBy: 'name'},
+        {agent: 'PerplexityBot', allowed: false, governedBy: 'status'}]})), analytics, true, clipboard);
+      await fix.submit('example.com');
+      assert.equal(fix.hidden('fix'), false);
+      assert.equal(fix.hidden('fix-wildcard'), false);
+      assert.equal(fix.hidden('fix-google'), true);
+      assert.equal(fix.text('fix-snippet'), snippet);
+      assert(fix.text('fix-name').includes('decision: Claude-SearchBot.'));
+      assert(fix.text('fix-server').endsWith('PerplexityBot. Make /robots.txt answer 200 or 404.'));
+      fix.copy();
+      assert.deepEqual(fix.copied, [snippet]);
+      if (analytics) assert.equal(JSON.stringify(fix.events.at(-1)), JSON.stringify({name: 'fix_copied'}));
+      else assert.equal(fix.events.length, 0);
+      await fix.submit('');
+      assert.equal(fix.hidden('fix'), true);
+      assert.equal(fix.text('fix-snippet'), '');
+      assert.equal(fix.text('fix-name'), '');
+      assert.equal(fix.text('fix-server'), '');
+    }
+  }
+  const google = setup(() => response(result({results: [wildcard, {agent: 'Googlebot', allowed: false}]})));
+  await google.submit('example.com');
+  assert.equal(google.hidden('fix-google'), false);
+  assert.equal(google.hidden('fix-wildcard'), true);
+  assert.equal(google.text('fix-snippet'), '');
+  for (const agent of ['GPTBot', 'Google-Extended', 'Googlebot']) {
+    const ignored = setup(() => response(result({results: [{agent, allowed: false, governedBy: 'wildcard'}]})));
+    await ignored.submit('example.com');
+    assert.equal(ignored.hidden('fix'), true);
+  }
   for (const [reply, message] of [
     [() => response({error: 'Try again later.'}, false), 'Try again later.'],
     [() => response({}, false), 'That address could not be checked.'],
@@ -266,13 +349,15 @@ async function main() {
     [() => Promise.resolve({ok: true, json: async () => {throw new Error('bad JSON');}}), 'The checker could not be reached. Try again in a minute.']
   ]) {
     let fail = false;
-    const retry = setup(() => fail ? reply() : response(result()));
+    const retry = setup(() => fail ? reply() : response(result({results: [wildcard]})));
     await retry.submit('example.com');
     fail = true;
     await retry.submit('example.com');
     assert.equal(retry.text('status'), message);
     assert.equal(retry.hidden('answer'), true);
     assert.equal(retry.hidden('next'), true);
+    assert.equal(retry.hidden('fix'), true);
+    assert.equal(retry.text('fix-snippet'), '');
     fail = false;
     await retry.submit('example.com');
     assert.equal(retry.hidden('answer'), false);
@@ -312,8 +397,8 @@ main().catch(error => {console.error(error); process.exitCode = 1;});
         result = subprocess.run(["node", "-e", source], capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         events = re.findall(r"window\.plausible\('([^']+)'", self.script)
-        self.assertCountEqual(events, ["check_started", "result_blocked", "result_allowed", "result_to_download"])
-        self.assertEqual(self.script.count("if (window.plausible)"), 4)
+        self.assertCountEqual(events, ["check_started", "result_blocked", "result_allowed", "result_to_download", "fix_copied"])
+        self.assertEqual(self.script.count("if (window.plausible)"), 5)
 
 
 if __name__ == "__main__":
