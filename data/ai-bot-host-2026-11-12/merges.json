@@ -1,0 +1,308 @@
+[
+  {
+    "host": "cloudflare",
+    "bot": "GPTBot",
+    "url": "/ai-crawlers/hosts/cloudflare/",
+    "reason": "The saved docs describe behavior policies without a distinct recipe or category mapping for these six tokens. Cloudflare\u2019s conflicting new-domain claims are covered together on the host page."
+  },
+  {
+    "host": "cloudflare",
+    "bot": "ClaudeBot",
+    "url": "/ai-crawlers/hosts/cloudflare/",
+    "reason": "The saved docs describe behavior policies without a distinct recipe or category mapping for these six tokens. Cloudflare\u2019s conflicting new-domain claims are covered together on the host page."
+  },
+  {
+    "host": "cloudflare",
+    "bot": "PerplexityBot",
+    "url": "/ai-crawlers/hosts/cloudflare/",
+    "reason": "The saved docs describe behavior policies without a distinct recipe or category mapping for these six tokens. Cloudflare\u2019s conflicting new-domain claims are covered together on the host page."
+  },
+  {
+    "host": "cloudflare",
+    "bot": "Google-Extended",
+    "url": "/ai-crawlers/hosts/cloudflare/",
+    "reason": "The saved docs describe behavior policies without a distinct recipe or category mapping for these six tokens. Cloudflare\u2019s conflicting new-domain claims are covered together on the host page."
+  },
+  {
+    "host": "cloudflare",
+    "bot": "Applebot-Extended",
+    "url": "/ai-crawlers/hosts/cloudflare/",
+    "reason": "The saved docs describe behavior policies without a distinct recipe or category mapping for these six tokens. Cloudflare\u2019s conflicting new-domain claims are covered together on the host page."
+  },
+  {
+    "host": "cloudflare",
+    "bot": "CCBot",
+    "url": "/ai-crawlers/hosts/cloudflare/",
+    "reason": "The saved docs describe behavior policies without a distinct recipe or category mapping for these six tokens. Cloudflare\u2019s conflicting new-domain claims are covered together on the host page."
+  },
+  {
+    "host": "vercel",
+    "bot": "ClaudeBot",
+    "url": "/ai-crawlers/hosts/vercel/",
+    "reason": "The managed rules guide describes shared categories without naming this bot. Only GPTBot has a first-party bot-specific firewall recipe in the saved sources."
+  },
+  {
+    "host": "vercel",
+    "bot": "PerplexityBot",
+    "url": "/ai-crawlers/hosts/vercel/",
+    "reason": "The managed rules guide describes shared categories without naming this bot. Only GPTBot has a first-party bot-specific firewall recipe in the saved sources."
+  },
+  {
+    "host": "vercel",
+    "bot": "Google-Extended",
+    "url": "/ai-crawlers/hosts/vercel/",
+    "reason": "The managed rules guide describes shared categories without naming this bot. Only GPTBot has a first-party bot-specific firewall recipe in the saved sources."
+  },
+  {
+    "host": "vercel",
+    "bot": "Applebot-Extended",
+    "url": "/ai-crawlers/hosts/vercel/",
+    "reason": "The managed rules guide describes shared categories without naming this bot. Only GPTBot has a first-party bot-specific firewall recipe in the saved sources."
+  },
+  {
+    "host": "vercel",
+    "bot": "CCBot",
+    "url": "/ai-crawlers/hosts/vercel/",
+    "reason": "The managed rules guide describes shared categories without naming this bot. Only GPTBot has a first-party bot-specific firewall recipe in the saved sources."
+  },
+  {
+    "host": "netlify",
+    "bot": "ClaudeBot",
+    "url": "/ai-crawlers/hosts/netlify/",
+    "reason": "No distinct named-bot classification or instructions for this token in the saved category and blocker guides. The host page covers shared controls."
+  },
+  {
+    "host": "netlify",
+    "bot": "PerplexityBot",
+    "url": "/ai-crawlers/hosts/netlify/",
+    "reason": "No distinct named-bot classification or instructions for this token in the saved category and blocker guides. The host page covers shared controls."
+  },
+  {
+    "host": "netlify",
+    "bot": "Google-Extended",
+    "url": "/ai-crawlers/hosts/netlify/",
+    "reason": "No distinct named-bot classification or instructions for this token in the saved category and blocker guides. The host page covers shared controls."
+  },
+  {
+    "host": "netlify",
+    "bot": "Applebot-Extended",
+    "url": "/ai-crawlers/hosts/netlify/",
+    "reason": "No distinct named-bot classification or instructions for this token in the saved category and blocker guides. The host page covers shared controls."
+  },
+  {
+    "host": "netlify",
+    "bot": "CCBot",
+    "url": "/ai-crawlers/hosts/netlify/",
+    "reason": "No distinct named-bot classification or instructions for this token in the saved category and blocker guides. The host page covers shared controls."
+  },
+  {
+    "host": "wix",
+    "bot": "GPTBot",
+    "url": "/ai-crawlers/hosts/wix/",
+    "reason": "GPTBot and CCBot are examples of the same whole-site robots.txt recipe, with identical edit, save and check steps. The other four have no bot-specific treatment. Separate pages would repeat the host guide."
+  },
+  {
+    "host": "wix",
+    "bot": "ClaudeBot",
+    "url": "/ai-crawlers/hosts/wix/",
+    "reason": "GPTBot and CCBot are examples of the same whole-site robots.txt recipe, with identical edit, save and check steps. The other four have no bot-specific treatment. Separate pages would repeat the host guide."
+  },
+  {
+    "host": "wix",
+    "bot": "PerplexityBot",
+    "url": "/ai-crawlers/hosts/wix/",
+    "reason": "GPTBot and CCBot are examples of the same whole-site robots.txt recipe, with identical edit, save and check steps. The other four have no bot-specific treatment. Separate pages would repeat the host guide."
+  },
+  {
+    "host": "wix",
+    "bot": "Google-Extended",
+    "url": "/ai-crawlers/hosts/wix/",
+    "reason": "GPTBot and CCBot are examples of the same whole-site robots.txt recipe, with identical edit, save and check steps. The other four have no bot-specific treatment. Separate pages would repeat the host guide."
+  },
+  {
+    "host": "wix",
+    "bot": "Applebot-Extended",
+    "url": "/ai-crawlers/hosts/wix/",
+    "reason": "GPTBot and CCBot are examples of the same whole-site robots.txt recipe, with identical edit, save and check steps. The other four have no bot-specific treatment. Separate pages would repeat the host guide."
+  },
+  {
+    "host": "wix",
+    "bot": "CCBot",
+    "url": "/ai-crawlers/hosts/wix/",
+    "reason": "GPTBot and CCBot are examples of the same whole-site robots.txt recipe, with identical edit, save and check steps. The other four have no bot-specific treatment. Separate pages would repeat the host guide."
+  },
+  {
+    "host": "squarespace",
+    "bot": "GPTBot",
+    "url": "/ai-crawlers/hosts/squarespace/",
+    "reason": "The listed names share one site-wide checkbox and no bot-specific editing steps. PerplexityBot is absent from the list and has no documented separate control. All are covered in the host table."
+  },
+  {
+    "host": "squarespace",
+    "bot": "ClaudeBot",
+    "url": "/ai-crawlers/hosts/squarespace/",
+    "reason": "The listed names share one site-wide checkbox and no bot-specific editing steps. PerplexityBot is absent from the list and has no documented separate control. All are covered in the host table."
+  },
+  {
+    "host": "squarespace",
+    "bot": "PerplexityBot",
+    "url": "/ai-crawlers/hosts/squarespace/",
+    "reason": "The listed names share one site-wide checkbox and no bot-specific editing steps. PerplexityBot is absent from the list and has no documented separate control. All are covered in the host table."
+  },
+  {
+    "host": "squarespace",
+    "bot": "Google-Extended",
+    "url": "/ai-crawlers/hosts/squarespace/",
+    "reason": "The listed names share one site-wide checkbox and no bot-specific editing steps. PerplexityBot is absent from the list and has no documented separate control. All are covered in the host table."
+  },
+  {
+    "host": "squarespace",
+    "bot": "Applebot-Extended",
+    "url": "/ai-crawlers/hosts/squarespace/",
+    "reason": "The listed names share one site-wide checkbox and no bot-specific editing steps. PerplexityBot is absent from the list and has no documented separate control. All are covered in the host table."
+  },
+  {
+    "host": "squarespace",
+    "bot": "CCBot",
+    "url": "/ai-crawlers/hosts/squarespace/",
+    "reason": "The listed names share one site-wide checkbox and no bot-specific editing steps. PerplexityBot is absent from the list and has no documented separate control. All are covered in the host table."
+  },
+  {
+    "host": "shopify",
+    "bot": "GPTBot",
+    "url": "/ai-crawlers/hosts/shopify/",
+    "reason": "The saved guides offer one generic named-user-agent template method and do not state distinct defaults or instructions for these tokens."
+  },
+  {
+    "host": "shopify",
+    "bot": "ClaudeBot",
+    "url": "/ai-crawlers/hosts/shopify/",
+    "reason": "The saved guides offer one generic named-user-agent template method and do not state distinct defaults or instructions for these tokens."
+  },
+  {
+    "host": "shopify",
+    "bot": "PerplexityBot",
+    "url": "/ai-crawlers/hosts/shopify/",
+    "reason": "The saved guides offer one generic named-user-agent template method and do not state distinct defaults or instructions for these tokens."
+  },
+  {
+    "host": "shopify",
+    "bot": "Google-Extended",
+    "url": "/ai-crawlers/hosts/shopify/",
+    "reason": "The saved guides offer one generic named-user-agent template method and do not state distinct defaults or instructions for these tokens."
+  },
+  {
+    "host": "shopify",
+    "bot": "Applebot-Extended",
+    "url": "/ai-crawlers/hosts/shopify/",
+    "reason": "The saved guides offer one generic named-user-agent template method and do not state distinct defaults or instructions for these tokens."
+  },
+  {
+    "host": "shopify",
+    "bot": "CCBot",
+    "url": "/ai-crawlers/hosts/shopify/",
+    "reason": "The saved guides offer one generic named-user-agent template method and do not state distinct defaults or instructions for these tokens."
+  },
+  {
+    "host": "wordpress-com",
+    "bot": "GPTBot",
+    "url": "/ai-crawlers/hosts/wordpress-com/",
+    "reason": "The saved guide uses one sharing checkbox and says known AI bots without listing these names. No bot-specific instructions support a separate page."
+  },
+  {
+    "host": "wordpress-com",
+    "bot": "ClaudeBot",
+    "url": "/ai-crawlers/hosts/wordpress-com/",
+    "reason": "The saved guide uses one sharing checkbox and says known AI bots without listing these names. No bot-specific instructions support a separate page."
+  },
+  {
+    "host": "wordpress-com",
+    "bot": "PerplexityBot",
+    "url": "/ai-crawlers/hosts/wordpress-com/",
+    "reason": "The saved guide uses one sharing checkbox and says known AI bots without listing these names. No bot-specific instructions support a separate page."
+  },
+  {
+    "host": "wordpress-com",
+    "bot": "Google-Extended",
+    "url": "/ai-crawlers/hosts/wordpress-com/",
+    "reason": "The saved guide uses one sharing checkbox and says known AI bots without listing these names. No bot-specific instructions support a separate page."
+  },
+  {
+    "host": "wordpress-com",
+    "bot": "Applebot-Extended",
+    "url": "/ai-crawlers/hosts/wordpress-com/",
+    "reason": "The saved guide uses one sharing checkbox and says known AI bots without listing these names. No bot-specific instructions support a separate page."
+  },
+  {
+    "host": "wordpress-com",
+    "bot": "CCBot",
+    "url": "/ai-crawlers/hosts/wordpress-com/",
+    "reason": "The saved guide uses one sharing checkbox and says known AI bots without listing these names. No bot-specific instructions support a separate page."
+  },
+  {
+    "host": "webflow",
+    "bot": "GPTBot",
+    "url": "/ai-crawlers/hosts/webflow/",
+    "reason": "GPTBot is a whole-site example of the shared custom robots.txt method. The other unnamed bots have no distinct treatment. The host page retains that sample. Google-Extended has a separate folder-scope example."
+  },
+  {
+    "host": "webflow",
+    "bot": "ClaudeBot",
+    "url": "/ai-crawlers/hosts/webflow/",
+    "reason": "GPTBot is a whole-site example of the shared custom robots.txt method. The other unnamed bots have no distinct treatment. The host page retains that sample. Google-Extended has a separate folder-scope example."
+  },
+  {
+    "host": "webflow",
+    "bot": "PerplexityBot",
+    "url": "/ai-crawlers/hosts/webflow/",
+    "reason": "GPTBot is a whole-site example of the shared custom robots.txt method. The other unnamed bots have no distinct treatment. The host page retains that sample. Google-Extended has a separate folder-scope example."
+  },
+  {
+    "host": "webflow",
+    "bot": "Applebot-Extended",
+    "url": "/ai-crawlers/hosts/webflow/",
+    "reason": "GPTBot is a whole-site example of the shared custom robots.txt method. The other unnamed bots have no distinct treatment. The host page retains that sample. Google-Extended has a separate folder-scope example."
+  },
+  {
+    "host": "webflow",
+    "bot": "CCBot",
+    "url": "/ai-crawlers/hosts/webflow/",
+    "reason": "GPTBot is a whole-site example of the shared custom robots.txt method. The other unnamed bots have no distinct treatment. The host page retains that sample. Google-Extended has a separate folder-scope example."
+  },
+  {
+    "host": "github-pages",
+    "bot": "GPTBot",
+    "url": "/ai-crawlers/hosts/github-pages/",
+    "reason": "The saved setup guide describes static publishing and no named AI crawler default or bot-specific control."
+  },
+  {
+    "host": "github-pages",
+    "bot": "ClaudeBot",
+    "url": "/ai-crawlers/hosts/github-pages/",
+    "reason": "The saved setup guide describes static publishing and no named AI crawler default or bot-specific control."
+  },
+  {
+    "host": "github-pages",
+    "bot": "PerplexityBot",
+    "url": "/ai-crawlers/hosts/github-pages/",
+    "reason": "The saved setup guide describes static publishing and no named AI crawler default or bot-specific control."
+  },
+  {
+    "host": "github-pages",
+    "bot": "Google-Extended",
+    "url": "/ai-crawlers/hosts/github-pages/",
+    "reason": "The saved setup guide describes static publishing and no named AI crawler default or bot-specific control."
+  },
+  {
+    "host": "github-pages",
+    "bot": "Applebot-Extended",
+    "url": "/ai-crawlers/hosts/github-pages/",
+    "reason": "The saved setup guide describes static publishing and no named AI crawler default or bot-specific control."
+  },
+  {
+    "host": "github-pages",
+    "bot": "CCBot",
+    "url": "/ai-crawlers/hosts/github-pages/",
+    "reason": "The saved setup guide describes static publishing and no named AI crawler default or bot-specific control."
+  }
+]

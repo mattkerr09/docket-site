@@ -1,0 +1,167 @@
+#!/usr/bin/env python3
+"""Host AI crawler guides built only from the saved first-party documents."""
+from __future__ import annotations
+
+import json
+import re
+import sys
+from html import escape
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import render as site_render
+
+ROOT = Path(__file__).resolve().parents[2]
+DATA = ROOT / 'data' / 'ai-bot-host-2026-11-12'
+BOTS = ('GPTBot', 'ClaudeBot', 'PerplexityBot', 'Google-Extended',
+        'Applebot-Extended', 'CCBot')
+
+
+def load_data() -> dict:
+    return json.loads((DATA / 'pages.json').read_text(encoding='utf-8'))
+
+
+def source_link(key: str, sources: dict, *, dated: bool = False) -> str:
+    source = sources[key]
+    read_at = f' data-read-at="{source["read_at"]}"' if dated else ''
+    return (f'<a href="{escape(source["url"], quote=True)}" '
+            f'data-source="{source["file"]}"{read_at}>'
+            f'{escape(source["label"])}</a>')
+
+
+def attributed(text: str, keys: list[str], sources: dict, seen: set[str]) -> str:
+    """Introduce each source once within a section, keeping claim text intact."""
+    links = [source_link(key, sources) for key in dict.fromkeys(keys) if key not in seen]
+    seen.update(keys)
+    if not links:
+        return escape(text)
+    citations = ', '.join(links[:-1]) + ' and ' + links[-1] if len(links) > 1 else links[0]
+    return citations + (' say: ' if len(links) > 1 else ' says: ') + escape(text)
+
+
+def paragraph(item: dict, sources: dict, seen: set[str], *, lede: bool = False) -> str:
+    style = ' class="lede"' if lede else ''
+    content = attributed(item['text'], item['sources'], sources, seen)
+    if item.get('repo_robots'):
+        facts = json.loads((ROOT / 'data' / 'robots-txt-facts-2026-11-09.json').read_text())
+        content += (f' <a href="{facts["sources"]["google_intro"]}" '
+                    'data-repo-source="robots-txt-facts-2026-11-09.json" '
+                    f'data-read-at="{facts["read"]}">Google robots.txt introduction. '
+                    'Read 9 November 2026</a>')
+    return f'<p{style}>' + content + '</p>'
+
+
+def next_step(host: str) -> str:
+    src = 'host-' + host
+    return ('<section aria-label="Next step"><h2>Check your site</h2>'
+            f'<p>Start with the <a href="/tools/ai-crawler-checker/?src={src}">'
+            'free AI crawler checker</a> to read the rules for your address. '
+            f'Then <a href="{escape(site_render.download_url(src), quote=True)}">'
+            'download Check Engine</a> for an audit on your computer.</p></section>')
+
+
+def check_commands() -> str:
+    """Examples are displayed text. The build never sends these requests."""
+    lines = ["curl -sS -L https://example.com/robots.txt",
+             "curl -sS -L -D - -o /dev/null -A 'Mozilla/5.0' https://example.com/"]
+    lines += [f"curl -sS -L -D - -o /dev/null -A '{bot}' https://example.com/"
+              for bot in BOTS]
+    return '<pre><code>' + escape('\n'.join(lines)) + '</code></pre>'
+
+
+def bot_url(bot: str, crawlers: dict) -> str:
+    row = crawlers[bot]
+    return row['existing_page'] or '/ai-crawlers/' + row['slug'] + '/'
+
+
+def host_table(page: dict, sources: dict, crawlers: dict) -> str:
+    rows = []
+    keys = []
+    for bot in BOTS:
+        item = page['bots'][bot]
+        keys.extend(item['sources'])
+        rows.append('<tr><th scope="row">'
+                    f'<a href="{bot_url(bot, crawlers)}">{bot}</a></th><td>'
+                    + escape(item['default'])
+                    + '</td><td>' + escape(item['change']) + '</td></tr>')
+    return ('<h2>Rules for each bot</h2><div class="wrap-tbl"><table class="cmp">'
+            '<thead><tr><th scope="col">Bot</th><th scope="col">Default on '
+            + escape(page['name']) + '</th><th scope="col">How to change it</th>'
+            '</tr></thead><tbody>' + ''.join(rows) + '</tbody></table></div>'
+            + ''.join('<p>Source: ' + source_link(key, sources)
+                      + ', read 12 November 2026.</p>' for key in dict.fromkeys(keys)))
+
+
+def page_source_keys(page: dict) -> list[str]:
+    items = (page['intro']
+             + list(page.get('bots', {}).values())
+             + [item for section in page['sections'] for item in section['paragraphs']]
+             + page['faq'])
+    return list(dict.fromkeys(key for item in items for key in item['sources']))
+
+
+def sources_list(page: dict, sources: dict) -> str:
+    return ('<section aria-label="Sources"><h2>Sources</h2><ul>'
+            + ''.join('<li>' + source_link(key, sources, dated=True)
+                      + ', read 12 November 2026 at ' + sources[key]['read_at'][11:16]
+                      + ' UTC</li>' for key in page_source_keys(page))
+            + '</ul></section>')
+
+
+def page_url(page: dict) -> str:
+    return '/ai-crawlers/hosts/' + (page['slug'] + '/' if page['slug'] else '')
+
+
+def build_page(page: dict, data: dict) -> Path:
+    sources = data['sources']
+    crawlers = {row['token']: row for row in json.loads(
+        (ROOT / 'data' / 'ai-crawler-pages-2026-10.json').read_text())['rows']}
+    seen = set()
+    body = ''.join(paragraph(item, sources, seen, lede=i == 0)
+                   for i, item in enumerate(page['intro']))
+    if page['kind'] == 'host':
+        body += host_table(page, sources, crawlers)
+    for section in page['sections']:
+        seen = set()
+        body += '<h2>' + escape(section['heading']) + '</h2>'
+        body += ''.join(paragraph(item, sources, seen) for item in section['paragraphs'])
+        if section.get('checks'):
+            body += check_commands()
+        if section.get('code'):
+            body += '<pre><code>' + escape(section['code']) + '</code></pre>'
+        for link in section.get('links', []):
+            body += f'<p><a href="{escape(link[0], quote=True)}">{escape(link[1])}</a></p>'
+    if page['kind'] == 'host':
+        children = [item for item in data['pages']
+                    if item['kind'] == 'bot' and item['host'] == page['host']]
+        if children:
+            body += '<h2>More help for this host</h2><ul>' + ''.join(
+                f'<li><a href="{page_url(child)}">{escape(child["h1"])}</a></li>'
+                for child in children) + '</ul>'
+    faq = [(item['question'], escape(item['answer']))
+           for item in page['faq']]
+    path = site_render.render(
+        cat='ai-crawlers/hosts', slug=page['slug'], title=page['title'],
+        desc=page['description'], h1=page['h1'],
+        crumb='<a href="/ai-crawlers/">AI crawlers</a> / '
+              '<a href="/ai-crawlers/hosts/">Hosts</a>'
+              + (' / ' + escape(page['name']) if page['slug'] else ''),
+        body=body, faq=faq, closer=next_step(page['host']) + sources_list(page, sources),
+        published='2026-11-12')
+    # These guides omit the shared company-site link under the job's link rule.
+    # The requested tracked app download remains the existing helper's URL.
+    raw = path.read_text(encoding='utf-8')
+    raw = re.sub(r'<a href="https://kerrandcompanyholdings.com/">(.*?)</a>',
+                 r'\1', raw)
+    path.write_text(raw, encoding='utf-8')
+    return path
+
+
+def build_all() -> list[Path]:
+    data = load_data()
+    return [build_page(page, data) for page in data['pages']]
+
+
+if __name__ == '__main__':
+    for output in build_all():
+        print(output)

@@ -1,0 +1,4173 @@
+{
+  "sources": {
+    "cf-policy": {
+      "file": "cloudflare--developers_cloudflare_com_bots_additional_configurations_block_ai_bots_.html",
+      "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/",
+      "read_at": "2026-11-12T01:45:31Z",
+      "label": "Cloudflare access policies",
+      "sha256": "691fb4beb4128d22606974efdd4b64451d480dfe9c38537fde6fff31db861565",
+      "facts": {
+        "default": {
+          "statement": "New domains start with Allow for all three behaviors.",
+          "excerpt": "For new domains, Search, Agents, and Training use Allow (do not block) by default.",
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/"
+        },
+        "date": {
+          "statement": "The policy page was updated on 2 November 2026.",
+          "excerpt": "Last updated Nov 2, 2026",
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/"
+        },
+        "behaviors": {
+          "statement": "Policies cover Search, Agent and Training, including matching unverified bots.",
+          "excerpt": "You can set actions for Search, Agent, and Training traffic, and customize access for the top Personal Agents.",
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/"
+        },
+        "verified": {
+          "statement": "Policies apply to verified and matching unverified bots.",
+          "excerpt": "Each policy applies to Verified bots with that behavior and matching unverified bots.",
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/"
+        },
+        "settings": {
+          "statement": "Existing zones use Security > Settings and the Bot traffic filter.",
+          "excerpt": "In the Cloudflare dashboard, go to Security > Settings. Go to Settings ↗ Filter by Bot traffic, then select AI Crawler and Agent access policies.",
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/"
+        },
+        "actions": {
+          "statement": "Block covers the zone, ad-page blocking covers detected ads, and Allow does not block.",
+          "excerpt": "Action Effect Block Block matching requests across the zone. Block on pages with ads Block matching requests on pages where Cloudflare detects ads.",
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/"
+        },
+        "allow": {
+          "statement": "Allow does not block matching requests under this policy.",
+          "excerpt": "Allow (do not block) Do not block matching requests.",
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/"
+        },
+        "disallow": {
+          "statement": "Disallow is a voluntary robots.txt request offered only for Training.",
+          "excerpt": "Disallow For Training only, tell crawlers not to access your content through robots.txt. robots.txt directives are voluntary.",
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/"
+        },
+        "sync": {
+          "statement": "Bot Preference Sync adds an edge block, excluding mixed-purpose crawlers.",
+          "excerpt": "When Bot Preference Sync is enabled, Disallow also blocks AI training crawlers at Cloudflare's edge. Mixed-purpose crawlers used for both Search and Training are excluded from this edge block.",
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/"
+        },
+        "personal": {
+          "statement": "Personal Agents inherit the Agent policy and can then be customized.",
+          "excerpt": "Personal Agents inherit the Agents policy by default. Changing the Agents policies updates each Personal Agent.",
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/"
+        },
+        "personal-allow": {
+          "statement": "Personal Agents can have individual actions and Allow is recommended.",
+          "excerpt": "You can then choose individual actions again. Cloudflare recommends Allow (do not block) for Personal Agents.",
+          "url": "https://developers.cloudflare.com/bots/additional-configurations/block-ai-bots/"
+        }
+      }
+    },
+    "cf-blog": {
+      "file": "cloudflare--blog_cloudflare_com_content_independence_day_ai_options.html",
+      "url": "https://blog.cloudflare.com/content-independence-day-ai-options",
+      "read_at": "2026-11-12T01:45:32Z",
+      "label": "Cloudflare traffic announcement",
+      "sha256": "c2c1934968b5f96880820002a1649ae376de4e3536b361749f4e235638d8be85",
+      "facts": {
+        "default": {
+          "statement": "The announcement schedules ad-page Training and Agent blocks for new domains.",
+          "excerpt": "On September 15, 2026, we’ll be setting new defaults for each of these three classifications. For all new domains onboarding to Cloudflare, the categories of Training and Agent will be blocked by default on the pages that display ads, while Search will remain allowed by default.",
+          "url": "https://blog.cloudflare.com/content-independence-day-ai-options"
+        },
+        "mixed": {
+          "statement": "Mixed-purpose crawlers follow the most restrictive applicable rules.",
+          "excerpt": "Since the defaults will be enforced by the most restrictive applicable rules, multi-purpose crawlers such as Googlebot, Applebot, and BingBot will be blocked by customers who have selected to block Training (either through the new options to manage AI traffic, or through the legacy Block AI bots service).",
+          "url": "https://blog.cloudflare.com/content-independence-day-ai-options"
+        },
+        "date": {
+          "statement": "The announcement is dated 1 July 2026.",
+          "excerpt": "July 1, 2026",
+          "url": "https://blog.cloudflare.com/content-independence-day-ai-options"
+        }
+      }
+    },
+    "cf-log": {
+      "file": "cloudflare--developers_cloudflare_com_bots_changelog_.html",
+      "url": "https://developers.cloudflare.com/bots/changelog/",
+      "read_at": "2026-11-12T01:45:33Z",
+      "label": "Cloudflare changelog",
+      "sha256": "8ff464733652f7e72599b39ecb72cbaab3fc5459dcaaae5d6c45442fc021505d",
+      "facts": {
+        "default": {
+          "statement": "The changelog schedules ad-page blocks while Search remains allowed.",
+          "excerpt": "New defaults, in which Training and Agent are blocked on pages that display ads while Search remains allowed, take effect for new domains on September 15, 2026.",
+          "url": "https://developers.cloudflare.com/bots/changelog/"
+        }
+      }
+    },
+    "vercel-rules": {
+      "file": "vercel--vercel_com_docs_vercel_firewall_vercel_waf_managed_rulesets.html",
+      "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets",
+      "read_at": "2026-11-12T01:45:35Z",
+      "label": "Vercel managed rules",
+      "sha256": "b08d72bc977aaab32c915069a7ce621881ed383a9b9cd8ce62b6bb9f498d3b9a",
+      "facts": {
+        "default": {
+          "statement": "The AI Bots ruleset starts inactive at Allow.",
+          "excerpt": "The ruleset is inactive by default. In the dashboard this is labeled Allow.",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "traffic": {
+          "statement": "Inactive AI rules do not evaluate matching traffic.",
+          "excerpt": "Matching traffic is not evaluated and reaches your application.",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "categories": {
+          "statement": "AI Crawlers and AI Assistants have separate controls and definitions.",
+          "excerpt": "AI Crawlers: Bots that crawl and collect content for training. AI Assistants: Bots that retrieve pages in response to user actions or use for search queries.",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "catalog": {
+          "statement": "The bot membership list is in a separate catalog.",
+          "excerpt": "See https://bots.fyi for the full catalog of bots that are classified into each category.",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "settings": {
+          "statement": "Configure AI categories in Firewall > Rules > Bot Management.",
+          "excerpt": "From your project's dashboard, open Firewall in the sidebar. Open Rules in the sidebar.",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "configure": {
+          "statement": "Bot Management provides independent category actions.",
+          "excerpt": "From the Bot Management section, click on the Configure icon. Independently configure actions for each AI Crawlers and AI Assistants categories:",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "log": {
+          "statement": "Log records AI traffic without blocking it.",
+          "excerpt": "Log: This action records AI bot traffic without blocking it.",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "deny": {
+          "statement": "Deny blocks identified AI traffic in its category.",
+          "excerpt": "Deny: This action blocks all traffic identified as coming from AI bots for that category.",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "publish": {
+          "statement": "Review Changes and Publish apply edits to production.",
+          "excerpt": "Select Review Changes and review the changes to be applied Select Publish to apply the changes to your production deployment",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "off": {
+          "statement": "Inactive Bot Protection is labeled Off.",
+          "excerpt": "The ruleset is inactive by default. In the dashboard this is labeled Off.",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "challenge": {
+          "statement": "Bot Protection challenge mode serves a JavaScript challenge.",
+          "excerpt": "When enabled in challenge mode, the Vercel WAF will serve a JavaScript challenge to traffic that is unlikely to be a browser.",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "bypass": {
+          "statement": "A custom bypass can allow requests blocked by a managed ruleset.",
+          "excerpt": "In this case, use the bypass action in a WAF Custom Rule to target the traffic you want to allow.",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "bypass-order": {
+          "statement": "A bypass for a custom block must run first.",
+          "excerpt": "Make sure that the bypass rule executes before the blocking custom rule by placing it higher in the custom rules section of the Firewall rules page of your project dashboard.",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "order": {
+          "statement": "Project custom rules execute before managed rulesets.",
+          "excerpt": "The Vercel WAF executes rules on incoming traffic in the following order: Custom rules set up in the project WAF Managed Rulesets configured in the project",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        },
+        "roles": {
+          "statement": "Configuration and viewing require the listed roles.",
+          "excerpt": "You need to be a Developer or viewer (Viewer Pro or Viewer Enterprise) in the team to view the Firewall overview page and list the rules You need to be a Project administrator, Team member, or Security to configure, save and apply any rule and configuration",
+          "url": "https://vercel.com/docs/vercel-firewall/vercel-waf/managed-rulesets"
+        }
+      }
+    },
+    "vercel-gpt": {
+      "file": "vercel--vercel_com_kb_guide_how_to_block_bots_openai_gptbot.html",
+      "url": "https://vercel.com/kb/guide/how-to-block-bots-openai-gptbot",
+      "read_at": "2026-11-12T01:45:36Z",
+      "label": "Vercel GPTBot guide",
+      "sha256": "ca7e5b01f995b85d8ab3b54aa21716334c0bf2e5b0f85394605736b5838756b8",
+      "facts": {
+        "match": {
+          "statement": "The GPTBot custom rule matches User Agent contains GPTBot.",
+          "excerpt": "Match Condition: For “User Agent” contains “GPTBot”.",
+          "url": "https://vercel.com/kb/guide/how-to-block-bots-openai-gptbot"
+        },
+        "create": {
+          "statement": "The recipe creates a project Firewall rule from a template or blank rule.",
+          "excerpt": "Navigate to “Firewall” in your Vercel project dashboard. Click “Add Rule” (or “Create Rule” if using templates).",
+          "url": "https://vercel.com/kb/guide/how-to-block-bots-openai-gptbot"
+        },
+        "template": {
+          "statement": "The Block AI Bots template can be modified for GPTBot.",
+          "excerpt": "To block OpenAI GPTBot specifically, you can start with the “Block AI Bots Firewall Rule” template and modify it for the defined user agent.",
+          "url": "https://vercel.com/kb/guide/how-to-block-bots-openai-gptbot"
+        },
+        "actions": {
+          "statement": "The GPTBot recipe offers Deny, Challenge and Rate Limit, followed by publication.",
+          "excerpt": "Action: Choose “Deny” (to block) or “Challenge” (to verify) or “Rate Limit” (to limit). Review & Publish changes.",
+          "url": "https://vercel.com/kb/guide/how-to-block-bots-openai-gptbot"
+        },
+        "header": {
+          "statement": "The guide provides a GPTBot/1.0 header for Firewall traffic inspection.",
+          "excerpt": "Check your Firewall traffic for entries like Mozilla/5.0 (compatible; GPTBot/1.0; +https://openai.com/gptbot).",
+          "url": "https://vercel.com/kb/guide/how-to-block-bots-openai-gptbot"
+        },
+        "rate": {
+          "statement": "Rate limiting caps crawl frequency.",
+          "excerpt": "If you don’t mind occasional indexing by OpenAI models, but want to cap how frequently it crawls your site, you can rate limit requests from the “GPTBot” user agent.",
+          "url": "https://vercel.com/kb/guide/how-to-block-bots-openai-gptbot"
+        },
+        "challenge": {
+          "statement": "The browser challenge blocks bots unable to respond.",
+          "excerpt": "The challenge forces a short browser-based security check. Most legitimate human traffic (with real browsers) will pass automatically, but a bot that can’t solve or respond to the challenge will be blocked.",
+          "url": "https://vercel.com/kb/guide/how-to-block-bots-openai-gptbot"
+        },
+        "deny": {
+          "statement": "Matching blocks prevent requests from reaching Functions or static pages.",
+          "excerpt": "Requests that match your block rule won’t reach your Vercel Functions or static pages, so you won’t be charged.",
+          "url": "https://vercel.com/kb/guide/how-to-block-bots-openai-gptbot"
+        }
+      }
+    },
+    "netlify-block": {
+      "file": "netlify--docs_netlify_com_build_build_with_ai_block_ai_crawlers_.html",
+      "url": "https://docs.netlify.com/build/build-with-ai/block-ai-crawlers/",
+      "read_at": "2026-11-12T01:45:37Z",
+      "label": "Netlify blocking guide",
+      "sha256": "3277672e3c1ce9a0246ad7ff7338e4d9f1847b0fb3eb7bd50c040549970976be",
+      "facts": {
+        "extension": {
+          "statement": "User Agent Blocker uses an Edge Function and a selected preset list.",
+          "excerpt": "The User Agent Blocker extension is built by Netlify and can block web requests from a preset list of common AI crawlers, SEO/Search crawlers that you choose from. This extension uses a Netlify Edge Function to block requests from these user agents.",
+          "url": "https://docs.netlify.com/build/build-with-ai/block-ai-crawlers/"
+        },
+        "install": {
+          "statement": "Install makes the extension available to the team.",
+          "excerpt": "From your Netlify project dashboard, select Extensions in the left sidebar. Search for User Agent Blocker and select the extension.",
+          "url": "https://docs.netlify.com/build/build-with-ai/block-ai-crawlers/"
+        },
+        "activate": {
+          "statement": "Installation is team-wide and activation is per project.",
+          "excerpt": "Select Install to make it available for all projects on your Netlify team. Go to the project where you want to activate the extension.",
+          "url": "https://docs.netlify.com/build/build-with-ai/block-ai-crawlers/"
+        },
+        "project": {
+          "statement": "The extension is activated one project at a time.",
+          "excerpt": "You can only activate the extension for one project at a time. In the left navigation, under Extensions, select User Agent Blocker.",
+          "url": "https://docs.netlify.com/build/build-with-ai/block-ai-crawlers/"
+        },
+        "select": {
+          "statement": "Block User Agents selects traffic and AI crawler options.",
+          "excerpt": "Under Block User Agents, select the traffic you want to block. If you want to target AI crawlers and bots, select all of the AI crawler options.",
+          "url": "https://docs.netlify.com/build/build-with-ai/block-ai-crawlers/"
+        },
+        "list": {
+          "statement": "The preset list omits some AI bots.",
+          "excerpt": "This list does not include all possible AI crawlers and AI bots.",
+          "url": "https://docs.netlify.com/build/build-with-ai/block-ai-crawlers/"
+        },
+        "deploy": {
+          "statement": "Activation requires saving and a successful deployment.",
+          "excerpt": "Select Redeploy site and confirm with Save. To activate, select Enable analytics and deploy site.",
+          "url": "https://docs.netlify.com/build/build-with-ai/block-ai-crawlers/"
+        },
+        "deployed": {
+          "statement": "The blocker starts after successful deployment.",
+          "excerpt": "Once your site/app is deployed successfully, the AI crawler blocking extension will start working immediately.",
+          "url": "https://docs.netlify.com/build/build-with-ai/block-ai-crawlers/"
+        }
+      }
+    },
+    "netlify-guide": {
+      "file": "netlify--developers_netlify_com_guides_blocking_ai_bots_and_controlling_crawlers_.html",
+      "url": "https://developers.netlify.com/guides/blocking-ai-bots-and-controlling-crawlers/",
+      "read_at": "2026-11-12T01:45:39Z",
+      "label": "Netlify Edge Function guide",
+      "sha256": "bd50aa71a5274089de6b0a0b9eb2b3288ecceb10a7dc4a2f52acf212d169d349",
+      "facts": {
+        "robots": {
+          "statement": "The guide generates a robots.txt declaration for every bot in its list.",
+          "excerpt": "The robots.txt file will need to include a rule declaration for every known AI bot you wish to ban from scraping your content.",
+          "url": "https://developers.netlify.com/guides/blocking-ai-bots-and-controlling-crawlers/"
+        },
+        "edge": {
+          "statement": "An Edge Function uses the same bot list and returns HTTP 401 for matches.",
+          "excerpt": "Here’s an Edge Function that compares the User Agent string of the incoming HTTP request and compares it to our list of known AI bots, returning those requests an HTTP 401 response, while letting all other requests proceed as normal. It uses the same list of AI bots that we created to feed our robots.txt file.",
+          "url": "https://developers.netlify.com/guides/blocking-ai-bots-and-controlling-crawlers/"
+        },
+        "ignore": {
+          "statement": "Some AI products ignore robots.txt.",
+          "excerpt": "Sadly, not all AI products repsect the rules found in a robots.txt file, so we need to reach for another option for additional confidence:",
+          "url": "https://developers.netlify.com/guides/blocking-ai-bots-and-controlling-crawlers/"
+        },
+        "spoof": {
+          "statement": "Some bots misreport their User Agent names.",
+          "excerpt": "Sadly, some bots have been found to mis-report their names in their User Agent strings, so we can’t rely on that technique alone either.",
+          "url": "https://developers.netlify.com/guides/blocking-ai-bots-and-controlling-crawlers/"
+        }
+      }
+    },
+    "netlify-category": {
+      "file": "netlify--docs_netlify_com_build_user_agent_categories_.html",
+      "url": "https://docs.netlify.com/build/user-agent-categories/",
+      "read_at": "2026-11-12T01:45:40Z",
+      "label": "Netlify request categories",
+      "sha256": "7c205d6902ac865abfad848b58f839158fa5f9997a44f86bb0e00ec5435e4723",
+      "facts": {
+        "header": {
+          "statement": "Functions and Edge Functions can use the category header.",
+          "excerpt": "The category (and sub-category, if any) is exposed in the request header Netlify-Agent-Category.",
+          "url": "https://docs.netlify.com/build/user-agent-categories/"
+        },
+        "functions": {
+          "statement": "Netlify Functions and Edge Functions can access the header.",
+          "excerpt": "Access the header via the request parameter passed to Netlify Functions and Edge Functions.",
+          "url": "https://docs.netlify.com/build/user-agent-categories/"
+        },
+        "shape": {
+          "statement": "The header has exactly one category and at most one subcategory.",
+          "excerpt": "There is always one category, and either zero or one sub-category.",
+          "url": "https://docs.netlify.com/build/user-agent-categories/"
+        },
+        "sample": {
+          "statement": "The sample runs for matching categories and logs the raw User-Agent.",
+          "excerpt": "The function is configured to run only when netlify-agent-category matches one of the specified values. When the function runs, it accesses the raw User-Agent header and logs it.",
+          "url": "https://docs.netlify.com/build/user-agent-categories/"
+        },
+        "sample-match": {
+          "statement": "The sample matches ai-agent or crawler.",
+          "excerpt": "Here is an example Edge Function invoked only if Netlify associates the incoming request’s raw User-Agent string with either the ai-agent or crawler category:",
+          "url": "https://docs.netlify.com/build/user-agent-categories/"
+        },
+        "deployed": {
+          "statement": "Netlify sets and overrides the category header on deployed projects.",
+          "excerpt": "The Netlify-Agent-Category header is only set when your project is deployed and served by Netlify. If a client provides this header when making a request, Netlify will override it.",
+          "url": "https://docs.netlify.com/build/user-agent-categories/"
+        },
+        "test": {
+          "statement": "Deployed category tests set User-Agent.",
+          "excerpt": "To test different categories, set the User-Agent header appropriately (rather than attempting to set Netlify-Agent-Category directly).",
+          "url": "https://docs.netlify.com/build/user-agent-categories/"
+        },
+        "local": {
+          "statement": "Local tests set the category header directly.",
+          "excerpt": "When running your site locally with netlify dev or our Vite plugin, Netlify-Agent-Category is neither set nor overridden. To test a Netlify Function or Edge Function that uses this header, set it directly to any value you want.",
+          "url": "https://docs.netlify.com/build/user-agent-categories/"
+        },
+        "gpt": {
+          "statement": "GPTBot is Crawler while ChatGPT-User and Claude-User are AI Agent examples.",
+          "excerpt": "Examples include: ChatGPT-User/, Claude-User/. Note that high-volume crawlers such as GPTBot/ are not matched here and fall under the Crawler category instead.",
+          "url": "https://docs.netlify.com/build/user-agent-categories/"
+        },
+        "crawler": {
+          "statement": "Crawler covers bulk indexing and data collection.",
+          "excerpt": "Bulk crawlers that scan your site for indexing or large-scale data collection.",
+          "url": "https://docs.netlify.com/build/user-agent-categories/"
+        }
+      }
+    },
+    "wix": {
+      "file": "wix--support_wix_com_en_article_blocking_ai_crawlers_from_your_site.html",
+      "url": "https://support.wix.com/en/article/blocking-ai-crawlers-from-your-site",
+      "read_at": "2026-11-12T01:45:42Z",
+      "label": "Wix crawler guide",
+      "sha256": "ee7d314949519eb413020fb7c4431775c9ced133e366eec266ebb70cebf0468b",
+      "facts": {
+        "editor": {
+          "statement": "The robots.txt editor is under SEO & GEO and Tools and settings.",
+          "excerpt": "Go to SEO & GEO in your site's dashboard. Scroll down to Tools and settings.",
+          "url": "https://support.wix.com/en/article/blocking-ai-crawlers-from-your-site"
+        },
+        "view": {
+          "statement": "Open Robots.txt Editor and View File before editing.",
+          "excerpt": "Click Robots.txt Editor. Click View File.",
+          "url": "https://support.wix.com/en/article/blocking-ai-crawlers-from-your-site"
+        },
+        "examples": {
+          "statement": "Wix shows whole-site exclusions for CCBot, GPTBot, ChatGPT-User and BingAI.",
+          "excerpt": "User-agent: CCBot Disallow: / User-agent: GPTBot Disallow: / User-agent: ChatGPT-User Disallow: / User-agent: BingAI Disallow: /",
+          "url": "https://support.wix.com/en/article/blocking-ai-crawlers-from-your-site"
+        },
+        "save": {
+          "statement": "Save Changes and Save complete the file edit.",
+          "excerpt": "Click Save Changes. Click Save.",
+          "url": "https://support.wix.com/en/article/blocking-ai-crawlers-from-your-site"
+        },
+        "more": {
+          "statement": "Owners can add more crawlers.",
+          "excerpt": "This list includes some known AI crawlers, but you can always add more as needed.",
+          "url": "https://support.wix.com/en/article/blocking-ai-crawlers-from-your-site"
+        },
+        "meta-path": {
+          "statement": "Page-specific robots meta tags are in the editor SEO settings.",
+          "excerpt": "Click Pages & Menu on the left side of the editor. Click the More Actions icon next to the relevant page.",
+          "url": "https://support.wix.com/en/article/blocking-ai-crawlers-from-your-site"
+        },
+        "meta-seo": {
+          "statement": "Advanced SEO exposes the Robots meta tag control.",
+          "excerpt": "Click SEO basics. Click the Advanced SEO tab.",
+          "url": "https://support.wix.com/en/article/blocking-ai-crawlers-from-your-site"
+        },
+        "nosnippet": {
+          "statement": "The nosnippet checkbox concerns direct input for AI overviews.",
+          "excerpt": "Select the nosnippet checkbox to prevent your page's content from being used as a direct input for AI overviews. Publish your site.",
+          "url": "https://support.wix.com/en/article/blocking-ai-crawlers-from-your-site"
+        },
+        "ignore": {
+          "statement": "Some crawlers ignore robots.txt and scrape anyway.",
+          "excerpt": "No, some crawlers may ignore the robots.txt file and scrape your content anyway.",
+          "url": "https://support.wix.com/en/article/blocking-ai-crawlers-from-your-site"
+        }
+      }
+    },
+    "squarespace": {
+      "file": "squarespace--support_squarespace_com_hc_en_us_articles_360022347072_Request_that_AI_models_ex.html",
+      "url": "https://support.squarespace.com/hc/en-us/articles/360022347072-Request-that-AI-models-exclude-your-site",
+      "read_at": "2026-11-12T01:45:44Z",
+      "label": "Squarespace crawler settings",
+      "sha256": "727a7ea13f7a7261e71ccd65bdc72e5d2cc23864ae5d7a82cb36eee1f00f7244",
+      "facts": {
+        "default": {
+          "statement": "The checkbox starts unchecked and adds no AI exclusion request.",
+          "excerpt": "We default to having the box unchecked (which means we haven’t added any “AI do not crawl” requests to your robots.txt file) because we don't want to potentially impact your site's traffic by excluding it from chat answers and sources.",
+          "url": "https://support.squarespace.com/hc/en-us/articles/360022347072-Request-that-AI-models-exclude-your-site"
+        },
+        "settings": {
+          "statement": "The AI crawler checkbox is in Settings > Crawlers.",
+          "excerpt": "Open the Settings panel. Click Crawlers.",
+          "url": "https://support.squarespace.com/hc/en-us/articles/360022347072-Request-that-AI-models-exclude-your-site"
+        },
+        "checkbox": {
+          "statement": "The checkbox updates robots.txt for the published bot list.",
+          "excerpt": "Check the box next to “Block known artificial intelligence crawlers.\" Checking the box updates your robots.txt file to tell the following bots not to crawl your site:",
+          "url": "https://support.squarespace.com/hc/en-us/articles/360022347072-Request-that-AI-models-exclude-your-site"
+        },
+        "bots": {
+          "statement": "The published list includes five of the six guide names and omits PerplexityBot.",
+          "excerpt": "AI2Bot Ai2Bot-Dolma aiHitBot Amazonbot anthropic-ai Applebot-Extended Bytespider CCBot ClaudeBot cohere-ai cohere-training-data-crawler DuckAssistBot FacebookBot Google-Extended GoogleOther GoogleOther-Image GoogleOther-Video GPTBot img2dataset Meta-ExternalAgent MyCentralAIScraperBot omgili omgilibot Quora-Bot TikTokSpider YouBot",
+          "url": "https://support.squarespace.com/hc/en-us/articles/360022347072-Request-that-AI-models-exclude-your-site"
+        },
+        "missing": {
+          "statement": "The list may grow and missing bots can be requested.",
+          "excerpt": "As AI technology continues to develop, we may add more bots to this list. If you'd like to suggest we block a specific bot that's not listed here, you can contact us to put in a feature request.",
+          "url": "https://support.squarespace.com/hc/en-us/articles/360022347072-Request-that-AI-models-exclude-your-site"
+        },
+        "retroactive": {
+          "statement": "The checkbox does not remove previously scraped training material.",
+          "excerpt": "Checking the box to block known artificial intelligence crawlers doesn't retroactively remove content previously scraped from a site from AI model training data.",
+          "url": "https://support.squarespace.com/hc/en-us/articles/360022347072-Request-that-AI-models-exclude-your-site"
+        },
+        "robots": {
+          "statement": "Friendly crawlers offer to read and obey robots.txt.",
+          "excerpt": "Robots.txt is a file published on your website that friendly crawlers have offered to read and obey.",
+          "url": "https://support.squarespace.com/hc/en-us/articles/360022347072-Request-that-AI-models-exclude-your-site"
+        },
+        "compliance": {
+          "statement": "robots.txt is a request and malicious crawlers can still misuse content.",
+          "excerpt": "However, updating robots.txt this way is only a request, and malicious crawlers may still misuse your content.",
+          "url": "https://support.squarespace.com/hc/en-us/articles/360022347072-Request-that-AI-models-exclude-your-site"
+        },
+        "pages": {
+          "statement": "The checkbox cannot target selected pages.",
+          "excerpt": "It's currently not possible to request that AI crawlers only scan specific pages.",
+          "url": "https://support.squarespace.com/hc/en-us/articles/360022347072-Request-that-AI-models-exclude-your-site"
+        }
+      }
+    },
+    "shopify-help": {
+      "file": "shopify--help_shopify_com_en_manual_promoting_marketing_seo_editing_robots_txt.html",
+      "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt",
+      "read_at": "2026-11-12T01:45:46Z",
+      "label": "Shopify Help Center",
+      "sha256": "5f95e1f4c2c44fbfc3637c648db634f0d591b20d899062b49e84add131137ac2",
+      "facts": {
+        "default": {
+          "statement": "Shopify stores have a default robots.txt.",
+          "excerpt": "All Shopify stores have a default robots.txt file that's optimal for Search Engine Optimization (SEO).",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        },
+        "network": {
+          "statement": "Shopify handles network bot management and does not support a proxy in front of stores.",
+          "excerpt": "Network layer: Bot management is handled directly for stores on Shopify, and you don't need to take any action. Shopify doesn't recommend a proxy configuration in front of Shopify, and can't provide support for this either.",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        },
+        "advisory": {
+          "statement": "The theme template controls advisory user-agent instructions.",
+          "excerpt": "/robots.txt layer: You can allow or block specific user-agent crawlers by customizing your store's robots.txt.liquid template. The rules that you set in your /robots.txt file are directional and advisory, and not all crawlers are guaranteed to follow them.",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        },
+        "catalog": {
+          "statement": "Activated agentic storefronts receive Catalog data independently of robots.txt.",
+          "excerpt": "If you sell through agentic storefronts such as ChatGPT or Microsoft Copilot, then your product data is syndicated to those channels through Shopify Catalog, independently of /robots.txt.",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        },
+        "sharing": {
+          "statement": "Open-web bot blocks do not stop Catalog sharing to activated channels.",
+          "excerpt": "Blocking AI crawlers at the /robots.txt or network layer affects only open-web discoverability. It doesn't stop your product data from being sent by Shopify Catalog to the agentic storefronts that you've activated.",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        },
+        "edit": {
+          "statement": "Create a robots template from the theme code editor.",
+          "excerpt": "From your Shopify admin, go to Online Store. For the relevant theme, click > Edit code.",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        },
+        "template": {
+          "statement": "Add and create the robots template.",
+          "excerpt": "Click Add a new template, and then select robots. Click Create template.",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        },
+        "save": {
+          "statement": "Save the template in the published theme and allow for crawler delays.",
+          "excerpt": "Save changes to the robots.txt.liquid file in your published theme. Changes are instant, but crawlers don't always react immediately.",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        },
+        "liquid": {
+          "statement": "Liquid edits preserve automatic updates.",
+          "excerpt": "You can use Liquid to add or remove directives from the robots.txt.liquid template. This method preserves Shopify’s ability to keep the file updated automatically in the future, and is recommended.",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        },
+        "old": {
+          "statement": "A template using default groups can retain older exclusions.",
+          "excerpt": "If your theme includes a robots.txt.liquid template that outputs the default rule groups, then your store's robots.txt file can include rules that the default file no longer has, such as Disallow: /search and Disallow: /policies/.",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        },
+        "delete": {
+          "statement": "Deleting the custom template restores the default file.",
+          "excerpt": "If you want to use the default robots.txt file again, then you can delete your custom robots.txt.liquid file.",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        },
+        "upload": {
+          "statement": "An uploaded theme does not import the template.",
+          "excerpt": "Uploading a theme from within the Themes section of the Shopify admin won't import robots.txt.liquid.",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        },
+        "allow": {
+          "statement": "The public-content Allow rule covers several page types.",
+          "excerpt": "The Allow: / rule lets crawlers request your public content, such as your product, collection, page, blog, and policy pages.",
+          "url": "https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt"
+        }
+      }
+    },
+    "shopify-dev": {
+      "file": "shopify--shopify_dev_docs_storefronts_themes_seo_robots_txt.html",
+      "url": "https://shopify.dev/docs/storefronts/themes/seo/robots-txt",
+      "read_at": "2026-11-12T01:45:47Z",
+      "label": "Shopify theme instructions",
+      "sha256": "6e5996979898d0a5c70f40b6c37e8868f847572fad8be974939be210985193a1",
+      "facts": {
+        "replace": {
+          "statement": "Adding the template replaces generated output and calls for comparison.",
+          "excerpt": "Adding the robots.txt.liquid template replaces Shopify's generated robots.txt output. Before you publish changes, save a copy of your current /robots.txt output and compare it with the rendered template output.",
+          "url": "https://shopify.dev/docs/storefronts/themes/seo/robots-txt"
+        },
+        "create": {
+          "statement": "Create robots.txt.liquid inside Templates.",
+          "excerpt": "Name the file robots.txt.liquid. Press Enter to create the file.",
+          "url": "https://shopify.dev/docs/storefronts/themes/seo/robots-txt"
+        },
+        "folder": {
+          "statement": "The template is created in the theme Templates folder.",
+          "excerpt": "In the code editor for the theme you want to edit, locate the Templates folder. Right-click on the Templates folder.",
+          "url": "https://shopify.dev/docs/storefronts/themes/seo/robots-txt"
+        },
+        "different": {
+          "statement": "Default rule groups do not guarantee identical rendered output.",
+          "excerpt": "The robots object provides default rule groups for custom templates, but rendered template output doesn't always match Shopify's generated file exactly.",
+          "url": "https://shopify.dev/docs/storefronts/themes/seo/robots-txt"
+        },
+        "custom": {
+          "statement": "Custom groups go outside the Liquid that prints defaults.",
+          "excerpt": "If you want to add a new rule that's not part of a default group, then you can manually enter the rule outside of the Liquid for outputting the default rules.",
+          "url": "https://shopify.dev/docs/storefronts/themes/seo/robots-txt"
+        },
+        "block": {
+          "statement": "The developer guide shows a named Disallow example.",
+          "excerpt": "User-agent: discobot Disallow: /",
+          "url": "https://shopify.dev/docs/storefronts/themes/seo/robots-txt"
+        },
+        "allow": {
+          "statement": "The developer guide shows a named Allow example.",
+          "excerpt": "User-agent: discobot Allow: /",
+          "url": "https://shopify.dev/docs/storefronts/themes/seo/robots-txt"
+        }
+      }
+    },
+    "wordpress": {
+      "file": "wordpresscom--wordpress_com_support_privacy_settings_make_your_website_public_.html",
+      "url": "https://wordpress.com/support/privacy-settings/make-your-website-public/",
+      "read_at": "2026-11-12T01:45:49Z",
+      "label": "WordPress.com sharing settings",
+      "sha256": "5a0e5d0246f595ad4ec69507fb30e4938711f6343b416630037e5b805dd5906b",
+      "facts": {
+        "public": {
+          "statement": "Public site visibility is under Settings > Reading.",
+          "excerpt": "Navigate to Settings → Reading. Scroll to the Site Visibility section.",
+          "url": "https://wordpress.com/support/privacy-settings/make-your-website-public/"
+        },
+        "launch": {
+          "statement": "Public is unavailable until the site launches.",
+          "excerpt": "If you don’t see the Public option, your site hasn’t been launched yet. Launch your site to make it public.",
+          "url": "https://wordpress.com/support/privacy-settings/make-your-website-public/"
+        },
+        "partners": {
+          "statement": "The sharing opt-out excludes public content from the partner network.",
+          "excerpt": "Activating the “Prevent third-party sharing” feature excludes that site’s public content from our network of third-party content and research partners.",
+          "url": "https://wordpress.com/support/privacy-settings/make-your-website-public/"
+        },
+        "robots": {
+          "statement": "The sharing setting adds known AI bots to robots.txt and relies on compliance.",
+          "excerpt": "It also adds known AI bots to the “disallow” list in your site’s robots.txt file to stop them from crawling your site, though it is up to AI platforms to honor this request.",
+          "url": "https://wordpress.com/support/privacy-settings/make-your-website-public/"
+        },
+        "training": {
+          "statement": "The opt-out includes AI model training platforms.",
+          "excerpt": "We provide a simple way to opt out of your content being shared in this way, including with AI platforms that use content for model training.",
+          "url": "https://wordpress.com/support/privacy-settings/make-your-website-public/"
+        },
+        "each": {
+          "statement": "The sharing opt-out must be set on each site.",
+          "excerpt": "If you manage multiple websites that you wish to exclude from this use, make sure to update the “Prevent third-party sharing” setting for each site.",
+          "url": "https://wordpress.com/support/privacy-settings/make-your-website-public/"
+        },
+        "save": {
+          "statement": "Select Public, tick the sharing checkbox and save.",
+          "excerpt": "Select the Public option and then tick the “Prevent third-party sharing” checkbox Click the “Save Changes” button at the bottom of the page.",
+          "url": "https://wordpress.com/support/privacy-settings/make-your-website-public/"
+        },
+        "search": {
+          "statement": "Search discouragement can be ignored and also removes posts from Reader.",
+          "excerpt": "Please note that not all search engines may respect this setting. Using the “Discourage search engines” option will also exclude your blog posts from showing in the WordPress.com Reader.",
+          "url": "https://wordpress.com/support/privacy-settings/make-your-website-public/"
+        }
+      }
+    },
+    "github": {
+      "file": "githubpages--docs_github_com_en_pages_getting_started_with_github_pages_creating_a_github_pag.html",
+      "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site",
+      "read_at": "2026-11-12T01:45:55Z",
+      "label": "GitHub Pages setup guide",
+      "sha256": "c14b29449fd12f7383c326c63a649ccc6119fac365d11e492e3b6a71d8b013ed",
+      "facts": {
+        "static": {
+          "statement": "Pages publishes static files.",
+          "excerpt": "GitHub Pages publishes any static files that you push to your repository.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        "private": {
+          "statement": "Pages sites can be public even when their repository is private.",
+          "excerpt": "GitHub Pages sites are publicly available on the internet, even if the repository for the site is private (if your plan or organization allows it).",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        "settings": {
+          "statement": "Pages is in repository settings.",
+          "excerpt": "Under your repository name, click Settings.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        "visit": {
+          "statement": "Visit site opens the published site.",
+          "excerpt": "In the \"Code, planning, and automation\" section of the sidebar, click Pages. To see your published site, under \"GitHub Pages,\" click Visit site.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        "source": {
+          "statement": "The publishing source can be a branch folder or a workflow.",
+          "excerpt": "For example, you can have a dedicated branch and folder to hold your site source files, or you can use a custom GitHub Actions workflow to build and deploy your site source files.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        "entry-folder": {
+          "statement": "The source-folder entry file must be at its top level.",
+          "excerpt": "If your publishing source is a branch and folder, the entry file must be at the top level of the source folder on the source branch.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        "entry-workflow": {
+          "statement": "Workflow artifacts must include the entry file at top level.",
+          "excerpt": "If your publishing source is a GitHub Actions workflow, the artifact that you deploy must include the entry file at the top level of the artifact.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        "structure": {
+          "statement": "Published files follow the source directory structure.",
+          "excerpt": "Each file will be available on your site in the same directory structure as your publishing source.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        },
+        "server": {
+          "statement": "Pages does not support server-side PHP, Ruby or Python.",
+          "excerpt": "GitHub Pages does not support server-side languages such as PHP, Ruby, or Python.",
+          "url": "https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site"
+        }
+      }
+    },
+    "webflow": {
+      "file": "webflow--webflow_com_blog_cloudflare_ai_control.html",
+      "url": "https://webflow.com/blog/cloudflare-ai-control",
+      "read_at": "2026-11-12T01:46:04Z",
+      "label": "Webflow bot controls",
+      "sha256": "fc859b1e88e7b8bb62fef61fb761094c39ace49f3b5392025793114112129441",
+      "facts": {
+        "future": {
+          "statement": "The Cloudflare collaboration announced future controls with no immediate site changes.",
+          "excerpt": "While there are no immediate changes for Webflow sites, we’re collaborating with Cloudflare to develop new functionality that will soon give our customers advanced control over how their work is accessed and reused online.",
+          "url": "https://webflow.com/blog/cloudflare-ai-control"
+        },
+        "settings": {
+          "statement": "Custom robots.txt is under Site Settings > SEO.",
+          "excerpt": "Webflow also lets you define a custom robots.txt file under Site Settings > SEO, giving you the ability to block specific bots by user-agent.",
+          "url": "https://webflow.com/blog/cloudflare-ai-control"
+        },
+        "gpt": {
+          "statement": "The GPTBot example requests a whole-site exclusion.",
+          "excerpt": "User-agent: GPTBot Disallow: /",
+          "url": "https://webflow.com/blog/cloudflare-ai-control"
+        },
+        "extended": {
+          "statement": "The Google-Extended example excludes /drafts/.",
+          "excerpt": "User-agent: Google-Extended Disallow: /drafts/",
+          "url": "https://webflow.com/blog/cloudflare-ai-control"
+        },
+        "googlebot": {
+          "statement": "The Google-Extended example distinguishes Googlebot Search and Ads crawling.",
+          "excerpt": "Another example would be if you want to prevent Google’s Gemini and AI model training services (not the traditional Search or Ads products that use User-agent: Googlebot) from crawling a specific part of your site, such as the /drafts/ directory:",
+          "url": "https://webflow.com/blog/cloudflare-ai-control"
+        },
+        "index": {
+          "statement": "Subdomain and page indexing have their own SEO settings.",
+          "excerpt": "For example, you can block your entire site from being indexed by enabling “Disable Webflow subdomain indexing” in the SEO section of your Site Settings on the Webflow Dashboard. Or you can get more targeted and disable indexing on specific pages by unchecking “Index this page” in the SEO section of your Page Settings.",
+          "url": "https://webflow.com/blog/cloudflare-ai-control"
+        },
+        "compliance": {
+          "statement": "Rules are crawler signals and do not immediately remove previously indexed content.",
+          "excerpt": "These rules are respected by most well-behaved crawlers, including search engines and leading AI agents. While they don’t remove previously indexed content immediately, they are standard signals that prevent future indexing.",
+          "url": "https://webflow.com/blog/cloudflare-ai-control"
+        }
+      }
+    }
+  },
+  "pages": [
+    {
+      "kind": "index",
+      "host": "index",
+      "slug": "",
+      "name": "Host guides",
+      "title": "AI bot access by host and how to check it",
+      "description": "Compare AI crawler controls on nine hosts. Find dated host docs, check robots.txt and HTTP access, and choose the setting for the bot you mean.",
+      "h1": "Does your host block AI crawlers?",
+      "intro": [
+        {
+          "text": "Your host may offer a crawler switch, a robots.txt editor or a firewall rule. The guides below show what each host says about six bot names and where its docs leave the answer open.",
+          "sources": [],
+          "facts": {}
+        },
+        {
+          "text": "Start with your host’s guide, then read your own public file and compare page responses. Cloudflare’s published accounts disagree on new-domain settings, so its guide shows both and tells you where to inspect your domain.",
+          "sources": [
+            "cf-policy",
+            "cf-blog"
+          ],
+          "facts": {
+            "cf-policy": [
+              "default"
+            ],
+            "cf-blog": [
+              "default"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Find your host",
+          "paragraphs": [
+            {
+              "text": "Cloudflare describes actions for Search, Agent and Training. Vercel has separate AI Crawlers and AI Assistants controls. Netlify documents a project extension and request categories. Those controls can refuse requests or decide how a function handles them. Inspect the saved action as well as any file asking crawlers to stay away.",
+              "sources": [
+                "cf-policy",
+                "vercel-rules",
+                "netlify-block",
+                "netlify-category"
+              ],
+              "facts": {
+                "cf-policy": [
+                  "behaviors",
+                  "actions",
+                  "disallow"
+                ],
+                "vercel-rules": [
+                  "categories",
+                  "configure",
+                  "deny"
+                ],
+                "netlify-block": [
+                  "extension"
+                ],
+                "netlify-category": [
+                  "header",
+                  "functions"
+                ]
+              }
+            },
+            {
+              "text": "Wix and Webflow show custom robots.txt examples. Squarespace offers one checkbox with a published bot list. WordPress.com combines a partner-sharing choice with robots.txt requests. Shopify separates its file instructions from network bot management and Catalog sharing. GitHub’s setup guide describes static publishing without naming an AI bot access policy. Choose the host link that matches where your public content is served.",
+              "sources": [
+                "wix",
+                "webflow",
+                "squarespace",
+                "wordpress",
+                "shopify-help",
+                "github"
+              ],
+              "facts": {
+                "wix": [
+                  "editor",
+                  "examples"
+                ],
+                "webflow": [
+                  "settings",
+                  "gpt",
+                  "extended"
+                ],
+                "squarespace": [
+                  "checkbox",
+                  "bots"
+                ],
+                "wordpress": [
+                  "partners",
+                  "robots"
+                ],
+                "shopify-help": [
+                  "network",
+                  "catalog",
+                  "advisory"
+                ],
+                "github": [
+                  "static"
+                ]
+              }
+            }
+          ],
+          "links": [
+            [
+              "/ai-crawlers/hosts/cloudflare/",
+              "Cloudflare crawler settings"
+            ],
+            [
+              "/ai-crawlers/hosts/vercel/",
+              "Vercel crawler settings"
+            ],
+            [
+              "/ai-crawlers/hosts/netlify/",
+              "Netlify crawler settings"
+            ],
+            [
+              "/ai-crawlers/hosts/wix/",
+              "Wix crawler settings"
+            ],
+            [
+              "/ai-crawlers/hosts/squarespace/",
+              "Squarespace crawler settings"
+            ],
+            [
+              "/ai-crawlers/hosts/shopify/",
+              "Shopify crawler settings"
+            ],
+            [
+              "/ai-crawlers/hosts/wordpress-com/",
+              "WordPress.com crawler settings"
+            ],
+            [
+              "/ai-crawlers/hosts/webflow/",
+              "Webflow crawler settings"
+            ],
+            [
+              "/ai-crawlers/hosts/github-pages/",
+              "GitHub Pages crawler settings"
+            ]
+          ]
+        },
+        {
+          "heading": "Choose the bot before changing access",
+          "paragraphs": [
+            {
+              "text": "The six names covered here are GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended and CCBot. Each host table links to this site’s existing bot reference. Those references retain the stored crawler descriptions and October robots.txt measurements. Use them when deciding which service you mean, then return to the host instructions to inspect the available control.",
+              "sources": [],
+              "facts": {}
+            },
+            {
+              "text": "Some hosts give all of these names the same editing steps. Those names share a host guide. A separate guide is linked only where there is a useful bot-specific question, such as Netlify putting GPTBot in Crawler while ChatGPT-User is an AI Agent, or Webflow showing a Google-Extended folder exclusion. This keeps the instructions for one setting together.",
+              "sources": [
+                "netlify-category",
+                "webflow"
+              ],
+              "facts": {
+                "netlify-category": [
+                  "gpt"
+                ],
+                "webflow": [
+                  "extended"
+                ]
+              }
+            }
+          ],
+          "links": [
+            [
+              "/ai-crawlers/hosts/vercel/gptbot/",
+              "GPTBot on Vercel"
+            ],
+            [
+              "/ai-crawlers/hosts/netlify/gptbot/",
+              "GPTBot on Netlify"
+            ],
+            [
+              "/ai-crawlers/hosts/webflow/google-extended/",
+              "Google-Extended on Webflow"
+            ]
+          ]
+        },
+        {
+          "heading": "Read the source date with the answer",
+          "paragraphs": [
+            {
+              "text": "The host source links show the exact time they were read on 12 November 2026. A starting setting can change, and two published pages can give different answers. Cloudflare’s policy page says new domains use Allow for all three behaviors, while its blog and changelog describe ad-page blocks for Training and Agent. Its guide preserves both claims with their dates.",
+              "sources": [
+                "cf-policy",
+                "cf-blog",
+                "cf-log"
+              ],
+              "facts": {
+                "cf-policy": [
+                  "default",
+                  "date"
+                ],
+                "cf-blog": [
+                  "default",
+                  "date"
+                ],
+                "cf-log": [
+                  "default"
+                ]
+              }
+            },
+            {
+              "text": "When a host does not name a bot or state its starting access, the guide says the docs do not say. An example of how to create a block is not proof that the block already exists. A list of supported controls is not a reading of your domain. Use the dashboard and file checks to answer that next question for your own site.",
+              "sources": [],
+              "facts": {}
+            }
+          ]
+        },
+        {
+          "heading": "Keep the file request and the HTTP result",
+          "paragraphs": [
+            {
+              "text": "Read robots.txt from the root of the hostname that serves your content. The repository’s robots.txt reference was read on 9 November 2026. It describes instructions for crawlers, while the host guides explain the controls available on that platform. Each guide provides curl commands you can run on your own computer with a browser header and the six named headers.",
+              "sources": [],
+              "repo_robots": true,
+              "facts": {}
+            },
+            {
+              "text": "Keep the URL and request header unchanged when comparing a before and after result. Typing a bot name in a request is a synthetic check of that name. It does not prove that the real operator visited or honored a request. Netlify specifically tells owners to change User-Agent for deployed category tests, while Squarespace warns that robots.txt compliance is voluntary.",
+              "sources": [
+                "netlify-category",
+                "squarespace"
+              ],
+              "facts": {
+                "netlify-category": [
+                  "deployed",
+                  "test"
+                ],
+                "squarespace": [
+                  "robots",
+                  "compliance"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "question": "Which guide should I use if Cloudflare sits in front of another host?",
+          "answer": "Start with the host serving your content, then inspect the Cloudflare zone as well. Cloudflare describes its own behavior actions, and Shopify’s guide specifically warns that it does not support placing a proxy in front of a Shopify store.",
+          "sources": [
+            "cf-policy",
+            "shopify-help"
+          ],
+          "facts": {
+            "cf-policy": [
+              "behaviors",
+              "actions"
+            ],
+            "shopify-help": [
+              "network"
+            ]
+          }
+        },
+        {
+          "question": "Why do some bots share a host guide?",
+          "answer": "When the host gives the same control and checking steps for several names, a single guide covers them together. Squarespace’s listed names share one site-wide checkbox, for example.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "settings",
+              "checkbox",
+              "bots"
+            ]
+          }
+        },
+        {
+          "question": "Can an AI block leave partner product sharing active?",
+          "answer": "Shopify says its Catalog sends data to activated agentic storefronts independently of robots.txt. WordPress.com documents a sharing checkbox with both partner-network and crawler-request effects. Read the host-specific control before changing it.",
+          "sources": [
+            "shopify-help",
+            "wordpress"
+          ],
+          "facts": {
+            "shopify-help": [
+              "catalog",
+              "sharing"
+            ],
+            "wordpress": [
+              "partners",
+              "robots"
+            ]
+          }
+        },
+        {
+          "question": "Where should I start checking my own address?",
+          "answer": "Use the free AI crawler checker below to inspect the rules for your address, then follow your host guide’s file and page-response checks. The app download is the second step for a local audit.",
+          "sources": [],
+          "facts": {}
+        }
+      ]
+    },
+    {
+      "kind": "host",
+      "host": "cloudflare",
+      "slug": "cloudflare",
+      "name": "Cloudflare",
+      "title": "Does Cloudflare block AI bots by default?",
+      "description": "Cloudflare docs disagree on new-domain AI bot defaults. Compare the dated claims, find your dashboard setting, and test robots.txt and HTTP access.",
+      "h1": "Does Cloudflare block AI bots by default?",
+      "intro": [
+        {
+          "text": "Cloudflare gives two answers for new domains. Its access policy docs say Search, Agents and Training start at Allow. Its blog and changelog say Training and Agent bots start blocked on pages with ads.",
+          "sources": [
+            "cf-policy",
+            "cf-blog",
+            "cf-log"
+          ],
+          "facts": {
+            "cf-policy": [
+              "default"
+            ],
+            "cf-blog": [
+              "default"
+            ],
+            "cf-log": [
+              "default"
+            ]
+          }
+        },
+        {
+          "text": "Check your domain in Security > Settings > AI Crawler and Agent access policies. Read the action for each behavior before changing robots.txt. The policy docs offer both server blocks and a Training request in robots.txt.",
+          "sources": [
+            "cf-policy"
+          ],
+          "facts": {
+            "cf-policy": [
+              "settings",
+              "actions",
+              "allow",
+              "disallow"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Why the published answers differ",
+          "paragraphs": [
+            {
+              "text": "The policy page was updated on 2 November 2026. It says all three behaviors use Allow for new domains. The blog, dated 1 July 2026, announces a different start from 15 September 2026. It says Training and Agent traffic will be blocked on ad pages and Search will stay allowed. Both pages were read on 12 November 2026. Neither reading explains why those answers differ.",
+              "sources": [
+                "cf-policy",
+                "cf-blog"
+              ],
+              "facts": {
+                "cf-policy": [
+                  "date",
+                  "default"
+                ],
+                "cf-blog": [
+                  "date",
+                  "default"
+                ]
+              }
+            },
+            {
+              "text": "The changelog repeats the ad-page policy and its September start date. The blog also says a crawler with both Search and Training uses follows the most restrictive rule. It names Googlebot, Applebot and BingBot in that discussion. Those names do not give a separate setting for Google-Extended or Applebot-Extended. The saved policy page describes behaviors without assigning each of our six names to them.",
+              "sources": [
+                "cf-log",
+                "cf-blog",
+                "cf-policy"
+              ],
+              "facts": {
+                "cf-log": [
+                  "default"
+                ],
+                "cf-blog": [
+                  "default",
+                  "mixed"
+                ],
+                "cf-policy": [
+                  "behaviors",
+                  "default"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Choose an action in your own domain",
+          "paragraphs": [
+            {
+              "text": "In the dashboard, open Security, then Settings. Filter by Bot traffic and select AI Crawler and Agent access policies. Read the current action under Search, Agent and Training. Save a copy of those choices with the date before you edit them. This lets you compare the control you changed with the result you see on your public site.",
+              "sources": [
+                "cf-policy"
+              ],
+              "facts": {
+                "cf-policy": [
+                  "settings",
+                  "behaviors"
+                ]
+              }
+            },
+            {
+              "text": "Block refuses requests across the zone. Block on pages with ads applies where Cloudflare detects ads. Allow does not apply that block. Disallow is offered only for Training and puts a request in robots.txt. With Bot Preference Sync enabled, Disallow also blocks AI training crawlers at the edge, except mixed-purpose Search and Training crawlers. Check that option when a file edit and a server response seem to disagree.",
+              "sources": [
+                "cf-policy"
+              ],
+              "facts": {
+                "cf-policy": [
+                  "actions",
+                  "allow",
+                  "disallow",
+                  "sync"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Read your public file and compare responses",
+          "paragraphs": [
+            {
+              "text": "Use your own address in the commands below. Fetch robots.txt first, then compare the same public URL with a browser header and each named bot header. Save the response headers. These are checks of the names you send. Typing a bot name in curl does not show how Cloudflare will handle a verified visit from its real operator. The policy covers Verified bots and matching unverified bots.",
+              "sources": [
+                "cf-policy"
+              ],
+              "facts": {
+                "cf-policy": [
+                  "verified"
+                ]
+              }
+            },
+            {
+              "text": "Look for both a named group and the group for all crawlers in robots.txt. A Disallow request can exist alongside an Allow server policy. A successful page request can exist alongside a robots.txt request to stay out. Review the file and the dashboard together before deciding that one change fixed access. Repeat the same commands after saving your policy.",
+              "sources": [
+                "cf-policy"
+              ],
+              "facts": {
+                "cf-policy": [
+                  "allow",
+                  "disallow"
+                ]
+              }
+            }
+          ],
+          "checks": true
+        }
+      ],
+      "faq": [
+        {
+          "question": "Does Allow override every other Cloudflare protection?",
+          "answer": "The action is described as not blocking matching requests under this policy. Check the response from your own URL before treating it as proof that a visit succeeds. The saved guide gives no promise that all other protections are bypassed.",
+          "sources": [
+            "cf-policy"
+          ],
+          "facts": {
+            "cf-policy": [
+              "allow"
+            ]
+          }
+        },
+        {
+          "question": "Can I use Disallow for the Agent behavior?",
+          "answer": "The access policy docs offer Disallow only for Training. Agent choices include Block, Block on pages with ads and Allow. Select the behavior you mean in your domain settings.",
+          "sources": [
+            "cf-policy"
+          ],
+          "facts": {
+            "cf-policy": [
+              "actions",
+              "allow",
+              "disallow"
+            ]
+          }
+        },
+        {
+          "question": "Which source should I use for an older Cloudflare domain?",
+          "answer": "The policy page gives steps for existing zones. Open that zone and read its saved actions. The new-domain claims in the policy page and blog disagree, so neither tells you the choices already saved for your older domain.",
+          "sources": [
+            "cf-policy",
+            "cf-blog"
+          ],
+          "facts": {
+            "cf-policy": [
+              "settings",
+              "default"
+            ],
+            "cf-blog": [
+              "default"
+            ]
+          }
+        },
+        {
+          "question": "Does a Personal Agent have its own control?",
+          "answer": "Personal Agents inherit the Agent policy. Changing that policy updates them, after which you can choose individual actions again. The docs recommend Allow for Personal Agents.",
+          "sources": [
+            "cf-policy"
+          ],
+          "facts": {
+            "cf-policy": [
+              "personal",
+              "personal-allow"
+            ]
+          }
+        }
+      ],
+      "bots": {
+        "GPTBot": {
+          "default": "The docs do not assign this name a default. The policy page says all behaviors start at Allow, while the blog and changelog describe ad-page blocks.",
+          "change": "Check the bot behavior and saved action in Security > Settings > AI Crawler and Agent access policies.",
+          "sources": [
+            "cf-policy",
+            "cf-blog",
+            "cf-log"
+          ],
+          "facts": {
+            "cf-policy": [
+              "default",
+              "settings"
+            ],
+            "cf-blog": [
+              "default"
+            ],
+            "cf-log": [
+              "default"
+            ]
+          }
+        },
+        "ClaudeBot": {
+          "default": "The docs do not assign this name a default. The policy page says all behaviors start at Allow, while the blog and changelog describe ad-page blocks.",
+          "change": "Check the bot behavior and saved action in Security > Settings > AI Crawler and Agent access policies.",
+          "sources": [
+            "cf-policy",
+            "cf-blog",
+            "cf-log"
+          ],
+          "facts": {
+            "cf-policy": [
+              "default",
+              "settings"
+            ],
+            "cf-blog": [
+              "default"
+            ],
+            "cf-log": [
+              "default"
+            ]
+          }
+        },
+        "PerplexityBot": {
+          "default": "The docs do not assign this name a default. The policy page says all behaviors start at Allow, while the blog and changelog describe ad-page blocks.",
+          "change": "Check the bot behavior and saved action in Security > Settings > AI Crawler and Agent access policies.",
+          "sources": [
+            "cf-policy",
+            "cf-blog",
+            "cf-log"
+          ],
+          "facts": {
+            "cf-policy": [
+              "default",
+              "settings"
+            ],
+            "cf-blog": [
+              "default"
+            ],
+            "cf-log": [
+              "default"
+            ]
+          }
+        },
+        "Google-Extended": {
+          "default": "The docs do not assign this name a default. The policy page says all behaviors start at Allow, while the blog and changelog describe ad-page blocks.",
+          "change": "Check the bot behavior and saved action in Security > Settings > AI Crawler and Agent access policies.",
+          "sources": [
+            "cf-policy",
+            "cf-blog",
+            "cf-log"
+          ],
+          "facts": {
+            "cf-policy": [
+              "default",
+              "settings"
+            ],
+            "cf-blog": [
+              "default"
+            ],
+            "cf-log": [
+              "default"
+            ]
+          }
+        },
+        "Applebot-Extended": {
+          "default": "The docs do not assign this name a default. The policy page says all behaviors start at Allow, while the blog and changelog describe ad-page blocks.",
+          "change": "Check the bot behavior and saved action in Security > Settings > AI Crawler and Agent access policies.",
+          "sources": [
+            "cf-policy",
+            "cf-blog",
+            "cf-log"
+          ],
+          "facts": {
+            "cf-policy": [
+              "default",
+              "settings"
+            ],
+            "cf-blog": [
+              "default"
+            ],
+            "cf-log": [
+              "default"
+            ]
+          }
+        },
+        "CCBot": {
+          "default": "The docs do not assign this name a default. The policy page says all behaviors start at Allow, while the blog and changelog describe ad-page blocks.",
+          "change": "Check the bot behavior and saved action in Security > Settings > AI Crawler and Agent access policies.",
+          "sources": [
+            "cf-policy",
+            "cf-blog",
+            "cf-log"
+          ],
+          "facts": {
+            "cf-policy": [
+              "default",
+              "settings"
+            ],
+            "cf-blog": [
+              "default"
+            ],
+            "cf-log": [
+              "default"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "host",
+      "host": "vercel",
+      "slug": "vercel",
+      "name": "Vercel",
+      "title": "Does Vercel block AI crawlers by default?",
+      "description": "Vercel starts its AI Bots Managed Ruleset at Allow. Find the two category controls, review custom rules, and compare curl requests with robots.txt.",
+      "h1": "Does Vercel block AI bots by default?",
+      "intro": [
+        {
+          "text": "Vercel says its AI Bots Managed Ruleset is inactive by default. The dashboard calls this Allow. Matching traffic reaches your app without being checked by that ruleset. The docs do not list all six bot names in its categories.",
+          "sources": [
+            "vercel-rules"
+          ],
+          "facts": {
+            "vercel-rules": [
+              "default",
+              "traffic",
+              "catalog"
+            ]
+          }
+        },
+        {
+          "text": "Open Firewall > Rules in your project and inspect Bot Management. AI Crawlers and AI Assistants have separate actions. Also review custom rules, because Vercel runs those before the managed rules.",
+          "sources": [
+            "vercel-rules"
+          ],
+          "facts": {
+            "vercel-rules": [
+              "settings",
+              "configure",
+              "categories",
+              "order"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "What the starting setting covers",
+          "paragraphs": [
+            {
+              "text": "Vercel describes AI Crawlers as bots that collect content for training. AI Assistants retrieve pages for user actions or search queries. The guide points to a separate catalog for membership. It does not identify ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended or CCBot by name. Keep that limit in mind when reading the Allow setting. A category description alone does not tell you the full list of requests it covers.",
+              "sources": [
+                "vercel-rules"
+              ],
+              "facts": {
+                "vercel-rules": [
+                  "categories",
+                  "catalog"
+                ]
+              }
+            },
+            {
+              "text": "Bot Protection is another managed ruleset on the same screen. Its inactive label is Off. When enabled in challenge mode, it serves a JavaScript check to traffic that appears unlikely to be a browser. Check both controls if your AI category is allowed but a command-line request still receives a challenge.",
+              "sources": [
+                "vercel-rules"
+              ],
+              "facts": {
+                "vercel-rules": [
+                  "off",
+                  "challenge"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Change the two AI categories",
+          "paragraphs": [
+            {
+              "text": "From Firewall, open Rules and select the Configure control in Bot Management. Set an action for each AI category. Log records the traffic without blocking it. Deny blocks traffic identified in that category. Review Changes shows the pending edits. Select Publish to apply them to the production deployment. Until that step, compare your public result with the published configuration.",
+              "sources": [
+                "vercel-rules"
+              ],
+              "facts": {
+                "vercel-rules": [
+                  "settings",
+                  "configure",
+                  "log",
+                  "deny",
+                  "publish"
+                ]
+              }
+            },
+            {
+              "text": "A custom bypass rule can target a user agent blocked by a managed ruleset. When a custom blocking rule is responsible, a bypass must run ahead of that blocking rule. Review rule order along with the action itself. Vercel lists project custom rules first and managed rules second, so changing only a category can leave an earlier denial in place.",
+              "sources": [
+                "vercel-rules"
+              ],
+              "facts": {
+                "vercel-rules": [
+                  "bypass",
+                  "bypass-order",
+                  "order"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Check the deployed address",
+          "paragraphs": [
+            {
+              "text": "Replace example.com with the public domain attached to this project. Read its robots.txt and request one public page using the browser header and all six names below. These requests show how the server responds to those strings from your machine. They do not verify that the sender is a real crawler. Use your Firewall traffic view to investigate a refusal.",
+              "sources": [
+                "vercel-gpt"
+              ],
+              "facts": {
+                "vercel-gpt": [
+                  "header"
+                ]
+              }
+            },
+            {
+              "text": "For GPTBot, Vercel gives a separate recipe that uses User Agent contains GPTBot in a custom rule. If that rule exists, review its Deny, Challenge or Rate Limit action as well as the category setting. Compare the page response before and after your published change, keeping the requested URL and request header the same.",
+              "sources": [
+                "vercel-gpt"
+              ],
+              "facts": {
+                "vercel-gpt": [
+                  "match",
+                  "actions"
+                ]
+              }
+            }
+          ],
+          "checks": true
+        }
+      ],
+      "faq": [
+        {
+          "question": "Why does Vercel show both Off and Allow?",
+          "answer": "The saved docs use Off for inactive Bot Protection and Allow for the inactive AI Bots Managed Ruleset. These are two controls. Check which ruleset you are reading in Bot Management.",
+          "sources": [
+            "vercel-rules"
+          ],
+          "facts": {
+            "vercel-rules": [
+              "off",
+              "default"
+            ]
+          }
+        },
+        {
+          "question": "Can I watch AI traffic before blocking it?",
+          "answer": "Yes. Choose Log for the AI category you want to inspect. Vercel says this records the traffic without blocking it. Publish the change and review your project traffic.",
+          "sources": [
+            "vercel-rules"
+          ],
+          "facts": {
+            "vercel-rules": [
+              "log",
+              "publish"
+            ]
+          }
+        },
+        {
+          "question": "Who can apply a Vercel firewall change?",
+          "answer": "The ruleset guide lists Project administrator, Team member or Security access for configuring, saving and applying rules. It lists separate viewing roles. Check your role if the settings are visible but cannot be saved.",
+          "sources": [
+            "vercel-rules"
+          ],
+          "facts": {
+            "vercel-rules": [
+              "roles"
+            ]
+          }
+        },
+        {
+          "question": "Where is the bot-specific GPTBot fix?",
+          "answer": "The guide linked below walks through the GPTBot user-agent rule, the three available actions and how to compare it with the broader AI category. Use it when your request is caught by an explicit GPTBot rule.",
+          "sources": [
+            "vercel-gpt"
+          ],
+          "facts": {
+            "vercel-gpt": [
+              "match",
+              "actions"
+            ]
+          }
+        }
+      ],
+      "bots": {
+        "GPTBot": {
+          "default": "AI Bots Managed Ruleset starts at Allow and is inactive. The docs do not state a separate named-bot default.",
+          "change": "Configure AI Crawlers or AI Assistants in Firewall > Rules > Bot Management. Review custom rules too.",
+          "sources": [
+            "vercel-rules"
+          ],
+          "facts": {
+            "vercel-rules": [
+              "default",
+              "traffic",
+              "settings",
+              "configure"
+            ]
+          }
+        },
+        "ClaudeBot": {
+          "default": "AI Bots Managed Ruleset starts at Allow and is inactive. The docs do not state a separate named-bot default.",
+          "change": "Configure AI Crawlers or AI Assistants in Firewall > Rules > Bot Management. Review custom rules too.",
+          "sources": [
+            "vercel-rules"
+          ],
+          "facts": {
+            "vercel-rules": [
+              "default",
+              "traffic",
+              "settings",
+              "configure"
+            ]
+          }
+        },
+        "PerplexityBot": {
+          "default": "AI Bots Managed Ruleset starts at Allow and is inactive. The docs do not state a separate named-bot default.",
+          "change": "Configure AI Crawlers or AI Assistants in Firewall > Rules > Bot Management. Review custom rules too.",
+          "sources": [
+            "vercel-rules"
+          ],
+          "facts": {
+            "vercel-rules": [
+              "default",
+              "traffic",
+              "settings",
+              "configure"
+            ]
+          }
+        },
+        "Google-Extended": {
+          "default": "AI Bots Managed Ruleset starts at Allow and is inactive. The docs do not state a separate named-bot default.",
+          "change": "Configure AI Crawlers or AI Assistants in Firewall > Rules > Bot Management. Review custom rules too.",
+          "sources": [
+            "vercel-rules"
+          ],
+          "facts": {
+            "vercel-rules": [
+              "default",
+              "traffic",
+              "settings",
+              "configure"
+            ]
+          }
+        },
+        "Applebot-Extended": {
+          "default": "AI Bots Managed Ruleset starts at Allow and is inactive. The docs do not state a separate named-bot default.",
+          "change": "Configure AI Crawlers or AI Assistants in Firewall > Rules > Bot Management. Review custom rules too.",
+          "sources": [
+            "vercel-rules"
+          ],
+          "facts": {
+            "vercel-rules": [
+              "default",
+              "traffic",
+              "settings",
+              "configure"
+            ]
+          }
+        },
+        "CCBot": {
+          "default": "AI Bots Managed Ruleset starts at Allow and is inactive. The docs do not state a separate named-bot default.",
+          "change": "Configure AI Crawlers or AI Assistants in Firewall > Rules > Bot Management. Review custom rules too.",
+          "sources": [
+            "vercel-rules"
+          ],
+          "facts": {
+            "vercel-rules": [
+              "default",
+              "traffic",
+              "settings",
+              "configure"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "host",
+      "host": "netlify",
+      "slug": "netlify",
+      "name": "Netlify",
+      "title": "Does Netlify block AI bots by default?",
+      "description": "Netlify describes an optional User Agent Blocker extension. Check project activation, crawler categories, robots.txt, and deployed request responses.",
+      "h1": "Does Netlify block AI bots by default?",
+      "intro": [
+        {
+          "text": "Netlify explains how to install and activate User Agent Blocker. The docs do not say whether each of these six bots is blocked by default. They say the extension starts working after the selected project is deployed successfully.",
+          "sources": [
+            "netlify-block"
+          ],
+          "facts": {
+            "netlify-block": [
+              "install",
+              "activate",
+              "project",
+              "deployed"
+            ]
+          }
+        },
+        {
+          "text": "Check Extensions > User Agent Blocker in the project dashboard. Read the selected traffic under Block User Agents. Netlify also supports your own robots.txt and Edge Function rules, so inspect those if the extension does not explain a refusal.",
+          "sources": [
+            "netlify-block",
+            "netlify-guide"
+          ],
+          "facts": {
+            "netlify-block": [
+              "project",
+              "select"
+            ],
+            "netlify-guide": [
+              "robots",
+              "edge"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Installation and activation are separate steps",
+          "paragraphs": [
+            {
+              "text": "The blocking guide says to find User Agent Blocker under Extensions and select Install. This makes it available to the team. You then go to a project to activate it. Activation happens one project at a time. A team installation alone does not describe which traffic a particular published site is blocking. Inspect the site whose address you will test.",
+              "sources": [
+                "netlify-block"
+              ],
+              "facts": {
+                "netlify-block": [
+                  "install",
+                  "activate",
+                  "project"
+                ]
+              }
+            },
+            {
+              "text": "Under Block User Agents, choose the traffic you intend to refuse. The guide says to select the AI crawler options when targeting AI crawlers and bots, and warns that the list does not include every possible one. Select Redeploy site, confirm with Save, then select Enable analytics and deploy site. Wait for a successful deployment before testing the public address.",
+              "sources": [
+                "netlify-block"
+              ],
+              "facts": {
+                "netlify-block": [
+                  "select",
+                  "list",
+                  "deploy",
+                  "deployed"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Categories tell you what a request looks like",
+          "paragraphs": [
+            {
+              "text": "Netlify assigns a Netlify-Agent-Category header to deployed requests. Functions and Edge Functions can read it. GPTBot is explicitly a Crawler, while ChatGPT-User and Claude-User appear as AI Agent examples. A rule that targets only ai-agent does not express the same choice as one targeting crawler. The docs give GPTBot enough separate treatment for the linked guide below.",
+              "sources": [
+                "netlify-category"
+              ],
+              "facts": {
+                "netlify-category": [
+                  "header",
+                  "functions",
+                  "gpt"
+                ]
+              }
+            },
+            {
+              "text": "Netlify sets and overrides this category header on deployed sites. To test a category-based rule on a deployed project, change the User-Agent header. Sending your own Netlify-Agent-Category value to the public site does not choose the category. Local development behaves differently, so keep your public test distinct from a local function check.",
+              "sources": [
+                "netlify-category"
+              ],
+              "facts": {
+                "netlify-category": [
+                  "deployed",
+                  "test",
+                  "local"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Check files and functions alongside the extension",
+          "paragraphs": [
+            {
+              "text": "Netlify also gives an example that writes a robots.txt exclusion for each name in a list. Its Edge Function reads the same list and returns HTTP 401 for matching user-agent text. These are two places to look when the extension is absent or a project has older custom code. The guide says bots can ignore robots.txt or misreport their names.",
+              "sources": [
+                "netlify-guide"
+              ],
+              "facts": {
+                "netlify-guide": [
+                  "robots",
+                  "edge",
+                  "ignore",
+                  "spoof"
+                ]
+              }
+            },
+            {
+              "text": "Fetch robots.txt, then use the six request headers below on the same published URL. Compare status codes and the returned location if there is a redirect. If a name is disallowed in the file but the page responds, record both results. To reopen access, review that name in the extension selection, any custom exclusion and any Edge Function before redeploying the project.",
+              "sources": [
+                "netlify-block",
+                "netlify-guide"
+              ],
+              "facts": {
+                "netlify-block": [
+                  "select",
+                  "deploy"
+                ],
+                "netlify-guide": [
+                  "robots",
+                  "edge"
+                ]
+              }
+            }
+          ],
+          "checks": true
+        }
+      ],
+      "faq": [
+        {
+          "question": "Does team installation turn the blocker on for every Netlify site?",
+          "answer": "The guide separates making the extension available to a team from activating it on a project. It says activation is one project at a time. Check each project whose traffic you want to control.",
+          "sources": [
+            "netlify-block"
+          ],
+          "facts": {
+            "netlify-block": [
+              "activate",
+              "project"
+            ]
+          }
+        },
+        {
+          "question": "Is GPTBot an AI Agent in the Netlify category header?",
+          "answer": "No. The category guide puts high-volume GPTBot crawling in Crawler. Its AI Agent examples include ChatGPT-User and Claude-User, which fetch pages for prompts.",
+          "sources": [
+            "netlify-category"
+          ],
+          "facts": {
+            "netlify-category": [
+              "gpt"
+            ]
+          }
+        },
+        {
+          "question": "Can I send the category header myself to test production?",
+          "answer": "Netlify overrides a client-supplied Netlify-Agent-Category on deployed projects. Set User-Agent to test the category there. Locally, the category header is neither set nor overridden.",
+          "sources": [
+            "netlify-category"
+          ],
+          "facts": {
+            "netlify-category": [
+              "deployed",
+              "test",
+              "local"
+            ]
+          }
+        },
+        {
+          "question": "Will the preset list cover every AI service?",
+          "answer": "Netlify says it does not include all possible AI crawlers and bots. Read your selected options and inspect custom code when a bot you care about is absent.",
+          "sources": [
+            "netlify-block"
+          ],
+          "facts": {
+            "netlify-block": [
+              "list"
+            ]
+          }
+        }
+      ],
+      "bots": {
+        "GPTBot": {
+          "default": "The docs do not say. They describe installing and activating a blocker, without a named-bot starting state.",
+          "change": "Review Block User Agents in the project extension, custom robots.txt and Edge Functions. Redeploy changes.",
+          "sources": [
+            "netlify-block"
+          ],
+          "facts": {
+            "netlify-block": [
+              "extension",
+              "select",
+              "deployed"
+            ]
+          }
+        },
+        "ClaudeBot": {
+          "default": "The docs do not say. They describe installing and activating a blocker, without a named-bot starting state.",
+          "change": "Review Block User Agents in the project extension, custom robots.txt and Edge Functions. Redeploy changes.",
+          "sources": [
+            "netlify-block"
+          ],
+          "facts": {
+            "netlify-block": [
+              "extension",
+              "select",
+              "deployed"
+            ]
+          }
+        },
+        "PerplexityBot": {
+          "default": "The docs do not say. They describe installing and activating a blocker, without a named-bot starting state.",
+          "change": "Review Block User Agents in the project extension, custom robots.txt and Edge Functions. Redeploy changes.",
+          "sources": [
+            "netlify-block"
+          ],
+          "facts": {
+            "netlify-block": [
+              "extension",
+              "select",
+              "deployed"
+            ]
+          }
+        },
+        "Google-Extended": {
+          "default": "The docs do not say. They describe installing and activating a blocker, without a named-bot starting state.",
+          "change": "Review Block User Agents in the project extension, custom robots.txt and Edge Functions. Redeploy changes.",
+          "sources": [
+            "netlify-block"
+          ],
+          "facts": {
+            "netlify-block": [
+              "extension",
+              "select",
+              "deployed"
+            ]
+          }
+        },
+        "Applebot-Extended": {
+          "default": "The docs do not say. They describe installing and activating a blocker, without a named-bot starting state.",
+          "change": "Review Block User Agents in the project extension, custom robots.txt and Edge Functions. Redeploy changes.",
+          "sources": [
+            "netlify-block"
+          ],
+          "facts": {
+            "netlify-block": [
+              "extension",
+              "select",
+              "deployed"
+            ]
+          }
+        },
+        "CCBot": {
+          "default": "The docs do not say. They describe installing and activating a blocker, without a named-bot starting state.",
+          "change": "Review Block User Agents in the project extension, custom robots.txt and Edge Functions. Redeploy changes.",
+          "sources": [
+            "netlify-block"
+          ],
+          "facts": {
+            "netlify-block": [
+              "extension",
+              "select",
+              "deployed"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "host",
+      "host": "wix",
+      "slug": "wix",
+      "name": "Wix",
+      "title": "Does Wix block GPTBot and other AI bots by default?",
+      "description": "Wix shows robots.txt rules for GPTBot and CCBot but gives no named-bot default. Find the editor, save a change, and check your published site.",
+      "h1": "Does Wix block AI bots by default?",
+      "intro": [
+        {
+          "text": "The Wix guide does not say whether these six bots are blocked by default. It shows how to add robots.txt rules, with GPTBot and CCBot among its examples. It warns that some crawlers may ignore those requests.",
+          "sources": [
+            "wix"
+          ],
+          "facts": {
+            "wix": [
+              "examples",
+              "ignore"
+            ]
+          }
+        },
+        {
+          "text": "Use SEO & GEO > Tools and settings > Robots.txt Editor in the dashboard. Read the current file before adding or removing a rule. Save Changes, then Save, and fetch the public robots.txt to see what visitors receive.",
+          "sources": [
+            "wix"
+          ],
+          "facts": {
+            "wix": [
+              "editor",
+              "view",
+              "save"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Start with the current robots.txt",
+          "paragraphs": [
+            {
+              "text": "Wix places the editor in the site dashboard. Choose View File, then edit the current text. Its example lists CCBot, GPTBot, ChatGPT-User and BingAI, each with a request to stay out of the whole site. It also says you can add more known crawlers. That example shows what an owner can request. It does not describe the starting rules on every Wix site.",
+              "sources": [
+                "wix"
+              ],
+              "facts": {
+                "wix": [
+                  "editor",
+                  "view",
+                  "examples",
+                  "more"
+                ]
+              }
+            },
+            {
+              "text": "For the six bots on this page, read any named User-agent group and its Disallow lines. Also inspect the group for all crawlers. To request that GPTBot or CCBot stay out, the Wix example uses the two groups below. Add only the name you intend to restrict. Keep a copy of the current text so you can compare the file after saving.",
+              "sources": [
+                "wix"
+              ],
+              "facts": {
+                "wix": [
+                  "examples"
+                ]
+              }
+            }
+          ],
+          "code": "User-agent: GPTBot\nDisallow: /\n\nUser-agent: CCBot\nDisallow: /"
+        },
+        {
+          "heading": "What to change when access is unwanted",
+          "paragraphs": [
+            {
+              "text": "Use the Robots.txt Editor for a site-wide request. The guide does not name ClaudeBot, PerplexityBot, Google-Extended or Applebot-Extended in its examples. It gives no separate Wix firewall switch for any of the six. If you add another name using the same method, check the published output and the bot reference linked in the table before deciding what it affects.",
+              "sources": [
+                "wix"
+              ],
+              "facts": {
+                "wix": [
+                  "editor",
+                  "examples",
+                  "more"
+                ]
+              }
+            },
+            {
+              "text": "Wix also has a page-specific option in the editor. Open Pages & Menu, then the page menu, SEO basics, Advanced SEO and Robots meta tag. The guide tells you to select nosnippet to prevent page content being a direct input for AI Overviews, then publish. That instruction concerns a page setting. It does not say that the setting sends a network refusal to these six bot names.",
+              "sources": [
+                "wix"
+              ],
+              "facts": {
+                "wix": [
+                  "meta-path",
+                  "meta-seo",
+                  "nosnippet"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Test your Wix domain after saving",
+          "paragraphs": [
+            {
+              "text": "Use the public domain where the content is available. Replace example.com below, read robots.txt, and send the six names to the same public page. Keep the browser request as a comparison. This only checks how requests carrying those headers are handled from your machine. It cannot show whether a crawler follows the instructions it reads.",
+              "sources": [
+                "wix"
+              ],
+              "facts": {
+                "wix": [
+                  "ignore"
+                ]
+              }
+            },
+            {
+              "text": "If you meant to allow a bot again, inspect and remove the exclusion you added for that name, save both editor steps, then read the live file again. Check other groups before calling the change complete. The guide says listing known crawlers can block most of them but cannot keep out every unauthorized crawler. Record the file result separately from the HTTP response.",
+              "sources": [
+                "wix"
+              ],
+              "facts": {
+                "wix": [
+                  "save",
+                  "ignore"
+                ]
+              }
+            }
+          ],
+          "checks": true
+        }
+      ],
+      "faq": [
+        {
+          "question": "Does the Wix guide give a different recipe for CCBot?",
+          "answer": "CCBot and GPTBot use the same whole-site Disallow recipe in the guide. They share this page because the steps to edit, save and check the rules are the same.",
+          "sources": [
+            "wix"
+          ],
+          "facts": {
+            "wix": [
+              "examples"
+            ]
+          }
+        },
+        {
+          "question": "Can I add more names than the Wix example shows?",
+          "answer": "Yes. Wix says the example contains some known AI crawlers and you can add more as needed. Check the spelling and scope of each instruction in the public file.",
+          "sources": [
+            "wix"
+          ],
+          "facts": {
+            "wix": [
+              "more"
+            ]
+          }
+        },
+        {
+          "question": "Is nosnippet the same control as a robots.txt exclusion?",
+          "answer": "Wix puts nosnippet in a page setting and describes it in relation to direct input for AI Overviews. The robots.txt instructions apply to named crawlers across the site. Read the control for the outcome you want.",
+          "sources": [
+            "wix"
+          ],
+          "facts": {
+            "wix": [
+              "nosnippet",
+              "examples"
+            ]
+          }
+        },
+        {
+          "question": "Can robots.txt completely block unauthorized scraping on Wix?",
+          "answer": "The guide says no. Some crawlers may ignore robots.txt and scrape anyway. A file that contains your exclusion shows the request you made, while an HTTP test shows the response to one visit.",
+          "sources": [
+            "wix"
+          ],
+          "facts": {
+            "wix": [
+              "ignore"
+            ]
+          }
+        }
+      ],
+      "bots": {
+        "GPTBot": {
+          "default": "The docs do not say whether this name is blocked or allowed at the start.",
+          "change": "Read and edit its instructions in SEO & GEO > Tools and settings > Robots.txt Editor.",
+          "sources": [
+            "wix"
+          ],
+          "facts": {
+            "wix": [
+              "editor",
+              "view",
+              "examples"
+            ]
+          }
+        },
+        "ClaudeBot": {
+          "default": "The docs do not say whether this name is blocked or allowed at the start.",
+          "change": "Read and edit its instructions in SEO & GEO > Tools and settings > Robots.txt Editor.",
+          "sources": [
+            "wix"
+          ],
+          "facts": {
+            "wix": [
+              "editor",
+              "view",
+              "examples"
+            ]
+          }
+        },
+        "PerplexityBot": {
+          "default": "The docs do not say whether this name is blocked or allowed at the start.",
+          "change": "Read and edit its instructions in SEO & GEO > Tools and settings > Robots.txt Editor.",
+          "sources": [
+            "wix"
+          ],
+          "facts": {
+            "wix": [
+              "editor",
+              "view",
+              "examples"
+            ]
+          }
+        },
+        "Google-Extended": {
+          "default": "The docs do not say whether this name is blocked or allowed at the start.",
+          "change": "Read and edit its instructions in SEO & GEO > Tools and settings > Robots.txt Editor.",
+          "sources": [
+            "wix"
+          ],
+          "facts": {
+            "wix": [
+              "editor",
+              "view",
+              "examples"
+            ]
+          }
+        },
+        "Applebot-Extended": {
+          "default": "The docs do not say whether this name is blocked or allowed at the start.",
+          "change": "Read and edit its instructions in SEO & GEO > Tools and settings > Robots.txt Editor.",
+          "sources": [
+            "wix"
+          ],
+          "facts": {
+            "wix": [
+              "editor",
+              "view",
+              "examples"
+            ]
+          }
+        },
+        "CCBot": {
+          "default": "The docs do not say whether this name is blocked or allowed at the start.",
+          "change": "Read and edit its instructions in SEO & GEO > Tools and settings > Robots.txt Editor.",
+          "sources": [
+            "wix"
+          ],
+          "facts": {
+            "wix": [
+              "editor",
+              "view",
+              "examples"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "host",
+      "host": "squarespace",
+      "slug": "squarespace",
+      "name": "Squarespace",
+      "title": "Does Squarespace block AI bots by default?",
+      "description": "Squarespace leaves its AI crawler checkbox unchecked. See which bots it covers, why PerplexityBot differs, and how to check the published rules.",
+      "h1": "Does Squarespace block AI bots by default?",
+      "intro": [
+        {
+          "text": "Squarespace leaves Block known artificial intelligence crawlers unchecked by default. It says that adds no AI exclusion requests to robots.txt. Five of the six names here appear in its blocking list. PerplexityBot does not appear in that list.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "default",
+              "bots"
+            ]
+          }
+        },
+        {
+          "text": "Open Settings > Crawlers to inspect the checkbox. Checking it requests that listed bots stop crawling your site. The guide says compliance is voluntary and this control cannot limit its request to selected pages.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "settings",
+              "checkbox",
+              "compliance",
+              "pages"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Which names the checkbox covers",
+          "paragraphs": [
+            {
+              "text": "The Squarespace list includes GPTBot, ClaudeBot, Google-Extended, Applebot-Extended and CCBot. All five use the same checkbox. The saved list has other names too, and Squarespace says it may add more as AI changes. Read the file on your own domain after editing the setting because that file shows the request your site is making today.",
+              "sources": [
+                "squarespace"
+              ],
+              "facts": {
+                "squarespace": [
+                  "checkbox",
+                  "bots",
+                  "missing"
+                ]
+              }
+            },
+            {
+              "text": "PerplexityBot is absent from the published list. The docs do not say that checking the box blocks it or describe a separate switch for it. Squarespace asks owners to contact it with a feature request for a bot that is missing. The table keeps that uncertainty visible instead of treating a control for known crawlers as a promise about every AI service.",
+              "sources": [
+                "squarespace"
+              ],
+              "facts": {
+                "squarespace": [
+                  "bots",
+                  "missing"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Change the site-wide request",
+          "paragraphs": [
+            {
+              "text": "In Settings, choose Crawlers and check Block known artificial intelligence crawlers to request exclusion. Leave it unchecked if you do not want that AI exclusion request. Squarespace says the starting choice is unchecked because excluding the site from chat answers and sources could affect traffic. That describes the reason for its choice, without promising visits or citations for your site.",
+              "sources": [
+                "squarespace"
+              ],
+              "facts": {
+                "squarespace": [
+                  "settings",
+                  "checkbox",
+                  "default"
+                ]
+              }
+            },
+            {
+              "text": "The guide says a checkbox change updates robots.txt. It also says this does not remove material already scraped for training. Judge your edit by the current public request it adds. A prior copy held elsewhere is outside what this setting changes. If the aim is to control only a few pages, the guide says that option is currently unavailable.",
+              "sources": [
+                "squarespace"
+              ],
+              "facts": {
+                "squarespace": [
+                  "checkbox",
+                  "retroactive",
+                  "pages"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Check both the request and the response",
+          "paragraphs": [
+            {
+              "text": "Read robots.txt at the root of the Squarespace domain. Find the five listed names and inspect the rules under each. Do the same for PerplexityBot without assuming it appears. A file check lets you compare the control description with the text actually served. Then request the same public page using the browser and named headers below.",
+              "sources": [
+                "squarespace"
+              ],
+              "facts": {
+                "squarespace": [
+                  "checkbox",
+                  "bots"
+                ]
+              }
+            },
+            {
+              "text": "An HTTP response is a separate observation from an exclusion request in the file. Squarespace says friendly crawlers have offered to read and obey robots.txt, while malicious crawlers may still misuse content. A page that responds successfully to curl can therefore still carry your request that a listed bot stay out. Save the response and the file when you ask support about an unexpected result.",
+              "sources": [
+                "squarespace"
+              ],
+              "facts": {
+                "squarespace": [
+                  "robots",
+                  "compliance"
+                ]
+              }
+            }
+          ],
+          "checks": true
+        }
+      ],
+      "faq": [
+        {
+          "question": "Is PerplexityBot on the Squarespace blocking list?",
+          "answer": "It is absent from the list read on 12 November 2026. The guide offers a feature request for missing bots. It gives no separate PerplexityBot control or named-bot starting state.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "bots",
+              "missing"
+            ]
+          }
+        },
+        {
+          "question": "Can the checkbox cover only a private draft section?",
+          "answer": "The guide says it is currently impossible to request that AI crawlers scan only specific pages with this control. Inspect the site-wide effect before enabling it for a small part of your content.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "pages"
+            ]
+          }
+        },
+        {
+          "question": "Does checking the box remove earlier training copies?",
+          "answer": "No. Squarespace says the setting does not retroactively remove previously scraped content from training data. Check the current robots.txt to confirm the request for future crawling.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "retroactive"
+            ]
+          }
+        },
+        {
+          "question": "Why do the five listed bots share one Squarespace guide?",
+          "answer": "Squarespace gives those names the same checkbox and the same site-wide robots.txt method. There are no separate editing steps for GPTBot, ClaudeBot, Google-Extended, Applebot-Extended or CCBot in this guide.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "settings",
+              "checkbox",
+              "bots"
+            ]
+          }
+        }
+      ],
+      "bots": {
+        "GPTBot": {
+          "default": "The AI checkbox starts unchecked, with no AI exclusion request added by it. This name is on the checkbox list.",
+          "change": "Use Settings > Crawlers > Block known artificial intelligence crawlers for the whole site.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "default",
+              "settings",
+              "checkbox",
+              "bots"
+            ]
+          }
+        },
+        "ClaudeBot": {
+          "default": "The AI checkbox starts unchecked, with no AI exclusion request added by it. This name is on the checkbox list.",
+          "change": "Use Settings > Crawlers > Block known artificial intelligence crawlers for the whole site.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "default",
+              "settings",
+              "checkbox",
+              "bots"
+            ]
+          }
+        },
+        "PerplexityBot": {
+          "default": "The docs do not say. PerplexityBot is absent from the published checkbox list.",
+          "change": "Inspect robots.txt and ask Squarespace about a missing-bot feature request.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "bots",
+              "missing"
+            ]
+          }
+        },
+        "Google-Extended": {
+          "default": "The AI checkbox starts unchecked, with no AI exclusion request added by it. This name is on the checkbox list.",
+          "change": "Use Settings > Crawlers > Block known artificial intelligence crawlers for the whole site.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "default",
+              "settings",
+              "checkbox",
+              "bots"
+            ]
+          }
+        },
+        "Applebot-Extended": {
+          "default": "The AI checkbox starts unchecked, with no AI exclusion request added by it. This name is on the checkbox list.",
+          "change": "Use Settings > Crawlers > Block known artificial intelligence crawlers for the whole site.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "default",
+              "settings",
+              "checkbox",
+              "bots"
+            ]
+          }
+        },
+        "CCBot": {
+          "default": "The AI checkbox starts unchecked, with no AI exclusion request added by it. This name is on the checkbox list.",
+          "change": "Use Settings > Crawlers > Block known artificial intelligence crawlers for the whole site.",
+          "sources": [
+            "squarespace"
+          ],
+          "facts": {
+            "squarespace": [
+              "default",
+              "settings",
+              "checkbox",
+              "bots"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "host",
+      "host": "shopify",
+      "slug": "shopify",
+      "name": "Shopify",
+      "title": "Does Shopify block AI crawlers by default?",
+      "description": "Shopify documents robots.txt controls and separate network bot management. Check the live output and theme changes without guessing each bot’s default.",
+      "h1": "Does Shopify block AI bots by default?",
+      "intro": [
+        {
+          "text": "Shopify does not state the starting access rule for each of these six bots. It describes a built-in robots.txt file for stores and separate network bot management. A public-page Allow rule is not a named-bot promise at both layers.",
+          "sources": [
+            "shopify-help"
+          ],
+          "facts": {
+            "shopify-help": [
+              "default",
+              "network",
+              "allow"
+            ]
+          }
+        },
+        {
+          "text": "Read your store’s current robots.txt before editing robots.txt.liquid in the published theme. Shopify warns that adding the template replaces its generated output. Compare the old file with the rendered result before you publish the change.",
+          "sources": [
+            "shopify-dev"
+          ],
+          "facts": {
+            "shopify-dev": [
+              "replace"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "The two controls have different reach",
+          "paragraphs": [
+            {
+              "text": "The Help Center says Shopify handles bot management directly for stores at the network layer. It does not recommend putting a proxy in front of Shopify and says it cannot support that setup. For robots.txt, owners can allow or block user-agent names through the theme template. Those rules are advisory and not every crawler is guaranteed to follow them.",
+              "sources": [
+                "shopify-help"
+              ],
+              "facts": {
+                "shopify-help": [
+                  "network",
+                  "advisory"
+                ]
+              }
+            },
+            {
+              "text": "Shopify also separates open-web crawling from Shopify Catalog. Activated agentic storefronts can receive product data through Catalog independently of robots.txt. Blocking an open-web crawler does not stop that sharing. If your concern is products appearing through an activated channel, read its agentic storefront settings as well as the bot rules served on your store domain.",
+              "sources": [
+                "shopify-help"
+              ],
+              "facts": {
+                "shopify-help": [
+                  "catalog",
+                  "sharing"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Preserve the file before changing the theme",
+          "paragraphs": [
+            {
+              "text": "From Online Store, select the relevant theme and Edit code. The Help Center describes adding a robots template. The developer instructions describe creating robots.txt.liquid in Templates. Both lead to a template that can add or remove directives. Work in the published theme when you intend the public file to change, and save a copy of its current output first.",
+              "sources": [
+                "shopify-help",
+                "shopify-dev"
+              ],
+              "facts": {
+                "shopify-help": [
+                  "edit",
+                  "template",
+                  "save",
+                  "liquid"
+                ],
+                "shopify-dev": [
+                  "folder",
+                  "create",
+                  "custom"
+                ]
+              }
+            },
+            {
+              "text": "The Help Center recommends Liquid so Shopify can keep rules updated. It also warns that a template using built-in groups can retain rules the current generated file no longer has, including /search and /policies/. The developer guide likewise says rendered template output does not always equal the generated file. These details qualify the update advice. Compare the actual text instead of assuming that using built-in groups makes the two outputs identical.",
+              "sources": [
+                "shopify-help",
+                "shopify-dev"
+              ],
+              "facts": {
+                "shopify-help": [
+                  "liquid",
+                  "old"
+                ],
+                "shopify-dev": [
+                  "different"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Allow or exclude only the crawler you chose",
+          "paragraphs": [
+            {
+              "text": "The developer examples add a named user-agent group outside the Liquid that prints existing groups. They show both Disallow and Allow forms. Apply that method only after checking whether the name is already covered in your output. Keep the other groups intact. The six bot reference links above let you review each bot before selecting the name and the paths you want to change.",
+              "sources": [
+                "shopify-dev"
+              ],
+              "facts": {
+                "shopify-dev": [
+                  "custom",
+                  "block",
+                  "allow"
+                ]
+              }
+            },
+            {
+              "text": "After saving, fetch the live store file and use the browser and six headers below on a public product or page URL. Compare the same address before and after the edit. The Help Center says file changes are instant but crawlers may react later. Your test records what is served now. It does not measure when an outside crawler will return or which Catalog channels receive product data.",
+              "sources": [
+                "shopify-help"
+              ],
+              "facts": {
+                "shopify-help": [
+                  "save"
+                ]
+              }
+            }
+          ],
+          "checks": true
+        }
+      ],
+      "faq": [
+        {
+          "question": "Can I use robots.txt to turn off Shopify Catalog sharing?",
+          "answer": "No. Shopify says activated agentic storefronts receive data through Catalog independently of robots.txt. Review the agentic storefront settings for that sharing. The file affects the advisory instructions for open-web crawlers.",
+          "sources": [
+            "shopify-help"
+          ],
+          "facts": {
+            "shopify-help": [
+              "catalog",
+              "sharing",
+              "advisory"
+            ]
+          }
+        },
+        {
+          "question": "How do I restore Shopify’s generated file?",
+          "answer": "The Help Center says to delete the custom robots.txt.liquid template. Save your custom text first if you want to preserve it, then read the public file again to confirm the result.",
+          "sources": [
+            "shopify-help"
+          ],
+          "facts": {
+            "shopify-help": [
+              "delete"
+            ]
+          }
+        },
+        {
+          "question": "Why compare built-in groups with the generated output?",
+          "answer": "Both Shopify pages warn of output differences. The Help Center names older exclusions a custom template may retain. The developer guide asks you to save and compare the actual files before publishing changes.",
+          "sources": [
+            "shopify-help",
+            "shopify-dev"
+          ],
+          "facts": {
+            "shopify-help": [
+              "old"
+            ],
+            "shopify-dev": [
+              "replace",
+              "different"
+            ]
+          }
+        },
+        {
+          "question": "Can a theme upload miss my crawler changes?",
+          "answer": "Yes. Shopify says uploading a theme through the Themes section does not import robots.txt.liquid. Inspect the published theme and public output after that kind of theme change.",
+          "sources": [
+            "shopify-help"
+          ],
+          "facts": {
+            "shopify-help": [
+              "upload"
+            ]
+          }
+        }
+      ],
+      "bots": {
+        "GPTBot": {
+          "default": "The docs do not say for this bot. They describe a generated robots.txt and separate network controls.",
+          "change": "Inspect robots.txt.liquid in the published theme, compare its output, and edit the named user-agent rule.",
+          "sources": [
+            "shopify-help",
+            "shopify-dev"
+          ],
+          "facts": {
+            "shopify-help": [
+              "default",
+              "network",
+              "advisory"
+            ],
+            "shopify-dev": [
+              "replace",
+              "custom"
+            ]
+          }
+        },
+        "ClaudeBot": {
+          "default": "The docs do not say for this bot. They describe a generated robots.txt and separate network controls.",
+          "change": "Inspect robots.txt.liquid in the published theme, compare its output, and edit the named user-agent rule.",
+          "sources": [
+            "shopify-help",
+            "shopify-dev"
+          ],
+          "facts": {
+            "shopify-help": [
+              "default",
+              "network",
+              "advisory"
+            ],
+            "shopify-dev": [
+              "replace",
+              "custom"
+            ]
+          }
+        },
+        "PerplexityBot": {
+          "default": "The docs do not say for this bot. They describe a generated robots.txt and separate network controls.",
+          "change": "Inspect robots.txt.liquid in the published theme, compare its output, and edit the named user-agent rule.",
+          "sources": [
+            "shopify-help",
+            "shopify-dev"
+          ],
+          "facts": {
+            "shopify-help": [
+              "default",
+              "network",
+              "advisory"
+            ],
+            "shopify-dev": [
+              "replace",
+              "custom"
+            ]
+          }
+        },
+        "Google-Extended": {
+          "default": "The docs do not say for this bot. They describe a generated robots.txt and separate network controls.",
+          "change": "Inspect robots.txt.liquid in the published theme, compare its output, and edit the named user-agent rule.",
+          "sources": [
+            "shopify-help",
+            "shopify-dev"
+          ],
+          "facts": {
+            "shopify-help": [
+              "default",
+              "network",
+              "advisory"
+            ],
+            "shopify-dev": [
+              "replace",
+              "custom"
+            ]
+          }
+        },
+        "Applebot-Extended": {
+          "default": "The docs do not say for this bot. They describe a generated robots.txt and separate network controls.",
+          "change": "Inspect robots.txt.liquid in the published theme, compare its output, and edit the named user-agent rule.",
+          "sources": [
+            "shopify-help",
+            "shopify-dev"
+          ],
+          "facts": {
+            "shopify-help": [
+              "default",
+              "network",
+              "advisory"
+            ],
+            "shopify-dev": [
+              "replace",
+              "custom"
+            ]
+          }
+        },
+        "CCBot": {
+          "default": "The docs do not say for this bot. They describe a generated robots.txt and separate network controls.",
+          "change": "Inspect robots.txt.liquid in the published theme, compare its output, and edit the named user-agent rule.",
+          "sources": [
+            "shopify-help",
+            "shopify-dev"
+          ],
+          "facts": {
+            "shopify-help": [
+              "default",
+              "network",
+              "advisory"
+            ],
+            "shopify-dev": [
+              "replace",
+              "custom"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "host",
+      "host": "wordpress-com",
+      "slug": "wordpress-com",
+      "name": "WordPress.com",
+      "title": "Does WordPress.com block AI bots by default?",
+      "description": "WordPress.com offers Prevent third-party sharing but gives no per-bot default. Find the Reading settings and check what your public robots.txt requests.",
+      "h1": "Does WordPress.com block AI bots by default?",
+      "intro": [
+        {
+          "text": "WordPress.com does not state a starting block rule for these six names in its public-site guide. It says enabling Prevent third-party sharing adds known AI bots to robots.txt and excludes public content from its partner network.",
+          "sources": [
+            "wordpress"
+          ],
+          "facts": {
+            "wordpress": [
+              "partners",
+              "robots"
+            ]
+          }
+        },
+        {
+          "text": "Open Settings > Reading > Site Visibility. Inspect Prevent third-party sharing for this site and save any change. The guide says the request depends on AI platforms honoring it. It gives no list of the known bots covered.",
+          "sources": [
+            "wordpress"
+          ],
+          "facts": {
+            "wordpress": [
+              "public",
+              "robots",
+              "save"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Start by checking site visibility",
+          "paragraphs": [
+            {
+              "text": "The guide explains how to make a WordPress.com site public. In Settings, choose Reading, find Site Visibility and select Public. If Public is absent, the guide says the site has not been launched. Use the current published address when checking bot access. A reading from a different site in your account cannot establish this site’s choices.",
+              "sources": [
+                "wordpress"
+              ],
+              "facts": {
+                "wordpress": [
+                  "public",
+                  "launch"
+                ]
+              }
+            },
+            {
+              "text": "Public visibility also offers Discourage search engines from indexing this site. The guide says some search engines may ignore that request and enabling it also keeps blog posts out of the WordPress.com Reader. Read that setting alongside the AI sharing checkbox when investigating a broad loss of crawler access. Each setting expresses a different request.",
+              "sources": [
+                "wordpress"
+              ],
+              "facts": {
+                "wordpress": [
+                  "search"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "What Prevent third-party sharing changes",
+          "paragraphs": [
+            {
+              "text": "WordPress.com says it works with third-party partners that license content for research and related uses, including AI training. Enabling Prevent third-party sharing excludes this site’s public content from that network. It also adds known AI bots to the disallow list in robots.txt. That combines a partner-sharing choice with a request to web crawlers. The guide does not name every bot on that list.",
+              "sources": [
+                "wordpress"
+              ],
+              "facts": {
+                "wordpress": [
+                  "training",
+                  "partners",
+                  "robots"
+                ]
+              }
+            },
+            {
+              "text": "To enable it, keep Public selected in Site Visibility, tick Prevent third-party sharing and choose Save Changes at the bottom. Inspect each website you manage because the instructions say to update each site separately. If you later change your choice, read the saved setting and the public file again. Keep the before and after text so the result can be tied to that one site.",
+              "sources": [
+                "wordpress"
+              ],
+              "facts": {
+                "wordpress": [
+                  "public",
+                  "save",
+                  "each"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Verify the public request",
+          "paragraphs": [
+            {
+              "text": "Fetch robots.txt from the public domain. Search the served text for GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended and CCBot, then inspect any group for all crawlers. The six names are a checklist for your own inspection. Their appearance or absence in your file is more specific than the guide’s phrase known AI bots. Do not assume a missing name is included by the checkbox.",
+              "sources": [
+                "wordpress"
+              ],
+              "facts": {
+                "wordpress": [
+                  "robots"
+                ]
+              }
+            },
+            {
+              "text": "Next, request a public post using the browser and named headers below. Record the headers and status separately from the robots.txt instructions. WordPress.com says AI platforms decide whether to honor the request, so an ordinary HTTP response is compatible with a file asking a bot to stay away. A curl request supplies a name, without proving that a real visit from that company will follow the file.",
+              "sources": [
+                "wordpress"
+              ],
+              "facts": {
+                "wordpress": [
+                  "robots"
+                ]
+              }
+            }
+          ],
+          "checks": true
+        }
+      ],
+      "faq": [
+        {
+          "question": "Is this guide for every self-hosted WordPress site?",
+          "answer": "The source describes WordPress.com’s own public-site and partner-sharing controls. Check that you are using the WordPress.com setting shown here before following the dashboard steps.",
+          "sources": [
+            "wordpress"
+          ],
+          "facts": {
+            "wordpress": [
+              "public",
+              "partners"
+            ]
+          }
+        },
+        {
+          "question": "Do I need to update every WordPress.com website?",
+          "answer": "Yes. The support guide tells owners of multiple websites to update Prevent third-party sharing for each site they want to exclude. One site’s saved checkbox does not describe another site’s choice.",
+          "sources": [
+            "wordpress"
+          ],
+          "facts": {
+            "wordpress": [
+              "each"
+            ]
+          }
+        },
+        {
+          "question": "Which six bots does the sharing checkbox cover?",
+          "answer": "The saved guide says known AI bots without listing names. It does not confirm coverage for any particular name here. Read the public robots.txt after saving to inspect the request your site serves.",
+          "sources": [
+            "wordpress"
+          ],
+          "facts": {
+            "wordpress": [
+              "robots"
+            ]
+          }
+        },
+        {
+          "question": "Will Discourage search engines affect WordPress.com Reader?",
+          "answer": "The guide says enabling that option excludes blog posts from the Reader. Check it separately from Prevent third-party sharing when you review the Site Visibility controls.",
+          "sources": [
+            "wordpress"
+          ],
+          "facts": {
+            "wordpress": [
+              "search"
+            ]
+          }
+        }
+      ],
+      "bots": {
+        "GPTBot": {
+          "default": "The docs do not say. The sharing checkbox adds known AI bots without naming this bot or its starting state.",
+          "change": "Review Settings > Reading > Site Visibility > Prevent third-party sharing, then inspect the live file.",
+          "sources": [
+            "wordpress"
+          ],
+          "facts": {
+            "wordpress": [
+              "public",
+              "partners",
+              "robots",
+              "save"
+            ]
+          }
+        },
+        "ClaudeBot": {
+          "default": "The docs do not say. The sharing checkbox adds known AI bots without naming this bot or its starting state.",
+          "change": "Review Settings > Reading > Site Visibility > Prevent third-party sharing, then inspect the live file.",
+          "sources": [
+            "wordpress"
+          ],
+          "facts": {
+            "wordpress": [
+              "public",
+              "partners",
+              "robots",
+              "save"
+            ]
+          }
+        },
+        "PerplexityBot": {
+          "default": "The docs do not say. The sharing checkbox adds known AI bots without naming this bot or its starting state.",
+          "change": "Review Settings > Reading > Site Visibility > Prevent third-party sharing, then inspect the live file.",
+          "sources": [
+            "wordpress"
+          ],
+          "facts": {
+            "wordpress": [
+              "public",
+              "partners",
+              "robots",
+              "save"
+            ]
+          }
+        },
+        "Google-Extended": {
+          "default": "The docs do not say. The sharing checkbox adds known AI bots without naming this bot or its starting state.",
+          "change": "Review Settings > Reading > Site Visibility > Prevent third-party sharing, then inspect the live file.",
+          "sources": [
+            "wordpress"
+          ],
+          "facts": {
+            "wordpress": [
+              "public",
+              "partners",
+              "robots",
+              "save"
+            ]
+          }
+        },
+        "Applebot-Extended": {
+          "default": "The docs do not say. The sharing checkbox adds known AI bots without naming this bot or its starting state.",
+          "change": "Review Settings > Reading > Site Visibility > Prevent third-party sharing, then inspect the live file.",
+          "sources": [
+            "wordpress"
+          ],
+          "facts": {
+            "wordpress": [
+              "public",
+              "partners",
+              "robots",
+              "save"
+            ]
+          }
+        },
+        "CCBot": {
+          "default": "The docs do not say. The sharing checkbox adds known AI bots without naming this bot or its starting state.",
+          "change": "Review Settings > Reading > Site Visibility > Prevent third-party sharing, then inspect the live file.",
+          "sources": [
+            "wordpress"
+          ],
+          "facts": {
+            "wordpress": [
+              "public",
+              "partners",
+              "robots",
+              "save"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "host",
+      "host": "webflow",
+      "slug": "webflow",
+      "name": "Webflow",
+      "title": "Does Webflow block AI bots by default?",
+      "description": "Webflow shows custom robots.txt examples for GPTBot and Google-Extended. Check the SEO controls and live requests while keeping host defaults unclaimed.",
+      "h1": "Does Webflow block AI bots by default?",
+      "intro": [
+        {
+          "text": "Webflow’s bot-control article does not state whether these six bots are blocked by default. It says its Cloudflare work brings no immediate changes to Webflow sites. Do not apply Cloudflare’s new-domain policy to a Webflow site from that announcement alone.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "future"
+            ]
+          }
+        },
+        {
+          "text": "Webflow puts a custom robots.txt under Site Settings > SEO. Its article gives a whole-site GPTBot example and a Google-Extended example for /drafts/. Read your published file and choose the paths you mean to restrict.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "settings",
+              "gpt",
+              "extended"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "What the Cloudflare announcement says for Webflow",
+          "paragraphs": [
+            {
+              "text": "Webflow discusses working with Cloudflare on future control over AI access. It explicitly says there are no immediate changes for Webflow sites. The post then points readers back to existing SEO controls. That wording does not announce an automatic firewall block for GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended or CCBot on Webflow hosting. The table records the missing starting-state information for each name.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "future"
+                ]
+              }
+            },
+            {
+              "text": "The custom robots.txt control accepts instructions by user-agent name. Webflow uses GPTBot with Disallow for the whole site as one example. It uses Google-Extended with Disallow for /drafts/ as another. Those are instructions an owner can choose to add. They do not show that every published Webflow file already contains either exclusion. Read the address that serves your content.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "settings",
+                  "gpt",
+                  "extended"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Use the right SEO control",
+          "paragraphs": [
+            {
+              "text": "Site Settings > SEO holds the custom robots.txt text. Before changing it, save the current public file and identify the group you want to edit. For a GPTBot whole-site exclusion, Webflow gives the two lines below. If reopening access is your aim, review the exclusion for that name and any broader instruction before editing. Read the live file again after the change.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "settings",
+                  "gpt"
+                ]
+              }
+            }
+          ],
+          "code": "User-agent: GPTBot\nDisallow: /"
+        },
+        {
+          "heading": "Keep subdomain and page indexing choices in view",
+          "paragraphs": [
+            {
+              "text": "The post also describes Disable Webflow subdomain indexing in Site Settings and Index this page in Page Settings. It presents these as indexing controls. Pay attention to their scope. A setting named for the Webflow subdomain does not describe every custom-domain address. A page setting concerns that page. The bot examples are in custom robots.txt and use named instructions.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "index"
+                ]
+              }
+            },
+            {
+              "text": "For Google-Extended, the post uses /drafts/ to show a limited exclusion. The separate guide linked below walks through checking that path while preserving your intended access elsewhere. It also keeps Googlebot distinct, as Webflow’s example does. The four other names have no separate recipe in this post and use the shared inspection steps here.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "extended",
+                  "googlebot"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Compare the public file with a page fetch",
+          "paragraphs": [
+            {
+              "text": "Replace example.com with the exact domain you want to check. Read /robots.txt at its root. Then send the browser and six named headers below to a public page. Treat these as tests of strings you supplied, including the two Extended names. A successful response does not prove the operator uses that string for its real visits or follows the file.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "settings"
+                ]
+              }
+            },
+            {
+              "text": "Webflow says the rules are respected by most well-behaved crawlers and do not immediately remove content already indexed. Check the text served now when deciding whether your edit took effect. If your question concerns earlier copies or search listings, the current HTTP response cannot answer when those outside systems will update. Keep the URL, request header and file text together for a later comparison.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "compliance"
+                ]
+              }
+            }
+          ],
+          "checks": true
+        }
+      ],
+      "faq": [
+        {
+          "question": "Did Webflow announce immediate Cloudflare blocking changes?",
+          "answer": "No. The saved Webflow post explicitly says there are no immediate changes for Webflow sites while it works with Cloudflare on future controls. Inspect your site’s existing SEO settings and public output.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "future"
+            ]
+          }
+        },
+        {
+          "question": "Can I restrict only /drafts/ for Google-Extended?",
+          "answer": "The article gives exactly that path as a custom robots.txt example. Use the linked Google-Extended guide to compare the live file and the addresses you intend to cover.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "extended"
+            ]
+          }
+        },
+        {
+          "question": "Does disabling Webflow subdomain indexing cover my custom domain?",
+          "answer": "The setting is described for the Webflow subdomain. Check the actual hostname you intend to control and inspect its file. The article does not describe that checkbox as a named-bot firewall rule for every domain.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "index"
+            ]
+          }
+        },
+        {
+          "question": "Where do I put a whole-site GPTBot exclusion?",
+          "answer": "Webflow places custom robots.txt in Site Settings > SEO. Its example uses User-agent GPTBot and Disallow for the root path. Read the published file again after changing it.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "settings",
+              "gpt"
+            ]
+          }
+        }
+      ],
+      "bots": {
+        "GPTBot": {
+          "default": "The docs do not say. The Webflow announcement says there are no immediate changes to hosted sites.",
+          "change": "Inspect custom robots.txt under Site Settings > SEO and edit the intended user-agent instructions.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "future",
+              "settings",
+              "gpt",
+              "extended"
+            ]
+          }
+        },
+        "ClaudeBot": {
+          "default": "The docs do not say. The Webflow announcement says there are no immediate changes to hosted sites.",
+          "change": "Inspect custom robots.txt under Site Settings > SEO and edit the intended user-agent instructions.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "future",
+              "settings",
+              "gpt",
+              "extended"
+            ]
+          }
+        },
+        "PerplexityBot": {
+          "default": "The docs do not say. The Webflow announcement says there are no immediate changes to hosted sites.",
+          "change": "Inspect custom robots.txt under Site Settings > SEO and edit the intended user-agent instructions.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "future",
+              "settings",
+              "gpt",
+              "extended"
+            ]
+          }
+        },
+        "Google-Extended": {
+          "default": "The docs do not say. The Webflow announcement says there are no immediate changes to hosted sites.",
+          "change": "Inspect custom robots.txt under Site Settings > SEO and edit the intended user-agent instructions.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "future",
+              "settings",
+              "gpt",
+              "extended"
+            ]
+          }
+        },
+        "Applebot-Extended": {
+          "default": "The docs do not say. The Webflow announcement says there are no immediate changes to hosted sites.",
+          "change": "Inspect custom robots.txt under Site Settings > SEO and edit the intended user-agent instructions.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "future",
+              "settings",
+              "gpt",
+              "extended"
+            ]
+          }
+        },
+        "CCBot": {
+          "default": "The docs do not say. The Webflow announcement says there are no immediate changes to hosted sites.",
+          "change": "Inspect custom robots.txt under Site Settings > SEO and edit the intended user-agent instructions.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "future",
+              "settings",
+              "gpt",
+              "extended"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "host",
+      "host": "github-pages",
+      "slug": "github-pages",
+      "name": "GitHub Pages",
+      "title": "Does GitHub Pages block AI bots by default?",
+      "description": "GitHub’s Pages setup guide gives no AI bot default or toggle. Check your publishing output, root robots.txt, and responses from the published hostname.",
+      "h1": "Does GitHub Pages block AI bots by default?",
+      "intro": [
+        {
+          "text": "GitHub’s Pages setup guide does not say whether these six bots are blocked or allowed by default. It describes publishing static files. It gives no AI crawler toggle or named-bot firewall control for Pages.",
+          "sources": [
+            "github"
+          ],
+          "facts": {
+            "github": [
+              "static",
+              "server"
+            ]
+          }
+        },
+        {
+          "text": "Check the published hostname and the files produced by your publishing source. Read /robots.txt at the domain root and compare public page responses. A private repository does not by itself make its GitHub Pages site private.",
+          "sources": [
+            "github"
+          ],
+          "facts": {
+            "github": [
+              "private",
+              "static"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Find the site that is actually published",
+          "paragraphs": [
+            {
+              "text": "Open the repository settings and select Pages. The setup guide says Visit site opens the published address. Use that address to identify whether you have a user or organization site or a project site below a repository path. Keep the hostname and path when you test a page. They tell you which published output you are looking at.",
+              "sources": [
+                "github"
+              ],
+              "facts": {
+                "github": [
+                  "settings",
+                  "visit",
+                  "structure"
+                ]
+              }
+            },
+            {
+              "text": "The guide warns that Pages sites are public even when the repository is private, where the plan or organization permits that setup. Repository visibility therefore cannot answer the bot-access question. Inspect the public site itself. If your concern is content being visible to any visitor, review what you published before relying on a robots.txt request.",
+              "sources": [
+                "github"
+              ],
+              "facts": {
+                "github": [
+                  "private"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Inspect the publishing output",
+          "paragraphs": [
+            {
+              "text": "Pages publishes static files from your publishing source. A source can be a chosen folder or a workflow-produced site. The guide explains that a workflow artifact must include the entry file at its top level, while a source folder has its own entry file. Locate the output that reaches the public site before adding a new static robots.txt to it.",
+              "sources": [
+                "github"
+              ],
+              "facts": {
+                "github": [
+                  "static",
+                  "source",
+                  "entry-folder",
+                  "entry-workflow"
+                ]
+              }
+            },
+            {
+              "text": "A robots.txt check uses the root of the hostname. For a project URL such as example.github.io/project/, inspect example.github.io/robots.txt as well as the project page you are testing. A file placed only inside /project/ is at a different address. This follows the root-file rule in the robots.txt reference read on 9 November 2026. It is a placement check, without a claim that GitHub supplies that file for every project.",
+              "sources": [],
+              "repo_robots": true,
+              "facts": {}
+            }
+          ]
+        },
+        {
+          "heading": "Make a file change through the publishing source",
+          "paragraphs": [
+            {
+              "text": "If you control the published root file and want to change crawler instructions, make that change in the files your build publishes. Preserve the existing instructions for other paths. The setup guide says static files are published in the structure of the source, so a file in a different folder may appear at a different public URL. Check the final address after the normal publication process.",
+              "sources": [
+                "github"
+              ],
+              "facts": {
+                "github": [
+                  "static",
+                  "structure"
+                ]
+              }
+            },
+            {
+              "text": "GitHub Pages does not support server-side languages such as PHP, Ruby or Python. The saved setup guide does not describe a server rule you can edit to deny these bot headers. A static robots.txt can express a request, while the curl checks below show the responses you receive. The robots.txt reference describes the file as crawler instructions, separate from controlling access to content.",
+              "sources": [
+                "github"
+              ],
+              "repo_robots": true,
+              "facts": {
+                "github": [
+                  "server"
+                ]
+              }
+            }
+          ],
+          "checks": true
+        },
+        {
+          "heading": "Keep the file check tied to the hostname",
+          "paragraphs": [
+            {
+              "text": "Replace example.com below with your published hostname when fetching robots.txt. For the page requests, include the full project path if your site uses one. Compare the browser header with each named header on that same URL. If you use a custom domain, check that domain too. Save the final URL after redirects so a test on another hostname is not mistaken for a test of the intended site.",
+              "sources": [],
+              "facts": {}
+            }
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "question": "Does a private repository keep a Pages site private?",
+          "answer": "The setup guide warns that Pages sites are publicly available even when the repository is private, where that setup is allowed. Read the published site and its visibility controls directly.",
+          "sources": [
+            "github"
+          ],
+          "facts": {
+            "github": [
+              "private"
+            ]
+          }
+        },
+        {
+          "question": "Where can I find the published GitHub Pages address?",
+          "answer": "In the repository settings, open Pages and choose Visit site. Use that address for your checks, including the project path if the site is below one.",
+          "sources": [
+            "github"
+          ],
+          "facts": {
+            "github": [
+              "settings",
+              "visit"
+            ]
+          }
+        },
+        {
+          "question": "Can I run a Python request filter on GitHub Pages?",
+          "answer": "The setup guide says Pages does not support server-side Python, PHP or Ruby. It describes static file publishing and does not give an AI bot request filter to configure.",
+          "sources": [
+            "github"
+          ],
+          "facts": {
+            "github": [
+              "server",
+              "static"
+            ]
+          }
+        },
+        {
+          "question": "Does the setup guide list GPTBot or ClaudeBot policies?",
+          "answer": "It gives no named-bot access policy for those crawlers or the other four names on this page. A check of your own published file and response is needed to describe your site.",
+          "sources": [
+            "github"
+          ],
+          "facts": {
+            "github": [
+              "static"
+            ]
+          }
+        }
+      ],
+      "bots": {
+        "GPTBot": {
+          "default": "The docs do not say. The Pages setup guide gives no named-bot access policy.",
+          "change": "Check the hostname-root robots.txt in your publishing output. No AI firewall setting is documented here.",
+          "sources": [
+            "github"
+          ],
+          "facts": {
+            "github": [
+              "static"
+            ]
+          }
+        },
+        "ClaudeBot": {
+          "default": "The docs do not say. The Pages setup guide gives no named-bot access policy.",
+          "change": "Check the hostname-root robots.txt in your publishing output. No AI firewall setting is documented here.",
+          "sources": [
+            "github"
+          ],
+          "facts": {
+            "github": [
+              "static"
+            ]
+          }
+        },
+        "PerplexityBot": {
+          "default": "The docs do not say. The Pages setup guide gives no named-bot access policy.",
+          "change": "Check the hostname-root robots.txt in your publishing output. No AI firewall setting is documented here.",
+          "sources": [
+            "github"
+          ],
+          "facts": {
+            "github": [
+              "static"
+            ]
+          }
+        },
+        "Google-Extended": {
+          "default": "The docs do not say. The Pages setup guide gives no named-bot access policy.",
+          "change": "Check the hostname-root robots.txt in your publishing output. No AI firewall setting is documented here.",
+          "sources": [
+            "github"
+          ],
+          "facts": {
+            "github": [
+              "static"
+            ]
+          }
+        },
+        "Applebot-Extended": {
+          "default": "The docs do not say. The Pages setup guide gives no named-bot access policy.",
+          "change": "Check the hostname-root robots.txt in your publishing output. No AI firewall setting is documented here.",
+          "sources": [
+            "github"
+          ],
+          "facts": {
+            "github": [
+              "static"
+            ]
+          }
+        },
+        "CCBot": {
+          "default": "The docs do not say. The Pages setup guide gives no named-bot access policy.",
+          "change": "Check the hostname-root robots.txt in your publishing output. No AI firewall setting is documented here.",
+          "sources": [
+            "github"
+          ],
+          "facts": {
+            "github": [
+              "static"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "kind": "bot",
+      "host": "vercel",
+      "slug": "vercel/gptbot",
+      "name": "Vercel",
+      "title": "How to check and change GPTBot access on Vercel",
+      "h1": "GPTBot on Vercel",
+      "bot": "GPTBot",
+      "description": "Check Vercel’s GPTBot user-agent rule alongside the AI category. Compare Deny, Challenge and Rate Limit, publish changes, and test the same URL.",
+      "intro": [
+        {
+          "text": "Vercel documents a custom rule specifically for GPTBot. Its AI Bots Managed Ruleset starts inactive at Allow, but a project can have a separate rule that targets GPTBot. Read both controls before deciding why a request is refused.",
+          "sources": [
+            "vercel-gpt",
+            "vercel-rules"
+          ],
+          "facts": {
+            "vercel-gpt": [
+              "match"
+            ],
+            "vercel-rules": [
+              "default"
+            ]
+          }
+        },
+        {
+          "text": "In Firewall, inspect a rule whose User Agent contains GPTBot. The GPTBot guide offers Deny, Challenge and Rate Limit. Choose the action you mean, review the pending edits and publish them before checking the public result.",
+          "sources": [
+            "vercel-gpt"
+          ],
+          "facts": {
+            "vercel-gpt": [
+              "match",
+              "actions"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Locate the GPTBot-specific rule",
+          "paragraphs": [
+            {
+              "text": "The Vercel recipe begins in the project’s Firewall dashboard. It offers Add Rule or a template and says you can start from Block AI Bots, then modify it to match GPTBot. The match uses User Agent contains GPTBot. Check the text of an existing rule before using a broad template, because the guide is showing how to target this one name.",
+              "sources": [
+                "vercel-gpt"
+              ],
+              "facts": {
+                "vercel-gpt": [
+                  "create",
+                  "template",
+                  "match"
+                ]
+              }
+            },
+            {
+              "text": "The same guide gives an example full header containing GPTBot/1.0. A request carrying that header is useful to locate a matching string rule. Anyone running curl can also send that text. Treat the check as a test of the condition you configured, and use the project traffic view to inspect the request that reached Vercel.",
+              "sources": [
+                "vercel-gpt"
+              ],
+              "facts": {
+                "vercel-gpt": [
+                  "header"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Choose the response you intend",
+          "paragraphs": [
+            {
+              "text": "Deny is the guide’s persistent block choice. Vercel says requests matching that block will not reach static pages or Functions. Challenge asks the visitor to complete a browser-based check. The guide says a bot that cannot respond to that check will be blocked. Rate Limit caps the request frequency instead of expressing a whole-site ban. Choose based on the behavior you want for this named traffic.",
+              "sources": [
+                "vercel-gpt"
+              ],
+              "facts": {
+                "vercel-gpt": [
+                  "deny",
+                  "challenge",
+                  "rate"
+                ]
+              }
+            },
+            {
+              "text": "A Log action is available for the broader AI categories in the managed ruleset guide. It records traffic without blocking it. Inspect that category separately from an explicit GPTBot rule. The two guides describe controls at different levels, and the managed ruleset page says project custom rules run before managed rulesets. A custom denial can therefore explain a refusal while the AI category shows Allow.",
+              "sources": [
+                "vercel-rules"
+              ],
+              "facts": {
+                "vercel-rules": [
+                  "log",
+                  "order",
+                  "default"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Compare one URL before and after the edit",
+          "paragraphs": [
+            {
+              "text": "First read the domain’s robots.txt and any GPTBot group. Then request the same public page with a browser header and the GPTBot header below. Save response headers, including any redirects. These commands are examples for your computer. Replace the address with the domain attached to the Vercel project you inspected. Compare the status with the action in its published rule.",
+              "sources": [
+                "vercel-gpt"
+              ],
+              "facts": {
+                "vercel-gpt": [
+                  "header",
+                  "actions"
+                ]
+              }
+            },
+            {
+              "text": "Use Review Changes and Publish when you apply an edit. Re-run the saved requests after publication. To reopen a request caught by a managed ruleset, Vercel documents a custom bypass. For a request caught by your own blocking custom rule, the bypass has to sit above that rule. Confirm the order in Firewall > Rules along with the action and user-agent text.",
+              "sources": [
+                "vercel-rules"
+              ],
+              "facts": {
+                "vercel-rules": [
+                  "publish",
+                  "bypass",
+                  "bypass-order"
+                ]
+              }
+            }
+          ],
+          "code": "curl -sS -L https://example.com/robots.txt\ncurl -sS -L -D - -o /dev/null -A 'Mozilla/5.0' https://example.com/\ncurl -sS -L -D - -o /dev/null -A 'Mozilla/5.0 (compatible; GPTBot/1.0; +https://openai.com/gptbot)' https://example.com/"
+        }
+      ],
+      "faq": [
+        {
+          "question": "Does the Vercel GPTBot recipe apply automatically?",
+          "answer": "The guide tells you to create a rule, set its condition and publish it. It does not say every project already has that GPTBot rule. Inspect your project before treating the recipe as its current behavior.",
+          "sources": [
+            "vercel-gpt"
+          ],
+          "facts": {
+            "vercel-gpt": [
+              "create",
+              "match",
+              "actions"
+            ]
+          }
+        },
+        {
+          "question": "Will a Challenge always let GPTBot through?",
+          "answer": "The guide says the challenge uses a browser check. A bot unable to solve or answer it will be blocked. Read the actual response and decide whether that action matches your goal.",
+          "sources": [
+            "vercel-gpt"
+          ],
+          "facts": {
+            "vercel-gpt": [
+              "challenge"
+            ]
+          }
+        },
+        {
+          "question": "Can the AI category be Allow while GPTBot is denied?",
+          "answer": "Yes. The managed ruleset is inactive at Allow, and Vercel runs custom project rules before it. Inspect an explicit GPTBot denial and any bypass order.",
+          "sources": [
+            "vercel-rules",
+            "vercel-gpt"
+          ],
+          "facts": {
+            "vercel-rules": [
+              "default",
+              "order",
+              "bypass-order"
+            ],
+            "vercel-gpt": [
+              "match",
+              "deny"
+            ]
+          }
+        },
+        {
+          "question": "Does typing GPTBot in curl prove who sent a real request?",
+          "answer": "No. These commands supply a header string to test your rule. Keep that observation separate from deciding who made an earlier visit. The Vercel guide’s recipe uses the header to match traffic.",
+          "sources": [
+            "vercel-gpt"
+          ],
+          "facts": {
+            "vercel-gpt": [
+              "match",
+              "header"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "bot",
+      "host": "netlify",
+      "slug": "netlify/gptbot",
+      "name": "Netlify",
+      "title": "Check GPTBot’s Crawler category on Netlify",
+      "h1": "GPTBot on Netlify",
+      "bot": "GPTBot",
+      "description": "Netlify puts GPTBot in Crawler and ChatGPT-User in AI Agent. Test deployed category rules with User-Agent and inspect project blockers before changing access.",
+      "intro": [
+        {
+          "text": "Netlify puts GPTBot in the Crawler category. ChatGPT-User is an AI Agent example. A category rule aimed only at ai-agent therefore does not target GPTBot as described in the category guide.",
+          "sources": [
+            "netlify-category"
+          ],
+          "facts": {
+            "netlify-category": [
+              "gpt"
+            ]
+          }
+        },
+        {
+          "text": "The blocking guide does not state a GPTBot default. Check User Agent Blocker in the project and inspect any Edge Function using Netlify-Agent-Category. Test the deployed site by changing User-Agent, because Netlify overrides a category header sent by a client.",
+          "sources": [
+            "netlify-block",
+            "netlify-category"
+          ],
+          "facts": {
+            "netlify-block": [
+              "extension",
+              "project"
+            ],
+            "netlify-category": [
+              "header",
+              "functions",
+              "deployed",
+              "test"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Find which category your function uses",
+          "paragraphs": [
+            {
+              "text": "Netlify describes Crawler as bulk indexing and scraping by bots. In its AI Agent section, it explicitly says high-volume GPTBot traffic belongs to Crawler. That distinction matters if your function handles a short chat fetch differently from bulk requests. Read the actual header condition used by the function instead of assuming that the word AI in its purpose means ai-agent in Netlify’s header.",
+              "sources": [
+                "netlify-category"
+              ],
+              "facts": {
+                "netlify-category": [
+                  "crawler",
+                  "gpt"
+                ]
+              }
+            },
+            {
+              "text": "The header has one category and may have one subcategory. The guide shows a condition that runs an Edge Function when the value contains ai-agent or crawler. That example logs the raw User-Agent. It does not block a request itself. A project can add its own action, so inspect what the function returns as well as the condition that makes it run.",
+              "sources": [
+                "netlify-category"
+              ],
+              "facts": {
+                "netlify-category": [
+                  "header",
+                  "shape",
+                  "sample-match",
+                  "sample"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Keep deployed and local category tests distinct",
+          "paragraphs": [
+            {
+              "text": "On a deployed project, Netlify sets Netlify-Agent-Category and overrides any value a client supplies. Its test instructions say to set User-Agent instead. For GPTBot, send a header containing the documented name and inspect your function’s behavior on the published project. Sending Netlify-Agent-Category directly from curl would test a value Netlify then replaces.",
+              "sources": [
+                "netlify-category"
+              ],
+              "facts": {
+                "netlify-category": [
+                  "deployed",
+                  "test"
+                ]
+              }
+            },
+            {
+              "text": "Local development does not set or override that category header. Netlify says to provide it directly when testing a local Function or Edge Function. A successful local test therefore uses a different input method. Record which environment you tested so an apparently working local rule is not treated as a reading of the public project’s current category and action.",
+              "sources": [
+                "netlify-category"
+              ],
+              "facts": {
+                "netlify-category": [
+                  "local"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Review the blocker before redeploying",
+          "paragraphs": [
+            {
+              "text": "The User Agent Blocker extension has its own project activation steps. Check the selected traffic under Block User Agents. If GPTBot access is unwanted, review the available options and any custom Edge Function condition. Netlify warns that the preset list does not cover every AI bot. The category guide’s GPTBot example confirms its classification, without promising the extension’s current preset membership.",
+              "sources": [
+                "netlify-block",
+                "netlify-category"
+              ],
+              "facts": {
+                "netlify-block": [
+                  "project",
+                  "select",
+                  "list"
+                ],
+                "netlify-category": [
+                  "gpt"
+                ]
+              }
+            },
+            {
+              "text": "Netlify’s older blocking guide shows a custom Edge Function returning HTTP 401 for names found in a list. It uses the same list to write robots.txt exclusions. Search that list when an older project refuses GPTBot even though its extension settings do not explain it. To reopen access, inspect both the server action and the published file request before the next deployment.",
+              "sources": [
+                "netlify-guide"
+              ],
+              "facts": {
+                "netlify-guide": [
+                  "edge",
+                  "robots"
+                ]
+              }
+            }
+          ],
+          "code": "curl -sS -L https://example.com/robots.txt\ncurl -sS -L -D - -o /dev/null -A 'Mozilla/5.0' https://example.com/\ncurl -sS -L -D - -o /dev/null -A 'GPTBot/1.0' https://example.com/"
+        }
+      ],
+      "faq": [
+        {
+          "question": "Will a Netlify ai-agent-only rule catch GPTBot?",
+          "answer": "The guide explicitly puts GPTBot in Crawler. Its ai-agent examples are on-demand fetches such as ChatGPT-User. Inspect the category condition and the function action before changing either.",
+          "sources": [
+            "netlify-category"
+          ],
+          "facts": {
+            "netlify-category": [
+              "gpt"
+            ]
+          }
+        },
+        {
+          "question": "Does category classification turn on blocking by itself?",
+          "answer": "The category header makes request information available to functions and rules. The guide’s sample function logs the user agent. Check your project’s function response or blocker setting to see what action it takes.",
+          "sources": [
+            "netlify-category"
+          ],
+          "facts": {
+            "netlify-category": [
+              "header",
+              "functions",
+              "sample"
+            ]
+          }
+        },
+        {
+          "question": "Why did a local category test work while the deployed test differed?",
+          "answer": "Netlify treats the header differently in those environments. Locally you can set Netlify-Agent-Category directly. On the deployed site, Netlify sets it from User-Agent and overrides a client value.",
+          "sources": [
+            "netlify-category"
+          ],
+          "facts": {
+            "netlify-category": [
+              "deployed",
+              "local"
+            ]
+          }
+        },
+        {
+          "question": "When does a project’s blocker begin working?",
+          "answer": "The extension instructions say it starts after a successful deployment following activation. Check the project selection, saved choices and deployed result, then repeat your request to the public domain.",
+          "sources": [
+            "netlify-block"
+          ],
+          "facts": {
+            "netlify-block": [
+              "deploy",
+              "deployed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "bot",
+      "host": "webflow",
+      "slug": "webflow/google-extended",
+      "name": "Webflow",
+      "title": "Limit a folder for Google-Extended on Webflow",
+      "h1": "Google-Extended on Webflow",
+      "bot": "Google-Extended",
+      "description": "Use Webflow’s Google-Extended example for /drafts/. Check the hostname-root robots.txt, preserve Googlebot choices, and inspect the published folder rule.",
+      "intro": [
+        {
+          "text": "Webflow gives Google-Extended a specific robots.txt example that excludes /drafts/. Its post does not say Google-Extended is blocked by default. It places the custom file control under Site Settings > SEO.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "extended",
+              "settings"
+            ]
+          }
+        },
+        {
+          "text": "Choose the folder you want to exclude and inspect your live robots.txt before editing it. Webflow distinguishes this example from traditional Search and Ads products using Googlebot. Keep that distinction when you check the published instructions.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "googlebot"
+            ]
+          }
+        }
+      ],
+      "sections": [
+        {
+          "heading": "Use the folder scope shown in Webflow’s example",
+          "paragraphs": [
+            {
+              "text": "The post uses a named Google-Extended group followed by Disallow for /drafts/. That path limits the stated request to the folder in the example. It is different in scope from the same post’s GPTBot example, which uses the root path for a whole-site exclusion. Decide which content you mean before copying either instruction into your settings.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "gpt",
+                  "extended"
+                ]
+              }
+            },
+            {
+              "text": "The two lines below reproduce the method in Webflow’s post. Treat /drafts/ as an example path and use the address structure your own site publishes. Save the current file before changing it. After the edit, read the public robots.txt and confirm that the intended folder text appears under the intended user-agent name, with the rest of your instructions preserved.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "extended"
+                ]
+              }
+            }
+          ],
+          "code": "User-agent: Google-Extended\nDisallow: /drafts/"
+        },
+        {
+          "heading": "Keep Googlebot choices separate",
+          "paragraphs": [
+            {
+              "text": "Webflow describes its Google-Extended example as related to Gemini and AI model training services. It explicitly distinguishes traditional Search and Ads products using Googlebot. This is why a named folder exclusion should be reviewed alongside the existing Googlebot and all-crawler instructions. Do not infer the Googlebot result from the presence of a Google-Extended line alone.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "googlebot",
+                  "extended"
+                ]
+              }
+            },
+            {
+              "text": "The post also discusses page indexing and the Webflow subdomain indexing checkbox. Those settings have their own scope. For this task, inspect the custom robots.txt under Site Settings > SEO and the published hostname-root file. If you change a page setting as well, record that separately so the effect of a folder instruction can be checked against the file you actually served.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "index",
+                  "settings"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "heading": "Check the instruction and compare a folder URL",
+          "paragraphs": [
+            {
+              "text": "Read robots.txt from your public domain, then inspect the group for Google-Extended. Compare a URL inside the chosen folder with one outside it. The commands below send a synthetic Google-Extended header to the folder address. They show how your server responds to that string. They do not establish which header a real Google visit uses or whether it applies the instruction.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "extended"
+                ]
+              }
+            },
+            {
+              "text": "A successful response from the folder can coexist with a file requesting exclusion. Webflow describes these rules as signals respected by well-behaved crawlers and says they do not immediately remove previously indexed content. Evaluate the edit by reading the instruction at the root of the correct hostname. Keep the page response as a separate observation about that request.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "compliance"
+                ]
+              }
+            }
+          ],
+          "code": "curl -sS -L https://example.com/robots.txt\ncurl -sS -L -D - -o /dev/null -A 'Mozilla/5.0' https://example.com/drafts/\ncurl -sS -L -D - -o /dev/null -A 'Google-Extended' https://example.com/drafts/"
+        },
+        {
+          "heading": "Reopen a folder deliberately",
+          "paragraphs": [
+            {
+              "text": "If you later want to withdraw this exclusion, review the named group and remove or narrow the folder instruction you added. Keep other bot instructions intact. Re-read the live file and compare both folder and non-folder addresses again. Webflow’s custom file control lets owners choose the user-agent request. It does not promise when an outside service will revisit the content.",
+              "sources": [
+                "webflow"
+              ],
+              "facts": {
+                "webflow": [
+                  "settings"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "faq": [
+        {
+          "question": "Does Webflow’s Google-Extended sample exclude the whole site?",
+          "answer": "The sample uses /drafts/, so it requests exclusion for that path. The same post uses a root-path exclusion in its separate GPTBot example. Read the path as well as the bot name before copying a rule.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "gpt",
+              "extended"
+            ]
+          }
+        },
+        {
+          "question": "Does this rule describe Googlebot access?",
+          "answer": "Webflow explicitly distinguishes traditional Search and Ads products using Googlebot from its Google-Extended example. Inspect the Googlebot and all-crawler instructions separately when you need to understand those visits.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "googlebot"
+            ]
+          }
+        },
+        {
+          "question": "Can I confirm crawler compliance with a curl header?",
+          "answer": "The command sends a string you choose. It can reveal how the server responds to that string, while reading robots.txt confirms the request you publish. Neither observation measures an outside service’s compliance.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "settings"
+            ]
+          }
+        },
+        {
+          "question": "Will the folder instruction erase older indexed content at once?",
+          "answer": "Webflow says its robots.txt rules do not immediately remove previously indexed content. Confirm the current file first and keep earlier copies or listings separate from that file check.",
+          "sources": [
+            "webflow"
+          ],
+          "facts": {
+            "webflow": [
+              "compliance"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

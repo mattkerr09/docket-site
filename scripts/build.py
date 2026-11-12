@@ -129,6 +129,7 @@ import page_weight  # noqa: E402
 import ai_directives  # noqa: E402
 import ai_crawler_blocking  # noqa: E402
 import ai_crawler_pages  # noqa: E402
+import ai_bot_host_pages  # noqa: E402
 import llms_adoption  # noqa: E402
 import priority_model  # noqa: E402
 import howto_headings  # noqa: E402
@@ -311,6 +312,8 @@ money.</p>
             ("/learn/does-cloudflare-block-gptbot/", "Does Cloudflare block GPTBot?",
              "Cloudflare changed what a new domain does by default, and the answer "
              "differs by which OpenAI crawler is asking. How to check your own."),
+            ("/ai-crawlers/hosts/", "AI crawler access by host",
+             "Dated host docs, bot controls and checks for your own site."),
             ("/learn/what-is-claudebot/", "What is ClaudeBot?",
              "Anthropic's training crawler, and the two other Anthropic crawlers that "
              "decide whether Claude can find and quote you. What blocking each one does."),
@@ -1702,6 +1705,7 @@ def main() -> int:
     pages += ai_directives.build_all()
     pages += ai_crawler_blocking.build_all()
     pages += ai_crawler_pages.build_all()
+    pages += ai_bot_host_pages.build_all()
     pages += llms_adoption.build_all()
     pages += noindex_ai_crawlers.build_all()
     pages += sitemaps_ai_crawlers.build_all()
