@@ -26,6 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from brand import FORMER_ADDRESS_NOTE  # noqa: E402
 import facts as F  # noqa: E402
 from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
+from hero_check import hero_check_block  # noqa: E402
 from render import SITE_BRAND, TAGLINE, recorded_with
 from render import (_human_date, SAMPLE_REPORT, speed_words, windows_waitlist, WINDOWS, WIN_SETUP_SIZE, WIN_PUBLISHER, RELEASE, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
                     buy_block, founding_price_sentence, SUPPORT_EMAIL, REPO,
@@ -274,12 +275,8 @@ The script and the site list ship with the dataset. Re-run it and check.</p>
 #
 # If the screenshot is regenerated, re-read every number in the caption and alt
 # text off the new image by eye. That is the only check that can fail on this.
-# ⚠️ THE H1 AND THE TITLE SHARE NO WORDS, AND THAT IS A KNOWN TRADE-OFF, NOT A MISS. Docket's own audit of this
-# site (dogfood, 20 October 2026) reports cvr.message_mismatch (LOW): the title says "SEO, copy, conversion and brand
-# audits for Mac", the H1 says "Everything that's wrong. In the order to fix it." The CEO kept the H1 (20 October):
-# the Reddit D2 ads quote it word for word from 28 October and the click must land on the same words, and the site
-# benchmark rates it our strongest headline. The line under it (hero-sub) restates the title's promise. Do not
-# "fix" the H1 to clear the finding; the check compares title and H1 only, so the finding stays and is accepted.
+# 2026-11-12: the CEO changed the H1 on Matthew's order.
+# The old headline now opens the hero-sub.
 
 def body() -> str:
     m = _index()
@@ -299,18 +296,11 @@ def body() -> str:
 <section class="hero-sec"><div class="wrap-wide hero-grid">
 <div>
   <span class="eyebrow">{N_CHECKS} checks · paid once · no subscription</span>
-  <h1 class="hero-h1">Everything that's wrong.
-  <em>In the order to fix&nbsp;it.</em></h1>
-  <!-- The future line (FUTURE-VIBE-BRIEF-2026-10-21, CEO: one honest line under the H1, which stays). It claims
-       only what is true today: people do find sites in AI answers, and Docket's AI search checks read what those
-       crawlers can reach. No share, no forecast. -->
-  <!-- "Docket SEO" in full in the first line (CEO, 2026-11-07, Matthew: "make sure we're seen by Claude"): Claude's
-       web search returned another company's "Docket" product for the name, and the H1 cannot carry it (above). -->
-  <p class="hero-note hero-future">People now find sites in AI answers too. Docket SEO checks what ChatGPT, Perplexity
-  and Claude can read on yours.</p>
+  <h1 class="hero-h1">Can ChatGPT, Claude and Perplexity <em>read your site?</em></h1>
+  {hero_check_block()}
   <p class="hero-note">No page meter. No credit counter. Nothing to check before you run an
   audit.</p>
-  <p class="hero-sub">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
+  <p class="hero-sub">Everything that's wrong. In the order to fix it. Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
   conversion, brand, AI search visibility and campaign tracking, then one ranked plan with the
   markup to paste. Not four tools. One download.</p>
   <p class="hero-free-line"><strong>Free to try, with no account and no key.</strong> You get your score,
