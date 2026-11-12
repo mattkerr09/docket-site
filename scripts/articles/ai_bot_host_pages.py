@@ -75,16 +75,25 @@ def bot_url(bot: str, crawlers: dict) -> str:
 
 
 def host_table(page: dict, sources: dict, crawlers: dict) -> str:
-    rows = []
-    keys = []
+    groups = {}
     for bot in BOTS:
         item = page['bots'][bot]
-        keys.extend(item['sources'])
+        groups.setdefault((item['default'], item['change']), []).append(bot)
+    heading = '<h2>Rules for each bot</h2>'
+    if len(groups) == 1:
+        links = ', '.join(f'<a href="{bot_url(bot, crawlers)}">{bot}</a>' for bot in BOTS)
+        return (heading + '<p>' + links + '</p>'
+                + paragraph(page['bot_note'], sources, set()))
+    rows = []
+    keys = []
+    for (default, change), bots in groups.items():
+        for bot in bots:
+            keys.extend(page['bots'][bot]['sources'])
+        links = ', '.join(f'<a href="{bot_url(bot, crawlers)}">{bot}</a>' for bot in bots)
         rows.append('<tr><th scope="row">'
-                    f'<a href="{bot_url(bot, crawlers)}">{bot}</a></th><td>'
-                    + escape(item['default'])
-                    + '</td><td>' + escape(item['change']) + '</td></tr>')
-    return ('<h2>Rules for each bot</h2><div class="wrap-tbl"><table class="cmp">'
+                    + links + '</th><td>' + escape(default)
+                    + '</td><td>' + escape(change) + '</td></tr>')
+    return (heading + '<div class="wrap-tbl"><table class="cmp">'
             '<thead><tr><th scope="col">Bot</th><th scope="col">Default on '
             + escape(page['name']) + '</th><th scope="col">How to change it</th>'
             '</tr></thead><tbody>' + ''.join(rows) + '</tbody></table></div>'
@@ -95,6 +104,7 @@ def host_table(page: dict, sources: dict, crawlers: dict) -> str:
 def page_source_keys(page: dict) -> list[str]:
     items = (page['intro']
              + list(page.get('bots', {}).values())
+             + ([page['bot_note']] if 'bot_note' in page else [])
              + [item for section in page['sections'] for item in section['paragraphs']]
              + page['faq'])
     return list(dict.fromkeys(key for item in items for key in item['sources']))

@@ -67,6 +67,7 @@ def source_text(raw):
 
 def page_items(page):
     return (page['intro'] + list(page.get('bots', {}).values())
+            + ([page['bot_note']] if 'bot_note' in page else [])
             + [item for section in page['sections'] for item in section['paragraphs']]
             + page['faq'])
 
@@ -342,13 +343,44 @@ class HostPageTests(unittest.TestCase):
                 body_keys = {k for items in groups for item in items for k in item['sources']}
                 self.assertTrue({k for item in page['faq'] for k in item['sources']} <= body_keys)
 
+    def test_host_table_cell_text_appears_in_at_most_two_rows(self):
+        for page in self.pages:
+            if page['kind'] != 'host':
+                continue
+            with self.subTest(page=page['slug']):
+                body = article(Document(self.raw[self.key(page)]))
+                for table in body.all('table'):
+                    counts = Counter(value for row in table.all('tr')
+                                     for value in {normal(text(cell))
+                                                   for cell in row.all()
+                                                   if cell.tag in {'th', 'td'}})
+                    self.assertTrue(all(count <= 2 for count in counts.values()), counts)
+
+    def test_identical_bot_rules_render_as_a_sourced_host_note(self):
+        for page in self.pages:
+            if page['kind'] != 'host':
+                continue
+            rules = {(item['default'], item['change']) for item in page['bots'].values()}
+            if len(rules) != 1:
+                continue
+            with self.subTest(page=page['slug']):
+                body = article(Document(self.raw[self.key(page)]))
+                self.assertFalse(list(body.all('table')))
+                note = page['bot_note']
+                self.assertIn(hosts.escape(note['text']), self.raw[self.key(page)])
+                rendered = hosts.paragraph(note, self.sources, set())
+                self.assertEqual(cited_sources(Document(rendered).root, self.sources, self.reads),
+                                 [self.sources[key]['file'] for key in note['sources']])
+
     def test_tables_have_plain_cells_and_one_source_line_per_guide(self):
         for page in self.pages:
             if page['kind'] != 'host':
                 continue
             with self.subTest(page=page['slug']):
                 body = article(Document(self.raw[self.key(page)]))
-                table = next(body.all('table'))
+                table = next(body.all('table'), None)
+                if table is None:
+                    continue
                 for cell in table.all('td'):
                     self.assertFalse(list(cell.all('a')))
                     self.assertNotRegex(text(cell), r'(?i)read \d|\d{4}-\d{2}-\d{2}')
@@ -402,9 +434,10 @@ class HostPageTests(unittest.TestCase):
             self.assertGreater(len(item['reason'].split()), 12)
             self.assertEqual(item['url'], '/ai-crawlers/hosts/' + item['host'] + '/')
         for page in host_pages:
-            table = next(article(Document(self.raw[self.key(page)])).all('table'))
-            names = [normal(text(row.children[0])) for row in table.all('tr')][1:]
-            self.assertEqual(names, list(hosts.BOTS))
+            body = article(Document(self.raw[self.key(page)]))
+            names = [normal(text(link)) for link in body.all('a')
+                     if normal(text(link)) in hosts.BOTS]
+            self.assertCountEqual(names, hosts.BOTS)
             self.assertEqual(set(page['bots']), set(hosts.BOTS))
         for page in self.pages:
             if page['kind'] == 'bot':
@@ -442,10 +475,10 @@ class HostPageTests(unittest.TestCase):
         for page in self.pages:
             if page['kind'] != 'host':
                 continue
-            table = next(article(Document(self.raw[self.key(page)])).all('table'))
-            self.assertEqual([a.attrs['href'] for a in table.all('a')
-                              if 'data-source' not in a.attrs],
-                             [hosts.bot_url(bot, crawlers) for bot in hosts.BOTS])
+            body = article(Document(self.raw[self.key(page)]))
+            self.assertCountEqual([a.attrs['href'] for a in body.all('a')
+                                   if normal(text(a)) in hosts.BOTS],
+                                  [hosts.bot_url(bot, crawlers) for bot in hosts.BOTS])
         build = (HERE.parent / 'build.py').read_text()
         self.assertIn('import ai_bot_host_pages', build)
         self.assertIn('pages += ai_bot_host_pages.build_all()', build)
