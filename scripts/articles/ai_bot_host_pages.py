@@ -147,7 +147,7 @@ def build_page(page: dict, data: dict) -> Path:
               '<a href="/ai-crawlers/hosts/">Hosts</a>'
               + (' / ' + escape(page['name']) if page['slug'] else ''),
         body=body, faq=faq, closer=next_step(page['host']) + sources_list(page, sources),
-        published='2026-11-12')
+        published="2026-11-12")
     # These guides omit the shared company-site link under the job's link rule.
     # The requested tracked app download remains the existing helper's URL.
     raw = path.read_text(encoding='utf-8')
