@@ -225,11 +225,16 @@ first.</p>
 """
 
 def seo_audit() -> Path:
+    free_sentence = FREE_LINE.partition(". Pro:")[0].replace("Free: ", "The free version shows ", 1) + "."
+    free_path = (f'<p class="free-audit-path">{free_sentence} '
+                 f'<a href="{download_url("learn-seo-audit")}" data-ev="Download" '
+                 'data-ev-button="learn-seo-audit">Run a free audit of your site</a>.</p>')
     body = f"""
 <div class="callout" id="answer">
 <div class="callout-title">The short answer</div>
 <p>An SEO audit is a check of whether search engines can find your pages, understand them and choose to
 show them. A useful one ends with a short, ordered list of what to change first.</p>
+{free_path}
 <p>The quickest way to see what one finds on your own site is to run one. Docket runs {N_CHECKS} checks
 on your own computer, with no account and no sign-up:</p>
 <p><a class="btn" href="{download_url(SEO_AUDIT_BOX)}" data-ev="Download"
@@ -304,6 +309,8 @@ crawl, and <a href="/learn/marketing-tag-audit/">whether your tracking is on eve
 which is a different question from whether it is installed.</li>
 </ul>
 
+{free_path}
+
 {_field_section()}
 <h2>How can I run a free SEO audit?</h2>
 <p>Start with a page you need people to find. Check its crawl access, title, headings and
@@ -336,7 +343,7 @@ against effort, and marks areas it could not assess as unknown rather than passi
 """
     return render(
         cat="learn", slug="seo-audit",
-        modified="2026-11-09",
+        modified="2026-11-12",
         title="What is an SEO audit? A checklist | Docket",
         desc=("An SEO audit checks whether search engines can find, understand and choose to "
               "show your site. Use this checklist to find faults and choose what to fix first."),

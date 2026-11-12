@@ -27,7 +27,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import known_issue_edge_cloudflare, render  # noqa: E402
+from guide_render import render_free_guide  # noqa: E402
+from render import download_url, known_issue_edge_cloudflare  # noqa: E402
 
 #: When Cloudflare's own pages were read for this article.
 # Re-read 2026-10-19: Cloudflare's 1 July 2026 changelog entry and blog post, its Block AI Bots page, the 1 July 2025 press release and OpenAI's crawler page. Dates and defaults unchanged; ChatGPT-User, the existing-domain sentence and the OpenAI crawler count corrected.
@@ -50,25 +51,25 @@ def cloudflare_gptbot() -> Path:
     overlap = F.oai_overlap_pct()
     llms_edge_pct = F._d()["pct_llms_edge_denied"]
 
-    body = known_issue_edge_cloudflare() + f"""
-<div class="callout">
-<div class="callout-title">Quick answer</div>
-<p><strong>It depends which OpenAI crawler, and since {DEFAULTS_CHANGED_HUMAN} it also depends on the
-page.</strong> Cloudflare asks every new domain at sign-up whether to allow AI crawlers, and from
-{DEFAULTS_CHANGED_HUMAN} new domains onboard with bots classified <em>Training</em> or <em>Agent</em>
-blocked on pages that display ads, while <em>Search</em> stays allowed.</p>
-<p><strong>GPTBot is the training crawler</strong>, so on a new ad-supported Cloudflare domain it is
-blocked by default. So is <strong>ChatGPT-User</strong>, which Cloudflare gives as an example of an
-Agent bot. <strong>OAI-SearchBot is not</strong>, and that is the one that decides whether
-you can be cited.</p>
-<p><strong>And the setting is not the whole answer.</strong> Your robots.txt can say yes while your
-edge says no, and nothing in the file reveals it.</p>
-</div>
+    body = f"""
+<p class="lede"><strong>Cloudflare blocks GPTBot by default on ad pages for new domains.</strong>
+It also blocks ChatGPT-User there. OAI-SearchBot stays allowed, so those defaults do not by
+themselves keep your site out of ChatGPT search.</p>
+<p>Check your domain&rsquo;s settings and test what your server returns for each crawler.
+Your robots.txt can allow a crawler while your server blocks it. An existing domain starts
+from the settings its owner chose.</p>
+<p class="next-step"><a href="{download_url('learn-does-cloudflare-block-gptbot')}">Run a free audit of your site</a>.</p>
+{known_issue_edge_cloudflare()}
+
+<h2>Which defaults apply?</h2>
+<p>Since {DEFAULTS_CHANGED_HUMAN}, the default depends on the page. Cloudflare asks every new
+domain at sign-up whether to allow AI crawlers. From {DEFAULTS_CHANGED_HUMAN}, new domains
+onboard with bots classified <em>Training</em> or <em>Agent</em> blocked on pages that display
+ads, while <em>Search</em> stays allowed.</p>
 
 <h2>The three OpenAI crawlers are not one thing</h2>
 
-<p>Almost every page written about this treats "AI crawler" as a single switch. OpenAI's crawler
-page lists four user agents, and three of them matter here. They do different jobs:</p>
+<p>OpenAI's crawler page lists four user agents, and three of them matter here:</p>
 
 <table>
 <thead><tr><th>Crawler</th><th>What it is for</th><th>What blocking it costs you</th></tr></thead>
@@ -76,7 +77,7 @@ page lists four user agents, and three of them matter here. They do different jo
 <tr><td><code>GPTBot</code></td><td>Training</td><td>Your content is not used to train the model.
 Nothing about search or citation changes.</td></tr>
 <tr><td><code>OAI-SearchBot</code></td><td>Search index</td><td><strong>You stop appearing in
-ChatGPT's search results.</strong> This is the expensive one.</td></tr>
+ChatGPT's search results.</strong></td></tr>
 <tr><td><code>ChatGPT-User</code></td><td>Live fetch</td><td>A page a user asks about cannot be
 fetched and read back to them.</td></tr>
 </tbody>
@@ -102,11 +103,7 @@ asked at sign-up</strong> whether to allow them. The choice is presented; it is 
 allowed</strong>. Cloudflare's own post lists <code>ChatGPT-User</code> as an example of an Agent bot.</li>
 </ul>
 
-<p>So the flat sentence "Cloudflare blocks AI bots by default", which is what every result on page one
-for this question says today, is no longer the whole answer. The default is now scoped by
-<em>classification</em> and by <em>whether the page carries ads</em>. Cloudflare describes these
-defaults as applying to new domains, so an existing domain starts from whatever its owner set. One
-related change does reach existing domains: from {DEFAULTS_CHANGED_HUMAN}, a crawler that does both
+<p>One related change reaches existing domains: from {DEFAULTS_CHANGED_HUMAN}, a crawler that does both
 Search and Training is also blocked by any setting that blocks Training, unless its owner opted out
 before that date.</p>
 
@@ -166,13 +163,12 @@ without you, and AI crawlers are newer than most of those lists.</li>
 <p>If your crawlers are already getting a 403 while robots.txt allows them, the diagnosis and fix are
 on <a href="/how-to/fix-ai-crawlers-blocked-by-your-cdn/">when your CDN blocks AI crawlers your
 robots.txt allows</a>. The directive side (which tokens are live, which are retired and which do
-nothing) is <a href="/how-to/fix-ai-crawler-access/">AI crawler access</a>, and the free
-<a href="/tools/ai-crawler-checker/">AI crawler checker</a> reads that file for one address, though it
-cannot see an edge refusal, which is why the two-request test above exists. A crawler you let in still has
+nothing) is <a href="/how-to/fix-ai-crawler-access/">AI crawler access</a>. The free AI crawler
+checker reads that file for one address. It cannot see a server refusal, which is why the
+two-request test above exists. A crawler you let in still has
 to be able to read the page, which is <a href="/how-to/javascript-seo-audit/">the JavaScript SEO
 audit</a>.</p>
 
-<p><a class="btn" href="/download/">Download Docket</a></p>
 """
     # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
     # Inspection: "unknown to Google"), linked from this page because Google
@@ -186,7 +182,7 @@ audit</a>.</p>
 <li><a href="/learn/what-docket-got-wrong/#case-policy-or-defect">When a report calls your decision a defect</a></li>
 </ul>
 """
-    return render(
+    return render_free_guide(
         cat="learn", slug="does-cloudflare-block-gptbot",
         title="Cloudflare blocks GPTBot on ad pages, not OAI-SearchBot",
         desc=("Since 15 September 2026 new Cloudflare domains block Training and Agent bots on "
@@ -195,7 +191,7 @@ audit</a>.</p>
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / Cloudflare and GPTBot',
         body=body,
         published="2026-09-15",
-        modified="2026-10-19",
+        modified="2026-11-12",
         faq=[
             ("Does Cloudflare block GPTBot by default?",
              f"On a new domain onboarding from {DEFAULTS_CHANGED_HUMAN}, bots classified Training or Agent "

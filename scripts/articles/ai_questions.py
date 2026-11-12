@@ -30,6 +30,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
+from guide_render import render_free_guide  # noqa: E402
 from render import buy_block, render  # noqa: E402
 
 SURVEYED_HUMAN = "August 2026"
@@ -102,10 +103,12 @@ def what_is_claudebot() -> Path:
     surveyed = F._d()["attempted"]
 
     body = f"""
-<p class="lede"><strong>ClaudeBot is Anthropic&rsquo;s web crawler, and it collects pages to
-train Claude models.</strong> Blocking it keeps your future pages out of Anthropic&rsquo;s training
-data; it does not remove you from Claude&rsquo;s answers, which are fetched by two other
-crawlers, Claude-SearchBot and Claude-User.</p>
+<p class="lede"><strong>ClaudeBot is Anthropic&rsquo;s web crawler.</strong> It collects pages to
+train Claude models.</p>
+<p>To keep your future pages out of Anthropic&rsquo;s training data, block <code>ClaudeBot</code>
+in robots.txt. Leave <code>Claude-SearchBot</code> and <code>Claude-User</code> open so Claude can
+still find and fetch your pages.</p>
+<p class="next-step"><a href="/tools/ai-crawler-checker/?src=learn-what-is-claudebot">Check your site with the free AI crawler checker</a>.</p>
 
 <h2>Anthropic runs three crawlers, not one</h2>
 <p>Anthropic&rsquo;s <a href="{ANTHROPIC_BOTS}" rel="nofollow noopener">own help article</a>
@@ -122,10 +125,6 @@ quality for users&rdquo;</td><td>Your pages are not indexed for Claude&rsquo;s s
 <tr><td><code>Claude-User</code></td><td>fetches a page &ldquo;when individuals ask questions to
 Claude&rdquo;</td><td>Claude cannot open your page when someone asks it about you.</td></tr>
 </tbody></table></div>
-<p>So the question to ask is not &ldquo;should I block Claude?&rdquo; but which of three things
-you want to stop. Refusing training while staying findable is a coherent position: block
-<code>ClaudeBot</code>, leave the other two open.</p>
-
 <h2>How to block ClaudeBot, and only ClaudeBot</h2>
 <p>Two lines in the robots.txt at the root of your site:</p>
 <pre><code>User-agent: ClaudeBot
@@ -156,10 +155,7 @@ so a request can be checked against that list before you block or allow it at yo
 <h2>robots.txt is a request, not a lock</h2>
 <p>Everything above is about what your file asks. Your CDN or firewall can refuse a crawler
 the file welcomes, and a bot-protection setting switched on by someone else is the usual reason a
-site that meant to stay open is not. That is also why the checker below reads the file and says
-plainly what it cannot see.</p>
-{_checker("Most sites have never looked at what their file says to Anthropic&rsquo;s three crawlers.")}
-{buy_block("learn-what-is-claudebot", try_app="learn-what-is-claudebot-try-free")}
+site that meant to stay open is not. The free checker reads robots.txt. It cannot see a server or CDN block.</p>
 
 <h2>Related</h2>
 <ul>
@@ -168,9 +164,9 @@ plainly what it cannot see.</p>
 <li><a href="/how-to/fix-ai-crawlers-blocked-by-your-cdn/">When your CDN blocks crawlers your robots.txt allows</a></li>
 </ul>
 """
-    return render(
+    return render_free_guide(
         cat="learn", slug="what-is-claudebot",
-        modified="2026-10-19",
+        modified="2026-11-12",
         title="What is ClaudeBot? What blocking it does, and doesn't",
         desc=("ClaudeBot is Anthropic's training crawler. Blocking it keeps your pages out of "
               "training, not Claude's answers. The three Anthropic bots, and how to block one."),

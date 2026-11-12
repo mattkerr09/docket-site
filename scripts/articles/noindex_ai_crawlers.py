@@ -36,7 +36,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import facts as F  # noqa: E402
-from render import render  # noqa: E402
+from guide_render import render_free_guide  # noqa: E402
 
 #: When the survey these figures come from was run. A date in prose is a date
 #: that goes stale in one place and stays current in another, so it is stated
@@ -59,33 +59,24 @@ def noindex_ai_crawlers() -> Path:
     blocks_citation = F._d()["blocks_citation"]
 
     body = f"""
-<div class="callout">
-<div class="callout-title">Quick answer</div>
-<p><strong>No.</strong> <code>noindex</code> speaks to search <em>indexers</em> about whether a page
-may be shown in results. It says nothing about whether the page may be retrieved, and a crawler has
-to retrieve the page before it can read the tag at all.</p>
-<p><strong>Access is a separate control with separate levers.</strong> Whether an AI crawler gets your
-pages is decided by the user-agent tokens in robots.txt (<code>GPTBot</code>, <code>ClaudeBot</code>,
-<code>Google-Extended</code> and the rest), and above that by your server or CDN, which can refuse
-the request before any file or tag is consulted.</p>
+<p class="lede"><strong>No.</strong> A crawler must fetch your page before it can read
+<code>noindex</code>. Use that tag to keep a page out of search results.</p>
+<p>To control AI crawler access, set rules for each crawler in robots.txt, such as
+<code>GPTBot</code>, <code>ClaudeBot</code> or <code>Google-Extended</code>. Your server or CDN
+can block a request before any file or tag is read.</p>
+<p class="next-step"><a href="/tools/ai-crawler-checker/?src=learn-does-noindex-stop-ai-crawlers">Check your site with the free AI crawler checker</a>.</p>
+
+<h2>What the tag is actually addressed to</h2>
 <p><strong>Those two layers disagree more often than anyone expects.</strong> In Docket's
 {SURVEYED_HUMAN} survey of the Tranco top {surveyed:,}, <strong>{edge_denied:,} hosts
 ({edge_pct}%)</strong> turned away a self-identifying bot at the edge, with no tag and no robots rule
 involved.</p>
-</div>
-
-<h2>What the tag is actually addressed to</h2>
 
 <p>A <code>noindex</code> travels in one of two places: a robots meta element in the HTML, or an
-<code>X-Robots-Tag</code> response header. Both of them arrive <em>inside a response</em>. That single
-structural fact settles the question. The request was made, the server answered it, the bytes were
-transferred, and only then is there a tag for anything to read. Whatever the reader does next, the
-copy has already been taken.</p>
+<code>X-Robots-Tag</code> response header. Both arrive <em>inside a response</em>, after the server has sent the page.</p>
 
-<p>For a search engine that honours the directive, what happens next is that the page is withheld from
-the results listing. That is a real and useful effect, and it is the effect the tag was designed for.
-It is also the wrong tool for the worry that brings most people to this question, which is not "will
-this page be listed" but "is this text being ingested".</p>
+<p>A search engine that honours the directive keeps the page out of its results. The tag cannot
+prevent a crawler from receiving the text.</p>
 
 <p>The interaction runs the other way as well, and it is the reason the two controls should never be
 stacked casually. A URL disallowed in robots.txt is not fetched by a compliant crawler, so the
@@ -115,9 +106,7 @@ removal instruction.</p>
 </tbody>
 </table>
 
-<p>Read down the "stops fetching" column and the answer to the page's question falls out. The only row
-that governs retrieval by consent is robots.txt; the only row that governs it absolutely is the
-server. The tag is in neither position.</p>
+<p>Crawlers choose whether to honour robots.txt. Your server enforces a block.</p>
 
 <h2>Which crawler you are refusing matters more than whether you refuse</h2>
 
@@ -130,10 +119,8 @@ the second removes you from answers, which is rarely what anyone sat down intend
 
 <p>Across the {hosts:,} hosts in the survey with a parseable robots.txt, <strong>{blocks_training:,}
 block at least one training crawler</strong> and <strong>{blocks_citation:,} block at least one
-citation crawler</strong>. Two checks in the audit cover the two layers separately:
-<code>ai.crawler_access</code> reads what the directives say, and <code>ai.edge_access</code> asks the
-server what it actually does. Neither of them is a check on your meta tags, because a meta tag is not
-where this is decided.</p>
+citation crawler</strong>. The audit checks both what robots.txt allows and what the server
+actually serves. These checks cover crawler access, which is controlled separately from meta tags.</p>
 
 <h2>The measurement: the edge answers first, and it answers alone</h2>
 
@@ -185,8 +172,7 @@ keeping a page out of search results. It is not a consent mechanism and was neve
 <li><strong>Decide per crawler, in robots.txt.</strong> Refusing a training crawler while admitting a
 search crawler is a coherent, statable position. A single category toggle cannot express it, and
 check the names you write, because more than half the files that write an AI rule at all
-<a href="/index/ai-directives/">address a crawler that no longer answers to it</a>. The free
-<a href="/tools/ai-crawler-checker/">AI crawler checker</a> shows what your file says to each one.</li>
+<a href="/index/ai-directives/">address a crawler that no longer answers to it</a>. The free checker shows what your file says to each one.</li>
 <li><strong>Test the server, not the file.</strong> Request the same URL twice from one machine (once
 as an ordinary browser, once as the crawler), and compare. A browser 200 against a crawler 403 is the
 finding, and it is invisible to anything that only reads robots.txt.</li>
@@ -198,7 +184,6 @@ does: <a href="/how-to/audit-your-site-from-an-ai-assistant/">audit your site fr
 assistant</a>.</li>
 </ul>
 
-<p><a class="btn" href="/download/">Download Docket</a></p>
 """
     # Further reading: pages Google had not yet discovered on 2026-09-22 (URL
     # Inspection: "unknown to Google"), linked from this page because Google
@@ -214,7 +199,7 @@ assistant</a>.</li>
 <li><a href="/learn/index-coverage/">Checking whether your pages are actually indexed</a></li>
 </ul>
 """
-    return render(
+    return render_free_guide(
         cat="learn", slug="does-noindex-stop-ai-crawlers",
         title="noindex does not stop AI crawlers. robots.txt does",
         desc=("noindex tells indexers not to list a page; it cannot stop a crawler fetching it. "
@@ -223,6 +208,7 @@ assistant</a>.</li>
         crumb='<a href="/">Docket</a> / <a href="/learn/">Learn</a> / noindex and AI crawlers',
         body=body,
         published="2026-09-15",
+        modified="2026-11-12",
         faq=[
             ("Does noindex stop AI crawlers?",
              "No. A noindex directive is carried inside the response (either as a robots meta "
