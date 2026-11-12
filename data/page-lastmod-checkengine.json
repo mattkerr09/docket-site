@@ -328,12 +328,12 @@
   "hash": "e8f0b16a74c0148e"
  },
  "ai-crawlers/hosts/cloudflare/index.html": {
-  "date": "2026-11-11",
-  "hash": "287a8835deebd2c1"
+  "date": "2026-11-12",
+  "hash": "9b6243027551035b"
  },
  "ai-crawlers/hosts/github-pages/index.html": {
-  "date": "2026-11-11",
-  "hash": "89821ba0eedfb303"
+  "date": "2026-11-12",
+  "hash": "42a22c120cd4386d"
  },
  "ai-crawlers/hosts/index.html": {
   "date": "2026-11-11",
@@ -344,40 +344,40 @@
   "hash": "814c74f82686ddbd"
  },
  "ai-crawlers/hosts/netlify/index.html": {
-  "date": "2026-11-11",
-  "hash": "5bece9cbf8556903"
+  "date": "2026-11-12",
+  "hash": "d0ecb8cde9f50217"
  },
  "ai-crawlers/hosts/shopify/index.html": {
-  "date": "2026-11-11",
-  "hash": "5bf19a3fde09b53e"
+  "date": "2026-11-12",
+  "hash": "cfd8399d9f2b1eec"
  },
  "ai-crawlers/hosts/squarespace/index.html": {
-  "date": "2026-11-11",
-  "hash": "4f4c4ba8338ec920"
+  "date": "2026-11-12",
+  "hash": "f9f5ac07e27724fa"
  },
  "ai-crawlers/hosts/vercel/gptbot/index.html": {
   "date": "2026-11-11",
   "hash": "14256d87e8dc532f"
  },
  "ai-crawlers/hosts/vercel/index.html": {
-  "date": "2026-11-11",
-  "hash": "f76f90d5dcce6372"
+  "date": "2026-11-12",
+  "hash": "67fd4ba58c813a66"
  },
  "ai-crawlers/hosts/webflow/google-extended/index.html": {
   "date": "2026-11-11",
   "hash": "232cdd07b0efe81c"
  },
  "ai-crawlers/hosts/webflow/index.html": {
-  "date": "2026-11-11",
-  "hash": "9ff58e07696d4700"
+  "date": "2026-11-12",
+  "hash": "68ecc41b7615bdc5"
  },
  "ai-crawlers/hosts/wix/index.html": {
-  "date": "2026-11-11",
-  "hash": "5aab0f770e3ca624"
+  "date": "2026-11-12",
+  "hash": "56c6c6abf17a0aff"
  },
  "ai-crawlers/hosts/wordpress-com/index.html": {
-  "date": "2026-11-11",
-  "hash": "77552f1301925123"
+  "date": "2026-11-12",
+  "hash": "8f7aed3017bef53e"
  },
  "ai-crawlers/hunyuan/index.html": {
   "date": "2026-11-11",
