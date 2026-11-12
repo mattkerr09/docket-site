@@ -53,7 +53,8 @@ def check_page(site):
     recorded = competitive._verified_at((ROOT / competitive.CLAIMS_SOURCE).read_text())
     assert recorded[KEY] == comparisons.VERIFIED[KEY]
     page_schema = next(block for block in Page(raw).json_ld if block.get("@type") == "WebPage")
-    assert page_schema["dateModified"] == "2026-11-11", page_schema
+    # The page was written on 2026-11-11 and its modified date moves with the measured run on each release.
+    assert page_schema["dateModified"] >= "2026-11-11", page_schema
     run = json.loads((ROOT / "data/ai-assistants-run.json").read_text())
     assert f"released {run['release']} Mac extension" in words(raw)
     assert run["top_title"] in words(raw)

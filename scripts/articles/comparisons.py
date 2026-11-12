@@ -12,6 +12,7 @@ from __future__ import annotations
 import datetime
 import html
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -94,6 +95,10 @@ CHECKED_ON_HUMAN = "10 August 2026"
 #:
 #: Found by fetching the deployed page and reading it, not from the source.
 CHECKED_HUMAN: dict[str, str] = {
+    # Host read the three market-price sources on 2026-11-12.
+    "audit-agency-prices-home": "12 November 2026",
+    "audit-agency-prices-pricing": "12 November 2026",
+    "audit-agency-prices-checker": "12 November 2026",
     # Host read both pricing pages on 2026-11-11 for the MCP access claim.
     "ai-assistants-mcp": "11 November 2026",
     # Re-read 2026-10-19: the product page's own SoftwareApplication schema again (operatingSystem "MacOS", the
@@ -146,6 +151,9 @@ CHECKED_HUMAN: dict[str, str] = {
     "search-console": "19 October 2026",
 }
 CHECKED_ISO: dict[str, str] = {
+    "audit-agency-prices-home": "2026-11-12",
+    "audit-agency-prices-pricing": "2026-11-12",
+    "audit-agency-prices-checker": "2026-11-12",
     "ai-assistants-mcp": "2026-11-11",
     "scrutiny": "2026-10-19",
     "se-ranking-vs-screaming-frog": "2026-11-09",
@@ -185,6 +193,30 @@ HOME_CLAIM_CHECKED = "2026-10-19"
 HOME_CLAIM_CHECKED_HUMAN = "19 October 2026"
 
 VERIFIED: dict[str, list[tuple[str, str]]] = {
+    "audit-agency-prices-home": [
+        ("SEOProfy quotes an SEO audit at $500 to $5,000",
+         "https://seoprofy.com/blog/seo-audit-pricing/"),
+        ("WebFX's survey says most businesses, 43%, pay $101 to $750 for an audit",
+         "https://www.webfx.com/seo/pricing/how-much-does-seo-audit-cost/"),
+        ("Ahrefs says agencies charge $3,209 a month on average for SEO",
+         "https://ahrefs.com/blog/seo-pricing/"),
+    ],
+    "audit-agency-prices-pricing": [
+        ("SEOProfy's guide puts an SEO audit in the $500 to $5,000 range",
+         "https://seoprofy.com/blog/seo-audit-pricing/"),
+        ("most businesses in WebFX's survey, 43%, pay $101 to $750 for an SEO audit",
+         "https://www.webfx.com/seo/pricing/how-much-does-seo-audit-cost/"),
+        ("the average monthly agency SEO charge is $3,209 in Ahrefs' research",
+         "https://ahrefs.com/blog/seo-pricing/"),
+    ],
+    "audit-agency-prices-checker": [
+        ("SEOProfy quotes an SEO audit at $500 to $5,000",
+         "https://seoprofy.com/blog/seo-audit-pricing/"),
+        ("WebFX's survey says most businesses, 43%, pay $101 to $750 for an audit",
+         "https://www.webfx.com/seo/pricing/how-much-does-seo-audit-cost/"),
+        ("Ahrefs says agencies charge $3,209 a month on average for SEO",
+         "https://ahrefs.com/blog/seo-pricing/"),
+    ],
     "ai-assistants-mcp": [
         ('Screaming Frog\'s pricing page lists "MCP Server" with a cross in the Free column '
          'and a tick in the Paid column',
@@ -761,6 +793,18 @@ _SEOPT_LO, _SEOPT_HI = _SEOPT_PLANS[0][1], _SEOPT_PLANS[-1][1]
 _SEOPT_CRAWLS_LO, _SEOPT_CRAWLS_HI = (int(_SEOPT_PLANS[0][2].split()[0]), int(_SEOPT_PLANS[-1][2].split()[0]))
 
 
+# Display the figures from the dated claims that the history gate reads.
+_AUDIT_PRICES = VERIFIED["audit-agency-prices-home"]
+SEO_AUDIT_RANGE = " to ".join(re.findall(r"\$[\d,]+", _AUDIT_PRICES[0][0]))
+WEBFX_AUDIT_RANGE = " to ".join(re.findall(r"\$[\d,]+", _AUDIT_PRICES[1][0]))
+WEBFX_AUDIT_SHARE = re.search(r"\d+%", _AUDIT_PRICES[1][0])[0]
+AGENCY_SEO_MONTHLY = re.search(r"\$[\d,]+", _AUDIT_PRICES[2][0])[0]
+
+
+def source_link(name: str, url: str) -> str:
+    return f'<a href="{html.escape(url, quote=True)}" rel="nofollow noopener">{html.escape(name)}</a>'
+
+
 def _verified_note(key: str, closing: str = _DEFAULT_CLOSING) -> str:
     """A dated, sourced footer for any page making claims about a competitor.
 
@@ -773,13 +817,15 @@ def _verified_note(key: str, closing: str = _DEFAULT_CLOSING) -> str:
         return ""
     checked = CHECKED_HUMAN.get(key, CHECKED_ON_HUMAN)
     checks = "; ".join(
-        f'{what} (<a href="{url}" rel="nofollow noopener">source</a>)'
+        f'{what} ({source_link("source", url)})'
         for what, url in items
     )
     if key == "sf-alternatives":
         read_note = "Each rival's read date is shown with its claim below. "
     elif key == "ai-assistants-mcp":
         read_note = "These facts were read from the rivals' pricing pages on that date. "
+    elif key.startswith("audit-agency-prices-"):
+        read_note = f"Sources read {checked}. "
     else:
         read_note = "The factual\nclaims about this product were read from its own pages on that date: "
     return f"""

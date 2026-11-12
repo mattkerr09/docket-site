@@ -25,7 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from brand import FORMER_ADDRESS_NOTE  # noqa: E402
 import facts as F  # noqa: E402
-from comparisons import HOME_CLAIM_CHECKED_HUMAN  # noqa: E402
+from comparisons import AGENCY_SEO_MONTHLY, HOME_CLAIM_CHECKED_HUMAN, SEO_AUDIT_RANGE, _verified_note, source_link  # noqa: E402
 from hero_check import hero_check_block  # noqa: E402
 from render import SITE_BRAND, TAGLINE, recorded_with
 from render import (_human_date, SAMPLE_REPORT, speed_words, windows_waitlist, WINDOWS, WIN_SETUP_SIZE, WIN_PUBLISHER, RELEASE, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
@@ -302,7 +302,10 @@ def body() -> str:
   audit.</p>
   <p class="hero-sub">Everything that's wrong. In the order to fix it. Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
   conversion, brand, AI search visibility and campaign tracking, then one ranked plan with the
-  markup to paste. Not four tools. One download.</p>
+  markup to paste. Not four tools. One download.
+  Save thousands by doing it yourself. Agencies average {AGENCY_SEO_MONTHLY} a month for SEO ({source_link("Ahrefs", "https://ahrefs.com/blog/seo-pricing/")})
+  and one audit is quoted at {SEO_AUDIT_RANGE} ({source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")}). Check Engine is {PRICE_COMPACT}.</p>
+  {_verified_note("audit-agency-prices-home", closing="Prices vary with the work and the site.")}
   <p class="hero-free-line"><strong>Free to try, with no account and no key.</strong> You get your score,
   how many problems each area has, and the worst problem in full with its fix. Buying opens the rest.</p>
   {buy_block("home-hero", try_app="home-try-free")}

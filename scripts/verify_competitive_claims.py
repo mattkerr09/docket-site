@@ -104,7 +104,12 @@ CLAIMS_SOURCE = "scripts/articles/comparisons.py"
 
 # Pages outside /vs/ that require their own VERIFIED note, even when their
 # comparison uses plain facts and does not match the superiority patterns.
-VERIFIED_PAGES = {"ai-assistants-mcp": "ai-assistants/index.html"}
+VERIFIED_PAGES = {
+    "ai-assistants-mcp": "ai-assistants/index.html",
+    "audit-agency-prices-home": "index.html",
+    "audit-agency-prices-pricing": "pricing/index.html",
+    "audit-agency-prices-checker": "tools/ai-crawler-checker/index.html",
+}
 
 
 

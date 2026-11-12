@@ -1399,7 +1399,7 @@ def pricing_page() -> Path:
     article.
     """
     from render import (DMG_SIZE, FOUNDING_AFTER_DAY, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, price_sentence, REFUND_DAYS,
-                        FOUNDING_END_DAY, SALE_NAME, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE,
+                        FOUNDING_END_DAY, PRICE_COMPACT, SALE_NAME, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE,
                         buy_block, download_url, windows_waitlist)
     # The prose below is this page's own. The quality gate's duplicate check
     # judged the first version (the buy block alone) a copy of 18 pages,
@@ -1440,6 +1440,14 @@ def pricing_page() -> Path:
 <p class="hero-note" id="bundle-sum">{bundle_sum}</p>
 <p class="hero-note">Bought it already? <a href="{download_url('pricing-page')}" data-ev="Download"
 data-ev-button="pricing-page">Get the {DMG_SIZE} Mac download</a>{(f' or <a href="{download_url("pricing-page-windows", to=WIN_SETUP)}" data-ev="Download" data-ev-button="pricing-page-windows">the {WIN_SETUP_SIZE} Windows installer</a>') if WINDOWS else ''} and paste the key from your receipt.</p>
+
+<h2>What an audit costs elsewhere</h2>
+<p>{comparisons.source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")} quotes an SEO audit at {comparisons.SEO_AUDIT_RANGE}, read 12 November 2026.
+{comparisons.source_link("WebFX", "https://www.webfx.com/seo/pricing/how-much-does-seo-audit-cost/")}'s survey says most businesses, {comparisons.WEBFX_AUDIT_SHARE}, pay {comparisons.WEBFX_AUDIT_RANGE} for an audit, read 12 November 2026.
+{comparisons.source_link("Ahrefs", "https://ahrefs.com/blog/seo-pricing/")} says agencies charge {comparisons.AGENCY_SEO_MONTHLY} a month on average for SEO, read 12 November 2026.</p>
+<p>Check Engine finds and ranks what is wrong and shows the fix. It does not do the fixing for you.</p>
+<p>Check Engine is {PRICE_COMPACT}.</p>
+{comparisons._verified_note("audit-agency-prices-pricing", closing="Prices vary with the work and the site.")}
 
 <h2>What you get</h2>
 <ul>

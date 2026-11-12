@@ -32,7 +32,8 @@ import facts as F  # noqa: E402
 from tools_free import audit_next, how_it_works  # noqa: E402
 from crawler_fix import FIX_JS, search_names as _search_names  # noqa: E402
 from brand import SHORT  # noqa: E402
-from render import (BASE, DATA, HAS_SAMPLE, N_CHECKS, SAMPLE_REPORT, price_req_html,  # noqa: E402
+from comparisons import SEO_AUDIT_RANGE, _verified_note, source_link  # noqa: E402
+from render import (BASE, DATA, HAS_SAMPLE, N_CHECKS, PRICE_COMPACT, SAMPLE_REPORT, price_req_html,  # noqa: E402
                     buy_block, checkout_url, render)
 
 #: The Worker the form calls. `workers/ai-crawler-check/wrangler.toml` names it.
@@ -94,6 +95,10 @@ def checker() -> Path:
     surveyed = F._d()["attempted"]
     edge_denied = F.directives_edge_denied()
     edge_pct = round(100 * edge_denied / surveyed, 2)
+    next_step = audit_next("tools-checker-result", what="one file, read for one page")
+    next_step = next_step.replace("</p>", f"""</p>
+  <p>Save thousands by doing it yourself: an audit is quoted at {SEO_AUDIT_RANGE} ({source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")}, read 12 November 2026). Check Engine is {PRICE_COMPACT}.</p>
+  {_verified_note("audit-agency-prices-checker", closing="Prices vary with the work and the site.")}""", 1)
 
     body = f"""
 <p class="lede">Type your address. The checker reads your robots.txt the way the crawlers do and
@@ -146,7 +151,7 @@ first, and the ones that only collect training data come second.</p>
   <p id="checker-fix-server" hidden></p>
   <p>This reads your robots.txt only. A firewall or CDN can still refuse a crawler that robots.txt allows, and no robots.txt check can see that.</p>
 </div>
-{audit_next("tools-checker-result", what="one file, read for one page")}
+{next_step}
 
 <h2>Crawlers that decide whether AI can cite you</h2>
 <p>Block one of these and that assistant cannot read your pages when it answers a question, so it

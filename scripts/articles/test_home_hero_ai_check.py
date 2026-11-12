@@ -18,6 +18,7 @@ from urllib.parse import parse_qs, urlencode, urlsplit
 HERE = Path(__file__).resolve().parent
 sys.path[:0] = [str(HERE), str(HERE.parent)]
 import facts as F
+import comparisons
 import hero_check
 import home
 import render
@@ -178,6 +179,18 @@ class HomeHeroTests(unittest.TestCase):
         old.__file__ = str(HERE / "home.py")
         exec(compile(source, old.__file__, "exec"), old.__dict__)
         before, after = old.body(), home.body()
+        before_sub = re.search(r'<p class="hero-sub">.*?</p>', before, re.S)[0]
+        after_sub = re.search(r'<p class="hero-sub">.*?</p>', after, re.S)[0]
+        added = ("Save thousands by doing it yourself. Agencies average $3,209 a month for SEO "
+                 f'({comparisons.source_link("Ahrefs", "https://ahrefs.com/blog/seo-pricing/")}) '
+                 "and one audit is quoted at $500 to $5,000 "
+                 f'({comparisons.source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")}). '
+                 f"Check Engine is {render.PRICE_COMPACT}.")
+        self.assertEqual(normal(after_sub), "Everything that's wrong. In the order to fix it. "
+                         + normal(before_sub) + " " + normal(added))
+        note = comparisons._verified_note("audit-agency-prices-home", closing="Prices vary with the work and the site.")
+        self.assertIn(note, after)
+        after = after.replace(after_sub, before_sub, 1).replace("\n  " + note, "", 1)
         # Everything after the changed introduction, including all purchase facts and media.
         before_tail = before.split('<p class="hero-note">No page meter.', 1)[1]
         after_tail = after.split('<p class="hero-note">No page meter.', 1)[1]
