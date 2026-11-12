@@ -15,7 +15,7 @@
 <title>Check Engine: SEO audit for Mac and Windows</title>
 <meta name="description" content="Launch price: $29.50 once, through 30 November. From 1 December: $39. SEO audits for Mac and Windows. Try it free.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="81df643d45bb">
+<meta name="build-id" content="c672ddc37acf">
 <link rel="canonical" href="https://checkengineseo.com/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -1006,6 +1006,17 @@ minutes so repeated checks do not hit your server, and stores nothing about you 
   <div id="hero-check-answer" hidden>
     <ul><li>ChatGPT: <strong id="hero-check-verdict-0"></strong></li><li>Claude: <strong id="hero-check-verdict-1"></strong></li><li>Perplexity: <strong id="hero-check-verdict-2"></strong></li></ul>
     <p id="hero-check-summary"></p>
+    <div id="hero-check-fix" hidden>
+      <h2>How to fix it</h2>
+      <p id="hero-check-fix-google" hidden>Your robots.txt blocks Googlebot as well, so start there: removing that block lets these crawlers in too. Then, if you want to refuse model training, add Disallow groups for the training crawlers only.</p>
+      <div id="hero-check-fix-wildcard" hidden>
+        <p>These crawlers are blocked by your * rule. Add these lines to your robots.txt. A group that names a crawler beats the * rule for that crawler.</p>
+        <pre id="hero-check-fix-snippet"></pre>
+        <button class="btn-ghost" type="button" data-copy="hero-check-fix-snippet">Copy</button>
+      </div>
+      <p id="hero-check-fix-name" hidden></p>
+      <p id="hero-check-fix-server" hidden></p>
+    </div>
     <p>This reads your robots.txt only. A firewall or CDN can still refuse a crawler that robots.txt allows, and no robots.txt check can see that.</p>
   </div>
 </div>
@@ -1025,13 +1036,41 @@ minutes so repeated checks do not hit your server, and stores nothing about you 
 .hero-check-result p:empty{display:none}
 .hero-check-result ul{list-style:none;padding:0;margin:0 0 .7rem}
 .hero-check-next{margin:0 0 1.5rem}
+#hero-check-fix{max-width:33rem}
+#hero-check-fix h2{font-size:var(--t-base);margin:.8rem 0 .4rem}
+#hero-check-fix pre{white-space:pre-wrap;overflow-wrap:anywhere;margin:.5rem 0}
 .hero-check-next a{margin:0 .5rem .5rem 0}
 .hero-check-next a:not(.btn){display:inline-block;text-decoration:underline}
 </style>
 <script>
 (function () {
+  function buildCrawlerFix(results, searchNames) {
+  var by = {};
+  results.forEach(function (r) { by[r.agent] = r; });
+  var googleBlocked = results.some(function (r) {
+    return r.agent === 'Googlebot' && r.allowed === false;
+  });
+  var byWildcard = [];
+  var byName = [];
+  var byServer = [];
+  searchNames.forEach(function (name) {
+    var r = by[name];
+    if (!r || r.allowed !== false) return;
+    if (r.governedBy === 'wildcard') byWildcard.push(name);
+    else if (r.governedBy === 'name') byName.push(name);
+    else byServer.push(name);
+  });
+  var snippet = '';
+  if (!googleBlocked && byWildcard.length) {
+    snippet = '# Let AI search crawlers read your site (they are not training crawlers)\n' +
+      byWildcard.map(function (name) { return 'User-agent: ' + name + '\nAllow: /'; }).join('\n\n');
+  }
+  return {googleBlocked: googleBlocked, byWildcard: byWildcard, byName: byName,
+    byServer: byServer, snippet: snippet};
+}
   var ENDPOINT = "https://ai-crawler-check.kerrco.workers.dev/check";
   var AGENTS = "Googlebot,Bingbot,Google-CloudVertexBot,ChatGPT-User,OAI-SearchBot,Claude-SearchBot,Claude-User,Perplexity-User,PerplexityBot,Amazonbot,Meta-ExternalFetcher,Meta-WebIndexer,MistralAI-Index,Shap-User,ShapBot,Google-Extended,GoogleOther,GPTBot,ClaudeBot,Applebot-Extended,Bytespider,CCBot,meta-externalagent,MistralAI-Training";
+  var SEARCH_NAMES = ["OAI-SearchBot", "PerplexityBot", "Claude-SearchBot", "Meta-WebIndexer", "ChatGPT-User", "Claude-User", "Perplexity-User"];
   var ASSISTANTS = [{"label": "ChatGPT", "agents": ["ChatGPT-User", "OAI-SearchBot"]}, {"label": "Claude", "agents": ["Claude-SearchBot", "Claude-User"]}, {"label": "Perplexity", "agents": ["Perplexity-User", "PerplexityBot"]}];
   var form = document.querySelector('form.hero-check');
   if (!form || !window.fetch) return;
@@ -1039,9 +1078,25 @@ minutes so repeated checks do not hit your server, and stores nothing about you 
   var status = document.getElementById('hero-check-status');
   var answer = document.getElementById('hero-check-answer');
   var summary = document.getElementById('hero-check-summary');
+  var fixBox = document.getElementById('hero-check-fix');
   var next = document.getElementById('hero-check-next');
   var every = document.getElementById('hero-check-every');
   var request = 0;
+  var copy = fixBox.querySelector('[data-copy]');
+  copy.addEventListener('click', function () {
+    var el = document.getElementById(copy.getAttribute('data-copy'));
+    var done = function () { var t = copy.textContent; copy.textContent = 'Copied'; setTimeout(function () { copy.textContent = t; }, 1500); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(el.textContent).then(done, function () {});
+    else {
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      var selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      try { document.execCommand('copy'); done(); } catch (e) {}
+    }
+    if (window.plausible) window.plausible('fix_copied');
+  });
   [].forEach.call(next.querySelectorAll('.btn'), function (link) {
     link.addEventListener('click', function () {
       if (window.plausible) window.plausible('result_to_download');
@@ -1057,6 +1112,10 @@ minutes so repeated checks do not hit your server, and stores nothing about you 
     var v = (input.value || '').trim();
     answer.hidden = true;
     next.hidden = true;
+    fixBox.hidden = true;
+    document.getElementById('hero-check-fix-snippet').textContent = '';
+    document.getElementById('hero-check-fix-name').textContent = '';
+    document.getElementById('hero-check-fix-server').textContent = '';
     if (!v) { status.textContent = 'Enter your website address.'; return; }
     status.textContent = 'Reading robots.txt…';
     fetch(ENDPOINT + '?url=' + encodeURIComponent(v) + '&agents=' + encodeURIComponent(AGENTS))
@@ -1086,6 +1145,17 @@ minutes so repeated checks do not hit your server, and stores nothing about you 
         if (j.note && j.state !== 'blocked') msg += ' ' + j.note;
         if (j.warnings && j.warnings.length) msg += ' ' + j.warnings[0];
         status.textContent = msg;
+        var fix = buildCrawlerFix(j.results || [], SEARCH_NAMES);
+        fixBox.hidden = !(fix.byWildcard.length || fix.byName.length || fix.byServer.length);
+        document.getElementById('hero-check-fix-google').hidden = !fix.googleBlocked;
+        document.getElementById('hero-check-fix-wildcard').hidden = !fix.snippet;
+        document.getElementById('hero-check-fix-snippet').textContent = fix.snippet;
+        var named = document.getElementById('hero-check-fix-name');
+        named.hidden = !fix.byName.length;
+        named.textContent = fix.byName.length ? "Your robots.txt names these crawlers and disallows them, so this reads as a decision: " + fix.byName.join(', ') + ". If you want them to read your site, delete that crawler's Disallow line, or change it to Allow: /." : '';
+        var server = document.getElementById('hero-check-fix-server');
+        server.hidden = !fix.byServer.length;
+        server.textContent = fix.byServer.length ? 'These crawlers were blocked by the way your server answered for robots.txt, not by a rule: ' + fix.byServer.join(', ') + '. Make /robots.txt answer 200 or 404.' : '';
         summary.textContent = '';
         if (blocked) {
           summary.textContent = 'Your robots.txt blocks ' + blockedCrawlers + ' AI search crawlers, so those assistants cannot quote your site. The free audit shows the fix in full.';
