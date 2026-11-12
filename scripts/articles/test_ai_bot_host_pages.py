@@ -222,6 +222,105 @@ class HostPageTests(unittest.TestCase):
     def key(self, page):
         return 'ai-crawlers/hosts/' + (page['slug'] + '/' if page['slug'] else '') + 'index.html'
 
+    def test_sample_has_only_anonymous_sites_and_expected_counts(self):
+        path = hosts.DATA / 'robots-sample-2026-11-12.json'
+        raw = path.read_text()
+        sample = hosts.load_sample()
+        self.assertEqual(raw, json.dumps(sample, indent=1, sort_keys=True) + '\n')
+        self.assertNotIn('http', raw.lower())
+        # The method includes a filename and a Python module, both supplied in the job.
+        anonymous = raw.replace('robots.txt', '').replace('urllib.robotparser', '')
+        self.assertNotRegex(anonymous, r'(?i)\b[a-z0-9-]+\.[a-z]{2,}\b')
+        expected = {'vercel': (3, 3), 'netlify': (2, 2), 'shopify': (3, 3),
+                    'squarespace': (1, 1), 'github-pages': (1, 0),
+                    'cloudflare': (0, 0), 'wix': (0, 0), 'wordpress-com': (0, 0),
+                    'webflow': (0, 0)}
+        self.assertEqual(set(sample['hosts']), set(expected))
+        for host, counts in expected.items():
+            record = sample['hosts'][host]
+            with self.subTest(host=host):
+                self.assertEqual((record['sites_confirmed'], record['sites_read']), counts)
+                self.assertEqual(len(record['sites']), counts[0])
+                self.assertEqual(sum(site['robots_status'] == 200 for site in record['sites']), counts[1])
+                for index, site in enumerate(record['sites'], 1):
+                    self.assertEqual(set(site), {'bots', 'index', 'platform', 'robots_status'})
+                    self.assertEqual(site['index'], index)
+                    self.assertEqual(site['platform'], host)
+                    self.assertEqual(set(site['bots']), set(hosts.BOTS))
+                    self.assertTrue(all(bot['home_allowed'] for bot in site['bots'].values()))
+
+    def test_measurement_sections_match_the_sample_and_stay_scoped(self):
+        sample = hosts.load_sample()
+        for page in self.pages:
+            raw = self.raw[self.key(page)]
+            self.assertNotRegex(normal(text(article(Document(raw)))), r'(?i)\blikely\b')
+            if page['kind'] != 'host':
+                self.assertNotIn('What we measured', raw)
+                continue
+            host = page['host']
+            body = article(Document(raw))
+            section = next(n for n in body.all('section')
+                           if n.attrs.get('aria-label') == 'What we measured')
+            paragraphs = [normal(text(n)) for n in section.all('p')]
+            self.assertFalse(list(section.all('a')))
+            self.assertEqual(normal(text(next(section.all('h2')))), 'What we measured')
+            siblings = section.parent.children
+            previous = [n for n in siblings[:siblings.index(section)] if not isinstance(n, str)][-1]
+            self.assertEqual(previous.tag, 'p')
+            record = sample['hosts'][host]
+            if not record['sites_confirmed']:
+                self.assertEqual(paragraphs, ['We did not measure any customer site on this host.'])
+                self.assertNotRegex(' '.join(paragraphs), r'(?i)\bmeasured\b')
+                continue
+            count = record['sites_read']
+            phrase = f'On the {count} sites read on {sample["read_date"]}'
+            if host == 'github-pages':
+                phrase = f'On the 1 site checked on {sample["read_date"]}'
+                self.assertNotIn('site read', normal(text(body)))
+                self.assertIn('it answered 404', paragraphs[0])
+            elif host == 'squarespace':
+                phrase = f'On the 1 site read on {sample["read_date"]}'
+                self.assertEqual(paragraphs[0],
+                                 'On the 1 site read on 12 November 2026, GPTBot, ClaudeBot, '
+                                 'Google-Extended, Applebot-Extended and CCBot are named in the '
+                                 'file, but its rules are path rules and none blocks the home '
+                                 'page. PerplexityBot is not named and falls under the * group.')
+                self.assertNotIn('blocked', text(section).lower())
+            else:
+                self.assertIn('home page was allowed for all six bots', paragraphs[0])
+                self.assertIn('every site used the * group' if host != 'vercel' else
+                              "one site's file had no group for any of the six bots, "
+                              'the other two used the * group', paragraphs[0])
+            self.assertTrue(paragraphs[0].startswith(phrase))
+            self.assertEqual(paragraphs[-2:], [sample['scope'], 'Source: ' + sample['source'] + '.'])
+            if host == 'vercel':
+                self.assertEqual(paragraphs[1], "Two of the three sites may be Vercel's own "
+                                 'products, so read the rows before generalising.')
+
+    def test_measurements_derive_counts_dates_and_bot_lists_from_sample(self):
+        sample = hosts.load_sample()
+        sample['read_date'] = '13 November 2026'
+        sample['hosts']['netlify']['sites_read'] = 4
+        self.assertIn('On the 4 sites read on 13 November 2026', hosts.measurements('netlify', sample))
+        bots = sample['hosts']['squarespace']['sites'][0]['bots']
+        bots['GPTBot']['group'] = '*'
+        bots['PerplexityBot']['group'] = 'named'
+        value = normal(text(Document(hosts.measurements('squarespace', sample)).root))
+        self.assertIn('ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended and CCBot are named', value)
+        self.assertIn('GPTBot is not named and falls under the * group.', value)
+
+    def test_measurement_section_is_the_only_page_change(self):
+        with patch.object(render, 'SITE', Path(self.scratch.name) / 'without-measurements'):
+            with patch.object(hosts, 'measurements', return_value=''):
+                paths = hosts.build_all()
+        for page, path in zip(self.pages, paths):
+            raw = self.raw[self.key(page)]
+            if page['kind'] == 'host':
+                section = hosts.measurements(page['host'], hosts.load_sample())
+                self.assertEqual(raw.count(section), 1)
+                raw = raw.replace(section, '', 1)
+            self.assertEqual(raw, path.read_text())
+
     def test_every_page_builds_with_title_date_description_and_prose(self):
         self.assertEqual(len(self.raw), len(self.pages))
         for page in self.pages:
@@ -465,6 +564,8 @@ class HostPageTests(unittest.TestCase):
                     if domain.endswith('.kerrco.workers.dev'):
                         self.assertEqual(href, render.download_url(src))
                 value = normal(text(article(doc)))
+                value = value.replace("Two of the three sites may be Vercel's own products, "
+                                      'so read the rows before generalising.', '')
                 self.assertIsNone(BANNED.search(value))
                 self.assertNotRegex(value, '[\u2013\u2014]')
                 self.assertNotRegex(value, r'\$\d')

@@ -1,0 +1,368 @@
+{
+ "hosts": {
+  "cloudflare": {
+   "sites": [],
+   "sites_confirmed": 0,
+   "sites_read": 0
+  },
+  "github-pages": {
+   "sites": [
+    {
+     "bots": {
+      "Applebot-Extended": {
+       "group": "none",
+       "home_allowed": true
+      },
+      "CCBot": {
+       "group": "none",
+       "home_allowed": true
+      },
+      "ClaudeBot": {
+       "group": "none",
+       "home_allowed": true
+      },
+      "GPTBot": {
+       "group": "none",
+       "home_allowed": true
+      },
+      "Google-Extended": {
+       "group": "none",
+       "home_allowed": true
+      },
+      "PerplexityBot": {
+       "group": "none",
+       "home_allowed": true
+      }
+     },
+     "index": 1,
+     "platform": "github-pages",
+     "robots_status": 404
+    }
+   ],
+   "sites_confirmed": 1,
+   "sites_read": 0
+  },
+  "netlify": {
+   "sites": [
+    {
+     "bots": {
+      "Applebot-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "CCBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "ClaudeBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "GPTBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "Google-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "PerplexityBot": {
+       "group": "*",
+       "home_allowed": true
+      }
+     },
+     "index": 1,
+     "platform": "netlify",
+     "robots_status": 200
+    },
+    {
+     "bots": {
+      "Applebot-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "CCBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "ClaudeBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "GPTBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "Google-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "PerplexityBot": {
+       "group": "*",
+       "home_allowed": true
+      }
+     },
+     "index": 2,
+     "platform": "netlify",
+     "robots_status": 200
+    }
+   ],
+   "sites_confirmed": 2,
+   "sites_read": 2
+  },
+  "shopify": {
+   "sites": [
+    {
+     "bots": {
+      "Applebot-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "CCBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "ClaudeBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "GPTBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "Google-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "PerplexityBot": {
+       "group": "*",
+       "home_allowed": true
+      }
+     },
+     "index": 1,
+     "platform": "shopify",
+     "robots_status": 200
+    },
+    {
+     "bots": {
+      "Applebot-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "CCBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "ClaudeBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "GPTBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "Google-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "PerplexityBot": {
+       "group": "*",
+       "home_allowed": true
+      }
+     },
+     "index": 2,
+     "platform": "shopify",
+     "robots_status": 200
+    },
+    {
+     "bots": {
+      "Applebot-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "CCBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "ClaudeBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "GPTBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "Google-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "PerplexityBot": {
+       "group": "*",
+       "home_allowed": true
+      }
+     },
+     "index": 3,
+     "platform": "shopify",
+     "robots_status": 200
+    }
+   ],
+   "sites_confirmed": 3,
+   "sites_read": 3
+  },
+  "squarespace": {
+   "sites": [
+    {
+     "bots": {
+      "Applebot-Extended": {
+       "group": "named",
+       "home_allowed": true
+      },
+      "CCBot": {
+       "group": "named",
+       "home_allowed": true
+      },
+      "ClaudeBot": {
+       "group": "named",
+       "home_allowed": true
+      },
+      "GPTBot": {
+       "group": "named",
+       "home_allowed": true
+      },
+      "Google-Extended": {
+       "group": "named",
+       "home_allowed": true
+      },
+      "PerplexityBot": {
+       "group": "*",
+       "home_allowed": true
+      }
+     },
+     "index": 1,
+     "platform": "squarespace",
+     "robots_status": 200
+    }
+   ],
+   "sites_confirmed": 1,
+   "sites_read": 1
+  },
+  "vercel": {
+   "sites": [
+    {
+     "bots": {
+      "Applebot-Extended": {
+       "group": "none",
+       "home_allowed": true
+      },
+      "CCBot": {
+       "group": "none",
+       "home_allowed": true
+      },
+      "ClaudeBot": {
+       "group": "none",
+       "home_allowed": true
+      },
+      "GPTBot": {
+       "group": "none",
+       "home_allowed": true
+      },
+      "Google-Extended": {
+       "group": "none",
+       "home_allowed": true
+      },
+      "PerplexityBot": {
+       "group": "none",
+       "home_allowed": true
+      }
+     },
+     "index": 1,
+     "platform": "vercel",
+     "robots_status": 200
+    },
+    {
+     "bots": {
+      "Applebot-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "CCBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "ClaudeBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "GPTBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "Google-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "PerplexityBot": {
+       "group": "*",
+       "home_allowed": true
+      }
+     },
+     "index": 2,
+     "platform": "vercel",
+     "robots_status": 200
+    },
+    {
+     "bots": {
+      "Applebot-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "CCBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "ClaudeBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "GPTBot": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "Google-Extended": {
+       "group": "*",
+       "home_allowed": true
+      },
+      "PerplexityBot": {
+       "group": "*",
+       "home_allowed": true
+      }
+     },
+     "index": 3,
+     "platform": "vercel",
+     "robots_status": 200
+    }
+   ],
+   "sites_confirmed": 3,
+   "sites_read": 3
+  },
+  "webflow": {
+   "sites": [],
+   "sites_confirmed": 0,
+   "sites_read": 0
+  },
+  "wix": {
+   "sites": [],
+   "sites_confirmed": 0,
+   "sites_read": 0
+  },
+  "wordpress-com": {
+   "sites": [],
+   "sites_confirmed": 0,
+   "sites_read": 0
+  }
+ },
+ "method": "One robots.txt request per site, honest user agent, 2 s spacing; each site confirmed as served by the host from its response headers. Rule match: urllib.robotparser group, longest path prefix for /.",
+ "read_date": "12 November 2026",
+ "scope": "Only the sites read on the recorded dates. This is not a host-wide policy.",
+ "source": "our own research read, 12 November 2026"
+}

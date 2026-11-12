@@ -21,6 +21,56 @@ def load_data() -> dict:
     return json.loads((DATA / 'pages.json').read_text(encoding='utf-8'))
 
 
+def load_sample() -> dict:
+    return json.loads((DATA / 'robots-sample-2026-11-12.json').read_text(encoding='utf-8'))
+
+
+def bot_list(bots: list[str]) -> str:
+    return ', '.join(bots[:-1]) + ' and ' + bots[-1] if len(bots) > 1 else bots[0]
+
+
+def measurements(host: str, sample: dict) -> str:
+    record = sample['hosts'][host]
+    paragraphs = []
+    if not record['sites_confirmed']:
+        paragraphs.append('We did not measure any customer site on this host.')
+    else:
+        sites = record['sites']
+        date = sample['read_date']
+        count = record['sites_read']
+        if not count:
+            paragraphs.append(
+                f'On the {record["sites_confirmed"]} site checked on {date} there was no '
+                f'robots.txt (it answered {sites[0]["robots_status"]}), so no rules apply '
+                'to any of the six bots.')
+        elif any(bot['group'] == 'named' for site in sites for bot in site['bots'].values()):
+            named = [bot for bot in BOTS if sites[0]['bots'][bot]['group'] == 'named']
+            wildcard = [bot for bot in BOTS if sites[0]['bots'][bot]['group'] == '*']
+            paragraphs.append(
+                f'On the {count} site read on {date}, {bot_list(named)} are named in the '
+                'file, but its rules are path rules and none blocks the home page. '
+                f'{bot_list(wildcard)} is not named and falls under the * group.')
+        else:
+            no_group = sum(all(bot['group'] == 'none' for bot in site['bots'].values())
+                           for site in sites)
+            if no_group:
+                words = {1: 'one', 2: 'two', 3: 'three'}
+                groups = (f'{words[no_group]} site\'s file had no group for any of the six '
+                          f'bots, the other {words[count - no_group]} used the * group')
+            else:
+                groups = 'every site used the * group'
+            allowed = all(bot['home_allowed'] for site in sites for bot in site['bots'].values())
+            home_rule = 'allowed' if allowed else 'not allowed'
+            paragraphs.append(f'On the {count} sites read on {date}, {groups} '
+                              f'and the home page was {home_rule} for all six bots.')
+        if host == 'vercel':
+            paragraphs.append("Two of the three sites may be Vercel's own products, "
+                              'so read the rows before generalising.')
+        paragraphs.extend([sample['scope'], 'Source: ' + sample['source'] + '.'])
+    return ('<section aria-label="What we measured"><h2>What we measured</h2>'
+            + ''.join('<p>' + escape(value) + '</p>' for value in paragraphs) + '</section>')
+
+
 def source_link(key: str, sources: dict, *, dated: bool = False) -> str:
     source = sources[key]
     read_at = f' data-read-at="{source["read_at"]}"' if dated else ''
@@ -131,6 +181,7 @@ def build_page(page: dict, data: dict) -> Path:
                    for i, item in enumerate(page['intro']))
     if page['kind'] == 'host':
         body += host_table(page, sources, crawlers)
+        body += measurements(page['host'], load_sample())
     for section in page['sections']:
         seen = set()
         body += '<h2>' + escape(section['heading']) + '</h2>'
