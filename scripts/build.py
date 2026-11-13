@@ -1580,6 +1580,37 @@ def legal_redirect_stubs() -> list[Path]:
     return pages
 
 
+def vs_flat_redirect_stubs(pages: list[Path]) -> list[Path]:
+    """Keep guessed flat comparison addresses working as new pages are added."""
+    from render import BING_SITE_VERIFICATION
+
+    stubs = []
+    for target_page in pages:
+        relative = target_page.relative_to(SITE)
+        if len(relative.parts) != 3 or relative.parts[0] != "vs" or relative.name != "index.html":
+            continue
+        slug = relative.parts[1]
+        title = html.escape(slug.replace("-", " "))
+        target = f"/vs/{slug}/"
+        page = SITE / f"vs-{slug}" / "index.html"
+        page.parent.mkdir(parents=True, exist_ok=True)
+        page.write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+{BING_SITE_VERIFICATION}
+<title>Moved: {title}</title>
+<link rel="canonical" href="{BASE}{target}">
+<meta name="robots" content="noindex,follow">
+<meta http-equiv="refresh" content="0; url={target}">
+</head><body>
+<p>This page has moved to <a href="{target}">{target}</a>.</p>
+<footer>
+<p>Made by <a href="https://kerrandcompanyholdings.com/">Kerr &amp; Company</a></p>
+</footer>
+</body></html>
+''', encoding="utf-8")
+        stubs.append(page)
+    return stubs
+
+
 def stamp_build_id() -> str:
     """One id over the whole tree, so a stale deploy is detectable from outside.
 
@@ -1763,6 +1794,7 @@ def main() -> int:
     pricing_page()
     # Redirect stubs are not sitemap entries, just like the retired article addresses.
     legal_redirect_stubs()
+    vs_flat_redirect_stubs(pages)
 
     write_robots()
     write_llms_txt()

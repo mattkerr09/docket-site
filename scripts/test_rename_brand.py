@@ -429,7 +429,9 @@ def compare_default(site, baseline):
     previous = {p.relative_to(baseline) for p in baseline.rglob("*") if p.is_file()}
     current = {p.relative_to(site) for p in site.rglob("*") if p.is_file()}
     help_pages = {Path(route) / "index.html" for route in ("help", "support", "faq")}
-    assert current == previous | help_pages | {Path("_redirect-map.json")}, "unexpected output paths"
+    vs_stubs = {Path(f"vs-{page.parent.name}") / "index.html"
+                for page in site.glob("vs/*/index.html")}
+    assert current == previous | help_pages | vs_stubs | {Path("_redirect-map.json")}, "unexpected output paths"
     with (ROOT / "data/checks.csv").open() as source:
         checks = sum(1 for row in csv.DictReader(source))
     # These requested source-copy fixes also improve the Docket build. Keep the
