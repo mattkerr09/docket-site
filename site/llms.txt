@@ -2,8 +2,9 @@
 
 > Check Engine SEO is a Mac and Windows app that audits any website on your own computer: 99
 > checks across 13 areas, then one ranked plan of what to fix, in order, with the
-> markup to paste and a client-ready PDF report. Launch price: $29.50 once, through 30
-> November. From 1 December: $39. There is no subscription.
+> markup to paste and a client-ready PDF report. Black Friday sale: $19.99 once, 32%
+> off our November price of $29.50, through December 2. Then $39. There is no
+> subscription.
 
 The crawl and the report stay on your computer, and there is no account. The app sends
 three anonymous counts, with no site address or audit result. Five optional checks are
@@ -18,7 +19,7 @@ load. The licence key is checked with the payment provider when it is activated 
 about once a day after that. The app asks https://docketseo.app/updater.json whether
 an update exists. While its activation screen is showing on a copy with no key, it
 asks https://docketseo.app/offer.json for the current price and offer and whether the
-founding offer is still open.
+sale is still open.
 
 Check Engine is written by Matt Kerr and sold by Kerr & Company LLC, of Grand Rapids,
 Michigan, United States.
@@ -61,10 +62,10 @@ Michigan, United States.
 
 ## Price and licence
 
-- Launch price: $29.50 once, through 30 November. From 1 December: $39. Priced in US
-  dollars. There is no renewal date and nothing to cancel.
-- Buy applies the code FOUNDINGDOCKET for you; if the checkout shows $39, enter it
-  under ‘Have a discount code?’.
+- Black Friday sale: $19.99 once, 32% off our November price of $29.50, through
+  December 2. Then $39. Priced in US dollars. There is no renewal date and nothing to
+  cancel.
+- The Buy button applies the sale for you; there is no code to type.
 - Free: your score, how many problems in each category, and the top problem in full
   with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to
   paste. The free version needs no key and no account, and runs the same full audit;
@@ -99,9 +100,9 @@ Michigan, United States.
 
 - Is Check Engine free? Free: your score, how many problems in each category, and the top
   problem in full with its fix. Pro: the rest of the problems, the ranked fix plan and
-  the markup to paste. Launch price: $29.50 once, through 30 November. From 1
-  December: $39. There is a 30-day refund. There is no subscription and nothing to
-  cancel.
+  the markup to paste. Black Friday sale: $19.99 once, 32% off our November price of
+  $29.50, through December 2. Then $39. There is a 30-day refund. There is no
+  subscription and nothing to cancel.
 - What if it isn't for me? Ask for a refund within 30 days of buying and you get your
   money back. No conditions and no questions. Write to support@docketseo.app, or reply
   to the receipt the payment processor emails you. The licence key is revoked, so the
