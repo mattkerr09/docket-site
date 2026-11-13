@@ -1,22 +1,22 @@
 {
  "schema": 1,
  "later_price_cents": 3900,
- "later_from": "2026-12-01",
+ "later_from": "2026-12-03",
  "price_cents": 5900,
  "checkout_price_cents": 3900,
  "currency": "USD",
  "after_launch": {
   "price_cents": 3900,
-  "from": "1 December",
-  "description": "From 1 December: $39."
+  "from": "3 December",
+  "description": "From 3 December: $39."
  },
  "instalments": null,
  "founding": {
-  "price_cents": 2950,
+  "price_cents": 1999,
   "instalment_cents": null,
   "code": "FOUNDINGDOCKET",
-  "label": "Launch price, through 30 November",
-  "ends_at": "2026-12-01T07:59:59Z"
+  "label": "Black Friday sale, through December 2",
+  "ends_at": "2026-12-03T07:59:59Z"
  },
  "refund_days": 30,
  "checkout_url": "https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79?redirect_url=https%3A%2F%2Fcheckengineseo.com%2Fthank-you%2F",
