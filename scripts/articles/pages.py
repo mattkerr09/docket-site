@@ -2319,8 +2319,8 @@ into it, that question is sent to that server so it can be answered; if you neve
 nothing is sent. It knows only published facts about Docket, and the price it quotes comes from
 the payment provider rather than from this page, so it cannot quote you a price the checkout
 will not honour.</p>
-<p>The third is on the front page only: the sale bar across the top of the
-page, loaded from <code>kerr-lead-agent.kerrco.workers.dev</code>, the same server as the
+<p>The third is the sale bar across the top of every page except the page shown after a
+purchase, loaded from <code>kerr-lead-agent.kerrco.workers.dev</code>, the same server as the
 assistant. When the page loads it asks that server whether the offer is still open, and the only
 thing it sends is this site's name. If you close the bar, the time you closed it is kept in your
 browser's local storage so the bar stays away for seven days; nothing else is stored and it sets

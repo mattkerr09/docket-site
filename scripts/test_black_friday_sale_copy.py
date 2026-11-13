@@ -14,7 +14,7 @@ import tempfile
 
 import render as R
 from test_launch_price_copy import scratch, stale_promo
-from test_rename_brand import build
+from test_rename_brand import Page, build
 from verify_founding_offer import visible
 from verify_structured_data_matches_page import blocks
 
@@ -62,9 +62,13 @@ def check_constants():
 
 
 def check_site(site, opened, before_pages=None):
+    privacy = words((site / "legal/privacy/index.html").read_text())
+    assert ("The third is the sale bar across the top of every page except the page shown after a purchase, "
+            "loaded from") in privacy
     priced = []
     paid_count = 0
     sale_pages = 0
+    mount_count = 0
     for path in sorted(site.rglob("*")):
         if path.suffix not in (".html", ".txt"):
             continue
@@ -84,6 +88,15 @@ def check_site(site, opened, before_pages=None):
             if before_pages and name in before_pages:
                 assert "$39" in text, (name, "priced page lost its list price")
         if path.suffix == ".html":
+            for tag, attrs in Page(raw).tags:
+                if "data-founding" in attrs:
+                    mount_count += 1
+                    assert opened, (name, "sale mount remains after expiry")
+                    assert attrs.get("data-ref") != "$39", name
+                    assert attrs.get("data-ref") == "$29.50", name
+                    assert attrs.get("data-now") == "$19.99", name
+                    assert attrs.get("data-was") == "$39", name
+                    assert "hidden" in attrs, name
             for block in blocks(raw):
                 for offer in offers(block):
                     # Free score/report offers remain free in both states.
@@ -99,6 +112,7 @@ def check_site(site, opened, before_pages=None):
     assert len(priced) > 400, len(priced)
     assert paid_count > 400, paid_count
     if opened:
+        assert mount_count > 400, mount_count
         assert len(priced) == sale_pages, (len(priced), sale_pages)
     else:
         assert not sale_pages
@@ -142,7 +156,8 @@ def main():
         assert set(priced) == set(after), (set(priced) ^ set(after))
         assert count == after_count, (count, after_count)
     print(f"PASS exact computed sale sentence; {len(priced)} priced HTML/TXT files carry it; {count} paid Offers agree")
-    print("PASS full 3 December scratch build: priced pages show $39; no sale price, sale name or visible FOUNDING")
+    print("PASS sale mounts use $29.50 as reference, $19.99 now and $39 later; every mount stays hidden")
+    print("PASS full 3 December scratch build: priced pages show $39; no sale mount, sale price, sale name or visible FOUNDING")
     print("PASS visible code ban; only the exact helper-built sentence permits Black Friday copy")
 
 

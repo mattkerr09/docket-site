@@ -80,6 +80,7 @@ def check_site(site):
         text, blocks = current_copy(raw, path)
         for tag, attrs in Page(raw).tags:
             if "data-founding" in attrs:
+                assert attrs["data-ref"] == R.NOVEMBER_PRICE_STR, path
                 assert attrs["data-was"] == R.LATER_STR, path
                 assert attrs["data-now"] == R.FOUNDING_NOW, path
                 assert "data-pay4" not in attrs, path

@@ -2053,7 +2053,7 @@ FOUNDING_SWITCH = ('<script>(function(){var end=Date.parse("' + FOUNDING_ENDS_AT
 #: The bar gets the flat-code price and the later list price from these constants.
 #: Both are under Dodo's floor in the CEO's 2026-11-11 read-back. Keep data-pay4
 #: guarded so it is sent only when the launch price clears the floor.
-FOUNDING_MOUNT = ((f'<div data-founding data-was="{LATER_STR}" data-now="{FOUNDING_NOW}"'
+FOUNDING_MOUNT = ((f'<div data-founding data-ref="{NOVEMBER_PRICE_STR}" data-was="{LATER_STR}" data-now="{FOUNDING_NOW}"'
                    + (f' data-pay4="or 4 &times; {BNPL_FOUNDING_INSTALMENT}"' if BNPL_FOUNDING_OK else '')
                    + ' hidden></div>\n' + FOUNDING_SWITCH
                    + '<script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>')
