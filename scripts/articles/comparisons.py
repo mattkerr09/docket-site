@@ -2154,7 +2154,7 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
         cat="vs", slug="seoptimer-alternative",
         modified="2026-11-05",  # report branding (1.3.147): Docket's reports can carry your name and logo
         title="SEOptimer alternative for Mac with no crawl limit",
-        desc=(f"{price_sentence()} Compare SEOptimer's monthly crawls with Docket's unlimited re-runs."),
+        desc=(f"{price_sentence()} SEOptimer subscriptions or Docket's unlimited re-runs."),
         h1="Docket vs SEOptimer",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / SEOptimer',
         body=body,
@@ -2444,7 +2444,7 @@ outside.</p>
             if SITE_BRAND == "checkengine"
             else ("Profound alternative? Docket checks AI access, not mentions")
         ),
-        desc=(f"{price_sentence()} Profound tracks brand mentions. Docket checks AI crawler access."),
+        desc=(f"{price_sentence()} Profound counts mentions. Docket checks AI access."),
         h1="Docket vs Profound",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Profound',
         body=body,
@@ -2704,7 +2704,7 @@ for {price('scrutiny')}, and stronger than either of us at link checking.</p>
         cat="vs", slug="crawlraven-alternative",
         modified="2026-11-08",  # Mac and 64-bit Windows, not Mac only (CEO QC),
         title="CrawlRaven vs Docket: price, technical audit, MCP",
-        desc=(f"{price_sentence()} Compare CrawlRaven's cloud audit with Docket for Mac and Windows."),
+        desc=(f"{price_sentence()} CrawlRaven cloud audits or Docket on Mac and Windows."),
         h1="Docket vs CrawlRaven",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / CrawlRaven',
         body=body,

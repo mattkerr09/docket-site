@@ -18,10 +18,10 @@ def check_constants():
     assert render.PRICE == 39
     assert render.LATER_PRICE == 39
     assert render.LATER_STR == "$39"
-    assert render.FOUNDING_NOW == "$29.50"
-    assert render.FOUNDING_OFF_CENTS == 950
+    assert render.FOUNDING_NOW == "$19.99"
+    assert render.FOUNDING_OFF_CENTS == 1901
     assert render.FOUNDING_NOW == f"${render.PRICE - render.FOUNDING_OFF_CENTS / 100:.2f}"
-    assert render.founding_price_sentence() == "Launch price: $29.50 once, through 30 November. From 1 December: $39."
+    assert render.founding_price_sentence() == "Black Friday sale: $19.99 once, 32% off our November price of $29.50, through December 2. Then $39."
     note = (ROOT / "docs/DECEMBER_PRICE_FLIP.md").read_text()
     for name in ("PRICE", "LATER_PRICE", "LATER_STR", "FOUNDING_NOW", "FOUNDING_OPEN",
                  "FOUNDING_CODE", "FOUNDING_OFF_CENTS", "FOUNDING_ENDS_AT", "APP_LIST_PRICE_CENTS",
@@ -30,15 +30,15 @@ def check_constants():
     # Changing only the future constant must reach the helper and the data FAQ.
     from articles import help_pages
     with patch.object(render, "LATER_STR", "$41"):
-        assert "From 1 December: $41." in render.founding_price_sentence()
-        assert "From 1 December: $41." in help_pages.answer_values()["PRICE_WORDS"]
+        assert "Then $41." in render.founding_price_sentence()
+        assert "Then $41." in help_pages.answer_values()["PRICE_WORDS"]
 
 
 def check_expiry():
     class DecemberClock(datetime.datetime):
         @classmethod
         def now(cls, tz=None):
-            return cls(2026, 12, 1, 8, tzinfo=datetime.timezone.utc).astimezone(tz)
+            return cls(2026, 12, 3, 8, tzinfo=datetime.timezone.utc).astimezone(tz)
 
     with patch("datetime.datetime", DecemberClock):
         closed = runpy.run_path(str(ROOT / "scripts/render.py"))
@@ -65,7 +65,7 @@ def check_expiry():
     assert offer["founding"] is None
     assert offer["after_launch"] is None
     assert offer["instalments"] is None
-    print("PASS December clock removes launch copy and Offer; offer.json founding=null and instalments=null")
+    print("PASS December clock removes sale copy and Offer; offer.json founding=null and instalments=null")
 
 
 def main():

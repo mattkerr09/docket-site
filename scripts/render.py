@@ -285,18 +285,18 @@ def founding_last_day() -> str:
 
 
 def app_price(app: str) -> str:
-    """'$14.50 until 30 November, then $29' while the sale runs, else '$29 once'. From bundle.json, never typed."""
+    """The sister app price through the sale end day, then its list price, from bundle.json."""
     b = _bundle()
     lp = b["list_prices"][app]
     if founding_open():
-        return f"{_usd(lp * (100 - b['founding_pct']) / 100)} until {founding_last_day()}, then {_usd(lp)}"
+        return f"{_usd((lp * 100 - b['sale_off_cents'][app]) / 100)} through {FOUNDING_END_DAY_US}, then {_usd(lp)}"
     return f"{_usd(lp)} once"
 
 
 def bundle_link(src: str, button: str, *, lead: str = "All three apps, Docket SEO, Crisp and Outlier, for") -> str:
     """One line offering the three-app bundle through the hub, with nofollow (a sister product)."""
     b = _bundle()
-    price = (f"{_usd(b['standard_price'])}, or {_usd(b['founding_price'])} through November"
+    price = (f"{_usd(b['founding_price'])} through {FOUNDING_END_DAY_US}, then {_usd(b['standard_price'])}"
              if founding_open() else f"{_usd(b['standard_price'])}")
     # The exact saving at list prices (CEO, 2026-11-07), summed from list_prices, never typed.
     apart = sum(b["list_prices"].values())
@@ -407,7 +407,7 @@ def buy_strip(src: str) -> str:
               f'See a sample report</a>' if HAS_SAMPLE else "")
     # The founding part carries its own separator, so the page's switch can remove it whole at FOUNDING_ENDS_AT.
     founding = (f'<span{FOUNDING_UNTIL}> &middot; {founding_price_sentence()} '
-                f'Use code <code>{FOUNDING_CODE}</code>.</span>'
+                f'{CHECKOUT_HELP}</span>'
                 if FOUNDING_OPEN else "")
     return (f'<aside class="buy-strip"><p><a href="{download_url(try_src)}" data-ev="Download" '
             f'data-ev-button="{try_src}"><strong>Try it free</strong></a>{intel}: your score and '
@@ -724,8 +724,8 @@ PLATFORMS = (f"{MACS}, {MACOS} or later, and 64-bit Windows" if WINDOWS
 # Frog ($279/yr = $23.25/mo; 15 x 23.25 = $348.75), so Docket is cheaper than
 # Screaming Frog from month 16 onwards. The prose on /download/ says that now.
 #
-# CEO's Dodo read-back, 2026-11-11 at 15:48Z: product 3900 USD cents,
-# FOUNDINGDOCKET flat 950 cents off, restricted to this product.
+# CEO's Dodo read-back, 2026-11-13 at 05:30:58Z: product 3900 USD cents,
+# FOUNDINGDOCKET flat 1901 cents off, restricted to this product.
 # PRICE remains the checkout list price while the launch code is active.
 # Displayed launch copy uses FOUNDING_NOW. Comparison arithmetic uses LATER_PRICE.
 PRICE = 39
@@ -743,29 +743,31 @@ LATER_STR = f"${LATER_PRICE}"
 #: is CLOSED. A transition window left open is a gate that has stopped checking.
 PRICE_PREVIOUS = None
 
-#: The flat code from the CEO's 2026-11-11 read-back. Derive the launch price
+#: The flat code from the CEO's 2026-11-13 read-back. Derive the sale price
 #: from cents so the page, bar and app offer all agree with the checkout.
-FOUNDING_OFF_CENTS = 950
+FOUNDING_OFF_CENTS = 1901
+NOVEMBER_OFF_CENTS = 950
+NOVEMBER_PRICE_CENTS = PRICE * 100 - NOVEMBER_OFF_CENTS
+NOVEMBER_PRICE_STR = f"${NOVEMBER_PRICE_CENTS / 100:.2f}"
+SALE_PERCENT_OFF = round((FOUNDING_OFF_CENTS - NOVEMBER_OFF_CENTS) / NOVEMBER_PRICE_CENTS * 100)
 FOUNDING_WAS = f"${PRICE}"
 FOUNDING_NOW = f"${(PRICE * 100 - FOUNDING_OFF_CENTS) / 100:.2f}"
 PRICE_STR = f"${PRICE}"
-#: Product-restricted flat code, confirmed by the CEO on 2026-11-11.
-#: The checkout calls its field "Have a discount code?".
+#: Product-restricted flat code. Keep the name for installed apps.
 FOUNDING_CODE = "FOUNDINGDOCKET"
 #: No cap since 2026-11-02 ("Everyone, all of November"), so no page says "first N buyers" any more.
 FOUNDING_SEATS = None
-#: The launch offer's name on every page, in Matthew's framing. Never "50% off": a discount against a price nobody paid
-#: is a former price (CEO, 2026-11-02, on the FTC's former-price rules); the launch code is a flat $9.50 off $39.
-SALE_NAME = "Launch price"
-#: The flat code's expiry is unchanged in the CEO's 2026-11-11 read-back.
+#: The sale compares against the real November price, not the later list price.
+SALE_NAME = "Black Friday sale"
+#: The flat code's expiry from the CEO's 2026-11-13 read-back.
 #: Every founding-price line, the auto-applied code and the ads switch off by
 #: that moment. So every founding line this site writes (the note under each Buy button, the guide strips, the FAQ
 #: answers, llms.txt, prices.json and the bar's mount) is built only while FOUNDING_OPEN. A deployed page cannot
 #: rebuild itself, so the note and the strip also carry data-founding-until and remove themselves in the browser at
 #: the moment; the first build after it drops the rest. verify_founding_offer.py fails any deploy that still shows the
 #: founding price after the moment, or once Dodo's times_used reaches the limit: then set FOUNDING_SOLD_OUT = True.
-#: The code ends on 30 November in US Pacific time. The lead agent's /founding answers unlimited.
-FOUNDING_ENDS_AT = "2026-12-01T07:59:59Z"
+#: Dodo has a 100000-use cap; no buyer-facing countdown or remaining-use claim.
+FOUNDING_ENDS_AT = "2026-12-03T07:59:59Z"
 FOUNDING_SOLD_OUT = False
 
 
@@ -783,8 +785,7 @@ FOUNDING_UNTIL = f' data-founding-until="{FOUNDING_ENDS_AT}"'
 
 def founding_end_day() -> str:
     """The last day of the founding offer as a buyer anywhere in the US would put it: the date it still is in
-    Hawaii (UTC-10) when the code expires. FOUNDINGDOCKET expires 07:59 UTC on 1 December, which is the evening
-    of 30 November across the US, so "until 1 December" would promise most of a day it does not have; this date
+    Hawaii (UTC-10) when the code expires. The expiry is in the evening on the preceding US day; this date
     can only be earlier than a buyer's own, never later. The page's switch replaces it with the visitor's own
     date and time."""
     ends = _dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00"))
@@ -796,25 +797,27 @@ def founding_end_day() -> str:
 #: and no end date, while FOUNDINGDOCKET ends at FOUNDING_ENDS_AT. A true end date beside the price is honest
 #: urgency. FOUNDING_ENDS_AT is the date verify_founding_offer.py checks against Dodo's expires_at on every deploy.
 FOUNDING_END_DAY = founding_end_day()
+FOUNDING_END_DAY_US = (lambda d: f"{d:%B} {d.day}")(
+    _dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00")) - _dt.timedelta(hours=10))
 FOUNDING_END_HTML = (f'<span class="founding-end" data-founding-end="{FOUNDING_ENDS_AT}">'
-                     f'until {FOUNDING_END_DAY}</span>')
+                     f'through {FOUNDING_END_DAY_US}</span>')
 #: The first day at LATER_PRICE, as the launch line says it.
 FOUNDING_AFTER_DAY = (lambda d: f"{d.day} {d.strftime('%B')}")(
     _dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00")) - _dt.timedelta(hours=10) + _dt.timedelta(days=1))
 
 
 def founding_price_sentence() -> str:
-    """The launch offer in prose and FAQs, dropped when the offer closes."""
-    return (f"{SALE_NAME}: {FOUNDING_NOW} once, through {FOUNDING_END_DAY}. "
-            f"From {FOUNDING_AFTER_DAY}: {LATER_STR}." if FOUNDING_OPEN else "")
+    """The sale in prose and FAQs, dropped when the offer closes."""
+    return (f"{SALE_NAME}: {FOUNDING_NOW} once, {SALE_PERCENT_OFF}% off our November price of "
+            f"{NOVEMBER_PRICE_STR}, through {FOUNDING_END_DAY_US}. Then {LATER_STR}." if FOUNDING_OPEN else "")
 
 
 def price_sentence() -> str:
-    """The full displayed price, including both launch dates while open."""
+    """The full displayed price, including the November reference and end day while open."""
     return founding_price_sentence() if FOUNDING_OPEN else f"{PRICE_STR} once."
 
 
-PRICE_COMPACT = (f"{FOUNDING_NOW} once through {FOUNDING_END_DAY}, then {LATER_STR}"
+PRICE_COMPACT = (f"{FOUNDING_NOW} once through {FOUNDING_END_DAY_US}, then {LATER_STR}"
                  if FOUNDING_OPEN else f"{PRICE_STR} once")
 
 
@@ -930,7 +933,7 @@ CHECKOUT = ("https://checkout.dodopayments.com/buy/pdt_0Nlgdu6xbdzeG5tDAWx79"
 BNPL_LIVE = True
 #: Klarna's and Afterpay's floor on Dodo, in cents. A price under it gets no pay-in-four line anywhere, because the
 #: checkout would not offer it. The CEO's 2026-11-11 read-back puts both the $39 list price and the
-#: $29.50 flat-code price under the floor, so neither shows an instalment.
+#: flat-code sale price under the floor, so neither shows an instalment.
 BNPL_MIN_CENTS = 5001
 #: The refund window, stated beside every buy button and in /offer.json, which
 #: the app's activation screen reads.
@@ -983,10 +986,8 @@ BNPL_NOTE_HTML = BNPL_NOTE.replace(
     f"Or four payments of {BNPL_INSTALMENT}",
     f'<strong class="pay4-em">Or four payments of {BNPL_INSTALMENT}</strong>', 1)
 
-#: Buy applies the flat code. The CEO's 2026-11-11 read-back confirms $39
-#: before the code and $29.50 after it. Keep the manual fallback while open.
-CHECKOUT_HELP = (f"Buy applies the code <code>{FOUNDING_CODE}</code> for you; if the checkout shows {PRICE_STR}, "
-                 f"enter it under &lsquo;Have a discount code?&rsquo;." if FOUNDING_OPEN else "")
+#: The buy endpoint applies the sale; buyers do not need the internal code name.
+CHECKOUT_HELP = ("The Buy button applies the sale for you; there is no code to type." if FOUNDING_OPEN else "")
 FOUNDING_LINE = CHECKOUT_HELP
 
 #: What the free version is, in Matthew's words of 2026-10-01 and the app's
@@ -2045,7 +2046,7 @@ RETURN_URL_SCRUB = """<script>
 #: does at the code's expires_at.
 FOUNDING_SWITCH = ('<script>(function(){var end=Date.parse("' + FOUNDING_ENDS_AT + '");'
                    'if(Date.now()<end){document.querySelectorAll("[data-founding-end]").forEach(function(e){'
-                   'try{e.textContent="until "+new Date(end).toLocaleString(undefined,{day:"numeric",'
+                   'try{e.textContent="through "+new Date(end).toLocaleString(undefined,{day:"numeric",'
                    'month:"long",hour:"numeric",minute:"2-digit"});}catch(x){}});return;}'
                    'document.querySelectorAll("[data-founding-until]").forEach(function(e){e.remove();});})();'
                    '</script>\n')
@@ -2212,12 +2213,6 @@ def _price_offers(with_free: bool) -> list:
         paid["priceValidUntil"] = (_dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00"))
                                    - _dt.timedelta(hours=10)).date().isoformat()
     offers.append(paid)
-    if FOUNDING_OPEN:
-        offers.append({"@type": "Offer", "name": "Pro from " + FOUNDING_AFTER_DAY,
-                       "price": f"{LATER_PRICE:.2f}", "priceCurrency": "USD",
-                       "validFrom": (_dt.date.fromisoformat(paid["priceValidUntil"])
-                                     + _dt.timedelta(days=1)).isoformat(),
-                       "availability": "https://schema.org/InStock"})
     return offers
 
 

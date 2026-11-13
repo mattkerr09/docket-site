@@ -663,12 +663,12 @@ def write_llms_txt() -> None:
             f"The app asks {brand.LEGACY_BASE}/updater.json whether an update exists. "
             "While its activation screen is showing on a copy with no key, it asks "
             f"{brand.LEGACY_BASE}/offer.json for the current price and offer and whether "
-            "the founding offer is still open.")
+            "the sale is still open.")
     else:
         app_requests = (
             f"The app asks {brand.HOST} whether an update exists, and, while its activation "
             "screen is showing on a copy with no key, what the current price and offer "
-            "are and whether the founding offer is still open.")
+            "are and whether the sale is still open.")
 
     out = ["# Docket SEO", ""]
     out.append(wrap(
@@ -963,7 +963,7 @@ def write_offer() -> None:
     read it.
     """
     from render import (BNPL_FOUNDING_OK, BNPL_LIVE, BNPL_MIN_CENTS, CHECKOUT, FOUNDING_CODE, FOUNDING_OPEN,
-                        FOUNDING_ENDS_AT, FOUNDING_END_DAY, FOUNDING_AFTER_DAY, FOUNDING_OFF_CENTS, HAS_SAMPLE, LATER_PRICE, LATER_STR, REFUND_DAYS, SALE_NAME, APP_SAMPLE_REPORT_URL)
+                        FOUNDING_ENDS_AT, FOUNDING_END_DAY_US, FOUNDING_AFTER_DAY, FOUNDING_OFF_CENTS, HAS_SAMPLE, LATER_PRICE, LATER_STR, REFUND_DAYS, SALE_NAME, APP_SAMPLE_REPORT_URL)
     import math
     price_cents = PRICE * 100
     founding_cents = price_cents - FOUNDING_OFF_CENTS
@@ -987,7 +987,7 @@ def write_offer() -> None:
                       "instalment_cents": math.ceil(founding_cents / 4) if BNPL_FOUNDING_OK else None,
                       # No "seats" since 2026-11-02: the sale is uncapped. Builds up to 1.3.138 required it, but
                       # they also hold the old $349 list price, so they show no sale line from this file either way.
-                      "code": FOUNDING_CODE, "label": SALE_NAME + ", through " + FOUNDING_END_DAY, "ends_at": FOUNDING_ENDS_AT}
+                      "code": FOUNDING_CODE, "label": SALE_NAME + ", through " + FOUNDING_END_DAY_US, "ends_at": FOUNDING_ENDS_AT}
                      if FOUNDING_OPEN else None),
         "refund_days": REFUND_DAYS,
         "checkout_url": CHECKOUT,
@@ -1399,7 +1399,7 @@ def pricing_page() -> Path:
     article.
     """
     from render import (DMG_SIZE, FOUNDING_AFTER_DAY, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, price_sentence, REFUND_DAYS,
-                        FOUNDING_END_DAY, PRICE_COMPACT, SALE_NAME, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE,
+                        FOUNDING_END_DAY, FOUNDING_END_DAY_US, PRICE_COMPACT, SALE_NAME, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE,
                         buy_block, download_url, windows_waitlist)
     # The prose below is this page's own. The quality gate's duplicate check
     # judged the first version (the buy block alone) a copy of 18 pages,
@@ -1419,7 +1419,7 @@ def pricing_page() -> Path:
         return f"${x:,.2f}" if x != int(x) else f"${int(x):,}"
     bundle_line = (
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
-        f'All three apps, {apps}, for {usd(bundle["founding_price"])} once: the launch price, through {FOUNDING_END_DAY}.</a> '
+        f'All three apps, {apps}, for {usd(bundle["founding_price"])} once through {FOUNDING_END_DAY_US}.</a> '
         f'From {FOUNDING_AFTER_DAY} it is {usd(bundle["standard_price"])}.'
         if founding else
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
@@ -1428,10 +1428,10 @@ def pricing_page() -> Path:
     bundle_sum = (f'{usd(apart)} bought apart, '
                   f'{usd(bundle["standard_price"])} together.')
     if founding:
-        launch_apart = apart * (100 - bundle["founding_pct"]) / 100
+        launch_apart = (apart * 100 - sum(bundle["sale_off_cents"].values())) / 100
         bundle_sum += (
             f' <span data-founding-until="{bundle["founding_ends_at"]}">'
-            f'{SALE_NAME} through {FOUNDING_END_DAY}: '
+            f'Through {FOUNDING_END_DAY_US}: '
             f'{usd(launch_apart)} bought apart, {usd(bundle["founding_price"])} together.</span>')
     body = f"""
 <p class="lede">One price, paid once. No subscription, no page meter, nothing to cancel.</p>
@@ -1466,9 +1466,9 @@ with no site address or audit result. <a href="/legal/privacy/">What is sent and
 Pay the whole amount at once.</p>
 
 <h2>When the price changes</h2>
-<p>The {SALE_NAME.lower()} applies to everything bought up to the end of {FOUNDING_END_DAY}; the price from {FOUNDING_AFTER_DAY}
+<p>The sale applies to everything bought through {FOUNDING_END_DAY_US}; the price from {FOUNDING_AFTER_DAY}
 applies to everything bought after it. Either way you pay once. Nothing is taken on the day the price changes, nothing renews,
-and a licence bought at the {SALE_NAME.lower()} is never asked to pay the difference later.</p>
+and a licence bought in the sale is never asked to pay the difference later.</p>
 
 <h2>If Docket turns out not to suit you</h2>
 <p>Within {REFUND_DAYS} days of the receipt date, write to the support address or reply to the

@@ -80,14 +80,15 @@ class SitewideCopyTests(unittest.TestCase):
         self.assertIsNone(STAFF.search((render.SITE / "llms.txt").read_text()))
 
     def test_offer_sentence_uses_constants_and_closes_with_the_offer(self):
-        with patch.multiple(render, FOUNDING_OPEN=True, SALE_NAME="Launch price",
-                            FOUNDING_NOW="$12.34", FOUNDING_END_DAY="a last day",
+        with patch.multiple(render, FOUNDING_OPEN=True, SALE_NAME="Black Friday sale",
+                            FOUNDING_NOW="$12.34", FOUNDING_END_DAY_US="a last day",
+                            SALE_PERCENT_OFF=23, NOVEMBER_PRICE_STR="$16",
                             FOUNDING_AFTER_DAY="a next day", LATER_STR="$56", PRICE_STR="$78"):
             self.assertEqual(render.founding_price_sentence(),
-                             "Launch price: $12.34 once, through a last day. From a next day: $56.")
+                             "Black Friday sale: $12.34 once, 23% off our November price of $16, through a last day. Then $56.")
         with patch.object(render, "FOUNDING_OPEN", False):
             self.assertEqual(render.founding_price_sentence(), "")
-            self.assertNotIn("Launch price", render.buy_strip("test"))
+            self.assertNotIn(render.SALE_NAME, render.buy_strip("test"))
             self.assertNotIn("data-founding-until", render.buy_strip("test"))
 
     def test_guide_strip_and_faqs_use_the_exact_offer(self):
@@ -101,7 +102,8 @@ class SitewideCopyTests(unittest.TestCase):
                 strips += 1
                 self.assertIn(line, visible(strip), str(path))
                 self.assertIn(render.FOUNDING_UNTIL, strip, str(path))
-                self.assertIn(f"<code>{render.FOUNDING_CODE}</code>", strip, str(path))
+                self.assertIn(render.CHECKOUT_HELP, strip, str(path))
+                self.assertNotIn(render.FOUNDING_CODE, strip, str(path))
             self.assertNotRegex(visible(raw), r"at the launch price until|launch price \$")
         self.assertGreater(strips, 0)
         for rel in ("index.html", "for/agencies/index.html", "for/saas/index.html"):

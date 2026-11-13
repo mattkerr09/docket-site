@@ -4,8 +4,8 @@
     python3 scripts/verify_founding_offer.py              # the built site (deploy.sh runs it)
     python3 scripts/verify_founding_offer.py --self-test
 
-WHY. The CEO's 11 November 2026 read-back confirms FOUNDINGDOCKET takes a flat 950 cents off this product
-and still expires at 2026-12-01T07:59:59Z. Every founding-price line, the auto-applied code and the ads must
+WHY. The CEO's 13 November 2026 read-back confirms FOUNDINGDOCKET takes a flat 1901 cents off this product
+and still expires at 2026-12-03T07:59:59Z. Every founding-price line, the auto-applied code and the ads must
 switch off by then. render.py builds the
 founding lines only while founding_open(), and the page removes its own at the moment. This is the other half: a
 deploy that would still show the founding price once the code has expired, or once Dodo's times_used has reached its
@@ -60,15 +60,15 @@ def shows_founding(name: str, text: str, price: str, code: str) -> str:
     elif name.endswith("offer.json"):
         return "a founding block in offer.json" if (json.loads(text) or {}).get("founding") else ""
     elif name.endswith(".txt"):
-        seen = text
+        seen = visible(text)
     else:
         return ""
     for needle in (code, price):
         if needle in seen:
             return f"{needle!r} in its text"
     # The bundle's "while founding prices last" and any other founding-price sentence without the figure.
-    if re.search(r"founding price|black friday price|launch price", seen, flags=re.I):
-        return "'founding price', 'launch price' or 'Black Friday price' in its text"
+    if re.search(r"founding price|black friday (?:price|sale)|launch price", seen, flags=re.I):
+        return "'founding price', 'launch price' or 'Black Friday price/sale' in its text"
     return ""
 
 
@@ -80,6 +80,13 @@ def problems(files: dict, dodo, now: dt.datetime, ends_at: str, price: str, code
     (CEO, 2026-11-02: "for the first 25 buyers" with no date, while the code ends on a fixed day).
     A line giving the price from `after_day` also dates the offer."""
     fails, notes = [], []
+    for name, text in sorted(files.items()):
+        if name.endswith((".html", ".txt")):
+            seen = visible(text)
+            if re.search(r"\bfounding\b", seen, re.I):
+                fails.append(f"/{name}: visible FOUNDING is forbidden")
+            if re.search(re.escape(code), seen, re.I):
+                fails.append(f"/{name}: visible {code} is forbidden")
     shown = [(n, why) for n, t in sorted(files.items()) if (why := shows_founding(n, t, price, code))]
     expires = when(ends_at)
     if isinstance(dodo, dict):
@@ -114,11 +121,12 @@ def problems(files: dict, dodo, now: dt.datetime, ends_at: str, price: str, code
         notes.append(f"{len(shown)} built file(s) show the founding offer, which is open")
         if end_day:
             def dated(text: str) -> bool:
-                low = text.lower()
-                return f"until {end_day}".lower() in low or bool(after_day and f"from {after_day}".lower() in low)
+                low = " ".join(text.lower().split())
+                return any(f"{word} {end_day}".lower() in low for word in ("until", "through")) or bool(
+                    after_day and f"from {after_day}".lower() in low)
             undated = [n for n, t in sorted(files.items())
-                       if (n.endswith((".html", ".txt")) and price in (visible(t) if n.endswith(".html") else t)
-                           and not dated(visible(t) if n.endswith(".html") else t))]
+                       if (n.endswith((".html", ".txt")) and price in visible(t)
+                           and not dated(visible(t)))]
             if undated:
                 fails.append(f"{len(undated)} built file(s) show the founding price without its end date "
                              f"(\"until {end_day}\"); first: " + ", ".join(f"/{n}" for n in undated[:5]))
@@ -152,7 +160,7 @@ def read_dodo(code: str):
 def self_test() -> int:
     price, code, ends = "$174.50", "FOUNDINGDOCKET", "2026-11-25T01:26:53Z"
     before, after = when("2026-11-24T12:00:00Z"), when("2026-11-25T01:26:53Z")
-    page = ('<html><body><p class="founding-note" data-founding-until="x">Founding price <strong>$174.50 once</strong>'
+    page = ('<html><body><p class="founding-note" data-founding-until="x">Black Friday sale <strong>$174.50 once</strong>'
             '</p><div data-founding data-now="$174.50" hidden></div></body></html>')
     plain = "<html><body><p>Docket is $349 once.</p><script>// was recorded at $349 while paying $174.50.</script></body></html>"
     open_rec = {"code": code, "usage_limit": 25, "times_used": 3, "expires_at": ends}
@@ -192,6 +200,16 @@ def self_test() -> int:
                     "30 November", "1 December")[0], "the Black Friday line without a date fails"
     named = "<html><body><p>The Black Friday price ends soon.</p></body></html>"
     assert fails({"index.html": named}, open_rec, after), "'Black Friday price' counts as showing the offer"
+    through = page.replace("once</strong>", "once</strong>, through November 24")
+    assert fails({"index.html": through}, open_rec, before, ends, "November 24") == [], "US through date passes"
+    for name in ("index.html", "llms.txt"):
+        for banned in ("FOUNDING", "Founding", "founding", code, code.lower()):
+            assert any("visible" in f for f in fails({name: f"<p>{banned}</p>"}, open_rec, before)), banned
+        hidden = (f'<script>{code} FOUNDING</script><style>founding</style><template>{code}</template>'
+                  f'<p data-founding="{code}">Plain text</p>')
+        assert fails({name: hidden}, open_rec, before) == [], "hidden names and attributes are exempt"
+    assert fails({"offer.json": json.dumps({"founding": {"code": code}})}, open_rec, before) == []
+    assert fails({"index.html": "<p>Black Friday sale ends soon.</p>"}, open_rec, after), "sale phrase counts"
     print("FOUNDING OFFER self-test ok")
     return 0
 
@@ -209,7 +227,7 @@ def main() -> int:
     else:
         dodo = read_dodo(R.FOUNDING_CODE)
     fails, notes = problems(files, dodo, dt.datetime.now(dt.timezone.utc), R.FOUNDING_ENDS_AT,
-                            R.FOUNDING_NOW, R.FOUNDING_CODE, R.FOUNDING_END_DAY, R.FOUNDING_AFTER_DAY)
+                            R.FOUNDING_NOW, R.FOUNDING_CODE, R.FOUNDING_END_DAY_US, R.FOUNDING_AFTER_DAY)
     for n in notes:
         print(f"  {n}")
     for f in fails:

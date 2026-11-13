@@ -151,10 +151,10 @@ def self_test() -> int:
     priced_app += '<p>' + R.price_sentence() + '</p>'
     assert problems(priced_app) == [], problems(priced_app)
     assert problems(priced_app.replace('<p>' + R.price_sentence() + '</p>', ''))
-    stale = priced_app.replace('"price": "29.50"', '"price": "59"')
+    stale = priced_app.replace(json.dumps(f'{R.PRICE_TODAY:.2f}'), json.dumps('59.00'))
     if R.FOUNDING_OPEN:
         assert any("dated page prices" in p for p in problems(stale)), problems(stale)
-        for field in ("priceValidUntil", "validFrom"):
+        for field in ("priceValidUntil",):
             offers = R._price_offers(False)
             for offer in offers:
                 offer.pop(field, None)

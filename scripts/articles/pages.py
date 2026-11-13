@@ -26,7 +26,7 @@ from render import (MS_STORE, _human_date, bundle_link, windows_waitlist, window
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
     LINUX, LINUX_NAME, LINUX_SIZE, N_CHECKS, N_LANES, PRICE_COMPACT, PROCESSOR,
     RELEASE, SELLER, SELLER_REG_NO, SUMS, price_note_html, render,
-    seller_address, buy_block, founding_price_sentence, FOUNDING_OPEN, SUPPORT_EMAIL, SELLER_CITY,
+    seller_address, buy_block, founding_price_sentence, FOUNDING_OPEN, FOUNDING_ENDS_AT, FOUNDING_END_DAY_US, FOUNDING_AFTER_DAY, SUPPORT_EMAIL, SELLER_CITY,
 )
 
 CLI_LABEL = (f'<code>{CLI}</code> (the old name, <code>docket</code>, still works)'
@@ -49,10 +49,11 @@ _FREE_RUN = _json.loads((Path(__file__).resolve().parent.parent.parent / "data" 
 
 # Enable only after J5's MailerLite forwarding and confirmation email are live.
 EMAIL_BOX_ENABLED = False
-_REMINDER_LAST_DAY = _dt.date(2026, 11, 30)
+_REMINDER_LAST_DAY = (_dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00"))
+                      - _dt.timedelta(hours=10)).date()
 _EMAIL_CORRECTED = _dt.date(2026, 11, 8)
-_REMINDER_PROMISE = ("Not ready today? We'll email you to confirm, and once more the day before the launch "
-                     "price ends on 30 November. Then we delete your address.")
+_REMINDER_PROMISE = ("Not ready today? We'll email you to confirm, and once more the day before the sale "
+                     f"ends on {FOUNDING_END_DAY_US}. Then we delete your address.")
 _NEWS_PROMISE = ("New checks in the connector and the app, about once a month. "
                  "Every email has a one-click unsubscribe.")
 
@@ -68,7 +69,7 @@ function subscribedOk(status, bodyText) {
   var message = card.querySelector('[role="status"]');
   var button = form.querySelector('[type="submit"]');
   function offer() {
-    var news = new Date().toISOString().slice(0, 10) > '2026-11-30';
+    var news = new Date().toISOString().slice(0, 10) > '__REMINDER_LAST_DAY__';
     form.elements.source.value = news ? 'docket-news' : 'docket-price-reminder';
     card.querySelector('[data-promise]').textContent = news ? __NEWS__ : __REMINDER__;
     button.textContent = news ? 'Keep me posted' : 'Remind me';
@@ -101,7 +102,7 @@ function subscribedOk(status, bodyText) {
     } finally { button.disabled = false; }
   });
 })();
-""".replace("__NEWS__", _json.dumps(_NEWS_PROMISE)).replace("__REMINDER__", _json.dumps(_REMINDER_PROMISE))
+""".replace("__REMINDER_LAST_DAY__", _REMINDER_LAST_DAY.isoformat()).replace("__NEWS__", _json.dumps(_NEWS_PROMISE)).replace("__REMINDER__", _json.dumps(_REMINDER_PROMISE))
 
 
 def email_box(today: _dt.date | None = None) -> str:
@@ -147,14 +148,14 @@ def _email_privacy() -> str:
                "We will switch the boxes on only when the email service can send a confirmation first. "
                "Until then they collect nothing.")
     return f"""
-<p>{state} When enabled, until 30 November 2026 the box offers a confirmation email and one reminder the day
-before the launch price ends, on the price-reminder list. From 1 December it offers news
+<p>{state} When enabled, through {FOUNDING_END_DAY_US} the box offers a confirmation email and one reminder the day
+before the sale ends, on the price-reminder list. From {FOUNDING_AFTER_DAY} it offers news
 about new checks about once a month, on the separate news list. Asking for a reminder
 does not sign you up for news.</p>
 <p>Nothing is sent unless you type an address and press the button. Then the address and the name of the list
 go to <code>kerr-subscribe.kerrco.workers.dev</code>, a server we run. It keeps the address, the list name,
 the site name and the date, and nothing about your device. {sending} The reminder list is deleted on
-1 December 2026. To be removed sooner, use the unsubscribe link or <a href="/contact/">ask</a>, and the row
+{FOUNDING_AFTER_DAY}. To be removed sooner, use the unsubscribe link or <a href="/contact/">ask</a>, and the row
 is deleted. News addresses are kept until you unsubscribe.</p>
 <p>Until {_EMAIL_CORRECTED.day} {_EMAIL_CORRECTED:%B %Y} this section said the home page had one email field;
 by then no page had one.</p>
@@ -568,7 +569,7 @@ is gone.</p>
                else f"Download Docket for Mac: {PRICE_COMPACT}"),
         # Two downloads have two sizes, so with Intel the description names neither.
         desc=((f"Docket SEO for {MACOS}+ on {MAC_HW} and 64-bit Windows. "
-               "No account. Reports stay on your computer. The CLI exits non-zero on a critical issue.") if WINDOWS else
+               "No account. Reports stay on your computer. CLI exits non-zero on critical issues.") if WINDOWS else
               (f"Docket for {MACOS}+ on {MAC_HW}. "
                + ("No account" if INTEL else f"{DMG_SIZE}, no account")
                + ". Reports stay on your computer. Includes the CLI, which exits non-zero on a critical "
@@ -781,7 +782,7 @@ claims everything invites the client to test the claim.</p>
         cat="for", slug="agencies",
         title=f"White-label SEO audit tool for agencies ({year})",
         modified="2026-11-05",  # report branding (1.3.147), and the white-label pass above
-        desc=(f"{_R.price_sentence()} Put your agency's name and logo on audit reports. Unlimited sites."),
+        desc=(f"{_R.price_sentence()} Your name and logo on audit reports. Unlimited sites."),
         h1="A white-label SEO audit tool for agencies",
         crumb='<a href="/">Docket</a> / <a href="/for/">For you</a> / Agencies',
         body=body,
@@ -2211,8 +2212,8 @@ from this site's releases on GitHub, and nothing installs without you saying yes
 turns the check off.</li>
 <li><strong>The offer, to this website and to our offer server.</strong> Only on a copy with no
 licence key, and only while its activation screen is open, the app asks
-<code>docketseo.app/offer.json</code> for the current price and any founding offer, and asks
-<code>kerr-lead-agent.kerrco.workers.dev</code>, a server we run, whether the founding offer is still
+<code>docketseo.app/offer.json</code> for the current price and any sale, and asks
+<code>kerr-lead-agent.kerrco.workers.dev</code>, a server we run, whether the sale is still
 open, sending only this site&rsquo;s name. That is how it avoids showing an offer that has ended.
 Nothing else is sent. With &ldquo;Keep it private&rdquo; ticked in the crawl settings it asks
 neither, and shows the list price alone. Buy opens our buy page in your browser.</li>
@@ -2318,7 +2319,7 @@ into it, that question is sent to that server so it can be answered; if you neve
 nothing is sent. It knows only published facts about Docket, and the price it quotes comes from
 the payment provider rather than from this page, so it cannot quote you a price the checkout
 will not honour.</p>
-<p>The third is on the front page only: the founding-offer bar across the top of the
+<p>The third is on the front page only: the sale bar across the top of the
 page, loaded from <code>kerr-lead-agent.kerrco.workers.dev</code>, the same server as the
 assistant. When the page loads it asks that server whether the offer is still open, and the only
 thing it sends is this site's name. If you close the bar, the time you closed it is kept in your
@@ -2349,7 +2350,7 @@ other way and it does nothing at all.</p>
 <p>These paragraphs have been rewritten three times as the answer changed. They once said the
 site &ldquo;sets no cookies&rdquo; and runs &ldquo;one third-party script&rdquo;; both were true
 until Sled was added. The line calling Sled the only thing here that can set a cookie was true
-until Meta's advertising tracker was added. The count said three until the chat assistant was added, and the description on this page still said three after the body said four. Our own audit caught that, and it was corrected to five, which is when the Windows form on the front page was counted too. It said five while the front page loaded six: the founding-offer bar was missed until a count of every script on every built page was checked against this list, and that count now runs before every deploy. It said six
+until Meta's advertising tracker was added. The count said three until the chat assistant was added, and the description on this page still said three after the body said four. Our own audit caught that, and it was corrected to five, which is when the Windows form on the front page was counted too. It said five while the front page loaded six: the sale bar was missed until a count of every script on every built page was checked against this list, and that count now runs before every deploy. It said six
 until the click-counting script was added on every page. It went back to five on 2 November 2026,
 when Sled was retired; affiliate credit is kept by the click-counting script, without a cookie. It
 went to four four days later, when Meta's advertising tracker was removed: it sent every visit

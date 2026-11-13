@@ -11,11 +11,7 @@ import render as R
 
 
 def answer_values() -> dict:
-    price_words = (
-        f"{R.SALE_NAME}: {R.FOUNDING_NOW} once, through {R.FOUNDING_END_DAY}. "
-        f"From {R.FOUNDING_AFTER_DAY}: {R.LATER_STR}."
-        if R.FOUNDING_OPEN else f"{R.PRICE_STR}, paid once."
-    )
+    price_words = R.price_sentence()
     return {
         "PRICE_WORDS": price_words,
         "PRICE_CLAIM": price_words if R.FOUNDING_OPEN else f"Docket is {R.PRICE_STR}, paid once",
@@ -39,7 +35,7 @@ def question_answer(item: dict, *, brief: bool = False) -> tuple[str, str]:
     template = item.get("help_answer", item["answer"]) if brief else item["answer"]
     answer = escape(template.format_map(answer_values()))
     if "{PRICE_WORDS}" in template and R.FOUNDING_OPEN:
-        launch = escape(f"{R.SALE_NAME}: {R.FOUNDING_NOW} once, through {R.FOUNDING_END_DAY}.")
+        launch = escape(R.founding_price_sentence())
         answer = answer.replace(launch, f'<span{R.FOUNDING_UNTIL}>{launch}</span>', 1)
     source = escape(item["source"]["source_path"], quote=True)
     return escape(item["question"]), f'{answer} <a href="{source}">More: full guide</a>'

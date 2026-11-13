@@ -48,7 +48,7 @@ def check_built(root):
             answer = item[field].format_map(values)
             assert not re.search(r"\d|\$", item[field]), item["id"]
             assert set(re.findall(r"\d+(?:\.\d+)*", answer)) <= constant_numbers, item["id"]
-            assert not FORBIDDEN.search(answer), item["id"]
+            assert not FORBIDDEN.search(answer.replace(R.founding_price_sentence(), "")), item["id"]
             assert not any(dash in answer for dash in ("\u2014", "\u2013")), item["id"]
             assert 2 <= len(re.split(r"(?<=[.!?])\s+(?=[A-Z])", answer)) <= 4, item["id"]
         source = item["source"]
@@ -75,7 +75,7 @@ def check_built(root):
         descriptions = [attrs["content"] for tag, attrs in page.tags
                         if tag == "meta" and attrs.get("name") == "description"]
         assert len(descriptions) == 1 and 0 < len(descriptions[0]) <= 165, route
-        assert not FORBIDDEN.search(words(raw)), route
+        assert not FORBIDDEN.search(words(raw).replace(R.founding_price_sentence(), "")), route
         assert "\u2014" not in words(raw) and "\u2013" not in words(raw), route
         canonical = [attrs["href"] for tag, attrs in page.tags
                      if tag == "link" and attrs.get("rel") == "canonical"]
@@ -125,7 +125,7 @@ def check_built(root):
     expected = f'{R._usd(apart)} bought apart, {R._usd(bundle["standard_price"])} together.'
     assert expected in words(pricing)
     if R.FOUNDING_OPEN:
-        launch_apart = apart * (100 - bundle["founding_pct"]) / 100
+        launch_apart = (apart * 100 - sum(bundle["sale_off_cents"].values())) / 100
         expected = (f'{R._usd(launch_apart)} bought apart, '
                     f'{R._usd(bundle["founding_price"])} together.')
         assert expected in words(pricing)
@@ -136,7 +136,7 @@ def check_built(root):
     with patch.object(R, "FOUNDING_OPEN", False):
         closed_answer = help_pages.question_answer(quick["price"])[1]
         assert R.FOUNDING_NOW not in closed_answer
-        assert f"{R.PRICE_STR}, paid once." in closed_answer
+        assert R.price_sentence() in closed_answer
     import datetime
     import importlib
     builder = importlib.import_module("build")

@@ -15,6 +15,7 @@ from unittest.mock import patch
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import brand
+import facts
 import render
 from articles import pages
 from test_rename_brand import CONTENT_UPDATED
@@ -33,6 +34,11 @@ class Metadata(HTMLParser):
             self.values[attrs.get("name", attrs.get("property"))] = attrs.get("content", "")
 
 
+def is_verification(page, raw):
+    return (re.fullmatch(r"google[0-9a-f]+\.html", page.name) is not None
+            and raw.strip() == f"google-site-verification: {page.name}")
+
+
 class ReviewCopyTests(unittest.TestCase):
     def raw(self, route):
         return (render.SITE / route / "index.html").read_text()
@@ -48,15 +54,25 @@ class ReviewCopyTests(unittest.TestCase):
     @unittest.skipUnless(brand.SITE_BRAND == "checkengine", "Check Engine copy limits")
     def test_all_indexable_descriptions_and_faq_answers(self):
         checked = 0
+        check_answers = {f"checks/{row['slug']}/index.html": brand.text(row["answer"])
+                         for row in facts.check_pages()["rows"]}
         for page in render.SITE.rglob("*.html"):
             raw = page.read_text()
+            if is_verification(page, raw):
+                continue
             meta = Metadata(raw).values
             if "noindex" in meta.get("robots", "").lower():
                 continue
             checked += 1
             with self.subTest(page=str(page.relative_to(render.SITE))):
                 desc = meta.get("description", "")
-                self.assertGreaterEqual(len(desc), 70)
+                relative = page.relative_to(render.SITE).as_posix()
+                if relative in check_answers:
+                    # Check references use their concise, source-backed answer.
+                    self.assertEqual(desc, check_answers[relative])
+                    self.assertGreaterEqual(len(desc), 40)
+                else:
+                    self.assertGreaterEqual(len(desc), 70)
                 self.assertLessEqual(len(desc), 160)
                 self.assertEqual(meta.get("og:description"), desc)
                 self.assertEqual(meta.get("twitter:description"), desc)
@@ -73,7 +89,11 @@ class ReviewCopyTests(unittest.TestCase):
     def test_visible_copy_uses_areas(self):
         for page in render.SITE.rglob("*.html"):
             with self.subTest(page=str(page.relative_to(render.SITE))):
-                raw = page.read_text().split("<body", 1)[1]
+                raw = page.read_text()
+                if is_verification(page, raw):
+                    continue
+                self.assertIn("<body", raw)
+                raw = raw.split("<body", 1)[1]
                 prose = re.sub(r"<(pre|code)\b[^>]*>.*?</\1>", " ", raw, flags=re.S | re.I)
                 prose = re.sub(r"(?:https?://|www\.|/)\S+", " ", visible(prose))
                 self.assertNotRegex(prose, re.compile(r"\blanes?\b", re.I))
@@ -98,8 +118,10 @@ class ReviewCopyTests(unittest.TestCase):
         for route in routes:
             with self.subTest(page=route, brand=brand.SITE_BRAND):
                 text = visible(self.raw(route).split('<main id="main">', 1)[1])
+                # Mail and the live mcp.docketseo.app address are not former page addresses.
+                human_host = re.search(r"(?<![\w@./])docketseo\.app\b", text)
                 self.assertEqual(text.count(phrase),
-                                 1 if brand.SITE_BRAND == "checkengine" else 0)
+                                 1 if brand.SITE_BRAND == "checkengine" and human_host else 0)
                 if brand.SITE_BRAND == "checkengine" and route != "ai-assistants":
                     # Ignore mail addresses and retained download URLs. The note
                     # belongs in the first paragraph or caption naming the host.
@@ -183,7 +205,7 @@ class ReviewCopyTests(unittest.TestCase):
                 if opened:
                     self.assertIn(render.founding_price_sentence(), price)
                 else:
-                    self.assertNotIn("Launch price", price)
+                    self.assertNotIn(render.SALE_NAME, price)
                     self.assertIn(render.price_sentence(), price)
                 if render.WINDOWS:
                     self.assertIn("a Windows installer of test installer size", body)

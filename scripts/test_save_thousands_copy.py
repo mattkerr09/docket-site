@@ -149,7 +149,7 @@ sys.path[:0] = ['scripts', 'scripts/articles']
 class DecemberClock(datetime.datetime):
     @classmethod
     def now(cls, tz=None):
-        return cls(2026, 12, 1, 8, tzinfo=datetime.timezone.utc).astimezone(tz)
+        return cls(2026, 12, 3, 8, tzinfo=datetime.timezone.utc).astimezone(tz)
 with patch('datetime.datetime', DecemberClock):
     import build as B
     import render as R
@@ -167,7 +167,7 @@ with patch('datetime.datetime', DecemberClock):
     price = json.loads(result.stdout)
     assert price == f"{R.PRICE_STR} once", price
     check_pages(destination / "december-site", price)
-    print("PASS normal page builders after the 1 December price change")
+    print("PASS normal page builders after the 3 December price change")
 
 
 def main():

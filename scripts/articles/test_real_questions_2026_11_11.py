@@ -509,7 +509,8 @@ class RealQuestionsTests(unittest.TestCase):
                     if text(p) == PAGESPEED_UPDATE:
                         p.children = []
                 self.assertNotRegex(normal(text(outside_quotes)), r'[()]')
-                self.assertNotRegex(value, r'(?i)Black Friday|% off|half price')
+                self.assertNotRegex(value.replace(normal(render.founding_price_sentence()), ''),
+                                    r'(?i)Black Friday|% off|half price')
                 self.assertLessEqual(value.count('Check Engine'), 6)
                 self.assertFalse(offenders({slug + '/index.html': self.raw[slug]}))
                 for a in article(doc).all('a'):

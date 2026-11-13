@@ -75,8 +75,8 @@ class ConnectorLandingTests(unittest.TestCase):
     def test_email_enabled_dates_and_placement(self):
         with patch.object(pages, "EMAIL_BOX_ENABLED", True):
             for day, source in (("2026-11-08", "docket-price-reminder"),
-                                ("2026-11-30", "docket-price-reminder"),
-                                ("2026-12-01", "docket-news")):
+                                ("2026-12-02", "docket-price-reminder"),
+                                ("2026-12-03", "docket-news")):
                 body = pages.email_box(datetime.date.fromisoformat(day))
                 tags = Markup(body).tags
                 form = next(attrs for tag, attrs in tags if tag == "form")
@@ -132,7 +132,7 @@ async function check(day, reply, success) {
   assert.equal(requests.length, 1);
   assert.equal(requests[0].options.method, 'POST');
   assert.equal(requests[0].options.credentials, 'omit');
-  assert.equal(requests[0].options.body.get('source'), day > '2026-11-30' ? 'docket-news' : 'docket-price-reminder');
+  assert.equal(requests[0].options.body.get('source'), day > '2026-12-02' ? 'docket-news' : 'docket-price-reminder');
   assert.equal(form.hidden, success);
   assert.equal(button.disabled, false);
   assert.equal(message.textContent.includes('Check your inbox'), success);
@@ -140,15 +140,15 @@ async function check(day, reply, success) {
   return context;
 }
 (async () => {
-  const ctx = await check('2026-11-30', () => ({status: 200, text: async () => '{"ok":true}'}), true);
+  const ctx = await check('2026-12-02', () => ({status: 200, text: async () => '{"ok":true}'}), true);
   assert.equal(ctx.subscribedOk(200, '{"ok":true}'), true);
   for (const [status, text] of [[500, '{"ok":true}'], [200, '{"ok":false}'],
       [0, ''], [200, 'not json'], [200, 'null'], [200, '{"ok":"true"}']])
     assert.equal(ctx.subscribedOk(status, text), false);
   for (const [status, text] of [[500, 'error'], [200, '{"ok":false}'], [200, 'not json']])
-    await check('2026-11-30', () => ({status, text: async () => text}), false);
-  await check('2026-11-30', () => { throw new Error('network failure'); }, false);
-  await check('2026-12-01', () => ({status: 200, text: async () => '{"ok":true}'}), true);
+    await check('2026-12-02', () => ({status, text: async () => text}), false);
+  await check('2026-12-02', () => { throw new Error('network failure'); }, false);
+  await check('2026-12-03', () => ({status: 200, text: async () => '{"ok":true}'}), true);
 })().catch(error => { console.error(error); process.exitCode = 1; });
 """.replace("__SOURCE__", json.dumps(pages.SUBSCRIBE_JS)))
 

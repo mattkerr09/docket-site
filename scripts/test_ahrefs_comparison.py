@@ -97,8 +97,8 @@ class AhrefsComparisonTests(unittest.TestCase):
                 patch.object(C, "CTA_LINK_EXPERIMENT", ""), \
                 patch.object(C, "PRICE_COMPACT", f"{render.PRICE_STR} once"):
             after = self.page()
-        self.assertNotIn("Launch price", after["body"])
-        self.assertNotIn("Launch price", str(after["faq"]))
+        self.assertNotIn(render.SALE_NAME, after["body"])
+        self.assertNotIn(render.SALE_NAME, str(after["faq"]))
         self.assertIn(f"{render.PRICE_STR} once", after["body"])
         self.assertNotRegex(html.unescape(page["body"]), r"[—–]")
 

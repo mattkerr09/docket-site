@@ -244,14 +244,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -265,7 +267,7 @@
       "why": "A bare promise gives a reader little to check. The test looks for a concrete claim with enough context to understand its basis.",
       "guide": "/learn/ai-search-visibility/",
       "condition": {
-        "text": "The test needs at least 3 indexable pages with at least 250 words each and a supported prose language. A page qualifies as specific only when its prose matches both a number pattern and an attribution pattern. Currency amounts and percentages can supply the number. A bare number needs at least 2 digits, with comma-grouped forms also recognised. Research wording, a founding date, a qualification or a version can supply the context. A finding appears when the share of qualifying pages is below 0.3. For example, a 250-word service page can enter the sample when it is indexable and its language is supported.",
+        "text": "The test needs at least 3 indexable pages with at least 250 words each and a supported prose language. A page qualifies as specific only when its prose matches both a number pattern and an attribution pattern. Currency amounts and percentages can supply the number. A bare number needs at least 2 digits, with comma-grouped forms also recognised. Research wording, a start date, a qualification or a version can supply the context. A finding appears when the share of qualifying pages is below 0.3. For example, a 250-word service page can enter the sample when it is indexable and its language is supported.",
         "source": {
           "file": "backend/seo_engine/checks/ai_visibility.py",
           "function": "citable_facts",
@@ -775,14 +777,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -930,7 +934,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.0019656,
+      "ownership_jaccard": 0.00213904,
       "publish": true
     },
     {
@@ -1317,14 +1321,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -1454,7 +1460,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00262055,
+      "ownership_jaccard": 0.00274725,
       "publish": true
     },
     {
@@ -2163,14 +2169,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -2336,7 +2344,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00340136,
+      "ownership_jaccard": 0.0034188,
       "publish": true
     },
     {
@@ -2651,14 +2659,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -3058,14 +3068,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -3554,14 +3566,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -3612,7 +3626,7 @@
       },
       "guide_title": "How to do a content audit",
       "review": {
-        "text": "Compare the date with the item it describes. A website launch, business founding and article update are different events, even when their values use the same date format. Keep the content date attached to its own content node and avoid borrowing a shared template date. After a genuine update, review the visible date and structured date together so that readers and markup receive the same account.",
+        "text": "Compare the date with the item it describes. A website launch, business start and article update are different events, even when their values use the same date format. Keep the content date attached to its own content node and avoid borrowing a shared template date. After a genuine update, review the visible date and structured date together so that readers and markup receive the same account.",
         "source": {
           "file": "backend/seo_engine/checks/ai_visibility.py",
           "function": "freshness_signal",
@@ -3898,14 +3912,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -4218,14 +4234,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -4449,14 +4467,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -4577,7 +4597,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00061728,
+      "ownership_jaccard": 0.0006079,
       "publish": true
     },
     {
@@ -4933,14 +4953,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -7302,14 +7324,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -7847,14 +7871,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -8368,14 +8394,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -9747,14 +9775,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -9893,7 +9923,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00163488,
+      "ownership_jaccard": 0.00162075,
       "publish": true
     },
     {
@@ -10327,14 +10357,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -10770,14 +10802,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -13751,14 +13785,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -14262,14 +14298,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -14796,14 +14834,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -15118,14 +15158,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -15968,14 +16010,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -16187,14 +16231,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -17892,14 +17938,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -18349,14 +18397,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -19432,14 +19482,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -19850,14 +19902,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -20215,14 +20269,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -20343,7 +20399,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00167224,
+      "ownership_jaccard": 0.00165746,
       "publish": true
     },
     {
@@ -20890,14 +20946,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -21188,14 +21246,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -21814,14 +21874,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -22161,14 +22223,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -22426,14 +22490,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -22729,14 +22795,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -23675,14 +23743,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -24107,14 +24177,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -25325,14 +25397,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -25768,14 +25842,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -25905,7 +25981,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00116618,
+      "ownership_jaccard": 0.0011554,
       "publish": true
     },
     {
@@ -26968,14 +27044,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -27324,14 +27402,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -27702,14 +27782,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -27857,7 +27939,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00114482,
+      "ownership_jaccard": 0.00113443,
       "publish": true
     },
     {
@@ -28639,14 +28721,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -28988,14 +29072,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -29541,14 +29627,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -30033,14 +30121,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -30546,14 +30636,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -30710,7 +30802,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00113895,
+      "ownership_jaccard": 0.00112867,
       "publish": true
     },
     {
@@ -31847,14 +31939,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -32128,14 +32222,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -32256,7 +32352,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00116822,
+      "ownership_jaccard": 0.00115741,
       "publish": true
     },
     {
@@ -32416,14 +32512,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -32544,7 +32642,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.0011383,
+      "ownership_jaccard": 0.00112803,
       "publish": true
     },
     {
@@ -32967,14 +33065,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -33203,14 +33303,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -34259,14 +34361,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -34619,14 +34723,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -34856,14 +34962,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -35388,14 +35496,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -36434,14 +36544,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -36689,14 +36801,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -37099,14 +37213,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -37359,14 +37475,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -37639,14 +37757,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -38243,14 +38363,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -38521,14 +38643,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -40432,14 +40556,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -40578,7 +40704,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00248602,
+      "ownership_jaccard": 0.00248293,
       "publish": true
     },
     {
@@ -42410,14 +42536,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -42556,7 +42684,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00242718,
+      "ownership_jaccard": 0.00242424,
       "publish": true
     },
     {
@@ -44893,14 +45021,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -45030,7 +45160,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00244948,
+      "ownership_jaccard": 0.00244648,
       "publish": true
     },
     {
@@ -48068,14 +48198,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -48223,7 +48355,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00245399,
+      "ownership_jaccard": 0.00245098,
       "publish": true
     },
     {
@@ -50627,14 +50759,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -50764,7 +50898,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00114416,
+      "ownership_jaccard": 0.00113379,
       "publish": true
     },
     {
@@ -53042,14 +53176,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -53507,14 +53643,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -54284,14 +54422,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -54695,14 +54835,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -55042,14 +55184,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -55382,14 +55526,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -55610,14 +55756,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -56029,14 +56177,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -56166,7 +56316,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00251889,
+      "ownership_jaccard": 0.00251572,
       "publish": true
     },
     {
@@ -56481,14 +56631,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -56954,14 +57106,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -57382,14 +57536,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -57528,7 +57684,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00245399,
+      "ownership_jaccard": 0.00245098,
       "publish": true
     },
     {
@@ -57634,14 +57790,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -58382,14 +58540,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -58913,14 +59073,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -59226,14 +59388,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -59522,14 +59686,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -59892,14 +60058,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -60142,14 +60310,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -60270,7 +60440,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00126823,
+      "ownership_jaccard": 0.00126662,
       "publish": true
     },
     {
@@ -60437,14 +60607,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -60565,7 +60737,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.0018622,
+      "ownership_jaccard": 0.00185989,
       "publish": true
     },
     {
@@ -61097,14 +61269,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -61252,7 +61426,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00174115,
+      "ownership_jaccard": 0.00173913,
       "publish": true
     },
     {
@@ -62268,14 +62442,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -63152,14 +63328,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -63535,14 +63713,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -64158,14 +64338,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -64515,14 +64697,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -64947,14 +65131,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -65344,14 +65530,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -66137,14 +66325,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -66539,14 +66729,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -66757,14 +66949,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -66885,7 +67079,7 @@
         "scope": "area only, not this check"
       },
       "owner": null,
-      "ownership_jaccard": 0.00420168,
+      "ownership_jaccard": 0.0041958,
       "publish": true
     },
     {
@@ -67422,14 +67616,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
@@ -67719,14 +67915,16 @@
       },
       "presentation": {
         "numbers": [
-          "1",
           "11",
           "12",
+          "19.99",
+          "2",
           "2026",
           "29.50",
+          "3",
           "30",
+          "32",
           "39",
-          "59",
           "64"
         ],
         "source": {
