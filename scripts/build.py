@@ -1665,6 +1665,33 @@ def stamp_build_id() -> str:
     return build_id
 
 
+def add_chatgpt_app_links() -> None:
+    """Add the ChatGPT entry points before sitemap fingerprints are computed."""
+    app_url = "https://chatgpt.com/plugins/plugin_asdk_app_6aef6b89f90481919a4b2260f5bb14d1"
+    line = '<a href="/ai-assistants/">Also inside ChatGPT: check any page from a chat.</a>'
+    assistants_marker = "<h2>From one page to the whole site</h2>"
+    home_marker = "  title, meta tag and structured data checks.</p>"
+    download_marker = "in each area, to send to a client or a colleague.</p>"
+    additions = (
+        ("ai-assistants/index.html", assistants_marker,
+         '<h2>Use it inside ChatGPT</h2>\n'
+         '<p>Check Engine SEO needs no account and runs five read-only checks on one page, covering '
+         'SEO score and top fix, AI crawler access, redirects, headers, and snippet preview.</p>\n'
+         f'<p><a class="btn" href="{app_url}" rel="noopener">Add Check Engine to ChatGPT</a></p>\n\n'
+         + assistants_marker),
+        ("index.html", home_marker,
+         home_marker + f'\n  <p class="sec-sub">{line}</p>'),
+        ("download/index.html", download_marker,
+         download_marker + f'\n<p>{line}</p>'),
+    )
+    for relative, marker, replacement in additions:
+        page = SITE / relative
+        raw = page.read_text(encoding="utf-8")
+        if raw.count(marker) != 1:
+            raise ValueError(f"{relative}: expected one ChatGPT insertion marker")
+        page.write_text(raw.replace(marker, replacement, 1), encoding="utf-8")
+
+
 def main() -> int:
     pages: list[Path] = [home.build(), index_page.build(), checks_page()]
     pages += comparisons.build_all()
@@ -1799,6 +1826,7 @@ def main() -> int:
     write_robots()
     write_llms_txt()
     write_offer()
+    add_chatgpt_app_links()
     write_sitemap(pages)
     write_static()
     stamp_competitor_claims(pages)
