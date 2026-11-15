@@ -1553,7 +1553,7 @@
  },
  "learn/internal-link-equity/index.html": {
   "date": "2026-11-15",
-  "hash": "575205b2acb96bde"
+  "hash": "31d2bfbc9574e555"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-11-13",
@@ -1692,48 +1692,52 @@
   "hash": "34bf2edaaaccd581"
  },
  "tools/ai-crawler-checker/index.html": {
-  "date": "2026-11-13",
-  "hash": "fd8dadc65b0a2845"
+  "date": "2026-11-15",
+  "hash": "d30856a2a519129f"
  },
  "tools/http-header-checker/index.html": {
-  "date": "2026-11-13",
-  "hash": "4b7661af8032104f"
+  "date": "2026-11-15",
+  "hash": "9776ad6aba37f3df"
  },
  "tools/index.html": {
-  "date": "2026-11-13",
-  "hash": "426b3a957c5adf48"
+  "date": "2026-11-15",
+  "hash": "2b39d5b82c7a2696"
  },
  "tools/json-ld-checker/index.html": {
-  "date": "2026-11-13",
-  "hash": "15b253234497d46f"
+  "date": "2026-11-15",
+  "hash": "2284ba6399ea1a99"
+ },
+ "tools/llms-txt-generator/index.html": {
+  "date": "2026-11-15",
+  "hash": "9a7f09ab54f8af01"
  },
  "tools/meta-tag-checker/index.html": {
-  "date": "2026-11-13",
-  "hash": "d012b7b64e0e532d"
+  "date": "2026-11-15",
+  "hash": "de533ea789a80635"
  },
  "tools/redirect-checker/index.html": {
-  "date": "2026-11-13",
-  "hash": "d9d0a5cff8479b9f"
+  "date": "2026-11-15",
+  "hash": "8280b5c9d33c2bd5"
  },
  "tools/robots-txt-tester/index.html": {
-  "date": "2026-11-13",
-  "hash": "cf4877d07db46a87"
+  "date": "2026-11-15",
+  "hash": "d3164a33f6663cc6"
  },
  "tools/seo-checker/index.html": {
-  "date": "2026-11-13",
-  "hash": "727c8b66fa617e82"
+  "date": "2026-11-15",
+  "hash": "c14d9f166c95fa29"
  },
  "tools/serp-preview/index.html": {
-  "date": "2026-11-13",
-  "hash": "2ad8231dbb03adaf"
+  "date": "2026-11-15",
+  "hash": "0712ba295d047116"
  },
  "tools/title-ii-date/index.html": {
-  "date": "2026-11-13",
-  "hash": "5def5036d6cfd38a"
+  "date": "2026-11-15",
+  "hash": "280511541fd6bd50"
  },
  "tools/website-checker/index.html": {
-  "date": "2026-11-13",
-  "hash": "92b7a896e9f399a0"
+  "date": "2026-11-15",
+  "hash": "73bb097623d1f9a5"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
   "date": "2026-11-13",
