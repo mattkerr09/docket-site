@@ -1,7 +1,7 @@
 {
   "site": "checkengineseo.com",
   "pages": 452,
-  "edges": 14396,
+  "edges": 14398,
   "average_share_pct": 0.22,
   "below_half": 418,
   "nodes": [
@@ -19,9 +19,9 @@
     },
     {
       "path": "/ai-assistants/",
-      "inlinks": 1,
-      "share_pct": 0.01,
-      "index": 0.05
+      "inlinks": 3,
+      "share_pct": 0.02,
+      "index": 0.09
     },
     {
       "path": "/ai-crawlers/",
@@ -2718,5 +2718,5 @@
       "index": 0.18
     }
   ],
-  "measured": "2026-11-12"
+  "measured": "2026-11-15"
 }
