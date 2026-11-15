@@ -294,6 +294,7 @@ arrives with your receipt.{buy_block("download-steps", sample=True, big=True, sa
 Buy from inside the app and the audit you ran opens in full.
 The free version also saves a <a href="/score-card/">score card</a> of any audit: one picture with the score and the problems
 in each area, to send to a client or a colleague.</p>
+<p><a href="/ai-assistants/">Also inside ChatGPT: check any page from a chat.</a></p>
 {windows_waitlist("download")}
 
 <p class="lede">{_R.price_sentence()} For {MACOS} or later on {MAC_HW}{' and for 64-bit Windows' if WINDOWS else ''}.
