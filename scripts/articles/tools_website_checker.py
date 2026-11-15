@@ -21,6 +21,12 @@ CHECKER_JS = r"""
   const button = form.querySelector('button');
   const result = document.getElementById('website-result');
   const next = document.getElementById('checker-next');
+  const copy = document.getElementById('website-copy');
+  const copyStatus = document.getElementById('website-copy-status');
+  const fallback = document.getElementById('website-copy-fallback');
+  const copyText = document.getElementById('website-copy-text');
+  let summary = '';
+  let copyVersion = 0;
 
   function el(id) { return document.getElementById(id); }
   function addText(parent, tag, text) {
@@ -29,6 +35,42 @@ CHECKER_JS = r"""
     parent.appendChild(node);
     return node;
   }
+
+  function resetCopy() {
+    summary = '';
+    copyVersion += 1;
+    copy.hidden = true;
+    copy.disabled = true;
+    copyStatus.textContent = '';
+    fallback.hidden = true;
+    copyText.value = '';
+  }
+
+  copy.addEventListener('click', async function () {
+    if (!summary || result.hidden || copy.disabled) return;
+    const text = summary;
+    const version = copyVersion;
+    copy.disabled = true;
+    copyStatus.textContent = '';
+    fallback.hidden = true;
+    copyText.value = '';
+    try {
+      if (!navigator.clipboard || typeof navigator.clipboard.writeText !== 'function') {
+        throw new Error('clipboard');
+      }
+      await navigator.clipboard.writeText(text);
+      if (version === copyVersion) copyStatus.textContent = 'Copied.';
+    } catch (error) {
+      if (version !== copyVersion) return;
+      copyText.value = text;
+      fallback.hidden = false;
+      copyText.focus();
+      copyText.select();
+      copyStatus.textContent = 'Copy the selected text below.';
+    } finally {
+      if (version === copyVersion) copy.disabled = false;
+    }
+  });
 
   if (!window.fetch) {
     status.textContent = 'This browser cannot run the checker. Try a newer browser.';
@@ -40,6 +82,7 @@ CHECKER_JS = r"""
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
     if (button.disabled) return;
+    resetCopy();
     result.hidden = true;
     next.hidden = true;
     const value = input.value.trim();
@@ -103,14 +146,20 @@ CHECKER_JS = r"""
       el('website-clean').textContent = issues.length ? '' : (count
         ? 'No issues were found by this quick check on the pages read.'
         : 'No pages were read, so there are no page findings to show.');
+      // Keep only the plain text just put on screen, with the same display limits.
+      const lines = ['website-heading', 'website-scope', 'website-limit', 'website-clean']
+        .map(function (id) { return el(id).textContent; }).filter(Boolean);
       const findings = el('website-issues');
       findings.replaceChildren();
       issues.forEach(function (issue) {
         const item = addText(findings, 'li', /^[0-9]+ of /.test(issue.label) ? issue.label : issue.count + ' of ' + issue.of + ' pages ' + issue.label);
+        lines.push(item.textContent);
         if (issue.examples && issue.examples.length) {
           const paths = document.createElement('p');
           paths.className = 'table-note trace-url';
-          issue.examples.slice(0, 3).forEach(function (path) { addText(paths, 'code', path); });
+          issue.examples.slice(0, 3).forEach(function (path) {
+            lines.push(addText(paths, 'code', path).textContent);
+          });
           item.appendChild(paths);
         }
       });
@@ -118,6 +167,10 @@ CHECKER_JS = r"""
       fine.replaceChildren();
       data.fine.slice(0, 5).forEach(function (item) { addText(fine, 'li', item.label); });
       el('website-fine-heading').hidden = !fine.children.length;
+      if (fine.children.length) {
+        lines.push(el('website-fine-heading').textContent);
+        Array.from(fine.children).forEach(function (item) { lines.push(item.textContent); });
+      }
       el('website-robots').textContent = (data.robots.found
         ? 'We found robots.txt.' : 'We did not find robots.txt.') + ' ' +
         (data.robots.sitemap_found ? 'We found a sitemap.' : 'We did not find a sitemap.') +
@@ -128,10 +181,18 @@ CHECKER_JS = r"""
       next.hidden = false;
       status.textContent = data.from_cache
         ? 'Done. This summary was checked within the last hour.' : 'Done. Your quick check is ready.';
+      lines.push(el('website-robots').textContent);
+      if (data.from_cache) lines.push(status.textContent);
+      if (count > 0) {
+        summary = lines.join('\n');
+        copy.hidden = false;
+        copy.disabled = false;
+      }
       if (window.plausible) window.plausible('Checker', {
         props: { tool: 'website', issues: String(issues.length) }
       });
     } catch (error) {
+      resetCopy();
       status.textContent = timedOut
         ? 'The check took longer than 45 seconds, so we stopped waiting. Try again in a minute.'
         : 'The checker could not be reached. Check your connection and try again in a minute.';
@@ -158,6 +219,10 @@ def website_checker() -> Path:
 #website-issues>li{{padding:.8rem 0;border-bottom:1px solid var(--border)}}
 #website-issues p{{margin:.4rem 0 0}}
 #website-issues code{{display:inline-block;margin-right:.6rem;overflow-wrap:anywhere}}
+#website-copy[hidden]{{display:none}}
+#website-copy-text{{display:block;width:100%;box-sizing:border-box;padding:.7rem .85rem;
+  border-radius:var(--radius-md);border:1px solid var(--border-strong);background:var(--surface-2);
+  color:var(--text);font:inherit;resize:vertical}}
 </style>
 <p class="lede">Find the top issues across up to 25 pages of your website. Type your address
 and allow about 30 seconds. You will see how many pages each issue affects, with paths you can
@@ -168,11 +233,18 @@ look at first. Free, with no account.</p>
 <section class="tool-out" id="website-result" aria-labelledby="website-heading" aria-busy="false" hidden>
   <h2 id="website-heading"></h2>
   <p id="website-scope" class="trace-url"></p>
+  <p id="website-limit" class="table-note">The result covers only the pages read. A short check can miss pages and issues that a full crawl finds.</p>
   <p id="website-clean"></p>
   <ol class="findings" id="website-issues"></ol>
   <h3 id="website-fine-heading">What looked fine</h3>
   <ul id="website-fine"></ul>
   <p class="table-note" id="website-robots"></p>
+  <button class="btn-ghost" type="button" id="website-copy" hidden disabled>Copy this summary</button>
+  <p class="checker-status" id="website-copy-status" role="status" aria-live="polite"></p>
+  <div id="website-copy-fallback" hidden>
+    <label for="website-copy-text">Summary to copy</label>
+    <textarea id="website-copy-text" rows="10" readonly></textarea>
+  </div>
 </section>
 {audit_next('tools-website-checker', what='a quick check', own=True,
             summary='Get the fixes in order, with the page and the change to make. '
