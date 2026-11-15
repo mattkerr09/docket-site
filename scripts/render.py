@@ -2652,6 +2652,12 @@ def nofollow_hub_links(html: str) -> str:
     return _HUB_LINK.sub(fix, html)
 
 
+def tool_app_callout() -> str:
+    """The same visible next step on every free tool page."""
+    return ('<p class="tool-step-up" data-tool-app>'
+            '<a href="/download/">Check the whole site in the free Check Engine SEO app</a>.</p>')
+
+
 def render(
     *,
     cat: str,
@@ -2680,6 +2686,8 @@ def render(
     #: names itself canonical: /pricing/, which people and assistants guess.
     #: The 404 and the redirect stubs keep neither (see not_found()).
     self_canonical: bool = False,
+    #: Local generators omit analytics, widgets and remote offer scripts.
+    browser_only: bool = False,
 ) -> Path:
     """Write one page. `body` is the caller's authored HTML — never generated here."""
     # THE END OF A PAGE IS A BUY PATH, NOT A DOWNLOAD. Fifty-seven generators
@@ -2867,8 +2875,8 @@ def render(
 <meta name="twitter:image" content="{BASE}/og.png?v={OG_VERSION}">
 {STYLE}
 {schema}
-{ANALYTICS}
-{META_PIXEL}</head>
+{"" if browser_only else ANALYTICS}
+{"" if browser_only else META_PIXEL}</head>
 <body{body_class}>
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="mesh" aria-hidden="true"><b class="m1"></b><b class="m2"></b><b class="m3"></b></div>
@@ -2876,11 +2884,11 @@ def render(
 {NAV_ARM if (cat, slug) in LINK_ARMS else NAV}
 <main id="main">
 {opening}
-{body}{faq_html}{closer}
+{body}{tool_app_callout() if cat == "tools" and slug else ""}{faq_html}{closer}
 {closing}
 </main>
 {FOOTER_ARM if (cat, slug) in LINK_ARMS else FOOTER}
-{"" if (cat, slug) == ("", "thank-you") else FOUNDING_MOUNT}
+{"" if browser_only or (cat, slug) == ("", "thank-you") else FOUNDING_MOUNT}
 <script>
 /* Scroll reveal. Every reference site animates content in; this one shipped no
    behavioural JavaScript at all, which is part of why it read as inert.

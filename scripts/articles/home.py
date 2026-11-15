@@ -510,6 +510,7 @@ def body() -> str:
   and <a href="/tools/robots-txt-tester/" data-ev="Free check" data-ev-button="home-ai-section">the robots.txt tester</a>,
   or <a href="/tools/" data-ev="Free check" data-ev-button="home-ai-section">every free checker</a>, including
   title, meta tag and structured data checks.</p>
+  <p class="sec-sub"><a href="/ai-assistants/">Also inside ChatGPT: check any page from a chat.</a></p>
 </div>
 <div class="grid-3">
   <div class="card"><div class="card-ico">{ICONS['ai']}</div>

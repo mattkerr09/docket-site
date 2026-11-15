@@ -79,6 +79,8 @@ TOOLS = [
      "Which headers does this page send, and are the ones search engines and browsers rely on right?"),
     ("serp-preview", "Search result preview",
      "How will a title and description look in a search result, and where will they be cut off?"),
+    ("llms-txt-generator", "llms.txt generator",
+     "How do I write an llms.txt file with my site's summary and key pages?"),
 ]
 
 
@@ -221,6 +223,18 @@ monthly crawl allowance against an unmetered audit you run yourself.</li>
         body=body,
         published="2026-10-06",
         schema_type="CollectionPage",
+        faq=[
+            ("Are these tools free?",
+             "Yes. These tools are free to use, with no account and nothing to install."),
+            ("Do they check my whole site?",
+             'No. The page checkers read one page at a time. The website checker reads up to 25 pages. '
+             'The free <a href="/download/">Check Engine SEO app</a> checks the whole site.'),
+            ("Do you store the sites I check?",
+             'The checkers set no cookie and store nothing in your browser. The website checker '
+             'keeps a summary of the result for one hour so a repeat check is quick. '
+             'Its daily counts are deleted when the day ends. '
+             'See the <a href="/legal/privacy/">privacy page</a> for what each tool sends and keeps.'),
+        ],
     )
 
 

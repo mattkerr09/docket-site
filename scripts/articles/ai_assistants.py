@@ -85,6 +85,10 @@ and shows your score, how many problems each area has, and the worst one in full
 {email_box()}
 <p class="hero-note">Checked {_day(RUN["measured"])}.</p>
 
+<h2>Use it inside ChatGPT</h2>
+<p>Check Engine SEO needs no account and runs five read-only checks on one page, covering SEO score and top fix, AI crawler access, redirects, headers, and snippet preview.</p>
+<p><a class="btn" href="https://chatgpt.com/plugins/plugin_asdk_app_6aef6b89f90481919a4b2260f5bb14d1" rel="noopener">Add Check Engine to ChatGPT</a></p>
+
 <h2>From one page to the whole site</h2>
 <div class="wrap-tbl"><table class="cmp">
 <caption>What the connector and the desktop app check</caption>
