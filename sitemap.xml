@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://checkengineseo.com/about/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/ai-assistants/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/ai-assistants/</loc><lastmod>2026-11-15</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/ai-crawlers/addsearchbot/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/ai-crawlers/agentdatabot/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/ai-crawlers/ai2bot/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
@@ -291,7 +291,7 @@
   <url><loc>https://checkengineseo.com/checks/social-open-graph/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/checks/social-twitter/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/contact/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/download/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/download/</loc><lastmod>2026-11-15</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/faq/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/for/agencies/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/for/developers/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
@@ -365,7 +365,7 @@
   <url><loc>https://checkengineseo.com/index/ai-directives/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/index/</loc><lastmod>2026-11-09</lastmod><priority>0.9</priority></url>
   <url><loc>https://checkengineseo.com/index/llms-txt-adoption-2026-10/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/</loc><lastmod>2026-11-13</lastmod><priority>1.0</priority></url>
+  <url><loc>https://checkengineseo.com/</loc><lastmod>2026-11-15</lastmod><priority>1.0</priority></url>
   <url><loc>https://checkengineseo.com/learn/ada-title-ii-website-dates/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/ai-crawler-directives/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/ai-crawlers-and-sitemaps/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
@@ -388,7 +388,7 @@
   <url><loc>https://checkengineseo.com/learn/googlebot-2mb-limit/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/index-coverage/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/learn/internal-link-equity/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/learn/internal-link-equity/</loc><lastmod>2026-11-15</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/internal-utm-links/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/javascript-rendering/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/log-file-analysis/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
