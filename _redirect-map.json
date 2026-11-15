@@ -947,6 +947,8 @@
   "/tools/index.html",
   "/tools/json-ld-checker/",
   "/tools/json-ld-checker/index.html",
+  "/tools/llms-txt-generator/",
+  "/tools/llms-txt-generator/index.html",
   "/tools/meta-tag-checker/",
   "/tools/meta-tag-checker/index.html",
   "/tools/redirect-checker/",
