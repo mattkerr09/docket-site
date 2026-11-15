@@ -1232,6 +1232,7 @@ terminal, <code>docket licence --key YOUR-KEY</code> does the same thing.</p>
 <p>Email <a href="mailto:__SUPPORT__">__SUPPORT__</a> and say what
 happened. If the purchase was a mistake, the
 <a href="/legal/refunds/">refund policy</a> is on this site and it is short.</p>
+<p>Used Check Engine? <a href="https://alternativeto.net/software/docket-seo/" rel="noreferrer">Add an honest review on AlternativeTo.</a></p>
 __FOUND__
 __XSELL__"""
     return render(
