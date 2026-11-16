@@ -93,6 +93,10 @@ def mac_options() -> Path:
         for _, name, y1, y3, when in _cost_rows())
 
     body = f"""
+<p id="measured-answer">For a Mac SEO audit, Docket suits people who want a list of what to fix first.
+Our <a href="/vs/screaming-frog-alternative/">recorded free audit</a> read {_RUN["pages"]} pages in {_RUN["seconds"]} seconds.
+That is a small run, so try it on your own site before judging speed or coverage.</p>
+
 <p class="lede">If you want to audit a site from a Mac, five tools are worth comparing: Docket, Screaming
 Frog, Sitebulb, Scrutiny and SEO PowerSuite. This page says what each one costs, how it is sold, what the free
 version does, whether you can get your money back, and when it is the better choice. It also says when Docket
@@ -157,6 +161,7 @@ not compared here. If you also use Windows, or want Netpeak Spider and LibreCraw
 """
     return render(
         cat="", slug="mac-seo-audit-tool",
+        modified="2026-11-16",
         title="SEO audit tools for Mac, and what each costs over 3 years",
         desc=("Five SEO audit tools that run on a Mac: price, how each is sold, refund terms, and when each is "
               "the better choice. Read from their own pages, October 2026."),

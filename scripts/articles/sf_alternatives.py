@@ -98,6 +98,10 @@ def sf_alternatives() -> Path:
     from pages import free_result_figure  # noqa: E402  (lazy: pages imports a great deal)
     free_figure = free_result_figure()
     body = f"""
+<p id="measured-answer">For a Screaming Frog alternative on a Mac, try Docket if you want the problems put in order with the fixes.
+Our <a href="/vs/screaming-frog-alternative/">published free audit</a> read {_RUN["pages"]} pages and found {_RUN["problems"]} problems.
+That small run does not show how it will handle a large site.</p>
+
 <p class="lede">Screaming Frog's SEO Spider is the crawler the others are measured against, and it is free
 up to {sf["free_cap"]} URLs. If you have outgrown that, or you want to pay a different way, there
 are {other_words} others worth a look: {names} and ours, Docket. This page says what each costs, which computers
@@ -203,6 +207,7 @@ Mac-only view with the cost over three years, see <a href="/mac-seo-audit-tool/"
 """
     return render(
         cat="best", slug="screaming-frog-alternatives",
+        modified="2026-11-16",
         title="Screaming Frog alternatives for Mac and Windows (2026)",
         desc=(f"{_cap(other_words)} Screaming Frog alternatives for Mac and Windows: what each costs, what it crawls, "
               "free limits, and when it wins. Read from vendor pages, November 2026."),

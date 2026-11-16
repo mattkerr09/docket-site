@@ -1110,6 +1110,10 @@ def ahrefs() -> Path:
     pro, max_boost = _AH["project_boost"]["Pro"], _AH["project_boost"]["Max"]
     seats = _AH["additional_users"]
     body = f"""
+<p id="measured-answer">For a cheaper Ahrefs Site Audit alternative, compare Docket's one-time price with the dated plans below.
+Our <a href="/vs/screaming-frog-alternative/">recorded free audit</a> read {run["pages"]} pages and found {run["problems"]} problems.
+Use the free version to check what it finds on your own site before buying the full fix plan.</p>
+
 <p class="lede">Docket is an Ahrefs Site Audit alternative for people who want a ranked plan of fixes
 and a one-time price. Ahrefs' cloud crawler checks for {_AH['site_audit']['issues']} issues.
 Site Audit starts at Lite, ${_AH_PRICE['Lite']} a month on monthly billing. Ahrefs Free gives
@@ -1285,7 +1289,7 @@ For the next step after an audit, see <a href="/how-to/content-audit/">how to do
 
     return render(
         cat="vs", slug="ahrefs-site-audit-alternative",
-        modified=CHECKED_ISO["ahrefs"],
+        modified="2026-11-16",
         title="Ahrefs Site Audit alternative with prices and limits",
         desc=(f"Compare Ahrefs Site Audit from ${_AH_PRICE['Lite']}/month with Docket's one-time site audit. "
               "Free options, crawl credits, JavaScript, AI features and client reports."),
