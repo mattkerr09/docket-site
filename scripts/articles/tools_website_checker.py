@@ -224,6 +224,11 @@ def website_checker() -> Path:
   border-radius:var(--radius-md);border:1px solid var(--border-strong);background:var(--surface-2);
   color:var(--text);font:inherit;resize:vertical}}
 </style>
+<p id="measured-answer">To check your website for technical SEO issues for free, enter its address below
+and start with the first issue found. In our <a href="/tools/seo-checker/">published small-business audits</a>,
+the app found a median of 86 pages and 42.5 problems per site at its default settings.
+This free quick check covers only the pages it reads and can miss issues a full crawl finds.</p>
+
 <p class="lede">Find the top issues across up to 25 pages of your website. Type your address
 and allow about 30 seconds. You will see how many pages each issue affects, with paths you can
 look at first. Free, with no account.</p>
@@ -295,6 +300,7 @@ A short check can miss pages and issues that a full crawl finds.</p>
         crumb=f'<a href="/">{SHORT}</a> / <a href="/tools/">Tools</a> / Website checker',
         body=body,
         published='2026-11-10',
+        modified='2026-11-16',
         schema_type='WebPage',
         faq=[
             ('What does this website checker check?',

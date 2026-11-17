@@ -982,6 +982,10 @@ Googlebot actually fetched rather than what your site would serve if asked.</p>
 
 def sitebulb() -> Path:
     body = f"""
+<p id="measured-answer">Check Engine is a Sitebulb alternative for a desktop audit with fixes in order.
+In our <a href="/learn/seo-audit/">small-business audit results</a>, crawlability and indexing
+had problems on 12 of the 14 sites checked with network checks off.</p>
+
 <p class="lede">Sitebulb and Docket are aiming at the same problem from different sides.
 Sitebulb turns crawl data into visual reports an agency can present. Docket turns it into an
 ordered list of work. If you need an interactive crawl map, Sitebulb is the better fit.
@@ -1061,6 +1065,7 @@ check".</p>
         h1="Docket vs Sitebulb",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Sitebulb',
         body=body,
+        modified="2026-11-16",
         faq=[
             ("Does Docket have site architecture visualisation like Sitebulb?",
              "Both draw maps. Docket draws a static picture in its HTML report: pages in rings by click depth, sized "
