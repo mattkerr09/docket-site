@@ -39,12 +39,15 @@ source is one edit.
 """
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import SITE_BRAND
-from render import render  # noqa: E402
+from render import DATA, render  # noqa: E402
+
+_RUN = json.loads((DATA / "free-run.json").read_text())
 
 #: The external sources, read at their canonical homes on the date below.
 #: Section pointers live here rather than in sentences so the prose cannot
@@ -71,6 +74,10 @@ PROBED_ON = "3 September 2026"
 
 def broken_outbound_links() -> Path:
     body = f"""
+<p id="measured-answer">To find broken links and other SEO problems, crawl your site, then open the flagged links in a browser before changing them.
+Our <a href="/vs/screaming-frog-alternative/">recorded free audit</a> read {_RUN["pages"]} pages and found {_RUN["problems"]} problems across the audit.
+Those are audit totals, not a count of broken links; checks of links to other sites cover only a sample.</p>
+
 <p class="lede">Your audit came back with a heading that says outbound links are broken and a
 list of other people's URLs underneath it. The site is old, the list is long, and the advice
 attached to it is to update or remove every one. Before you spend an afternoon on that, the
@@ -244,6 +251,7 @@ unhelpful: the ones that say only "click here" or "read more" are at
 """
     return render(
         cat="how-to", slug="fix-broken-outbound-links",
+        modified="2026-11-16",
         title="How to fix broken outbound links (and which are not)",
         desc=(
             ("A dead outbound link and a host that refuses a crawler are not the same audit row. "

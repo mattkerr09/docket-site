@@ -15,17 +15,24 @@ house rule: it costs money, and this page says when not to spend it.
 """
 from __future__ import annotations
 
+import json
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from comparisons import _verified_note  # noqa: E402
-from render import CHROME_ADDON, FREE_LINE, PRICE_COMPACT, render, with_next_step  # noqa: E402
+from render import CHROME_ADDON, DATA, FREE_LINE, PRICE_COMPACT, render, with_next_step  # noqa: E402
+
+_RUN = json.loads((DATA / "free-run.json").read_text())
 
 
 def free_seo_audit_tools() -> Path:
     body = f"""
+<p id="measured-answer">For a free website SEO audit, try Check Engine's free download to see your score, problem counts and the top problem with its fix.
+Our <a href="/vs/screaming-frog-alternative/">recorded free audit</a> read {_RUN["pages"]} pages and found {_RUN["problems"]} problems.
+That is one small audit; the rest of the problems and the full fix plan are paid.</p>
+
 <p class="lede">For a free SEO audit, use a page checker for faults on one URL, a crawler for
 faults across a site, and Search Console for what Google has seen. The tools below do different
 jobs. Start with the question you need answered and check the free limit before you run an audit.
@@ -157,7 +164,7 @@ different ways their audits are paid for.</p>
 """
     return render(
         cat="best", slug="free-seo-audit-tools",
-        modified="2026-11-09",
+        modified="2026-11-16",
         title="Free SEO audit tools: uses and limits | Docket",
         desc=("Run a free SEO audit of a page or small site. Compare website audit tools, "
               "free limits, a Chrome plugin and what the free report shows."),

@@ -279,6 +279,10 @@ def download() -> Path:
     # 2026-11-09: the title promises "free to try", but at 375px the first thing under the H1 was a $59 Buy, so
     # Download is step 1 and Buy is step 2, "when you are ready".
     body = f"""
+<p id="measured-answer">For SEO audit software without a monthly subscription, Check Engine is a desktop app you pay for once.
+Our <a href="/vs/screaming-frog-alternative/">recorded free audit</a> read {_FREE_RUN["pages"]} pages in {_FREE_RUN["seconds"]} seconds.
+That is one small run, so try the free audit on your own site before buying.</p>
+
 <ol class="steps" id="buy">
 <li><strong>Download</strong> the app, free to try: <a href="{download_url('download-steps')}" data-ev="Download"
 data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On an Intel Mac, <a href="{download_url("download-steps-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="download-steps-intel">the Intel version</a>.') if INTEL else ''}{(f' On Windows, <a href="{download_url("download-steps-windows", to=WIN_SETUP)}" data-ev="Download" data-ev-button="download-steps-windows">the Windows installer</a>, {WIN_SETUP_SIZE}.') if WINDOWS else ''}</li>
@@ -578,7 +582,7 @@ is gone.</p>
         h1="Download Docket SEO for Mac and Windows" if WINDOWS else "Download Docket for Mac",
         crumb='<a href="/">Docket</a> / Download',
         body=body,
-        modified="2026-11-09",  # title, description and H1 name Mac and Windows
+        modified="2026-11-16",
         schema_type="WebPage",
     )
 
