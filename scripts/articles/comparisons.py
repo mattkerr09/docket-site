@@ -981,10 +981,13 @@ Googlebot actually fetched rather than what your site would serve if asked.</p>
 
 
 def sitebulb() -> Path:
+    audits = json.loads((DATA / "field-audits.json").read_text())["audits"]
+    n = len(audits)
+    crawl_hit = sum(1 for a in audits if a["by_area"].get("Crawlability & indexing", 0) > 0)
     body = f"""
 <p id="measured-answer">Check Engine is a Sitebulb alternative for a desktop audit with fixes in order.
 In our <a href="/learn/seo-audit/">small-business audit results</a>, crawlability and indexing
-had problems on 12 of the 14 sites checked with network checks off.</p>
+had problems on {crawl_hit} of the {n} sites checked with network checks off.</p>
 
 <p class="lede">Sitebulb and Docket are aiming at the same problem from different sides.
 Sitebulb turns crawl data into visual reports an agency can present. Docket turns it into an

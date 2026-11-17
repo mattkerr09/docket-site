@@ -8,7 +8,7 @@ from pathlib import Path
 
 from brand import SHORT
 from render import DATA, N_CHECKS, N_LANES, SAMPLE_REPORT, buy_block, render
-from tools_free import _form, audit_next, how_it_works
+from tools_free import _form, audit_next, field_audits, how_it_works
 
 
 # Keep the endpoint in one place, at the top of the browser script.
@@ -208,6 +208,9 @@ CHECKER_JS = r"""
 
 
 def website_checker() -> Path:
+    fa = field_audits()
+    fa_pages = fa["median"]["pages"]
+    fa_problems = fa["median"]["problems"]
     sample = json.loads((DATA / 'sample-run.json').read_text())
     image = sample['image']
     script = (CHECKER_JS.replace('__APP__', SHORT).replace('__CHECKS__', str(N_CHECKS))
@@ -226,7 +229,7 @@ def website_checker() -> Path:
 </style>
 <p id="measured-answer">To check your website for technical SEO issues for free, enter its address below
 and start with the first issue found. In our <a href="/tools/seo-checker/">published small-business audits</a>,
-the app found a median of 86 pages and 42.5 problems per site at its default settings.
+the app found a median of {fa_pages:g} pages and {fa_problems:g} problems per site at its default settings.
 This free quick check covers only the pages it reads and can miss issues a full crawl finds.</p>
 
 <p class="lede">Find the top issues across up to 25 pages of your website. Type your address

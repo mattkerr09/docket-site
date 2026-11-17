@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 import difflib
+import json
 from pathlib import Path
 import re
+import subprocess
 import sys
 import tempfile
 from urllib.parse import urlsplit
 
+import app_path
 import test_measured_answers as round_one
 import test_measured_answers_2 as round_two
 from test_measured_answers import ANSWER, NUMBER, Visible, article, unchanged
@@ -80,6 +83,63 @@ def rejected(raw, spec, site, published, reason):
         raise AssertionError(f'control passed unexpectedly: {reason}')
 
 
+def check_typed_figures(destination, env):
+    # Use today's real figures so sourcing still passes. The number gate must
+    # reject the lost derivation in each answer, including either median.
+    for generator, expression, literal in (
+        ('scripts/articles/comparisons.py', '{n}', '14'),
+        ('scripts/articles/tools_website_checker.py', '{fa_pages:g}', '86'),
+        ('scripts/articles/tools_website_checker.py', '{fa_problems:g}', '42.5'),
+    ):
+        path = destination / generator
+        original = path.read_text(encoding='utf-8')
+        match = ANSWER.search(original)
+        assert match and expression in match.group(), 'typed-figure plant did not land'
+        changed = match.group().replace(expression, literal, 1)
+        try:
+            path.write_text(original[:match.start()] + changed + original[match.end():],
+                            encoding='utf-8')
+            result = subprocess.run([sys.executable, '-B', 'scripts/verify_numbers.py'],
+                                    cwd=destination, env=env, capture_output=True, text=True)
+            output = result.stdout + result.stderr
+            assert result.returncode == 1, f'typed-figure control exit {result.returncode}: {output}'
+            assert re.search(rf'{re.escape(path.name)}:\d+\s+{re.escape(repr(literal))}', output), \
+                f'typed-figure control failed for the wrong reason: {output}'
+            print(f'CONTROL rejected typed {literal} in {path.name}: exit {result.returncode}',
+                  flush=True)
+        finally:
+            path.write_text(original, encoding='utf-8')
+
+
+def check_changed_dataset(destination, env):
+    # Change only the disposable dataset. This also catches a typed "12",
+    # which the existing number gate allows for unrelated examples.
+    path = destination / 'data/field-audits.json'
+    data = json.loads(path.read_text())
+    hit = next(a for a in data['audits'] if a['by_area'].get('Crawlability & indexing', 0) > 0)
+    data['audits'].append(hit)
+    data['sites'] = len(data['audits'])
+    data['median']['pages'] += 0.25
+    data['median']['problems'] += 0.25
+    path.write_text(json.dumps(data), encoding='utf-8')
+    print('Building changed-dataset control', flush=True)
+    run(destination, [sys.executable, '-B', 'scripts/build.py'], env)
+    site = destination / 'site'
+    crawl_hit = sum(1 for a in data['audits'] if a['by_area'].get('Crawlability & indexing', 0) > 0)
+    crawl = f"problems on {crawl_hit} of the {len(data['audits'])} sites"
+    medians = f"{data['median']['pages']:g} pages and {data['median']['problems']:g} problems"
+    for answer_page, source_page, figures in (
+        ('vs/sitebulb-alternative', 'learn/seo-audit', crawl),
+        ('tools/website-checker', 'tools/seo-checker', medians),
+    ):
+        match = ANSWER.search((site / answer_page / 'index.html').read_text())
+        assert match and figures in Visible(match.group(1)).text(), \
+            f'{answer_page}: answer figures did not follow the dataset'
+        assert figures in article((site / source_page / 'index.html').read_text()), \
+            f'{source_page}: source figures did not follow the dataset'
+    print('PASS both answers and source pages follow the changed dataset', flush=True)
+
+
 def main():
     before = protected_state()
     with tempfile.TemporaryDirectory(prefix='test-measured-answers-3-') as temporary:
@@ -89,6 +149,9 @@ def main():
         # an audit hook that refuses network access, as in the thank-you test.
         scratch_copy(destination)
         env = environment(destination)
+        # Let the number gate read the real engine's score bands while HOME
+        # stays isolated and the scratch build keeps network access disabled.
+        env['DOCKET_APP'] = str(app_path.find())
         git_dir = run(ROOT, ['git', 'rev-parse', '--absolute-git-dir'], env, quiet=True).strip()
         # The nested thank-you test reads historical source through this
         # temp-only pointer. No Git objects or credentials are copied.
@@ -163,12 +226,15 @@ def main():
                 round_one.check_answer(new[name], spec, site, evidence)
                 print(f'PASS Round {number} unchanged: {name}', flush=True)
 
-        for command in ([sys.executable, '-B', 'scripts/lint.py', 'site'],
+        check_typed_figures(destination, env)
+        for command in ([sys.executable, '-B', 'scripts/verify_numbers.py'],
+                        [sys.executable, '-B', 'scripts/lint.py', 'site'],
                         [sys.executable, '-B', 'scripts/verify_structured_data_matches_page.py'],
                         [sys.executable, '-B', 'scripts/test_chatgpt_app_links.py'],
                         [sys.executable, '-B', 'scripts/test_thank_you_review_ask.py'],
                         [sys.executable, '-B', 'scripts/verify_link_graph.py']):
             run(destination, command, env)
+        check_changed_dataset(destination, env)
     assert protected_state() == before, 'source site/, workers/ or data/ changed'
     print('MEASURED ANSWERS 3 ok: base, sourced figures, controls, earlier pages and scratch gates; '
           'source tree unchanged')
