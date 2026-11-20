@@ -303,6 +303,7 @@
   <url><loc>https://checkengineseo.com/how-to/analytics-findings-name-the-tag/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/audit-your-site-from-an-ai-assistant/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/backlink-audit/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/how-to/check-a-page-for-noindex/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/check-mobile-seo-from-a-crawl/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/content-audit/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/cta-findings-that-miss-the-form/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
@@ -342,7 +343,7 @@
   <url><loc>https://checkengineseo.com/how-to/gate-a-deploy-on-seo-regressions/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/hreflang-targets-that-look-dead/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/identical-content-three-causes/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/how-to/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/how-to/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/javascript-seo-audit/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/json-ld-parser-errors/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/outrank-a-bigger-competitor/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
@@ -355,6 +356,7 @@
   <url><loc>https://checkengineseo.com/how-to/sitemap-urls-that-are-not-stale/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/stop-indexing-site-search-and-cart-pages/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/tell-a-rate-limit-from-a-block/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/how-to/test-a-page-as-googlebot/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/what-your-site-says-you-are-called/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/when-a-check-cannot-see-your-markup/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/when-a-field-is-there-and-still-missing/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
@@ -388,7 +390,7 @@
   <url><loc>https://checkengineseo.com/learn/googlebot-2mb-limit/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/index-coverage/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/learn/internal-link-equity/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/learn/internal-link-equity/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/internal-utm-links/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/javascript-rendering/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/log-file-analysis/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
@@ -436,18 +438,21 @@
   <url><loc>https://checkengineseo.com/tools/title-ii-date/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/tools/website-checker/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/vs/ahrefs-site-audit-alternative/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/vs/contentking-vs-se-ranking/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/vs/crawler-sh-alternative/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/vs/crawlraven-alternative/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/vs/google-search-console/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/vs/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/vs/jetoctopus-alternative/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/vs/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/vs/jetoctopus-alternative/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/vs/lighthouse-alternative/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/vs/profound-alternative/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/vs/screaming-frog-alternative/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/vs/screaming-frog-vs-semrush/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/vs/scrutiny-alternative/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/vs/se-ranking-vs-screaming-frog/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/vs/se-ranking-vs-screaming-frog/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/vs/semrush-site-audit-alternative/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/vs/seoptimer-alternative/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/vs/sitebulb-alternative/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/vs/sitebulb-vs-jetoctopus/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/vs/sitechecker-alternative/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
 </urlset>
