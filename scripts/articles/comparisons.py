@@ -116,11 +116,15 @@ CHECKED_HUMAN: dict[str, str] = {
     # Re-read 2026-10-19 on the rendered plans page: the three plan prices and their annual rates, the "all plans
     # include" list, the five AI models and the core tools were unchanged. The detailed plan table also lists a
     # crawl-page total per plan, which the page had said Sitechecker does not publish; that is now stated and sourced.
-    "sitechecker": "19 October 2026",
+    # Re-read in full 2026-11-20 (browser, monthly and annual views): the middle plan is now Standard at 149 a month
+    # (125 annual), not 249 (208); the plan cards list 3 AI models, not five. Claims 1 and 3 below were rewritten.
+    "sitechecker": "20 November 2026",
     # Re-read 2026-10-19, both the brands and the agencies views: the free Trial is now 50 prompts a day for 7 days
     # across three engines (it was 10 prompts run once on ChatGPT), and the agencies view prints add-on prices
     # (the brands view still prints none). Both are corrected below.
-    "profound": "19 October 2026",
+    # Re-read in full 2026-11-20, brands and agencies views and the FAQ: one custom Enterprise plan per view, no free
+    # Trial tile, no add-on prices; the FAQ says Starter and Growth were retired in September 2026. All claims rewritten.
+    "profound": "20 November 2026",
     # Re-read 2026-10-19, both the In-House and the Agencies tabs, billed annually and quarterly: the plans are now
     # Growth, Pro and Ultra plus Unlimited, at different prices and allowances from the two tiers read on 16 September.
     # Every claim below was rewritten from that read.
@@ -169,8 +173,8 @@ CHECKED_ISO: dict[str, str] = {
     "se-ranking-vs-screaming-frog": "2026-11-09",
     "ahrefs": "2026-11-20",
     "seoptimer": "2026-11-09",
-    "sitechecker": "2026-10-19",
-    "profound": "2026-10-19",
+    "sitechecker": "2026-11-20",
+    "profound": "2026-11-20",
     "jetoctopus": "2026-10-19",
     "crawlraven": "2026-10-19",
     "crawler-sh": "2026-10-19",
@@ -325,37 +329,35 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "https://jetoctopus.com/pricing/"),
     ],
     "profound": [
-        ("its pricing page for brands publishes two tiers and no price: a free "
-         "Trial, and Enterprise at custom pricing reached through a demo",
+        ("its pricing page for brands lists one plan, Enterprise, at custom "
+         "pricing reached through a demo, with no price shown; its FAQ says the "
+         "Starter and Growth plans were retired in September 2026 and that their "
+         "$399 and $499 prices are no longer available for new subscriptions",
          "https://www.tryprofound.com/pricing"),
-        ("its agencies view names an Agency Growth plan with no price beside it, "
-         "and prints two add-on prices: full client workspaces at 399 US dollars "
-         "a month and 5 trial workspaces at 199 US dollars a month; Agency "
-         "Enterprise is custom",
+        ("its agencies view lists one plan, Agency Enterprise, at custom "
+         "pricing with tailored client workspaces, and shows no price",
          "https://www.tryprofound.com/pricing"),
-        ("the free Trial runs 50 unique prompts daily for 7 days, against "
-         "ChatGPT, Gemini and Google AI Overviews, in one language and one "
-         "region",
-         "https://www.tryprofound.com/pricing"),
-        ("Enterprise tracks up to 9 answer engines, with SSO/SAML and SOC2 "
+        ("Enterprise tracks up to 10 answer engines, with SSO/SAML and SOC 2 "
          "compliance listed alongside dedicated support",
          "https://www.tryprofound.com/pricing"),
-        ("its published platform list is Monitor, Answer Engine Insights, "
-         "Prompt Volumes, Shopping, Agent Analytics, AI Marketer, Agents and "
-         "Context Manager. No site crawler or technical audit appears in it",
+        ("its pricing page names AI Marketer, Agents, Context Manager, "
+         "Suggestions, Projects, Profound Sheets, Answer Engine Insights, Agent "
+         "Analytics and Prompt Volumes. No site crawler or technical audit "
+         "appears in it",
          "https://www.tryprofound.com/pricing"),
     ],
     "sitechecker": [
-        ("its plans are priced 99, 249 and 449 US dollars a month, discounted to "
-         "83, 208 and 375 a month when paid annually",
+        ("its plans are priced 99, 149 and 449 US dollars a month, discounted to "
+         "83, 125 and 375 a month when paid annually, with Enterprise at custom "
+         "pricing",
          "https://sitechecker.pro/account/plans/"),
         ("every plan is listed as including unlimited users, unlimited recrawls, "
          "AI search visibility tracking, GSC and GA4 insights, and a rank tracker "
          "with SERP history",
          "https://sitechecker.pro/account/plans/"),
-        ("its AI visibility tracker covers five models (ChatGPT, Gemini, Google "
-         "AI Mode, Perplexity and Copilot) for brand visibility and for mentions "
-         "and citations",
+        ("its plan cards list 3 AI models (ChatGPT, Gemini and Google AI Mode) "
+         "for brand visibility, and daily tracking of brand mentions and "
+         "citations in ChatGPT and Gemini",
          "https://sitechecker.pro/account/plans/"),
         ("its core tools are listed as website crawler, website monitoring, rank "
          "tracker, GSC dashboard, SEO dashboard and AI visibility tracker",
@@ -770,6 +772,21 @@ for _key, _tools in (("sf-alternatives", CRAWLERS), ("wl-tools", WHITE_LABEL),
 #: The closing sentence of a verification note. Written for a competitor with a
 #: price list and a roadmap, which Search Console has neither of, so that page
 #: passes its own.
+#: Prices (and, for a free tool, the free claim) read again on 20 November 2026 for sets whose full claim list
+#: was NOT re-read that day. Only what was read is said: the Checked date above it stays the date the whole claim
+#: set was read (RULES 61), and these sentences say what was re-read since.
+PRICES_REREAD: dict[str, str] = {
+    "screaming-frog": "Its price, $279 a year in the USD view, was read again on 20 November 2026 and had not changed.",
+    "scrutiny": "Its price, $149 once, was read again on 20 November 2026 and had not changed.",
+    "crawler-sh": "Its prices (free, and CLI Pro and Desktop Pro at $99 a year each) were read again on 20 November 2026 and had not changed.",
+    "crawlraven": "Its list prices (monthly plans from $29 to $199, and the $390 lifetime plan for 3 sites) were read again on 20 November 2026 and had not changed; its page now also offers a Black Friday code that halves the lifetime plans, which this page does not count.",
+    "jetoctopus": "Its prices ($459 to $2,069 a month billed quarterly, $349 to $1,559 billed annually, and Unlimited by quote) were read again on 20 November 2026 and had not changed.",
+    "semrush": "Its prices ($139 to $299 a month) were read again on 20 November 2026 and had not changed.",
+    "sitebulb": "Its prices (Lite $180 a year or $18 a month, and Pro $425 a year) were read again on 20 November 2026 and had not changed.",
+    "lighthouse": "Its overview page was read again on 20 November 2026 and still describes it as an open-source tool.",
+    "mac-options": "The prices of Screaming Frog, Sitebulb, Scrutiny and SEO PowerSuite Professional were read again on 20 November 2026 and match this page.",
+}
+
 _DEFAULT_CLOSING = (
     "Products change and pricing changes; if something here has gone out of "
     'date, <a href="/about/">tell us</a> and it will be corrected. Everything '
@@ -927,8 +944,10 @@ def _verified_note(key: str, closing: str = _DEFAULT_CLOSING) -> str:
         read_note = f"Sources read {checked}. "
     else:
         read_note = "The factual\nclaims about this product were read from its own pages on that date: "
+    reread = PRICES_REREAD.get(key, "")
+    reread = f" {reread}" if reread else ""
     return f"""
-<p class="verified-note"><strong>Checked {checked}.</strong> {read_note}{checks}.
+<p class="verified-note"><strong>Checked {checked}.</strong> {read_note}{checks}.{reread}
 {closing}</p>"""
 
 
@@ -2130,8 +2149,8 @@ Docket refuses to answer at all</strong>.</p>
 <li><strong>Rank tracking.</strong> Its rank tracker keeps SERP history for the keywords you
 track. Docket does not track rankings, and says so on its own home page: that needs a crawled
 index of the whole web, which is bought rather than built.</li>
-<li><strong>AI brand visibility.</strong> Its AI visibility tracker covers five models (ChatGPT, Gemini, Google AI Mode, Perplexity and Copilot) and reports brand visibility,
-mentions and citations. <strong>This is the one worth reading twice</strong>, because it looks
+<li><strong>AI brand visibility.</strong> Its plan cards list three AI models (ChatGPT, Gemini and Google AI Mode) for brand visibility and track brand
+mentions and citations in ChatGPT and Gemini. <strong>This is the one worth reading twice</strong>, because it looks
 like something Docket does and is not.</li>
 <li><strong>Search Console and Analytics dashboards</strong>, and website monitoring that
 tracks changes over time from the cloud. Docket re-audits saved sites on a schedule while the
@@ -2209,7 +2228,7 @@ measured. Both vendors' published feature lists are what this page is built from
         faq=[
             ("Is Docket a Sitechecker alternative?",
              "Only partly, and the gap matters. Sitechecker tracks keyword rankings and "
-             "whether five AI models mention your brand. Docket does neither. Docket audits "
+             "whether three AI models mention your brand. Docket does neither. Docket audits "
              "what is wrong with your site and ranks the fixes, and checks whether AI "
              "crawlers are allowed to reach you in the first place."),
             ("Does Docket track AI visibility like Sitechecker?",
@@ -2237,7 +2256,7 @@ measured. Both vendors' published feature lists are what this page is built from
 def profound() -> Path:
     """An answer-engine tracker with no crawler, sold by demo. Barely the same category.
 
-    Profound measures whether a brand appears in AI answers across up to nine
+    Profound measures whether a brand appears in AI answers across up to ten
     answer engines. Docket measures whether those crawlers can reach the site at
     all. The Sitechecker page already makes an access-versus-mentions argument,
     so this page deliberately makes a DIFFERENT one: Profound's published
@@ -2265,27 +2284,28 @@ assistants' crawlers can read your site in the first place. Those sound adjacent
 not the same purchase at all. The clearest way to see it is that
 <strong>Profound does not publish a price for its brand plans</strong>.</p>
 
-<h2>Two tiers, neither of them a price</h2>
+<h2>One plan, and no price on the page</h2>
 
-<p>Its pricing page lists a free <strong>Trial</strong> (50 prompts a day for 7 days, against ChatGPT, Gemini and Google AI Overviews, in one language and one region) and <strong>Enterprise</strong>, at custom
-pricing, reached by booking a demo. Enterprise tracks up to nine answer engines and lists
-SSO/SAML and SOC2 compliance beside dedicated support.</p>
+<p>Its pricing page, read on 20 November 2026, lists one plan for brands: <strong>Enterprise</strong>, at custom
+pricing, reached by booking a demo. Enterprise tracks up to ten answer engines and lists
+SSO/SAML and SOC 2 compliance beside dedicated support. The page's FAQ says Profound retired its
+Starter and Growth plans in September 2026 and that the $399 and $499 prices of those plans are no
+longer available for new subscriptions.</p>
 
-<p>Switch the same page to its agencies view and it does print some money: full client workspaces
-are an add-on at $399 a month each, and five trial workspaces are $199 a month. The Agency Growth
-plan they attach to has no price beside it, and Agency Enterprise is custom, so there is still no
-plan price to set against anything.</p>
+<p>Switch the same page to its agencies view and it lists one plan there too, <strong>Agency
+Enterprise</strong>, at custom pricing, with tailored client workspaces. Neither view shows a plan
+price, so there is no plan price to set against anything.</p>
 
 <p>That is an enterprise sales motion, and the compliance line tells you who it is for. It is
-not a criticism: tracking nine answer engines across languages and regions is genuinely
+not a criticism: tracking ten answer engines across languages and regions is genuinely
 expensive to operate, and companies that need it have procurement departments. But it means the
 comparison with Docket is not really about features. One is a platform you are onboarded onto.
 The other is a {PRICE_COMPACT} download with the price on the page.</p>
 
 <h2>What Profound does that Docket does not</h2>
 
-<p>Its published platform names Monitor, Answer Engine Insights, Prompt Volumes, Shopping, Agent
-Analytics, AI Marketer, Agents and Context Manager. Answer Engine Insights analyses how your
+<p>Its pricing page names AI Marketer, Agents, Context Manager, Suggestions, Projects, Profound
+Sheets, Answer Engine Insights, Agent Analytics and Prompt Volumes. Answer Engine Insights analyses how your
 brand and your competitors appear in AI platforms. <strong>Docket does none of this.</strong> It
 cannot tell you whether ChatGPT named you this week, how often, or beside whom.</p>
 
@@ -2316,7 +2336,7 @@ order, including whether AI crawlers can reach it, without an account or a sales
 
 <p>Plenty of companies would sensibly do both, and they are not substitutes in either direction.
 If mention-tracking is what you want but an enterprise contract is not,
-<a href="/vs/sitechecker-alternative/">Sitechecker</a> does it across five models inside an
+<a href="/vs/sitechecker-alternative/">Sitechecker</a> does it across three AI models inside an
 ordinary SEO subscription. The access question Docket answers instead is
 <a href="/learn/ai-crawler-directives/">set out crawler by crawler</a>. Nothing here compares the
 accuracy of Profound's tracking, which we have not measured and have no way to measure from
@@ -2343,13 +2363,11 @@ outside.</p>
              "and checks whether those crawlers are permitted to read it. Neither replaces "
              "the other."),
             ("How much does Profound cost?",
-             "Its pricing page for brands publishes no figure. It lists a free trial (50 "
-             "prompts a day for 7 days, across ChatGPT, Gemini and Google AI Overviews) and "
-             "Enterprise at custom pricing reached through a demo. Only its agencies view "
-             "prints amounts: $399 a month for a full client workspace and $199 a month for "
-             "five trial workspaces, with no price for the Agency Growth plan itself. "
-             "Docket is a one-time purchase with the price on the page, which is the "
-             "starkest difference between them."),
+             "Its pricing page shows no price. It lists one plan for brands, Enterprise, at "
+             "custom pricing reached through a demo, and one for agencies, Agency "
+             "Enterprise, also custom. Its FAQ says the Starter and Growth plans were "
+             "retired in September 2026. Docket is a one-time purchase with the price on "
+             "the page, which is the starkest difference between them."),
             ("Can Docket tell me if ChatGPT mentions my brand?",
              "No. Docket measures access, not mentions: whether each AI crawler is allowed "
              "in, and whether your server agrees with your robots.txt. If a tracker says you "

@@ -248,7 +248,7 @@ def build_hubs() -> list[Path]:
              "platform list. It reports whether AI assistants mention you; Docket checks "
              "whether their crawlers can reach you."),
             ("/vs/sitechecker-alternative/", "Docket vs Sitechecker",
-             "It tracks rankings and whether five AI models mention your brand; Docket "
+             "It tracks rankings and whether three AI models mention your brand; Docket "
              "does neither. What Docket checks is whether those crawlers can reach you "
              "at all: a precondition rather than the same question."),
             ("/vs/seoptimer-alternative/", "Docket vs SEOptimer",
