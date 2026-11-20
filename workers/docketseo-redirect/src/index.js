@@ -1,3 +1,4 @@
+import { OLD_PATHS } from './old_urls.js'
 export const MODE = 'redirect'
 const DESTINATION_HOST = 'checkengineseo.com'
 const RAW_ORIGIN = 'https://raw.githubusercontent.com/mattkerr09/docket-site/gh-pages'
@@ -73,7 +74,29 @@ function isRangedInstaller(request, url) {
   return request.headers.has('Range') && url.pathname.startsWith('/updates/') && url.pathname.toLowerCase().endsWith('.exe')
 }
 
+// Bing fix plan, action 1 (20 Nov 2026): Bing never re-read docketseo.app after the 301s, so it still holds the old pages. These two
+// answers, and only these two, are served 200 on the apex so Bing can find the old URL list and read each page's 301.
+// Everything else keeps its 301 to the same path on checkengineseo.com. No lastmod: the old build dated nearly every page one day.
+const OLD_ROBOTS = 'User-agent: *\nAllow: /\nSitemap: https://docketseo.app/sitemap-old.xml\n'
+function oldSitemap() {
+  const urls = OLD_PATHS.map((path) => `  <url><loc>https://docketseo.app${path}</loc></url>`).join('\n')
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
+}
+function oldAddressFile(request, url) {
+  if (url.hostname !== 'docketseo.app') return null
+  const type = url.pathname === '/robots.txt' ? 'text/plain; charset=utf-8'
+    : url.pathname === '/sitemap-old.xml' ? 'application/xml; charset=utf-8' : null
+  if (!type) return null
+  const body = url.pathname === '/robots.txt' ? OLD_ROBOTS : oldSitemap()
+  return new Response(request.method === 'HEAD' ? null : body, {
+    status: 200,
+    headers: { 'Content-Type': type, 'Cache-Control': 'public, max-age=3600', 'X-Served-By': 'docketseo-redirect-old-address' },
+  })
+}
+
 function redirect(request, url) {
+  const oldFile = oldAddressFile(request, url)
+  if (oldFile) return oldFile
   // Use the original suffix to retain escapes, query order and an empty query.
   const destination = request.url.replace(/^https?:\/\/[^/]+/, `https://${DESTINATION_HOST}`)
   if (!isAppPath(url.pathname)) return new Response(null, { status: 301, headers: { Location: destination } })
