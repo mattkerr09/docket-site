@@ -11,6 +11,10 @@ DASHBOARD = "https://status.search.google.com/"
 GUIDANCE = "https://developers.google.com/search/docs/appearance/core-updates"
 READ = "20 November 2026"
 SLUG = "traffic-drop-after-november-2026-core-update"
+#: The one audit this page reports, read from ~/ops/research/articles/data-2026-11-20/core-update-audit/AUDIT.md
+#: (Check Engine's own run, default settings, 20 November 2026). Kept in one place and interpolated, so a figure in
+#: the prose can never differ from the one beside it.
+RUN = {"version": "1.3.164", "build": "1669", "pages": "593", "seconds": "128", "score": "65.5"}
 RULE = "broad in nature, and don't target specific sites or individual web pages"
 
 # The supplied AUDIT.md, not the different audit bundled with FACTS.md.
@@ -50,7 +54,7 @@ def build() -> Path:
     body = f"""
 <p id="measured-answer">A core update is not an error you can fix with one change.
 Google says these changes are <q>{RULE}</q> in its {source_link("core updates guide", GUIDANCE)}.
-The {source_link("Google Search Status Dashboard", DASHBOARD)} says the November 2026 core update started on 10 November 2026, may take up to 2 weeks and was still rolling out when read on 20 November 2026.
+The {source_link("Google Search Status Dashboard", DASHBOARD)} says the November 2026 core update started on 10 November 2026, may take up to 2 weeks and was still rolling out when read on {READ}.
 First rule out technical causes you can check, then judge content quality, and wait for Google to post the rollout's end before reading the traffic data.</p>
 {google_note("the rollout dates and scope", dashboard=True, guidance=True)}
 
@@ -58,7 +62,7 @@ First rule out technical causes you can check, then judge content quality, and w
 <p>Open Search Console and compare clicks from before 10 November 2026 with clicks after that
 date. Write down when the fall began and which pages lost clicks. Keep the same filters in
 both views so that you are comparing the same part of the site.</p>
-<p>As of 20 November 2026, Google's dashboard had no end date for this update. It says the
+<p>As of {READ}, Google's dashboard had no end date for this update. It says the
 update applies globally and to all languages. Rankings can keep moving until Google posts
 the end. Save the comparison now, then read it again after the rollout ends. A drop that
 started before 10 November 2026 is probably something else, so check its timing before
@@ -99,15 +103,15 @@ content review, as described in {source_link("Google's core updates guide", GUID
 {google_note("the content review and the limits of technical checks")}
 
 <h2>What we found on a real site</h2>
-<p>On 20 November 2026, we ran Check Engine SEO 1.3.164, build 1669, the shipped macOS app,
-on a public software consulting blog. Default crawl settings read 593 pages in a full report.
-The run took 128 seconds. This is an example of what an audit can find, not a diagnosis of a
+<p>On {READ}, we ran Check Engine SEO {RUN['version']}, build {RUN['build']}, the shipped macOS app,
+on a public software consulting blog. Default crawl settings read {RUN['pages']} pages in a full report.
+The run took {RUN['seconds']} seconds. This is an example of what an audit can find, not a diagnosis of a
 traffic drop. We have no evidence here that this site's traffic fell.</p>
-<p>The overall score was 65.5 of 100 on Check Engine's own scale, not a Google score.
+<p>The overall score was {RUN['score']} of 100 on Check Engine's own scale, not a Google score.
 It says nothing about why traffic moved. PageSpeed Insights did not run, so Core Web Vitals
 are not in this score. The Speed &amp; Core Web Vitals area below is a static estimate only.</p>
 <div class="wrap-tbl"><table>
-<caption>Check Engine area scores out of 100, recorded on 20 November 2026</caption>
+<caption>Check Engine area scores out of 100, recorded on {READ}</caption>
 <thead><tr><th scope="col">Area and limits</th><th scope="col">Score on Check Engine's scale</th></tr></thead>
 <tbody>{rows}</tbody></table></div>
 <p>The crawl and page checks gave us specific things to inspect:</p>
@@ -126,14 +130,14 @@ only. This is not a measured Core Web Vitals result.</li>
 checks are surface signals only, such as word counts, reading patterns and the presence of
 dates. They do not judge helpful, reliable, people-first content or whether it is better
 than another page.</p>
-<p>Other findings have nothing to do with a core update: no structured data on 593 pages,
+<p>Other findings have nothing to do with a core update: no structured data on {RUN['pages']} pages,
 no contact form, brand and social findings, and tracking and conversion checks.
 Structured data can help rich results; it is not a core-update recovery fix.</p>
 <p>The Local business findings do not apply to this site. The detector treated a software
 blog as a local business, so its findings about local-business markup, a form, reviews and
 a phone link are not faults here. The Local business SEO score in the table is recorded
 for completeness, with that same limit.</p>
-<p class="verified-note">Audit recorded on 20 November 2026 with the shipped Check Engine
+<p class="verified-note">Audit recorded on {READ} with the shipped Check Engine
 macOS app and default crawl settings. Scores use Check Engine's own scale. Speed and
 layout-shift risk are static estimates only; PageSpeed Insights did not run.</p>
 
@@ -145,7 +149,7 @@ rollout caused the drop, and repairing it does not promise recovery.</p>
 Does each page answer the question it promises to answer? Is the explanation reliable?
 What would a reader still need to find elsewhere? A word count or an author name cannot
 answer those questions for you.</p>
-<p>Google's {source_link("core updates guide", GUIDANCE)}, read on 20 November 2026, says
+<p>Google's {source_link("core updates guide", GUIDANCE)}, read on {READ}, says
 it can take several months for its systems to confirm lasting improvements in helpful,
 reliable, people-first content. It gives no recovery date for your site.</p>
 {google_note("content quality and the time improvements can take")}

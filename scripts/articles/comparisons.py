@@ -2286,7 +2286,7 @@ not the same purchase at all. The clearest way to see it is that
 
 <h2>One plan, and no price on the page</h2>
 
-<p>Its pricing page, read on 20 November 2026, lists one plan for brands: <strong>Enterprise</strong>, at custom
+<p>Its pricing page, read on {CHECKED_HUMAN['profound']}, lists one plan for brands: <strong>Enterprise</strong>, at custom
 pricing, reached by booking a demo. Enterprise tracks up to ten answer engines and lists
 SSO/SAML and SOC 2 compliance beside dedicated support. The page's FAQ says Profound retired its
 Starter and Growth plans in September 2026 and that the $399 and $499 prices of those plans are no

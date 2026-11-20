@@ -66,6 +66,9 @@ ALLOWED = {
             "/vs/se-ranking-vs-screaming-frog/ and sourced in VERIFIED"),
     "500": ("Screaming Frog's own free-tier limit of 500 URLs, quoted verbatim "
             "on the same page and sourced in VERIFIED"),
+    "499": ("Profound's own FAQ, quoted on /vs/profound-alternative/: the price "
+            "of its retired Growth plan, no longer available for new "
+            "subscriptions; sourced in comparisons.VERIFIED and dated by CHECKED_ISO"),
     # -- standards, specs and versions ------------------------------------
     "9110": "RFC 9110, the HTTP semantics standard",
     "3986": "RFC 3986, the URI generic syntax standard",
