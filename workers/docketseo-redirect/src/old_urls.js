@@ -1,12 +1,11 @@
 // The old docketseo.app URLs Bing already knows, for the old-address sitemap (Bing fix plan, 20 Nov 2026, action 1).
 // Source: docket-site's sitemap as built just before the 10 Nov rename (git a8adfaca9) joined with the 158 docketseo.app
 // URLs in ops/search/bing-submitted.json. Every entry was checked on 20 Nov 2026 to answer 301 to the same path on
-// checkengineseo.com and that page to answer 200. Order: home, /download/, /pricing/, /tools/*, then by Google impressions.
+// checkengineseo.com and that page to answer 200. Order: home, /download/, /tools/*, then by Google impressions. /pricing/ is left out: it is noindex by design.
 // No lastmod on purpose: the old build stamped 153 of 159 pages 2026-11-09, which is the pattern Bing disregards.
 export const OLD_PATHS = [
   "/",
   "/download/",
-  "/pricing/",
   "/tools/robots-txt-tester/",
   "/tools/meta-tag-checker/",
   "/tools/json-ld-checker/",
