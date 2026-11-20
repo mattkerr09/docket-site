@@ -24,6 +24,9 @@ class ReleaseChurnGateTests(unittest.TestCase):
         self.env = dict(os.environ)
         self.env.pop("DOCKET_SITEWIDE_REASON", None)
         self.env.pop("CHURN_BASELINE", None)
+        # These legacy churn fixtures deliberately share a single date. Their
+        # tests isolate the 12-page hash limit; separate tests cover spread.
+        self.env["DOCKET_LASTMOD_REASON"] = "Synthetic shared-date fixture for the churn tests."
         self.env["GIT_CONFIG_GLOBAL"] = os.devnull
         self.env["GIT_CONFIG_NOSYSTEM"] = "1"
         self.env["PYTHONDONTWRITEBYTECODE"] = "1"
@@ -31,6 +34,7 @@ class ReleaseChurnGateTests(unittest.TestCase):
         (self.root / "data").mkdir()
         shutil.copyfile(HERE / "release_churn_gate.py", self.root / "scripts/release_churn_gate.py")
         shutil.copyfile(HERE / "brand.py", self.root / "scripts/brand.py")
+        shutil.copyfile(HERE / "verify_lastmod_spread.py", self.root / "scripts/verify_lastmod_spread.py")
         self.git("init", "--quiet")
         self.original = {
             f"page-{i:02}/index.html": {"date": "2026-11-07", "hash": f"old-{i}"}
@@ -54,6 +58,11 @@ class ReleaseChurnGateTests(unittest.TestCase):
     def write(self, records):
         (self.root / "data").mkdir(exist_ok=True)
         (self.root / f"data/{LASTMOD_FILE}").write_text(json.dumps(records), encoding="utf-8")
+        (self.root / "site").mkdir(exist_ok=True)
+        urls = "".join(f"<url><loc>{BASE}/{page.removesuffix('index.html')}</loc>"
+                       f"<lastmod>{record['date']}</lastmod></url>"
+                       for page, record in records.items())
+        (self.root / "site/sitemap.xml").write_text("<urlset>" + urls + "</urlset>", encoding="utf-8")
 
     def run_gate(self, count=0, reason=None):
         records = {page: dict(record) for page, record in self.original.items()}
@@ -163,6 +172,20 @@ class ReleaseChurnGateTests(unittest.TestCase):
         result = self.run_gate(13, "We corrected the price shown across the site.")
         self.assertEqual(result.returncode, 1, result.stderr)
         self.assertIn("Could not compare page hashes", result.stderr)
+
+    def test_spread_gate_is_required_even_with_a_churn_reason(self):
+        self.env.pop("DOCKET_LASTMOD_REASON")
+        result = self.run_gate(13, "A reason for text churn does not excuse false dates.")
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("LASTMOD FAIL", result.stdout)
+        self.assertIn("DOCKET_LASTMOD_REASON", result.stdout)
+
+    def test_missing_sitemap_fails_even_with_both_reasons(self):
+        self.env["DOCKET_SITEWIDE_REASON"] = "A real text change."
+        (self.root / "site/sitemap.xml").unlink()
+        result = self.invoke()
+        self.assertEqual(result.returncode, 1, result.stdout)
+        self.assertIn("LASTMOD FAIL", result.stdout)
 
     def test_missing_working_file_fails(self):
         (self.root / f"data/{LASTMOD_FILE}").unlink()

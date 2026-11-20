@@ -11,6 +11,7 @@ from __future__ import annotations
 import hashlib
 import json
 import html
+from html.parser import HTMLParser
 import re
 import tempfile
 import os
@@ -881,34 +882,112 @@ def write_llms_txt() -> None:
 
 #: The day each page's content last changed, and the fingerprint it had then.
 #: Seeded from history by scripts/collect_lastmod.py; updated by every build.
+#: Each record also carries changed_in_build for the release spread gate.
 LASTMOD = DATA / brand.LASTMOD_FILE
 
 
-def page_fingerprint(html: str) -> str:
-    """What a reader of the page sees, hashed: title, description, article.
+# Shared render.py components, including their older committed markup. Do not
+# exclude hero-note or claims-note in general: those can hold dated source facts.
+_LASTMOD_SHARED_CLASSES = {
+    "byline", "author", "buy-block", "buy-strip", "price-line", "price-big",
+    "price-pay4", "price-req", "price-anchor", "founding-note", "founding-end",
+    "founder-note", "next-step", "tool-step-up", "related", "related-pages",
+}
+_LASTMOD_VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input",
+                 "link", "meta", "param", "source", "track", "wbr"}
 
-    ⚠️ NOT THE WHOLE FILE: a build id is stamped into the head of every page,
-    so every page changes on every build (one content-unchanged page carried
-    240 commits). And NOT the source module's git date, which is what this
-    replaced (2026-09-24): one module builds many pages, so an edit to
-    comparisons.py re-dated all fourteen /vs/ pages and nearly every URL read
-    09-23. Nav and footer are outside the article and do not count; a change
-    to them is not a change to the page's content.
 
-    ⚠️ THE TEXT, NOT THE MARKUP (2026-10-21): the founding offer's switch added
-    an attribute and a span around words that did not change, and every page
-    with a Buy button was re-dated that day. Tags are dropped before hashing,
-    so only a change a reader can see moves the date.
+class _ArticleText(HTMLParser):
+    """Drop complete shared subtrees, including nested divs in buy_block()."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.stack = []
+        self.parts = []
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        shared = (tag in {"script", "style", "nav"}
+                  or bool(set(attrs.get("class", "").split()) & _LASTMOD_SHARED_CLASSES)
+                  or any(key.startswith("data-founding") or key == "data-sister-offer"
+                         for key in attrs)
+                  or attrs.get("aria-label", "").lower() in {"next step", "related pages"}
+                  or attrs.get("id") in {"try", "bundle-sum"})
+        hidden = shared or bool(self.stack and self.stack[-1][1])
+        if tag not in _LASTMOD_VOID:
+            self.stack.append((tag, hidden))
+        if tag in {"p", "div", "section", "h1", "h2", "h3", "h4", "li", "td", "th", "br"}:
+            self.parts.append(" ")
+
+    def handle_startendtag(self, tag, attrs):
+        self.handle_starttag(tag, attrs)
+        if tag not in _LASTMOD_VOID:
+            self.handle_endtag(tag)
+
+    def handle_endtag(self, tag):
+        for i in range(len(self.stack) - 1, -1, -1):
+            if self.stack[i][0] == tag:
+                del self.stack[i:]
+                break
+        if tag in {"p", "div", "section", "h1", "h2", "h3", "h4", "li", "td", "th"}:
+            self.parts.append(" ")
+
+    def handle_data(self, data):
+        if not self.stack or not self.stack[-1][1]:
+            self.parts.append(data)
+
+
+# Pinned shapes from render.py's price helpers, not today's rendered strings:
+# history and a future change to a helper must use the same fingerprint rule.
+_MONEY = r"\$[\d,]+(?:\.\d+)?"
+_LASTMOD_SHARED_TEXT = re.compile(
+    r"Black Friday sale: " + _MONEY + r" once(?:, \d+% off our November price of "
+    + _MONEY + r",)? through [A-Za-z]+ \d{1,2}\. Then " + _MONEY + r"\."
+    r"|" + _MONEY + r" once(?:,? through [A-Za-z]+ \d{1,2}(?:,? then " + _MONEY + r")?)?"
+    r"|" + _MONEY + r", paid once"
+    r"|" + _MONEY + r" applies from v1\.0"
+    r"|Then " + _MONEY + r"\."
+    r"|The Buy button applies the sale for you; there is no code to type\."
+    r"|Use (?:the )?code FOUNDINGDOCKET[^.]*\."
+    r"|\b(?:Published|Updated)\s+(?:\d{4}-\d{2}-\d{2}|\d{1,2} [A-Za-z]+ \d{4})"
+    r"|\bv?1\.3\.\d+\b"
+    r"|\b(?:an?\s+)?\d[\d,]*(?:\.\d+)?\s*(?:KB|MB|GB|KiB|MiB|GiB)\b",
+    re.I,
+)
+
+
+def _fingerprint_text(value: str) -> str:
+    value = re.sub(r"\s+", " ", html.unescape(value))
+    value = _LASTMOD_SHARED_TEXT.sub("", value)
+    return re.sub(r"\s+", " ", value).strip()
+
+
+def page_fingerprint(raw: str) -> str:
+    """Hash title, description and the page's own article text.
+
+    Shared offers, author/date furniture and navigation do not re-date an
+    article. Keep its headings, paragraphs, FAQ, tables and Checked on notes.
+    Never hash the head's build id or the source module's commit date.
     """
-    import re as _re
-    title = _re.search(r"<title>(.*?)</title>", html, _re.S)
-    desc = _re.search(r'<meta name="description" content="([^"]*)"', html)
-    art = _re.search(r"<article\b.*</article>", html, _re.S)
-    part = art.group(0) if art else html
-    part = _re.sub(r"<script\b.*?</script>|<style\b.*?</style>", "", part, flags=_re.S)
-    part = _re.sub(r"<[^>]+>", " ", part)
-    blob = "\n".join([title.group(1) if title else "", desc.group(1) if desc else "",
-                      _re.sub(r"\s+", " ", part)])
+    title = re.search(r"<title>(.*?)</title>", raw, re.S)
+    desc = re.search(r'<meta name="description" content="([^"]*)"', raw)
+    art = re.search(r"<article\b.*?</article>", raw, re.S)
+    part = art.group() if art else raw
+    # Older sister offers have no data marker. Bundle helpers have always used
+    # this checkout path. Remove the whole paragraph, including the apart sum.
+    part = re.sub(r'<p\b[^>]*>(?:(?!</p>).)*?/buy/bundle\b.*?</p>', '', part, flags=re.S)
+    part = re.sub(r'<li\b[^>]*>(?:(?!</li>).)*?/buy/(?:crisp|outlier)\b.*?</li>', '', part, flags=re.S)
+    # This shared, explicitly undated caveat is appended after sitemap writing.
+    # Dated claims-note and Checked on notes remain part of the fingerprint.
+    part = re.sub(r'<p class="claims-note">Other products here are described.*?</p>', '', part, flags=re.S)
+    # Pinned link-only related blocks emitted without a class by the generators.
+    part = re.sub(r'<h2>Which other crawlers does this operator run\?</h2>\s*<ul>.*?</ul>', '', part, flags=re.S)
+    part = re.sub(r'<p>For the (?:other pairings|desktop and cloud choice),.*?</p>', '', part, flags=re.S)
+    part = re.sub(r'<p>\s*<a\b[^>]*>[^<]*</a>\s*</p>', '', part, flags=re.S)
+    parser = _ArticleText()
+    parser.feed(part)
+    blob = "\n".join(_fingerprint_text(value) for value in (
+        title.group(1) if title else "", desc.group(1) if desc else "", "".join(parser.parts)))
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:16]
 
 
@@ -934,7 +1013,12 @@ def write_sitemap(pages: list[Path]) -> None:
         # The homepage and the Index are the two pages worth prioritising; the
         # rest are equal. Priority is a weak signal at best, so it stays simple.
         priority = "1.0" if rel == "." else ("0.9" if rel == "index" else "0.7")
+        key = p.relative_to(SITE).as_posix()
+        before = store.get(key, {}).get("hash")
         lastmod = _last_changed(p, today, store)
+        # Persist this build's evidence for the release gate, even after the
+        # release commits its lastmod store. A later build replaces the flag.
+        store[key]["changed_in_build"] = store[key]["hash"] != before
         urls.append(f"  <url><loc>{loc}</loc><lastmod>{lastmod}</lastmod>"
                     f"<priority>{priority}</priority></url>")
     (SITE / "sitemap.xml").write_text(

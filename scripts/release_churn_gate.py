@@ -5,6 +5,7 @@ Compared with origin/main (the last deployed state), not HEAD: see baseline_ref.
 from __future__ import annotations
 
 from brand import BASE, LASTMOD_FILE, SITE_BRAND
+from verify_lastmod_spread import verify as verify_lastmod_spread
 
 import json
 import os
@@ -71,14 +72,18 @@ def main() -> int:
         path = page.removesuffix("index.html")
         print(f"  {BASE}/{path}")
 
+    spread_result = verify_lastmod_spread(
+        ROOT / "site/sitemap.xml", ROOT / LASTMOD,
+        os.environ.get("DOCKET_LASTMOD_REASON", ""))
+
     if len(changed) <= MAX_CHANGED_PAGES:
         print("CHURN OK")
-        return 0
+        return spread_result
 
     reason = os.environ.get("DOCKET_SITEWIDE_REASON", "").strip()
     if reason:
         print(f"CHURN OK  DOCKET_SITEWIDE_REASON={reason}")
-        return 0
+        return spread_result
 
     print("CHURN FAIL  Set DOCKET_SITEWIDE_REASON to a sentence explaining the site-wide change.")
     return 1

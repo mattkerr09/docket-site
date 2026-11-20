@@ -206,8 +206,10 @@ def main():
         assert getattr(R, name) == "", name
     assert "data-pay4" not in R.FOUNDING_MOUNT
     assert R.founding_price_sentence() == "Black Friday sale: $19.99 once through December 2. Then $39."
+    # 20 Nov 2026 (Matthew, 13:04:44Z: no page says "November price"): the history keeps the $29.50 fact as "the earlier $29.50 price".
     expected_history = baseline("data/corrections.json").replace(b"launch-price", b"offer").replace(
-        b"launch price", b"November price")
+        b"launch price", b"November price").replace(b"the $29.50 November price", b"the earlier $29.50 price").replace(
+        b"November price", b"earlier price")
     assert (ROOT / "data/corrections.json").read_bytes() == expected_history
     assert (ROOT / "scripts/articles/corrections.py").read_bytes() == baseline("scripts/articles/corrections.py")
     with tempfile.TemporaryDirectory(prefix="test-launch-price-") as temporary:
