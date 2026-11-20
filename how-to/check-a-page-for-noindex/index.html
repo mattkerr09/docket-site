@@ -15,7 +15,7 @@
 <title>Meta noindex checker: check tags and response headers</title>
 <meta name="description" content="Check meta robots in the page source and X-Robots-Tag in response headers. Google's robots.txt rule explains why an unread noindex can fail.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="3be335edb306">
+<meta name="build-id" content="8c980688bbf3">
 <link rel="canonical" href="https://checkengineseo.com/how-to/check-a-page-for-noindex/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -939,7 +939,7 @@ nav{background:rgba(7,12,13,.72);
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.164/Docket-1.3.164-arm64.dmg", "offers": [{"@type": "Offer", "name": "Pro", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "The rest of the problems, the ranked fix plan and the markup to paste.", "priceValidUntil": "2026-12-02"}], "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Check Engine", "item": "https://checkengineseo.com/"}, {"@type": "ListItem", "position": 2, "name": "Fix it", "item": "https://checkengineseo.com/how-to/"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Meta noindex checker: how to check a page for noindex", "description": "Check meta robots in the page source and X-Robots-Tag in response headers. Google's robots.txt rule explains why an unread noindex can fail.", "datePublished": "2026-11-20", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/how-to/check-a-page-for-noindex/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Meta noindex checker: how to check a page for noindex", "description": "Check meta robots in the page source and X-Robots-Tag in response headers. Google's robots.txt rule explains why an unread noindex can fail.", "datePublished": "2026-11-20", "dateModified": "2026-11-20", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/how-to/check-a-page-for-noindex/", "inLanguage": "en"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can a noindex header exist when View Source has no meta robots tag?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. X-Robots-Tag is an HTTP response header. Inspect the response headers as well as the HTML before drawing a conclusion. <a href=&quot;https://developers.google.com/search/docs/crawling-indexing/block-indexing&quot; rel=&quot;nofollow noopener&quot;>Header guidance<\/a>. Checked 20 November 2026."}}, {"@type": "Question", "name": "Should I add noindex to robots.txt to remove a listing?", "acceptedAnswer": {"@type": "Answer", "text": "No. Google does not support that rule in robots.txt. Its guide describes a meta tag or HTTP response header, on a resource the crawler can access. <a href=&quot;https://developers.google.com/search/docs/crawling-indexing/block-indexing&quot; rel=&quot;nofollow noopener&quot;>Noindex rules<\/a>. Checked 20 November 2026."}}, {"@type": "Question", "name": "What should I save before changing a noindex setting?", "acceptedAnswer": {"@type": "Answer", "text": "Save the exact address, the meta tag and response header you found, and the intended listing decision. That gives the person making the change a result they can check again."}}, {"@type": "Question", "name": "Does a noindex finding always call for removing the directive?", "acceptedAnswer": {"@type": "Answer", "text": "No. First decide whether the page should be listed. A checkout step or a private draft may have a different purpose from an article you want readers to find. Check the intended outcome before editing."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
@@ -990,10 +990,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <p id="measured-answer">A meta noindex checker needs to inspect 2 places: the HTML meta tag and the X-Robots-Tag response header, as <a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">Google&#x27;s noindex guide</a> explains.
 Google says <q>the page or resource must not be blocked by a robots.txt file</q> for noindex to be effective.
 Check both places before deciding that a missing meta tag means the page has no noindex rule.</p>
-
-<p class="verified-note"><strong>Checked 20 November 2026.</strong> The factual
-claims about this product were read from its own pages on that date: Google describes 2 ways to set noindex: a meta tag or an HTTP response header; the page must be accessible and not blocked by robots.txt for the rule to be read (<a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">source</a>); Google does not support noindex rules in robots.txt; meta robots and meta googlebot are shown as examples, as is the X-Robots-Tag header (<a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">source</a>).
-Read the linked guidance before changing your page.</p>
+<p class="verified-note">Checked on Google's own pages on 20 November 2026. Sources for the two noindex checks: <a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">Source 1</a>.</p>
 
 <h2>Read the page source for meta robots</h2>
 <p>Open the exact page address you want to check. Use your browser's View Source command and
@@ -1004,10 +1001,7 @@ can tell a directive from a word in the article you are reading.</p>
 <p>These are the meta tag forms shown in <a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">Google&#x27;s guide</a>. The robots
 name is the general form; googlebot names that crawler. Copy the tag into your notes before
 changing a template. This helps you find which setting wrote it if the directive comes back.</p>
-
-<p class="verified-note"><strong>Checked 20 November 2026.</strong> The factual
-claims about this product were read from its own pages on that date: Google describes 2 ways to set noindex: a meta tag or an HTTP response header; the page must be accessible and not blocked by robots.txt for the rule to be read (<a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">source</a>); Google does not support noindex rules in robots.txt; meta robots and meta googlebot are shown as examples, as is the X-Robots-Tag header (<a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">source</a>).
-Read the linked guidance before changing your page.</p>
+<p class="verified-note">Checked on Google's own pages on 20 November 2026. Sources for meta tag forms: <a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">Source 1</a>.</p>
 
 <h2>Read the response headers as well</h2>
 <p>Open the browser's developer tools, choose the Network panel and reload the page. Select
@@ -1020,10 +1014,7 @@ server response, so searching only the HTML cannot find it. Google's guide also 
 <p>Record the response you actually inspected. A screenshot of the page's design does not
 show its response headers. If you ask someone else to fix a header, send the address and the
 header text, rather than only the visible page.</p>
-
-<p class="verified-note"><strong>Checked 20 November 2026.</strong> The factual
-claims about this product were read from its own pages on that date: Google describes 2 ways to set noindex: a meta tag or an HTTP response header; the page must be accessible and not blocked by robots.txt for the rule to be read (<a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">source</a>); Google does not support noindex rules in robots.txt; meta robots and meta googlebot are shown as examples, as is the X-Robots-Tag header (<a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">source</a>).
-Read the linked guidance before changing your page.</p>
+<p class="verified-note">Checked on Google's own pages on 20 November 2026. Sources for response headers: <a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">Source 1</a>.</p>
 
 <h2>Why blocking the crawl can hide the rule</h2>
 <blockquote><p>Google says <q>the page or resource must not be blocked by a robots.txt file</q>.</p></blockquote>
@@ -1031,10 +1022,7 @@ Read the linked guidance before changing your page.</p>
 crawler will not see the noindex rule and the page can still appear in search results.
 Google does not support a noindex rule in robots.txt. Put the indexing directive in the meta
 tag or response header instead, following <a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">the noindex documentation</a>.</p>
-
-<p class="verified-note"><strong>Checked 20 November 2026.</strong> The factual
-claims about this product were read from its own pages on that date: Google describes 2 ways to set noindex: a meta tag or an HTTP response header; the page must be accessible and not blocked by robots.txt for the rule to be read (<a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">source</a>); Google does not support noindex rules in robots.txt; meta robots and meta googlebot are shown as examples, as is the X-Robots-Tag header (<a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">source</a>).
-Read the linked guidance before changing your page.</p>
+<p class="verified-note">Checked on Google's own pages on 20 November 2026. Sources for crawl access and indexing: <a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">Source 1</a>.</p>
 
 <h2>Use the existing page check, then finish the manual check</h2>
 <p>The <a href="/tools/meta-tag-checker/">Check Engine meta tag checker</a> is a useful starting
