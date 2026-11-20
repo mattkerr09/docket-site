@@ -45,6 +45,7 @@ import real_questions_comparisons  # noqa: E402
 import howto_test_googlebot  # noqa: E402
 import howto_check_noindex  # noqa: E402
 import howto_core_update_traffic_drop  # noqa: E402
+import howto_ai_assistant_traffic  # noqa: E402
 import directives  # noqa: E402
 import entity  # noqa: E402
 import rendering  # noqa: E402
@@ -1767,6 +1768,10 @@ def link_real_questions(pages: list[Path]) -> None:
     """
     related = {
         "how-to/index.html": (
+            '<h2><a href="/how-to/see-ai-assistant-traffic-in-analytics/">'
+            'See ChatGPT and Perplexity traffic in Google Analytics</a></h2>'
+            '<p>Find assistant link visitors by channel and source, separately from '
+            'crawler requests in your server logs.</p>'
             '<h2><a href="/how-to/traffic-drop-after-november-2026-core-update/">'
             'Traffic dropped after the November 2026 core update?</a></h2>'
             '<p>Check the rollout dates, rule out technical faults and understand '
@@ -1808,6 +1813,7 @@ def main() -> int:
     pages += real_questions_comparisons.build_all()
     pages += [howto_test_googlebot.build(), howto_check_noindex.build()]
     pages.append(howto_core_update_traffic_drop.build())
+    pages.append(howto_ai_assistant_traffic.build())
     pages += [best_free.best_hub(), best_free.free_seo_audit_tools(), sf_alternatives.sf_alternatives(),
               white_label.white_label_tools()]
     pages += [howto_https.http_to_https(),
