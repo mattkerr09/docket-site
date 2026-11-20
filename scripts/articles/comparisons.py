@@ -2239,7 +2239,7 @@ measured. Both vendors' published feature lists are what this page is built from
              "precondition for citation, not the same thing as it."),
             ("Which is cheaper?",
              f"Docket costs less even for a month at the listed prices: {PRICE_COMPACT}; "
-             f"Sitechecker starts at {price('sitechecker')} and keeps billing. Choose Sitechecker "
+             f"Sitechecker runs {price('sitechecker')} and keeps billing. Choose Sitechecker "
              "for its cloud platform tools, including monitoring and rank history. Docket "
              "re-audits saved sites on a schedule while the app is open, but does not track rankings."),
             ("Does Sitechecker limit how much you can crawl?",
