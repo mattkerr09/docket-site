@@ -21,7 +21,7 @@ an update exists. While its activation screen is showing on a copy with no key, 
 asks https://docketseo.app/offer.json for the current price and offer and whether the
 sale is still open.
 
-Check Engine is written by Matt Kerr and sold by Kerr & Company LLC, of Grand Rapids,
+Check Engine is written by Matthew Kerr and sold by Kerr & Company LLC, of Grand Rapids,
 Michigan, United States.
 
 ## What it checks
