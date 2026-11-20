@@ -73,7 +73,7 @@ row does not prove a link was removed because this is not a complete list.
 </ol>
 
 <h2>Where to get the list of links</h2>
-<table>
+<div class="wrap-tbl"><table>
 <thead><tr><th scope="col">Source</th><th scope="col">What it shows</th>
 <th scope="col">Page-level or domain-level</th><th scope="col">Cost basis as stated</th>
 <th scope="col">Limit</th></tr></thead>
@@ -94,7 +94,7 @@ the scanned ranks. Our own run: {EVIDENCE['read']}.</td></tr>
 <tr><th scope="row">{source_link("Ahrefs Site Explorer", AHREFS_EXPLORER)}</th>
 <td>The backlink profile with metrics and filtering</td><td>Page-level</td><td>Paid</td>
 <td>Plan allowance not stated here. Read {EVIDENCE['ahrefs_read']}.</td></tr>
-</tbody></table>
+</tbody></table></div>
 
 <h2>We ran it on our own sites</h2>
 <p>On {EVIDENCE['read']}, we ran Check Engine's quick open-graph lookup on our own
