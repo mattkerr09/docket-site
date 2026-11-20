@@ -17,7 +17,7 @@ from test_real_questions_1120 import (
 from test_thank_you_review_ask import environment, protected_state, run, scratch_copy
 
 ROOT = Path(__file__).resolve().parent.parent
-BASE = '4f4016f3931f134ffbb506c0c25e7dc014de78e6'
+BASE = '7e0194f5559db5279452285c6b98e7e4d8ad26c6'
 PAGE = 'how-to/traffic-drop-after-november-2026-core-update/index.html'
 URL = '/' + PAGE.removesuffix('index.html')
 HUB = 'how-to/index.html'
