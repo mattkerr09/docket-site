@@ -13,13 +13,16 @@ import sys
 import tempfile
 
 import render as R
+from test_measured_answers import Visible
 from test_launch_price_copy import scratch, stale_promo
+from test_sitewide_copy import sale_comparison
+from test_thank_you_review_ask import sale_copy_allowance
 from test_rename_brand import Page, build
 from verify_founding_offer import visible
 from verify_structured_data_matches_page import blocks
 
 ROOT = Path(__file__).resolve().parent.parent
-EXPECTED = "Black Friday sale: $19.99 once, 32% off our November price of $29.50, through December 2. Then $39."
+EXPECTED = "Black Friday sale: $19.99 once through December 2. Then $39."
 PRICE = re.compile(r"\$(?:39|29\.50|19\.99)(?!\d|\.\d)")
 BANNED = re.compile(r"\bfounding\b|FOUNDINGDOCKET", re.I)
 
@@ -44,31 +47,42 @@ def check_constants():
     assert R.price_sentence() == EXPECTED
     assert R.NOVEMBER_PRICE_STR == "$29.50"
     assert R.NOVEMBER_PRICE_CENTS == R.PRICE * 100 - R.NOVEMBER_OFF_CENTS
-    assert R.SALE_PERCENT_OFF == round((R.NOVEMBER_PRICE_CENTS - (R.PRICE * 100 - R.FOUNDING_OFF_CENTS))
-                                      / R.NOVEMBER_PRICE_CENTS * 100) == 32
     assignments = {node.targets[0].id: node.value for node in ast.parse((ROOT / "scripts/render.py").read_text()).body
                    if isinstance(node, ast.Assign) and isinstance(node.targets[0], ast.Name)}
-    percent = assignments["SALE_PERCENT_OFF"]
-    assert isinstance(percent, ast.Call) and percent.func.id == "round", ast.dump(percent)
-    assert {node.id for node in ast.walk(percent) if isinstance(node, ast.Name)} >= {
-        "FOUNDING_OFF_CENTS", "NOVEMBER_OFF_CENTS", "NOVEMBER_PRICE_CENTS"}
-    for name in ("FOUNDING_NOW", "NOVEMBER_PRICE_STR", "FOUNDING_END_DAY_US"):
+    for name in ("FOUNDING_NOW", "FOUNDING_END_DAY_US"):
         assert not isinstance(assignments[name], ast.Constant), name
     assert R.PRICE_COMPACT == "$19.99 once through December 2, then $39"
     assert not R.founding_open(dt.datetime.fromisoformat(R.FOUNDING_ENDS_AT.replace("Z", "+00:00")))
-    for text in (EXPECTED.replace("32%", "50%"), EXPECTED + " Black Friday", "sale price", "launch price", "half price", "Black Friday sale soon"):
+    for text in (EXPECTED.replace("once through", "once, 32% off through"), EXPECTED + " Black Friday", "sale price", "launch price", "half price", "Black Friday sale soon"):
         assert stale_promo(text), text
     assert not stale_promo(EXPECTED)
 
 
+def check_replay_allowances():
+    old = "Black Friday sale: $19.99 once, 32% off our November price of $29.50, through December 2. Then $39."
+    assert sale_copy_allowance(EXPECTED) == old
+    current = "$34.99 once through December 2. Then $79.</a>"
+    for previous in ("$34.99 once through December 2, then $79.</a>",
+                     "$34.99 once through December 2.</a> From 3 December it is $79."):
+        assert sale_copy_allowance(previous) == current
+    total = '<p class="hero-note" id="bundle-sum">$46.97 bought apart, $34.99 together.</p>\n'
+    assert sale_copy_allowance(total) == ""
+    for changed in (EXPECTED.replace("$19.99", "$19.98"), EXPECTED.replace("$39", "$41"),
+                    EXPECTED.replace("December 2", "December 3")):
+        assert sale_copy_allowance(changed) != old
+    assert sale_copy_allowance(total.replace("$46.97", "$46.96")) != ""
+
+
 def check_site(site, opened, before_pages=None):
     for route in ("pricing", "download"):
-        text = words((site / route / "index.html").read_text())
-        expected = ("$34.99 once through December 2, then $79" if opened else "$79 once")
+        # Read inline links as browser text, with no added space before punctuation.
+        raw = (site / route / "index.html").read_text()
+        text = Visible(raw).text()
+        expected = ("$34.99 once through December 2. Then $79." if opened else "$79 once")
         assert expected in text, (route, expected)
         assert "$59" not in text, route
-        total = "$46.97 bought apart, $34.99 together" if opened else "$107 bought apart, $79 together"
-        assert total in text, route
+        assert "bought apart" not in text, route
+        assert "$46.97" not in text and "$107" not in text, route
     thanks = words((site / "thank-you/index.html").read_text())
     sister_prices = (("$9.99 through December 2, then $29", "$16.99 through December 2, then $39")
                      if opened else ("$29 once", "$39 once"))
@@ -82,11 +96,14 @@ def check_site(site, opened, before_pages=None):
     sale_pages = 0
     mount_count = 0
     for path in sorted(site.rglob("*")):
-        if path.suffix not in (".html", ".txt"):
+        if path.suffix not in (".html", ".txt", ".json"):
             continue
         raw = path.read_text()
         text = words(raw)
         name = path.relative_to(site).as_posix()
+        assert not sale_comparison(raw, name), (name, "sale comparison remains")
+        if path.suffix == ".json":
+            continue
         assert not BANNED.search(text), name
         promo_copy = " ".join(re.sub(r"(?m)^> ?", "", visible(raw)).split())
         assert not stale_promo(promo_copy), name
@@ -165,6 +182,7 @@ with patch('datetime.datetime', AfterSale):
 
 def main():
     check_constants()
+    check_replay_allowances()
     with tempfile.TemporaryDirectory(prefix="test-black-friday-") as temporary:
         destination = Path(temporary)
         scratch(destination)
@@ -177,6 +195,7 @@ def main():
     print(f"PASS exact computed sale sentence; {len(priced)} priced HTML/TXT files carry it; {count} paid Offers agree")
     print("PASS sale mounts use $29.50 as reference, $19.99 now and $39 later; every mount stays hidden")
     print("PASS full 3 December scratch build: priced pages show $39; no sale mount, sale price, sale name or visible FOUNDING")
+    print("PASS comparison ban in HTML, metadata, alt text, JSON-LD, TXT and JSON before and after expiry")
     print("PASS visible code ban; only the exact helper-built sentence permits Black Friday copy")
 
 

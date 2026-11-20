@@ -125,15 +125,14 @@ def check_built(root):
     assert bundle["separate_total"] == apart == 107
     assert set(bundle["apps"]) == set(bundle["sale_prices"])
     if R.FOUNDING_OPEN:
-        launch_apart = sum(bundle["sale_prices"].values())
-        assert round(launch_apart * 100) == 4697
-        expected = (f'{R._usd(launch_apart)} bought apart, '
-                    f'{R._usd(bundle["founding_price"])} together.')
+        expected = (f'{R._usd(bundle["founding_price"])} once through {R.FOUNDING_END_DAY_US}. '
+                    f'Then {R._usd(bundle["standard_price"])}.')
         assert f'data-founding-until="{bundle["founding_ends_at"]}"' in pricing
     else:
-        expected = f'{R._usd(apart)} bought apart, {R._usd(bundle["standard_price"])} together.'
+        expected = f'{R._usd(bundle["standard_price"])} once.'
     assert expected in words(pricing)
-    assert pricing.index('id="bundle-sum"') < pricing.index('<h2>')
+    assert "bought apart" not in pricing and "$107" not in words(pricing)
+    assert "bundle-sum" not in pricing
 
     # A later rebuild must drop launch text in both the help answers and pricing.
     with patch.object(R, "FOUNDING_OPEN", False):
@@ -153,8 +152,8 @@ def check_built(root):
     with patch.object(builder.datetime, "datetime", AfterLaunch), patch.object(
             builder, "render", side_effect=lambda **kwargs: kwargs):
         closed_pricing = builder.pricing_page()["body"]
-    closed_sum = re.search(r'<p class="hero-note" id="bundle-sum">(.*?)</p>', closed_pricing)[1]
-    assert closed_sum == f'{R._usd(apart)} bought apart, {R._usd(bundle["standard_price"])} together.'
+    assert f'{R._usd(bundle["standard_price"])} once.</a>' in closed_pricing
+    assert "bought apart" not in closed_pricing and "$107" not in closed_pricing
     # The Microsoft Store listing keeps the name Docket SEO: wherever the site says the app is in the Store,
     # the Check Engine build must say what the listing is called, and the Docket build must stay as it was.
     store_pages = []
@@ -168,7 +167,7 @@ def check_built(root):
         else:
             assert "listed there as" not in text, page
     assert store_pages, "no page says the app is in the Microsoft Store; the Store wording test checks nothing"
-    print(f"HELP OK {brand.SITE_BRAND}: sources, copy, schema, links and bundle sums")
+    print(f"HELP OK {brand.SITE_BRAND}: sources, copy, schema, links and bundle prices")
 
 
 def main():

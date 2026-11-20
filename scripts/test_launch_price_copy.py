@@ -14,6 +14,7 @@ import tempfile
 from unittest.mock import patch
 
 import render as R
+from test_measured_answers import Visible
 from build import APP_LIST_PRICE_CENTS
 from test_rename_brand import Page, build, json_values
 from verify_structured_data_matches_page import visible, blocks as schema_blocks
@@ -21,7 +22,7 @@ from verify_structured_data_matches_page import visible, blocks as schema_blocks
 ROOT = Path(__file__).resolve().parent.parent
 BASE = "31f4693d7f73a39d7dc155f5d544ef62bb486132"
 # Keep recorded image-compression ranges and decimal research figures.
-STALE_PROMO = re.compile(r"(?<![\d.\u2013-])50%|50%\s*off|Black Friday|\b(?:sale price|launch price|half price)\b", re.I)
+STALE_PROMO = re.compile(r"(?<![\d.\u2013-])50%|\d+%\s*off|Black Friday|\b(?:sale price|launch price|half price)\b", re.I)
 PAY4 = re.compile(r"Klarna|Afterpay|four payments|pay in four|instalment|(?:4|four)\s*[×x]\s*\$", re.I)
 
 
@@ -72,9 +73,12 @@ def current_copy(raw, path):
 def check_site(site):
     launch = R.founding_price_sentence()
     for route in ("pricing", "download"):
-        text = visible((site / route / "index.html").read_text())
-        assert "$34.99 once through december 2, then $79" in text, route
-        assert "$46.97 bought apart, $34.99 together" in text, route
+        # Read inline links as browser text, with no added space before punctuation.
+        raw = (site / route / "index.html").read_text()
+        text = Visible(raw).text().lower()
+        assert "$34.99 once through december 2. then $79." in text, route
+        assert "bought apart" not in text, route
+        assert "$46.97" not in text and "$107" not in text, route
         assert not stale_list_price(text), route
     thanks = visible((site / "thank-you/index.html").read_text())
     assert "$9.99 through december 2, then $29" in thanks
@@ -201,7 +205,7 @@ def main():
     for name in ("PAY4", "PAY4_BUY", "PAY4_FOUNDING", "BNPL_NOTE", "BNPL_NOTE_HTML"):
         assert getattr(R, name) == "", name
     assert "data-pay4" not in R.FOUNDING_MOUNT
-    assert R.founding_price_sentence() == "Black Friday sale: $19.99 once, 32% off our November price of $29.50, through December 2. Then $39."
+    assert R.founding_price_sentence() == "Black Friday sale: $19.99 once through December 2. Then $39."
     expected_history = baseline("data/corrections.json").replace(b"launch-price", b"offer").replace(
         b"launch price", b"November price")
     assert (ROOT / "data/corrections.json").read_bytes() == expected_history

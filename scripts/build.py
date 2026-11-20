@@ -1438,18 +1438,14 @@ def pricing_page() -> Path:
         return f"${x:,.2f}" if x != int(x) else f"${int(x):,}"
     bundle_line = (
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
-        f'All three apps, {apps}, for {usd(bundle["founding_price"])} once through {FOUNDING_END_DAY_US}, then {usd(bundle["standard_price"])}.</a>'
+        f'All three apps, {apps}, for {usd(bundle["founding_price"])} once through {FOUNDING_END_DAY_US}. Then {usd(bundle["standard_price"])}.</a>'
         if founding else
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
         f'All three apps, {apps}, for {usd(bundle["standard_price"])} once.</a>')
-    apart = sum(bundle["sale_prices" if founding else "list_prices"].values())
-    together = bundle["founding_price" if founding else "standard_price"]
-    bundle_sum = f'{usd(apart)} bought apart, {usd(together)} together.'
     body = f"""
 <p class="lede">One price, paid once. No subscription, no page meter, nothing to cancel.</p>
 {buy_block("pricing-page", try_app="pricing-page-try-free", phone=False)}
 <p class="hero-note"{' data-founding-until="' + bundle["founding_ends_at"] + '"' if founding else ""}>{bundle_line}</p>
-<p class="hero-note" id="bundle-sum">{bundle_sum}</p>
 <p class="hero-note">Bought it already? <a href="{download_url('pricing-page')}" data-ev="Download"
 data-ev-button="pricing-page">Get the {DMG_SIZE} Mac download</a>{(f' or <a href="{download_url("pricing-page-windows", to=WIN_SETUP)}" data-ev="Download" data-ev-button="pricing-page-windows">the {WIN_SETUP_SIZE} Windows installer</a>') if WINDOWS else ''} and paste the key from your receipt.</p>
 

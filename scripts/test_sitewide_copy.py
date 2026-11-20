@@ -46,6 +46,30 @@ def published_copy(raw: str) -> str:
                      *(str(block) for block in blocks(raw))])
 
 
+SALE_COMPARISON = re.compile(
+    r"%\s*off|\bNovember\s+price\b|\$29\.50(?!\d)|\$107(?![\d.])|"
+    r"\bbought apart\b|\bwas\s+\$|<(?:s|del)\b[^>]*>[^<]*\$", re.I)
+
+
+def sale_comparison(raw: str, name: str):
+    """Check every copy surface, with the job's exact hidden-mount exception."""
+    # The CEO owns founding.js. The job requires these attributes to stay
+    # until that worker is ready. No other attribute or copy gets this exception.
+    raw = raw.replace('<div data-founding data-ref="$29.50" data-was="$39" '
+                      'data-now="$19.99" hidden></div>', '')
+    # Preserve the exact historical bug records, as test_launch_price_copy
+    # already requires. The job permits corrections.json changes only for live
+    # offer copy. Check each whole record before excluding it from current copy.
+    if name == "learn/what-docket-got-wrong/index.html":
+        from articles import corrections
+        import brand
+        for entry in corrections.load():
+            section = brand.html(corrections._entry(entry))
+            assert section in raw, (name, entry["release"])
+            raw = raw.replace(section, "", 1)
+    return SALE_COMPARISON.search(html.unescape(raw)) or SALE_COMPARISON.search(published_copy(raw))
+
+
 class SitewideCopyTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -79,13 +103,46 @@ class SitewideCopyTests(unittest.TestCase):
                 self.assertIsNone(STAFF.search(published_copy(path.read_text())))
         self.assertIsNone(STAFF.search((render.SITE / "llms.txt").read_text()))
 
+    def test_built_copy_has_no_sale_comparison(self):
+        for path in sorted(render.SITE.rglob("*")):
+            if path.suffix not in (".html", ".txt", ".json"):
+                continue
+            name = path.relative_to(render.SITE).as_posix()
+            with self.subTest(file=name):
+                self.assertIsNone(sale_comparison(path.read_text(), name))
+
+    def test_sale_comparison_controls_cover_all_copy_surfaces(self):
+        for forbidden in ("32% off", "November price", "$29.50", "$107 bought apart",
+                          "was $39", '<del>$39</del>'):
+            for raw in (f"<p>{forbidden}</p>",
+                        f'<meta name="description" content="{forbidden}">',
+                        f'<img alt="{forbidden}">',
+                        '<script type="application/ld+json">'
+                        f'{{"description": "{forbidden}"}}</script>',
+                        f'{{"label": "{forbidden}"}}', forbidden):
+                with self.subTest(raw=raw):
+                    self.assertIsNotNone(sale_comparison(raw, "control.html"))
+        mount = ('<div data-founding data-ref="$29.50" data-was="$39" '
+                 'data-now="$19.99" hidden></div>')
+        self.assertIsNone(sale_comparison(mount, "control.html"))
+        self.assertIsNotNone(sale_comparison(mount + '<p>$29.50</p>', "control.html"))
+        for line in ("Black Friday sale: $19.99 once through December 2. Then $39.",
+                     "$34.99 once through December 2. Then $79.", "$39 once.", "$79 once."):
+            self.assertIsNone(sale_comparison(line, "control.txt"))
+
+    def test_history_exception_keeps_checks_on_the_rest_of_the_page(self):
+        name = "learn/what-docket-got-wrong/index.html"
+        raw = (render.SITE / name).read_text()
+        self.assertIsNone(sale_comparison(raw, name))
+        for forbidden in ("32% off", "November price", "$29.50"):
+            self.assertIsNotNone(sale_comparison(raw + f"<p>{forbidden}</p>", name))
+
     def test_offer_sentence_uses_constants_and_closes_with_the_offer(self):
         with patch.multiple(render, FOUNDING_OPEN=True, SALE_NAME="Black Friday sale",
                             FOUNDING_NOW="$12.34", FOUNDING_END_DAY_US="a last day",
-                            SALE_PERCENT_OFF=23, NOVEMBER_PRICE_STR="$16",
                             FOUNDING_AFTER_DAY="a next day", LATER_STR="$56", PRICE_STR="$78"):
             self.assertEqual(render.founding_price_sentence(),
-                             "Black Friday sale: $12.34 once, 23% off our November price of $16, through a last day. Then $56.")
+                             "Black Friday sale: $12.34 once through a last day. Then $56.")
         with patch.object(render, "FOUNDING_OPEN", False):
             self.assertEqual(render.founding_price_sentence(), "")
             self.assertNotIn(render.SALE_NAME, render.buy_strip("test"))

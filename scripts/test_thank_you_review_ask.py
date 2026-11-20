@@ -126,7 +126,29 @@ def rejected(raw, label):
         raise AssertionError(f'control passed unexpectedly: {label}')
 
 
+def sale_copy_allowance(raw):
+    """Allow only Matthew's exact 20 November price-copy change in replays."""
+    # Keep the original reviewed document hashes: only the new sale sentence
+    # maps back to its exact old wording, with every amount and date pinned.
+    raw = raw.replace(
+        "Black Friday sale: $19.99 once through December 2. Then $39.",
+        "Black Friday sale: $19.99 once, 32% off our November price of $29.50, through December 2. Then $39.")
+    # Older build.py revisions wrote these two exact bundle forms.
+    for before in ("$34.99 once through December 2, then $79.</a>",
+                   "$34.99 once through December 2.</a> From 3 December it is $79."):
+        raw = raw.replace(before, "$34.99 once through December 2. Then $79.</a>")
+    for total in (
+        '<p class="hero-note" id="bundle-sum">$46.97 bought apart, $34.99 together.</p>\n',
+        '<p class="hero-note" id="bundle-sum">$107 bought apart, $79 together. '
+        '<span data-founding-until="2026-12-03T07:59:59Z">Through December 2: '
+        '$46.97 bought apart, $34.99 together.</span></p>\n',
+    ):
+        raw = raw.replace(total, "")
+    return raw
+
+
 def unstamped(raw):
+    raw = sale_copy_allowance(raw)
     return re.sub(r'(<meta name="build-id" content=")[^"]+(">)', r'\1BUILD\2', raw)
 
 

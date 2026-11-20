@@ -10,7 +10,7 @@ import sys
 import tempfile
 from urllib.parse import urlsplit
 
-from test_thank_you_review_ask import environment, protected_state, run, scratch_copy, unstamped
+from test_thank_you_review_ask import environment, protected_state, run, scratch_copy, sale_copy_allowance, unstamped
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -77,6 +77,7 @@ class Visible(HTMLParser):
 
 
 def article(raw):
+    raw = sale_copy_allowance(raw)
     match = re.search(r'<article\b[^>]*>.*?</article>', raw, re.S)
     assert match, 'missing article'
     # A new answer cannot become evidence for itself or for another answer.

@@ -300,14 +300,10 @@ def bundle_link(src: str, button: str, *, lead: str = "All three apps, Docket SE
     """One line offering the three-app bundle through the hub, with nofollow (a sister product)."""
     b = _bundle()
     opened = founding_open()
-    price = (f"{_usd(b['founding_price'])} once through {FOUNDING_END_DAY_US}, then {_usd(b['standard_price'])}"
+    price = (f"{_usd(b['founding_price'])} once through {FOUNDING_END_DAY_US}. Then {_usd(b['standard_price'])}"
              if opened else f"{_usd(b['standard_price'])} once")
-    # Compare prices that apply at the same time, summed from the data.
-    apart = sum(b["sale_prices" if opened else "list_prices"].values())
-    together = b["founding_price" if opened else "standard_price"]
-    saving = f' ({_usd(apart)} bought apart, {_usd(together)} together)'
     return (f'<a href="{b["url"]}?src={src}" rel="nofollow" data-ev="Buy" data-ev-button="{button}">'
-            f'{lead} {price}</a>{saving}')
+            f'{lead} {price}</a>')
 
 def download_url(src: str, to: str = "") -> str:
     """A Download button's link: our counter, then the release file.
@@ -758,10 +754,10 @@ PRICE_PREVIOUS = None
 #: The flat code from the CEO's 2026-11-13 read-back. Derive the sale price
 #: from cents so the page, bar and app offer all agree with the checkout.
 FOUNDING_OFF_CENTS = 1901
+#: Retained only for the unchanged founding.js mount until the CEO updates it.
 NOVEMBER_OFF_CENTS = 950
 NOVEMBER_PRICE_CENTS = PRICE * 100 - NOVEMBER_OFF_CENTS
 NOVEMBER_PRICE_STR = f"${NOVEMBER_PRICE_CENTS / 100:.2f}"
-SALE_PERCENT_OFF = round((FOUNDING_OFF_CENTS - NOVEMBER_OFF_CENTS) / NOVEMBER_PRICE_CENTS * 100)
 FOUNDING_WAS = f"${PRICE}"
 FOUNDING_NOW = f"${(PRICE * 100 - FOUNDING_OFF_CENTS) / 100:.2f}"
 PRICE_STR = f"${PRICE}"
@@ -769,7 +765,7 @@ PRICE_STR = f"${PRICE}"
 FOUNDING_CODE = "FOUNDINGDOCKET"
 #: No cap since 2026-11-02 ("Everyone, all of November"), so no page says "first N buyers" any more.
 FOUNDING_SEATS = None
-#: The sale compares against the real November price, not the later list price.
+#: The sale name used in the shared price sentence.
 SALE_NAME = "Black Friday sale"
 #: The flat code's expiry from the CEO's 2026-11-13 read-back.
 #: Every founding-price line, the auto-applied code and the ads switch off by
@@ -820,12 +816,12 @@ FOUNDING_AFTER_DAY = (lambda d: f"{d.day} {d.strftime('%B')}")(
 
 def founding_price_sentence() -> str:
     """The sale in prose and FAQs, dropped when the offer closes."""
-    return (f"{SALE_NAME}: {FOUNDING_NOW} once, {SALE_PERCENT_OFF}% off our November price of "
-            f"{NOVEMBER_PRICE_STR}, through {FOUNDING_END_DAY_US}. Then {LATER_STR}." if FOUNDING_OPEN else "")
+    return (f"{SALE_NAME}: {FOUNDING_NOW} once through {FOUNDING_END_DAY_US}. Then {LATER_STR}."
+            if FOUNDING_OPEN else "")
 
 
 def price_sentence() -> str:
-    """The full displayed price, including the November reference and end day while open."""
+    """The full displayed price, including the sale end day while open."""
     return founding_price_sentence() if FOUNDING_OPEN else f"{PRICE_STR} once."
 
 

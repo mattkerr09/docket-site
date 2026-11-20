@@ -21,7 +21,7 @@ def check_constants():
     assert render.FOUNDING_NOW == "$19.99"
     assert render.FOUNDING_OFF_CENTS == 1901
     assert render.FOUNDING_NOW == f"${render.PRICE - render.FOUNDING_OFF_CENTS / 100:.2f}"
-    assert render.founding_price_sentence() == "Black Friday sale: $19.99 once, 32% off our November price of $29.50, through December 2. Then $39."
+    assert render.founding_price_sentence() == "Black Friday sale: $19.99 once through December 2. Then $39."
     bundle = render._bundle()
     assert bundle["standard_price"] == 79
     assert bundle["list_prices"] == {"Docket SEO": 39, "Crisp": 29, "Outlier": 39}
@@ -64,7 +64,7 @@ def check_expiry():
         assert closed["app_price"]("Outlier") == "$39 once"
         link = closed["bundle_link"]("test", "test")
         assert "$79 once" in link and "$59" not in link
-        assert "$107 bought apart, $79 together" in link
+        assert "bought apart" not in link and "$107" not in link
     paid = [offer for offer in closed["_price_offers"](False) if offer["price"] != "0"]
     assert len(paid) == 1, paid
     assert paid[0]["price"] == "39.00", paid
