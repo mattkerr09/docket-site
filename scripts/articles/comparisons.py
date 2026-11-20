@@ -751,7 +751,10 @@ CHECKED_HUMAN["sf-alternatives"] = f"{_d.day} {_d.strftime('%B %Y')}"
 
 # 20 November 2026: these list pages now use only the supplied vendor readings.
 # Keep the historical data files unchanged for other pages and replay tests.
-from best_compared_sources import CRAWLERS, PLUGINS, WHITE_LABEL, claims as _compared_claims
+try:  # build.py puts scripts/articles on the path; verify_claim_freshness.py imports it as articles.comparisons
+    from best_compared_sources import CRAWLERS, PLUGINS, WHITE_LABEL, claims as _compared_claims
+except ModuleNotFoundError:
+    from articles.best_compared_sources import CRAWLERS, PLUGINS, WHITE_LABEL, claims as _compared_claims
 
 for _key, _tools in (("sf-alternatives", CRAWLERS), ("wl-tools", WHITE_LABEL),
                      ("wordpress-compared", PLUGINS)):
