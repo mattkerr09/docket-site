@@ -1457,7 +1457,7 @@
  "download/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "cf76c7ac9061a101"
+  "hash": "1edbe7aa3a5cf55f"
  },
  "faq/index.html": {
   "changed_in_build": false,
@@ -1717,7 +1717,7 @@
  "how-to/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "3e28d43b2763142c"
+  "hash": "d9457e8cae494918"
  },
  "how-to/javascript-seo-audit/index.html": {
   "changed_in_build": false,
@@ -1784,6 +1784,11 @@
   "date": "2026-11-20",
   "hash": "0f81dc4cdbe19959"
  },
+ "how-to/traffic-drop-after-november-2026-core-update/index.html": {
+  "changed_in_build": false,
+  "date": "2026-11-20",
+  "hash": "4533e56ec7ed31f3"
+ },
  "how-to/what-your-site-says-you-are-called/index.html": {
   "changed_in_build": false,
   "date": "2026-11-10",
@@ -1817,7 +1822,7 @@
  "index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "d06b8037a9b9c958"
+  "hash": "da6297e6db19bf86"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -1950,9 +1955,9 @@
   "hash": "639cbec33fab0c41"
  },
  "learn/internal-link-equity/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-20",
-  "hash": "f811110ee3f6ee6b"
+  "hash": "f916daf44eb97c14"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
@@ -2111,8 +2116,8 @@
  },
  "mac-seo-audit-tool/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-16",
-  "hash": "86f03eb15dcdbbf5"
+  "date": "2026-11-20",
+  "hash": "e9b14d64467f8b6c"
  },
  "score-card/index.html": {
   "changed_in_build": false,
@@ -2196,13 +2201,13 @@
  },
  "vs/crawler-sh-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "4df0eb67a6905ff4"
+  "date": "2026-11-20",
+  "hash": "e7c872d755f4d50f"
  },
  "vs/crawlraven-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "fe9cc25b13f906b3"
+  "date": "2026-11-20",
+  "hash": "91a9f092c96a2e13"
  },
  "vs/google-search-console/index.html": {
   "changed_in_build": false,
@@ -2212,27 +2217,27 @@
  "vs/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "8695699edd608a2b"
+  "hash": "b03c60307a9c2357"
  },
  "vs/jetoctopus-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "0ba8f49d3d94fcb6"
+  "date": "2026-11-20",
+  "hash": "b5abc3d93fd76ea2"
  },
  "vs/lighthouse-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "f8a1cb36bb40f596"
+  "date": "2026-11-20",
+  "hash": "55888a0569f30b8b"
  },
  "vs/profound-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "b0fc18bd823445f9"
+  "date": "2026-11-20",
+  "hash": "ec202156b44e55d8"
  },
  "vs/screaming-frog-alternative/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "8cc7952e7d6f4b41"
+  "hash": "bce302ae480c6512"
  },
  "vs/screaming-frog-vs-semrush/index.html": {
   "changed_in_build": false,
@@ -2241,18 +2246,18 @@
  },
  "vs/scrutiny-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "fe5620acb947f7ae"
+  "date": "2026-11-20",
+  "hash": "4fe6e1554a076138"
  },
  "vs/se-ranking-vs-screaming-frog/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "ecd010df49eaf41e"
+  "hash": "aa0bc7daffb9dd3d"
  },
  "vs/semrush-site-audit-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "c785805e487693e5"
+  "date": "2026-11-20",
+  "hash": "a9e72f392396e5a9"
  },
  "vs/seoptimer-alternative/index.html": {
   "changed_in_build": false,
@@ -2261,8 +2266,8 @@
  },
  "vs/sitebulb-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-16",
-  "hash": "ef09d68358289635"
+  "date": "2026-11-20",
+  "hash": "6a2f62302f3b3cac"
  },
  "vs/sitebulb-vs-jetoctopus/index.html": {
   "changed_in_build": false,
@@ -2271,7 +2276,7 @@
  },
  "vs/sitechecker-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "e6f6c6e254f0a8f8"
+  "date": "2026-11-20",
+  "hash": "477867f830554df6"
  }
 }
