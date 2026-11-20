@@ -128,7 +128,7 @@ def check_site(site, opened, before_pages=None):
                     mount_count += 1
                     assert opened, (name, "sale mount remains after expiry")
                     assert attrs.get("data-ref") != "$39", name
-                    assert attrs.get("data-ref") == "$29.50", name
+                    assert "data-ref" not in attrs, name
                     assert attrs.get("data-now") == "$19.99", name
                     assert attrs.get("data-was") == "$39", name
                     assert "hidden" in attrs, name
@@ -193,7 +193,7 @@ def main():
         assert set(priced) == set(after), (set(priced) ^ set(after))
         assert count == after_count, (count, after_count)
     print(f"PASS exact computed sale sentence; {len(priced)} priced HTML/TXT files carry it; {count} paid Offers agree")
-    print("PASS sale mounts use $29.50 as reference, $19.99 now and $39 later; every mount stays hidden")
+    print("PASS sale mounts carry no reference price, $19.99 now and $39 later; every mount stays hidden")
     print("PASS full 3 December scratch build: priced pages show $39; no sale mount, sale price, sale name or visible FOUNDING")
     print("PASS comparison ban in HTML, metadata, alt text, JSON-LD, TXT and JSON before and after expiry")
     print("PASS visible code ban; only the exact helper-built sentence permits Black Friday copy")

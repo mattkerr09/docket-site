@@ -2063,7 +2063,7 @@ FOUNDING_SWITCH = ('<script>(function(){var end=Date.parse("' + FOUNDING_ENDS_AT
 #: The bar gets the flat-code price and the later list price from these constants.
 #: Both are under Dodo's floor in the CEO's 2026-11-11 read-back. Keep data-pay4
 #: guarded so it is sent only when the launch price clears the floor.
-FOUNDING_MOUNT = ((f'<div data-founding data-ref="{NOVEMBER_PRICE_STR}" data-was="{LATER_STR}" data-now="{FOUNDING_NOW}"'
+FOUNDING_MOUNT = ((f'<div data-founding data-was="{LATER_STR}" data-now="{FOUNDING_NOW}"'
                    + (f' data-pay4="or 4 &times; {BNPL_FOUNDING_INSTALMENT}"' if BNPL_FOUNDING_OK else '')
                    + ' hidden></div>\n' + FOUNDING_SWITCH
                    + '<script src="https://kerr-lead-agent.kerrco.workers.dev/founding.js" defer></script>')
@@ -2395,6 +2395,68 @@ PHONE_LINK_JS = (
 )
 
 
+# Only the home and download entry points use this block. Keep the shared
+# PHONE_LINK above unchanged so other pages keep their reviewed copy.
+PHONE_DOWNLOAD_BLOCK = '''<div class="phone-download">
+<p>Check Engine runs on a Mac or a Windows PC. Send yourself the link and open it there.</p>
+<div class="hero-cta">
+<a class="btn" href="/download/" data-phone-send>Send myself the link</a>
+<button class="btn-ghost" type="button" data-phone-copy aria-live="polite">Copy the link</button>
+</div>
+<noscript><p>https://checkengineseo.com/download/</p></noscript>
+</div>'''
+
+PHONE_DOWNLOAD_STYLE = '''<style id="phone-download-style">
+.phone-download{display:none}
+@media (max-width:700px){
+  .phone-download{display:block;margin:.75rem 0 1rem}
+  #product-hunt-welcome>.hero-cta [data-ev="Download"],
+  .hero-sec [data-ev-button="home-try-free"],
+  .hero-sec [data-ev-button="home-hero-win"],
+  .hero-sec .phone-link,.hero-sec .mac-alt{display:none}
+}
+@media (max-width:700px) and (pointer:coarse){
+  .phone-download .btn,.phone-download .btn-ghost{min-height:44px}
+}
+</style>'''
+
+PHONE_DOWNLOAD_JS = r'''<script id="phone-download-script">
+(function () {
+  var page = new URL(window.location.href);
+  var url = new URL('/download/', page);
+  var ref = page.searchParams.get('ref');
+  if (ref !== null) url.searchParams.set('ref', ref);
+  var link = url.href;
+  var mail = 'mailto:?subject=' + encodeURIComponent('Check Engine: download link')
+    + '&body=' + encodeURIComponent('Open this on your Mac or Windows PC to download Check Engine:\n\n' + link);
+  document.querySelectorAll('[data-phone-send]').forEach(function (button) {
+    button.href = mail;
+  });
+  document.querySelectorAll('[data-phone-copy]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      function done() { button.textContent = 'Link copied'; }
+      function fallback() {
+        var focus = document.activeElement;
+        var text = document.createElement('textarea');
+        text.value = link;
+        text.readOnly = true;
+        text.style.position = 'fixed';
+        text.style.opacity = '0';
+        document.body.appendChild(text);
+        text.select();
+        try { if (document.execCommand('copy')) done(); } catch (e) {}
+        text.remove();
+        if (focus && focus.focus) focus.focus();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(link).then(done, fallback);
+      } else fallback();
+    });
+  });
+})();
+</script>'''
+
+
 #: The landing-source tagger: see the comment where it is placed in the head.
 #: The list matched the hub's LANDING_OK exactly (kerr-affiliate-hub worker.js) until 2026-11-08, when claude,
 #: claude-directory, claude-connector and chatgpt-directory were added here first; the hub counts them once J4
@@ -2701,6 +2763,14 @@ def render(
     social_title_matches_title: bool = False,
 ) -> Path:
     """Write one page. `body` is the caller's authored HTML — never generated here."""
+    phone_download = filename == "index.html" and (cat, slug) in {("", ""), ("download", "")}
+    if (cat, slug) == ("download", ""):
+        # Keep the full sale sentence beside Buy, once. The other occurrences
+        # precede ordinary prose; the compact prices and offers stay intact.
+        if FOUNDING_OPEN:
+            body = body.replace(founding_price_sentence() + " ", "")
+        body = body.replace('<ol class="steps" id="buy">',
+                            PHONE_DOWNLOAD_BLOCK + '\n<ol class="steps" id="buy">', 1)
     # THE END OF A PAGE IS A BUY PATH, NOT A DOWNLOAD. Fifty-seven generators
     # closed with the same button, "Download Docket", pointing at an app that
     # will not audit anything until a key is pasted — GitHub counts about 3,107
@@ -2887,7 +2957,7 @@ def render(
 <meta name="twitter:title" content="{esc(social_title)}">
 <meta name="twitter:description" content="{esc(desc)}">
 <meta name="twitter:image" content="{BASE}/og.png?v={OG_VERSION}">
-{STYLE}
+{STYLE}{chr(10) + PHONE_DOWNLOAD_STYLE if phone_download else ""}
 {schema}
 {"" if browser_only else ANALYTICS}
 {"" if browser_only else META_PIXEL}</head>
@@ -2901,7 +2971,7 @@ def render(
 {body}{tool_app_callout() if cat == "tools" and slug else ""}{faq_html}{closer}
 {closing}
 </main>
-{FOOTER_ARM if (cat, slug) in LINK_ARMS else FOOTER}
+{FOOTER_ARM if (cat, slug) in LINK_ARMS else FOOTER}{chr(10) + PHONE_DOWNLOAD_JS if phone_download else ""}
 {"" if browser_only or (cat, slug) == ("", "thank-you") else FOUNDING_MOUNT}
 <script>
 /* Scroll reveal. Every reference site animates content in; this one shipped no

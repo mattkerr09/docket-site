@@ -23,11 +23,11 @@ def hero_check_block() -> str:
         for i, assistant in enumerate(assistants)
     )
     downloads = (f'<a class="btn{" dl-mac" if WINDOWS else ""}" '
-                 f'href="{download_url("home-hero-check")}">Run the full free audit</a>')
+                 f'href="{download_url("home-hero-check")}">Download the app to run the full audit</a>')
     if WINDOWS:
         downloads += (f'<a class="btn dl-win" '
                       f'href="{download_url("home-hero-check-win", to=WIN_SETUP)}">'
-                      'Run the full free audit</a>')
+                      'Download the app to run the full audit</a>')
     return rf"""<form class="hero-check" action="/tools/ai-crawler-checker/" method="get">
   <label for="hero-check-address">Your website address</label>
   <div class="hero-check-row">

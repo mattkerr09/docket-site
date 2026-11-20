@@ -170,7 +170,7 @@ class HomeHeroTests(unittest.TestCase):
                 query = parse_qs(urlsplit(links[1]["href"]).query)
                 self.assertEqual(query["src"], ["home-hero-check-win"])
                 self.assertEqual(query["to"], [render.WIN_SETUP])
-        self.assertEqual(self.fragment.count("Run the full free audit</a>"), 2 if render.WINDOWS else 1)
+        self.assertEqual(self.fragment.count("Download the app to run the full audit</a>"), 2 if render.WINDOWS else 1)
 
     def test_rest_of_hero_and_page_metadata_match_base(self):
         source = subprocess.run(["git", "show", f"{BASE}:scripts/articles/home.py"],
@@ -190,13 +190,15 @@ class HomeHeroTests(unittest.TestCase):
                          + normal(before_sub) + " " + normal(added))
         note = comparisons._verified_note("audit-agency-prices-home", closing="Prices vary with the work and the site.")
         self.assertIn(note, after)
-        after = after.replace(after_sub, before_sub, 1).replace("\n  " + note, "", 1)
-        # Everything after the changed introduction, including all purchase facts and media.
-        before_tail = before.split('<p class="hero-note">No page meter.', 1)[1]
-        after_tail = after.split('<p class="hero-note">No page meter.', 1)[1]
-        after_tail = after_tail.replace("Everything that's wrong. In the order to fix it. ", "", 1)
-        self.assertEqual(before_tail, after_tail)
-        self.assertEqual(before.split('<h1 class="hero-h1">')[0], after.split('<h1 class="hero-h1">')[0])
+        # Later reviewed jobs added the PH strip, connector link and full
+        # author name. Compare this job's remaining markup to its own base.
+        source = subprocess.run(["git", "show", "81a0e2ddb96dde32d4130a689ce49959def705a2:scripts/articles/home.py"],
+                                cwd=HERE, capture_output=True, text=True, check=True).stdout
+        exec(compile(source, old.__file__, "exec"), old.__dict__)
+        before, after = old.body(), home.body()
+        after = after.replace("\n  " + render.PHONE_DOWNLOAD_BLOCK, "", 1)
+        after = after.replace("\n" + render.PHONE_DOWNLOAD_BLOCK, "", 1)
+        self.assertEqual(before, after)
         with patch.object(old, "render", side_effect=lambda **kwargs: kwargs), \
                 patch.object(home, "render", side_effect=lambda **kwargs: kwargs):
             before_args, after_args = old.build(), home.build()

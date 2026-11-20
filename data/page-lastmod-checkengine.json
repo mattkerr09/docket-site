@@ -1455,9 +1455,9 @@
   "hash": "2071b24e2bca5478"
  },
  "download/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-19",
-  "hash": "8e6fac6a61ee68ba"
+  "changed_in_build": true,
+  "date": "2026-11-20",
+  "hash": "a608d96b5f279c43"
  },
  "faq/index.html": {
   "changed_in_build": false,
@@ -1815,9 +1815,9 @@
   "hash": "1bef76e786f181cd"
  },
  "index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-19",
-  "hash": "b6d196878fb009ba"
+  "changed_in_build": true,
+  "date": "2026-11-20",
+  "hash": "4dfc7db307a377a7"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -1875,7 +1875,7 @@
   "hash": "0cdf461331d238fb"
  },
  "learn/audit-tool-accuracy/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-20",
   "hash": "df749632c4c687bd"
  },
@@ -2020,7 +2020,7 @@
   "hash": "0348369c61d1b28f"
  },
  "learn/what-docket-got-wrong/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-20",
   "hash": "069b3b28ec8a69ef"
  },

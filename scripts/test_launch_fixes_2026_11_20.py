@@ -27,7 +27,7 @@ def check_site(site, opened):
     if not opened:
         expected = expected.removesuffix(" " + R.founding_price_sentence())
     assert words(re.search(r"<p>(.*?)</p>", strip, re.S).group(1)) == expected
-    buttons = [attrs for tag, attrs in Page(strip).tags if tag == "a"]
+    buttons = [attrs for tag, attrs in Page(strip).tags if tag == "a" and attrs.get("data-ev") == "Download"]
     assert len(buttons) == 2
     assert [b["href"] for b in buttons] == [R.download_url("home-producthunt-mac"),
                                             R.download_url("home-producthunt-win", to=R.WIN_SETUP)]

@@ -99,7 +99,7 @@ def check_site(site):
                 assert block["author"]["name"] == "Matthew Kerr", path
         for tag, attrs in Page(raw).tags:
             if "data-founding" in attrs:
-                assert attrs["data-ref"] == R.NOVEMBER_PRICE_STR, path
+                assert "data-ref" not in attrs, path  # 20 Nov 2026: the bar ignores data-ref; no page carries the old reference price
                 assert attrs["data-was"] == R.LATER_STR, path
                 assert attrs["data-now"] == R.FOUNDING_NOW, path
                 assert "data-pay4" not in attrs, path
