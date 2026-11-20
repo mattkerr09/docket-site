@@ -16,7 +16,8 @@ while the two halves of the money path disagree.
 WHAT IT COMPARES
 
   the site  — the checkout host in the Buy links of the pages about to deploy
-  the app   — which vendor the built sidecar names when it rejects a key
+  the app   — which vendor the built sidecar asks to check a key: the vendor it
+                names when it rejects one, else the API its check is sent to
 
 WHAT IT DOES NOT
 
@@ -34,10 +35,14 @@ WHAT IT DOES NOT
 """
 from __future__ import annotations
 
+import http.server
+import os
 import pathlib
 import re
 import subprocess
 import sys
+import tempfile
+import threading
 
 SITE = pathlib.Path(__file__).resolve().parent.parent / "site"
 DIST = pathlib.Path.home() / "Projects" / "docket-app" / "dist"
@@ -112,6 +117,60 @@ def site_vendor() -> tuple:
     return vendor, f"{len(pages)} page(s) link {vendor}"
 
 
+class _Listener(http.server.ThreadingHTTPServer):
+    """A local stand-in for the licence API that records what it was asked."""
+    seen: list
+
+
+class _Refuse(http.server.BaseHTTPRequestHandler):
+    def _answer(self):
+        self.server.seen.append(self.path)
+        length = int(self.headers.get("Content-Length") or 0)
+        if length:
+            self.rfile.read(length)
+        body = b'{"message":"not found"}'
+        self.send_response(404)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    do_GET = do_POST = _answer
+
+    def log_message(self, *args):  # noqa: D401 - keep the gate output clean
+        pass
+
+
+def asks_dodo(binary: pathlib.Path) -> bool:
+    """True when `docket licence --key` sends its key check to the Dodo API.
+
+    The customer-facing refusal no longer names a vendor (2026-11-20: a person
+    locked out of a key they paid for does not know what "Dodo" is), so the
+    wording cannot say which vendor the build asks. Where the request goes can:
+    the sidecar reads its API base from DOCKET_DODO_API_BASE, so point that at
+    a local listener that refuses everything and see whether it is called.
+    Nothing is ever activated (every answer is a 404) and the probe runs in a
+    throw-away HOME, so no real licence state is read or written.
+    """
+    server = _Listener(("127.0.0.1", 0), _Refuse)
+    server.seen = []
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        with tempfile.TemporaryDirectory(prefix="vendor-match-home.") as home:
+            env = {**os.environ, "HOME": home,
+                   "DOCKET_DODO_API_BASE": f"http://127.0.0.1:{server.server_address[1]}"}
+            try:
+                subprocess.run([str(binary), "licence", "--key", "VENDOR-MATCH-PROBE-0000"],
+                               capture_output=True, text=True, timeout=90, env=env)
+            except (subprocess.SubprocessError, OSError):
+                return False
+    finally:
+        server.shutdown()
+        server.server_close()
+    return any("/licenses/" in path for path in server.seen)
+
+
 def app_vendor() -> tuple:
     """(vendor, evidence) from the built sidecar, by asking it to reject a key.
 
@@ -142,8 +201,10 @@ def app_vendor() -> tuple:
     said, binary, skipped = "", None, []
     for candidate in reversed(binaries):
         try:
-            r = subprocess.run([str(candidate), "licence", "--key", "VENDOR-MATCH-PROBE-0000"],
-                               capture_output=True, text=True, timeout=90)
+            with tempfile.TemporaryDirectory(prefix="vendor-match-home.") as home:
+                r = subprocess.run([str(candidate), "licence", "--key", "VENDOR-MATCH-PROBE-0000"],
+                                   capture_output=True, text=True, timeout=90,
+                                   env={**os.environ, "HOME": home})
         except (subprocess.SubprocessError, OSError) as e:
             skipped.append(f"{candidate.parent.name}/{candidate.name} ({type(e).__name__})")
             continue
@@ -158,7 +219,11 @@ def app_vendor() -> tuple:
     for vendor in ("dodo", "polar"):
         if vendor in said:
             return vendor, f"{binary.name} names {vendor} when refusing a key"
-    return "", f"{binary.name} named no vendor: {said.strip()[:120]!r}"
+    # The refusal is vendor-free on purpose; ask where the request goes instead.
+    if asks_dodo(binary):
+        return "dodo", f"{binary.name} sends its key check to the Dodo licence API"
+    return "", (f"{binary.name} named no vendor ({said.strip()[:80]!r}) and sent no "
+                "request to the Dodo licence API")
 
 
 def site_version() -> str:
