@@ -1943,6 +1943,12 @@ the openings are structural, which means you can find them by looking rather tha
 by guessing at rankings nobody outside Google can see.
 <a href="/how-to/outrank-a-bigger-competitor/">How to find where a bigger competitor is beatable →</a></p>
 
+<h2><a href="/how-to/test-a-page-as-googlebot/">Googlebot test: inspect a page or identify a visit</a></h2>
+<p>Choose the test that answers your question, then read what its result can establish.</p>
+
+<h2><a href="/how-to/check-a-page-for-noindex/">Meta noindex checker: tags and response headers</a></h2>
+<p>Inspect both places a noindex directive can appear before changing the page.</p>
+
 <h2>More coming</h2>
 <p>Further guides are being written, one per issue Docket reports. They will appear as each is written properly rather than as
 variations on a template.</p>

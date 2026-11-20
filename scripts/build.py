@@ -39,6 +39,9 @@ import best_free  # noqa: E402
 import sf_alternatives  # noqa: E402
 import white_label  # noqa: E402
 import comparisons  # noqa: E402
+import real_questions_comparisons  # noqa: E402
+import howto_test_googlebot  # noqa: E402
+import howto_check_noindex  # noqa: E402
 import directives  # noqa: E402
 import entity  # noqa: E402
 import rendering  # noqa: E402
@@ -190,6 +193,12 @@ def build_hubs() -> list[Path]:
         "Each of these names at least one thing the other tool does better, because a "
         "comparison that never concedes anything is an advertisement.",
         [
+            ("/vs/contentking-vs-se-ranking/", "ContentKing vs SE Ranking",
+             "Which question are you asking: ongoing monitoring or an audit?"),
+            ("/vs/screaming-frog-vs-semrush/", "Screaming Frog vs Semrush",
+             "Compare the crawl task, billing choices and published limits."),
+            ("/vs/sitebulb-vs-jetoctopus/", "Sitebulb vs JetOctopus",
+             "Decide whether you need a crawl, request records or both."),
             ("/vs/screaming-frog-alternative/", "Docket vs Screaming Frog",
              "Raw crawl data versus a ranked plan. Screaming Frog supports custom "
              "extraction and crawls at far greater scale; Docket does not."),
@@ -1667,9 +1676,46 @@ def stamp_build_id() -> str:
     return build_id
 
 
+
+def link_real_questions(pages: list[Path]) -> None:
+    """Register the requested inbound links without rewriting older generators.
+
+    Historical measured-answer tests replay comparisons.py. Keep these links
+    part of registration so both sides of those scratch builds keep them.
+    """
+    related = {
+        "vs/se-ranking-vs-screaming-frog/index.html": (
+            '<p>For the other pairings, read '
+            '<a href="/vs/contentking-vs-se-ranking/">ContentKing vs SE Ranking</a> '
+            'and <a href="/vs/screaming-frog-vs-semrush/">Screaming Frog vs Semrush</a>.</p>'
+        ),
+        "vs/jetoctopus-alternative/index.html": (
+            '<p>For the desktop and cloud choice, compare '
+            '<a href="/vs/sitebulb-vs-jetoctopus/">Sitebulb vs JetOctopus</a>.</p>'
+        ),
+    }
+    for page in pages:
+        paragraph = related.get(page.relative_to(SITE).as_posix())
+        if paragraph is None:
+            continue
+        raw = page.read_text(encoding="utf-8")
+        # Keep the paragraph in the article's reading column, before its FAQ.
+        assert '</div></article>' in raw, f"missing article ending: {page}"
+        raw = raw.replace('</div></article>', paragraph + '\n</div></article>', 1)
+        raw = re.sub(r'"dateModified":"[^"]*",', '"dateModified":"2026-11-20",', raw)
+        update = '<span class="sep">·</span>Updated <time datetime="2026-11-20">20 November 2026</time>'
+        byline = re.search(r'<p class="byline">.*?</p>', raw, re.S)
+        assert byline, f"missing byline: {page}"
+        updated = re.sub(r'<span class="sep">·</span>Updated <time[^>]*>.*?</time>', '', byline.group())
+        raw = raw.replace(byline.group(), updated.replace('</p>', update + '</p>'), 1)
+        page.write_text(raw, encoding="utf-8")
+
+
 def main() -> int:
     pages: list[Path] = [home.build(), index_page.build(), checks_page()]
     pages += comparisons.build_all()
+    pages += real_questions_comparisons.build_all()
+    pages += [howto_test_googlebot.build(), howto_check_noindex.build()]
     pages += [best_free.best_hub(), best_free.free_seo_audit_tools(), sf_alternatives.sf_alternatives(),
               white_label.white_label_tools()]
     pages += [howto_https.http_to_https(),
@@ -1786,6 +1832,7 @@ def main() -> int:
     pages += best_free_seo_audit_plugins.build_all()
     pages += learn_free_seo_audit_api.build_all()
     pages += build_hubs()
+    link_real_questions(pages)
 
     # NOT appended to `pages`: the sitemap is derived from that list, and
     # render() resolves an empty cat+slug to the site root, so including the

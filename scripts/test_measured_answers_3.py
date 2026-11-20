@@ -14,8 +14,17 @@ from urllib.parse import urlsplit
 import app_path
 import test_measured_answers as round_one
 import test_measured_answers_2 as round_two
-from test_measured_answers import ANSWER, NUMBER, Visible, article, unchanged
+from test_measured_answers import ANSWER, NUMBER, Visible, article as _article, unchanged
 from test_thank_you_review_ask import environment, protected_state, run, scratch_copy, unstamped
+
+
+def article(raw):
+    """The article text with the author's name as the site writes it today.
+
+    The published base was built when the byline said Matt Kerr; the author is now Matthew Kerr
+    (Matthew's order, 19 November). The comparison is about the measurement, not the name.
+    """
+    return _article(raw).replace("Matt Kerr", "Matthew Kerr")
 
 
 ROOT = Path(__file__).resolve().parent.parent

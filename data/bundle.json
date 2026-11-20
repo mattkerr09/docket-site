@@ -21,5 +21,11 @@
     "Docket SEO": 19.99,
     "Crisp": 9.99,
     "Outlier": 16.99
-  }
+  },
+  "sale_off_cents": {
+    "Docket SEO": 1901,
+    "Crisp": 1901,
+    "Outlier": 2201
+  },
+  "sale_off_cents_note": "Derived (list price minus sale price, in cents). Kept only so the historical replay builds in test_thank_you_review_ask.py and test_measured_answers_3.py, which run older generators, still build; the live generators read sale_prices."
 }
