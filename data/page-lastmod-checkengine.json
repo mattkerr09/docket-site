@@ -1211,6 +1211,10 @@
   "date": "2026-11-19",
   "hash": "4416e60842d586a3"
  },
+ "how-to/check-a-page-for-noindex/index.html": {
+  "date": "2026-11-20",
+  "hash": "8f7ceba9c3171e02"
+ },
  "how-to/check-mobile-seo-from-a-crawl/index.html": {
   "date": "2026-11-19",
   "hash": "cf31b93ca31e5016"
@@ -1368,8 +1372,8 @@
   "hash": "a2fadac18fcf885d"
  },
  "how-to/index.html": {
-  "date": "2026-11-19",
-  "hash": "304358885ad62154"
+  "date": "2026-11-20",
+  "hash": "a96d688297ec8177"
  },
  "how-to/javascript-seo-audit/index.html": {
   "date": "2026-11-19",
@@ -1418,6 +1422,10 @@
  "how-to/tell-a-rate-limit-from-a-block/index.html": {
   "date": "2026-11-19",
   "hash": "2c843e7f123c4094"
+ },
+ "how-to/test-a-page-as-googlebot/index.html": {
+  "date": "2026-11-20",
+  "hash": "b0d564ab1d6f1fbc"
  },
  "how-to/what-your-site-says-you-are-called/index.html": {
   "date": "2026-11-19",
@@ -1552,8 +1560,8 @@
   "hash": "55567f079eb07e2e"
  },
  "learn/internal-link-equity/index.html": {
-  "date": "2026-11-19",
-  "hash": "daaa8c667e4523ea"
+  "date": "2026-11-20",
+  "hash": "481970e4a84a9585"
  },
  "learn/internal-utm-links/index.html": {
   "date": "2026-11-19",
@@ -1743,6 +1751,10 @@
   "date": "2026-11-19",
   "hash": "ea87108d54f00f3c"
  },
+ "vs/contentking-vs-se-ranking/index.html": {
+  "date": "2026-11-20",
+  "hash": "181fe43e4b9129f9"
+ },
  "vs/crawler-sh-alternative/index.html": {
   "date": "2026-11-19",
   "hash": "3415b620a26c619e"
@@ -1756,12 +1768,12 @@
   "hash": "3dcb2c76671b5172"
  },
  "vs/index.html": {
-  "date": "2026-11-19",
-  "hash": "26dddc0a43ba40f7"
+  "date": "2026-11-20",
+  "hash": "4c78f4a5add6d571"
  },
  "vs/jetoctopus-alternative/index.html": {
-  "date": "2026-11-19",
-  "hash": "bafd08c63293c105"
+  "date": "2026-11-20",
+  "hash": "e6a5035534bad95b"
  },
  "vs/lighthouse-alternative/index.html": {
   "date": "2026-11-19",
@@ -1775,13 +1787,17 @@
   "date": "2026-11-19",
   "hash": "b6a3d7f7c5a5d398"
  },
+ "vs/screaming-frog-vs-semrush/index.html": {
+  "date": "2026-11-20",
+  "hash": "e001727d86d254ad"
+ },
  "vs/scrutiny-alternative/index.html": {
   "date": "2026-11-19",
   "hash": "7e48c502ae28d40b"
  },
  "vs/se-ranking-vs-screaming-frog/index.html": {
-  "date": "2026-11-19",
-  "hash": "d9ed3b3897981d2f"
+  "date": "2026-11-20",
+  "hash": "498a8e11399e3fd5"
  },
  "vs/semrush-site-audit-alternative/index.html": {
   "date": "2026-11-19",
@@ -1794,6 +1810,10 @@
  "vs/sitebulb-alternative/index.html": {
   "date": "2026-11-19",
   "hash": "7e9d8431d13adbbd"
+ },
+ "vs/sitebulb-vs-jetoctopus/index.html": {
+  "date": "2026-11-20",
+  "hash": "29357cf697ae7437"
  },
  "vs/sitechecker-alternative/index.html": {
   "date": "2026-11-19",
