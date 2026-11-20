@@ -89,7 +89,8 @@ def run(destination, command, env, quiet=False):
     print(f'exit {completed.returncode}', flush=True)
     if completed.returncode:
         raise SystemExit(completed.returncode)
-    return output
+    # 2026-11-20: git source must not include Xcode diagnostics from stderr.
+    return completed.stdout
 
 
 def check_ask(raw):
@@ -129,6 +130,20 @@ def unstamped(raw):
     return re.sub(r'(<meta name="build-id" content=")[^"]+(">)', r'\1BUILD\2', raw)
 
 
+def check_preserved(old, raw, paragraph):
+    # 2026-11-20: a key opens the full report; free audits run without one.
+    old = old.replace(
+        '<p>Check Engine needs it before it will run an audit. Open the app, click\n',
+        '<p>Check Engine needs it to show the full report and fix plan. Open the app, click\n',
+        1)
+    # 2026-11-20: the sister-app list items carry data-sister-offer so the page's JSON-LD never
+    # reads Outlier's or Crisp's price as an offer for this app (the bundle and price fix).
+    for name in ('Crisp Video', 'Outlier'):
+        old = old.replace(f'<li><strong>{name}</strong>', f'<li data-sister-offer><strong>{name}</strong>', 1)
+    assert unstamped(raw.replace(paragraph + '\n', '', 1)) == unstamped(old), \
+        'existing thank-you content or purchase/privacy handling changed'
+
+
 def protected_state():
     # Metadata only: do not open any source-tree credential or customer file.
     return {str(path.relative_to(ROOT)): (path.lstat().st_size, path.lstat().st_mtime_ns)
@@ -158,10 +173,21 @@ def main():
         run(destination, [sys.executable, '-B', 'scripts/build.py'], env)
         raw = thank_you.read_text()
         paragraph = check_ask(raw)
-        # Byte comparison apart from the added paragraph and derived build id
-        # protects receipt, key display, verification, scripts and refund copy.
-        assert unstamped(raw.replace(paragraph + '\n', '', 1)) == unstamped(old), \
-            'existing thank-you content or purchase/privacy handling changed'
+        # Byte comparison with the exact copy migration protects receipt,
+        # key display, verification, scripts and refund copy.
+        check_preserved(old, raw, paragraph)
+        for original, replacement, label in (
+            ('var ret = window.__dkReturn || {};', 'var ret = {};', 'purchase handling'),
+            ('strict-origin-when-cross-origin', 'unsafe-url', 'privacy policy'),
+            ('to show the full report and fix plan.', 'to show only the report.', 'other key wording'),
+        ):
+            assert original in raw, f'{label} control did not land'
+            try:
+                check_preserved(old, raw.replace(original, replacement, 1), paragraph)
+            except AssertionError:
+                print(f'CONTROL rejected changed {label}')
+            else:
+                raise AssertionError(f'control passed unexpectedly: {label}')
         rejected(raw.replace('review on AlternativeTo.', 'review on AlternativeTo. Get a reward.'),
                  'reward offer')
         rejected(raw.replace(LISTING, LISTING + '?license_key=TEST-KEY&payment_id=TEST-PAYMENT'),
@@ -177,7 +203,7 @@ def main():
         for path in (destination / 'workers').rglob('*.js'):
             assert 'alternativeto' not in path.read_text().lower(), path
         print(f'PASS: one honest ask; {checked} other pages and worker/free-result sources have no ask')
-        print('PASS: existing thank-you HTML unchanged apart from the ask and build id')
+        print('PASS: existing thank-you HTML preserved apart from the ask, build id and key sentence')
         for command in ([sys.executable, '-B', 'scripts/lint.py', 'site'],
                         [sys.executable, '-B', 'scripts/test_chatgpt_app_links.py'],
                         [sys.executable, '-B', 'scripts/verify_structured_data_matches_page.py']):

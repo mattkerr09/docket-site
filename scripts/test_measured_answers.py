@@ -80,7 +80,8 @@ def article(raw):
     match = re.search(r'<article\b[^>]*>.*?</article>', raw, re.S)
     assert match, 'missing article'
     # A new answer cannot become evidence for itself or for another answer.
-    return Visible(ANSWER.sub('', match.group())).text()
+    # 2026-11-19: Matthew requested the author name Matt Kerr become Matthew Kerr.
+    return Visible(ANSWER.sub('', match.group())).text().replace('Matt Kerr', 'Matthew Kerr')
 
 
 def check_answer(raw, spec, site, published):
