@@ -122,14 +122,17 @@ def check_built(root):
     apart = sum(bundle["list_prices"].values())
     assert set(bundle["apps"]) == set(bundle["list_prices"])
     assert bundle["list_prices"]["Docket SEO"] == R.PRICE
-    expected = f'{R._usd(apart)} bought apart, {R._usd(bundle["standard_price"])} together.'
-    assert expected in words(pricing)
+    assert bundle["separate_total"] == apart == 107
+    assert set(bundle["apps"]) == set(bundle["sale_prices"])
     if R.FOUNDING_OPEN:
-        launch_apart = (apart * 100 - sum(bundle["sale_off_cents"].values())) / 100
+        launch_apart = sum(bundle["sale_prices"].values())
+        assert round(launch_apart * 100) == 4697
         expected = (f'{R._usd(launch_apart)} bought apart, '
                     f'{R._usd(bundle["founding_price"])} together.')
-        assert expected in words(pricing)
         assert f'data-founding-until="{bundle["founding_ends_at"]}"' in pricing
+    else:
+        expected = f'{R._usd(apart)} bought apart, {R._usd(bundle["standard_price"])} together.'
+    assert expected in words(pricing)
     assert pricing.index('id="bundle-sum"') < pricing.index('<h2>')
 
     # A later rebuild must drop launch text in both the help answers and pricing.

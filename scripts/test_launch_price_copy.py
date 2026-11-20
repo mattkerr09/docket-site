@@ -32,7 +32,7 @@ def stale_promo(text):
 
 
 def stale_list_price(text):
-    # The bundle really costs $59 after this sale. Do not mistake its labelled
+    # The bundle costs $79 after this sale. Do not mistake its labelled
     # amount for the obsolete single-app list price this check guards against.
     bundle = R._bundle()
     amount = R._usd(bundle["standard_price"])
@@ -71,6 +71,15 @@ def current_copy(raw, path):
 
 def check_site(site):
     launch = R.founding_price_sentence()
+    for route in ("pricing", "download"):
+        text = visible((site / route / "index.html").read_text())
+        assert "$34.99 once through december 2, then $79" in text, route
+        assert "$46.97 bought apart, $34.99 together" in text, route
+        assert not stale_list_price(text), route
+    thanks = visible((site / "thank-you/index.html").read_text())
+    assert "$9.99 through december 2, then $29" in thanks
+    assert "$16.99 through december 2, then $39" in thanks
+
     help_line = " ".join(html.unescape(re.sub(r"<[^>]+>", "", R.CHECKOUT_HELP)).split())
     assert help_line == "The Buy button applies the sale for you; there is no code to type.", help_line
     assert "$59" not in help_line
@@ -78,6 +87,12 @@ def check_site(site):
     for path in sorted(site.rglob("*.html")):
         raw = path.read_text()
         text, blocks = current_copy(raw, path)
+        assert not re.search(r"\bMatt\b", raw), path
+        if 'class="byline"' in raw:
+            assert "By Matthew Kerr" in text, path
+        for block in blocks:
+            if "author" in block:
+                assert block["author"]["name"] == "Matthew Kerr", path
         for tag, attrs in Page(raw).tags:
             if "data-founding" in attrs:
                 assert attrs["data-ref"] == R.NOVEMBER_PRICE_STR, path
@@ -93,7 +108,13 @@ def check_site(site):
                 assert not stale_list_price(value), (path, value)
                 assert not stale_promo(value), (path, value)
                 assert not PAY4.search(value), (path, value)
-        if R.FOUNDING_NOW in text or R.LATER_STR in text:
+        # The thank-you page sells the sisters, whose exact prices are checked
+        # above. Outlier's later price now matches Check Engine's.
+        price_text = text
+        if path.relative_to(site).as_posix() == "thank-you/index.html":
+            for app in ("Crisp", "Outlier"):
+                price_text = price_text.replace(R.app_price(app), "")
+        if R.FOUNDING_NOW in price_text or R.LATER_STR in price_text:
             assert launch in text, (path, "price without full launch sentence")
             app = next((item for item in schema_blocks(raw)
                         if item.get("@type") == "SoftwareApplication"), None)
@@ -108,6 +129,8 @@ def check_site(site):
     assert heroes > 100, heroes
     assert price_pages > 400, price_pages
     llms = " ".join(re.sub(r"(?m)^> ?", "", (site / "llms.txt").read_text()).split())
+    assert "written by Matthew Kerr" in llms
+    assert not re.search(r"\bMatt\b", llms)
     assert launch in llms
     assert help_line in llms
     assert not stale_list_price(llms)

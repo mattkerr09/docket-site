@@ -27,3 +27,14 @@ checkout_price_cents and later_price_cents stay 3900.
 The installed app still reads founding.code and may print FOUNDINGDOCKET.
 The field and all existing keys stay for app compatibility. The site's
 visible copy does not print that code or the word FOUNDING.
+
+Matthew's 19 November order sets the other December prices. From
+2026-12-03T08:00Z, Crisp is $29, Outlier is $39 and all three apps are $79.
+Check Engine stays $39. The CEO changes Dodo product prices at that time.
+This site states the order and does not change Dodo.
+
+Until 2026-12-03T07:59:59Z, the sale stays Crisp $9.99, Outlier $16.99,
+Check Engine $19.99 and all three $34.99. data/bundle.json stores sale_prices
+apart from list_prices so changing December prices cannot change the sale.
+The bought-apart total is computed from the prices in effect: $46.97 during
+the sale and $107 after it. separate_total is checked against list_prices.

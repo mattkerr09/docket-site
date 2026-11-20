@@ -691,7 +691,7 @@ def write_llms_txt() -> None:
         "few pages as a browser would, also reach the sites and services those pages link "
         "to or load. The licence key is checked with the payment provider when it is "
         f"activated and about once a day after that. {app_requests}")]
-    out += ["", wrap(f"Docket is written by Matt Kerr and sold by {SELLER}, of "
+    out += ["", wrap(f"Docket is written by Matthew Kerr and sold by {SELLER}, of "
                      f"{seller_address()}.")]
 
     out += ["", "## What it checks", ""]
@@ -1108,7 +1108,7 @@ def _thank_you_xsell() -> str:
     at the first build after founding_ends_at (on the 1 December rebuild list)."""
     from render import HUB, app_price
     def item(name: str, key: str, slug: str, blurb: str) -> str:
-        return (f'<li><strong>{name}</strong>: {blurb} {app_price(key)}. '
+        return (f'<li data-sister-offer><strong>{name}</strong>: {blurb} {app_price(key)}. '
                 f'<a href="{HUB}/buy/{slug}?src=ty-docket-xsell" rel="nofollow" data-ev="Buy" '
                 f'data-ev-button="ty-docket-xsell-{slug}">Buy {name.split()[0]}</a></li>')
     return f"""
@@ -1400,19 +1400,15 @@ def pricing_page() -> Path:
     as every other price on the site. Not in the sitemap: it is a door, not an
     article.
     """
-    from render import (DMG_SIZE, FOUNDING_AFTER_DAY, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, price_sentence, REFUND_DAYS,
+    from render import (_bundle, DMG_SIZE, FOUNDING_AFTER_DAY, FREE_LINE, MAC_HW, MACOS, MACS, NO_BUILDS, price_sentence, REFUND_DAYS,
                         FOUNDING_END_DAY, FOUNDING_END_DAY_US, PRICE_COMPACT, SALE_NAME, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE,
                         buy_block, download_url, windows_waitlist)
     # The prose below is this page's own. The quality gate's duplicate check
     # judged the first version (the buy block alone) a copy of 18 pages,
     # rightly: a page that is only the shared block says nothing of its own.
     # Every fact is from the terms, the refund policy and the FAQ, re-worded.
-    bundle = json.loads((DATA / "bundle.json").read_text(encoding="utf-8"))
-    # The founding bundle price is promised only until the founding codes end;
-    # after that moment the page states the standard price instead, so a rebuild is
-    # all it takes to stop quoting a price the checkout no longer gives. The moment,
-    # not the day: the codes expire at 01:26:53Z on 25 November, and a date compare
-    # kept the founding price on the page for the rest of that day.
+    bundle = _bundle()
+    # Rebuild after the sale ends to show only December prices.
     founding = (datetime.datetime.now(datetime.timezone.utc)
                 < datetime.datetime.fromisoformat(bundle["founding_ends_at"].replace("Z", "+00:00")))
     apps = ", ".join(bundle["apps"][:-1]) + " and " + bundle["apps"][-1]
@@ -1421,20 +1417,13 @@ def pricing_page() -> Path:
         return f"${x:,.2f}" if x != int(x) else f"${int(x):,}"
     bundle_line = (
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
-        f'All three apps, {apps}, for {usd(bundle["founding_price"])} once through {FOUNDING_END_DAY_US}.</a> '
-        f'From {FOUNDING_AFTER_DAY} it is {usd(bundle["standard_price"])}.'
+        f'All three apps, {apps}, for {usd(bundle["founding_price"])} once through {FOUNDING_END_DAY_US}, then {usd(bundle["standard_price"])}.</a>'
         if founding else
         f'<a href="{bundle["url"]}?src=docket-pricing" data-ev="Buy" data-ev-button="pricing-bundle">'
         f'All three apps, {apps}, for {usd(bundle["standard_price"])} once.</a>')
-    apart = sum(bundle["list_prices"].values())
-    bundle_sum = (f'{usd(apart)} bought apart, '
-                  f'{usd(bundle["standard_price"])} together.')
-    if founding:
-        launch_apart = (apart * 100 - sum(bundle["sale_off_cents"].values())) / 100
-        bundle_sum += (
-            f' <span data-founding-until="{bundle["founding_ends_at"]}">'
-            f'Through {FOUNDING_END_DAY_US}: '
-            f'{usd(launch_apart)} bought apart, {usd(bundle["founding_price"])} together.</span>')
+    apart = sum(bundle["sale_prices" if founding else "list_prices"].values())
+    together = bundle["founding_price" if founding else "standard_price"]
+    bundle_sum = f'{usd(apart)} bought apart, {usd(together)} together.'
     body = f"""
 <p class="lede">One price, paid once. No subscription, no page meter, nothing to cancel.</p>
 {buy_block("pricing-page", try_app="pricing-page-try-free", phone=False)}

@@ -263,7 +263,10 @@ def checkout_url(src: str) -> str:
 
 def _bundle() -> dict:
     import json as _json
-    return _json.loads((DATA / "bundle.json").read_text(encoding="utf-8"))
+    b = _json.loads((DATA / "bundle.json").read_text(encoding="utf-8"))
+    assert b["separate_total"] == sum(b["list_prices"].values())
+    assert set(b["apps"]) == set(b["list_prices"]) == set(b["sale_prices"])
+    return b
 
 
 def _usd(x: float) -> str:
@@ -289,18 +292,20 @@ def app_price(app: str) -> str:
     b = _bundle()
     lp = b["list_prices"][app]
     if founding_open():
-        return f"{_usd((lp * 100 - b['sale_off_cents'][app]) / 100)} through {FOUNDING_END_DAY_US}, then {_usd(lp)}"
+        return f"{_usd(b['sale_prices'][app])} through {FOUNDING_END_DAY_US}, then {_usd(lp)}"
     return f"{_usd(lp)} once"
 
 
 def bundle_link(src: str, button: str, *, lead: str = "All three apps, Docket SEO, Crisp and Outlier, for") -> str:
     """One line offering the three-app bundle through the hub, with nofollow (a sister product)."""
     b = _bundle()
-    price = (f"{_usd(b['founding_price'])} through {FOUNDING_END_DAY_US}, then {_usd(b['standard_price'])}"
-             if founding_open() else f"{_usd(b['standard_price'])}")
-    # The exact saving at list prices (CEO, 2026-11-07), summed from list_prices, never typed.
-    apart = sum(b["list_prices"].values())
-    saving = f' ({_usd(apart)} bought apart, {_usd(b["standard_price"])} together)'
+    opened = founding_open()
+    price = (f"{_usd(b['founding_price'])} once through {FOUNDING_END_DAY_US}, then {_usd(b['standard_price'])}"
+             if opened else f"{_usd(b['standard_price'])} once")
+    # Compare prices that apply at the same time, summed from the data.
+    apart = sum(b["sale_prices" if opened else "list_prices"].values())
+    together = b["founding_price" if opened else "standard_price"]
+    saving = f' ({_usd(apart)} bought apart, {_usd(together)} together)'
     return (f'<a href="{b["url"]}?src={src}" rel="nofollow" data-ev="Buy" data-ev-button="{button}">'
             f'{lead} {price}</a>{saving}')
 
@@ -2603,7 +2608,7 @@ def _byline(published: str | None, modified: str | None) -> str:
     """
     if not published:
         return ""
-    out = f'<p class="byline">By Matt Kerr<span class="sep">·</span>Published <time datetime="{published}">{_human_date(published)}</time>'
+    out = f'<p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="{published}">{_human_date(published)}</time>'
     if modified and modified != published:
         out += f'<span class="sep">·</span>Updated <time datetime="{modified}">{_human_date(modified)}</time>'
     return out + "</p>"
@@ -2743,6 +2748,8 @@ def render(
     # The Offer rides along only where a visitor can see the number it states.
     # Include the FAQ and closing CTA, which are visible after the authored body.
     price_copy = body + closer + " ".join(answer for _, answer in (faq or []))
+    # A sister app can have the same price. Its offer is not an offer for this app.
+    price_copy = re.sub(r"<li data-sister-offer>.*?</li>", "", price_copy, flags=re.S)
     shows_price = price_sentence() in re.sub(r"<[^>]+>", "", price_copy)
     # The same rule for the free version: the Free offer rides along only where
     # the page states what free is.
@@ -2779,7 +2786,7 @@ def render(
             '{"@context":"https://schema.org","@type":"' + schema_type + '",'
             f'"headline":"{_json_text(h1)}","description":"{_json_text(desc)}",'
             f'"datePublished":"{published}",' + modified_field +
-            '"author":{"@type":"Person","name":"Matt Kerr",'
+            '"author":{"@type":"Person","name":"Matthew Kerr",'
             '"description":"Builds Docket. Every number on this site comes from running it."},'
             '"publisher":{"@id":"' + BASE + '/#org"},'
             f'"mainEntityOfPage":"{url}","inLanguage":"en"}}'

@@ -62,6 +62,18 @@ def check_constants():
 
 
 def check_site(site, opened, before_pages=None):
+    for route in ("pricing", "download"):
+        text = words((site / route / "index.html").read_text())
+        expected = ("$34.99 once through December 2, then $79" if opened else "$79 once")
+        assert expected in text, (route, expected)
+        assert "$59" not in text, route
+        total = "$46.97 bought apart, $34.99 together" if opened else "$107 bought apart, $79 together"
+        assert total in text, route
+    thanks = words((site / "thank-you/index.html").read_text())
+    sister_prices = (("$9.99 through December 2, then $29", "$16.99 through December 2, then $39")
+                     if opened else ("$29 once", "$39 once"))
+    for expected in sister_prices:
+        assert expected in thanks, expected
     privacy = words((site / "legal/privacy/index.html").read_text())
     assert ("The third is the sale bar across the top of every page except the page shown after a purchase, "
             "loaded from") in privacy
@@ -80,7 +92,13 @@ def check_site(site, opened, before_pages=None):
         assert not stale_promo(promo_copy), name
         if R.founding_price_sentence() in text:
             sale_pages += 1
-        if PRICE.search(text):
+        # Sister offers now share Check Engine's later price. They have their
+        # own exact assertions above and do not offer Check Engine again.
+        price_text = text
+        if name == "thank-you/index.html":
+            for expected in sister_prices:
+                price_text = price_text.replace(expected, "")
+        if PRICE.search(price_text):
             priced.append(name)
             assert (EXPECTED in text) if opened else ("$39" in text), name
         if not opened:
@@ -102,6 +120,7 @@ def check_site(site, opened, before_pages=None):
                     # Free score/report offers remain free in both states.
                     if str(offer.get("price")) == "0":
                         continue
+                    assert name != "thank-you/index.html", "sister price emitted a Check Engine Offer"
                     paid_count += 1
                     assert offer["price"] == ("19.99" if opened else "39.00"), (name, offer)
                     if opened:

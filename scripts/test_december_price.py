@@ -22,6 +22,16 @@ def check_constants():
     assert render.FOUNDING_OFF_CENTS == 1901
     assert render.FOUNDING_NOW == f"${render.PRICE - render.FOUNDING_OFF_CENTS / 100:.2f}"
     assert render.founding_price_sentence() == "Black Friday sale: $19.99 once, 32% off our November price of $29.50, through December 2. Then $39."
+    bundle = render._bundle()
+    assert bundle["standard_price"] == 79
+    assert bundle["list_prices"] == {"Docket SEO": 39, "Crisp": 29, "Outlier": 39}
+    assert bundle["sale_prices"] == {"Docket SEO": 19.99, "Crisp": 9.99, "Outlier": 16.99}
+    assert bundle["founding_price"] == 34.99
+    # Future list prices must not affect the sale prices.
+    changed = dict(bundle, list_prices={"Docket SEO": 39, "Crisp": 31, "Outlier": 43})
+    with patch.object(render, "_bundle", return_value=changed):
+        assert render.app_price("Crisp") == "$9.99 through December 2, then $31"
+        assert render.app_price("Outlier") == "$16.99 through December 2, then $43"
     note = (ROOT / "docs/DECEMBER_PRICE_FLIP.md").read_text()
     for name in ("PRICE", "LATER_PRICE", "LATER_STR", "FOUNDING_NOW", "FOUNDING_OPEN",
                  "FOUNDING_CODE", "FOUNDING_OFF_CENTS", "FOUNDING_ENDS_AT", "APP_LIST_PRICE_CENTS",
@@ -49,6 +59,12 @@ def check_expiry():
     for name in ("CHECKOUT_HELP", "FOUNDING_LINE", "FOUNDING_MOUNT", "PAY4", "PAY4_BUY",
                  "PAY4_FOUNDING", "BNPL_NOTE", "BNPL_NOTE_HTML"):
         assert closed[name] == "", name
+    with patch("datetime.datetime", DecemberClock):
+        assert closed["app_price"]("Crisp") == "$29 once"
+        assert closed["app_price"]("Outlier") == "$39 once"
+        link = closed["bundle_link"]("test", "test")
+        assert "$79 once" in link and "$59" not in link
+        assert "$107 bought apart, $79 together" in link
     paid = [offer for offer in closed["_price_offers"](False) if offer["price"] != "0"]
     assert len(paid) == 1, paid
     assert paid[0]["price"] == "39.00", paid

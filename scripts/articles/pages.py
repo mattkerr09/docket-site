@@ -2584,7 +2584,7 @@ on price, delivery and refunds are part of that agreement.</p>
 
 <h2>Who you are dealing with</h2>
 <p>Docket is published by {seller}, of {seller_address()}, which licenses the software to you.
-The software is written by Matt Kerr. Licences are sold through {PROCESSOR}, the reseller and
+The software is written by Matthew Kerr. Licences are sold through {PROCESSOR}, the reseller and
 merchant of record for each sale. Correspondence about the software goes through
 <a href="/contact/">the channels on the contact page</a>.</p>
 

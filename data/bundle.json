@@ -5,21 +5,21 @@
     "Outlier"
   ],
   "founding_price": 34.99,
-  "standard_price": 59,
-  "separate_total": 87,
+  "standard_price": 79,
+  "separate_total": 107,
   "founding_ends_at": "2026-12-03T07:59:59Z",
   "url": "https://kerr-affiliate-hub.kerrco.workers.dev/buy/bundle",
-  "recorded": "2026-11-13",
-  "source": "CEO launch note BLACK-FRIDAY-SALE-2026-11-13.md, Dodo read-back at 2026-11-13T05:30:58Z: Check Engine SEO $19.99, Crisp $9.99, Outlier $16.99, all three $34.99 through 2 December US Pacific, then $39, $19, $29 and $59 respectively.",
+  "recorded": "2026-11-19",
+  "source": "Matthew's order PRICES-FROM-3-DEC-2026-11-19.md, 2026-11-19T15:44:07Z: sale prices stay Check Engine SEO $19.99, Crisp $9.99, Outlier $16.99 and all three $34.99 through 2 December US Pacific. From 2026-12-03T08:00Z: Check Engine SEO $39, Crisp $29, Outlier $39 and all three $79. The CEO changes Dodo product prices at that time; this site only states the order.",
   "list_prices": {
     "Docket SEO": 39,
-    "Crisp": 19,
-    "Outlier": 29
+    "Crisp": 29,
+    "Outlier": 39
   },
-  "prices_checked": "2026-11-13, supplied CEO launch note; network not re-read.",
-  "sale_off_cents": {
-    "Docket SEO": 1901,
-    "Crisp": 901,
-    "Outlier": 1201
+  "prices_checked": "2026-11-19, supplied Matthew order; no new Dodo read-back or network check.",
+  "sale_prices": {
+    "Docket SEO": 19.99,
+    "Crisp": 9.99,
+    "Outlier": 16.99
   }
 }

@@ -820,7 +820,7 @@ needed, and the crawl and the report stay on your computer.</p>
 </figure>
 {buy_block("home-closer")}
 {BNPL_BLOCK}
-<p class="founder-note">I'm Matt Kerr. I build Docket on my own in Grand Rapids, Michigan, and I read the
+<p class="founder-note">I'm Matthew Kerr. I build Docket on my own in Grand Rapids, Michigan, and I read the
 support inbox and the issue tracker myself. <a href="/about/">About me, and what Docket cannot do</a>.</p>
 </div>
 <!-- Windows: the waiting list (first-party, shown only to a visitor on Windows) until the installer ships, then its download line (render.windows_waitlist). -->

@@ -60,7 +60,7 @@ def check_content(html: str) -> None:
                    "public body", "WCAG 2.1 Level A and AA", "Title II date", "board report", "PDF"):
         assert phrase in answer, phrase
     assert f"It works without a {NAME} licence." in text
-    assert "By Matt Kerr" in text and "Published" in text
+    assert "By Matthew Kerr" in text and "Published" in text
     assert "Checked 8 November 2026." in text
 
     expected = [

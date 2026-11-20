@@ -53,7 +53,7 @@ def about() -> Path:
     from brand import HOST, LEGACY_HOST, SITE_BRAND
     knowledge_source = LEGACY_HOST + "/data/knowledge.json" if SITE_BRAND == "checkengine" else HOST
     body = f"""
-<p class="lede">Docket is built by Matt Kerr, one person, in {SELLER_CITY}, and published by his
+<p class="lede">Docket is built by Matthew Kerr, one person, in {SELLER_CITY}, and published by his
 company, {SELLER}. It is {'an app for Mac and 64-bit Windows' if WINDOWS else 'a Mac app'} that
 audits a site's SEO, copy and branding against {N_CHECKS} checks across {N_LANES} areas,
 runs the crawl on your own machine, and costs {PRICE_COMPACT}, and {FREE_CLAUSE}.</p>
@@ -165,7 +165,7 @@ link. The rates, the payout terms and the disclosure you owe your readers are on
         schema_type="AboutPage",
         faq=[
             ("Who makes Docket?",
-             f"Matt Kerr, one person, in {SELLER_CITY}; the publisher is his company, {SELLER}. There is no team. "
+             f"Matthew Kerr, one person, in {SELLER_CITY}; the publisher is his company, {SELLER}. There is no team. "
              "The macOS download is signed with an Apple Developer ID and notarised, so "
              "the legal name on the certificate can be checked with codesign before you "
              "install anything."),
