@@ -663,13 +663,12 @@ def write_llms_txt() -> None:
         app_requests = (
             f"The app asks {brand.LEGACY_BASE}/updater.json whether an update exists. "
             "While its activation screen is showing on a copy with no key, it asks "
-            f"{brand.LEGACY_BASE}/offer.json for the current price and offer and whether "
-            "the sale is still open.")
+            f"{brand.LEGACY_BASE}/offer.json whether a sale is open.")
     else:
         app_requests = (
-            f"The app asks {brand.HOST} whether an update exists, and, while its activation "
-            "screen is showing on a copy with no key, what the current price and offer "
-            "are and whether the sale is still open.")
+            f"The app asks {brand.BASE}/updater.json whether an update exists. "
+            "While its activation screen is showing on a copy with no key, it asks "
+            f"{brand.BASE}/offer.json whether a sale is open.")
 
     out = ["# Docket SEO", ""]
     out.append(wrap(
@@ -677,7 +676,7 @@ def write_llms_txt() -> None:
         f"checks across {N_LANES} areas, then one ranked plan of what to fix, in order, "
         f"with the markup to paste and a client-ready PDF report. {price_sentence()} "
         f"There is no subscription.", "> ", "> "))
-    out += ["", wrap(
+    out += ["", f"Price: {price_sentence()}", "", wrap(
         "The crawl and the report stay on your computer, and there is no account. "
         "The app sends three anonymous counts, with no site address or audit result. "
         f"{F.optional_connectors_word().capitalize()} optional checks are on by "
@@ -1097,6 +1096,18 @@ def write_static() -> None:
         print("SKIP brand image rendering: DOCKET_SKIP_BRAND_ASSETS=1")
     else:
         render_brand(SITE)
+    # Derive the root ICO after brand rendering so the bitmap is the current mark.
+    try:
+        from PIL import Image
+    except ImportError:
+        import struct
+        png = (SITE / "favicon-192.png").read_bytes()
+        header = struct.pack("<HHH", 0, 1, 1)
+        entry = struct.pack("<BBBBHHII", 192, 192, 0, 0, 1, 32, len(png), 22)
+        (SITE / "favicon.ico").write_bytes(header + entry + png)
+    else:
+        with Image.open(SITE / "icon.png") as icon:
+            icon.save(SITE / "favicon.ico", format="ICO", sizes=[(16, 16), (32, 32), (48, 48)])
     (SITE / ".nojekyll").write_text("")
 
 
@@ -1222,7 +1233,7 @@ than Docket.</p>
   <br><small>Also in your email. Paste it into <strong>Enter licence key</strong>.</small></p>
 
 <h2 id="ty-key-head">Your licence key is in that email</h2>
-<p>Docket needs it before it will run an audit. Open the app, click
+<p>Docket needs it to show the full report and fix plan. Open the app, click
 <strong>Enter licence key</strong> in the title bar, and paste it in. From a
 terminal, <code>docket licence --key YOUR-KEY</code> does the same thing.</p>
 <p>One licence covers __COVERS__. The key is stored on your own computer.</p>

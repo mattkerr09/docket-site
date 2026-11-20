@@ -141,7 +141,7 @@ def check_site(site, opened, before_pages=None):
     return priced, paid_count
 
 
-def build_after(destination):
+def build_after(destination, brand="checkengine"):
     source = '''
 import datetime
 import runpy
@@ -156,7 +156,7 @@ with patch('datetime.datetime', AfterSale):
     runpy.run_path('scripts/build.py', run_name='__main__')
 '''
     env = dict(os.environ, DOCKET_SKIP_BRAND_ASSETS="1", PYTHONDONTWRITEBYTECODE="1",
-               SITE_BRAND="checkengine", TZ="UTC")
+               SITE_BRAND=brand, TZ="UTC")
     env.pop("DOCKET_DEPLOY", None)
     result = subprocess.run([sys.executable, "-c", source], cwd=destination, env=env,
                             capture_output=True, text=True)

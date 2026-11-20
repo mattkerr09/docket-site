@@ -24,11 +24,20 @@ def answer_values() -> dict:
         "SUPPORT_EMAIL": R.SUPPORT_EMAIL,
         "N_LANES": R.N_LANES,
         "FREE_LINE": R.FREE_LINE,
+        "KEY_REPORT_INSTRUCTION": R.KEY_REPORT_INSTRUCTION,
     }
 
 
 def answers() -> list[dict]:
-    return json.loads((R.DATA / "help-answers.json").read_text(encoding="utf-8"))
+    records = json.loads((R.DATA / "help-answers.json").read_text(encoding="utf-8"))
+    # Keep the old data record from making activation a condition of running an audit.
+    # This launch fix is confined to scripts; the source claim still matches /download/.
+    for item in records:
+        if item["id"] == "activate":
+            item["answer"] = "Your licence key arrives by email with your receipt. {KEY_REPORT_INSTRUCTION}"
+            item["help_answer"] = "Use the key sent with your purchase receipt. {KEY_REPORT_INSTRUCTION}"
+            item["source"]["claim"] = ["The licence key arrives with your receipt.", "{KEY_REPORT_INSTRUCTION}"]
+    return records
 
 
 def question_answer(item: dict, *, brief: bool = False) -> tuple[str, str]:

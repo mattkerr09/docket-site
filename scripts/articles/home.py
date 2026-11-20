@@ -29,7 +29,7 @@ from comparisons import AGENCY_SEO_MONTHLY, HOME_CLAIM_CHECKED_HUMAN, SEO_AUDIT_
 from hero_check import hero_check_block  # noqa: E402
 from render import SITE_BRAND, TAGLINE, recorded_with
 from render import (_human_date, SAMPLE_REPORT, speed_words, windows_waitlist, WINDOWS, WIN_SETUP_SIZE, WIN_PUBLISHER, RELEASE, download_url, FREE_LINE, INTEL, INTEL_DMG, MAC_HW, MACS, NO_BUILDS, PHONE_LINK, PHONE_LINK_JS, BNPL_NOTE_HTML, AGENCIES as AG, BETA_NOTE, BNPL_NOTE, CHECKOUT, DMG, DMG_SIZE, MACOS,
-                    buy_block, founding_price_sentence, SUPPORT_EMAIL, REPO,
+                    buy_block, download_buttons, founding_price_sentence, SUPPORT_EMAIL, REPO,
                     FOUNDING_NOW, FOUNDING_OPEN, FOUNDING_END_DAY, agency_amount, agency_multiple, agency_note_html,
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
                     N_LANES, PRICE_COMPACT,
@@ -278,6 +278,30 @@ The script and the site list ship with the dataset. Re-run it and check.</p>
 # 2026-11-12: the CEO changed the H1 on Matthew's order.
 # The old headline now opens the hero-sub.
 
+PRODUCT_HUNT_WELCOME = (
+    f"Hello, Product Hunt: the {N_CHECKS}-check audit, ranked into a fix plan, "
+    "is free to download for Mac and Windows."
+    + (" " + founding_price_sentence() if FOUNDING_OPEN else ""))
+PRODUCT_HUNT_REVEAL = (
+    "if((new URLSearchParams(location.search).get('ref')||'').toLowerCase()==='producthunt'){"
+    "document.getElementById('product-hunt-welcome').hidden=false;}")
+
+
+def product_hunt_strip() -> str:
+    return f'''<style>
+.product-hunt-strip[hidden]{{display:none}}
+.product-hunt-strip{{background:var(--surface);color:var(--text);padding:1rem;max-width:100%;box-sizing:border-box}}
+.product-hunt-strip p{{margin:0 0 .5rem;white-space:normal;overflow-wrap:anywhere}}
+.product-hunt-strip .hero-cta{{display:flex;flex-wrap:wrap;max-width:100%;gap:.5rem}}
+.product-hunt-strip a{{max-width:100%;box-sizing:border-box;white-space:normal;overflow-wrap:anywhere}}
+</style>
+<aside id="product-hunt-welcome" class="product-hunt-strip" hidden>
+<p>{PRODUCT_HUNT_WELCOME}</p>
+<div class="hero-cta">{download_buttons("home-producthunt-mac", "home-producthunt-win", both=True)}</div>
+</aside>
+<script id="product-hunt-reveal">{PRODUCT_HUNT_REVEAL}</script>'''
+
+
 def body() -> str:
     m = _index()
     chart = _index_chart(m)
@@ -292,6 +316,7 @@ def body() -> str:
         )
 
     return f"""
+{product_hunt_strip()}
 <!-- ================= HERO ================= -->
 <section class="hero-sec"><div class="wrap-wide hero-grid">
 <div>

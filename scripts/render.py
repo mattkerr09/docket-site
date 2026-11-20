@@ -333,6 +333,21 @@ def price_req_html() -> str:
     return f'<p class="price-req">For {PLATFORMS}</p>'
 
 
+def download_buttons(mac_src: str, win_src: str, *, size: str = "",
+                     both: bool = False) -> str:
+    """Shared free Mac and Windows buttons, with the existing installer routes."""
+    # The normal CTA follows the visitor's OS. The welcome strip shows both.
+    mac_class = "" if both else (" dl-mac" if WINDOWS else "")
+    win_class = "" if both else " dl-win"
+    out = [f'<a class="btn-ghost{size}{mac_class}" href="{download_url(mac_src)}" '
+           f'data-ev="Download" data-ev-button="{mac_src}">'
+           f'{"Try it free for Mac" if both else "Try it free"}</a>']
+    if WINDOWS:
+        out.append(f'<a class="btn{size}{win_class}" href="{download_url(win_src, to=WIN_SETUP)}" '
+                   f'data-ev="Download" data-ev-button="{win_src}">Try it free for Windows</a>')
+    return "".join(out)
+
+
 def buy_block(src: str, *, sample: bool = True, big: bool = True,
               anchor: bool = True, refund: bool = True, refund_link: bool = True,
               try_free: bool = False, try_app: str = "", phone: bool = True,
@@ -357,15 +372,7 @@ def buy_block(src: str, *, sample: bool = True, big: bool = True,
         # per-area counts and the top problem in full), so that is the free thing beside Buy now.
         # `try_app` is the download's tag. CEO, 2026-10-01: Monday's visitors
         # should see the free path above the fold.
-        out.append(f'<a class="btn-ghost{size}{" dl-mac" if WINDOWS else ""}" href="{download_url(try_app)}" '
-                   f'data-ev="Download" data-ev-button="{try_app}">Try it free</a>')
-        if WINDOWS:
-            # A Windows desktop is handed the Windows installer first (CEO, 2026-11-06: 26 of Docket's 61 visitors in 30
-            # days were on Windows, and the main download button gave them a Mac file). The head script marks such a page
-            # `win`; the CSS shows this button and hides the Mac one. With no script, or on a Mac, a phone or a tablet,
-            # nothing changes. Counted as `<placement>-win`, so the hero is home-hero-win.
-            out.append(f'<a class="btn{size} dl-win" href="{download_url(src + "-win", to=WIN_SETUP)}" data-ev="Download" '
-                       f'data-ev-button="{src}-win">Try it free for Windows</a>')
+        out.append(download_buttons(try_app, src + "-win", size=size))
     elif try_free:
         # The one thing a visitor can try without paying, beside the button
         # that asks them to pay (CEO's revenue pass, 2026-09-29).
@@ -1000,6 +1007,8 @@ FOUNDING_LINE = CHECKOUT_HELP
 #: it, so the homepage, the FAQ, the download page and llms.txt cannot drift.
 FREE_LINE = ("Free: your score, how many problems in each category, and the top problem in full "
              "with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to paste.")
+
+KEY_REPORT_INSTRUCTION = "Paste the key into the field the app shows to open the full report and fix plan."
 
 # --------------------------------------------------------------------------
 # Who the money is paid to.

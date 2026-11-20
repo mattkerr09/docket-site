@@ -14,6 +14,11 @@ import re
 from urllib.parse import urlsplit, urlunsplit
 
 
+# Remove this note when the installer is renamed.
+DOWNLOAD_NAME_NOTE = ("Check Engine SEO was called Docket SEO; the installer and app "
+                      "still carry the old name for now.")
+
+
 BRANDS = {
     "docket": {
         "NAME": "Docket SEO", "SHORT": "Docket", "HOST": "docketseo.app",
@@ -101,6 +106,7 @@ _LITERAL = re.compile(
     r"|\bDocket-SEO-Audit(?:-Survey)?\b"
     r"|\bmcp\.docketseo\.app\b"
     r"|\bdocketseo\.app(?:/[^\s<>\"'`]*)?"
+    + "|" + re.escape(DOWNLOAD_NAME_NOTE)
 )
 _COMMAND = re.compile(r"(?<![\w./\\-])docket(?=\s+(?:audit|diff|logs|attack|backlinks|checks|serve|mcp|licence|version)\b)")
 

@@ -19,8 +19,8 @@ from corrections_cases import CASES  # noqa: E402
 #: registry. It was the word "four" here while the registry held five.
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
-from render import SITE_BRAND, recorded_with
-from brand import CLI, HOST, LEGACY_HOST, MACHINE_PATHS, STORE_NOTE, machine_link
+from render import SITE_BRAND, recorded_with, KEY_REPORT_INSTRUCTION
+from brand import CLI, HOST, LEGACY_HOST, MACHINE_PATHS, STORE_NOTE, machine_link, DOWNLOAD_NAME_NOTE
 from render import (MS_STORE, _human_date, bundle_link, windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4_FOUNDING,
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
@@ -283,13 +283,15 @@ def download() -> Path:
 Our <a href="/vs/screaming-frog-alternative/">recorded free audit</a> read {_FREE_RUN["pages"]} pages in {_FREE_RUN["seconds"]} seconds.
 That is one small run, so try the free audit on your own site before buying.</p>
 
+<p>{DOWNLOAD_NAME_NOTE}</p>
+
 <ol class="steps" id="buy">
 <li><strong>Download</strong> the app, free to try: <a href="{download_url('download-steps')}" data-ev="Download"
 data-ev-button="download-steps">Docket {RELEASE} for Mac</a>, {DMG_SIZE}.{(f' On an Intel Mac, <a href="{download_url("download-steps-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="download-steps-intel">the Intel version</a>.') if INTEL else ''}{(f' On Windows, <a href="{download_url("download-steps-windows", to=WIN_SETUP)}" data-ev="Download" data-ev-button="download-steps-windows">the Windows installer</a>, {WIN_SETUP_SIZE}.') if WINDOWS else ''}</li>
 <li><strong>Buy once</strong> when you are ready. The licence key
 arrives with your receipt.{buy_block("download-steps", sample=True, big=True, sale_first=True)}
 <p class="hero-note">{bundle_link("docket-download-bundle", "download-bundle", lead="Or all three of our apps, Docket SEO, Crisp and Outlier, for")}.</p></li>
-<li><strong>Paste the key</strong> into the field the app shows, and run your first audit.
+<li>{KEY_REPORT_INSTRUCTION}
 <span class="qual">30-day refund, no conditions.</span></li>
 
 </ol>
@@ -2217,7 +2219,7 @@ from this site's releases on GitHub, and nothing installs without you saying yes
 turns the check off.</li>
 <li><strong>The offer, to this website and to our offer server.</strong> Only on a copy with no
 licence key, and only while its activation screen is open, the app asks
-<code>docketseo.app/offer.json</code> for the current price and any sale, and asks
+<code>docketseo.app/offer.json</code> whether a sale is open, and asks
 <code>kerr-lead-agent.kerrco.workers.dev</code>, a server we run, whether the sale is still
 open, sending only this site&rsquo;s name. That is how it avoids showing an offer that has ended.
 Nothing else is sent. With &ldquo;Keep it private&rdquo; ticked in the crawl settings it asks
@@ -2608,7 +2610,7 @@ which is the one thing worth waiting for. This sentence used to say there was no
 activation email at all, and licensing made that false.</p>
 <p>Two consequences of how this is sold, both stated because a buyer will meet them. The
 download link is public, so payment is not the thing that makes the file reachable. What payment
-buys is the licence key that lets it run. And updates are published to every copy: while Docket
+buys is the licence key that shows the full report and fix plan. And updates are published to every copy: while Docket
 is on version 1.x, upgrades cost nothing and install through the app's own updater. Whether a
 future 2.0 is a paid upgrade has not been decided; if it ever is, the copy you paid for keeps
 working.</p>
