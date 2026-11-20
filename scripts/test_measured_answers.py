@@ -85,6 +85,15 @@ def article(raw):
     return Visible(ANSWER.sub('', match.group())).text().replace('Matt Kerr', 'Matthew Kerr')
 
 
+
+def source_date_allowance(text):
+    """20 Nov 2026 (Saban): the rivals' prices were re-read the same day, unchanged, so the Screaming Frog comparison's own
+    dateline and its one "read from its pricing page" date moved from 9 and 4 November to 20 November. Only those two dated
+    phrases are made equal; every amount and sentence around them is still compared."""
+    return (text.replace('Updated 20 November 2026', 'Updated 9 November 2026')
+                .replace('read from its pricing page on 20 November 2026', 'read from its pricing page on 4 November 2026'))
+
+
 def check_answer(raw, spec, site, published):
     # 20 November 2026 first-screen batch: the two replaced answers use today's
     # rival readings. Keep the original checker below for historical controls.
@@ -95,6 +104,10 @@ def check_answer(raw, spec, site, published):
         if f'<title>{title}</title>' in raw:
             from test_first_screens_1120 import PAGES as refreshed, check_page
             return check_page(raw, refreshed[name])
+    if '<title>Screaming Frog alternatives compared</title>' in raw:
+        from test_best_compared_3 import reviewed_refresh as compared_refresh
+        compared_refresh('best/screaming-frog-alternatives/index.html', raw)
+        return ANSWER.search(raw)
     _generator, label, facts = spec
     matches = list(ANSWER.finditer(raw))
     assert len(matches) == 1, 'expected one measured answer'
@@ -146,6 +159,11 @@ def unchanged(raw):
     raw = ANSWER.sub('', raw)
     raw = re.sub(r'"dateModified":\s*"[^"]*",\s*', '', raw)
     raw = re.sub(r'<span class="sep">·</span>Updated <time[^>]*>.*?</time>', '', raw)
+    # 20 Nov 2026 (launch fixes): the phone "Send myself the link" block was added to / and /download/ next to the download buttons, and
+    # on /download/ it now sits after the old-name note instead of before it. Only that block and that one fixed note are left out of
+    # this comparison (both have their own tests); every other line is still compared.
+    raw = re.sub(r'<div class="phone-download">.*?</noscript>\s*</div>\n?', '', raw, flags=re.S)
+    raw = raw.replace('<p>Check Engine SEO was called Docket SEO; the installer and app still carry the old name for now.</p>\n', '')
     return re.sub(r'\n\s*\n', '\n', unstamped(raw))
 
 
@@ -177,7 +195,7 @@ def main():
         from test_first_screens_1120 import BASE as first_base, legacy_page, reviewed_refresh
         ahrefs = 'vs/ahrefs-site-audit-alternative/index.html'
         old[ahrefs] = legacy_page(destination, env, ahrefs, PAGES[ahrefs][0], BASE)
-        assert article((site / SOURCE.strip('/') / 'index.html').read_text()) == article(published), \
+        assert source_date_allowance(article((site / SOURCE.strip('/') / 'index.html').read_text())) == article(published), \
             'measurement source differs from the published base'
         for name, spec in PAGES.items():
             assert not ANSWER.search(old[name]), f'{name}: answer already present on base'
@@ -210,6 +228,12 @@ def main():
                 # and negative control on its pre-rewrite measured answer.
                 reviewed_refresh(name, raw)
                 raw = legacy_page(destination, env, name, spec[0], first_base)
+            if name == 'best/screaming-frog-alternatives/index.html':
+                # 20 November comparison batch: validate the pinned comparison,
+                # then retain Round 1's old copy and negative-control assertions.
+                from test_best_compared_3 import BASE as compared_base, legacy_page as compared_legacy, reviewed_refresh as compared_refresh
+                compared_refresh(name, raw)
+                raw = compared_legacy(destination, env, name, compared_base)
             match = check_answer(raw, spec, site, published)
             difference = list(difflib.unified_diff(unchanged(old[name]).splitlines(),
                                                   unchanged(raw).splitlines()))

@@ -26,8 +26,16 @@ STALE_PROMO = re.compile(r"(?<![\d.\u2013-])50%|\d+%\s*off|Black Friday|\b(?:sal
 PAY4 = re.compile(r"Klarna|Afterpay|four payments|pay in four|instalment|(?:4|four)\s*[×x]\s*\$", re.I)
 
 
+# 20 Nov 2026 (batch 3, the /best/ comparisons): a RIVAL's own displayed sale price may be named when it is dated, never ours.
+# Only these two exact phrases, as the WordPress plugins page writes them, are let through; our own sale wording still has to be the
+# model-built sentence.
+RIVAL_SALE_PHRASES = ("Black Friday price shown on 20 November 2026", "the displayed Black Friday price")
+
+
 def stale_promo(text):
     # Only the exact model-built sale sentence is allowed to carry promotional wording.
+    for phrase in RIVAL_SALE_PHRASES:
+        text = text.replace(phrase, "")
     return STALE_PROMO.search(text.replace(R.founding_price_sentence(), "")
                              if R.FOUNDING_OPEN else text)
 
@@ -174,9 +182,11 @@ def check_comparisons(site):
     assert M._more_than_docket(1000) == f"at least {M._usd(1000 - R.LATER_PRICE)} more"
     with patch.object(W, "render", side_effect=lambda **kwargs: kwargs):
         body = W.white_label_tools()["body"]
-    assert W._usd(min(W._T["netpeak-spider"]["monthly"] * 12,
-                          W._T["seoptimer"]["monthly"] * 12,
-                          W._T["sitebulb"]["annual"], W._T["seo-powersuite"]["annual"]) - R.LATER_PRICE) in body
+    # 20 Nov 2026 (batch 3, no ranking): the white-label page is now a plain comparison of stated facts and no longer says how
+    # much cheaper Check Engine is than the cheapest rival, so that derived saving is gone. The guard that matters stays: the page
+    # carries no hand-typed Check Engine price, no old list price and no bought-apart total.
+    leftover = re.search(r"bought apart|\$59(?![\d.])", body)
+    assert not leftover, ("white label page carries an old Check Engine price", body[max(0, leftover.start() - 100):leftover.end() + 60] if leftover else "")
     download = visible((site / "download/index.html").read_text())
     assert f"less than {pages._SF_MONTHS} months of screaming frog" in download
     semrush = visible((site / "vs/semrush-site-audit-alternative/index.html").read_text())

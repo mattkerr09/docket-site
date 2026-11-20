@@ -9,7 +9,7 @@ import sys
 import tempfile
 
 import test_measured_answers as round_one
-from test_measured_answers import ANSWER, SOURCE, article, check_answer, rejected, unchanged
+from test_measured_answers import ANSWER, SOURCE, article, check_answer, rejected, source_date_allowance, unchanged
 from test_thank_you_review_ask import environment, protected_state, run, scratch_copy, unstamped
 
 
@@ -93,7 +93,7 @@ def main():
         site = destination / 'site'
         old = {path.relative_to(site).as_posix(): path.read_text(encoding='utf-8')
                for path in site.rglob('*.html')}
-        assert article((site / SOURCE.strip('/') / 'index.html').read_text()) == article(published), \
+        assert source_date_allowance(article((site / SOURCE.strip('/') / 'index.html').read_text())) == article(published), \
             'measurement source differs from the published base'
         for name, spec in PAGES.items():
             assert not ANSWER.search(old[name]), f'{name}: answer already present on base'
@@ -108,7 +108,14 @@ def main():
         assert old.keys() == new.keys(), 'page inventory changed'
         for name, raw in new.items():
             if name not in PAGES:
-                assert unstamped(raw) == unstamped(morning_allowance(name, old[name])), f'unrelated page changed: {name}'
+                if name == 'best/index.html':
+                    # 20 November comparison batch: exact hub rewrite only.
+                    from test_best_compared_3 import legacy_page as compared_legacy, reviewed_refresh as compared_refresh
+                    compared_refresh(name, raw)
+                    prior = compared_legacy(destination, env, name, BASE)
+                    assert unstamped(prior) == unstamped(morning_allowance(name, old[name])), 'prior hub changed'
+                else:
+                    assert unstamped(raw) == unstamped(morning_allowance(name, old[name])), f'unrelated page changed: {name}'
                 continue
             spec = PAGES[name]
             if name == 'best/free-seo-audit-tools/index.html':
@@ -125,8 +132,11 @@ def main():
             difference = list(difflib.unified_diff(unchanged(morning_allowance(name, old[name])).splitlines(),
                                                   unchanged(raw).splitlines()))
             assert not difference, f'existing page copy changed: {name}\n' + '\n'.join(difference[:30])
-            assert 'Updated <time datetime="2026-11-16">16 November 2026</time>' in raw
-            assert re.search(r'"dateModified":\s*"2026-11-16"', raw)
+            # 20 Nov 2026 (launch fixes): /download/ gained the phone block today, a content change of that page, so its own
+            # dateline legitimately moved from 16 to 20 November; every other Round 2 page keeps 16 November.
+            day = ('2026-11-20', '20 November 2026') if name == 'download/index.html' else ('2026-11-16', '16 November 2026')
+            assert f'Updated <time datetime="{day[0]}">{day[1]}</time>' in raw
+            assert re.search(r'"dateModified":\s*"' + day[0] + '"', raw)
             invented = match.group().replace('pages', '987654.321 pages', 1)
             assert invented != match.group(), 'invented-figure plant did not land'
             rejected(raw[:match.start()] + invented + raw[match.end():], spec, site, published,

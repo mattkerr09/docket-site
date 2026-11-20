@@ -61,7 +61,14 @@ def check_answer(raw, spec):
     h1 = re.search(r'<h1\b[^>]*>.*?</h1>', raw, re.S)
     h2 = re.search(r'<h2\b', raw)
     assert h1 and h2 and h1.end() < match.start() < match.end() < h2.start(), 'answer placement'
+    if '<p class="ownership">' in raw and 'Free SEO audit: tools and limits' in raw:
+        assert READ in raw[h1.end():h2.start()], 'missing first-screen read date'
     preceding = re.sub(r'<p class="byline">.*?</p>', '', raw[h1.end():match.start()], flags=re.S)
+    # 20 November comparison batch: the free page now discloses ownership
+    # before its answer. Permit only that exact line and the pinned document.
+    if '<p class="ownership">' in preceding and 'Free SEO audit: tools and limits' in raw:
+        from test_best_compared_3 import OWNERSHIP
+        preceding = preceding.replace(f'<p class="ownership">{OWNERSHIP}</p>', '', 1)
     assert not Visible(preceding).text(), 'answer must be first body prose'
     first_screen = raw[h1.end():h2.start()]
     assert not re.search(r'<p class="lede"|id="try-now"', first_screen), 'second first-screen answer'
@@ -156,12 +163,18 @@ def legacy_page(destination, env, name, generator, revision):
 # round checks still run on the historical additions via legacy_page, and the
 # new answer, source, date and negative checks run on the actual output.
 REFRESH_HASHES = {
-    'vs/ahrefs-site-audit-alternative/index.html': '89e2a790dda5416682666793aaac69125130e072349d16de701a67b749416b07',
-    'best/free-seo-audit-tools/index.html': '952ec105ec5ea23104884de4e598610835104689c873265bfbeec5198101fe5a',
+    'vs/ahrefs-site-audit-alternative/index.html': '32d8ec172bad1cc1e9f2b3ad922a99512193e6c9abc5bdb73388b86f684fd12b',
+    'best/free-seo-audit-tools/index.html': '6c10e9cbb0a76f5d79c50d86d46b0ec31f0d9ca1d6a36ae385bd7a96a21769f7',
 }
 
 
 def reviewed_refresh(name, raw):
+    # 20 November comparison batch: keep the earlier hash for historical
+    # controls and accept only the separately pinned free-tools comparison.
+    if name == 'best/free-seo-audit-tools/index.html' and '<p class="ownership">' in raw:
+        from test_best_compared_3 import reviewed_refresh as compared_refresh
+        compared_refresh(name, raw)
+        return check_page(raw, PAGES[name])
     assert hashlib.sha256(unstamped(raw).encode()).hexdigest() == REFRESH_HASHES[name], 'unreviewed refreshed copy: ' + name
     return check_page(raw, PAGES[name])
 
@@ -200,7 +213,14 @@ def main():
         for name, raw in new.items():
             if name not in set(PAGES) | set(MORNING):
                 # Byte comparison after replacing only the global build-id.
-                assert unstamped(raw) == unstamped(old[name]), f'unrelated page changed: {name}'
+                if name == 'best/index.html':
+                    # 20 November comparison batch: exact hub rewrite only.
+                    from test_best_compared_3 import legacy_page as compared_legacy, reviewed_refresh as compared_refresh
+                    compared_refresh(name, raw)
+                    prior = compared_legacy(destination, env, name, BASE)
+                    assert unstamped(prior) == unstamped(old[name]), 'prior hub changed'
+                else:
+                    assert unstamped(raw) == unstamped(old[name]), f'unrelated page changed: {name}'
             assert schemas(raw, 'SoftwareApplication') == schemas(old[name], 'SoftwareApplication'), f'Offer data changed: {name}'
         for name, data in assets.items():
             assert (site / name).read_bytes() == data, f'protected asset changed: {name}'

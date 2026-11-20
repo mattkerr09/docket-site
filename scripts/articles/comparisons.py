@@ -748,6 +748,22 @@ CHECKED_ISO["sf-alternatives"] = max(t.get("read", _SFA["read"]) for t in _SFA["
 _d = _date.fromisoformat(CHECKED_ISO["sf-alternatives"])
 CHECKED_HUMAN["sf-alternatives"] = f"{_d.day} {_d.strftime('%B %Y')}"
 
+
+# 20 November 2026: these list pages now use only the supplied vendor readings.
+# Keep the historical data files unchanged for other pages and replay tests.
+from best_compared_sources import CRAWLERS, PLUGINS, WHITE_LABEL, claims as _compared_claims
+
+for _key, _tools in (("sf-alternatives", CRAWLERS), ("wl-tools", WHITE_LABEL),
+                     ("wordpress-compared", PLUGINS)):
+    VERIFIED[_key] = _compared_claims(_tools)
+    if _key == "wordpress-compared":
+        VERIFIED[_key].append(("Ahrefs SEO plugin closed permanently on 13 February 2026 at the author's request",
+                               "https://wordpress.org/plugins/ahrefs-seo/"))
+    DATA_CLAIM_SETS.pop(_key, None)
+    CHECKED_ISO[_key] = "2026-11-20"
+    CHECKED_HUMAN[_key] = "20 November 2026"
+
+
 #: The closing sentence of a verification note. Written for a competitor with a
 #: price list and a roadmap, which Search Console has neither of, so that page
 #: passes its own.

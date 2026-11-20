@@ -921,28 +921,28 @@
  },
  "best/free-seo-audit-plugins-wordpress/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "56384411e9938fe5"
+  "date": "2026-11-20",
+  "hash": "f49327dcbdd3c44a"
  },
  "best/free-seo-audit-tools/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "9f3d5167dc44503f"
+  "hash": "c8e214923a8b9221"
  },
  "best/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "3cbabae529386864"
+  "date": "2026-11-20",
+  "hash": "951f42e87ddbc711"
  },
  "best/screaming-frog-alternatives/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-16",
-  "hash": "d2658a9e719b9370"
+  "date": "2026-11-20",
+  "hash": "7d6cb2b774fe6c1d"
  },
  "best/white-label-seo-audit-tools/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "8f9b82d68002d0c3"
+  "date": "2026-11-20",
+  "hash": "bb37e92f1b7bff68"
  },
  "bot/index.html": {
   "changed_in_build": false,
@@ -1457,7 +1457,7 @@
  "download/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "a608d96b5f279c43"
+  "hash": "cf76c7ac9061a101"
  },
  "faq/index.html": {
   "changed_in_build": false,
@@ -1817,7 +1817,7 @@
  "index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "4dfc7db307a377a7"
+  "hash": "d06b8037a9b9c958"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -1952,7 +1952,7 @@
  "learn/internal-link-equity/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "ff4b94410d7b7e25"
+  "hash": "f811110ee3f6ee6b"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
@@ -2231,8 +2231,8 @@
  },
  "vs/screaming-frog-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "2ad7542654ac632d"
+  "date": "2026-11-20",
+  "hash": "8cc7952e7d6f4b41"
  },
  "vs/screaming-frog-vs-semrush/index.html": {
   "changed_in_build": false,
@@ -2246,8 +2246,8 @@
  },
  "vs/se-ranking-vs-screaming-frog/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "fea3b0ec4bae5d40"
+  "date": "2026-11-20",
+  "hash": "ecd010df49eaf41e"
  },
  "vs/semrush-site-audit-alternative/index.html": {
   "changed_in_build": false,

@@ -133,6 +133,11 @@ def sale_copy_allowance(raw):
     raw = raw.replace(
         "Black Friday sale: $19.99 once through December 2. Then $39.",
         "Black Friday sale: $19.99 once, 32% off our November price of $29.50, through December 2. Then $39.")
+    # 20 Nov 2026 (Saban): the two rivals' prices were re-read the same day (unchanged), so the dated qualifier under the
+    # price block moves from "Screaming Frog's price read 4 November 2026, Ahrefs' 9 November 2026." to "Their prices read
+    # 20 November 2026." Only that one span is made equal; the amounts around it are still compared.
+    raw = re.sub(r'(<span class="qual">)(?:Their prices read [^<]*|Screaming Frog&rsquo;s price read [^<]*)(</span>)',
+                 r'\1PRICE-READ-DATES\2', raw)
     # Older build.py revisions wrote these two exact bundle forms.
     for before in ("$34.99 once through December 2, then $79.</a>",
                    "$34.99 once through December 2.</a> From 3 December it is $79."):

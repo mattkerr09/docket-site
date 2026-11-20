@@ -119,7 +119,9 @@ def check_site(site, opened, before_pages=None):
             priced.append(name)
             assert (EXPECTED in text) if opened else ("$39" in text), name
         if not opened:
-            assert not re.search(r"\$19\.99|Black Friday sale", text, re.I), name
+            # 20 Nov 2026 (batch 3): a rival plugin's own plan price may equal ours ("PRO $19.99 a month, purchased annually");
+            # only that exact dated rival phrase is let through, so a leftover sale price of ours is still caught.
+            assert not re.search(r"\$19\.99|Black Friday sale", text.replace("PRO $19.99 a month, purchased annually", ""), re.I), name
             if before_pages and name in before_pages:
                 assert "$39" in text, (name, "priced page lost its list price")
         if path.suffix == ".html":
