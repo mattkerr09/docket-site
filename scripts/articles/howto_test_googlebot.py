@@ -34,8 +34,7 @@ def build() -> Path:
 <p id="measured-answer">For a Googlebot test or Googlebot tester, start with Google's URL Inspection live test in Search Console: its documented fetcher is <q>Google-InspectionTool</q>.
 {source_link("Google's live-test guide", INSPECTION)} says the test checks access for indexing, not whether the page will be indexed.
 For identifying a visitor, our count of Google's published {source_link("common crawler ranges", RANGES + "common-crawlers.json")} found {common} prefixes; that count is not a page-access test.</p>
-{note("rq-google-live")}
-{note("rq-google-ranges")}
+{note("rq-google-live", "rq-google-ranges", topic="the first access check")}
 
 <h2>First choose which question you are asking</h2>
 <dl>
@@ -60,7 +59,7 @@ Keep that distinction beside the result so you do not answer the wrong question.
 your page for indexing.</q> A screenshot is available only in a live test. An accessible page
 is not a promise that it will enter the index. These are the limits stated in
 {source_link("Google's URL Inspection documentation", INSPECTION)}.</p>
-{note("rq-google-live")}
+{note("rq-google-live", topic="the live page test")}
 
 <h2>Identify a visit from its IP address</h2>
 <p>{source_link("Google's verification guide", VERIFY)} gives a DNS procedure: reverse lookup
@@ -70,7 +69,7 @@ The second lookup is part of the check, not an optional extra.</p>
 <p>The guide also allows matching the IP against the published crawler and fetcher ranges.
 They use CIDR notation, so test membership in a range rather than comparing the IP as a text
 string. Choose the crawler or fetcher list that matches the kind of request you are checking.</p>
-{note("rq-google-ranges")}
+{note("rq-google-ranges", topic="visitor verification")}
 
 <h2>What we counted on 20 November 2026</h2>
 <p>We fetched each published list, counted its prefix entries, and counted entries marked IPv4
@@ -80,7 +79,7 @@ network prefixes, not individual IP addresses and not visits to your site.</p>
 <caption>Published Google crawler and fetcher ranges, counted on {READ}</caption>
 <thead><tr><th scope="col">List</th><th scope="col">Prefixes</th><th scope="col">IPv4</th><th scope="col">IPv6</th><th scope="col">Source</th></tr></thead>
 <tbody>{rows}</tbody></table></div>
-{note("rq-google-ranges")}
+{note("rq-google-ranges", topic="the measured range counts")}
 
 <h2>Our earlier DNS check had a narrower purpose</h2>
 <p>On {_human_date(old["measured"])}, Check Engine's recorded spot check took one address from each of the
@@ -99,7 +98,7 @@ question is what its inspection fetcher can access today.</p>
         desc="Use Google's URL Inspection live test for a page, then DNS or published ranges to identify a Googlebot visit. Dated counts and clear limits.",
         h1="Googlebot tester: test a page or verify a visit",
         crumb='<a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / Googlebot test',
-        body=body, published="2026-11-20",
+        body=body, published="2026-11-20", modified="2026-11-20",
         faq=[
             ("Is the live inspection fetcher named Googlebot in Google's guide?", answer_source(
                 "The guide names Google-InspectionTool. Use that name when describing what the live access result establishes.", "Live-test documentation", INSPECTION)),

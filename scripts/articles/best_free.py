@@ -16,45 +16,42 @@ house rule: it costs money, and this page says when not to spend it.
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from comparisons import _verified_note  # noqa: E402
+from comparisons import source_link
+from real_questions_sources import READINGS
+from ahrefs_first_screen import FREE, FREE_CREDITS, checked  # noqa: E402
 from render import CHROME_ADDON, DATA, FREE_LINE, PRICE_COMPACT, render, with_next_step  # noqa: E402
 
 _RUN = json.loads((DATA / "free-run.json").read_text())
+_SF_YEAR = re.search(r"\$\d+", READINGS["rq-screaming-frog"][1][0]).group()
 
 
 def free_seo_audit_tools() -> Path:
     body = f"""
-<p id="measured-answer">For a free website SEO audit, try Check Engine's free download to see your score, problem counts and the top problem with its fix.
-Our <a href="/vs/screaming-frog-alternative/">recorded free audit</a> read {_RUN["pages"]} pages and found {_RUN["problems"]} problems.
-That is one small audit; the rest of the problems and the full fix plan are paid.</p>
+<p id="measured-answer">A free SEO audit can find problems, but its crawl limit or locked report can leave work unseen.
+Check Engine's <a href="/vs/screaming-frog-alternative/">recorded free audit</a> read {_RUN["pages"]} pages and found {_RUN["problems"]} problems; the free download shows the score, counts and top fix, while the full plan is paid.
+{source_link("Screaming Frog", "https://www.screamingfrog.co.uk/seo-spider/")} allows up to 500 URLs per free crawl, and {source_link("Ahrefs Free", FREE)} gives {FREE_CREDITS:,} crawl credits per verified project per month.
+{source_link("Semrush's free account", "https://www.semrush.com/prices/")} lists 1 demo project and 10 reports per day; the pages read do not state a per-audit page limit.</p>
+{checked("Screaming Frog, Ahrefs and Semrush", ("SEO Spider", "https://www.screamingfrog.co.uk/seo-spider/"), ("Ahrefs Free", FREE), ("Semrush free account", "https://www.semrush.com/prices/"))}
 
-<p class="lede">For a free SEO audit, use a page checker for faults on one URL, a crawler for
-faults across a site, and Search Console for what Google has seen. The tools below do different
-jobs. Start with the question you need answered and check the free limit before you run an audit.
-We make Docket, including the free checker listed here.</p>
-
-<div class="callout compact" id="try-now">
-<p><strong>Want to audit your website free, right now?</strong> Paste a page into Docket's free SEO
-checker for a score, the problems on that page and the first fix, in a few seconds, with no sign-up.</p>
-<p><a class="btn" href="/tools/seo-checker/" data-ev="Free check" data-ev-button="best-free-checker-box">Check a page free</a></p>
-</div>
-
-<h2>Which free SEO audit tool fits the job?</h2>
+<h2>Which free SEO audit tool fits the task?</h2>
 <div class="wrap-tbl"><table class="cmp">
 <caption>Free website audit tools and their limits</caption>
 <thead><tr><th scope="col">Tool</th><th scope="col">Use it for</th><th scope="col">Free limit</th></tr></thead>
 <tbody>
-<tr><th scope="row">Google Lighthouse</th><td>Page speed and basic SEO checks</td>
-<td>One page at a time, not a whole-site crawl</td></tr>
-<tr><th scope="row">Google Search Console</th><td>Search queries and indexing in Google</td>
-<td>A verified property; reports have row limits and a delay</td></tr>
-<tr><th scope="row">Screaming Frog</th><td>Crawling a small site for links, redirects and duplicate titles</td>
-<td>Up to 500 URLs in the free tier</td></tr>
+<tr><th scope="row">Google URL Inspection live test</th><td>Check whether Google's inspection fetcher can access a page for indexing</td>
+<td>A live test of the entered URL</td></tr>
+<tr><th scope="row">Screaming Frog</th><td>A free desktop crawl</td>
+<td>Up to 500 URLs per crawl</td></tr>
+<tr><th scope="row">Ahrefs Free</th><td>Site Audit for verified websites</td>
+<td>{FREE_CREDITS:,} crawl credits per verified project per month</td></tr>
+<tr><th scope="row">Semrush free account</th><td>Try its tools within the stated report allowance</td>
+<td>1 demo project and 10 reports per day; no per-audit page limit stated</td></tr>
 <tr><th scope="row">Docket SEO checker, ours</th><td>A page score, its problems and the first fix</td>
 <td>One page; no speed test or checks between pages</td></tr>
 </tbody></table></div>
@@ -62,54 +59,38 @@ checker for a score, the problems on that page and the first fix, in a few secon
 For a single access question, the <a href="/tools/robots-txt-tester/">robots.txt tester</a> shows
 which rule allows or blocks a page.</p>
 
-<h2>Google Lighthouse: free, open source, already installed</h2>
+{checked("Google, Screaming Frog, Ahrefs and Semrush", ("URL Inspection", "https://support.google.com/webmasters/answer/9012289"), ("SEO Spider", "https://www.screamingfrog.co.uk/seo-spider/"), ("Ahrefs Free", FREE), ("Semrush free account", "https://www.semrush.com/prices/"))}
 
-<p>Lighthouse is "an open-source, automated tool" you can run from Chrome DevTools, the command
-line, a Node module or a web UI. If you use Chrome, you already have it: open DevTools, pick
-Lighthouse, run it.</p>
+<h2>Google URL Inspection: a live access check</h2>
+<p>Search Console's URL Inspection live test fetches and examines the URL in real time.
+Google names its fetcher Google-InspectionTool. The test confirms whether that fetcher can
+access the page for indexing. It does not confirm that the page will be indexed.</p>
+<p>A rendered screenshot is available only in a live test. Use it when you need to inspect
+what the test rendered. Keep the entered address and the result together so someone else
+can repeat the check on the same page.</p>
+{checked("Google", ("URL Inspection live-test guidance", "https://support.google.com/webmasters/answer/9012289"))}
 
-<p><strong>What it is genuinely good at:</strong> performance on a single page, measured
-properly. It is also what powers PageSpeed Insights, which "uses Lighthouse to analyze the
-given URL in a simulated environment" for its lab data.</p>
+<h2>Screaming Frog: a free desktop crawl up to 500 URLs</h2>
+<p>SEO Spider is downloaded desktop software. Its free version allows up to 500 URLs in a
+single crawl. If the pages you need fit that limit, try it before paying for a crawler.
+If the crawl reaches the limit, do not treat the unread part of the site as checked.</p>
+<p>A licence is {_SF_YEAR} a year in the USD view. That is a yearly charge. For more options, see
+<a href="/best/screaming-frog-alternatives/">Screaming Frog alternatives for Mac and Windows</a>.</p>
+{checked("Screaming Frog", ("Free crawl and USD licence", "https://www.screamingfrog.co.uk/seo-spider/"))}
 
-<p><strong>What it does not do, in its own words:</strong> its SEO category declares ten
-scored audits and describes itself as "basic search engine optimization advice", noting that
-there are more checks it does not perform. It is also <em>per page</em>. It has no concept of
-your site as a whole, so orphan pages, canonical conflicts across templates and hreflang
-reciprocity are all invisible to it by design.</p>
+<h2>Ahrefs Free: a monthly allowance for verified sites</h2>
+<p>Ahrefs Free, formerly Webmaster Tools, includes Site Audit for verified websites.
+It gives {FREE_CREDITS:,} crawl credits per verified project per month. The page says a credit
+is used when an HTML page returns status code 200. Use this option if that allowance fits your
+site and the repeat crawls you plan to run.</p>
+{checked("Ahrefs", ("Ahrefs Free allowance", FREE))}
 
-<h2>Google Search Console: free, and Google's own data about your site</h2>
-
-<p>Search Console tells you what Google did with your site: which queries brought
-impressions, which pages were indexed and which were not. It is free, and for anything about
-your standing in Google specifically it is the primary source.</p>
-
-<p><strong>The limits are published and worth knowing before you rely on it.</strong> Reports
-show "a maximum of 1,000 rows, so some rows might be omitted". Data is not live: "normally,
-however, collected data should be available in 2-3 days". Google "might not track some queries
-that are made a very small number of times", so the long tail is partly absent. The URL
-Inspection API is capped at "2000 QPD" and "600 QPM" per site. These limits cap how fast
-a large site can be inspected page by page, even by script.</p>
-
-<p>Its Core Web Vitals report is field data: "the data for the Core Web Vitals report comes
-from the CrUX report", gathered from real visitors. That is more truthful than any simulation, and it needs enough traffic to exist. How much is not published: "An exact number is not
-disclosed."</p>
-
-<p><strong>And it only works on sites you own.</strong> You verify the property first, which
-makes it useless for looking at a competitor, or at a site you are about to take on as a
-client.</p>
-
-<h2>Screaming Frog, free tier: a real crawler, capped</h2>
-
-<p>The free tier is limited to 500 URLs. For a small brochure site that is the whole site, and
-you get an actual crawl rather than a page-at-a-time check: redirect chains, broken links,
-<a href="/how-to/fix-duplicate-title-tags/">duplicate titles across pages</a>.
-If you need more than the free tier, <a href="/best/screaming-frog-alternatives/">the Screaming Frog alternatives for Mac and Windows</a>
-sets the paid and free ones side by side.</p>
-
-<p>It is the right free answer for anyone comfortable reading crawl data and deciding what
-matters. If a spreadsheet of every URL and its status codes is a useful artefact to you rather
-than a wall of numbers, take this one.</p>
+<h2>Semrush: read the free-account wording</h2>
+<p>The free account lists 1 demo project and 10 reports per day across its vital tools.
+The pricing and Site Audit pages read do not state a per-audit page limit. A report count
+does not tell you how many URLs a crawl can cover. Confirm that allowance before relying on
+it for a site review.</p>
+{checked("Semrush", ("Free account", "https://www.semrush.com/prices/"), ("Site Audit", "https://www.semrush.com/features/site-audit/"))}
 
 <h2>Docket's free SEO checker: one page, no sign-up</h2>
 
@@ -121,8 +102,7 @@ site, yours or a competitor's, so there is nothing to verify first.</p>
 
 <p><strong>What it checks:</strong> whether Googlebot, Bingbot and the AI search crawlers may read
 the page, noindex and canonical tags, redirects and HTTPS, the width of the title and description,
-headings, structured data and sharing tags. <strong>What it does not:</strong> speed, which is
-Lighthouse's job, and anything between pages, because it reads one page at a time.</p>
+headings, structured data and sharing tags. <strong>What it does not:</strong> speed and anything between pages, because it reads one page at a time.</p>
 
 <h2>Is there a free SEO audit plugin?</h2>
 <p>For Chrome, our free <a href="{CHROME_ADDON}" rel="noopener" data-ev="Install"
@@ -139,13 +119,11 @@ It does not audit the whole website. For a site audit, Docket's download runs on
 <p>When the free version you use has stopped answering your question:</p>
 
 <ul>
-<li><strong>More than 500 URLs</strong>, where the free crawl tier stops.</li>
-<li><strong>Whole-site relationships</strong>: a canonical pointing at a noindex page, an
-hreflang set that is not reciprocated, a page nothing links to. These need a site crawl,
-not just a per-page check.</li>
-<li><strong>Being told what to do first.</strong> Every tool above hands you findings. Ordering
-them by what they cost you is a separate job from finding them.</li>
+<li><strong>A larger crawl.</strong> Compare the number of URLs you need with the free allowance.</li>
+<li><strong>Checks between pages.</strong> A check of one page cannot settle a question about the whole site.</li>
+<li><strong>A full fix plan.</strong> Check Engine's free result shows the top problem; the rest of its plan is paid.</li>
 </ul>
+<p>For titles that repeat across pages, see <a href="/how-to/fix-duplicate-title-tags/">how to fix duplicate title tags</a>.</p>
 
 <p>If the paid tool you already have is Ahrefs, its crawler is <a href="/vs/ahrefs-site-audit-alternative/">Ahrefs Site Audit</a>; our comparison
 sets out what it checks and how a crawl is paid for.</p>
@@ -158,14 +136,11 @@ different ways their audits are paid for.</p>
 <p><a class="btn" href="/download/">Download Docket</a> ·
 <a href="/vs/">see how it compares, tool by tool</a></p>
 
-{_verified_note('lighthouse')}
-{_verified_note('search-console')}
-{_verified_note('screaming-frog')}
 """
     return render(
         cat="best", slug="free-seo-audit-tools",
-        modified="2026-11-16",
-        title="Free SEO audit tools: uses and limits | Docket",
+        modified="2026-11-20",
+        title="Free SEO audit: tools and limits",
         desc=("Run a free SEO audit of a page or small site. Compare website audit tools, "
               "free limits, a Chrome plugin and what the free report shows."),
         h1="Free SEO audit tools and their limits",
@@ -179,23 +154,13 @@ different ways their audits are paid for.</p>
              "Docket's free online checker shows a page score, problems by area and the top "
              "problem with its fix. The free desktop download gives a site score, counts by "
              "category and the top problem in full. The rest of the problems and ranked plan are paid."),
-            ("What is the best free SEO audit tool?",
-             "For a single page, Lighthouse. It is open source, built into Chrome DevTools, "
-             "and powers PageSpeed Insights. For how Google actually treats your site, Search "
-             "Console. For crawling a small site, Screaming Frog's free tier, capped at 500 "
-             "URLs."),
-            ("Can I audit my website free without signing up?",
-             "Our free Docket SEO checker checks one page in the browser with no sign-up. "
-             "Lighthouse runs inside Chrome, and Screaming Frog's free tier crawls up to 500 URLs."),
-            ("Is Google Lighthouse enough for SEO?",
-             "For one page at a time, often. Its SEO category describes itself as “basic "
-             "search engine optimization advice” and notes there are checks it does not "
-             "perform, and it has no view of your site as a whole, so canonical conflicts, "
-             "hreflang reciprocity and orphan pages are invisible to it."),
-            ("Why can't Search Console tell me everything?",
-             "Its limits are published: reports show at most 1,000 rows, data lags by about "
-             "two to three days, very rare queries may not be tracked, and it only works on "
-             "properties you have verified, so it cannot look at a competitor's site."),
+            ("Which free crawler fits a small site?",
+             "Screaming Frog allows up to 500 URLs per crawl. Ahrefs Free offers 5,000 crawl credits "
+             f"per verified project per month. {source_link('SEO Spider', 'https://www.screamingfrog.co.uk/seo-spider/')} "
+             f"and {source_link('Ahrefs Free', FREE)}. Checked 20 November 2026."),
+            ("Does Semrush state a free per-audit page limit here?",
+             "The pages read state 1 demo project and 10 reports per day, with no per-audit page limit. "
+             f"{source_link('Semrush free account', 'https://www.semrush.com/prices/')}. Checked 20 November 2026."),
             ("When is a paid SEO audit tool worth it?",
              "When a site is bigger than the free crawl tier, when the problems are "
              "relationships between pages rather than faults on one page, or when you need "

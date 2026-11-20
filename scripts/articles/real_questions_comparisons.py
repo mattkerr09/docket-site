@@ -5,18 +5,25 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from comparisons import VERIFIED, _measured, _top_cta, _verified_note, source_link
+from comparisons import VERIFIED, _measured, _top_cta, source_link
 from render import render
 import real_questions_sources  # noqa: F401; keep historical scratch builds stable
 
 READ = "20 November 2026"
 
 
-def note(key: str) -> str:
-    closing = ("Read the linked guidance before changing your page."
-               if key.startswith("rq-google-") or key == "rq-noindex"
-               else "Check the linked pages before choosing a plan.")
-    return _verified_note(key, closing=closing)
+def note(*keys: str, topic: str) -> str:
+    """One short dated note per section, with a named source and local context."""
+    names = {"rq-conductor": "Conductor", "rq-seranking": "SE Ranking",
+             "rq-screaming-frog": "Screaming Frog", "rq-semrush": "Semrush",
+             "rq-sitebulb": "Sitebulb", "rq-jetoctopus": "JetOctopus",
+             "rq-google-live": "Google", "rq-google-ranges": "Google", "rq-noindex": "Google"}
+    companies = ' and '.join(dict.fromkeys(names[key] for key in keys))
+    urls = dict.fromkeys(url for key in keys for _, url in VERIFIED[key])
+    links = ', '.join(source_link("Source " + str(i), url) for i, url in enumerate(urls, 1))
+    owner = companies + ("'" if companies.endswith("s") else "'s")
+    return (f'<p class="verified-note">Checked on {owner} own pages on {READ}. '
+            f'Sources for {topic}: {links}.</p>')
 
 
 def answer_source(text: str, label: str, url: str) -> str:
@@ -41,8 +48,7 @@ def contentking_se_ranking() -> Path:
 <p id="measured-answer">For ContentKing vs SE Ranking, choose Conductor Monitoring for ongoing change checks, or SE Ranking for an audit with a published page allowance.
 contentkingapp.com now redirects to {source_link("Conductor's Monitoring page", ck)}, which lists {history} months of history.
 {source_link("SE Ranking's audit page", audit)} states up to {per_project:,} pages per project.</p>
-{note("rq-conductor")}
-{note("rq-seranking")}
+{note("rq-conductor", "rq-seranking", topic="the monitoring and audit choice")}
 {_top_cta("vs-contentking-seranking", anchor=False)}
 
 <h2>Start with what you need to notice</h2>
@@ -58,7 +64,7 @@ what it finds. Neither buying decision replaces that person.</p>
 matters more to you than starting a fresh crawl by hand.</p>
 <p>{source_link("Conductor's pricing page", cp)} publishes no dollar prices. Ask for a quote
 for the sites and pages you need to monitor. Do not treat a blank price cell as a free plan.</p>
-{note("rq-conductor")}
+{note("rq-conductor", topic="Conductor monitoring and pricing")}
 
 <h2>SE Ranking: distinguish a project ceiling from a monthly allowance</h2>
 <p>{source_link("SE Ranking Website Audit", audit)} says it can audit up to {per_project:,}
@@ -75,12 +81,11 @@ monthly allowance, as well as the size of the largest project.</p>
 <p>The regular prices above come from {source_link("SE Ranking's subscription page", sr)}.
 Keep the billing choice beside any price you send to a colleague. An annual rate is not the
 same commitment as paying for a single month.</p>
-{note("rq-seranking")}
+{note("rq-seranking", topic="SE Ranking plan limits")}
 
 <h2>Where Check Engine fits this decision</h2>
 <p>We make Check Engine. It runs a local audit and ranks fixes by impact and effort. It does
-not provide a shared team workspace, and scheduled re-audits run only while the app is open and the
-computer is awake. If unattended monitoring is the task, keep that requirement at the top of your list.</p>
+not provide a shared team workspace, and scheduled re-audits run only while the app is open and the computer is awake. If unattended monitoring is the task, keep that requirement at the top of your list.</p>
 {_measured("<p>Here is the output from our own site. Use the findings and their scope to judge whether this kind of fix plan matches your work.</p>", view="table")}
 
 <h2>Give change review a named owner</h2>
@@ -108,7 +113,7 @@ should match the time you have to investigate, rather than creating a list that 
         desc="Follow the ContentKing redirect to Conductor Monitoring. Compare its published scope with SE Ranking's audit limits and dated plan prices.",
         h1="ContentKing vs SE Ranking",
         crumb='<a href="/">Check Engine</a> / <a href="/vs/">Compare</a> / ContentKing vs SE Ranking',
-        body=body, published="2026-11-20",
+        body=body, published="2026-11-20", modified="2026-11-20",
         faq=[
             ("Where does the ContentKing web address lead today?", answer_source(
                 "contentkingapp.com now redirects to Conductor's Monitoring page.", "ContentKing address", ck)),
@@ -134,8 +139,7 @@ def screaming_frog_semrush() -> Path:
 <p id="measured-answer">For Screaming Frog vs Semrush, choose Screaming Frog for a desktop crawl, or Semrush when you want Site Audit alongside daily keyword tracking.
 {source_link("Screaming Frog's product page", sf)} offers up to {free_urls} URLs per crawl for free.
 {source_link("Semrush's pricing page", sem)} lists the SEO plan at {monthly} a month on monthly billing or {annual} a month billed annually.</p>
-{note("rq-screaming-frog")}
-{note("rq-semrush")}
+{note("rq-screaming-frog", "rq-semrush", topic="the desktop and subscription choice")}
 {_top_cta("vs-screamingfrog-semrush", anchor=False)}
 
 <h2>Try the crawl task before choosing a subscription</h2>
@@ -155,7 +159,7 @@ the GBP view is £{gbp} a year. These are annual prices, and licences last a yea
 <p>Choose it when you want to run a crawl on your computer. Use the free crawl to judge how
 you work with the results before deciding whether to buy a licence. Keep your test's URL count
 in view: reaching the free limit does not show that the rest of the site is clear.</p>
-{note("rq-screaming-frog")}
+{note("rq-screaming-frog", topic="the yearly licence")}
 
 <h2>Semrush: price the wider task too</h2>
 <p>The {source_link("Semrush SEO plan", sem)} includes Site Audit, daily keyword tracking
@@ -172,7 +176,7 @@ place to start reading. You still need to inspect the affected page and decide w
 </dl>
 <p>A daily report count is not a count of pages you can crawl. Ask which crawl allowance
 applies to your intended plan before committing a large site to it.</p>
-{note("rq-semrush")}
+{note("rq-semrush", topic="Semrush free and paid accounts")}
 
 <h2>A fix plan from Check Engine</h2>
 <p>Check Engine is another desktop choice, bought once. Its report ranks fixes by impact
@@ -201,7 +205,7 @@ real audit report</a> for a worked example with its limits left visible.</p>
         desc="Compare Screaming Frog's free desktop crawl and annual USD licence with Semrush SEO pricing. See the free-account wording and missing page limit.",
         h1="Screaming Frog vs Semrush",
         crumb='<a href="/">Check Engine</a> / <a href="/vs/">Compare</a> / Screaming Frog vs Semrush',
-        body=body, published="2026-11-20",
+        body=body, published="2026-11-20", modified="2026-11-20",
         faq=[
             ("Is the Screaming Frog USD licence a monthly charge?", answer_source(
                 f"No. It is {licence} a year in the USD view. The GBP view is £{gbp} a year, and licences last a year.", "Licence pricing", sfp)),
@@ -227,8 +231,7 @@ def sitebulb_jetoctopus() -> Path:
 <p id="measured-answer">For Sitebulb vs JetOctopus, choose Sitebulb's desktop product if you want a crawl on Windows or Mac, or JetOctopus if you need cloud crawling with log analysis.
 {source_link("Sitebulb's pricing page", sp)} lists Lite at {lite} a month for {lite_urls:,} URLs per audit and Pro at {pro} a month for {pro_urls:,} URLs per audit.
 For a cloud crawler with logs, {source_link("JetOctopus's product page", jo)} describes that combination.</p>
-{note("rq-sitebulb")}
-{note("rq-jetoctopus")}
+{note("rq-sitebulb", "rq-jetoctopus", topic="the desktop and cloud choice")}
 {_top_cta("vs-sitebulb-jetoctopus", anchor=False)}
 
 <h2>Do you have a crawl question or a log question?</h2>
@@ -250,7 +253,7 @@ cloud product. The {source_link("USD pricing page", sp)} lists these monthly opt
 <p>Choose the product first, then the allowance. A desktop Pro allowance describes that
 product's audit; it is not a statement about the Cloud plan. Estimate the size of your crawl
 and leave room for URLs you have not yet counted.</p>
-{note("rq-sitebulb")}
+{note("rq-sitebulb", topic="Sitebulb products")}
 
 <h2>JetOctopus pairs a cloud crawl with log analysis</h2>
 <p>{source_link("JetOctopus", jo)} describes a cloud crawler with log analysis. That is a
@@ -263,7 +266,7 @@ later. Its pricing page lists separate monthly allowances for crawled URLs and l
 <p>For cost, see {source_link("JetOctopus's pricing page", jp)}. We could not resolve which
 price figures applied to which billing period from the page read, so no JetOctopus price is
 quoted here. Confirm the billing period along with the allowances in your quote.</p>
-{note("rq-jetoctopus")}
+{note("rq-jetoctopus", topic="JetOctopus allowances")}
 
 <h2>What Check Engine can contribute</h2>
 <p>Our app audits a site locally and produces a ranked plan of repairs. It does not analyse
@@ -285,7 +288,7 @@ analysis measures</a> before deciding what a crawl alone can settle.</p>
         desc="Choose between Sitebulb's desktop and cloud crawls and JetOctopus's cloud crawler with logs. Dated Sitebulb prices and separate crawl and log limits.",
         h1="Sitebulb vs JetOctopus",
         crumb='<a href="/">Check Engine</a> / <a href="/vs/">Compare</a> / Sitebulb vs JetOctopus',
-        body=body, published="2026-11-20",
+        body=body, published="2026-11-20", modified="2026-11-20",
         faq=[
             ("Must I use Sitebulb in the cloud?", answer_source(
                 "No. Sitebulb offers desktop software for Windows or Mac as well as its cloud product. Decide which setup you want before comparing allowances.", "Sitebulb products", sb)),

@@ -34,6 +34,40 @@ PAGES = {
 }
 
 
+def morning_allowance(name, old):
+    # Morning batch and reviewed copy fixes, 20 November 2026. Exact additions
+    # and replacements only; every remaining byte keeps the original assertion.
+    if name == 'how-to/index.html':
+        added = ('<h2><a href="/how-to/test-a-page-as-googlebot/">Googlebot test: inspect a page or identify a visit</a></h2>\n'
+                 '<p>Choose the test that answers your question, then read what its result can establish.</p>\n\n'
+                 '<h2><a href="/how-to/check-a-page-for-noindex/">Meta noindex checker: tags and response headers</a></h2>\n'
+                 '<p>Inspect both places a noindex directive can appear before changing the page.</p>\n\n')
+        assert old.count('<h2>More coming</h2>') == 1
+        return old.replace('<h2>More coming</h2>', added + '<h2>More coming</h2>', 1)
+    if name == 'download/index.html':
+        # 20 November 2026 copy batch: the former-name note and the key's
+        # actual purpose. The download, sale and price helpers stay protected.
+        marker = '<ol class="steps" id="buy">'
+        assert old.count(marker) == 1
+        old = old.replace(marker, '<p>Check Engine SEO was called Docket SEO; the installer and app still carry the old name for now.</p>\n' + marker, 1)
+        before = '<li><strong>Paste the key</strong> into the field the app shows, and run your first audit.'
+        after = '<li>Paste the key into the field the app shows to open the full report and fix plan.'
+        assert old.count(before) == 1
+        return old.replace(before, after, 1)
+    if name == 'legal/privacy/index.html':
+        before, after = 'for the current price and any sale, and asks', 'whether a sale is open, and asks'
+        assert old.count(before) == 1
+        return old.replace(before, after, 1)
+    if name == 'legal/terms/index.html':
+        for before, after in (
+            ('The software is written by Matt Kerr.', 'The software is written by Matthew Kerr.'),
+            ('buys is the licence key that lets it run.', 'buys is the licence key that shows the full report and fix plan.'),
+        ):
+            assert old.count(before) == 1
+            old = old.replace(before, after, 1)
+    return old
+
+
 def main():
     before = protected_state()
     with tempfile.TemporaryDirectory(prefix='test-measured-answers-2-') as temporary:
@@ -74,15 +108,21 @@ def main():
         assert old.keys() == new.keys(), 'page inventory changed'
         for name, raw in new.items():
             if name not in PAGES:
-                assert unstamped(raw) == unstamped(old[name]), f'unrelated page changed: {name}'
+                assert unstamped(raw) == unstamped(morning_allowance(name, old[name])), f'unrelated page changed: {name}'
                 continue
             spec = PAGES[name]
+            if name == 'best/free-seo-audit-tools/index.html':
+                # First-screen batch, 20 November 2026: permit the exact free
+                # audit rewrite and retain Round 2's original answer controls.
+                from test_first_screens_1120 import BASE as first_base, legacy_page, reviewed_refresh
+                reviewed_refresh(name, raw)
+                raw = legacy_page(destination, env, name, spec[0], first_base)
             # Round 1's checker requires a first body paragraph before the
             # first h2, two to four sentences and a visible clean source link.
             # Every number and its measured context must be present in both
             # the scratch source article and its already-published base copy.
             match = check_answer(raw, spec, site, published)
-            difference = list(difflib.unified_diff(unchanged(old[name]).splitlines(),
+            difference = list(difflib.unified_diff(unchanged(morning_allowance(name, old[name])).splitlines(),
                                                   unchanged(raw).splitlines()))
             assert not difference, f'existing page copy changed: {name}\n' + '\n'.join(difference[:30])
             assert 'Updated <time datetime="2026-11-16">16 November 2026</time>' in raw

@@ -16,7 +16,7 @@ def build() -> Path:
 <p id="measured-answer">A meta noindex checker needs to inspect {METHODS} places: the HTML meta tag and the X-Robots-Tag response header, as {source_link("Google's noindex guide", GOOGLE)} explains.
 Google says <q>{RULE}</q> for noindex to be effective.
 Check both places before deciding that a missing meta tag means the page has no noindex rule.</p>
-{note("rq-noindex")}
+{note("rq-noindex", topic="the two noindex checks")}
 
 <h2>Read the page source for meta robots</h2>
 <p>Open the exact page address you want to check. Use your browser's View Source command and
@@ -27,7 +27,7 @@ can tell a directive from a word in the article you are reading.</p>
 <p>These are the meta tag forms shown in {source_link("Google's guide", GOOGLE)}. The robots
 name is the general form; googlebot names that crawler. Copy the tag into your notes before
 changing a template. This helps you find which setting wrote it if the directive comes back.</p>
-{note("rq-noindex")}
+{note("rq-noindex", topic="meta tag forms")}
 
 <h2>Read the response headers as well</h2>
 <p>Open the browser's developer tools, choose the Network panel and reload the page. Select
@@ -40,7 +40,7 @@ server response, so searching only the HTML cannot find it. Google's guide also 
 <p>Record the response you actually inspected. A screenshot of the page's design does not
 show its response headers. If you ask someone else to fix a header, send the address and the
 header text, rather than only the visible page.</p>
-{note("rq-noindex")}
+{note("rq-noindex", topic="response headers")}
 
 <h2>Why blocking the crawl can hide the rule</h2>
 <blockquote><p>Google says <q>{RULE}</q>.</p></blockquote>
@@ -48,7 +48,7 @@ header text, rather than only the visible page.</p>
 crawler will not see the noindex rule and the page can still appear in search results.
 Google does not support a noindex rule in robots.txt. Put the indexing directive in the meta
 tag or response header instead, following {source_link("the noindex documentation", GOOGLE)}.</p>
-{note("rq-noindex")}
+{note("rq-noindex", topic="crawl access and indexing")}
 
 <h2>Use the existing page check, then finish the manual check</h2>
 <p>The <a href="/tools/meta-tag-checker/">Check Engine meta tag checker</a> is a useful starting
@@ -76,7 +76,7 @@ For a wider review of the result, see <a href="/learn/seo-audit/">what an SEO au
         desc="Check meta robots in the page source and X-Robots-Tag in response headers. Google's robots.txt rule explains why an unread noindex can fail.",
         h1="Meta noindex checker: how to check a page for noindex",
         crumb='<a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / Check noindex',
-        body=body, published="2026-11-20",
+        body=body, published="2026-11-20", modified="2026-11-20",
         faq=[
             ("Can a noindex header exist when View Source has no meta robots tag?", answer_source(
                 "Yes. X-Robots-Tag is an HTTP response header. Inspect the response headers as well as the HTML before drawing a conclusion.", "Header guidance", GOOGLE)),

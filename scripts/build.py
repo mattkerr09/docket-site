@@ -39,6 +39,7 @@ import best_free  # noqa: E402
 import sf_alternatives  # noqa: E402
 import white_label  # noqa: E402
 import comparisons  # noqa: E402
+import ahrefs_first_screen  # noqa: E402
 import real_questions_comparisons  # noqa: E402
 import howto_test_googlebot  # noqa: E402
 import howto_check_noindex  # noqa: E402
@@ -1713,7 +1714,10 @@ def link_real_questions(pages: list[Path]) -> None:
 
 def main() -> int:
     pages: list[Path] = [home.build(), index_page.build(), checks_page()]
-    pages += comparisons.build_all()
+    # 20 November 2026 first screens: register the refreshed Ahrefs page here
+    # too, so historical tests replaying comparisons keep this later rewrite.
+    pages += [ahrefs_first_screen.build() if builder.__name__ == "ahrefs" else builder()
+              for builder in comparisons.BUILDERS]
     pages += real_questions_comparisons.build_all()
     pages += [howto_test_googlebot.build(), howto_check_noindex.build()]
     pages += [best_free.best_hub(), best_free.free_seo_audit_tools(), sf_alternatives.sf_alternatives(),

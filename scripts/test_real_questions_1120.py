@@ -55,7 +55,8 @@ PAGES = {
     },
 }
 SOURCE_GENERATORS = ('scripts/build.py', 'scripts/articles/comparisons.py', 'scripts/articles/pages.py')
-CHECKED = 'Checked 20 November 2026.'
+CHECKED = 'own pages on 20 November 2026.'
+FAQ_CHECKED = 'Checked 20 November 2026.'
 
 
 def article_html(raw):
@@ -128,7 +129,8 @@ def check_page(raw, spec):
     # note, including the first-screen answer before the first h2.
     for section in re.split(r'<h2\b[^>]*>.*?</h2>', body, flags=re.S):
         if 'rel="nofollow noopener"' in section:
-            assert CHECKED in section, 'missing dated source block'
+            dated = FAQ_CHECKED if '<div class="faq-item">' in section else CHECKED
+            assert dated in section, 'missing dated source block'
             if '<p class="verified-note">' in section:
                 before_note = section.split('<p class="verified-note">', 1)[0]
                 if 'rel="nofollow noopener"' in before_note:
@@ -143,7 +145,7 @@ def check_page(raw, spec):
     for q in qa:
         answer_html = q['acceptedAnswer']['text']
         if 'rel="nofollow noopener"' in answer_html:
-            assert CHECKED in answer_html, 'FAQ claim missing read date'
+            assert FAQ_CHECKED in answer_html, 'FAQ claim missing read date'
     return answer, [q['name'] for q in qa]
 
 
@@ -168,7 +170,11 @@ def check_earlier(site, new, old, env):
                 earlier.check_answer(new[name], spec, site, published)
             else:
                 round_one.check_answer(new[name], spec, site, published)
-            assert round_one.unchanged(new[name]) == round_one.unchanged(old[name]), f'earlier page changed: {name}'
+            if name == 'vs/ahrefs-site-audit-alternative/index.html':
+                from test_first_screens_1120 import reviewed_transition
+                reviewed_transition(site, env, name, old[name], new[name])
+            else:
+                assert round_one.unchanged(new[name]) == round_one.unchanged(old[name]), f'earlier page changed: {name}'
             print(f'PASS earlier measured answer {number}: {name}', flush=True)
 
 
@@ -216,7 +222,11 @@ def main():
             if name in {'vs/index.html', 'how-to/index.html',
                         'vs/se-ranking-vs-screaming-frog/index.html', 'vs/jetoctopus-alternative/index.html'}:
                 continue
-            assert unstamped(new[name]) == unstamped(old[name]), f'unrelated page changed: {name}'
+            if name == 'vs/ahrefs-site-audit-alternative/index.html':
+                from test_first_screens_1120 import reviewed_transition
+                reviewed_transition(site, env, name, old[name], new[name])
+            else:
+                assert unstamped(new[name]) == unstamped(old[name]), f'unrelated page changed: {name}'
         for name, data in assets.items():
             assert (site / name).read_bytes() == data, f'protected asset changed: {name}'
         # Only the requested inbound paragraphs and required date fields move.
@@ -255,7 +265,7 @@ def main():
             rejected(raw.replace(match.group(), '', 1), spec, 'expected one measured answer')
             figure = NUMBER.search(Visible(match.group(1)).text()).group()
             rejected(raw[:match.start()] + match.group().replace(figure, '987654.321', 1) + raw[match.end():], spec, 'unsourced answer figure')
-            rejected(raw.replace('Checked 20 November 2026.', 'Read recently.'), spec, 'missing dated source block')
+            rejected(raw.replace(CHECKED, 'Read recently.'), spec, 'missing dated source block')
             late = raw.replace(match.group(), '', 1).replace('</article>', match.group() + '</article>', 1)
             rejected(late, spec, 'answer placement')
         # Test attribution as well as the set of prices: a Core/Growth swap

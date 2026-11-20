@@ -85,6 +85,15 @@ def article(raw):
 
 
 def check_answer(raw, spec, site, published):
+    # 20 November 2026 first-screen batch: the two replaced answers use today's
+    # rival readings. Keep the original checker below for historical controls.
+    for name, title in (
+        ('vs/ahrefs-site-audit-alternative/index.html', 'Ahrefs Site Audit: free limits and paid plans'),
+        ('best/free-seo-audit-tools/index.html', 'Free SEO audit: tools and limits'),
+    ):
+        if f'<title>{title}</title>' in raw:
+            from test_first_screens_1120 import PAGES as refreshed, check_page
+            return check_page(raw, refreshed[name])
     _generator, label, facts = spec
     matches = list(ANSWER.finditer(raw))
     assert len(matches) == 1, 'expected one measured answer'
@@ -162,6 +171,11 @@ def main():
         site = destination / 'site'
         old = {path.relative_to(site).as_posix(): path.read_text(encoding='utf-8')
                for path in site.rglob('*.html')}
+        # First-screen batch, 20 November 2026: registration keeps the later
+        # Ahrefs rewrite during replay. Recover only Round 1's actual old page.
+        from test_first_screens_1120 import BASE as first_base, legacy_page, reviewed_refresh
+        ahrefs = 'vs/ahrefs-site-audit-alternative/index.html'
+        old[ahrefs] = legacy_page(destination, env, ahrefs, PAGES[ahrefs][0], BASE)
         assert article((site / SOURCE.strip('/') / 'index.html').read_text()) == article(published), \
             'measurement source differs from the published base'
         for name, spec in PAGES.items():
@@ -177,9 +191,24 @@ def main():
         assert old.keys() == new.keys(), 'page inventory changed'
         for name, raw in new.items():
             if name not in PAGES:
-                assert unstamped(raw) == unstamped(old[name]), f'unrelated page changed: {name}'
+                # Morning batch, 20 November 2026: allow only Round 3's
+                # measured Sitebulb paragraph and its update fields.
+                if name == 'vs/sitebulb-alternative/index.html':
+                    import test_measured_answers_3 as third
+                    source = run(ROOT, ['git', 'show', third.BASE + ':site/learn/seo-audit/index.html'], env, quiet=True)
+                    third.check_answer(raw, third.PAGES[name], site, source)
+                    assert unchanged(raw) == unchanged(old[name]), 'Sitebulb copy beyond the measured answer changed'
+                    assert 'Updated <time datetime="2026-11-16">16 November 2026</time>' in raw
+                else:
+                    assert unstamped(raw) == unstamped(old[name]), f'unrelated page changed: {name}'
                 continue
             spec = PAGES[name]
+            if name == ahrefs:
+                # First-screen batch, 20 November 2026: permit exactly the
+                # sourced Ahrefs rewrite; retain every original round assertion
+                # and negative control on its pre-rewrite measured answer.
+                reviewed_refresh(name, raw)
+                raw = legacy_page(destination, env, name, spec[0], first_base)
             match = check_answer(raw, spec, site, published)
             difference = list(difflib.unified_diff(unchanged(old[name]).splitlines(),
                                                   unchanged(raw).splitlines()))

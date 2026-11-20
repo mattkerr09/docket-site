@@ -1,43 +1,25 @@
 #!/usr/bin/env python3
-"""Content audit: the job, and which Ahrefs tool does which part of it.
-
-Target query: "ahrefs content audit" (18 impressions, Search Console
-2026-08-10 to 2026-09-05).
-
-⚠️ THERE IS NO AHREFS PRODUCT CALLED "CONTENT AUDIT". Checked 2026-09-09 and
-again 2026-10-19: zero occurrences on ahrefs.com/pricing and zero on
-ahrefs.com/site-audit. Ahrefs' core tools include Site Explorer, Keywords
-Explorer, Site Audit, Rank Tracker and Content Explorer; the pricing page now
-also lists Brand Radar, Web Analytics and others, and a Content Kit add-on
-(AI Content Helper, AI Content Grader). The phrase comes from the searcher, not from
-Ahrefs, so this page is a how-to and not a /vs/ page. A URL or a title
-implying a competitor sells a product they do not sell is a false claim about
-their business, which is the thing this project polices hardest.
-
-Everything said about Ahrefs' tools here is quoted from their own pages, read
-2026-09-09 and again 2026-10-19 (the Content Explorer, Site Audit and Site Explorer
-descriptions quoted below are unchanged), and nothing is inferred about features
-that were not read.
-"""
+"""Content-audit process, sourced to the supplied 20 November Ahrefs read."""
 from __future__ import annotations
 
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from render import N_CHECKS, N_LANES, render  # noqa: E402
+from render import N_CHECKS, N_LANES, render
+from comparisons import source_link
+from ahrefs_first_screen import AUDIT, CONTENT, FREE, FREE_CREDITS, ISSUES, PLANS, checked  # noqa: E402
 
 #: The day the Ahrefs pricing and Site Audit pages were last searched for a product called Content Audit.
-CHECKED_HUMAN = "19 October 2026"
+CHECKED_HUMAN = "20 November 2026"
 
 
 def content_audit() -> Path:
-    body = """
-<p class="lede">If you searched for an Ahrefs content audit, the first useful thing to know is
-that Ahrefs does not sell one. There is no product of that name. What exists is a job (going
-through the pages you have published and deciding which to keep, improve, merge or remove), and
-several tools that each do a slice of it. Knowing which slice saves you paying for the wrong
-one.</p>
+    body = f"""
+<p id="measured-answer">If you searched for an Ahrefs content audit, Ahrefs does not sell one: no separate tool of that name was listed on its pricing, Site Audit or Webmaster Tools pages read.
+Its {source_link("content-audit blog", CONTENT)} describes a process of reviewing pages and improving what holds them back.
+The crawler is Site Audit, whose {source_link("product page", AUDIT)} lists {ISSUES}+ SEO and AEO issues; {source_link("Ahrefs Free", FREE)} gives {FREE_CREDITS:,} crawl credits per verified project per month.</p>
+{checked("Ahrefs", ("Pricing", PLANS), ("Site Audit", AUDIT), ("Webmaster Tools", FREE), ("Content-audit process", CONTENT))}
 
 <h2>What a content audit actually answers</h2>
 
@@ -57,26 +39,15 @@ Entirely mechanical, and where most of the real damage hides.</li>
 <p>The last one is worth doing first, because a brilliant page that a crawler cannot read is a
 worse problem than a mediocre one that it can, and it is far cheaper to fix.</p>
 
-<h2>What Ahrefs' real tools do for this</h2>
-
-<p><strong>Content Explorer</strong> is described by Ahrefs as a way to "find top-performing
-content, link prospects, and media opportunities in your niche": content <em>ideas</em> on a
-topic. It is an index of what other people have published. That is genuinely useful for deciding
-what to write next, and it is the tool whose name most resembles the phrase people search for.
-It is not looking at your site.</p>
-
-<p><strong>Site Audit</strong> is the one that crawls your own pages. Ahrefs' own summary is
-"audit &amp; optimize your website". It is a technical crawler: status codes, duplicate titles,
-broken links, the mechanical fourth question above.</p>
-
-<p><strong>Site Explorer</strong> holds their backlink and organic-traffic data, which is where
-"which of my pages actually earn anything" comes from.</p>
-
-<p>So the job is split across at least two products and the judgement is still yours. Nobody is
-hiding a Content Audit button: the work simply does not live in one place. If you are weighing
-the crawling half specifically, that comparison is on
-<a href="/vs/ahrefs-site-audit-alternative/">Docket vs Ahrefs Site Audit</a>, with dated prices
-read from their pricing page.</p>
+<h2>Use Site Audit to start the page list</h2>
+<p>Ahrefs' content-audit blog describes using Site Audit to collect URLs, then exporting
+internal HTML URLs returning status code 200. That gives you a list to review. It does not
+decide which pages deserve to stay or what each page should say.</p>
+<p>Ahrefs Free is the current name for Webmaster Tools. Its verified-site allowance is
+{FREE_CREDITS:,} crawl credits per project per month. If you are weighing the crawling part,
+read <a href="/vs/ahrefs-site-audit-alternative/">Check Engine vs Ahrefs Site Audit</a> for
+the paid limits as well.</p>
+{checked("Ahrefs", ("Collecting and exporting URLs", CONTENT), ("Free crawl allowance", FREE))}
 
 <h2>The order that wastes least time</h2>
 
@@ -107,7 +78,7 @@ reading a much shorter list, and you are reading it about pages that can actuall
 
 <h2>Index pages are not thin pages</h2>
 
-<p>A category listing, an A–Z, a tag or author page: its job is to point elsewhere, and a low
+<p>A category listing, an A to Z, a tag or author page: its purpose is to point elsewhere, and a low
 word count is normal. Every automated content audit flags these, and the advice it gives is
 wrong three ways: do not write copy on it, do not merge it, and do not delete it, because other
 pages link to it. Judge it on whether the list is worth having and whether anything links to it.
@@ -125,8 +96,8 @@ distinction changes the remedy.</p>
 
 <p>What it does not do: tell you whether a page is <em>good</em>. It has no index of what
 competitors published, no keyword volumes, and no opinion about what people search for. If the
-question you actually have is "what should I write next", Content Explorer or a keyword tool is
-the right purchase and Docket is not. The full list of what is and is not covered is
+question you actually have is "what should I write next", a tool for researching topics is
+what you need. The full list of what is and is not covered is
 <a href="/learn/what-docket-checks/">what Docket checks</a>, and the wider procedure is
 <a href="/learn/seo-audit/">the technical SEO audit</a>.</p>
 
@@ -134,7 +105,7 @@ the right purchase and Docket is not. The full list of what is and is not covere
 
 <p>A content audit is usually run as a one-off and then not again until the next reorganisation,
 which is why the same problems reappear. The mechanical half is worth re-running on a schedule:
-<a href="/learn/site-monitoring/">site monitoring</a> is that, and it is a different job from a
+<a href="/learn/site-monitoring/">site monitoring</a> is that, and it is different work from a
 crawl in that it tells you what changed rather than what is true today. If you want the
 server's own record of which pages a crawler actually fetched, that is
 <a href="/learn/log-file-analysis/">log file analysis</a>.</p>
@@ -155,31 +126,25 @@ one is at <a href="/how-to/fix-thin-content-pages/">how to fix thin content page
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Content audit',
         body=body,
         published="2026-09-09",
-        modified="2026-10-19",
+        modified="2026-11-20",
         faq=[
             ("Does Ahrefs have a content audit tool?",
-             f"Not under that name. Checked on their pricing and Site Audit pages on {CHECKED_HUMAN}, none "
-             "of Ahrefs' tools is called Content Audit. Its core tools include Site Explorer, Keywords "
-             "Explorer, Site Audit, Rank Tracker and Content Explorer, and its Content Kit add-on lists "
-             "AI Content Helper and AI Content Grader. The work people mean by “content audit” is split across Site "
-             "Audit for the technical side and Content Explorer for what others have published."),
-            ("What is the difference between Content Explorer and Site Audit?",
-             "Content Explorer indexes what other people have published, for finding ideas and "
-             "link prospects in a niche. Site Audit crawls your own website. If the question is "
-             "about your existing pages, Site Audit is the relevant half."),
+             f"Ahrefs does not sell one under that name on the pages read. Its blog describes a process, "
+             f"and Site Audit is the crawler used to collect URLs. {source_link('Content-audit process', CONTENT)} "
+             f"and {source_link('Ahrefs pricing', PLANS)}. Checked {CHECKED_HUMAN}."),
             ("What should a content audit start with?",
              "A complete list of your indexable pages, taken from a crawl rather than from your "
              "sitemap. The sitemap says what you claim to have published; the crawl says what a "
              "crawler can reach, and the gap between the two is a finding in itself."),
             ("Why is a short page not automatically a problem?",
-             "Because index pages are short on purpose. A category listing, an A–Z or a tag "
-             "page exists to point elsewhere, and the usual advice (write more, merge it, "
-             "delete it) is wrong for all three. Judge it on whether the list is worth "
+             "Because index pages are short on purpose. A category listing, an A to Z or a tag "
+             "page exists to point elsewhere, and the usual advice to write more, merge it or "
+             "delete it is wrong for all three. Judge it on whether the list is worth "
              "having and whether anything links to it."),
             ("Can a tool tell me whether my content is good?",
              "No, and one that claims to is scoring a proxy. Tools are reliable on the "
              "mechanical questions: is it indexable, is it duplicated, is it in the HTML, "
-             "and those are worth clearing first, because they are cheap and they gate "
+             "and those are worth clearing first, because they are cheap and they support "
              "everything else. The judgement about depth stays yours."),
         ],
     )

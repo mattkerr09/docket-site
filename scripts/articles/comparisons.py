@@ -107,7 +107,7 @@ CHECKED_HUMAN: dict[str, str] = {
     "se-ranking-vs-screaming-frog": "9 November 2026",
     # Supplied browser readings, 2026-11-09: Lite is the Site Audit entry plan,
     # both crawl limits are listed, and bulk ZIP/CSV export supersedes the older help wording.
-    "ahrefs": "9 November 2026",
+    "ahrefs": "20 November 2026",
     # Read live 2026-09-16, both tiers and the crawl quotas, from the vendor's
     # own pricing page. The CSV had carried 2026-08-10; re-reading confirmed the
     # prices unchanged and added the monthly crawl allowances, which are the
@@ -149,6 +149,7 @@ CHECKED_HUMAN: dict[str, str] = {
     # Search Console: the API limits page, the two Search Console help pages, the Core Web Vitals report page and the
     # Chrome UX Report methodology page. All unchanged.
     "search-console": "19 October 2026",
+    "first-free": "20 November 2026",
     "rq-conductor": "20 November 2026",
     "rq-seranking": "20 November 2026",
     "rq-screaming-frog": "20 November 2026",
@@ -166,7 +167,7 @@ CHECKED_ISO: dict[str, str] = {
     "ai-assistants-mcp": "2026-11-11",
     "scrutiny": "2026-10-19",
     "se-ranking-vs-screaming-frog": "2026-11-09",
-    "ahrefs": "2026-11-09",
+    "ahrefs": "2026-11-20",
     "seoptimer": "2026-11-09",
     "sitechecker": "2026-10-19",
     "profound": "2026-10-19",
@@ -178,6 +179,7 @@ CHECKED_ISO: dict[str, str] = {
     "semrush": "2026-10-19",
     "lighthouse": "2026-10-19",
     "search-console": "2026-10-19",
+    "first-free": "2026-11-20",
     "rq-conductor": "2026-11-20",
     "rq-seranking": "2026-11-20",
     "rq-screaming-frog": "2026-11-20",
@@ -433,62 +435,52 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "https://sitebulb.com/features/"),
     ],
     "ahrefs": [
-        ("monthly Site Audit plans start at Lite $129, then Standard $249 and Advanced $449. "
-         "Enterprise is custom. Starter has no Site Audit allowance. Unverified project limits are "
-         "5, 20 and 50 on Lite, Standard and Advanced, with unlimited verified projects",
-         "https://ahrefs.com/pricing"),
-        ("monthly crawl credits are Lite 100,000, Standard 500,000 and Advanced 1.5M. "
-         "Max pages per project are 25,000, 50,000 and 250,000 respectively",
-         "https://ahrefs.com/pricing"),
-        ("one user is included. Lite permits 2 extra users at $40 a month each, Standard 5 at $60 "
-         "and Advanced 10 at $80. The wider platform includes backlink and keyword data and rank tracking",
-         "https://ahrefs.com/pricing"),
-        ("Site Audit lists 170+ issues as errors, warnings and notices, cloud crawling, JavaScript execution, "
-         "raw HTML, rendered HTML and text search, and a speed claim of up to 170k URLs crawled per minute. "
-         "Its GSC/GA connection is marked coming soon",
-         "https://ahrefs.com/site-audit"),
-        ("Ahrefs Free includes Site Audit for verified sites, with 5,000 crawl credits per month per project "
-         "and unlimited verified sites",
-         "https://ahrefs.com/free"),
-        ("Ahrefs Webmaster Tools is now Ahrefs Free. Unverified sites require a paid plan",
-         "https://ahrefs.com/webmaster-tools"),
-        ("only internal HTML pages returning 200 spend crawl credits. Redirects, errors, images, CSS, "
-         "JavaScript files and external links do not. Each verified project's first 5,000 credits a month "
-         "are free on every plan",
-         "https://help.ahrefs.com/en/articles/3119402-how-are-crawl-credits-in-site-audit-spent"),
-        ("additional pay-as-you-go credits are disabled by default. Bought crawl credits last three billing "
-         "months. No extra crawl-credit price is stated in this article or the pricing and crawl-credit pages",
-         "https://help.ahrefs.com/en/articles/6061657-ahrefs-usage-based-pricing-for-credit-based-plans"),
-        ("the pricing FAQ says enabling additional pay-as-you-go credits and data causes automatic charges "
-         "when consumption exceeds plan limits",
-         "https://ahrefs.com/pricing"),
-        ("crawl settings include JavaScript rendering and scheduling by day, time and timezone. "
-         "Authentication requires Advanced or higher",
-         "https://help.ahrefs.com/en/articles/9082329-how-should-i-configure-my-site-audit-settings"),
-        ("always-on auditing is available on Lite and higher",
-         "https://help.ahrefs.com/en/articles/10957674-how-always-on-audit-works"),
-        ("Project Boost Pro is $20 a month per project, with Ask AI, AI detection for 1,000 URLs per crawl, "
-         "auto-submit to IndexNow, instant recrawl and always-on auditing at 10 pages per minute. "
-         "Max is $200 a month per project, with Patches, IndexNow, Batch AI, unlimited AI-detection URLs "
-         "and always-on auditing at 30 pages per minute",
-         "https://ahrefs.com/pricing"),
-        ("the Site Audit product page offers bulk ZIP or CSV issue exports with fixing instructions",
-         "https://ahrefs.com/site-audit"),
-        ("the export help article was also read. This comparison follows the product page's current "
-         "bulk ZIP or CSV export wording",
-         "https://help.ahrefs.com/en/articles/2646667-how-to-export-site-audit-report"),
-        ("Site Audit overview PDFs use Print and most raw data exports are CSV. Cancellation keeps paid "
-         "features active to the billing-cycle end, then moves the account to the free tier",
-         "https://ahrefs.com/faq"),
-        ("Report Builder is listed, with a scheduled-report add-on at $99 a month",
-         "https://ahrefs.com/pricing"),
-        ("the Site Audit connector for Looker Studio needs Advanced or higher and consumes no credits",
-         "https://help.ahrefs.com/en/articles/9229306-how-can-i-use-ahrefs-with-looker-studio"),
-        ("AI crawler server tests, conversion checks and tracking-readiness checks are not stated on the "
-         "Site Audit page on 9 November 2026. Report branding is not stated there either",
-         "https://ahrefs.com/site-audit"),
-        ("report branding is not stated on the pricing page on 9 November 2026",
-         "https://ahrefs.com/pricing"),
+        ('Ahrefs Site Audit is the crawler; its Site Audit page lists 180+ SEO and AEO issues',
+         'https://ahrefs.com/site-audit'),
+        ('The Webmaster Tools page lists 170+ issues; the Site Audit page lists 180+',
+         'https://ahrefs.com/webmaster-tools'),
+        ('Ahrefs Webmaster Tools is now Ahrefs Free',
+         'https://ahrefs.com/webmaster-tools'),
+        ('Ahrefs Free includes Site Audit for verified websites',
+         'https://ahrefs.com/webmaster-tools'),
+        ('Ahrefs Free gives 5,000 crawl credits per verified project per month',
+         'https://ahrefs.com/webmaster-tools'),
+        ('Free credits are used when an HTML page returns status code 200',
+         'https://ahrefs.com/webmaster-tools'),
+        ('Lite includes Site Audit and Always-on audit',
+         'https://ahrefs.com/pricing'),
+        ('Lite is $129.00 a month on monthly billing',
+         'https://ahrefs.com/pricing'),
+        ('Standard is $249.00 a month on monthly billing',
+         'https://ahrefs.com/pricing'),
+        ('Advanced is $449.00 a month on monthly billing',
+         'https://ahrefs.com/pricing'),
+        ('Lite includes 100,000 crawl credits per month and at most 25,000 pages per project',
+         'https://ahrefs.com/pricing'),
+        ('Standard includes 500,000 crawl credits per month and at most 50,000 pages per project',
+         'https://ahrefs.com/pricing'),
+        ('Advanced includes 1,500,000 crawl credits per month and at most 250,000 pages per project',
+         'https://ahrefs.com/pricing'),
+        ('Advanced adds HTTP authentication in Site Audit',
+         'https://ahrefs.com/pricing'),
+        ('Lite offers 2 extra users at $40.00 a month each, Standard 5 at $60.00 and Advanced 10 at $80.00',
+         'https://ahrefs.com/pricing'),
+        ('The prices shown exclude tax',
+         'https://ahrefs.com/pricing'),
+        ('No separate Content Audit tool was listed on the pricing, Site Audit or Webmaster Tools pages read',
+         'https://ahrefs.com/pricing'),
+        ('Ahrefs describes a content audit as a process on its blog',
+         'https://ahrefs.com/blog/content-audit/'),
+        ('The content-audit blog describes using Site Audit to collect and export URLs',
+         'https://ahrefs.com/blog/content-audit/'),
+    ],
+    "first-free": [
+        ("Screaming Frog's free version allows up to 500 URLs per crawl",
+         "https://www.screamingfrog.co.uk/seo-spider/"),
+        ("Semrush's free account lists 1 demo project and 10 reports per day across vital tools",
+         "https://www.semrush.com/prices/"),
+        ("The Semrush pricing and Site Audit pages read do not state a per-audit page limit",
+         "https://www.semrush.com/features/site-audit/"),
     ],
     # Lighthouse is the one entry here whose source is not a marketing page but
     # a configuration file, which is the strongest form this claim can take:
@@ -1198,232 +1190,9 @@ def _credit_rows() -> str:
 
 
 def ahrefs() -> Path:
-    rules = F.credit_rules()
-    help_a, help_b = F.credit_help_centre()
-    checked = CHECKED_HUMAN["ahrefs"]
-    offer = founding_price_sentence() or f"{PRICE_COMPACT}."
-    run = json.loads((DATA / "free-run.json").read_text())
-    pro, max_boost = _AH["project_boost"]["Pro"], _AH["project_boost"]["Max"]
-    seats = _AH["additional_users"]
-    body = f"""
-<p id="measured-answer">For a cheaper Ahrefs Site Audit alternative, compare Docket's one-time price with the dated plans below.
-Our <a href="/vs/screaming-frog-alternative/">recorded free audit</a> read {run["pages"]} pages and found {run["problems"]} problems.
-Use the free version to check what it finds on your own site before buying the full fix plan.</p>
-
-<p class="lede">Docket is an Ahrefs Site Audit alternative for people who want a ranked plan of fixes
-and a one-time price. Ahrefs' cloud crawler checks for {_AH['site_audit']['issues']} issues.
-Site Audit starts at Lite, ${_AH_PRICE['Lite']} a month on monthly billing. Ahrefs Free gives
-{rules['free_credits_per_verified_project_per_month']:,} crawl credits a month per verified project.
-Docket audits any public site on Mac or 64-bit Windows, with no account or crawl credits.
-{offer} We make Docket. If you need a backlink index, keyword research or rank tracking, choose Ahrefs.</p>
-<p class="table-note">Ahrefs facts checked {checked}. Each source is listed below.</p>
-{_top_cta("vs-ahrefs-top", anchor=False)}
-
-<h2>Which audit tool fits your work?</h2>
-<div class="wrap-tbl"><table class="cmp">
-<thead><tr><th scope="col">Your question</th><th scope="col">Ahrefs Site Audit</th><th scope="col">Docket</th></tr></thead>
-<tbody>
-<tr><th scope="row">What does it cost?</th><td>Lite ${_AH_PRICE['Lite']}, Standard ${_AH_PRICE['Standard']}, Advanced ${_AH_PRICE['Advanced']} a month. Enterprise custom. Starter has no Site Audit allowance.</td><td>{offer}</td></tr>
-<tr><th scope="row">Can I try it free?</th><td>Verified sites only. {rules['free_credits_per_verified_project_per_month']:,} crawl credits a month per project.</td><td>Any public site, no account. Score, problem counts by area and the top problem in full.</td></tr>
-<tr><th scope="row">Can I audit client sites?</th><td>Paid plans allow {_AH_UNVERIFIED['Lite']}, {_AH_UNVERIFIED['Standard']} or {_AH_UNVERIFIED['Advanced']} unverified projects on Lite, Standard or Advanced.</td><td>Any number of public sites, including client work.</td></tr>
-<tr><th scope="row">What limits a crawl?</th><td>Monthly crawl credits and a page cap per project. See the plan table below.</td><td>Your page and depth settings, memory and a {F.crawl_minutes()}-minute default deadline.</td></tr>
-<tr><th scope="row">Can it run while I am away?</th><td>Cloud scheduling and always-on audits on Lite and higher.</td><td>Scheduled re-audits run only while the app is open and the computer is awake.</td></tr>
-<tr><th scope="row">Does it render JavaScript?</th><td>Yes, with JavaScript rendering enabled in crawl settings.</td><td>Renders a sample of pages as a browser would. The default does not render every page.</td></tr>
-<tr><th scope="row">How are fixes sorted?</th><td>Errors, warnings and notices across {_AH['site_audit']['issues']} issues.</td><td>{N_CHECKS} checks in {N_LANES} areas, ranked by impact against effort, with fix text and markup where useful.</td></tr>
-<tr><th scope="row">Does it test AI crawler access?</th><td>Not stated on Ahrefs' Site Audit page on {checked}.</td><td>robots.txt rules for {F.ai_agents()} AI crawlers, plus a separate homepage server test.</td></tr>
-<tr><th scope="row">Does it have AI features?</th><td>Ask AI and AI detection through Project Boost Pro at ${pro['price_per_project_per_month_usd']} a month per project. Max is ${max_boost['price_per_project_per_month_usd']}.</td><td>Checks whether AI crawlers can reach and read the site.</td></tr>
-<tr><th scope="row">Can I brand the report?</th><td>Not stated on Ahrefs' pricing or Site Audit page on {checked}.</td><td>Your name and logo on the client PDF in the paid version.</td></tr>
-<tr><th scope="row">Can a team use it?</th><td>{_AH['users_included']} user included. Extra users cost ${seats['Lite']['price_per_month_usd']} to ${seats['Advanced']['price_per_month_usd']} a month each, depending on plan.</td><td>One licence covers {F.licence_covers()}. No team accounts or shared workspace.</td></tr>
-<tr><th scope="row">Can it crawl behind a login?</th><td>Authentication on Advanced and higher.</td><td>No login setup for password-protected crawls. It audits pages it can reach publicly.</td></tr>
-<tr><th scope="row">Backlinks, keyword index and rank tracking?</th><td>Included in the wider Ahrefs platform.</td><td>No backlink or keyword index. No rank tracking.</td></tr>
-<tr><th scope="row">Search Console or Analytics connection?</th><td>The Site Audit page labels GSC/GA as coming soon.</td><td>No Search Console or Analytics account connection.</td></tr>
-<tr><th scope="row">Can I use Looker Studio?</th><td>Site Audit connector on Advanced and higher.</td><td>No Looker Studio connector. Paid CSV and JSON exports.</td></tr>
-</tbody></table></div>
-<p class="table-note">Ahrefs sources read {checked}. <a href="https://ahrefs.com/pricing" rel="nofollow noopener">Plans</a>,
-<a href="https://ahrefs.com/site-audit" rel="nofollow noopener">Site Audit</a>,
-<a href="https://help.ahrefs.com/en/articles/9082329-how-should-i-configure-my-site-audit-settings" rel="nofollow noopener">crawl settings</a> and
-<a href="https://help.ahrefs.com/en/articles/9229306-how-can-i-use-ahrefs-with-looker-studio" rel="nofollow noopener">Looker Studio</a>.</p>
-
-<h2>Is Ahrefs Site Audit free?</h2>
-<p>Yes, for sites whose ownership you verify. Ahrefs Free includes
-{rules['free_credits_per_verified_project_per_month']:,} crawl credits a month per project and unlimited
-verified sites. A paid plan is needed for sites you cannot verify, such as a prospect's or a
-competitor's. A client's site can use the free allowance if its ownership is verified.</p>
-<p>Docket's free version works on any public site with no account. It runs the audit and shows the score,
-the number of problems in each area and the top problem with its fix. The full fix plan and report exports
-need a licence. The screenshot below is the free version auditing our company site on
-{_human_date(run['date'])}.</p>
-<figure class="shot">
-<img src="/assets/free-result.webp" width="{run['image']['width']}" height="{run['image']['height']}"
-     loading="lazy" decoding="async" alt="Docket's free audit result. Score {run['score']} out of 100, {run['problems']} problems, with the top problem and its fix shown in full.">
-<figcaption>{run['pages']} pages crawled in {speed_words(run['seconds'])}. Score {run['score']} out of 100,
-{run['problems']} problems found, with {run['more']} more to unlock. Captured from Docket{recorded_with(run['engine'])}.</figcaption>
-</figure>
-<p class="table-note">Ahrefs sources read {checked}. <a href="https://ahrefs.com/free" rel="nofollow noopener">Ahrefs Free</a> and
-<a href="https://ahrefs.com/webmaster-tools" rel="nofollow noopener">Webmaster Tools</a>.</p>
-
-<h2>Crawl credits, page caps and extra charges</h2>
-<p>A crawl credit pays for one internal HTML page that returns a 200 status. Redirects, pages that
-return an error, images, CSS and JavaScript files, and links to other sites do not spend credits.
-Each verified project's first {rules['free_credits_per_verified_project_per_month']:,} credits a month are free on every plan.</p>
-<div class="wrap-tbl"><table class="cmp">
-<thead><tr><th scope="col">Plan</th><th scope="col">Monthly price</th><th scope="col">Credits a month</th>
-<th scope="col">Max pages per project</th><th scope="col">Unverified projects</th><th scope="col">Twelve monthly bills</th></tr></thead>
-<tbody>{_credit_rows()}</tbody></table></div>
-<p class="table-note">Monthly billing, read {checked}. The last column is the monthly price multiplied by twelve.
-<a href="https://ahrefs.com/pricing" rel="nofollow noopener">Ahrefs pricing</a>.</p>
-<h3>Two limits to check before a large crawl</h3>
-<p>Lite's {F.credits_for('Lite')} monthly credits do not let one project exceed its
-{F.max_pages_for('Lite')} page cap. Standard caps a project at {F.max_pages_for('Standard')} pages,
-and Advanced at {F.max_pages_for('Advanced')}. Re-crawling pages after a fix uses the monthly allowance again.</p>
-<p>Extra pay-as-you-go credits are off by default. If you enable them, Ahrefs' pricing FAQ says you are
-automatically charged when use exceeds the plan's limits. Bought credits last
-{rules['pay_as_you_go_credits_last_billing_months']} billing months. No price for extra crawl credits was
-stated on the pricing page or the credit help pages read on {checked}.</p>
-<p>Docket has no monthly credits or per-audit charge. You choose the page and depth settings. A crawl
-still stops at its deadline, when it runs out of links, or at the limits of the computer's memory.
-The default deadline is {F.crawl_minutes()} minutes. Everything mode allows {F.everything_hours()} hours.</p>
-<p class="table-note">Credit sources read {checked}. <a href="{help_a['url']}" rel="nofollow noopener">How crawl credits are spent</a>,
-<a href="{help_b['url']}" rel="nofollow noopener">usage-based pricing</a> and
-<a href="{_AH['overage_source']}" rel="nofollow noopener">the automatic-charges FAQ on pricing</a>.</p>
-
-<h2>What Ahrefs does that Docket does not</h2>
-<ul>
-<li><strong>Index data and rank tracking.</strong> Ahrefs supplies backlink and keyword data, plus rank tracking.
-Docket has no backlink or keyword index and does not track search rankings. It has no Search Console connection.</li>
-<li><strong>Cloud scheduling and always-on crawling.</strong> Ahrefs lets you schedule crawls by day, time and
-timezone. Always-on audits are available on Lite and higher. Docket's schedule runs only while the app is open
-and the computer is awake. It has no cloud or always-on crawler.</li>
-<li><strong>Paid team seats.</strong> Lite includes {_AH['users_included']} user and lets you add up to
-{seats['Lite']['maximum']} at ${seats['Lite']['price_per_month_usd']} a month each. Standard allows
-{seats['Standard']['maximum']} extra at ${seats['Standard']['price_per_month_usd']} each, and Advanced
-{seats['Advanced']['maximum']} at ${seats['Advanced']['price_per_month_usd']} each. Docket has no team accounts or shared workspace.</li>
-<li><strong>Password-protected crawls.</strong> Ahrefs' settings help lists authentication on Advanced and higher.
-Docket has no setup for logging into a protected site. Use public staging pages or a tool with authentication.</li>
-<li><strong>JavaScript across the crawl.</strong> Ahrefs lets you enable JavaScript rendering and search raw HTML,
-rendered HTML and page text. Docket renders a sample by default. A bug on an unsampled page may be missed.</li>
-<li><strong>Crawl speed and scale.</strong> Ahrefs advertises up to {_AH['site_audit']['urls_per_minute_claim']} URLs
-crawled per minute. We have not benchmarked that claim. Docket's default is {F.limits()['concurrency']} concurrent
-requests with a {F.limits()['delay_seconds']}-second delay per worker. Large sites take longer on a laptop.</li>
-<li><strong>Looker Studio.</strong> Ahrefs' Site Audit connector needs Advanced or higher and consumes no credits.
-Docket has no connector.</li>
-</ul>
-<p class="table-note">Ahrefs sources read {checked}. <a href="https://ahrefs.com/pricing" rel="nofollow noopener">Pricing</a>,
-<a href="https://ahrefs.com/site-audit" rel="nofollow noopener">Site Audit</a>,
-<a href="https://help.ahrefs.com/en/articles/9082329-how-should-i-configure-my-site-audit-settings" rel="nofollow noopener">crawl settings</a>,
-<a href="https://help.ahrefs.com/en/articles/10957674-how-always-on-audit-works" rel="nofollow noopener">always-on audits</a> and
-<a href="https://help.ahrefs.com/en/articles/9229306-how-can-i-use-ahrefs-with-looker-studio" rel="nofollow noopener">Looker Studio</a>.</p>
-
-<h2>What Docket adds to the audit workflow</h2>
-<p>Docket ranks fixes by impact against effort. It checks calls to action, enquiry forms and tracking
-readiness alongside technical SEO. These checks inspect pages. They do not read your conversion results
-from an Analytics account.</p>
-<p>For AI access, Docket checks robots.txt rules for {F.ai_agents()} AI crawlers. A separate optional server
-test requests the homepage as {len(F.probes()['ai'])} AI crawlers and {F.probes()['search']}, with Docket's
-identity added to each request. That can find a server refusal even when robots.txt allows the crawler.
-It does not prove the crawler will index or cite the page.</p>
-<p>AI crawler server tests, conversion checks and tracking-readiness checks are not stated on Ahrefs'
-Site Audit page on {checked}. Report branding is not stated on its pricing or Site Audit page on that date.
-An omitted feature is not proof that Ahrefs cannot do it. Ask Ahrefs if one decides the purchase.</p>
-<p>Docket's paid version puts your own name and logo on the client PDF. The audit runs on your computer,
-and its saved crawl and reports stay there unless you share them. {CONNECTORS_WORD_CAP} optional checks
-fetch outside data. <code>--offline</code> turns those checks off. The crawler still needs to fetch the site.</p>
-<p class="table-note">Ahrefs sources read {checked}. <a href="https://ahrefs.com/site-audit" rel="nofollow noopener">Site Audit</a> and
-<a href="https://ahrefs.com/pricing" rel="nofollow noopener">pricing</a>.</p>
-
-<h2>AI features in Ahrefs Site Audit</h2>
-<p>Project Boost Pro costs ${pro['price_per_project_per_month_usd']} a month per project. It lists Ask AI in
-Site Audit, AI detection for {pro['ai_detection_urls_per_crawl']:,} URLs per crawl, auto-submit to IndexNow,
-instant recrawl and always-on auditing at {pro['always_on_pages_per_minute']} pages per minute.</p>
-<p>Project Boost Max costs ${max_boost['price_per_project_per_month_usd']} a month per project. It lists
-Patches, auto-submit to IndexNow, Batch AI, AI detection for unlimited URLs and always-on auditing at
-{max_boost['always_on_pages_per_minute']} pages per minute. These are per-project add-ons. Docket's
-AI-visibility checks test crawler access and page readiness.</p>
-<p class="table-note">Read {checked}. <a href="https://ahrefs.com/pricing" rel="nofollow noopener">Project Boost pricing</a>.</p>
-
-<h2>Exports, client reports and Looker Studio</h2>
-<p>Ahrefs' Site Audit page now says you can export all issues in bulk as {' or '.join(_AH['site_audit']['bulk_export_formats'])}, with fixing instructions.
-Its export help article was also read on {checked}. We use the product page's current bulk-export wording here.
-Ahrefs' FAQ also lists overview PDFs through Print and most raw data as CSV.</p>
-<p>The pricing page lists Report Builder, with a scheduled-report add-on at
-${_AH['report_builder_price_per_month_usd']} a month. For Looker Studio, the Site Audit connector needs
-Advanced or higher and consumes no credits. Docket's paid PDF, CSV and JSON exports have no export allowance,
-and its PDF can carry your name and logo.</p>
-<p class="table-note">Sources read {checked}. <a href="https://ahrefs.com/site-audit" rel="nofollow noopener">Bulk ZIP and CSV export</a>,
-<a href="https://help.ahrefs.com/en/articles/2646667-how-to-export-site-audit-report" rel="nofollow noopener">export help</a>,
-<a href="https://ahrefs.com/faq" rel="nofollow noopener">PDF and CSV formats</a>,
-<a href="https://ahrefs.com/pricing" rel="nofollow noopener">Report Builder</a> and
-<a href="https://help.ahrefs.com/en/articles/9229306-how-can-i-use-ahrefs-with-looker-studio" rel="nofollow noopener">Looker Studio</a>.</p>
-
-{_measured("<p>This is Docket auditing our own site. The findings below show how its impact and effort ranking turns into a fix plan.</p>", "list")}
-
-<h2>Cost over a year, and what happens if you cancel</h2>
-<p>Using monthly billing for a full year costs ${_AH_PRICE['Lite'] * 12:,} on Lite,
-${_AH_PRICE['Standard'] * 12:,} on Standard or ${_AH_PRICE['Advanced'] * 12:,} on Advanced, as shown in the
-plan table. These totals exclude add-ons, extra users and extra credits. Annual billing has separate prices.
-The subscription also pays for Ahrefs' research tools.</p>
-<p>Docket has no renewal. {offer} One licence covers any number of sites, including client work,
-on {F.licence_covers()}. There is a {REFUND_DAYS}-day refund with no conditions.</p>
-<p>Ahrefs says paid features stay active until the end of your billing cycle after cancellation,
-then the account moves to the free tier.</p>
-<p class="table-note">Read {checked}. <a href="https://ahrefs.com/pricing" rel="nofollow noopener">Monthly prices</a> and
-<a href="https://ahrefs.com/faq" rel="nofollow noopener">cancellation</a>.
-<a href="/pricing/">Docket pricing</a> and <a href="/legal/refunds/">refund terms</a>.</p>
-
-<h2>Who should use which, and when to use both</h2>
-<ul>
-<li><strong>Choose Ahrefs</strong> for keyword and backlink research, rank tracking, cloud audits,
-team access or authenticated crawling. Check the plan for each feature.</li>
-<li><strong>Choose Docket</strong> for a local audit of public sites, ranked fixes and branded client
-reports with a one-time licence. Try the free version on the site you need to fix.</li>
-<li><strong>Use both</strong> if you need Ahrefs' research data and want Docket's local fix plan and client PDF.</li>
-</ul>
-<p>For another desktop crawler, see <a href="/vs/screaming-frog-alternative/">Docket vs Screaming Frog</a>.
-For the next step after an audit, see <a href="/how-to/content-audit/">how to do a content audit</a>.</p>
-{_verified_note("ahrefs")}
-{CTA_LINK_EXPERIMENT}"""
-
-    return render(
-        cat="vs", slug="ahrefs-site-audit-alternative",
-        modified="2026-11-16",
-        title="Ahrefs Site Audit alternative with prices and limits",
-        desc=(f"Compare Ahrefs Site Audit from ${_AH_PRICE['Lite']}/month with Docket's one-time site audit. "
-              "Free options, crawl credits, JavaScript, AI features and client reports."),
-        h1="Ahrefs Site Audit alternative for a one-time price",
-        crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Ahrefs',
-        body=body,
-        faq=[
-            ("Is Ahrefs Site Audit free?",
-             f"Ahrefs Free gives {rules['free_credits_per_verified_project_per_month']:,} crawl credits a month per "
-             f"verified project, with unlimited verified sites. Sites you cannot verify need a paid plan. "
-             f"Read {checked} on Ahrefs' Free page. Docket's free version works on any public site with no account."),
-            ("Can I audit a client's site with Ahrefs?",
-             f"Yes. Paid plans allow {_AH_UNVERIFIED['Lite']} unverified projects on Lite, "
-             f"{_AH_UNVERIFIED['Standard']} on Standard and {_AH_UNVERIFIED['Advanced']} on Advanced, "
-             f"per Ahrefs' pricing page read {checked}. If the site's ownership is verified, it can use Ahrefs Free."),
-            ("What happens when I run out of Ahrefs crawl credits?",
-             "Pay-as-you-go extras are off by default. Enabling them permits automatic charges above the plan limits. "
-             f"No extra crawl-credit price was stated on Ahrefs' pricing and credit help pages on {checked}. "
-             f"Docket has no credits, but its crawl has page and depth settings and a {F.crawl_minutes()}-minute default deadline."),
-            ("Is there a one-time alternative to Ahrefs Site Audit?",
-             f"Docket runs on Mac and 64-bit Windows with no crawl credits. {offer} "
-             f"One licence covers any number of sites on {F.licence_covers()}."),
-            ("Does Ahrefs Site Audit render JavaScript?",
-             f"Yes. Its Site Audit page says it executes JavaScript, with rendering enabled in crawl settings. "
-             f"Read {checked}. Docket renders a sample of pages by default."),
-            ("Does Ahrefs Site Audit have AI features?",
-             f"Yes. Project Boost Pro lists Ask AI and AI detection at ${pro['price_per_project_per_month_usd']} "
-             f"a month per project. Max lists Batch AI and unlimited AI detection at "
-             f"${max_boost['price_per_project_per_month_usd']} a month per project. Read on Ahrefs' pricing page {checked}."),
-            ("Can I white-label an Ahrefs site audit?",
-             f"Report branding was not stated on Ahrefs' pricing or Site Audit page on {checked}. "
-             "Ask Ahrefs about it before buying. Docket's paid version puts your own name and logo on the client PDF."),
-            ("Can Docket replace Ahrefs?",
-             "For audits of public sites, if a local fix plan fits your work. Docket has no backlink or keyword index, "
-             "rank tracking or Search Console connection. It has no shared workspace or always-on crawler, "
-             "and its scheduled audits run only while the app is open and the computer is awake."),
-        ],
-    )
+    # 20 November 2026: keep the dated rewrite separate from shared helpers.
+    from ahrefs_first_screen import build
+    return build()
 
 
 #: The entry plan's monthly price and how many weeks of it Docket's one-time price equals. Derived from
