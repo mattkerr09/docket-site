@@ -1875,9 +1875,9 @@
   "hash": "0cdf461331d238fb"
  },
  "learn/audit-tool-accuracy/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "a95542339828d888"
+  "changed_in_build": true,
+  "date": "2026-11-20",
+  "hash": "df749632c4c687bd"
  },
  "learn/brand-consistency/index.html": {
   "changed_in_build": false,
@@ -2022,7 +2022,7 @@
  "learn/what-docket-got-wrong/index.html": {
   "changed_in_build": true,
   "date": "2026-11-20",
-  "hash": "eaf9d96f76472c1e"
+  "hash": "069b3b28ec8a69ef"
  },
  "learn/what-is-a-404-error/index.html": {
   "changed_in_build": false,
