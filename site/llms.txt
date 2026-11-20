@@ -6,6 +6,8 @@
 > off our November price of $29.50, through December 2. Then $39. There is no
 > subscription.
 
+Price: Black Friday sale: $19.99 once, 32% off our November price of $29.50, through December 2. Then $39.
+
 The crawl and the report stay on your computer, and there is no account. The app sends
 three anonymous counts, with no site address or audit result. Five optional checks are
 on by default and reach outside it: Google PageSpeed Insights is sent the addresses of
@@ -18,8 +20,7 @@ few pages as a browser would, also reach the sites and services those pages link
 load. The licence key is checked with the payment provider when it is activated and
 about once a day after that. The app asks https://docketseo.app/updater.json whether
 an update exists. While its activation screen is showing on a copy with no key, it
-asks https://docketseo.app/offer.json for the current price and offer and whether the
-sale is still open.
+asks https://docketseo.app/offer.json whether a sale is open.
 
 Check Engine is written by Matthew Kerr and sold by Kerr & Company LLC, of Grand Rapids,
 Michigan, United States.
