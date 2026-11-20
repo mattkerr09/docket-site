@@ -136,6 +136,7 @@ echo "==> checkout gate"
 # kerr-and-company-llc while the money goes to docketseo. Polar renders all
 # three facts into the public checkout page, so this needs no token.
 "$PY" scripts/verify_checkout.py || exit 1
+"$PY" scripts/test_verify_checkout_sale_price.py || exit 1
 
 echo "==> price-claim gate"
 # The download page said "v1.1.0 is free … the $79 applies from v1.0" on a live

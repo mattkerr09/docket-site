@@ -102,7 +102,17 @@ def _dodo(url: str) -> int:
         # So an OLD, LOWER price is accepted and announced; anything else fails.
         previous = getattr(render, "PRICE_PREVIOUS", None)
         old_cents = str(previous * 100) if previous else ""
-        if previous and previous < render.PRICE and _charges(html, old_cents):
+        # SALE PRICE, NO CODE (the 22 Nov 2026 switch, docs in ~/ops/research/checkout-no-code-plan-2026-11-20.md):
+        # Dodo's product itself is re-priced to the sale price while the sale runs, so the plain link charges
+        # PRICE less the flat sale discount. A buyer pays LESS than the list price on the page, never more.
+        # Accepted only while render.FOUNDING_OPEN, so after FOUNDING_ENDS_AT the checkout must read PRICE again.
+        sale_cents = str(render.PRICE * 100 - render.FOUNDING_OFF_CENTS)
+        if render.FOUNDING_OPEN and _charges(html, sale_cents):
+            transition = (
+                f"    SALE PRICE, NO CODE: the checkout charges the sale price ({sale_cents} in cents) while the "
+                f"sale runs and the page lists {render.PRICE_STR}. A buyer pays less than the list price, never "
+                f"more. After {render.FOUNDING_ENDS_AT} it must read {cents} again, and this gate fails otherwise.")
+        elif previous and previous < render.PRICE and _charges(html, old_cents):
             transition = (
                 f"    TRANSITION: the checkout still charges ${previous} while the "
                 f"site advertises {render.PRICE_STR}. That is the agreed order — a "
