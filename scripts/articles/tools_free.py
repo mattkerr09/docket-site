@@ -409,11 +409,12 @@ then ranks what to fix with the rest of its {N_CHECKS} checks.</p>
 """
     return render(
         cat="tools", slug="robots-txt-tester",
+        social_title_matches_title=True,
         modified="2026-11-09",
-        title="Free robots.txt tester and checker | Docket",
+        title="Robots txt tester: check crawler access",
         desc=("Test your site's robots.txt free. Enter a page URL to check whether Googlebot, "
               "Bingbot and AI crawlers may crawl it, and see the rule that decides."),
-        h1="Free robots.txt tester and checker",
+        h1="Robots txt tester: check crawler access",
         crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / Robots.txt tester',
         body=body,
         published="2026-10-06",

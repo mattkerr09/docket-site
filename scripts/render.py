@@ -2702,6 +2702,7 @@ def render(
     self_canonical: bool = False,
     #: Local generators omit analytics, widgets and remote offer scripts.
     browser_only: bool = False,
+    social_title_matches_title: bool = False,
 ) -> Path:
     """Write one page. `body` is the caller's authored HTML — never generated here."""
     # THE END OF A PAGE IS A BUY PATH, NOT A DOWNLOAD. Fifty-seven generators
@@ -2853,6 +2854,7 @@ def render(
                    + _byline(published, modified))
         closing = "</div></article>"
 
+    social_title = title if social_title_matches_title else h1
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2878,7 +2880,7 @@ def render(
 <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="{'website' if schema_type == 'WebPage' else 'article'}">
-<meta property="og:title" content="{esc(h1)}">
+<meta property="og:title" content="{esc(social_title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{url}">
 <meta property="og:site_name" content="Docket SEO">
@@ -2886,7 +2888,7 @@ def render(
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{esc(h1)}">
+<meta name="twitter:title" content="{esc(social_title)}">
 <meta name="twitter:description" content="{esc(desc)}">
 <meta name="twitter:image" content="{BASE}/og.png?v={OG_VERSION}">
 {STYLE}
