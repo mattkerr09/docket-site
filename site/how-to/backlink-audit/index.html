@@ -12,10 +12,10 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Backlink audit: which questions are worth paying for</title>
-<meta name="description" content="Ahrefs sells no product called Backlink Audit. The three questions an audit asks, which tool answers each, and what an open link graph cannot.">
+<title>Backlink audit: how to do one, step by step</title>
+<meta name="description" content="Start a backlink audit in Google Search Console. Export linking sites, check unfamiliar links, compare sources and use Google's narrow disavow test.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="d696ddf5d847">
+<meta name="build-id" content="c788a56ecbb8">
 <link rel="canonical" href="https://checkengineseo.com/how-to/backlink-audit/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -23,16 +23,16 @@
 <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to do a backlink audit">
-<meta property="og:description" content="Ahrefs sells no product called Backlink Audit. The three questions an audit asks, which tool answers each, and what an open link graph cannot.">
+<meta property="og:title" content="Backlink audit: how to do one, step by step">
+<meta property="og:description" content="Start a backlink audit in Google Search Console. Export linking sites, check unfamiliar links, compare sources and use Google's narrow disavow test.">
 <meta property="og:url" content="https://checkengineseo.com/how-to/backlink-audit/">
 <meta property="og:site_name" content="Check Engine SEO">
 <meta property="og:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How to do a backlink audit">
-<meta name="twitter:description" content="Ahrefs sells no product called Backlink Audit. The three questions an audit asks, which tool answers each, and what an open link graph cannot.">
+<meta name="twitter:title" content="Backlink audit: how to do one, step by step">
+<meta name="twitter:description" content="Start a backlink audit in Google Search Console. Export linking sites, check unfamiliar links, compare sources and use Google's narrow disavow test.">
 <meta name="twitter:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -939,8 +939,8 @@ nav{background:rgba(7,12,13,.72);
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.165/Docket-1.3.165-arm64.dmg", "offers": [{"@type": "Offer", "name": "Pro", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "The rest of the problems, the ranked fix plan and the markup to paste.", "priceValidUntil": "2026-12-02"}], "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Check Engine", "item": "https://checkengineseo.com/"}, {"@type": "ListItem", "position": 2, "name": "Fix it", "item": "https://checkengineseo.com/how-to/"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to do a backlink audit", "description": "Ahrefs sells no product called Backlink Audit. The three questions an audit asks, which tool answers each, and what an open link graph cannot.", "datePublished": "2026-09-14", "dateModified": "2026-11-05", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/how-to/backlink-audit/", "inLanguage": "en"}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does Ahrefs have a backlink audit tool?", "acceptedAnswer": {"@type": "Answer", "text": "Not under that name. Checked across their pricing, Site Audit, Backlink Checker and Site Explorer pages, the phrase does not appear. The work people mean by “backlink audit” is done with Backlink Checker for individual links and Site Explorer for the full profile."}}, {"@type": "Question", "name": "Can I audit backlinks for free?", "acceptedAnswer": {"@type": "Answer", "text": "Partly. Common Crawl's public hyperlink graph gives referring domains at the domain level, which answers “who links to us” and lets you compare your count against a competitor's. It does not give linking URLs, anchor text or nofollow status: those need a commercial backlink index."}}, {"@type": "Question", "name": "Should I disavow bad backlinks?", "acceptedAnswer": {"@type": "Answer", "text": "Usually not. Search engines discount obvious spam on their own, and a disavow file submitted on a hunch can remove links that were helping. The case for it is narrow: links you or a predecessor bought, or a domain with a known history."}}, {"@type": "Question", "name": "What is the difference between a domain-level and a page-level link graph?", "acceptedAnswer": {"@type": "Answer", "text": "A domain-level graph records that one domain links to another. A page-level index records which URL links to which URL, with the anchor text. The first is enough to count referring domains and compare sites; the second is what you need to look at an individual link."}}, {"@type": "Question", "name": "What is the most common fixable finding in a backlink audit?", "acceptedAnswer": {"@type": "Answer", "text": "An earned link pointing at a URL that no longer exists. The authority arrives at a 404 and one redirect recovers it. It is worth checking before anything more ambitious, because it costs almost nothing and nobody is selling it to you."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Backlink audit: how to do one, step by step", "description": "Start a backlink audit in Google Search Console. Export linking sites, check unfamiliar links, compare sources and use Google's narrow disavow test.", "datePublished": "2026-09-14", "dateModified": "2026-11-20", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/how-to/backlink-audit/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which Search Console view should I open first for a backlink audit?", "acceptedAnswer": {"@type": "Answer", "text": "Open Links, then External links, then Top linking sites for your own verified site. Export the sample and review the linking sites you do not recognise. Source: <a href=&quot;https://support.google.com/webmasters/answer/9049606?hl=en&quot; rel=&quot;nofollow noopener&quot;>Google Links report<\/a>, read 20 November 2026."}}, {"@type": "Question", "name": "Does a missing open-graph result mean my small site has no backlinks?", "acceptedAnswer": {"@type": "Answer", "text": "No. In our run on 20 November 2026, none of our own four sites was found in the scanned ranks. That result was inconclusive. Start with your verified site's Search Console Links report. Source: <a href=&quot;https://support.google.com/webmasters/answer/9049606?hl=en&quot; rel=&quot;nofollow noopener&quot;>Google Links report<\/a>, read 20 November 2026."}}, {"@type": "Question", "name": "Can I use the open graph to read the words in a backlink?", "acceptedAnswer": {"@type": "Answer", "text": "No. It records links between domains, not linking URLs or anchor text. For your own site, open Links report, External links, then Top linking text. Source: <a href=&quot;https://support.google.com/webmasters/answer/9049606?hl=en&quot; rel=&quot;nofollow noopener&quot;>Google Links report<\/a>, read 20 November 2026."}}, {"@type": "Question", "name": "Is an unfamiliar linking site enough reason to submit a disavow file?", "acceptedAnswer": {"@type": "Answer", "text": "No. Google's conditions require a considerable number of spammy, artificial or low-quality links and a manual action caused, or likely to be caused, by them. Incorrect use can harm search performance. Source: <a href=&quot;https://support.google.com/webmasters/answer/2648487?hl=en&quot; rel=&quot;nofollow noopener&quot;>Google disavow guide<\/a>, read 20 November 2026."}}, {"@type": "Question", "name": "What should I save so I can repeat a backlink audit later?", "acceptedAnswer": {"@type": "Answer", "text": "Keep the dated export, notes on the linking sites you checked and any removal requests. Compare it with a later export, remembering that Google's report is a sample: a missing row does not prove removal. Source: <a href=&quot;https://support.google.com/webmasters/answer/9049606?hl=en&quot; rel=&quot;nofollow noopener&quot;>Google Links report<\/a>, read 20 November 2026."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -985,101 +985,129 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Check Engine</a>
 </div></nav>
 <main id="main">
-<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / Backlink audit</div><h1>How to do a backlink audit</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-09-14">14 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-05">5 November 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / Backlink audit</div><h1>Backlink audit: how to do one, step by step</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-09-14">14 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-20">20 November 2026</time></p>
 
-<p class="lede">A backlink audit asks three questions: who links to us, is any of it doing
-anything, and is any of it a liability. Ahrefs does not sell a product called "Backlink Audit" (
-the work is split across their Backlink Checker and Site Explorer), and the free half of the job
-can be done from an open dataset, as long as you know which question that dataset can answer.</p>
+<p id="measured-answer">To do a backlink audit, list who links to your site, check the links
+you do not recognise, and leave most of them alone.
+Start with <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Search Console&#x27;s Links report</a>, read 20 November 2026,
+which shows a sample with up to 1,000 rows per table.
+Disavow only in the narrow case in <a href="https://support.google.com/webmasters/answer/2648487?hl=en" rel="nofollow noopener">Google&#x27;s disavow guide</a>: many spammy,
+artificial or low-quality links that caused, or are likely to cause, a manual action.</p>
+
+<h2>How to do a backlink audit, step by step</h2>
+<ol>
+<li><strong>Open the Links report.</strong> In Google Search Console, select your own verified
+site, then go to <strong>Links &gt; External links &gt; Top linking sites</strong>.
+Start here to see who links to you. Source: <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Links report</a>, read 20 November 2026.</li>
+<li><strong>Export the list.</strong> Export the table you want to review and save it with
+the date. Treat it as a sample, not a complete list of backlinks. Source: <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Links report</a>, read 20 November 2026.</li>
+<li><strong>Sort by linking site.</strong> In your saved list, group or sort the rows by the
+site linking to you. Our method uses Google's linking-site view so you can review each
+source together. Source: <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Links report</a>, read 20 November 2026.</li>
+<li><strong>Check the sites you do not recognise.</strong> Open the linking pages where
+available and read the links in context. An unfamiliar name alone is not a reason to remove
+a link. Google suggests checking whether you recognise your top linking sites.
+Source: <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Links report</a>, read 20 November 2026.</li>
+<li><strong>Read the link text.</strong> Go to <strong>Links report &gt; External links &gt;
+Top linking text</strong>. Look at the words used to link to you alongside the sites you
+checked. The domain-level open graph cannot show that text. Source: <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Links report</a>, read 20 November 2026.</li>
+<li><strong>Decide what to keep.</strong> Leave ordinary links alone. For links you judge to
+be spam, ask the linking site for removal. Consider disavow only if Google's conditions
+about a large number of bad links and a manual action both apply.
+Source: <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Links report</a>, read 20 November 2026. Source: <a href="https://support.google.com/webmasters/answer/2648487?hl=en" rel="nofollow noopener">Google disavow guide</a>, read 20 November 2026.</li>
+<li><strong>Re-check later.</strong> Keep notes of the sites you reviewed and any removal
+requests. Our method is to export the report again later and compare the samples. A missing
+row does not prove a link was removed because this is not a complete list.
+Source: <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Links report</a>, read 20 November 2026.</li>
+</ol>
+
+<h2>Where to get the list of links</h2>
+<table>
+<thead><tr><th scope="col">Source</th><th scope="col">What it shows</th>
+<th scope="col">Page-level or domain-level</th><th scope="col">Cost basis as stated</th>
+<th scope="col">Limit</th></tr></thead>
+<tbody>
+<tr><th scope="row"><a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Search Console Links report</a></th>
+<td>Linking sites, linked pages and top linking text for your own verified site</td>
+<td>Page-level and site summaries</td><td>Free</td>
+<td>A sample, not every backlink. Up to 1,000 rows per table;
+tables may be cut short. Read 20 November 2026.</td></tr>
+<tr><th scope="row">Open link graph through Check Engine</th>
+<td>Referring domains and a comparative ranking from Common Crawl</td>
+<td>Domain-level only</td><td>No subscription; no graph credits to spend</td>
+<td>No linking URLs, anchor text, first-seen dates or nofollow status. A site may be outside
+the scanned ranks. Our own run: 20 November 2026.</td></tr>
+<tr><th scope="row"><a href="https://ahrefs.com/backlink-checker" rel="nofollow noopener">Ahrefs Backlink Checker</a></th>
+<td>Individual linking URLs and anchor text</td><td>Page-level</td><td>A free tier</td>
+<td>Free-tier allowance not stated here. Read 19 October 2026.</td></tr>
+<tr><th scope="row"><a href="https://ahrefs.com/site-explorer" rel="nofollow noopener">Ahrefs Site Explorer</a></th>
+<td>The backlink profile with metrics and filtering</td><td>Page-level</td><td>Paid</td>
+<td>Plan allowance not stated here. Read 19 October 2026.</td></tr>
+</tbody></table>
+
+<h2>We ran it on our own sites</h2>
+<p>On 20 November 2026, we ran Check Engine's quick open-graph lookup on our own
+four sites. None was found in the part of the graph
+scanned. The results were inconclusive: our sites were outside the scanned top ranks,
+not shown to be absent from the web's links.</p>
+<p>This run did not request the list of referring domains. For a new or small site, a missing
+graph result is a reason to start with Search Console, not proof that nobody links to you.
+Use the open graph for domains that appear in it. Source: <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Links report</a>, read 20 November 2026.</p>
 
 <h2>The three questions, and which tool answers which</h2>
-
-<p><strong>Who links to us.</strong> A list of referring domains. This is the cheapest question
-and the one an open dataset answers well.</p>
-
-<p><strong>Is it doing anything.</strong> Whether those links carry authority, and whether the
-pages they point at are the ones you want ranking. This needs a link index with page-level detail
-and a metric attached to it.</p>
-
-<p><strong>Is any of it a liability.</strong> The disavow question: the one people reach for
-first and need least. Search engines discount obvious spam automatically; a disavow file
-submitted on a hunch can remove links that were helping you. Unless you have bought links or
-inherited a domain with a known history, the honest answer is usually "leave it".</p>
+<p><strong>Who links to us?</strong> Start with Search Console for your own site. The open
+graph can add a list of referring domains when the domain appears in it.</p>
+<p><strong>Is it doing anything?</strong> Check which pages the links point at. A commercial
+link index adds page-level detail and metrics. Neither a domain count nor a ranking on its
+own tells you whether an individual link helps.</p>
+<p><strong>Is any of it a liability?</strong> Use Google's conditions below before taking
+action. An audit should not turn an unfamiliar link into a removal request by default.</p>
 
 <h2>What Ahrefs actually offers here</h2>
-
-<p><strong>Backlink Checker</strong>: in their words, "check backlinks to any site", drawing on
-what they describe as the world's biggest index of live backlinks. There is
-a free tier. This is the page-level view: individual linking URLs and anchor text.</p>
-
-<p><strong>Site Explorer</strong>: their description is "analyze ANY website's organic traffic,
-AI visibility, backlink profile, and paid traffic". This is the paid, full version of the same
-data with the metrics and filtering attached.</p>
-
-<p>If what you need is every linking URL with its anchor text, that is what a commercial backlink
-index is for and there is no free substitute for it. Check Engine does not have one and is not going to
-pretend otherwise.</p>
+<p>Ahrefs's tools are <strong>Backlink Checker</strong> and <strong>Site Explorer</strong>.
+Backlink Checker has a free tier for the page-level view, including linking URLs and anchor
+text. Site Explorer is the paid view of the backlink profile with metrics and filtering.</p>
+<p>We found no product called "Backlink Audit" across Ahrefs's
+<a href="https://ahrefs.com/pricing" rel="nofollow noopener">pricing</a>, <a href="https://ahrefs.com/site-audit" rel="nofollow noopener">Site Audit</a>,
+<a href="https://ahrefs.com/backlink-checker" rel="nofollow noopener">Backlink Checker</a> and
+<a href="https://ahrefs.com/site-explorer" rel="nofollow noopener">Site Explorer</a> pages when checked
+19 October 2026. These are the older product readings, not a fresh check.</p>
 
 <h2>What an open link graph can tell you</h2>
-
-<p>Common Crawl publishes a hyperlink graph of the web: 135.0 million domains in the
-August to October 2026 release. <code>checkengine backlinks example.com</code> reads it directly:</p>
-
+<p>Common Crawl publishes a public hyperlink graph. Check Engine reads domain-to-domain
+links from it. To request referring domains, use:</p>
 <pre><code>checkengine backlinks example.com --referring</code></pre>
+<p>It streams the graph rather than saving it to disk. A pass serves all the domains you
+request together, with no graph credits to spend.</p>
+<p><strong>The limit: this is a domain-level graph.</strong> It records that a domain links
+to another domain. It cannot show the linking page, anchor text, first-seen date or nofollow
+status. It cannot build a disavow file or judge link quality.</p>
+<p><a href="/learn/domain-authority-without-a-subscription/">Domain authority without a
+subscription</a> explains the ranking derived from that graph and its limits.</p>
 
-<p>It streams the graph rather than downloading it, so nothing is written to disk, one pass
-serves every domain you pass on the command line, and there are no credits to spend. On one large,
-well-linked site, the May to July 2026 graph showed 12,411 referring domains.</p>
-
-<p><strong>The limit, stated plainly: this is a domain-level graph.</strong> It tells you that
-one domain links to another. It does not give you the linking page, the anchor text, the link's
-first-seen date, or whether it is nofollow. Those are page-level facts and they are not in this
-dataset at any price.</p>
-
-<p>So it answers question one properly and question two partially. Enough to compare your
-referring-domain count against a competitor's, which is the comparison most people actually want
-and the one they usually pay a subscription to make once.
-<a href="/learn/domain-authority-without-a-subscription/">Domain authority without a
-subscription</a> covers the metric side of that: what the ranking derived from this graph means,
-and what it deliberately cannot tell you.</p>
-
-<h2>The order to do it in</h2>
-
-<p><strong>1. Count before you read.</strong> Get your referring-domain count and two
-competitors'. If you are within the same order of magnitude, links are probably not your
-constraint and the audit can stop here, which is a genuinely useful outcome and the one nobody
-sells you.</p>
-
-<p><strong>2. Check what the links point at.</strong> Referring domains pointing only at your
-homepage is a different problem from links spread across your content, and it is fixable by
-choosing what you promote rather than by acquiring more links.</p>
-
-<p><strong>3. Check the pages are still there.</strong> An earned link pointing at a URL you
-retired is authority arriving at a 404. This is the most common repairable finding in a backlink
-audit and it costs one redirect. Check Engine's crawl reports the broken internal targets, and
-<a href="/learn/log-file-analysis/">your server log</a> shows the external ones actually being
-requested.</p>
-
-<p><strong>4. Only then consider disavow.</strong> And usually decide against it.</p>
+<h2>Should I disavow?</h2>
+<p>Google says: <q>In most cases, Google can assess which links to trust without additional
+guidance, so most sites will not need to use this tool.</q></p>
+<p>Its conditions both need to apply: a considerable number of spammy, artificial or
+low-quality links, and those links caused, or are likely to cause, a manual action.
+Google warns that incorrect use can harm your site's performance in search.
+Try to get the links removed first. Source: <a href="https://support.google.com/webmasters/answer/2648487?hl=en" rel="nofollow noopener">Google disavow guide</a>, read 20 November 2026.</p>
+<p>Google defines link spam by the aim of manipulating rankings. Its examples include buying
+or selling links for rankings and excessive link exchanges. That is a more useful test than
+whether you recognise a domain name. Source: <a href="https://developers.google.com/search/docs/essentials/spam-policies" rel="nofollow noopener">Google spam policies</a>, read 20 November 2026.</p>
 
 <h2>What Check Engine does and does not do here</h2>
-
-<p>Check Engine reads the public graph for referring-domain counts and a comparative ranking, on your
-machine, with no subscription. It has no backlink index of its own, no anchor-text data, no
-disavow workflow, and no opinion about link quality. Those are the parts a commercial index
-exists for, and if they are what your week needs, buy one.
-<a href="/vs/ahrefs-site-audit-alternative/">The comparison against Ahrefs Site Audit</a> is
-about the crawling half only, and says the same thing about their link data.</p>
-
-<p>What Check Engine audits properly is what is on your own site: the
-<a href="/learn/seo-audit/">technical audit</a> across
-<a href="/learn/what-docket-checks/">every check it runs</a>, including the internal link
-structure that decides where authority goes once it arrives: see
-<a href="/learn/internal-link-equity/">internal link equity</a>. A link profile you cannot use
-because the pages it points at are thin or unreachable is a content and crawling problem wearing
-a backlink costume.</p>
-
-<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-backlink-audit-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.165/Docket-1.3.165-arm64.dmg" data-ev="Download" data-ev-button="how-to-backlink-audit-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-backlink-audit-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.165/Docket-1.3.165-x86_64.dmg" data-ev="Download" data-ev-button="how-to-backlink-audit-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-backlink-audit" data-ev="Buy" data-ev-price="19.99" data-ev-button="how-to-backlink-audit">Buy Check Engine</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-backlink-audit">See a sample report</a><span data-founding-until="2026-12-03T07:59:59Z"> &middot; Black Friday sale: $19.99 once through December 2. Then $39. The Buy button applies the sale for you; there is no code to type.</span></p></aside>
+<p>Check Engine does not audit backlinks. It reads the public graph for referring-domain
+counts and a comparative ranking. It has no backlink index of its own, no anchor-text data,
+no disavow workflow and no opinion about link quality.
+<a href="/vs/ahrefs-site-audit-alternative/">The comparison against Ahrefs Site Audit</a>
+covers the crawling work.</p>
+<p>Use its <a href="/learn/seo-audit/">technical audit</a> and
+<a href="/learn/what-docket-checks/">list of checks</a> to inspect your own pages.
+Check that linked pages still exist before seeking more links. Its crawl reports broken
+internal targets; <a href="/learn/log-file-analysis/">your server log</a> shows external
+requests for retired pages. Read <a href="/learn/internal-link-equity/">internal link
+equity</a> for how internal links connect the pages that receive backlinks.</p>
 
 <h2>Further reading</h2>
 <ul>
@@ -1088,7 +1116,8 @@ a backlink costume.</p>
 <li><a href="/how-to/fix-your-money-pages-first/">Fix the pages that make you money first</a></li>
 <li><a href="/learn/priority-model/">How Check Engine decides what to fix first</a></li>
 </ul>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does Ahrefs have a backlink audit tool?</h3><p>Not under that name. Checked across their pricing, Site Audit, Backlink Checker and Site Explorer pages, the phrase does not appear. The work people mean by “backlink audit” is done with Backlink Checker for individual links and Site Explorer for the full profile.</p></div><div class="faq-item"><h3>Can I audit backlinks for free?</h3><p>Partly. Common Crawl's public hyperlink graph gives referring domains at the domain level, which answers “who links to us” and lets you compare your count against a competitor's. It does not give linking URLs, anchor text or nofollow status: those need a commercial backlink index.</p></div><div class="faq-item"><h3>Should I disavow bad backlinks?</h3><p>Usually not. Search engines discount obvious spam on their own, and a disavow file submitted on a hunch can remove links that were helping. The case for it is narrow: links you or a predecessor bought, or a domain with a known history.</p></div><div class="faq-item"><h3>What is the difference between a domain-level and a page-level link graph?</h3><p>A domain-level graph records that one domain links to another. A page-level index records which URL links to which URL, with the anchor text. The first is enough to count referring domains and compare sites; the second is what you need to look at an individual link.</p></div><div class="faq-item"><h3>What is the most common fixable finding in a backlink audit?</h3><p>An earned link pointing at a URL that no longer exists. The authority arrives at a 404 and one redirect recovers it. It is worth checking before anything more ambitious, because it costs almost nothing and nobody is selling it to you.</p></div></div></section>
+<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-backlink-audit-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.165/Docket-1.3.165-arm64.dmg" data-ev="Download" data-ev-button="how-to-backlink-audit-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-backlink-audit-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.165/Docket-1.3.165-x86_64.dmg" data-ev="Download" data-ev-button="how-to-backlink-audit-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-backlink-audit" data-ev="Buy" data-ev-price="19.99" data-ev-button="how-to-backlink-audit">Buy Check Engine</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-backlink-audit">See a sample report</a><span data-founding-until="2026-12-03T07:59:59Z"> &middot; Black Friday sale: $19.99 once through December 2. Then $39. The Buy button applies the sale for you; there is no code to type.</span></p></aside>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Which Search Console view should I open first for a backlink audit?</h3><p>Open Links, then External links, then Top linking sites for your own verified site. Export the sample and review the linking sites you do not recognise. Source: <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Links report</a>, read 20 November 2026.</p></div><div class="faq-item"><h3>Does a missing open-graph result mean my small site has no backlinks?</h3><p>No. In our run on 20 November 2026, none of our own four sites was found in the scanned ranks. That result was inconclusive. Start with your verified site's Search Console Links report. Source: <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Links report</a>, read 20 November 2026.</p></div><div class="faq-item"><h3>Can I use the open graph to read the words in a backlink?</h3><p>No. It records links between domains, not linking URLs or anchor text. For your own site, open Links report, External links, then Top linking text. Source: <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Links report</a>, read 20 November 2026.</p></div><div class="faq-item"><h3>Is an unfamiliar linking site enough reason to submit a disavow file?</h3><p>No. Google's conditions require a considerable number of spammy, artificial or low-quality links and a manual action caused, or likely to be caused, by them. Incorrect use can harm search performance. Source: <a href="https://support.google.com/webmasters/answer/2648487?hl=en" rel="nofollow noopener">Google disavow guide</a>, read 20 November 2026.</p></div><div class="faq-item"><h3>What should I save so I can repeat a backlink audit later?</h3><p>Keep the dated export, notes on the linking sites you checked and any removal requests. Compare it with a later export, remembering that Google's report is a sample: a missing row does not prove removal. Source: <a href="https://support.google.com/webmasters/answer/9049606?hl=en" rel="nofollow noopener">Google Links report</a>, read 20 November 2026.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">
