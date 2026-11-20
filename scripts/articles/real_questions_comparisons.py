@@ -79,8 +79,8 @@ same commitment as paying for a single month.</p>
 
 <h2>Where Check Engine fits this decision</h2>
 <p>We make Check Engine. It runs a local audit and ranks fixes by impact and effort. It does
-not provide a shared team workspace, and scheduled re-audits need the app open and the computer
-awake. If unattended monitoring is the task, keep that requirement at the top of your list.</p>
+not provide a shared team workspace, and scheduled re-audits run only while the app is open and the
+computer is awake. If unattended monitoring is the task, keep that requirement at the top of your list.</p>
 {_measured("<p>Here is the output from our own site. Use the findings and their scope to judge whether this kind of fix plan matches your work.</p>", view="table")}
 
 <h2>Give change review a named owner</h2>
