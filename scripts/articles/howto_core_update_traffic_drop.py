@@ -14,7 +14,7 @@ SLUG = "traffic-drop-after-november-2026-core-update"
 #: The one audit this page reports, read from ~/ops/research/articles/data-2026-11-20/core-update-audit/AUDIT.md
 #: (Check Engine's own run, default settings, 20 November 2026). Kept in one place and interpolated, so a figure in
 #: the prose can never differ from the one beside it.
-RUN = {"version": "1.3.164", "build": "1669", "pages": "593", "seconds": "128", "score": "65.5"}
+RUN = {"build": "1669", "pages": "593", "seconds": "128", "score": "65.5"}
 RULE = "broad in nature, and don't target specific sites or individual web pages"
 
 # The supplied AUDIT.md, not the different audit bundled with FACTS.md.
@@ -103,7 +103,7 @@ content review, as described in {source_link("Google's core updates guide", GUID
 {google_note("the content review and the limits of technical checks")}
 
 <h2>What we found on a real site</h2>
-<p>On {READ}, we ran Check Engine SEO {RUN['version']}, build {RUN['build']}, the shipped macOS app,
+<p>On {READ}, we ran the shipped macOS app of Check Engine SEO, build {RUN['build']},
 on a public software consulting blog. Default crawl settings read {RUN['pages']} pages in a full report.
 The run took {RUN['seconds']} seconds. This is an example of what an audit can find, not a diagnosis of a
 traffic drop. We have no evidence here that this site's traffic fell.</p>

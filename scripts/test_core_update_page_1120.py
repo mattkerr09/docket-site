@@ -93,7 +93,7 @@ def check_page(raw, audit):
     assert CHECKS <= set(re.findall(r'<code>(.*?)</code>', checklist)), 'check mapping missing'
     assert 'These are not what a core update measures.' in text
     assert 'a public software consulting blog' in text and 'read 593 pages' in text
-    assert '1.3.164, build 1669' in text and '128 seconds' in text
+    assert 'build 1669' in text and '1.3.164' not in text and '128 seconds' in text
     assert '65.5 of 100 on Check Engine\'s own scale, not a Google score.' in text
     expected_scores = re.findall(r'^- (.+?): ([\d.]+) ; findings:', audit, re.M)
     rows = re.findall(r'<tr><th scope="row">(.*?)</th><td>(.*?)</td></tr>', raw, re.S)
