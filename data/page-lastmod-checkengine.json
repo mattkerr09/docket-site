@@ -6,8 +6,8 @@
  },
  "ai-assistants/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-15",
-  "hash": "328e991f717adc57"
+  "date": "2026-11-20",
+  "hash": "530a309c4e8ec056"
  },
  "ai-crawlers/addsearchbot/index.html": {
   "changed_in_build": false,
@@ -1717,7 +1717,7 @@
  "how-to/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "d9457e8cae494918"
+  "hash": "d9f4c737575ce610"
  },
  "how-to/javascript-seo-audit/index.html": {
   "changed_in_build": false,
@@ -1759,6 +1759,11 @@
   "date": "2026-11-10",
   "hash": "0931f83038d93d20"
  },
+ "how-to/see-ai-assistant-traffic-in-analytics/index.html": {
+  "changed_in_build": false,
+  "date": "2026-11-20",
+  "hash": "08c4c3828d9dfd83"
+ },
  "how-to/serve-images-in-modern-formats/index.html": {
   "changed_in_build": false,
   "date": "2026-11-10",
@@ -1787,7 +1792,7 @@
  "how-to/traffic-drop-after-november-2026-core-update/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "4533e56ec7ed31f3"
+  "hash": "ed25fc3976985bda"
  },
  "how-to/what-your-site-says-you-are-called/index.html": {
   "changed_in_build": false,
@@ -1882,7 +1887,7 @@
  "learn/audit-tool-accuracy/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "df749632c4c687bd"
+  "hash": "411c8ab23421e261"
  },
  "learn/brand-consistency/index.html": {
   "changed_in_build": false,
@@ -1955,9 +1960,9 @@
   "hash": "639cbec33fab0c41"
  },
  "learn/internal-link-equity/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "f916daf44eb97c14"
+  "hash": "304a97e8deae4bd6"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
@@ -2027,7 +2032,7 @@
  "learn/what-docket-got-wrong/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "069b3b28ec8a69ef"
+  "hash": "96756c2928fb1146"
  },
  "learn/what-is-a-404-error/index.html": {
   "changed_in_build": false,
@@ -2277,6 +2282,6 @@
  "vs/sitechecker-alternative/index.html": {
   "changed_in_build": false,
   "date": "2026-11-20",
-  "hash": "477867f830554df6"
+  "hash": "406e7a78f4b0b96f"
  }
 }
