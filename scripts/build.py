@@ -44,6 +44,7 @@ import ahrefs_first_screen  # noqa: E402
 import real_questions_comparisons  # noqa: E402
 import howto_test_googlebot  # noqa: E402
 import howto_check_noindex  # noqa: E402
+import howto_core_update_traffic_drop  # noqa: E402
 import directives  # noqa: E402
 import entity  # noqa: E402
 import rendering  # noqa: E402
@@ -1765,6 +1766,12 @@ def link_real_questions(pages: list[Path]) -> None:
     part of registration so both sides of those scratch builds keep them.
     """
     related = {
+        "how-to/index.html": (
+            '<h2><a href="/how-to/traffic-drop-after-november-2026-core-update/">'
+            'Traffic dropped after the November 2026 core update?</a></h2>'
+            '<p>Check the rollout dates, rule out technical faults and understand '
+            'what a real audit can tell you.</p>'
+        ),
         "vs/se-ranking-vs-screaming-frog/index.html": (
             '<p>For the other pairings, read '
             '<a href="/vs/contentking-vs-se-ranking/">ContentKing vs SE Ranking</a> '
@@ -1800,6 +1807,7 @@ def main() -> int:
               for builder in comparisons.BUILDERS]
     pages += real_questions_comparisons.build_all()
     pages += [howto_test_googlebot.build(), howto_check_noindex.build()]
+    pages.append(howto_core_update_traffic_drop.build())
     pages += [best_free.best_hub(), best_free.free_seo_audit_tools(), sf_alternatives.sf_alternatives(),
               white_label.white_label_tools()]
     pages += [howto_https.http_to_https(),
