@@ -1885,7 +1885,7 @@
   "hash": "0cdf461331d238fb"
  },
  "learn/audit-tool-accuracy/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-20",
   "hash": "341df4c855f76fce"
  },
@@ -2030,7 +2030,7 @@
   "hash": "0348369c61d1b28f"
  },
  "learn/what-docket-got-wrong/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-20",
   "hash": "77c0e7d3e100c059"
  },
@@ -2211,8 +2211,8 @@
  },
  "vs/crawlraven-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "91a9f092c96a2e13"
+  "date": "2026-11-21",
+  "hash": "fadf03e01e40b5da"
  },
  "vs/google-search-console/index.html": {
   "changed_in_build": false,
