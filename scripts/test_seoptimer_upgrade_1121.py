@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Offline SEOptimer checks, with merge-base/current scratch builds."""
+"""Offline SEOptimer page checks on one scratch build of the current tree.
+
+The links the page must keep are a literal list, read once from the page as it was before the 21 November 2026
+upgrade. No git calls and no commit hash: a test that rebuilds its "original" from a merge-base compares the page with
+itself once the branch is merged. Download and buy links are left out of the list because they carry the release
+version.
+"""
 from __future__ import annotations
 
 import ast
@@ -22,10 +28,17 @@ PAGE = 'vs/seoptimer-alternative/index.html'
 URL = '/vs/seoptimer-alternative/'
 QUESTION = 'What is better than SEOptimer?'
 MODIFIED = '2026-11-21'
-
-
-def unstamp(raw):
-    return re.sub(r'(<meta name="build-id" content=")[^"]+(">)', r'\1BUILD\2', raw)
+KEPT_HREFS = {
+    '/vs/',
+    '/best/free-seo-audit-tools/',
+    '/learn/priority-model/',
+    '/vs/crawler-sh-alternative/',
+    '/vs/screaming-frog-alternative/',
+    '/vs/semrush-site-audit-alternative/',
+    '/vs/sitebulb-alternative/',
+    '/vs/sitechecker-alternative/',
+    'https://www.seoptimer.com/pricing',
+}
 
 
 def hrefs(raw):
@@ -81,76 +94,37 @@ def check_page(raw):
     return lede
 
 
-def only_function_changed(original, current):
-    """Keep all shared constants, helpers and other pages byte for byte."""
-    def outside(source):
-        tree = ast.parse(source)
-        function = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'seoptimer')
-        lines = source.splitlines(keepends=True)
-        return ''.join(lines[:function.lineno - 1] + lines[function.end_lineno:])
-    assert outside(original) == outside(current), 'source outside seoptimer changed'
-    tree = ast.parse(current)
+def no_range_helper(source):
+    """The page states SEOptimer's starting price itself; the shared range helper stays out of seoptimer()."""
+    tree = ast.parse(source)
     function = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'seoptimer')
     assert not any(isinstance(n, ast.Call) and isinstance(n.func, ast.Name) and n.func.id == 'price'
                    for n in ast.walk(function)), 'range helper remains in seoptimer'
 
 
+def kept_links(raw):
+    missing = KEPT_HREFS - hrefs(raw)
+    assert not missing, f'original href removed: {sorted(missing)}'
+
+
 def main():
     before = protected_state()
+    no_range_helper((ROOT / GENERATOR).read_text())
     with tempfile.TemporaryDirectory(prefix='test-seoptimer-1121-') as temporary:
         destination = Path(temporary)
         scratch_copy(destination)
         env = environment(destination)
-        base = run(ROOT, ['git', 'merge-base', 'HEAD', 'origin/main'], env, quiet=True).strip()
-        git_dir = run(ROOT, ['git', 'rev-parse', '--absolute-git-dir'], env, quiet=True).strip()
-        (destination / '.git').write_text(f'gitdir: {git_dir}\n')
-        generator = destination / GENERATOR
-        current = generator.read_text()
-        original = run(ROOT, ['git', 'show', base + ':' + GENERATOR], env, quiet=True)
-        only_function_changed(original, current)
-        generator.write_text(original)
         run(destination, [sys.executable, '-B', 'scripts/build.py'], env)
         site = destination / 'site'
-        old = {p.relative_to(site).as_posix(): p.read_text() for p in site.rglob('*.html')}
-        assets = {p.relative_to(site).as_posix(): p.read_bytes() for p in site.rglob('*')
-                  if p.is_file() and p.suffix != '.html' and p.name not in {'sitemap.xml', 'llms.txt'}}
-        old_sitemap = (site / 'sitemap.xml').read_text()
-        old_llms = (site / 'llms.txt').read_text()
-        generator.write_text(current)
-        run(destination, [sys.executable, '-B', 'scripts/build.py'], env)
         new = {p.relative_to(site).as_posix(): p.read_text() for p in site.rglob('*.html')}
-        assert old.keys() == new.keys(), 'page inventory changed'
-        old_title, new_title = title(old[PAGE]), title(new[PAGE])
-        changed = []
-        for name in old:
-            if name == PAGE:
-                continue
-            expected = old[name]
-            if name == 'vs/index.html':
-                expected = expected.replace(old_title, new_title)
-            assert unstamp(new[name]) == unstamp(expected), f'unrelated page changed: {name}'
-            if unstamp(old[name]) != unstamp(new[name]):
-                changed.append(name)
-        for name, data in assets.items():
-            assert (site / name).read_bytes() == data, f'unrelated asset changed: {name}'
-        old_map, new_map = ET.fromstring(old_sitemap), ET.parse(site / 'sitemap.xml').getroot()
-        ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
-        for item in old_map.findall('s:url', ns):
-            if item.find('s:loc', ns).text == 'https://checkengineseo.com' + URL:
-                item.find('s:lastmod', ns).text = MODIFIED
-        assert ET.tostring(old_map) == ET.tostring(new_map), 'unrelated sitemap change'
-        new_llms = (site / 'llms.txt').read_text()
-        old_lines = [line for line in old_llms.splitlines() if URL in line]
-        new_lines = [line for line in new_llms.splitlines() if URL in line]
-        assert len(old_lines) == len(new_lines), 'llms inventory changed'
-        expected_llms = old_llms
-        for old_line, new_line in zip(old_lines, new_lines):
-            assert old_line.replace(old_title, new_title) == new_line, 'unrelated inventory change'
-            expected_llms = expected_llms.replace(old_line, new_line, 1)
-        assert expected_llms == new_llms, 'unrelated llms inventory change'
         raw = new[PAGE]
-        assert hrefs(old[PAGE]) <= hrefs(raw), f'base href removed: {hrefs(old[PAGE]) - hrefs(raw)}'
+        kept_links(raw)
         lede = check_page(raw)
+        ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9'}
+        sitemap = ET.parse(site / 'sitemap.xml').getroot()
+        lastmod = [item.find('s:lastmod', ns).text for item in sitemap.findall('s:url', ns)
+                   if item.find('s:loc', ns).text == 'https://checkengineseo.com' + URL]
+        assert len(lastmod) == 1, 'page missing from sitemap'  # its date is set by data/page-lastmod-checkengine.json
         matches = [name for name, page in new.items() for faq in schemas(page, 'FAQPage')
                    for question in faq['mainEntity'] if question['name'].casefold() == QUESTION.casefold()]
         assert matches == [PAGE], 'new FAQ reused elsewhere'
@@ -165,17 +139,19 @@ def main():
             print('CONTROL rejected: en dash put back in the lede', flush=True)
         else:
             raise AssertionError('control accepted en dash')
-        print(f'PAGE {URL} | base {base} | old title: {old_title} | new title: {new_title} | '
-              f'visible words {len(prose(old[PAGE]).split())} -> {len(prose(raw).split())} | '
+        try:
+            kept_links(raw.replace('href="/vs/sitebulb-alternative/"', 'href="#"'))
+        except AssertionError as error:
+            assert str(error).startswith('original href removed'), f'control failed for wrong reason: {error}'
+            print('CONTROL rejected: an original link removed', flush=True)
+        else:
+            raise AssertionError('control accepted a removed link')
+        print(f'PAGE {URL} | title: {title(raw)} | visible words {len(prose(raw).split())} | '
               f'max Jaccard {pairs[0][0]:.4f} with {pairs[0][1]}', flush=True)
         print('FIRST SCREEN ' + lede, flush=True)
-        print(f'OTHER CHANGED PAGES {changed}: derived comparison hub title only; '
-              'sitemap.xml: target lastmod only; '
-              f'llms.txt changed: {old_llms != new_llms}; build-id stamps ignored on all pages', flush=True)
-        print(f'PRESERVED {len(old) - 1} other pages and all base hrefs; assets unchanged', flush=True)
     assert protected_state() == before, 'protected source files changed'
-    print('SEOPTIMER UPGRADE 1121 ok: title, dated price, alternatives table, FAQ, links, '
-          'modified date, similarity, negative control and unchanged other pages')
+    print('SEOPTIMER UPGRADE 1121 ok: title, dated price, alternatives table, FAQ, kept links, '
+          'modified date, similarity and negative controls')
 
 
 if __name__ == '__main__':
