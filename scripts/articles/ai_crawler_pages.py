@@ -733,16 +733,29 @@ def _title(token: str) -> str:
     raise ValueError(f"Crawler token cannot fit a title: {token}")
 
 
+#: A reader who lands on a crawler page from a "traffic" search wants the visitors an assistant sends them, not the crawler
+#: (Search Console, 28 days to 21 Nov 2026: "perplexity ai traffic" and "perplexity ai website traffic" both land on
+#: Perplexity-User). One line right after the lede sends them to the page that answers it. Internal link, no nofollow.
+TRAFFIC_POINTERS = {
+    "Perplexity-User": ('<p>Looking for the visitors Perplexity sends you? Perplexity-User fetches are not visits. '
+                        'To see referral traffic from perplexity.ai, read '
+                        '<a href="/how-to/see-ai-assistant-traffic-in-analytics/">how to see ChatGPT and Perplexity '
+                        'traffic in Google Analytics</a>.</p>'),
+}
+
+
 def _page(row: dict, rows: list[dict]) -> Path:
     token, month = escape(row["token"]), row["method"]["month"]
-    body = (f'<p class="lede">{_opening(row)}</p>' + _reference(row) + _measurement(row)
+    pointer = TRAFFIC_POINTERS.get(row["token"], "")
+    body = (f'<p class="lede">{_opening(row)}</p>' + pointer + _reference(row) + _measurement(row)
             + _change(row) + _rules(row) + _context(row, rows))
     return render(cat="ai-crawlers", slug=row["slug"],
                   title=escape(_title(row["token"])),
                   h1=token, desc=f'{row["token"]} in the {month} robots.txt survey. Operator, purpose, named and blocked counts, and rules to allow or block it.',
                   crumb=f'<a href="/ai-crawlers/">AI crawlers</a> / {token}',
                   body=body, faq=_faq(row),
-                  published="2026-11-11", closer=_next_step("ai-crawlers-" + row["slug"]))
+                  published="2026-11-11", modified="2026-11-21" if pointer else None,
+                  closer=_next_step("ai-crawlers-" + row["slug"]))
 
 
 SORT_SCRIPT = '''<script>
