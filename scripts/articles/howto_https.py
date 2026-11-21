@@ -27,17 +27,10 @@ from render import render  # noqa: E402
 
 def http_to_https() -> Path:
     body = f"""
-<p class="lede">If your site answers on <code>http://</code> without sending the visitor to
-<code>https://</code>, you have two problems and only one of them is about ranking. The
-ranking one is old news. The other is that a browser now writes "Not secure" next to your
-address, and the person reading it has no idea whether that means you are careless or
-compromised.</p>
-
-<p>We found this on our own site. Docket audited <code data-brand-history>docketseo.app</code><span data-brand-history>{FORMER_ADDRESS_NOTE}</span>, returned
-<strong>http:// does not redirect to https://</strong> at HIGH, and it was right: the plain
-HTTP address answered normally with no redirect at all. A tool that ships this check was
-shipping the fault. That is embarrassing in a useful way, because fixing it turned up the part
-of this problem nobody writes down.</p>
+<p class="lede">To change HTTP to HTTPS, install a certificate. Most hosts issue one free.
+Switch the site's own address setting to <code>https://</code>. Add a permanent <code>301</code>
+redirect from every <code>http://</code> URL to its <code>https://</code> twin. Then fix links
+and images still loading over HTTP.</p>
 
 <h2>First, confirm it rather than assume it</h2>
 
@@ -52,24 +45,42 @@ directly:</p>
 happily serving the insecure version to anyone who asks for it, including any crawler that
 does not upgrade, and any visitor following an old link.</p>
 
+<h2>What our own site returns</h2>
+
+<p>We checked our own site with the curl commands above. Here is what the server returned:</p>
+
+<div class="wrap-tbl"><table>
+<thead><tr><th>Request</th><th>Answer</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td><code>http://checkengineseo.com/</code></td><td><code>301</code> to <code>https://checkengineseo.com/</code></td><td>One hop.</td></tr>
+<tr><td><code>http://www.checkengineseo.com/</code></td><td><code>301</code> straight to <code>https://checkengineseo.com/</code></td><td>One hop.</td></tr>
+<tr><td><code>https://www.checkengineseo.com/</code></td><td><code>301</code> to <code>https://checkengineseo.com/</code></td><td>The address without www.</td></tr>
+<tr><td>A deep page over <code>http://</code></td><td><code>301</code> to the same path over <code>https://</code>, then <code>200</code></td><td>The path stays intact.</td></tr>
+</tbody>
+</table></div>
+
+<p>The plain HTTP www address goes straight to the HTTPS address without www in one hop,
+not two. Every redirect answered in well under a second.</p>
+
+<p>The HTTPS response sent no <code>Strict-Transport-Security</code> header when we checked.
+See <a href="#hsts">the HSTS follow-up</a> below.</p>
+
 <h2>The fix, by where the site is hosted</h2>
 
 <p>On most managed hosts this is one setting, and the setting is usually already there:</p>
 
-<ul>
-<li><strong>GitHub Pages</strong>: Settings → Pages → <em>Enforce HTTPS</em>.</li>
-<li><strong>Netlify, Vercel, Cloudflare Pages</strong>: on by default; look for "Force HTTPS"
-or "Always Use HTTPS" if it is not.</li>
-<li><strong>Cloudflare in front of your own server</strong>: SSL/TLS → Edge Certificates →
-<em>Always Use HTTPS</em>. Set the encryption mode to Full (strict), not Flexible; Flexible
-re-encrypts to your origin over plain HTTP and quietly reintroduces the problem you are
-fixing.</li>
-<li><strong>Nginx</strong>: a server block on port 80 whose only job is
-<code>return 301 https://$host$request_uri;</code>. Return the redirect, do not rewrite: a
-rewrite can drop the path and land everyone on the homepage.</li>
-<li><strong>Apache</strong>: <code>Redirect permanent / https://yourdomain.com/</code> in the
-port-80 virtual host, or the mod_rewrite equivalent if you already use it.</li>
-</ul>
+<div class="wrap-tbl"><table>
+<thead><tr><th>Host or server</th><th>Where the HTTPS setting is</th><th>How the redirect is made</th><th>Common blocker</th></tr></thead>
+<tbody>
+<tr><td>GitHub Pages</td><td>Settings → Pages → <em>Enforce HTTPS</em></td><td>Turn on <em>Enforce HTTPS</em>.</td><td>Enforce HTTPS is not on.</td></tr>
+<tr><td>Netlify</td><td>Look for "Force HTTPS" or "Always Use HTTPS".</td><td>On by default.</td><td>HTTPS is not on.</td></tr>
+<tr><td>Vercel</td><td>Look for "Force HTTPS" or "Always Use HTTPS".</td><td>On by default.</td><td>HTTPS is not on.</td></tr>
+<tr><td>Cloudflare Pages</td><td>Look for "Force HTTPS" or "Always Use HTTPS".</td><td>On by default.</td><td>HTTPS is not on.</td></tr>
+<tr><td>Cloudflare in front of your own server</td><td>SSL/TLS → Edge Certificates → <em>Always Use HTTPS</em></td><td>Turn on <em>Always Use HTTPS</em>.</td><td>Use Full (strict), not Flexible. Flexible sends traffic to your origin over plain HTTP.</td></tr>
+<tr><td>Nginx</td><td>A server block on port eighty</td><td><code>return 301 https://$host$request_uri;</code></td><td>A rewrite can drop the path and land everyone on the homepage.</td></tr>
+<tr><td>Apache</td><td>The port-eighty virtual host</td><td><code>Redirect permanent / https://yourdomain.com/</code>, or the mod_rewrite equivalent if you already use it.</td><td>Preserve the path rather than sending deep links to the homepage.</td></tr>
+</tbody>
+</table></div>
 
 <p>Two details that cost people a morning. Use <strong>301</strong>, not 302: a temporary
 redirect tells a search engine to keep the old URL. And preserve the path: a redirect that
@@ -77,6 +88,18 @@ sends <code>/pricing</code> to the homepage loses every deep link you have ever 
 is a worse outcome than the problem.</p>
 
 <h2>When the setting refuses: the part nobody documents</h2>
+
+<p>If your site answers on <code>http://</code> without sending the visitor to
+<code>https://</code>, you have two problems and only one of them is about ranking. The
+ranking one is old news. The other is that a browser now writes "Not secure" next to your
+address, and the person reading it has no idea whether that means you are careless or
+compromised.</p>
+
+<p>We found this on our own site. Docket audited <code data-brand-history>docketseo.app</code><span data-brand-history>{FORMER_ADDRESS_NOTE}</span>, returned
+<strong>http:// does not redirect to https://</strong> at HIGH, and it was right: the plain
+HTTP address answered normally with no redirect at all. A tool that ships this check was
+shipping the fault. That is embarrassing in a useful way, because fixing it turned up the part
+of this problem nobody writes down.</p>
 
 <p>This is what actually happened to us. The API refused:</p>
 
@@ -102,7 +125,10 @@ dig +short www.yourdomain.com CNAME</code></pre>
 your host too, not at a registrar landing page, not at an old server, and not at nothing.
 Fix that, and the certificate finishes issuing on its own; the setting then takes normally.</p>
 
+<span id="hsts"></span>
 <h2>HSTS is the follow-up, and it is not the same thing</h2>
+
+<p>Our own site sent no <code>Strict-Transport-Security</code> header when we checked.</p>
 
 <p>A redirect fixes the request after it happens. <code>Strict-Transport-Security</code> stops
 the insecure request being made at all: once a browser has seen the header, it goes straight to
@@ -120,6 +146,9 @@ months.</p>
 
 <h2>What Docket does about it</h2>
 
+<p>On a local test site served over plain HTTP, Check Engine reported "The site is not served
+over HTTPS" at critical severity.</p>
+
 <p>It probes the plain-HTTP address directly rather than trusting the browser's upgrade, so it
 sees what a crawler sees. It reports the missing redirect and the missing HSTS header as
 separate findings, because they are separate jobs and doing the second one first is how sites
@@ -132,15 +161,16 @@ your own work rather than reading about one.</p>
 """
     return render(
         cat="how-to", slug="redirect-http-to-https",
-        title="How to redirect http:// to https://, and when it won't",
-        desc=("A 301 from http:// to https://, host by host. Plus the certificate state "
-              "that blocks the Enforce HTTPS setting, and the DNS record that causes it."),
-        h1="How to redirect http:// to https://",
+        title="How to change HTTP to HTTPS, and redirect it, by host",
+        desc=("Install a certificate, switch the site address to HTTPS and add permanent 301 "
+              "redirects. Find the setting by host and check what your server returns."),
+        h1="How to change http:// to https://, and redirect it",
+        modified="2026-11-21",  # Add the host table and our own redirect checks.
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / http to https',
         body=body,
         faq=[
             ("Does a missing HTTPS redirect actually affect ranking?",
-             "HTTPS has been a Google ranking signal since 2014, but the redirect matters "
+             "HTTPS has been a Google ranking signal, but the redirect matters "
              "more for duplication and trust than for the signal itself: without it the same "
              "page is reachable at two addresses, and browsers label the insecure one "
              "'Not secure' in the address bar."),
@@ -150,14 +180,17 @@ your own work rather than reading about one.</p>
             ("Why does 'Enforce HTTPS' refuse to turn on?",
              "Usually because the certificate has not finished being issued. On GitHub Pages "
              "the API reports a certificate state such as dns_changed. The common cause is a "
-             "DNS record that does not point at the host (often a www subdomain still "
-             "pointing at a registrar parking page) because the certificate covers both the "
+             "DNS record that does not point at the host, often a www subdomain still "
+             "pointing at a registrar parking page, because the certificate covers both the "
              "apex and www."),
             ("Should I add HSTS at the same time?",
              "No. Get the redirect working first. HSTS tells browsers to refuse plain HTTP "
              "for your domain for the whole max-age, so if HTTPS is broken when they act on "
              "it there is no fallback. Add it afterwards with a short max-age and raise it "
              "once you are confident."),
+            ("Do I lose rankings when I change to HTTPS?",
+             "Use permanent 301 redirects for every URL so each old address points to its "
+             "new HTTPS address. Preserve each path rather than sending every page to the homepage."),
         ],
     )
 
