@@ -706,8 +706,8 @@
  },
  "ai-crawlers/perplexity-user/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "6f858cd958ad4698"
+  "date": "2026-11-21",
+  "hash": "fa3d98f91723bc46"
  },
  "ai-crawlers/perplexitybot/index.html": {
   "changed_in_build": false,
@@ -1960,9 +1960,9 @@
   "hash": "639cbec33fab0c41"
  },
  "learn/internal-link-equity/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "304a97e8deae4bd6"
+  "changed_in_build": true,
+  "date": "2026-11-21",
+  "hash": "35b462ee38981d73"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
