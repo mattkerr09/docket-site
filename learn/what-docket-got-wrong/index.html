@@ -15,7 +15,7 @@
 <title>What Check Engine got wrong, and the release that fixed it</title>
 <meta name="description" content="The releases that fixed something Check Engine got wrong, newest first, with the tests that hold each fix, and 15 worked cases of findings that looked wrong.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="2ee9f800353c">
+<meta name="build-id" content="a9d383512906">
 <link rel="canonical" href="https://checkengineseo.com/learn/what-docket-got-wrong/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -995,7 +995,7 @@ and which tests now hold the fix in place. Where we could not prove something, t
 <p>This is the part of our log that has shipped as a release. It is not a list of every mistake, only of the ones we
 found and fixed. For the questions to ask of any tool's report, ours included, see
 <a href="/learn/audit-tool-accuracy/">how to tell whether an audit tool is lying to you</a>; it counts
-198 of Check Engine's 706 test files that record a past mistake in their own words.
+198 of Check Engine's 707 test files that record a past mistake in their own words.
 After the releases, 15 <a href="#worked-cases">worked cases</a> show what such mistakes look like from the reader's
 side.</p>
 
@@ -1056,7 +1056,7 @@ results out.</p>
 <section id="v1-3-144">
 <h2>A free result&#x27;s first Buy box left out the earlier price</h2>
 <p><strong>Release 1.3.144</strong>, published 4 November 2026. <a href="https://github.com/mattkerr09/docket-site/releases/tag/v1.3.144" rel="noopener">The release on GitHub</a>.</p>
-<p><strong>What was wrong.</strong> A free result has two buy boxes. The one right under the top problem, the first a free user meets, quoted $59 once or 4 x $14.75 and nothing else at the earlier $29.50 price; only the box further down gave the earlier price.</p>
+<p><strong>What was wrong.</strong> A free result has two buy boxes. The one right under the top problem, the first a free user meets, quoted the full list price and its four payments and nothing else; only the box further down gave the lower price a buyer would pay.</p>
 <p><strong>How we found it.</strong> Retaking this site&#x27;s free-result screenshot on 1.3.143: the box in the picture showed the full price alone.</p>
 <p><strong>What changed.</strong> Both boxes read the same offer and carry the same offer line, and both drop it when the earlier price ends.</p>
 <p><strong>Tests that hold it.</strong> <code>test_every_price_on_a_free_result_carries_the_sale.py</code></p>
@@ -1064,7 +1064,7 @@ results out.</p>
 <section id="v1-3-143">
 <h2>The command line scored a mistyped address as a site, and the free version quoted the wrong price</h2>
 <p><strong>Release 1.3.143</strong>, published 4 November 2026. <a href="https://github.com/mattkerr09/docket-site/releases/tag/v1.3.143" rel="noopener">The release on GitHub</a>.</p>
-<p><strong>What was wrong.</strong> checkengine audit &quot;not a url&quot; crawled nothing, scored the address 0 with every area &quot;not applicable&quot; and exited 0, so a typo in a deploy script looked like a passing run. Without a key, the command line&#x27;s footer quoted $59 once or 4 x $14.75 at the earlier $29.50 price in the app. Licence messages said &quot;This Mac&quot; on Windows too.</p>
+<p><strong>What was wrong.</strong> checkengine audit &quot;not a url&quot; crawled nothing, scored the address 0 with every area &quot;not applicable&quot; and exited 0, so a typo in a deploy script looked like a passing run. Without a key, the command line&#x27;s footer quoted the full list price and its four payments, not the lower price the app showed. Licence messages said &quot;This Mac&quot; on Windows too.</p>
 <p><strong>How we found it.</strong> An independent full audit of the product and this site, ordered by the owner, ran the command line with a malformed address and read its footer against the live offer.</p>
 <p><strong>What changed.</strong> An address with a space, a malformed port or no host is refused before any crawl, with exit code 1. The free footer reads the same live offer as the app and gives the earlier price while it runs. Licence messages say &quot;computer&quot;: one licence covers up to 3 computers at a time, Mac or Windows.</p>
 <p><strong>Tests that hold it.</strong> <code>test_the_cli_quotes_the_sale_says_computers_and_refuses_a_non_address.py</code></p>
@@ -1094,11 +1094,11 @@ results out.</p>
 <p><strong>Tests that hold it.</strong> <code>test_a_site_with_no_business_markup_is_not_perfectly_visible_to_ai.py</code>, <code>test_a_lane_whose_subject_is_missing_cannot_pass.py</code></p>
 </section>
 <section id="v1-3-139">
-<h2>The app quoted the old price after Check Engine became $59</h2>
+<h2>The app quoted the old price after the list price changed</h2>
 <p><strong>Release 1.3.139</strong>, published 2 November 2026. <a href="https://github.com/mattkerr09/docket-site/releases/tag/v1.3.139" rel="noopener">The release on GitHub</a>.</p>
-<p><strong>What was wrong.</strong> On 2 November Check Engine&#x27;s price became $59 once. Every copy up to 1.3.138 holds the list price it was built with, and trusts the price the website publishes only when the two agree, so it went on showing the old list price, or four payments of the old amount, beside the Buy button. The checkout charged the new price.</p>
-<p><strong>How we found it.</strong> The price change itself: the website moved to $59 the same day, and the app&#x27;s own still of a free audit still printed the old price.</p>
-<p><strong>What changed.</strong> The app reads the website&#x27;s current price. A price under the checkout&#x27;s $50.01 minimum for paying in four, such as the earlier $29.50 price, is shown with no instalments, even if the website&#x27;s offer file carries one. The earlier price is shown under the name the website gives it, with no limit on buyers.</p>
+<p><strong>What was wrong.</strong> On 2 November the list price changed. Every copy up to 1.3.138 holds the list price it was built with, and trusts the price the website publishes only when the two agree, so it went on showing the old list price, or four payments of the old amount, beside the Buy button. The checkout charged the new price.</p>
+<p><strong>How we found it.</strong> The price change itself: the website moved to the new price the same day, and the app&#x27;s own still of a free audit still printed the old price.</p>
+<p><strong>What changed.</strong> The app reads the website&#x27;s current price. A price under the checkout&#x27;s $50.01 minimum for paying in four is shown with no instalments, even if the website&#x27;s offer file carries one. The earlier price is shown under the name the website gives it, with no limit on buyers.</p>
 <p><strong>Tests that hold it.</strong> <code>test_a_price_under_the_pay_in_four_floor_shows_no_instalments.py</code>, <code>test_an_uncapped_sale_is_shown_with_its_name.py</code></p>
 </section>
 <section id="v1-3-138">
