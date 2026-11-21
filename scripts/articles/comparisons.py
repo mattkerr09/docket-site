@@ -1961,8 +1961,9 @@ def seoptimer() -> Path:
     """
     body = f"""
 <p class="lede"><strong>The short answer:</strong> the SEOptimer alternative that fits depends on what you use SEOptimer
-for. It is a cloud audit tool sold by the month ({price('seoptimer')}), with white-label PDF reports, a lead generation
-tool on its top plan, and a fixed number of crawls on every plan. Docket is an audit you run on your own
+for. It is a cloud audit tool from ${_SEOPT_LO} a month, with white-label PDF reports, a lead generation
+tool on its top plan, and a fixed number of crawls on every plan. Its prices were last read on
+{CHECKED_HUMAN["seoptimer"]} and have not been re-checked since. Docket is an audit you run on your own
 computer, bought once for {PRICE_COMPACT}, with no crawl meter, a free version, and reports that can carry your name and logo.
 If you want a lead generation tool or a monthly cloud service built for selling audits, stay with SEOptimer. If you want
 to hand clients a report under your own name, or re-run audits as often as you like, pick Docket.</p>
@@ -2039,30 +2040,33 @@ the other is an instrument you point at a site. If the metering is what puts you
 against the same limit: it caps pages per session rather than crawls per month.</p>
 
 <h2>Other SEOptimer alternatives, by what you need</h2>
-<ul>
-<li><strong>A free one.</strong> Docket's free version shows your score, how many problems each area has and the top
-problem in full, on any site, with no key. <a href="/best/free-seo-audit-tools/">The free SEO audit tools we compared</a>
-are the other place to start.</li>
-<li><strong>A team.</strong> That is what a platform subscription bundles. Our
-<a href="/vs/semrush-site-audit-alternative/">Semrush comparison</a> lists seats among what it buys. Docket has no
-team accounts, though its reports can carry your name and logo.</li>
-<li><strong>Visual reports an agency can present.</strong> <a href="/vs/sitebulb-alternative/">Sitebulb</a> turns crawl
-data into reports of that kind.</li>
-<li><strong>A desktop crawler for raw data.</strong> <a href="/vs/screaming-frog-alternative/">Screaming Frog</a> gives
-you the crawl data and leaves the reading to you.</li>
-<li><strong>Another cloud tool that bills by the month.</strong> <a href="/vs/sitechecker-alternative/">Sitechecker</a>
-is the one we compare, and that page says its plans advertise unlimited recrawls.</li>
-</ul>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Need</th><th>Alternative</th><th>What it gives you</th><th>Our comparison</th></tr></thead>
+<tbody>
+<tr><td>A free tool</td><td>Docket's free version and other free tools</td>
+<td>Docket shows your score, how many problems each area has and the top problem in full, on any site, with no key.</td>
+<td><a href="/best/free-seo-audit-tools/">Free SEO audit tools</a></td></tr>
+<tr><td>A team</td><td>Semrush</td><td>A platform subscription with seats. Docket has no team accounts, though its reports can carry your name and logo.</td>
+<td><a href="/vs/semrush-site-audit-alternative/">Semrush comparison</a></td></tr>
+<tr><td>Visual reports an agency can present</td><td>Sitebulb</td><td>Crawl data turned into reports of that kind.</td>
+<td><a href="/vs/sitebulb-alternative/">Sitebulb comparison</a></td></tr>
+<tr><td>A desktop crawler for raw data</td><td>Screaming Frog</td><td>Crawl data that leaves the reading to you.</td>
+<td><a href="/vs/screaming-frog-alternative/">Screaming Frog comparison</a></td></tr>
+<tr><td>Another monthly cloud tool</td><td>Sitechecker</td><td>Its plans advertise unlimited recrawls, as our comparison explains.</td>
+<td><a href="/vs/sitechecker-alternative/">Sitechecker comparison</a></td></tr>
+<tr><td>Unmetered re-runs on your own computer</td><td>Docket</td><td>No crawl meter and reports that can carry your name and logo.</td>
+<td><a href="/">Docket</a></td></tr>
+</tbody></table></div>
 
 {_verified_note("seoptimer")}
 {CTA}"""
 
     return render(
         cat="vs", slug="seoptimer-alternative",
-        modified="2026-11-05",  # report branding (1.3.147): Docket's reports can carry your name and logo
-        title="SEOptimer alternative for Mac with no crawl limit",
-        desc=(f"{price_sentence()} SEOptimer subscriptions or Docket's unlimited re-runs."),
-        h1="Docket vs SEOptimer",
+        modified="2026-11-21",  # alternatives by need, dated starting price and FAQ
+        title="SEOptimer alternatives: what to use instead, by need",
+        desc="Pick SEOptimer for lead generation, Docket for unmetered re-runs, or another tool for your team, reports or crawl data.",
+        h1="SEOptimer alternatives, and how Docket compares",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / SEOptimer',
         body=body,
         faq=[
@@ -2076,8 +2080,14 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
              f"shows your score, how many problems each area has and the top problem in full, with no key and no time "
              f"limit. The full report is a one-time purchase with a {REFUND_DAYS}-day refund."),
             ("How much does SEOptimer cost?",
-             f"Its pricing page lists three plans, Starter, Pro and Max, at {price('seoptimer')}. "
-             f"Docket is {PRICE_COMPACT}."),
+             "Its pricing page lists " + "; ".join(f"{name} at ${monthly} a month"
+                 for name, monthly, _, _ in _SEOPT_PLANS) +
+             f". These prices were read {CHECKED_HUMAN['seoptimer']}. Docket is {PRICE_COMPACT}."),
+            ("What is better than SEOptimer?",
+             "It depends on what you need. The table above points to free SEO audit tools for a free option, "
+             "Semrush for a team, Sitebulb for visual reports, Screaming Frog for raw crawl data, "
+             "Sitechecker for another monthly cloud tool, and Docket for unmetered re-runs on your own computer. "
+             "SEOptimer stays the better pick if you need a lead generation tool. Docket has none."),
             ("Is Docket an SEOptimer alternative?",
              "For auditing sites and handing clients a report under your own name and logo, yes. "
              "If you want a lead generation tool, no: SEOptimer's Max plan names one and Docket "
@@ -2089,14 +2099,15 @@ is the one we compare, and that page says its plans advertise unlimited recrawls
              "other free options we looked at."),
             ("Can I get white-label reports from a SEOptimer alternative?",
              "Yes. In the paid version, Docket's PDF and HTML reports can carry your agency's name "
-             "and logo in place of Docket's (Reports, then Report branding), and its CSV and JSON "
+             "and logo in place of Docket's through Reports, then Report branding, and its CSV and JSON "
              "exports carry no branding at all. SEOptimer also names white-label PDF reporting "
              "on its Pro and Max plans."),
             ("Which is cheaper, Docket or SEOptimer?",
-             f"SEOptimer's Starter plan, for its first {_months_past_docket(_SEOPT_LO) - 1} months: "
-             f"${_SEOPT_LO} a month against Docket's {PRICE_COMPACT}. From month "
-             f"{_months_past_docket(_SEOPT_LO)} it has cost more. Docket has no recurring fee, "
-             "and every 1.x update is included, "
+             f"Docket is {PRICE_COMPACT}, and SEOptimer's Starter plan is ${_SEOPT_LO} a month. "
+             f"Even against Docket's later price of ${LATER_PRICE}, Starter costs less for "
+             + ("the first month only" if _months_past_docket(_SEOPT_LO) - 1 == 1
+                else f"the first {_months_past_docket(_SEOPT_LO) - 1} months") +
+             f"; from month {_months_past_docket(_SEOPT_LO)} it has cost more. Docket has no recurring fee, "
              "but a subscription you can cancel is genuinely better value if you only need one audit."),
             ("How many crawls does SEOptimer allow?",
              "Its published plans buy four crawls a month for one website on Starter, ten on Pro "
