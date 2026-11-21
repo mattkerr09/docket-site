@@ -668,6 +668,16 @@ eligible. Google decides whether to show it.</li>
 and ranks what to fix with the rest of its {N_CHECKS} checks.</p>
 {buy_block("tools-jsonld-checker", try_app="tools-jsonld-checker-try-free")}
 
+<h2>What a broken block looks like</h2>
+<p>Check Engine's desktop audit checked a small local test site. These are the findings it reported,
+not results from the online tool above.</p>
+<div class="wrap-tbl"><table class="cmp"><thead><tr><th>What was wrong</th><th>What the audit reported</th><th>How to fix it</th></tr></thead><tbody>
+<tr><td>A JSON-LD block had a trailing comma.</td><td>JSON-LD that fails to parse. High severity. The parser said: <code>Expecting property name enclosed in double quotes</code>.</td><td>Remove the trailing comma so the whole block can parse.</td></tr>
+<tr><td>A Product block had no image.</td><td>incomplete Product markup. Medium severity.</td><td>Add the missing image to the Product block.</td></tr>
+<tr><td>A complete Article block was the control.</td><td>No finding.</td><td>No fix was needed.</td></tr>
+</tbody></table></div>
+<p>Use the tool above to test the JSON-LD on your own page.</p>
+
 <h2>Related</h2>
 <ul>
 <li><a href="/tools/website-checker/">Free website checker: check up to 25 pages</a></li>
@@ -710,13 +720,14 @@ and ranks what to fix with the rest of its {N_CHECKS} checks.</p>
 """
     return render(
         cat="tools", slug="json-ld-checker",
-        title="JSON-LD checker: test structured data on any page",
-        desc=("Free JSON-LD structured data checker: paste a page and see invalid JSON by line and "
-              "column, and which required properties each item is missing."),
+        title="JSON-LD testing tool: test structured data on any page",
+        desc=("Find broken JSON-LD and missing required properties on a page. Paste its address to see "
+              "where the JSON stops parsing and what each item needs."),
         h1="JSON-LD structured data checker",
         crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / JSON-LD checker',
         body=body,
         published="2026-10-06",
+        modified="2026-11-21",  # Added the desktop audit example and comma FAQ.
         schema_type="WebPage",
         faq=[
             ("How do I test my structured data?",
@@ -728,6 +739,11 @@ and ranks what to fix with the rest of its {N_CHECKS} checks.</p>
              "decides whether to show a rich result."),
             ("Does this check Microdata or RDFa?",
              "No. It reads JSON-LD, the format Google recommends for structured data."),
+            ("Why does one comma break my whole JSON-LD block?",
+             "JSON does not allow a trailing comma. One trailing comma is enough to make the whole "
+             "JSON-LD block fail to parse. On the local test site, Check Engine's desktop audit "
+             "reported JSON-LD that fails to parse, with the parser's message: "
+             "Expecting property name enclosed in double quotes."),
         ],
     )
 
