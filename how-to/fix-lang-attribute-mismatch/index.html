@@ -12,10 +12,10 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>hreflang and html lang mismatch: which one you have</title>
-<meta name="description" content="Three different faults share that description and have three different fixes. How to tell them apart in a minute, and which one to fix first.">
+<title>Hreflang and HTML lang mismatch: what a crawl catches</title>
+<meta name="description" content="Fix lang to match the text, then match the hreflang self-reference to lang. See which faults Check Engine caught in a local crawl.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="51ba9bc9938e">
+<meta name="build-id" content="02b237de179c">
 <link rel="canonical" href="https://checkengineseo.com/how-to/fix-lang-attribute-mismatch/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -24,7 +24,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hreflang and html lang mismatch">
-<meta property="og:description" content="Three different faults share that description and have three different fixes. How to tell them apart in a minute, and which one to fix first.">
+<meta property="og:description" content="Fix lang to match the text, then match the hreflang self-reference to lang. See which faults Check Engine caught in a local crawl.">
 <meta property="og:url" content="https://checkengineseo.com/how-to/fix-lang-attribute-mismatch/">
 <meta property="og:site_name" content="Check Engine SEO">
 <meta property="og:image" content="https://checkengineseo.com/og.png?v=20261108-win">
@@ -32,7 +32,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="hreflang and html lang mismatch">
-<meta name="twitter:description" content="Three different faults share that description and have three different fixes. How to tell them apart in a minute, and which one to fix first.">
+<meta name="twitter:description" content="Fix lang to match the text, then match the hreflang self-reference to lang. See which faults Check Engine caught in a local crawl.">
 <meta name="twitter:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -939,8 +939,8 @@ nav{background:rgba(7,12,13,.72);
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.165/Docket-1.3.165-arm64.dmg", "offers": [{"@type": "Offer", "name": "Pro", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "The rest of the problems, the ranked fix plan and the markup to paste.", "priceValidUntil": "2026-12-02"}], "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Check Engine", "item": "https://checkengineseo.com/"}, {"@type": "ListItem", "position": 2, "name": "Fix it", "item": "https://checkengineseo.com/how-to/"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "hreflang and html lang mismatch", "description": "Three different faults share that description and have three different fixes. How to tell them apart in a minute, and which one to fix first.", "datePublished": "2026-09-09", "dateModified": "2026-10-30", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/how-to/fix-lang-attribute-mismatch/", "inLanguage": "en"}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an hreflang and html lang mismatch?", "acceptedAnswer": {"@type": "Answer", "text": "Usually one of three things: the lang attribute contradicts the language the page is written in; the page's own hreflang entry uses a different code from its lang attribute; or the hreflang codes are not valid codes. They have different fixes, so it is worth knowing which one you are looking at."}}, {"@type": "Question", "name": "Which should I fix first, lang or hreflang?", "acceptedAnswer": {"@type": "Answer", "text": "The lang attribute, if it contradicts the prose. Everything else is a claim about a page whose own declaration of itself is wrong, and a screen reader is already mispronouncing the page for real readers today."}}, {"@type": "Question", "name": "Is en-UK valid?", "acceptedAnswer": {"@type": "Answer", "text": "No. The region subtag comes from ISO 3166-1 alpha-2, where the United Kingdom is GB, so en-GB is the valid form. An invalid code is discarded silently, which is why this survives so long in templates."}}, {"@type": "Question", "name": "Do the lang attribute and hreflang have to match exactly?", "acceptedAnswer": {"@type": "Answer", "text": "They have to agree about the language. A page declaring lang=&quot;en-gb&quot; whose own hreflang self-reference says de-de is telling two different stories about itself, and one of them is wrong. Reading the body text is what settles which."}}, {"@type": "Question", "name": "Does Check Engine detect a mismatch between hreflang and the lang attribute?", "acceptedAnswer": {"@type": "Answer", "text": "Not that specific comparison. Check Engine checks the declared language against the language the prose is actually in, reports missing lang attributes, and validates hreflang codes, self-references, return tags and targets, but it does not compare a page's hreflang self-reference to its own lang attribute."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "hreflang and html lang mismatch", "description": "Fix lang to match the text, then match the hreflang self-reference to lang. See which faults Check Engine caught in a local crawl.", "datePublished": "2026-09-09", "dateModified": "2026-11-21", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/how-to/fix-lang-attribute-mismatch/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an hreflang and html lang mismatch?", "acceptedAnswer": {"@type": "Answer", "text": "Usually one of three things: the lang attribute contradicts the language the page is written in; the page's own hreflang entry uses a different code from its lang attribute; or the hreflang codes are not valid codes. They have different fixes, so it is worth knowing which one you are looking at."}}, {"@type": "Question", "name": "Which should I fix first, lang or hreflang?", "acceptedAnswer": {"@type": "Answer", "text": "The lang attribute, if it contradicts the prose. Everything else is a claim about a page whose own declaration of itself is wrong, and a screen reader is already mispronouncing the page for real readers today."}}, {"@type": "Question", "name": "Is en-UK valid?", "acceptedAnswer": {"@type": "Answer", "text": "No. The region subtag comes from ISO 3166-1 alpha-2, where the United Kingdom is GB, so en-GB is the valid form. An invalid code is discarded silently, which is why this survives so long in templates."}}, {"@type": "Question", "name": "Do the lang attribute and hreflang have to match exactly?", "acceptedAnswer": {"@type": "Answer", "text": "They have to agree about the language. A page declaring lang=&quot;en-gb&quot; whose own hreflang self-reference says de-de is telling two different stories about itself, and one of them is wrong. Reading the body text is what settles which."}}, {"@type": "Question", "name": "Does Check Engine detect a mismatch between hreflang and the lang attribute?", "acceptedAnswer": {"@type": "Answer", "text": "Not that specific comparison. Check Engine checks the declared language against the language the prose is actually in, reports missing lang attributes, and validates hreflang codes, self-references, return tags and targets, but it does not compare a page's hreflang self-reference to its own lang attribute."}}, {"@type": "Question", "name": "Does a lang mismatch hurt rankings?", "acceptedAnswer": {"@type": "Answer", "text": "Google says it ignores the lang attribute when detecting language and reads the text instead. The mismatch mostly causes trouble for hreflang sets and screen readers. Fix it anyway: match lang to the text, then make the hreflang self-reference agree with lang."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -985,32 +985,32 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Check Engine</a>
 </div></nav>
 <main id="main">
-<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / Language mismatch</div><h1>hreflang and html lang mismatch</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-09-09">9 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-30">30 October 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / Language mismatch</div><h1>hreflang and html lang mismatch</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-09-09">9 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-21">21 November 2026</time></p>
 
-<p class="lede">"hreflang and html lang mismatch" is four different faults sharing one
-description, and they have three different fixes. Sorting out which one you have takes about a
-minute and saves you changing the wrong attribute.</p>
+<p class="lede">"hreflang and html lang mismatch" covers several faults. The most important is a
+page whose lang attribute names a different language from its text. Fix that first, then make
+each page's hreflang self-reference use the same language code as its lang attribute.</p>
 
 <h2>The four mismatches</h2>
 
-<p><strong>1. The declaration contradicts the prose.</strong> The page says
+<p><strong>One. The declaration contradicts the prose.</strong> The page says
 <code>lang="en"</code> and the text is Spanish. This is the one that does immediate damage to
 people: a screen reader switches pronunciation on that attribute, so a Spanish page labelled
 English is read aloud with English pronunciation. Google says it works out a page's language from
 the page itself rather than from this attribute (see below), so its search cost sits in the
 hreflang entries around it.</p>
 
-<p><strong>2. The hreflang code contradicts the page's own lang attribute.</strong> The page
+<p><strong>Two. The hreflang code contradicts the page's own lang attribute.</strong> The page
 declares <code>lang="en-GB"</code> while its own hreflang entry calls it <code>de-DE</code>. One
 of the two is wrong, and nothing on the page tells you which. You have to read the prose to
-find out, which is why this collapses into fault 1 once you look.</p>
+find out, which is why this collapses into fault one once you look.</p>
 
-<p><strong>3. The hreflang codes are not valid codes.</strong> <code>hreflang="en-UK"</code> is
+<p><strong>Three. The hreflang codes are not valid codes.</strong> <code>hreflang="en-UK"</code> is
 a common one (the country is <code>GB</code>, not <code>UK</code>) as are region codes in the
 language slot and vice versa. An invalid code is discarded, silently, and the cluster it was
 part of is weakened.</p>
 
-<p><strong>4. The body is not the page's own writing.</strong> This is the one nobody warns you
+<p><strong>Four. The body is not the page's own writing.</strong> This is the one nobody warns you
 about, and the one that produces the most confident wrong fix. A bookshelf listing Dutch titles,
 a directory of French restaurants, a marketplace page quoting a tutor's introduction in German:
 the page is English, written by you, and the foreign words on it belong to someone else. An
@@ -1032,21 +1032,50 @@ guard was added because this check was wrong about a real library catalogue.</p>
 in? Not the navigation: the body. Then ask the second question: did you write it? If almost
 everything you are reading sits inside links, or is a list of names, titles or addresses, you
 are looking at an index of other people's words, not at a page written in their language. That
-is fault 4, and the fix is to change nothing.</p>
+is fault four, and the fix is to change nothing.</p>
 
 <p><strong>The <code>&lt;html lang&gt;</code> attribute.</strong> Does it match what you just
-read, in words you wrote? If not, that is fault 1 and it is the one to fix first, because the other two are claims
+read, in words you wrote? If not, that is fault one and it is the one to fix first, because the other two are claims
 about a page whose own declaration is wrong.</p>
 
 <p><strong>The page's own hreflang entry.</strong> In a correct cluster every page lists every
 version <em>including itself</em>. Find the line pointing at the URL you are on and check its
-code against the lang attribute. Disagreement is fault 2.</p>
+code against the lang attribute. Disagreement is fault two.</p>
 
 <pre><code>&lt;html lang="en-gb"&gt;
 &lt;link rel="alternate" hreflang="en-gb" href="https://example.com/en-gb/shoes" /&gt;
 &lt;link rel="alternate" hreflang="de-de" href="https://example.com/de-de/schuhe" /&gt;</code></pre>
 
 <p>The self-reference and the lang attribute agree there. That is the whole test.</p>
+
+<h2>What a real crawl caught</h2>
+
+<p>For this update, we built a small local test site and ran Check Engine's audit on it.
+The crawl took under a minute. Here is what it reported and what it missed.</p>
+
+<div class="wrap-tbl"><table>
+<thead><tr><th>Fault</th><th>Example</th><th>Reported by Check Engine</th><th>How to fix it</th></tr></thead>
+<tbody>
+<tr><td>The declared language differs from the text</td>
+<td><code>lang="en"</code> with Spanish text; <code>lang="fr"</code> with German text</td>
+<td>Both pages were reported as "not in the language they declare", at medium severity.</td>
+<td>Set lang to the language of the page's own text.</td></tr>
+<tr><td>No declared language</td><td>No lang attribute</td>
+<td>Reported as a page that "does not declare a language", at low severity.</td>
+<td>Add a lang attribute that matches the text.</td></tr>
+<tr><td>The hreflang self-reference and lang disagree</td>
+<td><code>lang="fr"</code> with a hreflang self-reference of <code>de</code></td>
+<td>Not reported. The audit did not flag it on this test.</td>
+<td>Crawl the hreflang set, read the text and make the self-reference agree with lang.</td></tr>
+<tr><td>The region code is wrong</td><td><code>lang="en-UK"</code></td>
+<td>Not reported on this test.</td><td>Use <code>en-GB</code>. The region code is GB, not UK.</td></tr>
+<tr><td>A short text declares another language</td><td>Short German text with few common words</td>
+<td>Not reported on this test.</td><td>Read the text and set lang to its language.</td></tr>
+</tbody>
+</table></div>
+
+<p>The language detector stays silent when it is unsure rather than guess, so short text with
+few common words can pass without a finding.</p>
 
 <h2>Getting the codes right</h2>
 
@@ -1086,11 +1115,11 @@ is what happens to <code>en-UK</code>.</li>
 other, Google ignores the tags.</li>
 </ul>
 
-<p>So faults 1 and 2 are fixed first for readers, because a screen reader is getting them wrong
-today, and fault 3 and missing return tags are the ones that change what Google does. Read on
-30 October 2026 from Google's documentation,
+<p>So faults one and two are fixed first for readers, because a screen reader is getting them wrong
+today, and fault three and missing return tags are the ones that change what Google does. See
+Google's documentation,
 <a href="https://developers.google.com/search/docs/specialty/international/localized-versions">Tell
-Google about localized versions of your page</a> (last updated 21 September 2026). We found no
+Google about localized versions of your page</a>. We found no
 current documentation from another search engine saying what it does with the lang attribute, so
 this page does not claim one.</p>
 
@@ -1110,16 +1139,16 @@ because it cannot be seen by looking at either page alone.</p>
 <h2>What Check Engine checks here, and what it does not</h2>
 
 <p>Check Engine reads the declared language against the language the prose is actually in, and reports
-the pages where they disagree: fault 1, per page rather than per site, because one translated
+the pages where they disagree: fault one, per page rather than per site, because one translated
 article among hundreds is the usual shape and it is the page that is wrong rather than the site.
 It also reports pages with no lang attribute at all, invalid and unrecognised hreflang codes,
 deprecated language subtags, missing self-references, missing return tags, and hreflang targets
 that 404, redirect or carry a noindex.</p>
 
 <p><strong>It does not compare a page's hreflang self-reference against its own
-<code>lang</code> attribute</strong>: fault 2 above. That check does not exist today, and this
+<code>lang</code> attribute</strong>: fault two above. That check does not exist today, and this
 page is not going to imply it does. Read the two by hand on a sample of pages, or catch it
-through fault 1, which the prose test does find.</p>
+through fault one, which the prose test does find.</p>
 
 <p>The full list is <a href="/learn/what-docket-checks/">what Check Engine checks</a>, and the wider
 procedure is <a href="/learn/seo-audit/">the technical SEO audit</a>. If your pages are built
@@ -1136,7 +1165,7 @@ today, and a crawl of the affected section confirms the new attribute is on ever
 expected and none you did not.</p>
 
 <aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-lang-attribute-mismatch-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.165/Docket-1.3.165-arm64.dmg" data-ev="Download" data-ev-button="how-to-fix-lang-attribute-mismatch-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-fix-lang-attribute-mismatch-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.165/Docket-1.3.165-x86_64.dmg" data-ev="Download" data-ev-button="how-to-fix-lang-attribute-mismatch-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-fix-lang-attribute-mismatch" data-ev="Buy" data-ev-price="19.99" data-ev-button="how-to-fix-lang-attribute-mismatch">Buy Check Engine</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-fix-lang-attribute-mismatch">See a sample report</a><span data-founding-until="2026-12-03T07:59:59Z"> &middot; Black Friday sale: $19.99 once through December 2. Then $39. The Buy button applies the sale for you; there is no code to type.</span></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is an hreflang and html lang mismatch?</h3><p>Usually one of three things: the lang attribute contradicts the language the page is written in; the page's own hreflang entry uses a different code from its lang attribute; or the hreflang codes are not valid codes. They have different fixes, so it is worth knowing which one you are looking at.</p></div><div class="faq-item"><h3>Which should I fix first, lang or hreflang?</h3><p>The lang attribute, if it contradicts the prose. Everything else is a claim about a page whose own declaration of itself is wrong, and a screen reader is already mispronouncing the page for real readers today.</p></div><div class="faq-item"><h3>Is en-UK valid?</h3><p>No. The region subtag comes from ISO 3166-1 alpha-2, where the United Kingdom is GB, so en-GB is the valid form. An invalid code is discarded silently, which is why this survives so long in templates.</p></div><div class="faq-item"><h3>Do the lang attribute and hreflang have to match exactly?</h3><p>They have to agree about the language. A page declaring lang="en-gb" whose own hreflang self-reference says de-de is telling two different stories about itself, and one of them is wrong. Reading the body text is what settles which.</p></div><div class="faq-item"><h3>Does Check Engine detect a mismatch between hreflang and the lang attribute?</h3><p>Not that specific comparison. Check Engine checks the declared language against the language the prose is actually in, reports missing lang attributes, and validates hreflang codes, self-references, return tags and targets, but it does not compare a page's hreflang self-reference to its own lang attribute.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What is an hreflang and html lang mismatch?</h3><p>Usually one of three things: the lang attribute contradicts the language the page is written in; the page's own hreflang entry uses a different code from its lang attribute; or the hreflang codes are not valid codes. They have different fixes, so it is worth knowing which one you are looking at.</p></div><div class="faq-item"><h3>Which should I fix first, lang or hreflang?</h3><p>The lang attribute, if it contradicts the prose. Everything else is a claim about a page whose own declaration of itself is wrong, and a screen reader is already mispronouncing the page for real readers today.</p></div><div class="faq-item"><h3>Is en-UK valid?</h3><p>No. The region subtag comes from ISO 3166-1 alpha-2, where the United Kingdom is GB, so en-GB is the valid form. An invalid code is discarded silently, which is why this survives so long in templates.</p></div><div class="faq-item"><h3>Do the lang attribute and hreflang have to match exactly?</h3><p>They have to agree about the language. A page declaring lang="en-gb" whose own hreflang self-reference says de-de is telling two different stories about itself, and one of them is wrong. Reading the body text is what settles which.</p></div><div class="faq-item"><h3>Does Check Engine detect a mismatch between hreflang and the lang attribute?</h3><p>Not that specific comparison. Check Engine checks the declared language against the language the prose is actually in, reports missing lang attributes, and validates hreflang codes, self-references, return tags and targets, but it does not compare a page's hreflang self-reference to its own lang attribute.</p></div><div class="faq-item"><h3>Does a lang mismatch hurt rankings?</h3><p>Google says it ignores the lang attribute when detecting language and reads the text instead. The mismatch mostly causes trouble for hreflang sets and screen readers. Fix it anyway: match lang to the text, then make the hreflang self-reference agree with lang.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">
