@@ -926,8 +926,8 @@
  },
  "best/free-seo-audit-tools/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "c8e214923a8b9221"
+  "date": "2026-11-21",
+  "hash": "ae7eeeac41104439"
  },
  "best/index.html": {
   "changed_in_build": false,
@@ -1885,7 +1885,7 @@
   "hash": "0cdf461331d238fb"
  },
  "learn/audit-tool-accuracy/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-21",
   "hash": "4a29306bd30362f0"
  },
@@ -2030,7 +2030,7 @@
   "hash": "0348369c61d1b28f"
  },
  "learn/what-docket-got-wrong/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-21",
   "hash": "a62f88da6227e786"
  },
