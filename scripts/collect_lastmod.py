@@ -73,7 +73,7 @@ def main() -> int:
             head_fp = page_fingerprint(raw)
             # If current content has not shipped in any committed HTML yet, it is
             # new today. Otherwise walk the consecutive identical revisions back.
-            date = datetime.date.today().isoformat()
+            date = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
             for rev, when in log:
                 if page_fingerprint(show(rev, rel)) != head_fp:
                     break

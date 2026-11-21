@@ -135,7 +135,7 @@ class BuildDateTests(unittest.TestCase):
         result = self.rebuild()
         for key, record in result.items():
             changed = key == 'page-1/index.html'
-            self.assertEqual(record['date'], datetime.date.today().isoformat() if changed else '2026-11-18')
+            self.assertEqual(record['date'], datetime.datetime.now(datetime.timezone.utc).date().isoformat() if changed else '2026-11-18')
             self.assertEqual(record['changed_in_build'], changed)
         # Evidence records this build, not a comparison with a committed HEAD.
         self.assertFalse(any(r['changed_in_build'] for r in self.rebuild().values()))
@@ -145,7 +145,7 @@ class BuildDateTests(unittest.TestCase):
         page.write_text(page.read_text().replace('Checked on 2026-11-18', 'Checked on 2026-11-20'))
         result = self.rebuild()
         self.assertEqual([key for key, rec in result.items() if rec['changed_in_build']], ['page-2/index.html'])
-        self.assertEqual(result['page-2/index.html']['date'], datetime.date.today().isoformat())
+        self.assertEqual(result['page-2/index.html']['date'], datetime.datetime.now(datetime.timezone.utc).date().isoformat())
 
 
 class HistoryTests(unittest.TestCase):
@@ -188,7 +188,7 @@ class HistoryTests(unittest.TestCase):
             records = json.loads(store.read_text())
             self.assertEqual(set(records), {'index.html', 'new/index.html'})
             self.assertEqual(records['index.html']['date'], '2026-11-10')
-            self.assertEqual(records['new/index.html']['date'], datetime.date.today().isoformat())
+            self.assertEqual(records['new/index.html']['date'], datetime.datetime.now(datetime.timezone.utc).date().isoformat())
             self.assertEqual(records['index.html']['hash'], build.page_fingerprint(page.read_text()))
 
 

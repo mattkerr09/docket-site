@@ -1006,7 +1006,7 @@ def _last_changed(page: Path, today: str, store: dict) -> str:
 
 
 def write_sitemap(pages: list[Path]) -> None:
-    today = datetime.date.today().isoformat()
+    today = datetime.datetime.now(datetime.timezone.utc).date().isoformat()   # UTC, like every date the pages print: the local date lags the pages by a day from 00:00Z to 05:00Z
     store = json.loads(LASTMOD.read_text(encoding="utf-8")) if LASTMOD.exists() else {}
     urls = []
     for p in sorted(pages):
