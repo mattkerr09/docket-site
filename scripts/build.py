@@ -1795,8 +1795,11 @@ def link_real_questions(pages: list[Path]) -> None:
         # Keep the paragraph in the article's reading column, before its FAQ.
         assert '</div></article>' in raw, f"missing article ending: {page}"
         raw = raw.replace('</div></article>', paragraph + '\n</div></article>', 1)
-        raw = re.sub(r'"dateModified":"[^"]*",', '"dateModified":"2026-11-20",', raw)
-        update = '<span class="sep">·</span>Updated <time datetime="2026-11-20">20 November 2026</time>'
+        # 21 Nov 2026: both pages changed again today (their Checked dates moved with the claim re-read), and the honest dateModified
+        # the build collects from the content is 2026-11-21, so the byline says the same day (the structured-data gate refuses a
+        # dateModified the reader cannot see).
+        raw = re.sub(r'"dateModified":"[^"]*",', '"dateModified":"2026-11-21",', raw)
+        update = '<span class="sep">·</span>Updated <time datetime="2026-11-21">21 November 2026</time>'
         byline = re.search(r'<p class="byline">.*?</p>', raw, re.S)
         assert byline, f"missing byline: {page}"
         updated = re.sub(r'<span class="sep">·</span>Updated <time[^>]*>.*?</time>', '', byline.group())
