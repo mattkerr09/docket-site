@@ -149,6 +149,7 @@ import tool_llms_txt  # noqa: E402
 import tools_website_checker  # noqa: E402
 import ai_assistants  # noqa: E402
 import ai_questions  # noqa: E402
+import learn_crawler_directives  # noqa: E402
 import title_ii  # noqa: E402
 import public_site_check  # noqa: E402
 import help_pages  # noqa: E402
@@ -1925,6 +1926,7 @@ def main() -> int:
     pages.append(tools_website_checker.website_checker())
     pages += ai_assistants.build_all()
     pages += ai_questions.build_all()
+    pages.append(learn_crawler_directives.crawler_directives())
     pages += title_ii.build_all()
     pages += public_site_check.build_all()
     pages += help_pages.build_all()

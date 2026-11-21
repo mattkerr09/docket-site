@@ -986,6 +986,7 @@ you name it, matching them the way the standard describes: longest match, wildca
         closer="""
 <h2>Related</h2>
 <ul>
+<li>Compare the rules in the <a href="/learn/crawler-directives/">crawler directives guide</a>.</li>
 <li><a href="/learn/ai-crawler-directives/">Every AI crawler: which to block and which to keep</a></li>
 <li><a href="/learn/who-blocks-googlebot/">Who blocks Googlebot, and who blocks GoogleOther</a></li>
 <li><a href="/tools/robots-txt-tester/">robots.txt tester</a></li>
