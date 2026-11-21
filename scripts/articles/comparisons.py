@@ -103,7 +103,7 @@ CHECKED_HUMAN: dict[str, str] = {
     "ai-assistants-mcp": "11 November 2026",
     # Re-read 2026-10-19: the product page's own SoftwareApplication schema again (operatingSystem "MacOS", the
     # "There are no plans" answer for Windows, the 149 USD offer, the featureList). Unchanged.
-    "scrutiny": "19 October 2026",
+    "scrutiny": "21 November 2026",
     "se-ranking-vs-screaming-frog": "9 November 2026",
     # Supplied browser readings, 2026-11-09: Lite is the Site Audit entry plan,
     # both crawl limits are listed, and bulk ZIP/CSV export supersedes the older help wording.
@@ -128,12 +128,12 @@ CHECKED_HUMAN: dict[str, str] = {
     # Re-read 2026-10-19, both the In-House and the Agencies tabs, billed annually and quarterly: the plans are now
     # Growth, Pro and Ultra plus Unlimited, at different prices and allowances from the two tiers read on 16 September.
     # Every claim below was rewritten from that read.
-    "jetoctopus": "19 October 2026",
-    "crawlraven": "19 October 2026",
+    "jetoctopus": "21 November 2026",
+    "crawlraven": "21 November 2026",
     # Re-read 2026-10-19: the home page's own text (the free and Pro tiers, the 50 and 10,000 page caps, the $99 a
     # year price for the CLI and for the desktop app, the 16-category and 24-check wording, the JavaScript engine and
     # robots.txt paragraphs). The paid cap is stated against the CLI tier only, which is all the page states.
-    "crawler-sh": "19 October 2026",
+    "crawler-sh": "21 November 2026",
     # Re-read 2026-10-19 from each source named in the claim list. Until now these had no date of their own and
     # printed the shared 10 August 2026 date.
     # Screaming Frog: the product page (Chromium WRS, 500 URLs, Unlimited with its memory footnote, the Free vs Paid
@@ -142,17 +142,17 @@ CHECKED_HUMAN: dict[str, str] = {
     "screaming-frog": "4 November 2026",
     # Sitebulb: the features page (crawl maps, Prioritized Hints). The prices were read on the rendered pricing
     # page: Lite $18 a month or $180 a year, Pro $42 a month or $425 a year.
-    "sitebulb": "19 October 2026",
+    "sitebulb": "21 November 2026",
     # Semrush: the pricing page (the Advanced plan is now sold by demo, so the top published plan is Pro+ at $299),
     # the Site Audit issues list, the Site Audit knowledge base article (its old address now redirects), the Site
     # Audit feature page and the technical SEO page.
-    "semrush": "19 October 2026",
+    "semrush": "21 November 2026",
     # Lighthouse: the repository's default config (the SEO category is unchanged; there is now also an agentic
     # browsing category), the Lighthouse overview, the PageSpeed Insights page and the Core Web Vitals report page.
-    "lighthouse": "19 October 2026",
+    "lighthouse": "21 November 2026",
     # Search Console: the API limits page, the two Search Console help pages, the Core Web Vitals report page and the
     # Chrome UX Report methodology page. All unchanged.
-    "search-console": "19 October 2026",
+    "search-console": "21 November 2026",
     "first-free": "20 November 2026",
     "rq-conductor": "20 November 2026",
     "rq-seranking": "20 November 2026",
@@ -169,20 +169,20 @@ CHECKED_ISO: dict[str, str] = {
     "audit-agency-prices-pricing": "2026-11-12",
     "audit-agency-prices-checker": "2026-11-12",
     "ai-assistants-mcp": "2026-11-11",
-    "scrutiny": "2026-10-19",
+    "scrutiny": "2026-11-21",
     "se-ranking-vs-screaming-frog": "2026-11-09",
     "ahrefs": "2026-11-20",
     "seoptimer": "2026-11-09",
     "sitechecker": "2026-11-20",
     "profound": "2026-11-20",
-    "jetoctopus": "2026-10-19",
-    "crawlraven": "2026-10-19",
-    "crawler-sh": "2026-10-19",
+    "jetoctopus": "2026-11-21",
+    "crawlraven": "2026-11-21",
+    "crawler-sh": "2026-11-21",
     "screaming-frog": "2026-11-04",
-    "sitebulb": "2026-10-19",
-    "semrush": "2026-10-19",
-    "lighthouse": "2026-10-19",
-    "search-console": "2026-10-19",
+    "sitebulb": "2026-11-21",
+    "semrush": "2026-11-21",
+    "lighthouse": "2026-11-21",
+    "search-console": "2026-11-21",
     "first-free": "2026-11-20",
     "rq-conductor": "2026-11-20",
     "rq-seranking": "2026-11-20",
@@ -213,8 +213,8 @@ CHECKED_ISO: dict[str, str] = {
 #: auditing, brand consistency or local-business SEO; the Google Analytics item pulls conversion data in, it does
 #: not audit conversion), Sitebulb's features page (none of the four) and Screaming Frog's user guide sentence on the
 #: user-agent setting (verbatim as quoted). Unchanged.
-HOME_CLAIM_CHECKED = "2026-10-19"
-HOME_CLAIM_CHECKED_HUMAN = "19 October 2026"
+HOME_CLAIM_CHECKED = "2026-11-21"
+HOME_CLAIM_CHECKED_HUMAN = "21 November 2026"
 
 VERIFIED: dict[str, list[tuple[str, str]]] = {
     "audit-agency-prices-home": [
@@ -289,22 +289,26 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     ],
     "crawlraven": [
         ("its plans are billed monthly: Starter 29 US dollars for one site, Pro 39 for three sites "
-         "with 10 a month for each extra site, Agency from 199 for twenty sites, and Enterprise by "
-         "quote; a 7-day free trial on one site asks for no credit card",
+         "with 10 a month for each extra site, Agency Lite 99 for ten sites, Agency from 199 for twenty sites, "
+         "and Enterprise by quote; a 7-day free trial on one site asks for no credit card",
          "https://crawlraven.com/pricing"),
         ("its cost comparison lists a Pro lifetime plan for 3 websites at 390 US dollars one-time, and "
          "its FAQ says lifetime is a single payment for a fixed number of sites",
          "https://crawlraven.com/pricing"),
-        ("a technical SEO audit is listed among the Starter features, which Pro and Agency include, and its "
-         "FAQ says it is included on eligible paid or trial websites within a monthly page allowance, with "
-         "a CSV findings export; the page describes a 200-point technical audit",
+        ("a Black Friday banner offers 50 percent off the lifetime plans with a code until Cyber Monday, 30 "
+         "November 2026, showing the 390 dollar Pro lifetime plan as the list price beside 195 with the code",
+         "https://crawlraven.com/pricing"),
+        ("a technical SEO audit is listed among the Starter features, which Pro, Agency Lite and Agency include, "
+         "and its FAQ says it is included on eligible paid or trial websites within a monthly page allowance, "
+         "with a CSV findings export; the pricing page gives no check count",
          "https://crawlraven.com/pricing"),
         ("MCP access to up to 30 tools across approved scopes is listed, and its FAQ says MCP can read "
          "stored audits but cannot start them",
          "https://crawlraven.com/pricing"),
         ("the other features it lists are Search Console insights, linked GA4 reporting, keyword and "
          "page performance, keyword maps and cannibalization flags, content gaps and decay tracking, "
-         "prioritised action items and, on Pro, import of Ahrefs and Semrush keyword lists",
+         "prioritised action items and, on Pro, import of Ahrefs and Semrush keyword lists and scoped "
+         "writes with optional annotation proposals, with CSV exports for your own reports on Agency",
          "https://crawlraven.com/pricing"),
         ("its FAQ says CrawlRaven offers a free audit tool for up to 100 pages with no account required",
          "https://crawlraven.com/pricing"),
@@ -538,7 +542,7 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
     "semrush": [
         ('the entry plan is listed at $139/mo, or $117.33/mo billed annually; '
          'Starter is $199/mo and Pro+ is $299/mo, and the Advanced plan above '
-         'them is custom, reached by a demo request; the entry plan lists '
+         'them is custom, reached through a "Talk to sales" button; the entry plan lists '
          '"500 keywords to track daily"',
          "https://www.semrush.com/pricing/"),
         ('Site Audit can "check over 140+ website issues", ordered '
@@ -552,12 +556,13 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "one and Advanced the Business one (the address this claim was first "
          "read at, kb/338, now redirects here)",
          "https://www.semrush.com/kb/31-site-audit"),
-        ("AI crawler access is checked per bot, naming ChatGPT-User, "
+        ("AI crawler accessibility is checked for eight named bots: ChatGPT-User, "
          "OAI-SearchBot, Googlebot, Google-Extended, Perplexity-User, "
          "PerplexityBot, Claude-User and Claude-SearchBot",
          "https://www.semrush.com/features/site-audit/"),
-        ('audits can be scheduled daily, weekly or monthly, with white-label '
-         'reporting and tracking of "how each issue category trends over time"',
+        ('recurring audits can be scheduled (Semrush\'s settings offer daily, weekly or one-off '
+         'runs, and its solutions page suggests weekly for high-traffic sites and monthly for most), '
+         'with white-label reporting and tracking of "how each issue category trends over time"',
          "https://www.semrush.com/solutions/technical-seo/"),
     ],
     # Search Console is not a competitor, and the page that uses this key says
@@ -777,14 +782,6 @@ for _key, _tools in (("sf-alternatives", CRAWLERS), ("wl-tools", WHITE_LABEL),
 #: set was read (RULES 61), and these sentences say what was re-read since.
 PRICES_REREAD: dict[str, str] = {
     "screaming-frog": "Its price, $279 a year in the USD view, was read again on 20 November 2026 and had not changed.",
-    "scrutiny": "Its price, $149 once, was read again on 20 November 2026 and had not changed.",
-    "crawler-sh": "Its prices (free, and CLI Pro and Desktop Pro at $99 a year each) were read again on 20 November 2026 and had not changed.",
-    "crawlraven": "Its list prices (monthly plans from $29 to $199, and the $390 lifetime plan for 3 sites) were read again on 20 November 2026 and had not changed; its page now also offers a discount code on the lifetime plans, which this page does not count.",
-    "jetoctopus": "Its prices ($459 to $2,069 a month billed quarterly, $349 to $1,559 billed annually, and Unlimited by quote) were read again on 20 November 2026 and had not changed.",
-    "semrush": "Its prices ($139 to $299 a month) were read again on 20 November 2026 and had not changed.",
-    "sitebulb": "Its prices (Lite $180 a year or $18 a month, and Pro $425 a year) were read again on 20 November 2026 and had not changed.",
-    "lighthouse": "Its overview page was read again on 20 November 2026 and still describes it as an open-source tool.",
-    "mac-options": "The prices of Screaming Frog, Sitebulb, Scrutiny and SEO PowerSuite Professional were read again on 20 November 2026 and match this page.",
 }
 
 _DEFAULT_CLOSING = (
@@ -1278,8 +1275,8 @@ one.</li>
 <li><strong>Trend lines for the whole site.</strong> Their technical SEO page describes tracking
 "how each issue category trends over time". That is the chart that shows a client the retainer
 bought something. Docket has no equivalent view.</li>
-<li><strong>Crawling somewhere other than your desk.</strong> Audits scheduled daily, weekly or
-monthly run on their machines whether your laptop is open or shut, at 20,000 pages an audit on
+<li><strong>Crawling somewhere other than your desk.</strong> Recurring audits can be scheduled
+and run on their machines whether your laptop is open or shut, at 20,000 pages an audit on
 Pro and Guru and 100,000 on Business.</li>
 <li><strong>More than one person.</strong> Seats, shared projects, dashboards, alerts.</li>
 </ul>
@@ -1290,7 +1287,7 @@ the order the findings arrive in and what each one tells you to do. It is still 
 number, and writing around that would be its own kind of tell.</p>
 
 <p>One further concession, which retires something this site has leaned on elsewhere. Semrush's
-Site Audit page now checks AI crawler access per bot, naming ChatGPT-User, OAI-SearchBot,
+Site Audit page now checks AI crawler accessibility for eight named bots: ChatGPT-User, OAI-SearchBot,
 Googlebot, Google-Extended, Perplexity-User, PerplexityBot, Claude-User and Claude-SearchBot.
 Docket checks the same crawlers. What it adds is the sorting: search crawlers on one side,
 training crawlers on the other, which is the distinction that decides whether a block in your
@@ -1350,7 +1347,7 @@ those three, cancelling to save on the audit saves nothing, because the rest of 
 still costs $139. The comparison only runs one way: when Site Audit is the tool you open and
 the remainder is shelfware.</p>
 <p>One caveat we are not going to paper over. Their pricing page currently sells SEO, Starter,
-Pro+ and Advanced, and Advanced is custom: you ask for a demo rather than see a price. Their
+Pro+ and Advanced, and Advanced is custom: you press a "Talk to sales" button rather than see a price. Their
 knowledge base documents crawl limits under Pro, Guru and Business, and says that Semrush One
 Starter includes the Pro toolkit, Pro+ the Guru one and Advanced the Business one. It does not
 name the $139 SEO plan, so we have not guessed which allowance that one carries. Read the limits on
@@ -2515,14 +2512,18 @@ publishes about its own product.</p>
     )
 
 
-#: CrawlRaven's plans as its pricing page lists them, read 2026-10-19 and recorded in
+#: CrawlRaven's plans as its pricing page lists them, read 2026-11-21 and recorded in
 #: VERIFIED["crawlraven"] and data/competitors.csv. Kept as named values so the prose
 #: interpolates them rather than typing them.
 _CR_STARTER, _CR_PRO, _CR_AGENCY = 29, 39, 199
 _CR_PRO_SITES, _CR_AGENCY_SITES, _CR_EXTRA_SITE = 3, 20, 10
 _CR_LIFETIME = 390
+_CR_AGENCY_LITE, _CR_AGENCY_LITE_SITES = 99, 10
+#: Its Black Friday banner: 50 percent off the lifetime plans with a code until Cyber Monday. The Pro lifetime plan is shown at its
+#: list price beside the code price, so the page says "lists at" and never calls 390 the price paid in the window.
+_CR_LIFETIME_PROMO, _CR_PROMO_END = 195, "30 November 2026"
 _CR_TRIAL_DAYS, _CR_FREE_PAGES = 7, 100
-_CR_AUDIT_POINTS, _CR_MCP_TOOLS = 200, 30
+_CR_MCP_TOOLS = 30
 
 
 def crawlraven() -> Path:
@@ -2572,7 +2573,7 @@ stored audits but cannot start them. Docket ships an MCP server so an assistant 
 <p>An earlier version of this page said CrawlRaven's pricing page listed the technical audit as not yet
 available. Read on {CHECKED_HUMAN["crawlraven"]}, it no longer does. The audit is listed among the Starter
 features, and the FAQ says it is included on eligible paid or trial websites within a monthly page allowance, with
-a CSV export of findings. The page describes a {_CR_AUDIT_POINTS}-point technical audit.</p>
+a CSV export of findings. The pricing page gives no count of checks.</p>
 
 <p>Docket runs {N_CHECKS} checks across thirteen areas, four of them not technical SEO at all: conversion, brand
 consistency, AI search visibility and campaign tracking. It has no page allowance, and the crawl and the report stay
@@ -2596,14 +2597,15 @@ lists the lifetime plan; the monthly plans are the ones it leads with.</p>
 <tbody>
 <tr><td>CrawlRaven Starter</td><td>${_CR_STARTER} a month</td><td>1</td></tr>
 <tr><td>CrawlRaven Pro</td><td>${_CR_PRO} a month, plus ${_CR_EXTRA_SITE} a month for each extra site</td><td>{_CR_PRO_SITES}</td></tr>
+<tr><td>CrawlRaven Agency Lite</td><td>${_CR_AGENCY_LITE} a month, plus ${_CR_EXTRA_SITE} a month for each extra site</td><td>{_CR_AGENCY_LITE_SITES}</td></tr>
 <tr><td>CrawlRaven Agency</td><td>From ${_CR_AGENCY} a month</td><td>{_CR_AGENCY_SITES}</td></tr>
-<tr><td>CrawlRaven Pro lifetime</td><td>${_CR_LIFETIME} as a single payment</td><td>{_CR_PRO_SITES}, fixed</td></tr>
+<tr><td>CrawlRaven Pro lifetime, list price</td><td>${_CR_LIFETIME} as a single payment; the page shows ${_CR_LIFETIME_PROMO} with a Black Friday code until {_CR_PROMO_END}</td><td>{_CR_PRO_SITES}, fixed</td></tr>
 <tr><td class="yes">Docket</td><td class="yes">{PRICE_COMPACT}</td><td class="yes">Any site</td></tr>
 </tbody></table></div>
 
 <p>CrawlRaven's Starter plan is ${_CR_STARTER} a month and Docket is {PRICE_COMPACT}. Even against Docket's later price of
 ${LATER_PRICE}, Starter costs less for {_first_months_phrase(_CR_STARTER)}; from month {_months_past_docket(_CR_STARTER)} it has cost more. Twelve months of Starter come to
-${_CR_STARTER * 12} for one site, against {PRICE_COMPACT} for any site; the lifetime plan is
+${_CR_STARTER * 12} for one site, against {PRICE_COMPACT} for any site; the lifetime plan lists at
 ${_CR_LIFETIME} for {_CR_PRO_SITES}. They are not the same purchase: one is a content-insights platform with a
 metered audit, the other is the audit, running locally on your own computer with no account and no site limit.</p>
 
@@ -2640,7 +2642,7 @@ for {price('scrutiny')}, and stronger than either of us at link checking.</p>
             ("Which is cheaper, Docket or CrawlRaven?",
              f"Docket is {PRICE_COMPACT} for any site and CrawlRaven's Starter plan is ${_CR_STARTER} a month for one site. "
              f"Even against Docket's later price of ${LATER_PRICE}, Starter costs less for {_first_months_phrase(_CR_STARTER)} and more after. Twelve months of Starter come to ${_CR_STARTER * 12}, and its "
-             f"lifetime plan for {_CR_PRO_SITES} sites is ${_CR_LIFETIME}, as read on {CHECKED_HUMAN['crawlraven']}."),
+             f"lifetime plan for {_CR_PRO_SITES} sites lists at ${_CR_LIFETIME} (${_CR_LIFETIME_PROMO} with its Black Friday code until {_CR_PROMO_END}), as read on {CHECKED_HUMAN['crawlraven']}."),
             ("Does CrawlRaven have a technical SEO audit?",
              f"Yes. On {CHECKED_HUMAN['crawlraven']} its pricing page listed it among the Starter features, and "
              "its FAQ said it is included on eligible paid or trial websites within a monthly page allowance. "

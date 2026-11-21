@@ -214,7 +214,7 @@ def build_hubs() -> list[Path]:
              "Ahrefs has a web-scale index and Docket never will. What you get for $129 a month "
              "if the audit is the part you use."),
             ("/vs/semrush-site-audit-alternative/", "Docket vs Semrush Site Audit",
-             "Semrush now checks AI crawler access per bot, tracks issue trends over time and "
+             "Semrush now checks AI crawler accessibility for eight named bots, tracks issue trends over time and "
              "runs 140+ checks. Where a one-time local auditor still makes sense."),
             ("/vs/se-ranking-vs-screaming-frog/", "SE Ranking vs Screaming Frog",
              "Not a Docket comparison first: a metered cloud audit against an unmetered "

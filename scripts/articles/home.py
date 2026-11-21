@@ -100,7 +100,7 @@ def _sample_section() -> str:
   <img src="{s['image']['src']}" width="{s['image']['width']}" height="{s['image']['height']}"
        loading="lazy" decoding="async"
        alt="{alt}">
-  <figcaption>{s['pages']} pages crawled in {s['seconds']} seconds. It grades our own site
+  <figcaption>One run on {_human_date(s['recorded'])}: {s['pages']} pages crawled in {s['seconds']} seconds (the time depends on the computer and the connection). It grades our own site
   <strong>{s['score']}/{s['grade']}</strong> and still lists {s['issues']} {pl(s['issues'], 'issue', 'issues')}{fix}.{excluded}</figcaption>
 </figure>
 </div></section>"""
