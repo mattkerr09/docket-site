@@ -1456,8 +1456,8 @@
  },
  "download/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "1edbe7aa3a5cf55f"
+  "date": "2026-11-21",
+  "hash": "df168454f5bd59cb"
  },
  "faq/index.html": {
   "changed_in_build": false,
@@ -1826,8 +1826,8 @@
  },
  "index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "da6297e6db19bf86"
+  "date": "2026-11-21",
+  "hash": "629d7a0d3e1357f7"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -1887,7 +1887,7 @@
  "learn/audit-tool-accuracy/index.html": {
   "changed_in_build": false,
   "date": "2026-11-21",
-  "hash": "4a29306bd30362f0"
+  "hash": "50172553610e72ee"
  },
  "learn/brand-consistency/index.html": {
   "changed_in_build": false,
@@ -2032,7 +2032,7 @@
  "learn/what-docket-got-wrong/index.html": {
   "changed_in_build": false,
   "date": "2026-11-21",
-  "hash": "a62f88da6227e786"
+  "hash": "1223fc75b7a32877"
  },
  "learn/what-is-a-404-error/index.html": {
   "changed_in_build": false,
@@ -2121,8 +2121,8 @@
  },
  "mac-seo-audit-tool/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "e9b14d64467f8b6c"
+  "date": "2026-11-21",
+  "hash": "65e9443c7022ab48"
  },
  "score-card/index.html": {
   "changed_in_build": false,
@@ -2206,33 +2206,33 @@
  },
  "vs/crawler-sh-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "e7c872d755f4d50f"
+  "date": "2026-11-21",
+  "hash": "3fa848440ffb8ab6"
  },
  "vs/crawlraven-alternative/index.html": {
   "changed_in_build": false,
   "date": "2026-11-21",
-  "hash": "fadf03e01e40b5da"
+  "hash": "402526aeacb5e872"
  },
  "vs/google-search-console/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "3a61f9d8809cc833"
+  "date": "2026-11-21",
+  "hash": "4bf362f4be1fd790"
  },
  "vs/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "b03c60307a9c2357"
+  "date": "2026-11-21",
+  "hash": "fa568c142f3f3b2f"
  },
  "vs/jetoctopus-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "b5abc3d93fd76ea2"
+  "date": "2026-11-21",
+  "hash": "adda6e5fac77bcbf"
  },
  "vs/lighthouse-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "55888a0569f30b8b"
+  "date": "2026-11-21",
+  "hash": "86e782b9fc66ee9c"
  },
  "vs/profound-alternative/index.html": {
   "changed_in_build": false,
@@ -2251,18 +2251,18 @@
  },
  "vs/scrutiny-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "4fe6e1554a076138"
+  "date": "2026-11-21",
+  "hash": "52e7d3c4ee256bbb"
  },
  "vs/se-ranking-vs-screaming-frog/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "aa0bc7daffb9dd3d"
+  "date": "2026-11-21",
+  "hash": "e96201754c13ab79"
  },
  "vs/semrush-site-audit-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "a9e72f392396e5a9"
+  "date": "2026-11-21",
+  "hash": "f82e43effe42c804"
  },
  "vs/seoptimer-alternative/index.html": {
   "changed_in_build": false,
@@ -2271,8 +2271,8 @@
  },
  "vs/sitebulb-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "6a2f62302f3b3cac"
+  "date": "2026-11-21",
+  "hash": "4251cd2074a5708d"
  },
  "vs/sitebulb-vs-jetoctopus/index.html": {
   "changed_in_build": false,
