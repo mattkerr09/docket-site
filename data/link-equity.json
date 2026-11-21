@@ -1,7 +1,7 @@
 {
   "site": "checkengineseo.com",
   "pages": 460,
-  "edges": 14643,
+  "edges": 14644,
   "average_share_pct": 0.22,
   "below_half": 426,
   "nodes": [
@@ -2131,7 +2131,7 @@
     },
     {
       "path": "/how-to/see-ai-assistant-traffic-in-analytics/",
-      "inlinks": 1,
+      "inlinks": 2,
       "share_pct": 0.01,
       "index": 0.05
     },
@@ -2766,5 +2766,5 @@
       "index": 0.18
     }
   ],
-  "measured": "2026-11-20"
+  "measured": "2026-11-21"
 }
