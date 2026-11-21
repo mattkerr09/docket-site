@@ -19,6 +19,13 @@ _RUN = json.loads((DATA / "free-run.json").read_text())
 _SF_YEAR = re.search(r"\$\d+", READINGS["rq-screaming-frog"][1][0]).group()
 
 
+#: A searcher who lands here from "search engine checker" (Search Console, 28 days to 21 Nov 2026: 71 impressions at 41.1; Bing's top
+#: three are all paste-a-URL tools) wants a tool, not a list of tools. One line right after the lede sends them to ours. Internal
+#: link, no nofollow; everything it says (a score out of 100, the first fix, no sign-up) is already on this page.
+CHECKER_POINTER = ('<p>Want to check one page right now? Paste it into the <a href="/tools/seo-checker/">free SEO checker</a>: '
+                   'a score out of 100 and the first fix, with no sign-up.</p>')
+
+
 def free_seo_audit_tools() -> Path:
     body = f"""
 {disclosure()}
@@ -27,6 +34,7 @@ Check Engine's <a href="/vs/screaming-frog-alternative/">recorded free audit</a>
 {source_link("Screaming Frog", "https://www.screamingfrog.co.uk/seo-spider/")} allows up to 500 URLs per free crawl, and {source_link("Ahrefs Free", FREE)} gives {FREE_CREDITS:,} crawl credits per verified project per month.
 {source_link("Semrush's free account", "https://www.semrush.com/prices/")} lists 1 demo project and 10 reports per day; the pages read do not state a per-audit page limit.</p>
 {checked("Screaming Frog, Ahrefs and Semrush", ("SEO Spider", "https://www.screamingfrog.co.uk/seo-spider/"), ("Ahrefs Free", FREE), ("Semrush free account", "https://www.semrush.com/prices/"))}
+{CHECKER_POINTER}
 
 {method('the check each tool describes', 'For a paid upgrade we use Screaming Frog at $279 a year, then Ahrefs Lite at $1,290 a year, then Semrush SEO at $117.33 a month billed annually. The monthly figure multiplied by twelve gives $1,407.96. Google states no price in the pages read, so it follows the priced entries.')}
 {checked("Screaming Frog, Ahrefs and Semrush", ("SEO Spider", "https://www.screamingfrog.co.uk/seo-spider/"), ("Ahrefs plans", "https://ahrefs.com/pricing"), ("Semrush plans", "https://www.semrush.com/prices/"))}
@@ -128,7 +136,7 @@ sets out what it checks and how a crawl is paid for.</p>
 """
     page = render(
         cat="best", slug="free-seo-audit-tools",
-        modified="2026-11-20",
+        modified="2026-11-21",
         title="Free SEO audit: tools and limits",
         desc=("Run a free SEO audit of a page or small site. Compare website audit tools, "
               "free limits, a Chrome plugin and what the free report shows."),
