@@ -1646,8 +1646,8 @@
  },
  "how-to/fix-paginated-pages-that-canonicalise-to-page-1/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "7c9c5d07413461e6"
+  "date": "2026-11-21",
+  "hash": "9f417c90f52abc91"
  },
  "how-to/fix-phone-links-that-will-not-dial/index.html": {
   "changed_in_build": false,
@@ -1885,7 +1885,7 @@
   "hash": "0cdf461331d238fb"
  },
  "learn/audit-tool-accuracy/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-21",
   "hash": "b2b12848a4144f0d"
  },
@@ -2030,7 +2030,7 @@
   "hash": "0348369c61d1b28f"
  },
  "learn/what-docket-got-wrong/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-21",
   "hash": "6d542e3b5727e9d5"
  },
