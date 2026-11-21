@@ -25,8 +25,7 @@ def pagination() -> Path:
 <p class="lede">For canonical pagination, each page that lists different items should point
 its canonical at itself. Do not point every page at the first page. That tells search engines
 the later pages are duplicates, even though they hold different products or articles.</p>
-<p>To audit your site, open a later page in a series and check its canonical in the HTML.
-If it points back to the first page, fix the pagination template and check the series again.</p>
+<p>To audit your site, check a later page's canonical in the HTML, then fix the template.</p>
 
 <h2>Should paginated pages canonicalise to the first page?</h2>
 
@@ -52,6 +51,16 @@ circulated widely when pagination markup was a live topic. The instinct is right
 is wrong: near-identical <em>chrome</em> around different <em>items</em> is not duplication.</p>
 
 <h2>How to set canonical tags for pagination</h2>
+
+<div class="wrap-tbl"><table>
+<thead><tr><th>Setup</th><th>What it tells search engines</th><th>Use it?</th></tr></thead>
+<tbody>
+<tr><td>Each page self-canonical</td><td>Each page has its own items and preferred URL.</td><td>Yes, when each page lists different items.</td></tr>
+<tr><td>Later pages canonical to page one</td><td>The later pages are duplicates of page one.</td><td>No, when they list different items.</td></tr>
+<tr><td>Later pages noindex</td><td>Leave these pages out of the index.</td><td>A separate decision: they leave the index, so items listed only there lose their indexed page.</td></tr>
+<tr><td>rel=prev and rel=next</td><td>These mark the previous and next pages in the series.</td><td>Google no longer uses them for indexing. Use ordinary HTML links for discovery.</td></tr>
+</tbody>
+</table></div>
 
 <p><strong>Make every paginated page self-canonical.</strong> Page two's canonical is page two:</p>
 
@@ -82,6 +91,25 @@ address. Check that previous, next and numbered links still lead to the right pa
 If a later page cannot be crawled, use the <a href="/tools/robots-txt-tester/">robots.txt tester</a>
 to check for a blocking rule before changing its canonical.</p>
 
+<h2>What a real crawl caught</h2>
+
+<p>We built a small local test site with four listing series of four pages each. Every page
+listed different items, with Previous and Next links only. Docket crawled it in a few seconds.</p>
+
+<div class="wrap-tbl"><table>
+<thead><tr><th>Series</th><th>How it was set up</th><th>What Docket reported</th></tr></thead>
+<tbody>
+<tr><td>Series one</td><td>Every page was self-canonical. This was the control.</td><td>No pagination or canonical finding.</td></tr>
+<tr><td>Series two</td><td>Pages two to four canonicalised to page one, with /page/N/ addresses.</td><td>These later pages and those in series three made six paginated pages canonicalising to page one, at medium severity. The same six were also listed as pages that canonicalise to a different URL, at low severity.</td></tr>
+<tr><td>Series three</td><td>Pages two to four canonicalised to page one, with ?page=N addresses.</td><td>Included in the same six findings above. Both address styles were caught.</td></tr>
+<tr><td>Series four</td><td>Every page was self-canonical, but pages two to four carried noindex, follow.</td><td>The later pages were blocked from indexing, at medium severity, not reported as a pagination problem. Noindex is a different decision with a different finding: items listed only there lose their indexed page.</td></tr>
+</tbody>
+</table></div>
+
+<p>Page four in series one, two and three was four or more clicks from the homepage, a low
+severity finding: next-only links make the end of a long series deep, while numbered links to
+several pages shorten it.</p>
+
 <h2>What this does not cover</h2>
 
 <p>It is about what the pages <em>declare</em>, not about whether pagination is the right design.
@@ -92,10 +120,11 @@ that is saying something untrue about it.</p>
 """
     return render(
         cat="how-to", slug="fix-paginated-pages-that-canonicalise-to-page-1",
-        modified="2026-11-09",
-        title="Canonical pagination: how to fix it | Docket",
+        # 2026-11-21: add setup choices, measured crawl findings and a noindex FAQ.
+        modified="2026-11-21",
+        title="Canonical pagination: use each page's URL | Docket",
         desc=("Each paginated page with different items should be self-canonical. "
-              "Audit your site for canonicals pointing to the first page and fix the template."),
+              "See what a crawl caught when later pages pointed to page one or used noindex."),
         h1="Canonical pagination: which URL should each page use?",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / pagination',
         body=body,
@@ -124,6 +153,10 @@ that is saying something untrue about it.</p>
              "That is the opposite problem: if the URL never changes there are no deeper pages "
              "for a crawler to find at all. It is a design decision rather than a declaration "
              "that is untrue, and needs a different fix."),
+            ("Should later pages be noindex?",
+             "That is a separate choice from the canonical. Noindex removes those pages from "
+             "the index, so items listed only there lose their indexed page. Docket reports "
+             "it as noindex, not as a pagination error."),
         ],
     )
 
