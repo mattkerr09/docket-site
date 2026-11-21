@@ -220,6 +220,19 @@ def main():
     expected_history = baseline("data/corrections.json").replace(b"launch-price", b"offer").replace(
         b"launch price", b"November price").replace(b"the $29.50 November price", b"the earlier $29.50 price").replace(
         b"November price", b"earlier price")
+    # 21 Nov 2026 (Quality Desk, Matthew 20 Nov: no was price anywhere): the history no longer prints our retired figures.
+    for old, new in ((b'quoted $59 once or 4 x $14.75 and nothing else at the earlier $29.50 price; only the box further down gave the earlier price.', b'quoted the full list price and its four payments and nothing else; only the box further down gave the lower price a buyer would pay.'),):
+        expected_history = expected_history.replace(old, new)
+    for old, new in ((b"the command line's footer quoted $59 once or 4 x $14.75 at the earlier $29.50 price in the app.", b"the command line's footer quoted the full list price and its four payments, not the lower price the app showed."),):
+        expected_history = expected_history.replace(old, new)
+    for old, new in ((b'The app quoted the old price after Docket became $59', b'The app quoted the old price after the list price changed'),):
+        expected_history = expected_history.replace(old, new)
+    for old, new in ((b"On 2 November Docket's price became $59 once.", b'On 2 November the list price changed.'),):
+        expected_history = expected_history.replace(old, new)
+    for old, new in ((b'The price change itself: the website moved to $59 the same day,', b'The price change itself: the website moved to the new price the same day,'),):
+        expected_history = expected_history.replace(old, new)
+    for old, new in ((b"A price under the checkout's $50.01 minimum for paying in four, such as the earlier $29.50 price, is shown", b"A price under the checkout's $50.01 minimum for paying in four is shown"),):
+        expected_history = expected_history.replace(old, new)
     assert (ROOT / "data/corrections.json").read_bytes() == expected_history
     assert (ROOT / "scripts/articles/corrections.py").read_bytes() == baseline("scripts/articles/corrections.py")
     with tempfile.TemporaryDirectory(prefix="test-launch-price-") as temporary:

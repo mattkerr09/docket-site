@@ -45,7 +45,12 @@ def check_site(site):
             if url.hostname == "docketseo.app":
                 assert url.path in MACHINE_PATHS, (path.relative_to(site), href)
                 machine_links.add(url.path)
-    assert machine_links == MACHINE_PATHS, machine_links
+    # 21 Nov 2026 (Quality Desk sibling-link gate): no human page LINKS to the old host's machine addresses. The privacy page names
+    # them as plain text instead, and llms.txt keeps them for assistants.
+    assert machine_links == set(), machine_links
+    privacy = (site / "legal/privacy/index.html").read_text()
+    for path in sorted(MACHINE_PATHS):
+        assert f"<code>docketseo.app{path}</code>" in privacy, ("privacy page must name the address as plain text", path)
     sitemap = (site / "sitemap.xml").read_text()
     assert "docketseo.app" not in sitemap
     assert all(urlsplit(url).hostname == "checkengineseo.com"

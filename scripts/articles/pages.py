@@ -20,7 +20,7 @@ from corrections_cases import CASES  # noqa: E402
 CONNECTORS_WORD = F.optional_connectors_word()
 CONNECTORS_WORD_CAP = CONNECTORS_WORD.capitalize()
 from render import SITE_BRAND, recorded_with, KEY_REPORT_INSTRUCTION
-from brand import CLI, HOST, LEGACY_HOST, MACHINE_PATHS, STORE_NOTE, machine_link, DOWNLOAD_NAME_NOTE
+from brand import CLI, HOST, LEGACY_HOST, STORE_NOTE, DOWNLOAD_NAME_NOTE
 from render import (MS_STORE, _human_date, bundle_link, windows_waitlist, windows_download, WINDOWS, WIN_SETUP, WIN_SETUP_SIZE, WIN_PUBLISHER, with_next_step, download_url, FREE_LINE, INTEL, INTEL_DMG, INTEL_DMG_SIZE, MAC_HW, MACS, NO_BUILDS, PAY4_FOUNDING,
     FREE_CLAUSE,  # noqa: E402
     BETA_FREE, BILLING_EMAIL, COMPETITORS, DMG, DMG_SIZE, MACOS, GOVERNING_LAW, ISSUES,
@@ -2435,9 +2435,9 @@ it; we hold nothing separately.</p>
 <h2>Contact</h2>
 <p>Questions about privacy or anything else: <a href="/contact/">get in touch</a>.</p>
 """
-    for path in MACHINE_PATHS:
-        label = f"<code>{LEGACY_HOST}{path}</code>"
-        body = body.replace(label, f"<code>{machine_link(path)}</code>")
+    # The app's three retained addresses (updater, offer, knowledge) are NAMED here as plain text, not linked: this page is read by
+    # people, and a link from this site to the old host fails the Quality Desk's sibling-link gate (21 Nov 2026). The addresses stay
+    # in llms.txt and offer.json, where the installed apps and assistants read them.
 
     body = (body.replace("<!-- pixel-history -->", _pixel_history())
             .replace("<!-- windows-form-privacy -->", _windows_form_privacy())
