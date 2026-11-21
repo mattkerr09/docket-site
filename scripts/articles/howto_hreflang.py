@@ -19,11 +19,11 @@ from render import render  # noqa: E402
 
 
 def hreflang_return_tags() -> Path:
+    # 21 November 2026: answer first, repair table and measured local crawl findings.
     body = """
-<p class="lede">hreflang is the only common SEO tag that cannot be validated by looking at the
-page it sits on. Every tag can be present, spelled correctly and pointing at a live URL, and
-the whole set can still be ignored, because the rule is not about the tag, it is about the
-pair.</p>
+<p class="lede">If page A lists page B as a language alternate, B must list A back with the
+exact same URL. Every page must list itself too. Fix hreflang return tags by generating one
+identical block for the whole set and putting it on every language version.</p>
 
 <h2>The rule, in one sentence</h2>
 
@@ -50,18 +50,23 @@ a growing site, because the failure mode of hand-maintenance is silent.</p>
 
 <h2>The four ways a set breaks</h2>
 
-<ul>
-<li><strong>A page omits itself.</strong> The set is incomplete and the whole group is
-suspect. Cheapest error to make and cheapest to fix.</li>
-<li><strong>One side was updated and the other was not.</strong> A new language launches, the
-new pages point at the old ones, nobody edits the old ones. The new language is invisible.</li>
-<li><strong>The URLs disagree.</strong> One side uses <code>https://</code> and a trailing
-slash, the other does not. These are different URLs, so the return link does not exist as far
-as a crawler is concerned: a difference no human reading the two pages would notice.</li>
-<li><strong>The target is not indexable.</strong> A return tag pointing at a page that is
-<code>noindex</code>, canonicalised elsewhere or returning a 404 is not a return tag. The pair
-is broken from the other end.</li>
-</ul>
+<div class="wrap-tbl"><table>
+<thead><tr><th>How the set breaks</th><th>What it looks like</th><th>How to fix it</th></tr></thead>
+<tbody>
+<tr><td>A page omits itself.</td><td>The set is incomplete and the whole group is suspect.
+It is the cheapest error to make and fix.</td><td>Add the page's own URL to the shared block.</td></tr>
+<tr><td>One side was updated and the other was not.</td><td>A new language launches and links
+to the old pages, but they do not link back. The new language is invisible.</td><td>Put the
+updated shared block on the old pages as well as the new ones.</td></tr>
+<tr><td>The URLs disagree.</td><td>One side uses <code>https://</code> and a trailing slash,
+the other does not. A crawler sees different URLs and no return link, even if a person misses
+the difference.</td><td>Use the exact same URL for each page throughout the block.</td></tr>
+<tr><td>The target is not indexable.</td><td>The return tag points at a page that is
+<code>noindex</code>, canonicalised elsewhere or returning a not-found response. The pair is
+broken from the other end.</td><td>Make the target indexable with a self-canonical and a live
+response, then check the return links again.</td></tr>
+</tbody>
+</table></div>
 
 <h2>hreflang and canonical must agree</h2>
 
@@ -98,16 +103,46 @@ pair that fails (which page points where, and which page does not point back) be
 <p>It reports this at HIGH severity for a reason: a broken set is not a missed optimisation.
 It is a feature that is fully implemented, looks correct on inspection, and does nothing.</p>
 
+<h2>What a real crawl caught</h2>
+
+<p>For this update, we built a small local test
+site with eight pages: one index and seven language versions of one page. English, German and
+French formed the correct control set. Each listed itself, the others and an
+<code>x-default</code>, and each canonicalised to itself. English also listed Spanish,
+Portuguese, Italian and Dutch, each broken in a different way. The crawl took a few seconds.</p>
+
+<div class="wrap-tbl"><table>
+<thead><tr><th>Page</th><th>What was wrong</th><th>What Docket reported</th></tr></thead>
+<tbody>
+<tr><td>English, German and French</td><td>Nothing in the control set.</td><td>No hreflang
+finding on the correct set.</td></tr>
+<tr><td>Spanish</td><td>No hreflang at all, so the link from English went one way.</td><td>
+"hreflang links are not reciprocated" at high severity for English to Spanish.</td></tr>
+<tr><td>Portuguese</td><td>Returned the link to the English URL with a query string added.</td><td>
+"hreflang links are not reciprocated" at high severity for English to Portuguese. A return to
+a URL variant counted as missing, just like no return at all.</td></tr>
+<tr><td>Italian</td><td>Returned the link correctly, but its canonical pointed at English.</td><td>
+A canonical finding at low severity for canonicalising to a different URL. It was not reported
+as a broken hreflang pair.</td></tr>
+<tr><td>Dutch</td><td>Returned the link correctly, but did not list itself.</td><td>Hreflang
+tags with no self-reference, at medium severity.</td></tr>
+</tbody>
+</table></div>
+
+<p>The Italian case shows up as a canonical finding, so read canonical findings and hreflang
+findings together.</p>
+
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="how-to", slug="fix-hreflang-return-tags",
-        title="How to fix hreflang tags with errors (return tags)",
-        desc=("hreflang only works when the link goes both ways. Why one-way declarations "
-              "are ignored, the four ways a set breaks, and why canonical must agree."),
+        title="Hreflang return tags: how to fix no return tag errors",
+        desc=("Each alternate must link back to the exact same URL and list itself. "
+              "Fix hreflang return tags with a shared block, plus see what a real crawl caught."),
         h1="How to fix hreflang return tags",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / hreflang return tags',
         body=body,
+        modified="2026-11-21",
         faq=[
             ("What is an hreflang return tag?",
              "If page A lists page B as a language alternate, B must list A in return. That "
@@ -125,6 +160,10 @@ It is a feature that is fully implemented, looks correct on inspection, and does
              "Because nothing is wrong on the page you are looking at. Every tag can be "
              "present and valid in isolation; the error exists only in the relationship "
              "between two pages, so finding it requires fetching both and comparing them."),
+            ("What does 'no return tags' mean?",
+             "A page lists an alternate that does not list it back, or lists it back at a "
+             "different URL. That could be a query string, http instead of https, or a "
+             "missing trailing slash. The return must use the exact same URL."),
         ],
     )
 
