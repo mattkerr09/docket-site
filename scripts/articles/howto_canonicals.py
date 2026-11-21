@@ -21,9 +21,10 @@ from render import render  # noqa: E402
 
 def conflicting_canonicals() -> Path:
     body = """
-<p class="lede">A canonical tag is a page telling search engines which URL is the real one.
-It is a hint, not an instruction, which means the failure mode is not an error message, it is
-being quietly ignored, or quietly obeyed when you did not mean it.</p>
+<p class="lede">Most canonical tag issues are one of four: two canonicals on one page,
+a canonical to a noindex page, a canonical to another domain, or none at all. Each sends
+a mixed or wrong signal. Fix them by giving every page one canonical that points at
+an indexable URL on your own site.</p>
 
 <h2>Two canonicals on one page</h2>
 
@@ -103,19 +104,36 @@ questions and are routinely confused for each other.
 <p>Four of the five need context beyond the page itself: whether the target is
 <code>noindex</code>, whether it is on your domain, whether it is the page's own URL, whether
 another page also claims it. Docket separates them into distinct findings because they have
-distinct fixes. "Canonical problems: 12" tells you nothing about which of five different jobs
+distinct fixes. "Canonical problems: twelve" tells you nothing about which of five different jobs
 you are being asked to do.</p>
+
+<h2>What a real crawl caught</h2>
+
+<p>We built a small local test site and ran Check Engine's audit on it. These are the
+findings for each test page, with a correct self-referencing canonical as the control.</p>
+
+<div class="wrap-tbl"><table>
+<thead><tr><th>Issue</th><th>Example</th><th>What Check Engine reported</th><th>How to fix it</th></tr></thead>
+<tbody>
+<tr><td>Two different canonical tags</td><td>One page names both page A and page B as canonical.</td><td>declares more than one canonical URL; high severity</td><td>Keep one canonical tag. Turn off the second source.</td></tr>
+<tr><td>Canonical to a noindex page</td><td>Page A names page B, which carries noindex.</td><td>canonicalises to a noindex page; high severity</td><td>Choose the URL to index and make it self-canonical without noindex.</td></tr>
+<tr><td>Canonical to another domain</td><td>A page names a URL on another domain.</td><td>canonicalises to a different domain; critical severity</td><td>If this was not intended, make the page self-canonical and check the template.</td></tr>
+<tr><td>No canonical tag</td><td>A page has no canonical tag.</td><td>has no canonical tag; medium severity</td><td>Add an absolute self-referencing canonical to the indexable page.</td></tr>
+<tr><td>Correct self-referencing canonical</td><td>A page names its own indexable URL.</td><td>No finding</td><td>Keep the correct canonical.</td></tr>
+</tbody>
+</table></div>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
     return render(
         cat="how-to", slug="fix-conflicting-canonicals",
-        title="How to fix conflicting canonical tags",
-        desc=("Two canonicals on one page, canonicals pointing at noindex pages or another "
-              "domain, and the section-wide mistake that can cost a site its long tail."),
+        title="Canonical tag issues: tested conflicts and fixes",
+        desc=("Fix canonical tag issues with one canonical pointing at an indexable URL on "
+              "your own site. See what a real crawl caught and how to fix each case."),
         h1="How to fix conflicting canonical tags",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / conflicting canonicals',
         body=body,
+        modified="2026-11-21",  # Added the local crawl findings and fixes.
         faq=[
             ("What happens if a page has two canonical tags?",
              "Google's documented behaviour is to ignore conflicting canonical tags and "
@@ -133,6 +151,11 @@ you are being asked to do.</p>
              "Yes, for syndicated content. A partner's republished copy canonicalising back "
              "to your original is exactly right. Your own pages canonicalising to a domain "
              "you do not control almost never is."),
+            ("How do I find canonical tag issues on my site?",
+             "Crawl the site and compare each page's canonical with its own address and with "
+             "the target's status. In our test, Check Engine reported a page with two "
+             "canonicals, one pointing at a noindex page, one pointing at another domain and "
+             "one with none, and left a correct self-canonical alone."),
         ],
     )
 
