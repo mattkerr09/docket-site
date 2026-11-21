@@ -30,30 +30,30 @@ GOOGLE_LOCALIZED_UPDATED = "2026-09-21"
 
 def lang_attribute_mismatch() -> Path:
     body = """
-<p class="lede">"hreflang and html lang mismatch" is four different faults sharing one
-description, and they have three different fixes. Sorting out which one you have takes about a
-minute and saves you changing the wrong attribute.</p>
+<p class="lede">"hreflang and html lang mismatch" covers several faults. The most important is a
+page whose lang attribute names a different language from its text. Fix that first, then make
+each page's hreflang self-reference use the same language code as its lang attribute.</p>
 
 <h2>The four mismatches</h2>
 
-<p><strong>1. The declaration contradicts the prose.</strong> The page says
+<p><strong>One. The declaration contradicts the prose.</strong> The page says
 <code>lang="en"</code> and the text is Spanish. This is the one that does immediate damage to
 people: a screen reader switches pronunciation on that attribute, so a Spanish page labelled
 English is read aloud with English pronunciation. Google says it works out a page's language from
 the page itself rather than from this attribute (see below), so its search cost sits in the
 hreflang entries around it.</p>
 
-<p><strong>2. The hreflang code contradicts the page's own lang attribute.</strong> The page
+<p><strong>Two. The hreflang code contradicts the page's own lang attribute.</strong> The page
 declares <code>lang="en-GB"</code> while its own hreflang entry calls it <code>de-DE</code>. One
 of the two is wrong, and nothing on the page tells you which. You have to read the prose to
-find out, which is why this collapses into fault 1 once you look.</p>
+find out, which is why this collapses into fault one once you look.</p>
 
-<p><strong>3. The hreflang codes are not valid codes.</strong> <code>hreflang="en-UK"</code> is
+<p><strong>Three. The hreflang codes are not valid codes.</strong> <code>hreflang="en-UK"</code> is
 a common one (the country is <code>GB</code>, not <code>UK</code>) as are region codes in the
 language slot and vice versa. An invalid code is discarded, silently, and the cluster it was
 part of is weakened.</p>
 
-<p><strong>4. The body is not the page's own writing.</strong> This is the one nobody warns you
+<p><strong>Four. The body is not the page's own writing.</strong> This is the one nobody warns you
 about, and the one that produces the most confident wrong fix. A bookshelf listing Dutch titles,
 a directory of French restaurants, a marketplace page quoting a tutor's introduction in German:
 the page is English, written by you, and the foreign words on it belong to someone else. An
@@ -75,21 +75,50 @@ guard was added because this check was wrong about a real library catalogue.</p>
 in? Not the navigation: the body. Then ask the second question: did you write it? If almost
 everything you are reading sits inside links, or is a list of names, titles or addresses, you
 are looking at an index of other people's words, not at a page written in their language. That
-is fault 4, and the fix is to change nothing.</p>
+is fault four, and the fix is to change nothing.</p>
 
 <p><strong>The <code>&lt;html lang&gt;</code> attribute.</strong> Does it match what you just
-read, in words you wrote? If not, that is fault 1 and it is the one to fix first, because the other two are claims
+read, in words you wrote? If not, that is fault one and it is the one to fix first, because the other two are claims
 about a page whose own declaration is wrong.</p>
 
 <p><strong>The page's own hreflang entry.</strong> In a correct cluster every page lists every
 version <em>including itself</em>. Find the line pointing at the URL you are on and check its
-code against the lang attribute. Disagreement is fault 2.</p>
+code against the lang attribute. Disagreement is fault two.</p>
 
 <pre><code>&lt;html lang="en-gb"&gt;
 &lt;link rel="alternate" hreflang="en-gb" href="https://example.com/en-gb/shoes" /&gt;
 &lt;link rel="alternate" hreflang="de-de" href="https://example.com/de-de/schuhe" /&gt;</code></pre>
 
 <p>The self-reference and the lang attribute agree there. That is the whole test.</p>
+
+<h2>What a real crawl caught</h2>
+
+<p>For this update, we built a small local test site and ran Check Engine's audit on it.
+The crawl took under a minute. Here is what it reported and what it missed.</p>
+
+<div class="wrap-tbl"><table>
+<thead><tr><th>Fault</th><th>Example</th><th>Reported by Check Engine</th><th>How to fix it</th></tr></thead>
+<tbody>
+<tr><td>The declared language differs from the text</td>
+<td><code>lang="en"</code> with Spanish text; <code>lang="fr"</code> with German text</td>
+<td>Both pages were reported as "not in the language they declare", at medium severity.</td>
+<td>Set lang to the language of the page's own text.</td></tr>
+<tr><td>No declared language</td><td>No lang attribute</td>
+<td>Reported as a page that "does not declare a language", at low severity.</td>
+<td>Add a lang attribute that matches the text.</td></tr>
+<tr><td>The hreflang self-reference and lang disagree</td>
+<td><code>lang="fr"</code> with a hreflang self-reference of <code>de</code></td>
+<td>Not reported. The audit did not flag it on this test.</td>
+<td>Crawl the hreflang set, read the text and make the self-reference agree with lang.</td></tr>
+<tr><td>The region code is wrong</td><td><code>lang="en-UK"</code></td>
+<td>Not reported on this test.</td><td>Use <code>en-GB</code>. The region code is GB, not UK.</td></tr>
+<tr><td>A short text declares another language</td><td>Short German text with few common words</td>
+<td>Not reported on this test.</td><td>Read the text and set lang to its language.</td></tr>
+</tbody>
+</table></div>
+
+<p>The language detector stays silent when it is unsure rather than guess, so short text with
+few common words can pass without a finding.</p>
 
 <h2>Getting the codes right</h2>
 
@@ -129,11 +158,11 @@ is what happens to <code>en-UK</code>.</li>
 other, Google ignores the tags.</li>
 </ul>
 
-<p>So faults 1 and 2 are fixed first for readers, because a screen reader is getting them wrong
-today, and fault 3 and missing return tags are the ones that change what Google does. Read on
-@@GOOGLE_READ@@ from Google's documentation,
+<p>So faults one and two are fixed first for readers, because a screen reader is getting them wrong
+today, and fault three and missing return tags are the ones that change what Google does. See
+Google's documentation,
 <a href="https://developers.google.com/search/docs/specialty/international/localized-versions">Tell
-Google about localized versions of your page</a> (last updated @@GOOGLE_UPDATED@@). We found no
+Google about localized versions of your page</a>. We found no
 current documentation from another search engine saying what it does with the lang attribute, so
 this page does not claim one.</p>
 
@@ -153,16 +182,16 @@ because it cannot be seen by looking at either page alone.</p>
 <h2>What Docket checks here, and what it does not</h2>
 
 <p>Docket reads the declared language against the language the prose is actually in, and reports
-the pages where they disagree: fault 1, per page rather than per site, because one translated
+the pages where they disagree: fault one, per page rather than per site, because one translated
 article among hundreds is the usual shape and it is the page that is wrong rather than the site.
 It also reports pages with no lang attribute at all, invalid and unrecognised hreflang codes,
 deprecated language subtags, missing self-references, missing return tags, and hreflang targets
 that 404, redirect or carry a noindex.</p>
 
 <p><strong>It does not compare a page's hreflang self-reference against its own
-<code>lang</code> attribute</strong>: fault 2 above. That check does not exist today, and this
+<code>lang</code> attribute</strong>: fault two above. That check does not exist today, and this
 page is not going to imply it does. Read the two by hand on a sample of pages, or catch it
-through fault 1, which the prose test does find.</p>
+through fault one, which the prose test does find.</p>
 
 <p>The full list is <a href="/learn/what-docket-checks/">what Docket checks</a>, and the wider
 procedure is <a href="/learn/seo-audit/">the technical SEO audit</a>. If your pages are built
@@ -180,17 +209,16 @@ expected and none you did not.</p>
 
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
-    body = (body.replace("@@GOOGLE_READ@@", _human_date(GOOGLE_LOCALIZED_READ))
-                .replace("@@GOOGLE_UPDATED@@", _human_date(GOOGLE_LOCALIZED_UPDATED)))
     return render(
         cat="how-to", slug="fix-lang-attribute-mismatch",
-        title="hreflang and html lang mismatch: which one you have",
-        desc=("Three different faults share that description and have three different fixes. "
-              "How to tell them apart in a minute, and which one to fix first."),
+        title="Hreflang and HTML lang mismatch: what a crawl catches",
+        desc=("Fix lang to match the text, then match the hreflang self-reference to lang. "
+              "See which faults Check Engine caught in a local crawl."),
         h1="hreflang and html lang mismatch",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / Language mismatch',
         body=body,
         published="2026-09-09",
+        modified="2026-11-21",  # Added local crawl findings and their limits.
         faq=[
             ("What is an hreflang and html lang mismatch?",
              "Usually one of three things: the lang attribute contradicts the language the page "
@@ -214,6 +242,11 @@ expected and none you did not.</p>
              "language the prose is actually in, reports missing lang attributes, and validates "
              "hreflang codes, self-references, return tags and targets, but it does not compare "
              "a page's hreflang self-reference to its own lang attribute."),
+            ("Does a lang mismatch hurt rankings?",
+             "Google says it ignores the lang attribute when detecting language and reads the "
+             "text instead. The mismatch mostly causes trouble for hreflang sets and screen "
+             "readers. Fix it anyway: match lang to the text, then make the hreflang "
+             "self-reference agree with lang."),
         ],
     )
 
