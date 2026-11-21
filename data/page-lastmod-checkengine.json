@@ -1885,9 +1885,9 @@
   "hash": "0cdf461331d238fb"
  },
  "learn/audit-tool-accuracy/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-20",
-  "hash": "411c8ab23421e261"
+  "hash": "341df4c855f76fce"
  },
  "learn/brand-consistency/index.html": {
   "changed_in_build": false,
@@ -2030,9 +2030,9 @@
   "hash": "0348369c61d1b28f"
  },
  "learn/what-docket-got-wrong/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-20",
-  "hash": "96756c2928fb1146"
+  "hash": "77c0e7d3e100c059"
  },
  "learn/what-is-a-404-error/index.html": {
   "changed_in_build": false,
@@ -2266,8 +2266,8 @@
  },
  "vs/seoptimer-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "0186a07c893b7f21"
+  "date": "2026-11-20",
+  "hash": "87358d53480a910c"
  },
  "vs/sitebulb-alternative/index.html": {
   "changed_in_build": false,
