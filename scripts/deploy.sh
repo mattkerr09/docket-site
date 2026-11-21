@@ -113,6 +113,7 @@ echo "==> competitive-claim gate"
 # we said it ignored. Every comparison page quotes its source; this makes the
 # rest of the site meet the same standard.
 "$PY" scripts/verify_competitive_claims.py
+"$PY" scripts/test_claims_baseline.py || exit 1
 
 echo "==> structured data gate"
 # FAQPage questions and answers, Article headlines and dates may only say what the reader can see (Google's

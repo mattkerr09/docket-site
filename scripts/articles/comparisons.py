@@ -779,7 +779,7 @@ PRICES_REREAD: dict[str, str] = {
     "screaming-frog": "Its price, $279 a year in the USD view, was read again on 20 November 2026 and had not changed.",
     "scrutiny": "Its price, $149 once, was read again on 20 November 2026 and had not changed.",
     "crawler-sh": "Its prices (free, and CLI Pro and Desktop Pro at $99 a year each) were read again on 20 November 2026 and had not changed.",
-    "crawlraven": "Its list prices (monthly plans from $29 to $199, and the $390 lifetime plan for 3 sites) were read again on 20 November 2026 and had not changed; its page now also offers a Black Friday code that halves the lifetime plans, which this page does not count.",
+    "crawlraven": "Its list prices (monthly plans from $29 to $199, and the $390 lifetime plan for 3 sites) were read again on 20 November 2026 and had not changed; its page now also offers a discount code on the lifetime plans, which this page does not count.",
     "jetoctopus": "Its prices ($459 to $2,069 a month billed quarterly, $349 to $1,559 billed annually, and Unlimited by quote) were read again on 20 November 2026 and had not changed.",
     "semrush": "Its prices ($139 to $299 a month) were read again on 20 November 2026 and had not changed.",
     "sitebulb": "Its prices (Lite $180 a year or $18 a month, and Pro $425 a year) were read again on 20 November 2026 and had not changed.",
@@ -1214,6 +1214,12 @@ def _months_past_docket(monthly: int) -> int:
     while monthly * m <= LATER_PRICE:
         m += 1
     return m
+
+
+def _first_months_phrase(monthly: int) -> str:
+    """'the first month only' or 'the first N months': the months a plan at `monthly` costs less than Docket's later price."""
+    n = _months_past_docket(monthly) - 1
+    return "the first month only" if n == 1 else f"the first {n} months"
 
 
 def _credit_rows() -> str:
@@ -2595,8 +2601,8 @@ lists the lifetime plan; the monthly plans are the ones it leads with.</p>
 <tr><td class="yes">Docket</td><td class="yes">{PRICE_COMPACT}</td><td class="yes">Any site</td></tr>
 </tbody></table></div>
 
-<p>CrawlRaven's Starter plan costs less than Docket for its first {_months_past_docket(_CR_STARTER) - 1} months, at
-${_CR_STARTER} a month; from month {_months_past_docket(_CR_STARTER)} it has cost more. Twelve months of Starter come to
+<p>CrawlRaven's Starter plan is ${_CR_STARTER} a month and Docket is {PRICE_COMPACT}. Even against Docket's later price of
+${LATER_PRICE}, Starter costs less for {_first_months_phrase(_CR_STARTER)}; from month {_months_past_docket(_CR_STARTER)} it has cost more. Twelve months of Starter come to
 ${_CR_STARTER * 12} for one site, against {PRICE_COMPACT} for any site; the lifetime plan is
 ${_CR_LIFETIME} for {_CR_PRO_SITES}. They are not the same purchase: one is a content-insights platform with a
 metered audit, the other is the audit, running locally on your own computer with no account and no site limit.</p>
@@ -2632,8 +2638,8 @@ for {price('scrutiny')}, and stronger than either of us at link checking.</p>
              "checks alongside it. It is not an alternative if you need Search Console and GA4 data or "
              "keyword work, which Docket does not do."),
             ("Which is cheaper, Docket or CrawlRaven?",
-             f"CrawlRaven for its first {_months_past_docket(_CR_STARTER) - 1} months, then Docket. Its Starter "
-             f"plan is ${_CR_STARTER} a month for one site, against Docket's {PRICE_COMPACT} for any site. Twelve months of Starter come to ${_CR_STARTER * 12}, and its "
+             f"Docket is {PRICE_COMPACT} for any site and CrawlRaven's Starter plan is ${_CR_STARTER} a month for one site. "
+             f"Even against Docket's later price of ${LATER_PRICE}, Starter costs less for {_first_months_phrase(_CR_STARTER)} and more after. Twelve months of Starter come to ${_CR_STARTER * 12}, and its "
              f"lifetime plan for {_CR_PRO_SITES} sites is ${_CR_LIFETIME}, as read on {CHECKED_HUMAN['crawlraven']}."),
             ("Does CrawlRaven have a technical SEO audit?",
              f"Yes. On {CHECKED_HUMAN['crawlraven']} its pricing page listed it among the Starter features, and "

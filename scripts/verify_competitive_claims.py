@@ -43,6 +43,7 @@ import json
 import re
 import subprocess
 import sys
+import hashlib
 from datetime import date
 from pathlib import Path
 
@@ -187,6 +188,25 @@ def _wording(value):
     return value
 
 
+#: Fact sets BUILT AT IMPORT TIME from a Python module (best_compared_sources.py: sf-alternatives, wl-tools,
+#: wordpress-compared since 20 Nov 2026) have no literal in any past revision of CLAIMS_SOURCE and no data file to
+#: replay, so the gate read them as "edited today" on every day after their read date and refused every deploy. Their
+#: wording is fingerprinted here instead: while the fingerprint equals the recorded one, the last-edit day is the recorded
+#: day; a changed wording is an edit today. Refresh after a REAL re-read or edit:
+#:     python3 scripts/verify_competitive_claims.py --write-baseline YYYY-MM-DD
+WORDING_BASELINE = ROOT / "data" / "claims-wording-baseline.json"
+
+
+def _wording_hash(facts) -> str:
+    return hashlib.sha256(json.dumps(_wording(facts), sort_keys=True, default=str).encode()).hexdigest()[:16]
+
+
+def _write_baseline(day: str, keys) -> None:
+    from articles import comparisons
+    record = {k: {"hash": _wording_hash(comparisons.VERIFIED[k]), "day": day} for k in keys}
+    WORDING_BASELINE.write_text(json.dumps(record, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+
+
 def _facts_last_edited(current, data_sets=None):
     """Per competitor, the day its fact list last changed. (edits, unreadable).
 
@@ -217,9 +237,15 @@ def _facts_last_edited(current, data_sets=None):
     # is today — which is the case a deploy is most likely to be publishing.
     data_sets = data_sets or {}
     if seen:
+        baseline = json.loads(WORDING_BASELINE.read_text(encoding="utf-8")) if WORDING_BASELINE.is_file() else {}
         for key, facts in current.items():
             if key in data_sets:
                 continue  # replayed from its data file below
+            if key not in previous and key in baseline:
+                # built at import time: dated by its recorded fingerprint, never by "no history, so today"
+                rec = baseline[key]
+                edits[key] = rec["day"] if rec.get("hash") == _wording_hash(facts) else date.today().isoformat()
+                continue
             if previous.get(key) != _wording(facts):
                 edits[key] = date.today().isoformat()
     for key, (path, build) in data_sets.items():
@@ -649,6 +675,11 @@ def main() -> int:
           f"the homepage concedes what a crawler can do")
     return 0
 
+
+if __name__ == "__main__" and len(sys.argv) == 3 and sys.argv[1] == "--write-baseline":
+    _write_baseline(sys.argv[2], ("sf-alternatives", "wl-tools", "wordpress-compared"))
+    print(f"baseline written for {sys.argv[2]}")
+    sys.exit(0)
 
 if __name__ == "__main__":
     raise SystemExit(main())
