@@ -930,14 +930,19 @@
   "hash": "ae7eeeac41104439"
  },
  "best/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "951f42e87ddbc711"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "b6906f74db6ab346"
  },
  "best/screaming-frog-alternatives/index.html": {
   "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "98bf477be29b5943"
+  "hash": "d195f9110b38cd16"
+ },
+ "best/seo-audit-software-no-subscription/index.html": {
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "986123e795f8caa6"
  },
  "best/white-label-seo-audit-tools/index.html": {
   "changed_in_build": false,
@@ -1965,9 +1970,9 @@
   "hash": "639cbec33fab0c41"
  },
  "learn/internal-link-equity/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "55598b455a93d5ec"
+  "hash": "9bfab3f45951f011"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
@@ -2200,7 +2205,7 @@
   "hash": "931066d3aa8575e3"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "86839c5e11eaa42f"
  },
@@ -2275,7 +2280,7 @@
   "hash": "87358d53480a910c"
  },
  "vs/sitebulb-alternative/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "43a100e6ac2cb39b"
  },
