@@ -63,12 +63,16 @@ def shows_founding(name: str, text: str, price: str, code: str) -> str:
         seen = visible(text)
     else:
         return ""
-    for needle in (code, price):
-        if needle in seen:
-            return f"{needle!r} in its text"
-    # The bundle's "while founding prices last" and any other founding-price sentence without the figure.
-    if re.search(r"founding price|black friday (?:price|sale)|launch price", seen, flags=re.I):
-        return "'founding price', 'launch price' or 'Black Friday price/sale' in its text"
+    if code in seen:
+        return f"{code!r} in its text"
+    # Our own sentence always reads "$19.99 once through December 2". A rival's "$19.99 a month" (Squirrly's plan, read 20 Nov 2026)
+    # is not our offer: matching the bare figure would stop the 3 December deploy on a coincidence (found by the price-flip review).
+    if re.search(re.escape(price) + r"\s+once\b", seen):
+        return f"{price + ' once'!r} in its text"
+    # The bundle's "while founding prices last" and any other founding-price sentence without the figure. Our line is
+    # "Black Friday sale: $X once ..."; a rival's "Black Friday price shown on 20 November" (Slim SEO) is a vendor fact, not ours.
+    if re.search(r"founding price|black friday sale:|launch price", seen, flags=re.I):
+        return "'founding price', 'launch price' or 'Black Friday sale:' in its text"
     return ""
 
 

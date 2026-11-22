@@ -44,6 +44,7 @@ MCP_CHECKED_HUMAN = "5 November 2026"
 import datetime as _dt  # noqa: E402
 import html as _html  # noqa: E402
 import json as _json  # noqa: E402
+import re as _re  # noqa: E402
 
 _FREE_RUN = _json.loads((Path(__file__).resolve().parent.parent.parent / "data" / "free-run.json").read_text())
 
@@ -2201,6 +2202,19 @@ where it stands.</p>
     )
 
 
+def _privacy_after_the_sale(body: str) -> str:
+    """The sale bar's script (founding.js) is not built once the sale is over (render.FOUNDING_MOUNT), so the privacy page
+    stops describing it and the count of third-party scripts follows (found by the 3 December price-flip review: the page said
+    "four" while the built site loaded three, and verify_privacy_scripts failed AFTER the push)."""
+    body, removed = _re.subn(r"<p>The third is the sale bar across the top.*?</p>\n", "", body, flags=_re.S)
+    assert removed == 1, "the sale bar paragraph moved: update _privacy_after_the_sale"
+    for old, new in (("runs four third-party scripts", "runs three third-party scripts"),
+                     ("The fourth is on every page", "The third is on every page")):
+        assert body.count(old) == 1, old
+        body = body.replace(old, new)
+    return body
+
+
 def privacy() -> Path:
     body = """
 <p>Docket is desktop software that runs on your Mac or Windows PC. This policy covers both the application
@@ -2451,6 +2465,8 @@ it; we hold nothing separately.</p>
     # people, and a link from this site to the old host fails the Quality Desk's sibling-link gate (21 Nov 2026). The addresses stay
     # in llms.txt and offer.json, where the installed apps and assistants read them.
 
+    if not _R.FOUNDING_OPEN:
+        body = _privacy_after_the_sale(body)
     body = (body.replace("<!-- pixel-history -->", _pixel_history())
             .replace("<!-- windows-form-privacy -->", _windows_form_privacy())
                 .replace("<!-- email-privacy -->", _email_privacy())

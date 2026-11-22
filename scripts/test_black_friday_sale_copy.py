@@ -89,8 +89,15 @@ def check_site(site, opened, before_pages=None):
     for expected in sister_prices:
         assert expected in thanks, expected
     privacy = words((site / "legal/privacy/index.html").read_text())
-    assert ("The third is the sale bar across the top of every page except the page shown after a purchase, "
-            "loaded from") in privacy
+    sale_bar = ("The third is the sale bar across the top of every page except the page shown after a purchase, "
+                "loaded from")
+    if opened:
+        assert sale_bar in privacy and "runs four third-party scripts" in privacy
+    else:
+        # The sale bar's script is not built after the sale, so the page stops describing it (3 December price-flip review).
+        assert sale_bar not in privacy and "sale bar" not in privacy, "closed state still describes the sale bar"
+        assert "runs three third-party scripts" in privacy and "The third is on every page" in privacy
+        assert "The fourth is" not in privacy
     priced = []
     paid_count = 0
     sale_pages = 0
