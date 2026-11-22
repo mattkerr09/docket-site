@@ -2223,6 +2223,14 @@ def _price_offers(with_free: bool) -> list:
         paid["priceValidUntil"] = (_dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00"))
                                    - _dt.timedelta(hours=10)).date().isoformat()
     offers.append(paid)
+    if FOUNDING_OPEN:
+        # DEC-3 price sweep row 53 (CEO's list, 21 Nov 2026): when the sale line ends Google is left holding an expired
+        # Offer, so the list price from the next day is stated now, as Crisp's pages do ("validFrom": "2026-12-03").
+        # After the sale there is only the one $39 Offer, which is the state test_december_price.py pins.
+        after = _dt.datetime.fromisoformat(FOUNDING_ENDS_AT.replace("Z", "+00:00")) + _dt.timedelta(seconds=1)
+        offers.append({"@type": "Offer", "name": "Pro", "price": f"{PRICE:.2f}",
+                       "priceCurrency": "USD", "availability": "https://schema.org/InStock",
+                       "validFrom": after.date().isoformat(), "description": paid["description"]})
     return offers
 
 

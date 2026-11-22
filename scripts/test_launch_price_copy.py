@@ -132,8 +132,10 @@ def check_site(site):
                         if item.get("@type") == "SoftwareApplication"), None)
             assert app and app.get("offers"), (path, "price without SoftwareApplication offers")
             paid = [offer for offer in app["offers"] if offer["price"] != "0"]
+            # The sale Offer, then the list price from the day after the sale (DEC-3 sweep row 53).
             assert [(offer["price"], offer.get("priceValidUntil"), offer.get("validFrom"))
-                    for offer in paid] == [(R.FOUNDING_NOW.lstrip("$"), "2026-12-02", None)], (path, paid)
+                    for offer in paid] == [(R.FOUNDING_NOW.lstrip("$"), "2026-12-02", None),
+                                           (f"{R.PRICE:.2f}", None, "2026-12-03")], (path, paid)
             price_pages += 1
         for hero in re.findall(r'<p class="price-line"[^>]*>(.*?)</p>', raw, re.S):
             assert visible(hero) == launch.lower(), (path, hero)

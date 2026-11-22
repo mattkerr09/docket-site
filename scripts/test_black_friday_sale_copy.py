@@ -141,12 +141,17 @@ def check_site(site, opened, before_pages=None):
                         continue
                     assert name != "thank-you/index.html", "sister price emitted a Check Engine Offer"
                     paid_count += 1
-                    assert offer["price"] == ("19.99" if opened else "39.00"), (name, offer)
-                    if opened:
+                    if not opened:
+                        assert offer["price"] == "39.00", (name, offer)
+                        assert "priceValidUntil" not in offer and "validFrom" not in offer, (name, offer)
+                    elif offer["price"] == "19.99":
                         assert offer.get("priceValidUntil") == "2026-12-02", (name, offer)
+                        assert "validFrom" not in offer, (name, offer)
                     else:
+                        # DEC-3 price sweep row 53: the list price from the day after the sale, stated now.
+                        assert offer["price"] == "39.00", (name, offer)
+                        assert offer.get("validFrom") == "2026-12-03", (name, offer)
                         assert "priceValidUntil" not in offer, (name, offer)
-                    assert "validFrom" not in offer, (name, offer)
     assert len(priced) > 400, len(priced)
     assert paid_count > 400, paid_count
     if opened:
