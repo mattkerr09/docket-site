@@ -28,7 +28,9 @@ from comparisons import _verified_note  # noqa: E402
 from pages import email_box, free_result_figure  # noqa: E402
 
 RUN = json.loads((Path(__file__).resolve().parents[2] / "data" / "ai-assistants-run.json").read_text())
-ENGINE_MAC = "/Applications/Docket.app/Contents/Resources/docket/docket"
+ENGINE_MAC = "/Applications/Check Engine SEO.app/Contents/Resources/docket/docket"
+#: A copy updated in place from 1.3.166 or earlier keeps its old name; only a fresh install of 1.3.167 or later is named Check Engine SEO.app.
+ENGINE_MAC_UPDATED = "/Applications/Docket.app/Contents/Resources/docket/docket"
 ENGINE_WIN = r"C:\Users\YOU\AppData\Local\Docket\docket\docket.exe"
 CLAUDE_DESKTOP_HELP = ("https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-"
                        "on-claude-desktop")
@@ -143,7 +145,8 @@ is on the <a href="/legal/privacy/">privacy page</a>; questions go to
 
 <h2>Claude Code: one line</h2>
 <p>With the Docket app installed, run this in a terminal:</p>
-<pre><code>claude mcp add --transport stdio docket -- {ENGINE_MAC} mcp</code></pre>
+<pre><code>claude mcp add --transport stdio docket -- "{ENGINE_MAC}" mcp</code></pre>
+<p>If you updated from an earlier version, the app is still named <code>Docket.app</code> in your Applications folder, so use <code>{ENGINE_MAC_UPDATED}</code> instead.</p>
 <p>On Windows the engine is <code>{ENGINE_WIN}</code>, with your own account name for <code>YOU</code>. The
 syntax is from <a href="{CLAUDE_CODE_DOCS}" rel="nofollow noopener">Claude Code&rsquo;s MCP documentation</a>,
 read {when}: everything after <code>--</code> is the command that starts the server.</p>

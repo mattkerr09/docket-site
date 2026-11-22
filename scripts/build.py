@@ -746,7 +746,7 @@ def write_llms_txt() -> None:
         "A command-line build for Linux x86_64 is on the download page." if LINUX else "",
         # CEO's order from Matthew, 2026-11-03: Claude and ChatGPT should know how to use the product.
         ("AI assistants can run it: Docket speaks MCP over stdio, so Claude Code "
-         "(claude mcp add docket -- /Applications/Docket.app/Contents/Resources/docket/docket mcp), "
+         "(claude mcp add docket -- \"/Applications/Check Engine SEO.app/Contents/Resources/docket/docket\" mcp; a copy updated from an earlier version is still /Applications/Docket.app), "
          "Claude Desktop and the ChatGPT desktop app can audit a site with it. Setup: "
          f"{BASE}/how-to/audit-your-site-from-an-ai-assistant/"))
 

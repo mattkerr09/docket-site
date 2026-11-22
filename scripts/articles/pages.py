@@ -851,7 +851,9 @@ use the key on a self-hosted runner, which keeps its one activation.</p>
 <p>The CLI ships inside the app bundle, and until now this site told you it existed without
 telling you where. It is here:</p>
 
-<pre><code>/Applications/Docket.app/Contents/Resources/docket/docket</code></pre>
+<pre><code>/Applications/Check Engine SEO.app/Contents/Resources/docket/docket</code></pre>
+
+<p>A copy updated from an earlier version is still named <code>Docket.app</code>, so there it is <code>/Applications/Docket.app/Contents/Resources/docket/docket</code>.</p>
 
 <p>Put that directory on your <code>PATH</code> rather than symlinking the binary somewhere
 else. The WebKit rendering helper lives beside it as a sibling, and keeping the directory
@@ -1022,11 +1024,13 @@ client starts Docket itself. In Claude Desktop, add this to
 <pre><code>{{
   "mcpServers": {{
     "docket": {{
-      "command": "/Applications/Docket.app/Contents/Resources/docket/docket",
+      "command": "/Applications/Check Engine SEO.app/Contents/Resources/docket/docket",
       "args": ["mcp"]
     }}
   }}
 }}</code></pre>
+
+<p>On a copy updated from an earlier version the command is <code>/Applications/Docket.app/Contents/Resources/docket/docket</code>.</p>
 
 <p>Any MCP client takes the same command and argument. There are five tools.
 <code>audit_site</code> takes a <code>url</code> and optionally <code>max_pages</code>,

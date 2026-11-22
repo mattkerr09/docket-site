@@ -78,7 +78,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from render import N_CHECKS, N_LANES, PRICE_COMPACT, render  # noqa: E402
 
-SIDECAR = "/Applications/Docket.app/Contents/Resources/docket/docket"
+SIDECAR = "/Applications/Check Engine SEO.app/Contents/Resources/docket/docket"
+#: A copy updated in place from 1.3.166 or earlier keeps its old name; only a fresh install of 1.3.167 or later is named Check Engine SEO.app.
+SIDECAR_UPDATED = "/Applications/Docket.app/Contents/Resources/docket/docket"
 #: The engine on Windows, under the per-user install folder. Written with YOU for the account name: the folder is
 #: the reader's own AppData, which this page cannot know.
 WIN_ENGINE = r"C:\Users\YOU\AppData\Local\Docket\docket\docket.exe"
@@ -104,7 +106,9 @@ launches Docket itself, with one command and one argument.</p>
 
 <p>One line in a terminal:</p>
 
-<pre><code>claude mcp add docket -- {SIDECAR} mcp</code></pre>
+<pre><code>claude mcp add docket -- "{SIDECAR}" mcp</code></pre>
+
+<p>If you updated from an earlier version, the app is still named <code>Docket.app</code> in your Applications folder, so use <code>{SIDECAR_UPDATED}</code> instead.</p>
 
 <p>On Windows, use the engine inside your install folder instead:
 <code>claude mcp add docket -- "{WIN_ENGINE}" mcp</code>, with your own account name in place of
@@ -205,7 +209,7 @@ command line.</p>
         faq=[
             ("Does Docket work with Claude Desktop?",
              "Yes. Add Docket to mcpServers in claude_desktop_config.json with the command "
-             f"{SIDECAR} and the argument mcp, then restart the client. Any MCP client works "
+             f"{SIDECAR} (/Applications/Docket.app/... on a copy updated from an earlier version) and the argument mcp, then restart the client. Any MCP client works "
              "the same way, because Docket speaks the protocol over stdio."),
             ("Does using Docket through MCP cost extra?",
              "No. There is no API key and no per-call charge. The crawl runs on your own computer, "

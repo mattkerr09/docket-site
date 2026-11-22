@@ -32,7 +32,7 @@ from collections import defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from render import BETA_FREE, PRICE_STR, RELEASE  # noqa: E402
+from render import BETA_FREE, PRICE_STR, RELEASE, VOLUME  # noqa: E402
 
 #: Any phrasing that tells the reader the current build costs nothing.
 _BETA_QUALIFIER = re.compile(r"\bfree (?:in|while|during|forever)\b"
@@ -245,7 +245,7 @@ def main(root: str) -> int:
         for match in re.finditer(r"/Volumes/([A-Za-z0-9 .%-]+)", text):
             volume = match.group(1).split("/")[0].strip()
             window = text[max(0, match.start() - 200):match.start() + 120]
-            if "-mountpoint" in window:
+            if "-mountpoint" in window or volume == VOLUME:
                 continue
             if not re.search(r"\d+\.\d+", volume):
                 fails.append(

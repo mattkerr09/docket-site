@@ -117,7 +117,7 @@ application is not. If your policy requires reading the code, Docket will not pa
 certificate carries a legal name and Apple has checked it. You do not have to take that on
 faith. After downloading the {DMG_SIZE} disk image:</p>
 
-<pre><code>codesign -dv --verbose=4 "/Volumes/{VOLUME}/Docket.app"
+<pre><code>codesign -dv --verbose=4 "/Volumes/{VOLUME}/Check Engine SEO.app"
 spctl -a -t open --context context:primary-signature -v {DMG_NAME}</code></pre>
 
 <p>The first prints the authority chain, ending at Apple's root. The second should say

@@ -61,7 +61,7 @@ def check_site(site):
     assert "https://mcp.docketseo.app/mcp" in assistants
     assert "mcp.docketseo.app/app-event" in privacy
     assert "mailto:support@docketseo.app" in privacy
-    assert "/Applications/Docket.app/" in llms
+    assert "/Applications/Check Engine SEO.app/" in llms
     assert "`checkengine audit`" in llms
     # These are the actual crawler user-agent strings, not links to a page.
     bot = (site / "bot/index.html").read_text()
