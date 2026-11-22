@@ -1,7 +1,7 @@
 {
   "site": "checkengineseo.com",
   "pages": 464,
-  "edges": 14787,
+  "edges": 14792,
   "average_share_pct": 0.22,
   "below_half": 429,
   "nodes": [
@@ -1129,25 +1129,25 @@
     },
     {
       "path": "/best/free-seo-audit-tools/",
-      "inlinks": 13,
+      "inlinks": 14,
       "share_pct": 0.09,
       "index": 0.41
     },
     {
       "path": "/best/screaming-frog-alternatives/",
-      "inlinks": 7,
+      "inlinks": 8,
       "share_pct": 0.05,
       "index": 0.23
     },
     {
       "path": "/best/seo-audit-software-no-subscription/",
-      "inlinks": 4,
+      "inlinks": 5,
       "share_pct": 0.03,
       "index": 0.14
     },
     {
       "path": "/best/seo-crawler-for-windows/",
-      "inlinks": 4,
+      "inlinks": 5,
       "share_pct": 0.03,
       "index": 0.14
     },
@@ -1879,9 +1879,9 @@
     },
     {
       "path": "/how-to/find-broken-links-and-seo-problems/",
-      "inlinks": 2,
-      "share_pct": 0.01,
-      "index": 0.05
+      "inlinks": 3,
+      "share_pct": 0.02,
+      "index": 0.09
     },
     {
       "path": "/how-to/findings-that-flag-correct-pages/",
