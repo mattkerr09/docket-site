@@ -1,6 +1,6 @@
 {
  "about/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "3db1971bc1f7e02b"
  },
@@ -1825,9 +1825,9 @@
   "hash": "1bef76e786f181cd"
  },
  "index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "f260439375208843"
+  "hash": "8398f38d81a5867c"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -2140,9 +2140,9 @@
   "hash": "a67430a1faf78956"
  },
  "tools/ai-crawler-checker/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "c6f030291d20af5d"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "40f422a4532b02d3"
  },
  "tools/http-header-checker/index.html": {
   "changed_in_build": false,
