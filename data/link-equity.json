@@ -1,9 +1,9 @@
 {
   "site": "checkengineseo.com",
   "pages": 461,
-  "edges": 14678,
+  "edges": 14682,
   "average_share_pct": 0.22,
-  "below_half": 427,
+  "below_half": 426,
   "nodes": [
     {
       "path": "/",
@@ -2317,7 +2317,7 @@
     },
     {
       "path": "/learn/crawler-directives/",
-      "inlinks": 1,
+      "inlinks": 2,
       "share_pct": 0.01,
       "index": 0.05
     },
@@ -2497,9 +2497,9 @@
     },
     {
       "path": "/learn/what-is-claudebot/",
-      "inlinks": 15,
-      "share_pct": 0.1,
-      "index": 0.45
+      "inlinks": 16,
+      "share_pct": 0.11,
+      "index": 0.5
     },
     {
       "path": "/learn/what-is-https/",
@@ -2515,9 +2515,9 @@
     },
     {
       "path": "/learn/what-is-robots-txt/",
-      "inlinks": 6,
-      "share_pct": 0.04,
-      "index": 0.18
+      "inlinks": 7,
+      "share_pct": 0.05,
+      "index": 0.23
     },
     {
       "path": "/learn/what-is-structured-data/",
@@ -2635,9 +2635,9 @@
     },
     {
       "path": "/tools/robots-txt-tester/",
-      "inlinks": 11,
-      "share_pct": 0.07,
-      "index": 0.32
+      "inlinks": 12,
+      "share_pct": 0.08,
+      "index": 0.36
     },
     {
       "path": "/tools/seo-checker/",
@@ -2772,5 +2772,5 @@
       "index": 0.18
     }
   ],
-  "measured": "2026-11-21"
+  "measured": "2026-11-22"
 }
