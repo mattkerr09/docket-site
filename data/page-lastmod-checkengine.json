@@ -930,12 +930,12 @@
   "hash": "761ef7e3c3629d13"
  },
  "best/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "df5523870e9f4dad"
  },
  "best/screaming-frog-alternatives/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "0f1836a5415af63d"
  },
@@ -945,7 +945,7 @@
   "hash": "986123e795f8caa6"
  },
  "best/seo-crawler-for-windows/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "2b2edb733ca98aa4"
  },
@@ -1525,9 +1525,9 @@
   "hash": "75489f46c5d44bd7"
  },
  "how-to/check-a-page-for-noindex/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "0868017bcccd4512"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "6d9b54bebdb7c218"
  },
  "how-to/check-mobile-seo-from-a-crawl/index.html": {
   "changed_in_build": false,
@@ -1545,7 +1545,7 @@
   "hash": "95597d6e2196a78b"
  },
  "how-to/find-broken-links-and-seo-problems/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "bc9870506e3a370c"
  },
@@ -1730,7 +1730,7 @@
   "hash": "754ada525a8c248e"
  },
  "how-to/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "d9258b29d5fe654e"
  },
@@ -1982,7 +1982,7 @@
  "learn/internal-link-equity/index.html": {
   "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "c1697abf0065ad91"
+  "hash": "011eb9fe5af6ca5f"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
@@ -2180,9 +2180,9 @@
   "hash": "8fd9cc3ae9122ba1"
  },
  "tools/meta-tag-checker/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "7d8460a5bb48f5fc"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "0f01ca24ad6f5866"
  },
  "tools/redirect-checker/index.html": {
   "changed_in_build": false,
