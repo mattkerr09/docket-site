@@ -1,13 +1,13 @@
 {
  "about/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-19",
-  "hash": "7aa1795a07305d01"
+  "date": "2026-11-22",
+  "hash": "ecbd432c24dac53c"
  },
  "ai-assistants/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "025a4c96a170046d"
+  "date": "2026-11-22",
+  "hash": "757b32e26bcd247d"
  },
  "ai-crawlers/addsearchbot/index.html": {
   "changed_in_build": false,
@@ -1471,8 +1471,8 @@
  },
  "for/developers/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "41fc6ca397d1d555"
+  "date": "2026-11-22",
+  "hash": "c89423923b689572"
  },
  "for/ecommerce/index.html": {
   "changed_in_build": false,
@@ -1506,8 +1506,8 @@
  },
  "how-to/audit-your-site-from-an-ai-assistant/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "bdf41f66ee862c95"
+  "date": "2026-11-22",
+  "hash": "084c0548e895babe"
  },
  "how-to/backlink-audit/index.html": {
   "changed_in_build": false,
@@ -1886,8 +1886,8 @@
  },
  "learn/audit-tool-accuracy/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "50172553610e72ee"
+  "date": "2026-11-22",
+  "hash": "51e099d97aabaccf"
  },
  "learn/brand-consistency/index.html": {
   "changed_in_build": false,
@@ -1965,7 +1965,7 @@
   "hash": "639cbec33fab0c41"
  },
  "learn/internal-link-equity/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "6ea4f9babf02efda"
  },
@@ -2036,8 +2036,8 @@
  },
  "learn/what-docket-got-wrong/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "1223fc75b7a32877"
+  "date": "2026-11-22",
+  "hash": "95182922a63db3d9"
  },
  "learn/what-is-a-404-error/index.html": {
   "changed_in_build": false,
