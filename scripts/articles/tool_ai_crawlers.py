@@ -32,7 +32,7 @@ import facts as F  # noqa: E402
 from tools_free import audit_next, how_it_works  # noqa: E402
 from crawler_fix import FIX_JS, search_names as _search_names  # noqa: E402
 from brand import SHORT  # noqa: E402
-from comparisons import SEO_AUDIT_RANGE, _verified_note, source_link  # noqa: E402
+from comparisons import CHECKED_HUMAN, SEO_AUDIT_RANGE, _verified_note, source_link  # noqa: E402
 from render import (BASE, DATA, HAS_SAMPLE, N_CHECKS, PRICE_COMPACT, SAMPLE_REPORT, price_req_html,  # noqa: E402
                     buy_block, checkout_url, render)
 
@@ -97,7 +97,7 @@ def checker() -> Path:
     edge_pct = round(100 * edge_denied / surveyed, 2)
     next_step = audit_next("tools-checker-result", what="one file, read for one page")
     next_step = next_step.replace("</p>", f"""</p>
-  <p>Save thousands by doing it yourself: an audit is quoted at {SEO_AUDIT_RANGE} ({source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")}, read 12 November 2026). Check Engine is {PRICE_COMPACT}.</p>
+  <p>Save thousands by doing it yourself: an audit is quoted at {SEO_AUDIT_RANGE} ({source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")}, read {CHECKED_HUMAN['audit-agency-prices-checker']}). Check Engine is {PRICE_COMPACT}.</p>
   {_verified_note("audit-agency-prices-checker", closing="Prices vary with the work and the site.")}""", 1)
 
     body = f"""

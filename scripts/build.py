@@ -1538,9 +1538,9 @@ def pricing_page() -> Path:
 data-ev-button="pricing-page">Get the {DMG_SIZE} Mac download</a>{(f' or <a href="{download_url("pricing-page-windows", to=WIN_SETUP)}" data-ev="Download" data-ev-button="pricing-page-windows">the {WIN_SETUP_SIZE} Windows installer</a>') if WINDOWS else ''} and paste the key from your receipt.</p>
 
 <h2>What an audit costs elsewhere</h2>
-<p>{comparisons.source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")} quotes an SEO audit at {comparisons.SEO_AUDIT_RANGE}, read 12 November 2026.
-{comparisons.source_link("WebFX", "https://www.webfx.com/seo/pricing/how-much-does-seo-audit-cost/")}'s survey says most businesses, {comparisons.WEBFX_AUDIT_SHARE}, pay {comparisons.WEBFX_AUDIT_RANGE} for an audit, read 12 November 2026.
-{comparisons.source_link("Ahrefs", "https://ahrefs.com/blog/seo-pricing/")} says agencies charge {comparisons.AGENCY_SEO_MONTHLY} a month on average for SEO, read 12 November 2026.</p>
+<p>{comparisons.source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")} quotes an SEO audit at {comparisons.SEO_AUDIT_RANGE}, read {comparisons.CHECKED_HUMAN['audit-agency-prices-pricing']}.
+{comparisons.source_link("WebFX", "https://www.webfx.com/seo/pricing/how-much-does-seo-audit-cost/")}'s survey says most businesses, {comparisons.WEBFX_AUDIT_SHARE}, pay {comparisons.WEBFX_AUDIT_RANGE} for an audit, read {comparisons.CHECKED_HUMAN['audit-agency-prices-pricing']}.
+{comparisons.source_link("Ahrefs", "https://ahrefs.com/blog/seo-pricing/")} says agencies charge {comparisons.AGENCY_SEO_MONTHLY} a month on average for SEO, read {comparisons.CHECKED_HUMAN['audit-agency-prices-pricing']}.</p>
 <p>Check Engine finds and ranks what is wrong and shows the fix. It does not do the fixing for you.</p>
 <p>Check Engine is {PRICE_COMPACT}.</p>
 {comparisons._verified_note("audit-agency-prices-pricing", closing="Prices vary with the work and the site.")}

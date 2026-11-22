@@ -98,10 +98,12 @@ CHECKED_ON_HUMAN = "10 August 2026"
 #:
 #: Found by fetching the deployed page and reading it, not from the source.
 CHECKED_HUMAN: dict[str, str] = {
-    # Host read the three market-price sources on 2026-11-12.
-    "audit-agency-prices-home": "12 November 2026",
-    "audit-agency-prices-pricing": "12 November 2026",
-    "audit-agency-prices-checker": "12 November 2026",
+    # Host read the three market-price sources on 2026-11-12 and again on 2026-11-22 (SEOProfy: starts around $500, up to
+    # $5,000, page last updated 26 Oct 2026; WebFX: $101 to $750 for 43% of 250 surveyed; Ahrefs: agencies $3,209 a month,
+    # page updated 15 August 2024): all three unchanged.
+    "audit-agency-prices-home": "22 November 2026",
+    "audit-agency-prices-pricing": "22 November 2026",
+    "audit-agency-prices-checker": "22 November 2026",
     # Host read both pricing pages on 2026-11-11 for the MCP access claim.
     "ai-assistants-mcp": "11 November 2026",
     # Re-read 2026-10-19: the product page's own SoftwareApplication schema again (operatingSystem "MacOS", the
@@ -168,9 +170,9 @@ CHECKED_HUMAN: dict[str, str] = {
     "rq-noindex": "20 November 2026",
 }
 CHECKED_ISO: dict[str, str] = {
-    "audit-agency-prices-home": "2026-11-12",
-    "audit-agency-prices-pricing": "2026-11-12",
-    "audit-agency-prices-checker": "2026-11-12",
+    "audit-agency-prices-home": "2026-11-22",
+    "audit-agency-prices-pricing": "2026-11-22",
+    "audit-agency-prices-checker": "2026-11-22",
     "ai-assistants-mcp": "2026-11-11",
     "scrutiny": "2026-11-21",
     "se-ranking-vs-screaming-frog": "2026-11-09",

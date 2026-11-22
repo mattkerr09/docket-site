@@ -36,11 +36,11 @@ SOURCES = (
 HOME = ("Save thousands by doing it yourself. Agencies average $3,209 a month for SEO (Ahrefs) "
         "and one audit is quoted at $500 to $5,000 (SEOProfy).")
 CHECKER = ("Save thousands by doing it yourself: an audit is quoted at $500 to $5,000 "
-           "(SEOProfy, read 12 November 2026).")
+           "(SEOProfy, read 22 November 2026).")
 PRICING = (
-    "SEOProfy quotes an SEO audit at $500 to $5,000, read 12 November 2026.",
-    "WebFX's survey says most businesses, 43%, pay $101 to $750 for an audit, read 12 November 2026.",
-    "Ahrefs says agencies charge $3,209 a month on average for SEO, read 12 November 2026.",
+    "SEOProfy quotes an SEO audit at $500 to $5,000, read 22 November 2026.",
+    "WebFX's survey says most businesses, 43%, pay $101 to $750 for an audit, read 22 November 2026.",
+    "Ahrefs says agencies charge $3,209 a month on average for SEO, read 22 November 2026.",
     "Check Engine finds and ranks what is wrong and shows the fix. It does not do the fixing for you.",
 )
 
@@ -55,8 +55,8 @@ def check_pages(site, price):
         raw = (site / relative).read_text()
         note = re.search(r'<p class="verified-note">.*?</p>', raw, re.S)
         assert note, (relative, "dated source note missing")
-        assert "Checked 12 November 2026." in visible(note[0]), relative
-        assert "read 12 November 2026" in visible(note[0]), relative
+        assert "Checked 22 November 2026." in visible(note[0]), relative
+        assert "read 22 November 2026" in visible(note[0]), relative
         if relative == "index.html":
             expected = ("Ahrefs", "SEOProfy")
             section = re.search(r'<p class="hero-sub">(.*?)</p>', raw, re.S)[0]
@@ -109,8 +109,8 @@ def check_pages(site, price):
 def check_registration(site, notes):
     recorded = competitive._verified_at((ROOT / competitive.CLAIMS_SOURCE).read_text())
     for key, relative in PAGES.items():
-        assert comparisons.CHECKED_ISO[key] == "2026-11-12"
-        assert comparisons.CHECKED_HUMAN[key] == "12 November 2026"
+        assert comparisons.CHECKED_ISO[key] == "2026-11-22"
+        assert comparisons.CHECKED_HUMAN[key] == "22 November 2026"
         assert tuple(source for _, source in comparisons.VERIFIED[key]) == SOURCES
         assert recorded[key] == comparisons.VERIFIED[key]
         assert competitive.VERIFIED_PAGES[key] == relative
@@ -120,7 +120,7 @@ def check_registration(site, notes):
         for relative, (raw, note) in notes.items():
             mutations = [
                 (raw.replace(note, "", 1), "requires a VERIFIED note dated"),
-                (raw.replace(note, note.replace("12 November 2026", "11 November 2026"), 1),
+                (raw.replace(note, note.replace("22 November 2026", "21 November 2026"), 1),
                  "requires a VERIFIED note dated"),
             ]
             mutations.extend((raw.replace(note, note.replace(f'href="{source}"', 'href="/"'), 1),
