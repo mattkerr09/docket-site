@@ -21,7 +21,7 @@ PHRASES = {
     "/tools/redirect-checker/": "Redirect checker",  # no data: inference
     "/tools/robots-txt-tester/": "Robots txt tester",
     "/tools/meta-tag-checker/": "Title tag length checker",
-    "/tools/json-ld-checker/": "JSON-LD checker",
+    "/tools/json-ld-checker/": "JSON-LD testing tool",  # 21 Nov upgrade: "json ld testing tool" 7 at 24.4
     "/tools/serp-preview/": "SERP preview tool",
     "/tools/http-header-checker/": "HTTP header checker",  # no data: inference
     "/tools/seo-checker/": "Free SEO checker",

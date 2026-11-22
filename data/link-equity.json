@@ -1,7 +1,7 @@
 {
   "site": "checkengineseo.com",
   "pages": 461,
-  "edges": 14678,
+  "edges": 14680,
   "average_share_pct": 0.22,
   "below_half": 427,
   "nodes": [
@@ -2317,7 +2317,7 @@
     },
     {
       "path": "/learn/crawler-directives/",
-      "inlinks": 1,
+      "inlinks": 2,
       "share_pct": 0.01,
       "index": 0.05
     },
@@ -2515,9 +2515,9 @@
     },
     {
       "path": "/learn/what-is-robots-txt/",
-      "inlinks": 6,
-      "share_pct": 0.04,
-      "index": 0.18
+      "inlinks": 7,
+      "share_pct": 0.05,
+      "index": 0.23
     },
     {
       "path": "/learn/what-is-structured-data/",
@@ -2772,5 +2772,5 @@
       "index": 0.18
     }
   ],
-  "measured": "2026-11-21"
+  "measured": "2026-11-22"
 }
