@@ -114,7 +114,7 @@ Michigan, United States.
 - Can I use it for client work? Yes. Audit any number of sites (yours, a client's, a
   prospect's or a competitor's) and charge clients for the work. The licence belongs
   to the person or company that paid; it may not be resold or sublicensed.
-- Does it run on Windows? Yes. Check Engine v1.3.165 has an installer for 64-bit Windows,
+- Does it run on Windows? Yes. Check Engine v1.3.166 has an installer for 64-bit Windows,
   18.1 MB, signed by Kerr & Company LLC. It is on the download page beside the Mac app
   and a command-line build for Linux x86_64.
 - How do I get help? Email support@docketseo.app. Questions whose answers would help
@@ -177,11 +177,11 @@ Michigan, United States.
 - [How to fix duplicate title tags, and what it won't fix](https://checkengineseo.com/how-to/fix-duplicate-title-tags/): Duplicate titles are not a penalty. They let the wrong page on your site win the query and waste the one line of the result you get to write.
 - [How to write title tags that fit (width, not characters)](https://checkengineseo.com/how-to/write-title-tags-that-fit/): Search engines truncate by pixel width, not character count, which makes the usual advice wrong on any site that is not entirely English.
 - [How to run a JavaScript SEO audit (step by step)](https://checkengineseo.com/how-to/javascript-seo-audit/): A JavaScript SEO audit compares the HTML your server sends against the rendered page, in five steps. Which of the three gaps you have decides the fix.
-- [How to fix conflicting canonical tags](https://checkengineseo.com/how-to/fix-conflicting-canonicals/): Two canonicals on one page, canonicals pointing at noindex pages or another domain, and the section-wide mistake that can cost a site its long tail.
+- [Canonical tag issues: tested conflicts and fixes](https://checkengineseo.com/how-to/fix-conflicting-canonicals/): Fix canonical tag issues with one canonical pointing at an indexable URL on your own site. See what a real crawl caught and how to fix each case.
 - [Content audit with Ahrefs: which tool does what](https://checkengineseo.com/how-to/content-audit/): Ahrefs sells no product called Content Audit. What the job is, which of their tools covers which part, and the order that wastes least time.
 - [Hreflang and HTML lang mismatch: what a crawl catches](https://checkengineseo.com/how-to/fix-lang-attribute-mismatch/): Fix lang to match the text, then match the hreflang self-reference to lang. See which faults Check Engine caught in a local crawl.
 - [Backlink audit: how to do one, step by step](https://checkengineseo.com/how-to/backlink-audit/): Start a backlink audit in Google Search Console. Export linking sites, check unfamiliar links, compare sources and use Google's narrow disavow test.
-- [How to redirect http:// to https://, and when it won't](https://checkengineseo.com/how-to/redirect-http-to-https/): A 301 from http:// to https://, host by host. Plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.
+- [How to change HTTP to HTTPS, and redirect it, by host](https://checkengineseo.com/how-to/redirect-http-to-https/): Install a certificate, switch the site address to HTTPS and add permanent 301 redirects. Find the setting by host and check what your server returns.
 
 ## Policies
 

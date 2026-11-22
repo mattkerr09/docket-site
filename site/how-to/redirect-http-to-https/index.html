@@ -12,10 +12,10 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>How to redirect http:// to https://, and when it won't</title>
-<meta name="description" content="A 301 from http:// to https://, host by host. Plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.">
+<title>How to change HTTP to HTTPS, and redirect it, by host</title>
+<meta name="description" content="Install a certificate, switch the site address to HTTPS and add permanent 301 redirects. Find the setting by host and check what your server returns.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="02b237de179c">
+<meta name="build-id" content="fadbf29e8c5b">
 <link rel="canonical" href="https://checkengineseo.com/how-to/redirect-http-to-https/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -23,16 +23,16 @@
 <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to redirect http:// to https://">
-<meta property="og:description" content="A 301 from http:// to https://, host by host. Plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.">
+<meta property="og:title" content="How to change http:// to https://, and redirect it">
+<meta property="og:description" content="Install a certificate, switch the site address to HTTPS and add permanent 301 redirects. Find the setting by host and check what your server returns.">
 <meta property="og:url" content="https://checkengineseo.com/how-to/redirect-http-to-https/">
 <meta property="og:site_name" content="Check Engine SEO">
 <meta property="og:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="How to redirect http:// to https://">
-<meta name="twitter:description" content="A 301 from http:// to https://, host by host. Plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.">
+<meta name="twitter:title" content="How to change http:// to https://, and redirect it">
+<meta name="twitter:description" content="Install a certificate, switch the site address to HTTPS and add permanent 301 redirects. Find the setting by host and check what your server returns.">
 <meta name="twitter:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -937,10 +937,10 @@ nav{background:rgba(7,12,13,.72);
   .btn,.btn:hover,.btn-ghost:hover,.split-col:hover{transform:none}}
 </style>
 
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.165/Docket-1.3.165-arm64.dmg", "offers": [{"@type": "Offer", "name": "Pro", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "The rest of the problems, the ranked fix plan and the markup to paste.", "priceValidUntil": "2026-12-02"}], "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.166/Docket-1.3.166-arm64.dmg", "offers": [{"@type": "Offer", "name": "Pro", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "The rest of the problems, the ranked fix plan and the markup to paste.", "priceValidUntil": "2026-12-02"}], "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Check Engine", "item": "https://checkengineseo.com/"}, {"@type": "ListItem", "position": 2, "name": "Fix it", "item": "https://checkengineseo.com/how-to/"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to redirect http:// to https://", "description": "A 301 from http:// to https://, host by host. Plus the certificate state that blocks the Enforce HTTPS setting, and the DNS record that causes it.", "datePublished": "2026-08-10", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/how-to/redirect-http-to-https/", "inLanguage": "en"}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does a missing HTTPS redirect actually affect ranking?", "acceptedAnswer": {"@type": "Answer", "text": "HTTPS has been a Google ranking signal since 2014, but the redirect matters more for duplication and trust than for the signal itself: without it the same page is reachable at two addresses, and browsers label the insecure one 'Not secure' in the address bar."}}, {"@type": "Question", "name": "Should I use a 301 or a 302?", "acceptedAnswer": {"@type": "Answer", "text": "301. A 302 is a temporary redirect and tells a search engine to keep indexing the http:// URL, which is the opposite of what you want."}}, {"@type": "Question", "name": "Why does 'Enforce HTTPS' refuse to turn on?", "acceptedAnswer": {"@type": "Answer", "text": "Usually because the certificate has not finished being issued. On GitHub Pages the API reports a certificate state such as dns_changed. The common cause is a DNS record that does not point at the host (often a www subdomain still pointing at a registrar parking page) because the certificate covers both the apex and www."}}, {"@type": "Question", "name": "Should I add HSTS at the same time?", "acceptedAnswer": {"@type": "Answer", "text": "No. Get the redirect working first. HSTS tells browsers to refuse plain HTTP for your domain for the whole max-age, so if HTTPS is broken when they act on it there is no fallback. Add it afterwards with a short max-age and raise it once you are confident."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to change http:// to https://, and redirect it", "description": "Install a certificate, switch the site address to HTTPS and add permanent 301 redirects. Find the setting by host and check what your server returns.", "datePublished": "2026-08-10", "dateModified": "2026-11-21", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/how-to/redirect-http-to-https/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does a missing HTTPS redirect actually affect ranking?", "acceptedAnswer": {"@type": "Answer", "text": "HTTPS has been a Google ranking signal, but the redirect matters more for duplication and trust than for the signal itself: without it the same page is reachable at two addresses, and browsers label the insecure one 'Not secure' in the address bar."}}, {"@type": "Question", "name": "Should I use a 301 or a 302?", "acceptedAnswer": {"@type": "Answer", "text": "301. A 302 is a temporary redirect and tells a search engine to keep indexing the http:// URL, which is the opposite of what you want."}}, {"@type": "Question", "name": "Why does 'Enforce HTTPS' refuse to turn on?", "acceptedAnswer": {"@type": "Answer", "text": "Usually because the certificate has not finished being issued. On GitHub Pages the API reports a certificate state such as dns_changed. The common cause is a DNS record that does not point at the host, often a www subdomain still pointing at a registrar parking page, because the certificate covers both the apex and www."}}, {"@type": "Question", "name": "Should I add HSTS at the same time?", "acceptedAnswer": {"@type": "Answer", "text": "No. Get the redirect working first. HSTS tells browsers to refuse plain HTTP for your domain for the whole max-age, so if HTTPS is broken when they act on it there is no fallback. Add it afterwards with a short max-age and raise it once you are confident."}}, {"@type": "Question", "name": "Do I lose rankings when I change to HTTPS?", "acceptedAnswer": {"@type": "Answer", "text": "Use permanent 301 redirects for every URL so each old address points to its new HTTPS address. Preserve each path rather than sending every page to the homepage."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -985,19 +985,12 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Check Engine</a>
 </div></nav>
 <main id="main">
-<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / http to https</div><h1>How to redirect http:// to https://</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-08-10">10 August 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / http to https</div><h1>How to change http:// to https://, and redirect it</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-08-10">10 August 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-21">21 November 2026</time></p>
 
-<p class="lede">If your site answers on <code>http://</code> without sending the visitor to
-<code>https://</code>, you have two problems and only one of them is about ranking. The
-ranking one is old news. The other is that a browser now writes "Not secure" next to your
-address, and the person reading it has no idea whether that means you are careless or
-compromised.</p>
-
-<p>We found this on our own site. Check Engine audited <code data-brand-history>docketseo.app</code><span data-brand-history> (this site's address until November 2026)</span>, returned
-<strong>http:// does not redirect to https://</strong> at HIGH, and it was right: the plain
-HTTP address answered normally with no redirect at all. A tool that ships this check was
-shipping the fault. That is embarrassing in a useful way, because fixing it turned up the part
-of this problem nobody writes down.</p>
+<p class="lede">To change HTTP to HTTPS, install a certificate. Most hosts issue one free.
+Switch the site's own address setting to <code>https://</code>. Add a permanent <code>301</code>
+redirect from every <code>http://</code> URL to its <code>https://</code> twin. Then fix links
+and images still loading over HTTP.</p>
 
 <h2>First, confirm it rather than assume it</h2>
 
@@ -1012,24 +1005,42 @@ directly:</p>
 happily serving the insecure version to anyone who asks for it, including any crawler that
 does not upgrade, and any visitor following an old link.</p>
 
+<h2>What our own site returns</h2>
+
+<p>We checked our own site with the curl commands above. Here is what the server returned:</p>
+
+<div class="wrap-tbl"><table>
+<thead><tr><th>Request</th><th>Answer</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td><code>http://checkengineseo.com/</code></td><td><code>301</code> to <code>https://checkengineseo.com/</code></td><td>One hop.</td></tr>
+<tr><td><code>http://www.checkengineseo.com/</code></td><td><code>301</code> straight to <code>https://checkengineseo.com/</code></td><td>One hop.</td></tr>
+<tr><td><code>https://www.checkengineseo.com/</code></td><td><code>301</code> to <code>https://checkengineseo.com/</code></td><td>The address without www.</td></tr>
+<tr><td>A deep page over <code>http://</code></td><td><code>301</code> to the same path over <code>https://</code>, then <code>200</code></td><td>The path stays intact.</td></tr>
+</tbody>
+</table></div>
+
+<p>The plain HTTP www address goes straight to the HTTPS address without www in one hop,
+not two. Every redirect answered in well under a second.</p>
+
+<p>The HTTPS response sent no <code>Strict-Transport-Security</code> header when we checked.
+See <a href="#hsts">the HSTS follow-up</a> below.</p>
+
 <h2>The fix, by where the site is hosted</h2>
 
 <p>On most managed hosts this is one setting, and the setting is usually already there:</p>
 
-<ul>
-<li><strong>GitHub Pages</strong>: Settings → Pages → <em>Enforce HTTPS</em>.</li>
-<li><strong>Netlify, Vercel, Cloudflare Pages</strong>: on by default; look for "Force HTTPS"
-or "Always Use HTTPS" if it is not.</li>
-<li><strong>Cloudflare in front of your own server</strong>: SSL/TLS → Edge Certificates →
-<em>Always Use HTTPS</em>. Set the encryption mode to Full (strict), not Flexible; Flexible
-re-encrypts to your origin over plain HTTP and quietly reintroduces the problem you are
-fixing.</li>
-<li><strong>Nginx</strong>: a server block on port 80 whose only job is
-<code>return 301 https://$host$request_uri;</code>. Return the redirect, do not rewrite: a
-rewrite can drop the path and land everyone on the homepage.</li>
-<li><strong>Apache</strong>: <code>Redirect permanent / https://yourdomain.com/</code> in the
-port-80 virtual host, or the mod_rewrite equivalent if you already use it.</li>
-</ul>
+<div class="wrap-tbl"><table>
+<thead><tr><th>Host or server</th><th>Where the HTTPS setting is</th><th>How the redirect is made</th><th>Common blocker</th></tr></thead>
+<tbody>
+<tr><td>GitHub Pages</td><td>Settings → Pages → <em>Enforce HTTPS</em></td><td>Turn on <em>Enforce HTTPS</em>.</td><td>Enforce HTTPS is not on.</td></tr>
+<tr><td>Netlify</td><td>Look for "Force HTTPS" or "Always Use HTTPS".</td><td>On by default.</td><td>HTTPS is not on.</td></tr>
+<tr><td>Vercel</td><td>Look for "Force HTTPS" or "Always Use HTTPS".</td><td>On by default.</td><td>HTTPS is not on.</td></tr>
+<tr><td>Cloudflare Pages</td><td>Look for "Force HTTPS" or "Always Use HTTPS".</td><td>On by default.</td><td>HTTPS is not on.</td></tr>
+<tr><td>Cloudflare in front of your own server</td><td>SSL/TLS → Edge Certificates → <em>Always Use HTTPS</em></td><td>Turn on <em>Always Use HTTPS</em>.</td><td>Use Full (strict), not Flexible. Flexible sends traffic to your origin over plain HTTP.</td></tr>
+<tr><td>Nginx</td><td>A server block on port eighty</td><td><code>return 301 https://$host$request_uri;</code></td><td>A rewrite can drop the path and land everyone on the homepage.</td></tr>
+<tr><td>Apache</td><td>The port-eighty virtual host</td><td><code>Redirect permanent / https://yourdomain.com/</code>, or the mod_rewrite equivalent if you already use it.</td><td>Preserve the path rather than sending deep links to the homepage.</td></tr>
+</tbody>
+</table></div>
 
 <p>Two details that cost people a morning. Use <strong>301</strong>, not 302: a temporary
 redirect tells a search engine to keep the old URL. And preserve the path: a redirect that
@@ -1037,6 +1048,18 @@ sends <code>/pricing</code> to the homepage loses every deep link you have ever 
 is a worse outcome than the problem.</p>
 
 <h2>When the setting refuses: the part nobody documents</h2>
+
+<p>If your site answers on <code>http://</code> without sending the visitor to
+<code>https://</code>, you have two problems and only one of them is about ranking. The
+ranking one is old news. The other is that a browser now writes "Not secure" next to your
+address, and the person reading it has no idea whether that means you are careless or
+compromised.</p>
+
+<p>We found this on our own site. Check Engine audited <code data-brand-history>docketseo.app</code><span data-brand-history> (this site's address until November 2026)</span>, returned
+<strong>http:// does not redirect to https://</strong> at HIGH, and it was right: the plain
+HTTP address answered normally with no redirect at all. A tool that ships this check was
+shipping the fault. That is embarrassing in a useful way, because fixing it turned up the part
+of this problem nobody writes down.</p>
 
 <p>This is what actually happened to us. The API refused:</p>
 
@@ -1062,7 +1085,10 @@ dig +short www.yourdomain.com CNAME</code></pre>
 your host too, not at a registrar landing page, not at an old server, and not at nothing.
 Fix that, and the certificate finishes issuing on its own; the setting then takes normally.</p>
 
+<span id="hsts"></span>
 <h2>HSTS is the follow-up, and it is not the same thing</h2>
+
+<p>Our own site sent no <code>Strict-Transport-Security</code> header when we checked.</p>
 
 <p>A redirect fixes the request after it happens. <code>Strict-Transport-Security</code> stops
 the insecure request being made at all: once a browser has seen the header, it goes straight to
@@ -1080,6 +1106,9 @@ months.</p>
 
 <h2>What Check Engine does about it</h2>
 
+<p>On a local test site served over plain HTTP, Check Engine reported "The site is not served
+over HTTPS" at critical severity.</p>
+
 <p>It probes the plain-HTTP address directly rather than trusting the browser's upgrade, so it
 sees what a crawler sees. It reports the missing redirect and the missing HSTS header as
 separate findings, because they are separate jobs and doing the second one first is how sites
@@ -1088,8 +1117,8 @@ break. Both name the change to make.</p>
 <p>It found this on the site that sells it. That is the argument for running an audit against
 your own work rather than reading about one.</p>
 
-<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-redirect-http-to-https-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.165/Docket-1.3.165-arm64.dmg" data-ev="Download" data-ev-button="how-to-redirect-http-to-https-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-redirect-http-to-https-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.165/Docket-1.3.165-x86_64.dmg" data-ev="Download" data-ev-button="how-to-redirect-http-to-https-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-redirect-http-to-https" data-ev="Buy" data-ev-price="19.99" data-ev-button="how-to-redirect-http-to-https">Buy Check Engine</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-redirect-http-to-https">See a sample report</a><span data-founding-until="2026-12-03T07:59:59Z"> &middot; Black Friday sale: $19.99 once through December 2. Then $39. The Buy button applies the sale for you; there is no code to type.</span></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does a missing HTTPS redirect actually affect ranking?</h3><p>HTTPS has been a Google ranking signal since 2014, but the redirect matters more for duplication and trust than for the signal itself: without it the same page is reachable at two addresses, and browsers label the insecure one 'Not secure' in the address bar.</p></div><div class="faq-item"><h3>Should I use a 301 or a 302?</h3><p>301. A 302 is a temporary redirect and tells a search engine to keep indexing the http:// URL, which is the opposite of what you want.</p></div><div class="faq-item"><h3>Why does 'Enforce HTTPS' refuse to turn on?</h3><p>Usually because the certificate has not finished being issued. On GitHub Pages the API reports a certificate state such as dns_changed. The common cause is a DNS record that does not point at the host (often a www subdomain still pointing at a registrar parking page) because the certificate covers both the apex and www.</p></div><div class="faq-item"><h3>Should I add HSTS at the same time?</h3><p>No. Get the redirect working first. HSTS tells browsers to refuse plain HTTP for your domain for the whole max-age, so if HTTPS is broken when they act on it there is no fallback. Add it afterwards with a short max-age and raise it once you are confident.</p></div></div></section>
+<aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-redirect-http-to-https-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.166/Docket-1.3.166-arm64.dmg" data-ev="Download" data-ev-button="how-to-redirect-http-to-https-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=how-to-redirect-http-to-https-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.166/Docket-1.3.166-x86_64.dmg" data-ev="Download" data-ev-button="how-to-redirect-http-to-https-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=how-to-redirect-http-to-https" data-ev="Buy" data-ev-price="19.99" data-ev-button="how-to-redirect-http-to-https">Buy Check Engine</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="how-to-redirect-http-to-https">See a sample report</a><span data-founding-until="2026-12-03T07:59:59Z"> &middot; Black Friday sale: $19.99 once through December 2. Then $39. The Buy button applies the sale for you; there is no code to type.</span></p></aside>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does a missing HTTPS redirect actually affect ranking?</h3><p>HTTPS has been a Google ranking signal, but the redirect matters more for duplication and trust than for the signal itself: without it the same page is reachable at two addresses, and browsers label the insecure one 'Not secure' in the address bar.</p></div><div class="faq-item"><h3>Should I use a 301 or a 302?</h3><p>301. A 302 is a temporary redirect and tells a search engine to keep indexing the http:// URL, which is the opposite of what you want.</p></div><div class="faq-item"><h3>Why does 'Enforce HTTPS' refuse to turn on?</h3><p>Usually because the certificate has not finished being issued. On GitHub Pages the API reports a certificate state such as dns_changed. The common cause is a DNS record that does not point at the host, often a www subdomain still pointing at a registrar parking page, because the certificate covers both the apex and www.</p></div><div class="faq-item"><h3>Should I add HSTS at the same time?</h3><p>No. Get the redirect working first. HSTS tells browsers to refuse plain HTTP for your domain for the whole max-age, so if HTTPS is broken when they act on it there is no fallback. Add it afterwards with a short max-age and raise it once you are confident.</p></div><div class="faq-item"><h3>Do I lose rankings when I change to HTTPS?</h3><p>Use permanent 301 redirects for every URL so each old address points to its new HTTPS address. Preserve each path rather than sending every page to the homepage.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">
