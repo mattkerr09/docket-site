@@ -15,7 +15,7 @@
 <title>Internal link equity: find the pages your site is starving</title>
 <meta name="description" content="The ranking signal your pages pass to each other. Measured on our own site, where fixing a starved page moved the problem rather than ending it.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="1239f5dfc7af">
+<meta name="build-id" content="2c8d97b235e3">
 <link rel="canonical" href="https://checkengineseo.com/learn/internal-link-equity/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -296,7 +296,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.3rem}.nav-brand{font-size:15px;gap:.4rem}.nav-brand svg{width:20px;height:20px}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
 @media(max-width:380px){.nav-brand{font-size:14px}.nav-brand i{font-size:.6rem;margin-left:.2em}nav .btn{padding:.5rem .5rem;font-size:.8rem}}
-@media(max-width:340px){.nav-brand i{display:none}}
+/* 320px: the row (logo, name, menu, "Get Check Engine") measured 298px in a 274px box, so the button ran 24px past the
+   container and, in a window with a 14px scrollbar, past the edge (22 Nov 2026, found by the visual gate on every page
+   type; the shorter name "Docket" had hidden it). The menu keeps its 44px touch target; the rest tightens. */
+@media(max-width:340px){.nav-brand i{display:none}.nav-inner{gap:.2rem}.nav-brand{font-size:13px;gap:.3rem}.nav-brand svg{width:18px;height:18px}nav .btn{padding:.45rem .4rem;font-size:.74rem}}
 /* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
    sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);
@@ -1002,7 +1005,7 @@ a typical page got.</p>
 the footer and reachable in one click, and by every conventional check it was fine.</p>
 
 <p>Then we fixed it, and the interesting part is what happened next. The same measurement
-today: <strong>464 pages and 14781 links</strong>, and the
+today: <strong>464 pages and 14782 links</strong>, and the
 download page holds <strong>3.13%</strong> from
 463 internal links: 14.23×
 the 0.22% average, rather than 0.22×. The problem did not go away. It
