@@ -925,24 +925,29 @@
   "hash": "f49327dcbdd3c44a"
  },
  "best/free-seo-audit-tools/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "761ef7e3c3629d13"
  },
  "best/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "b6906f74db6ab346"
+  "hash": "df5523870e9f4dad"
  },
  "best/screaming-frog-alternatives/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "d195f9110b38cd16"
+  "hash": "0f1836a5415af63d"
  },
  "best/seo-audit-software-no-subscription/index.html": {
   "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "986123e795f8caa6"
+ },
+ "best/seo-crawler-for-windows/index.html": {
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "2b2edb733ca98aa4"
  },
  "best/white-label-seo-audit-tools/index.html": {
   "changed_in_build": false,
@@ -1539,6 +1544,11 @@
   "date": "2026-11-10",
   "hash": "95597d6e2196a78b"
  },
+ "how-to/find-broken-links-and-seo-problems/index.html": {
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "bc9870506e3a370c"
+ },
  "how-to/findings-that-flag-correct-pages/index.html": {
   "changed_in_build": false,
   "date": "2026-11-10",
@@ -1720,9 +1730,9 @@
   "hash": "754ada525a8c248e"
  },
  "how-to/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "d9f4c737575ce610"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "d9258b29d5fe654e"
  },
  "how-to/javascript-seo-audit/index.html": {
   "changed_in_build": false,
@@ -1970,9 +1980,9 @@
   "hash": "639cbec33fab0c41"
  },
  "learn/internal-link-equity/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "9bfab3f45951f011"
+  "hash": "c1697abf0065ad91"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
