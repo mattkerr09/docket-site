@@ -50,7 +50,8 @@ Scheduled re-audits run only while the app is open and the computer is awake.</p
 Check whether the report explains a real fault you can reproduce, then repeat the crawl after fixing it.
 This page compares stated facts, so it does not award points for speed, accuracy or the number of findings.</p>
 <p>For a smaller task, see <a href="/best/free-seo-audit-tools/">free audit tools and limits</a>.
-For report branding, read <a href="/best/white-label-seo-audit-tools/">white-label tools compared</a>.</p>
+For report branding, read <a href="/best/white-label-seo-audit-tools/">white-label tools compared</a>.
+For audit software sold once instead of monthly, read <a href="/best/seo-audit-software-no-subscription/">SEO audit software with no monthly subscription</a>.</p>
 '''
     return render(cat='best', slug='screaming-frog-alternatives',
                   # 22 Nov 2026 (AI visibility, CEO go): ChatGPT's E3 named us from the 5 Nov version of this page, titled "for
