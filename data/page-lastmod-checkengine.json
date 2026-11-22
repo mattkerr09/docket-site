@@ -6,8 +6,8 @@
  },
  "ai-assistants/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "530a309c4e8ec056"
+  "date": "2026-11-21",
+  "hash": "025a4c96a170046d"
  },
  "ai-crawlers/addsearchbot/index.html": {
   "changed_in_build": false,
@@ -1466,8 +1466,8 @@
  },
  "for/agencies/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-13",
-  "hash": "a05998e03fa47187"
+  "date": "2026-11-21",
+  "hash": "f3cd869577189add"
  },
  "for/developers/index.html": {
   "changed_in_build": false,
@@ -1571,8 +1571,8 @@
  },
  "how-to/fix-conflicting-canonicals/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "f9833cfb1fc2231f"
+  "date": "2026-11-21",
+  "hash": "7ca5ebe7289942bc"
  },
  "how-to/fix-duplicate-title-tags/index.html": {
   "changed_in_build": false,
@@ -1746,8 +1746,8 @@
  },
  "how-to/redirect-http-to-https/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "eb6a29c65acfa05c"
+  "date": "2026-11-21",
+  "hash": "b234c5ec6a43fa7d"
  },
  "how-to/reduce-server-response-time/index.html": {
   "changed_in_build": false,
@@ -1827,7 +1827,7 @@
  "index.html": {
   "changed_in_build": false,
   "date": "2026-11-21",
-  "hash": "629d7a0d3e1357f7"
+  "hash": "366c099e71b5e912"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -1914,6 +1914,11 @@
   "date": "2026-11-10",
   "hash": "c2b7ed7aaaca65a6"
  },
+ "learn/crawler-directives/index.html": {
+  "changed_in_build": false,
+  "date": "2026-11-21",
+  "hash": "38949c84c42bd407"
+ },
  "learn/dead-contact-address/index.html": {
   "changed_in_build": false,
   "date": "2026-11-10",
@@ -1960,9 +1965,9 @@
   "hash": "639cbec33fab0c41"
  },
  "learn/internal-link-equity/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-21",
-  "hash": "35b462ee38981d73"
+  "hash": "1f8c333924f07fb9"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
@@ -2081,8 +2086,8 @@
  },
  "learn/what-is-robots-txt/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "4c5faf52c048f4cc"
+  "date": "2026-11-21",
+  "hash": "acc80ba36f05ab50"
  },
  "learn/what-is-structured-data/index.html": {
   "changed_in_build": false,
@@ -2151,8 +2156,8 @@
  },
  "tools/json-ld-checker/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "f3a5041de52ceefd"
+  "date": "2026-11-21",
+  "hash": "9f49278a7372d105"
  },
  "tools/llms-txt-generator/index.html": {
   "changed_in_build": false,
@@ -2191,8 +2196,8 @@
  },
  "tools/website-checker/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-16",
-  "hash": "ad7ce3cfa98d3a45"
+  "date": "2026-11-21",
+  "hash": "931066d3aa8575e3"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
   "changed_in_build": false,
