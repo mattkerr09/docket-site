@@ -203,7 +203,9 @@ def self_test() -> int:
     assert problems({"index.html": friday.replace("From 1 December", "Soon")}, open_rec, before, ends, price, code,
                     "30 November", "1 December")[0], "the Black Friday line without a date fails"
     named = "<html><body><p>The Black Friday price ends soon.</p></body></html>"
-    assert fails({"index.html": named}, open_rec, after), "'Black Friday price' counts as showing the offer"
+    # 22 Nov 2026 (price-flip review): a rival's "Black Friday price shown on 20 November" is a vendor fact, not our offer,
+    # so the bare words no longer count; our own sentence ("Black Friday sale: $X once ...") still does, below.
+    assert fails({"index.html": named}, open_rec, after) == [], "a rival's 'Black Friday price' is not our offer"
     through = page.replace("once</strong>", "once</strong>, through November 24")
     assert fails({"index.html": through}, open_rec, before, ends, "November 24") == [], "US through date passes"
     for name in ("index.html", "llms.txt"):
@@ -213,7 +215,8 @@ def self_test() -> int:
                   f'<p data-founding="{code}">Plain text</p>')
         assert fails({name: hidden}, open_rec, before) == [], "hidden names and attributes are exempt"
     assert fails({"offer.json": json.dumps({"founding": {"code": code}})}, open_rec, before) == []
-    assert fails({"index.html": "<p>Black Friday sale ends soon.</p>"}, open_rec, after), "sale phrase counts"
+    assert fails({"index.html": "<p>Black Friday sale: $1 once through May 1. Then $2.</p>"}, open_rec, after), "sale phrase counts"
+    assert fails({"index.html": "<p>Black Friday sale ends soon.</p>"}, open_rec, after) == [], "no colon: not our sentence"
     print("FOUNDING OFFER self-test ok")
     return 0
 

@@ -228,7 +228,11 @@ def check_closed_build_gates(destination):
     run of any of them on the closed state must not be the real deploy."""
     for argv in (("scripts/verify_numbers.py",), ("scripts/lint.py", "site"),
                  ("scripts/verify_structured_data_matches_page.py",), ("scripts/verify_price_claims.py",),
-                 ("scripts/verify_privacy_scripts.py",), ("scripts/verify_founding_offer.py", "--offline")):
+                 ("scripts/verify_privacy_scripts.py",), ("scripts/verify_founding_offer.py", "--offline"),
+                 # deploy.sh also runs each gate's own self-test; narrowing a gate without its self-test refused the
+                 # 22 November deploy, so the self-tests run here too.
+                 ("scripts/verify_founding_offer.py", "--self-test"), ("scripts/verify_privacy_scripts.py", "--self-test"),
+                 ("scripts/verify_structured_data_matches_page.py", "--self-test")):
         run_gate(destination, *argv)
 
 
