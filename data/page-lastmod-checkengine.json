@@ -935,9 +935,9 @@
   "hash": "951f42e87ddbc711"
  },
  "best/screaming-frog-alternatives/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "7d6cb2b774fe6c1d"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "98bf477be29b5943"
  },
  "best/white-label-seo-audit-tools/index.html": {
   "changed_in_build": false,
@@ -1825,7 +1825,7 @@
   "hash": "1bef76e786f181cd"
  },
  "index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "8398f38d81a5867c"
  },
@@ -2140,7 +2140,7 @@
   "hash": "a67430a1faf78956"
  },
  "tools/ai-crawler-checker/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "40f422a4532b02d3"
  },
@@ -2200,9 +2200,9 @@
   "hash": "931066d3aa8575e3"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "bc1ab89d2202ea5e"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "86839c5e11eaa42f"
  },
  "vs/contentking-vs-se-ranking/index.html": {
   "changed_in_build": false,
@@ -2275,9 +2275,9 @@
   "hash": "87358d53480a910c"
  },
  "vs/sitebulb-alternative/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "4251cd2074a5708d"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "43a100e6ac2cb39b"
  },
  "vs/sitebulb-vs-jetoctopus/index.html": {
   "changed_in_build": false,
