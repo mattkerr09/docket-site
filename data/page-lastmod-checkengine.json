@@ -1,8 +1,8 @@
 {
  "about/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "ecbd432c24dac53c"
+  "hash": "3db1971bc1f7e02b"
  },
  "ai-assistants/index.html": {
   "changed_in_build": false,
@@ -2070,7 +2070,7 @@
   "hash": "1b07a8612472f97d"
  },
  "learn/what-is-claudebot/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "51763fdd64af776c"
  },
