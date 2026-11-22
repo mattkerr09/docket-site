@@ -52,8 +52,10 @@ tag or response header instead, following {source_link("the noindex documentatio
 
 <h2>Use the existing page check, then finish the manual check</h2>
 <p>The <a href="/tools/meta-tag-checker/">Check Engine meta tag checker</a> is a useful starting
-point for the page's meta tags. Keep the response-header check beside it. A meta result by
-itself does not establish what a separate server header says.</p>
+point for the page's meta tags. It reads the robots and googlebot meta tags and the
+<code>X-Robots-Tag</code> response header. It does not yet read a crawler name at the start of a
+header, so check a header that begins with one by hand. A meta result by itself does not
+establish what a separate server header says.</p>
 <p>If a page should be listed, ask the person responsible for its template and server settings
 whether the directive is intended. If it should stay out, keep the directive and check that
 the crawler can read it. The same finding can call for opposite changes depending on the
@@ -76,7 +78,7 @@ For a wider review of the result, see <a href="/learn/seo-audit/">what an SEO au
         desc="Check meta robots in the page source and X-Robots-Tag in response headers. Google's robots.txt rule explains why an unread noindex can fail.",
         h1="Meta noindex checker: how to check a page for noindex",
         crumb='<a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / Check noindex',
-        body=body, published="2026-11-20", modified="2026-11-20",
+        body=body, published="2026-11-20", modified="2026-11-22",
         faq=[
             ("Can a noindex header exist when View Source has no meta robots tag?", answer_source(
                 "Yes. X-Robots-Tag is an HTTP response header. Inspect the response headers as well as the HTML before drawing a conclusion.", "Header guidance", GOOGLE)),

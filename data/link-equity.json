@@ -1,7 +1,7 @@
 {
   "site": "checkengineseo.com",
   "pages": 464,
-  "edges": 14781,
+  "edges": 14782,
   "average_share_pct": 0.22,
   "below_half": 429,
   "nodes": [
@@ -1855,7 +1855,7 @@
     },
     {
       "path": "/how-to/check-a-page-for-noindex/",
-      "inlinks": 1,
+      "inlinks": 2,
       "share_pct": 0.01,
       "index": 0.05
     },
