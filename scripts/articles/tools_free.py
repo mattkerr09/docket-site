@@ -593,7 +593,76 @@ def _form(button: str, placeholder: str) -> str:
 </form>"""
 
 
+#: Robots tags and headers that noindex checkers read differently, recorded by
+#: Article Studio on 22 November 2026. "google" and "bing" are what Google's
+#: robots meta tag documentation (last updated 24 March 2026) and its JavaScript
+#: SEO basics (last updated 4 March 2026), and Bing's "Robots meta tags and
+#: attributes that Bing supports", say happens. "flags" is whether this checker
+#: (workers/ai-crawler-check/src/page.js, checkMeta) reports a noindex for the
+#: case. metas follows what extract() keeps: robots and googlebot only.
+#: scripts/test_meta_tag_checker_upgrade_1122.py runs every case through
+#: checkMeta with node and fails if its answer stops matching "flags".
+META_CASES_READ = "22 November 2026"
+META_CASES = [
+    # (label, shown, metas, x_robots, google_drops, google, bing, flags)
+    ("A robots tag", '<meta name="robots" content="noindex">', {"robots": ["noindex"]}, "",
+     True, "Not indexed", "Not indexed", True),
+    ("none", '<meta name="robots" content="none">', {"robots": ["none"]}, "",
+     True, "Not indexed (none is noindex, nofollow)", "Not documented by Bing", True),
+    ("Two robots tags that conflict", '<meta name="robots" content="index">\n<meta name="robots" content="noindex">',
+     {"robots": ["index", "noindex"]}, "",
+     True, "Not indexed: the more restrictive rule applies", "Not documented by Bing", True),
+    ("A tag for Google only", '<meta name="googlebot" content="noindex">', {"googlebot": ["noindex"]}, "",
+     True, "Not indexed", "Not documented by Bing", True),
+    ("A tag for Bing only", '<meta name="bingbot" content="noindex">', {}, "",
+     False, "Indexed: Google ignores other names", "Not indexed", False),
+    ("A tag for Google News", '<meta name="googlebot-news" content="noindex">', {}, "",
+     False, "Indexed in Search, kept out of News", "Not documented by Bing", False),
+    ("A header", "X-Robots-Tag: noindex", {}, "noindex",
+     True, "Not indexed", "Not indexed", True),
+    ("A header for another crawler", "X-Robots-Tag: otherbot: noindex", {}, "otherbot: noindex",
+     False, "Indexed: the rule names another crawler", "Not documented by Bing", True),
+    ("A header for Bing only", "X-Robots-Tag: bingbot: noindex", {}, "bingbot: noindex",
+     False, "Indexed", "Not documented by Bing", True),
+    ("Google's own two-header example", "X-Robots-Tag: googlebot: nofollow\nX-Robots-Tag: otherbot: noindex, nofollow",
+     {}, "googlebot: nofollow, otherbot: noindex, nofollow",
+     False, "Indexed, links not followed", "Not documented by Bing", True),
+    ("A removal date that has passed", '<meta name="robots" content="unavailable_after: 2026-11-01">',
+     {"robots": ["unavailable_after: 2026-11-01"]}, "",
+     True, "Dropped after the date", "Not documented by Bing", False),
+    ("noindex added by JavaScript", "No robots tag in the HTML; a script adds noindex", {}, "",
+     True, "Can be dropped once the page is rendered", "Not documented by Bing", False),
+]
+
+
+def _meta_flag(case) -> str:
+    label, shown, metas, x, drops, google, bing, flags = case
+    if not flags:
+        return "Indexable"
+    return "Noindex (header)" if x else "Noindex (page tag)"
+
+
+def meta_case_counts() -> dict:
+    agree = sum(1 for c in META_CASES if c[7] == c[4])
+    return {"total": len(META_CASES), "agree": agree, "differ": len(META_CASES) - agree}
+
+
+def meta_cases_table() -> str:
+    rows = []
+    for case in META_CASES:
+        label, shown, metas, x, drops, google, bing, flags = case
+        code = "<br>".join(html.escape(line) for line in shown.split("\n"))
+        mark = "" if flags == drops else "<br><em>differs from Google</em>"
+        rows.append(f"<tr><td><strong>{html.escape(label)}</strong><br><code>{code}</code></td>"
+                    f"<td>{html.escape(google)}</td><td>{html.escape(bing)}</td>"
+                    f"<td>{_meta_flag(case)}{mark}</td></tr>")
+    return ('<div class="wrap-tbl"><table class="cmp" id="noindex-cases">\n'
+            "<thead><tr><th>The tag or header</th><th>Google</th><th>Bing</th><th>This checker</th></tr></thead>\n"
+            "<tbody>\n" + "\n".join(rows) + "\n</tbody></table></div>")
+
+
 def meta_checker() -> Path:
+    mc = meta_case_counts()
     body = f"""
 <p class="lede">A title tag length checker: paste the address of any page and it measures the title against
 about {TITLE_MAX} characters, the width Docket uses before a search result cuts it off, and the meta description
@@ -637,7 +706,9 @@ says what the page offers and why to click, in the first sentence.</p>
 <h2>What the other checks mean</h2>
 <ul>
 <li><strong>Indexable.</strong> A <code>noindex</code> in a robots meta tag, or in the
-<code>X-Robots-Tag</code> header, keeps the page out of search. The checker reads both.</li>
+<code>X-Robots-Tag</code> header, keeps the page out of search. The checker reads both, and a tag
+named <code>googlebot</code>. It does not yet read the crawler name at the start of a header, so check
+those by hand (see below).</li>
 <li><strong>Canonical.</strong> It tells search engines which address to show for this page. Pointing at
 another address is fine when it is deliberate, such as a filtered view pointing at the main list.</li>
 <li><strong>H1, language and viewport.</strong> One main heading, a <code>lang</code> on the
@@ -645,6 +716,24 @@ another address is fine when it is deliberate, such as a filtered view pointing 
 <li><strong>Open Graph.</strong> <code>og:title</code>, <code>og:description</code> and
 <code>og:image</code> decide what a link shows when it is shared in a chat or on social media.</li>
 </ul>
+
+<h2>Where noindex checkers disagree</h2>
+<p>A noindex rule can name one crawler, and a checker that ignores the name gives the wrong answer for
+the others. On {META_CASES_READ} we ran {_small(mc["total"])} small cases through this checker's own
+code and set its answer beside what Google and Bing document. It agreed with Google on
+{_small(mc["agree"])} and differed on {_small(mc["differ"])}.</p>
+{meta_cases_table()}
+<p>Three things cause the differences. First, a header can start with a crawler name:
+<code>X-Robots-Tag: otherbot: noindex</code> is Google's own example of a rule Google ignores, and this
+checker reports it as a noindex for every search engine. Second, Google reads only the names
+<code>robots</code>, <code>googlebot</code> and <code>googlebot-news</code> in a meta tag, and Bing reads
+<code>robots</code> and <code>bingbot</code>, so a <code>bingbot</code> tag keeps a page out of Bing alone,
+and this checker does not read it. Third, a removal date and a script are rules that act later, and a
+checker reads the page as it is now, without running its scripts.</p>
+<p>Google adds a warning about scripts: when the HTML it first fetches says noindex, it may skip running
+the page's JavaScript, so a script that removes the noindex may never run. If a page should be indexed,
+leave noindex out of the HTML the server sends. To read the tag and the header yourself, follow
+<a href="/how-to/check-a-page-for-noindex/">how to check a page for noindex</a>.</p>
 
 <h2>What one page cannot tell you</h2>
 <p>Whether two pages <a href="/how-to/fix-duplicate-title-tags/">share the same title</a>, whether the canonical you point at is itself indexable, and
@@ -660,6 +749,7 @@ with the rest of its {N_CHECKS} checks, and ranks what to fix first.</p>
 <li><a href="/how-to/fix-favicon-not-showing-in-search/">Fix a favicon that is not showing</a></li>
 <li><a href="/tools/json-ld-checker/">JSON-LD structured data checker</a></li>
 <li><a href="/tools/robots-txt-tester/">Robots.txt tester</a></li>
+<li><a href="/how-to/check-a-page-for-noindex/">How to check a page for noindex</a></li>
 </ul>
 
 <script>
@@ -694,7 +784,7 @@ with the rest of its {N_CHECKS} checks, and ranks what to fix first.</p>
 """
     return render(
         cat="tools", slug="meta-tag-checker",
-        modified="2026-10-28",
+        modified="2026-11-22",
         title="Title tag length checker (free): meta, noindex, OG",
         desc=(f"Free title tag length checker: paste a page to see if its title (about {TITLE_MAX} characters) and "
               "meta description fit, plus noindex, canonical, H1 and Open Graph tags."),
@@ -711,8 +801,13 @@ with the rest of its {N_CHECKS} checks, and ranks what to fix first.</p>
              f"Between {DESC_MIN} and {DESC_MAX} wide is the range Docket uses. Google may still write "
              "its own snippet when the description does not match the search."),
             ("How do I check if a page is set to noindex?",
-             "Paste it into the checker above. It reads the robots meta tag on the page and the "
-             "X-Robots-Tag header the server sends, and reports a noindex in either."),
+             "Paste it into the checker above. It reads the robots and googlebot meta tags on the page "
+             "and the X-Robots-Tag header the server sends, and reports a noindex in either. A header "
+             "that starts with a crawler name, such as otherbot: noindex, applies to that crawler only, "
+             "so read those by hand."),
+            ("Does a bingbot noindex tag keep a page out of Google?",
+             "No. Google reads only the robots, googlebot and googlebot-news names in a meta tag. A "
+             "bingbot tag is for Bing, which documents the robots and bingbot names."),
         ],
     )
 
