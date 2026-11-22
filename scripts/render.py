@@ -1360,7 +1360,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.3rem}.nav-brand{font-size:15px;gap:.4rem}.nav-brand svg{width:20px;height:20px}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
 @media(max-width:380px){.nav-brand{font-size:14px}.nav-brand i{font-size:.6rem;margin-left:.2em}nav .btn{padding:.5rem .5rem;font-size:.8rem}}
-@media(max-width:340px){.nav-brand i{display:none}}
+/* 320px: the row (logo, name, menu, "Get Check Engine") measured 298px in a 274px box, so the button ran 24px past the
+   container and, in a window with a 14px scrollbar, past the edge (22 Nov 2026, found by the visual gate on every page
+   type; the shorter name "Docket" had hidden it). The menu keeps its 44px touch target; the rest tightens. */
+@media(max-width:340px){.nav-brand i{display:none}.nav-inner{gap:.2rem}.nav-brand{font-size:13px;gap:.3rem}.nav-brand svg{width:18px;height:18px}nav .btn{padding:.45rem .4rem;font-size:.74rem}}
 /* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
    sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);
