@@ -19,6 +19,41 @@ _RUN = json.loads((DATA / "free-run.json").read_text())
 _SF_YEAR = re.search(r"\$\d+", READINGS["rq-screaming-frog"][1][0]).group()
 
 
+#: 22 Nov 2026 (AI visibility, CEO go, fix 3): ChatGPT's E6 and E10 ("free website SEO audit tool", "how to check my website for
+#: technical SEO issues for free") named Seobility, SEOptimer and PageSpeed Insights beside Screaming Frog, Ahrefs and Search Console,
+#: and this page covered only the last three. Every figure is single-quoted data with its own reading date (verify_numbers reads
+#: triple-quoted prose). Readings: ~/ops/research/docket-competitors.md, 22 Nov 2026 entry on the free-tool checks.
+_MORE_FREE = (
+    ('Seobility SEO Checker', 'Analyses any single web page for free, with no account named on the page read.',
+     'A full-site audit is a Premium feature: a free 14-day trial, then $69 a month.',
+     (('SEO Checker', 'https://www.seobility.net/en/seocheck/'),), '22 November 2026'),
+    ('SEOptimer', 'No ongoing free plan is listed on its pricing page; each plan offers a 7-day free trial.',
+     'Plans are $29, $39 and $59 a month. Its site refuses automated readers, so the plans were read by hand on 9 November 2026 and our reader was refused again on 22 November.',
+     (('SEOptimer pricing', 'https://www.seoptimer.com/pricing'),), '9 November 2026'),
+    ('PageSpeed Insights', 'Free: one URL goes in a single field and a speed report comes back.',
+     'It is a performance check for one page at a time, not an audit of every page on a site.',
+     (('PageSpeed Insights', 'https://pagespeed.web.dev/'),), '22 November 2026'),
+)
+
+
+def _more_free_tools() -> str:
+    rows = ''.join(
+        f'<tr data-tool="{name}"><th scope="row">{name}</th><td>{free}</td><td>{beyond}</td>'
+        f'<td>{", ".join(source_link(label, url) for label, url in sources)}. Read {read}.</td></tr>'
+        for name, free, beyond, sources, read in _MORE_FREE)
+    return (
+        '<h2>Three more free checks, and what each leaves out</h2>\n'
+        '<p>Searchers also ask about three tools that are not in the sections above. Two give you a free result for one page; one has no free plan. '
+        'None of them is a free crawl of a whole site, which is what the sections above compare.</p>\n'
+        '<div class="wrap-tbl"><table class="cmp"><caption>Seobility, SEOptimer and PageSpeed Insights: free use and its limit</caption>\n'
+        '<thead><tr><th scope="col">Tool</th><th scope="col">Free use</th><th scope="col">Beyond free</th><th scope="col">Dated source</th></tr></thead>\n'
+        f'<tbody>{rows}</tbody></table></div>\n'
+        '<p class="verified-note">Checked on Seobility\'s, SEOptimer\'s and Google\'s own pages: Seobility and PageSpeed Insights on 22 November 2026, '
+        'SEOptimer on 9 November 2026 (read by hand). Each row links the page used.</p>\n'
+        '<p>Check Engine\'s free app is a different kind of free: a full audit of your site with no key, showing the score, the problem count for each area '
+        'and the main problem with its fix. The full plan and the report exports need a licence.</p>')
+
+
 #: A searcher who lands here from "search engine checker" (Search Console, 28 days to 21 Nov 2026: 71 impressions at 41.1; Bing's top
 #: three are all paste-a-URL tools) wants a tool, not a list of tools. One line right after the lede sends them to ours. Internal
 #: link, no nofollow; everything it says (a score out of 100, the first fix, no sign-up) is already on this page.
@@ -101,6 +136,7 @@ site, yours or a competitor's, so there is nothing to verify first.</p>
 the page, noindex and canonical tags, redirects and HTTPS, the width of the title and description,
 headings, structured data and sharing tags. <strong>What it does not:</strong> speed and anything between pages, because it reads one page at a time.</p>
 
+{_more_free_tools()}
 <h2>Is there a free SEO audit plugin?</h2>
 <p>For Chrome, our free <a href="{CHROME_ADDON}" rel="noopener" data-ev="Install"
 data-ev-button="best-free-addon">Docket SEO add-on</a> checks the page in the tab you are on,
@@ -136,7 +172,7 @@ sets out what it checks and how a crawl is paid for.</p>
 """
     page = render(
         cat="best", slug="free-seo-audit-tools",
-        modified="2026-11-21",
+        modified="2026-11-22",
         title="Free SEO audit: tools and limits",
         desc=("Run a free SEO audit of a page or small site. Compare website audit tools, "
               "free limits, a Chrome plugin and what the free report shows."),
