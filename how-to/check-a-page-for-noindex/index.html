@@ -15,7 +15,7 @@
 <title>Meta noindex checker: check tags and response headers</title>
 <meta name="description" content="Check meta robots in the page source and X-Robots-Tag in response headers. Google's robots.txt rule explains why an unread noindex can fail.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="1239f5dfc7af">
+<meta name="build-id" content="2c8d97b235e3">
 <link rel="canonical" href="https://checkengineseo.com/how-to/check-a-page-for-noindex/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -296,7 +296,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.3rem}.nav-brand{font-size:15px;gap:.4rem}.nav-brand svg{width:20px;height:20px}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
 @media(max-width:380px){.nav-brand{font-size:14px}.nav-brand i{font-size:.6rem;margin-left:.2em}nav .btn{padding:.5rem .5rem;font-size:.8rem}}
-@media(max-width:340px){.nav-brand i{display:none}}
+/* 320px: the row (logo, name, menu, "Get Check Engine") measured 298px in a 274px box, so the button ran 24px past the
+   container and, in a window with a 14px scrollbar, past the edge (22 Nov 2026, found by the visual gate on every page
+   type; the shorter name "Docket" had hidden it). The menu keeps its 44px touch target; the rest tightens. */
+@media(max-width:340px){.nav-brand i{display:none}.nav-inner{gap:.2rem}.nav-brand{font-size:13px;gap:.3rem}.nav-brand svg{width:18px;height:18px}nav .btn{padding:.45rem .4rem;font-size:.74rem}}
 /* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
    sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);
@@ -939,7 +942,7 @@ nav{background:rgba(7,12,13,.72);
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "alternateName": "Docket SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "alternateName": "Docket SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "alternateName": "Docket SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-arm64.dmg", "offers": [{"@type": "Offer", "name": "Pro", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "The rest of the problems, the ranked fix plan and the markup to paste.", "priceValidUntil": "2026-12-02"}, {"@type": "Offer", "name": "Pro", "price": "39.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "validFrom": "2026-12-03", "description": "The rest of the problems, the ranked fix plan and the markup to paste."}], "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Check Engine", "item": "https://checkengineseo.com/"}, {"@type": "ListItem", "position": 2, "name": "Fix it", "item": "https://checkengineseo.com/how-to/"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Meta noindex checker: how to check a page for noindex", "description": "Check meta robots in the page source and X-Robots-Tag in response headers. Google's robots.txt rule explains why an unread noindex can fail.", "datePublished": "2026-11-20", "dateModified": "2026-11-20", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/"}, "mainEntityOfPage": "https://checkengineseo.com/how-to/check-a-page-for-noindex/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Meta noindex checker: how to check a page for noindex", "description": "Check meta robots in the page source and X-Robots-Tag in response headers. Google's robots.txt rule explains why an unread noindex can fail.", "datePublished": "2026-11-20", "dateModified": "2026-11-22", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/"}, "mainEntityOfPage": "https://checkengineseo.com/how-to/check-a-page-for-noindex/", "inLanguage": "en"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can a noindex header exist when View Source has no meta robots tag?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. X-Robots-Tag is an HTTP response header. Inspect the response headers as well as the HTML before drawing a conclusion. <a href=&quot;https://developers.google.com/search/docs/crawling-indexing/block-indexing&quot; rel=&quot;nofollow noopener&quot;>Header guidance<\/a>. Checked 20 November 2026."}}, {"@type": "Question", "name": "Should I add noindex to robots.txt to remove a listing?", "acceptedAnswer": {"@type": "Answer", "text": "No. Google does not support that rule in robots.txt. Its guide describes a meta tag or HTTP response header, on a resource the crawler can access. <a href=&quot;https://developers.google.com/search/docs/crawling-indexing/block-indexing&quot; rel=&quot;nofollow noopener&quot;>Noindex rules<\/a>. Checked 20 November 2026."}}, {"@type": "Question", "name": "What should I save before changing a noindex setting?", "acceptedAnswer": {"@type": "Answer", "text": "Save the exact address, the meta tag and response header you found, and the intended listing decision. That gives the person making the change a result they can check again."}}, {"@type": "Question", "name": "Does a noindex finding always call for removing the directive?", "acceptedAnswer": {"@type": "Answer", "text": "No. First decide whether the page should be listed. A checkout step or a private draft may have a different purpose from an article you want readers to find. Check the intended outcome before editing."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
@@ -985,7 +988,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Check Engine</a>
 </div></nav>
 <main id="main">
-<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / Check noindex</div><h1>Meta noindex checker: how to check a page for noindex</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-11-20">20 November 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / Check noindex</div><h1>Meta noindex checker: how to check a page for noindex</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-11-20">20 November 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-22">22 November 2026</time></p>
 
 <p id="measured-answer">A meta noindex checker needs to inspect 2 places: the HTML meta tag and the X-Robots-Tag response header, as <a href="https://developers.google.com/search/docs/crawling-indexing/block-indexing" rel="nofollow noopener">Google&#x27;s noindex guide</a> explains.
 Google says <q>the page or resource must not be blocked by a robots.txt file</q> for noindex to be effective.
@@ -1026,8 +1029,10 @@ tag or response header instead, following <a href="https://developers.google.com
 
 <h2>Use the existing page check, then finish the manual check</h2>
 <p>The <a href="/tools/meta-tag-checker/">Check Engine meta tag checker</a> is a useful starting
-point for the page's meta tags. Keep the response-header check beside it. A meta result by
-itself does not establish what a separate server header says.</p>
+point for the page's meta tags. It reads the robots and googlebot meta tags and the
+<code>X-Robots-Tag</code> response header. It does not yet read a crawler name at the start of a
+header, so check a header that begins with one by hand. A meta result by itself does not
+establish what a separate server header says.</p>
 <p>If a page should be listed, ask the person responsible for its template and server settings
 whether the directive is intended. If it should stay out, keep the directive and check that
 the crawler can read it. The same finding can call for opposite changes depending on the

@@ -15,7 +15,7 @@
 <title>Title tag length checker (free): meta, noindex, OG</title>
 <meta name="description" content="Free title tag length checker: paste a page to see if its title (about 65 characters) and meta description fit, plus noindex, canonical, H1 and Open Graph tags.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="1239f5dfc7af">
+<meta name="build-id" content="2c8d97b235e3">
 <link rel="canonical" href="https://checkengineseo.com/tools/meta-tag-checker/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -296,7 +296,10 @@ nav{position:sticky;top:0;z-index:20;background:rgba(7,12,13,.88);
    keeps the row inside 343px with room to spare. */
 @media(max-width:420px){.nav-inner{gap:.3rem}.nav-brand{font-size:15px;gap:.4rem}.nav-brand svg{width:20px;height:20px}nav .btn{white-space:nowrap;padding:.5rem .65rem;font-size:.86rem}}
 @media(max-width:380px){.nav-brand{font-size:14px}.nav-brand i{font-size:.6rem;margin-left:.2em}nav .btn{padding:.5rem .5rem;font-size:.8rem}}
-@media(max-width:340px){.nav-brand i{display:none}}
+/* 320px: the row (logo, name, menu, "Get Check Engine") measured 298px in a 274px box, so the button ran 24px past the
+   container and, in a window with a 14px scrollbar, past the edge (22 Nov 2026, found by the visual gate on every page
+   type; the shorter name "Docket" had hidden it). The menu keeps its 44px touch target; the rest tightens. */
+@media(max-width:340px){.nav-brand i{display:none}.nav-inner{gap:.2rem}.nav-brand{font-size:13px;gap:.3rem}.nav-brand svg{width:18px;height:18px}nav .btn{padding:.45rem .4rem;font-size:.74rem}}
 /* The nav button carries no price (CEO, 2026-11-09): the launch price and the later price are stated once, in the launch
    sentence, and a second number in the header read as a second price. */
 .btn{display:inline-block;background:var(--brand);
@@ -939,8 +942,8 @@ nav{background:rgba(7,12,13,.72);
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "alternateName": "Docket SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "alternateName": "Docket SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "alternateName": "Docket SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-arm64.dmg", "offers": [{"@type": "Offer", "name": "Pro", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "description": "The rest of the problems, the ranked fix plan and the markup to paste.", "priceValidUntil": "2026-12-02"}, {"@type": "Offer", "name": "Pro", "price": "39.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "validFrom": "2026-12-03", "description": "The rest of the problems, the ranked fix plan and the markup to paste."}], "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Check Engine", "item": "https://checkengineseo.com/"}, {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://checkengineseo.com/tools/"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "headline": "Title tag and meta description length checker", "description": "Free title tag length checker: paste a page to see if its title (about 65 characters) and meta description fit, plus noindex, canonical, H1 and Open Graph tags.", "datePublished": "2026-10-06", "dateModified": "2026-10-28", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/"}, "mainEntityOfPage": "https://checkengineseo.com/tools/meta-tag-checker/", "inLanguage": "en"}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How long should a title tag be?", "acceptedAnswer": {"@type": "Answer", "text": "Up to about 580 pixels, roughly 65 Latin characters, before search results cut it off. Width matters more than count: East Asian characters are about twice as wide."}}, {"@type": "Question", "name": "How long should a meta description be?", "acceptedAnswer": {"@type": "Answer", "text": "Between 70 and 165 wide is the range Check Engine uses. Google may still write its own snippet when the description does not match the search."}}, {"@type": "Question", "name": "How do I check if a page is set to noindex?", "acceptedAnswer": {"@type": "Answer", "text": "Paste it into the checker above. It reads the robots meta tag on the page and the X-Robots-Tag header the server sends, and reports a noindex in either."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "headline": "Title tag and meta description length checker", "description": "Free title tag length checker: paste a page to see if its title (about 65 characters) and meta description fit, plus noindex, canonical, H1 and Open Graph tags.", "datePublished": "2026-10-06", "dateModified": "2026-11-22", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/"}, "mainEntityOfPage": "https://checkengineseo.com/tools/meta-tag-checker/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How long should a title tag be?", "acceptedAnswer": {"@type": "Answer", "text": "Up to about 580 pixels, roughly 65 Latin characters, before search results cut it off. Width matters more than count: East Asian characters are about twice as wide."}}, {"@type": "Question", "name": "How long should a meta description be?", "acceptedAnswer": {"@type": "Answer", "text": "Between 70 and 165 wide is the range Check Engine uses. Google may still write its own snippet when the description does not match the search."}}, {"@type": "Question", "name": "How do I check if a page is set to noindex?", "acceptedAnswer": {"@type": "Answer", "text": "Paste it into the checker above. It reads the robots and googlebot meta tags on the page and the X-Robots-Tag header the server sends, and reports a noindex in either. A header that starts with a crawler name, such as otherbot: noindex, applies to that crawler only, so read those by hand."}}, {"@type": "Question", "name": "Does a bingbot noindex tag keep a page out of Google?", "acceptedAnswer": {"@type": "Answer", "text": "No. Google reads only the robots, googlebot and googlebot-news names in a meta tag. A bingbot tag is for Bing, which documents the robots and bingbot names."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -985,7 +988,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Check Engine</a>
 </div></nav>
 <main id="main">
-<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/tools/">Tools</a> / Title and meta tag checker</div><h1>Title tag and meta description length checker</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-10-06">6 October 2026</time><span class="sep">·</span>Updated <time datetime="2026-10-28">28 October 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/tools/">Tools</a> / Title and meta tag checker</div><h1>Title tag and meta description length checker</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-10-06">6 October 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-22">22 November 2026</time></p>
 
 <p class="lede">A title tag length checker: paste the address of any page and it measures the title against
 about 65 characters, the width Check Engine uses before a search result cuts it off, and the meta description
@@ -1051,7 +1054,9 @@ says what the page offers and why to click, in the first sentence.</p>
 <h2>What the other checks mean</h2>
 <ul>
 <li><strong>Indexable.</strong> A <code>noindex</code> in a robots meta tag, or in the
-<code>X-Robots-Tag</code> header, keeps the page out of search. The checker reads both.</li>
+<code>X-Robots-Tag</code> header, keeps the page out of search. The checker reads both, and a tag
+named <code>googlebot</code>. It does not yet read the crawler name at the start of a header, so check
+those by hand (see below).</li>
 <li><strong>Canonical.</strong> It tells search engines which address to show for this page. Pointing at
 another address is fine when it is deliberate, such as a filtered view pointing at the main list.</li>
 <li><strong>H1, language and viewport.</strong> One main heading, a <code>lang</code> on the
@@ -1059,6 +1064,39 @@ another address is fine when it is deliberate, such as a filtered view pointing 
 <li><strong>Open Graph.</strong> <code>og:title</code>, <code>og:description</code> and
 <code>og:image</code> decide what a link shows when it is shared in a chat or on social media.</li>
 </ul>
+
+<h2>Where noindex checkers disagree</h2>
+<p>A noindex rule can name one crawler, and a checker that ignores the name gives the wrong answer for
+the others. On 22 November 2026 we ran twelve small cases through this checker's own
+code and set its answer beside what Google and Bing document. It agreed with Google on
+seven and differed on five.</p>
+<div class="wrap-tbl"><table class="cmp" id="noindex-cases">
+<thead><tr><th>The tag or header</th><th>Google</th><th>Bing</th><th>This checker</th></tr></thead>
+<tbody>
+<tr><td><strong>A robots tag</strong><br><code>&lt;meta name=&quot;robots&quot; content=&quot;noindex&quot;&gt;</code></td><td>Not indexed</td><td>Not indexed</td><td>Noindex (page tag)</td></tr>
+<tr><td><strong>none</strong><br><code>&lt;meta name=&quot;robots&quot; content=&quot;none&quot;&gt;</code></td><td>Not indexed (none is noindex, nofollow)</td><td>Not documented by Bing</td><td>Noindex (page tag)</td></tr>
+<tr><td><strong>Two robots tags that conflict</strong><br><code>&lt;meta name=&quot;robots&quot; content=&quot;index&quot;&gt;<br>&lt;meta name=&quot;robots&quot; content=&quot;noindex&quot;&gt;</code></td><td>Not indexed: the more restrictive rule applies</td><td>Not documented by Bing</td><td>Noindex (page tag)</td></tr>
+<tr><td><strong>A tag for Google only</strong><br><code>&lt;meta name=&quot;googlebot&quot; content=&quot;noindex&quot;&gt;</code></td><td>Not indexed</td><td>Not documented by Bing</td><td>Noindex (page tag)</td></tr>
+<tr><td><strong>A tag for Bing only</strong><br><code>&lt;meta name=&quot;bingbot&quot; content=&quot;noindex&quot;&gt;</code></td><td>Indexed: Google ignores other names</td><td>Not indexed</td><td>Indexable</td></tr>
+<tr><td><strong>A tag for Google News</strong><br><code>&lt;meta name=&quot;googlebot-news&quot; content=&quot;noindex&quot;&gt;</code></td><td>Indexed in Search, kept out of News</td><td>Not documented by Bing</td><td>Indexable</td></tr>
+<tr><td><strong>A header</strong><br><code>X-Robots-Tag: noindex</code></td><td>Not indexed</td><td>Not indexed</td><td>Noindex (header)</td></tr>
+<tr><td><strong>A header for another crawler</strong><br><code>X-Robots-Tag: otherbot: noindex</code></td><td>Indexed: the rule names another crawler</td><td>Not documented by Bing</td><td>Noindex (header)<br><em>differs from Google</em></td></tr>
+<tr><td><strong>A header for Bing only</strong><br><code>X-Robots-Tag: bingbot: noindex</code></td><td>Indexed</td><td>Not documented by Bing</td><td>Noindex (header)<br><em>differs from Google</em></td></tr>
+<tr><td><strong>Google&#x27;s own two-header example</strong><br><code>X-Robots-Tag: googlebot: nofollow<br>X-Robots-Tag: otherbot: noindex, nofollow</code></td><td>Indexed, links not followed</td><td>Not documented by Bing</td><td>Noindex (header)<br><em>differs from Google</em></td></tr>
+<tr><td><strong>A removal date that has passed</strong><br><code>&lt;meta name=&quot;robots&quot; content=&quot;unavailable_after: 2026-11-01&quot;&gt;</code></td><td>Dropped after the date</td><td>Not documented by Bing</td><td>Indexable<br><em>differs from Google</em></td></tr>
+<tr><td><strong>noindex added by JavaScript</strong><br><code>No robots tag in the HTML; a script adds noindex</code></td><td>Can be dropped once the page is rendered</td><td>Not documented by Bing</td><td>Indexable<br><em>differs from Google</em></td></tr>
+</tbody></table></div>
+<p>Three things cause the differences. First, a header can start with a crawler name:
+<code>X-Robots-Tag: otherbot: noindex</code> is Google's own example of a rule Google ignores, and this
+checker reports it as a noindex for every search engine. Second, Google reads only the names
+<code>robots</code>, <code>googlebot</code> and <code>googlebot-news</code> in a meta tag, and Bing reads
+<code>robots</code> and <code>bingbot</code>, so a <code>bingbot</code> tag keeps a page out of Bing alone,
+and this checker does not read it. Third, a removal date and a script are rules that act later, and a
+checker reads the page as it is now, without running its scripts.</p>
+<p>Google adds a warning about scripts: when the HTML it first fetches says noindex, it may skip running
+the page's JavaScript, so a script that removes the noindex may never run. If a page should be indexed,
+leave noindex out of the HTML the server sends. To read the tag and the header yourself, follow
+<a href="/how-to/check-a-page-for-noindex/">how to check a page for noindex</a>.</p>
 
 <h2>What one page cannot tell you</h2>
 <p>Whether two pages <a href="/how-to/fix-duplicate-title-tags/">share the same title</a>, whether the canonical you point at is itself indexable, and
@@ -1074,6 +1112,7 @@ with the rest of its 99 checks, and ranks what to fix first.</p>
 <li><a href="/how-to/fix-favicon-not-showing-in-search/">Fix a favicon that is not showing</a></li>
 <li><a href="/tools/json-ld-checker/">JSON-LD structured data checker</a></li>
 <li><a href="/tools/robots-txt-tester/">Robots.txt tester</a></li>
+<li><a href="/how-to/check-a-page-for-noindex/">How to check a page for noindex</a></li>
 </ul>
 
 <script>
@@ -1131,7 +1170,7 @@ with the rest of its 99 checks, and ranks what to fix first.</p>
   });
 })();
 </script>
-<p class="tool-step-up" data-tool-app><a href="/download/">Check the whole site in the free Check Engine SEO app</a>.</p><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How long should a title tag be?</h3><p>Up to about 580 pixels, roughly 65 Latin characters, before search results cut it off. Width matters more than count: East Asian characters are about twice as wide.</p></div><div class="faq-item"><h3>How long should a meta description be?</h3><p>Between 70 and 165 wide is the range Check Engine uses. Google may still write its own snippet when the description does not match the search.</p></div><div class="faq-item"><h3>How do I check if a page is set to noindex?</h3><p>Paste it into the checker above. It reads the robots meta tag on the page and the X-Robots-Tag header the server sends, and reports a noindex in either.</p></div></div></section>
+<p class="tool-step-up" data-tool-app><a href="/download/">Check the whole site in the free Check Engine SEO app</a>.</p><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How long should a title tag be?</h3><p>Up to about 580 pixels, roughly 65 Latin characters, before search results cut it off. Width matters more than count: East Asian characters are about twice as wide.</p></div><div class="faq-item"><h3>How long should a meta description be?</h3><p>Between 70 and 165 wide is the range Check Engine uses. Google may still write its own snippet when the description does not match the search.</p></div><div class="faq-item"><h3>How do I check if a page is set to noindex?</h3><p>Paste it into the checker above. It reads the robots and googlebot meta tags on the page and the X-Robots-Tag header the server sends, and reports a noindex in either. A header that starts with a crawler name, such as otherbot: noindex, applies to that crawler only, so read those by hand.</p></div><div class="faq-item"><h3>Does a bingbot noindex tag keep a page out of Google?</h3><p>No. Google reads only the robots, googlebot and googlebot-news names in a meta tag. A bingbot tag is for Bing, which documents the robots and bingbot names.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">
