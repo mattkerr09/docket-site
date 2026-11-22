@@ -50,6 +50,7 @@ else's outage teaches people to pass `--force`.
 from __future__ import annotations
 
 import json
+import release_names as names
 import pathlib
 import subprocess
 import sys
@@ -63,9 +64,9 @@ WRONG_REPO = "mattkerr09/docket-app"
 SITE = pathlib.Path(__file__).resolve().parent.parent / "site"
 DOWNLOAD = SITE.parent / "data" / "download.json"
 
-#: Assets that do not vary with the version. The updater reads the first two and
-#: fails silently without them; the page documents the third.
-FIXED = ("Docket.app.tar.gz", "Docket.app.tar.gz.sig", "SHA256SUMS")
+#: The page documents this version-independent checksum file.
+#: The updater archive and its signature are selected from the release listing.
+FIXED = ("SHA256SUMS",)
 
 
 def fail(message: str) -> None:
@@ -137,13 +138,24 @@ def main() -> None:
         fail(f"{tag} does not exist on {REPO}, and the download page offers "
              f"{tag} links on every page that mentions downloading")
 
-    published = {a["name"]: a for a in release.get("assets", [])}
+    assets = release.get("assets", [])
+    published = {a["name"]: a for a in assets}
+    if len(published) != len(assets):
+        fail(f"{tag} has duplicate asset names")
+    try:
+        archive = names.select_name(published, names.apple_updater())
+    except FileNotFoundError as exc:
+        fail(str(exc))
+    signature = archive + ".sig"
+    if signature not in published:
+        fail(f"Missing {signature} for {archive}. Signature candidates: "
+             + ', '.join(names.apple_updater(True)))
     # Every file a page links: the Mac DMG, the Linux tarball, and (when download.json records them)
     # the Intel DMG and the Windows installer. The last two were offered on the pages without being
     # checked here until the Windows installer was added, 2026-10-28.
     expected = [n for n in (data.get("dmg_name", ""), data.get("linux_name", ""),
                             data.get("intel_dmg_name", ""), data.get("win_setup_name", ""))
-                if n] + list(FIXED)
+                if n] + [archive, signature] + list(FIXED)
 
     missing = [n for n in expected if n not in published]
     if missing:
@@ -151,7 +163,7 @@ def main() -> None:
         # SHA256SUMS is a 404 a buyer sees. A missing updater asset is seen by
         # nobody: Tauri finds nothing to download and every installed copy goes
         # on believing it is current.
-        quiet = [n for n in missing if n.startswith("Docket.app.tar.gz")]
+        quiet = [n for n in missing if n in names.apple_updater() + names.apple_updater(True)]
         loud = [n for n in missing if n not in quiet]
         parts = []
         if loud:

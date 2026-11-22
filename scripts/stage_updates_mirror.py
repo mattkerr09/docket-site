@@ -15,6 +15,8 @@ import sys
 import tempfile
 from urllib.parse import urlsplit
 
+import release_names as release
+
 ROOT = Path(__file__).resolve().parents[1]
 CACHE = ROOT / ".updates-cache"
 MIRROR = "https://docketseo.app/updates"
@@ -28,10 +30,18 @@ def version_key(version: str) -> tuple[int, ...]:
     return tuple(int(part) for part in version.split("."))
 
 
-def artifact_names(version: str) -> tuple[str, ...]:
+def artifact_candidates(version: str) -> tuple[tuple[str, ...], ...]:
     version_key(version)
-    return ("Docket.app.tar.gz", "Docket-x86_64.app.tar.gz",
-            f"Docket-{version}-x64-setup.exe")
+    return (release.apple_updater(), release.intel_updater(), release.windows_setup(version))
+
+
+def artifact_names(version: str, prefix: str = release.PREFIXES[0]) -> tuple[str, ...]:
+    index = release.PREFIXES.index(prefix)
+    return tuple(group[index] for group in artifact_candidates(version))
+
+
+def allowed_names(version: str) -> tuple[str, ...]:
+    return tuple(name for group in artifact_candidates(version) for name in group)
 
 
 def file_digest(path: Path) -> str:
@@ -86,9 +96,11 @@ def prune(cache: Path) -> None:
 def stage(version: str, source: Path, cache: Path = CACHE,
           names: tuple[str, ...] | None = None,
           release_digests: dict[str, str] | None = None) -> None:
-    allowed = artifact_names(version)
-    names = allowed if names is None else names
-    if not names or any(name not in allowed for name in names):
+    allowed = allowed_names(version)
+    names = (tuple(release.resolve(source, group).name for group in artifact_candidates(version))
+             if names is None else names)
+    if (not names or any(name not in allowed for name in names)
+            or len({release.classify(name)[1] for name in names}) != len(names)):
         raise ValueError(f"Unexpected updater file list for {version}")
     with cache_lock(cache):
         # Copy and check everything before changing a usable cached release.
@@ -121,42 +133,43 @@ def stage(version: str, source: Path, cache: Path = CACHE,
 
 
 def stage_release(version: str, tag: str, cache: Path = CACHE) -> None:
-    names = artifact_names(version)
+    groups = artifact_candidates(version)
     metadata = subprocess.run(
         ["gh", "release", "view", tag, "--repo", "mattkerr09/docket-site",
          "--json", "assets"], check=True, capture_output=True, text=True)
     assets = json.loads(metadata.stdout)["assets"]
     digests = {asset["name"]: asset.get("digest") for asset in assets}
-    for name in names:
-        if name not in digests:
-            raise ValueError(f"Release {tag} has no {name}")
+    if len(digests) != len(assets):
+        raise ValueError(f"Release {tag} has duplicate asset names")
+    names = tuple(release.select_name(digests, group) for group in groups)
     with tempfile.TemporaryDirectory(prefix="docket-release-") as tmp:
         command = ["gh", "release", "download", tag, "--repo", "mattkerr09/docket-site",
                    "--dir", tmp]
         for name in names:
             command.extend(["--pattern", name])
         subprocess.run(command, check=True)
-        stage(version, Path(tmp), cache, release_digests=digests)
+        stage(version, Path(tmp), cache, names=names, release_digests=digests)
 
 
 def mirror_entries(manifest: dict) -> list[tuple[str, str]]:
     version = manifest["version"]
     names = dict(zip(("darwin-aarch64", "darwin-x86_64", "windows-x86_64"),
-                     artifact_names(version)))
+                     artifact_candidates(version)))
     entries = []
     if not manifest["platforms"]:
         raise ValueError("Manifest has no platforms")
     for platform, entry in manifest["platforms"].items():
-        name = names.get(platform)
+        candidates = names.get(platform, ())
         url = entry["url"]
-        if name and url == f"{MIRROR}/{version}/{name}":
+        name = urlsplit(url).path.rsplit("/", 1)[-1]
+        if name in candidates and url == f"{MIRROR}/{version}/{name}":
             entries.append((version, name))
-        elif name and url.startswith(RELEASE + "/"):
+        elif name in candidates and url.startswith(RELEASE + "/"):
             parts = urlsplit(url)
             if parts.path.rsplit("/", 1)[-1] != name or parts.query or parts.fragment:
-                raise ValueError(f"Unexpected updater URL {url}")
+                raise ValueError(f"Unexpected updater URL {url}. Expected one of: {', '.join(candidates)}")
         else:
-            raise ValueError(f"Unexpected updater URL {url}")
+            raise ValueError(f"Unexpected updater URL {url}. Expected one of: {', '.join(candidates)}")
     return entries
 
 
@@ -176,11 +189,13 @@ def publish_plan(manifest: dict, cache: Path = CACHE) -> list[tuple[str, Path, s
         payloads = [p for p in files if not p.name.endswith(".sha256")]
         if not payloads:
             raise ValueError(f"No updater files cached for {version}")
-        allowed = artifact_names(version)
+        allowed = allowed_names(version)
         for path in files:
             name = path.name.removesuffix(".sha256")
             if name not in allowed or not (directory / name).is_file():
                 raise ValueError(f"Unexpected cache file {path}")
+        if len({release.classify(p.name)[1] for p in payloads}) != len(payloads):
+            raise ValueError(f"Duplicate updater architecture in {directory}")
         for path in payloads:
             plan.append((f"updates/{version}/{path.name}", path, checked_digest(path)))
     return plan

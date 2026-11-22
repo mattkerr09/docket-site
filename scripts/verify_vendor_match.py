@@ -39,6 +39,7 @@ import http.server
 import os
 import pathlib
 import re
+import release_names as names
 import subprocess
 import sys
 import tempfile
@@ -237,11 +238,14 @@ def site_version() -> str:
 
 def dist_version() -> str:
     """The version sitting in dist/, from the DMG filename."""
-    for dmg in sorted(DIST.glob("Docket-*.dmg")):
-        m = re.search(r"Docket-(\d+\.\d+\.\d+)-", dmg.name)
-        if m:
-            return m.group(1)
-    return ""
+    for prefix in names.PREFIXES:
+        for dmg in sorted(DIST.glob(f"{prefix}-*.dmg")):
+            m = re.fullmatch(r"(?:Check-Engine-SEO|Docket)-(\d+\.\d+\.\d+)-(?:arm64|x86_64)\.dmg", dmg.name)
+            if dmg.is_file() and m:
+                return m.group(1)
+    raise FileNotFoundError(f"No release DMG in {DIST}. Tried: "
+                            "Check-Engine-SEO-<ver>-arm64.dmg, Check-Engine-SEO-<ver>-x86_64.dmg, "
+                            "Docket-<ver>-arm64.dmg, Docket-<ver>-x86_64.dmg")
 
 
 def main() -> int:

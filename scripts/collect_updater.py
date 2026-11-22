@@ -20,6 +20,7 @@ import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
 import app_path  # noqa: E402
+import release_names as names  # noqa: E402
 import stage_updates_mirror as mirror  # noqa: E402
 
 import argparse
@@ -33,12 +34,6 @@ import sys
 APP = app_path.find()
 OUT = pathlib.Path(__file__).resolve().parent.parent / "site" / "updater.json"
 
-TGZ = APP / "dist" / "Docket.app.tar.gz"
-SIG = APP / "dist" / "Docket.app.tar.gz.sig"
-#: The Intel Macs build, from 1.3.98 (ship.sh builds both). Optional: a release
-#: without it publishes exactly the Apple silicon manifest it always did.
-TGZ_X86 = APP / "dist" / "Docket-x86_64.app.tar.gz"
-SIG_X86 = APP / "dist" / "Docket-x86_64.app.tar.gz.sig"
 
 RELEASE = mirror.RELEASE
 
@@ -169,9 +164,16 @@ def main() -> None:
     base_url = (f"{RELEASE}/{args.tag}" if args.source == "github"
                 else f"{mirror.MIRROR}/{args.version}")
 
-    for path in (TGZ, SIG):
-        if not path.is_file():
-            sys.exit(f"missing {path} — run ./scripts/build_docket.sh --ship first")
+    dist = APP / "dist"
+    TGZ, SIG = names.signed_asset(dist, names.apple_updater())
+    win, win_sig = names.signed_asset(dist, names.windows_setup(args.version))
+    dmg = names.resolve(dist, names.arm64_dmg(args.version))
+    # Intel is optional only when no archive or signature under either name exists.
+    intel = not args.no_intel and any((dist / name).exists() for name in
+                                    names.intel_updater() + names.intel_updater(True))
+    if intel:
+        TGZ_X86, SIG_X86 = names.signed_asset(dist, names.intel_updater())
+        intel_dmg = names.resolve(dist, names.intel_dmg(args.version))
 
     signature = SIG.read_text().strip()
     if not signature:
@@ -189,14 +191,13 @@ def main() -> None:
             # which fails after the download rather than before it.
             "darwin-aarch64": {
                 "signature": signature,
-                "url": f"{base_url}/Docket.app.tar.gz",
+                "url": f"{base_url}/{TGZ.name}",
             }
         },
     }
     # darwin-x86_64 only from an x86_64 tarball and its own signature, never
     # the arm64 one: a manifest offering an arm64 binary to Intel Macs fails
     # after the download rather than before it.
-    intel = (not args.no_intel) and TGZ_X86.is_file() and SIG_X86.is_file()
     if intel:
         sig_x86 = SIG_X86.read_text().strip()
         if not sig_x86:
@@ -205,28 +206,20 @@ def main() -> None:
             "signature": sig_x86,
             "url": f"{base_url}/{TGZ_X86.name}",
         }
-    # windows-x86_64 only from this version's NSIS installer and the update signature made for it on the
-    # Mac (docket-app/scripts/windows_release.py, which takes the installer from CI only when it is signed
-    # by Kerr & Company and passed the customer path). Absent until a Windows build ships, so the
-    # manifest is exactly the Mac one until then. The url is the installer itself: Tauri 2's updater
-    # downloads it and runs it, so there is no zip.
-    win = APP / "dist" / f"Docket-{args.version}-x64-setup.exe"
-    win_sig = win.with_name(win.name + ".sig")
-    if win.is_file() and win_sig.is_file():
-        sig_win = win_sig.read_text().strip()
-        if not sig_win:
-            sys.exit(f"{win_sig} is empty; refusing to publish a Windows entry that rejects every update")
-        data["platforms"]["windows-x86_64"] = {
-            "signature": sig_win,
-            "url": f"{base_url}/{win.name}",
-        }
-    elif win.is_file() != win_sig.is_file():
-        sys.exit(f"{win.name} and its .sig must both exist or neither; refusing a half Windows entry")
-    names = tuple(entry["url"].rsplit("/", 1)[-1] for entry in data["platforms"].values())
+    # Windows is required and its update signature belongs to the selected installer.
+    # The URL is the installer itself: Tauri 2 downloads it and runs it.
+    sig_win = win_sig.read_text().strip()
+    if not sig_win:
+        sys.exit(f"{win_sig} is empty; refusing to publish a Windows entry that rejects every update")
+    data["platforms"]["windows-x86_64"] = {
+        "signature": sig_win,
+        "url": f"{base_url}/{win.name}",
+    }
+    selected = tuple(entry["url"].rsplit("/", 1)[-1] for entry in data["platforms"].values())
     if args.source == "github":
         # The mirror's staging proves each file is a regular, nonempty file before a manifest can cite it. The release
         # assets are the same files, so the same proof runs here: an empty installer must never reach a manifest.
-        for name in names:
+        for name in selected:
             path = APP / "dist" / name
             if path.is_symlink() or not path.is_file() or path.stat().st_size == 0:
                 sys.exit(f"{path} is missing or empty; refusing a manifest that cites an update file that "
@@ -234,7 +227,7 @@ def main() -> None:
     if args.source == "mirror":
         try:
             mirror.stage(args.version, APP / "dist", OUT.parent.parent / ".updates-cache",
-                         names=names)
+                         names=selected)
             mirror.publish_plan(data, OUT.parent.parent / ".updates-cache")
         except (OSError, ValueError) as exc:
             sys.exit(f"UPDATES MIRROR FAIL - {exc}")
@@ -250,7 +243,6 @@ def main() -> None:
     # first version bump would have pointed the site's download button at a
     # file that does not exist — and a download link that 404s is the single
     # worst bug a product site can have.
-    dmg = APP / "dist" / f"Docket-{args.version}-arm64.dmg"
     if dmg.is_file():
         # Repo-root data/, NOT site/_data. The measurements moved out of the
         # deployed directory on 2026-08-18 — everything under site/ is pushed
@@ -333,7 +325,6 @@ def main() -> None:
         # The Intel DMG, measured like the others, and only when it is in the
         # manifest too: the site offers an Intel download exactly when the
         # updater serves Intel copies, never one without the other.
-        intel_dmg = APP / "dist" / f"Docket-{args.version}-x86_64.dmg"
         if intel and intel_dmg.is_file():
             sizes.update({
                 "intel_dmg_name": intel_dmg.name,

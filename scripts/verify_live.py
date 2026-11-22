@@ -25,6 +25,7 @@ import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
 import app_path  # noqa: E402
+import release_names as names  # noqa: E402
 
 import json
 import pathlib
@@ -126,13 +127,15 @@ PROBE = """(function(){
 
 
 def _renderer() -> pathlib.Path:
-    for candidate in (
+    candidates = (
         app_path.find() / "packaging" / "render" / "docket-render",
-        pathlib.Path("/Applications/Docket.app/Contents/Resources/docket/docket-render"),
-    ):
+        *(pathlib.Path("/Applications") / name for name in
+          names.bundle_files("Contents/Resources/docket/docket-render")),
+    )
+    for candidate in candidates:
         if candidate.is_file():
             return candidate
-    raise SystemExit("docket-render not found — build the app first")
+    raise SystemExit("docket-render not found. Tried: " + ", ".join(map(str, candidates)))
 
 
 def _built_paths() -> list[str]:

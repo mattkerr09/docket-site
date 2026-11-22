@@ -6,6 +6,8 @@ from contextlib import contextmanager
 import functools
 import hashlib
 import io
+import plistlib
+import tarfile
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os
@@ -79,6 +81,11 @@ def local_server(directory: Path, range_mode="unsupported"):
 
 
 class MirrorTests(unittest.TestCase):
+    prefix = "Docket"
+
+    def names(self, version):
+        return mirror.artifact_names(version, self.prefix)
+
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory(prefix="docket-mirror-test-")
         self.addCleanup(self.tmp.cleanup)
@@ -102,7 +109,7 @@ class MirrorTests(unittest.TestCase):
         self.addCleanup(opener.stop)
         (self.root / "scripts").mkdir()
         for name in ("stage_updates_mirror.py", "verify_updates_mirror.py",
-                     "collect_updater.py", "app_path.py"):
+                     "collect_updater.py", "app_path.py", "release_names.py"):
             shutil.copyfile(SCRIPTS / name, self.root / "scripts" / name)
         (self.root / "site").mkdir()
         shutil.copyfile(SCRIPTS.parent / ".gitignore", self.root / ".gitignore")
@@ -122,7 +129,7 @@ class MirrorTests(unittest.TestCase):
     def release(self, version):
         directory = self.base / ("release-" + version)
         directory.mkdir(exist_ok=True)
-        for name in mirror.artifact_names(version):
+        for name in self.names(version):
             (directory / name).write_bytes(f"fake updater {version} {name}\n".encode())
         return directory
 
@@ -135,7 +142,7 @@ class MirrorTests(unittest.TestCase):
         base = f"{mirror.RELEASE}/v{version}" if github else f"{mirror.MIRROR}/{version}"
         manifest = {"version": version, "notes": "Test release notes", "pub_date": "2026-11-09T00:00:00Z",
                     "platforms": {platform: {"url": f"{base}/{name}", "signature": f"sig-{platform}"}
-                                  for platform, name in zip(PLATFORMS, mirror.artifact_names(version))}}
+                                  for platform, name in zip(PLATFORMS, self.names(version))}}
         (self.root / "site/updater.json").write_text(json.dumps(manifest))
         return manifest
 
@@ -155,7 +162,7 @@ class MirrorTests(unittest.TestCase):
         output = self.script("stage_updates_mirror", "--plan").stdout
         self.assertEqual(len(output.splitlines()), 6)
         for version in ("1.3.100", "1.3.101"):
-            for name in mirror.artifact_names(version):
+            for name in self.names(version):
                 path = self.cache / version / name
                 self.assertEqual(path.read_bytes(), (self.base / ("release-" + version) / name).read_bytes())
                 self.assertEqual((path.with_name(name + ".sha256")).read_text().strip(),
@@ -167,7 +174,7 @@ class MirrorTests(unittest.TestCase):
         for kind in ("missing", "empty", "limit"):
             with self.subTest(kind=kind):
                 source = self.release("1.3.100")
-                path = source / mirror.artifact_names("1.3.100")[-1]
+                path = source / self.names("1.3.100")[-1]
                 if kind == "missing":
                     path.unlink()
                 elif kind == "empty":
@@ -182,19 +189,31 @@ class MirrorTests(unittest.TestCase):
 
     def test_stage_retry_is_immutable(self):
         source = self.add_release("1.3.100")
-        before = (self.cache / "1.3.100/Docket.app.tar.gz").read_bytes()
+        before = (self.cache / f"1.3.100/{self.prefix}.app.tar.gz").read_bytes()
         self.script("stage_updates_mirror", "--add", "1.3.100", "--from-dir", str(source))
-        (source / "Docket.app.tar.gz").write_bytes(b"changed")
+        (source / f"{self.prefix}.app.tar.gz").write_bytes(b"changed")
         self.script("stage_updates_mirror", "--add", "1.3.100", "--from-dir", str(source), ok=False)
-        self.assertEqual((self.cache / "1.3.100/Docket.app.tar.gz").read_bytes(), before)
+        self.assertEqual((self.cache / f"1.3.100/{self.prefix}.app.tar.gz").read_bytes(), before)
+
+    def collect_assets(self, dist, version):
+        (self.root / "data").mkdir(exist_ok=True)
+        for arch in ("arm64", "x86_64"):
+            (dist / f"{self.prefix}-{version}-{arch}.dmg").write_bytes(b"fixture dmg")
+        for name in self.names(version)[:2]:
+            with tarfile.open(dist / name, "w:gz") as archive:
+                data = plistlib.dumps({"LSMinimumSystemVersion": "12.0"})
+                member = tarfile.TarInfo("Docket.app/Contents/Info.plist")
+                member.size = len(data)
+                archive.addfile(member, io.BytesIO(data))
 
     def test_collect_urls_signatures_and_optional_platforms(self):
         version = "1.3.100"
         source = self.release(version)
         dist = self.app / "dist"
         shutil.copytree(source, dist)
-        for platform, name in zip(PLATFORMS, mirror.artifact_names(version)):
+        for platform, name in zip(PLATFORMS, self.names(version)):
             (dist / (name + ".sig")).write_text(f"  file-signature-{platform}\n")
+        self.collect_assets(dist, version)
         arguments = ("--version", version, "--notes", "Actual release notes")
         self.script("collect_updater", *arguments, "--source", "mirror")
         manifest = json.loads((self.root / "site/updater.json").read_text())
@@ -202,14 +221,14 @@ class MirrorTests(unittest.TestCase):
         self.assertEqual(set(manifest["platforms"]), set(PLATFORMS))
         self.assertEqual(manifest["version"], version)
         self.assertEqual(manifest["notes"], "Actual release notes")
-        for platform, name in zip(PLATFORMS, mirror.artifact_names(version)):
+        for platform, name in zip(PLATFORMS, self.names(version)):
             self.assertEqual(manifest["platforms"][platform],
                              {"signature": f"file-signature-{platform}", "url": f"{mirror.MIRROR}/{version}/{name}"})
             self.assertEqual((self.cache / version / name).read_bytes(), (dist / name).read_bytes())
         shutil.rmtree(self.cache)
         self.script("collect_updater", *arguments, "--source", "github", "--tag", "custom-tag")
         rollback = json.loads((self.root / "site/updater.json").read_text())
-        for platform, name in zip(PLATFORMS, mirror.artifact_names(version)):
+        for platform, name in zip(PLATFORMS, self.names(version)):
             self.assertEqual(rollback["platforms"][platform],
                              {"signature": f"file-signature-{platform}", "url": f"{mirror.RELEASE}/custom-tag/{name}"})
         self.assertFalse(self.cache.exists())
@@ -217,25 +236,26 @@ class MirrorTests(unittest.TestCase):
         # artifacts timed out the Pages deploy twice), and nothing is staged.
         self.script("collect_updater", *arguments)
         default = json.loads((self.root / "site/updater.json").read_text())
-        for platform, name in zip(PLATFORMS, mirror.artifact_names(version)):
+        for platform, name in zip(PLATFORMS, self.names(version)):
             self.assertEqual(default["platforms"][platform]["url"], f"{mirror.RELEASE}/v{version}/{name}")
         self.assertFalse(self.cache.exists())
         self.script("collect_updater", *arguments, "--source", "mirror", "--no-intel")
         optional = json.loads((self.root / "site/updater.json").read_text())
         self.assertEqual(set(optional["platforms"]), {"darwin-aarch64", "windows-x86_64"})
-        self.assertFalse((self.cache / version / "Docket-x86_64.app.tar.gz").exists())
+        self.assertFalse((self.cache / version / f"{self.prefix}-x86_64.app.tar.gz").exists())
 
     def test_collect_failure_keeps_manifest_and_reads_sig_file(self):
         dist = self.app / "dist"
         shutil.copytree(self.release("1.3.100"), dist)
+        self.collect_assets(dist, "1.3.100")
         old = self.manifest(github=True)
-        for name in mirror.artifact_names("1.3.100"):
+        for name in self.names("1.3.100"):
             (dist / (name + ".sig")).write_text("signature-" + name)
-        (dist / "Docket-x86_64.app.tar.gz.sig").write_text("")
+        (dist / f"{self.prefix}-x86_64.app.tar.gz.sig").write_text("")
         self.script("collect_updater", "--version", "1.3.100", "--notes", "Notes", ok=False)
         self.assertEqual(json.loads((self.root / "site/updater.json").read_text()), old)
-        (dist / "Docket-x86_64.app.tar.gz.sig").write_text("intel-sig")
-        (dist / "Docket-1.3.100-x64-setup.exe").write_bytes(b"")
+        (dist / f"{self.prefix}-x86_64.app.tar.gz.sig").write_text("intel-sig")
+        (dist / f"{self.prefix}-1.3.100-x64-setup.exe").write_bytes(b"")
         self.script("collect_updater", "--version", "1.3.100", "--notes", "Notes", ok=False)
         self.assertEqual(json.loads((self.root / "site/updater.json").read_text()), old)
         self.assertFalse((self.cache / "1.3.100").exists())
@@ -277,13 +297,13 @@ else:
         self.assertIn("sha256 differs", result.stderr)
         self.assertFalse((self.cache / "1.3.100").exists())
         self.script("stage_updates_mirror", *args, env=env)
-        for name in mirror.artifact_names("1.3.100"):
+        for name in self.names("1.3.100"):
             self.assertEqual((self.cache / "1.3.100" / name).read_bytes(), (source / name).read_bytes())
         calls = [json.loads(line) for line in (self.base / "gh.log").read_text().splitlines()]
         download = calls[-1]
         self.assertEqual(download[:3], ["release", "download", "v1.3.100"])
         self.assertEqual([download[i + 1] for i, arg in enumerate(download) if arg == "--pattern"],
-                         list(mirror.artifact_names("1.3.100")))
+                         list(self.names("1.3.100")))
         shutil.rmtree(self.cache)
         self.script("stage_updates_mirror", *args, env={**env, "NO_DIGEST": "1"})
         self.assertEqual(len(list((self.cache / "1.3.100").glob("*.sha256"))), 3)
@@ -319,7 +339,7 @@ else:
         self.run_command("bash", "-c", self.publish_block())
         tree = self.run_command("git", "--git-dir", str(origin), "ls-tree", "-r", "--name-only", "gh-pages").stdout.splitlines()
         expected = {f"updates/{version}/{name}" for version in ("1.3.100", "1.3.101")
-                    for name in mirror.artifact_names(version)}
+                    for name in self.names(version)}
         self.assertEqual({path for path in tree if path.startswith("updates/")}, expected)
         for relative in expected:
             served = self.run_command("git", "--git-dir", str(origin), "show", f"gh-pages:{relative}").stdout.encode()
@@ -355,7 +375,7 @@ else:
         self.assertEqual(self.run_command("git", "--git-dir", str(origin), "show-ref").stdout, before)
         self.script("stage_updates_mirror", "--publish", "gh-pages-tmp")
         tree = self.run_command("git", "ls-tree", "-r", "--name-only", "gh-pages-tmp").stdout
-        self.assertIn("updates/1.3.100/Docket.app.tar.gz", tree)
+        self.assertIn(f"updates/1.3.100/{self.prefix}.app.tar.gz", tree)
 
     def test_bad_cache_stops_before_every_push(self):
         self.add_release("1.3.100")
@@ -363,7 +383,7 @@ else:
         origin = self.init_repo()
         for kind in ("missing", "hash", "limit", "record"):
             with self.subTest(kind=kind):
-                path = self.cache / "1.3.100/Docket.app.tar.gz"
+                path = self.cache / f"1.3.100/{self.prefix}.app.tar.gz"
                 record = path.with_name(path.name + ".sha256")
                 path.write_bytes((self.base / "release-1.3.100" / path.name).read_bytes())
                 record.write_text(hashlib.sha256(path.read_bytes()).hexdigest() + "\n")
@@ -383,7 +403,7 @@ else:
                 self.run_command("git", "commit", "-qm", "Local unpushed change")
                 before = self.run_command("git", "--git-dir", str(origin), "show-ref").stdout
                 result = self.run_command("bash", "-c", self.publish_block(), ok=False)
-                self.assertIn("Docket.app.tar.gz", result.stderr)
+                self.assertIn(f"{self.prefix}.app.tar.gz", result.stderr)
                 self.assertEqual(self.run_command("git", "--git-dir", str(origin), "show-ref").stdout, before)
 
     def test_github_rollback_publishes_without_cache(self):
@@ -401,13 +421,13 @@ else:
         self.add_release("1.3.100")
         self.manifest()
         self.script("verify_updates_mirror", "--offline")
-        previous = self.cache / "1.3.99/Docket.app.tar.gz"
+        previous = self.cache / f"1.3.99/{self.prefix}.app.tar.gz"
         old_bytes = previous.read_bytes()
         previous.write_bytes(b"bad previous version")
         result = self.script("verify_updates_mirror", "--offline", ok=False)
-        self.assertIn("1.3.99/Docket.app.tar.gz", result.stderr)
+        self.assertIn(f"1.3.99/{self.prefix}.app.tar.gz", result.stderr)
         previous.write_bytes(old_bytes)
-        path = self.cache / "1.3.100/Docket.app.tar.gz"
+        path = self.cache / f"1.3.100/{self.prefix}.app.tar.gz"
         original = path.read_bytes()
         path.write_bytes(bytes([original[0] ^ 1]) + original[1:])
         result = self.script("verify_updates_mirror", "--offline", ok=False)
@@ -492,7 +512,7 @@ else:
                     verify.verify_live(live, self.cache, base + "/updater.json", 0)
                     ranges = [path for path, value in handler.requests if value == "bytes=0-0"]
                     self.assertEqual(len(ranges), 3)
-                    path = published / "updates/1.3.100/Docket.app.tar.gz"
+                    path = published / f"updates/1.3.100/{self.prefix}.app.tar.gz"
                     original = path.read_bytes()
                     path.write_bytes(b"x" + original[1:])
                     with self.assertRaisesRegex(ValueError, "Served sha256 or size differs"):
@@ -523,8 +543,12 @@ else:
             result = self.script("verify_updates_mirror", "--live", "--manifest-url", base + "/updater.json", "--wait", "0")
             self.assertIn("Range not supported", result.stdout)
             self.assertEqual(len([value for _, value in handler.requests if value]), 3)
-            (published / "updates/1.3.100/Docket.app.tar.gz").unlink()
+            (published / f"updates/1.3.100/{self.prefix}.app.tar.gz").unlink()
             self.script("verify_updates_mirror", "--live", "--manifest-url", base + "/updater.json", "--wait", "0", ok=False)
+
+
+class NewNameMirrorTests(MirrorTests):
+    prefix = "Check-Engine-SEO"
 
 
 if __name__ == "__main__":

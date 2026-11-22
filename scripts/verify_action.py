@@ -84,17 +84,23 @@ def main() -> int:
     code = "\n".join(l for l in text.splitlines() if not l.lstrip().startswith("#"))
 
     # -- local: the filename must come from the tag ------------------------
-    hardcoded = re.findall(r"Docket-\d+\.\d+\.\d+-arm64\.dmg", code)
+    hardcoded = re.findall(r"(?:Check-Engine-SEO|Docket)-\d+\.\d+\.\d+-arm64\.dmg", code)
     if hardcoded:
         return _fail(
             f"action.yml hardcodes a DMG filename ({hardcoded[0]}) while taking "
             f"a `version` input. Any version but that one 404s, which makes the "
-            f"input decorative. Derive it: DMG=\"Docket-${{TAG#v}}-arm64.dmg\"")
+            f"input decorative. Derive both candidate names from the tag.")
 
-    if 'DMG="Docket-${TAG#v}-arm64.dmg"' not in code:
+    if 'for DMG in "Check-Engine-SEO-${TAG#v}-arm64.dmg" "Docket-${TAG#v}-arm64.dmg"; do' not in code:
         return _fail(
             "action.yml no longer derives the DMG filename from the version "
             "tag, so this gate cannot tell whether the input works")
+
+    if ('for candidate in "Check Engine SEO.app" "Docket.app"; do' not in code
+            or 'cp -R "$RUNNER_TEMP/docket-vol/$APP" "$RUNNER_TEMP/Docket.app"' not in code
+            or 'if [ "$downloaded" != 1 ]; then' not in code
+            or 'if [ -z "$APP" ]; then' not in code):
+        return _fail("action.yml must resolve both bundle names and fail when no DMG or app exists")
 
     match = re.search(r"version:.*?default: '(v[\d.]+)'", text, re.S)
     if not match:

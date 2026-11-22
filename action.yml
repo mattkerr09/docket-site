@@ -82,11 +82,31 @@ runs:
         # v0.1.46/Docket-0.1.0-arm64.dmg returns 404 and
         # v0.1.46/Docket-0.1.46-arm64.dmg returns 200.
         TAG="${{ inputs.version }}"
-        DMG="Docket-${TAG#v}-arm64.dmg"
-        curl -fsSL -o "$RUNNER_TEMP/docket.dmg" \
-          "https://github.com/mattkerr09/docket-site/releases/download/${TAG}/${DMG}"
+        downloaded=0
+        for DMG in "Check-Engine-SEO-${TAG#v}-arm64.dmg" "Docket-${TAG#v}-arm64.dmg"; do
+          if curl -fsSL -o "$RUNNER_TEMP/docket.dmg" \
+            "https://github.com/mattkerr09/docket-site/releases/download/${TAG}/${DMG}"; then
+            downloaded=1
+            break
+          fi
+        done
+        if [ "$downloaded" != 1 ]; then
+          echo "::error::Missing Check-Engine-SEO-${TAG#v}-arm64.dmg or Docket-${TAG#v}-arm64.dmg in ${TAG}."
+          exit 1
+        fi
         hdiutil attach -nobrowse -quiet "$RUNNER_TEMP/docket.dmg" -mountpoint "$RUNNER_TEMP/docket-vol"
-        cp -R "$RUNNER_TEMP/docket-vol/Docket.app" "$RUNNER_TEMP/Docket.app"
+        APP=""
+        for candidate in "Check Engine SEO.app" "Docket.app"; do
+          if [ -d "$RUNNER_TEMP/docket-vol/$candidate" ]; then
+            APP="$candidate"
+            break
+          fi
+        done
+        if [ -z "$APP" ]; then
+          echo "::error::Missing Check Engine SEO.app or Docket.app in ${DMG}."
+          exit 1
+        fi
+        cp -R "$RUNNER_TEMP/docket-vol/$APP" "$RUNNER_TEMP/Docket.app"
         hdiutil detach "$RUNNER_TEMP/docket-vol" -quiet
         # The DIRECTORY goes on PATH, not a symlink to the binary: the WebKit
         # render helper is its sibling and moving the executable away from it

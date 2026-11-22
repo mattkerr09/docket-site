@@ -9,9 +9,7 @@ indefinitely, believing they are current, and nothing in any log says so.
 So the manifest is checked against the artifacts on disk before the site goes
 out, and the deploy fails if they disagree.
 
-Skips cleanly when there is no local build — the site is deployed far more
-often than the app is, and a site-only deploy must not require a 17 MB tarball
-to be sitting in dist/.
+A missing local archive fails loudly so a renamed build cannot bypass the checks.
 """
 from __future__ import annotations
 
@@ -19,6 +17,8 @@ import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
 import app_path  # noqa: E402
+import release_names as names  # noqa: E402
+import stage_updates_mirror as mirror  # noqa: E402
 
 import base64
 import json
@@ -34,8 +34,6 @@ import tempfile
 SITE = pathlib.Path(__file__).resolve().parent.parent / "site"
 APP = app_path.find()
 MANIFEST = SITE / "updater.json"
-TGZ = APP / "dist" / "Docket.app.tar.gz"
-SIG = APP / "dist" / "Docket.app.tar.gz.sig"
 TAURI_CONF = APP / "ui" / "src-tauri" / "tauri.conf.json"
 
 
@@ -44,7 +42,7 @@ def fail(message: str) -> None:
     sys.exit(1)
 
 
-def _tarball_version() -> str | None:
+def _tarball_version(tgz: pathlib.Path) -> str:
     """`CFBundleShortVersionString` from the app inside the tarball.
 
     The manifest's `version` is what the updater compares against the *running*
@@ -52,23 +50,30 @@ def _tarball_version() -> str | None:
     offered, downloaded, installed, and then offered again on the next launch,
     for ever — no error, no end, and nothing in any log saying why.
     """
-    if not TGZ.is_file():
-        return None
-    with tarfile.open(TGZ) as archive:
-        for member in archive.getmembers():
-            if member.name.endswith("Docket.app/Contents/Info.plist"):
-                handle = archive.extractfile(member)
-                if handle is None:
-                    return None
-                return plistlib.load(handle).get("CFBundleShortVersionString")
-    return None
+    with tarfile.open(tgz) as archive:
+        members = archive.getmembers()
+        bundles = {path.parts[0] for member in members
+                   if (path := pathlib.PurePosixPath(member.name)).parts
+                   and path.parts[0].endswith(".app")
+                   and (len(path.parts) > 1 or member.isdir())}
+        if len(bundles) != 1:
+            fail(f"{tgz.name}: expected one top-level *.app directory, found {sorted(bundles)}")
+        plist_name = f"{next(iter(bundles))}/Contents/Info.plist"
+        plists = [m for m in members if pathlib.PurePosixPath(m.name).as_posix() == plist_name]
+        if len(plists) != 1 or not plists[0].isfile():
+            fail(f"{tgz.name}: expected one {plist_name}, found {len(plists)}")
+        with archive.extractfile(plists[0]) as handle:
+            version = plistlib.load(handle).get("CFBundleShortVersionString")
+        if not version:
+            fail(f"{tgz.name}: Info.plist has no CFBundleShortVersionString")
+        return version
 
 
-def _signature_verifies(published: str):
+def _signature_verifies(published: str, tgz: pathlib.Path):
     """Does the published signature actually verify, under the app's own key?
 
     The string comparison below proves the manifest carries the same text as
-    dist/Docket.app.tar.gz.sig. It does not prove that text is a valid signature
+    the selected archive's .sig file. It does not prove that text is a valid signature
     for that tarball under the public key compiled into the binary — and that is
     the failure this whole file exists to prevent. Sign with a key that is not
     the one in tauri.conf.json and both strings still agree with each other
@@ -78,8 +83,8 @@ def _signature_verifies(published: str):
     as not run, never as a pass.
     """
     exe = shutil.which("minisign")
-    if not exe or not TGZ.is_file():
-        return None, "minisign not installed" if not exe else "no local tarball"
+    if not exe:
+        return None, "minisign not installed"
     try:
         pubkey = json.loads(TAURI_CONF.read_text())["plugins"]["updater"]["pubkey"]
     except (OSError, KeyError, json.JSONDecodeError) as exc:
@@ -87,11 +92,11 @@ def _signature_verifies(published: str):
 
     with tempfile.TemporaryDirectory() as tmp:
         pub = pathlib.Path(tmp) / "docket.pub"
-        sig = pathlib.Path(tmp) / "Docket.app.tar.gz.sig"
+        sig = pathlib.Path(tmp) / (tgz.name + ".sig")
         pub.write_bytes(base64.b64decode(pubkey))
         sig.write_bytes(base64.b64decode(published))
         result = subprocess.run(
-            [exe, "-V", "-p", str(pub), "-x", str(sig), "-m", str(TGZ)],
+            [exe, "-V", "-p", str(pub), "-x", str(sig), "-m", str(tgz)],
             capture_output=True, text=True)
     detail = (result.stdout + result.stderr).strip().splitlines()
     return result.returncode == 0, detail[-1] if detail else ""
@@ -137,6 +142,12 @@ def _download_links_point_at_this_release() -> None:
     if not version:
         fail("download.json names no version, so nothing can be checked "
              "against it")
+
+    for key, candidates in (("dmg_name", names.arm64_dmg(version)),
+                            ("intel_dmg_name", names.intel_dmg(version)),
+                            ("win_setup_name", names.windows_setup(version))):
+        if (name := data.get(key)) and name not in candidates:
+            fail(f"download.json {key} is {name!r}. Expected one of: {', '.join(candidates)}")
 
     for key in ("dmg_name", "linux_name"):
         name = data.get(key)
@@ -220,8 +231,7 @@ def main() -> None:
     _a_promised_linux_build_exists()
 
     if not MANIFEST.is_file():
-        print("UPDATER skipped — no updater.json yet")
-        return
+        fail(f"Missing {MANIFEST}")
 
     try:
         data = json.loads(MANIFEST.read_text())
@@ -253,7 +263,8 @@ def main() -> None:
         intel = _json.loads((SITE.parent / "data" / "download.json").read_text()).get("intel_dmg_name")
         if not intel:
             fail("updater.json offers darwin-x86_64 and no Intel build is published")
-        if platforms["darwin-x86_64"]["url"].endswith("/Docket.app.tar.gz"):
+        classified = names.classify(platforms["darwin-x86_64"]["url"])
+        if classified and classified[1] == "arm64":
             fail("darwin-x86_64 points at the Apple silicon tarball")
         if platforms["darwin-x86_64"].get("signature") == platforms.get("darwin-aarch64", {}).get("signature"):
             fail("darwin-x86_64 carries the Apple silicon signature")
@@ -279,27 +290,28 @@ def main() -> None:
              f"notes: {stripped[:80]!r}. This is what the update dialog shows "
              f"the customer, so publishing it would show them a path.")
 
-    if not SIG.is_file():
-        print(f"UPDATER ok (shape) — {data['version']}, "
-              f"{len(platforms)} platform(s); no local build to compare against")
-        return
+    try:
+        mirror.mirror_entries(data)
+        TGZ, SIG = names.signed_asset(APP / "dist", names.apple_updater())
+    except (OSError, ValueError) as exc:
+        fail(str(exc))
 
     local = SIG.read_text().strip()
     published = platforms.get("darwin-aarch64", {}).get("signature", "")
     if published != local:
         fail("the signature in updater.json does not match "
-             "dist/Docket.app.tar.gz.sig. Every update would be silently "
+             "the selected archive's .sig file. Every update would be silently "
              "rejected and users would never be told. Re-run "
              "scripts/collect_updater.py after the build.")
 
-    inside = _tarball_version()
+    inside = _tarball_version(TGZ)
     if inside and inside != data["version"]:
         fail(f"updater.json says {data['version']} but the tarball contains "
              f"{inside}. The updater compares the manifest against the running "
              f"binary, so this update would be offered, installed, and offered "
              f"again on every launch for ever, with no error anywhere.")
 
-    verified, detail = _signature_verifies(published)
+    verified, detail = _signature_verifies(published, TGZ)
     if verified is False:
         fail(f"the published signature does not verify against the updater "
              f"pubkey in tauri.conf.json ({detail}). The manifest and the .sig "

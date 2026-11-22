@@ -26,6 +26,7 @@ import sys as _sys
 from pathlib import Path as _Path
 _sys.path.insert(0, str(_Path(__file__).resolve().parent))
 import app_path  # noqa: E402
+import release_names as names  # noqa: E402
 
 import json
 import os
@@ -318,18 +319,17 @@ def find_helper() -> Path:
         return Path(env)
     candidates = [
         ROOT / "scripts" / "docket-render",
-        Path("/Applications/Docket.app/Contents/Resources/docket-render"),
-        app_path.find() / "dist" / "Docket.app"
-        / "Contents" / "Resources" / "docket-render",
+        *(Path("/Applications") / name for name in names.bundle_files("Contents/Resources/docket-render")),
+        *(app_path.find() / "dist" / name for name in names.bundle_files("Contents/Resources/docket-render")),
     ]
     for c in candidates:
-        if c.exists():
+        if c.is_file():
             return c
     found = shutil.which("docket-render")
     if found:
         return Path(found)
     sys.exit(
-        "visual_check: docket-render not found.\n"
+        "visual_check: docket-render not found. Tried: " + ", ".join(map(str, candidates)) + "\n"
         "  It is one file. Build it with:\n"
         "    swiftc -O -framework WebKit -framework AppKit \\\n"
         "      '<app repo>/packaging/render/DocketRender.swift' \\\n"

@@ -31,6 +31,7 @@ every number. A timing figure without those three is not a measurement.
 from __future__ import annotations
 
 from brand import BASE
+import release_names as names
 
 import json
 import platform
@@ -41,7 +42,8 @@ from pathlib import Path
 from statistics import median
 
 OUT = Path(__file__).resolve().parent.parent / "data" / "ci-timing.json"
-BIN = Path("/tmp/scoutdmg/Docket.app/Contents/Resources/docket/docket")
+BIN = None
+
 CAP = 25
 
 # Public commercial sites, deliberately spread across sizes and stacks. The
@@ -57,6 +59,10 @@ SITES = [
 ]
 
 
+def find_binary(folder: Path = Path("/tmp/scoutdmg")) -> Path:
+    return names.resolve(folder, names.bundle_files("Contents/Resources/docket/docket"))
+
+
 def _run(args: list[str], timeout: int) -> tuple[int, str, float]:
     start = time.monotonic()
     proc = subprocess.run([str(BIN), *args], capture_output=True,
@@ -65,13 +71,8 @@ def _run(args: list[str], timeout: int) -> tuple[int, str, float]:
 
 
 def main() -> None:
-    if not BIN.exists():
-        raise SystemExit(
-            f"{BIN} not found — mount the shipped DMG first:\n"
-            f"  hdiutil attach -nobrowse dist/{_facts.dmg_name()} "
-            f"-mountpoint /tmp/scoutdmg\n"
-            f"Timing the Python source instead would publish a number no user "
-            f"can reproduce: the frozen binary unpacks itself on every run.")
+    global BIN
+    BIN = find_binary()
 
     # Startup floor, with a warm file cache. Not a cold-runner figure — see
     # the module docstring.
