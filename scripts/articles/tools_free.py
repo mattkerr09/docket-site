@@ -256,8 +256,86 @@ ROBOTS_AGENTS = [
     ("CCBot", "Common Crawl", "the open web corpus many models train on"),
 ]
 
+#: Small robots.txt files that rule readers get wrong, recorded by Article Studio
+#: on 22 November 2026. "must" is what RFC 9309 and Google's robots.txt
+#: documentation (last updated 23 October 2026) say a crawler does. "older" and
+#: "newer" are what Python's standard urllib.robotparser answered for the same
+#: file, served through a stub rather than the network. A file is either the
+#: robots.txt text or the HTTP status the server gave for robots.txt.
+#: scripts/test_robots_tester_upgrade_1122.py runs every case through the
+#: Worker's own reader and fails if its answer stops matching "must".
+ROBOTS_CASES_READ = "22 November 2026"
+ROBOTS_PYTHON = {"older": "3.14.2", "newer": "3.15.2"}
+ROBOTS_CASES = [
+    # (label, file or status, crawler, page, must allow, older allows, newer allows)
+    ("The longest rule wins", "User-agent: *\nDisallow: /shop\nAllow: /shop/sale",
+     "Googlebot", "/shop/sale/boots", True, False, True),
+    ("A tie goes to Allow", "User-agent: *\nDisallow: /page\nAllow: /page",
+     "Googlebot", "/page", True, False, True),
+    ("A named group replaces *", "User-agent: *\nDisallow: /\n\nUser-agent: Googlebot\nDisallow:",
+     "Googlebot", "/blog/", True, True, True),
+    ("$ anchors the end", "User-agent: *\nDisallow: /*.pdf$",
+     "Bingbot", "/guide.pdf", False, True, False),
+    ("$ and a query string", "User-agent: *\nDisallow: /*.pdf$",
+     "Bingbot", "/guide.pdf?v=2", True, True, True),
+    ("Paths are case-sensitive", "User-agent: *\nDisallow: /Private/",
+     "Googlebot", "/private/report", True, True, True),
+    ("A version on the user-agent line", "User-agent: ChatGPT-User/2.0\nDisallow: /",
+     "ChatGPT-User", "/", False, True, True),
+    ("A blank line inside a group", "User-agent: GPTBot\n\nDisallow: /",
+     "GPTBot", "/", False, True, False),
+    ("No robots.txt", 404, "Googlebot", "/", True, True, True),
+    ("robots.txt refused", 403, "Googlebot", "/", True, False, False),
+    ("robots.txt server error", 503, "Googlebot", "/", False, False, False),
+]
+_SMALL = ("no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
+          "eleven", "twelve")
+
+
+def _small(n: int) -> str:
+    return _SMALL[n] if 0 <= n < len(_SMALL) else str(n)
+
+
+def _verdict(allowed: bool) -> str:
+    return "Allowed" if allowed else "Blocked"
+
+
+def _tester_says(case) -> str:
+    """What this page shows for the case: the Worker's answer, except a refused file."""
+    _label, file, _agent, _path, must = case[:5]
+    if file in (401, 403):
+        return f"Unknown: the site refused this tester (Google: {_verdict(must).lower()})"
+    return _verdict(must)
+
+
+def robots_cases_table() -> str:
+    rows = []
+    for case in ROBOTS_CASES:
+        label, file, agent, path, must, older, newer = case
+        if isinstance(file, int):
+            shown = f"robots.txt answers HTTP <code>{file}</code>"
+        else:
+            shown = "<code>" + "<br>".join(html.escape(line) for line in file.split("\n") if line) + "</code>"
+        rows.append(
+            f"<tr><td><strong>{html.escape(label)}</strong><br>{shown}<br>Page <code>{html.escape(path)}</code>, "
+            f"crawler <code>{html.escape(agent)}</code></td><td>{_verdict(must)}</td><td>{_tester_says(case)}</td>"
+            f"<td>{_verdict(older)}</td></tr>")
+    return ('<div class="wrap-tbl"><table class="cmp" id="robots-cases">\n'
+            f'<thead><tr><th>The file and the page</th><th>What crawlers must do</th><th>This tester</th>'
+            f'<th>Python {ROBOTS_PYTHON["older"]}</th></tr></thead>\n<tbody>\n' + "\n".join(rows) + "\n</tbody></table></div>")
+
+
+def robots_case_counts() -> dict:
+    total = len(ROBOTS_CASES)
+    refused = sum(1 for c in ROBOTS_CASES if c[1] in (401, 403))
+    older = sum(1 for c in ROBOTS_CASES if c[5] != c[4])
+    newer = sum(1 for c in ROBOTS_CASES if c[6] != c[4])
+    return {"total": total, "tester": total - refused, "refused": refused, "older": older, "newer": newer,
+            "fixed": older - newer}
+
 
 def robots_tester() -> Path:
+    n = robots_case_counts()
     rows = "".join(
         f'<tr data-agent="{html.escape(a)}"><td><code>{html.escape(a)}</code></td>'
         f'<td>{html.escape(o)}</td><td>{html.escape(w)}</td><td class="verdict"></td></tr>'
@@ -311,6 +389,22 @@ matching rule wins, and <code>Allow</code> wins a tie. <code>*</code> matches an
 a <code>$</code> at the end anchors it. If the server answers robots.txt with a server error, crawlers
 stay out of the whole site; if it answers "not found", everything is allowed.</p>
 
+<h2>Where robots.txt testers disagree</h2>
+<p>A tester is only as right as the rule reader inside it. On {ROBOTS_CASES_READ} we wrote {_small(n["total"])} small
+robots.txt files, each testing one rule, and ran each one through this tester's reader (its source code, run on our own
+computer) and through the reader that comes with Python (<code>urllib.robotparser</code>). Then we compared both with what RFC 9309 and Google's robots.txt
+documentation say a crawler must do.</p>
+{robots_cases_table()}
+<p>This tester gave the required answer on {_small(n["tester"])} of the {_small(n["total"])}. On the other one, a site
+that refuses robots.txt with <code>403</code>, it says it cannot know. Google reads any <code>4xx</code> except
+<code>429</code> as "no file" and crawls everything, but a site that refuses this tester may still serve its file to
+crawlers it trusts, so the tester does not guess.</p>
+<p>Python {ROBOTS_PYTHON["older"]} gave a different answer on {_small(n["older"])} of the {_small(n["total"])}. It took the
+first matching rule instead of the longest, read <code>*</code> and <code>$</code> as plain characters, dropped a group
+at a blank line, missed the version on the user-agent line, and treated a refused file as a block.
+Python {ROBOTS_PYTHON["newer"]} fixed {_small(n["fixed"])} of those, and the version and the refused file still differ.
+If a script or tool you rely on reads robots.txt, try the files above on it before you trust its verdict.</p>
+
 <h2>Where did Google's robots.txt tester go?</h2>
 <p>Google no longer runs a robots.txt Tester in Search Console. In its place is the robots.txt report. It shows
 which robots.txt files Google found for the top {comparisons._GRR["top_hosts"]} hosts of a property, when each was last crawled, and any warnings or
@@ -343,6 +437,8 @@ then ranks what to fix with the rest of its {N_CHECKS} checks.</p>
 <li><a href="/tools/ai-crawler-checker/">AI crawler checker: can ChatGPT read your site?</a></li>
 <li><a href="/learn/ai-crawler-directives/">Which AI crawlers to block and which to keep</a></li>
 <li><a href="/learn/does-noindex-stop-ai-crawlers/">Does noindex stop AI crawlers?</a></li>
+<li><a href="/learn/what-is-robots-txt/">What robots.txt controls, and what it cannot</a></li>
+<li><a href="/learn/crawler-directives/">Crawler directives: robots.txt, meta robots and X-Robots-Tag</a></li>
 <li><a href="/vs/ahrefs-site-audit-alternative/">Ahrefs Site Audit</a>: what a paid crawler checks, and how a crawl is paid for</li>
 </ul>
 {comparisons._verified_note("gsc-robots-report", closing="Google's pages change; if one has moved on from what is described here, <a href='/contact/'>tell us</a> and it will be corrected.")}
@@ -410,10 +506,10 @@ then ranks what to fix with the rest of its {N_CHECKS} checks.</p>
     return render(
         cat="tools", slug="robots-txt-tester",
         social_title_matches_title=True,
-        modified="2026-11-09",
-        title="Robots txt tester: check crawler access",
-        desc=("Test your site's robots.txt free. Enter a page URL to check whether Googlebot, "
-              "Bingbot and AI crawlers may crawl it, and see the rule that decides."),
+        modified="2026-11-22",
+        title="Robots txt tester: free robots.txt checker for any page",
+        desc=("Free robots.txt tester and checker. Enter a page URL to see whether Googlebot, "
+              "Bingbot and AI crawlers may crawl it, and the rule that decides."),
         h1="Robots txt tester: check crawler access",
         crumb='<a href="/">Docket</a> / <a href="/tools/">Tools</a> / Robots.txt tester',
         body=body,
@@ -439,6 +535,12 @@ then ranks what to fix with the rest of its {N_CHECKS} checks.</p>
             ("Why is a page blocked when my * rules allow it?",
              "Because a group names that crawler. A crawler that finds a group addressed to it by "
              "name obeys only that group and ignores the * rules entirely."),
+            ("Why do two robots.txt testers give different answers?",
+             "Because their rule readers differ. A crawler that follows RFC 9309 uses the longest matching rule, "
+             "lets Allow win a tie, reads * and $ as patterns and treats a missing file as no rules. A reader that "
+             "takes the first matching rule or ignores the patterns can call the same page blocked. In our test, "
+             f"Python {ROBOTS_PYTHON['older']}'s built-in reader disagreed with the standard on "
+             f"{_small(n['older'])} of {_small(n['total'])} small files."),
         ],
     )
 
