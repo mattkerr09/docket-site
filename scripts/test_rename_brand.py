@@ -215,7 +215,12 @@ def no_old_product(text, where):
     text = text.replace("formerly Docket SEO", "")
     # The Microsoft Store listing keeps its name (CEO decision 2026-11-09); the site says so (brand.STORE_NOTE).
     text = text.replace("listed there as Docket SEO", "")
+    # The download page says why the old name exists (brand.DOWNLOAD_NAME_NOTE): it names the old product on purpose.
+    import brand
+    text = text.replace(brand.DOWNLOAD_NAME_NOTE, "")
     text = re.sub(r'(?:/Applications/|/Volumes/|[A-Z]:\\+)[^\n"<>]*', "", text)
+    # Since 1.3.167 a copy updated in place keeps its old file name, Docket.app; the AI assistant, MCP and CLI pages say so (a file name).
+    text = text.replace("Docket.app", "")
     text = re.sub(r"Docket(?:-SEO-Audit(?:-Survey)?(?:/[^\s]+)?|-\d[\w.-]*\.(?:dmg|exe))", "", text)
     assert "Docket" not in text, f"{where}: old product word in {text!r}"
     assert "Check Engine Check Engine" not in text, where
@@ -324,7 +329,8 @@ def check_site(site):
     assert f'href="https://{OLD_HOST}/assets/docket-sample-report.pdf"' not in home
     privacy = (site / "legal/privacy/index.html").read_text()
     for machine in MACHINE[:3]:
-        assert f'href="https://{OLD_HOST}{machine}"' in privacy, machine
+        # The privacy page names the app's old-host addresses as plain text, not as links (2e013b1e3): a reader follows no link to them.
+        assert f"{OLD_HOST}{machine}" in privacy and f'href="https://{OLD_HOST}{machine}"' not in privacy, machine
     assert 'href="mailto:support@docketseo.app"' in privacy
 
     manifest = json.loads((site / "_redirect-map.json").read_text())

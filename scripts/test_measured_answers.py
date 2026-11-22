@@ -163,7 +163,8 @@ def unchanged(raw):
     # on /download/ it now sits after the old-name note instead of before it. Only that block and that one fixed note are left out of
     # this comparison (both have their own tests); every other line is still compared.
     raw = re.sub(r'<div class="phone-download">.*?</noscript>\s*</div>\n?', '', raw, flags=re.S)
-    raw = raw.replace('<p>Check Engine SEO was called Docket SEO; the installer and app still carry the old name for now.</p>\n', '')
+    import brand
+    raw = raw.replace(f'<p>{brand.DOWNLOAD_NAME_NOTE}</p>\n', '')
     return re.sub(r'\n\s*\n', '\n', unstamped(raw))
 
 

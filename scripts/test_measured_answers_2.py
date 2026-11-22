@@ -49,7 +49,8 @@ def morning_allowance(name, old):
         # actual purpose. The download, sale and price helpers stay protected.
         marker = '<ol class="steps" id="buy">'
         assert old.count(marker) == 1
-        old = old.replace(marker, '<p>Check Engine SEO was called Docket SEO; the installer and app still carry the old name for now.</p>\n' + marker, 1)
+        import brand
+        old = old.replace(marker, f'<p>{brand.DOWNLOAD_NAME_NOTE}</p>\n' + marker, 1)
         before = '<li><strong>Paste the key</strong> into the field the app shows, and run your first audit.'
         after = '<li>Paste the key into the field the app shows to open the full report and fix plan.'
         assert old.count(before) == 1

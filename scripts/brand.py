@@ -14,9 +14,10 @@ import re
 from urllib.parse import urlsplit, urlunsplit
 
 
-# Remove this note when the installer is renamed.
-DOWNLOAD_NAME_NOTE = ("Check Engine SEO was called Docket SEO; the installer and app "
-                      "still carry the old name for now.")
+# The installer, the app and the download names say Check Engine SEO since 1.3.167. This note still tells someone who knew the old
+# name why they meet it: it was the product's name, and a copy updated from an earlier version keeps its old file and folder names.
+DOWNLOAD_NAME_NOTE = ("Check Engine SEO was called Docket SEO. An app updated from an earlier version "
+                      "keeps its old file and folder names.")
 
 
 BRANDS = {

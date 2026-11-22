@@ -143,8 +143,11 @@ class ReviewCopyTests(unittest.TestCase):
 
     def test_company_site_captions(self):
         self.assertIn("The free audit of our own company site, in the app. <strong>", self.raw(""))
-        self.assertIn("on our own company site, kerrandcompanyholdings.com",
-                      self.text("best/screaming-frog-alternatives"))
+        # The /best/ pages became plain comparisons with a published method (7dd4901bc): the caption now says the audit was
+        # recorded on our own company site, and names the site in the next sentence.
+        text = self.text("best/screaming-frog-alternatives")
+        self.assertIn("on our own company site", text)
+        self.assertIn("kerrandcompanyholdings.com", text)
 
     def test_comparison_stays_within_recorded_evidence(self):
         text = self.text("vs/se-ranking-vs-screaming-frog")
@@ -162,16 +165,17 @@ class ReviewCopyTests(unittest.TestCase):
     def test_free_tools_limits_and_faq(self):
         route = "best/free-seo-audit-tools"
         text = self.text(route)
-        self.assertIn('"2000 qpd" and "600 qpm" per site', text)
-        self.assertIn("cap how fast a large site can be inspected", text)
+        # The page states each free tool's own limit as the vendor words it (read 20 November 2026), not Search Console quotas.
+        self.assertIn("1 demo project and 10 reports per day", text)
+        self.assertIn("5,000 crawl credits per verified project per month", text)
         for phrase in ("nothing free is better", "only source of real google data",
                        "cannot be inspected page by page", "whether you need to pay depends"):
             self.assertNotIn(phrase, text)
-        answer = self.faq(route, "Can I audit my website free without signing up?")
+        answer = self.faq(route, "Which free crawler fits a small site?")
         self.assertNotIn("None of them", answer)
         self.assertNotIn("on your computer", answer)
-        self.assertIn("Lighthouse runs inside Chrome", answer)
         self.assertIn("up to 500 URLs", answer)
+        self.assertIn("5,000 crawl credits per verified project per month", answer)
 
     def test_audit_findings_and_faq_match_the_body(self):
         text = self.text("learn/seo-audit")
