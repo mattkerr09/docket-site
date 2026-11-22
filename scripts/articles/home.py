@@ -276,7 +276,8 @@ The script and the site list ship with the dataset. Re-run it and check.</p>
 # If the screenshot is regenerated, re-read every number in the caption and alt
 # text off the new image by eye. That is the only check that can fail on this.
 # 2026-11-12: the CEO changed the H1 on Matthew's order.
-# The old headline now opens the hero-sub.
+# 2026-11-22: the growth check (ops research/growth/check-engine-10x-2026-11-22.md, action 3) put the
+# app back in the H1, with one buyer, and moved the AI crawler check to its own section below the hero.
 
 PRODUCT_HUNT_WELCOME = (
     f"Hello, Product Hunt: the {N_CHECKS}-check audit, ranked into a fix plan, "
@@ -285,6 +286,33 @@ PRODUCT_HUNT_WELCOME = (
 PRODUCT_HUNT_REVEAL = (
     "if((new URLSearchParams(location.search).get('ref')||'').toLowerCase()==='producthunt'){"
     "document.getElementById('product-hunt-welcome').hidden=false;}")
+
+
+# Brave (Claude's index) finds pages only by following links, and on 22 Nov 2026 it held 2 pages of the
+# site and not the home. Check Engine asked for one plain row of the answer pages, each anchor in the
+# buyer's own question. The same set is one paragraph on /vs/ahrefs-site-audit-alternative/.
+COMPARE_LINKS = (
+    ("/best/screaming-frog-alternatives/", "Screaming Frog alternatives for Mac and Windows"),
+    ("/vs/sitebulb-alternative/", "Sitebulb alternative"),
+    ("/vs/ahrefs-site-audit-alternative/", "Cheaper Ahrefs Site Audit alternative"),
+    ("/best/seo-audit-software-no-subscription/", "SEO audit software with no monthly subscription"),
+    ("/best/seo-crawler-for-windows/", "Best desktop SEO crawler for Windows"),
+    ("/how-to/find-broken-links-and-seo-problems/", "How to find broken links and SEO problems on your site"),
+    ("/best/free-seo-audit-tools/", "Free SEO audit tools and their limits"),
+    ("/mac-seo-audit-tool/", "SEO audit tools for Mac"),
+)
+
+
+def compare_row() -> str:
+    items = "\n".join(f'  <li><a href="{href}">{words}</a></li>' for href, words in COMPARE_LINKS)
+    return f'''<section class="sec" id="compare"><div class="wrap">
+<div class="sec-head"><h2>Compare and decide</h2></div>
+<ul class="compare-links">
+{items}
+</ul>
+<style>.compare-links{{list-style:none;padding:0;margin:0 auto;max-width:41rem;display:grid;gap:.6rem;
+grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}}.compare-links a{{overflow-wrap:anywhere}}</style>
+</div></section>'''
 
 
 def product_hunt_strip() -> str:
@@ -322,16 +350,9 @@ def body() -> str:
 <section class="hero-sec"><div class="wrap-wide hero-grid">
 <div>
   <span class="eyebrow">{N_CHECKS} checks · paid once · no subscription</span>
-  <h1 class="hero-h1">Can ChatGPT, Claude and Perplexity <em>read your site?</em></h1>
-  {hero_check_block()}
-  <p class="hero-note">No page meter. No credit counter. Nothing to check before you run an
-  audit.</p>
-  <p class="hero-sub">Everything that's wrong. In the order to fix it. Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
-  conversion, brand, AI search visibility and campaign tracking, then one ranked plan with the
-  markup to paste. Not four tools. One download.
-  Save thousands by doing it yourself. Agencies average {AGENCY_SEO_MONTHLY} a month for SEO ({source_link("Ahrefs", "https://ahrefs.com/blog/seo-pricing/")})
-  and one audit is quoted at {SEO_AUDIT_RANGE} ({source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")}). Check Engine is {PRICE_COMPACT}.</p>
-  {_verified_note("audit-agency-prices-home", closing="Prices vary with the work and the site.")}
+  <h1 class="hero-h1">Everything wrong with your website, <em>in the order to fix it.</em></h1>
+  <p class="hero-sub">For people who run their own website and would rather fix it than pay an agency. Docket audits
+  your whole site on your Mac or Windows PC and hands you one ranked list, with the markup to paste.</p>
   <p class="hero-free-line"><strong>Free to try, with no account and no key.</strong> You get your score,
   how many problems each area has, and the worst problem in full with its fix. Buying opens the rest.</p>
   {buy_block("home-hero", try_app="home-try-free")}
@@ -344,6 +365,12 @@ def body() -> str:
        One quiet line keeps both. -->
   <p class="hero-note">The free version is the {DMG_SIZE} Mac download.{(f' Intel Mac? <a href="{download_url("home-try-free-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="home-try-free-intel">Get the Intel version</a>.') if INTEL else ''}</p>
   <p class="hero-note">{MACOS}+ · {MAC_HW} · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
+  <p class="hero-note">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
+  conversion, brand, AI search visibility and campaign tracking, then one ranked plan with the
+  markup to paste. No page meter, no credit counter, nothing to check before you run an audit.
+  Agencies average {AGENCY_SEO_MONTHLY} a month for SEO ({source_link("Ahrefs", "https://ahrefs.com/blog/seo-pricing/")})
+  and one audit is quoted at {SEO_AUDIT_RANGE} ({source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")}). Check Engine is {PRICE_COMPACT}.</p>
+  {_verified_note("audit-agency-prices-home", closing="Prices vary with the work and the site.")}
 </div>
 <figure class="hero-free">
   <img src="/assets/free-result.webp" width="{FREE['image']['width']}" height="{FREE['image']['height']}"
@@ -400,6 +427,15 @@ def body() -> str:
 }})();
 </script>
 </section>
+<!-- ================= FREE AI CRAWLER CHECK ================= -->
+<section class="sec" id="ai-check"><div class="wrap">
+<div class="sec-head">
+  <h2>Can ChatGPT, Claude and Perplexity <em>read your site?</em></h2>
+  <p>A free check of your robots.txt in the browser, before you download anything.</p>
+</div>
+  {hero_check_block()}
+</div></section>
+{compare_row()}
 {_demo_section()}
 <!-- ================= THE REAL ARTIFACT =================
      This section is Docket run against our own site: page 1 of the PDF the

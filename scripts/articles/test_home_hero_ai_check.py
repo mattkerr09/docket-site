@@ -68,13 +68,16 @@ class HomeHeroTests(unittest.TestCase):
             cls.tool = tool.checker().read_text()
 
     def test_heading_form_and_no_script_fallback(self):
-        h1 = '<h1 class="hero-h1">Can ChatGPT, Claude and Perplexity <em>read your site?</em></h1>'
+        # 22 Nov 2026 (growth check, action 3): the app is the H1 again and the checker has its own
+        # section below the hero, opened by the question that used to be the H1.
+        h1 = '<h1 class="hero-h1">Everything wrong with your website, <em>in the order to fix it.</em></h1>'
         self.assertIn(h1, self.page)
-        self.assertEqual(normal(h1), "Can ChatGPT, Claude and Perplexity read your site?")
-        self.assertTrue(re.search(re.escape(h1) + r'\s*<form class="hero-check"', home.body()))
-        # The shared renderer adds the existing former-brand note after the H1.
-        intro = self.page.split(h1, 1)[1].split('<form class="hero-check"', 1)[0]
-        self.assertNotIn("hero-sub", intro)
+        self.assertEqual(self.page.count('<h1'), 1)
+        heading = '<h2>Can ChatGPT, Claude and Perplexity <em>read your site?</em></h2>'
+        self.assertEqual(normal(heading), "Can ChatGPT, Claude and Perplexity read your site?")
+        self.assertTrue(re.search('<section class="sec" id="ai-check"><div class="wrap">\\s*<div class="sec-head">\\s*' + re.escape(heading)
+                                  + r'\s*<p>[^<]+</p>\s*</div>\s*<form class="hero-check"', home.body()))
+        self.assertLess(home.body().index("</section>"), home.body().index('<form class="hero-check"'))
         tags = Markup(self.fragment).tags
         form = next(attrs for tag, attrs in tags if tag == "form")
         self.assertEqual(form, {"class": "hero-check", "action": "/tools/ai-crawler-checker/", "method": "get"})
@@ -173,36 +176,41 @@ class HomeHeroTests(unittest.TestCase):
         self.assertEqual(self.fragment.count("Download the app to run the full audit</a>"), 2 if render.WINDOWS else 1)
 
     def test_rest_of_hero_and_page_metadata_match_base(self):
+        # 22 Nov 2026: the first screen was rebuilt (H1, one-buyer line, checker moved below). What must
+        # not move: the free-version sentence (held until the release that shows every problem's title),
+        # the hero buy block, the sourced agency prices and their dated note, and the page metadata.
         source = subprocess.run(["git", "show", f"{BASE}:scripts/articles/home.py"],
                                 cwd=HERE, capture_output=True, text=True, check=True).stdout
         old = types.ModuleType("_base_home_hero")
         old.__file__ = str(HERE / "home.py")
         exec(compile(source, old.__file__, "exec"), old.__dict__)
-        before, after = old.body(), home.body()
-        before_sub = re.search(r'<p class="hero-sub">.*?</p>', before, re.S)[0]
-        after_sub = re.search(r'<p class="hero-sub">.*?</p>', after, re.S)[0]
-        added = ("Save thousands by doing it yourself. Agencies average $3,209 a month for SEO "
+        after = home.body()
+        hero = after.split("</section>", 1)[0]
+        free = re.search(r'<p class="hero-free-line">.*?</p>', old.body(), re.S)[0]
+        self.assertEqual(hero.count(free), 1)
+        self.assertEqual(hero.count('<p class="hero-sub">'), 1)
+        self.assertLess(hero.index('<p class="hero-sub">'), hero.index(free))
+        self.assertLess(hero.index(free), hero.index(render.buy_block("home-hero", try_app="home-try-free")))
+        added = ("Agencies average $3,209 a month for SEO "
                  f'({comparisons.source_link("Ahrefs", "https://ahrefs.com/blog/seo-pricing/")}) '
                  "and one audit is quoted at $500 to $5,000 "
                  f'({comparisons.source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")}). '
                  f"Check Engine is {render.PRICE_COMPACT}.")
-        self.assertEqual(normal(after_sub), "Everything that's wrong. In the order to fix it. "
-                         + normal(before_sub) + " " + normal(added))
+        self.assertIn(normal(added), normal(hero))
         note = comparisons._verified_note("audit-agency-prices-home", closing="Prices vary with the work and the site.")
-        self.assertIn(note, after)
-        # Later reviewed jobs added the PH strip, connector link and full
-        # author name. Compare this job's remaining markup to its own base.
-        source = subprocess.run(["git", "show", "81a0e2ddb96dde32d4130a689ce49959def705a2:scripts/articles/home.py"],
-                                cwd=HERE, capture_output=True, text=True, check=True).stdout
-        exec(compile(source, old.__file__, "exec"), old.__dict__)
-        before, after = old.body(), home.body()
-        after = after.replace("\n  " + render.PHONE_DOWNLOAD_BLOCK, "", 1)
-        after = after.replace("\n" + render.PHONE_DOWNLOAD_BLOCK, "", 1)
-        self.assertEqual(before, after)
+        self.assertEqual(hero.count(note), 1)
+        self.assertIn('<figure class="hero-free">', hero)
+        self.assertNotIn("hero-check", hero)
+        # The shared buy block's rival range ($129&ndash;$449) is render.py's, not this job's copy.
+        mine = hero.replace(render.buy_block("home-hero", try_app="home-try-free"), "")
+        mine = mine.split('<figure class="hero-free">', 1)[0].split("{product_hunt_strip()}", 1)[-1]
+        self.assertNotRegex(normal(mine.split("<!-- ================= HERO ================= -->", 1)[1]), "[\u2013\u2014]")
         with patch.object(old, "render", side_effect=lambda **kwargs: kwargs), \
                 patch.object(home, "render", side_effect=lambda **kwargs: kwargs):
             before_args, after_args = old.build(), home.build()
-        for key in ("title", "desc", "h1", "faq", "closer", "modified"):
+        # The closer changed after BASE in reviewed jobs (the full author name); this job leaves it alone.
+        self.assertIn(render.buy_block("home-closer"), after_args["closer"])
+        for key in ("title", "desc", "h1", "faq", "modified"):
             self.assertEqual(before_args[key], after_args[key])
 
     @unittest.skipUnless(shutil.which("node"), "node was not found on PATH; skipping browser JavaScript cases")

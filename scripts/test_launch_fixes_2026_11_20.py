@@ -39,7 +39,8 @@ def check_site(site, opened):
     assert not re.search(r"fetch|XMLHttpRequest|storage|cookie|sendBeacon|https?://", script, re.I)
     assert raw.index(strip) < raw.index('<h1 class="hero-h1">')
     h1 = re.search(r'<h1 class="hero-h1">(.*?)</h1>', raw, re.S).group(1)
-    assert words(h1) == "Can ChatGPT, Claude and Perplexity read your site?"
+    # 22 Nov 2026: the home H1 is the app again (ops growth check, action 3).
+    assert words(h1) == "Everything wrong with your website, in the order to fix it."
     for path in site.rglob("*.html"):
         page = path.read_text()
         if path != site / "index.html":

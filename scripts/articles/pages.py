@@ -281,8 +281,8 @@ def download() -> Path:
     # Download is step 1 and Buy is step 2, "when you are ready".
     body = f"""
 <p id="measured-answer">For SEO audit software without a monthly subscription, Check Engine is a desktop app you pay for once.
-Our <a href="/vs/screaming-frog-alternative/">recorded free audit</a> read {_FREE_RUN["pages"]} pages in {_FREE_RUN["seconds"]} seconds.
-That is one small run, so try the free audit on your own site before buying.</p>
+The free version runs the whole audit on your own site, with no account and no key.
+Our <a href="/vs/screaming-frog-alternative/">recorded free audit</a> read {_FREE_RUN["pages"]} pages in {_FREE_RUN["seconds"]} seconds.</p>
 
 <p>{DOWNLOAD_NAME_NOTE}</p>
 
