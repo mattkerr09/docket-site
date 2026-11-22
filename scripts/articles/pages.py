@@ -1821,6 +1821,10 @@ check it in one command, and the fix for each cause.
 Docket measures about headings, and where the one-H1 rule parts company with the HTML standard.
 <a href="/how-to/fix-heading-structure/">Fix heading structure &rarr;</a></p>
 
+<h2>Find broken links and SEO problems</h2>
+<p>The steps from a crawl to a fixed site: crawl every page, read the problems in order, compare with what Google reports, then crawl again.
+<a href="/how-to/find-broken-links-and-seo-problems/">How to find broken links and SEO problems &rarr;</a></p>
+
 <h2>Broken outbound links</h2>
 <p>A site that refuses an automated request is not a dead site, and Docket separates the two. Which
 rows are rot, which are a fact about the crawl, and the one status that means the request never

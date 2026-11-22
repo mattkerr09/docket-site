@@ -233,6 +233,9 @@ A monitor checks for changes over time. Keep those tasks separate when you compa
 <p>Some audit software is sold for a one-time price instead of a subscription. The guide compares six, for Mac, Windows and the browser,
 and says what each page states about the free version and the refund.
 <a href="/best/seo-audit-software-no-subscription/">SEO audit software with no monthly subscription</a>.</p>
+<h2>Run a desktop crawl on Windows</h2>
+<p>Several crawlers run as Windows apps, and they differ in how they are sold and what their free version lets you finish.
+<a href="/best/seo-crawler-for-windows/">Best desktop SEO crawler for Windows, compared</a>.</p>
 <h2>Prepare a report for a client</h2>
 <p>Write down whether you need a PDF, a web report or a client login. A branding add-on may be charged separately from the audit plan.
 The guide marks reporting platforms and planned features so you can ask for the right sample.

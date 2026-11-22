@@ -40,6 +40,8 @@ import canonicals  # noqa: E402
 import best_free  # noqa: E402
 import sf_alternatives  # noqa: E402
 import best_no_subscription  # noqa: E402
+import best_windows_crawlers  # noqa: E402
+import howto_find_broken_links  # noqa: E402
 import white_label  # noqa: E402
 import comparisons  # noqa: E402
 import ahrefs_first_screen  # noqa: E402
@@ -1830,6 +1832,8 @@ def main() -> int:
     pages += [best_free.best_hub(), best_free.free_seo_audit_tools(), sf_alternatives.sf_alternatives(),
               white_label.white_label_tools()]
     pages += best_no_subscription.build_all()
+    pages += best_windows_crawlers.build_all()
+    pages += howto_find_broken_links.build_all()
     pages += [howto_https.http_to_https(),
               howto_hreflang.hreflang_return_tags(),
               howto_canonicals.conflicting_canonicals(),
