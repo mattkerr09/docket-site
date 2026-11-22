@@ -12,10 +12,10 @@
      leaving HTTPS. There is no meta equivalent for X-Content-Type-Options, so that one
      stays unset here and is not worth chasing. -->
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>What is ClaudeBot? What blocking it does, and doesn't</title>
-<meta name="description" content="ClaudeBot is Anthropic's training crawler. Blocking it keeps your pages out of training, not Claude's answers. The three Anthropic bots, and how to block one.">
+<title>What is ClaudeBot? How to detect it, and what blocking does</title>
+<meta name="description" content="ClaudeBot is Anthropic's training crawler. How to detect a real one, block it without leaving Claude's answers, and which rule wins over a no-training signal.">
 <meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="8789dfcc250a">
+<meta name="build-id" content="cff61ad23008">
 <link rel="canonical" href="https://checkengineseo.com/learn/what-is-claudebot/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -24,7 +24,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta property="og:type" content="article">
 <meta property="og:title" content="What is ClaudeBot?">
-<meta property="og:description" content="ClaudeBot is Anthropic's training crawler. Blocking it keeps your pages out of training, not Claude's answers. The three Anthropic bots, and how to block one.">
+<meta property="og:description" content="ClaudeBot is Anthropic's training crawler. How to detect a real one, block it without leaving Claude's answers, and which rule wins over a no-training signal.">
 <meta property="og:url" content="https://checkengineseo.com/learn/what-is-claudebot/">
 <meta property="og:site_name" content="Check Engine SEO">
 <meta property="og:image" content="https://checkengineseo.com/og.png?v=20261108-win">
@@ -32,7 +32,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="What is ClaudeBot?">
-<meta name="twitter:description" content="ClaudeBot is Anthropic's training crawler. Blocking it keeps your pages out of training, not Claude's answers. The three Anthropic bots, and how to block one.">
+<meta name="twitter:description" content="ClaudeBot is Anthropic's training crawler. How to detect a real one, block it without leaving Claude's answers, and which rule wins over a no-training signal.">
 <meta name="twitter:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <style>
 /* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
@@ -939,8 +939,8 @@ nav{background:rgba(7,12,13,.72);
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://checkengineseo.com/#org", "name": "Check Engine SEO", "url": "https://checkengineseo.com/", "logo": "https://checkengineseo.com/icon.png", "description": "Check Engine makes local SEO and marketing audit software for Mac and Windows.", "sameAs": ["https://github.com/mattkerr09/docket-site", "https://www.producthunt.com/products/docket-seo"]}, {"@type": "WebSite", "@id": "https://checkengineseo.com/#site", "url": "https://checkengineseo.com/", "name": "Check Engine SEO", "publisher": {"@id": "https://checkengineseo.com/#org"}}, {"@type": "SoftwareApplication", "@id": "https://checkengineseo.com/#app", "name": "Check Engine SEO", "applicationCategory": "BusinessApplication", "applicationSubCategory": "SEO audit software", "operatingSystem": "macOS 12 or later, Apple silicon or Intel; Windows, 64-bit", "description": "Check Engine crawls a website, runs 99 checks across SEO, copy, speed, structured data, local visibility, AI search visibility and marketing conversion, and returns a ranked list of what to fix. The crawl and the report stay on your computer.", "downloadUrl": "https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-arm64.dmg", "featureList": "99 checks, ranked action plan, PDF report, scheduled monitoring, competitor comparison, AI crawler access audit", "publisher": {"@id": "https://checkengineseo.com/#org"}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Check Engine", "item": "https://checkengineseo.com/"}, {"@type": "ListItem", "position": 2, "name": "Learn", "item": "https://checkengineseo.com/learn/"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "What is ClaudeBot?", "description": "ClaudeBot is Anthropic's training crawler. Blocking it keeps your pages out of training, not Claude's answers. The three Anthropic bots, and how to block one.", "datePublished": "2026-09-28", "dateModified": "2026-11-12", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/learn/what-is-claudebot/", "inLanguage": "en"}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does blocking ClaudeBot remove my site from Claude?", "acceptedAnswer": {"@type": "Answer", "text": "No. ClaudeBot collects training data. Claude's answers come from Claude-SearchBot, which indexes pages for search, and Claude-User, which fetches a page when someone asks Claude about it. Block ClaudeBot alone and you stay findable."}}, {"@type": "Question", "name": "Does ClaudeBot obey robots.txt?", "acceptedAnswer": {"@type": "Answer", "text": "Anthropic says its crawlers honour robots.txt and also support the non-standard Crawl-delay line. robots.txt is still a request: a server or CDN rule is the only thing that enforces a block."}}, {"@type": "Question", "name": "How can I tell a real ClaudeBot request from a fake one?", "acceptedAnswer": {"@type": "Answer", "text": "Check the requesting address against the list Anthropic publishes at claude.com/crawling/bots.json. The user-agent string alone proves nothing."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "What is ClaudeBot?", "description": "ClaudeBot is Anthropic's training crawler. How to detect a real one, block it without leaving Claude's answers, and which rule wins over a no-training signal.", "datePublished": "2026-09-28", "dateModified": "2026-11-22", "author": {"@type": "Person", "name": "Matthew Kerr", "description": "Builds Check Engine. Every number on this site comes from running it."}, "publisher": {"@id": "https://checkengineseo.com/#org"}, "mainEntityOfPage": "https://checkengineseo.com/learn/what-is-claudebot/", "inLanguage": "en"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does blocking ClaudeBot remove my site from Claude?", "acceptedAnswer": {"@type": "Answer", "text": "No. ClaudeBot collects training data. Claude's answers come from Claude-SearchBot, which indexes pages for search, and Claude-User, which fetches a page when someone asks Claude about it. Block ClaudeBot alone and you stay findable."}}, {"@type": "Question", "name": "Does ClaudeBot obey robots.txt?", "acceptedAnswer": {"@type": "Answer", "text": "Anthropic says its crawlers honour robots.txt and also support the non-standard Crawl-delay line. robots.txt is still a request: a server or CDN rule is the only thing that enforces a block."}}, {"@type": "Question", "name": "How can I tell a real ClaudeBot request from a fake one?", "acceptedAnswer": {"@type": "Answer", "text": "Check the requesting address against the list Anthropic publishes at claude.com/crawling/bots.json. The user-agent string alone proves nothing."}}, {"@type": "Question", "name": "Does a no-AI-training signal override my ClaudeBot rule?", "acceptedAnswer": {"@type": "Answer", "text": "No. Anthropic says a robots.txt rule that names ClaudeBot takes priority over the general no-training signal. Only when your file does not name ClaudeBot does it follow the general signal."}}]}</script>
 <!-- Privacy-friendly analytics by Plausible -->
 <script src="https://kerr-lead-agent.kerrco.workers.dev/embed.js" defer></script>
 <script src="https://kerr-affiliate-hub.kerrco.workers.dev/snippet.js" defer></script>
@@ -985,18 +985,21 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <a class="btn" href="/download/#buy" data-ev="Buy" data-ev-button="nav">Get Check Engine</a>
 </div></nav>
 <main id="main">
-<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/learn/">Learn</a> / What is ClaudeBot?</div><h1>What is ClaudeBot?</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-09-28">28 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-12">12 November 2026</time></p>
+<article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/learn/">Learn</a> / What is ClaudeBot?</div><h1>What is ClaudeBot?</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-09-28">28 September 2026</time><span class="sep">·</span>Updated <time datetime="2026-11-22">22 November 2026</time></p>
 
 <p class="lede"><strong>ClaudeBot is Anthropic&rsquo;s web crawler.</strong> It collects pages to
 train Claude models.</p>
 <p>To keep your future pages out of Anthropic&rsquo;s training data, block <code>ClaudeBot</code>
 in robots.txt. Leave <code>Claude-SearchBot</code> and <code>Claude-User</code> open so Claude can
-still find and fetch your pages.</p>
+still find and fetch your pages. Since 2026-10-30 Anthropic also reads a general &ldquo;no AI
+training&rdquo; signal, but a robots.txt group that names <code>ClaudeBot</code> wins over it.
+To tell a real ClaudeBot from a fake, check the requesting address against the list Anthropic
+publishes, not the user-agent name.</p>
 <p class="next-step"><a href="/tools/ai-crawler-checker/?src=learn-what-is-claudebot">Check your site with the free AI crawler checker</a>.</p>
 
 <h2>Anthropic runs three crawlers, not one</h2>
 <p>Anthropic&rsquo;s <a href="https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler" rel="nofollow noopener">own help article</a>
-(dated 2026-04-07 on the article, re-read 2026-10-19) names three, and each one answers a different question
+(last modified 2026-11-04, re-read 2026-11-22) names three, and each one answers a different question
 about your site:</p>
 <div class="wrap-tbl"><table class="cmp">
 <thead><tr><th>Crawler</th><th>What Anthropic says it does</th><th>What blocking it does</th></tr></thead>
@@ -1022,6 +1025,32 @@ should still apply. And a rule written with a stray character (a version number,
 non-breaking hyphen pasted from a document) can address a name no crawler has; the
 <a href="/index/ai-directives/">Check Engine Index</a> found such rules on real sites.</p>
 
+<h2>The no-AI-training signal, and which rule wins</h2>
+<p>Anthropic&rsquo;s article says that since 2026-10-30 it has begun honouring a machine-readable
+signal that says &ldquo;no AI training&rdquo;, rolling out across its services over time. It
+follows work in the IETF&rsquo;s aipref working group. In that group&rsquo;s current
+<a href="https://datatracker.ietf.org/doc/draft-ietf-aipref-attach/" rel="nofollow noopener">attachment draft</a> (version
+05, 2026-08-19) the signal is one more line in a robots.txt group,
+or the same words in an HTTP response header:</p>
+<pre><code>User-Agent: *
+Allow: /
+Content-Usage: train-ai=n</code></pre>
+<p>When the two disagree, Anthropic says a rule that names <code>ClaudeBot</code> is the more
+specific one and takes priority:</p>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Your robots.txt</th><th>What ClaudeBot follows</th></tr></thead>
+<tbody>
+<tr><td>Names <code>ClaudeBot</code>, whatever the general signal says</td><td>The <code>ClaudeBot</code> rule</td></tr>
+<tr><td>Does not name <code>ClaudeBot</code>, and carries a general no-training signal</td><td>The general signal</td></tr>
+<tr><td>Does not name <code>ClaudeBot</code>, and has no signal</td><td>Your <code>User-agent: *</code> rules</td></tr>
+</tbody></table></div>
+<p>So a site that writes <code>train-ai=n</code> for everyone and also keeps an old
+<code>User-agent: ClaudeBot</code> group with <code>Allow: /</code> has told Anthropic two things,
+and Anthropic follows the <code>ClaudeBot</code> group. Anthropic also says the way it reads these settings may change while
+the standard is a draft. Check Engine&rsquo;s <a href="/tools/robots-txt-tester/">robots.txt tester</a>
+reads <code>Allow</code> and <code>Disallow</code> only, so it ignores a <code>Content-Usage</code>
+line: read that line yourself.</p>
+
 <h2>What most sites that block Anthropic actually do</h2>
 <p>In Check Engine&rsquo;s August 2026 survey of the Tranco top 10,000, <strong>411
 sites block Claude-SearchBot, and 409 of them block ClaudeBot as well</strong>, leaving
@@ -1030,10 +1059,36 @@ at OpenAI: sites that close the search crawler almost always close the training 
 which suggests most of those search blocks were a side effect of blocking &ldquo;AI&rdquo; as one
 thing rather than a decision to disappear from answers.</p>
 
-<h2>Is a request really from ClaudeBot?</h2>
-<p>Anyone can put &ldquo;ClaudeBot&rdquo; in a user-agent string. Anthropic publishes the addresses
-its crawlers use at <a href="https://claude.com/crawling/bots.json" rel="nofollow noopener">claude.com/crawling/bots.json</a>,
-so a request can be checked against that list before you block or allow it at your server.</p>
+<h2>How to detect ClaudeBot, and spot a fake</h2>
+<p>Anyone can put &ldquo;ClaudeBot&rdquo; in a user-agent string, so a log line that says ClaudeBot
+is only a claim. Two checks together settle it:</p>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Check</th><th>What it proves</th><th>What it does not</th></tr></thead>
+<tbody>
+<tr><td>The user-agent contains <code>ClaudeBot</code></td><td>The request says it is ClaudeBot</td><td>Anything about who sent it</td></tr>
+<tr><td>The source address is on <a href="https://claude.com/crawling/bots.json" rel="nofollow noopener">Anthropic&rsquo;s list</a></td><td>The request came from Anthropic</td><td>Which Anthropic bot it was: it is one list, not one per bot</td></tr>
+</tbody></table></div>
+<p>When we read the list on 2026-11-22 it held 14 entries covering
+1,037 IPv4 addresses, created 2026-10-20, and no IPv6 addresses. The
+list carries its own creation date and can be replaced, so fetch it when you check rather than copying it into a firewall rule. This script
+does that and checks the addresses you give it:</p>
+<pre><code>import ipaddress, json, sys, urllib.request
+URL = "https://claude.com/crawling/bots.json"
+req = urllib.request.Request(URL, headers={"User-Agent": "log-check/1.0"})
+data = json.load(urllib.request.urlopen(req))
+nets = [ipaddress.ip_network(p.get("ipv4Prefix") or p.get("ipv6Prefix"))
+        for p in data["prefixes"]]
+for ip in sys.argv[1:]:
+    addr = ipaddress.ip_address(ip)
+    print(ip, any(addr.version == n.version and addr in n for n in nets))</code></pre>
+<p>Run it as <code>python3 check.py 216.73.217.40 203.0.113.7</code> with addresses from your
+log. In our run the first printed <code>True</code> and the second, an address reserved for
+documentation, printed <code>False</code>. The script names itself in its request on purpose: the
+same request with Python&rsquo;s default user-agent got <code>403 Forbidden</code> from claude.com
+when we tried it, while a request that named itself got the list.</p>
+<p>Use the list to verify, not to opt out. Anthropic says blocking its addresses may not work as
+an opt-out, because it stops Anthropic reading your robots.txt. Check Engine&rsquo;s own log reader
+checks Googlebot by reverse DNS; it does not check Anthropic&rsquo;s list yet.</p>
 
 
 <h2>What this site&rsquo;s own robots.txt says</h2>
@@ -1054,7 +1109,7 @@ site that meant to stay open is not. The free checker reads robots.txt. It canno
 <li><a href="/learn/does-noindex-stop-ai-crawlers/">Does noindex stop AI crawlers?</a></li>
 <li><a href="/how-to/fix-ai-crawlers-blocked-by-your-cdn/">When your CDN blocks crawlers your robots.txt allows</a></li>
 </ul>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does blocking ClaudeBot remove my site from Claude?</h3><p>No. ClaudeBot collects training data. Claude's answers come from Claude-SearchBot, which indexes pages for search, and Claude-User, which fetches a page when someone asks Claude about it. Block ClaudeBot alone and you stay findable.</p></div><div class="faq-item"><h3>Does ClaudeBot obey robots.txt?</h3><p>Anthropic says its crawlers honour robots.txt and also support the non-standard Crawl-delay line. robots.txt is still a request: a server or CDN rule is the only thing that enforces a block.</p></div><div class="faq-item"><h3>How can I tell a real ClaudeBot request from a fake one?</h3><p>Check the requesting address against the list Anthropic publishes at claude.com/crawling/bots.json. The user-agent string alone proves nothing.</p></div></div></section>
+<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Does blocking ClaudeBot remove my site from Claude?</h3><p>No. ClaudeBot collects training data. Claude's answers come from Claude-SearchBot, which indexes pages for search, and Claude-User, which fetches a page when someone asks Claude about it. Block ClaudeBot alone and you stay findable.</p></div><div class="faq-item"><h3>Does ClaudeBot obey robots.txt?</h3><p>Anthropic says its crawlers honour robots.txt and also support the non-standard Crawl-delay line. robots.txt is still a request: a server or CDN rule is the only thing that enforces a block.</p></div><div class="faq-item"><h3>How can I tell a real ClaudeBot request from a fake one?</h3><p>Check the requesting address against the list Anthropic publishes at claude.com/crawling/bots.json. The user-agent string alone proves nothing.</p></div><div class="faq-item"><h3>Does a no-AI-training signal override my ClaudeBot rule?</h3><p>No. Anthropic says a robots.txt rule that names ClaudeBot takes priority over the general no-training signal. Only when your file does not name ClaudeBot does it follow the general signal.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">
