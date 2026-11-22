@@ -135,7 +135,10 @@ nobody chose on purpose.</p>
 
 <h2>What robots.txt cannot do</h2>
 
-<p>It is a request, not a control. It is also the only mechanism these operators document. You
+<p>It is a request, not a control. It is also, with one exception, the only mechanism these operators
+document: Anthropic says that since 30 October 2026 it also honours a machine-readable &ldquo;no AI
+training&rdquo; signal that follows an IETF draft, and that a robots.txt rule naming <code>ClaudeBot</code>
+takes priority over it (<a href="/learn/what-is-claudebot/">what is ClaudeBot</a> has the details). You
 will find advice recommending <code>noai</code> or <code>noimageai</code> meta tags: none of the
 operators in the table above documents support for them, so this page does not tell you they
 work. If you need a guarantee rather than a request, the honest answer is authentication, not a

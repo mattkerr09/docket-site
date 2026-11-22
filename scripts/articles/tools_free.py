@@ -422,6 +422,10 @@ links pointing at it, without its content. To keep a page out, allow crawling an
 is what actually refuses a request, and this tester cannot see one.</li>
 <li><strong>It is per host.</strong> <code>www.</code> and the bare domain, and every subdomain, each
 have their own file. The tester reads the file for the host you type.</li>
+<li><strong>It is not the only signal an AI crawler may read.</strong> This tester reads <code>Allow</code> and
+<code>Disallow</code> only. Anthropic says that since 30 October 2026 it also honours a &ldquo;no AI training&rdquo;
+signal from an IETF draft, written as a <code>Content-Usage</code> line, which this tester ignores. A rule that names
+<code>ClaudeBot</code> still takes priority over it: see <a href="/learn/what-is-claudebot/">what is ClaudeBot</a>.</li>
 </ul>
 
 <h2>Checking every page</h2>
