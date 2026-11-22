@@ -213,7 +213,7 @@ same request with Python&rsquo;s default user-agent got <code>403 Forbidden</cod
 when we tried it, while a request that named itself got the list.</p>
 <p>Use the list to verify, not to opt out. Anthropic says blocking its addresses may not work as
 an opt-out, because it stops Anthropic reading your robots.txt. Docket&rsquo;s own log reader
-checks Googlebot by reverse DNS; it does not check Anthropic&rsquo;s list yet.</p>
+checks Googlebot by reverse DNS; it does not check Anthropic&rsquo;s list.</p>
 
 {_own_robots_example()}
 <h2>robots.txt is a request, not a lock</h2>
