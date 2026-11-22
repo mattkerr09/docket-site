@@ -196,33 +196,39 @@ with patch('datetime.datetime', AfterSale):
     assert result.returncode == 0, result.stdout + result.stderr
 
 
-def run_gate(destination, *argv):
-    env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1", SITE_BRAND="checkengine", TZ="UTC")
-    result = subprocess.run([sys.executable, *argv], cwd=destination, env=env, capture_output=True, text=True)
-    assert result.returncode == 0, (argv, (result.stdout + result.stderr)[-1800:])
-
-
-FOUNDING_AFTER_THE_END = '''
-import datetime as dt, sys
+AFTER_THE_END = '''
+import datetime
+import runpy
+import sys
+from unittest.mock import patch
 sys.path.insert(0, "scripts")
-import render as R, verify_founding_offer as V
-files = {p.relative_to(V.SITE).as_posix(): p.read_text(errors="ignore") for p in sorted(V.SITE.rglob("*"))
-         if p.is_file() and p.suffix in (".html", ".txt", ".json") and (p.suffix != ".json" or p.name == "offer.json")}
-fails, _notes = V.problems(files, None, dt.datetime(2026, 12, 3, 8, tzinfo=dt.timezone.utc), R.FOUNDING_ENDS_AT,
-                           R.FOUNDING_NOW, R.FOUNDING_CODE, R.FOUNDING_END_DAY_US, R.FOUNDING_AFTER_DAY)
-for f in fails:
-    print("FAIL", f)
-sys.exit(1 if fails else 0)
+class AfterSale(datetime.datetime):
+    @classmethod
+    def now(cls, tz=None):
+        return cls(2026, 12, 3, 8, tzinfo=datetime.timezone.utc).astimezone(tz)
+script = sys.argv[1]
+sys.argv = sys.argv[1:]
+with patch("datetime.datetime", AfterSale):
+    runpy.run_path(script, run_name="__main__")
 '''
+
+
+def run_gate(destination, *argv):
+    """One deploy gate, run on the closed build with the clock set to 3 December 08:00 UTC, as build_after does: the gates
+    compare the build with the real clock (render.FOUNDING_OPEN, the founding-offer end), so on today's clock they would
+    call a correct closed build wrong."""
+    env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1", SITE_BRAND="checkengine", TZ="UTC")
+    result = subprocess.run([sys.executable, "-c", AFTER_THE_END, *argv], cwd=destination, env=env,
+                            capture_output=True, text=True)
+    assert result.returncode == 0, (argv, (result.stdout + result.stderr)[-1800:])
 
 
 def check_closed_build_gates(destination):
     """The gates deploy.sh runs, on the build made at 3 December 08:00 UTC (the 3 December runbook, step 1): the first
-    run of any of them on the closed state must not be the real deploy. verify_founding_offer is read with its clock
-    set to after the end, because it compares the build with the real clock."""
+    run of any of them on the closed state must not be the real deploy."""
     for argv in (("scripts/verify_numbers.py",), ("scripts/lint.py", "site"),
                  ("scripts/verify_structured_data_matches_page.py",), ("scripts/verify_price_claims.py",),
-                 ("scripts/verify_privacy_scripts.py",), ("-c", FOUNDING_AFTER_THE_END)):
+                 ("scripts/verify_privacy_scripts.py",), ("scripts/verify_founding_offer.py", "--offline")):
         run_gate(destination, *argv)
 
 
