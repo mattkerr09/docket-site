@@ -113,8 +113,8 @@ application is not. If your policy requires reading the code, Docket will not pa
 
 <h2>How you can check any of this</h2>
 
-<p>The Mac download is signed with an Apple Developer ID and notarised, which means the
-certificate carries a legal name and Apple has checked it. You do not have to take that on
+<p>The Mac download is signed with an Apple Developer ID, which carries its holder's legal name,
+and notarised by Apple. You do not have to take that on
 faith. After downloading the {DMG_SIZE} disk image:</p>
 
 <pre><code>codesign -dv --verbose=4 "/Volumes/{VOLUME}/Check Engine SEO.app"
@@ -161,7 +161,7 @@ link. The rates, the payout terms and the disclosure you owe your readers are on
         crumb='<a href="/">Docket</a> / About',
         body=body,
         published="2026-08-07",
-        modified="2026-11-05",  # the data FAQ: five default-on checks, PageSpeed needs no key
+        modified="2026-11-22",  # notarised by Apple, not "checked" by Apple (CEO copy rule); was 2026-11-05 for the data FAQ
         schema_type="AboutPage",
         faq=[
             ("Who makes Docket?",
