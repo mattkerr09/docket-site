@@ -29,6 +29,10 @@ an image finishes loading above it, everything jumps, and they tap an ad instead
 measures it as Cumulative Layout Shift, but the reason to fix it is that it is the most
 irritating thing a page can do.</p>
 
+<p><strong>The short answer:</strong> give every image its real width and height, reserve space
+for embeds, ads and late banners, and size the fallback font to match your web font. A crawl can
+flag images with no declared size; only a real browser measures the shift itself.</p>
+
 <h2>The cause is almost always one thing</h2>
 
 <p>An image with no declared width and height. The browser cannot know how much space to
@@ -87,10 +91,36 @@ that was visible, so an image far down the page that jumps before anyone scrolls
 nothing. Your hero image, your logo, and any banner near the top are worth more attention than
 everything below them combined.</p>
 
+<h2>What a real crawl caught</h2>
+
+<p>For this update we built a small local test site, one sized-image control and six pages
+that each carry one cause of shift, and ran Docket's audit on it.</p>
+
+<div class="wrap-tbl"><table>
+<thead><tr><th>Page</th><th>What it carried</th><th>What Docket reported</th></tr></thead>
+<tbody>
+<tr><td>Control</td><td>One image with width and height</td><td>Nothing</td></tr>
+<tr><td>Three unsized images</td><td>Three images, none with a declared size</td><td>Images without width and height, and high risk of layout shift, both at medium severity</td></tr>
+<tr><td>Two of three unsized</td><td>Three images, one sized and two not</td><td>High risk of layout shift, at medium severity</td></tr>
+<tr><td>One unsized image</td><td>A single image with no declared size</td><td>Nothing: one image is below the line the check uses</td></tr>
+<tr><td>Unsized embed</td><td>An iframe with no width or height</td><td>Nothing</td></tr>
+<tr><td>Injected banner</td><td>A banner a script adds after the page loads</td><td>Nothing</td></tr>
+<tr><td>Web font</td><td>A web font with no fallback sizing</td><td>Nothing</td></tr>
+</tbody>
+</table></div>
+
+<p>The shift score itself was not measured in this test. Docket takes that score from PageSpeed
+Insights, which fetches pages from Google's servers and cannot reach a site that runs only on
+your own computer. So treat a clean audit as "no
+image risk found", not as "no layout shift": check embeds, banners and fonts by hand, and confirm
+the score in PageSpeed Insights or Search Console.</p>
+
 <h2>What Docket can and cannot tell you</h2>
 
-<p>It reads the markup and reports pages where most images have no declared size: the
-condition that causes shift. <strong>It does not measure CLS.</strong> That needs a real
+<p>It reads the markup and reports a page once it carries at least three images and most of
+them have no declared size: the condition that causes shift. A page with a single unsized image
+is not reported, and neither is an unsized embed, a banner added by script or a font swap,
+because none of those can be judged from the HTML alone. <strong>It does not measure CLS.</strong> That needs a real
 browser under real network conditions, and any tool claiming a CLS score from a crawl is
 reporting a guess as a measurement.</p>
 
@@ -108,13 +138,19 @@ a third, heavy image files, is at
 """
     return render(
         cat="how-to", slug="fix-layout-shift",
-        title="How to fix CLS issues (cumulative layout shift)",
+        # 2026-11-22: short answer, measured test-site table, exact reporting line, one FAQ.
+        modified="2026-11-22",
+        title="How to fix CLS issues: cumulative layout shift, tested",
         desc=("Layout shift is almost always images with no width and height. The fix, the "
               "four other causes, and why a crawler can report the risk but not the score."),
         h1="How to fix layout shift",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / layout shift',
         body=body,
         faq=[
+            ("Why didn't the audit flag my one unsized image?",
+             "Because one image is below the line the check uses. Docket reports a page once it "
+             "carries at least three images and most of them have no declared size. A single "
+             "unsized image can still shift the page, so give it a width and height anyway."),
             ("What causes layout shift?",
              "Most often an image with no width and height attributes: the browser cannot "
              "reserve space before the file arrives, so content flows into the gap and is "
