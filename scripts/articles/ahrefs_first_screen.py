@@ -102,6 +102,14 @@ change, repeat the check on the same pages. Save the crawl settings with the res
 can explain a difference in coverage as well as a difference in findings.</p>
 <p>For a different crawl setup, see <a href="/vs/screaming-frog-alternative/">Check Engine vs Screaming Frog</a>.
 For Check Engine's licence and refund terms, read <a href="/pricing/">our pricing page</a>.</p>
+<p>If you are weighing other tools too, these pages answer the questions buyers ask next:
+<a href="/best/screaming-frog-alternatives/">Screaming Frog alternatives for Mac and Windows</a>,
+<a href="/vs/sitebulb-alternative/">the Sitebulb alternative comparison</a>,
+<a href="/best/seo-audit-software-no-subscription/">SEO audit software without a monthly subscription</a>,
+<a href="/best/seo-crawler-for-windows/">the best SEO crawler for Windows</a>,
+<a href="/best/free-seo-audit-tools/">the free SEO audit tools compared</a>,
+<a href="/mac-seo-audit-tool/">the Mac SEO audit tool page</a> and
+<a href="/how-to/find-broken-links-and-seo-problems/">how to find broken links and SEO problems on your website</a>.</p>
 {CTA_LINK_EXPERIMENT}
 """
     return render(
