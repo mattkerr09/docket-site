@@ -29,6 +29,12 @@ import facts as F  # noqa: E402
 from render import render  # noqa: E402
 
 
+#: One line after the lede of /bot/ for a "search engine crawler test" searcher (Search Console, 28 days to 21 Nov 2026: 11
+#: impressions at 65.1), whose answer is /how-to/test-a-page-as-googlebot/. A plain internal link; it states no figure.
+GOOGLEBOT_POINTER = ('<p>Want to see a page the way Googlebot fetches it? '
+                     '<a href="/how-to/test-a-page-as-googlebot/">Test a page as Googlebot</a>.</p>')
+
+
 def bot() -> Path:
     lim = F.limits()
     token = lim["user_agent_token"]
@@ -38,6 +44,8 @@ Docket from their own computer. There is no scheduled sweep of the web: every re
 name belongs to one audit that one person started on their own machine. Two other things send
 requests from our own servers, each under its own name and described below: the free website
 checker, when a visitor asks it to check a site, and an occasional research survey.</p>
+
+{GOOGLEBOT_POINTER}
 
 <h2>How it identifies itself</h2>
 

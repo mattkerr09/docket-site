@@ -1994,6 +1994,14 @@ def faq(row: dict) -> list[tuple[str, str]]:
     return [(item["question"], item["answer"]) for item in row["faq"]]
 
 
+#: One line after the lede for a "can ai crawlers execute javascript" searcher (Search Console, 28 days to 21 Nov 2026: 5
+#: impressions at 57.2 on /checks/ai-rendering/), whose general answer is /learn/javascript-rendering/. A plain internal link.
+INTENT_POINTERS = {
+    "ai.rendering": ('<p>How do crawlers handle JavaScript in general? '
+                     '<a href="/learn/javascript-rendering/">Read how JavaScript rendering works</a>.</p>'),
+}
+
+
 def body(row: dict) -> str:
     e = escape
     fields = row["field_audits"]
@@ -2006,6 +2014,7 @@ def body(row: dict) -> str:
     related = (f'<p><a href="{e(row["guide"])}">{e(row["guide_title"])}</a></p>'
                if row["guide"] else "")
     return (f'<p class="lede">{e(row["answer"])}</p>'
+            + INTENT_POINTERS.get(row["id"], "") +
             '<h2>What Check Engine measures</h2>'
             f'<p>{e(row["condition"]["text"])}</p>'
             f'<p>{e(row["pages"]["text"])}</p>'

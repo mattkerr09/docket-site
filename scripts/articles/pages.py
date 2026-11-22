@@ -589,10 +589,18 @@ is gone.</p>
     )
 
 
+#: One line after the lede of /for/ for a "search engine monitoring" searcher (Search Console, 28 days to 21 Nov 2026: 13
+#: impressions at 65), whose answer is /learn/site-monitoring/. A plain internal link; it states no figure.
+MONITORING_POINTER = ('<p>Want your site checked on a schedule? '
+                      '<a href="/learn/site-monitoring/">See how site monitoring works</a>.</p>')
+
+
 def for_hub() -> Path:
     body = f"""
 <p class="lede">The same {N_CHECKS} checks run on every site, but which findings matter most changes a
 lot by who you are. These pages cover what to look at first.</p>
+
+{MONITORING_POINTER}
 
 <p>That is not a marketing framing. Docket scores every area on every site, and the same
 finding genuinely carries different weight depending on how the business gets found.</p>
