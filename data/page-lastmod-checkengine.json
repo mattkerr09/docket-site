@@ -1455,9 +1455,9 @@
   "hash": "2071b24e2bca5478"
  },
  "download/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "275332fb32373bcb"
+  "hash": "b0745fb78b7cc4ed"
  },
  "faq/index.html": {
   "changed_in_build": false,
@@ -1825,9 +1825,9 @@
   "hash": "1bef76e786f181cd"
  },
  "index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "366c099e71b5e912"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "f260439375208843"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -1855,9 +1855,9 @@
   "hash": "5fa71aacaf916547"
  },
  "learn/ai-crawler-directives/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "b118b7fdf19673f8"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "957e1d8e7b534c2d"
  },
  "learn/ai-crawlers-and-sitemaps/index.html": {
   "changed_in_build": false,
@@ -1887,7 +1887,7 @@
  "learn/audit-tool-accuracy/index.html": {
   "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "debaefc54c8227d8"
+  "hash": "c9456a4a1eac7cad"
  },
  "learn/brand-consistency/index.html": {
   "changed_in_build": false,
@@ -1965,9 +1965,9 @@
   "hash": "639cbec33fab0c41"
  },
  "learn/internal-link-equity/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "6ea4f9babf02efda"
+  "hash": "55598b455a93d5ec"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
@@ -2037,7 +2037,7 @@
  "learn/what-docket-got-wrong/index.html": {
   "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "f8e11d36e4a44b05"
+  "hash": "627c1f18c054a318"
  },
  "learn/what-is-a-404-error/index.html": {
   "changed_in_build": false,
@@ -2070,9 +2070,9 @@
   "hash": "1b07a8612472f97d"
  },
  "learn/what-is-claudebot/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "4e2c095f8964e319"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "32359ee90ccdc587"
  },
  "learn/what-is-https/index.html": {
   "changed_in_build": false,
@@ -2175,9 +2175,9 @@
   "hash": "fc970e4739385847"
  },
  "tools/robots-txt-tester/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "18653b7046aca3e6"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "e4d2dbadec5a2f55"
  },
  "tools/seo-checker/index.html": {
   "changed_in_build": false,
@@ -2245,9 +2245,9 @@
   "hash": "ec202156b44e55d8"
  },
  "vs/screaming-frog-alternative/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "bce302ae480c6512"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "d1cd0a35971f0da9"
  },
  "vs/screaming-frog-vs-semrush/index.html": {
   "changed_in_build": false,
@@ -2260,9 +2260,9 @@
   "hash": "52e7d3c4ee256bbb"
  },
  "vs/se-ranking-vs-screaming-frog/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "e96201754c13ab79"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "db5a7a3c7bbc309c"
  },
  "vs/semrush-site-audit-alternative/index.html": {
   "changed_in_build": false,
