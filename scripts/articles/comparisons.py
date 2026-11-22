@@ -2910,7 +2910,7 @@ with what it checks and how a crawl is paid for.</p>
 """
     return render(
         cat="vs", slug="se-ranking-vs-screaming-frog",
-        modified="2026-11-09",
+        modified="2026-11-22",  # the Screaming Frog and Ahrefs prices in its caveat were re-read on 22 November (rows in data/competitors.csv)
         title="SE Ranking vs Screaming Frog: prices, limits | Docket",
         desc=("SE Ranking combines a cloud site audit with rank tracking. Screaming Frog is a "
               "desktop crawler. Compare prices, audit limits and when to use each."),

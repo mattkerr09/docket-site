@@ -29,6 +29,7 @@ sys.path.append(str(HERE / "articles"))
 
 import facts as F  # noqa: E402
 from render import BASE, DATA, MAC_HW, MACOS, PRICE, PROCESSOR, SITE, SUPPORT_EMAIL, WINDOWS, render, with_next_step  # noqa: E402
+from render import content_date as _content_date  # noqa: E402
 
 import about  # noqa: E402
 import audit_quality  # noqa: E402
@@ -1799,10 +1800,17 @@ def link_real_questions(pages: list[Path]) -> None:
         # 21 Nov 2026: both pages changed again today (their Checked dates moved with the claim re-read), and the honest dateModified
         # the build collects from the content is 2026-11-21, so the byline says the same day (the structured-data gate refuses a
         # dateModified the reader cannot see).
-        raw = re.sub(r'"dateModified":"[^"]*",', '"dateModified":"2026-11-21",', raw)
-        update = '<span class="sep">·</span>Updated <time datetime="2026-11-21">21 November 2026</time>'
+        # 22 Nov 2026: the date is no longer a literal. The Screaming Frog and Ahrefs prices in the caveat were re-read on the
+        # 22nd, so the content's own newest date moved to 2026-11-22 and the literal 21st was refused by the dateline gate
+        # ("the page changed after the date it shows"). It is derived from the same slice that gate reads (render.content_date
+        # over what follows the byline), and 21 November stays the floor.
         byline = re.search(r'<p class="byline">.*?</p>', raw, re.S)
         assert byline, f"missing byline: {page}"
+        _after = raw[byline.end(): raw.find("</article>", byline.end())]
+        _day = max("2026-11-21", _content_date(_after) or "")
+        _human = datetime.date.fromisoformat(_day).strftime("%-d %B %Y")
+        raw = re.sub(r'"dateModified":"[^"]*",', f'"dateModified":"{_day}",', raw)
+        update = f'<span class="sep">·</span>Updated <time datetime="{_day}">{_human}</time>'
         updated = re.sub(r'<span class="sep">·</span>Updated <time[^>]*>.*?</time>', '', byline.group())
         raw = raw.replace(byline.group(), updated.replace('</p>', update + '</p>'), 1)
         page.write_text(raw, encoding="utf-8")
