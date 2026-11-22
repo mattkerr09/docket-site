@@ -946,8 +946,8 @@
  },
  "bot/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "c845ef6f29568a89"
+  "date": "2026-11-22",
+  "hash": "a673ab6d1c272079"
  },
  "checks/ai-citable-facts/index.html": {
   "changed_in_build": false,
@@ -991,8 +991,8 @@
  },
  "checks/ai-rendering/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "8a89152b9524aa84"
+  "date": "2026-11-22",
+  "hash": "b5e898bfde7eb792"
  },
  "checks/ai-unmeasurable-optout/index.html": {
   "changed_in_build": false,
@@ -1481,8 +1481,8 @@
  },
  "for/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "9b38d8774309ea39"
+  "date": "2026-11-22",
+  "hash": "cb8d34d57a99d779"
  },
  "for/local-business/index.html": {
   "changed_in_build": false,
@@ -1966,8 +1966,8 @@
  },
  "learn/internal-link-equity/index.html": {
   "changed_in_build": true,
-  "date": "2026-11-21",
-  "hash": "1f8c333924f07fb9"
+  "date": "2026-11-22",
+  "hash": "6ea4f9babf02efda"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
