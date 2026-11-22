@@ -95,7 +95,9 @@ def check_site(site, opened, before_pages=None):
         assert sale_bar in privacy and "runs four third-party scripts" in privacy
     else:
         # The sale bar's script is not built after the sale, so the page stops describing it (3 December price-flip review).
-        assert sale_bar not in privacy and "sale bar" not in privacy, "closed state still describes the sale bar"
+        # The page's history paragraph still says the sale bar was once missed from the count: that is a dated correction,
+        # not a description of what the page loads, so only the description (the paragraph and its place in the count) is checked.
+        assert sale_bar not in privacy and "across the top of every page" not in privacy, "closed state still describes the sale bar"
         assert "runs three third-party scripts" in privacy and "The third is on every page" in privacy
         assert "The fourth is" not in privacy
     priced = []
@@ -194,6 +196,36 @@ with patch('datetime.datetime', AfterSale):
     assert result.returncode == 0, result.stdout + result.stderr
 
 
+def run_gate(destination, *argv):
+    env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1", SITE_BRAND="checkengine", TZ="UTC")
+    result = subprocess.run([sys.executable, *argv], cwd=destination, env=env, capture_output=True, text=True)
+    assert result.returncode == 0, (argv, (result.stdout + result.stderr)[-1800:])
+
+
+FOUNDING_AFTER_THE_END = '''
+import datetime as dt, sys
+sys.path.insert(0, "scripts")
+import render as R, verify_founding_offer as V
+files = {p.relative_to(V.SITE).as_posix(): p.read_text(errors="ignore") for p in sorted(V.SITE.rglob("*"))
+         if p.is_file() and p.suffix in (".html", ".txt", ".json") and (p.suffix != ".json" or p.name == "offer.json")}
+fails, _notes = V.problems(files, None, dt.datetime(2026, 12, 3, 8, tzinfo=dt.timezone.utc), R.FOUNDING_ENDS_AT,
+                           R.FOUNDING_NOW, R.FOUNDING_CODE, R.FOUNDING_END_DAY_US, R.FOUNDING_AFTER_DAY)
+for f in fails:
+    print("FAIL", f)
+sys.exit(1 if fails else 0)
+'''
+
+
+def check_closed_build_gates(destination):
+    """The gates deploy.sh runs, on the build made at 3 December 08:00 UTC (the 3 December runbook, step 1): the first
+    run of any of them on the closed state must not be the real deploy. verify_founding_offer is read with its clock
+    set to after the end, because it compares the build with the real clock."""
+    for argv in (("scripts/verify_numbers.py",), ("scripts/lint.py", "site"),
+                 ("scripts/verify_structured_data_matches_page.py",), ("scripts/verify_price_claims.py",),
+                 ("scripts/verify_privacy_scripts.py",), ("-c", FOUNDING_AFTER_THE_END)):
+        run_gate(destination, *argv)
+
+
 def main():
     check_constants()
     check_replay_allowances()
@@ -205,12 +237,16 @@ def main():
         build_after(destination)
         after, after_count = check_site(destination / "site", False, set(priced))
         assert set(priced) == set(after), (set(priced) ^ set(after))
-        assert count == after_count, (count, after_count)
-    print(f"PASS exact computed sale sentence; {len(priced)} priced HTML/TXT files carry it; {count} paid Offers agree")
+        check_closed_build_gates(destination)
+        # While the sale is open a priced page states two Offers (the sale and the list price from 3 December, DEC-3 row 53);
+        # after it, one.
+        assert count == 2 * after_count, (count, after_count)
+    print(f"PASS exact computed sale sentence; {len(priced)} priced HTML/TXT files carry it; {count} paid Offers (two a page: the sale, then the list price from 3 December) become {after_count} (one a page)")
     print("PASS sale mounts carry no reference price, $19.99 now and $39 later; every mount stays hidden")
     print("PASS full 3 December scratch build: priced pages show $39; no sale mount, sale price, sale name or visible FOUNDING")
     print("PASS comparison ban in HTML, metadata, alt text, JSON-LD, TXT and JSON before and after expiry")
     print("PASS visible code ban; only the exact helper-built sentence permits Black Friday copy")
+    print("PASS the numbers, lint, structured-data, price-claims, privacy-scripts and founding-offer gates on the 3 December build")
 
 
 if __name__ == "__main__":

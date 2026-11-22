@@ -29,7 +29,10 @@ PAY4 = re.compile(r"Klarna|Afterpay|four payments|pay in four|instalment|(?:4|fo
 # 20 Nov 2026 (batch 3, the /best/ comparisons): a RIVAL's own displayed sale price may be named when it is dated, never ours.
 # Only these two exact phrases, as the WordPress plugins page writes them, are let through; our own sale wording still has to be the
 # model-built sentence.
-RIVAL_SALE_PHRASES = ("Black Friday price shown on 20 November 2026", "the displayed Black Friday price")
+RIVAL_SALE_PHRASES = ("Black Friday price shown on 20 November 2026", "the displayed Black Friday price",
+                      # 21 Nov 2026 re-read of CrawlRaven's own pricing page: its Black Friday code, dated, on its page only.
+                      "with a Black Friday code until 30 November 2026", "its Black Friday code until 30 November 2026",
+                      "a Black Friday banner offers 50 percent off the lifetime plans with a code until Cyber Monday, 30 November 2026")
 
 
 def stale_promo(text):
