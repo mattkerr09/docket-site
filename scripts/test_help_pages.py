@@ -115,7 +115,7 @@ def check_built(root):
         assert item["name"] == brand.text(html.unescape(question))
         assert html.unescape(item["acceptedAnswer"]["text"]) == html.unescape(brand.text(answer))
         assert words(brand.text(answer)) in words(help_raw)
-    assert 'href="mailto:support@docketseo.app"' in (site / "support/index.html").read_text()
+    assert 'href="mailto:support@checkengineseo.com"' in (site / "support/index.html").read_text()
 
     bundle = json.loads((root / "data/bundle.json").read_text())
     pricing = (site / "pricing/index.html").read_text()

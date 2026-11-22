@@ -141,7 +141,7 @@ preview. Try asking:</p>
 </ul>
 <p>The connector checks one page at a time. For a whole site, use the desktop app. What it sends and keeps
 is on the <a href="/legal/privacy/">privacy page</a>; questions go to
-<a href="mailto:support@docketseo.app">support@docketseo.app</a>.</p>
+<a href="mailto:support@checkengineseo.com">support@checkengineseo.com</a>.</p>
 
 <h2>Claude Code: one line</h2>
 <p>With the Docket app installed, run this in a terminal:</p>

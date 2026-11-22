@@ -2437,7 +2437,7 @@ tool calls and guide links, and by tool outcome, never an address, client name o
 are kept for thirty-five days. The connector has no account and no key. The server runs on Cloudflare, which hosts it;
 nobody else receives what an assistant sends it, apart from the site being checked, which sees an ordinary request
 for its page. There is no saved site or conversation to delete. You can stop at any time by removing the
-connector from the assistant. Questions go to <a href="mailto:support@docketseo.app">support@docketseo.app</a>.
+connector from the assistant. Questions go to <a href="mailto:support@checkengineseo.com">support@checkengineseo.com</a>.
 The server names itself in each request. The checkers set no cookie and store nothing in your browser.</p>
 <p>After a purchase, the page you return to asks <code>kerr-affiliate-hub.kerrco.workers.dev</code>,
 a server we run, what that payment came to, sending only the payment&rsquo;s id, so our own sales

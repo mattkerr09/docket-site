@@ -21,7 +21,7 @@ switched off: see the
   and on 64-bit Windows.
 - **All releases:** this repository's
   [Releases](https://github.com/mattkerr09/docket-site/releases).
-- **Help:** email support@docketseo.app about a licence or a refund; use
+- **Help:** email support@checkengineseo.com about a licence or a refund; use
   [Issues](https://github.com/mattkerr09/docket-site/issues) for bugs, wrong
   findings and feature requests.
 - **In CI:** this repository is also the GitHub Action; see

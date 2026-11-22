@@ -335,7 +335,7 @@ def check_site(site):
     for machine in MACHINE[:3]:
         # The privacy page names the app's old-host addresses as plain text, not as links (2e013b1e3): a reader follows no link to them.
         assert f"{OLD_HOST}{machine}" in privacy and f'href="https://{OLD_HOST}{machine}"' not in privacy, machine
-    assert 'href="mailto:support@docketseo.app"' in privacy
+    assert 'href="mailto:support@checkengineseo.com"' in privacy
 
     manifest = json.loads((site / "_redirect-map.json").read_text())
     expected = {"/" + p.relative_to(site).as_posix() for p in site.rglob("*") if p.is_file()}

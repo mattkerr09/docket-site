@@ -1058,7 +1058,7 @@ GOVERNING_LAW = "the State of Michigan, United States"
 #: issue tracker, because it carries an order reference and a name. Until the
 #: mailbox is confirmed, the refund page routes people to the receipt the
 #: payment processor sends them and says plainly that this is why.
-BILLING_EMAIL = "support@docketseo.app"
+BILLING_EMAIL = "support@checkengineseo.com"
 #: The one address this site offers for mail. Matthew, 2026-08-13: "and its
 #: support@docketseo.app". The domain's MX is Porkbun forwarding (fwd1/fwd2,
 #: read 2026-09-24); whether the support@ forwarding row exists cannot be seen

@@ -135,7 +135,7 @@ OUT_REFERENCE = DATA / "ai-robots-txt-reference-2026-10.json.gz"
 REFERENCE_URL = ("https://raw.githubusercontent.com/ai-robots-txt/ai.robots.txt/"
                  "main/robots.json")
 
-CONTACT = "support@docketseo.app"
+CONTACT = "support@checkengineseo.com"
 UA = (f"Docket-SEO-Audit-Survey/1.0 (+{LEGACY_BASE}/bot/; research survey: "
       f"one robots.txt request per site, no crawling; contact {CONTACT})")
 TIMEOUT = 8.0
