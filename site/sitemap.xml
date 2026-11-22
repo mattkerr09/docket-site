@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://checkengineseo.com/about/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/ai-assistants/</loc><lastmod>2026-11-21</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/about/</loc><lastmod>2026-11-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/ai-assistants/</loc><lastmod>2026-11-22</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/ai-crawlers/addsearchbot/</loc><lastmod>2026-11-11</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/ai-crawlers/agentdatabot/</loc><lastmod>2026-11-11</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/ai-crawlers/ai2bot/</loc><lastmod>2026-11-11</lastmod><priority>0.7</priority></url>
@@ -294,14 +294,14 @@
   <url><loc>https://checkengineseo.com/download/</loc><lastmod>2026-11-21</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/faq/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/for/agencies/</loc><lastmod>2026-11-21</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/for/developers/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/for/developers/</loc><lastmod>2026-11-22</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/for/ecommerce/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/for/</loc><lastmod>2026-11-22</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/for/local-business/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/for/saas/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/help/</loc><lastmod>2026-11-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/analytics-findings-name-the-tag/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/how-to/audit-your-site-from-an-ai-assistant/</loc><lastmod>2026-11-13</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/how-to/audit-your-site-from-an-ai-assistant/</loc><lastmod>2026-11-22</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/backlink-audit/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/check-a-page-for-noindex/</loc><lastmod>2026-11-20</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/how-to/check-mobile-seo-from-a-crawl/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
@@ -377,7 +377,7 @@
   <url><loc>https://checkengineseo.com/learn/ai-sounding-copy/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/ai-substitution/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/answer-extractability/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/learn/audit-tool-accuracy/</loc><lastmod>2026-11-21</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/learn/audit-tool-accuracy/</loc><lastmod>2026-11-22</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/brand-consistency/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/canonical-tags/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/claude-search-crawlers/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
@@ -407,7 +407,7 @@
   <url><loc>https://checkengineseo.com/learn/trust-and-authorship-signals/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/url-structure/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/what-docket-checks/</loc><lastmod>2026-11-11</lastmod><priority>0.7</priority></url>
-  <url><loc>https://checkengineseo.com/learn/what-docket-got-wrong/</loc><lastmod>2026-11-21</lastmod><priority>0.7</priority></url>
+  <url><loc>https://checkengineseo.com/learn/what-docket-got-wrong/</loc><lastmod>2026-11-22</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/what-is-a-404-error/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/what-is-a-favicon/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
   <url><loc>https://checkengineseo.com/learn/what-is-a-sitemap/</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
