@@ -925,22 +925,22 @@
   "hash": "f49327dcbdd3c44a"
  },
  "best/free-seo-audit-tools/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "ae7eeeac41104439"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "761ef7e3c3629d13"
  },
  "best/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "b6906f74db6ab346"
  },
  "best/screaming-frog-alternatives/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "d195f9110b38cd16"
  },
  "best/seo-audit-software-no-subscription/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "986123e795f8caa6"
  },
@@ -1970,7 +1970,7 @@
   "hash": "639cbec33fab0c41"
  },
  "learn/internal-link-equity/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "9bfab3f45951f011"
  },
