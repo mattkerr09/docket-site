@@ -1456,8 +1456,8 @@
  },
  "download/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "df168454f5bd59cb"
+  "date": "2026-11-22",
+  "hash": "275332fb32373bcb"
  },
  "faq/index.html": {
   "changed_in_build": false,
@@ -1885,9 +1885,9 @@
   "hash": "0cdf461331d238fb"
  },
  "learn/audit-tool-accuracy/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "51e099d97aabaccf"
+  "hash": "debaefc54c8227d8"
  },
  "learn/brand-consistency/index.html": {
   "changed_in_build": false,
@@ -2035,9 +2035,9 @@
   "hash": "0348369c61d1b28f"
  },
  "learn/what-docket-got-wrong/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "95182922a63db3d9"
+  "hash": "f8e11d36e4a44b05"
  },
  "learn/what-is-a-404-error/index.html": {
   "changed_in_build": false,
