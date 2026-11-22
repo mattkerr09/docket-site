@@ -29,7 +29,7 @@ PAGES = {
     'best/free-seo-audit-tools/index.html': ('Free SEO audit: tools and limits', {'4', '9', '500', '5,000', '1', '10'},
                         ('/vs/screaming-frog-alternative/', 'https://www.screamingfrog.co.uk/seo-spider/',
                          'https://ahrefs.com/webmaster-tools', 'https://www.semrush.com/prices/')),
-    'best/screaming-frog-alternatives/index.html': ('Screaming Frog alternatives compared', {'500'},
+    'best/screaming-frog-alternatives/index.html': ('Screaming Frog alternatives for Mac and Windows (2026)', {'500'},
                         ('https://www.screamingfrog.co.uk/seo-spider/',)),
     'best/white-label-seo-audit-tools/index.html': ('White-label SEO audit tools compared', {'599.00'},
                         ('https://www.link-assistant.com/pricing.html',)),

@@ -7,7 +7,7 @@ from ahrefs_first_screen import checked
 from best_compared_layout import disclosure, method, sections, table
 from best_compared_sources import CRAWLERS
 from comparisons import source_link
-from render import DATA, N_CHECKS, N_LANES, buy_block, render, speed_words
+from render import DATA, N_CHECKS, N_LANES, PRICE_COMPACT, REFUND_DAYS, buy_block, render, speed_words
 
 _RUN = json.loads((DATA / 'free-run.json').read_text())
 _LIMITS = json.loads((DATA / 'limits.json').read_text())
@@ -34,6 +34,8 @@ If server logs are part of the question, the rows that name log analysis give yo
 <p>A crawl total and a monthly allowance are different limits. Write down the size of each site, how often you will repeat the audit and how many users need access.
 If a free result stops at its cap, record the unchecked pages before drawing a conclusion about the whole site.</p>
 <div class="callout" id="check-engine"><h2>Check Engine: our local fix plan</h2>
+<p><strong>At a glance:</strong> {PRICE_COMPACT}, one payment and no subscription. Mac (Apple silicon or Intel) and Windows.
+A technical SEO audit that finds broken links and other problems, then ranks what to fix first. {REFUND_DAYS}-day refund, no conditions.</p>
 <p>Check Engine runs {N_CHECKS} checks across {N_LANES} areas on Mac and Windows and orders repairs by impact and effort.
 Its default crawl is {_LIMITS['ui_default_pages']} pages with a {_LIMITS['wall_clock_minutes']}-minute limit; both can be raised.
 It has no custom extraction. It renders a sample of pages in WebKit rather than rendering every page.</p>
@@ -51,10 +53,13 @@ This page compares stated facts, so it does not award points for speed, accuracy
 For report branding, read <a href="/best/white-label-seo-audit-tools/">white-label tools compared</a>.</p>
 '''
     return render(cat='best', slug='screaming-frog-alternatives',
-                  title='Screaming Frog alternatives compared', h1='Screaming Frog alternatives compared',
-                  desc='Compare crawler prices, free limits, desktop and cloud setups. Vendor pages read on 20 November 2026, with no test scores.',
+                  # 22 Nov 2026 (AI visibility, CEO go): ChatGPT's E3 named us from the 5 Nov version of this page, titled "for
+                  # Mac and Windows (2026)"; the 20 Nov retitle had dropped those words, and E2 (for Mac) cited no page of ours.
+                  title='Screaming Frog alternatives for Mac and Windows (2026)',
+                  h1='Screaming Frog alternatives for Mac and Windows',
+                  desc='Screaming Frog alternatives for Mac and Windows: prices, one-time or subscription, free limits, desktop or cloud. Vendor pages read 20 November 2026.',
                   crumb='<a href="/best/">SEO tools compared</a> / Screaming Frog alternatives',
-                  body=body, modified='2026-11-20',
+                  body=body, modified='2026-11-22',
                   faq=[
                       ('What should I record before trying another crawler?',
                        'Save the start address, settings, pages you expect to reach and any known faults. Use the same small set of pages when checking each result.'),

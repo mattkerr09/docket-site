@@ -1178,17 +1178,18 @@ check".</p>
 
     return render(
         cat="vs", slug="sitebulb-alternative",
+        # 22 Nov 2026 (AI visibility, CEO go): ChatGPT's E5 "Sitebulb alternative" cited no page of ours; the question's own
+        # words are now in the title, the H1 and the description.
         title=(
-            ("Docket vs Sitebulb: visual reports or a ranked plan?")
+            ("Sitebulb alternative: visual reports or a ranked plan?")
             if SITE_BRAND == "checkengine"
-            else ("Docket vs Sitebulb: visual reports or a ranked plan? (2026)")
+            else ("Sitebulb alternative: visual reports or a ranked plan? (2026)")
         ),
-        desc=("Sitebulb has an interactive crawl map; Docket draws a static map in its audit report. "
-              "Compare site audits, reports, prices and limits."),
-        h1="Docket vs Sitebulb",
+        desc=("A Sitebulb alternative: Sitebulb has an interactive crawl map; Docket draws a static one in its report. Compare site audits, reports, prices and limits."),
+        h1="Sitebulb alternative: Docket vs Sitebulb",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Sitebulb',
         body=body,
-        modified="2026-11-16",
+        modified="2026-11-22",
         faq=[
             ("Does Docket have site architecture visualisation like Sitebulb?",
              "Both draw maps. Docket draws a static picture in its HTML report: pages in rings by click depth, sized "

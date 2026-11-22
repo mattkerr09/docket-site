@@ -106,11 +106,14 @@ For Check Engine's licence and refund terms, read <a href="/pricing/">our pricin
 """
     return render(
         cat="vs", slug="ahrefs-site-audit-alternative",
-        title="Ahrefs Site Audit: free limits and paid plans",
-        desc="Ahrefs Site Audit prices and crawl limits, read 20 November 2026. Compare Ahrefs Free, Lite, Standard and Advanced with a local fix plan.",
-        h1="Ahrefs Site Audit: free limits and paid plans",
+        # 22 Nov 2026 (AI visibility, CEO go): ChatGPT's E4 was "Ahrefs Site Audit alternative that's cheaper"; the title,
+        # H1 and description now say alternative and cheaper in the question's words. The comparison is a fact: Ahrefs Lite is
+        # a monthly plan, Check Engine one payment.
+        title="Cheaper Ahrefs Site Audit alternative: limits and plans",
+        desc="A cheaper Ahrefs Site Audit alternative? Its prices and crawl limits, read 20 November 2026, compared with a one-time local fix plan.",
+        h1="Ahrefs Site Audit alternative: free limits and paid plans",
         crumb='<a href="/">Check Engine</a> / <a href="/vs/">Compare</a> / Ahrefs',
-        body=body, modified="2026-11-20",
+        body=body, modified="2026-11-22",
         faq=[
             ("How many free Ahrefs crawl credits does a verified project get?",
              f"Ahrefs Free gives {FREE_CREDITS:,} crawl credits per verified project per month. "

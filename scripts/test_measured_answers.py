@@ -104,7 +104,7 @@ def check_answer(raw, spec, site, published):
         if f'<title>{title}</title>' in raw:
             from test_first_screens_1120 import PAGES as refreshed, check_page
             return check_page(raw, refreshed[name])
-    if '<title>Screaming Frog alternatives compared</title>' in raw:
+    if '<title>Screaming Frog alternatives for Mac and Windows (2026)</title>' in raw:
         from test_best_compared_3 import reviewed_refresh as compared_refresh
         compared_refresh('best/screaming-frog-alternatives/index.html', raw)
         return ANSWER.search(raw)

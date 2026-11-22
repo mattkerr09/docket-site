@@ -2234,6 +2234,12 @@ def _price_offers(with_free: bool) -> list:
     return offers
 
 
+#: 22 Nov 2026 (AI visibility, CEO go): ChatGPT cited this site's old copy as "Docket SEO" for E1 "best SEO audit tool for
+#: Mac". On the Check Engine site every entity also says what it used to be called, so the old name resolves to this
+#: entity. brand._LITERAL protects this exact text from the rename pass; other sites carry none.
+_FORMER_NAME_LD = '"alternateName":"Docket SEO",' if SITE_BRAND == "checkengine" else ""
+
+
 def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
     """Organization + SoftwareApplication + sameAs, on every page.
 
@@ -2274,7 +2280,7 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
     return (
         '{"@context":"https://schema.org","@graph":['
         '{"@type":"Organization","@id":"' + BASE + '/#org",'
-        '"name":"Docket SEO","url":"' + BASE + '/",'
+        '"name":"Docket SEO",' + _FORMER_NAME_LD + '"url":"' + BASE + '/",'
         '"logo":"' + BASE + '/icon.png",'
         '"description":"Docket makes local SEO and marketing audit software for Mac' + (' and Windows' if WINDOWS else '') + '.",'
         # No personal account: /learn/entity-and-sameas/ says a founder's profile does not identify the company
@@ -2282,10 +2288,10 @@ def _entity_schema(with_offer: bool = True, with_free: bool = False) -> str:
         '"sameAs":["https://github.com/mattkerr09/docket-site",'
         '"https://www.producthunt.com/products/docket-seo"]},'
         '{"@type":"WebSite","@id":"' + BASE + '/#site",'
-        '"url":"' + BASE + '/","name":"Docket SEO",'
+        '"url":"' + BASE + '/","name":"Docket SEO",' + _FORMER_NAME_LD +
         '"publisher":{"@id":"' + BASE + '/#org"}},'
         '{"@type":"SoftwareApplication","@id":"' + BASE + '/#app",'
-        '"name":"Docket SEO","applicationCategory":"BusinessApplication",'
+        '"name":"Docket SEO",' + _FORMER_NAME_LD + '"applicationCategory":"BusinessApplication",'
         '"applicationSubCategory":"SEO audit software",'
         '"operatingSystem":"' + MACOS + ' or later, ' + MAC_HW + ('; Windows, 64-bit' if WINDOWS else '') + '",'
         '"description":"Docket crawls a website, runs ' + str(N_CHECKS) + ' checks across SEO, copy, '
@@ -2872,7 +2878,7 @@ def render(
             f'"datePublished":"{published}",' + modified_field +
             '"author":{"@type":"Person","name":"Matthew Kerr",'
             '"description":"Builds Docket. Every number on this site comes from running it."},'
-            '"publisher":{"@id":"' + BASE + '/#org"},'
+            '"publisher":{"@type":"Organization","@id":"' + BASE + '/#org","name":"Docket SEO","url":"' + BASE + '/"},'
             f'"mainEntityOfPage":"{url}","inLanguage":"en"}}'
         )
     # The questions go on the page, not only into the schema.

@@ -80,7 +80,11 @@ class Page(HTMLParser):
 
 def json_values(value):
     if isinstance(value, dict):
-        for item in value.values():
+        for key, item in value.items():
+            # 22 Nov 2026: `alternateName` says what the entity used to be called, on purpose, so the old name resolves to it.
+            # Only that exact key and value are let through; "Docket SEO" anywhere else in JSON-LD still fails.
+            if key == "alternateName" and item == "Docket SEO":
+                continue
             yield from json_values(item)
     elif isinstance(value, list):
         for item in value:

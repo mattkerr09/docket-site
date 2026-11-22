@@ -146,6 +146,10 @@ def _json_strings(value, key=""):
         return [_json_strings(item, key) for item in value]
     if isinstance(value, str) and key in {"url", "@id", "mainEntityOfPage"}:
         return site_url(value, page=True)
+    # 22 Nov 2026: `alternateName` is where a page says what the entity used to be called ("Docket SEO"), so the rename
+    # must not rewrite it into the current name.
+    if isinstance(value, str) and key == "alternateName":
+        return value
     return text(value) if isinstance(value, str) else value
 
 
