@@ -1,13 +1,13 @@
 {
  "about/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "3db1971bc1f7e02b"
+  "hash": "e99b83511ff46a0a"
  },
  "ai-assistants/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "757b32e26bcd247d"
+  "hash": "a082cb0f538b8dac"
  },
  "ai-crawlers/addsearchbot/index.html": {
   "changed_in_build": false,
@@ -1460,9 +1460,9 @@
   "hash": "dc742399a81603de"
  },
  "contact/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "2071b24e2bca5478"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "ba1b9131891cc9b1"
  },
  "download/index.html": {
   "changed_in_build": false,
@@ -1470,9 +1470,9 @@
   "hash": "b0745fb78b7cc4ed"
  },
  "faq/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-19",
-  "hash": "2c00ab462cd6ac4d"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "65e14eb4caae8c6d"
  },
  "for/agencies/index.html": {
   "changed_in_build": false,
@@ -1525,7 +1525,7 @@
   "hash": "75489f46c5d44bd7"
  },
  "how-to/check-a-page-for-noindex/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "6d9b54bebdb7c218"
  },
@@ -1840,9 +1840,9 @@
   "hash": "1bef76e786f181cd"
  },
  "index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "8398f38d81a5867c"
+  "hash": "f50d1140b57b24c1"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -1900,9 +1900,9 @@
   "hash": "0cdf461331d238fb"
  },
  "learn/audit-tool-accuracy/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "c9456a4a1eac7cad"
+  "hash": "a7a0177a7301999f"
  },
  "learn/brand-consistency/index.html": {
   "changed_in_build": false,
@@ -1982,7 +1982,7 @@
  "learn/internal-link-equity/index.html": {
   "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "011eb9fe5af6ca5f"
+  "hash": "54e2bd2b6c71e90c"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
@@ -2050,9 +2050,9 @@
   "hash": "0348369c61d1b28f"
  },
  "learn/what-docket-got-wrong/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "627c1f18c054a318"
+  "hash": "21bf3e02ec7d6c3c"
  },
  "learn/what-is-a-404-error/index.html": {
   "changed_in_build": false,
@@ -2125,19 +2125,19 @@
   "hash": "bea04a4d019b5249"
  },
  "legal/privacy/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-19",
-  "hash": "6d66579bcb99d6c7"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "c3db17823cb161c6"
  },
  "legal/refunds/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "8d4ae06b6544d02d"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "3ff089828976bfc6"
  },
  "legal/terms/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-19",
-  "hash": "dc8e5c843af8f0f3"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "1a9d89167b7421d9"
  },
  "mac-seo-audit-tool/index.html": {
   "changed_in_build": false,
@@ -2150,9 +2150,9 @@
   "hash": "4b9adaf357df5070"
  },
  "support/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "a67430a1faf78956"
+  "changed_in_build": true,
+  "date": "2026-11-22",
+  "hash": "4defd3e8e0f01789"
  },
  "tools/ai-crawler-checker/index.html": {
   "changed_in_build": false,
@@ -2180,7 +2180,7 @@
   "hash": "8fd9cc3ae9122ba1"
  },
  "tools/meta-tag-checker/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "0f01ca24ad6f5866"
  },
@@ -2215,9 +2215,9 @@
   "hash": "931066d3aa8575e3"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "86839c5e11eaa42f"
+  "hash": "90324b42fd1a5efa"
  },
  "vs/contentking-vs-se-ranking/index.html": {
   "changed_in_build": false,
