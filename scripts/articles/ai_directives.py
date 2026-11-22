@@ -158,6 +158,7 @@ detail, see <a href="/learn/what-is-claudebot/">What is ClaudeBot?</a></p>
 """
     return render(
         cat="learn", slug="ai-crawler-directives",
+        modified="2026-11-22",  # "the only mechanism these operators document" became "with one exception" (Anthropic's 30 October signal)
         title="AI crawler directives: which to block, which to keep",
         desc=(f"Docket checks {F.ai_agents_word()} AI crawlers from "
               f"{F.ai_agent_operators()} companies. Blocking a training bot and blocking a "
