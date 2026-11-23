@@ -6,8 +6,8 @@
  },
  "ai-assistants/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-22",
-  "hash": "a082cb0f538b8dac"
+  "date": "2026-11-23",
+  "hash": "1256d1b6d976cb16"
  },
  "ai-crawlers/addsearchbot/index.html": {
   "changed_in_build": false,
@@ -1842,7 +1842,7 @@
  "index.html": {
   "changed_in_build": false,
   "date": "2026-11-23",
-  "hash": "09a28eee9d71ab43"
+  "hash": "5d948a9ba07a8911"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -2211,8 +2211,8 @@
  },
  "tools/website-checker/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "931066d3aa8575e3"
+  "date": "2026-11-23",
+  "hash": "c70f2d8b7db5956c"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
   "changed_in_build": false,
