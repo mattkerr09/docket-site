@@ -14,8 +14,9 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Is your HTML document unusually large?</title>
 <meta name="description" content="It compares decompressed HTML bytes with the engine's document-size cutoffs.">
-<meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="3eeb0ef01d85">
+<meta name="theme-color" content="#070C0D">
+<meta name="color-scheme" content="dark">
+<meta name="build-id" content="dd237ab1dcb6">
 <link rel="canonical" href="https://checkengineseo.com/checks/perf-page-weight/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -561,15 +562,37 @@ body.landing article{padding:0}
    below it on a phone, where the one-line version above the buttons does the work. */
 .hero-free-line{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1.1rem;max-width:34rem}
 .hero-free-line strong{color:var(--brand-light);font-weight:600}
-.hero-free{margin:0;align-self:center}
+/* RULES 77 (Article Studio's blind score, 23 Nov 2026): the real result sat at y=637 beside a 2,000px column at 1280 (the top
+   right empty beside the headline) and at y=2198 on a phone. It starts level with the eyebrow on a wide screen, and sits
+   right under the buttons on a phone: the grid names three areas, the copy and the price card, the result, the notes. */
+.hero-grid{grid-template-areas:"main" "fig" "notes"}
+.hero-main{grid-area:main;min-width:0}
+.hero-notes{grid-area:notes;min-width:0}
+.hero-free{margin:0;align-self:start;grid-area:fig}
 .hero-free img{display:block;width:100%;height:auto;border:1px solid var(--border-strong);border-radius:var(--radius-md);
   box-shadow:var(--lift)}
 .hero-free figcaption{margin-top:.7rem;font-size:var(--t-sm);color:var(--text-dim);line-height:1.5}
 .hero-free figcaption strong{color:var(--text-mid);font-weight:600}
 @media(min-width:941px){
-  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start}
+  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start;
+    grid-template-areas:"main fig" "notes fig";grid-template-rows:auto 1fr}
   .hero-grid .hero-h1{font-size:clamp(2.4rem,3.8vw,3.4rem)}
+  .hero-free{margin-top:.2rem}
 }
+/* The one price card: heading, the sale sentence, the buttons, then what a buyer asks before pressing Buy. */
+.price-card{padding:1.15rem 1.25rem 1rem;border:1px solid var(--border-strong);border-radius:var(--radius-lg);
+  background:var(--surface);margin:0 0 1.2rem}
+.price-card-h{font-family:var(--display);font-weight:600;font-size:var(--t-xl);line-height:1.25;margin:0 0 .55rem;
+  letter-spacing:-.01em}
+.price-card .price-line{margin:0 0 .9rem;font-size:var(--t-md)}
+.price-card .hero-cta{margin-bottom:.8rem}
+.price-facts .price-req{margin:0 0 .5rem}
+.price-facts .hero-free-line{font-size:var(--t-base);margin:0 0 .7rem;max-width:none}
+.price-facts{margin:0 0 1.1rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 .9rem}
+.pill{font-size:var(--t-sm);color:var(--text-mid);border:1px solid var(--border-strong);border-radius:999px;
+  padding:.2rem .7rem;background:var(--brand-soft);white-space:nowrap}
+.hero-maker{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1rem;max-width:34rem}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
   font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
   background:var(--brand-soft);
@@ -577,6 +600,11 @@ body.landing article{padding:0}
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
+/* The mono pill above the headline wrapped to two lines at 375 ("NO / SUBSCRIPTION"); one line, scaled to the screen. */
+@media(max-width:480px){
+  .eyebrow{white-space:nowrap;font-size:clamp(.58rem,2.9vw,.7rem);letter-spacing:.07em;padding:.45rem .7rem;margin-bottom:1.1rem}
+}
+
 /* WEIGHT 600, not 700. Measured across the six sites named as the bar:
    mobbin 652, langchain 300, framer 500, avo 600, outlier 600, cofounder 400:
    median ~550, and this page was the heaviest in the set at 700. 600 lands on
@@ -989,7 +1017,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div></nav>
 <main id="main">
 <article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/checks/">Checks</a> / Reference</div><h1>Is your HTML document unusually large?</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-11-11">11 November 2026</time></p>
-<p class="lede">It compares decompressed HTML bytes with the engine&#x27;s document-size cutoffs.</p><h2>What Check Engine measures</h2><p>Successful pages above 400000 HTML bytes join the larger-document group. Pages above 150000 HTML bytes and at or below 400000 HTML bytes join the moderate group. Larger documents are reported first. If none exist, a moderate group above a 0.5 share of successful pages can produce the lower-severity finding. This measures the HTML document alone. Images and separate files need their own size measurements. For example, a document of exactly 400000 HTML bytes stays in the moderate size group.</p><p>The check reads HTML sizes from successful responses. A capped response gives only the amount retained. Keep the size unit and any read limit beside the result.</p><h2>How to read the result</h2><p>The larger-document finding is medium severity. Widespread moderate documents produce low severity. Browser loading time, script execution and page painting need separate measurements.</p><h2>Why it matters</h2><p>A large document can contain repeated markup or extensive inline data. Its byte count identifies something concrete to inspect, while a separate resource review is needed to understand the weight of the whole page.</p><h2>How to fix it</h2><p>Inspect the largest served documents and identify what fills them. Remove unused inline data and repeated markup, or split long listings when that suits the content. Move reusable assets only where the resulting requests and caching make sense. Compare decompressed HTML after the change and preserve the useful content the page was meant to deliver.</p><p><a href="/learn/page-weight/">Page weight: how heavy is too heavy?</a></p><h2>What we found in field audits</h2><p>Problems in Speed &amp; Core Web Vitals were found on 13 of the 14 sites we audited. These are area totals. <a href="/learn/audit-tool-accuracy/">Read the field-audit method</a>.</p><h2>Method note</h2><p><code>backend/seo_engine/checks/performance.py</code>, <code>page_weight</code>, revision <code>0bb8e8d3</code>.</p><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What counts as a very large HTML document in this audit?</h3><p>A successful page above 400000 HTML bytes enters the larger-document group. Separate page resources are outside this HTML-size measure.</p></div><div class="faq-item"><h3>Is an HTML document of exactly 400000 bytes in the larger group?</h3><p>No. Exactly 400000 HTML bytes stays moderate. The larger group requires a strict excess over the limit.</p></div><div class="faq-item"><h3>How small can HTML be and still enter the moderate-weight group?</h3><p>Moderate documents must exceed 150000 HTML bytes. A qualifying site's share of moderate pages can affect the lower-severity result.</p></div></div></section><footer aria-label="Next step">
+<p class="lede">It compares decompressed HTML bytes with the engine&#x27;s document-size cutoffs.</p><h2>What Check Engine measures</h2><p>Successful pages above 400000 HTML bytes join the larger-document group. Pages above 150000 HTML bytes and at or below 400000 HTML bytes join the moderate group. Larger documents are reported first. If none exist, a moderate group above a 0.5 share of successful pages can produce the lower-severity finding. This measures the HTML document alone. Images and separate files need their own size measurements. For example, a document of exactly 400000 HTML bytes stays in the moderate size group.</p><p>The check reads HTML sizes from successful responses. A capped response gives only the amount retained. Keep the size unit and any read limit beside the result.</p><h2>How to read the result</h2><p>The larger-document finding is medium severity. Widespread moderate documents produce low severity. Browser loading time, script execution and page painting need separate measurements.</p><h2>Why it matters</h2><p>A large document can contain repeated markup or extensive inline data. Its byte count identifies something concrete to inspect, while a separate resource review is needed to understand the weight of the whole page.</p><h2>How to fix it</h2><p>Inspect the largest served documents and identify what fills them. Remove unused inline data and repeated markup, or split long listings when that suits the content. Move reusable assets only where the resulting requests and caching make sense. Compare decompressed HTML after the change and preserve the useful content the page was meant to deliver.</p><p><a href="/learn/page-weight/">Page weight: how heavy is too heavy?</a></p><h2>What we found in field audits</h2><p>Problems in Speed &amp; Core Web Vitals were found on 13 of the 14 sites we audited. These are area totals. <a href="/learn/audit-tool-accuracy/">Read the field-audit method</a>.</p><h2>Method note</h2><p><code>backend/seo_engine/checks/performance.py</code>, <code>page_weight</code>, revision <code>0bb8e8d3</code>.</p><section class="faq" id="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>What counts as a very large HTML document in this audit?</h3><p>A successful page above 400000 HTML bytes enters the larger-document group. Separate page resources are outside this HTML-size measure.</p></div><div class="faq-item"><h3>Is an HTML document of exactly 400000 bytes in the larger group?</h3><p>No. Exactly 400000 HTML bytes stays moderate. The larger group requires a strict excess over the limit.</p></div><div class="faq-item"><h3>How small can HTML be and still enter the moderate-weight group?</h3><p>Moderate documents must exceed 150000 HTML bytes. A qualifying site's share of moderate pages can affect the lower-severity result.</p></div></div></section><footer aria-label="Next step">
 <div class="callout compact" id="try">
 <div class="buy-block compact"><p class="price-line">Black Friday sale: $19.99 once through December 2. Then $39.</p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later, and 64-bit Windows</p><p class="price-req">Priced in US dollars. Checkout shows your currency and any local tax.</p><div class="hero-cta"><a rel="nofollow" class="btn buy-btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=check-perf-page-weight" data-ev="Buy" data-ev-price="19.99" data-ev-button="check-perf-page-weight">Buy Check Engine</a><a rel="nofollow" class="btn-ghost dl-mac" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=check-perf-page-weight-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-arm64.dmg" data-ev="Download" data-ev-button="check-perf-page-weight-try-free">Try it free</a><a rel="nofollow" class="btn dl-win" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=check-perf-page-weight-win&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-x64-setup.exe" data-ev="Download" data-ev-button="check-perf-page-weight-win">Try it free for Windows</a><a class="btn-ghost" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="check-perf-page-weight">See a full sample report</a></div><p class="mac-alt hero-note">On a Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=check-perf-page-weight-mac&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-arm64.dmg" data-ev="Download" data-ev-button="check-perf-page-weight-mac">Get the Mac version</a>.</p><p class="phone-link">On your phone? <button type="button" data-send-mac-link>Send the Mac link to yourself</button></p><p class="hero-note founding-note" data-founding-until="2026-12-03T07:59:59Z">The Buy button applies the sale for you; there is no code to type.</p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
 <p class="intel-dl">Intel Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=check-perf-page-weight-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-x86_64.dmg" data-ev="Download" data-ev-button="check-perf-page-weight-try-free-intel">Get the Intel version</a></p>

@@ -14,8 +14,9 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Check Engine: SEO audit for Mac and Windows</title>
 <meta name="description" content="Black Friday sale: $19.99 once through December 2. Then $39. SEO audits for Mac and Windows. Try it free.">
-<meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="3eeb0ef01d85">
+<meta name="theme-color" content="#070C0D">
+<meta name="color-scheme" content="dark">
+<meta name="build-id" content="dd237ab1dcb6">
 <link rel="canonical" href="https://checkengineseo.com/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -561,15 +562,37 @@ body.landing article{padding:0}
    below it on a phone, where the one-line version above the buttons does the work. */
 .hero-free-line{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1.1rem;max-width:34rem}
 .hero-free-line strong{color:var(--brand-light);font-weight:600}
-.hero-free{margin:0;align-self:center}
+/* RULES 77 (Article Studio's blind score, 23 Nov 2026): the real result sat at y=637 beside a 2,000px column at 1280 (the top
+   right empty beside the headline) and at y=2198 on a phone. It starts level with the eyebrow on a wide screen, and sits
+   right under the buttons on a phone: the grid names three areas, the copy and the price card, the result, the notes. */
+.hero-grid{grid-template-areas:"main" "fig" "notes"}
+.hero-main{grid-area:main;min-width:0}
+.hero-notes{grid-area:notes;min-width:0}
+.hero-free{margin:0;align-self:start;grid-area:fig}
 .hero-free img{display:block;width:100%;height:auto;border:1px solid var(--border-strong);border-radius:var(--radius-md);
   box-shadow:var(--lift)}
 .hero-free figcaption{margin-top:.7rem;font-size:var(--t-sm);color:var(--text-dim);line-height:1.5}
 .hero-free figcaption strong{color:var(--text-mid);font-weight:600}
 @media(min-width:941px){
-  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start}
+  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start;
+    grid-template-areas:"main fig" "notes fig";grid-template-rows:auto 1fr}
   .hero-grid .hero-h1{font-size:clamp(2.4rem,3.8vw,3.4rem)}
+  .hero-free{margin-top:.2rem}
 }
+/* The one price card: heading, the sale sentence, the buttons, then what a buyer asks before pressing Buy. */
+.price-card{padding:1.15rem 1.25rem 1rem;border:1px solid var(--border-strong);border-radius:var(--radius-lg);
+  background:var(--surface);margin:0 0 1.2rem}
+.price-card-h{font-family:var(--display);font-weight:600;font-size:var(--t-xl);line-height:1.25;margin:0 0 .55rem;
+  letter-spacing:-.01em}
+.price-card .price-line{margin:0 0 .9rem;font-size:var(--t-md)}
+.price-card .hero-cta{margin-bottom:.8rem}
+.price-facts .price-req{margin:0 0 .5rem}
+.price-facts .hero-free-line{font-size:var(--t-base);margin:0 0 .7rem;max-width:none}
+.price-facts{margin:0 0 1.1rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 .9rem}
+.pill{font-size:var(--t-sm);color:var(--text-mid);border:1px solid var(--border-strong);border-radius:999px;
+  padding:.2rem .7rem;background:var(--brand-soft);white-space:nowrap}
+.hero-maker{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1rem;max-width:34rem}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
   font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
   background:var(--brand-soft);
@@ -577,6 +600,11 @@ body.landing article{padding:0}
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
+/* The mono pill above the headline wrapped to two lines at 375 ("NO / SUBSCRIPTION"); one line, scaled to the screen. */
+@media(max-width:480px){
+  .eyebrow{white-space:nowrap;font-size:clamp(.58rem,2.9vw,.7rem);letter-spacing:.07em;padding:.45rem .7rem;margin-bottom:1.1rem}
+}
+
 /* WEIGHT 600, not 700. Measured across the six sites named as the bar:
    mobbin 652, langchain 300, framer 500, avo 600, outlier 600, cofounder 400:
    median ~550, and this page was the heaviest in the set at 700. 600 lands on
@@ -944,6 +972,17 @@ nav{background:rgba(7,12,13,.72);
 .phone-download{display:none}
 @media (max-width:700px){
   .phone-download{display:block;margin:.75rem 0 1rem}
+  /* RULES 77: on a phone the price card puts "Send myself the link" (the filled button, a phone cannot open an installer)
+     and Buy (beside it, the quieter one) inside the first 812px: heading, sale sentence, the link block, Buy, then the rest. */
+  .price-card{display:flex;flex-direction:column}
+  .price-card>*{order:5}
+  .price-card>.price-card-h{order:1}
+  .price-card>.price-line{order:2}
+  .price-card>.phone-download{order:3;margin:0 0 .6rem}
+  .price-card>.hero-cta{order:4}
+  .price-card .phone-download p{margin:0 0 .6rem;font-size:var(--t-base)}
+  .price-card .phone-download [data-phone-copy]{display:none}
+  .price-card>.hero-cta .buy-btn{background:rgba(255,255,255,.03);color:var(--text);border:1px solid var(--border-strong)}
   #product-hunt-welcome>.hero-cta [data-ev="Download"],
   .hero-sec [data-ev-button="home-try-free"],
   .hero-sec [data-ev-button="home-hero-win"],
@@ -1024,38 +1063,18 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 <script id="product-hunt-reveal">if((new URLSearchParams(location.search).get('ref')||'').toLowerCase()==='producthunt'){document.getElementById('product-hunt-welcome').hidden=false;}</script>
 <!-- ================= HERO ================= -->
 <section class="hero-sec"><div class="wrap-wide hero-grid">
-<div>
+<div class="hero-main">
   <span class="eyebrow">99 checks · paid once · no subscription</span>
   <h1 class="hero-h1">Everything wrong with your website, <em>in the order to fix it.</em></h1><p class="hero-note">formerly Docket SEO</p>
-  <p class="hero-sub">For people who run their own website and would rather fix it than pay an agency. Check Engine audits
-  your whole site on your Mac or Windows PC and hands you one ranked list, with the markup to paste.</p>
-  <p class="hero-free-line"><strong>Free to try, with no account and no key.</strong> You get your score,
-  how many problems each area has, and the worst problem in full with its fix. Buying opens the rest.</p>
-  <div class="buy-block"><p class="price-line">Black Friday sale: $19.99 once through December 2. Then $39.</p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later, and 64-bit Windows</p><p class="price-req">Priced in US dollars. Checkout shows your currency and any local tax.</p><div class="hero-cta"><a rel="nofollow" class="btn btn-lg buy-btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=home-hero" data-ev="Buy" data-ev-price="19.99" data-ev-button="home-hero">Buy Check Engine</a><a rel="nofollow" class="btn-ghost btn-lg dl-mac" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=home-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-arm64.dmg" data-ev="Download" data-ev-button="home-try-free">Try it free</a><a rel="nofollow" class="btn btn-lg dl-win" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=home-hero-win&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-x64-setup.exe" data-ev="Download" data-ev-button="home-hero-win">Try it free for Windows</a><a class="btn-ghost btn-lg" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="home-hero">See a full sample report</a></div><p class="mac-alt hero-note">On a Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=home-hero-mac&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-arm64.dmg" data-ev="Download" data-ev-button="home-hero-mac">Get the Mac version</a>.</p><p class="phone-link">On your phone? <button type="button" data-send-mac-link>Send the Mac link to yourself</button></p><p class="hero-note founding-note" data-founding-until="2026-12-03T07:59:59Z">The Buy button applies the sale for you; there is no code to type.</p><p class="hero-note price-anchor">Black Friday sale: $19.99 once through December 2. Then $39. Screaming Frog is $279 a year. Ahrefs plans with Site Audit run $129&ndash;$449 a month. <span class="qual">Their prices read 22 November 2026.</span></p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
-  <div class="phone-download">
+  <p class="hero-sub">For people who run their own website. One ranked list of fixes, with the markup to paste.</p>
+  <div class="buy-block price-card"><h2 class="price-card-h">Free to try. Pay once when it's worth it.</h2><p class="price-line">Black Friday sale: $19.99 once through December 2. Then $39.</p><div class="phone-download">
 <p>Check Engine runs on a Mac or a Windows PC. Send yourself the link and open it there.</p>
 <div class="hero-cta">
 <a class="btn" href="/download/" data-phone-send>Send myself the link</a>
 <button class="btn-ghost" type="button" data-phone-copy aria-live="polite">Copy the link</button>
 </div>
 <noscript><p>https://checkengineseo.com/download/</p></noscript>
-</div>
-  
-  <!-- The hero's second button became "See a full sample report" (Matthew's
-       plan, 2026-09-24), which left a buyer holding a key with no download on
-       the homepage — and ~/ops's shipped-activation and updater-signature
-       gates, which test the DMG this page links, with nothing to measure.
-       One quiet line keeps both. -->
-  <p class="hero-note">The free version is the 31.4 MB Mac download. Intel Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=home-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-x86_64.dmg" data-ev="Download" data-ev-button="home-try-free-intel">Get the Intel version</a>.</p>
-  <p class="hero-note">macOS 12+ · Apple silicon or Intel · 31.4 MB · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
-  <p class="hero-note">Point Check Engine at any site. 99 checks across technical SEO, copy,
-  conversion, brand, AI search visibility and campaign tracking, then one ranked plan with the
-  markup to paste. No page meter, no credit counter, nothing to check before you run an audit.
-  Agencies average $3,209 a month for SEO (<a href="https://ahrefs.com/blog/seo-pricing/" rel="nofollow noopener">Ahrefs</a>)
-  and one audit is quoted at $500 to $5,000 (<a href="https://seoprofy.com/blog/seo-audit-pricing/" rel="nofollow noopener">SEOProfy</a>). Check Engine is $19.99 once through December 2, then $39.</p>
-  
-<p class="verified-note"><strong>Checked 22 November 2026.</strong> Sources read 22 November 2026. SEOProfy quotes an SEO audit at $500 to $5,000 (<a href="https://seoprofy.com/blog/seo-audit-pricing/" rel="nofollow noopener">source</a>); WebFX's survey says most businesses, 43%, pay $101 to $750 for an audit (<a href="https://www.webfx.com/seo/pricing/how-much-does-seo-audit-cost/" rel="nofollow noopener">source</a>); Ahrefs says agencies charge $3,209 a month on average for SEO (<a href="https://ahrefs.com/blog/seo-pricing/" rel="nofollow noopener">source</a>).
-Prices vary with the work and the site.</p>
+</div><div class="hero-cta"><a rel="nofollow" class="btn btn-lg buy-btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=home-hero" data-ev="Buy" data-ev-price="19.99" data-ev-button="home-hero">Buy Check Engine</a><a rel="nofollow" class="btn-ghost btn-lg dl-mac" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=home-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-arm64.dmg" data-ev="Download" data-ev-button="home-try-free">Try it free</a><a rel="nofollow" class="btn btn-lg dl-win" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=home-hero-win&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-x64-setup.exe" data-ev="Download" data-ev-button="home-hero-win">Try it free for Windows</a></div><p class="mac-alt hero-note">On a Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=home-hero-mac&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-arm64.dmg" data-ev="Download" data-ev-button="home-hero-mac">Get the Mac version</a>.</p><p class="hero-pills"><span class="pill">Notarised by Apple</span> <span class="pill">One licence, all your sites</span></p></div>
 </div>
 <figure class="hero-free">
   <img src="/assets/free-result.webp" width="1600" height="812"
@@ -1063,52 +1082,75 @@ Prices vary with the work and the site.</p>
        decoding="async" fetchpriority="high">
   <figcaption>The free audit of our own company site, in the app. <strong>96/100, 9 problems, the first one in full.</strong></figcaption>
 </figure>
+<div class="hero-notes">
+  <div class="price-facts"><p class="hero-free-line"><strong>Free to try, with no account and no key.</strong> You get your score, how many problems each area has, and the worst problem in full with its fix. Buying opens the rest.</p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later, and 64-bit Windows</p><p class="price-req">Priced in US dollars. Checkout shows your currency and any local tax.</p><p class="hero-note founding-note" data-founding-until="2026-12-03T07:59:59Z">The Buy button applies the sale for you; there is no code to type.</p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
+  <p class="hero-maker">I'm Matthew Kerr, and I build Check Engine in Grand Rapids. Our screen recording shows it auditing this site in 96 seconds.</p>
+  
+  <!-- The hero's second button became "See a full sample report" (Matthew's
+       plan, 2026-09-24), which left a buyer holding a key with no download on
+       the homepage — and ~/ops's shipped-activation and updater-signature
+       gates, which test the DMG this page links, with nothing to measure.
+       One quiet line keeps both. The hero is two buttons now (Article Studio's blind score), so the sample
+       report is a text link here, not a third button. -->
+  <p class="hero-note">The free version is the 31.4 MB Mac download. Intel Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=home-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-x86_64.dmg" data-ev="Download" data-ev-button="home-try-free-intel">Get the Intel version</a>. <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="home-hero">See a full sample report</a>.</p>
+  <p class="hero-note">Point Check Engine at any site. 99 checks across technical SEO, copy,
+  conversion, brand, AI search visibility and campaign tracking, then one ranked plan with the
+  markup to paste. No page meter, no credit counter, nothing to check before you run an audit.
+  Agencies average $3,209 a month for SEO (<a href="https://ahrefs.com/blog/seo-pricing/" rel="nofollow noopener">Ahrefs</a>)
+  and one audit is quoted at $500 to $5,000 (<a href="https://seoprofy.com/blog/seo-audit-pricing/" rel="nofollow noopener">SEOProfy</a>).</p>
+  
+<p class="verified-note"><strong>Checked 22 November 2026.</strong> Sources read 22 November 2026. SEOProfy quotes an SEO audit at $500 to $5,000 (<a href="https://seoprofy.com/blog/seo-audit-pricing/" rel="nofollow noopener">source</a>); WebFX's survey says most businesses, 43%, pay $101 to $750 for an audit (<a href="https://www.webfx.com/seo/pricing/how-much-does-seo-audit-cost/" rel="nofollow noopener">source</a>); Ahrefs says agencies charge $3,209 a month on average for SEO (<a href="https://ahrefs.com/blog/seo-pricing/" rel="nofollow noopener">source</a>).
+Prices vary with the work and the site.</p>
+  <p class="hero-note price-anchor">Black Friday sale: $19.99 once through December 2. Then $39. Screaming Frog is $279 a year. Ahrefs plans with Site Audit run $129&ndash;$449 a month. <span class="qual">Their prices read 22 November 2026.</span></p>
+</div>
 </div>
 <div class="wrap-wide hero-media-wrap">
 <figure class="hero-media">
-  <video class="hero-video" autoplay loop muted playsinline preload="metadata"
+  <video class="hero-video" loop muted playsinline preload="none"
          poster="/assets/app-demo-poster.jpg" width="1280" height="800"
          data-brand-history aria-label="Check Engine auditing docketseo.app: a URL is typed, the crawl runs,
                      and a report appears scoring 95 out of 100, grade A.">
-    <source src="/assets/app-demo.webm" data-src-hi="/assets/app-demo-hi.webm" type="video/webm">
-    <source src="/assets/app-demo.mp4" type="video/mp4">
+    <source data-src="/assets/app-demo.webm" data-src-hi="/assets/app-demo-hi.webm" type="video/webm">
+    <source data-src="/assets/app-demo.mp4" type="video/mp4">
   </video>
   <figcaption data-brand-history>Check Engine auditing docketseo.app (this site's address until November 2026), recorded 21 November 2026. <strong>Done in 96&nbsp;seconds, 95/100</strong>.
   A screen recording of the shipped app, not a mockup.</figcaption>
 </figure>
 </div>
 <script>
-/* Pick the video source from what THIS ELEMENT will paint.
+/* The demo starts when it is about to be seen, not at page load (RULES 77, 23 Nov 2026: speed, LCP 3.0 s on a phone).
+   It sits below the first screen at every width (y 1,500 at 1280, 2,300 at 375), so downloading it at load only competed
+   with the fonts and the first image. Until it starts, the poster is the picture, so the slot is never blank, and with no
+   JavaScript the poster stays: a still of the real app, not an empty box.
 
-   The small file stays in `src`, so the hero works with no JavaScript at all —
-   it is above the fold and deliberately not lazy. This upgrades to the 2560px
-   cut only when the slot needs it. Keyed off the element rather than a media
-   query, so it stays correct if the layout changes: the hero sits in
-   `.wrap-wide`, which is min(1080px, 100% - 2rem), so desktop retina needs 2160
-   while a phone at ~350px needs ~1050 and must never pull the big file. Ad
-   traffic is mostly mobile.
-
-   ⚠️ devicePixelRatio is read ONCE. It is not stable in headless engines under
-   a heavy page — observed dropping 2 to 1 mid-load while innerWidth held — and
-   a value that can change underneath a decision is worth capturing anyway.
-
-   This sits immediately after the element on purpose. The site's main script
-   runs at the end of the body, by which time the browser has committed to the
-   file in `src`, and swapping then costs a second download. */
+   Pick the video source from what THIS ELEMENT will paint. The small file is used unless the slot needs the 2560px cut:
+   the hero sits in `.wrap-wide`, which is min(1080px, 100% - 2rem), so desktop retina needs 2160 while a phone at
+   ~350px needs ~1050 and must never pull the big file. devicePixelRatio is read ONCE, here, because it is not stable
+   in headless engines under a heavy page (observed dropping 2 to 1 mid-load while innerWidth held). */
 (function () {
   try {
-    var DPR = window.devicePixelRatio || 1;
     var v = document.querySelector('video.hero-video');
     if (!v) return;
-    var need = (v.getBoundingClientRect().width || v.clientWidth || 0) * DPR;
-    if (need <= 1400) return;
-    var swapped = false;
-    [].forEach.call(v.querySelectorAll('source[data-src-hi]'), function (s) {
-      s.setAttribute('src', s.getAttribute('data-src-hi'));
-      swapped = true;
-    });
-    if (swapped) v.load();
-  } catch (e) { /* a hero that plays the small file is not worth throwing over */ }
+    var DPR = window.devicePixelRatio || 1;
+    var hi = ((v.getBoundingClientRect().width || v.clientWidth || 0) * DPR) > 1400;
+    var started = false;
+    var start = function () {
+      if (started) return;
+      started = true;
+      [].forEach.call(v.querySelectorAll('source[data-src]'), function (s) {
+        s.setAttribute('src', (hi && s.getAttribute('data-src-hi')) || s.getAttribute('data-src'));
+      });
+      v.load();
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    };
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0] && entries[0].isIntersecting) { io.disconnect(); start(); }
+      }, { rootMargin: '600px 0px' });
+      io.observe(v);
+    } else { start(); }
+  } catch (e) { /* a hero that stays on its poster is not worth throwing over */ }
 })();
 </script>
 </section>
@@ -1729,7 +1771,7 @@ data-ev-button="home-free-block">Download Check Engine for Mac</a></p>
 <p class="phone-link">On your phone? <button type="button" data-send-mac-link>Send the Mac link to yourself</button></p>
 <p class="sub-fine">macOS 12 or later, Apple silicon or Intel, 31.4 MB, notarised by Apple.</p>
 </div></section>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is Check Engine free?</h3><p>Free: your score, how many problems in each category, and the top problem in full with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to paste. Black Friday sale: $19.99 once through December 2. Then $39. There is a 30-day refund. There is no subscription and nothing to cancel.</p></div><div class="faq-item"><h3>What if it isn't for me?</h3><p>Ask for a refund within 30 days of buying and you get your money back. No conditions and no questions. Write to support@checkengineseo.com, or reply to the receipt the payment processor emails you. The licence key is revoked, so the copy goes back to the free version.</p></div><div class="faq-item"><h3>How many computers does one licence cover?</h3><p>Up to 3 computers at a time, Mac or Windows. Activating Check Engine on a computer uses one; deactivate it to move the licence to another. On a Mac: Apple silicon or Intel, macOS 12 or later.</p></div><div class="faq-item"><h3>Are updates included?</h3><p>Yes. While Check Engine is on version 1.x, every update is free and installs through the app's own updater. Whether a future 2.0 is a paid upgrade has not been decided; if it ever is, the copy you paid for keeps working.</p></div><div class="faq-item"><h3>Can I use it for client work?</h3><p>Yes. Audit any number of sites (yours, a client's, a prospect's or a competitor's) and charge clients for the work. The licence belongs to the person or company that paid; it may not be resold or sublicensed.</p></div><div class="faq-item"><h3>Does it run on Windows?</h3><p>Yes. Check Engine v1.3.167 has an installer for 64-bit Windows, 18.1 MB, signed by Kerr & Company LLC. It is on the download page beside the Mac app and a command-line build for Linux x86_64.</p></div><div class="faq-item"><h3>How do I get help?</h3><p>Email support@checkengineseo.com. Questions whose answers would help the next person can go on the public issue tracker instead.</p></div><div class="faq-item"><h3>Does Check Engine send my site data anywhere?</h3><p>The crawl and the report stay on your computer, and there is no account. The app sends three anonymous counts, with no site address or audit result. Five optional checks, on by default, reach outside it: Core Web Vitals from Google PageSpeed, which is sent the addresses of your homepage and top pages; a deliverability test on the addresses your site publishes, which looks up their mail domains in DNS; what your server tells AI crawlers; a knowledge refresh; and Google's public autocomplete for topic suggestions, which is sent your site's topic words. The knowledge refresh fetches docketseo.app/data/knowledge.json. Offline mode turns all five off, and every report names the ones that ran. Checking your links to other sites, and rendering a few pages as a browser would, also reach the sites and services those pages link to or load. The licence key is checked with our payment provider when you activate it and about once a day after that.</p></div><div class="faq-item"><h3>How is Check Engine different from Screaming Frog?</h3><p>Screaming Frog gives you raw crawl data and leaves the interpretation to you. Check Engine ranks every finding by impact against effort and gives you an ordered plan with the exact markup to paste. Screaming Frog supports custom XPath extraction, which Check Engine does not. Both run JavaScript: Check Engine renders a sample of every audit automatically, in the WebKit engine macOS already ships.</p></div><div class="faq-item"><h3>Can Check Engine tell me if ChatGPT can see my website?</h3><p>Yes. Check Engine checks each AI crawler separately (OAI-SearchBot for ChatGPT Search, PerplexityBot and Claude-SearchBot) and distinguishes them from training crawlers like GPTBot, which many sites block deliberately. It also says what Google-Extended does: it governs Gemini training and Gemini Apps, not AI Overviews, which follow Googlebot.</p></div></div></section><section class="cta-band"><div class="wrap">
+<section class="faq" id="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Is Check Engine free?</h3><p>Free: your score, how many problems in each category, and the top problem in full with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to paste. Black Friday sale: $19.99 once through December 2. Then $39. There is a 30-day refund. There is no subscription and nothing to cancel.</p></div><div class="faq-item"><h3>What if it isn't for me?</h3><p>Ask for a refund within 30 days of buying and you get your money back. No conditions and no questions. Write to support@checkengineseo.com, or reply to the receipt the payment processor emails you. The licence key is revoked, so the copy goes back to the free version.</p></div><div class="faq-item"><h3>How many computers does one licence cover?</h3><p>Up to 3 computers at a time, Mac or Windows. Activating Check Engine on a computer uses one; deactivate it to move the licence to another. On a Mac: Apple silicon or Intel, macOS 12 or later.</p></div><div class="faq-item"><h3>Are updates included?</h3><p>Yes. While Check Engine is on version 1.x, every update is free and installs through the app's own updater. Whether a future 2.0 is a paid upgrade has not been decided; if it ever is, the copy you paid for keeps working.</p></div><div class="faq-item"><h3>Can I use it for client work?</h3><p>Yes. Audit any number of sites (yours, a client's, a prospect's or a competitor's) and charge clients for the work. The licence belongs to the person or company that paid; it may not be resold or sublicensed.</p></div><div class="faq-item"><h3>Does it run on Windows?</h3><p>Yes. Check Engine v1.3.167 has an installer for 64-bit Windows, 18.1 MB, signed by Kerr & Company LLC. It is on the download page beside the Mac app and a command-line build for Linux x86_64.</p></div><div class="faq-item"><h3>How do I get help?</h3><p>Email support@checkengineseo.com. Questions whose answers would help the next person can go on the public issue tracker instead.</p></div><div class="faq-item"><h3>Does Check Engine send my site data anywhere?</h3><p>The crawl and the report stay on your computer, and there is no account. The app sends three anonymous counts, with no site address or audit result. Five optional checks, on by default, reach outside it: Core Web Vitals from Google PageSpeed, which is sent the addresses of your homepage and top pages; a deliverability test on the addresses your site publishes, which looks up their mail domains in DNS; what your server tells AI crawlers; a knowledge refresh; and Google's public autocomplete for topic suggestions, which is sent your site's topic words. The knowledge refresh fetches docketseo.app/data/knowledge.json. Offline mode turns all five off, and every report names the ones that ran. Checking your links to other sites, and rendering a few pages as a browser would, also reach the sites and services those pages link to or load. The licence key is checked with our payment provider when you activate it and about once a day after that.</p></div><div class="faq-item"><h3>How is Check Engine different from Screaming Frog?</h3><p>Screaming Frog gives you raw crawl data and leaves the interpretation to you. Check Engine ranks every finding by impact against effort and gives you an ordered plan with the exact markup to paste. Screaming Frog supports custom XPath extraction, which Check Engine does not. Both run JavaScript: Check Engine renders a sample of every audit automatically, in the WebKit engine macOS already ships.</p></div><div class="faq-item"><h3>Can Check Engine tell me if ChatGPT can see my website?</h3><p>Yes. Check Engine checks each AI crawler separately (OAI-SearchBot for ChatGPT Search, PerplexityBot and Claude-SearchBot) and distinguishes them from training crawlers like GPTBot, which many sites block deliberately. It also says what Google-Extended does: it governs Gemini training and Gemini Apps, not AI Overviews, which follow Googlebot.</p></div></div></section><section class="cta-band"><div class="wrap">
 <h2>Audit your site in about a minute</h2>
 <p>Download it, type a domain, press Run. There is no onboarding because none is
 needed, and the crawl and the report stay on your computer.</p>
