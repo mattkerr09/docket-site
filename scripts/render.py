@@ -1625,15 +1625,37 @@ body.landing article{padding:0}
    below it on a phone, where the one-line version above the buttons does the work. */
 .hero-free-line{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1.1rem;max-width:34rem}
 .hero-free-line strong{color:var(--brand-light);font-weight:600}
-.hero-free{margin:0;align-self:center}
+/* RULES 77 (Article Studio's blind score, 23 Nov 2026): the real result sat at y=637 beside a 2,000px column at 1280 (the top
+   right empty beside the headline) and at y=2198 on a phone. It starts level with the eyebrow on a wide screen, and sits
+   right under the buttons on a phone: the grid names three areas, the copy and the price card, the result, the notes. */
+.hero-grid{grid-template-areas:"main" "fig" "notes"}
+.hero-main{grid-area:main;min-width:0}
+.hero-notes{grid-area:notes;min-width:0}
+.hero-free{margin:0;align-self:start;grid-area:fig}
 .hero-free img{display:block;width:100%;height:auto;border:1px solid var(--border-strong);border-radius:var(--radius-md);
   box-shadow:var(--lift)}
 .hero-free figcaption{margin-top:.7rem;font-size:var(--t-sm);color:var(--text-dim);line-height:1.5}
 .hero-free figcaption strong{color:var(--text-mid);font-weight:600}
 @media(min-width:941px){
-  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start}
+  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start;
+    grid-template-areas:"main fig" "notes fig";grid-template-rows:auto 1fr}
   .hero-grid .hero-h1{font-size:clamp(2.4rem,3.8vw,3.4rem)}
+  .hero-free{margin-top:.2rem}
 }
+/* The one price card: heading, the sale sentence, the buttons, then what a buyer asks before pressing Buy. */
+.price-card{padding:1.15rem 1.25rem 1rem;border:1px solid var(--border-strong);border-radius:var(--radius-lg);
+  background:var(--surface);margin:0 0 1.2rem}
+.price-card-h{font-family:var(--display);font-weight:600;font-size:var(--t-xl);line-height:1.25;margin:0 0 .55rem;
+  letter-spacing:-.01em}
+.price-card .price-line{margin:0 0 .9rem;font-size:var(--t-md)}
+.price-card .hero-cta{margin-bottom:.8rem}
+.price-facts .price-req{margin:0 0 .5rem}
+.price-facts .hero-free-line{font-size:var(--t-base);margin:0 0 .7rem;max-width:none}
+.price-facts{margin:0 0 1.1rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 .9rem}
+.pill{font-size:var(--t-sm);color:var(--text-mid);border:1px solid var(--border-strong);border-radius:999px;
+  padding:.2rem .7rem;background:var(--brand-soft);white-space:nowrap}
+.hero-maker{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1rem;max-width:34rem}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
   font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
   background:var(--brand-soft);
@@ -1641,6 +1663,11 @@ body.landing article{padding:0}
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
+/* The mono pill above the headline wrapped to two lines at 375 ("NO / SUBSCRIPTION"); one line, scaled to the screen. */
+@media(max-width:480px){
+  .eyebrow{white-space:nowrap;font-size:clamp(.58rem,2.9vw,.7rem);letter-spacing:.07em;padding:.45rem .7rem;margin-bottom:1.1rem}
+}
+
 /* WEIGHT 600, not 700. Measured across the six sites named as the bar:
    mobbin 652, langchain 300, framer 500, avo 600, outlier 600, cofounder 400:
    median ~550, and this page was the heaviest in the set at 700. 600 lands on
@@ -2427,6 +2454,17 @@ PHONE_DOWNLOAD_STYLE = '''<style id="phone-download-style">
 .phone-download{display:none}
 @media (max-width:700px){
   .phone-download{display:block;margin:.75rem 0 1rem}
+  /* RULES 77: on a phone the price card puts "Send myself the link" (the filled button, a phone cannot open an installer)
+     and Buy (beside it, the quieter one) inside the first 812px: heading, sale sentence, the link block, Buy, then the rest. */
+  .price-card{display:flex;flex-direction:column}
+  .price-card>*{order:5}
+  .price-card>.price-card-h{order:1}
+  .price-card>.price-line{order:2}
+  .price-card>.phone-download{order:3;margin:0 0 .6rem}
+  .price-card>.hero-cta{order:4}
+  .price-card .phone-download p{margin:0 0 .6rem;font-size:var(--t-base)}
+  .price-card .phone-download [data-phone-copy]{display:none}
+  .price-card>.hero-cta .buy-btn{background:rgba(255,255,255,.03);color:var(--text);border:1px solid var(--border-strong)}
   #product-hunt-welcome>.hero-cta [data-ev="Download"],
   .hero-sec [data-ev-button="home-try-free"],
   .hero-sec [data-ev-button="home-hero-win"],
@@ -2906,7 +2944,7 @@ def render(
         # of the viewport with zero left padding while the nav and footer above
         # and below it stayed centred — visible immediately in a screenshot and
         # invisible to every gate, because nothing overflowed and no link broke.
-        faq_html = (f'<section class="faq"><div class="wrap">'
+        faq_html = (f'<section class="faq" id="faq"><div class="wrap">'
                     f'<h2>Common questions</h2>{items}</div></section>')
 
     if faq:
@@ -2954,7 +2992,8 @@ def render(
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>{title}</title>
 <meta name="description" content="{esc(desc)}">
-<meta name="theme-color" content="#FBFAF7">
+<meta name="theme-color" content="#070C0D">
+<meta name="color-scheme" content="dark">
 <meta name="build-id" content="__BUILD_ID__">
 {'<meta name="robots" content="noindex">' if noindex else ''}{f'<link rel="canonical" href="{url}">' if (not noindex or self_canonical) else ''}
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>

@@ -34,6 +34,8 @@ from render import (_human_date, SAMPLE_REPORT, speed_words, windows_waitlist, W
                     FOUNDING_WAS, N_AI_CHECKS, N_CHECKS,
                     N_LANES, PRICE_COMPACT,
                     price, price_note_html, render)  # noqa: E402
+from render import (HAS_SAMPLE, PRICE_TODAY, REFUND_DAYS, FOUNDING_LINE, FOUNDING_UNTIL, PLATFORMS,  # noqa: E402
+                    checkout_url, price_anchor_html, price_req_html, price_sentence)
 
 #: The instalment note as it appears under a buy button. Empty when BNPL_LIVE is
 #: False, so the markup collapses to nothing — a blank line where a payment
@@ -331,6 +333,55 @@ def product_hunt_strip() -> str:
 <script id="product-hunt-reveal">{PRODUCT_HUNT_REVEAL}</script>'''
 
 
+def sample_link(src: str) -> str:
+    """The sample report as a text link inside a sentence. It was the hero's third button."""
+    if not HAS_SAMPLE:
+        return ""
+    return (f' <a href="{SAMPLE_REPORT}" data-ev="Sample report" data-ev-button="{src}">'
+            f'See a full sample report</a>.')
+
+
+#: The hero's one price card (RULES 77, Article Studio, 23 Nov 2026: the first screen had three competing buttons and the
+#: price said about five times in separate paragraphs). The sale sentence is the helper's `price_sentence()`, never typed,
+#: so the flip on 3 December changes it here with every other place. Two buttons: Buy, and the free download that follows
+#: the visitor's OS (render.download_buttons). On a phone the page's own "Send myself the link" block comes first and is the
+#: filled button, because a phone cannot open a Mac or Windows installer; Buy stays beside it (CSS `order`, ≤700px).
+#: The free-version sentence below the buttons is the one 1.3.169 replaces, and is unchanged here.
+def hero_card(src: str, *, try_app: str) -> str:
+    size = " btn-lg"
+    buy = (f'<a class="btn{size} buy-btn" href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE_TODAY}" '
+           f'data-ev-button="{src}">Buy Docket</a>')
+    out = ['<div class="buy-block price-card">',
+           "<h2 class=\"price-card-h\">Free to try. Pay once when it's worth it.</h2>",
+           f'<p class="price-line">{price_sentence()}</p>',
+           PHONE_DOWNLOAD_BLOCK,
+           f'<div class="hero-cta">{buy}{download_buttons(try_app, src + "-win", size=size)}</div>']
+    if WINDOWS:
+        out.append(f'<p class="mac-alt hero-note">On a Mac? <a href="{download_url(src + "-mac")}" data-ev="Download" '
+                   f'data-ev-button="{src}-mac">Get the Mac version</a>.</p>')
+    out.append('<p class="hero-pills"><span class="pill">Notarised by Apple</span> '
+               '<span class="pill">One licence, all your sites</span></p>')
+    out.append('</div>')
+    return "".join(out)
+
+
+def hero_facts() -> str:
+    """What a buyer asks before pressing Buy, in the notes under the card (on a phone, under the app picture).
+
+    Kept out of the card so that on a phone Buy, the link and the real result are all inside the first two screens."""
+    out = ['<div class="price-facts">',
+           '<p class="hero-free-line"><strong>Free to try, with no account and no key.</strong> You get your score, '
+           'how many problems each area has, and the worst problem in full with its fix. Buying opens the rest.</p>',
+           price_req_html(),
+           '<p class="price-req">Priced in US dollars. Checkout shows your currency and any local tax.</p>']
+    if FOUNDING_LINE:
+        out.append(f'<p class="hero-note founding-note"{FOUNDING_UNTIL}>{FOUNDING_LINE}</p>')
+    out.append(f'<p class="hero-note"><strong>{REFUND_DAYS} days, no conditions, no questions asked</strong>. '
+               '<a href="/legal/refunds/">Refund policy</a></p>')
+    out.append('</div>')
+    return "".join(out)
+
+
 def body() -> str:
     m = _index()
     chart = _index_chart(m)
@@ -348,29 +399,11 @@ def body() -> str:
 {product_hunt_strip()}
 <!-- ================= HERO ================= -->
 <section class="hero-sec"><div class="wrap-wide hero-grid">
-<div>
+<div class="hero-main">
   <span class="eyebrow">{N_CHECKS} checks · paid once · no subscription</span>
   <h1 class="hero-h1">Everything wrong with your website, <em>in the order to fix it.</em></h1>
-  <p class="hero-sub">For people who run their own website and would rather fix it than pay an agency. Docket audits
-  your whole site on your Mac or Windows PC and hands you one ranked list, with the markup to paste.</p>
-  <p class="hero-free-line"><strong>Free to try, with no account and no key.</strong> You get your score,
-  how many problems each area has, and the worst problem in full with its fix. Buying opens the rest.</p>
-  {buy_block("home-hero", try_app="home-try-free")}
-  {PHONE_DOWNLOAD_BLOCK}
-  {BNPL_BLOCK}
-  <!-- The hero's second button became "See a full sample report" (Matthew's
-       plan, 2026-09-24), which left a buyer holding a key with no download on
-       the homepage — and ~/ops's shipped-activation and updater-signature
-       gates, which test the DMG this page links, with nothing to measure.
-       One quiet line keeps both. -->
-  <p class="hero-note">The free version is the {DMG_SIZE} Mac download.{(f' Intel Mac? <a href="{download_url("home-try-free-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="home-try-free-intel">Get the Intel version</a>.') if INTEL else ''}</p>
-  <p class="hero-note">{MACOS}+ · {MAC_HW} · {DMG_SIZE} · notarised by Apple · no account · one licence, all your sites · nothing to cancel</p>
-  <p class="hero-note">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
-  conversion, brand, AI search visibility and campaign tracking, then one ranked plan with the
-  markup to paste. No page meter, no credit counter, nothing to check before you run an audit.
-  Agencies average {AGENCY_SEO_MONTHLY} a month for SEO ({source_link("Ahrefs", "https://ahrefs.com/blog/seo-pricing/")})
-  and one audit is quoted at {SEO_AUDIT_RANGE} ({source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")}). Check Engine is {PRICE_COMPACT}.</p>
-  {_verified_note("audit-agency-prices-home", closing="Prices vary with the work and the site.")}
+  <p class="hero-sub">For people who run their own website. One ranked list of fixes, with the markup to paste.</p>
+  {hero_card("home-hero", try_app="home-try-free")}
 </div>
 <figure class="hero-free">
   <img src="/assets/free-result.webp" width="{FREE['image']['width']}" height="{FREE['image']['height']}"
@@ -378,52 +411,73 @@ def body() -> str:
        decoding="async" fetchpriority="high">
   <figcaption>The free audit of our own company site, in the app. <strong>{FREE['score']}/100, {FREE['problems']} problems, the first one in full.</strong></figcaption>
 </figure>
+<div class="hero-notes">
+  {hero_facts()}
+  <p class="hero-maker">I'm Matthew Kerr, and I build Check Engine in Grand Rapids. Our screen recording shows it auditing this site in {speed_words(HERO['seconds'])}.</p>
+  {BNPL_BLOCK}
+  <!-- The hero's second button became "See a full sample report" (Matthew's
+       plan, 2026-09-24), which left a buyer holding a key with no download on
+       the homepage — and ~/ops's shipped-activation and updater-signature
+       gates, which test the DMG this page links, with nothing to measure.
+       One quiet line keeps both. The hero is two buttons now (Article Studio's blind score), so the sample
+       report is a text link here, not a third button. -->
+  <p class="hero-note">The free version is the {DMG_SIZE} Mac download.{(f' Intel Mac? <a href="{download_url("home-try-free-intel", to=INTEL_DMG)}" data-ev="Download" data-ev-button="home-try-free-intel">Get the Intel version</a>.') if INTEL else ''}{sample_link("home-hero")}</p>
+  <p class="hero-note">Point Docket at any site. {N_CHECKS} checks across technical SEO, copy,
+  conversion, brand, AI search visibility and campaign tracking, then one ranked plan with the
+  markup to paste. No page meter, no credit counter, nothing to check before you run an audit.
+  Agencies average {AGENCY_SEO_MONTHLY} a month for SEO ({source_link("Ahrefs", "https://ahrefs.com/blog/seo-pricing/")})
+  and one audit is quoted at {SEO_AUDIT_RANGE} ({source_link("SEOProfy", "https://seoprofy.com/blog/seo-audit-pricing/")}).</p>
+  {_verified_note("audit-agency-prices-home", closing="Prices vary with the work and the site.")}
+  {price_anchor_html()}
+</div>
 </div>
 <div class="wrap-wide hero-media-wrap">
 <figure class="hero-media">
-  <video class="hero-video" autoplay loop muted playsinline preload="metadata"
+  <video class="hero-video" loop muted playsinline preload="none"
          poster="/assets/app-demo-poster.jpg" width="1280" height="800"
          data-brand-history aria-label="Docket auditing docketseo.app: a URL is typed, the crawl runs,
                      and a report appears scoring {HERO['score']} out of 100, grade {HERO['grade']}.">
-    <source src="/assets/app-demo.webm" data-src-hi="/assets/app-demo-hi.webm" type="video/webm">
-    <source src="/assets/app-demo.mp4" type="video/mp4">
+    <source data-src="/assets/app-demo.webm" data-src-hi="/assets/app-demo-hi.webm" type="video/webm">
+    <source data-src="/assets/app-demo.mp4" type="video/mp4">
   </video>
   <figcaption data-brand-history>Docket auditing docketseo.app{FORMER_ADDRESS_NOTE}, recorded {_human_date(HERO['recorded'])}. <strong>Done in {speed_words(HERO['seconds']).replace(' ', '&nbsp;')}, {HERO['score']}/100</strong>.
   A screen recording of the shipped app, not a mockup.</figcaption>
 </figure>
 </div>
 <script>
-/* Pick the video source from what THIS ELEMENT will paint.
+/* The demo starts when it is about to be seen, not at page load (RULES 77, 23 Nov 2026: speed, LCP 3.0 s on a phone).
+   It sits below the first screen at every width (y 1,500 at 1280, 2,300 at 375), so downloading it at load only competed
+   with the fonts and the first image. Until it starts, the poster is the picture, so the slot is never blank, and with no
+   JavaScript the poster stays: a still of the real app, not an empty box.
 
-   The small file stays in `src`, so the hero works with no JavaScript at all —
-   it is above the fold and deliberately not lazy. This upgrades to the 2560px
-   cut only when the slot needs it. Keyed off the element rather than a media
-   query, so it stays correct if the layout changes: the hero sits in
-   `.wrap-wide`, which is min(1080px, 100% - 2rem), so desktop retina needs 2160
-   while a phone at ~350px needs ~1050 and must never pull the big file. Ad
-   traffic is mostly mobile.
-
-   ⚠️ devicePixelRatio is read ONCE. It is not stable in headless engines under
-   a heavy page — observed dropping 2 to 1 mid-load while innerWidth held — and
-   a value that can change underneath a decision is worth capturing anyway.
-
-   This sits immediately after the element on purpose. The site's main script
-   runs at the end of the body, by which time the browser has committed to the
-   file in `src`, and swapping then costs a second download. */
+   Pick the video source from what THIS ELEMENT will paint. The small file is used unless the slot needs the 2560px cut:
+   the hero sits in `.wrap-wide`, which is min(1080px, 100% - 2rem), so desktop retina needs 2160 while a phone at
+   ~350px needs ~1050 and must never pull the big file. devicePixelRatio is read ONCE, here, because it is not stable
+   in headless engines under a heavy page (observed dropping 2 to 1 mid-load while innerWidth held). */
 (function () {{
   try {{
-    var DPR = window.devicePixelRatio || 1;
     var v = document.querySelector('video.hero-video');
     if (!v) return;
-    var need = (v.getBoundingClientRect().width || v.clientWidth || 0) * DPR;
-    if (need <= 1400) return;
-    var swapped = false;
-    [].forEach.call(v.querySelectorAll('source[data-src-hi]'), function (s) {{
-      s.setAttribute('src', s.getAttribute('data-src-hi'));
-      swapped = true;
-    }});
-    if (swapped) v.load();
-  }} catch (e) {{ /* a hero that plays the small file is not worth throwing over */ }}
+    var DPR = window.devicePixelRatio || 1;
+    var hi = ((v.getBoundingClientRect().width || v.clientWidth || 0) * DPR) > 1400;
+    var started = false;
+    var start = function () {{
+      if (started) return;
+      started = true;
+      [].forEach.call(v.querySelectorAll('source[data-src]'), function (s) {{
+        s.setAttribute('src', (hi && s.getAttribute('data-src-hi')) || s.getAttribute('data-src'));
+      }});
+      v.load();
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {{}});
+    }};
+    if ('IntersectionObserver' in window) {{
+      var io = new IntersectionObserver(function (entries) {{
+        if (entries[0] && entries[0].isIntersecting) {{ io.disconnect(); start(); }}
+      }}, {{ rootMargin: '600px 0px' }});
+      io.observe(v);
+    }} else {{ start(); }}
+  }} catch (e) {{ /* a hero that stays on its poster is not worth throwing over */ }}
 }})();
 </script>
 </section>
