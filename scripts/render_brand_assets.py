@@ -202,12 +202,11 @@ def og_html(pal: dict) -> str:
         + "</g></svg>"
     )
     return f"""<!doctype html><meta charset="utf-8"><style>
-@font-face{{font-family:'Switzer';src:url('{fonts}/Switzer-400.woff2') format('woff2');font-weight:400}}
-@font-face{{font-family:'Switzer';src:url('{fonts}/Switzer-700.woff2') format('woff2');font-weight:700}}
+@font-face{{font-family:'DM Sans';src:url('{fonts}/dmsans-latin.woff2') format('woff2');font-weight:100 1000}}
 *{{margin:0;padding:0;box-sizing:border-box}}
 html,body{{width:1200px;height:630px}}
 body{{background:{pal['paper']};color:{pal['ink']};
-  font-family:'Switzer',system-ui,sans-serif;
+  font-family:'DM Sans',system-ui,sans-serif;
   display:flex;flex-direction:column;justify-content:center;
   padding:0 96px;gap:22px}}
 .row{{display:flex;align-items:center;gap:22px}}
