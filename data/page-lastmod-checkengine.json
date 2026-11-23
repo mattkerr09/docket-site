@@ -1,11 +1,11 @@
 {
  "about/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "e99b83511ff46a0a"
  },
  "ai-assistants/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "a082cb0f538b8dac"
  },
@@ -1460,17 +1460,17 @@
   "hash": "dc742399a81603de"
  },
  "contact/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "ba1b9131891cc9b1"
  },
  "download/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "b0745fb78b7cc4ed"
+  "hash": "275669453748d968"
  },
  "faq/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "65e14eb4caae8c6d"
  },
@@ -1842,7 +1842,7 @@
  "index.html": {
   "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "f50d1140b57b24c1"
+  "hash": "a91f5820d912216a"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -1900,7 +1900,7 @@
   "hash": "0cdf461331d238fb"
  },
  "learn/audit-tool-accuracy/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "a7a0177a7301999f"
  },
@@ -1982,7 +1982,7 @@
  "learn/internal-link-equity/index.html": {
   "changed_in_build": true,
   "date": "2026-11-22",
-  "hash": "54e2bd2b6c71e90c"
+  "hash": "f1825ffb1b207e04"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
@@ -2050,7 +2050,7 @@
   "hash": "0348369c61d1b28f"
  },
  "learn/what-docket-got-wrong/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "21bf3e02ec7d6c3c"
  },
@@ -2125,17 +2125,17 @@
   "hash": "bea04a4d019b5249"
  },
  "legal/privacy/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "c3db17823cb161c6"
  },
  "legal/refunds/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "3ff089828976bfc6"
  },
  "legal/terms/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "1a9d89167b7421d9"
  },
@@ -2150,7 +2150,7 @@
   "hash": "4b9adaf357df5070"
  },
  "support/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "4defd3e8e0f01789"
  },
@@ -2215,7 +2215,7 @@
   "hash": "931066d3aa8575e3"
  },
  "vs/ahrefs-site-audit-alternative/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "90324b42fd1a5efa"
  },
