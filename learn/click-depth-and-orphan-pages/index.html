@@ -14,8 +14,9 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Click depth and orphan pages: what Check Engine checks</title>
 <meta name="description" content="How many clicks from the homepage is too many, and what counts as an orphan page. What a Check Engine finding measures, and when the orphan answer is withheld.">
-<meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="3eeb0ef01d85">
+<meta name="theme-color" content="#070C0D">
+<meta name="color-scheme" content="dark">
+<meta name="build-id" content="dd237ab1dcb6">
 <link rel="canonical" href="https://checkengineseo.com/learn/click-depth-and-orphan-pages/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -561,15 +562,37 @@ body.landing article{padding:0}
    below it on a phone, where the one-line version above the buttons does the work. */
 .hero-free-line{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1.1rem;max-width:34rem}
 .hero-free-line strong{color:var(--brand-light);font-weight:600}
-.hero-free{margin:0;align-self:center}
+/* RULES 77 (Article Studio's blind score, 23 Nov 2026): the real result sat at y=637 beside a 2,000px column at 1280 (the top
+   right empty beside the headline) and at y=2198 on a phone. It starts level with the eyebrow on a wide screen, and sits
+   right under the buttons on a phone: the grid names three areas, the copy and the price card, the result, the notes. */
+.hero-grid{grid-template-areas:"main" "fig" "notes"}
+.hero-main{grid-area:main;min-width:0}
+.hero-notes{grid-area:notes;min-width:0}
+.hero-free{margin:0;align-self:start;grid-area:fig}
 .hero-free img{display:block;width:100%;height:auto;border:1px solid var(--border-strong);border-radius:var(--radius-md);
   box-shadow:var(--lift)}
 .hero-free figcaption{margin-top:.7rem;font-size:var(--t-sm);color:var(--text-dim);line-height:1.5}
 .hero-free figcaption strong{color:var(--text-mid);font-weight:600}
 @media(min-width:941px){
-  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start}
+  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start;
+    grid-template-areas:"main fig" "notes fig";grid-template-rows:auto 1fr}
   .hero-grid .hero-h1{font-size:clamp(2.4rem,3.8vw,3.4rem)}
+  .hero-free{margin-top:.2rem}
 }
+/* The one price card: heading, the sale sentence, the buttons, then what a buyer asks before pressing Buy. */
+.price-card{padding:1.15rem 1.25rem 1rem;border:1px solid var(--border-strong);border-radius:var(--radius-lg);
+  background:var(--surface);margin:0 0 1.2rem}
+.price-card-h{font-family:var(--display);font-weight:600;font-size:var(--t-xl);line-height:1.25;margin:0 0 .55rem;
+  letter-spacing:-.01em}
+.price-card .price-line{margin:0 0 .9rem;font-size:var(--t-md)}
+.price-card .hero-cta{margin-bottom:.8rem}
+.price-facts .price-req{margin:0 0 .5rem}
+.price-facts .hero-free-line{font-size:var(--t-base);margin:0 0 .7rem;max-width:none}
+.price-facts{margin:0 0 1.1rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 .9rem}
+.pill{font-size:var(--t-sm);color:var(--text-mid);border:1px solid var(--border-strong);border-radius:999px;
+  padding:.2rem .7rem;background:var(--brand-soft);white-space:nowrap}
+.hero-maker{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1rem;max-width:34rem}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
   font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
   background:var(--brand-soft);
@@ -577,6 +600,11 @@ body.landing article{padding:0}
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
+/* The mono pill above the headline wrapped to two lines at 375 ("NO / SUBSCRIPTION"); one line, scaled to the screen. */
+@media(max-width:480px){
+  .eyebrow{white-space:nowrap;font-size:clamp(.58rem,2.9vw,.7rem);letter-spacing:.07em;padding:.45rem .7rem;margin-bottom:1.1rem}
+}
+
 /* WEIGHT 600, not 700. Measured across the six sites named as the bar:
    mobbin 652, langchain 300, framer 500, avo 600, outlier 600, cofounder 400:
    median ~550, and this page was the heaviest in the set at 700. 600 lands on
@@ -1164,7 +1192,7 @@ because the check exists, its two halves are easy to confuse, and one of them ap
 crawl-quality gate the other does not. Engine source read on 16 September 2026.</p>
 
 <aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-click-depth-and-orphan-pages-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-arm64.dmg" data-ev="Download" data-ev-button="learn-click-depth-and-orphan-pages-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=learn-click-depth-and-orphan-pages-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-x86_64.dmg" data-ev="Download" data-ev-button="learn-click-depth-and-orphan-pages-try-free-intel">Intel Mac</a>): your score and how many problems each area has, and the top problem in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=learn-click-depth-and-orphan-pages" data-ev="Buy" data-ev-price="19.99" data-ev-button="learn-click-depth-and-orphan-pages">Buy Check Engine</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="learn-click-depth-and-orphan-pages">See a sample report</a><span data-founding-until="2026-12-03T07:59:59Z"> &middot; Black Friday sale: $19.99 once through December 2. Then $39. The Buy button applies the sale for you; there is no code to type.</span></p></aside>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How many clicks from the homepage is too many?</h3><p>Check Engine reports a page at four clicks or more, at its lowest severity, and the finding's own wording suggests keeping anything commercially valuable within three. That is a rule of thumb the check encodes rather than a published threshold, and no citation is attached to it. The number is also capped by your crawl settings before it is capped by your site.</p></div><div class="faq-item"><h3>Does Check Engine measure click depth from my homepage?</h3><p>It measures depth from the URL you started the crawl at. If you audit a section URL, that section is depth zero and everything is counted from there. The engine tracks separately whether the page it treats as the homepage is really the site root, because findings worded around the homepage can otherwise be wrong.</p></div><div class="faq-item"><h3>Why does my audit say orphan pages could not be checked?</h3><p>Because too many URLs the crawl discovered were never fetched, and those are exactly the pages that might carry the missing links. Check Engine withholds the orphan claim rather than reporting a count nobody should act on, and it tells you how many URLs were missed instead. Re-run with no page limit, and if the notice persists, lift the click-depth limit too.</p></div><div class="faq-item"><h3>Will Check Engine find an orphan page that is not in my sitemap?</h3><p>No. The orphan finding requires the URL to appear in your sitemap as well as having no internal links pointing at it. If you publish no sitemap, this finding cannot fire at all. A page that nothing links to and nothing declares is also a page a link-following crawler has no way to reach.</p></div><div class="faq-item"><h3>Are orphan pages always a problem?</h3><p>No, and the fix text says so: link to each from a relevant parent or hub page, or remove it if it is obsolete. A page nothing links to because nothing should link to it any more is a deletion. What is not defensible is leaving it in the sitemap, which tells search engines the page matters while the rest of the site says it does not.</p></div></div></section>
+<section class="faq" id="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>How many clicks from the homepage is too many?</h3><p>Check Engine reports a page at four clicks or more, at its lowest severity, and the finding's own wording suggests keeping anything commercially valuable within three. That is a rule of thumb the check encodes rather than a published threshold, and no citation is attached to it. The number is also capped by your crawl settings before it is capped by your site.</p></div><div class="faq-item"><h3>Does Check Engine measure click depth from my homepage?</h3><p>It measures depth from the URL you started the crawl at. If you audit a section URL, that section is depth zero and everything is counted from there. The engine tracks separately whether the page it treats as the homepage is really the site root, because findings worded around the homepage can otherwise be wrong.</p></div><div class="faq-item"><h3>Why does my audit say orphan pages could not be checked?</h3><p>Because too many URLs the crawl discovered were never fetched, and those are exactly the pages that might carry the missing links. Check Engine withholds the orphan claim rather than reporting a count nobody should act on, and it tells you how many URLs were missed instead. Re-run with no page limit, and if the notice persists, lift the click-depth limit too.</p></div><div class="faq-item"><h3>Will Check Engine find an orphan page that is not in my sitemap?</h3><p>No. The orphan finding requires the URL to appear in your sitemap as well as having no internal links pointing at it. If you publish no sitemap, this finding cannot fire at all. A page that nothing links to and nothing declares is also a page a link-following crawler has no way to reach.</p></div><div class="faq-item"><h3>Are orphan pages always a problem?</h3><p>No, and the fix text says so: link to each from a relevant parent or hub page, or remove it if it is obsolete. A page nothing links to because nothing should link to it any more is a deletion. What is not defensible is leaving it in the sitemap, which tells search engines the page matters while the rest of the site says it does not.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">

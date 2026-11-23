@@ -14,8 +14,9 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Check Engine vs Google Search Console: what each answers</title>
 <meta name="description" content="Search Console is free, it is Google's own data, and nothing replaces it. What it cannot tell you, and where an audit on your own computer answers instead.">
-<meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="3eeb0ef01d85">
+<meta name="theme-color" content="#070C0D">
+<meta name="color-scheme" content="dark">
+<meta name="build-id" content="dd237ab1dcb6">
 <link rel="canonical" href="https://checkengineseo.com/vs/google-search-console/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -561,15 +562,37 @@ body.landing article{padding:0}
    below it on a phone, where the one-line version above the buttons does the work. */
 .hero-free-line{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1.1rem;max-width:34rem}
 .hero-free-line strong{color:var(--brand-light);font-weight:600}
-.hero-free{margin:0;align-self:center}
+/* RULES 77 (Article Studio's blind score, 23 Nov 2026): the real result sat at y=637 beside a 2,000px column at 1280 (the top
+   right empty beside the headline) and at y=2198 on a phone. It starts level with the eyebrow on a wide screen, and sits
+   right under the buttons on a phone: the grid names three areas, the copy and the price card, the result, the notes. */
+.hero-grid{grid-template-areas:"main" "fig" "notes"}
+.hero-main{grid-area:main;min-width:0}
+.hero-notes{grid-area:notes;min-width:0}
+.hero-free{margin:0;align-self:start;grid-area:fig}
 .hero-free img{display:block;width:100%;height:auto;border:1px solid var(--border-strong);border-radius:var(--radius-md);
   box-shadow:var(--lift)}
 .hero-free figcaption{margin-top:.7rem;font-size:var(--t-sm);color:var(--text-dim);line-height:1.5}
 .hero-free figcaption strong{color:var(--text-mid);font-weight:600}
 @media(min-width:941px){
-  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start}
+  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start;
+    grid-template-areas:"main fig" "notes fig";grid-template-rows:auto 1fr}
   .hero-grid .hero-h1{font-size:clamp(2.4rem,3.8vw,3.4rem)}
+  .hero-free{margin-top:.2rem}
 }
+/* The one price card: heading, the sale sentence, the buttons, then what a buyer asks before pressing Buy. */
+.price-card{padding:1.15rem 1.25rem 1rem;border:1px solid var(--border-strong);border-radius:var(--radius-lg);
+  background:var(--surface);margin:0 0 1.2rem}
+.price-card-h{font-family:var(--display);font-weight:600;font-size:var(--t-xl);line-height:1.25;margin:0 0 .55rem;
+  letter-spacing:-.01em}
+.price-card .price-line{margin:0 0 .9rem;font-size:var(--t-md)}
+.price-card .hero-cta{margin-bottom:.8rem}
+.price-facts .price-req{margin:0 0 .5rem}
+.price-facts .hero-free-line{font-size:var(--t-base);margin:0 0 .7rem;max-width:none}
+.price-facts{margin:0 0 1.1rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 .9rem}
+.pill{font-size:var(--t-sm);color:var(--text-mid);border:1px solid var(--border-strong);border-radius:999px;
+  padding:.2rem .7rem;background:var(--brand-soft);white-space:nowrap}
+.hero-maker{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1rem;max-width:34rem}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
   font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
   background:var(--brand-soft);
@@ -577,6 +600,11 @@ body.landing article{padding:0}
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
+/* The mono pill above the headline wrapped to two lines at 375 ("NO / SUBSCRIPTION"); one line, scaled to the screen. */
+@media(max-width:480px){
+  .eyebrow{white-space:nowrap;font-size:clamp(.58rem,2.9vw,.7rem);letter-spacing:.07em;padding:.45rem .7rem;margin-bottom:1.1rem}
+}
+
 /* WEIGHT 600, not 700. Measured across the six sites named as the bar:
    mobbin 652, langchain 300, framer 500, avo 600, outlier 600, cofounder 400:
    median ~550, and this page was the heaviest in the set at 700. 600 lands on
@@ -1136,7 +1164,7 @@ turns all five off.</p>
 <li><a href="/vs/seoptimer-alternative/">Check Engine vs SEOptimer</a></li>
 <li><a href="/vs/sitechecker-alternative/">Check Engine vs Sitechecker</a></li>
 </ul>
-<section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can Check Engine replace Google Search Console?</h3><p>No, and nothing can. Search Console is the only source of your real queries, impressions, clicks, Core Web Vitals measured on real visitors, and manual action notices. It is free and it is Google's own data. Check Engine audits the site itself and assumes you already have Search Console set up.</p></div><div class="faq-item"><h3>Why would I need an audit tool if Search Console is free?</h3><p>Because Search Console reports on pages Google has already crawled, and says nothing about a page with no impressions yet. It also groups its findings by reason rather than ranking them. Check Engine crawls the site as it stands today and returns an ordered fix plan with the markup to paste.</p></div><div class="faq-item"><h3>Does Check Engine measure Core Web Vitals?</h3><p>No. Check Engine checks the causes of poor performance and can fetch the same CrUX field values Search Console shows, through the PageSpeed Insights API, as one of five optional checks that --offline turns off. The authoritative view is Google's and it is in Search Console. Confirm a speed fix there, not in Check Engine.</p></div><div class="faq-item"><h3>Is the URL Inspection tool enough to audit a site?</h3><p>Not at any scale. It inspects one URL at a time, and Google documents the API quota as 2,000 queries a day and 600 a minute per property. A site larger than that cannot be inspected in a day, and inspection reports indexing status rather than telling you what to change.</p></div></div></section>
+<section class="faq" id="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can Check Engine replace Google Search Console?</h3><p>No, and nothing can. Search Console is the only source of your real queries, impressions, clicks, Core Web Vitals measured on real visitors, and manual action notices. It is free and it is Google's own data. Check Engine audits the site itself and assumes you already have Search Console set up.</p></div><div class="faq-item"><h3>Why would I need an audit tool if Search Console is free?</h3><p>Because Search Console reports on pages Google has already crawled, and says nothing about a page with no impressions yet. It also groups its findings by reason rather than ranking them. Check Engine crawls the site as it stands today and returns an ordered fix plan with the markup to paste.</p></div><div class="faq-item"><h3>Does Check Engine measure Core Web Vitals?</h3><p>No. Check Engine checks the causes of poor performance and can fetch the same CrUX field values Search Console shows, through the PageSpeed Insights API, as one of five optional checks that --offline turns off. The authoritative view is Google's and it is in Search Console. Confirm a speed fix there, not in Check Engine.</p></div><div class="faq-item"><h3>Is the URL Inspection tool enough to audit a site?</h3><p>Not at any scale. It inspects one URL at a time, and Google documents the API quota as 2,000 queries a day and 600 a minute per property. A site larger than that cannot be inspected in a day, and inspection reports indexing status rather than telling you what to change.</p></div></div></section>
 </div></article>
 </main>
 <footer><div class="wrap-wide">

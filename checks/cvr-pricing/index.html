@@ -14,8 +14,9 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Does your site explain cost or how to get a quote?</title>
 <meta name="description" content="It looks for a pricing route or recognisable cost language.">
-<meta name="theme-color" content="#FBFAF7">
-<meta name="build-id" content="3eeb0ef01d85">
+<meta name="theme-color" content="#070C0D">
+<meta name="color-scheme" content="dark">
+<meta name="build-id" content="dd237ab1dcb6">
 <link rel="canonical" href="https://checkengineseo.com/checks/cvr-pricing/">
 <link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -561,15 +562,37 @@ body.landing article{padding:0}
    below it on a phone, where the one-line version above the buttons does the work. */
 .hero-free-line{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1.1rem;max-width:34rem}
 .hero-free-line strong{color:var(--brand-light);font-weight:600}
-.hero-free{margin:0;align-self:center}
+/* RULES 77 (Article Studio's blind score, 23 Nov 2026): the real result sat at y=637 beside a 2,000px column at 1280 (the top
+   right empty beside the headline) and at y=2198 on a phone. It starts level with the eyebrow on a wide screen, and sits
+   right under the buttons on a phone: the grid names three areas, the copy and the price card, the result, the notes. */
+.hero-grid{grid-template-areas:"main" "fig" "notes"}
+.hero-main{grid-area:main;min-width:0}
+.hero-notes{grid-area:notes;min-width:0}
+.hero-free{margin:0;align-self:start;grid-area:fig}
 .hero-free img{display:block;width:100%;height:auto;border:1px solid var(--border-strong);border-radius:var(--radius-md);
   box-shadow:var(--lift)}
 .hero-free figcaption{margin-top:.7rem;font-size:var(--t-sm);color:var(--text-dim);line-height:1.5}
 .hero-free figcaption strong{color:var(--text-mid);font-weight:600}
 @media(min-width:941px){
-  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start}
+  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);max-width:1080px;gap:2.6rem;align-items:start;
+    grid-template-areas:"main fig" "notes fig";grid-template-rows:auto 1fr}
   .hero-grid .hero-h1{font-size:clamp(2.4rem,3.8vw,3.4rem)}
+  .hero-free{margin-top:.2rem}
 }
+/* The one price card: heading, the sale sentence, the buttons, then what a buyer asks before pressing Buy. */
+.price-card{padding:1.15rem 1.25rem 1rem;border:1px solid var(--border-strong);border-radius:var(--radius-lg);
+  background:var(--surface);margin:0 0 1.2rem}
+.price-card-h{font-family:var(--display);font-weight:600;font-size:var(--t-xl);line-height:1.25;margin:0 0 .55rem;
+  letter-spacing:-.01em}
+.price-card .price-line{margin:0 0 .9rem;font-size:var(--t-md)}
+.price-card .hero-cta{margin-bottom:.8rem}
+.price-facts .price-req{margin:0 0 .5rem}
+.price-facts .hero-free-line{font-size:var(--t-base);margin:0 0 .7rem;max-width:none}
+.price-facts{margin:0 0 1.1rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.45rem;margin:0 0 .9rem}
+.pill{font-size:var(--t-sm);color:var(--text-mid);border:1px solid var(--border-strong);border-radius:999px;
+  padding:.2rem .7rem;background:var(--brand-soft);white-space:nowrap}
+.hero-maker{font-size:var(--t-md);color:var(--text);line-height:1.55;margin:0 0 1rem;max-width:34rem}
 .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--mono);
   font-size:var(--t-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-light);
   background:var(--brand-soft);
@@ -577,6 +600,11 @@ body.landing article{padding:0}
   margin-bottom:1.9rem}
 .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;
   background:var(--ok);box-shadow:0 0 0 3px rgba(var(--ok-rgb),.18)}
+/* The mono pill above the headline wrapped to two lines at 375 ("NO / SUBSCRIPTION"); one line, scaled to the screen. */
+@media(max-width:480px){
+  .eyebrow{white-space:nowrap;font-size:clamp(.58rem,2.9vw,.7rem);letter-spacing:.07em;padding:.45rem .7rem;margin-bottom:1.1rem}
+}
+
 /* WEIGHT 600, not 700. Measured across the six sites named as the bar:
    mobbin 652, langchain 300, framer 500, avo 600, outlier 600, cofounder 400:
    median ~550, and this page was the heaviest in the set at 700. 600 lands on
@@ -989,7 +1017,7 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 </div></nav>
 <main id="main">
 <article><div class="wrap"><div class="crumb"><a href="/">Check Engine</a> / <a href="/checks/">Checks</a> / Reference</div><h1>Does your site explain cost or how to get a quote?</h1><p class="byline">By Matthew Kerr<span class="sep">·</span>Published <time datetime="2026-11-11">11 November 2026</time></p>
-<p class="lede">It looks for a pricing route or recognisable cost language.</p><h2>What Check Engine measures</h2><p>The check runs only for a supported prose language. It first looks for pricing, plans, prices, rates, cost, quote or estimate paths. Across the sample, it also reads up to 6000 characters from each of the first 30 indexable pages for currency, price, trial, quote and estimate signals. A finding appears only when neither a matching page route nor a price-language signal was found. For example, a quote invitation in the first 6000 text characters of a sampled page can satisfy the wording test.</p><p>The check uses the page list and sampled text. A quote invitation can qualify. You still need to review whether the visitor can understand the cost or the steps to get a quote.</p><h2>How to read the result</h2><p>The absence finding is medium severity. A detected currency symbol or quote word can satisfy the check, so a clean result does not establish that visitors receive a complete or clear account of cost.</p><h2>Why it matters</h2><p>Cost can be explained as a price, a range or a route to an estimate. The check includes quote language because a business can be transparent about the next step without publishing a fixed amount for work that varies.</p><h2>How to fix it</h2><p>Read the main buying pages as a new visitor. Explain the real cost where it is known, or say how to request a quote and what information is needed. Keep any stated amount current. Link the cost explanation from the relevant page and check that the visible wording gives more help than an isolated currency sign.</p><p><a href="/learn/conversion-audit/">Conversion audit</a></p><h2>What we found in field audits</h2><p>Problems in Conversion &amp; landing pages were found on 13 of the 14 sites we audited. These are area totals. <a href="/learn/audit-tool-accuracy/">Read the field-audit method</a>.</p><h2>Method note</h2><p><code>backend/seo_engine/checks/conversion.py</code>, <code>pricing</code>, revision <code>0bb8e8d3</code>.</p><section class="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can a quote invitation satisfy the cost-information check?</h3><p>Yes. The quote and estimate signals can qualify, so the test does not require every business to publish a fixed price.</p></div><div class="faq-item"><h3>How far into page text does the pricing check read?</h3><p>It searches up to 6000 characters on each sampled page. Important cost wording beyond that sample can be missed.</p></div><div class="faq-item"><h3>Does a clean pricing result prove my costs are clearly explained?</h3><p>No. A currency symbol can satisfy the test. Read the full offer and its terms to decide whether the explanation helps.</p></div></div></section><footer aria-label="Next step">
+<p class="lede">It looks for a pricing route or recognisable cost language.</p><h2>What Check Engine measures</h2><p>The check runs only for a supported prose language. It first looks for pricing, plans, prices, rates, cost, quote or estimate paths. Across the sample, it also reads up to 6000 characters from each of the first 30 indexable pages for currency, price, trial, quote and estimate signals. A finding appears only when neither a matching page route nor a price-language signal was found. For example, a quote invitation in the first 6000 text characters of a sampled page can satisfy the wording test.</p><p>The check uses the page list and sampled text. A quote invitation can qualify. You still need to review whether the visitor can understand the cost or the steps to get a quote.</p><h2>How to read the result</h2><p>The absence finding is medium severity. A detected currency symbol or quote word can satisfy the check, so a clean result does not establish that visitors receive a complete or clear account of cost.</p><h2>Why it matters</h2><p>Cost can be explained as a price, a range or a route to an estimate. The check includes quote language because a business can be transparent about the next step without publishing a fixed amount for work that varies.</p><h2>How to fix it</h2><p>Read the main buying pages as a new visitor. Explain the real cost where it is known, or say how to request a quote and what information is needed. Keep any stated amount current. Link the cost explanation from the relevant page and check that the visible wording gives more help than an isolated currency sign.</p><p><a href="/learn/conversion-audit/">Conversion audit</a></p><h2>What we found in field audits</h2><p>Problems in Conversion &amp; landing pages were found on 13 of the 14 sites we audited. These are area totals. <a href="/learn/audit-tool-accuracy/">Read the field-audit method</a>.</p><h2>Method note</h2><p><code>backend/seo_engine/checks/conversion.py</code>, <code>pricing</code>, revision <code>0bb8e8d3</code>.</p><section class="faq" id="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can a quote invitation satisfy the cost-information check?</h3><p>Yes. The quote and estimate signals can qualify, so the test does not require every business to publish a fixed price.</p></div><div class="faq-item"><h3>How far into page text does the pricing check read?</h3><p>It searches up to 6000 characters on each sampled page. Important cost wording beyond that sample can be missed.</p></div><div class="faq-item"><h3>Does a clean pricing result prove my costs are clearly explained?</h3><p>No. A currency symbol can satisfy the test. Read the full offer and its terms to decide whether the explanation helps.</p></div></div></section><footer aria-label="Next step">
 <div class="callout compact" id="try">
 <div class="buy-block compact"><p class="price-line">Black Friday sale: $19.99 once through December 2. Then $39.</p><p class="price-req">For Macs with Apple silicon or Intel, macOS 12 or later, and 64-bit Windows</p><p class="price-req">Priced in US dollars. Checkout shows your currency and any local tax.</p><div class="hero-cta"><a rel="nofollow" class="btn buy-btn" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=check-cvr-pricing" data-ev="Buy" data-ev-price="19.99" data-ev-button="check-cvr-pricing">Buy Check Engine</a><a rel="nofollow" class="btn-ghost dl-mac" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=check-cvr-pricing-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-arm64.dmg" data-ev="Download" data-ev-button="check-cvr-pricing-try-free">Try it free</a><a rel="nofollow" class="btn dl-win" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=check-cvr-pricing-win&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-x64-setup.exe" data-ev="Download" data-ev-button="check-cvr-pricing-win">Try it free for Windows</a><a class="btn-ghost" href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="check-cvr-pricing">See a full sample report</a></div><p class="mac-alt hero-note">On a Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=check-cvr-pricing-mac&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-arm64.dmg" data-ev="Download" data-ev-button="check-cvr-pricing-mac">Get the Mac version</a>.</p><p class="phone-link">On your phone? <button type="button" data-send-mac-link>Send the Mac link to yourself</button></p><p class="hero-note founding-note" data-founding-until="2026-12-03T07:59:59Z">The Buy button applies the sale for you; there is no code to type.</p><p class="hero-note"><strong>30 days, no conditions, no questions asked</strong>. <a href="/legal/refunds/">Refund policy</a></p></div>
 <p class="intel-dl">Intel Mac? <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=check-cvr-pricing-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.167/Check-Engine-SEO-1.3.167-x86_64.dmg" data-ev="Download" data-ev-button="check-cvr-pricing-try-free-intel">Get the Intel version</a></p>
