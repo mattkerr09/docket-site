@@ -1465,7 +1465,7 @@
   "hash": "ba1b9131891cc9b1"
  },
  "download/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "275669453748d968"
  },
@@ -1840,9 +1840,9 @@
   "hash": "1bef76e786f181cd"
  },
  "index.html": {
-  "changed_in_build": true,
-  "date": "2026-11-22",
-  "hash": "a91f5820d912216a"
+  "changed_in_build": false,
+  "date": "2026-11-23",
+  "hash": "09a28eee9d71ab43"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -1980,7 +1980,7 @@
   "hash": "639cbec33fab0c41"
  },
  "learn/internal-link-equity/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-22",
   "hash": "f1825ffb1b207e04"
  },
