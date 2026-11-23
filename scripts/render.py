@@ -2473,6 +2473,17 @@ PHONE_DOWNLOAD_STYLE = '''<style id="phone-download-style">
 @media (max-width:700px) and (pointer:coarse){
   .phone-download .btn,.phone-download .btn-ghost{min-height:44px}
 }
+/* The sale bar adds 45px above the header on a phone, which left Buy's last 17px under the 812px fold at 375 on the
+   live page (measured 2026-11-23, build dd237ab1dcb6). Tighter spacing in the card and above it brings it back inside. */
+@media (max-width:480px){
+  .hero-sub{margin-bottom:1rem}
+  .hero-main>.hero-note{margin:0 0 .55rem}
+  .price-card{padding:.95rem 1rem .8rem}
+  .price-card-h{font-size:1.05rem;margin-bottom:.4rem}
+  .price-card .price-line{margin-bottom:.6rem}
+  .price-card .phone-download p{font-size:var(--t-sm);margin:0 0 .5rem}
+  .price-card .hero-pills{margin-bottom:.4rem}
+}
 </style>'''
 
 PHONE_DOWNLOAD_JS = r'''<script id="phone-download-script">
