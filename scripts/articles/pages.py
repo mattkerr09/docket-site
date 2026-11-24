@@ -2185,7 +2185,7 @@ where it stands.</p>
              "each area has. What is on it, and how to make your own.",
         h1="The Docket score card",
         crumb='<a href="/">Docket</a> / Score card',
-        body=body,
+        body=with_next_step(body, "page-score-card"),
         faq=[
             ("Does the card say what is wrong with the site?",
              "No. It says how many problems each area found, and nothing about what they are, which pages have them or how to fix "

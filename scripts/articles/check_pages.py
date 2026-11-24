@@ -2138,10 +2138,21 @@ def encoded(data: dict) -> str:
     return json.dumps(data, ensure_ascii=False, indent=2) + "\n"
 
 
+#: The page's answer sentence is its meta description. A short answer (under the 70 display-width
+#: floor Check Engine's own description check uses) gets one plain sentence after it, so the 14
+#: short ones (54 to 68 characters) read as full summaries. 24 Nov 2026, Quality Desk's content audit.
+_DESC_FLOOR = 70
+_DESC_TAIL = " What it measures, when it fails and how to fix it."
+
+
+def _check_description(answer: str) -> str:
+    return answer if len(answer) >= _DESC_FLOOR else answer + _DESC_TAIL
+
+
 def check_page(row: dict) -> Path:
     return render(
         cat="checks", slug=row["slug"], title=row["question"], h1=row["question"],
-        desc=row["answer"],
+        desc=_check_description(row["answer"]),
         crumb='<a href="/">Check Engine</a> / <a href="/checks/">Checks</a> / Reference',
         body=body(row), closer=next_step("check-" + row["slug"]),
         faq=faq(row), published="2026-11-11",

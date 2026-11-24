@@ -20,7 +20,7 @@ def white_label_tools() -> Path:
 {disclosure()}
 <p id="measured-answer">White-label SEO audit tools differ in what carries your name: a PDF, an online report or a client portal.
 {source_link('SEO PowerSuite Enterprise', 'https://www.link-assistant.com/pricing.html')} lists white-label reports at $599.00 a year for the suite.
-Check the plan that unlocks branding and the report format you will send before buying.</p>
+Check which plan includes branding, and the report format you will send, before buying.</p>
 {checked('SEO PowerSuite', ('Enterprise plan', 'https://www.link-assistant.com/pricing.html'))}
 {method('the stated white-label feature and the plan that includes it', 'No ongoing free white-label version was confirmed. Free audit tiers and trials are shown separately from paid branding.')}
 <h2>Report branding and plan limits</h2>

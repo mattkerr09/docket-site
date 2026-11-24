@@ -106,11 +106,11 @@ CHECKED_HUMAN: dict[str, str] = {
     "audit-agency-prices-pricing": "22 November 2026",
     "audit-agency-prices-checker": "22 November 2026",
     # Host read both pricing pages on 2026-11-11 for the MCP access claim.
-    "ai-assistants-mcp": "11 November 2026",
+    "ai-assistants-mcp": "24 November 2026",
     # Re-read 2026-10-19: the product page's own SoftwareApplication schema again (operatingSystem "MacOS", the
     # "There are no plans" answer for Windows, the 149 USD offer, the featureList). Unchanged.
     "scrutiny": "21 November 2026",
-    "se-ranking-vs-screaming-frog": "9 November 2026",
+    "se-ranking-vs-screaming-frog": "24 November 2026",
     # Supplied browser readings, 2026-11-09: Lite is the Site Audit entry plan,
     # both crawl limits are listed, and bulk ZIP/CSV export supersedes the older help wording.
     "ahrefs": "20 November 2026",
@@ -118,7 +118,7 @@ CHECKED_HUMAN: dict[str, str] = {
     # own pricing page. The CSV had carried 2026-08-10; re-reading confirmed the
     # prices unchanged and added the monthly crawl allowances, which are the
     # thing this page actually turns on.
-    "seoptimer": "9 November 2026",
+    "seoptimer": "24 November 2026",
     # Re-read 2026-10-19 on the rendered plans page: the three plan prices and their annual rates, the "all plans
     # include" list, the five AI models and the core tools were unchanged. The detailed plan table also lists a
     # crawl-page total per plan, which the page had said Sitechecker does not publish; that is now stated and sourced.
@@ -144,8 +144,8 @@ CHECKED_HUMAN: dict[str, str] = {
     # printed the shared 10 August 2026 date.
     # Screaming Frog: the product page (Chromium WRS, 500 URLs, Unlimited with its memory footnote, the Free vs Paid
     # table, and its User-Agent line, which now names AI crawlers and is sourced below) and the pricing page in its
-    # USD view ($279 a licence for 1 to 4, per user). Re-read 2026-11-04, every claim unchanged.
-    "screaming-frog": "4 November 2026",
+    # USD view ($279 a licence for 1 to 4, per user). Re-read 2026-11-24 in a browser (Cloudflare check passed on its own), every claim unchanged.
+    "screaming-frog": "24 November 2026",
     # Sitebulb: the features page (crawl maps, Prioritized Hints). The prices were read on the rendered pricing
     # page: Lite $18 a month or $180 a year, Pro $42 a month or $425 a year.
     "sitebulb": "21 November 2026",
@@ -175,17 +175,17 @@ CHECKED_ISO: dict[str, str] = {
     "audit-agency-prices-home": "2026-11-22",
     "audit-agency-prices-pricing": "2026-11-22",
     "audit-agency-prices-checker": "2026-11-22",
-    "ai-assistants-mcp": "2026-11-11",
+    "ai-assistants-mcp": "2026-11-24",
     "scrutiny": "2026-11-21",
-    "se-ranking-vs-screaming-frog": "2026-11-09",
+    "se-ranking-vs-screaming-frog": "2026-11-24",
     "ahrefs": "2026-11-20",
-    "seoptimer": "2026-11-09",
+    "seoptimer": "2026-11-24",
     "sitechecker": "2026-11-20",
     "profound": "2026-11-20",
     "jetoctopus": "2026-11-21",
     "crawlraven": "2026-11-21",
     "crawler-sh": "2026-11-21",
-    "screaming-frog": "2026-11-04",
+    "screaming-frog": "2026-11-24",
     "sitebulb": "2026-11-21",
     "semrush": "2026-11-21",
     "lighthouse": "2026-11-21",
@@ -818,7 +818,6 @@ for _key, _tools in (("sf-alternatives", CRAWLERS), ("wl-tools", WHITE_LABEL),
 #: was NOT re-read that day. Only what was read is said: the Checked date above it stays the date the whole claim
 #: set was read (RULES 61), and these sentences say what was re-read since.
 PRICES_REREAD: dict[str, str] = {
-    "screaming-frog": "Its price, $279 a year in the USD view, was read again on 20 November 2026 and had not changed.",
 }
 
 _DEFAULT_CLOSING = (
@@ -931,7 +930,7 @@ findings ({sev_text}), the first three Docket ranked among those that name nobod
 """
 
 
-#: SEOptimer's plans as its pricing page lists them (read by hand in a browser 2026-11-09: its site refuses automated requests).
+#: SEOptimer's plans as its pricing page lists them (read by hand in a browser 2026-11-24: its site refuses automated requests).
 #: (name, monthly price, crawls, what the plan names)
 _SEOPT_TRIAL_DAYS = 7
 _SEOPT_PLANS = [

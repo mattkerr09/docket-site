@@ -13,7 +13,7 @@ from best_compared_layout import disclosure, method
 from comparisons import source_link
 from real_questions_sources import READINGS
 from ahrefs_first_screen import FREE, FREE_CREDITS, checked  # noqa: E402
-from render import CHROME_ADDON, DATA, FREE_LINE, PRICE_COMPACT, buy_block, render  # noqa: E402
+from render import CHROME_ADDON, DATA, FREE_LINE, PRICE_COMPACT, buy_block, render, with_next_step  # noqa: E402
 
 _RUN = json.loads((DATA / "free-run.json").read_text())
 _SF_YEAR = re.search(r"\$\d+", READINGS["rq-screaming-frog"][1][0]).group()
@@ -259,7 +259,7 @@ Read the product box in a guide for the current price and the limits relevant to
         desc="Compare SEO tools by task, free limits, yearly costs and stated features. Read the published method and dated vendor sources.",
         h1="SEO tools compared, by the job you are doing",
         crumb='<a href="/">Check Engine</a> / SEO tools compared',
-        body=body, modified="2026-11-22", schema_type="CollectionPage",
+        body=with_next_step(body, "hub-best"), modified="2026-11-22", schema_type="CollectionPage",
         faq=[
             ("How do I choose which SEO comparison guide to read?",
              "Start with the result you need: a crawl, a WordPress check or a client report. Write down the number of pages and the output you must hand over."),

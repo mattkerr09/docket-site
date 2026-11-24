@@ -53,7 +53,7 @@ def question_answer(item: dict, *, brief: bool = False) -> tuple[str, str]:
 def help_index() -> Path:
     quick = {item["id"]: item for item in answers()}
     body = """
-<p class="lede">Want to run your first audit, unlock the full report or check a finding?
+<p class="lede">Want to run your first audit, open the full report or check a finding?
 Start with the task below. Each link goes to the guide that explains it.</p>
 
 <h2>Get it running on Mac and Windows</h2>
@@ -89,6 +89,7 @@ Start with the task below. Each link goes to the guide that explains it.</p>
 <li><a href="/how-to/">Find the fix guide for a problem in your audit</a>.</li>
 <li><a href="/contact/">Report a crash, bug or finding you think is wrong</a>.</li>
 </ul>
+<p>Before you write to us, have three things ready: the version number at the top right of the app, which operating system you use, and what you were doing when it went wrong. With those we can usually answer the first time.</p>
 <p>Need to contact us? <a href="/support/">Get help with a purchase or prepare a bug report</a>.</p>
 <p>Still deciding, or just installed? <a href="/faq/">Read the buyer and setup questions</a>.</p>
 """
@@ -96,7 +97,7 @@ Start with the task below. Each link goes to the guide that explains it.</p>
         cat="help", slug="", title="Docket help: setup, reports and fixes",
         desc="Get help with your Docket site audit on Mac or Windows. Find setup, activation, report guides, AI assistant setup and support.",
         h1="What do you need help with?",
-        crumb='<a href="/">Docket</a> / Help', body=body,
+        crumb='<a href="/">Docket</a> / Help', body=R.with_next_step(body, "page-help", short=True),
         schema_type="CollectionPage",
         faq=[question_answer(quick[key], brief=True) for key in ("try", "price", "activate")],
     )
@@ -149,7 +150,7 @@ For purchase and setup questions, <a href="/faq/">read the FAQ</a>.</p>
         desc="Get Docket support for a licence, payment or site audit finding. Find what to send with a bug report and links to the refund and licence rules.",
         h1="Get help with Docket",
         crumb='<a href="/">Docket</a> / <a href="/help/">Help</a> / Support',
-        body=body, schema_type="ContactPage",
+        body=R.with_next_step(body, "page-support", short=True), schema_type="ContactPage",
     )
 
 
@@ -170,7 +171,7 @@ Need to report a problem? <a href="/support/">Contact support</a>.</p>
         desc="Questions about buying Docket and running a site audit. Read about the free version, price, licence, Mac and Windows setup, reports and support.",
         h1="Before you buy and after you install",
         crumb='<a href="/">Docket</a> / <a href="/help/">Help</a> / FAQ',
-        body=body, schema_type="", faq=[question_answer(item) for item in items],
+        body=R.with_next_step(body, "page-faq", short=True), schema_type="", faq=[question_answer(item) for item in items],
     )
 
 

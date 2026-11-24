@@ -125,8 +125,10 @@ class FreePathAndAIGuidesTests(unittest.TestCase):
                     self.assertFalse(list(paragraph.all('a')))
                 self.assertEqual(paragraphs[2].attrs.get('class'), 'next-step')
                 self.assertLess(nodes.index(paragraphs[2]), nodes.index(first_h2))
-                anchors = free_links(self.docs[slug])
-                self.assertEqual(len(anchors), 1, 'Guide must have exactly one free next-step link')
+                # 24 Nov 2026: the guide's OWN next step is still exactly one link (its free check). The shared
+                # "Try it free, Buy beside it" block now follows it (Quality Desk ruling, CONTENT-STANDARD rules 2 and 8).
+                anchors = [link for link in free_links(self.docs[slug]) if link in list(paragraphs[2].all('a'))]
+                self.assertEqual(len(anchors), 1, 'Guide must have exactly one free next-step link of its own')
                 self.assertEqual(parse_qs(urlsplit(anchors[0].attrs['href']).query)['src'],
                                  ['learn-' + slug])
                 self.assertIs(list(paragraphs[2].all('a'))[0], anchors[0])
@@ -135,16 +137,16 @@ class FreePathAndAIGuidesTests(unittest.TestCase):
                 else:
                     self.assertEqual(urlsplit(anchors[0].attrs['href']).path,
                                      '/tools/ai-crawler-checker/')
-                self.assertFalse(any(link.attrs.get('data-ev') == 'Buy'
-                                     for link in links(self.docs[slug])))
+                self.assertTrue(any(link.attrs.get('data-ev') == 'Buy'
+                                    for link in links(self.docs[slug])), 'the shared next-step block carries a tracked Buy link')
 
-    def test_guides_keep_entity_schema_without_an_unshown_price(self):
+    def test_guides_keep_entity_schema_with_the_shown_price(self):
         for slug in GUIDES:
             scripts = re.findall(r'<script type="application/ld\+json">(.*?)</script>',
                                  self.raw[slug], re.S)
             entities = [node for script in scripts for node in json.loads(script).get('@graph', [])]
             app = next(node for node in entities if node.get('@type') == 'SoftwareApplication')
-            self.assertNotIn('offers', app)
+            self.assertIn('offers', app)     # the shared block shows the price, so its Offer markup stays
             self.assertTrue(any(node.get('@type') == 'Organization' for node in entities))
 
     def test_visible_guide_numbers_and_dates_match_base_including_repetitions(self):

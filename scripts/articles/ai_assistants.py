@@ -182,8 +182,8 @@ an audit does contact, and how to turn the optional parts off, is on the
 </ul>
 
 <h2 id="licence">What a Docket SEO licence includes</h2>
-<p>A licence unlocks every finding from the app&rsquo;s {N_CHECKS} checks, ranked, with the markup to paste.
-It also unlocks the full result in the Claude Desktop extension and the local engine used by Claude Code.
+<p>A licence opens every finding from the app&rsquo;s {N_CHECKS} checks, ranked, with the markup to paste.
+It also opens the full result in the Claude Desktop extension and the local engine used by Claude Code.
 Those audits run on your computer. The remote connector&rsquo;s five free checks need no licence.</p>
 <p>{price_sentence()} No subscription. {FOUNDING_LINE}</p>
 

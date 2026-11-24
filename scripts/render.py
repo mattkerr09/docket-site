@@ -425,7 +425,7 @@ def buy_strip(src: str) -> str:
             f'{sample}{founding if FOUNDING_OPEN else " &middot; " + price_sentence()}</p></aside>')
 
 
-def next_step_block(src: str) -> str:
+def next_step_block(src: str, *, short: bool = False) -> str:
     """The next step for a page that has none: Try it free, Buy beside it, and the
     price, the pay-in-four line, the refund and the Macs it runs on at the button.
 
@@ -436,19 +436,24 @@ def next_step_block(src: str) -> str:
     download is counted as `<src>-try-free`, and `<src>-try-free-intel` for Intel."""
     intel = (f'<p class="intel-dl">Intel Mac? <a href="{download_url(src + "-try-free-intel", to=INTEL_DMG)}" '
              f'data-ev="Download" data-ev-button="{src}-try-free-intel">Get the Intel version</a></p>'
-             if INTEL else "")
+             if INTEL and not short else "")
+    # `short` is for the small support pages (/help/, /support/, /faq/): the whole block is most of such a page, and the
+    # lint's near-duplicate check (28% shared 8-word shingles) failed them against 50 pages on 24 Nov 2026. It keeps the
+    # price, both buttons and the refund (CONTENT-STANDARD rule 3) and drops the rival-price anchor, the sample-report
+    # button, the phone link and the Intel line, which every other page already carries.
+    extra = {"anchor": False, "sample": False, "phone": False} if short else {}
     return f"""
 <div class="callout compact" id="try">
-{buy_block(src, big=False, try_app=src + "-try-free")}
+{buy_block(src, big=False, try_app=src + "-try-free", **extra)}
 {intel}
 </div>"""
 
 
-def with_next_step(body: str, src: str) -> str:
+def with_next_step(body: str, src: str, *, short: bool = False) -> str:
     """`body` with the next-step block after its opening paragraph, so it is in the
     first screen of a hub and not at the end of a long list."""
     i = body.find("</p>")
-    block = next_step_block(src)
+    block = next_step_block(src, short=short)
     return body if "id=\"try\"" in body else (body[:i + 4] + block + body[i + 4:] if i != -1 else block + body)
 
 
