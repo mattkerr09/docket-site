@@ -82,7 +82,7 @@ def ai_assistants() -> Path:
     body = f"""
 <p class="lede">The Docket SEO connector checks one page at a time, free, with nothing to install.
 To check every page of a site, run Docket SEO on your Mac or PC. The free version crawls the whole site
-and shows your score, how many problems each area has, and the worst one in full with its fix.</p>
+and shows your score and every problem by name, worst first, with the worst one in full and its fix.</p>
 {purchase}
 {email_box()}
 <p class="hero-note">Checked {_day(RUN["measured"])}.</p>

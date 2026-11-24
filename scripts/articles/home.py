@@ -370,8 +370,10 @@ def hero_facts() -> str:
 
     Kept out of the card so that on a phone Buy, the link and the real result are all inside the first two screens."""
     out = ['<div class="price-facts">',
-           '<p class="hero-free-line"><strong>Free to try, with no account and no key.</strong> You get your score, '
-           'how many problems each area has, and the worst problem in full with its fix. Buying opens the rest.</p>',
+           '<p class="hero-free-line"><strong>Free to try, with no account and no key.</strong> You get your score '
+           'and every problem by name, worst first, each with how serious it is and the area it\'s in. The worst one comes in full '
+           'with its fix and markup. Buying opens the fix for every other problem, in the order to fix them, with the markup to paste '
+           'and the PDF report.</p>',
            price_req_html(),
            '<p class="price-req">Priced in US dollars. Checkout shows your currency and any local tax.</p>']
     if FOUNDING_LINE:
@@ -407,9 +409,9 @@ def body() -> str:
 </div>
 <figure class="hero-free">
   <img src="/assets/free-result.webp" width="{FREE['image']['width']}" height="{FREE['image']['height']}"
-       alt="Docket's free result for {FREE['target']}: a score of {FREE['score']} out of 100, grade {FREE['grade']}, {FREE['problems']} problems found, and the most important one shown in full with its fix, with {FREE['more']} more to unlock."
+       alt="Check Engine's free result for {FREE['target']}: a score of {FREE['score']} out of 100, grade {FREE['grade']}, {FREE['problems']} problems found, the most important one shown in full with its fix, and {FREE['more']} more whose fixes unlock with Buy."
        decoding="async" fetchpriority="high">
-  <figcaption>The free audit of our own company site, in the app. <strong>{FREE['score']}/100, {FREE['problems']} problems, the first one in full.</strong></figcaption>
+  <figcaption>The free audit of our own company site, in the app. <strong>{FREE['score']}/100, {FREE['problems']} problems, every one named, the worst in full.</strong></figcaption>
 </figure>
 <div class="hero-notes">
   {hero_facts()}

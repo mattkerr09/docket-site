@@ -48,7 +48,7 @@ The response says {quote("Quota exceeded for quota metric 'Queries' and limit 'Q
 <p>Choose this when your next step is a conversation about the audit rather than a script making web requests. The existing developer guide says an unactivated copy returns the free result, while a licensed copy returns every finding and the ranked plan. See the <a href="/for/developers/#mcp">local MCP setup guide</a> for the configuration.</p>
 
 <h2>Which results are free?</h2>
-<p>The site's free-result description gives you the score, problem counts by category and the top problem in full with its fix. The paid version adds the rest of the problems, the ranked fix plan and markup to paste.</p>
+<p>The site's free-result description gives you your score and every problem by name, worst first, with the worst one in full. The paid version adds the fix for every other problem, in the order to fix them, with the markup to paste and the PDF report.</p>
 <p>The developer guide says full findings and SARIF and JUnit files need a licence key. Choosing JSON leaves those licence limits in place. The help gives no full list of free CSV or local API results, so check access before building a workflow around them.</p>
 <p>That leaves a practical choice. Try Google's service for the performance result its docs describe. Use the local audit command when you want script output from the installed app. Use the local API when your code needs to talk to that running app, or MCP when an assistant is doing the reading. In each case, decide what result you need before treating free as a description of the whole workflow.</p>
 

@@ -1810,9 +1810,13 @@ def link_real_questions(pages: list[Path]) -> None:
         byline = re.search(r'<p class="byline">.*?</p>', raw, re.S)
         assert byline, f"missing byline: {page}"
         _after = raw[byline.end(): raw.find("</article>", byline.end())]
-        _day = max("2026-11-21", _content_date(_after) or "")
+        # 23 Nov 2026: a human-supplied `modified=` literal on the page (its own date, set when its visible text last changed)
+        # also counts, so a page edited after its newest dated claim shows the day it was edited. The pattern allows the space
+        # after the colon that the JSON-LD block carries; without it the substitution below never matched.
+        _supplied = re.search(r'"dateModified":\s*"(\d{4}-\d{2}-\d{2})"', raw)
+        _day = max("2026-11-21", _content_date(_after) or "", _supplied.group(1) if _supplied else "")
         _human = datetime.date.fromisoformat(_day).strftime("%-d %B %Y")
-        raw = re.sub(r'"dateModified":"[^"]*",', f'"dateModified":"{_day}",', raw)
+        raw = re.sub(r'"dateModified":\s*"[^"]*",', f'"dateModified": "{_day}",', raw)
         update = f'<span class="sep">·</span>Updated <time datetime="{_day}">{_human}</time>'
         updated = re.sub(r'<span class="sep">·</span>Updated <time[^>]*>.*?</time>', '', byline.group())
         raw = raw.replace(byline.group(), updated.replace('</p>', update + '</p>'), 1)

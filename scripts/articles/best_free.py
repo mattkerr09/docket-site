@@ -172,7 +172,7 @@ sets out what it checks and how a crawl is paid for.</p>
 """
     page = render(
         cat="best", slug="free-seo-audit-tools",
-        modified="2026-11-22",
+        modified="2026-11-23",
         title="Free SEO audit: tools and limits",
         desc=("Run a free SEO audit of a page or small site. Compare website audit tools, "
               "free limits, a Chrome plugin and what the free report shows."),

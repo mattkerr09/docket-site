@@ -1,21 +1,21 @@
 {
   "target": "kerrandcompanyholdings.com",
-  "engine": "1.3.160",
-  "date": "2026-11-09",
-  "pages": 4,
-  "seconds": 12,
-  "score": 96,
-  "grade": "A",
-  "problems": 9,
-  "more": 8,
+  "engine": "1.3.169",
+  "date": "2026-11-24",
+  "pages": 12,
+  "seconds": 26,
+  "score": 88,
+  "grade": "B",
+  "problems": 19,
+  "more": 18,
   "shown": "No phone number found anywhere on the site",
   "severity": "high",
   "frame": {
     "width": 1280,
-    "height": 650
+    "height": 1044
   },
   "image": {
     "width": 1600,
-    "height": 812
+    "height": 1305
   }
 }

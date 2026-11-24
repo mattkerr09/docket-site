@@ -183,7 +183,7 @@ click the button, there is no API key, and there is no per-call charge. Your ass
 talking to the app you bought, not to us.</p>
 
 <p>Which also means an unactivated copy gives your assistant the free version: the audit runs,
-and the result is the overall score, how many problems each area has and the top problem in full, with a note saying
+and the result is the overall score and every problem by name, worst first, and the top problem in full, with a note saying
 what the paid version adds. <code>list_checks</code> works either way, because it crawls
 nothing. A free audit is not kept, so the three tools that read kept audits have nothing to read
 until the copy is activated, and they say so. Activate once with <code>docket licence --key YOUR-KEY</code>, or in the app, and the
@@ -205,7 +205,7 @@ command line.</p>
         h1="How to audit your site from an AI assistant",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / MCP',
         body=body,
-        modified="2026-11-03",  # from git: 2939a5ae7 and 1356ecf37, five tools and the client set-ups (audit row 19)
+        modified="2026-11-23",  # from git: 2939a5ae7 and 1356ecf37, five tools and the client set-ups (audit row 19)
         faq=[
             ("Does Docket work with Claude Desktop?",
              "Yes. Add Docket to mcpServers in claude_desktop_config.json with the command "
@@ -216,8 +216,8 @@ command line.</p>
              "the assistant is talking to the copy of Docket you bought, and the licence is "
              "the same one-time purchase."),
             ("Can an assistant audit a site if Docket is not activated?",
-             "Yes, the free version. The audit runs, and the assistant gets the overall score, how "
-             "many problems each area has and the top problem in full with its fix. Activating the "
+             "Yes, the free version. The audit runs, and the assistant gets the overall score, every "
+             "problem by name, worst first, and the top problem in full with its fix. Activating the "
              "copy, in the app or with docket licence, makes the same tool return every finding."),
             ("Does Docket work with ChatGPT?",
              "In the ChatGPT desktop app, yes: add Docket under Settings, MCP servers, as a STDIO "

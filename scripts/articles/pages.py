@@ -585,7 +585,7 @@ is gone.</p>
         h1="Download Docket SEO for Mac and Windows" if WINDOWS else "Download Docket for Mac",
         crumb='<a href="/">Docket</a> / Download',
         body=body,
-        modified="2026-11-16",
+        modified="2026-11-23",
         schema_type="WebPage",
     )
 
@@ -2687,7 +2687,7 @@ by negligence is not excluded, because it cannot be.</p>
 <p>Your licence ends if you take a refund (on the day it is issued) or if you break these
 terms in a way you do not put right after being asked. In either case, delete the application.
 Your licence key stops validating in either case, and the application goes back to the free
-version (the score, how many problems each area has and the top problem) within about a day of that: the check is daily, and a revoked key is refused immediately
+version (the score and every problem by name, with only the top problem's fix) within about a day of that: the check is daily, and a revoked key is refused immediately
 rather than being given the offline grace period. Deleting the application is still asked of
 you, but it is no longer the only thing standing between a cancelled licence and continued
 use.</p>
@@ -2715,7 +2715,7 @@ appear on this page and apply from the day they appear, not before.</p>
         h1="Terms of use",
         crumb='<a href="/">Docket</a> / Terms',
         body=body,
-        modified="2026-11-09",  # seller and Dodo merchant-of-record wording, tax line, Windows delivery, launch-price sentence (CEO 2026-11-09); was 2026-11-04: from git 82f9687e6, one licence covers up to 3 computers (audit row 19: read 08-11)
+        modified="2026-11-23",  # seller and Dodo merchant-of-record wording, tax line, Windows delivery, launch-price sentence (CEO 2026-11-09); was 2026-11-04: from git 82f9687e6, one licence covers up to 3 computers (audit row 19: read 08-11)
         schema_type="WebPage",
     )
 
@@ -2819,8 +2819,8 @@ item at one price, so there is no partial refund to calculate and none is offere
 <p>Three reasons, and each is a fact about this product rather than a convention:</p>
 
 <ul>
-<li><strong>The free version shows how much is wrong, and the worst of it.</strong> It gives the score,
-how many problems each area has and the top problem in full with its fix, so the rest of the findings, the fix plan and
+<li><strong>The free version shows everything that's wrong, and fixes the worst of it.</strong> It gives the score
+and every problem by name, worst first, with the top problem in full and its fix, so the other fixes, the fix plan and
 the markup come after the money does. Thirty days with no conditions is what makes that fair: run it on your own sites and your clients', and if it is
 not worth the price to you, ask for it back.</li>
 <li><strong>Monitoring needs weeks to say anything.</strong> The default re-audit cadence is
@@ -2844,7 +2844,7 @@ reason you are unhappy, and none of the three belong on a page anyone can read.<
 
 <p>It goes back to the free version. Taking a refund revokes the licence key that came with your
 purchase, and Docket re-checks that key about once a day, so within roughly a day of the refund
-being issued, the copy on your computer shows only the score, how many problems each area has and the top problem. A revoked key is refused immediately and is not
+being issued, the copy on your computer goes back to the free version: the score and every problem by name, with only the top problem's fix. A revoked key is refused immediately and is not
 given the offline grace period that a merely-unreachable licence server would allow.</p>
 
 <p>This changed when Docket became a licensed product in August 2026. Before that it had no
@@ -2937,7 +2937,7 @@ a receipt. The terms of the sale, including the governing law, are on
         crumb='<a href="/">Docket</a> / Refunds',
         body=body,
         published="2026-08-11",
-        modified="2026-11-09",  # who you are paying: Dodo merchant of record and the publisher (CEO 2026-11-09); was 2026-11-02: the price it quotes became $59 (render.PRICE); audit row 19
+        modified="2026-11-23",  # who you are paying: Dodo merchant of record and the publisher (CEO 2026-11-09); was 2026-11-02: the price it quotes became $59 (render.PRICE); audit row 19
         schema_type="WebPage",
     )
 

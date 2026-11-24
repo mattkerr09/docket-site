@@ -2053,7 +2053,7 @@ against the same limit: it caps pages per session rather than crawls per month.<
 <thead><tr><th>Need</th><th>Alternative</th><th>What it gives you</th><th>Our comparison</th></tr></thead>
 <tbody>
 <tr><td>A free tool</td><td>Docket's free version and other free tools</td>
-<td>Docket shows your score, how many problems each area has and the top problem in full, on any site, with no key.</td>
+<td>Docket shows your score and every problem by name, worst first, with the worst one in full, on any site, with no key.</td>
 <td><a href="/best/free-seo-audit-tools/">Free SEO audit tools</a></td></tr>
 <tr><td>A team</td><td>Semrush</td><td>A platform subscription with seats. Docket has no team accounts, though its reports can carry your name and logo.</td>
 <td><a href="/vs/semrush-site-audit-alternative/">Semrush comparison</a></td></tr>
@@ -2072,7 +2072,7 @@ against the same limit: it caps pages per session rather than crawls per month.<
 
     return render(
         cat="vs", slug="seoptimer-alternative",
-        modified="2026-11-21",  # alternatives by need, dated starting price and FAQ
+        modified="2026-11-23",  # alternatives by need, dated starting price and FAQ
         title="SEOptimer alternatives: what to use instead, by need",
         desc="Pick SEOptimer for lead generation, Docket for unmetered re-runs, or another tool for your team, reports or crawl data.",
         h1="SEOptimer alternatives, and how Docket compares",
@@ -2086,7 +2086,7 @@ against the same limit: it caps pages per session rather than crawls per month.<
              "Max plan names and Docket does not."),
             ("Does SEOptimer have a free trial?",
              f"Its pricing page offers a {_SEOPT_TRIAL_DAYS} day free trial on each plan. Docket's free version "
-             f"shows your score, how many problems each area has and the top problem in full, with no key and no time "
+             f"shows your score and every problem by name, worst first, with the worst one in full, with no key and no time "
              f"limit. The full report is a one-time purchase with a {REFUND_DAYS}-day refund."),
             ("How much does SEOptimer cost?",
              "Its pricing page lists " + "; ".join(f"{name} at ${monthly} a month"
@@ -2102,8 +2102,8 @@ against the same limit: it caps pages per session rather than crawls per month.<
              "If you want a lead generation tool, no: SEOptimer's Max plan names one and Docket "
              "has nothing like it."),
             ("Is there a free SEOptimer alternative?",
-             "Docket's free version shows your score, how many problems each area has and the top "
-             "problem in full, on any site, with no key and no time limit. It is not the full "
+             "Docket's free version shows your score and every problem by name, worst first, with the worst "
+             "one in full, on any site, with no key and no time limit. It is not the full "
              f"report, which is {PRICE_COMPACT}. Our guide to free SEO audit tools compares the "
              "other free options we looked at."),
             ("Can I get white-label reports from a SEOptimer alternative?",
@@ -2568,7 +2568,7 @@ runner-up keywords and decay tracking, and on Pro an import of your Ahrefs or Se
 Docket does none of this. It does not track rankings or research keywords.</li>
 <li><strong>A trial and a free tool.</strong> A {_CR_TRIAL_DAYS} day free trial of everything in Pro on one site,
 with no card, and a free audit tool for up to {_CR_FREE_PAGES} pages with no account. Docket's free version covers
-any site but shows only the score, how many problems each area has and the top problem in full.</li>
+any site and names every problem, worst first, but gives the fix only for the worst one.</li>
 </ul>
 
 <p>It also lists MCP access to up to {_CR_MCP_TOOLS} tools across approved scopes, and its FAQ says MCP can read
@@ -2632,7 +2632,7 @@ for {price('scrutiny')}, and stronger than either of us at link checking.</p>
 
     return render(
         cat="vs", slug="crawlraven-alternative",
-        modified="2026-11-08",  # Mac and 64-bit Windows, not Mac only (CEO QC),
+        modified="2026-11-23",  # Mac and 64-bit Windows, not Mac only (CEO QC),
         title="CrawlRaven vs Docket: price, technical audit, MCP",
         desc=(f"{price_sentence()} CrawlRaven cloud audits or Docket on Mac and Windows."),
         h1="Docket vs CrawlRaven",
@@ -2657,8 +2657,8 @@ for {price('scrutiny')}, and stronger than either of us at link checking.</p>
              "audits but cannot start them. Docket ships an MCP server so an assistant can run an audit."),
             ("Does CrawlRaven have a free version?",
              f"It offers a {_CR_TRIAL_DAYS} day free trial on one site and a free audit tool for up to "
-             f"{_CR_FREE_PAGES} pages with no account. Docket's free version shows your score, how many "
-             "problems each area has and the top problem in full, on any site, with no key."),
+             f"{_CR_FREE_PAGES} pages with no account. Docket's free version shows your score and every "
+             "problem by name, worst first, with the worst one in full, on any site, with no key."),
             ("Does Docket connect to Google Search Console?",
              "Not for the keyword and traffic history CrawlRaven reports. Docket audits what "
              "your pages contain and how your server is configured, on your own machine, "
@@ -2722,8 +2722,8 @@ with Everything, its depth limit of {F.crawl_depth()} by default, or when it run
 <p>On price they are not close. crawler.sh is {price('crawler-sh')}, renewed yearly. Docket is
 {PRICE_COMPACT}. At these list prices, Docket costs less from the first year.
 Both can be tried free with no account: crawler.sh's free tier stops at 50 pages a
-session, and Docket's free version runs the whole audit but shows only the score, how many
-problems each area has and the top problem in full.</p>
+session, and Docket's free version runs the whole audit and names every problem, worst first, but gives the
+fix only for the worst one.</p>
 
 <p>One thing that is <em>not</em> a difference: both render JavaScript. They use their own
 engine rather than headless Chrome; Docket renders a sample of every audit in the WebKit that
@@ -2749,6 +2749,7 @@ what this page is built from.</p>
 
     return render(
         cat="vs", slug="crawler-sh-alternative",
+        modified="2026-11-23",  # the free version now names every problem (1.3.169)
         title="Docket vs crawler.sh: an audit, or Markdown for AI?",
         desc=("Both run locally with no account. crawler.sh turns sites into Markdown for AI "
               "training and caps pages per session; Docket is the audit, ranked, uncapped."),
@@ -2770,7 +2771,7 @@ what this page is built from.</p>
             ("Which is cheaper?",
              f"Docket, at {PRICE_COMPACT} against crawler.sh's {price('crawler-sh')}, which "
              "renews every year. Both have a free version that needs no account; Docket's "
-             "shows the score, how many problems each area has and the top problem in full, not the rest."),
+             "names every problem, worst first, and gives the fix for the worst one; the other fixes are paid."),
             ("Do both render JavaScript?",
              "Yes, and it is not a difference between them. crawler.sh uses its own render "
              "engine rather than headless Chrome; Docket renders a sample of every audit in "
@@ -2835,7 +2836,7 @@ the evidence list below gives the pages and the dates read.</p>
     <td class="yes">Your Mac or PC</td></tr>
 <tr><td>Try before buying</td><td>&ldquo;Start free 14-day trial&rdquo;, &ldquo;No credit card
     required&rdquo;</td><td>Free tier, 500 URLs</td>
-    <td>Free: your score, how many problems each area has and the top problem in full. Then a {REFUND_DAYS}-day refund</td></tr>
+    <td>Free: your score and every problem by name, worst first, with the worst one in full. Then a {REFUND_DAYS}-day refund</td></tr>
 </tbody></table></div>
 {_top_cta("vs-sr-sf")}
 {price_note_html()}
@@ -2913,7 +2914,7 @@ with what it checks and how a crawl is paid for.</p>
 """
     return render(
         cat="vs", slug="se-ranking-vs-screaming-frog",
-        modified="2026-11-22",  # the Screaming Frog and Ahrefs prices in its caveat were re-read on 22 November (rows in data/competitors.csv)
+        modified="2026-11-23",  # the Screaming Frog and Ahrefs prices in its caveat were re-read on 22 November (rows in data/competitors.csv)
         title="SE Ranking vs Screaming Frog: prices, limits | Docket",
         desc=("SE Ranking combines a cloud site audit with rank tracking. Screaming Frog is a "
               "desktop crawler. Compare prices, audit limits and when to use each."),

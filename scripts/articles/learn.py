@@ -343,7 +343,7 @@ against effort, and marks areas it could not assess as unknown rather than passi
 """
     return render(
         cat="learn", slug="seo-audit",
-        modified="2026-11-12",
+        modified="2026-11-23",
         title="What is an SEO audit? A checklist | Docket",
         desc=("An SEO audit checks whether search engines can find, understand and choose to "
               "show your site. Use this checklist to find faults and choose what to fix first."),
@@ -357,8 +357,8 @@ against effort, and marks areas it could not assess as unknown rather than passi
              "affected pages and what to change."),
             ("Can I do an SEO audit for free?",
              "Yes. Start with a free page check, then use a site crawl to find faults between "
-             "pages. Docket's free download shows your score, problem counts by category and "
-             "the top problem in full with its fix. The rest of the problems and ranked plan are paid."),
+             "pages. Docket's free download shows your score and every problem by name, worst first, "
+             "with the worst one in full and its fix. The other fixes and the ranked plan are paid."),
             ("What does an SEO audit include?",
              "Crawlability and indexing, on-page markup, content quality, speed, structured "
              "data, local business signals, AI search visibility and conversion."),

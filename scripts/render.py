@@ -419,7 +419,7 @@ def buy_strip(src: str) -> str:
                 if FOUNDING_OPEN else "")
     return (f'<aside class="buy-strip"><p><a href="{download_url(try_src)}" data-ev="Download" '
             f'data-ev-button="{try_src}"><strong>Try it free</strong></a>{intel}: your score and '
-            f'how many problems each area has, and the top problem in full &middot; '
+            f'every problem by name, worst first, with the worst one in full &middot; '
             f'<a href="{checkout_url(src)}" data-ev="Buy" data-ev-price="{PRICE_TODAY}" '
             f'data-ev-button="{src}">Buy Docket</a>, {REFUND_DAYS}-day refund'
             f'{sample}{founding if FOUNDING_OPEN else " &middot; " + price_sentence()}</p></aside>')
@@ -1001,8 +1001,8 @@ FOUNDING_LINE = CHECKOUT_HELP
 #: What the free version is, in Matthew's words of 2026-10-01 and the app's
 #: (freemode.py preset `basic`, from 1.3.96). One sentence, every page that says
 #: it, so the homepage, the FAQ, the download page and llms.txt cannot drift.
-FREE_LINE = ("Free: your score, how many problems in each category, and the top problem in full "
-             "with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to paste.")
+FREE_LINE = ("Free: your score, every problem by name, worst first, and the top problem in full "
+             "with its fix. Pro: the fix for every problem, the ranked plan in the order to fix it, the markup to paste and the PDF report.")
 
 KEY_REPORT_INSTRUCTION = "Paste the key into the field the app shows to open the full report and fix plan."
 
@@ -2229,7 +2229,7 @@ def _price_offers(with_free: bool) -> list:
     offers = []
     if with_free:
         offers.append({"@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD",
-                       "description": "Your site's score, how many problems each area has and the top problem in full, with its fix.",
+                       "description": "Your site's score and every problem by name, worst first, with the worst one in full and its fix.",
                        "availability": "https://schema.org/InStock"})
     paid = {"@type": "Offer", "name": "Pro", "price": f"{PRICE_TODAY:.2f}",
             "priceCurrency": "USD", "availability": "https://schema.org/InStock",
@@ -2413,7 +2413,7 @@ PHONE_LINK_JS = (
     "['via','rekomi_ref','affonso_referral','awc','cjevent','irclickid'].forEach(function(k){"
     "if(v[k])q.push(k+'='+encodeURIComponent(v[k]))})}catch(e){}return q.length?u+'&'+q.join('&'):u}"
     "function go(){var url=carry('" + BASE + "/?utm_source=phone-share&utm_medium=share');"
-    "var text='" + NAME + " for Mac is free to try: your site\\'s score, how many problems each area has and the top problem in full. "
+    "var text='" + NAME + " for Mac is free to try: your site\\'s score and every problem by name, worst first, with the worst one in full. "
     "Open this on your Mac to download it.';"
     "if(typeof plausible==='function'){try{plausible('Send Mac Link')}catch(e){}}"
     "if(navigator.share){navigator.share({title:'" + NAME + " for Mac',text:text,url:url}).catch(function(){})}"

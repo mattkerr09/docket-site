@@ -146,7 +146,7 @@ on custom extraction and on rendering JavaScript across a crawl, and it says so 
 runs {N_CHECKS} checks across {N_LANES} areas, some on each page, some across the whole site,
 including whether AI crawlers such as GPTBot and ClaudeBot can reach your
 site, and puts what it found in the order to fix it. Its last audit of this site covered {_RUN["pages"]} pages in
-{speed_words(_RUN["seconds"])}. The free audit shows the score, how many problems each area has and the single most important problem in full, so you can
+{speed_words(_RUN["seconds"])}. The free audit shows the score and every problem by name, worst first, with the most important one in full, so you can
 see what it finds on your own site before you pay anything.</p>
 
 <h2>Not in the table</h2>
@@ -161,7 +161,7 @@ not compared here. If you also use Windows, or want Netpeak Spider and LibreCraw
 """
     return render(
         cat="", slug="mac-seo-audit-tool",
-        modified="2026-11-16",
+        modified="2026-11-23",
         title="SEO audit tools for Mac, and what each costs over 3 years",
         desc=("Five SEO audit tools that run on a Mac: price, how each is sold, refund terms, and when each is "
               "the better choice. Read from their own pages, October 2026."),
