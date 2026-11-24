@@ -16,7 +16,7 @@
 <meta name="description" content="Black Friday sale: $19.99 once through December 2. Then $39. Your name and logo on audit reports. Unlimited sites.">
 <meta name="theme-color" content="#070C0D">
 <meta name="color-scheme" content="dark">
-<meta name="build-id" content="f9237aa84c5d">
+<meta name="build-id" content="b9ec3b2e4204">
 <link rel="canonical" href="https://checkengineseo.com/for/agencies/">
 <link rel="preload" href="/fonts/dmsans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -1101,6 +1101,59 @@ drawn from the shallowest pages once utility pages such as cart, checkout and lo
 aside, so a very large single-page application still wants a dedicated rendering crawl.</p>
 <p>Being straight about the boundary is also, in practice, a good sales posture. A tool that
 claims everything invites the client to test the claim.</p>
+
+<h2>What exists today, and what does not yet</h2>
+<p>Today Check Engine audits one site at a time: you type or paste an address and run it. In the paid version your
+name and logo go on the client PDF, under Reports and then Report branding. That is everything it does for an
+agency right now.</p>
+
+<h2>Agency batch edition: tell me when it&rsquo;s ready</h2>
+<p>I am thinking about an edition for agencies that would read a spreadsheet of prospect sites, audit each one on your
+own computer, make a one-page findings sheet per business with their logo and the top three fixes in plain words,
+and draft a short note about each that you edit and send yourself. Check Engine would never send email for you. It is not
+built, it has no price, and nothing on this page promises it will be. If it would help your agency, leave your address
+and I will write once if I build it.</p>
+<form class="win-wait" data-interest method="post" action="https://kerr-subscribe.kerrco.workers.dev"
+  data-endpoint="https://kerr-subscribe.kerrco.workers.dev" data-source="checkengine-agency" data-done="Done. I will write once, the day it is ready, and send nothing else." novalidate>
+  <input type="hidden" name="source" value="checkengine-agency">
+  <label class="win-wait-ask" for="interest-agency">Tell me if an agency batch edition gets built. I will write once, the day it is ready, and nothing else.</label>
+  <div class="win-wait-row">
+    <input id="interest-agency" name="email" type="email" inputmode="email" autocomplete="email"
+      placeholder="you@example.com" required>
+    <button type="submit" class="btn btn-ghost btn-sm">Tell me when it&rsquo;s ready</button>
+  </div>
+  <div class="win-wait-hp" aria-hidden="true"><input name="website" type="text" tabindex="-1" autocomplete="off"></div>
+  <p class="win-wait-msg" role="status" aria-live="polite"></p>
+</form>
+<script>(function () {
+  var forms = document.querySelectorAll('form[data-interest]');
+  Array.prototype.forEach.call(forms, function (f) {
+    var input = f.querySelector('input[type="email"]'), go = f.querySelector('button'),
+        msg = f.querySelector('.win-wait-msg'), trap = f.querySelector('.win-wait-hp input');
+    function say(t, bad) { msg.textContent = t; msg.className = 'win-wait-msg' + (bad ? ' is-bad' : ' is-ok'); }
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = (input.value || '').trim();
+      if (!email || email.indexOf('@') < 1) { say('That address looks incomplete.', true); input.focus(); return; }
+      if (trap && trap.value) { say(f.getAttribute('data-done'), false); return; }
+      go.disabled = true; say('Saving\u2026', false);
+      fetch(f.getAttribute('data-endpoint'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: f.getAttribute('data-source') })
+      }).then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (d) { return r.ok && !!d && d.ok === true; });
+      }).then(function (ok) {
+        if (!ok) { say('That did not save. Try again in a moment.', true); go.disabled = false; return; }
+        f.querySelector('.win-wait-row').hidden = true;
+        say(f.getAttribute('data-done'), false);
+      }).catch(function () {
+        say('Could not reach us just now. Check your connection and try again.', true);
+        go.disabled = false;
+      });
+    });
+  });
+})();</script>
 
 <aside class="buy-strip"><p><a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=for-agencies-try-free&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.169/Check-Engine-SEO-1.3.169-arm64.dmg" data-ev="Download" data-ev-button="for-agencies-try-free"><strong>Try it free</strong></a> (<a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/dl/docket?src=for-agencies-try-free-intel&to=https://github.com/mattkerr09/docket-site/releases/download/v1.3.169/Check-Engine-SEO-1.3.169-x86_64.dmg" data-ev="Download" data-ev-button="for-agencies-try-free-intel">Intel Mac</a>): your score and every problem by name, worst first, with the worst one in full &middot; <a rel="nofollow" href="https://kerr-affiliate-hub.kerrco.workers.dev/buy/docket?src=for-agencies" data-ev="Buy" data-ev-price="19.99" data-ev-button="for-agencies">Buy Check Engine</a>, 30-day refund &middot; <a href="/assets/docket-sample-report.pdf" data-ev="Sample report" data-ev-button="for-agencies">See a sample report</a><span data-founding-until="2026-12-03T07:59:59Z"> &middot; Black Friday sale: $19.99 once through December 2. Then $39. The Buy button applies the sale for you; there is no code to type.</span></p></aside>
 <section class="faq" id="faq"><div class="wrap"><h2>Common questions</h2><div class="faq-item"><h3>Can I use Check Engine for client work?</h3><p>Yes. Black Friday sale: $19.99 once through December 2. Then $39. There is no per-crawl charge; one licence covers up to 3 computers at a time, Mac or Windows. You can audit as many client and prospect sites as you like and charge for the work.</p></div><div class="faq-item"><h3>Can I white-label the report?</h3><p>Yes, in the paid version. Add your agency's name and logo under Reports, then Report branding, and the PDF and HTML reports carry them in place of Check Engine's. The CSV and JSON exports carry no branding and can be dropped into your own template.</p></div></div></section>
