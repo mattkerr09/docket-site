@@ -7,7 +7,7 @@
  "ai-assistants/index.html": {
   "changed_in_build": true,
   "date": "2026-11-24",
-  "hash": "0c0d9db05de91c0d"
+  "hash": "e76177d86864c3c1"
  },
  "ai-crawlers/addsearchbot/index.html": {
   "changed_in_build": false,
@@ -1465,9 +1465,9 @@
   "hash": "ba1b9131891cc9b1"
  },
  "download/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-24",
-  "hash": "5961356fdb881389"
+  "hash": "8e871989172ccad8"
  },
  "faq/index.html": {
   "changed_in_build": false,
@@ -1477,7 +1477,7 @@
  "for/agencies/index.html": {
   "changed_in_build": true,
   "date": "2026-11-24",
-  "hash": "6c35d15a68b017f3"
+  "hash": "4e4018543f06ec1b"
  },
  "for/developers/index.html": {
   "changed_in_build": false,
@@ -1840,9 +1840,9 @@
   "hash": "1bef76e786f181cd"
  },
  "index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-24",
-  "hash": "a538ef0dcab3974c"
+  "hash": "95a606357da9a16a"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -2125,7 +2125,7 @@
   "hash": "bea04a4d019b5249"
  },
  "legal/privacy/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-24",
   "hash": "926f5128d9adb5c7"
  },
@@ -2285,7 +2285,7 @@
   "hash": "f82e43effe42c804"
  },
  "vs/seomator-alternative/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-24",
   "hash": "78faebca32e211e3"
  },
