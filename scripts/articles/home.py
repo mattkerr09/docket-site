@@ -23,7 +23,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from brand import FORMER_ADDRESS_NOTE  # noqa: E402
+from brand import FORMER_ADDRESS_NOTE, WIN_INSTALLER_NOTE  # noqa: E402
 import facts as F  # noqa: E402
 from comparisons import AGENCY_SEO_MONTHLY, HOME_CLAIM_CHECKED_HUMAN, SEO_AUDIT_RANGE, _verified_note, source_link  # noqa: E402
 from hero_check import hero_check_block  # noqa: E402
@@ -359,6 +359,8 @@ def hero_card(src: str, *, try_app: str) -> str:
     if WINDOWS:
         out.append(f'<p class="mac-alt hero-note">On a Mac? <a href="{download_url(src + "-mac")}" data-ev="Download" '
                    f'data-ev-button="{src}-mac">Get the Mac version</a>.</p>')
+        if SITE_BRAND == "checkengine":
+            out.append(f'<p class="hero-note win-installer-note">{WIN_INSTALLER_NOTE}</p>')
     out.append('<p class="hero-pills"><span class="pill">Notarised by Apple</span> '
                '<span class="pill">One licence, all your sites</span></p>')
     out.append('</div>')
@@ -409,7 +411,7 @@ def body() -> str:
 </div>
 <figure class="hero-free">
   <img src="/assets/free-result.webp" width="{FREE['image']['width']}" height="{FREE['image']['height']}"
-       alt="Check Engine's free result for {FREE['target']}: a score of {FREE['score']} out of 100, grade {FREE['grade']}, {FREE['problems']} problems found, the most important one shown in full with its fix, and {FREE['more']} more whose fixes unlock with Buy."
+       alt="Check Engine's free result for {FREE['target']}: a score of {FREE['score']} out of 100, grade {FREE['grade']}, {FREE['problems']} problems found, the most important one shown in full with its fix, and {FREE['more']} more whose fixes come with Buy."
        decoding="async" fetchpriority="high">
   <figcaption>The free audit of our own company site, in the app. <strong>{FREE['score']}/100, {FREE['problems']} problems, every one named, the worst in full.</strong></figcaption>
 </figure>

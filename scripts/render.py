@@ -37,7 +37,7 @@ SITE = Path(__file__).resolve().parent.parent / "site"
 #: email addresses no page renders. Keep measurements here; publish the pages
 #: that quote them.
 DATA = Path(__file__).resolve().parent.parent / "data"
-from brand import BASE, HOST, NAME, TAGLINE, SITE_BRAND, FORMERLY, LEGACY_BASE, formerly_note
+from brand import BASE, HOST, NAME, TAGLINE, SITE_BRAND, FORMERLY, LEGACY_BASE, formerly_note, WIN_INSTALLER_NOTE
 from brand import html as brand_html
 from urllib.parse import quote
 
@@ -612,7 +612,7 @@ def windows_download(src: str, *, lead: str = "On Windows?") -> str:
     """One line offering the Windows installer, through the counted /dl link. "" before WINDOWS."""
     if not WINDOWS:
         return ""
-    return (f'<p class="win-dl">{lead} <a href="{download_url(src + "-windows", to=WIN_SETUP)}" '
+    paragraph = (f'<p class="win-dl">{lead} <a href="{download_url(src + "-windows", to=WIN_SETUP)}" '
             f'data-ev="Download" data-ev-button="{src}-windows">Download Docket {RELEASE} for Windows</a> '
             f'({WIN_SETUP_SIZE}, 64-bit, signed by {WIN_PUBLISHER}). Or '
             # The Store is the second option, never instead of the direct link: the direct link is the counted path
@@ -620,6 +620,8 @@ def windows_download(src: str, *, lead: str = "On Windows?") -> str:
             # for Partner Center's own acquisition report.
             f'<a href="{MS_STORE.split("?")[0]}?cid=docketseo-{src}" rel="noopener" data-ev="Download" '
             f'data-ev-button="{src}-msstore">get it from Microsoft</a>, the same app through the Microsoft Store.</p>')
+    note = f'<p class="win-dl-note">{WIN_INSTALLER_NOTE}</p>' if SITE_BRAND == "checkengine" else ""
+    return paragraph + note
 
 #: Where a Windows waiting-list sign-up is posted and under which source. The source is the one the shared
 #: widget this replaces used (host + "-windows"), so earlier sign-ups and new ones are ONE list, kept apart from
@@ -735,6 +737,7 @@ def interest_form(source: str, placement: str, ask: str, button: str, done: str)
   </div>
   <div class="win-wait-hp" aria-hidden="true"><input name="website" type="text" tabindex="-1" autocomplete="off"></div>
   <p class="win-wait-msg" role="status" aria-live="polite"></p>
+  <p class="hero-note">How this is used: <a href="/legal/privacy/">see the privacy page</a>.</p>
 </form>
 <script>{_INTEREST_JS}</script>"""
 

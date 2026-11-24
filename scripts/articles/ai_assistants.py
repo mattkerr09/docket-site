@@ -202,7 +202,7 @@ Please leave private site details out of a public issue.</p>
         cat="ai-assistants", slug="",
         title="Docket SEO in Claude and ChatGPT",
         desc=("Check one page free with the Docket SEO connector in Claude. "
-              "Crawl the whole site on your Mac or PC, free, then unlock every finding with a licence."),
+              "Crawl the whole site on your Mac or PC, free, then open every finding with a licence."),
         h1="Docket SEO in Claude and ChatGPT",
         crumb='<a href="/">Docket</a> / AI assistants',
         body=body,

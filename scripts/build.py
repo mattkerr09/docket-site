@@ -762,7 +762,7 @@ def write_llms_txt() -> None:
         f"{price_sentence()} Priced in US dollars. There is no renewal date and nothing to cancel.",
         html.unescape(re.sub(r"<[^>]+>", "", CHECKOUT_HELP)),
         f"{FREE_LINE} The free version needs no key and no account, and runs the same "
-        f"full audit; buying unlocks the audit already run, with no second crawl.",
+        f"full audit; buying opens the audit already run, with no second crawl.",
         f"The licence key arrives by email with the receipt and is pasted into the app "
         f"once. One licence covers {F.licence_covers()}: activating Docket on a "
         f"computer uses one, and deactivating one moves the licence to another.",

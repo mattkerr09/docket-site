@@ -18,6 +18,11 @@ from urllib.parse import urlsplit, urlunsplit
 # name why they meet it: it was the product's name, and a copy updated from an earlier version keeps its old file and folder names.
 DOWNLOAD_NAME_NOTE = ("Check Engine SEO was called Docket SEO. An app updated from an earlier version "
                       "keeps its old file and folder names.")
+# The Windows installer still shows "Docket" (window title "Docket Setup", "Welcome to Docket Setup"): found by the Windows
+# first-use walk of 24 Nov 2026 (ops qa/first-use/check-engine-2026-11-24/windows-walk). Until the installer's visible text
+# says Check Engine SEO, the page says so beside the Windows buttons (CEO and Quality Desk, 24 Nov 2026). TAKE IT OUT when the
+# renamed installer ships; the rename pass must not turn this literal into "Check Engine".
+WIN_INSTALLER_NOTE = "The Windows installer is titled Docket, our earlier name."
 
 
 BRANDS = {
@@ -108,6 +113,7 @@ _LITERAL = re.compile(
     r"|\bmcp\.docketseo\.app\b"
     r"|\bdocketseo\.app(?:/[^\s<>\"'`]*)?"
     + "|" + re.escape(DOWNLOAD_NAME_NOTE)
+    + "|" + re.escape(WIN_INSTALLER_NOTE)
 )
 _COMMAND = re.compile(r"(?<![\w./\\-])docket(?=\s+(?:audit|diff|logs|attack|backlinks|checks|serve|mcp|licence|version)\b)")
 
