@@ -2429,7 +2429,7 @@ PHONE_LINK_JS = (
 PHONE_DOWNLOAD_BLOCK = '''<div class="phone-download">
 <p>Check Engine runs on a Mac or a Windows PC. Send yourself the link and open it there.</p>
 <div class="hero-cta">
-<a class="btn" href="/download/" data-phone-send>Send myself the link</a>
+<a class="btn" href="/download/" data-ev="Send Mac Link" data-ev-button="phone-card" data-phone-send>Send myself the link</a>
 <button class="btn-ghost" type="button" data-phone-copy aria-live="polite">Copy the link</button>
 </div>
 <noscript><p>https://checkengineseo.com/download/</p></noscript>
@@ -2439,17 +2439,18 @@ PHONE_DOWNLOAD_STYLE = '''<style id="phone-download-style">
 .phone-download{display:none}
 @media (max-width:700px){
   .phone-download{display:block;margin:.75rem 0 1rem}
-  /* RULES 77: on a phone the price card puts "Send myself the link" (the filled button, a phone cannot open an installer)
-     and Buy (beside it, the quieter one) inside the first 812px: heading, sale sentence, the link block, Buy, then the rest. */
+  /* RULES 68 row 22 (the CEO, 24 Nov 2026): on a phone Buy is the filled button and "Send myself the link" is the outline one
+     under it, both inside the first 812px: heading, sale sentence, Buy, the link block, then the rest. It was the other way
+     round from 23 Nov (RULES 77); the 14 days after the swap measure Buy clicks against Send Mac Link taps (button phone-card). */
   .price-card{display:flex;flex-direction:column}
   .price-card>*{order:5}
   .price-card>.price-card-h{order:1}
   .price-card>.price-line{order:2}
-  .price-card>.phone-download{order:3;margin:0 0 .6rem}
-  .price-card>.hero-cta{order:4}
+  .price-card>.hero-cta{order:3}
+  .price-card>.phone-download{order:4;margin:.6rem 0 .6rem}
   .price-card .phone-download p{margin:0 0 .6rem;font-size:var(--t-base)}
   .price-card .phone-download [data-phone-copy]{display:none}
-  .price-card>.hero-cta .buy-btn{background:rgba(255,255,255,.03);color:var(--text);border:1px solid var(--border-strong)}
+  .price-card .phone-download .btn{background:rgba(255,255,255,.03);color:var(--text);border:1px solid var(--border-strong)}
   #product-hunt-welcome>.hero-cta [data-ev="Download"],
   .hero-sec [data-ev-button="home-try-free"],
   .hero-sec [data-ev-button="home-hero-win"],
