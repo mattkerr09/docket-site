@@ -241,7 +241,7 @@ VERIFIED: dict[str, list[tuple[str, str]]] = {
          "https://seomator.com/"),
         ("The free web audit runs on SEOmator infrastructure, reads one page with 172 checks, adds Lighthouse scores and exports PDF without an account",
          "https://seomator.com/free-seo-audit-tool"),
-        ("A free account unlocks full-site crawls with all 251 checks, history, scheduled re-runs and Search Console integration",
+        ("A free account adds full-site crawls with all 251 checks, history, scheduled re-runs and Search Console integration",
          "https://seomator.com/free-seo-audit-tool"),
         ("The MIT-licensed open-source engine runs locally for free; release 8.0.1 lists 398 rules while the repository short description says 332",
          "https://github.com/seo-skills/seo-audit-skill"),

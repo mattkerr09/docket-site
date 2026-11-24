@@ -782,9 +782,27 @@ aside, so a very large single-page application still wants a dedicated rendering
 <p>Being straight about the boundary is also, in practice, a good sales posture. A tool that
 claims everything invites the client to test the claim.</p>
 
+<h2>What exists today, and what does not yet</h2>
+<p>Today Docket audits one site at a time: you type or paste an address and run it. In the paid version your
+name and logo go on the client PDF, under Reports and then Report branding. That is everything it does for an
+agency right now.</p>
+
+<h2>Agency batch edition: tell me when it&rsquo;s ready</h2>
+<p>I am thinking about an edition for agencies that would read a spreadsheet of prospect sites, audit each one on your
+own computer, make a one-page findings sheet per business with their logo and the top three fixes in plain words,
+and draft a short note about each that you edit and send yourself. Docket would never send email for you. It is not
+built, it has no price, and nothing on this page promises it will be. If it would help your agency, leave your address
+and I will write once if I build it.</p>
+__AGENCY_FORM__
+
 <p><a class="btn" href="/download/">Download Docket</a></p>
 """
     for key, value in {
+        "__AGENCY_FORM__": _R.interest_form(
+            _R.AGENCY_WAIT_SOURCE, "agency",
+            "Tell me if an agency batch edition gets built. I will write once, the day it is ready, and nothing else.",
+            "Tell me when it&rsquo;s ready",
+            "Done. I will write once, the day it is ready, and send nothing else."),
         "__PRICE__": PRICE_COMPACT, "__COVERS__": F.licence_covers(), "__PAGES__": str(run["pages"]),
         "__SECONDS__": str(run["seconds"]), "__ISSUES__": str(run["issues"]), "__BR_SRC__": br["src"],
         "__BR_W__": str(br["width"]), "__BR_H__": str(br["height"]), "__BR_NAME__": _html.escape(br["name"]),
@@ -2115,6 +2133,16 @@ def _pixel_history() -> str:
             "cookie until it expires; nothing on this site sets or reads it now.</p>")
 
 
+def _agency_form_privacy() -> str:
+    """The agency batch-edition interest form on /for/agencies/ (a page test, 24 Nov 2026)."""
+    return ("<p>The agencies page has a one-field form, written into the page itself, for agencies who would like to "
+            "hear if a batch edition is ever built. It makes no request unless you type an address and press the "
+            "button; then it sends that address, and the name of that list, to "
+            "<code>kerr-subscribe.kerrco.workers.dev</code>, a server we run. It stores nothing in your browser. "
+            "We use the address once, to write to you the day the edition is ready, and for nothing else. If it is "
+            "never built, we write nothing and delete the list. To be removed sooner, <a href=\"/contact/\">ask</a>.</p>")
+
+
 def _windows_form_privacy() -> str:
     """The Windows waiting-list form, while there is one; afterwards what became of the addresses."""
     if WINDOWS:
@@ -2472,7 +2500,7 @@ it; we hold nothing separately.</p>
     if not _R.FOUNDING_OPEN:
         body = _privacy_after_the_sale(body)
     body = (body.replace("<!-- pixel-history -->", _pixel_history())
-            .replace("<!-- windows-form-privacy -->", _windows_form_privacy())
+            .replace("<!-- windows-form-privacy -->", _windows_form_privacy() + _agency_form_privacy())
                 .replace("<!-- email-privacy -->", _email_privacy())
                 .replace("<!-- windows-same-app -->\n", _windows_same_app())
                 .replace("<!-- edge-probes -->", F.probe_names_html())

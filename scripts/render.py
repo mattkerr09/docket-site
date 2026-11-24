@@ -684,6 +684,61 @@ def windows_waitlist(placement: str) -> str:
   <p class="win-wait-msg" role="status" aria-live="polite"></p>
 </form>
 <script>{_WIN_WAIT_JS}</script>"""
+#: The agency batch-edition interest list (CEO, 24 Nov 2026: a text-only page test before anything is built). The same
+#: server and the same plain-address form as the Windows list, but shown to every visitor, because the question is not
+#: which computer you use. Its own source keeps it apart from every other list. Nothing fires on page load.
+AGENCY_WAIT_SOURCE = "checkengine-agency"
+
+_INTEREST_JS = """(function () {
+  var forms = document.querySelectorAll('form[data-interest]');
+  Array.prototype.forEach.call(forms, function (f) {
+    var input = f.querySelector('input[type="email"]'), go = f.querySelector('button'),
+        msg = f.querySelector('.win-wait-msg'), trap = f.querySelector('.win-wait-hp input');
+    function say(t, bad) { msg.textContent = t; msg.className = 'win-wait-msg' + (bad ? ' is-bad' : ' is-ok'); }
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = (input.value || '').trim();
+      if (!email || email.indexOf('@') < 1) { say('That address looks incomplete.', true); input.focus(); return; }
+      if (trap && trap.value) { say(f.getAttribute('data-done'), false); return; }
+      go.disabled = true; say('Saving\\u2026', false);
+      fetch(f.getAttribute('data-endpoint'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: f.getAttribute('data-source') })
+      }).then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (d) { return r.ok && !!d && d.ok === true; });
+      }).then(function (ok) {
+        if (!ok) { say('That did not save. Try again in a moment.', true); go.disabled = false; return; }
+        f.querySelector('.win-wait-row').hidden = true;
+        say(f.getAttribute('data-done'), false);
+      }).catch(function () {
+        say('Could not reach us just now. Check your connection and try again.', true);
+        go.disabled = false;
+      });
+    });
+  });
+})();"""
+
+
+def interest_form(source: str, placement: str, ask: str, button: str, done: str) -> str:
+    """A one-field interest list, shown to everyone. Posts only when the button is pressed, to the subscribe server,
+    with the address and `source` and nothing else; with no script the plain form post still works (the server
+    answers JSON). `placement` only makes the field id unique."""
+    return f"""<form class="win-wait" data-interest method="post" action="{WIN_WAIT_ENDPOINT}"
+  data-endpoint="{WIN_WAIT_ENDPOINT}" data-source="{source}" data-done="{done}" novalidate>
+  <input type="hidden" name="source" value="{source}">
+  <label class="win-wait-ask" for="interest-{placement}">{ask}</label>
+  <div class="win-wait-row">
+    <input id="interest-{placement}" name="email" type="email" inputmode="email" autocomplete="email"
+      placeholder="you@example.com" required>
+    <button type="submit" class="btn btn-ghost btn-sm">{button}</button>
+  </div>
+  <div class="win-wait-hp" aria-hidden="true"><input name="website" type="text" tabindex="-1" autocomplete="off"></div>
+  <p class="win-wait-msg" role="status" aria-live="polite"></p>
+</form>
+<script>{_INTEREST_JS}</script>"""
+
+
 #: The Linux CLI. Empty when the release carries none, so a page can ask
 #: rather than promise — the download page described a Linux tarball in
 #: detail for seven releases during which none was published.

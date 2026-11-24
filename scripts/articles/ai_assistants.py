@@ -218,7 +218,7 @@ Please leave private site details out of a public issue.</p>
              "servers on the internet."),
             ("Is the Claude extension free?",
              "Yes. Without a key it returns the score, every problem by name and the top problem in full. A key "
-             "from a Docket purchase unlocks every finding."),
+             "from a Docket purchase opens every finding."),
         ],
     )
 
