@@ -969,7 +969,7 @@ def build() -> Path:
         faq=FAQ,
         closer=closer(),
         landing=True,
-        modified="2026-11-23",  # 23 Nov 2026: the first screen and price card (RULES 77) and the hero, demo and sample run re-made on 1.3.169; 1.3.156 before that
+        modified="2026-11-24",  # 23 Nov 2026: the first screen and price card (RULES 77) and the hero, demo and sample run re-made on 1.3.169; 1.3.156 before that
     )
 
 

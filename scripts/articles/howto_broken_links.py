@@ -251,7 +251,7 @@ unhelpful: the ones that say only "click here" or "read more" are at
 """
     return render(
         cat="how-to", slug="fix-broken-outbound-links",
-        modified="2026-11-16",
+        modified="2026-11-24",
         title="How to fix broken outbound links (and which are not)",
         desc=(
             ("A dead outbound link and a host that refuses a crawler are not the same audit row. "

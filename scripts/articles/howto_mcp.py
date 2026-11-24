@@ -205,7 +205,7 @@ command line.</p>
         h1="How to audit your site from an AI assistant",
         crumb='<a href="/">Docket</a> / <a href="/how-to/">Fix it</a> / MCP',
         body=body,
-        modified="2026-11-23",  # from git: 2939a5ae7 and 1356ecf37, five tools and the client set-ups (audit row 19)
+        modified="2026-11-24",  # from git: 2939a5ae7 and 1356ecf37, five tools and the client set-ups (audit row 19)
         faq=[
             ("Does Docket work with Claude Desktop?",
              "Yes. Add Docket to mcpServers in claude_desktop_config.json with the command "

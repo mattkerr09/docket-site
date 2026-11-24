@@ -62,7 +62,7 @@ The response says {quote("Quota exceeded for quota metric 'Queries' and limit 'Q
         desc="See Google's key rules and our keyless quota error, then compare local JSON reports, the desktop API and MCP, with clear limits on free results.",
         h1="Free SEO audit API: what you can ask for",
         crumb='<a href="/learn/">Learn</a> / Free SEO audit API',
-        body=body, published="2026-11-11",
+        body=body, published="2026-11-11", modified="2026-11-24",
         faq=[
             ("What should an automated audit do when no result comes back?",
              "Record that the measurement is unavailable and keep the error for review. Let the person using the report decide whether to retry or continue without that check."),

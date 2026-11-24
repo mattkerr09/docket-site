@@ -84,8 +84,8 @@ whether to keep it, improve it, merge it or remove it.</p>
 
 <h2>Where Check Engine fits</h2>
 <p>We make Check Engine. It runs {N_CHECKS} checks across {N_LANES} areas on your computer
-and ranks repairs by impact and effort. Its free version shows the score, problem counts
-and the top problem with its fix. The full plan and report exports need a licence.</p>
+and ranks repairs by impact and effort. Its free version shows the score, every problem by name
+and the top problem in full with its fix. The full plan and report exports need a licence.</p>
 <p>Use Ahrefs Free if its verified-site allowance covers the crawl you need. Consider a
 paid Ahrefs plan when its listed limits and included tools fit your work. Try Check Engine
 when you want a local fix plan for a public site. It has no backlink or keyword index, no
@@ -121,7 +121,7 @@ For Check Engine's licence and refund terms, read <a href="/pricing/">our pricin
         desc="A cheaper Ahrefs Site Audit alternative? Its prices and crawl limits, read 20 November 2026, compared with a one-time local fix plan.",
         h1="Ahrefs Site Audit alternative: free limits and paid plans",
         crumb='<a href="/">Check Engine</a> / <a href="/vs/">Compare</a> / Ahrefs',
-        body=body, modified="2026-11-22",
+        body=body, modified="2026-11-24",
         faq=[
             ("How many free Ahrefs crawl credits does a verified project get?",
              f"Ahrefs Free gives {FREE_CREDITS:,} crawl credits per verified project per month. "

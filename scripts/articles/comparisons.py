@@ -1081,7 +1081,7 @@ Googlebot actually fetched rather than what your site would serve if asked.</p>
             if SITE_BRAND == "checkengine"
             else ("Docket vs Screaming Frog: price, limits, what it does better")
         ),
-        modified="2026-11-09",  # the title no longer targets the "alternatives" search
+        modified="2026-11-24",  # the title no longer targets the "alternatives" search
         desc=(f"{price_sentence()} Screaming Frog is ${sf_year} a year per user. Compare audit tools."),
         h1="Docket vs Screaming Frog",
         crumb='<a href="/">Docket</a> / <a href="/vs/">Compare</a> / Screaming Frog',
@@ -2072,7 +2072,7 @@ against the same limit: it caps pages per session rather than crawls per month.<
 
     return render(
         cat="vs", slug="seoptimer-alternative",
-        modified="2026-11-23",  # alternatives by need, dated starting price and FAQ
+        modified="2026-11-24",  # alternatives by need, dated starting price and FAQ
         title="SEOptimer alternatives: what to use instead, by need",
         desc="Pick SEOptimer for lead generation, Docket for unmetered re-runs, or another tool for your team, reports or crawl data.",
         h1="SEOptimer alternatives, and how Docket compares",
@@ -2632,7 +2632,7 @@ for {price('scrutiny')}, and stronger than either of us at link checking.</p>
 
     return render(
         cat="vs", slug="crawlraven-alternative",
-        modified="2026-11-23",  # Mac and 64-bit Windows, not Mac only (CEO QC),
+        modified="2026-11-24",  # Mac and 64-bit Windows, not Mac only (CEO QC),
         title="CrawlRaven vs Docket: price, technical audit, MCP",
         desc=(f"{price_sentence()} CrawlRaven cloud audits or Docket on Mac and Windows."),
         h1="Docket vs CrawlRaven",
@@ -2749,7 +2749,7 @@ what this page is built from.</p>
 
     return render(
         cat="vs", slug="crawler-sh-alternative",
-        modified="2026-11-23",  # the free version now names every problem (1.3.169)
+        modified="2026-11-24",  # the free version now names every problem (1.3.169)
         title="Docket vs crawler.sh: an audit, or Markdown for AI?",
         desc=("Both run locally with no account. crawler.sh turns sites into Markdown for AI "
               "training and caps pages per session; Docket is the audit, ranked, uncapped."),
@@ -2914,7 +2914,7 @@ with what it checks and how a crawl is paid for.</p>
 """
     return render(
         cat="vs", slug="se-ranking-vs-screaming-frog",
-        modified="2026-11-23",  # the Screaming Frog and Ahrefs prices in its caveat were re-read on 22 November (rows in data/competitors.csv)
+        modified="2026-11-24",  # the Screaming Frog and Ahrefs prices in its caveat were re-read on 22 November (rows in data/competitors.csv)
         title="SE Ranking vs Screaming Frog: prices, limits | Docket",
         desc=("SE Ranking combines a cloud site audit with rank tracking. Screaming Frog is a "
               "desktop crawler. Compare prices, audit limits and when to use each."),

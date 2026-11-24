@@ -78,7 +78,7 @@ def mac_options() -> Path:
     side_rows = [
         ("Docket SEO", f"Mac ({MAC_HW}, {MACOS} or later) and 64-bit Windows" if WINDOWS else f"Mac only: {MAC_HW}, {MACOS} or later",
          f"{PRICE_COMPACT}",
-         "A full audit with no key: the score, the number of problems in each area and the most important one in full",
+         "A full audit with no key: the score, every problem by name and the most important one in full",
          f"{REFUND_DAYS} days, no conditions",
          "you want a ranked list of what to fix first, from a tool that runs on your own Mac with nothing to renew")
     ]
@@ -161,7 +161,7 @@ not compared here. If you also use Windows, or want Netpeak Spider and LibreCraw
 """
     return render(
         cat="", slug="mac-seo-audit-tool",
-        modified="2026-11-23",
+        modified="2026-11-24",
         title="SEO audit tools for Mac, and what each costs over 3 years",
         desc=("Five SEO audit tools that run on a Mac: price, how each is sold, refund terms, and when each is "
               "the better choice. Read from their own pages, October 2026."),
@@ -176,7 +176,7 @@ not compared here. If you also use Windows, or want Netpeak Spider and LibreCraw
              f"Yes. Scrutiny is a one-off {_usd(scr['once'])} purchase and Docket is a one-off {PRICE_COMPACT}. The others in this "
              "comparison are yearly subscriptions."),
             ("Does Docket have a free version?",
-             "Yes. A full audit runs with no key and shows your score, the number of problems in each area and the "
+             "Yes. A full audit runs with no key and shows your score, every problem by name and the "
              "most important problem in full with its fix."),
         ],
     )

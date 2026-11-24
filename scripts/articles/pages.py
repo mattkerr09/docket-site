@@ -585,7 +585,7 @@ is gone.</p>
         h1="Download Docket SEO for Mac and Windows" if WINDOWS else "Download Docket for Mac",
         crumb='<a href="/">Docket</a> / Download',
         body=body,
-        modified="2026-11-23",
+        modified="2026-11-24",
         schema_type="WebPage",
     )
 
@@ -841,8 +841,8 @@ it downloads the build the runner needs, checks it against the release's checksu
 audit and fails the job at the severity you set. There is no Linux ARM or Windows build of the
 command line yet.</p>
 
-<p>On a hosted runner it runs Docket's free version, which needs no key: the score, the count of
-problems in each area, the most important problem in full, and the exit code. That is enough to
+<p>On a hosted runner it runs Docket's free version, which needs no key: the score, every
+problem by name, the most important problem in full, and the exit code. That is enough to
 gate a deploy. The full findings and the SARIF and JUnit files below need a licence key, and a
 licence activates on {F.licence_covers()}. A fresh hosted runner is a new computer each time, so
 use the key on a self-hosted runner, which keeps its one activation.</p>
@@ -1042,7 +1042,7 @@ and <code>compare_audits</code> says what changed between two audits of the same
 <code>list_checks</code> takes no arguments and lists the {N_CHECKS} checks without crawling anything.</p>
 
 <p>What the assistant gets depends on the copy. An unactivated copy returns the free version: the
-score, how many problems each of the {N_LANES} areas has, and the most important problem in full with
+score, every problem by name, worst first, and the most important problem in full with
 its fix. With a licence the same call returns every finding and the ranked plan. There is no API key
 and no per-call charge, because the audit runs in the app you installed.</p>
 
@@ -1068,7 +1068,7 @@ benchmark, and measure your own.</p>
     return render(
         cat="for", slug="developers",
         title="SEO checks in your pipeline: a CLI gate and an MCP server",
-        modified="2026-11-05",  # Linux runners via mattkerr09/docket-audit-action
+        modified="2026-11-24",  # Linux runners via mattkerr09/docket-audit-action
         desc=(f"Docket's CLI exits 2 on a critical finding, so it gates a deploy. "
               f"{F.ci_page_cap()} pages in a median {F.ci_median_seconds()}s across "
               f"{F.ci_sites()} sites. It also serves MCP to AI assistants."),
@@ -2715,7 +2715,7 @@ appear on this page and apply from the day they appear, not before.</p>
         h1="Terms of use",
         crumb='<a href="/">Docket</a> / Terms',
         body=body,
-        modified="2026-11-23",  # seller and Dodo merchant-of-record wording, tax line, Windows delivery, launch-price sentence (CEO 2026-11-09); was 2026-11-04: from git 82f9687e6, one licence covers up to 3 computers (audit row 19: read 08-11)
+        modified="2026-11-24",  # seller and Dodo merchant-of-record wording, tax line, Windows delivery, launch-price sentence (CEO 2026-11-09); was 2026-11-04: from git 82f9687e6, one licence covers up to 3 computers (audit row 19: read 08-11)
         schema_type="WebPage",
     )
 
@@ -2937,7 +2937,7 @@ a receipt. The terms of the sale, including the governing law, are on
         crumb='<a href="/">Docket</a> / Refunds',
         body=body,
         published="2026-08-11",
-        modified="2026-11-23",  # who you are paying: Dodo merchant of record and the publisher (CEO 2026-11-09); was 2026-11-02: the price it quotes became $59 (render.PRICE); audit row 19
+        modified="2026-11-24",  # who you are paying: Dodo merchant of record and the publisher (CEO 2026-11-09); was 2026-11-02: the price it quotes became $59 (render.PRICE); audit row 19
         schema_type="WebPage",
     )
 

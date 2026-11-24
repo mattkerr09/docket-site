@@ -117,7 +117,7 @@ and <a href="/vs/ahrefs-site-audit-alternative/">the cheaper Ahrefs Site Audit a
 <div class="callout" id="check-engine"><h2>Check Engine: sold once, on Mac and Windows</h2>
 <p>Check Engine runs {N_CHECKS} checks across {N_LANES} areas and orders repairs by impact and effort.
 It is {PRICE_COMPACT}, one payment and no subscription, with a {REFUND_DAYS}-day refund and no conditions.
-The free version shows a score, problem counts and the main problem with its fix; the full plan and report exports need a licence.</p>
+The free version shows a score, every problem by name, worst first, and the main problem in full with its fix; the full plan and report exports need a licence.</p>
 {buy_block('best-no-subscription', try_app='best-no-subscription-try-free', anchor=False)}</div>
 <p>For a Mac-only comparison, read <a href="/mac-seo-audit-tool/">SEO audit tools for Mac and what each costs over three years</a>.
 For free limits, see <a href="/best/free-seo-audit-tools/">free SEO audit tools and their limits</a>.</p>
@@ -128,7 +128,7 @@ For free limits, see <a href="/best/free-seo-audit-tools/">free SEO audit tools 
         h1='SEO audit software with no monthly subscription',
         desc=f'Six SEO audit tools sold for a one-time price, for Mac, Windows or the browser: prices, free versions and refunds, read {READ_ONE_TIME}.',
         crumb='<a href="/best/">SEO tools compared</a> / SEO audit software with no monthly subscription',
-        body=body, published="2026-11-22",
+        body=body, published="2026-11-22", modified="2026-11-24",
         faq=[
             ('Is there SEO audit software with no monthly subscription?',
              'Yes. Six are compared on this page, each sold for a one-time price: Check Engine, Scrutiny, SiteAuditLint, BumbleCrawl, SEO Site Auditor and SEOPilot. Prices and terms were read from each vendor\'s own pages on ' + READ_ONE_TIME + ' and can change.'),

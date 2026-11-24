@@ -3,7 +3,7 @@
     "id": "try",
     "stage": "Before you buy",
     "question": "Can I try an audit before I pay?",
-    "answer": "Yes. Download Docket and run an audit without a key. The free version shows the score, the problem counts for each area and the top problem in full with its fix. Buying inside the app opens the audit you ran in full.",
+    "answer": "Yes. Download Docket and run an audit without a key. The free version shows the score, every problem by name, worst first, and the top problem in full with its fix. Buying inside the app opens the audit you ran in full.",
     "help_answer": "No key is needed to try Docket. The free audit includes your score, each area's problem count and the worst problem with its fix.",
     "source": {
       "source_path": "/download/",

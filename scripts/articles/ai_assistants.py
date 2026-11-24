@@ -207,7 +207,7 @@ Please leave private site details out of a public issue.</p>
         crumb='<a href="/">Docket</a> / AI assistants',
         body=body,
         published="2026-11-06",   # first published; the run below it is re-made each release
-        modified="2026-11-11",
+        modified="2026-11-24",
         schema_type="WebPage",
         faq=[
             ("Can Claude audit my website?",
@@ -217,7 +217,7 @@ Please leave private site details out of a public issue.</p>
              "In the ChatGPT desktop app, which can start a local MCP server. Not on the web, which only reaches "
              "servers on the internet."),
             ("Is the Claude extension free?",
-             "Yes. Without a key it returns the score, problem counts by area and the top problem in full. A key "
+             "Yes. Without a key it returns the score, every problem by name and the top problem in full. A key "
              "from a Docket purchase unlocks every finding."),
         ],
     )

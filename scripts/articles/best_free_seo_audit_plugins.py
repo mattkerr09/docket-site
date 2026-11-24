@@ -34,7 +34,7 @@ Keep content analysis separate from a crawl of the whole site.</p>
 Read those requirements before changing a live setup. An outside check may fit when you cannot add a plugin.</p>
 <div class="callout" id="check-engine"><h2>Check Engine: an outside site audit</h2>
 <p>We make Check Engine. It audits public pages from your Mac or Windows PC, whether the site uses WordPress or another system.
-You do not need to add a plugin to the site. Its free result shows a score, problem counts and the main problem with its fix; the full plan and report exports need a licence.</p>
+You do not need to add a plugin to the site. Its free result shows a score, every problem by name, worst first, and the main problem in full with its fix; the full plan and report exports need a licence.</p>
 <p>It does not sit beside your post while you write. Use a plugin's content analysis if that is where you need help.
 For public-page repairs across a site, try the desktop audit on a small set of pages you know.</p>
 {buy_block('wordpress-compared', anchor=False)}</div>
@@ -44,7 +44,7 @@ For public-page repairs across a site, try the desktop audit on a small set of p
                   title='WordPress SEO audit plugins compared', h1='WordPress SEO audit plugins compared',
                   desc='Compare WordPress audit plugins by stated checks, free limits and yearly prices. Vendor sources read on 20 November 2026.',
                   crumb='<a href="/best/">SEO tools compared</a> / WordPress audit plugins',
-                  body=body, published='2026-11-11', modified='2026-11-20',
+                  body=body, published='2026-11-11', modified="2026-11-24",
                   faq=[
                       ('How can I tell whether a WordPress audit feature needs payment?',
                        'Find its own feature heading and plan table. A free plugin listing can describe paid tools too. Save the stated limit beside the report you need.'),

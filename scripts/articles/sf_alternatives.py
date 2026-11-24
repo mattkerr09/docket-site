@@ -61,7 +61,7 @@ For audit software sold once instead of monthly, read <a href="/best/seo-audit-s
                   h1='Screaming Frog alternatives for Mac and Windows',
                   desc='Screaming Frog alternatives for Mac and Windows: prices, one-time or subscription, free limits, desktop or cloud. Vendor pages read 20 November 2026.',
                   crumb='<a href="/best/">SEO tools compared</a> / Screaming Frog alternatives',
-                  body=body, modified='2026-11-22',
+                  body=body, modified="2026-11-24",
                   faq=[
                       ('What should I record before trying another crawler?',
                        'Save the start address, settings, pages you expect to reach and any known faults. Use the same small set of pages when checking each result.'),

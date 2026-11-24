@@ -172,7 +172,7 @@ sets out what it checks and how a crawl is paid for.</p>
 """
     page = render(
         cat="best", slug="free-seo-audit-tools",
-        modified="2026-11-23",
+        modified="2026-11-24",
         title="Free SEO audit: tools and limits",
         desc=("Run a free SEO audit of a page or small site. Compare website audit tools, "
               "free limits, a Chrome plugin and what the free report shows."),
@@ -185,8 +185,8 @@ sets out what it checks and how a crawl is paid for.</p>
              "in your browser, with nothing uploaded and no account. It checks one page, not the whole site."),
             ("What does a free SEO audit report include?",
              "Docket's free online checker shows a page score, problems by area and the main "
-             "problem with its fix. The free desktop download gives a site score, counts by "
-             "category and the main problem in full. The rest of the problems and ranked plan are paid."),
+             "problem with its fix. The free desktop download gives a site score, every problem by "
+             "name and the main problem in full. The rest of the problems and ranked plan are paid."),
             ("Which free crawler fits a small site?",
              "Screaming Frog allows up to 500 URLs per crawl. Ahrefs Free offers 5,000 crawl credits "
              f"per verified project per month. {source_link('SEO Spider', 'https://www.screamingfrog.co.uk/seo-spider/')} "

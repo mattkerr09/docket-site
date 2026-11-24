@@ -117,7 +117,7 @@ read them before you start a large audit. For crawl-limit and price comparisons 
 <a href="/best/seo-audit-software-no-subscription/">SEO audit software with no monthly subscription</a>.</p>
 <div class="callout" id="check-engine"><h2>Check Engine: Windows and Mac, sold once</h2>
 <p>Check Engine runs {N_CHECKS} checks and orders repairs by impact and effort. It is {PRICE_COMPACT}, one payment and no subscription, with a {REFUND_DAYS}-day refund and no conditions.
-The free version shows a score, problem counts and the main problem with its fix; the full plan and report exports need a licence.</p>
+The free version shows a score, every problem by name, worst first, and the main problem in full with its fix; the full plan and report exports need a licence.</p>
 {buy_block('best-windows-crawlers', try_app='best-windows-crawlers-try-free', anchor=False)}</div>
 '''
     return render(
@@ -126,10 +126,10 @@ The free version shows a score, problem counts and the main problem with its fix
         h1='Best desktop SEO crawler for Windows, compared',
         desc="Eight desktop SEO crawlers and audit apps for Windows compared: where each runs, how it is sold and what its free version does, from vendor pages.",
         crumb='<a href="/best/">SEO tools compared</a> / Desktop SEO crawlers for Windows',
-        body=body, published="2026-11-22",
+        body=body, published="2026-11-22", modified="2026-11-24",
         faq=[
             ('What is a free desktop SEO crawler for Windows?',
-             'Screaming Frog, Netpeak Spider and SEO PowerSuite WebSite Auditor each state a free crawl of up to 500 URLs, and SiteAuditLint states 100 URLs per crawl. Check Engine\'s free audit needs no key and shows the score, problem counts and the main problem with its fix.'),
+             'Screaming Frog, Netpeak Spider and SEO PowerSuite WebSite Auditor each state a free crawl of up to 500 URLs, and SiteAuditLint states 100 URLs per crawl. Check Engine\'s free audit needs no key and shows the score, every problem by name and the main problem in full with its fix.'),
             ('Which of these Windows crawlers are sold for a one-time price?',
              'SiteAuditLint, SEO Site Auditor, BumbleCrawl and Check Engine are sold once. Screaming Frog, Sitebulb, Netpeak Spider and SEO PowerSuite are yearly or monthly. Prices were read from each vendor\'s pages and can change.'),
             ('Which of these also run on a Mac?',

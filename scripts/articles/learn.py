@@ -343,7 +343,7 @@ against effort, and marks areas it could not assess as unknown rather than passi
 """
     return render(
         cat="learn", slug="seo-audit",
-        modified="2026-11-23",
+        modified="2026-11-24",
         title="What is an SEO audit? A checklist | Docket",
         desc=("An SEO audit checks whether search engines can find, understand and choose to "
               "show your site. Use this checklist to find faults and choose what to fix first."),

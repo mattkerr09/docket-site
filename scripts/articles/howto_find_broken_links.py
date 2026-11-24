@@ -35,9 +35,9 @@ so write the cap down. The free options and their limits are compared in
 <a href="/best/seo-crawler-for-windows/">desktop SEO crawlers for Windows</a>.</p>
 
 <h2>2. Run a free audit of your site</h2>
-<p>Check Engine's free app runs a full audit of a site with no key. It shows the score out of one hundred, the number of problems in each area
-and the main problem with its fix. Read the main problem first, then open the area with the most problems. The complete ranked list and the report
-exports are part of the paid plan, so the free result tells you where to look rather than listing every address.</p>
+<p>Check Engine's free app runs a full audit of a site with no key. It shows the score out of one hundred, every problem by name, worst first,
+and the main problem in full with its fix. Read the main problem first, then work down the list. The fixes for the rest, the affected addresses and the report
+exports are part of the paid plan, so the free result tells you what is wrong rather than listing every address.</p>
 <p>To test one page right now, paste it into the <a href="/tools/seo-checker/">free SEO checker</a>: a score and the first fix, with no sign-up.</p>
 
 <h2>3. Tell your own broken links from outbound ones</h2>
@@ -64,7 +64,7 @@ so a lower count means a fix and not a different crawl.</p>
         h1='How to find broken links and SEO problems on your site',
         desc='Find broken links and SEO problems on a website: crawl every page, read the problems in order, check Google Search Console, fix and crawl again.',
         crumb='<a href="/">Check Engine</a> / <a href="/how-to/">Fix it</a> / find broken links',
-        body=body, published="2026-11-22",
+        body=body, published="2026-11-22", modified="2026-11-24",
         faq=[
             ('How do I find broken links on my website for free?',
              'Crawl the whole site with a free crawler or audit app and read the list of links whose targets answer with an error. Note the crawler\'s URL cap, because a capped crawl covers only the pages it reached. Google Search Console also lists pages it could not index, including pages that returned a 404 error.'),
