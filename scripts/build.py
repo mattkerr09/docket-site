@@ -246,6 +246,9 @@ def build_hubs() -> list[Path]:
              "Close to Docket's pitch, and cheaper only in its first months. It joins Search Console "
              "and GA4 to a technical audit sold by the month, with a lifetime plan beside "
              "it; Docket's audit is bought once and has no page allowance."),
+            ("/vs/seomator-alternative/", "Check Engine SEO vs SEOmator",
+             "SEOmator has a paid cloud platform for AI-answer and rank tracking, plus a free local "
+             "audit engine. Check Engine is an installed audit app bought with one payment."),
             ("/vs/jetoctopus-alternative/", "Docket vs JetOctopus",
              "It reads your server logs, which Docket cannot do at all, and meters "
              "crawling in hundreds of thousands to millions of URLs. An enterprise platform "

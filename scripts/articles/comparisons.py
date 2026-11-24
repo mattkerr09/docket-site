@@ -98,6 +98,7 @@ CHECKED_ON_HUMAN = "10 August 2026"
 #:
 #: Found by fetching the deployed page and reading it, not from the source.
 CHECKED_HUMAN: dict[str, str] = {
+    "seomator": "24 November 2026",
     # Host read the three market-price sources on 2026-11-12 and again on 2026-11-22 (SEOProfy: starts around $500, up to
     # $5,000, page last updated 26 Oct 2026; WebFX: $101 to $750 for 43% of 250 surveyed; Ahrefs: agencies $3,209 a month,
     # page updated 15 August 2024): all three unchanged.
@@ -170,6 +171,7 @@ CHECKED_HUMAN: dict[str, str] = {
     "rq-noindex": "20 November 2026",
 }
 CHECKED_ISO: dict[str, str] = {
+    "seomator": "2026-11-24",
     "audit-agency-prices-home": "2026-11-22",
     "audit-agency-prices-pricing": "2026-11-22",
     "audit-agency-prices-checker": "2026-11-22",
@@ -222,6 +224,36 @@ HOME_CLAIM_CHECKED = "2026-11-21"
 HOME_CLAIM_CHECKED_HUMAN = "21 November 2026"
 
 VERIFIED: dict[str, list[tuple[str, str]]] = {
+    "seomator": [
+        ("SEOmator positions its platform as an AI SEO Manager for B2B SaaS teams",
+         "https://seomator.com/"),
+        ("The Free plan tracks 10 AI prompts and 25 Google keywords a day for one project",
+         "https://seomator.com/pricing"),
+        ("Starter is $49.00 a month or $490.00 a year; Growth is $99.00 a month or $990.00 a year; Scale is $249.00 a month or $2,490.00 a year",
+         "https://seomator.com/pricing"),
+        ("Starter, Growth and Scale track 40, 120 and 320 AI prompts daily and 100, 600 and 1,200 Google keywords daily; monthly diagnosis covers 1, 3 and 10 projects respectively",
+         "https://seomator.com/pricing"),
+        ("Paid plans include 10,000, 20,000 and 30,000 monthly credits respectively; other projects use credits; Scale white-label reports are marked after launch",
+         "https://seomator.com/pricing"),
+        ("Daily tracked prompts run on ChatGPT, Gemini and Google AI Mode",
+         "https://seomator.com/pricing"),
+        ("The platform agent connects to a CMS and ships approved changes",
+         "https://seomator.com/"),
+        ("The free web audit runs on SEOmator infrastructure, reads one page with 172 checks, adds Lighthouse scores and exports PDF without an account",
+         "https://seomator.com/free-seo-audit-tool"),
+        ("A free account unlocks full-site crawls with all 251 checks, history, scheduled re-runs and Search Console integration",
+         "https://seomator.com/free-seo-audit-tool"),
+        ("The MIT-licensed open-source engine runs locally for free; release 8.0.1 lists 398 rules while the repository short description says 332",
+         "https://github.com/seo-skills/seo-audit-skill"),
+        ("The open-source CLI reads 10 pages by default and up to 1,000 per command-line run; Search Console data is not part of its audit",
+         "https://github.com/seo-skills/seo-audit-skill"),
+        ("The engine needs Node 20.18.1 or newer and npm; the desktop app is built from source",
+         "https://seomator.com/blog/seomator-open-source-seo-audit-skill-cli"),
+        ("The engine offers CI exit codes, score gates, an MCP server and a Claude Code skill; Core Web Vitals need Chrome, Chromium or Edge",
+         "https://github.com/seo-skills/seo-audit-skill"),
+        ("The CLI lists JSON, HTML, Markdown and LLM output formats, without PDF; the dashboard and desktop app rank fixes by returned score points and keep local SQLite history",
+         "https://github.com/seo-skills/seo-audit-skill"),
+    ],
     "audit-agency-prices-home": [
         ("SEOProfy quotes an SEO audit at $500 to $5,000",
          "https://seoprofy.com/blog/seo-audit-pricing/"),
@@ -2952,9 +2984,151 @@ with what it checks and how a crawl is paid for.</p>
     )
 
 
+def seomator() -> Path:
+    """Separate the paid tracking platform from the free local audit engine.
+
+    Sources are the host's supplied 24 November reading in FACTS.md. The app's
+    CrawlConfig and opt-pages UI both default to 200; quote that setting only.
+    Own prices belong to buy_block, never to this comparison's authored cells.
+    """
+    pricing = "https://seomator.com/pricing"
+    home = "https://seomator.com/"
+    web = "https://seomator.com/free-seo-audit-tool"
+    blog = "https://seomator.com/blog/seomator-open-source-seo-audit-skill-cli"
+    repo = "https://github.com/seo-skills/seo-audit-skill"
+
+    def note(*sources: tuple[str, str]) -> str:
+        links = "; ".join(source_link(label, url) for label, url in sources)
+        return f'<p class="table-note">SEOmator sources read 24 November 2026: {links}.</p>'
+
+    body = f"""
+<p class="ownership">We make Check Engine, one of the tools described here. We describe SEOmator from its own pages, read on 24 November 2026, and we earn money when you buy Check Engine.</p>
+<p id="measured-answer">SEOmator is two things under one name: a monthly cloud platform for tracking AI answers and Google rankings, from $49.00 a month (it also has a free plan), and a free, open-source audit engine you run yourself.
+Check Engine is one paid app for one job: auditing a site on your own computer, with one payment instead of a subscription.
+The free engine also runs on your computer, so paying for Check Engine is a choice about the app and its report.</p>
+{note(("pricing", pricing), ("platform", home), ("audit engine", repo))}
+
+<h2>How this comparison works</h2>
+<p>We compare what it costs for a year, what is free, where it runs, how many pages it reads,
+and what the output is. SEOmator's own pages and repository supply its stated facts.
+This is not a test score: we have not measured which tool finds more useful problems on the same site.</p>
+{note(("plans", pricing), ("web audit", web), ("repository", repo))}
+
+<h2>SEOmator is two products</h2>
+<p><strong>The platform</strong> is aimed at B2B SaaS teams. Its Free plan tracks 10 AI prompts and 25 Google keywords a day for one project. Starter costs $49.00 a month,
+Growth $99.00 a month and Scale $249.00 a month. They track 40, 120 and 320 AI prompts daily,
+plus 100, 600 and 1,200 Google keywords daily. Their monthly diagnosis covers 1, 3 and 10 projects.
+They include 10,000, 20,000 and 30,000 credits a month; other projects use credits.
+Scale's reports with your own brand are marked for after launch, rather than available now.</p>
+<p><strong>The free web audit</strong> reads one page, runs 172 checks and offers a PDF without an account.
+It runs on SEOmator's infrastructure. Creating a free account adds full-site crawls described as
+251 checks, saved audits, scheduled re-runs and Search Console integration.</p>
+<p><strong>The open-source engine</strong> is free, MIT-licensed software that runs on your computer.
+The README and blog list 398 rules in release 8.0.1. The repository's short description still says 332.
+SEOmator's own pages give different counts in different places: 172 for the web audit, 251 for the
+account dashboard, 398 in the current release description and 332 in the repository summary.
+Those are different published counts, not interchangeable measures of audit quality.</p>
+{note(("home", home), ("plan details", pricing), ("web audit counts", web),
+       ("release post", blog), ("README and repository summary", repo))}
+
+<h2>A year of use, and what it includes</h2>
+<p>The annual prices below are the amounts SEOmator publishes for yearly billing. The monthly
+prices are quoted separately, not multiplied to make an annual bill. The platform rows list
+tracked prompts, keywords and project diagnoses rather than a crawl page count.</p>
+<div class="wrap-tbl"><table class="cmp">
+<thead><tr><th>Tool and plan</th><th>Price for a year</th><th>Where it runs</th><th>What it reads</th><th>What you get</th></tr></thead>
+<tbody>
+<tr><td>SEOmator Free web audit</td><td>Free</td><td>SEOmator's cloud</td><td>One page per run</td><td>172 checks, Lighthouse scores and PDF; no account</td></tr>
+<tr><td>SEOmator open-source engine</td><td>Free</td><td>Your computer</td><td>10 pages by default, up to 1,000 per command-line run</td><td>398 rules; JSON, HTML, Markdown and LLM output; local history</td></tr>
+<tr><td>SEOmator Starter</td><td>$490.00 billed yearly; or $49.00 a month</td><td>SEOmator's cloud</td><td>40 AI prompts, 100 Google keywords daily; monthly diagnosis for 1 project</td><td>Tracking, playbook and agent; 10,000 monthly credits</td></tr>
+<tr><td>SEOmator Growth</td><td>$990.00 billed yearly; or $99.00 a month</td><td>SEOmator's cloud</td><td>120 AI prompts, 600 Google keywords daily; monthly diagnosis for 3 projects</td><td>Tracking, playbook and agent; 20,000 monthly credits</td></tr>
+<tr><td>SEOmator Scale</td><td>$2,490.00 billed yearly; or $249.00 a month</td><td>SEOmator's cloud</td><td>320 AI prompts, 1,200 Google keywords daily; monthly diagnosis for 10 projects</td><td>Tracking, playbook and agent; 30,000 monthly credits</td></tr>
+<tr><td>Check Engine</td><td>One payment: <a href="#check-engine-price">see the price box</a></td><td>Your Mac or Windows PC</td><td>Default 200 pages, a setting</td><td>{N_CHECKS} checks, ranked fix plan, markup to paste and PDF with your logo</td></tr>
+</tbody></table></div>
+{note(("yearly and monthly billing", pricing), ("free page audit", web), ("engine limits and formats", repo))}
+
+<h2>Where Check Engine is the better fit</h2>
+<p>Pick Check Engine when you want a finished, signed installer for Mac or Windows, with no Node,
+npm or build step. SEOmator's engine needs Node and npm; its README builds the desktop app from source.
+Both audit engines run locally. The SEOmator engine is free, so Check Engine's price buys its packaging and output.</p>
+<p>Against the paid platform, Check Engine offers a different purchase: one payment for a local site audit,
+with a {REFUND_DAYS}-day refund and one licence for {F.licence_covers()}. It suits someone who does not need
+AI-answer or rank tracking. You get a ranked plan with the markup to paste and a client PDF with your own logo
+through <a href="/for/agencies/">Report branding</a>. SEOmator's dashboard and desktop app also rank fixes,
+by the score points each fix returns; its CLI output list does not name PDF.</p>
+<p>You can try Check Engine before paying: the free version names every problem and shows the worst one in full.
+Its AI-crawler access check asks whether crawlers can reach a page. That does not tell you whether an AI answer mentions you.</p>
+{note(("installing the engine", blog), ("desktop build and fix queue", repo), ("platform subscription", pricing))}
+
+<h2>Where SEOmator is ahead</h2>
+<p>The open-source engine gives you free, MIT-licensed source to read and change, with 398 rules to
+Check Engine's {N_CHECKS} checks. That is more rules, without proving which findings help you most.
+It offers CI exit codes and score gates, an MCP server and a Claude Code skill.
+Core Web Vitals run through Chrome, Chromium or Edge. Audit history and comparisons stay in a local SQLite file.</p>
+<p>The paid platform tracks AI prompts daily on ChatGPT, Gemini and Google AI Mode, plus Google keywords.
+SEOmator also offers Search Console integration in its account dashboard, and the platform's agent ships
+changes you approve to your CMS. The local open-source audit does not include Search Console data.</p>
+<p><strong>Check Engine does not do AI-prompt tracking, Google rank tracking, Search Console data or CMS publishing.</strong>
+If those are the jobs you need done, choose SEOmator's platform or account features.</p>
+<p>Check Engine also has a <a href="/for/developers/">CLI and GitHub Action</a>: the CLI returns an exit code
+for critical issues, and the Action downloads the right build, checks its checksum and fails a job at the severity you set.
+Its local MCP tools can run an audit, read saved results and compare audits.
+The <a href="/ai-assistants/">MCP connector for Claude and ChatGPT</a> runs free, read-only checks on one page,
+including crawler access, redirects, headers and a snippet preview. MCP and CI support are shared ground;
+SEOmator adds score gates and a Claude Code skill.</p>
+{note(("engine tools and browser requirements", repo), ("daily tracking", pricing),
+       ("CMS agent", home), ("Search Console in the account", web))}
+
+<h2>Who should pick which</h2>
+<ul>
+<li>A developer who wants free CI gates: start with SEOmator's open-source engine.</li>
+<li>A B2B SaaS team that wants AI-answer tracking: use SEOmator's platform.</li>
+<li>A freelancer or small business that wants an installed app and one payment: try Check Engine.</li>
+<li>Both together is fine: use tracking to watch answers and rankings, and an audit to plan site fixes.</li>
+</ul>
+{note(("developer tools", repo), ("platform audience", home), ("tracking plans", pricing))}
+
+<h2>Sources and read date</h2>
+{_verified_note("seomator", closing="SEOmator sources read 24 November 2026. If a detail changes, <a href='/about/'>tell us</a>.")}
+<section id="check-engine-price">
+<h2>Check Engine's current price</h2>
+{buy_block("vs-seomator", anchor=False, try_app="vs-seomator-try-free")}
+</section>
+"""
+    return render(
+        cat="vs", slug="seomator-alternative",
+        published="2026-11-24", modified="2026-11-24",
+        title="Check Engine SEO vs SEOmator: price, limits, uses",
+        h1="Check Engine SEO vs SEOmator: price, limits, uses",
+        desc=("SEOmator's paid tracking platform and free local audit engine compared with "
+              "Check Engine's installed app. Prices, page limits and uses, with sources."),
+        crumb='<a href="/">Check Engine</a> / <a href="/vs/">Compare</a> / SEOmator',
+        body=body,
+        faq=[
+            ("Why does SEOmator show 172, 251, 332 and 398 checks?",
+             "Its web audit lists 172 checks, and its free account advertises 251. The repository summary "
+             "says 332 while the README and release post list 398 rules. These are the counts SEOmator "
+             "publishes in those places, not a single count we can apply to every product. SEOmator sources "
+             "read 24 November 2026: " + source_link("web audit", web) + "; "
+             + source_link("repository", repo) + "; " + source_link("release post", blog) + "."),
+            ("Does SEOmator's free engine need its paid tracking plan?",
+             "No. The MIT-licensed engine runs on your computer for free, without an account. Its CLI "
+             "starts with 10 pages and allows up to 1,000 in a run. The monthly platform is a separate "
+             "choice for tracking and an agent. SEOmator sources read 24 November 2026: "
+             + source_link("local engine", repo) + "; " + source_link("platform", home) + "."),
+            ("Which SEOmator audit can export a PDF for a client?",
+             "The free web audit lists PDF export for its one-page result. The engine README lists JSON, "
+             "HTML, Markdown and LLM output, without PDF. Check Engine's paid app exports a PDF with "
+             "your logo through " + '<a href="/for/agencies/">Report branding</a>' + ". SEOmator sources "
+             "read 24 November 2026: " + source_link("web PDF", web) + "; "
+             + source_link("CLI formats", repo) + "."),
+        ],
+    )
+
+
 BUILDERS = [screaming_frog, sitebulb, ahrefs, semrush, lighthouse,
             search_console, scrutiny, seoptimer, sitechecker, profound,
-            jetoctopus, crawlraven, crawler_sh,
+            jetoctopus, crawlraven, crawler_sh, seomator,
             se_ranking_vs_screaming_frog]
 
 
