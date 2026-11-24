@@ -222,6 +222,9 @@ def no_old_product(text, where):
     # The download page says why the old name exists (brand.DOWNLOAD_NAME_NOTE): it names the old product on purpose.
     import brand
     text = text.replace(brand.DOWNLOAD_NAME_NOTE, "")
+    # The Windows installer still shows Docket until the renamed installer ships (brand.WIN_INSTALLER_NOTE, 24 Nov 2026): the home page, /download/
+    # and /pricing/ say so on purpose. Remove this allowance with the note.
+    text = text.replace(brand.WIN_INSTALLER_NOTE, "")
     text = re.sub(r'(?:/Applications/|/Volumes/|[A-Z]:\\+)[^\n"<>]*', "", text)
     # Since 1.3.167 a copy updated in place keeps its old file name, Docket.app; the AI assistant, MCP and CLI pages say so (a file name).
     text = text.replace("Docket.app", "")
