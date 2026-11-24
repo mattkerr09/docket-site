@@ -16,10 +16,9 @@
 <meta name="description" content="It reports parsing errors, CDATA wrappers and unfilled template values.">
 <meta name="theme-color" content="#070C0D">
 <meta name="color-scheme" content="dark">
-<meta name="build-id" content="b90705e193b2">
+<meta name="build-id" content="8d5333c7d378">
 <link rel="canonical" href="https://checkengineseo.com/checks/schema-invalid/">
-<link rel="preload" href="/fonts/Switzer-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/Switzer-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dmsans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -36,32 +35,17 @@
 <meta name="twitter:description" content="It reports parsing errors, CDATA wrappers and unfilled template values.">
 <meta name="twitter:image" content="https://checkengineseo.com/og.png?v=20261108-win">
 <style>
-/* Switzer, self-hosted at 74 KB. A Swiss grotesk rather than the geometric
-   display faces this category defaults to: Docket is a measuring instrument that
-   produces reports, and the type should read as precise rather than friendly.
-   Self-hosted because Docket flags render-blocking third-party resources in its
-   own audits, and shipping one would be the inconsistency it exists to catch. */
-/* Weights are 400/500/600/700 because those are the four faces that exist.
-   The stylesheet also carried 640, 650, 680, 720 and 750 across ten
-   declarations, and none of them could be expressed: with faces at 400-700,
-   CSS font matching resolves every weight above 600 to the 700 face. Measured
-   on the live page at 40px: 640, 650, 680, 700, 720 and 750 all render at
-   exactly 323.69px. So the numbers said five things and the page said one, and
-   snapping them to 700 changed no pixel. Same drift as the type scale: each
-   value picked locally to sit beside its neighbour, nothing keeping the whole
-   coherent. */
-@font-face{font-family:'Switzer';src:url('/fonts/Switzer-400.woff2') format('woff2');
-  font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'Switzer';src:url('/fonts/Switzer-500.woff2') format('woff2');
-  font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:'Switzer';src:url('/fonts/Switzer-600.woff2') format('woff2');
-  font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:'Switzer';src:url('/fonts/Switzer-700.woff2') format('woff2');
-  font-weight:700;font-style:normal;font-display:swap}
+/* DM Sans, self-hosted: one variable woff2 (62 KB, weights 100 to 1000 and an optical-size axis) in place of four static
+   faces. It replaced Switzer on 23 Nov 2026 (CEO ruling): Switzer is a Fontshare "Closed Source" font under the ITF Free
+   Font License, whose section 02 forbids making the files available through a public repository, and this repo is public.
+   DM Sans is under the SIL Open Font License 1.1 (licence text beside the file, /fonts/OFL-DM-Sans.txt), which allows it.
+   Self-hosted because Docket flags render-blocking third-party resources in its own audits, and shipping one would be
+   the inconsistency it exists to catch. Weights 400, 500, 600 and 700 are all real here, from the one file. */
+@font-face{font-family:'DM Sans';src:url('/fonts/dmsans-latin.woff2') format('woff2');
+  font-weight:100 1000;font-style:normal;font-display:swap}
 /* Clash Display and General Sans were declared here and never applied to a single
-   element, and neither .woff2 is in site/fonts - only Switzer 400/500/600/700 are.
-   Four @font-face blocks pointing at four 404s, styling nothing. Removed rather
-   than fixed: the retheme uses Switzer throughout, so the files were never needed. */
+   element, and neither .woff2 was in site/fonts. Four @font-face blocks pointing at four 404s, styling nothing.
+   Removed rather than fixed: the retheme uses one family throughout, so the files were never needed. */
 
 :root{
   /* Ink, and the content lifted off it.
@@ -159,8 +143,8 @@
      16px. These five are every value that was actually in use, rounded to a
      set, so the largest move is 3px. */
   --radius-md:9px;--radius-lg:13px;--radius-pill:99px;
-  --display:'Switzer',-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
-  --sans:'Switzer',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,sans-serif;
+  --display:'DM Sans',-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;
+  --sans:'DM Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,sans-serif;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   /* One vertical rhythm for every section. Space is most of what separates a
      considered page from a cramped one. */
@@ -608,7 +592,7 @@ body.landing article{padding:0}
 /* WEIGHT 600, not 700. Measured across the six sites named as the bar:
    mobbin 652, langchain 300, framer 500, avo 600, outlier 600, cofounder 400:
    median ~550, and this page was the heaviest in the set at 700. 600 lands on
-   the same value as two of them, and Switzer-600 is already shipped, so this
+   the same value as two of them, and the variable font file already covers 600, so this
    costs nothing to serve. */
 .hero-h1{font-family:var(--display);font-weight:600;
   /* 56px at the top end, measured at 1440. The CEILING is the whole rule: the
