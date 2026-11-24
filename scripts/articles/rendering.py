@@ -53,7 +53,7 @@ roughly ten to thirty times slower than fetching. <code>--render 0</code> turns 
 entirely, which is what makes the automatic sample a default rather than a decision taken
 for you.</p>
 
-<h2>What it unlocked</h2>
+<h2>What it added</h2>
 
 <h3>Pages that only exist after hydration</h3>
 <p>The SaaS homepage case. Docket now compares the served HTML against the rendered DOM and

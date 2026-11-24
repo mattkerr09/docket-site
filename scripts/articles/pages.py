@@ -2331,7 +2331,7 @@ removes them permanently.</p>
 <ul>
 <li><code>first_opened</code>: the first time the app is opened.</li>
 <li><code>first_audit_finished</code>: the first time an audit finishes.</li>
-<li><code>free_limit</code>: the first time the free version reaches its limit and shows the unlock.</li>
+<li><code>free_limit</code>: the first time the free version reaches its limit and shows the Buy panel.</li>
 </ul>
 <p>Each is sent once per copy and per event. Each sends only the event name, the app version
 and the kind of computer: Mac, Windows or Linux. It is a single HTTPS GET, like a page request,

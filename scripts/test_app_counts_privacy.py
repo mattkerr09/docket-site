@@ -40,7 +40,7 @@ def check_built(destination):
     text = words(section[1])
     for phrase in (
         "the first time the app is opened", "the first time an audit finishes",
-        "the first time the free version reaches its limit", "shows the unlock",
+        "the first time the free version reaches its limit", "shows the Buy panel",
         "app version", "Mac, Windows or Linux", "once per copy and per event",
         "DOCKET_NO_COUNTS=1", "empty file named no-counts", ".docket folder in your home folder",
         "source builds", "offline mode", "Keep it private: only contact this site", "before there is a chance to choose", "internet address", "daily tally", "never who",
