@@ -5,9 +5,9 @@
   "hash": "e99b83511ff46a0a"
  },
  "ai-assistants/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-24",
-  "hash": "9482068916f6e64e"
+  "hash": "d5d0099706a67fd1"
  },
  "ai-crawlers/addsearchbot/index.html": {
   "changed_in_build": false,
@@ -950,9 +950,9 @@
   "hash": "2e547bfe08731a12"
  },
  "best/white-label-seo-audit-tools/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-20",
-  "hash": "bb37e92f1b7bff68"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "0532930c815642ae"
  },
  "bot/index.html": {
   "changed_in_build": false,
@@ -970,9 +970,9 @@
   "hash": "2ac336714bc6de41"
  },
  "checks/ai-dead-crawler-directive/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "18b2c7f502fd3885"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "72f32e297a33bd70"
  },
  "checks/ai-edge-access/index.html": {
   "changed_in_build": false,
@@ -1020,9 +1020,9 @@
   "hash": "aa38183a52fab81f"
  },
  "checks/brand-positioning/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "3018dd40fd1b17f8"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "b2e586d1cd3821c1"
  },
  "checks/brand-social-consistency/index.html": {
   "changed_in_build": false,
@@ -1035,9 +1035,9 @@
   "hash": "fd3933aceb1303ff"
  },
  "checks/brand-voice-consistency/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "2363876da9e63a68"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "08ad517c9e2a03bb"
  },
  "checks/content-ai-slop/index.html": {
   "changed_in_build": false,
@@ -1070,9 +1070,9 @@
   "hash": "dc4f4a3776267c94"
  },
  "checks/content-language-scope/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "df4b48f7e799bf7d"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "e779d8f1dea322bf"
  },
  "checks/content-placeholder/index.html": {
   "changed_in_build": false,
@@ -1120,14 +1120,14 @@
   "hash": "5236860fa45af2f1"
  },
  "checks/cvr-pricing/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "79c65c6336c988df"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "3c7455dbb891ab4c"
  },
  "checks/cvr-social-proof/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "dfc1732e5a8ce681"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "d04b4c0ee6af9f74"
  },
  "checks/cvr-unusable-phone/index.html": {
   "changed_in_build": false,
@@ -1170,9 +1170,9 @@
   "hash": "35cc963d1d68eb31"
  },
  "checks/index-meta-refresh/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "6d3a65d218158065"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "d63776b7471c8e3f"
  },
  "checks/index-noindex/index.html": {
   "changed_in_build": false,
@@ -1210,9 +1210,9 @@
   "hash": "dfe153ddd86ea048"
  },
  "checks/index-www/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "2070f38623464e0f"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "314e5917be80e6ca"
  },
  "checks/index.html": {
   "changed_in_build": false,
@@ -1285,9 +1285,9 @@
   "hash": "ec26eeb227b87a2a"
  },
  "checks/local-geo-targeting/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "3758de276a4510e8"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "a1fa97449f40d87a"
  },
  "checks/local-nap/index.html": {
   "changed_in_build": false,
@@ -1335,9 +1335,9 @@
   "hash": "fcd859f4bcd08d9f"
  },
  "checks/onpage-anchors/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "12708c008f49b03a"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "e85f0b984b679499"
  },
  "checks/onpage-description/index.html": {
   "changed_in_build": false,
@@ -1355,9 +1355,9 @@
   "hash": "3de36275a0bf6901"
  },
  "checks/onpage-lang/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "1fab8a07a77b689c"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "61fad42864ff7b46"
  },
  "checks/onpage-title/index.html": {
   "changed_in_build": false,
@@ -1390,9 +1390,9 @@
   "hash": "32fb11ab59fe6e56"
  },
  "checks/perf-render-blocking/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "8f9efff2a2a7a820"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "1040fc164a9020f9"
  },
  "checks/perf-ttfb/index.html": {
   "changed_in_build": false,
@@ -1435,9 +1435,9 @@
   "hash": "7f9aa074c3ccfa49"
  },
  "checks/security-https/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "dc7e89754c162ffd"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "bf3e6f6ec62e9dfb"
  },
  "checks/security-mixed-content/index.html": {
   "changed_in_build": false,
@@ -1445,9 +1445,9 @@
   "hash": "8bb68e5aec85c86b"
  },
  "checks/social-favicon/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "ecdf4f2a47f92c8f"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "465522c4d123cd05"
  },
  "checks/social-open-graph/index.html": {
   "changed_in_build": false,
@@ -1505,9 +1505,9 @@
   "hash": "37c4807d6ee5a7a6"
  },
  "help/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-19",
-  "hash": "031a4b268373e188"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "f2d1d927e0a6f27b"
  },
  "how-to/analytics-findings-name-the-tag/index.html": {
   "changed_in_build": false,
@@ -1990,9 +1990,9 @@
   "hash": "7fd7d65d647cc437"
  },
  "learn/javascript-rendering/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-10",
-  "hash": "d9bfe196256b0e64"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "7ee6d732eda86064"
  },
  "learn/log-file-analysis/index.html": {
   "changed_in_build": false,
@@ -2125,9 +2125,9 @@
   "hash": "bea04a4d019b5249"
  },
  "legal/privacy/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-22",
-  "hash": "c3db17823cb161c6"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "06f8dc1acb6a54de"
  },
  "legal/refunds/index.html": {
   "changed_in_build": false,
@@ -2190,9 +2190,9 @@
   "hash": "fc970e4739385847"
  },
  "tools/robots-txt-tester/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-22",
-  "hash": "e4d2dbadec5a2f55"
+  "changed_in_build": true,
+  "date": "2026-11-24",
+  "hash": "5fbebe2f465b3f5d"
  },
  "tools/seo-checker/index.html": {
   "changed_in_build": false,
@@ -2260,9 +2260,9 @@
   "hash": "ec202156b44e55d8"
  },
  "vs/screaming-frog-alternative/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-24",
-  "hash": "e0733fe323b49e67"
+  "hash": "08c9925e7b8418b7"
  },
  "vs/screaming-frog-vs-semrush/index.html": {
   "changed_in_build": false,
@@ -2275,9 +2275,9 @@
   "hash": "52e7d3c4ee256bbb"
  },
  "vs/se-ranking-vs-screaming-frog/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-24",
-  "hash": "40133cf9743d3333"
+  "hash": "47fc824c4aa8d691"
  },
  "vs/semrush-site-audit-alternative/index.html": {
   "changed_in_build": false,
@@ -2290,9 +2290,9 @@
   "hash": "776616eb60e13c0f"
  },
  "vs/seoptimer-alternative/index.html": {
-  "changed_in_build": false,
+  "changed_in_build": true,
   "date": "2026-11-24",
-  "hash": "19dcd525fbf11fe1"
+  "hash": "8e711ee36c28c879"
  },
  "vs/sitebulb-alternative/index.html": {
   "changed_in_build": false,
