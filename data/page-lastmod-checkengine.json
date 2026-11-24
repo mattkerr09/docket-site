@@ -6,8 +6,8 @@
  },
  "ai-assistants/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-23",
-  "hash": "1256d1b6d976cb16"
+  "date": "2026-11-24",
+  "hash": "84b72f0f2452521b"
  },
  "ai-crawlers/addsearchbot/index.html": {
   "changed_in_build": false,
@@ -926,8 +926,8 @@
  },
  "best/free-seo-audit-tools/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-22",
-  "hash": "761ef7e3c3629d13"
+  "date": "2026-11-24",
+  "hash": "7a82785a435570a5"
  },
  "best/index.html": {
   "changed_in_build": false,
@@ -936,8 +936,8 @@
  },
  "best/screaming-frog-alternatives/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-22",
-  "hash": "0f1836a5415af63d"
+  "date": "2026-11-24",
+  "hash": "f06ce4fbf28a5cfe"
  },
  "best/seo-audit-software-no-subscription/index.html": {
   "changed_in_build": false,
@@ -1466,8 +1466,8 @@
  },
  "download/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-22",
-  "hash": "275669453748d968"
+  "date": "2026-11-24",
+  "hash": "5961356fdb881389"
  },
  "faq/index.html": {
   "changed_in_build": false,
@@ -1516,8 +1516,8 @@
  },
  "how-to/audit-your-site-from-an-ai-assistant/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-22",
-  "hash": "084c0548e895babe"
+  "date": "2026-11-24",
+  "hash": "e278413f5c361ffe"
  },
  "how-to/backlink-audit/index.html": {
   "changed_in_build": false,
@@ -1576,8 +1576,8 @@
  },
  "how-to/fix-broken-outbound-links/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-16",
-  "hash": "eb3199a0234135ec"
+  "date": "2026-11-24",
+  "hash": "86a1d5ee03891011"
  },
  "how-to/fix-compression-and-caching/index.html": {
   "changed_in_build": false,
@@ -1841,8 +1841,8 @@
  },
  "index.html": {
   "changed_in_build": false,
-  "date": "2026-11-23",
-  "hash": "5d948a9ba07a8911"
+  "date": "2026-11-24",
+  "hash": "a538ef0dcab3974c"
  },
  "index/ai-crawler-blocking-2026-10/index.html": {
   "changed_in_build": false,
@@ -1961,8 +1961,8 @@
  },
  "learn/free-seo-audit-api/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "dde00609cc63f5d3"
+  "date": "2026-11-24",
+  "hash": "ebd673bd8b6213b4"
  },
  "learn/googlebot-2mb-limit/index.html": {
   "changed_in_build": false,
@@ -2026,8 +2026,8 @@
  },
  "learn/seo-audit/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-11",
-  "hash": "3e5e7d67348427cb"
+  "date": "2026-11-24",
+  "hash": "4d9e1862115eb69e"
  },
  "learn/site-monitoring/index.html": {
   "changed_in_build": false,
@@ -2131,18 +2131,18 @@
  },
  "legal/refunds/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-22",
-  "hash": "3ff089828976bfc6"
+  "date": "2026-11-24",
+  "hash": "ec10a446105bcab5"
  },
  "legal/terms/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-22",
-  "hash": "1a9d89167b7421d9"
+  "date": "2026-11-24",
+  "hash": "21d908848cc846fd"
  },
  "mac-seo-audit-tool/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "65e9443c7022ab48"
+  "date": "2026-11-24",
+  "hash": "b3a9f91591669498"
  },
  "score-card/index.html": {
   "changed_in_build": false,
@@ -2226,13 +2226,13 @@
  },
  "vs/crawler-sh-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "3fa848440ffb8ab6"
+  "date": "2026-11-24",
+  "hash": "2c5980b05a5c9e73"
  },
  "vs/crawlraven-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "402526aeacb5e872"
+  "date": "2026-11-24",
+  "hash": "5dc9d166565fa205"
  },
  "vs/google-search-console/index.html": {
   "changed_in_build": false,
@@ -2261,8 +2261,8 @@
  },
  "vs/screaming-frog-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-22",
-  "hash": "d1cd0a35971f0da9"
+  "date": "2026-11-24",
+  "hash": "e0733fe323b49e67"
  },
  "vs/screaming-frog-vs-semrush/index.html": {
   "changed_in_build": false,
@@ -2276,8 +2276,8 @@
  },
  "vs/se-ranking-vs-screaming-frog/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-22",
-  "hash": "db5a7a3c7bbc309c"
+  "date": "2026-11-24",
+  "hash": "40133cf9743d3333"
  },
  "vs/semrush-site-audit-alternative/index.html": {
   "changed_in_build": false,
@@ -2286,8 +2286,8 @@
  },
  "vs/seoptimer-alternative/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "87358d53480a910c"
+  "date": "2026-11-24",
+  "hash": "19dcd525fbf11fe1"
  },
  "vs/sitebulb-alternative/index.html": {
   "changed_in_build": false,
