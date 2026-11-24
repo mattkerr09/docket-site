@@ -1981,8 +1981,8 @@
  },
  "learn/internal-link-equity/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-22",
-  "hash": "f1825ffb1b207e04"
+  "date": "2026-11-24",
+  "hash": "c9ff8dcc1bfa4427"
  },
  "learn/internal-utm-links/index.html": {
   "changed_in_build": false,
@@ -2241,8 +2241,8 @@
  },
  "vs/index.html": {
   "changed_in_build": false,
-  "date": "2026-11-21",
-  "hash": "fa568c142f3f3b2f"
+  "date": "2026-11-24",
+  "hash": "fdc45e9c54dd6751"
  },
  "vs/jetoctopus-alternative/index.html": {
   "changed_in_build": false,
@@ -2283,6 +2283,11 @@
   "changed_in_build": false,
   "date": "2026-11-21",
   "hash": "f82e43effe42c804"
+ },
+ "vs/seomator-alternative/index.html": {
+  "changed_in_build": false,
+  "date": "2026-11-24",
+  "hash": "776616eb60e13c0f"
  },
  "vs/seoptimer-alternative/index.html": {
   "changed_in_build": false,
