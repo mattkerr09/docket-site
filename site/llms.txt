@@ -66,10 +66,11 @@ Michigan, United States.
 - Black Friday sale: $19.99 once through December 2. Then $39. Priced in US dollars.
   There is no renewal date and nothing to cancel.
 - The Buy button applies the sale for you; there is no code to type.
-- Free: your score, how many problems in each category, and the top problem in full
-  with its fix. Pro: the rest of the problems, the ranked fix plan and the markup to
-  paste. The free version needs no key and no account, and runs the same full audit;
-  buying unlocks the audit already run, with no second crawl.
+- Free: your score, every problem by name, worst first, and the top problem in full
+  with its fix. Pro: the fix for every problem, the ranked plan in the order to fix
+  it, the markup to paste and the PDF report. The free version needs no key and no
+  account, and runs the same full audit; buying unlocks the audit already run, with no
+  second crawl.
 - The licence key arrives by email with the receipt and is pasted into the app once.
   One licence covers up to 3 computers at a time, Mac or Windows: activating Check Engine on
   a computer uses one, and deactivating one moves the licence to another.
@@ -99,10 +100,11 @@ Michigan, United States.
 
 ## Frequently asked questions
 
-- Is Check Engine free? Free: your score, how many problems in each category, and the top
-  problem in full with its fix. Pro: the rest of the problems, the ranked fix plan and
-  the markup to paste. Black Friday sale: $19.99 once through December 2. Then $39.
-  There is a 30-day refund. There is no subscription and nothing to cancel.
+- Is Check Engine free? Free: your score, every problem by name, worst first, and the top
+  problem in full with its fix. Pro: the fix for every problem, the ranked plan in the
+  order to fix it, the markup to paste and the PDF report. Black Friday sale: $19.99
+  once through December 2. Then $39. There is a 30-day refund. There is no
+  subscription and nothing to cancel.
 - What if it isn't for me? Ask for a refund within 30 days of buying and you get your
   money back. No conditions and no questions. Write to support@checkengineseo.com, or
   reply to the receipt the payment processor emails you. The licence key is revoked,
