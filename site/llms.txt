@@ -69,7 +69,7 @@ Michigan, United States.
 - Free: your score, every problem by name, worst first, and the top problem in full
   with its fix. Pro: the fix for every problem, the ranked plan in the order to fix
   it, the markup to paste and the PDF report. The free version needs no key and no
-  account, and runs the same full audit; buying unlocks the audit already run, with no
+  account, and runs the same full audit; buying opens the audit already run, with no
   second crawl.
 - The licence key arrives by email with the receipt and is pasted into the app once.
   One licence covers up to 3 computers at a time, Mac or Windows: activating Check Engine on
