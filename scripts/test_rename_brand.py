@@ -573,9 +573,9 @@ def default_brand():
 
 
 def check_analytics(docket, checkengine):
-    # CEO 2026-11-10: the Check Engine build keeps the SITE-BOUND Plausible loader, so it counts under the docketseo.app site
-    # (Docket's history) whatever the host; the checkengineseo.com Plausible site was repurposed, so no classic data-domain loader.
-    loader = '<script async src="https://plausible.io/js/pa-l5xLCLM0WKYQNcrCFH9qg.js"></script>'
+    # Matthew 2026-11-25: both builds load the SITE-BOUND loader of Kerr & Company's self-hosted Plausible (stats.kerrandcompanyholdings.com);
+    # no classic data-domain loader, and never plausible.io beside it.
+    loader = '<script async src="https://stats.kerrandcompanyholdings.com/js/pa-lagX1zI5muPHUdc7BeoCQ.js"></script>'
     count = 0
     for page in docket.rglob("*.html"):
         before = page.read_text()

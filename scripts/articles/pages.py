@@ -2376,9 +2376,10 @@ three counts off, set the environment variable <code>DOCKET_NO_COUNTS=1</code>, 
 
 <h2>This website</h2>
 <p>This site is static and runs four third-party scripts. The first is
-<a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, which counts page
-views. Plausible states that it uses no cookies, collects no personal data and does not track
-visitors across sites; it is hosted in the EU. Nothing about your audits reaches it.
+<a href="https://plausible.io/privacy-focused-web-analytics">Plausible</a>, an open-source tool that counts page
+views. We run it ourselves: Kerr &amp; Company hosts it on its own server in the United States, at
+<code>stats.kerrandcompanyholdings.com</code>. Plausible states that it uses no cookies, collects no personal
+data and does not track visitors across sites. Nothing about your audits reaches it.
 Audits run on your computer and this website never sees them. Standard server logs may record IP
 addresses and requested URLs, which are used only to keep the site running.</p>
 <p>The second is the chat assistant in the corner of the page, which answers questions about

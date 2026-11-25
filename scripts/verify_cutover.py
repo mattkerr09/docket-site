@@ -205,11 +205,11 @@ def plausible(response, new):
     served(response, "text/html")
     raw = response.text()
     scripts = [attrs for tag, attrs in Page(raw).tags if tag == "script"
-               and urlsplit(attrs.get("src", "")).hostname == "plausible.io"]
+               and urlsplit(attrs.get("src", "")).hostname in ("stats.kerrandcompanyholdings.com", "plausible.io")]
     require(len(scripts) == 1, "expected one Plausible loader")
-    require(scripts[0].get("src") == "https://plausible.io/js/pa-l5xLCLM0WKYQNcrCFH9qg.js"
+    require(scripts[0].get("src") == "https://stats.kerrandcompanyholdings.com/js/pa-lagX1zI5muPHUdc7BeoCQ.js"
             and "async" in scripts[0] and "data-domain" not in scripts[0],
-            "expected the site-bound Plausible loader (async, no data-domain): it counts under the docketseo.app site")
+            "expected the site-bound Plausible loader (async, no data-domain): it is the self-hosted Plausible of Kerr & Company, and plausible.io must not load beside it")
     require("plausible.init" in raw and "plausible.q" in raw,
             "the site-bound loader needs the queue stub and the init call")
 
@@ -528,7 +528,7 @@ class Fixture:
         return (f'<link rel="canonical" href="https://{NEW}{path}">'
                 f'<meta property="og:url" content="https://{NEW}{path}">'
                 f'<meta property="og:image" content="https://{NEW}/og.png">'
-                f'<script async src="https://plausible.io/js/pa-l5xLCLM0WKYQNcrCFH9qg.js"></script>'
+                f'<script async src="https://stats.kerrandcompanyholdings.com/js/pa-lagX1zI5muPHUdc7BeoCQ.js"></script>'
                 '<script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()</script>'
                 f'<p>support@{OLD} https://{MCP}/mcp https://{OLD}/updater.json</p>'
                 f'<section data-brand-history><p>https://{OLD}/past/</p></section>').encode()
@@ -710,7 +710,7 @@ def targeted_self_tests(fixture, fetch):
         (b'rel="canonical" href="https://' + NEW.encode(), b'rel="canonical" href="https://' + OLD.encode(), "page metadata /", "canonical"),
         (b'property="og:url" content="https://' + NEW.encode(), b'property="og:url" content="https://' + OLD.encode(), "page metadata /", "og:url"),
         (b'property="og:image" content="https://' + NEW.encode(), b'property="og:image" content="https://' + OLD.encode(), "page metadata /", "og:image"),
-        (b"pa-l5xLCLM0WKYQNcrCFH9qg.js", b"script.js", "Plausible /", "site-bound Plausible loader"),
+        (b"pa-lagX1zI5muPHUdc7BeoCQ.js", b"script.js", "Plausible /", "site-bound Plausible loader"),
         (b"plausible.q", b"plausible.z", "Plausible /", "queue stub"),
         (NEW.encode(), OLD.encode(), "sitemap new host", "wrong host"),
         (b"# Check Engine SEO.", b"# Docket SEO.", "robots", "first line"),

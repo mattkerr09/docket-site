@@ -2597,10 +2597,11 @@ LANDING_SOURCE_JS = (
 )
 
 
-# The site-bound Plausible loader, for BOTH brands. Matthew gave the checkengineseo.com site's own snippet on 10 Nov 2026
-# (pa-l5xLCLM0WKYQNcrCFH9qg); it replaced the docketseo.app site's loader, so the site loads exactly one Plausible script.
-# Do not switch to a classic data-domain script: the loader is bound to the Plausible site, whatever the hostname.
-PLAUSIBLE_LOADER = '<script async src="https://plausible.io/js/pa-l5xLCLM0WKYQNcrCFH9qg.js"></script>\n'
+# The site-bound Plausible loader, for BOTH brands, now from Kerr & Company's own self-hosted Plausible (Matthew, MATTHEW-SAID
+# 2026-11-24T21:32:36Z and 2026-11-25T13:02:57Z: "the new Plausible site isn't picking up any visitors yet"). The page loads
+# exactly one Plausible script: never this one and plausible.io together. Do not switch to a classic data-domain script:
+# the loader is bound to the Plausible site, whatever the hostname. The plausible.init() line is PLAUSIBLE_STUB.
+PLAUSIBLE_LOADER = '<script async src="https://stats.kerrandcompanyholdings.com/js/pa-lagX1zI5muPHUdc7BeoCQ.js"></script>\n'
 PLAUSIBLE_STUB = (
     'window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},'
     'plausible.init=plausible.init||function(i){plausible.o=i||{}};\n'

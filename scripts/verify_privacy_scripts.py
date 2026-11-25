@@ -35,8 +35,10 @@ from verify_pixel import (PRIVACY, SITE, TRACKER_MARKS,  # noqa: E402
 from brand import HOST, SITE_BRAND  # noqa: E402
 
 _SRC = re.compile(r"<script\b[^>]*\bsrc=[\"']([^\"']+)[\"']", re.I)
-# Both brands use the site-bound loader (CEO 2026-11-10): it counts under the docketseo.app Plausible site whatever the host.
-PLAUSIBLE_SRC = "https://plausible.io/js/pa-l5xLCLM0WKYQNcrCFH9qg.js"
+# Both brands use the site-bound loader of Kerr & Company's own self-hosted Plausible (Matthew, 2026-11-25; the plausible.io
+# loader of 2026-11-10 is gone and must not load beside it).
+PLAUSIBLE_HOSTS = ("stats.kerrandcompanyholdings.com", "plausible.io")
+PLAUSIBLE_SRC = "https://stats.kerrandcompanyholdings.com/js/pa-lagX1zI5muPHUdc7BeoCQ.js"
 
 
 class PlausibleScripts(HTMLParser):
@@ -47,7 +49,7 @@ class PlausibleScripts(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
-        if tag == "script" and urlsplit(attrs.get("src", "")).hostname == "plausible.io":
+        if tag == "script" and urlsplit(attrs.get("src", "")).hostname in PLAUSIBLE_HOSTS:
             self.scripts.append(attrs)
 
 
@@ -118,16 +120,21 @@ def main() -> int:
         print("  self-test ok — a planted unlisted script was refused")
         name = next(name for name, raw in pages.items() if PLAUSIBLE_SRC in raw)
         planted = dict(pages)
-        planted[name] = planted[name].replace(PLAUSIBLE_SRC, "https://plausible.io/js/wrong.js")
+        planted[name] = planted[name].replace(PLAUSIBLE_SRC, "https://stats.kerrandcompanyholdings.com/js/wrong.js")
         if not any("wrong Plausible loader" in b for b in check(planted, privacy, declared)):
             print("SELF-TEST FAILED: wrong Plausible loader passed")
             return 1
-        planted[name] = pages[name].replace(PLAUSIBLE_SRC, "https://plausible.io/js/script.js").replace(
+        planted[name] = pages[name].replace(PLAUSIBLE_SRC, "https://stats.kerrandcompanyholdings.com/js/script.js").replace(
             "<script async ", '<script async data-domain="wrong.invalid" ')
         if not any("site-bound one" in b or "wrong Plausible loader" in b for b in check(planted, privacy, declared)):
             print("SELF-TEST FAILED: a classic data-domain loader passed")
             return 1
-        print("  self-test ok: the brand's Plausible settings were checked")
+        planted = dict(pages)
+        planted[name] = pages[name].replace("</body>", '<script async src="https://plausible.io/js/pa-l5xLCLM0WKYQNcrCFH9qg.js"></script></body>')
+        if not any("wrong Plausible loader" in b for b in check(planted, privacy, declared)):
+            print("SELF-TEST FAILED: the old plausible.io loader beside the new one passed")
+            return 1
+        print("  self-test ok: the brand's Plausible settings were checked (and plausible.io beside the new loader is refused)")
 
     bad = check(pages, privacy, declared)
     scripts = loaded_scripts(pages)
