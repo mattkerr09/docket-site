@@ -5,7 +5,7 @@
   "hash": "e99b83511ff46a0a"
  },
  "ai-assistants/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-24",
   "hash": "e76177d86864c3c1"
  },
@@ -1465,7 +1465,7 @@
   "hash": "ba1b9131891cc9b1"
  },
  "download/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-24",
   "hash": "8e871989172ccad8"
  },
@@ -1475,7 +1475,7 @@
   "hash": "0f6fcde60ef7374d"
  },
  "for/agencies/index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-24",
   "hash": "4e4018543f06ec1b"
  },
@@ -1840,7 +1840,7 @@
   "hash": "1bef76e786f181cd"
  },
  "index.html": {
-  "changed_in_build": true,
+  "changed_in_build": false,
   "date": "2026-11-24",
   "hash": "95a606357da9a16a"
  },
@@ -2125,9 +2125,9 @@
   "hash": "bea04a4d019b5249"
  },
  "legal/privacy/index.html": {
-  "changed_in_build": false,
-  "date": "2026-11-24",
-  "hash": "926f5128d9adb5c7"
+  "changed_in_build": true,
+  "date": "2026-11-25",
+  "hash": "995aab341c4681e9"
  },
  "legal/refunds/index.html": {
   "changed_in_build": false,
